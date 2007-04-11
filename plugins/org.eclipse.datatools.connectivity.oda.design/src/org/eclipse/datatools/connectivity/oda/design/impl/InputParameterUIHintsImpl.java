@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,18 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputParameterUIHintsImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -39,14 +35,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InputParameterUIHintsImpl extends EObjectImpl implements InputParameterUIHints
+public class InputParameterUIHintsImpl extends EObjectImpl implements
+        InputParameterUIHints
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getGroupPromptDisplayName() <em>Group Prompt Display Name</em>}' attribute.
@@ -85,7 +82,7 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getInputParameterUIHints();
+        return DesignPackage.Literals.INPUT_PARAMETER_UI_HINTS;
     }
 
     /**
@@ -107,8 +104,12 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
     {
         String oldGroupPromptDisplayName = m_groupPromptDisplayName;
         m_groupPromptDisplayName = newGroupPromptDisplayName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME, oldGroupPromptDisplayName, m_groupPromptDisplayName));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME,
+                    oldGroupPromptDisplayName, m_groupPromptDisplayName ) );
     }
 
     /**
@@ -116,14 +117,14 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-                return getGroupPromptDisplayName();
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+            return getGroupPromptDisplayName();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -131,15 +132,15 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-                setGroupPromptDisplayName((String)newValue);
-                return;
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+            setGroupPromptDisplayName( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -147,15 +148,15 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-                setGroupPromptDisplayName(GROUP_PROMPT_DISPLAY_NAME_EDEFAULT);
-                return;
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+            setGroupPromptDisplayName( GROUP_PROMPT_DISPLAY_NAME_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -163,14 +164,16 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
-                return GROUP_PROMPT_DISPLAY_NAME_EDEFAULT == null ? m_groupPromptDisplayName != null : !GROUP_PROMPT_DISPLAY_NAME_EDEFAULT.equals(m_groupPromptDisplayName);
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME:
+            return GROUP_PROMPT_DISPLAY_NAME_EDEFAULT == null ? m_groupPromptDisplayName != null
+                    : !GROUP_PROMPT_DISPLAY_NAME_EDEFAULT
+                            .equals( m_groupPromptDisplayName );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -180,12 +183,13 @@ public class InputParameterUIHintsImpl extends EObjectImpl implements InputParam
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (groupPromptDisplayName: "); //$NON-NLS-1$
-        result.append(m_groupPromptDisplayName);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (groupPromptDisplayName: " ); //$NON-NLS-1$
+        result.append( m_groupPromptDisplayName );
+        result.append( ')' );
         return result.toString();
     }
 

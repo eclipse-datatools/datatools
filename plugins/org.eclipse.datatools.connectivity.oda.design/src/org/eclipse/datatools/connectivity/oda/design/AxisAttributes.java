@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: AxisAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes()
- * @model 
+ * @model extendedMetaData="name='AxisAttributes' kind='elementOnly'"
  * @generated
  */
 public interface AxisAttributes extends EObject
@@ -44,7 +44,7 @@ public interface AxisAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Axis Type</b></em>' attribute.
@@ -62,6 +62,7 @@ public interface AxisAttributes extends EObject
      * @see #setAxisType(AxisType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes_AxisType()
      * @model default="Measure" unique="false" unsettable="true" required="true"
+     *        extendedMetaData="kind='element' name='axisType' namespace='##targetNamespace'"
      * @generated
      */
     AxisType getAxisType();
@@ -116,6 +117,7 @@ public interface AxisAttributes extends EObject
      * @see #setOnColumnLayout(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAxisAttributes_OnColumnLayout()
      * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='onColumnLayout' namespace='##targetNamespace'"
      * @generated
      */
     boolean isOnColumnLayout();

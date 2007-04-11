@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.5 2006/08/11 01:39:41 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.6 2007/03/16 11:47:22 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -62,21 +62,15 @@ import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-
 import org.eclipse.emf.common.util.AbstractEnumerator;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
-
-import org.eclipse.emf.ecore.xml.type.impl.XMLTypePackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -91,7 +85,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc -->
@@ -556,7 +550,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         isInited = true;
 
         // Initialize simple dependencies
-        XMLTypePackageImpl.init();
+        XMLTypePackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theDesignPackage.createPackageContents();
@@ -2607,7 +2601,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         setNsURI( eNS_URI );
 
         // Obtain other dependent packages
-        XMLTypePackageImpl theXMLTypePackage = (XMLTypePackageImpl) EPackage.Registry.INSTANCE
+        XMLTypePackage theXMLTypePackage = (XMLTypePackage) EPackage.Registry.INSTANCE
                 .getEPackage( XMLTypePackage.eNS_URI );
 
         // Add supertypes to classes
@@ -3314,7 +3308,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 OdaScalarDataType.DECIMAL_LITERAL );
         addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.BLOB_LITERAL );
         addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.CLOB_LITERAL );
-        addEEnumLiteral( odaScalarDataTypeEEnum, OdaScalarDataType.BOOLEAN_LITERAL );
+        addEEnumLiteral( odaScalarDataTypeEEnum,
+                OdaScalarDataType.BOOLEAN_LITERAL );
 
         initEEnum( parameterModeEEnum, ParameterMode.class, "ParameterMode" ); //$NON-NLS-1$
         addEEnumLiteral( parameterModeEEnum, ParameterMode.IN_LITERAL );
@@ -3358,7 +3353,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "NativeDataTypeCode", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 nativeDataTypeCodeObjectEDataType,
-                Short.class,
+                Integer.class,
                 "NativeDataTypeCodeObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 odaComplexDataTypeObjectEDataType,

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSession.java,v 1.6 2006/02/28 21:02:29 lchan Exp $
+ * $Id: OdaDesignSession.java,v 1.7 2006/03/07 05:06:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOdaDesignSession()
- * @model 
+ * @model extendedMetaData="name='OdaDesignSession' kind='elementOnly'"
  * @generated
  */
 public interface OdaDesignSession extends EObject
@@ -44,7 +44,7 @@ public interface OdaDesignSession extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Request</b></em>' containment reference.
@@ -53,7 +53,8 @@ public interface OdaDesignSession extends EObject
      * @return the value of the '<em>Request</em>' containment reference.
      * @see #setRequest(DesignSessionRequest)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOdaDesignSession_Request()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='request' namespace='##targetNamespace'"
      * @generated
      */
     DesignSessionRequest getRequest();
@@ -76,7 +77,7 @@ public interface OdaDesignSession extends EObject
      * @generated NOT
      */
     void setNewRequest( DataSourceDesign dataSourceDesign );
-    
+
     /**
      * Returns the value of the '<em><b>Response</b></em>' containment reference.
      * <!-- begin-user-doc -->
@@ -84,7 +85,8 @@ public interface OdaDesignSession extends EObject
      * @return the value of the '<em>Response</em>' containment reference.
      * @see #setResponse(DesignSessionResponse)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOdaDesignSession_Response()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='response' namespace='##targetNamespace'"
      * @generated
      */
     DesignSessionResponse getResponse();
@@ -132,7 +134,7 @@ public interface OdaDesignSession extends EObject
      * @generated NOT
      */
     void setResponseInCancelledState();
-    
+
     /**
      * Obtains the Data Source Design associated with the
      * top-level Data Set in the Request session.
@@ -142,7 +144,7 @@ public interface OdaDesignSession extends EObject
      * @generated NOT
      */
     DataSourceDesign getRequestDataSourceDesign();
-    
+
     /**
      * Obtains the top-level Data Set Design associated with the
      * Request session.
@@ -161,16 +163,16 @@ public interface OdaDesignSession extends EObject
      * @see #getResponse()
      * @generated NOT
      */
-   DataSourceDesign getResponseDataSourceDesign();
+    DataSourceDesign getResponseDataSourceDesign();
 
-   /**
-    * Gets the Data Set Design associated with the
-    * Response session.
-    * @return the value of the '<em>Data Set Design</em>' containment reference;
-    *          could be null if none is specified.
-    * @see #getResponse()
-    * @generated NOT
-    */
-   DataSetDesign getResponseDataSetDesign();
-    
+    /**
+     * Gets the Data Set Design associated with the
+     * Response session.
+     * @return the value of the '<em>Data Set Design</em>' containment reference;
+     *          could be null if none is specified.
+     * @see #getResponse()
+     * @generated NOT
+     */
+    DataSetDesign getResponseDataSetDesign();
+
 } // OdaDesignSession

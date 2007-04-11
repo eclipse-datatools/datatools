@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputParameterAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: InputParameterAttributes.java,v 1.2 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputParameterAttributes()
- * @model 
+ * @model extendedMetaData="name='InputParameterAttributes' kind='elementOnly'"
  * @generated
  */
 public interface InputParameterAttributes extends EObject
@@ -44,7 +44,7 @@ public interface InputParameterAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Element Attributes</b></em>' containment reference.
@@ -53,7 +53,8 @@ public interface InputParameterAttributes extends EObject
      * @return the value of the '<em>Element Attributes</em>' containment reference.
      * @see #setElementAttributes(InputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputParameterAttributes_ElementAttributes()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='elementAttributes' namespace='##targetNamespace'"
      * @generated
      */
     InputElementAttributes getElementAttributes();
@@ -75,7 +76,8 @@ public interface InputParameterAttributes extends EObject
      * @return the value of the '<em>Ui Hints</em>' containment reference.
      * @see #setUiHints(InputParameterUIHints)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputParameterAttributes_UiHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='uiHints' namespace='##targetNamespace'"
      * @generated
      */
     InputParameterUIHints getUiHints();

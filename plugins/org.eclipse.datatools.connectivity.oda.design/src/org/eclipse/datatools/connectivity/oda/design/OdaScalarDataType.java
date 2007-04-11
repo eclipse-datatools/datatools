@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaScalarDataType.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: OdaScalarDataType.java,v 1.2 2007/03/16 11:47:22 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Date</b></em>' literal value.
@@ -164,7 +164,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType DATE_LITERAL = new OdaScalarDataType(DATE, "Date"); //$NON-NLS-1$
+    public static final OdaScalarDataType DATE_LITERAL = new OdaScalarDataType(
+            DATE, "Date", "Date" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Double</b></em>' literal object.
@@ -174,7 +175,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType DOUBLE_LITERAL = new OdaScalarDataType(DOUBLE, "Double"); //$NON-NLS-1$
+    public static final OdaScalarDataType DOUBLE_LITERAL = new OdaScalarDataType(
+            DOUBLE, "Double", "Double" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Integer</b></em>' literal object.
@@ -184,7 +186,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType INTEGER_LITERAL = new OdaScalarDataType(INTEGER, "Integer"); //$NON-NLS-1$
+    public static final OdaScalarDataType INTEGER_LITERAL = new OdaScalarDataType(
+            INTEGER, "Integer", "Integer" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>String</b></em>' literal object.
@@ -194,7 +197,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType STRING_LITERAL = new OdaScalarDataType(STRING, "String"); //$NON-NLS-1$
+    public static final OdaScalarDataType STRING_LITERAL = new OdaScalarDataType(
+            STRING, "String", "String" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Time</b></em>' literal object.
@@ -204,7 +208,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType TIME_LITERAL = new OdaScalarDataType(TIME, "Time"); //$NON-NLS-1$
+    public static final OdaScalarDataType TIME_LITERAL = new OdaScalarDataType(
+            TIME, "Time", "Time" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Timestamp</b></em>' literal object.
@@ -214,7 +219,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType TIMESTAMP_LITERAL = new OdaScalarDataType(TIMESTAMP, "Timestamp"); //$NON-NLS-1$
+    public static final OdaScalarDataType TIMESTAMP_LITERAL = new OdaScalarDataType(
+            TIMESTAMP, "Timestamp", "Timestamp" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Decimal</b></em>' literal object.
@@ -224,7 +230,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType DECIMAL_LITERAL = new OdaScalarDataType(DECIMAL, "Decimal"); //$NON-NLS-1$
+    public static final OdaScalarDataType DECIMAL_LITERAL = new OdaScalarDataType(
+            DECIMAL, "Decimal", "Decimal" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Blob</b></em>' literal object.
@@ -234,7 +241,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType BLOB_LITERAL = new OdaScalarDataType(BLOB, "Blob"); //$NON-NLS-1$
+    public static final OdaScalarDataType BLOB_LITERAL = new OdaScalarDataType(
+            BLOB, "Blob", "Blob" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Clob</b></em>' literal object.
@@ -244,7 +252,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType CLOB_LITERAL = new OdaScalarDataType(CLOB, "Clob"); //$NON-NLS-1$
+    public static final OdaScalarDataType CLOB_LITERAL = new OdaScalarDataType(
+            CLOB, "Clob", "Clob" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Boolean</b></em>' literal object.
@@ -254,7 +263,8 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final OdaScalarDataType BOOLEAN_LITERAL = new OdaScalarDataType(BOOLEAN, "Boolean"); //$NON-NLS-1$
+    public static final OdaScalarDataType BOOLEAN_LITERAL = new OdaScalarDataType(
+            BOOLEAN, "Boolean", "Boolean" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Oda Scalar Data Type</b></em>' enumerators.
@@ -273,20 +283,21 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Oda Scalar Data Type</b></em>' literal with the specified name.
+     * Returns the '<em><b>Oda Scalar Data Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static OdaScalarDataType get( String name )
+    public static OdaScalarDataType get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             OdaScalarDataType result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -295,14 +306,33 @@ public final class OdaScalarDataType extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Oda Scalar Data Type</b></em>' literal with the specified value.
+     * Returns the '<em><b>Oda Scalar Data Type</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static OdaScalarDataType getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            OdaScalarDataType result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Oda Scalar Data Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static OdaScalarDataType get( int value )
     {
-        switch (value)
+        switch( value )
         {
         case DATE:
             return DATE_LITERAL;
@@ -325,7 +355,7 @@ public final class OdaScalarDataType extends AbstractEnumerator
         case BOOLEAN:
             return BOOLEAN_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -334,9 +364,9 @@ public final class OdaScalarDataType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private OdaScalarDataType( int value, String name )
+    private OdaScalarDataType( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //OdaScalarDataType

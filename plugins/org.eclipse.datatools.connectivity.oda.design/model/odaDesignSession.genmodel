@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2005, 2006 Actuate Corporation"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2005, 2007 Actuate Corporation"
     modelDirectory="/org.eclipse.datatools.connectivity.oda.design/src" editDirectory="/org.eclipse.datatools.connectivity.oda.design.edit/src"
     editorDirectory="/org.eclipse.datatools.connectivity.oda.design.editor/src" modelPluginID="org.eclipse.datatools.connectivity.oda.design"
     templateDirectory="/org.eclipse.datatools.connectivity.oda.design/src/templates"
@@ -48,6 +48,7 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Decimal"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Blob"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Clob"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Boolean"/>
     </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterMode">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterMode/In"/>

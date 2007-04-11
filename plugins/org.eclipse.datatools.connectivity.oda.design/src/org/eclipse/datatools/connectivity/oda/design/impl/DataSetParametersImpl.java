@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSetParametersImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -20,19 +20,13 @@ import java.util.Collection;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -50,14 +44,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class DataSetParametersImpl extends EObjectImpl implements DataSetParameters
+public class DataSetParametersImpl extends EObjectImpl implements
+        DataSetParameters
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getParameterDefinitions() <em>Parameter Definitions</em>}' containment reference list.
@@ -115,7 +110,7 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDataSetParameters();
+        return DesignPackage.Literals.DATA_SET_PARAMETERS;
     }
 
     /**
@@ -125,9 +120,11 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      */
     public EList getParameterDefinitions()
     {
-        if (m_parameterDefinitions == null)
+        if( m_parameterDefinitions == null )
         {
-            m_parameterDefinitions = new EObjectContainmentEList(ParameterDefinition.class, this, DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS);
+            m_parameterDefinitions = new EObjectContainmentEList(
+                    ParameterDefinition.class, this,
+                    DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS );
         }
         return m_parameterDefinitions;
     }
@@ -153,8 +150,11 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
         m_derivedMetaData = newDerivedMetaData;
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaDataESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA, oldDerivedMetaData, m_derivedMetaData, !oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA,
+                    oldDerivedMetaData, m_derivedMetaData,
+                    !oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -168,8 +168,11 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaData = DERIVED_META_DATA_EDEFAULT;
         m_derivedMetaDataESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA, oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT, oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA,
+                    oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT,
+                    oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -187,19 +190,16 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-                    return ((InternalEList)getParameterDefinitions()).basicRemove(otherEnd, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
+            return ((InternalEList) getParameterDefinitions()).basicRemove(
+                    otherEnd, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -207,16 +207,16 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-                return getParameterDefinitions();
-            case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
-                return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
+            return getParameterDefinitions();
+        case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
+            return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -224,19 +224,19 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-                getParameterDefinitions().clear();
-                getParameterDefinitions().addAll((Collection)newValue);
-                return;
-            case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
-                setDerivedMetaData(((Boolean)newValue).booleanValue());
-                return;
+        case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
+            getParameterDefinitions().clear();
+            getParameterDefinitions().addAll( (Collection) newValue );
+            return;
+        case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
+            setDerivedMetaData( ((Boolean) newValue).booleanValue() );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -244,18 +244,18 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-                getParameterDefinitions().clear();
-                return;
-            case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
-                unsetDerivedMetaData();
-                return;
+        case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
+            getParameterDefinitions().clear();
+            return;
+        case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
+            unsetDerivedMetaData();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -263,16 +263,17 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
-                return m_parameterDefinitions != null && !m_parameterDefinitions.isEmpty();
-            case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
-                return isSetDerivedMetaData();
+        case DesignPackage.DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS:
+            return m_parameterDefinitions != null
+                    && !m_parameterDefinitions.isEmpty();
+        case DesignPackage.DATA_SET_PARAMETERS__DERIVED_META_DATA:
+            return isSetDerivedMetaData();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -282,12 +283,16 @@ public class DataSetParametersImpl extends EObjectImpl implements DataSetParamet
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (derivedMetaData: "); //$NON-NLS-1$
-        if (m_derivedMetaDataESet) result.append(m_derivedMetaData); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (derivedMetaData: " ); //$NON-NLS-1$
+        if( m_derivedMetaDataESet )
+            result.append( m_derivedMetaData );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

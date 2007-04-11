@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Property.java,v 1.5 2006/11/09 00:50:27 lchan Exp $
+ * $Id: Property.java,v 1.6 2006/11/15 08:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface Property extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the name of the '<em><b>Name Value</b></em>' containment reference.
@@ -72,8 +72,8 @@ public interface Property extends EObject
      * @return the value of the '<em>Name Value</em>' containment reference.
      * @see #setNameValue(NameValuePair)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getProperty_NameValue()
-     * @model containment="true" resolveProxies="false" required="true"
-     extendedMetaData="kind='element' name='nameValue' namespace='##targetNamespace'"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='nameValue' namespace='##targetNamespace'"
      * @generated
      */
     NameValuePair getNameValue();
@@ -108,8 +108,8 @@ public interface Property extends EObject
      * @return the value of the '<em>Design Attributes</em>' containment reference.
      * @see #setDesignAttributes(PropertyAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getProperty_DesignAttributes()
-     * @model containment="true" resolveProxies="false"
-     extendedMetaData="kind='element' name='designAttributes' namespace='##targetNamespace'"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='designAttributes' namespace='##targetNamespace'"
      * @generated
      */
     PropertyAttributes getDesignAttributes();
@@ -123,7 +123,7 @@ public interface Property extends EObject
      * @generated
      */
     void setDesignAttributes( PropertyAttributes value );
-    
+
     /**
      * A convenience method to indicate whether this property value 
      * is editable or read-only in a host designer.  
@@ -149,5 +149,5 @@ public interface Property extends EObject
      * @generated NOT
      */
     public boolean isMaskedValue();
-    
+
 } // Property

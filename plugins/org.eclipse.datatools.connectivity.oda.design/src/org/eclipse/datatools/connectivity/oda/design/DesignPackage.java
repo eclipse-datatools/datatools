@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignPackage.java,v 1.3 2006/03/17 14:52:32 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The package name.
@@ -108,7 +108,7 @@ public interface DesignPackage extends EPackage
     int AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT = 1;
 
     /**
-     * The number of structural features of the the '<em>Axis Attributes</em>' class.
+     * The number of structural features of the '<em>Axis Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -154,7 +154,7 @@ public interface DesignPackage extends EPackage
     int COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES = 2;
 
     /**
-     * The number of structural features of the the '<em>Column Definition</em>' class.
+     * The number of structural features of the '<em>Column Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -182,7 +182,7 @@ public interface DesignPackage extends EPackage
     int DATA_ACCESS_DESIGN__DATA_SET_DESIGN = 0;
 
     /**
-     * The number of structural features of the the '<em>Data Access Design</em>' class.
+     * The number of structural features of the '<em>Data Access Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -264,7 +264,7 @@ public interface DesignPackage extends EPackage
     int DATA_ELEMENT_ATTRIBUTES__UI_HINTS = 6;
 
     /**
-     * The number of structural features of the the '<em>Data Element Attributes</em>' class.
+     * The number of structural features of the '<em>Data Element Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -301,7 +301,7 @@ public interface DesignPackage extends EPackage
     int DATA_ELEMENT_UI_HINTS__DESCRIPTION = 1;
 
     /**
-     * The number of structural features of the the '<em>Data Element UI Hints</em>' class.
+     * The number of structural features of the '<em>Data Element UI Hints</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -410,7 +410,7 @@ public interface DesignPackage extends EPackage
     int DATA_SET_DESIGN__PARAMETERS = 9;
 
     /**
-     * The number of structural features of the the '<em>Data Set Design</em>' class.
+     * The number of structural features of the '<em>Data Set Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -447,7 +447,7 @@ public interface DesignPackage extends EPackage
     int DATA_SET_PARAMETERS__DERIVED_META_DATA = 1;
 
     /**
-     * The number of structural features of the the '<em>Data Set Parameters</em>' class.
+     * The number of structural features of the '<em>Data Set Parameters</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -475,7 +475,7 @@ public interface DesignPackage extends EPackage
     int DATA_SET_QUERY__QUERY_TEXT = 0;
 
     /**
-     * The number of structural features of the the '<em>Data Set Query</em>' class.
+     * The number of structural features of the '<em>Data Set Query</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -566,7 +566,7 @@ public interface DesignPackage extends EPackage
     int DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = 7;
 
     /**
-     * The number of structural features of the the '<em>Data Source Design</em>' class.
+     * The number of structural features of the '<em>Data Source Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -603,7 +603,7 @@ public interface DesignPackage extends EPackage
     int DESIGNER_STATE__STATE_CONTENT = 1;
 
     /**
-     * The number of structural features of the the '<em>Designer State</em>' class.
+     * The number of structural features of the '<em>Designer State</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -640,7 +640,7 @@ public interface DesignPackage extends EPackage
     int DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB = 1;
 
     /**
-     * The number of structural features of the the '<em>Designer State Content</em>' class.
+     * The number of structural features of the '<em>Designer State Content</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -695,7 +695,7 @@ public interface DesignPackage extends EPackage
     int DESIGN_SESSION_REQUEST__DESIGNER_STATE = 3;
 
     /**
-     * The number of structural features of the the '<em>Session Request</em>' class.
+     * The number of structural features of the '<em>Session Request</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -741,7 +741,7 @@ public interface DesignPackage extends EPackage
     int DESIGN_SESSION_RESPONSE__DESIGNER_STATE = 2;
 
     /**
-     * The number of structural features of the the '<em>Session Response</em>' class.
+     * The number of structural features of the '<em>Session Response</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -796,7 +796,7 @@ public interface DesignPackage extends EPackage
     int DOCUMENT_ROOT__ODA_DESIGN_SESSION = 3;
 
     /**
-     * The number of structural features of the the '<em>Document Root</em>' class.
+     * The number of structural features of the '<em>Document Root</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -851,7 +851,7 @@ public interface DesignPackage extends EPackage
     int DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN = 3;
 
     /**
-     * The number of structural features of the the '<em>Dynamic Values Query</em>' class.
+     * The number of structural features of the '<em>Dynamic Values Query</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -933,7 +933,7 @@ public interface DesignPackage extends EPackage
     int INPUT_ELEMENT_ATTRIBUTES__UI_HINTS = 6;
 
     /**
-     * The number of structural features of the the '<em>Input Element Attributes</em>' class.
+     * The number of structural features of the '<em>Input Element Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -961,7 +961,7 @@ public interface DesignPackage extends EPackage
     int INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE = 0;
 
     /**
-     * The number of structural features of the the '<em>Input Element UI Hints</em>' class.
+     * The number of structural features of the '<em>Input Element UI Hints</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -998,7 +998,7 @@ public interface DesignPackage extends EPackage
     int INPUT_PARAMETER_ATTRIBUTES__UI_HINTS = 1;
 
     /**
-     * The number of structural features of the the '<em>Input Parameter Attributes</em>' class.
+     * The number of structural features of the '<em>Input Parameter Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1026,7 +1026,7 @@ public interface DesignPackage extends EPackage
     int INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME = 0;
 
     /**
-     * The number of structural features of the the '<em>Input Parameter UI Hints</em>' class.
+     * The number of structural features of the '<em>Input Parameter UI Hints</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1072,7 +1072,7 @@ public interface DesignPackage extends EPackage
     int LOCALE__VARIANT = 2;
 
     /**
-     * The number of structural features of the the '<em>Locale</em>' class.
+     * The number of structural features of the '<em>Locale</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1109,7 +1109,7 @@ public interface DesignPackage extends EPackage
     int NAME_VALUE_PAIR__VALUE = 1;
 
     /**
-     * The number of structural features of the the '<em>Name Value Pair</em>' class.
+     * The number of structural features of the '<em>Name Value Pair</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1146,7 +1146,7 @@ public interface DesignPackage extends EPackage
     int ODA_DESIGN_SESSION__RESPONSE = 1;
 
     /**
-     * The number of structural features of the the '<em>Oda Design Session</em>' class.
+     * The number of structural features of the '<em>Oda Design Session</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1192,7 +1192,7 @@ public interface DesignPackage extends EPackage
     int OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT = 2;
 
     /**
-     * The number of structural features of the the '<em>Output Element Attributes</em>' class.
+     * The number of structural features of the '<em>Output Element Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1256,7 +1256,7 @@ public interface DesignPackage extends EPackage
     int PARAMETER_DEFINITION__FIELDS = 4;
 
     /**
-     * The number of structural features of the the '<em>Parameter Definition</em>' class.
+     * The number of structural features of the '<em>Parameter Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1302,7 +1302,7 @@ public interface DesignPackage extends EPackage
     int PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS = 2;
 
     /**
-     * The number of structural features of the the '<em>Parameter Field Definition</em>' class.
+     * The number of structural features of the '<em>Parameter Field Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1330,7 +1330,7 @@ public interface DesignPackage extends EPackage
     int PARAMETER_FIELDS__FIELD_COLLECTION = 0;
 
     /**
-     * The number of structural features of the the '<em>Parameter Fields</em>' class.
+     * The number of structural features of the '<em>Parameter Fields</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1358,7 +1358,7 @@ public interface DesignPackage extends EPackage
     int PROPERTIES__PROPERTIES = 0;
 
     /**
-     * The number of structural features of the the '<em>Properties</em>' class.
+     * The number of structural features of the '<em>Properties</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1395,7 +1395,7 @@ public interface DesignPackage extends EPackage
     int PROPERTY__DESIGN_ATTRIBUTES = 1;
 
     /**
-     * The number of structural features of the the '<em>Property</em>' class.
+     * The number of structural features of the '<em>Property</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1441,7 +1441,7 @@ public interface DesignPackage extends EPackage
     int PROPERTY_ATTRIBUTES__DERIVED_META_DATA = 2;
 
     /**
-     * The number of structural features of the the '<em>Property Attributes</em>' class.
+     * The number of structural features of the '<em>Property Attributes</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1469,7 +1469,7 @@ public interface DesignPackage extends EPackage
     int RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS = 0;
 
     /**
-     * The number of structural features of the the '<em>Result Set Columns</em>' class.
+     * The number of structural features of the '<em>Result Set Columns</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1506,7 +1506,7 @@ public interface DesignPackage extends EPackage
     int RESULT_SET_DEFINITION__RESULT_SET_COLUMNS = 1;
 
     /**
-     * The number of structural features of the the '<em>Result Set Definition</em>' class.
+     * The number of structural features of the '<em>Result Set Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1543,7 +1543,7 @@ public interface DesignPackage extends EPackage
     int RESULT_SETS__DERIVED_META_DATA = 1;
 
     /**
-     * The number of structural features of the the '<em>Result Sets</em>' class.
+     * The number of structural features of the '<em>Result Sets</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1571,7 +1571,7 @@ public interface DesignPackage extends EPackage
     int SCALAR_VALUE_CHOICES__SCALAR_VALUES = 0;
 
     /**
-     * The number of structural features of the the '<em>Scalar Value Choices</em>' class.
+     * The number of structural features of the '<em>Scalar Value Choices</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1608,7 +1608,7 @@ public interface DesignPackage extends EPackage
     int SCALAR_VALUE_DEFINITION__DISPLAY_NAME = 1;
 
     /**
-     * The number of structural features of the the '<em>Scalar Value Definition</em>' class.
+     * The number of structural features of the '<em>Scalar Value Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1672,7 +1672,7 @@ public interface DesignPackage extends EPackage
     int VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE = 4;
 
     /**
-     * The number of structural features of the the '<em>Value Format Hints</em>' class.
+     * The number of structural features of the '<em>Value Format Hints</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1833,7 +1833,7 @@ public interface DesignPackage extends EPackage
      * The meta object id for the '<em>Native Data Type Code Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see java.lang.Short
+     * @see java.lang.Integer
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCodeObject()
      * @generated
      */
@@ -3553,12 +3553,12 @@ public interface DesignPackage extends EPackage
     EDataType getNativeDataTypeCode();
 
     /**
-     * Returns the meta object for data type '{@link java.lang.Short <em>Native Data Type Code Object</em>}'.
+     * Returns the meta object for data type '{@link java.lang.Integer <em>Native Data Type Code Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Native Data Type Code Object</em>'.
-     * @see java.lang.Short
-     * @model instanceClass="java.lang.Short"
+     * @see java.lang.Integer
+     * @model instanceClass="java.lang.Integer"
      *        extendedMetaData="name='NativeDataTypeCode:Object' baseType='NativeDataTypeCode'" 
      * @generated
      */
@@ -3644,5 +3644,1527 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     DesignFactory getDesignFactory();
+
+    /**
+     * <!-- begin-user-doc -->
+     * Defines literals for the meta objects that represent
+     * <ul>
+     *   <li>each class,</li>
+     *   <li>each feature of each class,</li>
+     *   <li>each enum,</li>
+     *   <li>and each data type</li>
+     * </ul>
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    interface Literals
+    {
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl <em>Axis Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisAttributes()
+         * @generated
+         */
+        EClass AXIS_ATTRIBUTES = eINSTANCE.getAxisAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Axis Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AXIS_ATTRIBUTES__AXIS_TYPE = eINSTANCE
+                .getAxisAttributes_AxisType();
+
+        /**
+         * The meta object literal for the '<em><b>On Column Layout</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT = eINSTANCE
+                .getAxisAttributes_OnColumnLayout();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ColumnDefinitionImpl <em>Column Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ColumnDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getColumnDefinition()
+         * @generated
+         */
+        EClass COLUMN_DEFINITION = eINSTANCE.getColumnDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COLUMN_DEFINITION__ATTRIBUTES = eINSTANCE
+                .getColumnDefinition_Attributes();
+
+        /**
+         * The meta object literal for the '<em><b>Usage Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COLUMN_DEFINITION__USAGE_HINTS = eINSTANCE
+                .getColumnDefinition_UsageHints();
+
+        /**
+         * The meta object literal for the '<em><b>Multi Dimension Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES = eINSTANCE
+                .getColumnDefinition_MultiDimensionAttributes();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl <em>Data Access Design</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataAccessDesign()
+         * @generated
+         */
+        EClass DATA_ACCESS_DESIGN = eINSTANCE.getDataAccessDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Data Set Design</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_ACCESS_DESIGN__DATA_SET_DESIGN = eINSTANCE
+                .getDataAccessDesign_DataSetDesign();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl <em>Data Element Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataElementAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataElementAttributes()
+         * @generated
+         */
+        EClass DATA_ELEMENT_ATTRIBUTES = eINSTANCE.getDataElementAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__NAME = eINSTANCE
+                .getDataElementAttributes_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__POSITION = eINSTANCE
+                .getDataElementAttributes_Position();
+
+        /**
+         * The meta object literal for the '<em><b>Native Data Type Code</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__NATIVE_DATA_TYPE_CODE = eINSTANCE
+                .getDataElementAttributes_NativeDataTypeCode();
+
+        /**
+         * The meta object literal for the '<em><b>Precision</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__PRECISION = eINSTANCE
+                .getDataElementAttributes_Precision();
+
+        /**
+         * The meta object literal for the '<em><b>Scale</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__SCALE = eINSTANCE
+                .getDataElementAttributes_Scale();
+
+        /**
+         * The meta object literal for the '<em><b>Nullability</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_ATTRIBUTES__NULLABILITY = eINSTANCE
+                .getDataElementAttributes_Nullability();
+
+        /**
+         * The meta object literal for the '<em><b>Ui Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_ELEMENT_ATTRIBUTES__UI_HINTS = eINSTANCE
+                .getDataElementAttributes_UiHints();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataElementUIHintsImpl <em>Data Element UI Hints</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataElementUIHintsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataElementUIHints()
+         * @generated
+         */
+        EClass DATA_ELEMENT_UI_HINTS = eINSTANCE.getDataElementUIHints();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_UI_HINTS__DISPLAY_NAME = eINSTANCE
+                .getDataElementUIHints_DisplayName();
+
+        /**
+         * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_ELEMENT_UI_HINTS__DESCRIPTION = eINSTANCE
+                .getDataElementUIHints_Description();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl <em>Data Set Design</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetDesign()
+         * @generated
+         */
+        EClass DATA_SET_DESIGN = eINSTANCE.getDataSetDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_DESIGN__NAME = eINSTANCE.getDataSetDesign_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Oda Extension Data Set Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_DESIGN__ODA_EXTENSION_DATA_SET_ID = eINSTANCE
+                .getDataSetDesign_OdaExtensionDataSetId();
+
+        /**
+         * The meta object literal for the '<em><b>Data Source Design</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__DATA_SOURCE_DESIGN = eINSTANCE
+                .getDataSetDesign_DataSourceDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Query</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__QUERY = eINSTANCE.getDataSetDesign_Query();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_DESIGN__DISPLAY_NAME = eINSTANCE
+                .getDataSetDesign_DisplayName();
+
+        /**
+         * The meta object literal for the '<em><b>Public Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__PUBLIC_PROPERTIES = eINSTANCE
+                .getDataSetDesign_PublicProperties();
+
+        /**
+         * The meta object literal for the '<em><b>Private Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__PRIVATE_PROPERTIES = eINSTANCE
+                .getDataSetDesign_PrivateProperties();
+
+        /**
+         * The meta object literal for the '<em><b>Result Sets</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__RESULT_SETS = eINSTANCE
+                .getDataSetDesign_ResultSets();
+
+        /**
+         * The meta object literal for the '<em><b>Primary Result Set Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_DESIGN__PRIMARY_RESULT_SET_NAME = eINSTANCE
+                .getDataSetDesign_PrimaryResultSetName();
+
+        /**
+         * The meta object literal for the '<em><b>Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__PARAMETERS = eINSTANCE
+                .getDataSetDesign_Parameters();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl <em>Data Set Parameters</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetParameters()
+         * @generated
+         */
+        EClass DATA_SET_PARAMETERS = eINSTANCE.getDataSetParameters();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter Definitions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_PARAMETERS__PARAMETER_DEFINITIONS = eINSTANCE
+                .getDataSetParameters_ParameterDefinitions();
+
+        /**
+         * The meta object literal for the '<em><b>Derived Meta Data</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_PARAMETERS__DERIVED_META_DATA = eINSTANCE
+                .getDataSetParameters_DerivedMetaData();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetQueryImpl <em>Data Set Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataSetQueryImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetQuery()
+         * @generated
+         */
+        EClass DATA_SET_QUERY = eINSTANCE.getDataSetQuery();
+
+        /**
+         * The meta object literal for the '<em><b>Query Text</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SET_QUERY__QUERY_TEXT = eINSTANCE
+                .getDataSetQuery_QueryText();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl <em>Data Source Design</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSourceDesign()
+         * @generated
+         */
+        EClass DATA_SOURCE_DESIGN = eINSTANCE.getDataSourceDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__NAME = eINSTANCE
+                .getDataSourceDesign_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Oda Extension Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__ODA_EXTENSION_ID = eINSTANCE
+                .getDataSourceDesign_OdaExtensionId();
+
+        /**
+         * The meta object literal for the '<em><b>Oda Extension Data Source Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__ODA_EXTENSION_DATA_SOURCE_ID = eINSTANCE
+                .getDataSourceDesign_OdaExtensionDataSourceId();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__DISPLAY_NAME = eINSTANCE
+                .getDataSourceDesign_DisplayName();
+
+        /**
+         * The meta object literal for the '<em><b>Public Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES = eINSTANCE
+                .getDataSourceDesign_PublicProperties();
+
+        /**
+         * The meta object literal for the '<em><b>Private Properties</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES = eINSTANCE
+                .getDataSourceDesign_PrivateProperties();
+
+        /**
+         * The meta object literal for the '<em><b>Linked Profile Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME = eINSTANCE
+                .getDataSourceDesign_LinkedProfileName();
+
+        /**
+         * The meta object literal for the '<em><b>Linked Profile Store File Path</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = eINSTANCE
+                .getDataSourceDesign_LinkedProfileStoreFilePath();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerState()
+         * @generated
+         */
+        EClass DESIGNER_STATE = eINSTANCE.getDesignerState();
+
+        /**
+         * The meta object literal for the '<em><b>Version</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DESIGNER_STATE__VERSION = eINSTANCE
+                .getDesignerState_Version();
+
+        /**
+         * The meta object literal for the '<em><b>State Content</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGNER_STATE__STATE_CONTENT = eINSTANCE
+                .getDesignerState_StateContent();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateContentImpl <em>Designer State Content</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateContentImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerStateContent()
+         * @generated
+         */
+        EClass DESIGNER_STATE_CONTENT = eINSTANCE.getDesignerStateContent();
+
+        /**
+         * The meta object literal for the '<em><b>State Content As String</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING = eINSTANCE
+                .getDesignerStateContent_StateContentAsString();
+
+        /**
+         * The meta object literal for the '<em><b>State Content As Blob</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB = eINSTANCE
+                .getDesignerStateContent_StateContentAsBlob();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignSessionRequestImpl <em>Session Request</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignSessionRequestImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignSessionRequest()
+         * @generated
+         */
+        EClass DESIGN_SESSION_REQUEST = eINSTANCE.getDesignSessionRequest();
+
+        /**
+         * The meta object literal for the '<em><b>Data Access Design</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGN_SESSION_REQUEST__DATA_ACCESS_DESIGN = eINSTANCE
+                .getDesignSessionRequest_DataAccessDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Editable</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DESIGN_SESSION_REQUEST__EDITABLE = eINSTANCE
+                .getDesignSessionRequest_Editable();
+
+        /**
+         * The meta object literal for the '<em><b>Session Locale</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGN_SESSION_REQUEST__SESSION_LOCALE = eINSTANCE
+                .getDesignSessionRequest_SessionLocale();
+
+        /**
+         * The meta object literal for the '<em><b>Designer State</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGN_SESSION_REQUEST__DESIGNER_STATE = eINSTANCE
+                .getDesignSessionRequest_DesignerState();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignSessionResponseImpl <em>Session Response</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignSessionResponseImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignSessionResponse()
+         * @generated
+         */
+        EClass DESIGN_SESSION_RESPONSE = eINSTANCE.getDesignSessionResponse();
+
+        /**
+         * The meta object literal for the '<em><b>Session Status</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DESIGN_SESSION_RESPONSE__SESSION_STATUS = eINSTANCE
+                .getDesignSessionResponse_SessionStatus();
+
+        /**
+         * The meta object literal for the '<em><b>Data Access Design</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN = eINSTANCE
+                .getDesignSessionResponse_DataAccessDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Designer State</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DESIGN_SESSION_RESPONSE__DESIGNER_STATE = eINSTANCE
+                .getDesignSessionResponse_DesignerState();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DocumentRootImpl <em>Document Root</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DocumentRootImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDocumentRoot()
+         * @generated
+         */
+        EClass DOCUMENT_ROOT = eINSTANCE.getDocumentRoot();
+
+        /**
+         * The meta object literal for the '<em><b>Mixed</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DOCUMENT_ROOT__MIXED = eINSTANCE.getDocumentRoot_Mixed();
+
+        /**
+         * The meta object literal for the '<em><b>XMLNS Prefix Map</b></em>' map feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__XMLNS_PREFIX_MAP = eINSTANCE
+                .getDocumentRoot_XMLNSPrefixMap();
+
+        /**
+         * The meta object literal for the '<em><b>XSI Schema Location</b></em>' map feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__XSI_SCHEMA_LOCATION = eINSTANCE
+                .getDocumentRoot_XSISchemaLocation();
+
+        /**
+         * The meta object literal for the '<em><b>Oda Design Session</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DOCUMENT_ROOT__ODA_DESIGN_SESSION = eINSTANCE
+                .getDocumentRoot_OdaDesignSession();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl <em>Dynamic Values Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicValuesQuery()
+         * @generated
+         */
+        EClass DYNAMIC_VALUES_QUERY = eINSTANCE.getDynamicValuesQuery();
+
+        /**
+         * The meta object literal for the '<em><b>Data Set Design</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DYNAMIC_VALUES_QUERY__DATA_SET_DESIGN = eINSTANCE
+                .getDynamicValuesQuery_DataSetDesign();
+
+        /**
+         * The meta object literal for the '<em><b>Enabled</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DYNAMIC_VALUES_QUERY__ENABLED = eINSTANCE
+                .getDynamicValuesQuery_Enabled();
+
+        /**
+         * The meta object literal for the '<em><b>Value Column</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DYNAMIC_VALUES_QUERY__VALUE_COLUMN = eINSTANCE
+                .getDynamicValuesQuery_ValueColumn();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name Column</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN = eINSTANCE
+                .getDynamicValuesQuery_DisplayNameColumn();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl <em>Input Element Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputElementAttributes()
+         * @generated
+         */
+        EClass INPUT_ELEMENT_ATTRIBUTES = eINSTANCE.getInputElementAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Default Scalar Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE = eINSTANCE
+                .getInputElementAttributes_DefaultScalarValue();
+
+        /**
+         * The meta object literal for the '<em><b>Editable</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_ATTRIBUTES__EDITABLE = eINSTANCE
+                .getInputElementAttributes_Editable();
+
+        /**
+         * The meta object literal for the '<em><b>Optional</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_ATTRIBUTES__OPTIONAL = eINSTANCE
+                .getInputElementAttributes_Optional();
+
+        /**
+         * The meta object literal for the '<em><b>Masks Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE = eINSTANCE
+                .getInputElementAttributes_MasksValue();
+
+        /**
+         * The meta object literal for the '<em><b>Static Value Choices</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES = eINSTANCE
+                .getInputElementAttributes_StaticValueChoices();
+
+        /**
+         * The meta object literal for the '<em><b>Dynamic Value Choices</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES = eINSTANCE
+                .getInputElementAttributes_DynamicValueChoices();
+
+        /**
+         * The meta object literal for the '<em><b>Ui Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_ELEMENT_ATTRIBUTES__UI_HINTS = eINSTANCE
+                .getInputElementAttributes_UiHints();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementUIHintsImpl <em>Input Element UI Hints</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.InputElementUIHintsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputElementUIHints()
+         * @generated
+         */
+        EClass INPUT_ELEMENT_UI_HINTS = eINSTANCE.getInputElementUIHints();
+
+        /**
+         * The meta object literal for the '<em><b>Prompt Style</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE = eINSTANCE
+                .getInputElementUIHints_PromptStyle();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputParameterAttributesImpl <em>Input Parameter Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.InputParameterAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputParameterAttributes()
+         * @generated
+         */
+        EClass INPUT_PARAMETER_ATTRIBUTES = eINSTANCE
+                .getInputParameterAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Element Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES = eINSTANCE
+                .getInputParameterAttributes_ElementAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Ui Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_PARAMETER_ATTRIBUTES__UI_HINTS = eINSTANCE
+                .getInputParameterAttributes_UiHints();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputParameterUIHintsImpl <em>Input Parameter UI Hints</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.InputParameterUIHintsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputParameterUIHints()
+         * @generated
+         */
+        EClass INPUT_PARAMETER_UI_HINTS = eINSTANCE.getInputParameterUIHints();
+
+        /**
+         * The meta object literal for the '<em><b>Group Prompt Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_PARAMETER_UI_HINTS__GROUP_PROMPT_DISPLAY_NAME = eINSTANCE
+                .getInputParameterUIHints_GroupPromptDisplayName();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.LocaleImpl <em>Locale</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.LocaleImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getLocale()
+         * @generated
+         */
+        EClass LOCALE = eINSTANCE.getLocale();
+
+        /**
+         * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute LOCALE__LANGUAGE = eINSTANCE.getLocale_Language();
+
+        /**
+         * The meta object literal for the '<em><b>Country</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute LOCALE__COUNTRY = eINSTANCE.getLocale_Country();
+
+        /**
+         * The meta object literal for the '<em><b>Variant</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute LOCALE__VARIANT = eINSTANCE.getLocale_Variant();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.NameValuePairImpl <em>Name Value Pair</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.NameValuePairImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNameValuePair()
+         * @generated
+         */
+        EClass NAME_VALUE_PAIR = eINSTANCE.getNameValuePair();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NAME_VALUE_PAIR__NAME = eINSTANCE.getNameValuePair_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute NAME_VALUE_PAIR__VALUE = eINSTANCE.getNameValuePair_Value();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OdaDesignSessionImpl <em>Oda Design Session</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.OdaDesignSessionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaDesignSession()
+         * @generated
+         */
+        EClass ODA_DESIGN_SESSION = eINSTANCE.getOdaDesignSession();
+
+        /**
+         * The meta object literal for the '<em><b>Request</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ODA_DESIGN_SESSION__REQUEST = eINSTANCE
+                .getOdaDesignSession_Request();
+
+        /**
+         * The meta object literal for the '<em><b>Response</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ODA_DESIGN_SESSION__RESPONSE = eINSTANCE
+                .getOdaDesignSession_Response();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl <em>Output Element Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOutputElementAttributes()
+         * @generated
+         */
+        EClass OUTPUT_ELEMENT_ATTRIBUTES = eINSTANCE
+                .getOutputElementAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute OUTPUT_ELEMENT_ATTRIBUTES__LABEL = eINSTANCE
+                .getOutputElementAttributes_Label();
+
+        /**
+         * The meta object literal for the '<em><b>Formatting Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS = eINSTANCE
+                .getOutputElementAttributes_FormattingHints();
+
+        /**
+         * The meta object literal for the '<em><b>Help Text</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT = eINSTANCE
+                .getOutputElementAttributes_HelpText();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ParameterDefinitionImpl <em>Parameter Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ParameterDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterDefinition()
+         * @generated
+         */
+        EClass PARAMETER_DEFINITION = eINSTANCE.getParameterDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>In Out Mode</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER_DEFINITION__IN_OUT_MODE = eINSTANCE
+                .getParameterDefinition_InOutMode();
+
+        /**
+         * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_DEFINITION__ATTRIBUTES = eINSTANCE
+                .getParameterDefinition_Attributes();
+
+        /**
+         * The meta object literal for the '<em><b>Input Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_DEFINITION__INPUT_ATTRIBUTES = eINSTANCE
+                .getParameterDefinition_InputAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Output Usage Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_DEFINITION__OUTPUT_USAGE_HINTS = eINSTANCE
+                .getParameterDefinition_OutputUsageHints();
+
+        /**
+         * The meta object literal for the '<em><b>Fields</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_DEFINITION__FIELDS = eINSTANCE
+                .getParameterDefinition_Fields();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ParameterFieldDefinitionImpl <em>Parameter Field Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ParameterFieldDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterFieldDefinition()
+         * @generated
+         */
+        EClass PARAMETER_FIELD_DEFINITION = eINSTANCE
+                .getParameterFieldDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_FIELD_DEFINITION__ATTRIBUTES = eINSTANCE
+                .getParameterFieldDefinition_Attributes();
+
+        /**
+         * The meta object literal for the '<em><b>Input Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES = eINSTANCE
+                .getParameterFieldDefinition_InputAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Output Usage Hints</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS = eINSTANCE
+                .getParameterFieldDefinition_OutputUsageHints();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ParameterFieldsImpl <em>Parameter Fields</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ParameterFieldsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterFields()
+         * @generated
+         */
+        EClass PARAMETER_FIELDS = eINSTANCE.getParameterFields();
+
+        /**
+         * The meta object literal for the '<em><b>Field Collection</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PARAMETER_FIELDS__FIELD_COLLECTION = eINSTANCE
+                .getParameterFields_FieldCollection();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.PropertiesImpl <em>Properties</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.PropertiesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getProperties()
+         * @generated
+         */
+        EClass PROPERTIES = eINSTANCE.getProperties();
+
+        /**
+         * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTIES__PROPERTIES = eINSTANCE
+                .getProperties_Properties();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.PropertyImpl <em>Property</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.PropertyImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getProperty()
+         * @generated
+         */
+        EClass PROPERTY = eINSTANCE.getProperty();
+
+        /**
+         * The meta object literal for the '<em><b>Name Value</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTY__NAME_VALUE = eINSTANCE.getProperty_NameValue();
+
+        /**
+         * The meta object literal for the '<em><b>Design Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTY__DESIGN_ATTRIBUTES = eINSTANCE
+                .getProperty_DesignAttributes();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl <em>Property Attributes</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.PropertyAttributesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getPropertyAttributes()
+         * @generated
+         */
+        EClass PROPERTY_ATTRIBUTES = eINSTANCE.getPropertyAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_ATTRIBUTES__DISPLAY_NAME = eINSTANCE
+                .getPropertyAttributes_DisplayName();
+
+        /**
+         * The meta object literal for the '<em><b>Element Attributes</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES = eINSTANCE
+                .getPropertyAttributes_ElementAttributes();
+
+        /**
+         * The meta object literal for the '<em><b>Derived Meta Data</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PROPERTY_ATTRIBUTES__DERIVED_META_DATA = eINSTANCE
+                .getPropertyAttributes_DerivedMetaData();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetColumnsImpl <em>Result Set Columns</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ResultSetColumnsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetColumns()
+         * @generated
+         */
+        EClass RESULT_SET_COLUMNS = eINSTANCE.getResultSetColumns();
+
+        /**
+         * The meta object literal for the '<em><b>Result Column Definitions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS = eINSTANCE
+                .getResultSetColumns_ResultColumnDefinitions();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetDefinitionImpl <em>Result Set Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ResultSetDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetDefinition()
+         * @generated
+         */
+        EClass RESULT_SET_DEFINITION = eINSTANCE.getResultSetDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESULT_SET_DEFINITION__NAME = eINSTANCE
+                .getResultSetDefinition_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Result Set Columns</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SET_DEFINITION__RESULT_SET_COLUMNS = eINSTANCE
+                .getResultSetDefinition_ResultSetColumns();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetsImpl <em>Result Sets</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ResultSetsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSets()
+         * @generated
+         */
+        EClass RESULT_SETS = eINSTANCE.getResultSets();
+
+        /**
+         * The meta object literal for the '<em><b>Result Set Definitions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SETS__RESULT_SET_DEFINITIONS = eINSTANCE
+                .getResultSets_ResultSetDefinitions();
+
+        /**
+         * The meta object literal for the '<em><b>Derived Meta Data</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESULT_SETS__DERIVED_META_DATA = eINSTANCE
+                .getResultSets_DerivedMetaData();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ScalarValueChoicesImpl <em>Scalar Value Choices</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ScalarValueChoicesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueChoices()
+         * @generated
+         */
+        EClass SCALAR_VALUE_CHOICES = eINSTANCE.getScalarValueChoices();
+
+        /**
+         * The meta object literal for the '<em><b>Scalar Values</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SCALAR_VALUE_CHOICES__SCALAR_VALUES = eINSTANCE
+                .getScalarValueChoices_ScalarValues();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ScalarValueDefinitionImpl <em>Scalar Value Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ScalarValueDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueDefinition()
+         * @generated
+         */
+        EClass SCALAR_VALUE_DEFINITION = eINSTANCE.getScalarValueDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SCALAR_VALUE_DEFINITION__VALUE = eINSTANCE
+                .getScalarValueDefinition_Value();
+
+        /**
+         * The meta object literal for the '<em><b>Display Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SCALAR_VALUE_DEFINITION__DISPLAY_NAME = eINSTANCE
+                .getScalarValueDefinition_DisplayName();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ValueFormatHintsImpl <em>Value Format Hints</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ValueFormatHintsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getValueFormatHints()
+         * @generated
+         */
+        EClass VALUE_FORMAT_HINTS = eINSTANCE.getValueFormatHints();
+
+        /**
+         * The meta object literal for the '<em><b>Display Size</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VALUE_FORMAT_HINTS__DISPLAY_SIZE = eINSTANCE
+                .getValueFormatHints_DisplaySize();
+
+        /**
+         * The meta object literal for the '<em><b>Display Format</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VALUE_FORMAT_HINTS__DISPLAY_FORMAT = eINSTANCE
+                .getValueFormatHints_DisplayFormat();
+
+        /**
+         * The meta object literal for the '<em><b>Text Format Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VALUE_FORMAT_HINTS__TEXT_FORMAT_TYPE = eINSTANCE
+                .getValueFormatHints_TextFormatType();
+
+        /**
+         * The meta object literal for the '<em><b>Horizontal Alignment</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VALUE_FORMAT_HINTS__HORIZONTAL_ALIGNMENT = eINSTANCE
+                .getValueFormatHints_HorizontalAlignment();
+
+        /**
+         * The meta object literal for the '<em><b>Text Wrap Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE = eINSTANCE
+                .getValueFormatHints_TextWrapType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.AxisType <em>Axis Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.AxisType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisType()
+         * @generated
+         */
+        EEnum AXIS_TYPE = eINSTANCE.getAxisType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullability()
+         * @generated
+         */
+        EEnum ELEMENT_NULLABILITY = eINSTANCE.getElementNullability();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignment()
+         * @generated
+         */
+        EEnum HORIZONTAL_ALIGNMENT = eINSTANCE.getHorizontalAlignment();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyle()
+         * @generated
+         */
+        EEnum INPUT_PROMPT_CONTROL_STYLE = eINSTANCE
+                .getInputPromptControlStyle();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
+         * @generated
+         */
+        EEnum ODA_COMPLEX_DATA_TYPE = eINSTANCE.getOdaComplexDataType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
+         * @generated
+         */
+        EEnum ODA_SCALAR_DATA_TYPE = eINSTANCE.getOdaScalarDataType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
+         * @generated
+         */
+        EEnum PARAMETER_MODE = eINSTANCE.getParameterMode();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
+         * @generated
+         */
+        EEnum SESSION_STATUS = eINSTANCE.getSessionStatus();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
+         * @generated
+         */
+        EEnum TEXT_FORMAT_TYPE = eINSTANCE.getTextFormatType();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
+         * @generated
+         */
+        EEnum TEXT_WRAP_TYPE = eINSTANCE.getTextWrapType();
+
+        /**
+         * The meta object literal for the '<em>Axis Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
+         * @generated
+         */
+        EDataType AXIS_TYPE_OBJECT = eINSTANCE.getAxisTypeObject();
+
+        /**
+         * The meta object literal for the '<em>Element Nullability Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
+         * @generated
+         */
+        EDataType ELEMENT_NULLABILITY_OBJECT = eINSTANCE
+                .getElementNullabilityObject();
+
+        /**
+         * The meta object literal for the '<em>Horizontal Alignment Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
+         * @generated
+         */
+        EDataType HORIZONTAL_ALIGNMENT_OBJECT = eINSTANCE
+                .getHorizontalAlignmentObject();
+
+        /**
+         * The meta object literal for the '<em>Input Prompt Control Style Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
+         * @generated
+         */
+        EDataType INPUT_PROMPT_CONTROL_STYLE_OBJECT = eINSTANCE
+                .getInputPromptControlStyleObject();
+
+        /**
+         * The meta object literal for the '<em>Native Data Type Code</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCode()
+         * @generated
+         */
+        EDataType NATIVE_DATA_TYPE_CODE = eINSTANCE.getNativeDataTypeCode();
+
+        /**
+         * The meta object literal for the '<em>Native Data Type Code Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see java.lang.Integer
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCodeObject()
+         * @generated
+         */
+        EDataType NATIVE_DATA_TYPE_CODE_OBJECT = eINSTANCE
+                .getNativeDataTypeCodeObject();
+
+        /**
+         * The meta object literal for the '<em>Oda Complex Data Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
+         * @generated
+         */
+        EDataType ODA_COMPLEX_DATA_TYPE_OBJECT = eINSTANCE
+                .getOdaComplexDataTypeObject();
+
+        /**
+         * The meta object literal for the '<em>Oda Scalar Data Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
+         * @generated
+         */
+        EDataType ODA_SCALAR_DATA_TYPE_OBJECT = eINSTANCE
+                .getOdaScalarDataTypeObject();
+
+        /**
+         * The meta object literal for the '<em>Parameter Mode Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
+         * @generated
+         */
+        EDataType PARAMETER_MODE_OBJECT = eINSTANCE.getParameterModeObject();
+
+        /**
+         * The meta object literal for the '<em>Session Status Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
+         * @generated
+         */
+        EDataType SESSION_STATUS_OBJECT = eINSTANCE.getSessionStatusObject();
+
+        /**
+         * The meta object literal for the '<em>Text Format Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
+         * @generated
+         */
+        EDataType TEXT_FORMAT_TYPE_OBJECT = eINSTANCE.getTextFormatTypeObject();
+
+        /**
+         * The meta object literal for the '<em>Text Wrap Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
+         * @generated
+         */
+        EDataType TEXT_WRAP_TYPE_OBJECT = eINSTANCE.getTextWrapTypeObject();
+
+    }
 
 } //DesignPackage

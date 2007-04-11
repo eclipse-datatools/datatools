@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ColumnDefinition.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getColumnDefinition()
- * @model 
+ * @model extendedMetaData="name='ColumnDefinition' kind='elementOnly'"
  * @generated
  */
 public interface ColumnDefinition extends EObject
@@ -45,7 +45,7 @@ public interface ColumnDefinition extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Attributes</b></em>' containment reference.
@@ -54,7 +54,8 @@ public interface ColumnDefinition extends EObject
      * @return the value of the '<em>Attributes</em>' containment reference.
      * @see #setAttributes(DataElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getColumnDefinition_Attributes()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='attributes' namespace='##targetNamespace'"
      * @generated
      */
     DataElementAttributes getAttributes();
@@ -76,7 +77,8 @@ public interface ColumnDefinition extends EObject
      * @return the value of the '<em>Usage Hints</em>' containment reference.
      * @see #setUsageHints(OutputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getColumnDefinition_UsageHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='usageHints' namespace='##targetNamespace'"
      * @generated
      */
     OutputElementAttributes getUsageHints();
@@ -101,7 +103,8 @@ public interface ColumnDefinition extends EObject
      * @return the value of the '<em>Multi Dimension Attributes</em>' containment reference.
      * @see #setMultiDimensionAttributes(AxisAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getColumnDefinition_MultiDimensionAttributes()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='multiDimensionAttributes' namespace='##targetNamespace'"
      * @generated
      */
     AxisAttributes getMultiDimensionAttributes();

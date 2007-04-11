@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: LocaleImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: LocaleImpl.java,v 1.2 2006/02/18 00:08:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,7 +19,6 @@ import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -47,7 +46,7 @@ public class LocaleImpl extends EObjectImpl implements Locale
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
@@ -118,8 +117,9 @@ public class LocaleImpl extends EObjectImpl implements Locale
      */
     protected String m_variant = VARIANT_EDEFAULT;
 
-    protected static final String EMPTY_STRING = "";
-    protected static final String UNDERBAR = "_";
+    protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+    protected static final String UNDERBAR = "_"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc -->
@@ -138,7 +138,7 @@ public class LocaleImpl extends EObjectImpl implements Locale
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getLocale();
+        return DesignPackage.Literals.LOCALE;
     }
 
     /* (non-Javadoc)
@@ -149,14 +149,13 @@ public class LocaleImpl extends EObjectImpl implements Locale
     {
         // if none is explicitly set, or the required language is missing,
         // returns JVM locale default
-        if( ! hasLanguage() )
+        if( !hasLanguage() )
             return ULocale.getDefault();
-        
-        return new ULocale( getLanguageGen(), 
-			                toNonNullString( getCountry() ), 
-			                toNonNullString( getVariant() ));
+
+        return new ULocale( getLanguageGen(), toNonNullString( getCountry() ),
+                toNonNullString( getVariant() ) );
     }
-    
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Locale#setLocale(ULocale)
      * @generated NOT
@@ -187,7 +186,7 @@ public class LocaleImpl extends EObjectImpl implements Locale
     {
         // gets the util Locale, which could be the JVM default
         ULocale theLocale = getLocale();
-        
+
         String strValue = theLocale.getLanguage();
         if( theLocale.getCountry().length() != 0 )
         {
@@ -195,25 +194,24 @@ public class LocaleImpl extends EObjectImpl implements Locale
         }
         return strValue;
     }
-    
+
     /* 
      * General utility method to convert a null String object 
      * to an empty string.
      */
     private String toNonNullString( String strValue )
     {
-        if ( strValue == null )
+        if( strValue == null )
             return EMPTY_STRING;
         return strValue;
     }
 
     private boolean hasLanguage()
     {
-        return( isSetLanguage() &&
-                getLanguageGen() != null &&
-                getLanguageGen().length() != 0 );
+        return (isSetLanguage() && getLanguageGen() != null && getLanguageGen()
+                .length() != 0);
     }
-    
+
     /** 
      * Extends generated method to return JVM default language
      * if none is explicitly set.
@@ -224,7 +222,7 @@ public class LocaleImpl extends EObjectImpl implements Locale
     {
         return getLocale().getLanguage();
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -246,8 +244,10 @@ public class LocaleImpl extends EObjectImpl implements Locale
         m_language = newLanguage;
         boolean oldLanguageESet = m_languageESet;
         m_languageESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.LOCALE__LANGUAGE, oldLanguage, m_language, !oldLanguageESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.LOCALE__LANGUAGE, oldLanguage, m_language,
+                    !oldLanguageESet ) );
     }
 
     /**
@@ -261,8 +261,10 @@ public class LocaleImpl extends EObjectImpl implements Locale
         boolean oldLanguageESet = m_languageESet;
         m_language = LANGUAGE_EDEFAULT;
         m_languageESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.LOCALE__LANGUAGE, oldLanguage, LANGUAGE_EDEFAULT, oldLanguageESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.LOCALE__LANGUAGE, oldLanguage,
+                    LANGUAGE_EDEFAULT, oldLanguageESet ) );
     }
 
     /**
@@ -294,8 +296,9 @@ public class LocaleImpl extends EObjectImpl implements Locale
     {
         String oldCountry = m_country;
         m_country = newCountry;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.LOCALE__COUNTRY, oldCountry, m_country));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.LOCALE__COUNTRY, oldCountry, m_country ) );
     }
 
     /**
@@ -317,8 +320,9 @@ public class LocaleImpl extends EObjectImpl implements Locale
     {
         String oldVariant = m_variant;
         m_variant = newVariant;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.LOCALE__VARIANT, oldVariant, m_variant));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.LOCALE__VARIANT, oldVariant, m_variant ) );
     }
 
     /**
@@ -326,18 +330,18 @@ public class LocaleImpl extends EObjectImpl implements Locale
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.LOCALE__LANGUAGE:
-                return getLanguage();
-            case DesignPackage.LOCALE__COUNTRY:
-                return getCountry();
-            case DesignPackage.LOCALE__VARIANT:
-                return getVariant();
+        case DesignPackage.LOCALE__LANGUAGE:
+            return getLanguage();
+        case DesignPackage.LOCALE__COUNTRY:
+            return getCountry();
+        case DesignPackage.LOCALE__VARIANT:
+            return getVariant();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -345,21 +349,21 @@ public class LocaleImpl extends EObjectImpl implements Locale
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.LOCALE__LANGUAGE:
-                setLanguage((String)newValue);
-                return;
-            case DesignPackage.LOCALE__COUNTRY:
-                setCountry((String)newValue);
-                return;
-            case DesignPackage.LOCALE__VARIANT:
-                setVariant((String)newValue);
-                return;
+        case DesignPackage.LOCALE__LANGUAGE:
+            setLanguage( (String) newValue );
+            return;
+        case DesignPackage.LOCALE__COUNTRY:
+            setCountry( (String) newValue );
+            return;
+        case DesignPackage.LOCALE__VARIANT:
+            setVariant( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -367,21 +371,21 @@ public class LocaleImpl extends EObjectImpl implements Locale
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.LOCALE__LANGUAGE:
-                unsetLanguage();
-                return;
-            case DesignPackage.LOCALE__COUNTRY:
-                setCountry(COUNTRY_EDEFAULT);
-                return;
-            case DesignPackage.LOCALE__VARIANT:
-                setVariant(VARIANT_EDEFAULT);
-                return;
+        case DesignPackage.LOCALE__LANGUAGE:
+            unsetLanguage();
+            return;
+        case DesignPackage.LOCALE__COUNTRY:
+            setCountry( COUNTRY_EDEFAULT );
+            return;
+        case DesignPackage.LOCALE__VARIANT:
+            setVariant( VARIANT_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -389,18 +393,20 @@ public class LocaleImpl extends EObjectImpl implements Locale
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.LOCALE__LANGUAGE:
-                return isSetLanguage();
-            case DesignPackage.LOCALE__COUNTRY:
-                return COUNTRY_EDEFAULT == null ? m_country != null : !COUNTRY_EDEFAULT.equals(m_country);
-            case DesignPackage.LOCALE__VARIANT:
-                return VARIANT_EDEFAULT == null ? m_variant != null : !VARIANT_EDEFAULT.equals(m_variant);
+        case DesignPackage.LOCALE__LANGUAGE:
+            return isSetLanguage();
+        case DesignPackage.LOCALE__COUNTRY:
+            return COUNTRY_EDEFAULT == null ? m_country != null
+                    : !COUNTRY_EDEFAULT.equals( m_country );
+        case DesignPackage.LOCALE__VARIANT:
+            return VARIANT_EDEFAULT == null ? m_variant != null
+                    : !VARIANT_EDEFAULT.equals( m_variant );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -410,16 +416,20 @@ public class LocaleImpl extends EObjectImpl implements Locale
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (language: "); //$NON-NLS-1$
-        if (m_languageESet) result.append(m_language); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", country: "); //$NON-NLS-1$
-        result.append(m_country);
-        result.append(", variant: "); //$NON-NLS-1$
-        result.append(m_variant);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (language: " ); //$NON-NLS-1$
+        if( m_languageESet )
+            result.append( m_language );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", country: " ); //$NON-NLS-1$
+        result.append( m_country );
+        result.append( ", variant: " ); //$NON-NLS-1$
+        result.append( m_variant );
+        result.append( ')' );
         return result.toString();
     }
 

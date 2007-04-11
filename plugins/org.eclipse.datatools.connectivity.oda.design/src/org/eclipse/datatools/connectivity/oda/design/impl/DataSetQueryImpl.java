@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,18 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSetQueryImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -46,7 +42,7 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getQueryText() <em>Query Text</em>}' attribute.
@@ -85,7 +81,7 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDataSetQuery();
+        return DesignPackage.Literals.DATA_SET_QUERY;
     }
 
     /**
@@ -107,8 +103,10 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
     {
         String oldQueryText = m_queryText;
         m_queryText = newQueryText;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_SET_QUERY__QUERY_TEXT, oldQueryText, m_queryText));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_SET_QUERY__QUERY_TEXT, oldQueryText,
+                    m_queryText ) );
     }
 
     /**
@@ -116,14 +114,14 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
-                return getQueryText();
+        case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
+            return getQueryText();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -131,15 +129,15 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
-                setQueryText((String)newValue);
-                return;
+        case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
+            setQueryText( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -147,15 +145,15 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
-                setQueryText(QUERY_TEXT_EDEFAULT);
-                return;
+        case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
+            setQueryText( QUERY_TEXT_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -163,14 +161,15 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
-                return QUERY_TEXT_EDEFAULT == null ? m_queryText != null : !QUERY_TEXT_EDEFAULT.equals(m_queryText);
+        case DesignPackage.DATA_SET_QUERY__QUERY_TEXT:
+            return QUERY_TEXT_EDEFAULT == null ? m_queryText != null
+                    : !QUERY_TEXT_EDEFAULT.equals( m_queryText );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -180,12 +179,13 @@ public class DataSetQueryImpl extends EObjectImpl implements DataSetQuery
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (queryText: "); //$NON-NLS-1$
-        result.append(m_queryText);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (queryText: " ); //$NON-NLS-1$
+        result.append( m_queryText );
+        result.append( ')' );
         return result.toString();
     }
 

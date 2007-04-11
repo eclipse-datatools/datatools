@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,17 +11,64 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.5 2006/03/09 08:50:09 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.6 2006/03/17 14:52:32 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
-import org.eclipse.datatools.connectivity.oda.design.*;
-
+import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
+import org.eclipse.datatools.connectivity.oda.design.AxisType;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
+import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
+import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
+import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
+import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
+import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
+import org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes;
+import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
+import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
+import org.eclipse.datatools.connectivity.oda.design.Locale;
+import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
+import org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
+import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ParameterFields;
+import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
+import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ResultSets;
+import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
+import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
+import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
+import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
+import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
 import org.eclipse.emf.common.util.AbstractEnumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
@@ -38,7 +85,31 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static DesignFactory init()
+    {
+        try
+        {
+            DesignFactory theDesignFactory = (DesignFactory) EPackage.Registry.INSTANCE
+                    .getEFactory( "http://www.eclipse.org/datatools/connectivity/oda/design" ); //$NON-NLS-1$ 
+            if( theDesignFactory != null )
+            {
+                return theDesignFactory;
+            }
+        }
+        catch( Exception exception )
+        {
+            EcorePlugin.INSTANCE.log( exception );
+        }
+        return new DesignFactoryImpl();
+    }
 
     /**
      * Creates an instance of the factory.
@@ -146,86 +217,26 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         switch( eDataType.getClassifierID() )
         {
         case DesignPackage.AXIS_TYPE:
-        {
-            AxisType result = AxisType.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createAxisTypeFromString( eDataType, initialValue );
         case DesignPackage.ELEMENT_NULLABILITY:
-        {
-            ElementNullability result = ElementNullability.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createElementNullabilityFromString( eDataType, initialValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
-        {
-            HorizontalAlignment result = HorizontalAlignment.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createHorizontalAlignmentFromString( eDataType, initialValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
-        {
-            InputPromptControlStyle result = InputPromptControlStyle
-                    .get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createInputPromptControlStyleFromString( eDataType,
+                    initialValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE:
-        {
-            OdaComplexDataType result = OdaComplexDataType.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createOdaComplexDataTypeFromString( eDataType, initialValue );
         case DesignPackage.ODA_SCALAR_DATA_TYPE:
-        {
-            OdaScalarDataType result = OdaScalarDataType.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createOdaScalarDataTypeFromString( eDataType, initialValue );
         case DesignPackage.PARAMETER_MODE:
-        {
-            ParameterMode result = ParameterMode.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createParameterModeFromString( eDataType, initialValue );
         case DesignPackage.SESSION_STATUS:
-        {
-            SessionStatus result = SessionStatus.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createSessionStatusFromString( eDataType, initialValue );
         case DesignPackage.TEXT_FORMAT_TYPE:
-        {
-            TextFormatType result = TextFormatType.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createTextFormatTypeFromString( eDataType, initialValue );
         case DesignPackage.TEXT_WRAP_TYPE:
-        {
-            TextWrapType result = TextWrapType.get( initialValue );
-            if( result == null )
-                throw new IllegalArgumentException(
-                        "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            return result;
-        }
+            return createTextWrapTypeFromString( eDataType, initialValue );
         case DesignPackage.AXIS_TYPE_OBJECT:
             return createAxisTypeObjectFromString( eDataType, initialValue );
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
@@ -273,25 +284,26 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         switch( eDataType.getClassifierID() )
         {
         case DesignPackage.AXIS_TYPE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertAxisTypeToString( eDataType, instanceValue );
         case DesignPackage.ELEMENT_NULLABILITY:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertElementNullabilityToString( eDataType, instanceValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertHorizontalAlignmentToString( eDataType, instanceValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertInputPromptControlStyleToString( eDataType,
+                    instanceValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertOdaComplexDataTypeToString( eDataType, instanceValue );
         case DesignPackage.ODA_SCALAR_DATA_TYPE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertOdaScalarDataTypeToString( eDataType, instanceValue );
         case DesignPackage.PARAMETER_MODE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertParameterModeToString( eDataType, instanceValue );
         case DesignPackage.SESSION_STATUS:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertSessionStatusToString( eDataType, instanceValue );
         case DesignPackage.TEXT_FORMAT_TYPE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertTextFormatTypeToString( eDataType, instanceValue );
         case DesignPackage.TEXT_WRAP_TYPE:
-            return instanceValue == null ? null : instanceValue.toString();
+            return convertTextWrapTypeToString( eDataType, instanceValue );
         case DesignPackage.AXIS_TYPE_OBJECT:
             return convertAxisTypeObjectToString( eDataType, instanceValue );
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
@@ -719,11 +731,272 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public AxisType createAxisTypeFromString( EDataType eDataType,
+            String initialValue )
+    {
+        AxisType result = AxisType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertAxisTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ElementNullability createElementNullabilityFromString(
+            EDataType eDataType, String initialValue )
+    {
+        ElementNullability result = ElementNullability.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertElementNullabilityToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HorizontalAlignment createHorizontalAlignmentFromString(
+            EDataType eDataType, String initialValue )
+    {
+        HorizontalAlignment result = HorizontalAlignment.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertHorizontalAlignmentToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public InputPromptControlStyle createInputPromptControlStyleFromString(
+            EDataType eDataType, String initialValue )
+    {
+        InputPromptControlStyle result = InputPromptControlStyle
+                .get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertInputPromptControlStyleToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OdaComplexDataType createOdaComplexDataTypeFromString(
+            EDataType eDataType, String initialValue )
+    {
+        OdaComplexDataType result = OdaComplexDataType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertOdaComplexDataTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OdaScalarDataType createOdaScalarDataTypeFromString(
+            EDataType eDataType, String initialValue )
+    {
+        OdaScalarDataType result = OdaScalarDataType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertOdaScalarDataTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ParameterMode createParameterModeFromString( EDataType eDataType,
+            String initialValue )
+    {
+        ParameterMode result = ParameterMode.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertParameterModeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SessionStatus createSessionStatusFromString( EDataType eDataType,
+            String initialValue )
+    {
+        SessionStatus result = SessionStatus.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertSessionStatusToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextFormatType createTextFormatTypeFromString( EDataType eDataType,
+            String initialValue )
+    {
+        TextFormatType result = TextFormatType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTextFormatTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TextWrapType createTextWrapTypeFromString( EDataType eDataType,
+            String initialValue )
+    {
+        TextWrapType result = TextWrapType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertTextWrapTypeToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public AbstractEnumerator createAxisTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getAxisType(), initialValue );
+        return (AbstractEnumerator) createAxisTypeFromString(
+                DesignPackage.Literals.AXIS_TYPE, initialValue );
     }
 
     /**
@@ -734,8 +1007,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertAxisTypeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getAxisType(), instanceValue );
+        return convertAxisTypeToString( DesignPackage.Literals.AXIS_TYPE,
+                instanceValue );
     }
 
     /**
@@ -746,8 +1019,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createElementNullabilityObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getElementNullability(), initialValue );
+        return (AbstractEnumerator) createElementNullabilityFromString(
+                DesignPackage.Literals.ELEMENT_NULLABILITY, initialValue );
     }
 
     /**
@@ -758,8 +1031,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertElementNullabilityObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getElementNullability(), instanceValue );
+        return convertElementNullabilityToString(
+                DesignPackage.Literals.ELEMENT_NULLABILITY, instanceValue );
     }
 
     /**
@@ -770,8 +1043,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createHorizontalAlignmentObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getHorizontalAlignment(), initialValue );
+        return (AbstractEnumerator) createHorizontalAlignmentFromString(
+                DesignPackage.Literals.HORIZONTAL_ALIGNMENT, initialValue );
     }
 
     /**
@@ -782,8 +1055,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertHorizontalAlignmentObjectToString(
             EDataType eDataType, Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getHorizontalAlignment(), instanceValue );
+        return convertHorizontalAlignmentToString(
+                DesignPackage.Literals.HORIZONTAL_ALIGNMENT, instanceValue );
     }
 
     /**
@@ -794,9 +1067,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createInputPromptControlStyleObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getInputPromptControlStyle(),
-                initialValue );
+        return (AbstractEnumerator) createInputPromptControlStyleFromString(
+                DesignPackage.Literals.INPUT_PROMPT_CONTROL_STYLE, initialValue );
     }
 
     /**
@@ -807,8 +1079,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertInputPromptControlStyleObjectToString(
             EDataType eDataType, Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getInputPromptControlStyle(), instanceValue );
+        return convertInputPromptControlStyleToString(
+                DesignPackage.Literals.INPUT_PROMPT_CONTROL_STYLE,
+                instanceValue );
     }
 
     /**
@@ -820,7 +1093,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             String initialValue )
     {
         return (Integer) XMLTypeFactory.eINSTANCE.createFromString(
-                XMLTypePackage.eINSTANCE.getInt(), initialValue );
+                XMLTypePackage.Literals.INT, initialValue );
     }
 
     /**
@@ -832,7 +1105,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             Object instanceValue )
     {
         return XMLTypeFactory.eINSTANCE.convertToString(
-                XMLTypePackage.eINSTANCE.getInt(), instanceValue );
+                XMLTypePackage.Literals.INT, instanceValue );
     }
 
     /**
@@ -840,11 +1113,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public Short createNativeDataTypeCodeObjectFromString( EDataType eDataType,
-            String initialValue )
+    public Integer createNativeDataTypeCodeObjectFromString(
+            EDataType eDataType, String initialValue )
     {
-        return (Short) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getNativeDataTypeCode(), initialValue );
+        return (Integer) createNativeDataTypeCodeFromString(
+                DesignPackage.Literals.NATIVE_DATA_TYPE_CODE, initialValue );
     }
 
     /**
@@ -855,8 +1128,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertNativeDataTypeCodeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getNativeDataTypeCode(), instanceValue );
+        return convertNativeDataTypeCodeToString(
+                DesignPackage.Literals.NATIVE_DATA_TYPE_CODE, instanceValue );
     }
 
     /**
@@ -867,8 +1140,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createOdaComplexDataTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getOdaComplexDataType(), initialValue );
+        return (AbstractEnumerator) createOdaComplexDataTypeFromString(
+                DesignPackage.Literals.ODA_COMPLEX_DATA_TYPE, initialValue );
     }
 
     /**
@@ -879,8 +1152,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertOdaComplexDataTypeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getOdaComplexDataType(), instanceValue );
+        return convertOdaComplexDataTypeToString(
+                DesignPackage.Literals.ODA_COMPLEX_DATA_TYPE, instanceValue );
     }
 
     /**
@@ -891,8 +1164,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createOdaScalarDataTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getOdaScalarDataType(), initialValue );
+        return (AbstractEnumerator) createOdaScalarDataTypeFromString(
+                DesignPackage.Literals.ODA_SCALAR_DATA_TYPE, initialValue );
     }
 
     /**
@@ -903,8 +1176,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertOdaScalarDataTypeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getOdaScalarDataType(), instanceValue );
+        return convertOdaScalarDataTypeToString(
+                DesignPackage.Literals.ODA_SCALAR_DATA_TYPE, instanceValue );
     }
 
     /**
@@ -915,8 +1188,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createParameterModeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getParameterMode(), initialValue );
+        return (AbstractEnumerator) createParameterModeFromString(
+                DesignPackage.Literals.PARAMETER_MODE, initialValue );
     }
 
     /**
@@ -927,8 +1200,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertParameterModeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getParameterMode(), instanceValue );
+        return convertParameterModeToString(
+                DesignPackage.Literals.PARAMETER_MODE, instanceValue );
     }
 
     /**
@@ -939,8 +1212,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createSessionStatusObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getSessionStatus(), initialValue );
+        return (AbstractEnumerator) createSessionStatusFromString(
+                DesignPackage.Literals.SESSION_STATUS, initialValue );
     }
 
     /**
@@ -951,8 +1224,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertSessionStatusObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getSessionStatus(), instanceValue );
+        return convertSessionStatusToString(
+                DesignPackage.Literals.SESSION_STATUS, instanceValue );
     }
 
     /**
@@ -963,8 +1236,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createTextFormatTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getTextFormatType(), initialValue );
+        return (AbstractEnumerator) createTextFormatTypeFromString(
+                DesignPackage.Literals.TEXT_FORMAT_TYPE, initialValue );
     }
 
     /**
@@ -975,8 +1248,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertTextFormatTypeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getTextFormatType(), instanceValue );
+        return convertTextFormatTypeToString(
+                DesignPackage.Literals.TEXT_FORMAT_TYPE, instanceValue );
     }
 
     /**
@@ -987,8 +1260,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public AbstractEnumerator createTextWrapTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) DesignFactory.eINSTANCE.createFromString(
-                DesignPackage.eINSTANCE.getTextWrapType(), initialValue );
+        return (AbstractEnumerator) createTextWrapTypeFromString(
+                DesignPackage.Literals.TEXT_WRAP_TYPE, initialValue );
     }
 
     /**
@@ -999,8 +1272,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     public String convertTextWrapTypeObjectToString( EDataType eDataType,
             Object instanceValue )
     {
-        return DesignFactory.eINSTANCE.convertToString( DesignPackage.eINSTANCE
-                .getTextWrapType(), instanceValue );
+        return convertTextWrapTypeToString(
+                DesignPackage.Literals.TEXT_WRAP_TYPE, instanceValue );
     }
 
     /**
@@ -1028,7 +1301,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createDesignSessionRequest(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      * @generated NOT
      */
-    public DesignSessionRequest createDesignSessionRequest( DataSourceDesign dataSourceDesign )
+    public DesignSessionRequest createDesignSessionRequest(
+            DataSourceDesign dataSourceDesign )
     {
         DesignSessionRequest newRequest = createDesignSessionRequest();
         newRequest.setNewDataAccessDesign( dataSourceDesign );
@@ -1039,7 +1313,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createDesignSessionRequest(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
      * @generated NOT
      */
-    public DesignSessionRequest createDesignSessionRequest( DataSetDesign dataSetDesign )
+    public DesignSessionRequest createDesignSessionRequest(
+            DataSetDesign dataSetDesign )
     {
         DesignSessionRequest newRequest = createDesignSessionRequest();
         newRequest.setNewDataAccessDesign( dataSetDesign );
@@ -1050,7 +1325,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createRequestDesignSession(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      * @generated NOT
      */
-    public OdaDesignSession createRequestDesignSession( DataSourceDesign dataSourceDesign )
+    public OdaDesignSession createRequestDesignSession(
+            DataSourceDesign dataSourceDesign )
     {
         OdaDesignSession newSession = createOdaDesignSession();
         newSession.setNewRequest( dataSourceDesign );
@@ -1061,7 +1337,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @see org.eclipse.datatools.connectivity.oda.design.DesignFactory#createResponseDesignSession(boolean, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      * @generated NOT
      */
-    public OdaDesignSession createResponseDesignSession( boolean isSessionOk, DataSourceDesign dataSourceDesign )
+    public OdaDesignSession createResponseDesignSession( boolean isSessionOk,
+            DataSourceDesign dataSourceDesign )
     {
         // create a design session with an empty DataAccessDesign in the request
         OdaDesignSession newSession = createRequestDesignSession( null );
@@ -1070,5 +1347,5 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         newSession.setNewResponse( isSessionOk, dataSourceDesign );
         return newSession;
     }
-    
+
 } //DesignFactoryImpl

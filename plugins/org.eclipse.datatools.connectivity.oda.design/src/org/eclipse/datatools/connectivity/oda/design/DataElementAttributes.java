@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributes.java,v 1.6 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DataElementAttributes.java,v 1.7 2006/03/24 03:13:31 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -49,7 +49,7 @@ public interface DataElementAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#getPrecision <em>Precision</em>}' attribute
@@ -104,7 +104,7 @@ public interface DataElementAttributes extends EObject
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Name()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
-     extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
     String getName();
@@ -132,7 +132,7 @@ public interface DataElementAttributes extends EObject
      * @see #setPosition(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Position()
      * @model unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.UnsignedShort"
-     extendedMetaData="kind='element' name='position' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='position' namespace='##targetNamespace'"
      * @generated
      */
     int getPosition();
@@ -186,7 +186,7 @@ public interface DataElementAttributes extends EObject
      * @see #setNativeDataTypeCode(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_NativeDataTypeCode()
      * @model default="0" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-     extendedMetaData="kind='element' name='nativeDataTypeCode' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='nativeDataTypeCode' namespace='##targetNamespace'"
      * @generated
      */
     int getNativeDataTypeCode();
@@ -241,7 +241,7 @@ public interface DataElementAttributes extends EObject
      * @see #setPrecision(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Precision()
      * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-     extendedMetaData="kind='element' name='precision' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='precision' namespace='##targetNamespace'"
      * @generated
      */
     int getPrecision();
@@ -295,7 +295,7 @@ public interface DataElementAttributes extends EObject
      * @see #setScale(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Scale()
      * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-     extendedMetaData="kind='element' name='scale' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='scale' namespace='##targetNamespace'"
      * @generated
      */
     int getScale();
@@ -348,7 +348,7 @@ public interface DataElementAttributes extends EObject
      * @see #setNullability(ElementNullability)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_Nullability()
      * @model default="Unknown" unique="false" unsettable="true"
-     extendedMetaData="kind='element' name='nullability' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='nullability' namespace='##targetNamespace'"
      * @generated
      */
     ElementNullability getNullability();
@@ -396,8 +396,8 @@ public interface DataElementAttributes extends EObject
      * @return the value of the '<em>Ui Hints</em>' containment reference.
      * @see #setUiHints(DataElementUIHints)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataElementAttributes_UiHints()
-     * @model containment="true" resolveProxies="false"
-     extendedMetaData="kind='element' name='uiHints' namespace='##targetNamespace'"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='uiHints' namespace='##targetNamespace'"
      * @generated
      */
     DataElementUIHints getUiHints();

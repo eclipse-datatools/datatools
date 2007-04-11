@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: TextFormatType.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Plain</b></em>' literal value.
@@ -58,7 +58,7 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #HTML_LITERAL
-     * @model 
+     * @model
      * @generated
      * @ordered
      */
@@ -69,7 +69,7 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #RTF_LITERAL
-     * @model 
+     * @model
      * @generated
      * @ordered
      */
@@ -83,7 +83,8 @@ public final class TextFormatType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final TextFormatType PLAIN_LITERAL = new TextFormatType(PLAIN, "Plain"); //$NON-NLS-1$
+    public static final TextFormatType PLAIN_LITERAL = new TextFormatType(
+            PLAIN, "Plain", "Plain" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>HTML</b></em>' literal object.
@@ -93,7 +94,8 @@ public final class TextFormatType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final TextFormatType HTML_LITERAL = new TextFormatType(HTML, "HTML"); //$NON-NLS-1$
+    public static final TextFormatType HTML_LITERAL = new TextFormatType( HTML,
+            "HTML", "HTML" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>RTF</b></em>' literal object.
@@ -103,7 +105,8 @@ public final class TextFormatType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final TextFormatType RTF_LITERAL = new TextFormatType(RTF, "RTF"); //$NON-NLS-1$
+    public static final TextFormatType RTF_LITERAL = new TextFormatType( RTF,
+            "RTF", "RTF" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Text Format Type</b></em>' enumerators.
@@ -111,13 +114,8 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final TextFormatType[] VALUES_ARRAY =
-        new TextFormatType[]
-        {
-            PLAIN_LITERAL,
-            HTML_LITERAL,
-            RTF_LITERAL,
-        };
+    private static final TextFormatType[] VALUES_ARRAY = new TextFormatType[]
+    { PLAIN_LITERAL, HTML_LITERAL, RTF_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Text Format Type</b></em>' enumerators.
@@ -125,20 +123,21 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Text Format Type</b></em>' literal with the specified name.
+     * Returns the '<em><b>Text Format Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static TextFormatType get( String name )
+    public static TextFormatType get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             TextFormatType result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -147,20 +146,42 @@ public final class TextFormatType extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Text Format Type</b></em>' literal with the specified value.
+     * Returns the '<em><b>Text Format Type</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static TextFormatType getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            TextFormatType result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Text Format Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static TextFormatType get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case PLAIN: return PLAIN_LITERAL;
-            case HTML: return HTML_LITERAL;
-            case RTF: return RTF_LITERAL;
+        case PLAIN:
+            return PLAIN_LITERAL;
+        case HTML:
+            return HTML_LITERAL;
+        case RTF:
+            return RTF_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -169,9 +190,9 @@ public final class TextFormatType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private TextFormatType( int value, String name )
+    private TextFormatType( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //TextFormatType

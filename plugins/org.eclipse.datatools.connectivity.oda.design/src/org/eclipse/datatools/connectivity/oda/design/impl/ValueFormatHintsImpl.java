@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ValueFormatHintsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: ValueFormatHintsImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -20,12 +20,8 @@ import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -46,14 +42,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHints
+public class ValueFormatHintsImpl extends EObjectImpl implements
+        ValueFormatHints
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplaySize() <em>Display Size</em>}' attribute.
@@ -208,7 +205,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getValueFormatHints();
+        return DesignPackage.Literals.VALUE_FORMAT_HINTS;
     }
 
     /**
@@ -465,9 +462,9 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
             return new Integer( getDisplaySize() );
@@ -480,7 +477,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
         case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
             return getTextWrapType();
         }
-        return eDynamicGet( eFeature, resolve );
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -488,9 +485,9 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
             setDisplaySize( ((Integer) newValue).intValue() );
@@ -508,7 +505,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
             setTextWrapType( (TextWrapType) newValue );
             return;
         }
-        eDynamicSet( eFeature, newValue );
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -516,9 +513,9 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
             unsetDisplaySize();
@@ -536,7 +533,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
             unsetTextWrapType();
             return;
         }
-        eDynamicUnset( eFeature );
+        super.eUnset( featureID );
     }
 
     /**
@@ -544,9 +541,9 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.VALUE_FORMAT_HINTS__DISPLAY_SIZE:
             return isSetDisplaySize();
@@ -560,7 +557,7 @@ public class ValueFormatHintsImpl extends EObjectImpl implements ValueFormatHint
         case DesignPackage.VALUE_FORMAT_HINTS__TEXT_WRAP_TYPE:
             return isSetTextWrapType();
         }
-        return eDynamicIsSet( eFeature );
+        return super.eIsSet( featureID );
     }
 
     /**

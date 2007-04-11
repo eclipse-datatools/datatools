@@ -993,7 +993,7 @@
       <details key="baseType" value="http://www.eclipse.org/emf/2003/XMLType#int"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="NativeDataTypeCodeObject" instanceClassName="java.lang.Short">
+  <eClassifiers xsi:type="ecore:EDataType" name="NativeDataTypeCodeObject" instanceClassName="java.lang.Integer">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="NativeDataTypeCode:Object"/>
       <details key="baseType" value="NativeDataTypeCode"/>

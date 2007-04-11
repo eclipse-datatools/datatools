@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputParameterUIHints.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputParameterUIHints()
- * @model 
+ * @model extendedMetaData="name='InputParameterUIHints' kind='elementOnly'"
  * @generated
  */
 public interface InputParameterUIHints extends EObject
@@ -43,7 +43,7 @@ public interface InputParameterUIHints extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Group Prompt Display Name</b></em>' attribute.
@@ -56,6 +56,7 @@ public interface InputParameterUIHints extends EObject
      * @see #setGroupPromptDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputParameterUIHints_GroupPromptDisplayName()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='groupPromptDisplayName' namespace='##targetNamespace'"
      * @generated
      */
     String getGroupPromptDisplayName();

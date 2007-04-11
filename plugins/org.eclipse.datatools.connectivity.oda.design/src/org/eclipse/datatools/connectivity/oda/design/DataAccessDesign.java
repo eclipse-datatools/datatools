@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataAccessDesign.java,v 1.3 2006/02/03 04:16:15 lchan Exp $
+ * $Id: DataAccessDesign.java,v 1.4 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataAccessDesign()
- * @model 
+ * @model extendedMetaData="name='DataAccessDesign' kind='elementOnly'"
  * @generated
  */
 public interface DataAccessDesign extends EObject
@@ -43,7 +43,7 @@ public interface DataAccessDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the ODA data source element ID
@@ -61,7 +61,8 @@ public interface DataAccessDesign extends EObject
      * @return the value of the '<em>Data Set Design</em>' containment reference.
      * @see #setDataSetDesign(DataSetDesign)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataAccessDesign_DataSetDesign()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='dataSetDesign' namespace='##targetNamespace'"
      * @generated
      */
     DataSetDesign getDataSetDesign();
@@ -94,5 +95,5 @@ public interface DataAccessDesign extends EObject
      * @generated NOT
      */
     DataSourceDesign getDataSourceDesign();
-    
+
 } // DataAccessDesign

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ElementNullability.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class ElementNullability extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Unknown</b></em>' literal value.
@@ -83,7 +83,8 @@ public final class ElementNullability extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final ElementNullability UNKNOWN_LITERAL = new ElementNullability(UNKNOWN, "Unknown"); //$NON-NLS-1$
+    public static final ElementNullability UNKNOWN_LITERAL = new ElementNullability(
+            UNKNOWN, "Unknown", "Unknown" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Nullable</b></em>' literal object.
@@ -93,7 +94,8 @@ public final class ElementNullability extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final ElementNullability NULLABLE_LITERAL = new ElementNullability(NULLABLE, "Nullable"); //$NON-NLS-1$
+    public static final ElementNullability NULLABLE_LITERAL = new ElementNullability(
+            NULLABLE, "Nullable", "Nullable" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Not Nullable</b></em>' literal object.
@@ -103,7 +105,8 @@ public final class ElementNullability extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final ElementNullability NOT_NULLABLE_LITERAL = new ElementNullability(NOT_NULLABLE, "NotNullable"); //$NON-NLS-1$
+    public static final ElementNullability NOT_NULLABLE_LITERAL = new ElementNullability(
+            NOT_NULLABLE, "NotNullable", "NotNullable" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Element Nullability</b></em>' enumerators.
@@ -111,13 +114,8 @@ public final class ElementNullability extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final ElementNullability[] VALUES_ARRAY =
-        new ElementNullability[]
-        {
-            UNKNOWN_LITERAL,
-            NULLABLE_LITERAL,
-            NOT_NULLABLE_LITERAL,
-        };
+    private static final ElementNullability[] VALUES_ARRAY = new ElementNullability[]
+    { UNKNOWN_LITERAL, NULLABLE_LITERAL, NOT_NULLABLE_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Element Nullability</b></em>' enumerators.
@@ -125,20 +123,21 @@ public final class ElementNullability extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified name.
+     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static ElementNullability get( String name )
+    public static ElementNullability get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             ElementNullability result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -147,20 +146,42 @@ public final class ElementNullability extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified value.
+     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static ElementNullability getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            ElementNullability result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Element Nullability</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static ElementNullability get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case UNKNOWN: return UNKNOWN_LITERAL;
-            case NULLABLE: return NULLABLE_LITERAL;
-            case NOT_NULLABLE: return NOT_NULLABLE_LITERAL;
+        case UNKNOWN:
+            return UNKNOWN_LITERAL;
+        case NULLABLE:
+            return NULLABLE_LITERAL;
+        case NOT_NULLABLE:
+            return NOT_NULLABLE_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -169,9 +190,9 @@ public final class ElementNullability extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private ElementNullability( int value, String name )
+    private ElementNullability( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //ElementNullability

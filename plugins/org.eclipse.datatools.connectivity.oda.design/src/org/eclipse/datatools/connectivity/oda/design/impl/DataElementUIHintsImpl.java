@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,18 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataElementUIHintsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -40,14 +36,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUIHints
+public class DataElementUIHintsImpl extends EObjectImpl implements
+        DataElementUIHints
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -106,7 +103,7 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDataElementUIHints();
+        return DesignPackage.Literals.DATA_ELEMENT_UI_HINTS;
     }
 
     /**
@@ -128,8 +125,10 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME, oldDisplayName, m_displayName));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME,
+                    oldDisplayName, m_displayName ) );
     }
 
     /**
@@ -151,8 +150,10 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
     {
         String oldDescription = m_description;
         m_description = newDescription;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION, oldDescription, m_description));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION,
+                    oldDescription, m_description ) );
     }
 
     /**
@@ -160,16 +161,16 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-                return getDisplayName();
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-                return getDescription();
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
+            return getDisplayName();
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
+            return getDescription();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -177,18 +178,18 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-                setDisplayName((String)newValue);
-                return;
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-                setDescription((String)newValue);
-                return;
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
+            setDisplayName( (String) newValue );
+            return;
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
+            setDescription( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -196,18 +197,18 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-                setDisplayName(DISPLAY_NAME_EDEFAULT);
-                return;
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-                setDescription(DESCRIPTION_EDEFAULT);
-                return;
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
+            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            return;
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
+            setDescription( DESCRIPTION_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -215,16 +216,18 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
-                return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null : !DISPLAY_NAME_EDEFAULT.equals(m_displayName);
-            case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
-                return DESCRIPTION_EDEFAULT == null ? m_description != null : !DESCRIPTION_EDEFAULT.equals(m_description);
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DISPLAY_NAME:
+            return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null
+                    : !DISPLAY_NAME_EDEFAULT.equals( m_displayName );
+        case DesignPackage.DATA_ELEMENT_UI_HINTS__DESCRIPTION:
+            return DESCRIPTION_EDEFAULT == null ? m_description != null
+                    : !DESCRIPTION_EDEFAULT.equals( m_description );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -234,14 +237,15 @@ public class DataElementUIHintsImpl extends EObjectImpl implements DataElementUI
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (displayName: "); //$NON-NLS-1$
-        result.append(m_displayName);
-        result.append(", description: "); //$NON-NLS-1$
-        result.append(m_description);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (displayName: " ); //$NON-NLS-1$
+        result.append( m_displayName );
+        result.append( ", description: " ); //$NON-NLS-1$
+        result.append( m_description );
+        result.append( ')' );
         return result.toString();
     }
 

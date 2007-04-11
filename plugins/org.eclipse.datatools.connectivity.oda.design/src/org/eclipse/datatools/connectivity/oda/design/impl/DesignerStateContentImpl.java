@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignerStateContentImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignerStateContentImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,7 +19,6 @@ import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -37,14 +36,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DesignerStateContentImpl extends EObjectImpl implements DesignerStateContent
+public class DesignerStateContentImpl extends EObjectImpl implements
+        DesignerStateContent
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getStateContentAsString() <em>State Content As String</em>}' attribute.
@@ -103,7 +103,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDesignerStateContent();
+        return DesignPackage.Literals.DESIGNER_STATE_CONTENT;
     }
 
     /**
@@ -115,7 +115,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         return m_stateContentAsString;
     }
-    
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignerStateContent#setStateContentAsString(java.lang.String)
      * @generated NOT
@@ -123,7 +123,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     public void setStateContentAsString( String newStateContentAsString )
     {
         setStateContentAsStringGen( newStateContentAsString );
-        
+
         // reset value of alternate content type 
         setStateContentAsBlobGen( null );
     }
@@ -137,8 +137,12 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         String oldStateContentAsString = m_stateContentAsString;
         m_stateContentAsString = newStateContentAsString;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING, oldStateContentAsString, m_stateContentAsString));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING,
+                    oldStateContentAsString, m_stateContentAsString ) );
     }
 
     /**
@@ -162,7 +166,7 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
         // reset value of alternate content type 
         setStateContentAsStringGen( null );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -172,8 +176,12 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
     {
         byte[] oldStateContentAsBlob = m_stateContentAsBlob;
         m_stateContentAsBlob = newStateContentAsBlob;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB, oldStateContentAsBlob, m_stateContentAsBlob));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB,
+                    oldStateContentAsBlob, m_stateContentAsBlob ) );
     }
 
     /**
@@ -181,16 +189,16 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
-                return getStateContentAsString();
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
-                return getStateContentAsBlob();
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            return getStateContentAsString();
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            return getStateContentAsBlob();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -198,18 +206,18 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
-                setStateContentAsString((String)newValue);
-                return;
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
-                setStateContentAsBlob((byte[])newValue);
-                return;
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            setStateContentAsString( (String) newValue );
+            return;
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            setStateContentAsBlob( (byte[]) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -217,18 +225,18 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
-                setStateContentAsString(STATE_CONTENT_AS_STRING_EDEFAULT);
-                return;
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
-                setStateContentAsBlob(STATE_CONTENT_AS_BLOB_EDEFAULT);
-                return;
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            setStateContentAsString( STATE_CONTENT_AS_STRING_EDEFAULT );
+            return;
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            setStateContentAsBlob( STATE_CONTENT_AS_BLOB_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -236,16 +244,20 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
-                return STATE_CONTENT_AS_STRING_EDEFAULT == null ? m_stateContentAsString != null : !STATE_CONTENT_AS_STRING_EDEFAULT.equals(m_stateContentAsString);
-            case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
-                return STATE_CONTENT_AS_BLOB_EDEFAULT == null ? m_stateContentAsBlob != null : !STATE_CONTENT_AS_BLOB_EDEFAULT.equals(m_stateContentAsBlob);
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_STRING:
+            return STATE_CONTENT_AS_STRING_EDEFAULT == null ? m_stateContentAsString != null
+                    : !STATE_CONTENT_AS_STRING_EDEFAULT
+                            .equals( m_stateContentAsString );
+        case DesignPackage.DESIGNER_STATE_CONTENT__STATE_CONTENT_AS_BLOB:
+            return STATE_CONTENT_AS_BLOB_EDEFAULT == null ? m_stateContentAsBlob != null
+                    : !STATE_CONTENT_AS_BLOB_EDEFAULT
+                            .equals( m_stateContentAsBlob );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -255,14 +267,15 @@ public class DesignerStateContentImpl extends EObjectImpl implements DesignerSta
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (stateContentAsString: "); //$NON-NLS-1$
-        result.append(m_stateContentAsString);
-        result.append(", stateContentAsBlob: "); //$NON-NLS-1$
-        result.append(m_stateContentAsBlob);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (stateContentAsString: " ); //$NON-NLS-1$
+        result.append( m_stateContentAsString );
+        result.append( ", stateContentAsBlob: " ); //$NON-NLS-1$
+        result.append( m_stateContentAsBlob );
+        result.append( ')' );
         return result.toString();
     }
 

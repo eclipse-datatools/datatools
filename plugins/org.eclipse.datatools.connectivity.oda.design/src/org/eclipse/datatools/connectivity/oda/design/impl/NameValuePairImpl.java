@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,18 +11,14 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: NameValuePairImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -47,7 +43,7 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -106,7 +102,7 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getNameValuePair();
+        return DesignPackage.Literals.NAME_VALUE_PAIR;
     }
 
     /**
@@ -128,8 +124,9 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
     {
         String oldName = m_name;
         m_name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.NAME_VALUE_PAIR__NAME, oldName, m_name));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.NAME_VALUE_PAIR__NAME, oldName, m_name ) );
     }
 
     /**
@@ -151,8 +148,9 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
     {
         String oldValue = m_value;
         m_value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.NAME_VALUE_PAIR__VALUE, oldValue, m_value));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.NAME_VALUE_PAIR__VALUE, oldValue, m_value ) );
     }
 
     /**
@@ -160,16 +158,16 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.NAME_VALUE_PAIR__NAME:
-                return getName();
-            case DesignPackage.NAME_VALUE_PAIR__VALUE:
-                return getValue();
+        case DesignPackage.NAME_VALUE_PAIR__NAME:
+            return getName();
+        case DesignPackage.NAME_VALUE_PAIR__VALUE:
+            return getValue();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -177,18 +175,18 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.NAME_VALUE_PAIR__NAME:
-                setName((String)newValue);
-                return;
-            case DesignPackage.NAME_VALUE_PAIR__VALUE:
-                setValue((String)newValue);
-                return;
+        case DesignPackage.NAME_VALUE_PAIR__NAME:
+            setName( (String) newValue );
+            return;
+        case DesignPackage.NAME_VALUE_PAIR__VALUE:
+            setValue( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -196,18 +194,18 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.NAME_VALUE_PAIR__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case DesignPackage.NAME_VALUE_PAIR__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
+        case DesignPackage.NAME_VALUE_PAIR__NAME:
+            setName( NAME_EDEFAULT );
+            return;
+        case DesignPackage.NAME_VALUE_PAIR__VALUE:
+            setValue( VALUE_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -215,16 +213,18 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.NAME_VALUE_PAIR__NAME:
-                return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT.equals(m_name);
-            case DesignPackage.NAME_VALUE_PAIR__VALUE:
-                return VALUE_EDEFAULT == null ? m_value != null : !VALUE_EDEFAULT.equals(m_value);
+        case DesignPackage.NAME_VALUE_PAIR__NAME:
+            return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
+                    .equals( m_name );
+        case DesignPackage.NAME_VALUE_PAIR__VALUE:
+            return VALUE_EDEFAULT == null ? m_value != null : !VALUE_EDEFAULT
+                    .equals( m_value );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -234,14 +234,15 @@ public class NameValuePairImpl extends EObjectImpl implements NameValuePair
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: "); //$NON-NLS-1$
-        result.append(m_name);
-        result.append(", value: "); //$NON-NLS-1$
-        result.append(m_value);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (name: " ); //$NON-NLS-1$
+        result.append( m_name );
+        result.append( ", value: " ); //$NON-NLS-1$
+        result.append( m_value );
+        result.append( ')' );
         return result.toString();
     }
 

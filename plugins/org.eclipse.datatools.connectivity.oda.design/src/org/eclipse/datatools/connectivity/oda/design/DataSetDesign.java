@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.3 2006/02/07 05:53:04 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.4 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign()
- * @model 
+ * @model extendedMetaData="name='DataSetDesign' kind='elementOnly'"
  * @generated
  */
 public interface DataSetDesign extends EObject
@@ -52,7 +52,7 @@ public interface DataSetDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the ODA data source element ID of the
@@ -75,6 +75,7 @@ public interface DataSetDesign extends EObject
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_Name()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
     String getName();
@@ -100,6 +101,7 @@ public interface DataSetDesign extends EObject
      * @see #setOdaExtensionDataSetId(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_OdaExtensionDataSetId()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='odaExtensionDataSetId' namespace='##targetNamespace'"
      * @generated
      */
     String getOdaExtensionDataSetId();
@@ -124,7 +126,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Data Source Design</em>' containment reference.
      * @see #setDataSourceDesign(DataSourceDesign)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_DataSourceDesign()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='dataSourceDesign' namespace='##targetNamespace'"
      * @generated
      */
     DataSourceDesign getDataSourceDesign();
@@ -146,7 +149,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Query</em>' containment reference.
      * @see #setQuery(DataSetQuery)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_Query()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='query' namespace='##targetNamespace'"
      * @generated
      */
     DataSetQuery getQuery();
@@ -179,7 +183,7 @@ public interface DataSetDesign extends EObject
      * @param queryText the value of the '<em>Query Text</em>' attribute
      *                  of the '<em>Query</em>' containment reference
      * @see #setQuery()
-	 * @generated NOT
+     * @generated NOT
      */
     void setQueryText( String queryText );
 
@@ -191,6 +195,7 @@ public interface DataSetDesign extends EObject
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_DisplayName()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayName();
@@ -215,7 +220,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Public Properties</em>' containment reference.
      * @see #setPublicProperties(Properties)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_PublicProperties()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='publicProperties' namespace='##targetNamespace'"
      * @generated
      */
     Properties getPublicProperties();
@@ -240,7 +246,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Private Properties</em>' containment reference.
      * @see #setPrivateProperties(Properties)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_PrivateProperties()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='privateProperties' namespace='##targetNamespace'"
      * @generated
      */
     Properties getPrivateProperties();
@@ -262,7 +269,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Result Sets</em>' containment reference.
      * @see #setResultSets(ResultSets)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_ResultSets()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='resultSets' namespace='##targetNamespace'"
      * @generated
      */
     ResultSets getResultSets();
@@ -286,7 +294,7 @@ public interface DataSetDesign extends EObject
      * @generated NOT
      */
     ResultSetDefinition getPrimaryResultSet();
-    
+
     /**
      * Sets the primary result set's definition in the 
      * '<em><b>Result Sets</b></em>' containment reference.
@@ -297,7 +305,7 @@ public interface DataSetDesign extends EObject
      * @generated NOT
      */
     void setPrimaryResultSet( ResultSetDefinition resultSetDefn );
-    
+
     /**
      * Returns the value of the '<em><b>Primary Result Set Name</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -309,6 +317,7 @@ public interface DataSetDesign extends EObject
      * @see #setPrimaryResultSetName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_PrimaryResultSetName()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='primaryResultSetName' namespace='##targetNamespace'"
      * @generated
      */
     String getPrimaryResultSetName();
@@ -330,7 +339,8 @@ public interface DataSetDesign extends EObject
      * @return the value of the '<em>Parameters</em>' containment reference.
      * @see #setParameters(DataSetParameters)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_Parameters()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='parameters' namespace='##targetNamespace'"
      * @generated
      */
     DataSetParameters getParameters();

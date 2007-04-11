@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: SessionStatus.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class SessionStatus extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Ok</b></em>' literal value.
@@ -94,7 +94,8 @@ public final class SessionStatus extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final SessionStatus OK_LITERAL = new SessionStatus(OK, "Ok"); //$NON-NLS-1$
+    public static final SessionStatus OK_LITERAL = new SessionStatus( OK,
+            "Ok", "Ok" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>User Cancelled</b></em>' literal object.
@@ -104,7 +105,8 @@ public final class SessionStatus extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final SessionStatus USER_CANCELLED_LITERAL = new SessionStatus(USER_CANCELLED, "UserCancelled"); //$NON-NLS-1$
+    public static final SessionStatus USER_CANCELLED_LITERAL = new SessionStatus(
+            USER_CANCELLED, "UserCancelled", "UserCancelled" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Login Failed</b></em>' literal object.
@@ -114,7 +116,8 @@ public final class SessionStatus extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final SessionStatus LOGIN_FAILED_LITERAL = new SessionStatus(LOGIN_FAILED, "LoginFailed"); //$NON-NLS-1$
+    public static final SessionStatus LOGIN_FAILED_LITERAL = new SessionStatus(
+            LOGIN_FAILED, "LoginFailed", "LoginFailed" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Error</b></em>' literal object.
@@ -124,7 +127,8 @@ public final class SessionStatus extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final SessionStatus ERROR_LITERAL = new SessionStatus(ERROR, "Error"); //$NON-NLS-1$
+    public static final SessionStatus ERROR_LITERAL = new SessionStatus( ERROR,
+            "Error", "Error" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Session Status</b></em>' enumerators.
@@ -132,14 +136,8 @@ public final class SessionStatus extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final SessionStatus[] VALUES_ARRAY =
-        new SessionStatus[]
-        {
-            OK_LITERAL,
-            USER_CANCELLED_LITERAL,
-            LOGIN_FAILED_LITERAL,
-            ERROR_LITERAL,
-        };
+    private static final SessionStatus[] VALUES_ARRAY = new SessionStatus[]
+    { OK_LITERAL, USER_CANCELLED_LITERAL, LOGIN_FAILED_LITERAL, ERROR_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Session Status</b></em>' enumerators.
@@ -147,20 +145,21 @@ public final class SessionStatus extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Session Status</b></em>' literal with the specified name.
+     * Returns the '<em><b>Session Status</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static SessionStatus get( String name )
+    public static SessionStatus get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             SessionStatus result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -169,21 +168,44 @@ public final class SessionStatus extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Session Status</b></em>' literal with the specified value.
+     * Returns the '<em><b>Session Status</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static SessionStatus getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            SessionStatus result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Session Status</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static SessionStatus get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case OK: return OK_LITERAL;
-            case USER_CANCELLED: return USER_CANCELLED_LITERAL;
-            case LOGIN_FAILED: return LOGIN_FAILED_LITERAL;
-            case ERROR: return ERROR_LITERAL;
+        case OK:
+            return OK_LITERAL;
+        case USER_CANCELLED:
+            return USER_CANCELLED_LITERAL;
+        case LOGIN_FAILED:
+            return LOGIN_FAILED_LITERAL;
+        case ERROR:
+            return ERROR_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -192,9 +214,9 @@ public final class SessionStatus extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private SessionStatus( int value, String name )
+    private SessionStatus( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //SessionStatus

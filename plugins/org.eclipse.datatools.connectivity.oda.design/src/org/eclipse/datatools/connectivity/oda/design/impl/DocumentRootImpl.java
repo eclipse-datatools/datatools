@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,28 +11,21 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DocumentRootImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
-
-import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EMap;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.impl.EStringToStringMapEntryImpl;
-
 import org.eclipse.emf.ecore.util.BasicFeatureMap;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.FeatureMap;
@@ -61,7 +54,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getMixed() <em>Mixed</em>}' attribute list.
@@ -110,7 +103,7 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDocumentRoot();
+        return DesignPackage.Literals.DOCUMENT_ROOT;
     }
 
     /**
@@ -120,9 +113,10 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public FeatureMap getMixed()
     {
-        if (m_mixed == null)
+        if( m_mixed == null )
         {
-            m_mixed = new BasicFeatureMap(this, DesignPackage.DOCUMENT_ROOT__MIXED);
+            m_mixed = new BasicFeatureMap( this,
+                    DesignPackage.DOCUMENT_ROOT__MIXED );
         }
         return m_mixed;
     }
@@ -134,9 +128,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public EMap getXMLNSPrefixMap()
     {
-        if (m_xMLNSPrefixMap == null)
+        if( m_xMLNSPrefixMap == null )
         {
-            m_xMLNSPrefixMap = new EcoreEMap(EcorePackage.eINSTANCE.getEStringToStringMapEntry(), EStringToStringMapEntryImpl.class, this, DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP);
+            m_xMLNSPrefixMap = new EcoreEMap(
+                    EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
+                    EStringToStringMapEntryImpl.class, this,
+                    DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP );
         }
         return m_xMLNSPrefixMap;
     }
@@ -148,9 +145,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public EMap getXSISchemaLocation()
     {
-        if (m_xSISchemaLocation == null)
+        if( m_xSISchemaLocation == null )
         {
-            m_xSISchemaLocation = new EcoreEMap(EcorePackage.eINSTANCE.getEStringToStringMapEntry(), EStringToStringMapEntryImpl.class, this, DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION);
+            m_xSISchemaLocation = new EcoreEMap(
+                    EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY,
+                    EStringToStringMapEntryImpl.class, this,
+                    DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION );
         }
         return m_xSISchemaLocation;
     }
@@ -162,7 +162,8 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public OdaDesignSession getOdaDesignSession()
     {
-        return (OdaDesignSession)getMixed().get(DesignPackage.eINSTANCE.getDocumentRoot_OdaDesignSession(), true);
+        return (OdaDesignSession) getMixed().get(
+                DesignPackage.Literals.DOCUMENT_ROOT__ODA_DESIGN_SESSION, true );
     }
 
     /**
@@ -170,9 +171,12 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetOdaDesignSession( OdaDesignSession newOdaDesignSession, NotificationChain msgs )
+    public NotificationChain basicSetOdaDesignSession(
+            OdaDesignSession newOdaDesignSession, NotificationChain msgs )
     {
-        return ((FeatureMap.Internal)getMixed()).basicAdd(DesignPackage.eINSTANCE.getDocumentRoot_OdaDesignSession(), newOdaDesignSession, null);
+        return ((FeatureMap.Internal) getMixed()).basicAdd(
+                DesignPackage.Literals.DOCUMENT_ROOT__ODA_DESIGN_SESSION,
+                newOdaDesignSession, msgs );
     }
 
     /**
@@ -182,7 +186,9 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public void setOdaDesignSession( OdaDesignSession newOdaDesignSession )
     {
-        ((FeatureMap.Internal)getMixed()).set(DesignPackage.eINSTANCE.getDocumentRoot_OdaDesignSession(), newOdaDesignSession);
+        ((FeatureMap.Internal) getMixed()).set(
+                DesignPackage.Literals.DOCUMENT_ROOT__ODA_DESIGN_SESSION,
+                newOdaDesignSession );
     }
 
     /**
@@ -190,25 +196,23 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.DOCUMENT_ROOT__MIXED:
-                    return ((InternalEList)getMixed()).basicRemove(otherEnd, msgs);
-                case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-                    return ((InternalEList)getXMLNSPrefixMap()).basicRemove(otherEnd, msgs);
-                case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-                    return ((InternalEList)getXSISchemaLocation()).basicRemove(otherEnd, msgs);
-                case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
-                    return basicSetOdaDesignSession(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.DOCUMENT_ROOT__MIXED:
+            return ((InternalEList) getMixed()).basicRemove( otherEnd, msgs );
+        case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            return ((InternalEList) getXMLNSPrefixMap()).basicRemove( otherEnd,
+                    msgs );
+        case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            return ((InternalEList) getXSISchemaLocation()).basicRemove(
+                    otherEnd, msgs );
+        case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
+            return basicSetOdaDesignSession( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -216,20 +220,28 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DOCUMENT_ROOT__MIXED:
+        case DesignPackage.DOCUMENT_ROOT__MIXED:
+            if( coreType )
                 return getMixed();
-            case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            return ((FeatureMap.Internal) getMixed()).getWrapper();
+        case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            if( coreType )
                 return getXMLNSPrefixMap();
-            case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            else
+                return getXMLNSPrefixMap().map();
+        case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            if( coreType )
                 return getXSISchemaLocation();
-            case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
-                return getOdaDesignSession();
+            else
+                return getXSISchemaLocation().map();
+        case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
+            return getOdaDesignSession();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -237,27 +249,25 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DOCUMENT_ROOT__MIXED:
-                getMixed().clear();
-                getMixed().addAll((Collection)newValue);
-                return;
-            case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-                getXMLNSPrefixMap().clear();
-                getXMLNSPrefixMap().addAll((Collection)newValue);
-                return;
-            case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-                getXSISchemaLocation().clear();
-                getXSISchemaLocation().addAll((Collection)newValue);
-                return;
-            case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
-                setOdaDesignSession((OdaDesignSession)newValue);
-                return;
+        case DesignPackage.DOCUMENT_ROOT__MIXED:
+            ((FeatureMap.Internal) getMixed()).set( newValue );
+            return;
+        case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            ((EStructuralFeature.Setting) getXMLNSPrefixMap()).set( newValue );
+            return;
+        case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            ((EStructuralFeature.Setting) getXSISchemaLocation())
+                    .set( newValue );
+            return;
+        case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
+            setOdaDesignSession( (OdaDesignSession) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -265,24 +275,24 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DOCUMENT_ROOT__MIXED:
-                getMixed().clear();
-                return;
-            case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-                getXMLNSPrefixMap().clear();
-                return;
-            case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-                getXSISchemaLocation().clear();
-                return;
-            case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
-                setOdaDesignSession((OdaDesignSession)null);
-                return;
+        case DesignPackage.DOCUMENT_ROOT__MIXED:
+            getMixed().clear();
+            return;
+        case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            getXMLNSPrefixMap().clear();
+            return;
+        case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            getXSISchemaLocation().clear();
+            return;
+        case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
+            setOdaDesignSession( (OdaDesignSession) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -290,20 +300,21 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DOCUMENT_ROOT__MIXED:
-                return m_mixed != null && !m_mixed.isEmpty();
-            case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
-                return m_xMLNSPrefixMap != null && !m_xMLNSPrefixMap.isEmpty();
-            case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
-                return m_xSISchemaLocation != null && !m_xSISchemaLocation.isEmpty();
-            case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
-                return getOdaDesignSession() != null;
+        case DesignPackage.DOCUMENT_ROOT__MIXED:
+            return m_mixed != null && !m_mixed.isEmpty();
+        case DesignPackage.DOCUMENT_ROOT__XMLNS_PREFIX_MAP:
+            return m_xMLNSPrefixMap != null && !m_xMLNSPrefixMap.isEmpty();
+        case DesignPackage.DOCUMENT_ROOT__XSI_SCHEMA_LOCATION:
+            return m_xSISchemaLocation != null
+                    && !m_xSISchemaLocation.isEmpty();
+        case DesignPackage.DOCUMENT_ROOT__ODA_DESIGN_SESSION:
+            return getOdaDesignSession() != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -313,12 +324,13 @@ public class DocumentRootImpl extends EObjectImpl implements DocumentRoot
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (mixed: "); //$NON-NLS-1$
-        result.append(m_mixed);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (mixed: " ); //$NON-NLS-1$
+        result.append( m_mixed );
+        result.append( ')' );
         return result.toString();
     }
 

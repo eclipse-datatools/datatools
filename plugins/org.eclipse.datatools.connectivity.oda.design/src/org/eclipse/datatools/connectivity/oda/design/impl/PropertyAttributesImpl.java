@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,21 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: PropertyAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -44,14 +40,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttributes
+public class PropertyAttributesImpl extends EObjectImpl implements
+        PropertyAttributes
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDisplayName() <em>Display Name</em>}' attribute.
@@ -129,7 +126,7 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getPropertyAttributes();
+        return DesignPackage.Literals.PROPERTY_ATTRIBUTES;
     }
 
     /**
@@ -151,8 +148,10 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
     {
         String oldDisplayName = m_displayName;
         m_displayName = newDisplayName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME, oldDisplayName, m_displayName));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME,
+                    oldDisplayName, m_displayName ) );
     }
 
     /**
@@ -170,14 +169,21 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetElementAttributes( InputElementAttributes newElementAttributes, NotificationChain msgs )
+    public NotificationChain basicSetElementAttributes(
+            InputElementAttributes newElementAttributes, NotificationChain msgs )
     {
         InputElementAttributes oldElementAttributes = m_elementAttributes;
         m_elementAttributes = newElementAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES, oldElementAttributes, newElementAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                    oldElementAttributes, newElementAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -187,20 +193,34 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setElementAttributes( InputElementAttributes newElementAttributes )
+    public void setElementAttributes(
+            InputElementAttributes newElementAttributes )
     {
-        if (newElementAttributes != m_elementAttributes)
+        if( newElementAttributes != m_elementAttributes )
         {
             NotificationChain msgs = null;
-            if (m_elementAttributes != null)
-                msgs = ((InternalEObject)m_elementAttributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES, null, msgs);
-            if (newElementAttributes != null)
-                msgs = ((InternalEObject)newElementAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES, null, msgs);
-            msgs = basicSetElementAttributes(newElementAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_elementAttributes != null )
+                msgs = ((InternalEObject) m_elementAttributes)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                                null, msgs );
+            if( newElementAttributes != null )
+                msgs = ((InternalEObject) newElementAttributes)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                                null, msgs );
+            msgs = basicSetElementAttributes( newElementAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES, newElementAttributes, newElementAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                    newElementAttributes, newElementAttributes ) );
     }
 
     /**
@@ -224,8 +244,11 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
         m_derivedMetaData = newDerivedMetaData;
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaDataESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA, oldDerivedMetaData, m_derivedMetaData, !oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA,
+                    oldDerivedMetaData, m_derivedMetaData,
+                    !oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -239,8 +262,11 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaData = DERIVED_META_DATA_EDEFAULT;
         m_derivedMetaDataESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA, oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT, oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA,
+                    oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT,
+                    oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -258,19 +284,15 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                    return basicSetElementAttributes(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return basicSetElementAttributes( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -278,18 +300,18 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-                return getDisplayName();
-            case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                return getElementAttributes();
-            case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
-                return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
+            return getDisplayName();
+        case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return getElementAttributes();
+        case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
+            return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -297,21 +319,21 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-                setDisplayName((String)newValue);
-                return;
-            case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                setElementAttributes((InputElementAttributes)newValue);
-                return;
-            case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
-                setDerivedMetaData(((Boolean)newValue).booleanValue());
-                return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
+            setDisplayName( (String) newValue );
+            return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            setElementAttributes( (InputElementAttributes) newValue );
+            return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
+            setDerivedMetaData( ((Boolean) newValue).booleanValue() );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -319,21 +341,21 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-                setDisplayName(DISPLAY_NAME_EDEFAULT);
-                return;
-            case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                setElementAttributes((InputElementAttributes)null);
-                return;
-            case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
-                unsetDerivedMetaData();
-                return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
+            setDisplayName( DISPLAY_NAME_EDEFAULT );
+            return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            setElementAttributes( (InputElementAttributes) null );
+            return;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
+            unsetDerivedMetaData();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -341,18 +363,19 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
-                return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null : !DISPLAY_NAME_EDEFAULT.equals(m_displayName);
-            case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                return m_elementAttributes != null;
-            case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
-                return isSetDerivedMetaData();
+        case DesignPackage.PROPERTY_ATTRIBUTES__DISPLAY_NAME:
+            return DISPLAY_NAME_EDEFAULT == null ? m_displayName != null
+                    : !DISPLAY_NAME_EDEFAULT.equals( m_displayName );
+        case DesignPackage.PROPERTY_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return m_elementAttributes != null;
+        case DesignPackage.PROPERTY_ATTRIBUTES__DERIVED_META_DATA:
+            return isSetDerivedMetaData();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -362,14 +385,18 @@ public class PropertyAttributesImpl extends EObjectImpl implements PropertyAttri
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (displayName: "); //$NON-NLS-1$
-        result.append(m_displayName);
-        result.append(", derivedMetaData: "); //$NON-NLS-1$
-        if (m_derivedMetaDataESet) result.append(m_derivedMetaData); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (displayName: " ); //$NON-NLS-1$
+        result.append( m_displayName );
+        result.append( ", derivedMetaData: " ); //$NON-NLS-1$
+        if( m_derivedMetaDataESet )
+            result.append( m_derivedMetaData );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ColumnDefinitionImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -20,14 +20,10 @@ import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -46,14 +42,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinition
+public class ColumnDefinitionImpl extends EObjectImpl implements
+        ColumnDefinition
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
@@ -102,7 +99,7 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getColumnDefinition();
+        return DesignPackage.Literals.COLUMN_DEFINITION;
     }
 
     /**
@@ -120,14 +117,21 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetAttributes( DataElementAttributes newAttributes, NotificationChain msgs )
+    public NotificationChain basicSetAttributes(
+            DataElementAttributes newAttributes, NotificationChain msgs )
     {
         DataElementAttributes oldAttributes = m_attributes;
         m_attributes = newAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, oldAttributes, newAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, oldAttributes,
+                    newAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -139,18 +143,27 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      */
     public void setAttributes( DataElementAttributes newAttributes )
     {
-        if (newAttributes != m_attributes)
+        if( newAttributes != m_attributes )
         {
             NotificationChain msgs = null;
-            if (m_attributes != null)
-                msgs = ((InternalEObject)m_attributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, null, msgs);
-            if (newAttributes != null)
-                msgs = ((InternalEObject)newAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, null, msgs);
-            msgs = basicSetAttributes(newAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_attributes != null )
+                msgs = ((InternalEObject) m_attributes).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.COLUMN_DEFINITION__ATTRIBUTES,
+                        null, msgs );
+            if( newAttributes != null )
+                msgs = ((InternalEObject) newAttributes).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.COLUMN_DEFINITION__ATTRIBUTES,
+                        null, msgs );
+            msgs = basicSetAttributes( newAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, newAttributes, newAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__ATTRIBUTES, newAttributes,
+                    newAttributes ) );
     }
 
     /**
@@ -168,14 +181,21 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetUsageHints( OutputElementAttributes newUsageHints, NotificationChain msgs )
+    public NotificationChain basicSetUsageHints(
+            OutputElementAttributes newUsageHints, NotificationChain msgs )
     {
         OutputElementAttributes oldUsageHints = m_usageHints;
         m_usageHints = newUsageHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__USAGE_HINTS, oldUsageHints, newUsageHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__USAGE_HINTS,
+                    oldUsageHints, newUsageHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -187,18 +207,27 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      */
     public void setUsageHints( OutputElementAttributes newUsageHints )
     {
-        if (newUsageHints != m_usageHints)
+        if( newUsageHints != m_usageHints )
         {
             NotificationChain msgs = null;
-            if (m_usageHints != null)
-                msgs = ((InternalEObject)m_usageHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__USAGE_HINTS, null, msgs);
-            if (newUsageHints != null)
-                msgs = ((InternalEObject)newUsageHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__USAGE_HINTS, null, msgs);
-            msgs = basicSetUsageHints(newUsageHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_usageHints != null )
+                msgs = ((InternalEObject) m_usageHints).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.COLUMN_DEFINITION__USAGE_HINTS,
+                        null, msgs );
+            if( newUsageHints != null )
+                msgs = ((InternalEObject) newUsageHints).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.COLUMN_DEFINITION__USAGE_HINTS,
+                        null, msgs );
+            msgs = basicSetUsageHints( newUsageHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__USAGE_HINTS, newUsageHints, newUsageHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__USAGE_HINTS,
+                    newUsageHints, newUsageHints ) );
     }
 
     /**
@@ -216,14 +245,22 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetMultiDimensionAttributes( AxisAttributes newMultiDimensionAttributes, NotificationChain msgs )
+    public NotificationChain basicSetMultiDimensionAttributes(
+            AxisAttributes newMultiDimensionAttributes, NotificationChain msgs )
     {
         AxisAttributes oldMultiDimensionAttributes = m_multiDimensionAttributes;
         m_multiDimensionAttributes = newMultiDimensionAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES, oldMultiDimensionAttributes, newMultiDimensionAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES,
+                    oldMultiDimensionAttributes, newMultiDimensionAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -233,20 +270,37 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setMultiDimensionAttributes( AxisAttributes newMultiDimensionAttributes )
+    public void setMultiDimensionAttributes(
+            AxisAttributes newMultiDimensionAttributes )
     {
-        if (newMultiDimensionAttributes != m_multiDimensionAttributes)
+        if( newMultiDimensionAttributes != m_multiDimensionAttributes )
         {
             NotificationChain msgs = null;
-            if (m_multiDimensionAttributes != null)
-                msgs = ((InternalEObject)m_multiDimensionAttributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES, null, msgs);
-            if (newMultiDimensionAttributes != null)
-                msgs = ((InternalEObject)newMultiDimensionAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES, null, msgs);
-            msgs = basicSetMultiDimensionAttributes(newMultiDimensionAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_multiDimensionAttributes != null )
+                msgs = ((InternalEObject) m_multiDimensionAttributes)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES,
+                                null, msgs );
+            if( newMultiDimensionAttributes != null )
+                msgs = ((InternalEObject) newMultiDimensionAttributes)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES,
+                                null, msgs );
+            msgs = basicSetMultiDimensionAttributes(
+                    newMultiDimensionAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES, newMultiDimensionAttributes, newMultiDimensionAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES,
+                    newMultiDimensionAttributes, newMultiDimensionAttributes ) );
     }
 
     /**
@@ -254,23 +308,19 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
-                    return basicSetAttributes(null, msgs);
-                case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
-                    return basicSetUsageHints(null, msgs);
-                case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
-                    return basicSetMultiDimensionAttributes(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
+            return basicSetAttributes( null, msgs );
+        case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
+            return basicSetUsageHints( null, msgs );
+        case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
+            return basicSetMultiDimensionAttributes( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -278,18 +328,18 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
-                return getAttributes();
-            case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
-                return getUsageHints();
-            case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
-                return getMultiDimensionAttributes();
+        case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
+            return getAttributes();
+        case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
+            return getUsageHints();
+        case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
+            return getMultiDimensionAttributes();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -297,21 +347,21 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
-                setAttributes((DataElementAttributes)newValue);
-                return;
-            case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
-                setUsageHints((OutputElementAttributes)newValue);
-                return;
-            case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
-                setMultiDimensionAttributes((AxisAttributes)newValue);
-                return;
+        case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
+            setAttributes( (DataElementAttributes) newValue );
+            return;
+        case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
+            setUsageHints( (OutputElementAttributes) newValue );
+            return;
+        case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
+            setMultiDimensionAttributes( (AxisAttributes) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -319,21 +369,21 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
-                setAttributes((DataElementAttributes)null);
-                return;
-            case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
-                setUsageHints((OutputElementAttributes)null);
-                return;
-            case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
-                setMultiDimensionAttributes((AxisAttributes)null);
-                return;
+        case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
+            setAttributes( (DataElementAttributes) null );
+            return;
+        case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
+            setUsageHints( (OutputElementAttributes) null );
+            return;
+        case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
+            setMultiDimensionAttributes( (AxisAttributes) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -341,18 +391,18 @@ public class ColumnDefinitionImpl extends EObjectImpl implements ColumnDefinitio
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
-                return m_attributes != null;
-            case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
-                return m_usageHints != null;
-            case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
-                return m_multiDimensionAttributes != null;
+        case DesignPackage.COLUMN_DEFINITION__ATTRIBUTES:
+            return m_attributes != null;
+        case DesignPackage.COLUMN_DEFINITION__USAGE_HINTS:
+            return m_usageHints != null;
+        case DesignPackage.COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES:
+            return m_multiDimensionAttributes != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
 } //ColumnDefinitionImpl

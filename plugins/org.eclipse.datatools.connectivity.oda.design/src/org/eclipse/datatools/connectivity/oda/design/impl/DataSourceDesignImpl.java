@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.10 2007/03/21 06:31:41 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.11 2007/03/29 02:47:11 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -26,7 +26,6 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -171,7 +170,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected static final String LINKED_PROFILE_NAME_EDEFAULT = null; //$NON-NLS-1$
+    protected static final String LINKED_PROFILE_NAME_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getLinkedProfileName() <em>Linked Profile Name</em>}' attribute.
@@ -236,7 +235,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDataSourceDesign();
+        return DesignPackage.Literals.DATA_SOURCE_DESIGN;
     }
 
     /* (non-Javadoc)
@@ -376,12 +375,12 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         // migrate the values from deprecated member variables, if exists
         String profileName = getLinkedProfileNameGen();
         if( profileName != null )
-            setLinkedProfileName( profileName );  // move to public property
-            
+            setLinkedProfileName( profileName ); // move to public property
+
         String filePath = getLinkedProfileStoreFilePathGen();
         if( filePath != null )
-            setLinkedProfileStoreFilePath( filePath );  // move to public property    
-        
+            setLinkedProfileStoreFilePath( filePath ); // move to public property    
+
         return getPublicPropertiesGen();
     }
 
@@ -573,7 +572,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         setLinkedProfileNameGen( null );
         setLinkedProfileNameAsProperty( newLinkedProfileName );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -603,7 +602,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             publicProps = DesignFactory.eINSTANCE.createProperties();
             basicSetPublicProperties( publicProps, null );
         }
-        
+
         // override existing property value, if exists
         publicProps.setProperty( CONN_PROFILE_NAME_PROP, newLinkedProfileName );
     }
@@ -661,7 +660,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         setLinkedProfileStoreFilePathGen( null );
         setLinkedProfileStoreFilePathAsProperty( newLinkedProfileStoreFilePath );
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -681,73 +680,21 @@ public class DataSourceDesignImpl extends EObjectImpl implements
     }
 
     /**
-     * Assigns the specified profile store's file path as a data source public property.
-     * Overrides existing property value, if exists.
-     * @param newLinkedProfileStoreFilePath
-     * @generated NOT
-     */
-    protected void setLinkedProfileStoreFilePathAsProperty( String newLinkedProfileStoreFilePath )
-    {
-        Properties publicProps = getPublicPropertiesGen();
-        if( publicProps == null )
-        {
-            publicProps = DesignFactory.eINSTANCE.createProperties();
-            basicSetPublicProperties( publicProps, null );
-        }
-        
-        // override existing property value, if exists
-        publicProps.setProperty( CONN_PROFILE_STORE_FILE_PATH_PROP, newLinkedProfileStoreFilePath );
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFile()
-     */
-    public File getLinkedProfileStoreFile()
-    {
-        String storeFilePath = getLinkedProfileStoreFilePath();
-        return DesignUtil.convertPathToFile( storeFilePath );
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setLinkedProfileStoreFile(java.io.File)
-     */
-    public void setLinkedProfileStoreFile( File storageFile )
-    {
-        String filePath = DesignUtil.convertFileToPath( storageFile );
-        setLinkedProfileStoreFilePath( filePath );
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#hasLinkToProfile()
-     */
-    public boolean hasLinkToProfile()
-    {
-        String profileName = getLinkedProfileName();
-        return ( profileName != null && profileName.trim().length() > 0 );
-    }
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, Class baseClass, NotificationChain msgs )
+            int featureID, NotificationChain msgs )
     {
-        if( featureID >= 0 )
+        switch( featureID )
         {
-            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
-            {
-            case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
-                return basicSetPublicProperties( null, msgs );
-            case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
-                return basicSetPrivateProperties( null, msgs );
-            default:
-                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
-                        msgs );
-            }
+        case DesignPackage.DATA_SOURCE_DESIGN__PUBLIC_PROPERTIES:
+            return basicSetPublicProperties( null, msgs );
+        case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
+            return basicSetPrivateProperties( null, msgs );
         }
-        return eBasicSetContainer( null, featureID, msgs );
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -755,9 +702,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_SOURCE_DESIGN__NAME:
             return getName();
@@ -776,7 +723,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
             return getLinkedProfileStoreFilePath();
         }
-        return eDynamicGet( eFeature, resolve );
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -784,9 +731,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_SOURCE_DESIGN__NAME:
             setName( (String) newValue );
@@ -813,7 +760,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             setLinkedProfileStoreFilePath( (String) newValue );
             return;
         }
-        eDynamicSet( eFeature, newValue );
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -821,9 +768,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_SOURCE_DESIGN__NAME:
             setName( NAME_EDEFAULT );
@@ -850,7 +797,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             setLinkedProfileStoreFilePath( LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT );
             return;
         }
-        eDynamicUnset( eFeature );
+        super.eUnset( featureID );
     }
 
     /**
@@ -858,9 +805,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_SOURCE_DESIGN__NAME:
             return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
@@ -888,7 +835,55 @@ public class DataSourceDesignImpl extends EObjectImpl implements
                     : !LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT
                             .equals( m_linkedProfileStoreFilePath );
         }
-        return eDynamicIsSet( eFeature );
+        return super.eIsSet( featureID );
+    }
+
+    /**
+     * Assigns the specified profile store's file path as a data source public property.
+     * Overrides existing property value, if exists.
+     * @param newLinkedProfileStoreFilePath
+     * @generated NOT
+     */
+    protected void setLinkedProfileStoreFilePathAsProperty(
+            String newLinkedProfileStoreFilePath )
+    {
+        Properties publicProps = getPublicPropertiesGen();
+        if( publicProps == null )
+        {
+            publicProps = DesignFactory.eINSTANCE.createProperties();
+            basicSetPublicProperties( publicProps, null );
+        }
+
+        // override existing property value, if exists
+        publicProps.setProperty( CONN_PROFILE_STORE_FILE_PATH_PROP,
+                newLinkedProfileStoreFilePath );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFile()
+     */
+    public File getLinkedProfileStoreFile()
+    {
+        String storeFilePath = getLinkedProfileStoreFilePath();
+        return DesignUtil.convertPathToFile( storeFilePath );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#setLinkedProfileStoreFile(java.io.File)
+     */
+    public void setLinkedProfileStoreFile( File storageFile )
+    {
+        String filePath = DesignUtil.convertFileToPath( storageFile );
+        setLinkedProfileStoreFilePath( filePath );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#hasLinkToProfile()
+     */
+    public boolean hasLinkToProfile()
+    {
+        String profileName = getLinkedProfileName();
+        return (profileName != null && profileName.trim().length() > 0);
     }
 
     /**

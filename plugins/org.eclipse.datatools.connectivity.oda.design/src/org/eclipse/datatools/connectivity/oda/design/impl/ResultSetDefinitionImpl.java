@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,21 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ResultSetDefinitionImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -43,14 +39,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDefinition
+public class ResultSetDefinitionImpl extends EObjectImpl implements
+        ResultSetDefinition
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -99,7 +96,7 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getResultSetDefinition();
+        return DesignPackage.Literals.RESULT_SET_DEFINITION;
     }
 
     /**
@@ -121,8 +118,9 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
     {
         String oldName = m_name;
         m_name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.RESULT_SET_DEFINITION__NAME, oldName, m_name));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.RESULT_SET_DEFINITION__NAME, oldName, m_name ) );
     }
 
     /**
@@ -140,14 +138,21 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetResultSetColumns( ResultSetColumns newResultSetColumns, NotificationChain msgs )
+    public NotificationChain basicSetResultSetColumns(
+            ResultSetColumns newResultSetColumns, NotificationChain msgs )
     {
         ResultSetColumns oldResultSetColumns = m_resultSetColumns;
         m_resultSetColumns = newResultSetColumns;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS, oldResultSetColumns, newResultSetColumns);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS,
+                    oldResultSetColumns, newResultSetColumns );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -159,18 +164,31 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      */
     public void setResultSetColumns( ResultSetColumns newResultSetColumns )
     {
-        if (newResultSetColumns != m_resultSetColumns)
+        if( newResultSetColumns != m_resultSetColumns )
         {
             NotificationChain msgs = null;
-            if (m_resultSetColumns != null)
-                msgs = ((InternalEObject)m_resultSetColumns).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS, null, msgs);
-            if (newResultSetColumns != null)
-                msgs = ((InternalEObject)newResultSetColumns).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS, null, msgs);
-            msgs = basicSetResultSetColumns(newResultSetColumns, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_resultSetColumns != null )
+                msgs = ((InternalEObject) m_resultSetColumns)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS,
+                                null, msgs );
+            if( newResultSetColumns != null )
+                msgs = ((InternalEObject) newResultSetColumns)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS,
+                                null, msgs );
+            msgs = basicSetResultSetColumns( newResultSetColumns, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS, newResultSetColumns, newResultSetColumns));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS,
+                    newResultSetColumns, newResultSetColumns ) );
     }
 
     /**
@@ -178,19 +196,15 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
-                    return basicSetResultSetColumns(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
+            return basicSetResultSetColumns( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -198,16 +212,16 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SET_DEFINITION__NAME:
-                return getName();
-            case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
-                return getResultSetColumns();
+        case DesignPackage.RESULT_SET_DEFINITION__NAME:
+            return getName();
+        case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
+            return getResultSetColumns();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -215,18 +229,18 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SET_DEFINITION__NAME:
-                setName((String)newValue);
-                return;
-            case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
-                setResultSetColumns((ResultSetColumns)newValue);
-                return;
+        case DesignPackage.RESULT_SET_DEFINITION__NAME:
+            setName( (String) newValue );
+            return;
+        case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
+            setResultSetColumns( (ResultSetColumns) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -234,18 +248,18 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SET_DEFINITION__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
-                setResultSetColumns((ResultSetColumns)null);
-                return;
+        case DesignPackage.RESULT_SET_DEFINITION__NAME:
+            setName( NAME_EDEFAULT );
+            return;
+        case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
+            setResultSetColumns( (ResultSetColumns) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -253,16 +267,17 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SET_DEFINITION__NAME:
-                return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT.equals(m_name);
-            case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
-                return m_resultSetColumns != null;
+        case DesignPackage.RESULT_SET_DEFINITION__NAME:
+            return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
+                    .equals( m_name );
+        case DesignPackage.RESULT_SET_DEFINITION__RESULT_SET_COLUMNS:
+            return m_resultSetColumns != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -272,12 +287,13 @@ public class ResultSetDefinitionImpl extends EObjectImpl implements ResultSetDef
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: "); //$NON-NLS-1$
-        result.append(m_name);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (name: " ); //$NON-NLS-1$
+        result.append( m_name );
+        result.append( ')' );
         return result.toString();
     }
 

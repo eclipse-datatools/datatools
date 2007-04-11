@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputPromptControlStyle.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Text Field</b></em>' literal value.
@@ -105,7 +105,8 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final InputPromptControlStyle TEXT_FIELD_LITERAL = new InputPromptControlStyle(TEXT_FIELD, "TextField"); //$NON-NLS-1$
+    public static final InputPromptControlStyle TEXT_FIELD_LITERAL = new InputPromptControlStyle(
+            TEXT_FIELD, "TextField", "TextField" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Selectable List</b></em>' literal object.
@@ -115,7 +116,8 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final InputPromptControlStyle SELECTABLE_LIST_LITERAL = new InputPromptControlStyle(SELECTABLE_LIST, "SelectableList"); //$NON-NLS-1$
+    public static final InputPromptControlStyle SELECTABLE_LIST_LITERAL = new InputPromptControlStyle(
+            SELECTABLE_LIST, "SelectableList", "SelectableList" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Selectable List With Text Field</b></em>' literal object.
@@ -125,7 +127,9 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final InputPromptControlStyle SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL = new InputPromptControlStyle(SELECTABLE_LIST_WITH_TEXT_FIELD, "SelectableListWithTextField"); //$NON-NLS-1$
+    public static final InputPromptControlStyle SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL = new InputPromptControlStyle(
+            SELECTABLE_LIST_WITH_TEXT_FIELD,
+            "SelectableListWithTextField", "SelectableListWithTextField" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Check Box</b></em>' literal object.
@@ -135,7 +139,8 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final InputPromptControlStyle CHECK_BOX_LITERAL = new InputPromptControlStyle(CHECK_BOX, "CheckBox"); //$NON-NLS-1$
+    public static final InputPromptControlStyle CHECK_BOX_LITERAL = new InputPromptControlStyle(
+            CHECK_BOX, "CheckBox", "CheckBox" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Radio Button</b></em>' literal object.
@@ -145,7 +150,8 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final InputPromptControlStyle RADIO_BUTTON_LITERAL = new InputPromptControlStyle(RADIO_BUTTON, "RadioButton"); //$NON-NLS-1$
+    public static final InputPromptControlStyle RADIO_BUTTON_LITERAL = new InputPromptControlStyle(
+            RADIO_BUTTON, "RadioButton", "RadioButton" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
@@ -153,15 +159,10 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final InputPromptControlStyle[] VALUES_ARRAY =
-        new InputPromptControlStyle[]
-        {
-            TEXT_FIELD_LITERAL,
-            SELECTABLE_LIST_LITERAL,
-            SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL,
-            CHECK_BOX_LITERAL,
-            RADIO_BUTTON_LITERAL,
-        };
+    private static final InputPromptControlStyle[] VALUES_ARRAY = new InputPromptControlStyle[]
+    { TEXT_FIELD_LITERAL, SELECTABLE_LIST_LITERAL,
+            SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL, CHECK_BOX_LITERAL,
+            RADIO_BUTTON_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Input Prompt Control Style</b></em>' enumerators.
@@ -169,20 +170,21 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified name.
+     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static InputPromptControlStyle get( String name )
+    public static InputPromptControlStyle get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             InputPromptControlStyle result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -191,22 +193,46 @@ public final class InputPromptControlStyle extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified value.
+     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static InputPromptControlStyle getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            InputPromptControlStyle result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Input Prompt Control Style</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static InputPromptControlStyle get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case TEXT_FIELD: return TEXT_FIELD_LITERAL;
-            case SELECTABLE_LIST: return SELECTABLE_LIST_LITERAL;
-            case SELECTABLE_LIST_WITH_TEXT_FIELD: return SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL;
-            case CHECK_BOX: return CHECK_BOX_LITERAL;
-            case RADIO_BUTTON: return RADIO_BUTTON_LITERAL;
+        case TEXT_FIELD:
+            return TEXT_FIELD_LITERAL;
+        case SELECTABLE_LIST:
+            return SELECTABLE_LIST_LITERAL;
+        case SELECTABLE_LIST_WITH_TEXT_FIELD:
+            return SELECTABLE_LIST_WITH_TEXT_FIELD_LITERAL;
+        case CHECK_BOX:
+            return CHECK_BOX_LITERAL;
+        case RADIO_BUTTON:
+            return RADIO_BUTTON_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -215,9 +241,9 @@ public final class InputPromptControlStyle extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private InputPromptControlStyle( int value, String name )
+    private InputPromptControlStyle( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //InputPromptControlStyle

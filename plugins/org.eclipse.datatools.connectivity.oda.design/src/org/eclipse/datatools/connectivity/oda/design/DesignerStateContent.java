@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignerStateContent.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignerStateContent()
- * @model 
+ * @model extendedMetaData="name='DesignerStateContent' kind='elementOnly'"
  * @generated
  */
 public interface DesignerStateContent extends EObject
@@ -44,7 +44,7 @@ public interface DesignerStateContent extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>State Content As String</b></em>' attribute.
@@ -57,6 +57,7 @@ public interface DesignerStateContent extends EObject
      * @see #setStateContentAsString(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignerStateContent_StateContentAsString()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='stateContentAsString' namespace='##targetNamespace'"
      * @generated
      */
     String getStateContentAsString();
@@ -82,6 +83,7 @@ public interface DesignerStateContent extends EObject
      * @see #setStateContentAsBlob(byte[])
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignerStateContent_StateContentAsBlob()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.Base64Binary"
+     *        extendedMetaData="kind='element' name='stateContentAsBlob' namespace='##targetNamespace'"
      * @generated
      */
     byte[] getStateContentAsBlob();

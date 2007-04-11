@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: InputElementUIHints.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementUIHints()
- * @model 
+ * @model extendedMetaData="name='InputElementUIHints' kind='elementOnly'"
  * @generated
  */
 public interface InputElementUIHints extends EObject
@@ -43,10 +43,11 @@ public interface InputElementUIHints extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Prompt Style</b></em>' attribute.
+     * The default value is <code>""</code>.
      * The literals are from the enumeration {@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -60,6 +61,7 @@ public interface InputElementUIHints extends EObject
      * @see #setPromptStyle(InputPromptControlStyle)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementUIHints_PromptStyle()
      * @model default="" unique="false" unsettable="true"
+     *        extendedMetaData="kind='element' name='promptStyle' namespace='##targetNamespace'"
      * @generated
      */
     InputPromptControlStyle getPromptStyle();

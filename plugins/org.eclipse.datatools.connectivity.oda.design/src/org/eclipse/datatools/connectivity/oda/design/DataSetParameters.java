@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DataSetParameters.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -36,16 +36,17 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetParameters()
- * @model 
+ * @model extendedMetaData="name='DataSetParameters' kind='elementOnly'"
  * @generated
  */
-public interface DataSetParameters extends EObject{
+public interface DataSetParameters extends EObject
+{
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Parameter Definitions</b></em>' containment reference list.
@@ -54,7 +55,8 @@ public interface DataSetParameters extends EObject{
      * <!-- end-user-doc -->
      * @return the value of the '<em>Parameter Definitions</em>' containment reference list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetParameters_ParameterDefinitions()
-     * @model type="org.eclipse.datatools.connectivity.oda.design.ParameterDefinition" containment="true" resolveProxies="false" required="true"
+     * @model type="org.eclipse.datatools.connectivity.oda.design.ParameterDefinition" containment="true" required="true"
+     *        extendedMetaData="kind='element' name='parameterDefinitions' namespace='##targetNamespace'"
      * @generated
      */
     EList getParameterDefinitions();
@@ -73,6 +75,7 @@ public interface DataSetParameters extends EObject{
      * @see #setDerivedMetaData(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetParameters_DerivedMetaData()
      * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='attribute' name='derivedMetaData'"
      * @generated
      */
     boolean isDerivedMetaData();

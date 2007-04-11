@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: TextWrapType.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class TextWrapType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>None</b></em>' literal value.
@@ -72,7 +72,8 @@ public final class TextWrapType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final TextWrapType NONE_LITERAL = new TextWrapType(NONE, "None"); //$NON-NLS-1$
+    public static final TextWrapType NONE_LITERAL = new TextWrapType( NONE,
+            "None", "None" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Word</b></em>' literal object.
@@ -82,7 +83,8 @@ public final class TextWrapType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final TextWrapType WORD_LITERAL = new TextWrapType(WORD, "Word"); //$NON-NLS-1$
+    public static final TextWrapType WORD_LITERAL = new TextWrapType( WORD,
+            "Word", "Word" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Text Wrap Type</b></em>' enumerators.
@@ -90,12 +92,8 @@ public final class TextWrapType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final TextWrapType[] VALUES_ARRAY =
-        new TextWrapType[]
-        {
-            NONE_LITERAL,
-            WORD_LITERAL,
-        };
+    private static final TextWrapType[] VALUES_ARRAY = new TextWrapType[]
+    { NONE_LITERAL, WORD_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Text Wrap Type</b></em>' enumerators.
@@ -103,20 +101,21 @@ public final class TextWrapType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified name.
+     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static TextWrapType get( String name )
+    public static TextWrapType get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             TextWrapType result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -125,19 +124,40 @@ public final class TextWrapType extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified value.
+     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static TextWrapType getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            TextWrapType result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Text Wrap Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static TextWrapType get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case NONE: return NONE_LITERAL;
-            case WORD: return WORD_LITERAL;
+        case NONE:
+            return NONE_LITERAL;
+        case WORD:
+            return WORD_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -146,9 +166,9 @@ public final class TextWrapType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private TextWrapType( int value, String name )
+    private TextWrapType( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //TextWrapType

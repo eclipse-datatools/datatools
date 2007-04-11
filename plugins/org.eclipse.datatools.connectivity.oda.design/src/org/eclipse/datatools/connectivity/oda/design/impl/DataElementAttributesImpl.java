@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.6 2006/03/24 03:13:31 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.7 2007/03/16 11:47:22 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -24,7 +24,6 @@ import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -56,7 +55,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * @generated NOT
@@ -255,7 +254,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDataElementAttributes();
+        return DesignPackage.Literals.DATA_ELEMENT_ATTRIBUTES;
     }
 
     /* (non-Javadoc)
@@ -751,20 +750,14 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * @generated
      */
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, Class baseClass, NotificationChain msgs )
+            int featureID, NotificationChain msgs )
     {
-        if( featureID >= 0 )
+        switch( featureID )
         {
-            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
-            {
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
-                return basicSetUiHints( null, msgs );
-            default:
-                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
-                        msgs );
-            }
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return basicSetUiHints( null, msgs );
         }
-        return eBasicSetContainer( null, featureID, msgs );
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -772,9 +765,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             return getName();
@@ -791,7 +784,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
             return getUiHints();
         }
-        return eDynamicGet( eFeature, resolve );
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -799,9 +792,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             setName( (String) newValue );
@@ -825,7 +818,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
             setUiHints( (DataElementUIHints) newValue );
             return;
         }
-        eDynamicSet( eFeature, newValue );
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -833,9 +826,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             setName( NAME_EDEFAULT );
@@ -859,7 +852,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
             setUiHints( (DataElementUIHints) null );
             return;
         }
-        eDynamicUnset( eFeature );
+        super.eUnset( featureID );
     }
 
     /**
@@ -867,9 +860,9 @@ public class DataElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__NAME:
             return NAME_EDEFAULT == null ? m_name != null : !NAME_EDEFAULT
@@ -887,7 +880,7 @@ public class DataElementAttributesImpl extends EObjectImpl implements
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES__UI_HINTS:
             return m_uiHints != null;
         }
-        return eDynamicIsSet( eFeature );
+        return super.eIsSet( featureID );
     }
 
     /**

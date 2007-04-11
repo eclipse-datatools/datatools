@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -35,13 +35,14 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage
  * @generated
  */
-public class DesignSwitch {
+public class DesignSwitch
+{
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package
@@ -59,7 +60,7 @@ public class DesignSwitch {
      */
     public DesignSwitch()
     {
-        if (modelPackage == null)
+        if( modelPackage == null )
         {
             modelPackage = DesignPackage.eINSTANCE;
         }
@@ -72,9 +73,9 @@ public class DesignSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    public Object doSwitch(EObject theEObject)
+    public Object doSwitch( EObject theEObject )
     {
-        return doSwitch(theEObject.eClass(), theEObject);
+        return doSwitch( theEObject.eClass(), theEObject );
     }
 
     /**
@@ -84,19 +85,17 @@ public class DesignSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    protected Object doSwitch(EClass theEClass, EObject theEObject)
+    protected Object doSwitch( EClass theEClass, EObject theEObject )
     {
-        if (theEClass.eContainer() == modelPackage)
+        if( theEClass.eContainer() == modelPackage )
         {
-            return doSwitch(theEClass.getClassifierID(), theEObject);
+            return doSwitch( theEClass.getClassifierID(), theEObject );
         }
         else
         {
             List eSuperTypes = theEClass.getESuperTypes();
-            return
-                eSuperTypes.isEmpty() ?
-                    defaultCase(theEObject) :
-                    doSwitch((EClass)eSuperTypes.get(0), theEObject);
+            return eSuperTypes.isEmpty() ? defaultCase( theEObject )
+                    : doSwitch( (EClass) eSuperTypes.get( 0 ), theEObject );
         }
     }
 
@@ -107,256 +106,292 @@ public class DesignSwitch {
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    protected Object doSwitch(int classifierID, EObject theEObject)
+    protected Object doSwitch( int classifierID, EObject theEObject )
     {
-        switch (classifierID)
+        switch( classifierID )
         {
-            case DesignPackage.AXIS_ATTRIBUTES:
-            {
-                AxisAttributes axisAttributes = (AxisAttributes)theEObject;
-                Object result = caseAxisAttributes(axisAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.COLUMN_DEFINITION:
-            {
-                ColumnDefinition columnDefinition = (ColumnDefinition)theEObject;
-                Object result = caseColumnDefinition(columnDefinition);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_ACCESS_DESIGN:
-            {
-                DataAccessDesign dataAccessDesign = (DataAccessDesign)theEObject;
-                Object result = caseDataAccessDesign(dataAccessDesign);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
-            {
-                DataElementAttributes dataElementAttributes = (DataElementAttributes)theEObject;
-                Object result = caseDataElementAttributes(dataElementAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_ELEMENT_UI_HINTS:
-            {
-                DataElementUIHints dataElementUIHints = (DataElementUIHints)theEObject;
-                Object result = caseDataElementUIHints(dataElementUIHints);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_SET_DESIGN:
-            {
-                DataSetDesign dataSetDesign = (DataSetDesign)theEObject;
-                Object result = caseDataSetDesign(dataSetDesign);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_SET_PARAMETERS:
-            {
-                DataSetParameters dataSetParameters = (DataSetParameters)theEObject;
-                Object result = caseDataSetParameters(dataSetParameters);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_SET_QUERY:
-            {
-                DataSetQuery dataSetQuery = (DataSetQuery)theEObject;
-                Object result = caseDataSetQuery(dataSetQuery);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DATA_SOURCE_DESIGN:
-            {
-                DataSourceDesign dataSourceDesign = (DataSourceDesign)theEObject;
-                Object result = caseDataSourceDesign(dataSourceDesign);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DESIGNER_STATE:
-            {
-                DesignerState designerState = (DesignerState)theEObject;
-                Object result = caseDesignerState(designerState);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DESIGNER_STATE_CONTENT:
-            {
-                DesignerStateContent designerStateContent = (DesignerStateContent)theEObject;
-                Object result = caseDesignerStateContent(designerStateContent);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DESIGN_SESSION_REQUEST:
-            {
-                DesignSessionRequest designSessionRequest = (DesignSessionRequest)theEObject;
-                Object result = caseDesignSessionRequest(designSessionRequest);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DESIGN_SESSION_RESPONSE:
-            {
-                DesignSessionResponse designSessionResponse = (DesignSessionResponse)theEObject;
-                Object result = caseDesignSessionResponse(designSessionResponse);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DOCUMENT_ROOT:
-            {
-                DocumentRoot documentRoot = (DocumentRoot)theEObject;
-                Object result = caseDocumentRoot(documentRoot);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.DYNAMIC_VALUES_QUERY:
-            {
-                DynamicValuesQuery dynamicValuesQuery = (DynamicValuesQuery)theEObject;
-                Object result = caseDynamicValuesQuery(dynamicValuesQuery);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
-            {
-                InputElementAttributes inputElementAttributes = (InputElementAttributes)theEObject;
-                Object result = caseInputElementAttributes(inputElementAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS:
-            {
-                InputElementUIHints inputElementUIHints = (InputElementUIHints)theEObject;
-                Object result = caseInputElementUIHints(inputElementUIHints);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES:
-            {
-                InputParameterAttributes inputParameterAttributes = (InputParameterAttributes)theEObject;
-                Object result = caseInputParameterAttributes(inputParameterAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.INPUT_PARAMETER_UI_HINTS:
-            {
-                InputParameterUIHints inputParameterUIHints = (InputParameterUIHints)theEObject;
-                Object result = caseInputParameterUIHints(inputParameterUIHints);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.LOCALE:
-            {
-                Locale locale = (Locale)theEObject;
-                Object result = caseLocale(locale);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.NAME_VALUE_PAIR:
-            {
-                NameValuePair nameValuePair = (NameValuePair)theEObject;
-                Object result = caseNameValuePair(nameValuePair);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.ODA_DESIGN_SESSION:
-            {
-                OdaDesignSession odaDesignSession = (OdaDesignSession)theEObject;
-                Object result = caseOdaDesignSession(odaDesignSession);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES:
-            {
-                OutputElementAttributes outputElementAttributes = (OutputElementAttributes)theEObject;
-                Object result = caseOutputElementAttributes(outputElementAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PARAMETER_DEFINITION:
-            {
-                ParameterDefinition parameterDefinition = (ParameterDefinition)theEObject;
-                Object result = caseParameterDefinition(parameterDefinition);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PARAMETER_FIELD_DEFINITION:
-            {
-                ParameterFieldDefinition parameterFieldDefinition = (ParameterFieldDefinition)theEObject;
-                Object result = caseParameterFieldDefinition(parameterFieldDefinition);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PARAMETER_FIELDS:
-            {
-                ParameterFields parameterFields = (ParameterFields)theEObject;
-                Object result = caseParameterFields(parameterFields);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PROPERTIES:
-            {
-                Properties properties = (Properties)theEObject;
-                Object result = caseProperties(properties);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PROPERTY:
-            {
-                Property property = (Property)theEObject;
-                Object result = caseProperty(property);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.PROPERTY_ATTRIBUTES:
-            {
-                PropertyAttributes propertyAttributes = (PropertyAttributes)theEObject;
-                Object result = casePropertyAttributes(propertyAttributes);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.RESULT_SET_COLUMNS:
-            {
-                ResultSetColumns resultSetColumns = (ResultSetColumns)theEObject;
-                Object result = caseResultSetColumns(resultSetColumns);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.RESULT_SET_DEFINITION:
-            {
-                ResultSetDefinition resultSetDefinition = (ResultSetDefinition)theEObject;
-                Object result = caseResultSetDefinition(resultSetDefinition);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.RESULT_SETS:
-            {
-                ResultSets resultSets = (ResultSets)theEObject;
-                Object result = caseResultSets(resultSets);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.SCALAR_VALUE_CHOICES:
-            {
-                ScalarValueChoices scalarValueChoices = (ScalarValueChoices)theEObject;
-                Object result = caseScalarValueChoices(scalarValueChoices);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.SCALAR_VALUE_DEFINITION:
-            {
-                ScalarValueDefinition scalarValueDefinition = (ScalarValueDefinition)theEObject;
-                Object result = caseScalarValueDefinition(scalarValueDefinition);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case DesignPackage.VALUE_FORMAT_HINTS:
-            {
-                ValueFormatHints valueFormatHints = (ValueFormatHints)theEObject;
-                Object result = caseValueFormatHints(valueFormatHints);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            default: return defaultCase(theEObject);
+        case DesignPackage.AXIS_ATTRIBUTES:
+        {
+            AxisAttributes axisAttributes = (AxisAttributes) theEObject;
+            Object result = caseAxisAttributes( axisAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.COLUMN_DEFINITION:
+        {
+            ColumnDefinition columnDefinition = (ColumnDefinition) theEObject;
+            Object result = caseColumnDefinition( columnDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_ACCESS_DESIGN:
+        {
+            DataAccessDesign dataAccessDesign = (DataAccessDesign) theEObject;
+            Object result = caseDataAccessDesign( dataAccessDesign );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
+        {
+            DataElementAttributes dataElementAttributes = (DataElementAttributes) theEObject;
+            Object result = caseDataElementAttributes( dataElementAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_ELEMENT_UI_HINTS:
+        {
+            DataElementUIHints dataElementUIHints = (DataElementUIHints) theEObject;
+            Object result = caseDataElementUIHints( dataElementUIHints );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_SET_DESIGN:
+        {
+            DataSetDesign dataSetDesign = (DataSetDesign) theEObject;
+            Object result = caseDataSetDesign( dataSetDesign );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_SET_PARAMETERS:
+        {
+            DataSetParameters dataSetParameters = (DataSetParameters) theEObject;
+            Object result = caseDataSetParameters( dataSetParameters );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_SET_QUERY:
+        {
+            DataSetQuery dataSetQuery = (DataSetQuery) theEObject;
+            Object result = caseDataSetQuery( dataSetQuery );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DATA_SOURCE_DESIGN:
+        {
+            DataSourceDesign dataSourceDesign = (DataSourceDesign) theEObject;
+            Object result = caseDataSourceDesign( dataSourceDesign );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DESIGNER_STATE:
+        {
+            DesignerState designerState = (DesignerState) theEObject;
+            Object result = caseDesignerState( designerState );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DESIGNER_STATE_CONTENT:
+        {
+            DesignerStateContent designerStateContent = (DesignerStateContent) theEObject;
+            Object result = caseDesignerStateContent( designerStateContent );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DESIGN_SESSION_REQUEST:
+        {
+            DesignSessionRequest designSessionRequest = (DesignSessionRequest) theEObject;
+            Object result = caseDesignSessionRequest( designSessionRequest );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DESIGN_SESSION_RESPONSE:
+        {
+            DesignSessionResponse designSessionResponse = (DesignSessionResponse) theEObject;
+            Object result = caseDesignSessionResponse( designSessionResponse );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DOCUMENT_ROOT:
+        {
+            DocumentRoot documentRoot = (DocumentRoot) theEObject;
+            Object result = caseDocumentRoot( documentRoot );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DYNAMIC_VALUES_QUERY:
+        {
+            DynamicValuesQuery dynamicValuesQuery = (DynamicValuesQuery) theEObject;
+            Object result = caseDynamicValuesQuery( dynamicValuesQuery );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
+        {
+            InputElementAttributes inputElementAttributes = (InputElementAttributes) theEObject;
+            Object result = caseInputElementAttributes( inputElementAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS:
+        {
+            InputElementUIHints inputElementUIHints = (InputElementUIHints) theEObject;
+            Object result = caseInputElementUIHints( inputElementUIHints );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES:
+        {
+            InputParameterAttributes inputParameterAttributes = (InputParameterAttributes) theEObject;
+            Object result = caseInputParameterAttributes( inputParameterAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.INPUT_PARAMETER_UI_HINTS:
+        {
+            InputParameterUIHints inputParameterUIHints = (InputParameterUIHints) theEObject;
+            Object result = caseInputParameterUIHints( inputParameterUIHints );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.LOCALE:
+        {
+            Locale locale = (Locale) theEObject;
+            Object result = caseLocale( locale );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.NAME_VALUE_PAIR:
+        {
+            NameValuePair nameValuePair = (NameValuePair) theEObject;
+            Object result = caseNameValuePair( nameValuePair );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.ODA_DESIGN_SESSION:
+        {
+            OdaDesignSession odaDesignSession = (OdaDesignSession) theEObject;
+            Object result = caseOdaDesignSession( odaDesignSession );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES:
+        {
+            OutputElementAttributes outputElementAttributes = (OutputElementAttributes) theEObject;
+            Object result = caseOutputElementAttributes( outputElementAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PARAMETER_DEFINITION:
+        {
+            ParameterDefinition parameterDefinition = (ParameterDefinition) theEObject;
+            Object result = caseParameterDefinition( parameterDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PARAMETER_FIELD_DEFINITION:
+        {
+            ParameterFieldDefinition parameterFieldDefinition = (ParameterFieldDefinition) theEObject;
+            Object result = caseParameterFieldDefinition( parameterFieldDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PARAMETER_FIELDS:
+        {
+            ParameterFields parameterFields = (ParameterFields) theEObject;
+            Object result = caseParameterFields( parameterFields );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PROPERTIES:
+        {
+            Properties properties = (Properties) theEObject;
+            Object result = caseProperties( properties );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PROPERTY:
+        {
+            Property property = (Property) theEObject;
+            Object result = caseProperty( property );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.PROPERTY_ATTRIBUTES:
+        {
+            PropertyAttributes propertyAttributes = (PropertyAttributes) theEObject;
+            Object result = casePropertyAttributes( propertyAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.RESULT_SET_COLUMNS:
+        {
+            ResultSetColumns resultSetColumns = (ResultSetColumns) theEObject;
+            Object result = caseResultSetColumns( resultSetColumns );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.RESULT_SET_DEFINITION:
+        {
+            ResultSetDefinition resultSetDefinition = (ResultSetDefinition) theEObject;
+            Object result = caseResultSetDefinition( resultSetDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.RESULT_SETS:
+        {
+            ResultSets resultSets = (ResultSets) theEObject;
+            Object result = caseResultSets( resultSets );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.SCALAR_VALUE_CHOICES:
+        {
+            ScalarValueChoices scalarValueChoices = (ScalarValueChoices) theEObject;
+            Object result = caseScalarValueChoices( scalarValueChoices );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.SCALAR_VALUE_DEFINITION:
+        {
+            ScalarValueDefinition scalarValueDefinition = (ScalarValueDefinition) theEObject;
+            Object result = caseScalarValueDefinition( scalarValueDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.VALUE_FORMAT_HINTS:
+        {
+            ValueFormatHints valueFormatHints = (ValueFormatHints) theEObject;
+            Object result = caseValueFormatHints( valueFormatHints );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        default:
+            return defaultCase( theEObject );
         }
     }
 
@@ -371,7 +406,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseAxisAttributes(AxisAttributes object)
+    public Object caseAxisAttributes( AxisAttributes object )
     {
         return null;
     }
@@ -387,7 +422,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseColumnDefinition(ColumnDefinition object)
+    public Object caseColumnDefinition( ColumnDefinition object )
     {
         return null;
     }
@@ -403,7 +438,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataAccessDesign(DataAccessDesign object)
+    public Object caseDataAccessDesign( DataAccessDesign object )
     {
         return null;
     }
@@ -419,7 +454,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataElementAttributes(DataElementAttributes object)
+    public Object caseDataElementAttributes( DataElementAttributes object )
     {
         return null;
     }
@@ -435,7 +470,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataElementUIHints(DataElementUIHints object)
+    public Object caseDataElementUIHints( DataElementUIHints object )
     {
         return null;
     }
@@ -451,7 +486,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetDesign(DataSetDesign object)
+    public Object caseDataSetDesign( DataSetDesign object )
     {
         return null;
     }
@@ -467,7 +502,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetParameters(DataSetParameters object)
+    public Object caseDataSetParameters( DataSetParameters object )
     {
         return null;
     }
@@ -483,7 +518,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetQuery(DataSetQuery object)
+    public Object caseDataSetQuery( DataSetQuery object )
     {
         return null;
     }
@@ -499,39 +534,39 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSourceDesign(DataSourceDesign object)
+    public Object caseDataSourceDesign( DataSourceDesign object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>er State</em>'.
+     * Returns the result of interpretting the object as an instance of '<em>Designer State</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>er State</em>'.
+     * @return the result of interpretting the object as an instance of '<em>Designer State</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignerState(DesignerState object)
+    public Object caseDesignerState( DesignerState object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>er State Content</em>'.
+     * Returns the result of interpretting the object as an instance of '<em>Designer State Content</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>er State Content</em>'.
+     * @return the result of interpretting the object as an instance of '<em>Designer State Content</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignerStateContent(DesignerStateContent object)
+    public Object caseDesignerStateContent( DesignerStateContent object )
     {
         return null;
     }
@@ -547,7 +582,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignSessionRequest(DesignSessionRequest object)
+    public Object caseDesignSessionRequest( DesignSessionRequest object )
     {
         return null;
     }
@@ -563,7 +598,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignSessionResponse(DesignSessionResponse object)
+    public Object caseDesignSessionResponse( DesignSessionResponse object )
     {
         return null;
     }
@@ -579,7 +614,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDocumentRoot(DocumentRoot object)
+    public Object caseDocumentRoot( DocumentRoot object )
     {
         return null;
     }
@@ -595,7 +630,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDynamicValuesQuery(DynamicValuesQuery object)
+    public Object caseDynamicValuesQuery( DynamicValuesQuery object )
     {
         return null;
     }
@@ -611,7 +646,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputElementAttributes(InputElementAttributes object)
+    public Object caseInputElementAttributes( InputElementAttributes object )
     {
         return null;
     }
@@ -627,7 +662,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputElementUIHints(InputElementUIHints object)
+    public Object caseInputElementUIHints( InputElementUIHints object )
     {
         return null;
     }
@@ -643,7 +678,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputParameterAttributes(InputParameterAttributes object)
+    public Object caseInputParameterAttributes( InputParameterAttributes object )
     {
         return null;
     }
@@ -659,7 +694,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputParameterUIHints(InputParameterUIHints object)
+    public Object caseInputParameterUIHints( InputParameterUIHints object )
     {
         return null;
     }
@@ -675,7 +710,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseLocale(Locale object)
+    public Object caseLocale( Locale object )
     {
         return null;
     }
@@ -691,7 +726,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseNameValuePair(NameValuePair object)
+    public Object caseNameValuePair( NameValuePair object )
     {
         return null;
     }
@@ -707,7 +742,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseOdaDesignSession(OdaDesignSession object)
+    public Object caseOdaDesignSession( OdaDesignSession object )
     {
         return null;
     }
@@ -723,7 +758,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseOutputElementAttributes(OutputElementAttributes object)
+    public Object caseOutputElementAttributes( OutputElementAttributes object )
     {
         return null;
     }
@@ -739,7 +774,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterDefinition(ParameterDefinition object)
+    public Object caseParameterDefinition( ParameterDefinition object )
     {
         return null;
     }
@@ -755,7 +790,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterFieldDefinition(ParameterFieldDefinition object)
+    public Object caseParameterFieldDefinition( ParameterFieldDefinition object )
     {
         return null;
     }
@@ -771,7 +806,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterFields(ParameterFields object)
+    public Object caseParameterFields( ParameterFields object )
     {
         return null;
     }
@@ -787,7 +822,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseProperties(Properties object)
+    public Object caseProperties( Properties object )
     {
         return null;
     }
@@ -803,7 +838,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseProperty(Property object)
+    public Object caseProperty( Property object )
     {
         return null;
     }
@@ -819,7 +854,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object casePropertyAttributes(PropertyAttributes object)
+    public Object casePropertyAttributes( PropertyAttributes object )
     {
         return null;
     }
@@ -835,7 +870,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSetColumns(ResultSetColumns object)
+    public Object caseResultSetColumns( ResultSetColumns object )
     {
         return null;
     }
@@ -851,7 +886,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSetDefinition(ResultSetDefinition object)
+    public Object caseResultSetDefinition( ResultSetDefinition object )
     {
         return null;
     }
@@ -867,7 +902,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSets(ResultSets object)
+    public Object caseResultSets( ResultSets object )
     {
         return null;
     }
@@ -883,7 +918,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseScalarValueChoices(ScalarValueChoices object)
+    public Object caseScalarValueChoices( ScalarValueChoices object )
     {
         return null;
     }
@@ -899,7 +934,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseScalarValueDefinition(ScalarValueDefinition object)
+    public Object caseScalarValueDefinition( ScalarValueDefinition object )
     {
         return null;
     }
@@ -915,7 +950,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseValueFormatHints(ValueFormatHints object)
+    public Object caseValueFormatHints( ValueFormatHints object )
     {
         return null;
     }
@@ -931,7 +966,7 @@ public class DesignSwitch {
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-    public Object defaultCase(EObject object)
+    public Object defaultCase( EObject object )
     {
         return null;
     }

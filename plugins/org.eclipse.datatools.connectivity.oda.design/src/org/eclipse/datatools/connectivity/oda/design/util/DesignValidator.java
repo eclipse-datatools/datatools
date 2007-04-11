@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,7 +59,7 @@ class DesignValidator extends EObjectValidator
      */
     private boolean isDataSetQueryObject( EObject eObject )
     {
-        return ( eObject.eClass() == DesignPackage.eINSTANCE.getDataSetQuery() );
+        return ( eObject.eClass() == DesignPackage.Literals.DATA_SET_QUERY );
     }
     
     /**
@@ -84,7 +84,7 @@ class DesignValidator extends EObjectValidator
                             DIAGNOSTIC_SOURCE,
                             EOBJECT__EVERY_MULTIPCITY_CONFORMS,
                             getEcoreResourceLocator().getString(
-                                "_UI_RequiredFeatureMustBeSet_diagnostic",
+                                "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
                                 new Object[] { getFeatureLabel( eFeature, context), 
                                                 getObjectLabel( eObject, context ) } ),
                             new Object[] { eObject, eFeature } ));

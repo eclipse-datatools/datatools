@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.4 2006/03/09 08:50:09 lchan Exp $
+ * $Id: DesignFactory.java,v 1.5 2006/03/17 14:52:32 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,7 +32,7 @@ public interface DesignFactory extends EFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The singleton instance of the factory.
@@ -40,7 +40,8 @@ public interface DesignFactory extends EFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    DesignFactory eINSTANCE = new org.eclipse.datatools.connectivity.oda.design.impl.DesignFactoryImpl();
+    DesignFactory eINSTANCE = org.eclipse.datatools.connectivity.oda.design.impl.DesignFactoryImpl
+            .init();
 
     /**
      * Returns a new object of class '<em>Axis Attributes</em>'.
@@ -379,8 +380,9 @@ public interface DesignFactory extends EFactory
      * @see #createDesignSessionRequest()
      * @generated NOT
      */
-    DesignSessionRequest createDesignSessionRequest( DataSourceDesign dataSourceDesign );
-    
+    DesignSessionRequest createDesignSessionRequest(
+            DataSourceDesign dataSourceDesign );
+
     /**
      * Creates and returns a new object of class '<em>Session Request</em>'
      * that contains the given DataSetDesign.
@@ -407,8 +409,9 @@ public interface DesignFactory extends EFactory
      * @see #createDesignSessionRequest(DataSourceDesign)
      * @generated NOT
      */
-    OdaDesignSession createRequestDesignSession( DataSourceDesign dataSourceDesign );
-    
+    OdaDesignSession createRequestDesignSession(
+            DataSourceDesign dataSourceDesign );
+
     /**
      * Creates and returns a new OdaDesignSession instance with a
      * DesignSessionResponse that contains the given session status
@@ -423,7 +426,7 @@ public interface DesignFactory extends EFactory
      * @return
      * @generated NOT
      */
-    OdaDesignSession createResponseDesignSession( 
-            boolean isSessionOk, DataSourceDesign dataSourceDesign );
+    OdaDesignSession createResponseDesignSession( boolean isSessionOk,
+            DataSourceDesign dataSourceDesign );
 
 } //DesignFactory

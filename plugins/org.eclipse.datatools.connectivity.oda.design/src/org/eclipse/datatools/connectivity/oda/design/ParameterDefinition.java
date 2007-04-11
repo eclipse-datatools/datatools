@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.3 2006/11/09 00:50:27 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.4 2006/11/15 08:12:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition()
- * @model 
+ * @model extendedMetaData="name='ParameterDefinition' kind='elementOnly'"
  * @generated
  */
 public interface ParameterDefinition extends EObject
@@ -47,7 +47,7 @@ public interface ParameterDefinition extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Indicates whether this parameter is defined to take input value.
@@ -57,7 +57,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     boolean isInput();
-    
+
     /**
      * Indicates whether this parameter is defined to have output value.
      * @return 	true if this parameter is defined to have output value;
@@ -66,7 +66,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     boolean isOutput();
-    
+
     /**
      * Indicates whether this is a scalar parameter.
      * @return	true if this parameter has a scalar data type;
@@ -75,7 +75,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     boolean isScalar();
-    
+
     /**
      * A convenience method to return this parameter's default input value.
      * @return the value of the parameter InputElementAttributes '<em>Default Scalar Value</em>' attribute;
@@ -86,7 +86,7 @@ public interface ParameterDefinition extends EObject
      * @generated NOT
      */
     String getDefaultScalarValue();
-    
+
     /**
      * A convenience method to set this parameter's default input value.
      * The specified value is applied only if this is defined as
@@ -112,6 +112,7 @@ public interface ParameterDefinition extends EObject
      * @see #setInOutMode(ParameterMode)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_InOutMode()
      * @model default="In" unique="false" unsettable="true" required="true"
+     *        extendedMetaData="kind='element' name='inOutMode' namespace='##targetNamespace'"
      * @generated
      */
     ParameterMode getInOutMode();
@@ -162,7 +163,8 @@ public interface ParameterDefinition extends EObject
      * @return the value of the '<em>Attributes</em>' containment reference.
      * @see #setAttributes(DataElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_Attributes()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='attributes' namespace='##targetNamespace'"
      * @generated
      */
     DataElementAttributes getAttributes();
@@ -187,7 +189,8 @@ public interface ParameterDefinition extends EObject
      * @return the value of the '<em>Input Attributes</em>' containment reference.
      * @see #setInputAttributes(InputParameterAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_InputAttributes()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='inputAttributes' namespace='##targetNamespace'"
      * @generated
      */
     InputParameterAttributes getInputAttributes();
@@ -212,7 +215,8 @@ public interface ParameterDefinition extends EObject
      * @return the value of the '<em>Output Usage Hints</em>' containment reference.
      * @see #setOutputUsageHints(OutputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_OutputUsageHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='outputUsageHints' namespace='##targetNamespace'"
      * @generated
      */
     OutputElementAttributes getOutputUsageHints();
@@ -237,7 +241,8 @@ public interface ParameterDefinition extends EObject
      * @return the value of the '<em>Fields</em>' containment reference.
      * @see #setFields(ParameterFields)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterDefinition_Fields()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='fields' namespace='##targetNamespace'"
      * @generated
      */
     ParameterFields getFields();

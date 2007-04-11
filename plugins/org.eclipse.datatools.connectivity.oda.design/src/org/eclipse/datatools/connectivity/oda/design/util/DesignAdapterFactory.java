@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignAdapterFactory.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -39,7 +39,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package.
@@ -57,7 +57,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      */
     public DesignAdapterFactory()
     {
-        if (modelPackage == null)
+        if( modelPackage == null )
         {
             modelPackage = DesignPackage.eINSTANCE;
         }
@@ -71,15 +71,15 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @return whether this factory is applicable for the type of the object.
      * @generated
      */
-    public boolean isFactoryForType(Object object)
+    public boolean isFactoryForType( Object object )
     {
-        if (object == modelPackage)
+        if( object == modelPackage )
         {
             return true;
         }
-        if (object instanceof EObject)
+        if( object instanceof EObject )
         {
-            return ((EObject)object).eClass().getEPackage() == modelPackage;
+            return ((EObject) object).eClass().getEPackage() == modelPackage;
         }
         return false;
     }
@@ -90,154 +90,191 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    protected DesignSwitch modelSwitch =
-        new DesignSwitch()
+    protected DesignSwitch modelSwitch = new DesignSwitch()
+    {
+        public Object caseAxisAttributes( AxisAttributes object )
         {
-            public Object caseAxisAttributes(AxisAttributes object)
-            {
-                return createAxisAttributesAdapter();
-            }
-            public Object caseColumnDefinition(ColumnDefinition object)
-            {
-                return createColumnDefinitionAdapter();
-            }
-            public Object caseDataAccessDesign(DataAccessDesign object)
-            {
-                return createDataAccessDesignAdapter();
-            }
-            public Object caseDataElementAttributes(DataElementAttributes object)
-            {
-                return createDataElementAttributesAdapter();
-            }
-            public Object caseDataElementUIHints(DataElementUIHints object)
-            {
-                return createDataElementUIHintsAdapter();
-            }
-            public Object caseDataSetDesign(DataSetDesign object)
-            {
-                return createDataSetDesignAdapter();
-            }
-            public Object caseDataSetParameters(DataSetParameters object)
-            {
-                return createDataSetParametersAdapter();
-            }
-            public Object caseDataSetQuery(DataSetQuery object)
-            {
-                return createDataSetQueryAdapter();
-            }
-            public Object caseDataSourceDesign(DataSourceDesign object)
-            {
-                return createDataSourceDesignAdapter();
-            }
-            public Object caseDesignerState(DesignerState object)
-            {
-                return createDesignerStateAdapter();
-            }
-            public Object caseDesignerStateContent(DesignerStateContent object)
-            {
-                return createDesignerStateContentAdapter();
-            }
-            public Object caseDesignSessionRequest(DesignSessionRequest object)
-            {
-                return createDesignSessionRequestAdapter();
-            }
-            public Object caseDesignSessionResponse(DesignSessionResponse object)
-            {
-                return createDesignSessionResponseAdapter();
-            }
-            public Object caseDocumentRoot(DocumentRoot object)
-            {
-                return createDocumentRootAdapter();
-            }
-            public Object caseDynamicValuesQuery(DynamicValuesQuery object)
-            {
-                return createDynamicValuesQueryAdapter();
-            }
-            public Object caseInputElementAttributes(InputElementAttributes object)
-            {
-                return createInputElementAttributesAdapter();
-            }
-            public Object caseInputElementUIHints(InputElementUIHints object)
-            {
-                return createInputElementUIHintsAdapter();
-            }
-            public Object caseInputParameterAttributes(InputParameterAttributes object)
-            {
-                return createInputParameterAttributesAdapter();
-            }
-            public Object caseInputParameterUIHints(InputParameterUIHints object)
-            {
-                return createInputParameterUIHintsAdapter();
-            }
-            public Object caseLocale(Locale object)
-            {
-                return createLocaleAdapter();
-            }
-            public Object caseNameValuePair(NameValuePair object)
-            {
-                return createNameValuePairAdapter();
-            }
-            public Object caseOdaDesignSession(OdaDesignSession object)
-            {
-                return createOdaDesignSessionAdapter();
-            }
-            public Object caseOutputElementAttributes(OutputElementAttributes object)
-            {
-                return createOutputElementAttributesAdapter();
-            }
-            public Object caseParameterDefinition(ParameterDefinition object)
-            {
-                return createParameterDefinitionAdapter();
-            }
-            public Object caseParameterFieldDefinition(ParameterFieldDefinition object)
-            {
-                return createParameterFieldDefinitionAdapter();
-            }
-            public Object caseParameterFields(ParameterFields object)
-            {
-                return createParameterFieldsAdapter();
-            }
-            public Object caseProperties(Properties object)
-            {
-                return createPropertiesAdapter();
-            }
-            public Object caseProperty(Property object)
-            {
-                return createPropertyAdapter();
-            }
-            public Object casePropertyAttributes(PropertyAttributes object)
-            {
-                return createPropertyAttributesAdapter();
-            }
-            public Object caseResultSetColumns(ResultSetColumns object)
-            {
-                return createResultSetColumnsAdapter();
-            }
-            public Object caseResultSetDefinition(ResultSetDefinition object)
-            {
-                return createResultSetDefinitionAdapter();
-            }
-            public Object caseResultSets(ResultSets object)
-            {
-                return createResultSetsAdapter();
-            }
-            public Object caseScalarValueChoices(ScalarValueChoices object)
-            {
-                return createScalarValueChoicesAdapter();
-            }
-            public Object caseScalarValueDefinition(ScalarValueDefinition object)
-            {
-                return createScalarValueDefinitionAdapter();
-            }
-            public Object caseValueFormatHints(ValueFormatHints object)
-            {
-                return createValueFormatHintsAdapter();
-            }
-            public Object defaultCase(EObject object)
-            {
-                return createEObjectAdapter();
-            }
-        };
+            return createAxisAttributesAdapter();
+        }
+
+        public Object caseColumnDefinition( ColumnDefinition object )
+        {
+            return createColumnDefinitionAdapter();
+        }
+
+        public Object caseDataAccessDesign( DataAccessDesign object )
+        {
+            return createDataAccessDesignAdapter();
+        }
+
+        public Object caseDataElementAttributes( DataElementAttributes object )
+        {
+            return createDataElementAttributesAdapter();
+        }
+
+        public Object caseDataElementUIHints( DataElementUIHints object )
+        {
+            return createDataElementUIHintsAdapter();
+        }
+
+        public Object caseDataSetDesign( DataSetDesign object )
+        {
+            return createDataSetDesignAdapter();
+        }
+
+        public Object caseDataSetParameters( DataSetParameters object )
+        {
+            return createDataSetParametersAdapter();
+        }
+
+        public Object caseDataSetQuery( DataSetQuery object )
+        {
+            return createDataSetQueryAdapter();
+        }
+
+        public Object caseDataSourceDesign( DataSourceDesign object )
+        {
+            return createDataSourceDesignAdapter();
+        }
+
+        public Object caseDesignerState( DesignerState object )
+        {
+            return createDesignerStateAdapter();
+        }
+
+        public Object caseDesignerStateContent( DesignerStateContent object )
+        {
+            return createDesignerStateContentAdapter();
+        }
+
+        public Object caseDesignSessionRequest( DesignSessionRequest object )
+        {
+            return createDesignSessionRequestAdapter();
+        }
+
+        public Object caseDesignSessionResponse( DesignSessionResponse object )
+        {
+            return createDesignSessionResponseAdapter();
+        }
+
+        public Object caseDocumentRoot( DocumentRoot object )
+        {
+            return createDocumentRootAdapter();
+        }
+
+        public Object caseDynamicValuesQuery( DynamicValuesQuery object )
+        {
+            return createDynamicValuesQueryAdapter();
+        }
+
+        public Object caseInputElementAttributes( InputElementAttributes object )
+        {
+            return createInputElementAttributesAdapter();
+        }
+
+        public Object caseInputElementUIHints( InputElementUIHints object )
+        {
+            return createInputElementUIHintsAdapter();
+        }
+
+        public Object caseInputParameterAttributes(
+                InputParameterAttributes object )
+        {
+            return createInputParameterAttributesAdapter();
+        }
+
+        public Object caseInputParameterUIHints( InputParameterUIHints object )
+        {
+            return createInputParameterUIHintsAdapter();
+        }
+
+        public Object caseLocale( Locale object )
+        {
+            return createLocaleAdapter();
+        }
+
+        public Object caseNameValuePair( NameValuePair object )
+        {
+            return createNameValuePairAdapter();
+        }
+
+        public Object caseOdaDesignSession( OdaDesignSession object )
+        {
+            return createOdaDesignSessionAdapter();
+        }
+
+        public Object caseOutputElementAttributes(
+                OutputElementAttributes object )
+        {
+            return createOutputElementAttributesAdapter();
+        }
+
+        public Object caseParameterDefinition( ParameterDefinition object )
+        {
+            return createParameterDefinitionAdapter();
+        }
+
+        public Object caseParameterFieldDefinition(
+                ParameterFieldDefinition object )
+        {
+            return createParameterFieldDefinitionAdapter();
+        }
+
+        public Object caseParameterFields( ParameterFields object )
+        {
+            return createParameterFieldsAdapter();
+        }
+
+        public Object caseProperties( Properties object )
+        {
+            return createPropertiesAdapter();
+        }
+
+        public Object caseProperty( Property object )
+        {
+            return createPropertyAdapter();
+        }
+
+        public Object casePropertyAttributes( PropertyAttributes object )
+        {
+            return createPropertyAttributesAdapter();
+        }
+
+        public Object caseResultSetColumns( ResultSetColumns object )
+        {
+            return createResultSetColumnsAdapter();
+        }
+
+        public Object caseResultSetDefinition( ResultSetDefinition object )
+        {
+            return createResultSetDefinitionAdapter();
+        }
+
+        public Object caseResultSets( ResultSets object )
+        {
+            return createResultSetsAdapter();
+        }
+
+        public Object caseScalarValueChoices( ScalarValueChoices object )
+        {
+            return createScalarValueChoicesAdapter();
+        }
+
+        public Object caseScalarValueDefinition( ScalarValueDefinition object )
+        {
+            return createScalarValueDefinitionAdapter();
+        }
+
+        public Object caseValueFormatHints( ValueFormatHints object )
+        {
+            return createValueFormatHintsAdapter();
+        }
+
+        public Object defaultCase( EObject object )
+        {
+            return createEObjectAdapter();
+        }
+    };
 
     /**
      * Creates an adapter for the <code>target</code>.
@@ -247,11 +284,10 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @return the adapter for the <code>target</code>.
      * @generated
      */
-    public Adapter createAdapter(Notifier target)
+    public Adapter createAdapter( Notifier target )
     {
-        return (Adapter)modelSwitch.doSwitch((EObject)target);
+        return (Adapter) modelSwitch.doSwitch( (EObject) target );
     }
-
 
     /**
      * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes <em>Axis Attributes</em>}'.
@@ -389,7 +425,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>er State</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>Designer State</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -404,7 +440,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerStateContent <em>er State Content</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerStateContent <em>Designer State Content</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.

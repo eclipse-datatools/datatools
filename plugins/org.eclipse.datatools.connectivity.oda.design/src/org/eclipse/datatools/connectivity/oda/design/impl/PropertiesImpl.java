@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertiesImpl.java,v 1.4 2006/03/07 05:06:04 lchan Exp $
+ * $Id: PropertiesImpl.java,v 1.5 2006/05/23 02:04:33 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,17 +22,11 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -56,7 +50,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -85,7 +79,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getProperties();
+        return DesignPackage.Literals.PROPERTIES;
     }
 
     /* (non-Javadoc)
@@ -96,7 +90,7 @@ public class PropertiesImpl extends EObjectImpl implements Properties
     {
         if( isEmpty() )
             return null;
-        
+
         Iterator iter = getProperties().iterator();
         while( iter.hasNext() )
         {
@@ -180,21 +174,15 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * @generated
      */
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, Class baseClass, NotificationChain msgs )
+            int featureID, NotificationChain msgs )
     {
-        if( featureID >= 0 )
+        switch( featureID )
         {
-            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
-            {
-            case DesignPackage.PROPERTIES__PROPERTIES:
-                return ((InternalEList) getProperties()).basicRemove( otherEnd,
-                        msgs );
-            default:
-                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
-                        msgs );
-            }
+        case DesignPackage.PROPERTIES__PROPERTIES:
+            return ((InternalEList) getProperties()).basicRemove( otherEnd,
+                    msgs );
         }
-        return eBasicSetContainer( null, featureID, msgs );
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -202,14 +190,14 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
             return getProperties();
         }
-        return eDynamicGet( eFeature, resolve );
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -217,16 +205,16 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
             getProperties().clear();
             getProperties().addAll( (Collection) newValue );
             return;
         }
-        eDynamicSet( eFeature, newValue );
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -234,15 +222,15 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
             getProperties().clear();
             return;
         }
-        eDynamicUnset( eFeature );
+        super.eUnset( featureID );
     }
 
     /**
@@ -250,14 +238,14 @@ public class PropertiesImpl extends EObjectImpl implements Properties
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
+        switch( featureID )
         {
         case DesignPackage.PROPERTIES__PROPERTIES:
             return m_properties != null && !m_properties.isEmpty();
         }
-        return eDynamicIsSet( eFeature );
+        return super.eIsSet( featureID );
     }
 
 } //PropertiesImpl

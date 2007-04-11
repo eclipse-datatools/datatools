@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: OutputElementAttributes.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOutputElementAttributes()
- * @model 
+ * @model extendedMetaData="name='OutputElementAttributes' kind='elementOnly'"
  * @generated
  */
 public interface OutputElementAttributes extends EObject
@@ -45,7 +45,7 @@ public interface OutputElementAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Label</b></em>' attribute.
@@ -58,6 +58,7 @@ public interface OutputElementAttributes extends EObject
      * @see #setLabel(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOutputElementAttributes_Label()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='label' namespace='##targetNamespace'"
      * @generated
      */
     String getLabel();
@@ -79,7 +80,8 @@ public interface OutputElementAttributes extends EObject
      * @return the value of the '<em>Formatting Hints</em>' containment reference.
      * @see #setFormattingHints(ValueFormatHints)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOutputElementAttributes_FormattingHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='formattingHints' namespace='##targetNamespace'"
      * @generated
      */
     ValueFormatHints getFormattingHints();
@@ -105,6 +107,7 @@ public interface OutputElementAttributes extends EObject
      * @see #setHelpText(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getOutputElementAttributes_HelpText()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='helpText' namespace='##targetNamespace'"
      * @generated
      */
     String getHelpText();

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: PropertyAttributes.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes()
- * @model 
+ * @model extendedMetaData="name='PropertyAttributes' kind='elementOnly'"
  * @generated
  */
 public interface PropertyAttributes extends EObject
@@ -45,7 +45,7 @@ public interface PropertyAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Display Name</b></em>' attribute.
@@ -55,6 +55,7 @@ public interface PropertyAttributes extends EObject
      * @see #setDisplayName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes_DisplayName()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='displayName' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayName();
@@ -76,7 +77,8 @@ public interface PropertyAttributes extends EObject
      * @return the value of the '<em>Element Attributes</em>' containment reference.
      * @see #setElementAttributes(InputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes_ElementAttributes()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='elementAttributes' namespace='##targetNamespace'"
      * @generated
      */
     InputElementAttributes getElementAttributes();
@@ -105,6 +107,7 @@ public interface PropertyAttributes extends EObject
      * @see #setDerivedMetaData(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getPropertyAttributes_DerivedMetaData()
      * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='derivedMetaData' namespace='##targetNamespace'"
      * @generated
      */
     boolean isDerivedMetaData();

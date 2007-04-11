@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: Locale.java,v 1.2 2006/02/07 05:52:28 lchan Exp $
+ * $Id: Locale.java,v 1.3 2006/02/18 00:08:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -37,7 +37,7 @@ import com.ibm.icu.util.ULocale;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getLocale()
- * @model 
+ * @model extendedMetaData="name='Locale' kind='elementOnly'"
  * @generated
  */
 public interface Locale extends EObject
@@ -47,7 +47,7 @@ public interface Locale extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the locale value as an ULocale object.
@@ -55,14 +55,14 @@ public interface Locale extends EObject
      * @generated NOT
      */
     ULocale getLocale();
-    
+
     /**
      * Sets all the locale values.
      * @param   a ULocale object
      * @generated NOT
      */
     void setLocale( ULocale locale );
-    
+
     /**
      * Getter for the programmatic name of the entire locale, 
      * with the language and country separated by underbars. 
@@ -75,7 +75,7 @@ public interface Locale extends EObject
      * @generated NOT
      */
     String toLanguageCountryString();
-    
+
     /**
      * Returns the value of the '<em><b>Language</b></em>' attribute.
      * The default value is <code>"en"</code>.
@@ -90,6 +90,7 @@ public interface Locale extends EObject
      * @see #setLanguage(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getLocale_Language()
      * @model default="en" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='language' namespace='##targetNamespace'"
      * @generated
      */
     String getLanguage();
@@ -140,6 +141,7 @@ public interface Locale extends EObject
      * @see #setCountry(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getLocale_Country()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='country' namespace='##targetNamespace'"
      * @generated
      */
     String getCountry();
@@ -165,6 +167,7 @@ public interface Locale extends EObject
      * @see #setVariant(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getLocale_Variant()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='variant' namespace='##targetNamespace'"
      * @generated
      */
     String getVariant();

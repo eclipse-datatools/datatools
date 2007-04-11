@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputParameterAttributesImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: InputParameterAttributesImpl.java,v 1.2 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -23,7 +23,6 @@ import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -42,14 +41,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InputParameterAttributesImpl extends EObjectImpl implements InputParameterAttributes
+public class InputParameterAttributesImpl extends EObjectImpl implements
+        InputParameterAttributes
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getElementAttributes() <em>Element Attributes</em>}' containment reference.
@@ -88,7 +88,7 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getInputParameterAttributes();
+        return DesignPackage.Literals.INPUT_PARAMETER_ATTRIBUTES;
     }
 
     /* (non-Javadoc)
@@ -100,11 +100,11 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
         // sets attribute in current UIHints, if exists;
         // otherwise, creates a new one
         InputParameterUIHints uiHints = getUiHints();
-        boolean hasNoUIHints = ( uiHints == null );
+        boolean hasNoUIHints = (uiHints == null);
         if( hasNoUIHints )
             uiHints = DesignFactory.eINSTANCE.createInputParameterUIHints();
         uiHints.setGroupPromptDisplayName( value );
-        
+
         if( hasNoUIHints )
             setUiHints( uiHints );
     }
@@ -124,14 +124,22 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetElementAttributes( InputElementAttributes newElementAttributes, NotificationChain msgs )
+    public NotificationChain basicSetElementAttributes(
+            InputElementAttributes newElementAttributes, NotificationChain msgs )
     {
         InputElementAttributes oldElementAttributes = m_elementAttributes;
         m_elementAttributes = newElementAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES, oldElementAttributes, newElementAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                    oldElementAttributes, newElementAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -141,20 +149,36 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setElementAttributes( InputElementAttributes newElementAttributes )
+    public void setElementAttributes(
+            InputElementAttributes newElementAttributes )
     {
-        if (newElementAttributes != m_elementAttributes)
+        if( newElementAttributes != m_elementAttributes )
         {
             NotificationChain msgs = null;
-            if (m_elementAttributes != null)
-                msgs = ((InternalEObject)m_elementAttributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES, null, msgs);
-            if (newElementAttributes != null)
-                msgs = ((InternalEObject)newElementAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES, null, msgs);
-            msgs = basicSetElementAttributes(newElementAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_elementAttributes != null )
+                msgs = ((InternalEObject) m_elementAttributes)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                                null, msgs );
+            if( newElementAttributes != null )
+                msgs = ((InternalEObject) newElementAttributes)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                                null, msgs );
+            msgs = basicSetElementAttributes( newElementAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES, newElementAttributes, newElementAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES,
+                    newElementAttributes, newElementAttributes ) );
     }
 
     /**
@@ -172,14 +196,21 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetUiHints( InputParameterUIHints newUiHints, NotificationChain msgs )
+    public NotificationChain basicSetUiHints( InputParameterUIHints newUiHints,
+            NotificationChain msgs )
     {
         InputParameterUIHints oldUiHints = m_uiHints;
         m_uiHints = newUiHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS, oldUiHints, newUiHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS,
+                    oldUiHints, newUiHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -191,18 +222,31 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      */
     public void setUiHints( InputParameterUIHints newUiHints )
     {
-        if (newUiHints != m_uiHints)
+        if( newUiHints != m_uiHints )
         {
             NotificationChain msgs = null;
-            if (m_uiHints != null)
-                msgs = ((InternalEObject)m_uiHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS, null, msgs);
-            if (newUiHints != null)
-                msgs = ((InternalEObject)newUiHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS, null, msgs);
-            msgs = basicSetUiHints(newUiHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_uiHints != null )
+                msgs = ((InternalEObject) m_uiHints)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            if( newUiHints != null )
+                msgs = ((InternalEObject) newUiHints)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            msgs = basicSetUiHints( newUiHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS, newUiHints, newUiHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS,
+                    newUiHints, newUiHints ) );
     }
 
     /**
@@ -210,21 +254,17 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                    return basicSetElementAttributes(null, msgs);
-                case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
-                    return basicSetUiHints(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return basicSetElementAttributes( null, msgs );
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
+            return basicSetUiHints( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -232,16 +272,16 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                return getElementAttributes();
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
-                return getUiHints();
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return getElementAttributes();
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
+            return getUiHints();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -249,18 +289,18 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                setElementAttributes((InputElementAttributes)newValue);
-                return;
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
-                setUiHints((InputParameterUIHints)newValue);
-                return;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            setElementAttributes( (InputElementAttributes) newValue );
+            return;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
+            setUiHints( (InputParameterUIHints) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -268,18 +308,18 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                setElementAttributes((InputElementAttributes)null);
-                return;
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
-                setUiHints((InputParameterUIHints)null);
-                return;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            setElementAttributes( (InputElementAttributes) null );
+            return;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
+            setUiHints( (InputParameterUIHints) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -287,16 +327,16 @@ public class InputParameterAttributesImpl extends EObjectImpl implements InputPa
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
-                return m_elementAttributes != null;
-            case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
-                return m_uiHints != null;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__ELEMENT_ATTRIBUTES:
+            return m_elementAttributes != null;
+        case DesignPackage.INPUT_PARAMETER_ATTRIBUTES__UI_HINTS:
+            return m_uiHints != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
 } //InputParameterAttributesImpl

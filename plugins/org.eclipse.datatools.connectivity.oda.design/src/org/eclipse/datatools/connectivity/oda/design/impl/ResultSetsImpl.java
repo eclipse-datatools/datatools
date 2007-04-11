@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ResultSetsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: ResultSetsImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -20,19 +20,13 @@ import java.util.Collection;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -57,7 +51,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getResultSetDefinitions() <em>Result Set Definitions</em>}' containment reference list.
@@ -115,7 +109,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getResultSets();
+        return DesignPackage.Literals.RESULT_SETS;
     }
 
     /* (non-Javadoc)
@@ -124,20 +118,18 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      */
     public ResultSetDefinition findResultSetDefinition( String resultSetName )
     {
-        if( m_resultSetDefinitions == null ||
-            resultSetName == null ||
-            resultSetName.length() == 0 )
+        if( m_resultSetDefinitions == null || resultSetName == null
+                || resultSetName.length() == 0 )
             return null;
 
         EList defns = getResultSetDefinitions();
-        for( int i = 0; i < defns.size(); i++ )
+        for( int i = 0; i < defns.size(); i++)
         {
-            ResultSetDefinition defn = 
-                (ResultSetDefinition) defns.get(i);
-            if( resultSetName.equals( defn.getName() ))
-                    return defn;
+            ResultSetDefinition defn = (ResultSetDefinition) defns.get( i );
+            if( resultSetName.equals( defn.getName() ) )
+                return defn;
         }
-        
+
         return null;
     }
 
@@ -145,10 +137,11 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * @see org.eclipse.datatools.connectivity.oda.design.ResultSets#addResultSetDefinition(int, org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition)
      * @generated NOT
      */
-    public void addResultSetDefinition( int index, ResultSetDefinition resultSetDefn )
+    public void addResultSetDefinition( int index,
+            ResultSetDefinition resultSetDefn )
     {
         if( resultSetDefn == null )
-            return;     // nothing to add
+            return; // nothing to add
         getResultSetDefinitions().add( index, resultSetDefn );
     }
 
@@ -159,7 +152,7 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
     public void addResultSetDefinition( ResultSetDefinition resultSetDefn )
     {
         if( resultSetDefn == null )
-            return;     // nothing to add
+            return; // nothing to add
         getResultSetDefinitions().add( resultSetDefn );
     }
 
@@ -170,9 +163,11 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      */
     public EList getResultSetDefinitions()
     {
-        if (m_resultSetDefinitions == null)
+        if( m_resultSetDefinitions == null )
         {
-            m_resultSetDefinitions = new EObjectContainmentEList(ResultSetDefinition.class, this, DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS);
+            m_resultSetDefinitions = new EObjectContainmentEList(
+                    ResultSetDefinition.class, this,
+                    DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS );
         }
         return m_resultSetDefinitions;
     }
@@ -198,8 +193,11 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
         m_derivedMetaData = newDerivedMetaData;
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaDataESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.RESULT_SETS__DERIVED_META_DATA, oldDerivedMetaData, m_derivedMetaData, !oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.RESULT_SETS__DERIVED_META_DATA,
+                    oldDerivedMetaData, m_derivedMetaData,
+                    !oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -213,8 +211,11 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
         boolean oldDerivedMetaDataESet = m_derivedMetaDataESet;
         m_derivedMetaData = DERIVED_META_DATA_EDEFAULT;
         m_derivedMetaDataESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.RESULT_SETS__DERIVED_META_DATA, oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT, oldDerivedMetaDataESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.RESULT_SETS__DERIVED_META_DATA,
+                    oldDerivedMetaData, DERIVED_META_DATA_EDEFAULT,
+                    oldDerivedMetaDataESet ) );
     }
 
     /**
@@ -232,19 +233,16 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-                    return ((InternalEList)getResultSetDefinitions()).basicRemove(otherEnd, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
+            return ((InternalEList) getResultSetDefinitions()).basicRemove(
+                    otherEnd, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -252,16 +250,16 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-                return getResultSetDefinitions();
-            case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
-                return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
+            return getResultSetDefinitions();
+        case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
+            return isDerivedMetaData() ? Boolean.TRUE : Boolean.FALSE;
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -269,19 +267,19 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-                getResultSetDefinitions().clear();
-                getResultSetDefinitions().addAll((Collection)newValue);
-                return;
-            case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
-                setDerivedMetaData(((Boolean)newValue).booleanValue());
-                return;
+        case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
+            getResultSetDefinitions().clear();
+            getResultSetDefinitions().addAll( (Collection) newValue );
+            return;
+        case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
+            setDerivedMetaData( ((Boolean) newValue).booleanValue() );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -289,18 +287,18 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-                getResultSetDefinitions().clear();
-                return;
-            case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
-                unsetDerivedMetaData();
-                return;
+        case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
+            getResultSetDefinitions().clear();
+            return;
+        case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
+            unsetDerivedMetaData();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -308,16 +306,17 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
-                return m_resultSetDefinitions != null && !m_resultSetDefinitions.isEmpty();
-            case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
-                return isSetDerivedMetaData();
+        case DesignPackage.RESULT_SETS__RESULT_SET_DEFINITIONS:
+            return m_resultSetDefinitions != null
+                    && !m_resultSetDefinitions.isEmpty();
+        case DesignPackage.RESULT_SETS__DERIVED_META_DATA:
+            return isSetDerivedMetaData();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -327,12 +326,16 @@ public class ResultSetsImpl extends EObjectImpl implements ResultSets
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (derivedMetaData: "); //$NON-NLS-1$
-        if (m_derivedMetaDataESet) result.append(m_derivedMetaData); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (derivedMetaData: " ); //$NON-NLS-1$
+        if( m_derivedMetaDataESet )
+            result.append( m_derivedMetaData );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterFieldDefinition.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: ParameterFieldDefinition.java,v 1.2 2006/02/07 05:52:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFieldDefinition()
- * @model 
+ * @model extendedMetaData="name='ParameterFieldDefinition' kind='elementOnly'"
  * @generated
  */
 public interface ParameterFieldDefinition extends EObject
@@ -45,7 +45,7 @@ public interface ParameterFieldDefinition extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Indicates whether this parameter field is part of a complex input parameter.
@@ -54,7 +54,7 @@ public interface ParameterFieldDefinition extends EObject
      * @generated NOT
      */
     boolean isInput();
-    
+
     /**
      * Indicates whether this parameter field is part of a complex output parameter.
      * @return 	true if this parameter field is part of a complex output parameter;
@@ -73,7 +73,8 @@ public interface ParameterFieldDefinition extends EObject
      * @return the value of the '<em>Attributes</em>' containment reference.
      * @see #setAttributes(DataElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFieldDefinition_Attributes()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='attributes' namespace='##targetNamespace'"
      * @generated
      */
     DataElementAttributes getAttributes();
@@ -98,7 +99,8 @@ public interface ParameterFieldDefinition extends EObject
      * @return the value of the '<em>Input Attributes</em>' containment reference.
      * @see #setInputAttributes(InputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFieldDefinition_InputAttributes()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='inputAttributes' namespace='##targetNamespace'"
      * @generated
      */
     InputElementAttributes getInputAttributes();
@@ -123,7 +125,8 @@ public interface ParameterFieldDefinition extends EObject
      * @return the value of the '<em>Output Usage Hints</em>' containment reference.
      * @see #setOutputUsageHints(OutputElementAttributes)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFieldDefinition_OutputUsageHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='outputUsageHints' namespace='##targetNamespace'"
      * @generated
      */
     OutputElementAttributes getOutputUsageHints();

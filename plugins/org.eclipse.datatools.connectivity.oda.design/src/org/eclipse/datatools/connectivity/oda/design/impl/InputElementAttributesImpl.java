@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributesImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: InputElementAttributesImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -25,7 +25,6 @@ import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -49,14 +48,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InputElementAttributesImpl extends EObjectImpl implements InputElementAttributes
+public class InputElementAttributesImpl extends EObjectImpl implements
+        InputElementAttributes
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDefaultScalarValue() <em>Default Scalar Value</em>}' attribute.
@@ -212,7 +212,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getInputElementAttributes();
+        return DesignPackage.Literals.INPUT_ELEMENT_ATTRIBUTES;
     }
 
     /* (non-Javadoc)
@@ -221,8 +221,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      */
     public boolean hasValueChoices()
     {
-        return( getStaticValueChoices() != null ||
-                getDynamicValueChoices() != null );
+        return (getStaticValueChoices() != null || getDynamicValueChoices() != null);
     }
 
     /* (non-Javadoc)
@@ -234,13 +233,13 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         // sets attribute in current UIHints, if exists;
         // otherwise, creates a new one
         InputElementUIHints uiHints = getUiHints();
-        boolean hasNoUIHints = ( uiHints == null );
+        boolean hasNoUIHints = (uiHints == null);
         if( hasNoUIHints )
             uiHints = DesignFactory.eINSTANCE.createInputElementUIHints();
         uiHints.setPromptStyle( value );
-        
+
         if( hasNoUIHints )
-            setUiHints( uiHints );       
+            setUiHints( uiHints );
     }
 
     /**
@@ -262,8 +261,12 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
     {
         String oldDefaultScalarValue = m_defaultScalarValue;
         m_defaultScalarValue = newDefaultScalarValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE, oldDefaultScalarValue, m_defaultScalarValue));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE,
+                    oldDefaultScalarValue, m_defaultScalarValue ) );
     }
 
     /**
@@ -287,8 +290,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         m_editable = newEditable;
         boolean oldEditableESet = m_editableESet;
         m_editableESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE, oldEditable, m_editable, !oldEditableESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE,
+                    oldEditable, m_editable, !oldEditableESet ) );
     }
 
     /**
@@ -302,8 +307,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         boolean oldEditableESet = m_editableESet;
         m_editable = EDITABLE_EDEFAULT;
         m_editableESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE, oldEditable, EDITABLE_EDEFAULT, oldEditableESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE,
+                    oldEditable, EDITABLE_EDEFAULT, oldEditableESet ) );
     }
 
     /**
@@ -337,8 +344,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         m_optional = newOptional;
         boolean oldOptionalESet = m_optionalESet;
         m_optionalESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL, oldOptional, m_optional, !oldOptionalESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL,
+                    oldOptional, m_optional, !oldOptionalESet ) );
     }
 
     /**
@@ -352,8 +361,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         boolean oldOptionalESet = m_optionalESet;
         m_optional = OPTIONAL_EDEFAULT;
         m_optionalESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL, oldOptional, OPTIONAL_EDEFAULT, oldOptionalESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL,
+                    oldOptional, OPTIONAL_EDEFAULT, oldOptionalESet ) );
     }
 
     /**
@@ -387,8 +398,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         m_masksValue = newMasksValue;
         boolean oldMasksValueESet = m_masksValueESet;
         m_masksValueESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE, oldMasksValue, m_masksValue, !oldMasksValueESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE,
+                    oldMasksValue, m_masksValue, !oldMasksValueESet ) );
     }
 
     /**
@@ -402,8 +415,10 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
         boolean oldMasksValueESet = m_masksValueESet;
         m_masksValue = MASKS_VALUE_EDEFAULT;
         m_masksValueESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE, oldMasksValue, MASKS_VALUE_EDEFAULT, oldMasksValueESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE,
+                    oldMasksValue, MASKS_VALUE_EDEFAULT, oldMasksValueESet ) );
     }
 
     /**
@@ -431,14 +446,22 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetStaticValueChoices( ScalarValueChoices newStaticValueChoices, NotificationChain msgs )
+    public NotificationChain basicSetStaticValueChoices(
+            ScalarValueChoices newStaticValueChoices, NotificationChain msgs )
     {
         ScalarValueChoices oldStaticValueChoices = m_staticValueChoices;
         m_staticValueChoices = newStaticValueChoices;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES, oldStaticValueChoices, newStaticValueChoices);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES,
+                    oldStaticValueChoices, newStaticValueChoices );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -450,18 +473,33 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      */
     public void setStaticValueChoices( ScalarValueChoices newStaticValueChoices )
     {
-        if (newStaticValueChoices != m_staticValueChoices)
+        if( newStaticValueChoices != m_staticValueChoices )
         {
             NotificationChain msgs = null;
-            if (m_staticValueChoices != null)
-                msgs = ((InternalEObject)m_staticValueChoices).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES, null, msgs);
-            if (newStaticValueChoices != null)
-                msgs = ((InternalEObject)newStaticValueChoices).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES, null, msgs);
-            msgs = basicSetStaticValueChoices(newStaticValueChoices, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_staticValueChoices != null )
+                msgs = ((InternalEObject) m_staticValueChoices)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES,
+                                null, msgs );
+            if( newStaticValueChoices != null )
+                msgs = ((InternalEObject) newStaticValueChoices)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES,
+                                null, msgs );
+            msgs = basicSetStaticValueChoices( newStaticValueChoices, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES, newStaticValueChoices, newStaticValueChoices));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES,
+                    newStaticValueChoices, newStaticValueChoices ) );
     }
 
     /**
@@ -479,14 +517,22 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetDynamicValueChoices( DynamicValuesQuery newDynamicValueChoices, NotificationChain msgs )
+    public NotificationChain basicSetDynamicValueChoices(
+            DynamicValuesQuery newDynamicValueChoices, NotificationChain msgs )
     {
         DynamicValuesQuery oldDynamicValueChoices = m_dynamicValueChoices;
         m_dynamicValueChoices = newDynamicValueChoices;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES, oldDynamicValueChoices, newDynamicValueChoices);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES,
+                    oldDynamicValueChoices, newDynamicValueChoices );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -496,20 +542,36 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDynamicValueChoices( DynamicValuesQuery newDynamicValueChoices )
+    public void setDynamicValueChoices(
+            DynamicValuesQuery newDynamicValueChoices )
     {
-        if (newDynamicValueChoices != m_dynamicValueChoices)
+        if( newDynamicValueChoices != m_dynamicValueChoices )
         {
             NotificationChain msgs = null;
-            if (m_dynamicValueChoices != null)
-                msgs = ((InternalEObject)m_dynamicValueChoices).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES, null, msgs);
-            if (newDynamicValueChoices != null)
-                msgs = ((InternalEObject)newDynamicValueChoices).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES, null, msgs);
-            msgs = basicSetDynamicValueChoices(newDynamicValueChoices, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_dynamicValueChoices != null )
+                msgs = ((InternalEObject) m_dynamicValueChoices)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES,
+                                null, msgs );
+            if( newDynamicValueChoices != null )
+                msgs = ((InternalEObject) newDynamicValueChoices)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES,
+                                null, msgs );
+            msgs = basicSetDynamicValueChoices( newDynamicValueChoices, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES, newDynamicValueChoices, newDynamicValueChoices));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES,
+                    newDynamicValueChoices, newDynamicValueChoices ) );
     }
 
     /**
@@ -527,14 +589,21 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetUiHints( InputElementUIHints newUiHints, NotificationChain msgs )
+    public NotificationChain basicSetUiHints( InputElementUIHints newUiHints,
+            NotificationChain msgs )
     {
         InputElementUIHints oldUiHints = m_uiHints;
         m_uiHints = newUiHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS, oldUiHints, newUiHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS,
+                    oldUiHints, newUiHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -546,18 +615,31 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      */
     public void setUiHints( InputElementUIHints newUiHints )
     {
-        if (newUiHints != m_uiHints)
+        if( newUiHints != m_uiHints )
         {
             NotificationChain msgs = null;
-            if (m_uiHints != null)
-                msgs = ((InternalEObject)m_uiHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS, null, msgs);
-            if (newUiHints != null)
-                msgs = ((InternalEObject)newUiHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS, null, msgs);
-            msgs = basicSetUiHints(newUiHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_uiHints != null )
+                msgs = ((InternalEObject) m_uiHints)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            if( newUiHints != null )
+                msgs = ((InternalEObject) newUiHints)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS,
+                                null, msgs );
+            msgs = basicSetUiHints( newUiHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS, newUiHints, newUiHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS,
+                    newUiHints, newUiHints ) );
     }
 
     /**
@@ -565,23 +647,19 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
-                    return basicSetStaticValueChoices(null, msgs);
-                case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
-                    return basicSetDynamicValueChoices(null, msgs);
-                case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
-                    return basicSetUiHints(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
+            return basicSetStaticValueChoices( null, msgs );
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
+            return basicSetDynamicValueChoices( null, msgs );
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return basicSetUiHints( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -589,26 +667,26 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
-                return getDefaultScalarValue();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
-                return isEditable() ? Boolean.TRUE : Boolean.FALSE;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
-                return isOptional() ? Boolean.TRUE : Boolean.FALSE;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
-                return isMasksValue() ? Boolean.TRUE : Boolean.FALSE;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
-                return getStaticValueChoices();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
-                return getDynamicValueChoices();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
-                return getUiHints();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
+            return getDefaultScalarValue();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
+            return isEditable() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
+            return isOptional() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
+            return isMasksValue() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
+            return getStaticValueChoices();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
+            return getDynamicValueChoices();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return getUiHints();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -616,33 +694,33 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
-                setDefaultScalarValue((String)newValue);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
-                setEditable(((Boolean)newValue).booleanValue());
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
-                setOptional(((Boolean)newValue).booleanValue());
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
-                setMasksValue(((Boolean)newValue).booleanValue());
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
-                setStaticValueChoices((ScalarValueChoices)newValue);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
-                setDynamicValueChoices((DynamicValuesQuery)newValue);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
-                setUiHints((InputElementUIHints)newValue);
-                return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
+            setDefaultScalarValue( (String) newValue );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
+            setEditable( ((Boolean) newValue).booleanValue() );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
+            setOptional( ((Boolean) newValue).booleanValue() );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
+            setMasksValue( ((Boolean) newValue).booleanValue() );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
+            setStaticValueChoices( (ScalarValueChoices) newValue );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
+            setDynamicValueChoices( (DynamicValuesQuery) newValue );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
+            setUiHints( (InputElementUIHints) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -650,33 +728,33 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
-                setDefaultScalarValue(DEFAULT_SCALAR_VALUE_EDEFAULT);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
-                unsetEditable();
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
-                unsetOptional();
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
-                unsetMasksValue();
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
-                setStaticValueChoices((ScalarValueChoices)null);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
-                setDynamicValueChoices((DynamicValuesQuery)null);
-                return;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
-                setUiHints((InputElementUIHints)null);
-                return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
+            setDefaultScalarValue( DEFAULT_SCALAR_VALUE_EDEFAULT );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
+            unsetEditable();
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
+            unsetOptional();
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
+            unsetMasksValue();
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
+            setStaticValueChoices( (ScalarValueChoices) null );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
+            setDynamicValueChoices( (DynamicValuesQuery) null );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
+            setUiHints( (InputElementUIHints) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -684,26 +762,28 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
-                return DEFAULT_SCALAR_VALUE_EDEFAULT == null ? m_defaultScalarValue != null : !DEFAULT_SCALAR_VALUE_EDEFAULT.equals(m_defaultScalarValue);
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
-                return isSetEditable();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
-                return isSetOptional();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
-                return isSetMasksValue();
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
-                return m_staticValueChoices != null;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
-                return m_dynamicValueChoices != null;
-            case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
-                return m_uiHints != null;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
+            return DEFAULT_SCALAR_VALUE_EDEFAULT == null ? m_defaultScalarValue != null
+                    : !DEFAULT_SCALAR_VALUE_EDEFAULT
+                            .equals( m_defaultScalarValue );
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
+            return isSetEditable();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
+            return isSetOptional();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE:
+            return isSetMasksValue();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
+            return m_staticValueChoices != null;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
+            return m_dynamicValueChoices != null;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__UI_HINTS:
+            return m_uiHints != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -713,18 +793,28 @@ public class InputElementAttributesImpl extends EObjectImpl implements InputElem
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (defaultScalarValue: "); //$NON-NLS-1$
-        result.append(m_defaultScalarValue);
-        result.append(", editable: "); //$NON-NLS-1$
-        if (m_editableESet) result.append(m_editable); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", optional: "); //$NON-NLS-1$
-        if (m_optionalESet) result.append(m_optional); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", masksValue: "); //$NON-NLS-1$
-        if (m_masksValueESet) result.append(m_masksValue); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (defaultScalarValue: " ); //$NON-NLS-1$
+        result.append( m_defaultScalarValue );
+        result.append( ", editable: " ); //$NON-NLS-1$
+        if( m_editableESet )
+            result.append( m_editable );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", optional: " ); //$NON-NLS-1$
+        if( m_optionalESet )
+            result.append( m_optional );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", masksValue: " ); //$NON-NLS-1$
+        if( m_masksValueESet )
+            result.append( m_masksValue );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

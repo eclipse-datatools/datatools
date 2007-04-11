@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignerStateImpl.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignerStateImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -48,7 +47,7 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getVersion() <em>Version</em>}' attribute.
@@ -97,7 +96,7 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDesignerState();
+        return DesignPackage.Literals.DESIGNER_STATE;
     }
 
     /* (non-Javadoc)
@@ -108,11 +107,11 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         // creates a new state content with the given value,
         // overrides any existing content
-        DesignerStateContent content = 
-                DesignFactory.eINSTANCE.createDesignerStateContent();
+        DesignerStateContent content = DesignFactory.eINSTANCE
+                .createDesignerStateContent();
         content.setStateContentAsString( value );
 
-        setStateContent( content );        
+        setStateContent( content );
     }
 
     /* (non-Javadoc)
@@ -123,8 +122,8 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         // creates a new state content with the given value,
         // overrides any existing content
-        DesignerStateContent content = 
-                DesignFactory.eINSTANCE.createDesignerStateContent();
+        DesignerStateContent content = DesignFactory.eINSTANCE
+                .createDesignerStateContent();
         content.setStateContentAsBlob( value );
 
         setStateContent( content );
@@ -149,8 +148,10 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
     {
         String oldVersion = m_version;
         m_version = newVersion;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__VERSION, oldVersion, m_version));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DESIGNER_STATE__VERSION, oldVersion,
+                    m_version ) );
     }
 
     /**
@@ -168,14 +169,21 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetStateContent( DesignerStateContent newStateContent, NotificationChain msgs )
+    public NotificationChain basicSetStateContent(
+            DesignerStateContent newStateContent, NotificationChain msgs )
     {
         DesignerStateContent oldStateContent = m_stateContent;
         m_stateContent = newStateContent;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__STATE_CONTENT, oldStateContent, newStateContent);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DESIGNER_STATE__STATE_CONTENT,
+                    oldStateContent, newStateContent );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -187,18 +195,27 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      */
     public void setStateContent( DesignerStateContent newStateContent )
     {
-        if (newStateContent != m_stateContent)
+        if( newStateContent != m_stateContent )
         {
             NotificationChain msgs = null;
-            if (m_stateContent != null)
-                msgs = ((InternalEObject)m_stateContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGNER_STATE__STATE_CONTENT, null, msgs);
-            if (newStateContent != null)
-                msgs = ((InternalEObject)newStateContent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGNER_STATE__STATE_CONTENT, null, msgs);
-            msgs = basicSetStateContent(newStateContent, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_stateContent != null )
+                msgs = ((InternalEObject) m_stateContent).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.DESIGNER_STATE__STATE_CONTENT,
+                        null, msgs );
+            if( newStateContent != null )
+                msgs = ((InternalEObject) newStateContent).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.DESIGNER_STATE__STATE_CONTENT,
+                        null, msgs );
+            msgs = basicSetStateContent( newStateContent, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGNER_STATE__STATE_CONTENT, newStateContent, newStateContent));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DESIGNER_STATE__STATE_CONTENT,
+                    newStateContent, newStateContent ) );
     }
 
     /**
@@ -206,19 +223,15 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
-                    return basicSetStateContent(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
+            return basicSetStateContent( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -226,16 +239,16 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE__VERSION:
-                return getVersion();
-            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
-                return getStateContent();
+        case DesignPackage.DESIGNER_STATE__VERSION:
+            return getVersion();
+        case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
+            return getStateContent();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -243,18 +256,18 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE__VERSION:
-                setVersion((String)newValue);
-                return;
-            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
-                setStateContent((DesignerStateContent)newValue);
-                return;
+        case DesignPackage.DESIGNER_STATE__VERSION:
+            setVersion( (String) newValue );
+            return;
+        case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
+            setStateContent( (DesignerStateContent) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -262,18 +275,18 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE__VERSION:
-                setVersion(VERSION_EDEFAULT);
-                return;
-            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
-                setStateContent((DesignerStateContent)null);
-                return;
+        case DesignPackage.DESIGNER_STATE__VERSION:
+            setVersion( VERSION_EDEFAULT );
+            return;
+        case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
+            setStateContent( (DesignerStateContent) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -281,16 +294,17 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGNER_STATE__VERSION:
-                return VERSION_EDEFAULT == null ? m_version != null : !VERSION_EDEFAULT.equals(m_version);
-            case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
-                return m_stateContent != null;
+        case DesignPackage.DESIGNER_STATE__VERSION:
+            return VERSION_EDEFAULT == null ? m_version != null
+                    : !VERSION_EDEFAULT.equals( m_version );
+        case DesignPackage.DESIGNER_STATE__STATE_CONTENT:
+            return m_stateContent != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -300,12 +314,13 @@ public class DesignerStateImpl extends EObjectImpl implements DesignerState
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (version: "); //$NON-NLS-1$
-        result.append(m_version);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (version: " ); //$NON-NLS-1$
+        result.append( m_version );
+        result.append( ')' );
         return result.toString();
     }
 

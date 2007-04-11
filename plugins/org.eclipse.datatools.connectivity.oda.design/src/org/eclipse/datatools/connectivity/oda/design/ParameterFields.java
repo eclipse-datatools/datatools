@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterFields.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFields()
- * @model 
+ * @model extendedMetaData="name='ParameterFields' kind='elementOnly'"
  * @generated
  */
 public interface ParameterFields extends EObject
@@ -45,7 +45,7 @@ public interface ParameterFields extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Field Collection</b></em>' containment reference list.
@@ -54,7 +54,8 @@ public interface ParameterFields extends EObject
      * <!-- end-user-doc -->
      * @return the value of the '<em>Field Collection</em>' containment reference list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getParameterFields_FieldCollection()
-     * @model type="org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition" containment="true" resolveProxies="false" required="true"
+     * @model type="org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition" containment="true" required="true"
+     *        extendedMetaData="kind='element' name='fields' namespace='##targetNamespace'"
      * @generated
      */
     EList getFieldCollection();

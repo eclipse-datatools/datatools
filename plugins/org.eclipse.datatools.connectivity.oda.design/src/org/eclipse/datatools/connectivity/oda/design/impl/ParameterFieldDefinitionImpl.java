@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterFieldDefinitionImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,15 +22,11 @@ import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFields;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -49,14 +45,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class ParameterFieldDefinitionImpl extends EObjectImpl implements ParameterFieldDefinition
+public class ParameterFieldDefinitionImpl extends EObjectImpl implements
+        ParameterFieldDefinition
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference.
@@ -105,7 +102,7 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getParameterFieldDefinition();
+        return DesignPackage.Literals.PARAMETER_FIELD_DEFINITION;
     }
 
     /* (non-Javadoc)
@@ -116,7 +113,7 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
         // derived from parent's in/out mode
         return getParent().isInput();
     }
-    
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition#isOutput()
      */
@@ -129,13 +126,13 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
     private ParameterDefinition getParent()
     {
         EObject myContainer = eContainer();
-        assert( myContainer instanceof ParameterFields );
+        assert (myContainer instanceof ParameterFields);
 
         EObject topLevelParam = myContainer.eContainer();
-        assert( topLevelParam instanceof ParameterDefinition );
+        assert (topLevelParam instanceof ParameterDefinition);
         return (ParameterDefinition) topLevelParam;
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -151,14 +148,21 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetAttributes( DataElementAttributes newAttributes, NotificationChain msgs )
+    public NotificationChain basicSetAttributes(
+            DataElementAttributes newAttributes, NotificationChain msgs )
     {
         DataElementAttributes oldAttributes = m_attributes;
         m_attributes = newAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES, oldAttributes, newAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES,
+                    oldAttributes, newAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -170,18 +174,31 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      */
     public void setAttributes( DataElementAttributes newAttributes )
     {
-        if (newAttributes != m_attributes)
+        if( newAttributes != m_attributes )
         {
             NotificationChain msgs = null;
-            if (m_attributes != null)
-                msgs = ((InternalEObject)m_attributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES, null, msgs);
-            if (newAttributes != null)
-                msgs = ((InternalEObject)newAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES, null, msgs);
-            msgs = basicSetAttributes(newAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_attributes != null )
+                msgs = ((InternalEObject) m_attributes)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES,
+                                null, msgs );
+            if( newAttributes != null )
+                msgs = ((InternalEObject) newAttributes)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES,
+                                null, msgs );
+            msgs = basicSetAttributes( newAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES, newAttributes, newAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES,
+                    newAttributes, newAttributes ) );
     }
 
     /**
@@ -199,14 +216,21 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetInputAttributes( InputElementAttributes newInputAttributes, NotificationChain msgs )
+    public NotificationChain basicSetInputAttributes(
+            InputElementAttributes newInputAttributes, NotificationChain msgs )
     {
         InputElementAttributes oldInputAttributes = m_inputAttributes;
         m_inputAttributes = newInputAttributes;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES, oldInputAttributes, newInputAttributes);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES,
+                    oldInputAttributes, newInputAttributes );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -218,18 +242,31 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      */
     public void setInputAttributes( InputElementAttributes newInputAttributes )
     {
-        if (newInputAttributes != m_inputAttributes)
+        if( newInputAttributes != m_inputAttributes )
         {
             NotificationChain msgs = null;
-            if (m_inputAttributes != null)
-                msgs = ((InternalEObject)m_inputAttributes).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES, null, msgs);
-            if (newInputAttributes != null)
-                msgs = ((InternalEObject)newInputAttributes).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES, null, msgs);
-            msgs = basicSetInputAttributes(newInputAttributes, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_inputAttributes != null )
+                msgs = ((InternalEObject) m_inputAttributes)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES,
+                                null, msgs );
+            if( newInputAttributes != null )
+                msgs = ((InternalEObject) newInputAttributes)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES,
+                                null, msgs );
+            msgs = basicSetInputAttributes( newInputAttributes, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES, newInputAttributes, newInputAttributes));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES,
+                    newInputAttributes, newInputAttributes ) );
     }
 
     /**
@@ -247,14 +284,22 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetOutputUsageHints( OutputElementAttributes newOutputUsageHints, NotificationChain msgs )
+    public NotificationChain basicSetOutputUsageHints(
+            OutputElementAttributes newOutputUsageHints, NotificationChain msgs )
     {
         OutputElementAttributes oldOutputUsageHints = m_outputUsageHints;
         m_outputUsageHints = newOutputUsageHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS, oldOutputUsageHints, newOutputUsageHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS,
+                    oldOutputUsageHints, newOutputUsageHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -266,18 +311,33 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      */
     public void setOutputUsageHints( OutputElementAttributes newOutputUsageHints )
     {
-        if (newOutputUsageHints != m_outputUsageHints)
+        if( newOutputUsageHints != m_outputUsageHints )
         {
             NotificationChain msgs = null;
-            if (m_outputUsageHints != null)
-                msgs = ((InternalEObject)m_outputUsageHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS, null, msgs);
-            if (newOutputUsageHints != null)
-                msgs = ((InternalEObject)newOutputUsageHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS, null, msgs);
-            msgs = basicSetOutputUsageHints(newOutputUsageHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_outputUsageHints != null )
+                msgs = ((InternalEObject) m_outputUsageHints)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS,
+                                null, msgs );
+            if( newOutputUsageHints != null )
+                msgs = ((InternalEObject) newOutputUsageHints)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS,
+                                null, msgs );
+            msgs = basicSetOutputUsageHints( newOutputUsageHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS, newOutputUsageHints, newOutputUsageHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS,
+                    newOutputUsageHints, newOutputUsageHints ) );
     }
 
     /**
@@ -285,23 +345,19 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
-                    return basicSetAttributes(null, msgs);
-                case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
-                    return basicSetInputAttributes(null, msgs);
-                case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
-                    return basicSetOutputUsageHints(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
+            return basicSetAttributes( null, msgs );
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
+            return basicSetInputAttributes( null, msgs );
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
+            return basicSetOutputUsageHints( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -309,18 +365,18 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
-                return getAttributes();
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
-                return getInputAttributes();
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
-                return getOutputUsageHints();
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
+            return getAttributes();
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
+            return getInputAttributes();
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
+            return getOutputUsageHints();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -328,21 +384,21 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
-                setAttributes((DataElementAttributes)newValue);
-                return;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
-                setInputAttributes((InputElementAttributes)newValue);
-                return;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
-                setOutputUsageHints((OutputElementAttributes)newValue);
-                return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
+            setAttributes( (DataElementAttributes) newValue );
+            return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
+            setInputAttributes( (InputElementAttributes) newValue );
+            return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
+            setOutputUsageHints( (OutputElementAttributes) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -350,21 +406,21 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
-                setAttributes((DataElementAttributes)null);
-                return;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
-                setInputAttributes((InputElementAttributes)null);
-                return;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
-                setOutputUsageHints((OutputElementAttributes)null);
-                return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
+            setAttributes( (DataElementAttributes) null );
+            return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
+            setInputAttributes( (InputElementAttributes) null );
+            return;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
+            setOutputUsageHints( (OutputElementAttributes) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -372,18 +428,18 @@ public class ParameterFieldDefinitionImpl extends EObjectImpl implements Paramet
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
-                return m_attributes != null;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
-                return m_inputAttributes != null;
-            case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
-                return m_outputUsageHints != null;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__ATTRIBUTES:
+            return m_attributes != null;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__INPUT_ATTRIBUTES:
+            return m_inputAttributes != null;
+        case DesignPackage.PARAMETER_FIELD_DEFINITION__OUTPUT_USAGE_HINTS:
+            return m_outputUsageHints != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
 } //ParameterFieldDefinitionImpl

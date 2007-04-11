@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: PropertyImpl.java,v 1.3 2006/02/08 08:06:17 lchan Exp $
+ * $Id: PropertyImpl.java,v 1.4 2006/11/09 00:50:26 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,16 +19,11 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
 import org.eclipse.datatools.connectivity.oda.design.Property;
-
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -53,7 +48,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getNameValue() <em>Name Value</em>}' containment reference.
@@ -92,7 +87,7 @@ public class PropertyImpl extends EObjectImpl implements Property
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getProperty();
+        return DesignPackage.Literals.PROPERTY;
     }
 
     /* (non-Javadoc)
@@ -257,6 +252,96 @@ public class PropertyImpl extends EObjectImpl implements Property
                     newDesignAttributes, newDesignAttributes ) );
     }
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.PROPERTY__NAME_VALUE:
+            return basicSetNameValue( null, msgs );
+        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
+            return basicSetDesignAttributes( null, msgs );
+        }
+        return super.eInverseRemove( otherEnd, featureID, msgs );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.PROPERTY__NAME_VALUE:
+            return getNameValue();
+        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
+            return getDesignAttributes();
+        }
+        return super.eGet( featureID, resolve, coreType );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void eSet( int featureID, Object newValue )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.PROPERTY__NAME_VALUE:
+            setNameValue( (NameValuePair) newValue );
+            return;
+        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
+            setDesignAttributes( (PropertyAttributes) newValue );
+            return;
+        }
+        super.eSet( featureID, newValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void eUnset( int featureID )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.PROPERTY__NAME_VALUE:
+            setNameValue( (NameValuePair) null );
+            return;
+        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
+            setDesignAttributes( (PropertyAttributes) null );
+            return;
+        }
+        super.eUnset( featureID );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean eIsSet( int featureID )
+    {
+        switch( featureID )
+        {
+        case DesignPackage.PROPERTY__NAME_VALUE:
+            return m_nameValue != null;
+        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
+            return m_designAttributes != null;
+        }
+        return super.eIsSet( featureID );
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.Property#isEditable()
      * @generated NOT
@@ -264,10 +349,9 @@ public class PropertyImpl extends EObjectImpl implements Property
     public boolean isEditable()
     {
         PropertyAttributes propAttrs = getDesignAttributes();
-        if( propAttrs == null || 
-            propAttrs.getElementAttributes() == null )
-            return true;    // default state
-        
+        if( propAttrs == null || propAttrs.getElementAttributes() == null )
+            return true; // default state
+
         return propAttrs.getElementAttributes().isEditable();
     }
 
@@ -278,107 +362,10 @@ public class PropertyImpl extends EObjectImpl implements Property
     public boolean isMaskedValue()
     {
         PropertyAttributes propAttrs = getDesignAttributes();
-        if( propAttrs == null || 
-            propAttrs.getElementAttributes() == null )
-            return false;    // default state
-        
+        if( propAttrs == null || propAttrs.getElementAttributes() == null )
+            return false; // default state
+
         return propAttrs.getElementAttributes().isMasksValue();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd,
-            int featureID, Class baseClass, NotificationChain msgs )
-    {
-        if( featureID >= 0 )
-        {
-            switch( eDerivedStructuralFeatureID( featureID, baseClass ) )
-            {
-            case DesignPackage.PROPERTY__NAME_VALUE:
-                return basicSetNameValue( null, msgs );
-            case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
-                return basicSetDesignAttributes( null, msgs );
-            default:
-                return eDynamicInverseRemove( otherEnd, featureID, baseClass,
-                        msgs );
-            }
-        }
-        return eBasicSetContainer( null, featureID, msgs );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
-    {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
-        {
-        case DesignPackage.PROPERTY__NAME_VALUE:
-            return getNameValue();
-        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
-            return getDesignAttributes();
-        }
-        return eDynamicGet( eFeature, resolve );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
-    {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
-        {
-        case DesignPackage.PROPERTY__NAME_VALUE:
-            setNameValue( (NameValuePair) newValue );
-            return;
-        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
-            setDesignAttributes( (PropertyAttributes) newValue );
-            return;
-        }
-        eDynamicSet( eFeature, newValue );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eUnset( EStructuralFeature eFeature )
-    {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
-        {
-        case DesignPackage.PROPERTY__NAME_VALUE:
-            setNameValue( (NameValuePair) null );
-            return;
-        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
-            setDesignAttributes( (PropertyAttributes) null );
-            return;
-        }
-        eDynamicUnset( eFeature );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean eIsSet( EStructuralFeature eFeature )
-    {
-        switch( eDerivedStructuralFeatureID( eFeature ) )
-        {
-        case DesignPackage.PROPERTY__NAME_VALUE:
-            return m_nameValue != null;
-        case DesignPackage.PROPERTY__DESIGN_ATTRIBUTES:
-            return m_designAttributes != null;
-        }
-        return eDynamicIsSet( eFeature );
     }
 
 } //PropertyImpl

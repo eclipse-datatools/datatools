@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionRequest.java,v 1.4 2006/02/28 21:02:29 lchan Exp $
+ * $Id: DesignSessionRequest.java,v 1.5 2006/03/09 08:50:09 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignSessionRequest()
- * @model 
+ * @model extendedMetaData="name='DesignSessionRequest' kind='elementOnly'"
  * @generated
  */
 public interface DesignSessionRequest extends EObject
@@ -46,7 +46,7 @@ public interface DesignSessionRequest extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Obtains the Data Source Design associated with the
@@ -57,7 +57,7 @@ public interface DesignSessionRequest extends EObject
      * @generated NOT
      */
     DataSourceDesign getDataSourceDesign();
-    
+
     /**
      * Obtains the top-level Data Set Design associated with this
      * Request session.
@@ -75,7 +75,8 @@ public interface DesignSessionRequest extends EObject
      * @return the value of the '<em>Data Access Design</em>' containment reference.
      * @see #setDataAccessDesign(DataAccessDesign)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignSessionRequest_DataAccessDesign()
-     * @model containment="true" resolveProxies="false" required="true"
+     * @model containment="true" required="true"
+     *        extendedMetaData="kind='element' name='dataAccessDesign' namespace='##targetNamespace'"
      * @generated
      */
     DataAccessDesign getDataAccessDesign();
@@ -124,6 +125,7 @@ public interface DesignSessionRequest extends EObject
      * @see #setEditable(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignSessionRequest_Editable()
      * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='editable' namespace='##targetNamespace'"
      * @generated
      */
     boolean isEditable();
@@ -173,7 +175,8 @@ public interface DesignSessionRequest extends EObject
      * @return the value of the '<em>Session Locale</em>' containment reference.
      * @see #setSessionLocale(Locale)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignSessionRequest_SessionLocale()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='sessionLocale' namespace='##targetNamespace'"
      * @generated
      */
     Locale getSessionLocale();
@@ -198,7 +201,8 @@ public interface DesignSessionRequest extends EObject
      * @return the value of the '<em>Designer State</em>' containment reference.
      * @see #setDesignerState(DesignerState)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDesignSessionRequest_DesignerState()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='designerState' namespace='##targetNamespace'"
      * @generated
      */
     DesignerState getDesignerState();

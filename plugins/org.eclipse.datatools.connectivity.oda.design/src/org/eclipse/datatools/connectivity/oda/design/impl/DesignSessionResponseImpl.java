@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSessionResponseImpl.java,v 1.2 2006/02/03 04:16:15 lchan Exp $
+ * $Id: DesignSessionResponseImpl.java,v 1.3 2006/02/28 21:02:29 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -23,14 +23,10 @@ import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -49,14 +45,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class DesignSessionResponseImpl extends EObjectImpl implements DesignSessionResponse
+public class DesignSessionResponseImpl extends EObjectImpl implements
+        DesignSessionResponse
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getSessionStatus() <em>Session Status</em>}' attribute.
@@ -124,7 +121,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getDesignSessionResponse();
+        return DesignPackage.Literals.DESIGN_SESSION_RESPONSE;
     }
 
     /* (non-Javadoc)
@@ -133,11 +130,11 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      */
     public void setNewDataAccessDesign( DataSourceDesign dataSourceDesign )
     {
-        DataAccessDesign newAccessDesign =
-            DesignFactory.eINSTANCE.createDataAccessDesign();
+        DataAccessDesign newAccessDesign = DesignFactory.eINSTANCE
+                .createDataAccessDesign();
         newAccessDesign.setNewDataSetDesign( dataSourceDesign );
-        
-        setDataAccessDesign( newAccessDesign );        
+
+        setDataAccessDesign( newAccessDesign );
     }
 
     /* (non-Javadoc)
@@ -148,7 +145,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
     {
         if( getDataSetDesign() == null )
             return null;
-            
+
         return getDataSetDesign().getDataSourceDesign();
     }
 
@@ -160,7 +157,7 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
     {
         if( getDataAccessDesign() == null )
             return null;
-            
+
         return getDataAccessDesign().getDataSetDesign();
     }
 
@@ -182,11 +179,14 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
     public void setSessionStatus( SessionStatus newSessionStatus )
     {
         SessionStatus oldSessionStatus = m_sessionStatus;
-        m_sessionStatus = newSessionStatus == null ? SESSION_STATUS_EDEFAULT : newSessionStatus;
+        m_sessionStatus = newSessionStatus == null ? SESSION_STATUS_EDEFAULT
+                : newSessionStatus;
         boolean oldSessionStatusESet = m_sessionStatusESet;
         m_sessionStatusESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS, oldSessionStatus, m_sessionStatus, !oldSessionStatusESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS,
+                    oldSessionStatus, m_sessionStatus, !oldSessionStatusESet ) );
     }
 
     /**
@@ -200,8 +200,11 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
         boolean oldSessionStatusESet = m_sessionStatusESet;
         m_sessionStatus = SESSION_STATUS_EDEFAULT;
         m_sessionStatusESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS, oldSessionStatus, SESSION_STATUS_EDEFAULT, oldSessionStatusESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS,
+                    oldSessionStatus, SESSION_STATUS_EDEFAULT,
+                    oldSessionStatusESet ) );
     }
 
     /**
@@ -229,14 +232,21 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetDataAccessDesign( DataAccessDesign newDataAccessDesign, NotificationChain msgs )
+    public NotificationChain basicSetDataAccessDesign(
+            DataAccessDesign newDataAccessDesign, NotificationChain msgs )
     {
         DataAccessDesign oldDataAccessDesign = m_dataAccessDesign;
         m_dataAccessDesign = newDataAccessDesign;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN, oldDataAccessDesign, newDataAccessDesign);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN,
+                    oldDataAccessDesign, newDataAccessDesign );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -248,18 +258,31 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      */
     public void setDataAccessDesign( DataAccessDesign newDataAccessDesign )
     {
-        if (newDataAccessDesign != m_dataAccessDesign)
+        if( newDataAccessDesign != m_dataAccessDesign )
         {
             NotificationChain msgs = null;
-            if (m_dataAccessDesign != null)
-                msgs = ((InternalEObject)m_dataAccessDesign).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN, null, msgs);
-            if (newDataAccessDesign != null)
-                msgs = ((InternalEObject)newDataAccessDesign).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN, null, msgs);
-            msgs = basicSetDataAccessDesign(newDataAccessDesign, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_dataAccessDesign != null )
+                msgs = ((InternalEObject) m_dataAccessDesign)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN,
+                                null, msgs );
+            if( newDataAccessDesign != null )
+                msgs = ((InternalEObject) newDataAccessDesign)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN,
+                                null, msgs );
+            msgs = basicSetDataAccessDesign( newDataAccessDesign, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN, newDataAccessDesign, newDataAccessDesign));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN,
+                    newDataAccessDesign, newDataAccessDesign ) );
     }
 
     /**
@@ -277,14 +300,21 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetDesignerState( DesignerState newDesignerState, NotificationChain msgs )
+    public NotificationChain basicSetDesignerState(
+            DesignerState newDesignerState, NotificationChain msgs )
     {
         DesignerState oldDesignerState = m_designerState;
         m_designerState = newDesignerState;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE, oldDesignerState, newDesignerState);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE,
+                    oldDesignerState, newDesignerState );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -296,18 +326,31 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      */
     public void setDesignerState( DesignerState newDesignerState )
     {
-        if (newDesignerState != m_designerState)
+        if( newDesignerState != m_designerState )
         {
             NotificationChain msgs = null;
-            if (m_designerState != null)
-                msgs = ((InternalEObject)m_designerState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE, null, msgs);
-            if (newDesignerState != null)
-                msgs = ((InternalEObject)newDesignerState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE, null, msgs);
-            msgs = basicSetDesignerState(newDesignerState, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_designerState != null )
+                msgs = ((InternalEObject) m_designerState)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE,
+                                null, msgs );
+            if( newDesignerState != null )
+                msgs = ((InternalEObject) newDesignerState)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE,
+                                null, msgs );
+            msgs = basicSetDesignerState( newDesignerState, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE, newDesignerState, newDesignerState));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE,
+                    newDesignerState, newDesignerState ) );
     }
 
     /**
@@ -315,21 +358,17 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
-                    return basicSetDataAccessDesign(null, msgs);
-                case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
-                    return basicSetDesignerState(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
+            return basicSetDataAccessDesign( null, msgs );
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
+            return basicSetDesignerState( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -337,18 +376,18 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
-                return getSessionStatus();
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
-                return getDataAccessDesign();
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
-                return getDesignerState();
+        case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
+            return getSessionStatus();
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
+            return getDataAccessDesign();
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
+            return getDesignerState();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -356,21 +395,21 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
-                setSessionStatus((SessionStatus)newValue);
-                return;
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
-                setDataAccessDesign((DataAccessDesign)newValue);
-                return;
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
-                setDesignerState((DesignerState)newValue);
-                return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
+            setSessionStatus( (SessionStatus) newValue );
+            return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
+            setDataAccessDesign( (DataAccessDesign) newValue );
+            return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
+            setDesignerState( (DesignerState) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -378,21 +417,21 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
-                unsetSessionStatus();
-                return;
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
-                setDataAccessDesign((DataAccessDesign)null);
-                return;
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
-                setDesignerState((DesignerState)null);
-                return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
+            unsetSessionStatus();
+            return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
+            setDataAccessDesign( (DataAccessDesign) null );
+            return;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
+            setDesignerState( (DesignerState) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -400,18 +439,18 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
-                return isSetSessionStatus();
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
-                return m_dataAccessDesign != null;
-            case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
-                return m_designerState != null;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__SESSION_STATUS:
+            return isSetSessionStatus();
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DATA_ACCESS_DESIGN:
+            return m_dataAccessDesign != null;
+        case DesignPackage.DESIGN_SESSION_RESPONSE__DESIGNER_STATE:
+            return m_designerState != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -421,12 +460,16 @@ public class DesignSessionResponseImpl extends EObjectImpl implements DesignSess
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (sessionStatus: "); //$NON-NLS-1$
-        if (m_sessionStatusESet) result.append(m_sessionStatus); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (sessionStatus: " ); //$NON-NLS-1$
+        if( m_sessionStatusESet )
+            result.append( m_sessionStatus );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

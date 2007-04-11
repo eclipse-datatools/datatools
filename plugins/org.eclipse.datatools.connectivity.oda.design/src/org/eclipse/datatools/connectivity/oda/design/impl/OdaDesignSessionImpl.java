@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OdaDesignSessionImpl.java,v 1.5 2006/02/28 21:02:29 lchan Exp $
+ * $Id: OdaDesignSessionImpl.java,v 1.6 2006/03/07 05:06:04 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -27,7 +27,6 @@ import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -46,14 +45,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSession
+public class OdaDesignSessionImpl extends EObjectImpl implements
+        OdaDesignSession
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getRequest() <em>Request</em>}' containment reference.
@@ -92,7 +92,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getOdaDesignSession();
+        return DesignPackage.Literals.ODA_DESIGN_SESSION;
     }
 
     /* (non-Javadoc)
@@ -101,8 +101,8 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public void setNewRequest( DataSourceDesign dataSourceDesign )
     {
-        DesignSessionRequest newRequest =
-            DesignFactory.eINSTANCE.createDesignSessionRequest();
+        DesignSessionRequest newRequest = DesignFactory.eINSTANCE
+                .createDesignSessionRequest();
         newRequest.setNewDataAccessDesign( dataSourceDesign );
 
         setRequest( newRequest );
@@ -112,19 +112,19 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * @see org.eclipse.datatools.connectivity.oda.design.OdaDesignSession#setNewResponse(boolean, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      * @generated NOT
      */
-    public void setNewResponse( boolean isSessionOk, 
-                                DataSourceDesign dataSourceDesign )
+    public void setNewResponse( boolean isSessionOk,
+            DataSourceDesign dataSourceDesign )
     {
-        DesignSessionResponse newResponse =
-            DesignFactory.eINSTANCE.createDesignSessionResponse();
-        
+        DesignSessionResponse newResponse = DesignFactory.eINSTANCE
+                .createDesignSessionResponse();
+
         if( isSessionOk )
             newResponse.setSessionStatus( SessionStatus.OK_LITERAL );
         else
             newResponse.setSessionStatus( SessionStatus.ERROR_LITERAL );
 
         newResponse.setNewDataAccessDesign( dataSourceDesign );
-        
+
         setResponse( newResponse );
     }
 
@@ -133,19 +133,19 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public void setNewResponse( boolean isSessionOk, DataSetDesign dataSetDesign )
     {
-        DesignSessionResponse newResponse =
-            DesignFactory.eINSTANCE.createDesignSessionResponse();
-        
+        DesignSessionResponse newResponse = DesignFactory.eINSTANCE
+                .createDesignSessionResponse();
+
         if( isSessionOk )
             newResponse.setSessionStatus( SessionStatus.OK_LITERAL );
         else
             newResponse.setSessionStatus( SessionStatus.ERROR_LITERAL );
 
-        DataAccessDesign newDataAccess =
-            DesignFactory.eINSTANCE.createDataAccessDesign();
+        DataAccessDesign newDataAccess = DesignFactory.eINSTANCE
+                .createDataAccessDesign();
         newDataAccess.setDataSetDesign( dataSetDesign );
         newResponse.setDataAccessDesign( newDataAccess );
-        
+
         setResponse( newResponse );
     }
 
@@ -155,10 +155,10 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public void setResponseInCancelledState()
     {
-        DesignSessionResponse newResponse =
-            DesignFactory.eINSTANCE.createDesignSessionResponse();
+        DesignSessionResponse newResponse = DesignFactory.eINSTANCE
+                .createDesignSessionResponse();
         newResponse.setSessionStatus( SessionStatus.USER_CANCELLED_LITERAL );
-        setResponse( newResponse );        
+        setResponse( newResponse );
     }
 
     /* (non-Javadoc)
@@ -169,7 +169,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
     {
         if( getRequest() == null )
             return null;
-        
+
         return getRequest().getDataSourceDesign();
     }
 
@@ -181,7 +181,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
     {
         if( getRequest() == null )
             return null;
-        
+
         return getRequest().getDataSetDesign();
     }
 
@@ -193,7 +193,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
     {
         if( getResponse() == null )
             return null;
-        
+
         return getResponse().getDataSourceDesign();
     }
 
@@ -205,7 +205,7 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
     {
         if( getResponse() == null )
             return null;
-        
+
         return getResponse().getDataSetDesign();
     }
 
@@ -224,14 +224,21 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetRequest( DesignSessionRequest newRequest, NotificationChain msgs )
+    public NotificationChain basicSetRequest( DesignSessionRequest newRequest,
+            NotificationChain msgs )
     {
         DesignSessionRequest oldRequest = m_request;
         m_request = newRequest;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.ODA_DESIGN_SESSION__REQUEST, oldRequest, newRequest);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.ODA_DESIGN_SESSION__REQUEST, oldRequest,
+                    newRequest );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -243,18 +250,27 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public void setRequest( DesignSessionRequest newRequest )
     {
-        if (newRequest != m_request)
+        if( newRequest != m_request )
         {
             NotificationChain msgs = null;
-            if (m_request != null)
-                msgs = ((InternalEObject)m_request).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.ODA_DESIGN_SESSION__REQUEST, null, msgs);
-            if (newRequest != null)
-                msgs = ((InternalEObject)newRequest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.ODA_DESIGN_SESSION__REQUEST, null, msgs);
-            msgs = basicSetRequest(newRequest, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_request != null )
+                msgs = ((InternalEObject) m_request).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.ODA_DESIGN_SESSION__REQUEST,
+                        null, msgs );
+            if( newRequest != null )
+                msgs = ((InternalEObject) newRequest).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.ODA_DESIGN_SESSION__REQUEST,
+                        null, msgs );
+            msgs = basicSetRequest( newRequest, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ODA_DESIGN_SESSION__REQUEST, newRequest, newRequest));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.ODA_DESIGN_SESSION__REQUEST, newRequest,
+                    newRequest ) );
     }
 
     /**
@@ -272,14 +288,21 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetResponse( DesignSessionResponse newResponse, NotificationChain msgs )
+    public NotificationChain basicSetResponse(
+            DesignSessionResponse newResponse, NotificationChain msgs )
     {
         DesignSessionResponse oldResponse = m_response;
         m_response = newResponse;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.ODA_DESIGN_SESSION__RESPONSE, oldResponse, newResponse);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.ODA_DESIGN_SESSION__RESPONSE, oldResponse,
+                    newResponse );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -291,18 +314,27 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      */
     public void setResponse( DesignSessionResponse newResponse )
     {
-        if (newResponse != m_response)
+        if( newResponse != m_response )
         {
             NotificationChain msgs = null;
-            if (m_response != null)
-                msgs = ((InternalEObject)m_response).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.ODA_DESIGN_SESSION__RESPONSE, null, msgs);
-            if (newResponse != null)
-                msgs = ((InternalEObject)newResponse).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.ODA_DESIGN_SESSION__RESPONSE, null, msgs);
-            msgs = basicSetResponse(newResponse, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_response != null )
+                msgs = ((InternalEObject) m_response).eInverseRemove( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.ODA_DESIGN_SESSION__RESPONSE,
+                        null, msgs );
+            if( newResponse != null )
+                msgs = ((InternalEObject) newResponse).eInverseAdd( this,
+                        EOPPOSITE_FEATURE_BASE
+                                - DesignPackage.ODA_DESIGN_SESSION__RESPONSE,
+                        null, msgs );
+            msgs = basicSetResponse( newResponse, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ODA_DESIGN_SESSION__RESPONSE, newResponse, newResponse));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.ODA_DESIGN_SESSION__RESPONSE, newResponse,
+                    newResponse ) );
     }
 
     /**
@@ -310,21 +342,17 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
-                    return basicSetRequest(null, msgs);
-                case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
-                    return basicSetResponse(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
+            return basicSetRequest( null, msgs );
+        case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
+            return basicSetResponse( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -332,16 +360,16 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
-                return getRequest();
-            case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
-                return getResponse();
+        case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
+            return getRequest();
+        case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
+            return getResponse();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -349,18 +377,18 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
-                setRequest((DesignSessionRequest)newValue);
-                return;
-            case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
-                setResponse((DesignSessionResponse)newValue);
-                return;
+        case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
+            setRequest( (DesignSessionRequest) newValue );
+            return;
+        case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
+            setResponse( (DesignSessionResponse) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -368,18 +396,18 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
-                setRequest((DesignSessionRequest)null);
-                return;
-            case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
-                setResponse((DesignSessionResponse)null);
-                return;
+        case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
+            setRequest( (DesignSessionRequest) null );
+            return;
+        case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
+            setResponse( (DesignSessionResponse) null );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -387,16 +415,16 @@ public class OdaDesignSessionImpl extends EObjectImpl implements OdaDesignSessio
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
-                return m_request != null;
-            case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
-                return m_response != null;
+        case DesignPackage.ODA_DESIGN_SESSION__REQUEST:
+            return m_request != null;
+        case DesignPackage.ODA_DESIGN_SESSION__RESPONSE:
+            return m_response != null;
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
 } //OdaDesignSessionImpl

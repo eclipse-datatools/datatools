@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: ParameterFieldsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -20,17 +20,11 @@ import java.util.Collection;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFields;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -54,7 +48,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached value of the '{@link #getFieldCollection() <em>Field Collection</em>}' containment reference list.
@@ -83,7 +77,7 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getParameterFields();
+        return DesignPackage.Literals.PARAMETER_FIELDS;
     }
 
     /**
@@ -93,9 +87,11 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      */
     public EList getFieldCollection()
     {
-        if (m_fieldCollection == null)
+        if( m_fieldCollection == null )
         {
-            m_fieldCollection = new EObjectContainmentEList(ParameterFieldDefinition.class, this, DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION);
+            m_fieldCollection = new EObjectContainmentEList(
+                    ParameterFieldDefinition.class, this,
+                    DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION );
         }
         return m_fieldCollection;
     }
@@ -105,19 +101,16 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-                    return ((InternalEList)getFieldCollection()).basicRemove(otherEnd, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
+            return ((InternalEList) getFieldCollection()).basicRemove(
+                    otherEnd, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -125,14 +118,14 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet(EStructuralFeature eFeature, boolean resolve)
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-                return getFieldCollection();
+        case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
+            return getFieldCollection();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -140,16 +133,16 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet(EStructuralFeature eFeature, Object newValue)
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-                getFieldCollection().clear();
-                getFieldCollection().addAll((Collection)newValue);
-                return;
+        case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
+            getFieldCollection().clear();
+            getFieldCollection().addAll( (Collection) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -157,15 +150,15 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset(EStructuralFeature eFeature)
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-                getFieldCollection().clear();
-                return;
+        case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
+            getFieldCollection().clear();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -173,14 +166,14 @@ public class ParameterFieldsImpl extends EObjectImpl implements ParameterFields
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet(EStructuralFeature eFeature)
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
-                return m_fieldCollection != null && !m_fieldCollection.isEmpty();
+        case DesignPackage.PARAMETER_FIELDS__FIELD_COLLECTION:
+            return m_fieldCollection != null && !m_fieldCollection.isEmpty();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
 } //ParameterFieldsImpl

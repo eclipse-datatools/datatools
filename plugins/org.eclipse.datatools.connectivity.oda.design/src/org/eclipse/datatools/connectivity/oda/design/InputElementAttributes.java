@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributes.java,v 1.3 2006/02/07 05:52:28 lchan Exp $
+ * $Id: InputElementAttributes.java,v 1.4 2006/02/12 06:45:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -39,7 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes()
- * @model 
+ * @model extendedMetaData="name='InputElementAttributes' kind='elementOnly'"
  * @generated
  */
 public interface InputElementAttributes extends EObject
@@ -49,7 +49,7 @@ public interface InputElementAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Indicates whether this input element has either
@@ -60,7 +60,7 @@ public interface InputElementAttributes extends EObject
      * @generated NOT
      */
     boolean hasValueChoices();
-    
+
     /**
      * Returns the value of the '<em><b>Default Scalar Value</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -72,6 +72,7 @@ public interface InputElementAttributes extends EObject
      * @see #setDefaultScalarValue(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='defaultScalarValue' namespace='##targetNamespace'"
      * @generated
      */
     String getDefaultScalarValue();
@@ -92,7 +93,7 @@ public interface InputElementAttributes extends EObject
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Indicates whether this element value is editable or read-only in the host designer.  Applicable only if its container is visible, e.g. for public properties and input parameters.
+     * Indicates whether this element value is editable or read-only in the host designer.  A host designer can further design whether to hide this attribute.  Applicable only if its container is visible, e.g. for public properties and input parameters.
      * <!-- end-model-doc -->
      * @return the value of the '<em>Editable</em>' attribute.
      * @see #isSetEditable()
@@ -100,6 +101,7 @@ public interface InputElementAttributes extends EObject
      * @see #setEditable(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_Editable()
      * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='editable' namespace='##targetNamespace'"
      * @generated
      */
     boolean isEditable();
@@ -153,6 +155,7 @@ public interface InputElementAttributes extends EObject
      * @see #setOptional(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_Optional()
      * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='optional' namespace='##targetNamespace'"
      * @generated
      */
     boolean isOptional();
@@ -206,6 +209,7 @@ public interface InputElementAttributes extends EObject
      * @see #setMasksValue(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_MasksValue()
      * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='masksValue' namespace='##targetNamespace'"
      * @generated
      */
     boolean isMasksValue();
@@ -252,7 +256,8 @@ public interface InputElementAttributes extends EObject
      * @return the value of the '<em>Static Value Choices</em>' containment reference.
      * @see #setStaticValueChoices(ScalarValueChoices)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_StaticValueChoices()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='staticValueChoices' namespace='##targetNamespace'"
      * @generated
      */
     ScalarValueChoices getStaticValueChoices();
@@ -274,7 +279,8 @@ public interface InputElementAttributes extends EObject
      * @return the value of the '<em>Dynamic Value Choices</em>' containment reference.
      * @see #setDynamicValueChoices(DynamicValuesQuery)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DynamicValueChoices()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='dynamicValueChoices' namespace='##targetNamespace'"
      * @generated
      */
     DynamicValuesQuery getDynamicValueChoices();
@@ -296,7 +302,8 @@ public interface InputElementAttributes extends EObject
      * @return the value of the '<em>Ui Hints</em>' containment reference.
      * @see #setUiHints(InputElementUIHints)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_UiHints()
-     * @model containment="true" resolveProxies="false"
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='uiHints' namespace='##targetNamespace'"
      * @generated
      */
     InputElementUIHints getUiHints();

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementUIHintsImpl.java,v 1.1 2005/12/29 04:17:54 lchan Exp $
+ * $Id: InputElementUIHintsImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,12 +19,8 @@ import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -41,14 +37,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InputElementUIHintsImpl extends EObjectImpl implements InputElementUIHints
+public class InputElementUIHintsImpl extends EObjectImpl implements
+        InputElementUIHints
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getPromptStyle() <em>Prompt Style</em>}' attribute.
@@ -96,7 +93,7 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getInputElementUIHints();
+        return DesignPackage.Literals.INPUT_ELEMENT_UI_HINTS;
     }
 
     /**
@@ -109,14 +106,13 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
     {
         if( isSetPromptStyle() )
             return getPromptStyleGen();
-        
+
         // not set, applies default based on settings of
         // the container element, InputElementAttributes
-        assert( eContainer() instanceof InputElementAttributes );
+        assert (eContainer() instanceof InputElementAttributes);
         InputElementAttributes parent = (InputElementAttributes) eContainer();
-        return parent.hasValueChoices() ?
-                InputPromptControlStyle.SELECTABLE_LIST_LITERAL :
-                InputPromptControlStyle.TEXT_FIELD_LITERAL ;
+        return parent.hasValueChoices() ? InputPromptControlStyle.SELECTABLE_LIST_LITERAL
+                : InputPromptControlStyle.TEXT_FIELD_LITERAL;
     }
 
     /**
@@ -137,11 +133,14 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
     public void setPromptStyle( InputPromptControlStyle newPromptStyle )
     {
         InputPromptControlStyle oldPromptStyle = m_promptStyle;
-        m_promptStyle = newPromptStyle == null ? PROMPT_STYLE_EDEFAULT : newPromptStyle;
+        m_promptStyle = newPromptStyle == null ? PROMPT_STYLE_EDEFAULT
+                : newPromptStyle;
         boolean oldPromptStyleESet = m_promptStyleESet;
         m_promptStyleESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE, oldPromptStyle, m_promptStyle, !oldPromptStyleESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE,
+                    oldPromptStyle, m_promptStyle, !oldPromptStyleESet ) );
     }
 
     /**
@@ -155,8 +154,10 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
         boolean oldPromptStyleESet = m_promptStyleESet;
         m_promptStyle = PROMPT_STYLE_EDEFAULT;
         m_promptStyleESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE, oldPromptStyle, PROMPT_STYLE_EDEFAULT, oldPromptStyleESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE,
+                    oldPromptStyle, PROMPT_STYLE_EDEFAULT, oldPromptStyleESet ) );
     }
 
     /**
@@ -174,14 +175,14 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
-                return getPromptStyle();
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
+            return getPromptStyle();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -189,15 +190,15 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
-                setPromptStyle((InputPromptControlStyle)newValue);
-                return;
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
+            setPromptStyle( (InputPromptControlStyle) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -205,15 +206,15 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
-                unsetPromptStyle();
-                return;
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
+            unsetPromptStyle();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -221,14 +222,14 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
-                return isSetPromptStyle();
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
+            return isSetPromptStyle();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -238,12 +239,16 @@ public class InputElementUIHintsImpl extends EObjectImpl implements InputElement
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (promptStyle: "); //$NON-NLS-1$
-        if (m_promptStyleESet) result.append(m_promptStyle); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (promptStyle: " ); //$NON-NLS-1$
+        if( m_promptStyleESet )
+            result.append( m_promptStyle );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

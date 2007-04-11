@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DocumentRoot.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot()
- * @model 
+ * @model extendedMetaData="name='' kind='mixed'"
  * @generated
  */
 public interface DocumentRoot extends EObject
@@ -46,7 +46,7 @@ public interface DocumentRoot extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Mixed</b></em>' attribute list.
@@ -56,6 +56,7 @@ public interface DocumentRoot extends EObject
      * @return the value of the '<em>Mixed</em>' attribute list.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_Mixed()
      * @model unique="false" dataType="org.eclipse.emf.ecore.EFeatureMapEntry" many="true"
+     *        extendedMetaData="kind='elementWildcard' name=':mixed'"
      * @generated
      */
     FeatureMap getMixed();
@@ -69,6 +70,7 @@ public interface DocumentRoot extends EObject
      * @return the value of the '<em>XMLNS Prefix Map</em>' map.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_XMLNSPrefixMap()
      * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry" keyType="java.lang.String" valueType="java.lang.String" transient="true"
+     *        extendedMetaData="kind='attribute' name='xmlns:prefix'"
      * @generated
      */
     EMap getXMLNSPrefixMap();
@@ -82,6 +84,7 @@ public interface DocumentRoot extends EObject
      * @return the value of the '<em>XSI Schema Location</em>' map.
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_XSISchemaLocation()
      * @model mapType="org.eclipse.emf.ecore.EStringToStringMapEntry" keyType="java.lang.String" valueType="java.lang.String" transient="true"
+     *        extendedMetaData="kind='attribute' name='xsi:schemaLocation'"
      * @generated
      */
     EMap getXSISchemaLocation();
@@ -96,7 +99,8 @@ public interface DocumentRoot extends EObject
      * @return the value of the '<em>Oda Design Session</em>' containment reference.
      * @see #setOdaDesignSession(OdaDesignSession)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDocumentRoot_OdaDesignSession()
-     * @model containment="true" resolveProxies="false" transient="true" volatile="true" derived="true"
+     * @model containment="true" upper="-2" transient="true" volatile="true" derived="true"
+     *        extendedMetaData="kind='element' name='odaDesignSession' namespace='##targetNamespace'"
      * @generated
      */
     OdaDesignSession getOdaDesignSession();

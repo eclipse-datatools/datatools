@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,19 +11,15 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: AxisAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -48,7 +44,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getAxisType() <em>Axis Type</em>}' attribute.
@@ -125,7 +121,7 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getAxisAttributes();
+        return DesignPackage.Literals.AXIS_ATTRIBUTES;
     }
 
     /**
@@ -149,8 +145,10 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
         m_axisType = newAxisType == null ? AXIS_TYPE_EDEFAULT : newAxisType;
         boolean oldAxisTypeESet = m_axisTypeESet;
         m_axisTypeESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE, oldAxisType, m_axisType, !oldAxisTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE, oldAxisType,
+                    m_axisType, !oldAxisTypeESet ) );
     }
 
     /**
@@ -164,8 +162,10 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
         boolean oldAxisTypeESet = m_axisTypeESet;
         m_axisType = AXIS_TYPE_EDEFAULT;
         m_axisTypeESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE, oldAxisType, AXIS_TYPE_EDEFAULT, oldAxisTypeESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE, oldAxisType,
+                    AXIS_TYPE_EDEFAULT, oldAxisTypeESet ) );
     }
 
     /**
@@ -199,8 +199,10 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
         m_onColumnLayout = newOnColumnLayout;
         boolean oldOnColumnLayoutESet = m_onColumnLayoutESet;
         m_onColumnLayoutESet = true;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT, oldOnColumnLayout, m_onColumnLayout, !oldOnColumnLayoutESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT,
+                    oldOnColumnLayout, m_onColumnLayout, !oldOnColumnLayoutESet ) );
     }
 
     /**
@@ -214,8 +216,11 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
         boolean oldOnColumnLayoutESet = m_onColumnLayoutESet;
         m_onColumnLayout = ON_COLUMN_LAYOUT_EDEFAULT;
         m_onColumnLayoutESet = false;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.UNSET, DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT, oldOnColumnLayout, ON_COLUMN_LAYOUT_EDEFAULT, oldOnColumnLayoutESet));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.UNSET,
+                    DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT,
+                    oldOnColumnLayout, ON_COLUMN_LAYOUT_EDEFAULT,
+                    oldOnColumnLayoutESet ) );
     }
 
     /**
@@ -233,16 +238,16 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
-                return getAxisType();
-            case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
-                return isOnColumnLayout() ? Boolean.TRUE : Boolean.FALSE;
+        case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
+            return getAxisType();
+        case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
+            return isOnColumnLayout() ? Boolean.TRUE : Boolean.FALSE;
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -250,18 +255,18 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
-                setAxisType((AxisType)newValue);
-                return;
-            case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
-                setOnColumnLayout(((Boolean)newValue).booleanValue());
-                return;
+        case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
+            setAxisType( (AxisType) newValue );
+            return;
+        case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
+            setOnColumnLayout( ((Boolean) newValue).booleanValue() );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -269,18 +274,18 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
-                unsetAxisType();
-                return;
-            case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
-                unsetOnColumnLayout();
-                return;
+        case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
+            unsetAxisType();
+            return;
+        case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
+            unsetOnColumnLayout();
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -288,16 +293,16 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
-                return isSetAxisType();
-            case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
-                return isSetOnColumnLayout();
+        case DesignPackage.AXIS_ATTRIBUTES__AXIS_TYPE:
+            return isSetAxisType();
+        case DesignPackage.AXIS_ATTRIBUTES__ON_COLUMN_LAYOUT:
+            return isSetOnColumnLayout();
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -307,14 +312,21 @@ public class AxisAttributesImpl extends EObjectImpl implements AxisAttributes
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (axisType: "); //$NON-NLS-1$
-        if (m_axisTypeESet) result.append(m_axisType); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(", onColumnLayout: "); //$NON-NLS-1$
-        if (m_onColumnLayoutESet) result.append(m_onColumnLayout); else result.append("<unset>"); //$NON-NLS-1$
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (axisType: " ); //$NON-NLS-1$
+        if( m_axisTypeESet )
+            result.append( m_axisType );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", onColumnLayout: " ); //$NON-NLS-1$
+        if( m_onColumnLayoutESet )
+            result.append( m_onColumnLayout );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ')' );
         return result.toString();
     }
 

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: OutputElementAttributesImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: OutputElementAttributesImpl.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -19,14 +19,10 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -45,14 +41,15 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class OutputElementAttributesImpl extends EObjectImpl implements OutputElementAttributes
+public class OutputElementAttributesImpl extends EObjectImpl implements
+        OutputElementAttributes
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
@@ -121,7 +118,7 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      */
     protected EClass eStaticClass()
     {
-        return DesignPackage.eINSTANCE.getOutputElementAttributes();
+        return DesignPackage.Literals.OUTPUT_ELEMENT_ATTRIBUTES;
     }
 
     /**
@@ -143,8 +140,10 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
     {
         String oldLabel = m_label;
         m_label = newLabel;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL, oldLabel, m_label));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL, oldLabel,
+                    m_label ) );
     }
 
     /**
@@ -156,10 +155,10 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
     {
         if( getFormattingHintsGen() != null )
             return getFormattingHintsGen();
-        
+
         return DesignFactory.eINSTANCE.createValueFormatHints();
     }
-    
+
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -175,14 +174,21 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetFormattingHints( ValueFormatHints newFormattingHints, NotificationChain msgs )
+    public NotificationChain basicSetFormattingHints(
+            ValueFormatHints newFormattingHints, NotificationChain msgs )
     {
         ValueFormatHints oldFormattingHints = m_formattingHints;
         m_formattingHints = newFormattingHints;
-        if (eNotificationRequired())
+        if( eNotificationRequired() )
         {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, oldFormattingHints, newFormattingHints);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
+                    oldFormattingHints, newFormattingHints );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
         }
         return msgs;
     }
@@ -194,18 +200,31 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      */
     public void setFormattingHints( ValueFormatHints newFormattingHints )
     {
-        if (newFormattingHints != m_formattingHints)
+        if( newFormattingHints != m_formattingHints )
         {
             NotificationChain msgs = null;
-            if (m_formattingHints != null)
-                msgs = ((InternalEObject)m_formattingHints).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, null, msgs);
-            if (newFormattingHints != null)
-                msgs = ((InternalEObject)newFormattingHints).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, null, msgs);
-            msgs = basicSetFormattingHints(newFormattingHints, msgs);
-            if (msgs != null) msgs.dispatch();
+            if( m_formattingHints != null )
+                msgs = ((InternalEObject) m_formattingHints)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
+                                null, msgs );
+            if( newFormattingHints != null )
+                msgs = ((InternalEObject) newFormattingHints)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
+                                null, msgs );
+            msgs = basicSetFormattingHints( newFormattingHints, msgs );
+            if( msgs != null )
+                msgs.dispatch();
         }
-        else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS, newFormattingHints, newFormattingHints));
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS,
+                    newFormattingHints, newFormattingHints ) );
     }
 
     /**
@@ -227,8 +246,10 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
     {
         String oldHelpText = m_helpText;
         m_helpText = newHelpText;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT, oldHelpText, m_helpText));
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT,
+                    oldHelpText, m_helpText ) );
     }
 
     /**
@@ -236,19 +257,15 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain eInverseRemove( InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs )
+    public NotificationChain eInverseRemove( InternalEObject otherEnd,
+            int featureID, NotificationChain msgs )
     {
-        if (featureID >= 0)
+        switch( featureID )
         {
-            switch (eDerivedStructuralFeatureID(featureID, baseClass))
-            {
-                case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-                    return basicSetFormattingHints(null, msgs);
-                default:
-                    return eDynamicInverseRemove(otherEnd, featureID, baseClass, msgs);
-            }
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+            return basicSetFormattingHints( null, msgs );
         }
-        return eBasicSetContainer(null, featureID, msgs);
+        return super.eInverseRemove( otherEnd, featureID, msgs );
     }
 
     /**
@@ -256,18 +273,18 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object eGet( EStructuralFeature eFeature, boolean resolve )
+    public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-                return getLabel();
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-                return getFormattingHints();
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-                return getHelpText();
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+            return getLabel();
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+            return getFormattingHints();
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+            return getHelpText();
         }
-        return eDynamicGet(eFeature, resolve);
+        return super.eGet( featureID, resolve, coreType );
     }
 
     /**
@@ -275,21 +292,21 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eSet( EStructuralFeature eFeature, Object newValue )
+    public void eSet( int featureID, Object newValue )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-                setLabel((String)newValue);
-                return;
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-                setFormattingHints((ValueFormatHints)newValue);
-                return;
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-                setHelpText((String)newValue);
-                return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+            setLabel( (String) newValue );
+            return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+            setFormattingHints( (ValueFormatHints) newValue );
+            return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+            setHelpText( (String) newValue );
+            return;
         }
-        eDynamicSet(eFeature, newValue);
+        super.eSet( featureID, newValue );
     }
 
     /**
@@ -297,21 +314,21 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public void eUnset( EStructuralFeature eFeature )
+    public void eUnset( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-                setLabel(LABEL_EDEFAULT);
-                return;
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-                setFormattingHints((ValueFormatHints)null);
-                return;
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-                setHelpText(HELP_TEXT_EDEFAULT);
-                return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+            setLabel( LABEL_EDEFAULT );
+            return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+            setFormattingHints( (ValueFormatHints) null );
+            return;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+            setHelpText( HELP_TEXT_EDEFAULT );
+            return;
         }
-        eDynamicUnset(eFeature);
+        super.eUnset( featureID );
     }
 
     /**
@@ -319,18 +336,20 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      * <!-- end-user-doc -->
      * @generated
      */
-    public boolean eIsSet( EStructuralFeature eFeature )
+    public boolean eIsSet( int featureID )
     {
-        switch (eDerivedStructuralFeatureID(eFeature))
+        switch( featureID )
         {
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
-                return LABEL_EDEFAULT == null ? m_label != null : !LABEL_EDEFAULT.equals(m_label);
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
-                return m_formattingHints != null;
-            case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
-                return HELP_TEXT_EDEFAULT == null ? m_helpText != null : !HELP_TEXT_EDEFAULT.equals(m_helpText);
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__LABEL:
+            return LABEL_EDEFAULT == null ? m_label != null : !LABEL_EDEFAULT
+                    .equals( m_label );
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__FORMATTING_HINTS:
+            return m_formattingHints != null;
+        case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES__HELP_TEXT:
+            return HELP_TEXT_EDEFAULT == null ? m_helpText != null
+                    : !HELP_TEXT_EDEFAULT.equals( m_helpText );
         }
-        return eDynamicIsSet(eFeature);
+        return super.eIsSet( featureID );
     }
 
     /**
@@ -340,14 +359,15 @@ public class OutputElementAttributesImpl extends EObjectImpl implements OutputEl
      */
     public String toString()
     {
-        if ( eIsProxy() ) return super.toString();
+        if( eIsProxy() )
+            return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (label: "); //$NON-NLS-1$
-        result.append(m_label);
-        result.append(", helpText: "); //$NON-NLS-1$
-        result.append(m_helpText);
-        result.append(')');
+        StringBuffer result = new StringBuffer( super.toString() );
+        result.append( " (label: " ); //$NON-NLS-1$
+        result.append( m_label );
+        result.append( ", helpText: " ); //$NON-NLS-1$
+        result.append( m_helpText );
+        result.append( ')' );
         return result.toString();
     }
 

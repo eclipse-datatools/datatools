@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: AxisType.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -40,7 +40,7 @@ public final class AxisType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The '<em><b>Dimension Member</b></em>' literal value.
@@ -83,7 +83,8 @@ public final class AxisType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final AxisType DIMENSION_MEMBER_LITERAL = new AxisType(DIMENSION_MEMBER, "DimensionMember"); //$NON-NLS-1$
+    public static final AxisType DIMENSION_MEMBER_LITERAL = new AxisType(
+            DIMENSION_MEMBER, "DimensionMember", "DimensionMember" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Dimension Attribute</b></em>' literal object.
@@ -93,7 +94,8 @@ public final class AxisType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final AxisType DIMENSION_ATTRIBUTE_LITERAL = new AxisType(DIMENSION_ATTRIBUTE, "DimensionAttribute"); //$NON-NLS-1$
+    public static final AxisType DIMENSION_ATTRIBUTE_LITERAL = new AxisType(
+            DIMENSION_ATTRIBUTE, "DimensionAttribute", "DimensionAttribute" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * The '<em><b>Measure</b></em>' literal object.
@@ -103,7 +105,8 @@ public final class AxisType extends AbstractEnumerator
      * @generated
      * @ordered
      */
-    public static final AxisType MEASURE_LITERAL = new AxisType(MEASURE, "Measure"); //$NON-NLS-1$
+    public static final AxisType MEASURE_LITERAL = new AxisType( MEASURE,
+            "Measure", "Measure" ); //$NON-NLS-1$ //$NON-NLS-2$
 
     /**
      * An array of all the '<em><b>Axis Type</b></em>' enumerators.
@@ -111,13 +114,8 @@ public final class AxisType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final AxisType[] VALUES_ARRAY =
-        new AxisType[]
-        {
-            DIMENSION_MEMBER_LITERAL,
-            DIMENSION_ATTRIBUTE_LITERAL,
-            MEASURE_LITERAL,
-        };
+    private static final AxisType[] VALUES_ARRAY = new AxisType[]
+    { DIMENSION_MEMBER_LITERAL, DIMENSION_ATTRIBUTE_LITERAL, MEASURE_LITERAL, };
 
     /**
      * A public read-only list of all the '<em><b>Axis Type</b></em>' enumerators.
@@ -125,20 +123,21 @@ public final class AxisType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List VALUES = Collections.unmodifiableList( Arrays
+            .asList( VALUES_ARRAY ) );
 
     /**
-     * Returns the '<em><b>Axis Type</b></em>' literal with the specified name.
+     * Returns the '<em><b>Axis Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static AxisType get( String name )
+    public static AxisType get( String literal )
     {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
         {
             AxisType result = VALUES_ARRAY[i];
-            if (result.toString().equals(name))
+            if( result.toString().equals( literal ) )
             {
                 return result;
             }
@@ -147,20 +146,42 @@ public final class AxisType extends AbstractEnumerator
     }
 
     /**
-     * Returns the '<em><b>Axis Type</b></em>' literal with the specified value.
+     * Returns the '<em><b>Axis Type</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static AxisType getByName( String name )
+    {
+        for( int i = 0; i < VALUES_ARRAY.length; ++i)
+        {
+            AxisType result = VALUES_ARRAY[i];
+            if( result.getName().equals( name ) )
+            {
+                return result;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the '<em><b>Axis Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public static AxisType get( int value )
     {
-        switch (value)
+        switch( value )
         {
-            case DIMENSION_MEMBER: return DIMENSION_MEMBER_LITERAL;
-            case DIMENSION_ATTRIBUTE: return DIMENSION_ATTRIBUTE_LITERAL;
-            case MEASURE: return MEASURE_LITERAL;
+        case DIMENSION_MEMBER:
+            return DIMENSION_MEMBER_LITERAL;
+        case DIMENSION_ATTRIBUTE:
+            return DIMENSION_ATTRIBUTE_LITERAL;
+        case MEASURE:
+            return MEASURE_LITERAL;
         }
-        return null;	
+        return null;
     }
 
     /**
@@ -169,9 +190,9 @@ public final class AxisType extends AbstractEnumerator
      * <!-- end-user-doc -->
      * @generated
      */
-    private AxisType( int value, String name )
+    private AxisType( int value, String name, String literal )
     {
-        super( value, name );
+        super( value, name, literal );
     }
 
 } //AxisType

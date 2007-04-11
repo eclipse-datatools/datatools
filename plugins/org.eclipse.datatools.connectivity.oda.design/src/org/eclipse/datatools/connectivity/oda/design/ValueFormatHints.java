@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ValueFormatHints.java,v 1.1 2005/12/29 04:17:56 lchan Exp $
+ * $Id: ValueFormatHints.java,v 1.2 2006/03/09 05:09:18 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -47,7 +47,7 @@ public interface ValueFormatHints extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Display Size</b></em>' attribute.
@@ -63,7 +63,7 @@ public interface ValueFormatHints extends EObject
      * @see #setDisplaySize(int)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_DisplaySize()
      * @model default="-1" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Int"
-     extendedMetaData="kind='element' name='displaySize' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='displaySize' namespace='##targetNamespace'"
      * @generated
      */
     int getDisplaySize();
@@ -114,7 +114,7 @@ public interface ValueFormatHints extends EObject
      * @see #setDisplayFormat(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_DisplayFormat()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
-     extendedMetaData="kind='element' name='displayFormat' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='displayFormat' namespace='##targetNamespace'"
      * @generated
      */
     String getDisplayFormat();
@@ -145,7 +145,7 @@ public interface ValueFormatHints extends EObject
      * @see #setTextFormatType(TextFormatType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_TextFormatType()
      * @model default="Plain" unique="false" unsettable="true"
-     extendedMetaData="kind='element' name='textFormatType' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='textFormatType' namespace='##targetNamespace'"
      * @generated
      */
     TextFormatType getTextFormatType();
@@ -202,7 +202,7 @@ public interface ValueFormatHints extends EObject
      * @see #setHorizontalAlignment(HorizontalAlignment)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_HorizontalAlignment()
      * @model default="Automatic" unique="false" unsettable="true"
-     extendedMetaData="kind='element' name='horizontalAlignment' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='horizontalAlignment' namespace='##targetNamespace'"
      * @generated
      */
     HorizontalAlignment getHorizontalAlignment();
@@ -259,7 +259,7 @@ public interface ValueFormatHints extends EObject
      * @see #setTextWrapType(TextWrapType)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getValueFormatHints_TextWrapType()
      * @model default="None" unique="false" unsettable="true"
-     extendedMetaData="kind='element' name='textWrapType' namespace='##targetNamespace'"
+     *        extendedMetaData="kind='element' name='textWrapType' namespace='##targetNamespace'"
      * @generated
      */
     TextWrapType getTextWrapType();

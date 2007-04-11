@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2006 Actuate Corporation.
+ * Copyright (c) 2005, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: NameValuePair.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getNameValuePair()
- * @model 
+ * @model extendedMetaData="name='NameValuePair' kind='elementOnly'"
  * @generated
  */
 public interface NameValuePair extends EObject
@@ -44,7 +44,7 @@ public interface NameValuePair extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2006 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -54,6 +54,7 @@ public interface NameValuePair extends EObject
      * @see #setName(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getNameValuePair_Name()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String" required="true"
+     *        extendedMetaData="kind='element' name='name' namespace='##targetNamespace'"
      * @generated
      */
     String getName();
@@ -76,6 +77,7 @@ public interface NameValuePair extends EObject
      * @see #setValue(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getNameValuePair_Value()
      * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     *        extendedMetaData="kind='element' name='value' namespace='##targetNamespace'"
      * @generated
      */
     String getValue();

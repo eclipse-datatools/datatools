@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.9 2007/03/21 06:31:41 lchan Exp $
+ * $Id: DesignUtil.java,v 1.10 2007/03/22 03:58:13 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -132,7 +132,7 @@ public class DesignUtil
             
             // add specialized design validator(s) to registry
             // for use by Diagnostician
-            eValidatorRegistry.put( DesignPackage.eINSTANCE.getDataSetQuery().eContainer(),
+            eValidatorRegistry.put( DesignPackage.Literals.DATA_SET_QUERY.eContainer(),
                                     new DesignValidator() );
             sm_diagnostician = new Diagnostician( eValidatorRegistry );
         }
