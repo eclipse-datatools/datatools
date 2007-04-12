@@ -762,8 +762,10 @@ class ProfileSelectionPageHelper
      */
     private String getConnProfilePathControlText()
     {
-        String localizedText = m_connectionProfilePath.getText(); 
-        return TextProcessor.deprocess( localizedText );
+        String localizedText = m_connectionProfilePath.getText();
+        // temporarily comment out call to osgi 3.3 API method
+//        return TextProcessor.deprocess( localizedText );
+        return localizedText;
     }
 
 }
