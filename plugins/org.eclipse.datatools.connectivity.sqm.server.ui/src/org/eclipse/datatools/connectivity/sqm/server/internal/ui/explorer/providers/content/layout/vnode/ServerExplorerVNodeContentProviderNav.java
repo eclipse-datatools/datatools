@@ -61,11 +61,20 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	    }
 	    else if (parent instanceof Schema)
 	    {
-	        return registry.getDefinition(((Schema)parent).getDatabase());
+	    	Schema schema = (Schema)parent;
+	    	Catalog catalog = schema.getCatalog();
+	    	Database database;
+	    	if (catalog == null) {
+	    		database = schema.getDatabase();
+	    	}
+	    	else {
+	    		database = catalog.getDatabase();
+	    	}
+	        return registry.getDefinition(database);
 	    }
 	    else if (parent instanceof Table)
 	    {
-	        return registry.getDefinition(((Table)parent).getSchema().getDatabase());
+	        return getDatabaseDefinition(((Table)parent).getSchema());
 	    }
 	    return null;
 	}

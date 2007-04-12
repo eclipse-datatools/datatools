@@ -21,7 +21,10 @@ public class DatabaseContainmentProvider extends AbstractContainmentProvider {
 	public Collection getContainedElements(EObject obj) {
 		Database database = (Database) obj;
 	    Collection children = super.getContainedElements(obj);
-	    children.addAll(database.getSchemas());
+	    if (database.getCatalogs() != null && database.getCatalogs().size() > 0) 
+	    	children.addAll(database.getCatalogs());
+	    else
+	    	children.addAll(database.getSchemas());
 	    children.addAll(database.getAuthorizationIds());
 	    return children;
 	}

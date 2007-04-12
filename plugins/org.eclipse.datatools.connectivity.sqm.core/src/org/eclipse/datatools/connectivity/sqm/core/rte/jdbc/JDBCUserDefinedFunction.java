@@ -10,6 +10,7 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
+import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -18,6 +19,7 @@ import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideMan
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDFColumnLoader;
+import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -88,10 +90,17 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 
 	private void loadParameters() {
 		try {
-			super.getParameters().addAll(getParameterLoader().loadColumns());
+			List parameters = getParameterLoader().loadColumns();
+			int numParameters = parameters.size();
+			if (numParameters > 0
+					&& parameters.get(numParameters - 1) instanceof RoutineResultTable) {
+				setReturnTable((RoutineResultTable) parameters.get(numParameters - 1));
+				parameters.remove(numParameters - 1);
+			}
+			super.getParameters().addAll(parameters);
 			parametersLoaded = Boolean.TRUE;
 		}
-		catch(Exception e) {
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

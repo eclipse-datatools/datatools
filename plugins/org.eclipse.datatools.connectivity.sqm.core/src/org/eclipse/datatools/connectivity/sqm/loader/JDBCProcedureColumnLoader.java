@@ -22,6 +22,8 @@ import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCColumn;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCParameter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
@@ -274,14 +276,16 @@ public class JDBCProcedureColumnLoader extends JDBCBaseLoader {
 	 * @return a new Parameter object. Default is ParameterImpl.
 	 */
 	protected Parameter createParameter() {
-		return SQLRoutinesFactory.eINSTANCE.createParameter();
+		return new JDBCParameter();
+//		return SQLRoutinesFactory.eINSTANCE.createParameter();
 	}
 
 	/**
 	 * @return a new Column object. Default is ColumnImpl.
 	 */
 	protected Column createColumn() {
-		return SQLTablesFactory.eINSTANCE.createColumn();
+		return new JDBCColumn();
+//		return SQLTablesFactory.eINSTANCE.createColumn();
 	}
 
 	/**
