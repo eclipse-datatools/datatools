@@ -9,5 +9,8 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity;bundle-version="[0.9.0,1.5.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.5.0)"
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.5.0)",
+ org.eclipse.hyades.test.tools.core,
+ org.eclipse.tptp.test.auto.gui,
+ org.junit
 Eclipse-LazyStart: true
