@@ -302,6 +302,20 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 	/**
 	 * 
+	 * @return
+	 */
+	private static boolean isBidi( )
+	{
+		String lang = ( String ) System.getProperties( ).get( "osgi.nl.user" );
+		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) 
+				|| "ur".equals(lang)) //$NON-NLS-1$
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * 
 	 * @param parent
 	 * @return
 	 */
@@ -432,9 +446,19 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		} );
 
 		btnAdd = new Button( btnComposite, SWT.NONE );
-		btnAdd.setImage( PlatformUI.getWorkbench( )
-				.getSharedImages( )
-				.getImage( ISharedImages.IMG_TOOL_FORWARD ) );
+		if ( !isBidi( ) )
+		{
+			btnAdd.setImage( PlatformUI.getWorkbench( )
+					.getSharedImages( )
+					.getImage( ISharedImages.IMG_TOOL_FORWARD ) );
+		}
+		else
+		{
+			btnAdd.setImage( PlatformUI.getWorkbench( )
+					.getSharedImages( )
+					.getImage( ISharedImages.IMG_TOOL_BACK ) );
+		}
+		
 		btnAdd.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
