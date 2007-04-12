@@ -147,7 +147,6 @@
       <connectionProfile
             pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
             name="%connection.profile.name"
-            icon="icons/profile.gif"
             category="%oda.data.source.id"
             id="%oda.data.source.id">
       </connectionProfile>

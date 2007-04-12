@@ -51,24 +51,13 @@
 
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
-      <category
-            name="%data.source.name"
-            parentCategory="org.eclipse.datatools.connectivity.oda.profileCategory"
-            id="%oda.data.source.id">
-      </category>
-      <connectionProfile
-            pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            name="%connection.profile.name"
-            icon="icons/profile.gif"
-            category="%oda.data.source.id"
-            id="%oda.data.source.id">
-      </connectionProfile>
-      <connectionFactory
-            name="ODA Connection Factory"
-            profile="%oda.data.source.id"
-            class="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"
-            id="org.eclipse.datatools.connectivity.oda.IConnection">
-      </connectionFactory>
+		<newWizard
+            id="%oda.data.source.id"
+            name="%newwizard.name"
+            class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard"
+            description="%newwizard.description"
+            icon="icons/new_oda_dswiz.ico"
+            profile="%oda.data.source.id"/>
    </extension>
    <extension
          point="org.eclipse.ui.propertyPages">
