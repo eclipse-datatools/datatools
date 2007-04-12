@@ -29,6 +29,7 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.ModifyEvent;
@@ -58,7 +59,7 @@ import org.eclipse.ui.dialogs.PropertyPage;
 class ProfileSelectionPageHelper
 {
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    private static final String CONEXT_ID_CONNECTIONPROFILE = 
+    private static final String CONTEXT_ID_CONNECTIONPROFILE = 
         "org.eclipse.datatools.oda.cshelp.Wizard_ConnectionProfile_ID";//$NON-NLS-1$
     
     private WizardPage m_wizardPage;
@@ -101,7 +102,7 @@ class ProfileSelectionPageHelper
         setupDataSourceName( container );
         
         PlatformUI.getWorkbench().getHelpSystem()
-            .setHelp( container, CONEXT_ID_CONNECTIONPROFILE );
+            .setHelp( container, CONTEXT_ID_CONNECTIONPROFILE );
 
         return container;
     }
@@ -121,7 +122,7 @@ class ProfileSelectionPageHelper
             if( profileStorePath != null )
             {
                 // triggers tree population
-                m_connectionProfilePath.setText( profileStorePath );
+                setConnProfilePathControlText( profileStorePath );
                 
                 TreeItem profileItem = 
                     findProfileInTree( selectedProfile.getOdaDataSourceId(),
@@ -178,7 +179,7 @@ class ProfileSelectionPageHelper
                 m_odaDataSourceID,
                 m_dataSourceDesignName,
                 new ProfileReferenceBase( m_profileID,
-                        new Path( m_connectionProfilePath.getText() ).toFile( ),
+                        new Path( getConnProfilePathControlText() ).toFile( ),
                         m_linkRefCheckBox.getSelection() ) );
      }
     
@@ -294,7 +295,7 @@ class ProfileSelectionPageHelper
 				FileDialog dialog = new FileDialog( getShell() );
 				String text = dialog.open();
 				if( text != null )
-					m_connectionProfilePath.setText( text );
+				    setConnProfilePathControlText( text );
 			}
         } );
     }
@@ -538,7 +539,7 @@ class ProfileSelectionPageHelper
         try
         {
             return DesignSessionUtil.getProfileIdentifiers( odaDataSourceId,
-                    new Path( m_connectionProfilePath.getText( ) ).toFile( ) );
+                    new Path( getConnProfilePathControlText() ).toFile( ) );
         }
         catch ( OdaException ex )
         {
@@ -740,6 +741,29 @@ class ProfileSelectionPageHelper
     
     private boolean hasConnectionProfilePath( )
     {
-        return m_connectionProfilePath.getText().trim().length() > 0;
+        return getConnProfilePathControlText().trim().length() > 0;
     }
+
+    /**
+     * Process the given text in bi-directional locale for rendering in the
+     * connection profile store file path UI text control.  
+     * @param text
+     */
+    private void setConnProfilePathControlText( String text )
+    {
+        String localizedText = TextProcessor.process( text );
+        m_connectionProfilePath.setText( localizedText );
+    }
+    
+    /**
+     * Return a de-processed text value in the connection profile store file path 
+     * UI text control.
+     * @return
+     */
+    private String getConnProfilePathControlText()
+    {
+        String localizedText = m_connectionProfilePath.getText(); 
+        return TextProcessor.deprocess( localizedText );
+    }
+
 }
