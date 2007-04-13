@@ -328,8 +328,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 							value = param.getName( );
 							break;
 						case 1 :
-							value = "Any";// String.valueOf( param.getType( )
-							// );
+							value = "";
 							break;
 						case 2 :
 							value = param.getDefaultValue( );
