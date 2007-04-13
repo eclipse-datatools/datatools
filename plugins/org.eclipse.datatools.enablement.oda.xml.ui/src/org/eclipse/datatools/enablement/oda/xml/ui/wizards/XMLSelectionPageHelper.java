@@ -233,7 +233,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setFolderLocation( String text )
 	{
-		m_folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text, "/\\:." ) );
+		m_folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text ) );
 	}
 	
 	/**
@@ -242,8 +242,10 @@ public class XMLSelectionPageHelper
 	 */
 	private String getFolderLocationString( )
 	{
-		return org.eclipse.osgi.util.TextProcessor
-			.deprocess( m_folderLocation.getText( ) );
+        // temporarily comment out call to osgi 3.3 API method
+//		return org.eclipse.osgi.util.TextProcessor
+//			.deprocess( m_folderLocation.getText( ) );
+        return m_folderLocation.getText( );
 	}
 	
 	/**
@@ -252,7 +254,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setSchemaLocation( String text )
 	{
-		m_schemaLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text, "/\\:." ) );
+		m_schemaLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text ) );
 	}
 	
 	/**
@@ -261,8 +263,10 @@ public class XMLSelectionPageHelper
 	 */
 	private String getSchemaLocationString( )
 	{
-		return org.eclipse.osgi.util.TextProcessor
-			.deprocess(m_schemaLocation.getText( ) );
+        // temporarily comment out call to osgi 3.3 API method
+//		return org.eclipse.osgi.util.TextProcessor
+//			.deprocess( m_schemaLocation.getText( ) );
+        return m_schemaLocation.getText( );
 	}
 	
 	/**
