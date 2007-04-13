@@ -208,8 +208,8 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 					}
 				}
 
-				tableViewer.setInput(category);
 				tableViewer.addFilter(viewerFilter);
+				tableViewer.setInput(category);
 			}
 		}
 		// -->
