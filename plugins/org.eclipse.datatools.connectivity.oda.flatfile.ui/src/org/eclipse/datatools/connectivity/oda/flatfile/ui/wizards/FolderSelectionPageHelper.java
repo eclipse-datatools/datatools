@@ -244,7 +244,7 @@ public class FolderSelectionPageHelper
 	 */
 	private void setFolderLocationString( String folderPath )
 	{
-		folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( folderPath, "/\\:." ) );
+		folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( folderPath ) );
 	}
 	
 	/**
@@ -253,8 +253,10 @@ public class FolderSelectionPageHelper
 	 */
 	private String getFolderLocationString( )
 	{
-		return org.eclipse.osgi.util.TextProcessor
-			.deprocess(folderLocation.getText( ) );
+        // temporarily comment out call to osgi 3.3 API method
+//		return org.eclipse.osgi.util.TextProcessor
+//			.deprocess( folderLocation.getText( ) );
+        return folderLocation.getText( );
 	}
 
 	/**
