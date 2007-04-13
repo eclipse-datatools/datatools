@@ -97,14 +97,14 @@ public class XMLSelectionPageHelper
     {
         if( m_folderLocation == null )
             return EMPTY_STRING;
-        return m_folderLocation.getText();
+        return getFolderLocationString( );
     }
 
     String getSchemaFileLocation()
     {
         if( m_schemaLocation == null )
             return EMPTY_STRING;
-        return m_schemaLocation.getText( );
+        return getSchemaLocationString( );
     }
 
     Properties collectCustomProperties( Properties props )
@@ -129,12 +129,12 @@ public class XMLSelectionPageHelper
         String folderPath = profileProps.getProperty( Constants.CONST_PROP_FILELIST );
         if( folderPath == null )
             folderPath = EMPTY_STRING;
-        m_folderLocation.setText( folderPath );
+        setFolderLocation( folderPath );
 
         String schemaPath = profileProps.getProperty( Constants.CONST_PROP_SCHEMA_FILELIST );
         if( schemaPath == null )
         	schemaPath = EMPTY_STRING;
-        m_schemaLocation.setText( schemaPath );
+        setSchemaLocation( schemaPath );
 
     }
 
@@ -166,16 +166,16 @@ public class XMLSelectionPageHelper
 				dialog.setFilterExtensions( new String[]{
 						"*.xml", "*.*"
 				} );
-				if ( m_folderLocation.getText( ) != null
-						&& m_folderLocation.getText( ).trim( ).length( ) > 0 )
+				if ( getFolderLocationString( ) != null
+						&& getFolderLocationString( ).trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( m_folderLocation.getText( ) );
+					dialog.setFilterPath( getFolderLocationString( ) );
 				}
 
 				String selectedLocation = dialog.open( );
 				if ( selectedLocation != null )
 				{
-					m_folderLocation.setText( selectedLocation );
+					setFolderLocation( selectedLocation );
 				}
 			}
 
@@ -211,20 +211,58 @@ public class XMLSelectionPageHelper
 						"*.xsd", "*.*"
 				} );
 
-				if ( m_schemaLocation.getText( ) != null
-						&& m_schemaLocation.getText( ).trim( ).length( ) > 0 )
+				if ( getSchemaLocationString( ) != null
+						&& getSchemaLocationString( ).trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( m_schemaLocation.getText( ) );
+					dialog.setFilterPath( getSchemaLocationString( ) );
 				}
 
 				String selectedLocation = dialog.open( );
 				if ( selectedLocation != null )
 				{
-					m_schemaLocation.setText( selectedLocation );
+					setSchemaLocation( selectedLocation );
 				}
 			}
 
 		} );
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 */
+	private void setFolderLocation( String text )
+	{
+		m_folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text, "/\\:." ) );
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private String getFolderLocationString( )
+	{
+		return org.eclipse.osgi.util.TextProcessor
+			.deprocess( m_folderLocation.getText( ) );
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 */
+	private void setSchemaLocation( String text )
+	{
+		m_schemaLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text, "/\\:." ) );
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private String getSchemaLocationString( )
+	{
+		return org.eclipse.osgi.util.TextProcessor
+			.deprocess(m_schemaLocation.getText( ) );
 	}
 	
 	/**
