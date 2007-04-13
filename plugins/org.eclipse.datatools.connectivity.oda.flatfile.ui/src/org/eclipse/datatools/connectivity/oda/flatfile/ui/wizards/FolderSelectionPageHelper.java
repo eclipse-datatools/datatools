@@ -109,7 +109,7 @@ public class FolderSelectionPageHelper
 	{
 		if ( folderLocation == null )
 			return EMPTY_STRING;
-		return folderLocation.getText( );
+		return getFolderLocationString( );
 	}
 
 	/**
@@ -204,7 +204,7 @@ public class FolderSelectionPageHelper
 		String folderPath = profileProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
 		if ( folderPath == null )
 			folderPath = EMPTY_STRING;
-		folderLocation.setText( folderPath );
+		setFolderLocationString( folderPath );
 
 		String delimiterType = profileProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
 		initRadioBoxSelection( delimiterType );
@@ -236,6 +236,25 @@ public class FolderSelectionPageHelper
 			charSetSelectionCombo.select( charSetSelectionCombo.indexOf( charSet ) );
 
 		verifyFileLocation( );
+	}
+
+	/**
+	 * 
+	 * @param folderPath
+	 */
+	private void setFolderLocationString( String folderPath )
+	{
+		folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( folderPath, "/\\:." ) );
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	private String getFolderLocationString( )
+	{
+		return org.eclipse.osgi.util.TextProcessor
+			.deprocess(folderLocation.getText( ) );
 	}
 
 	/**
@@ -300,17 +319,17 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				DirectoryDialog dialog = new DirectoryDialog( folderLocation.getShell( ) );
-				if ( folderLocation.getText( ) != null
-						&& folderLocation.getText( ).trim( ).length( ) > 0 )
+				if ( getFolderLocationString( ) != null
+						&& getFolderLocationString( ).trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( folderLocation.getText( ) );
+					dialog.setFilterPath( getFolderLocationString( ) );
 				}
 
 				dialog.setMessage( DEFAULT_MESSAGE );
 				String selectedLocation = dialog.open( );
 				if ( selectedLocation != null )
 				{
-					folderLocation.setText( selectedLocation );
+					setFolderLocationString( selectedLocation );
 				}
 			}
 		} );
@@ -323,9 +342,9 @@ public class FolderSelectionPageHelper
 	private int verifyFileLocation( )
 	{
 		int result = 0;
-		if ( folderLocation.getText( ).trim( ).length( ) > 0 )
+		if ( getFolderLocationString( ).trim( ).length( ) > 0 )
 		{
-			File f = new File( folderLocation.getText( ).trim( ) );
+			File f = new File( getFolderLocationString( ).trim( ) );
 			if ( f.exists( ) )
 			{
 				setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
