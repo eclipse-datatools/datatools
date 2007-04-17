@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +17,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -454,14 +452,16 @@ public class ConnectionProfileMgmt {
 	 */
 	public static IConnectionProfile[] loadCPs(File file) throws CoreException {
 		try {
+			byte[] bytes = new byte[5];
+			char[] xml = {'<','?','x','m','l'};
 			FileInputStream fis = new FileInputStream(file);
-			InputStreamReader isr = new InputStreamReader(fis, "UTF-8"); //$NON-NLS-1$
-			BufferedReader reader = new BufferedReader(isr);
-			String line = reader.readLine();
-			reader.close();
-			isr.close();
+			fis.read(bytes);
 			fis.close();
-			if (line.matches(".*xml.*")) { //$NON-NLS-1$
+			boolean isXML = true;
+			for (int i = 0; isXML && i < 5; ++i) {
+				isXML = bytes[i] == xml[i];
+			}
+			if (isXML) {
 				// not encrpyted
 				return loadCPs(file, null);
 			}
