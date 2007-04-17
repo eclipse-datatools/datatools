@@ -25,11 +25,11 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Data
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.ModifyEvent;
@@ -751,7 +751,7 @@ class ProfileSelectionPageHelper
      */
     private void setConnProfilePathControlText( String text )
     {
-        String localizedText = TextProcessor.process( text );
+        String localizedText = TextProcessorWrapper.process( text );
         m_connectionProfilePath.setText( localizedText );
     }
     
@@ -763,9 +763,7 @@ class ProfileSelectionPageHelper
     private String getConnProfilePathControlText()
     {
         String localizedText = m_connectionProfilePath.getText();
-        // temporarily comment out call to osgi 3.3 API method
-//        return TextProcessor.deprocess( localizedText );
-        return localizedText;
+        return TextProcessorWrapper.deprocess( localizedText );
     }
 
 }
