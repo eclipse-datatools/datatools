@@ -330,6 +330,9 @@ public class FlatFileDataReader
 	private Vector splitDoubleQuotedString( String aRow ) throws OdaException
 	{
 		Vector result = new Vector( );
+		if(aRow.endsWith( "\r" )){//$NON-NLS-1$
+			aRow = aRow.substring( 0,aRow.length( )-1 );
+		}
 		char[] chars = aRow.toCharArray( );
 
 		boolean startDoubleQuote = false;
