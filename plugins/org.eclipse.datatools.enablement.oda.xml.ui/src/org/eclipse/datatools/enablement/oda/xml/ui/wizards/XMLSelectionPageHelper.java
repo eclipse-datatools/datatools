@@ -16,6 +16,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
@@ -50,7 +51,7 @@ public class XMLSelectionPageHelper
     static final String DEFAULT_MESSAGE = 
         Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
 
-    private static final String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     
     XMLSelectionPageHelper( WizardPage page )
     {
@@ -164,12 +165,13 @@ public class XMLSelectionPageHelper
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
-						"*.xml", "*.*"
+						"*.xml", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
 				} );
-				if ( getFolderLocationString( ) != null
-						&& getFolderLocationString( ).trim( ).length( ) > 0 )
+                String folderLocationValue = getFolderLocationString( );
+				if ( folderLocationValue != null
+						&& folderLocationValue.trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( getFolderLocationString( ) );
+					dialog.setFilterPath( folderLocationValue );
 				}
 
 				String selectedLocation = dialog.open( );
@@ -208,13 +210,14 @@ public class XMLSelectionPageHelper
 						.getDisplay( )
 						.getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
-						"*.xsd", "*.*"
+						"*.xsd", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
 				} );
 
-				if ( getSchemaLocationString( ) != null
-						&& getSchemaLocationString( ).trim( ).length( ) > 0 )
+                String schemaLocationValue = getSchemaLocationString( );
+				if ( schemaLocationValue != null
+						&& schemaLocationValue.trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( getSchemaLocationString( ) );
+					dialog.setFilterPath( schemaLocationValue );
 				}
 
 				String selectedLocation = dialog.open( );
@@ -233,7 +236,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setFolderLocation( String text )
 	{
-		m_folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text ) );
+		m_folderLocation.setText( TextProcessorWrapper.process( text ) );
 	}
 	
 	/**
@@ -242,10 +245,7 @@ public class XMLSelectionPageHelper
 	 */
 	private String getFolderLocationString( )
 	{
-        // temporarily comment out call to osgi 3.3 API method
-//		return org.eclipse.osgi.util.TextProcessor
-//			.deprocess( m_folderLocation.getText( ) );
-        return m_folderLocation.getText( );
+        return TextProcessorWrapper.deprocess( m_folderLocation.getText( ) );
 	}
 	
 	/**
@@ -254,7 +254,7 @@ public class XMLSelectionPageHelper
 	 */
 	private void setSchemaLocation( String text )
 	{
-		m_schemaLocation.setText( org.eclipse.osgi.util.TextProcessor.process( text ) );
+		m_schemaLocation.setText( TextProcessorWrapper.process( text ) );
 	}
 	
 	/**
@@ -263,10 +263,7 @@ public class XMLSelectionPageHelper
 	 */
 	private String getSchemaLocationString( )
 	{
-        // temporarily comment out call to osgi 3.3 API method
-//		return org.eclipse.osgi.util.TextProcessor
-//			.deprocess( m_schemaLocation.getText( ) );
-        return m_schemaLocation.getText( );
+        return TextProcessorWrapper.deprocess( m_schemaLocation.getText( ) );
 	}
 	
 	/**
