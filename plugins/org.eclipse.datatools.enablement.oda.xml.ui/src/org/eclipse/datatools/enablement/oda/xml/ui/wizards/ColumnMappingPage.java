@@ -93,6 +93,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	private String tableName;
 	private String xsdFileName;
 	private String xmlFileName;
+	private String xmlEncoding;
 	private Map columnMap;
 	private List columnMappingList = new ArrayList( );
 	private ColumnMappingElement newColumn;
@@ -163,6 +164,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	{
 		xsdFileName = getXSDFileURI( );
 		xmlFileName = getInitXMLFileURI( );
+		xmlEncoding = getXMLEncoding( );
 		String queryText = getInitQueryText( );
 		tableName = XMLRelationInfoUtil.getTableName( queryText );
 
@@ -205,6 +207,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
 		xsdFileName = getXSDFileURI( );
 		xmlFileName = getXMLFileURI( );
+		xmlEncoding = getXMLEncoding( );
 		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
 			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		if ( selectedTreeItemText != null )
@@ -227,6 +230,11 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	protected String getXMLFileURI( )
 	{
 		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+	}
+	
+	protected String getXMLEncoding( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 	}
 	
 	protected String getInitQueryText( )
@@ -872,7 +880,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			// Object url = StructureFactory.getModuleHandle( ).findResource(
 			// schemaFileName,IResourceLocator.LIBRARY );
 			// if( url != null )
-			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, numberOfElement );
+			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName,xmlEncoding, numberOfElement );
 			Object[] childs = treeNode.getChildren( );
 			populateTreeItems( availableXmlTree, childs, 0 );
 			availableXmlTree.addListener(SWT.Expand, new Listener(){

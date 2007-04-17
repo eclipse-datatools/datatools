@@ -14,6 +14,9 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
@@ -28,6 +31,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
@@ -40,13 +44,15 @@ import org.eclipse.ui.PlatformUI;
  */
 public class XMLSelectionPageHelper
 {
-    private WizardPage m_wizardPage;
+    private static final String AUTO_ENCODING = "Auto";
+	private WizardPage m_wizardPage;
     private PreferencePage m_propertyPage;
 
     private transient Text m_folderLocation = null;
     private transient Text m_schemaLocation = null;
 
 	private transient Button browseFolderButton = null;
+	private transient Combo encodingCombo = null;
 
     static final String DEFAULT_MESSAGE = 
         Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
@@ -90,6 +96,14 @@ public class XMLSelectionPageHelper
 
 		setupSchemaFolderLocation( composite );
 		
+		data = new GridData( GridData.HORIZONTAL_ALIGN_FILL
+				| GridData.VERTICAL_ALIGN_FILL );
+		data.horizontalSpan = 2;
+		final Label label2 = new Label( composite, SWT.NONE );
+		label2.setText( Messages.getString( "label.selectEncoding" ) ); //$NON-NLS-1$
+		label2.setLayoutData( data );
+		setupEncodingControl( composite );
+		
 		XMLRelationInfoUtil.setSystemHelp( composite,
 				IHelpConstants.CONEXT_ID_DATASOURCE_XML );
     }
@@ -108,6 +122,15 @@ public class XMLSelectionPageHelper
         return getSchemaLocationString( );
     }
 
+    String getEncoding( )
+	{
+		if ( encodingCombo == null
+				|| encodingCombo.getText( ).equals( AUTO_ENCODING ) )
+			return EMPTY_STRING;
+		else
+			return encodingCombo.getText( );
+	}
+    
     Properties collectCustomProperties( Properties props )
     {
         if( props == null )
@@ -118,6 +141,7 @@ public class XMLSelectionPageHelper
 				getFolderLocation( ) );
 		props.setProperty( Constants.CONST_PROP_SCHEMA_FILELIST,
 				getSchemaFileLocation( ) );
+		props.setProperty( Constants.CONST_PROP_ENCODINGLIST, getEncoding( ) );
 		return props;
     }
     
@@ -130,8 +154,19 @@ public class XMLSelectionPageHelper
         String folderPath = profileProps.getProperty( Constants.CONST_PROP_FILELIST );
         if( folderPath == null )
             folderPath = EMPTY_STRING;
+        m_folderLocation.setText( folderPath );
+        
+        String encoding = profileProps.getProperty( Constants.CONST_PROP_ENCODINGLIST );
+        if ( encoding == null )
+		{//use auto encoding
+			encodingCombo.select( 0 );
+		}
+		else
+		{
+			encodingCombo.select( getIndex( encoding ) );
+		}
+        
         setFolderLocation( folderPath );
-
         String schemaPath = profileProps.getProperty( Constants.CONST_PROP_SCHEMA_FILELIST );
         if( schemaPath == null )
         	schemaPath = EMPTY_STRING;
@@ -139,7 +174,28 @@ public class XMLSelectionPageHelper
 
     }
 
+    private int getIndex( String encoding )
+	{
+		return Arrays.binarySearch( encodingCombo.getItems( ), encoding );
+	}
 
+	/**
+     * @param composite
+     */
+    private void setupEncodingControl( Composite composite )
+    {
+    	GridData data = new GridData( GridData.FILL_HORIZONTAL );
+    	encodingCombo = new Combo(composite, SWT.READ_ONLY);
+    	encodingCombo.setLayoutData( data );
+    	encodingCombo.add( AUTO_ENCODING );
+    	for ( Iterator i = Charset.availableCharsets( ).keySet( ).iterator( ); i.hasNext( ); )
+		{
+			String	encoding = (String) i.next( );
+			encodingCombo.add( encoding );			
+		}
+    	encodingCombo.select( 0 );
+    }
+    
 	/**
 	 * @param composite
 	 */

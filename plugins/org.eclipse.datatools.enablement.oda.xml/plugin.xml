@@ -19,11 +19,17 @@
                   type="string"
                   defaultDisplayName="xml file"
                   canInherit="true"
-                  name="XML_FILE"/> 
+                  name="XML_FILE"/>
+            <property
+                  type="string"
+                  defaultDisplayName="xml encoding"
+                  canInherit="true"
+                  name="XML_ENCODING"/> 
          </propertyGroup>
          <propertyVisibility name="queryText" visibility="hide"/>
          <propertyVisibility name="MAX_ROW" visibility="hide"/>
          <propertyVisibility name="XML_FILE" visibility="hide"/>
+         <propertyVisibility name="XML_ENCODING" visibility="hide"/>
          </properties>
             <dataTypeMapping
                   nativeDataType="INT"
@@ -80,6 +86,11 @@
                   defaultDisplayName="%datasource.property.xmlFile"
                   canInherit="true"
                   name="FILELIST"/>
+            <property
+                  type="string"
+                  defaultDisplayName="%datasource.property.xmlEncoding"
+                  canInherit="true"
+                  name="ENCODINGLIST"/>
             <property
                   type="string"
                   defaultDisplayName="%datasource.property.schemaFile"

@@ -82,15 +82,6 @@ public class XMLInformationHolder
 	{
 		if ( dataSetDesign == null )
 			return;
-
-		if ( dataSetDesign.getDataSourceDesign( )
-				.getOdaExtensionId( )
-				.equals( Constants.WS_DATA_SOURCE_ID ) )
-		{
-			wsStart( dataSetDesign );
-			return;
-		}
-
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText != null && queryText.trim( ).length( ) > 0 )
 		{
@@ -110,6 +101,12 @@ public class XMLInformationHolder
 			
 			setPropertyValue( Constants.CONST_PROP_XML_FILE,
 					xmlFile == null?"":xmlFile.getValue( ));
+			
+			Property xmlEncoding = dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.CONST_PROP_XML_ENCODING );
+			setPropertyValue( Constants.CONST_PROP_XML_ENCODING,
+			xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
+			
 			Property maxRow = dataSetDesign.getPrivateProperties( )
 					.findProperty( Constants.CONST_PROP_MAX_ROW );
 					
@@ -125,6 +122,11 @@ public class XMLInformationHolder
 				.findProperty( Constants.CONST_PROP_XML_FILE );
 			setPropertyValue( Constants.CONST_PROP_XML_FILE,
 					xmlFile == null?"":xmlFile.getValue( ) );
+			
+			Property xmlEncoding = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_XML_ENCODING );
+			setPropertyValue( Constants.CONST_PROP_XML_ENCODING,
+					xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
 			
 			Property maxRow = dataSetDesign.getPublicProperties( )
 					.findProperty( Constants.CONST_PROP_MAX_ROW );
@@ -147,54 +149,14 @@ public class XMLInformationHolder
 						schema == null ? "" : schema.getValue( ) );
 			
 			Property xmlFile  = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_FILELIST );
-					
+					.findProperty( Constants.CONST_PROP_FILELIST );					
 			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null ? ""
 					: xmlFile.getValue( ) );
-		}
-	}
-
-	/*
-	 * temporarily for ws driver
-	 */
-	private static void wsStart( DataSetDesign dataSetDesign )
-	{
-		if ( dataSetDesign.getPrivateProperties( ) != null )
-		{
-			String queryText = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.XML_QUERYTEXT )
-					.getValue( );
-
-			if ( queryText != null && queryText.trim( ).length( ) > 0 )
-			{
-				setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-						queryText );
-				String tableName = XMLRelationInfoUtil.getTableName( queryText );
-				setPropertyValue( Constants.CONST_PROP_TABLE_NAME, tableName );
-
-				String xpath = XMLRelationInfoUtil.getXPathExpression( queryText,
-						tableName );
-				setPropertyValue( Constants.CONST_PROP_XPATH, xpath );
-			}
-		}
-		if ( dataSetDesign.getPublicProperties( ) != null )
-		{
-			Property xmlFile = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XML_FILE_URI );
-			setPropertyValue( Constants.CONST_PROP_XML_FILE, xmlFile == null
-					? "" : xmlFile.getValue( ) );
-			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null
-					? "" : xmlFile.getValue( ) );
-
-			Property schema = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XSD_FILE_URI );
-			setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-					schema == null ? "" : schema.getValue( ) );
-
-			Property maxRow = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW );
-			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow.getValue( ) : "-1" );
+			
+			Property xmlEncoding = dataSourceDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_ENCODINGLIST );
+			setPropertyValue( Constants.CONST_PROP_ENCODINGLIST,
+					xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
 		}
 	}
 

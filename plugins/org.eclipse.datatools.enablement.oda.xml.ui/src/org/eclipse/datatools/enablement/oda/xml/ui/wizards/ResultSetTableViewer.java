@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.2 $ $Date: 2006/09/29 02:15:34 $
+ * @version $Revision: 1.3 $ $Date: 2007/03/28 02:04:14 $
  */
 public final class ResultSetTableViewer
 {
@@ -182,6 +182,10 @@ public final class ResultSetTableViewer
 
 		properties.setProperty( Constants.CONST_PROP_FILELIST, xmlFile == null
 				? "" : xmlFile );
+		
+		String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+		properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
+				xmlEncoding == null ? "" : xmlEncoding );
 		try
 		{
 			conn.open( properties );

@@ -30,7 +30,7 @@ import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
 public class Connection implements IConnection
 {
 	//The file which server as data source.
-	private XMLDataInputStreamCreator is;
+	private XMLDataInputStreamCreator dataInputStreamCreator;
 
 	//The boolean indicate whether the connection is open.
 	private boolean isOpen;
@@ -47,17 +47,38 @@ public class Connection implements IConnection
 		if( isOpen == true )
 			return;
 		String file = (String) connProperties.get( Constants.CONST_PROP_FILELIST );
-
 		if ( appContext != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
-			is = XMLDataInputStreamCreator.getCreator( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
+			dataInputStreamCreator = XMLDataInputStreamCreator.getCreator( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
 		else if ( file != null )
-			is = XMLDataInputStreamCreator.getCreator( file );
+			dataInputStreamCreator = XMLDataInputStreamCreator.getCreator( file );
 		else
 			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
+		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+		dataInputStreamCreator.setEncoding(encoding);
+//		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
+		/*try
+		{
+			testXmlConnection( dataInputStream );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e );
+		}*/
 		isOpen = true;
 	}
+
+	
+	/*private void testXmlConnection( XMLDataInputStream dataInputStream ) throws ParserConfigurationException, SAXException, IOException
+	{
+		dataInputStream.init( );
+		SAXParserFactory sf = SAXParserFactory.newInstance();		
+		SAXParser parser = sf.newSAXParser( );
+		InputSource source = new InputSource(dataInputStream);
+		source.setEncoding( dataInputStream.getEncoding( ) );
+		parser.parse( source, new DefaultHandler() );
+	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -160,7 +181,7 @@ public class Connection implements IConnection
 	public IQuery newQuery( String dataSetType ) throws OdaException
 	{
 		
-		return new Query( this.is );
+		return new Query( this.dataInputStreamCreator );
 	}
 
 	/*

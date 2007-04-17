@@ -154,7 +154,11 @@ public class SaxParser extends DefaultHandler implements Runnable
 				new Class[]{
 					InputSource.class
 				} );
-		parse.invoke( xmlReader, new Object[]{new InputSource( this.inputStream )} );
+		InputSource source = new InputSource(inputStream);
+		source.setEncoding( inputStream.getEncoding( ) );
+		parse.invoke( xmlReader, new Object[]{
+			source
+		} );
 	}
 
 	/**

@@ -70,6 +70,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	private TreeItem selectedItem;
 	private String xsdFileName;
 	private String xmlFileName;
+	private String xmlEncoding;
 
 	private String rootPath;
 	private String initRootPath;
@@ -116,6 +117,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		xsdFileName = getXSDFileURI( );
 		xmlFileName = getInitXMLFileURI( );
+		xmlEncoding = getXMLEncoding( );
 	
 		String queryText = getInitQueryText( );
 
@@ -153,7 +155,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		xmlFileName = getXMLFileURI( );
 		xsdFileName = getXSDFileURI( );
-
+		xmlEncoding = getXMLEncoding( );
 		populateXMLTree( );
 		backupRootPath( );
 		setMessage( DEFAULT_MESSAGE );
@@ -169,6 +171,11 @@ public class XPathChoosePage extends DataSetWizardPage
 		return getXMLFileURI( );
 	}
 
+	protected String getXMLEncoding( )
+	{
+		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST);
+	}
+	
 	protected String getXMLFileURI( )
 	{
 		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
@@ -397,7 +404,7 @@ public class XPathChoosePage extends DataSetWizardPage
 				// ).findResource( fileName,IResourceLocator.LIBRARY );
 				//				
 				// if( url != null )
-				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName, numberOfElement );
+				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName,xmlEncoding, numberOfElement );
 				if ( treeNode == null || treeNode.getChildren( ).length == 0 )
 				{
 					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );

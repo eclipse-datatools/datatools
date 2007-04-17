@@ -33,4 +33,5 @@ public final class Constants
 	//The connection property that gives the file name(s).Currently we only
 	//support single file.
 	public static final String CONST_PROP_FILELIST = "FILELIST"; 
+	public static final String CONST_PROP_ENCODINGLIST = "ENCODINGLIST";
 }

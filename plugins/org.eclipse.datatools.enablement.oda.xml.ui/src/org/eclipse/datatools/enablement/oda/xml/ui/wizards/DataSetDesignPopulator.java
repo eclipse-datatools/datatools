@@ -49,7 +49,10 @@ public class DataSetDesignPopulator
 
 			properties.setProperty( Constants.CONST_PROP_FILELIST,
 					xmlFile == null ? "" : xmlFile );
-
+			
+			String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+			properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
+					xmlEncoding == null ? "" : xmlEncoding );
 			conn.open( properties );
 
 			IQuery query = conn.newQuery( null );
