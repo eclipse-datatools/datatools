@@ -19,6 +19,7 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.SortedMap;
 
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
@@ -244,7 +245,7 @@ public class FolderSelectionPageHelper
 	 */
 	private void setFolderLocationString( String folderPath )
 	{
-		folderLocation.setText( org.eclipse.osgi.util.TextProcessor.process( folderPath ) );
+		folderLocation.setText( TextProcessorWrapper.process( folderPath ) );
 	}
 	
 	/**
@@ -253,10 +254,7 @@ public class FolderSelectionPageHelper
 	 */
 	private String getFolderLocationString( )
 	{
-        // temporarily comment out call to osgi 3.3 API method
-//		return org.eclipse.osgi.util.TextProcessor
-//			.deprocess( folderLocation.getText( ) );
-        return folderLocation.getText( );
+		return TextProcessorWrapper.deprocess( folderLocation.getText( ) );
 	}
 
 	/**
@@ -321,10 +319,11 @@ public class FolderSelectionPageHelper
 			public void widgetSelected( SelectionEvent e )
 			{
 				DirectoryDialog dialog = new DirectoryDialog( folderLocation.getShell( ) );
-				if ( getFolderLocationString( ) != null
-						&& getFolderLocationString( ).trim( ).length( ) > 0 )
+				String folderLocationValue = getFolderLocationString( );
+				if ( folderLocationValue != null
+						&& folderLocationValue.trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( getFolderLocationString( ) );
+					dialog.setFilterPath( folderLocationValue );
 				}
 
 				dialog.setMessage( DEFAULT_MESSAGE );
@@ -344,9 +343,10 @@ public class FolderSelectionPageHelper
 	private int verifyFileLocation( )
 	{
 		int result = 0;
-		if ( getFolderLocationString( ).trim( ).length( ) > 0 )
+		String folderLocationValue = getFolderLocationString( );
+		if ( folderLocationValue.trim( ).length( ) > 0 )
 		{
-			File f = new File( getFolderLocationString( ).trim( ) );
+			File f = new File( folderLocationValue.trim( ) );
 			if ( f.exists( ) )
 			{
 				setMessage( DEFAULT_MESSAGE, IMessageProvider.NONE );
