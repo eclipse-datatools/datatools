@@ -11,15 +11,20 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.test;
 
-import org.eclipse.ui.plugin.*;
+import java.util.Properties;
+
+import org.eclipse.datatools.sqltools.tests.verification.hooks.Messages;
+import org.eclipse.datatools.sqltools.tests.verification.hooks.SQLToolsTestUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.ui.IStartup;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  * @author Hui Cao
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator extends AbstractUIPlugin implements IStartup {
 
 	//The shared instance.
 	private static Activator plugin;
@@ -64,5 +69,22 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static ImageDescriptor getImageDescriptor(String path) {
 		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.sqltools.test", path);
+	}
+
+	public void earlyStartup() {
+		try {
+			Properties props = new Properties();
+			SQLToolsTestUtil.loadProps(SQLToolsTestUtil.class
+					.getResource("ASAControlConnectionTest.props"),props);
+			//construct properties for profile
+			SQLToolsTestUtil.createProfile(props);
+
+			Messages.log("derby profile created");
+			System.out.println("derby profile created.");
+		} catch (Exception e) {
+			Messages.log("derby profile creation failed");
+			e.printStackTrace();
+		}
+		
 	}
 }

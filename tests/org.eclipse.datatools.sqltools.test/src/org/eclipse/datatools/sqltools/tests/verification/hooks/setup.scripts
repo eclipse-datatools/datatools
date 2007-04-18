@@ -1,0 +1,6 @@
+create table APP.TABLE1 (c1 int, c2 char(5));
+insert into TABLE1 values(1, 'aaaaa');
+insert into TABLE1 values(2, 'bbbbb');
+CREATE TRIGGER t1 NO CASCADE BEFORE INSERT ON TABLE1
+FOR EACH ROW MODE DB2SQL
+values ('triggered')

@@ -12,7 +12,6 @@
 package org.eclipse.datatools.sqltools.tests.verification.hooks;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -28,7 +27,8 @@ public final class Messages extends NLS {
 		// Do not instantiate
 	}
 
-	public static String Derby_driver_jar_list;
+	public static String driver_name;
+	public static String driver_jar_list;
 	public static String Log_file_location;
 
 	static {
