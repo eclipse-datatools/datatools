@@ -38,6 +38,9 @@ public final class SQLEditorResources extends NLS {
 	}
 
 	public static String common_error;
+    public static String SQLEditor_could_not_save_as;
+    public static String SQLEditor_file_deleted_or_not_accessible;
+    public static String SQLEditor_problem_save_as;
 	public static String SQLUpdater_nonportable;
 	public static String SQLUpdater_error_location;
 	public static String SQLUpdater_error_annotation;

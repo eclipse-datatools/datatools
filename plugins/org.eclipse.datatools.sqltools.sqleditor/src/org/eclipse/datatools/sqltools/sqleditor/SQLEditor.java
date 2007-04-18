@@ -17,9 +17,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.common.ui.dialog.SaveAsDialog;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -62,6 +68,8 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DefaultInformationControl;
@@ -93,6 +101,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
@@ -109,6 +118,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.internal.editors.text.JavaFileEditorInput;
+import org.eclipse.ui.internal.texteditor.NLSUtility;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -327,7 +339,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
 
         setAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, new AddTemplateAction(getResourceBundle(),
-				"AddTemplateAction.", this));
+				"AddTemplateAction.", this)); //$NON-NLS-1$
         markAsSelectionDependentAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, getAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID));
 
@@ -760,14 +772,14 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
                 }
             }
         }
-        if (key != null && !key.equals(""))
+        if (key != null && !key.equals("")) //$NON-NLS-1$
         {
             String subMgrId = key;
             String subGroupId = key;
-            if (key.indexOf("/") >0)
+            if (key.indexOf("/") >0) //$NON-NLS-1$
             {
-                subMgrId = key.substring(0, key.indexOf("/"));
-                subGroupId = key.substring(key.indexOf("/") + 1);
+                subMgrId = key.substring(0, key.indexOf("/")); //$NON-NLS-1$
+                subGroupId = key.substring(key.indexOf("/") + 1); //$NON-NLS-1$
             }
             if (manager.find(subMgrId) != null)
             {
@@ -1033,6 +1045,99 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
     }
 
+    protected void performSaveAs(IProgressMonitor progressMonitor)
+    {
+        // Using the SaveAsDialog defined in common.ui which provide "Create Project" button
+        Shell shell = getSite().getShell();
+        final IEditorInput input = getEditorInput();
+
+        IDocumentProvider provider = getDocumentProvider();
+        final IEditorInput newInput;
+
+        {
+            SaveAsDialog dialog = new SaveAsDialog(shell, false);
+
+            IFile original = (input instanceof IFileEditorInput) ? ((IFileEditorInput) input).getFile() : null;
+            if (original != null)
+            {
+                dialog.setOriginalFile(original);
+            }
+
+            dialog.create();
+
+            if (provider.isDeleted(input) && original != null)
+            {
+                String message = NLSUtility.format(SQLEditorResources.SQLEditor_file_deleted_or_not_accessible,
+                        original.getName());
+                dialog.setErrorMessage(null);
+                dialog.setMessage(message, IMessageProvider.WARNING);
+            }
+
+            if (dialog.open() == Window.CANCEL)
+            {
+                if (progressMonitor != null)
+                {
+                    progressMonitor.setCanceled(true);
+                }
+                return;
+            }
+
+            IPath filePath = dialog.getResult();
+            if (filePath == null)
+            {
+                if (progressMonitor != null)
+                {
+                    progressMonitor.setCanceled(true);
+                }
+                return;
+            }
+
+            IWorkspace workspace = ResourcesPlugin.getWorkspace();
+            IFile file = workspace.getRoot().getFile(filePath);
+            newInput = new FileEditorInput(file);
+        }
+
+        if (provider == null)
+        {
+            // editor has programmatically been closed while the dialog was open
+            return;
+        }
+
+        boolean success = false;
+        try
+        {
+
+            provider.aboutToChange(newInput);
+            provider.saveDocument(progressMonitor, newInput, provider.getDocument(input), true);
+            success = true;
+
+        }
+        catch (CoreException x)
+        {
+            final IStatus status = x.getStatus();
+            if (status == null || status.getSeverity() != IStatus.CANCEL)
+            {
+                String title = SQLEditorResources.SQLEditor_problem_save_as;
+                String msg = NLSUtility.format(SQLEditorResources.SQLEditor_could_not_save_as, x.getMessage());
+                MessageDialog.openError(shell, title, msg);
+            }
+        }
+        finally
+        {
+            provider.changed(newInput);
+            if (success)
+            {
+                setInput(newInput);
+            }
+        }
+
+        if (progressMonitor != null)
+        {
+            progressMonitor.setCanceled(!success);
+        }
+
+    }
+
     /**
      * Sets the document setup participant object associated with this editor to
      * the given object. The setup participant sets the partitioning type for
@@ -1221,7 +1326,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             SQLParser parser = conf.getSQLService().getSQLParser();
             String content = getSourceViewer().getDocument().get();
             // Add '\n' to avoid parser to throw exception when last line is single line comment.
-            content = content + "\n";
+            content = content + "\n"; //$NON-NLS-1$
             
             boolean useDelimiter = getSQLType() == SQLParserConstants.TYPE_SQL_ROOT;
             _parsingResult = parser.parse(content, new ParserParameters(useDelimiter, getSQLType()));
@@ -1357,7 +1462,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
         //get the selection
         ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
-        if (!selection.isEmpty() && selection.getText() != null && !selection.getText().equals(""))
+        if (!selection.isEmpty() && selection.getText() != null && !selection.getText().equals("")) //$NON-NLS-1$
         {
             sql = selection.getText();
         }
@@ -1371,7 +1476,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     {
         setKeyBindingScopes(new String[]
         {
-            "org.eclipse.datatools.sqltools.SQLEditorScope"
+            "org.eclipse.datatools.sqltools.SQLEditorScope" //$NON-NLS-1$
         }
         ); //$NON-NLS-1$
     }

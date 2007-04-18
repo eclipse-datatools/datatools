@@ -73,6 +73,19 @@ public class SaveAsDialog extends TitleAreaDialog
     private String                    _content;
     private static final String       ENCODING       = "UTF-8";
     private IEditorPart               _editor;
+    private boolean                   _execSaveAs = true;
+
+    /**
+     * Creates a new Save As dialog for no specific file.
+     * 
+     * @param parentShell the parent shell
+     */
+    public SaveAsDialog(Shell parentShell, boolean execSaveAs)
+    {
+        super(parentShell);
+        _execSaveAs = execSaveAs;
+    }
+    
     /**
      * Creates a new Save As dialog for no specific file.
      * 
@@ -214,7 +227,7 @@ public class SaveAsDialog extends TitleAreaDialog
      * (non-Javadoc) Method declared on Dialog.
      */
     protected void okPressed()
-    {
+    {        
         // Get new path.
         String filename = _resourceGroup.getResource();
         IPath path = _resourceGroup.getContainerFullPath().append(filename);
@@ -272,6 +285,12 @@ public class SaveAsDialog extends TitleAreaDialog
         // Store path and close.
         _result = path;
         
+        if(!_execSaveAs)
+        {
+            close();
+            return;
+        }
+        
         try
         {
             String resource = _resourceGroup.getContainerFullPath().toString();
@@ -301,7 +320,6 @@ public class SaveAsDialog extends TitleAreaDialog
                         IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
                         _editor = IDE.openEditor(page, file, true);
                     }
-
                 }
                 catch (CoreException e)
                 {
