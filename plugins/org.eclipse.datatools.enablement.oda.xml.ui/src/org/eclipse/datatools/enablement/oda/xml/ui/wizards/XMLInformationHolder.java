@@ -82,6 +82,15 @@ public class XMLInformationHolder
 	{
 		if ( dataSetDesign == null )
 			return;
+			
+		if ( dataSetDesign.getDataSourceDesign( )
+				.getOdaExtensionId( )
+				.equals( Constants.WS_DATA_SOURCE_ID ) )
+		{
+			wsStart( dataSetDesign );
+			return;
+		}
+		
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText != null && queryText.trim( ).length( ) > 0 )
 		{
@@ -159,6 +168,51 @@ public class XMLInformationHolder
 					xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
 		}
 	}
+	
+	/*
+	 * temporarily for ws driver
+	 */
+	private static void wsStart( DataSetDesign dataSetDesign )
+	{
+		if ( dataSetDesign.getPrivateProperties( ) != null )
+		{
+			String queryText = dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.XML_QUERYTEXT )
+					.getValue( );
+
+			if ( queryText != null && queryText.trim( ).length( ) > 0 )
+			{
+				setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+						queryText );
+				String tableName = XMLRelationInfoUtil.getTableName( queryText );
+				setPropertyValue( Constants.CONST_PROP_TABLE_NAME, tableName );
+
+				String xpath = XMLRelationInfoUtil.getXPathExpression( queryText,
+						tableName );
+				setPropertyValue( Constants.CONST_PROP_XPATH, xpath );
+			}
+		}
+		if ( dataSetDesign.getPublicProperties( ) != null )
+		{
+			Property xmlFile = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.XML_FILE_URI );
+			setPropertyValue( Constants.CONST_PROP_XML_FILE, xmlFile == null
+					? "" : xmlFile.getValue( ) );
+			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null
+					? "" : xmlFile.getValue( ) );
+
+			Property schema = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.XSD_FILE_URI );
+			setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
+					schema == null ? "" : schema.getValue( ) );
+
+			Property maxRow = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.CONST_PROP_MAX_ROW );
+			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
+					? maxRow.getValue( ) : "-1" );
+		}
+	}
+	
 
 	/**
 	 * destory the holder class
