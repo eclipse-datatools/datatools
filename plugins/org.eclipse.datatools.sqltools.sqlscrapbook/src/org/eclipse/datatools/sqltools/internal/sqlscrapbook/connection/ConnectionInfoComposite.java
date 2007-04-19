@@ -389,12 +389,12 @@ public class ConnectionInfoComposite extends AbstractConnectionInfoComposite imp
 
     }
 
-    void initDBNames()
+    protected void initDBNames()
     {
         _combodbName.removeAll();
         if (_profileName != null)
         {
-            List list = ProfileUtil.getDatabaseList(_profileName, _mustConnect);
+            List list = ProfileUtil.getDatabaseList(_profileName, (_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT );
             Iterator iterator = list.iterator();
             while (iterator.hasNext())
             {
@@ -465,5 +465,15 @@ public class ConnectionInfoComposite extends AbstractConnectionInfoComposite imp
     public Combo getDbNamesControl()
     {
         return _combodbName;
+    }
+
+    public Combo getProfileTypeControl()
+    {
+        return null;
+    }
+    
+    public Button getCreateButton()
+    {
+        return _create;
     }
 }

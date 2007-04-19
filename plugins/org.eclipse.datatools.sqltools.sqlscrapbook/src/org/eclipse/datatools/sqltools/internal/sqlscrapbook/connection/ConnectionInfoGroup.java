@@ -11,11 +11,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -23,25 +19,14 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.jface.dialogs.ErrorDialog;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.FocusEvent;
-import org.eclipse.swt.events.FocusListener;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -64,7 +49,7 @@ import org.eclipse.swt.widgets.Text;
  * @author Hui Cao
  * 
  */
-public class ConnectionInfoGroup extends Composite implements SelectionListener,
+public class ConnectionInfoGroup extends AbstractConnectionInfoComposite implements SelectionListener,
 		Listener {
 	private Label _labelName = null;
 
@@ -84,28 +69,9 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	private Button _create = null;
 
-	private String _profileName = null;
-
-	private String _dbName = null;
-
-	private DatabaseVendorDefinitionId _dbVendorId = SQLDevToolsConfiguration
-			.getDefaultInstance().getDatabaseVendorDefinitionId();
-
 	private boolean _isConnected = false;
 
 	private boolean _showWarning = true;
-
-	private boolean _mustConnect = true;
-    
-	// The listener to notify of events
-	private Listener _listener;
-
-	private ISQLEditorConnectionInfo _connInfo = null;
-    
-    /**
-     * The supported database definition name list. If it is null, the default database definition name list will be returned.
-     */
-    private Collection _supportedDBDefinitionNames = null;
 
 	/**
 	 * @param parent
@@ -156,39 +122,24 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
     public ConnectionInfoGroup(Composite parent, Listener listener,
             ISQLEditorConnectionInfo connInfo, boolean showWarning,
             boolean mustConnect, Collection supportedDBDefinitionNames) {
-        super(parent, SWT.NONE);
-        if (connInfo != null)
-        {
-            this._profileName = connInfo.getConnectionProfileName();
-            this._dbName = connInfo.getDatabaseName();
-            this._dbVendorId = connInfo.getDatabaseVendorDefinitionId();
-        }
-        
-        this._listener = listener;
+        super(parent, SWT.NONE, listener, connInfo, supportedDBDefinitionNames, STYLE_MULTI_LINE | STYLE_CREATE_PROFILE | STYLE_SEPARATE_TYPE_NAME | (mustConnect? STYLE_MUST_CONNECT : 0));
         this._showWarning = showWarning;
-        this._mustConnect = mustConnect;
-        _supportedDBDefinitionNames = supportedDBDefinitionNames;
         createContents();
-        updateFields();
+        if ((_style & STYLE_LAZY_INIT ) == 0)
+        {
+            init();
+        }        
         
     }
-
-	/**
-	 * Returns the <code>ISQLEditorConnectionInfo</code> object specified by
-	 * user. This should be called after {@link #finish()}.
-	 * 
-	 * @return <code>ISQLEditorConnectionInfo</code> containing all the
-	 *         information specified by user
-	 */
-	public ISQLEditorConnectionInfo getConnectionInfo() {
-		return _connInfo;
-	}
 	
+    /**
+     * @deprecated Get connection status from SQLEditorConnectionInfo
+     * @return
+     */
     public boolean isConnected()
     {
         return _isConnected;
     }
-
 
 	protected Control createContents() {
 		// add controls to composite as necessary
@@ -228,7 +179,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		_labelDbName.setText(Messages.ConnectionInfoGroup_database_name);
 		createComboDbName(this);
 
-		if (!_mustConnect) {
+		if (!((_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT )) {
 			_checkBoxConnect = new Button(this, SWT.CHECK);
 			gridData2.horizontalSpan = 2;
 			_checkBoxConnect.setLayoutData(gridData2);
@@ -268,9 +219,8 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		if (!canFinish()) {
 			return;
 		}
-		_connInfo = new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName);
 
-		if (!_mustConnect && _checkBoxConnect.getSelection()) {
+		if (!((_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT ) && _checkBoxConnect.getSelection()) {
 			_isConnected = false;
 		} else if (!SWTUtils.notEmpty(_comboProfileName)) {
 			_isConnected = false;
@@ -313,36 +263,12 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			_connInfo.setProfileStatus(EditorConstants.CP_STATUS_DISCONNECTED);
 		}
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-	 */
-	public void widgetSelected(SelectionEvent e) {
-		if (e.widget == _comboType) {
-			refreshProfileNames(_comboType.getText(), null);
-		}
-        else if (e.widget == _comboProfileName)
-        {
-            selectTypebyProfile(_comboProfileName.getText());
-        }
-            
-		updateFields();
-		canFinish();
-
-		notifyListener();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
-	 */
-	public void widgetDefaultSelected(SelectionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+    
+    public void widgetSelected(SelectionEvent e)
+    {
+        super.widgetSelected(e);
+        updateConnectCheckBox();
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -350,37 +276,28 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if (event.widget == _create) {
-			SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByDBDefName(_comboType.getText());
-			if (f == null) {
-				return;
-			}
-			// FIXME: should invoke NewConnectionProfileWizard specific to the
-			// database vendor definition
-			IWizard wizard = f.getUIComponentService().getProfileWizard();
-			String[] currentNames = getCurrentProfileNames();
-			WizardDialog dlg = new WizardDialog(getShell(), wizard);
-			int id = dlg.open();
-			if (id != IDialogConstants.CANCEL_ID) {
-				// refresh all the profile info so that we can select the newly
-				// created one
-				String[] newNames = getCurrentProfileNames();
-				String newProfile = getNewProfileName(currentNames, newNames);
-				if (newProfile != null) {
-					selectTypebyProfile(newProfile);
-					refreshProfileNames(_comboType.getText(), newProfile);
-					canFinish();
-				}
-				notifyListener();
-			}
-		} else if (event.widget == _checkBoxConnect) {
-
-			_isConnected = !_checkBoxConnect.getSelection();
-			if (_showWarning) {
-				_textWarning.setVisible(_checkBoxConnect.getSelection());
-			}
+		super.handleEvent(event);
+		if (event.widget == _checkBoxConnect) {
+            updateConnectCheckBox();
 		}
 	}
+    
+    public void init(String dbVendorName, String initialProfName, String initialDBName)
+    {
+        super.init(dbVendorName, initialProfName, initialDBName);
+        updateConnectCheckBox();
+    }
+    
+    void updateConnectCheckBox()
+    {
+        if (_checkBoxConnect != null)
+        {
+            _checkBoxConnect.setEnabled(_profileName != null && !_connInfo.isConnected());
+            if (_showWarning) {
+                _textWarning.setVisible(_checkBoxConnect.isEnabled() && _checkBoxConnect.getSelection());
+            }
+        }
+    }
 
 	/**
 	 * Validates user's input to see whether the information is complete.
@@ -388,99 +305,17 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 	 * @return true if so, otherwise false
 	 */
 	public boolean canFinish() {
-		if (_mustConnect && !SWTUtils.notEmpty(_comboProfileName)) {
+		if ((_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT  && !SWTUtils.notEmpty(_comboProfileName)) {
 			return false;
 		}
 		return true;
 	}
 
 	public String getWarning() {
-		if (!_mustConnect && _checkBoxConnect.getSelection()) {
+		if (!((_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT)  && _checkBoxConnect.getSelection()) {
 			return Messages.SelectProfileDialog_warning;
 		}
 		return null;
-	}
-
-	/**
-	 * Finds the first profile name that does not exist in currentNames. This is
-	 * used
-	 * 
-	 * @param currentNames
-	 * @param newNames
-	 * @return
-	 */
-	private String getNewProfileName(String[] currentNames, String[] newNames) {
-		if (currentNames != null && newNames != null) {
-			for (int i = 0; i < newNames.length; i++) {
-				boolean found = false;
-				for (int j = 0; j < currentNames.length; j++) {
-					if (newNames[i].equals(currentNames[j])) {
-						found = true;
-						break;
-					}
-				}
-				if (!found) {
-					return newNames[i];
-				}
-			}
-		}
-		if (currentNames == null && newNames != null && newNames.length > 0) {
-			return newNames[0];
-		}
-		return null;
-	}
-
-	private String[] getCurrentProfileNames() {
-		IConnectionProfile profiles[] = ProfileManager.getInstance()
-				.getProfiles();
-		String[] currentNames = new String[profiles.length];
-		for (int i = 0; i < profiles.length; i++) {
-			currentNames[i] = profiles[i].getName();
-		}
-		return currentNames;
-	}
-
-	/**
-	 * 
-	 */
-	private void updateFields() {
-        if (_comboType.getText() != null && !"".equals(_comboType.getText())) //$NON-NLS-1$
-        {
-            _dbVendorId = new DatabaseVendorDefinitionId(_comboType.getText());
-        }
-        else
-        {
-            _dbVendorId = AbstractConnectionInfoComposite.DATABASE_VENDOR_DEFINITION_ID;
-        }
-        // set _profileName to "" has no meaning
-        if (_comboProfileName.getText() != null
-                && !"".equals(_comboProfileName.getText())) { //$NON-NLS-1$
-            _profileName = _comboProfileName.getText();
-        } else {
-            _profileName = null;
-        }
-        if (_combodbName != null && _combodbName.getText() != null
-                && !"".equals(_combodbName.getText())) { //$NON-NLS-1$
-            _dbName = _combodbName.getText();
-        }
-        else
-        {
-            _dbName = null;
-        }
-
-	}
-
-	/**
-	 * 
-	 */
-	private void notifyListener() {
-		// fire an event so the parent can update its controls
-		if (_listener != null) {
-			Event changeEvent = new Event();
-			changeEvent.type = SWT.Selection;
-			changeEvent.widget = this;
-			_listener.handleEvent(changeEvent);
-		}
 	}
 
 	/**
@@ -495,34 +330,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 		gridData5.grabExcessHorizontalSpace = true;
 		_comboProfileName.setLayoutData(gridData5);
 
-		_comboProfileName.addModifyListener(new ModifyListener() {
-
-			public void modifyText(ModifyEvent e) {
-				if (_comboProfileName.getSelectionIndex() != -1) {
-					if (_combodbName != null) {
-						_combodbName.removeAll();
-
-						// for non-database profile, this combo box is always
-						// disabled.
-						String profileName = _comboProfileName.getText();
-						IConnectionProfile connectionProfile = ProfileManager
-								.getInstance().getProfileByName(profileName);
-						if (ProfileUtil.isDatabaseProfile(connectionProfile)) {
-							_combodbName.setEnabled(true);
-						} else {
-							_combodbName.setEnabled(false);
-						}
-					}
-				} else {
-					if (_combodbName != null) {
-						_combodbName.removeAll();
-						_combodbName.setEnabled(false);
-					}
-				}
-
-			}
-		});
-		refreshProfileNames(_comboType.getText(), _profileName);
+		initProfileNames(_comboType.getText(), _profileName);
 		_comboProfileName.addSelectionListener(this);
 	}
 
@@ -541,50 +349,6 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 			_combodbName.setEnabled(false);
 		}
 
-		_combodbName.addFocusListener(new FocusListener() {
-
-			public void focusGained(FocusEvent e) {
-				_combodbName.removeAll();
-				if (_checkBoxConnect != null && _checkBoxConnect.getSelection())
-				{
-					return;
-				}
-				String profileName = _comboProfileName.getText();
-				if (profileName != null) {
-					List list = ProfileUtil.getDatabaseList(profileName, _mustConnect);
-					Iterator iterator = list.iterator();
-					while (iterator.hasNext()) {
-						String dbname = iterator.next().toString();
-						_combodbName.add(dbname);
-					}
-				}
-                if (_dbName != null)
-                {
-                    if (_combodbName.getItemCount() == 0)
-                    {
-                        _combodbName.add(_dbName);
-                    }
-                    _combodbName.setText(_dbName);
-                }
-                _combodbName.add("", 0);
-
-			}
-
-			public void focusLost(FocusEvent e) {
-
-			}
-		});
-
-		_combodbName.addKeyListener(new KeyListener() {
-
-			public void keyPressed(KeyEvent e) {
-			}
-
-			public void keyReleased(KeyEvent e) {
-				updateFields();
-				notifyListener();
-			}
-		});
 		// for non-database profile, this combo box is always disabled.
 		String profileName = _comboProfileName.getText();
 		if (profileName != null) {
@@ -596,6 +360,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				_combodbName.setEnabled(false);
 			}
 		}
+        
 		_combodbName.addSelectionListener(this);
 		if (_dbName != null) {
 			_combodbName.add(_dbName);
@@ -625,7 +390,7 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 				.toArray(new String[0]));
         _comboType.add("", 0);//add empty type to the first element to group all connection profiles
 		if (_profileName != null) {
-			selectTypebyProfile(_profileName);
+			initTypebyProfile(_profileName);
 		} else if (_supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
 			_comboType.setText(_dbVendorId.toString());
         } else if (_supportedDBDefinitionNames.size() > 0) {
@@ -635,84 +400,6 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
 
 	}
 
-	/**
-	 * Tries to set the database vendor definition combo box when a connection
-	 * profile name is specified (during initialization or connection profile
-	 * creation)
-	 */
-	private void selectTypebyProfile(String profileName) {
-        if (profileName == null || profileName.equals(""))
-        {
-            return;
-        }
-		SQLDevToolsConfiguration factory = SQLToolsFacade
-				.getConfigurationByProfileName(profileName);
-		if (factory != null) {
-			String dbDefName = factory.getDatabaseVendorDefinitionId()
-					.toString();
-			_comboType.setText(dbDefName);
-
-		}
-	}
-
-	/**
-	 * Refreshes the connection profile name combo box
-	 * 
-	 * @param dbVendorName
-	 */
-	private void refreshProfileNames(String dbVendorName, String initialProfName) {
-        ArrayList rightProfiles = new ArrayList();
-        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
-        if (dbVendorName == null || dbVendorName.equals("") || dbVendorName.equals(AbstractConnectionInfoComposite.DATABASE_VENDOR_DEFINITION_ID.toString())) { //$NON-NLS-1$
-            for (int i = 0; i < profiles.length; i++) {
-                rightProfiles.add(profiles[i].getName());
-            }
-        }
-        else
-        {
-            DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
-            SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
-            SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
-            // there will be only one instance for each type of configuration, so we
-            // can use == here
-            boolean isDefault = selectedConfig == defaultConfig;
-            
-
-            for (int i = 0; i < profiles.length; i++) {
-                DatabaseVendorDefinitionId dbVendorId = ProfileUtil
-                        .getDatabaseVendorDefinitionId(profiles[i].getName());
-                if (selectedDbVendorId.equals(dbVendorId)) {
-                    rightProfiles.add(profiles[i].getName());
-                }else if (isDefault)
-                {
-                    SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
-                    if (selectedConfig == config)
-                    {
-                        rightProfiles.add(profiles[i].getName());
-                    }
-                }
-            }
-
-        }
-
-        Collections.sort(rightProfiles);
-
-		rightProfiles.add(0, new String("")); //$NON-NLS-1$
-		_comboProfileName.setItems((String[]) rightProfiles
-				.toArray(new String[] {}));
-		if (initialProfName != null) {
-			for (Iterator iter = rightProfiles.iterator(); iter.hasNext();) {
-				if (iter.next().equals(initialProfName)) {
-					_comboProfileName.setText(initialProfName);
-					break;
-				}
-
-			}
-		}
-		updateFields();
-		canFinish();
-	}
-    
     /**
      * Returns the ProfileType control for this Connection Info group.
      * <p>
@@ -739,6 +426,11 @@ public class ConnectionInfoGroup extends Composite implements SelectionListener,
     public Combo getProfileNamesControl()
     {
         return _comboProfileName;
+    }
+    
+    public Button getCreateButton()
+    {
+        return _create;
     }
     
     /**

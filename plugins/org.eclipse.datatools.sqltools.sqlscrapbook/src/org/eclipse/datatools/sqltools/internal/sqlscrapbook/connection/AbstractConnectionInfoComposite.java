@@ -9,15 +9,26 @@
  **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
+import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -25,6 +36,7 @@ import org.eclipse.swt.widgets.Listener;
 
 /**
  * Super class for composites to select the connection information. This class do not handle the various styles, which should be take care of by concrete subclasses.
+ * By default this class assumes the style is STYLE_SHOW_STATUS | STYLE_SEPARATE_TYPE_NAME | STYLE_LABEL_GROUP.
  * @author Hui Cao
  */
 public abstract class AbstractConnectionInfoComposite extends Composite
@@ -68,7 +80,6 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     protected String _dbName = null;
     protected DatabaseVendorDefinitionId _dbVendorId = DATABASE_VENDOR_DEFINITION_ID;
     protected ISQLEditorConnectionInfo _connInfo = null;
-    protected boolean _mustConnect = false;
     // The listener to notify of events
     protected Listener                                _listener;
     protected int _style = STYLE_SHOW_STATUS | STYLE_SEPARATE_TYPE_NAME | STYLE_LABEL_GROUP;
@@ -113,10 +124,57 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         _connInfo = new SQLEditorConnectionInfo(_dbVendorId, _profileName, _dbName);
     }
 
-    /**
-     * Looks up the control and get the values
-     */
-    protected abstract void readControlValues();
+    protected void initDBNames()
+    {
+        getDbNamesControl().removeAll();
+        if (_profileName != null)
+        {
+            List list = ProfileUtil.getDatabaseList(_profileName, (_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT );
+            Iterator iterator = list.iterator();
+            while (iterator.hasNext())
+            {
+                String dbname = iterator.next().toString();
+                getDbNamesControl().add(dbname);
+            }
+        }
+        if (_dbName != null)
+        {
+            if (getDbNamesControl().getItemCount() == 0)
+            {
+                getDbNamesControl().add(_dbName);
+            }
+            getDbNamesControl().setText(_dbName);
+        }
+        getDbNamesControl().add("", 0);
+    }
+
+
+    protected void readControlValues() {
+        if (getProfileTypeControl().getText() != null && !"".equals(getProfileTypeControl().getText())) //$NON-NLS-1$
+        {
+            _dbVendorId = new DatabaseVendorDefinitionId(getProfileTypeControl().getText());
+        }
+        else
+        {
+            _dbVendorId = DATABASE_VENDOR_DEFINITION_ID;
+        }
+        // set _profileName to "" has no meaning
+        if (getProfileNamesControl().getText() != null
+                && !"".equals(getProfileNamesControl().getText())) { //$NON-NLS-1$
+            _profileName = getProfileNamesControl().getText();
+        } else {
+            _profileName = null;
+        }
+        if (getDbNamesControl() != null && getDbNamesControl().getText() != null
+                && !"".equals(getDbNamesControl().getText())) { //$NON-NLS-1$
+            _dbName = getDbNamesControl().getText();
+        }
+        else
+        {
+            _dbName = null;
+        }
+
+    }
     
     public void setInfoStyle(int style)
     {
@@ -126,17 +184,6 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     public int getInfoStyle()
     {
         return _style;
-    }
-
-    
-    public boolean isMustConnect()
-    {
-        return _mustConnect;
-    }
-
-    public void setMustConnect(boolean connect)
-    {
-        _mustConnect = connect;
     }
 
     /**
@@ -178,7 +225,120 @@ public abstract class AbstractConnectionInfoComposite extends Composite
      * 
      * @param dbVendorName
      */
-    public abstract void init(String dbVendorName, String initialProfName, String initialDBName);
+    public void init(String dbVendorName, String initialProfName, String initialDBName)
+    {
+        setConnectionInfo(dbVendorName, initialProfName, initialDBName);
+        //init type
+        if (_supportedDBDefinitionNames == null)
+        {
+            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+        }
+        getProfileTypeControl().setItems((String[]) _supportedDBDefinitionNames
+                .toArray(new String[0]));
+        getProfileTypeControl().add("", 0);//add empty type to the first element to group all connection profiles
+        if (_profileName != null) {
+            initTypebyProfile(_profileName);
+        } else if (_supportedDBDefinitionNames.contains(_dbVendorId.toString())) {
+            getProfileTypeControl().setText(_dbVendorId.toString());
+        } else if (_supportedDBDefinitionNames.size() > 0) {
+            getProfileTypeControl().select(0);
+        }
+        
+        //init name
+        initProfileNames(_dbVendorId.toString(), _profileName);
+
+        //init db
+        IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(_profileName);
+        if (ProfileUtil.isDatabaseProfile(connectionProfile))
+        {
+            getDbNamesControl().setEnabled(true);
+        }
+        else
+        {
+            getDbNamesControl().setEnabled(false);
+        }        
+        initDBNames();
+        
+    }
+
+    /**
+     * Tries to set the database vendor definition combo box when a connection
+     * profile name is specified (during initialization or connection profile
+     * creation)
+     */
+    protected void initTypebyProfile(String profileName) {
+        if (profileName == null || profileName.equals(""))
+        {
+            return;
+        }
+        SQLDevToolsConfiguration factory = SQLToolsFacade
+                .getConfigurationByProfileName(profileName);
+        if (factory != null) {
+            String dbDefName = factory.getDatabaseVendorDefinitionId()
+                    .toString();
+            if (!dbDefName.equals(getProfileTypeControl().getText()))
+            {
+                getProfileTypeControl().setText(dbDefName);
+            }
+        }
+    }
+
+    /**
+     * Refreshes the connection profile name combo box
+     * TODO add all profiles when type is null or undefined so that user can select profile first
+     * @param dbVendorName
+     */
+    protected void initProfileNames(String dbVendorName, String initialProfName) {
+        ArrayList rightProfiles = new ArrayList();
+        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
+        if (dbVendorName == null || dbVendorName.equals("") || dbVendorName.equals(DATABASE_VENDOR_DEFINITION_ID.toString())) { //$NON-NLS-1$
+            for (int i = 0; i < profiles.length; i++) {
+                rightProfiles.add(profiles[i].getName());
+            }
+        }
+        else
+        {
+            DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
+            SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
+            SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
+            // there will be only one instance for each type of configuration, so we
+            // can use == here
+            boolean isDefault = selectedConfig == defaultConfig;
+            
+
+            for (int i = 0; i < profiles.length; i++) {
+                DatabaseVendorDefinitionId dbVendorId = ProfileUtil
+                        .getDatabaseVendorDefinitionId(profiles[i].getName());
+                if (selectedDbVendorId.equals(dbVendorId)) {
+                    rightProfiles.add(profiles[i].getName());
+                }else if (isDefault)
+                {
+                    SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
+                    if (selectedConfig == config)
+                    {
+                        rightProfiles.add(profiles[i].getName());
+                    }
+                }
+            }
+
+        }
+
+        Collections.sort(rightProfiles);
+
+        rightProfiles.add(0, new String("")); //$NON-NLS-1$
+        getProfileNamesControl().setItems((String[]) rightProfiles
+                .toArray(new String[] {}));
+        if (initialProfName != null) {
+            for (Iterator iter = rightProfiles.iterator(); iter.hasNext();) {
+                if (iter.next().equals(initialProfName)) {
+                    getProfileNamesControl().setText(initialProfName);
+                    break;
+                }
+
+            }
+        }
+    }
+
 
     protected void setConnectionInfo(String dbVendorName, String initialProfName, String initialDBName)
     {
@@ -196,6 +356,8 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         
     }
 
+    public abstract Combo getProfileTypeControl();
+    
     /**
      * Returns the ProfileNames control for this Connection Info group.
      * <p>
@@ -205,6 +367,15 @@ public abstract class AbstractConnectionInfoComposite extends Composite
      * @return the ProfileNames control or <code>null</code>
      */
     public abstract Combo getProfileNamesControl();
+
+    /**
+     * Returns the button control to create profiles
+     * <p>
+     * May return <code>null</code> if the control has not been created yet.
+     * </p>
+     * 
+     */
+    public abstract Button getCreateButton();
 
     /**
      * Returns the DbNames control for this Connection Info group.
@@ -269,4 +440,96 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     {
     }
     
+    public void widgetDefaultSelected(SelectionEvent e)
+    {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public void widgetSelected(SelectionEvent e)
+    {
+        readControlValues();
+        if (e.widget == getProfileTypeControl()) {
+            initProfileNames(getProfileTypeControl().getText(), null);
+        }
+        else if (e.widget == getProfileNamesControl())
+        {
+            initTypebyProfile(_profileName);
+            // TODO when DatabaseDefinition.supportsCatalog is introduced, adjust _combodbName accordingly
+            if (getProfileNamesControl().getSelectionIndex() != -1)
+            {
+                if (getDbNamesControl() != null)
+                {
+                    getDbNamesControl().removeAll();
+                    _dbName = null;
+
+                    if (_profileName != null)
+                    {
+                        IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(
+                                _profileName);
+                        if (ProfileUtil.isDatabaseProfile(connectionProfile))
+                        {
+                            getDbNamesControl().setEnabled(true);
+                        }
+                        else
+                        {
+                            getDbNamesControl().setEnabled(false);
+                        }
+                    }
+                    else
+                    {
+                        getDbNamesControl().setEnabled(false);
+                    }
+                }
+            }
+            else
+            {
+                if (getDbNamesControl() != null)
+                {
+                    getDbNamesControl().removeAll();
+                    getDbNamesControl().setEnabled(false);
+                }
+            }
+            //180481 populate database names in focusGained does not work on linux
+            if (getDbNamesControl() != null && getDbNamesControl().isEnabled())
+            {
+                initDBNames();
+            }
+        }
+        updateFields();
+        notifyListener();        
+    }
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+     */
+    public void handleEvent(Event event) {
+        if (event.widget == getCreateButton()) {
+            SQLDevToolsConfiguration f = SQLToolsFacade.getConfigurationByVendorIdentifier(_dbVendorId);
+            if (f == null)
+            {
+                return;
+            }
+            IWizard wizard = f.getUIComponentService().getProfileWizard();
+            String[] currentNames = getCurrentProfileNames();
+            WizardDialog dlg = new WizardDialog(getShell(), wizard);
+            int id = dlg.open();
+            if (id != IDialogConstants.CANCEL_ID)
+            {
+                // refresh all the profile info so that we can select the newly
+                // created one
+                String[] newNames = getCurrentProfileNames();
+                String newProfile = getNewProfileName(currentNames, newNames);
+                if (newProfile != null)
+                {
+                    init(_dbVendorId.toString(), newProfile, null);
+                    updateFields();
+                }
+                notifyListener();
+            }
+        }
+    }
+
 }

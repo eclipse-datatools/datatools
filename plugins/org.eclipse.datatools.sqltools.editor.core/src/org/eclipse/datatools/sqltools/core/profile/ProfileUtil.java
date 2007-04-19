@@ -709,10 +709,17 @@ public class ProfileUtil
                 for (Iterator it = catalogs.iterator(); it.hasNext();)
                 {
                     Catalog cat = (Catalog) it.next();
-                    list.add(cat.getName());
+                    if (cat.getName() != null && !cat.getName().equals(""))
+                    {
+                        list.add(cat.getName());
+                    }
                 }
             }
             else
+            {
+                list.add(db.getName());
+            }
+            if (list.isEmpty())
             {
                 list.add(db.getName());
             }

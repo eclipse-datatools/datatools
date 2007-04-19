@@ -11,8 +11,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.editors.text.ILocationProvider;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.ITextEditor;
 
 /**
@@ -149,7 +147,7 @@ public class EditorUtil
 			} catch (PartInitException e) {
 				SQLEditorPlugin.getDefault().log(e);
 			}
-            if (input instanceof ISQLEditorInput)
+            if (input instanceof ISQLEditorInput && ((ISQLEditorInput)input).isConnectionRequired())
             {
                 ISQLEditorInput sqlEditorInput = (ISQLEditorInput) input;
                 ISQLEditorConnectionInfo info = sqlEditorInput.getConnectionInfo();

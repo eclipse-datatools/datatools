@@ -78,7 +78,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 		{
             if (_profileName == null)
             {
-                _dbVendorId = SQLToolsFacade.getDefaultDatabaseVendorDefinitionId();
+                _dbVendorId = SQLToolsFacade.getNonSpecificDatabaseVendorDefinitionId();
             }
             else
             {
