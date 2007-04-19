@@ -22,7 +22,6 @@ import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.apache.xerces.dom.DOMInputImpl;
 import org.apache.xerces.impl.xs.XMLSchemaLoader;
 import org.apache.xerces.impl.xs.XSElementDecl;
 import org.apache.xerces.xs.XSConstants;
@@ -36,6 +35,7 @@ import org.eclipse.datatools.enablement.oda.xml.util.SaxParser;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
 import org.w3c.dom.ls.LSInput;
 
+import com.sun.org.apache.xerces.internal.dom.DOMInputImpl;
 
 /**
  * This class is used to offer GUI a utility to get an tree from certain xml/xsd
