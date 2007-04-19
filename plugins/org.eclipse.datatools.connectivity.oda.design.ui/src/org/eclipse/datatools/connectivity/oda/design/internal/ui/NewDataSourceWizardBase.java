@@ -33,6 +33,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionMani
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 
@@ -310,6 +311,14 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
 
         return m_profileProps;    // use own cached properties
     }
+    
+    private static boolean hasLinkedProfileProperties( Properties customProperties )
+    {
+        if( customProperties.containsKey( ConnectionProfileProperty.PROFILE_NAME_PROP_KEY ) )
+            return true;
+        
+        return customProperties.containsKey( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
+    }
 
     /**
      * Returns the ODA data source element id that 
@@ -456,19 +465,22 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         }
         
         // assign those properties that have values collected in wizard page
-        Properties propertyValuePairs = getProfileProperties();
+        Properties customPropertyValues = getProfileProperties();
         newDesign.setPublicProperties(
                 DesignSessionUtil.createDataSourcePublicProperties( 
                             getOdaDataSourceId(),
-                            propertyValuePairs ));
+                            customPropertyValues ));
         newDesign.setPrivateProperties( 
                 DesignSessionUtil.createDataSourceNonPublicProperties( 
                             getOdaDataSourceId(),
-                            propertyValuePairs ));
+                            customPropertyValues ));
     
-        // adds attributes of linked profile, if specified,
-        // to the data source design
-        if( hasLinkToProfile() )
+        /* adds linked profile properties to the design, 
+         * iff a profile is specified/initialized in this wizard
+         * and the custom page did not include any linked profile properties in its 
+         * custom profile properties
+         */
+        if( hasLinkToProfile() && ! hasLinkedProfileProperties( customPropertyValues ) )
         {
             assert( m_linkedProfile != null );
             newDesign.setLinkedProfileName( m_linkedProfile.getProfileName() );
