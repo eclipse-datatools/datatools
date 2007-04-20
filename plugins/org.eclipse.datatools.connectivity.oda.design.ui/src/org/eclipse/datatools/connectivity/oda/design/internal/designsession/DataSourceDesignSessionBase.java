@@ -438,6 +438,7 @@ public class DataSourceDesignSessionBase
             profileNamePage.setProfileName( aDataSourceName );
             profileNamePage.setProfileDescription( aDataSourceDesc );
             profileNamePage.setPageComplete( true );
+            profileNamePage.setSkippable( true );
         }
         
         // reset any previously linked profile
