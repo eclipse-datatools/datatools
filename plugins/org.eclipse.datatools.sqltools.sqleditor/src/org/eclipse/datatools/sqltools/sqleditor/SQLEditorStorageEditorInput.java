@@ -195,4 +195,9 @@ public class SQLEditorStorageEditorInput implements IStorageEditorInput, ISQLEdi
         return false;
     }
 
+    public String getId()
+    {
+        return getClass().getName() + "(" + fName + ")";
+    }
+
 } // end class

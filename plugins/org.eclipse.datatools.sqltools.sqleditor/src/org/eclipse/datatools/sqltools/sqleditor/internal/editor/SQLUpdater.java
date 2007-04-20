@@ -36,6 +36,7 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.Token;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
+import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -633,6 +634,6 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
     
     private String getMarkerSourceId()
     {
-        return "SQLEditor:" + _editor.hashCode() + ":" + this.hashCode();
+        return ((ISQLEditorInput)_editor.getEditorInput()).getId();
     }
 }

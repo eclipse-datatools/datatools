@@ -23,6 +23,16 @@ public interface ISQLEditorInput extends IEditorInput {
     
     public ISQLEditorConnectionInfo getConnectionInfo();
     
+    /**
+     * Returns whether database connection is required for this editor input to exist. 
+     * @return
+     */
     public boolean isConnectionRequired();
+    
+    /**
+     * Returns the unique identifier that distinguishes this editor input
+     * @return A string id
+     */
+    public String getId();
     
 }

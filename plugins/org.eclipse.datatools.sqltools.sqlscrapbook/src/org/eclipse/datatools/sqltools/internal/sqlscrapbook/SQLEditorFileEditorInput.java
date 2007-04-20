@@ -149,4 +149,9 @@ public class SQLEditorFileEditorInput extends FileEditorInput implements ISQLEdi
         return false;
     }
 
+    public String getId()
+    {
+        return toString();
+    }
+
 }

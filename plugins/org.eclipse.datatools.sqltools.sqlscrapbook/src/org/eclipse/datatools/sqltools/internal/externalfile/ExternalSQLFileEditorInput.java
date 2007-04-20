@@ -283,4 +283,9 @@ public class ExternalSQLFileEditorInput implements IPathEditorInput, IStorageEdi
     {
         return false;
     }
+
+    public String getId()
+    {
+        return getClass().getName() + "(" + getPath().toString() + ")";
+    }
 }
