@@ -9,7 +9,7 @@ Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.Activator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.datatools.connectivity.oda;bundle-version="3.0.3",
+ org.eclipse.datatools.connectivity.oda;bundle-version="3.1.0",
  org.eclipse.datatools.connectivity.oda.profile,
  org.eclipse.datatools.enablement.oda.xml,
  org.wsdl4j
