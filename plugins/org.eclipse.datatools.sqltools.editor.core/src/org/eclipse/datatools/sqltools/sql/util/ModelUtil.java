@@ -231,8 +231,9 @@ public class ModelUtil {
 				for (Iterator iter = catalogs.iterator(); iter
 						.hasNext();) {
 					Catalog catalog = (Catalog) iter.next();
+                    //empty name means this is a dummy catalog
 					if (catalog.getName()
-							.equals(catalogName)) {
+							.equals(catalogName) || catalog.getName().equals("")) {
 						
 						schemas = (EList) catalog.getSchemas();
 						break;

@@ -246,7 +246,7 @@ public class AbstractControlConnection implements IControlConnection {
 		Database db = ProfileUtil.getDatabase(_databaseIdentifier);
 		ArrayList procs = new ArrayList();
 		if (db != null) {
-			EList schemas = db.getSchemas();
+			EList schemas = ModelUtil.getSchemas(db, _databaseIdentifier.getDBname());
 			Iterator i = schemas.iterator();
 			for (; i.hasNext();) {
 				Schema schema = (Schema) i.next();
