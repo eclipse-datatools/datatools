@@ -162,9 +162,6 @@ public class Query implements IQuery
 			if ( WSUtil.isNull( soapResponse ) )
 				return null;
 
-			if ( soapResponse.getStreamType( ) == SOAPResponse.ERROR_STREAM )
-				throw new OdaException( soapResponse.getStreamInfo( ) );
-
 			return soapResponse.getInputStream( );
 		}
 	}

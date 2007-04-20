@@ -279,11 +279,7 @@ public class WSConsole
 			if ( soapResponse == null )
 				return null;
 
-			if ( soapResponse.getStreamType( ) == SOAPResponse.ERROR_STREAM )
-				throw new OdaException( soapResponse.getStreamInfo( ) );
-
-			else
-				return soapResponse.getInputStream( );
+			return soapResponse.getInputStream( );
 		}
 	}
 
