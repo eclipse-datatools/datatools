@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.oda.ws.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.Constants;
@@ -125,18 +126,18 @@ public class WebServiceSelectionPageHelper
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
-						"*.wsdl", "*.*"
+						"*.wsdl", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
 				} );
 				if ( wsdlURI.getText( ) != null
 						&& wsdlURI.getText( ).trim( ).length( ) > 0 )
 				{
-					dialog.setFilterPath( wsdlURI.getText( ) );
+					dialog.setFilterPath( getWsdlURIString( ) );
 				}
 
 				String selectedLocation = dialog.open( );
 				if ( selectedLocation != null )
 				{
-					wsdlURI.setText( selectedLocation );
+					setWsdlURIString( selectedLocation );
 				}
 			}
 
@@ -201,10 +202,10 @@ public class WebServiceSelectionPageHelper
 			props = new Properties( );
 
 		Properties prop = new Properties( );
-		prop.setProperty( Constants.SOAP_ENDPOINT, soapEndPoint.getText( ) );
+		prop.setProperty( Constants.SOAP_ENDPOINT, getSoapEndPointString( ) );
 		prop.setProperty( Constants.CUSTOM_CONNECTION_CLASS,
-				customClass.getText( ) );
-		prop.setProperty( Constants.WSDL_URI, wsdlURI.getText( ) );
+				getCustomClassString( ) );
+		prop.setProperty( Constants.WSDL_URI, getWsdlURIString( ) );
 
 		return prop;
 	}
@@ -222,9 +223,9 @@ public class WebServiceSelectionPageHelper
 			return; // nothing to initialize
 		}
 
-		wsdlURI.setText( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.WSDL_URI ) ) );
-		soapEndPoint.setText( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.SOAP_ENDPOINT ) ) );
-		customClass.setText( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) ) );
+		setWsdlURIString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.WSDL_URI ) ) );
+		setSoapEndPointString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.SOAP_ENDPOINT ) ) );
+		setCustomClassString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) ) );
 	}
 
 	private void verifyPage( )
@@ -233,7 +234,7 @@ public class WebServiceSelectionPageHelper
 				&& WSUIUtil.isNull( wsdlURI.getText( ) ) )
 		{
 			setPageComplete( false );
-			setMessage( Messages.getString( "webServiceSelectionPage.message.error" ),
+			setMessage( Messages.getString( "webServiceSelectionPage.message.error" ), //$NON-NLS-1$
 					IMessageProvider.ERROR );
 		}
 		else
@@ -266,6 +267,36 @@ public class WebServiceSelectionPageHelper
 			wizardPage.setMessage( newMessage, newType );
 		else if ( propertyPage != null )
 			propertyPage.setMessage( newMessage, newType );
+	}
+
+	private String getWsdlURIString( )
+	{
+		return TextProcessorWrapper.deprocess( wsdlURI.getText( ) );
+	}
+
+	private void setWsdlURIString( String text )
+	{
+		wsdlURI.setText( TextProcessorWrapper.process( text ) );
+	}
+
+	private String getSoapEndPointString( )
+	{
+		return TextProcessorWrapper.deprocess( soapEndPoint.getText( ) );
+	}
+
+	private void setSoapEndPointString( String text )
+	{
+		soapEndPoint.setText( TextProcessorWrapper.process( text ) );
+	}
+
+	private String getCustomClassString( )
+	{
+		return TextProcessorWrapper.deprocess( customClass.getText( ) );
+	}
+
+	private void setCustomClassString( String text )
+	{
+		customClass.setText( TextProcessorWrapper.process( text ) );
 	}
 
 }
