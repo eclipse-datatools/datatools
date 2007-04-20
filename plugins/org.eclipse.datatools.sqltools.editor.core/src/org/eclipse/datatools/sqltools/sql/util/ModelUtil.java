@@ -135,7 +135,8 @@ public class ModelUtil {
         while (container != null)
         {
             obj = container;
-            if (obj instanceof Catalog)
+            //skip any dummy catalog objects
+            if (obj instanceof Catalog && ((Catalog)obj).getName() != null && !"".equals(((Catalog)obj).getName()))
             {
                 return ((Catalog)obj).getName();
             }
