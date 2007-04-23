@@ -319,6 +319,7 @@ public class ProfileUtil
 
 
     /**
+     * Returns the real version info by pinging the server if it's not cached in connection profile yet.
      * @param profileName
      * @return
      */
