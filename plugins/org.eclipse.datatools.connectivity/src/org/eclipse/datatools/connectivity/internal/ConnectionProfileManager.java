@@ -189,10 +189,16 @@ public class ConnectionProfileManager {
 
 	private void processConnectionProfile(IConfigurationElement element) {
 		ConnectionProfileProvider p = new ConnectionProfileProvider(element);
-		Assert.isTrue(!mProviders.containsKey(p.getId()), ConnectivityPlugin
-				.getDefault().getResourceString("assert.invalid.profile", //$NON-NLS-1$
-						new Object[] { element.toString()}));
-		mProviders.put(p.getId(), p);
+		if( ! mProviders.containsKey( p.getId() ) )
+	        mProviders.put( p.getId(), p );
+		else  // another profile provider with same id already loaded
+		{
+		    // log and ignore profile provider with duplicated id
+		    ConnectivityPlugin.getDefault().log( 
+		            ConnectivityPlugin.getDefault()
+		                .getResourceString( "assert.invalid.profile", //$NON-NLS-1$
+						new Object[] { p.getId() + ": " + element.toString() } )); //$NON-NLS-1$
+		}
 	}
 
 	private void processCategory(IConfigurationElement element) {

@@ -190,11 +190,14 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	}
 
 	public void addConnectionFactory(IConnectionFactoryProvider icfap) {
-		Assert.isTrue(!mConnectionFactories.containsKey(icfap.getId()),
+	    if( ! mConnectionFactories.containsKey(icfap.getId()) )
+	        mConnectionFactories.put(icfap.getId(), icfap);
+	    else   // connection factory id already added
+            // log and ignore repeated use of same factory
+            ConnectivityPlugin.getDefault().log( 
 				ConnectivityPlugin.getDefault().getResourceString(
 						"assert.invalid.profile.duplicateFactory", //$NON-NLS-1$
-						new Object[] { icfap.getId().toString()}));
-		mConnectionFactories.put(icfap.getId(), icfap);
+						new Object[] { icfap.getId() } ));
 	}
 
 	public IPropertiesPersistenceHook getPropertiesPersistenceHook() {
