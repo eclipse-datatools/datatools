@@ -67,7 +67,7 @@ public class ModelUtil {
 		else if (type instanceof DistinctUserDefinedType)
 		{
 			PredefinedDataType pretype = ((DistinctUserDefinedType)type).getPredefinedRepresentation();
-			IDatatype datatype = createIDatatype(typeDefinition, (PredefinedDataType)type, owner);
+			IDatatype datatype = createIDatatype(typeDefinition, pretype, owner);
 			return new Datatype(owner, type.getName(), true, datatype, datatype.getLength(), datatype.getPrecision(), datatype.getScale(), datatype.allowNull());
 		}
 		return null;
