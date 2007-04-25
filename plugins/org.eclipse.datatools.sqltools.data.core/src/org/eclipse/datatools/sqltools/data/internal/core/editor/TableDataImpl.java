@@ -222,7 +222,10 @@ public class TableDataImpl implements ITableData {
     
     public String getQuotedColumnName(int col)
     {
-        return DataCorePlugin.quoteIdentifier(sqlTable.getSchema().getDatabase(), getColumnName(col));
+    	Database db = sqlTable.getSchema().getDatabase() != null?
+    					sqlTable.getSchema().getDatabase():sqlTable.getSchema().getCatalog().getDatabase();
+    	
+        return DataCorePlugin.quoteIdentifier(db, getColumnName(col));
     }
     
     public int getColumnType(int col)
