@@ -238,7 +238,7 @@ public class SchemaASABaseLoader {
                 return retVal;
             }
             
-            protected void initialize(Routine routine, ResultSet rs) throws SQLException
+            public void initialize(Routine routine, ResultSet rs) throws SQLException
             {
                 routine.setName(rs.getString(COLUMN_PROCEDURE_NAME));
             }
@@ -251,7 +251,7 @@ public class SchemaASABaseLoader {
                 return new SybaseASACatalogBaseUserDefinedFunction();
             }
             
-            protected void initialize(Routine routine, ResultSet rs) throws SQLException
+            public void initialize(Routine routine, ResultSet rs) throws SQLException
             {
                 routine.setName(rs.getString(COLUMN_PROCEDURE_NAME));
             }
@@ -300,7 +300,7 @@ public class SchemaASABaseLoader {
                 return new SybaseASACatalogBaseUserDefinedDataType();
             }
             
-            protected void initialize(UserDefinedType udt, ResultSet rs) throws SQLException
+            public void initialize(UserDefinedType udt, ResultSet rs) throws SQLException
             {
                 String udtName = rs.getString(COLUMN_TYPE_NAME);
                 udt.setName(udtName);
