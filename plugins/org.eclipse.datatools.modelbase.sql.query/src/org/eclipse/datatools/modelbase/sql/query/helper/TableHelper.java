@@ -943,6 +943,8 @@ public class TableHelper {
    * @return the fully qualified table name
    */
   public static String getFullTableName(Table table) {
+	// TODO: Fix this? Appears not to be used in DTP and is buggy in certain situations
+	// Refer to BZ175454
     String tablename = table.getName();
     if (table.getSchema() != null) {
       tablename = table.getSchema().getName() + "." + tablename;
