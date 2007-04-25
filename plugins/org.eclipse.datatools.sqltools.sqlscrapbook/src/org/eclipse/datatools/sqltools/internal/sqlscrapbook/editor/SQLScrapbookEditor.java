@@ -110,53 +110,6 @@ public class SQLScrapbookEditor extends SQLEditor {
         }
     }
     
-	private class ProfileStatusChecker implements IPartListener2
-	{
-	    public void partActivated(IWorkbenchPartReference partRef) {
-			switch (getConnectionInfo().getProfileStatus()) {
-			case EditorConstants.CP_STATUS_DELETED:
-			case EditorConstants.CP_STATUS_PROP_CHANGED:
-				if (isDirty()) {
-					_setConnectionInfoAction.run();
-				} else {
-					close(false);
-				}
-				break;
-			default:
-				break;
-			}
-		}
-
-	    public void partBroughtToTop(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partClosed(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partDeactivated(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partOpened(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partHidden(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partVisible(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	    public void partInputChanged(IWorkbenchPartReference partRef)
-	    {
-	    }
-
-	}
-	protected ProfileStatusChecker                              _profileChecker                   = new ProfileStatusChecker();
 	private IAction _setConnectionInfoAction;
 	
 	public SQLScrapbookEditor() {
@@ -165,7 +118,6 @@ public class SQLScrapbookEditor extends SQLEditor {
 
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		getSite().getPage().addPartListener(_profileChecker);
 	}
 	
 	protected void initializeEditor() {
@@ -245,7 +197,6 @@ public class SQLScrapbookEditor extends SQLEditor {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		super.dispose();
-		getSite().getPage().removePartListener(_profileChecker);
 	}	
 	
     public void doSave(IProgressMonitor monitor)

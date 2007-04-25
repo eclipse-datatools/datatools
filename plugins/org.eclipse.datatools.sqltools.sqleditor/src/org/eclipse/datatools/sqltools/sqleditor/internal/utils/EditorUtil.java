@@ -4,6 +4,7 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal.utils;
 
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -64,6 +65,15 @@ public class EditorUtil
 //                    status = EditorConstants.CP_STATUS_DISCONNECTED;
 //                }
                 info.setProfileStatus(status);
+                info.setDatabase(null);//to refresh the database object
+                if (status == EditorConstants.CP_STATUS_DELETED)
+                {
+                	info.setConnectionProfileName(null);
+                }
+                else
+                {
+                	info.setConnectionProfileName(profileName);
+                }
                 SQLEditor editor = (SQLEditor)ref.getEditor(false);
             	if (editor != null)
             	{
