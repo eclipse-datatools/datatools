@@ -159,6 +159,12 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 					}
 				}
 				else {
+					if (isProcedure(rs)) {
+						mProcedureFactory.initialize(routine, rs);
+					}
+					else {
+						mUserDefinedFunctionFactory.initialize(routine, rs);
+					}
 					containmentList.add(routine);
 					if (routine instanceof ICatalogObject) {
 						((ICatalogObject) routine).refresh();
@@ -319,6 +325,17 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		 * @throws SQLException if anything goes wrong
 		 */
 		Routine createRoutine(ResultSet rs) throws SQLException;
+		
+		/**
+		 * Initializes a routine object based on the meta-data in the result
+		 * set. The routine object may be a new routine requiring initialization
+		 * or an existing routine that is being reinitialized.
+		 * 
+		 * @param table the table to initialize
+		 * @param rs the result set
+		 * @throws SQLException if anything goes wrong
+		 */
+		void initialize(Routine routine, ResultSet rs) throws SQLException;
 	}
 
 	/**
@@ -366,7 +383,7 @@ public class JDBCRoutineLoader extends JDBCBaseLoader {
 		 * @param rs the result set
 		 * @throws SQLException if anything goes wrong
 		 */
-		protected void initialize(Routine routine, ResultSet rs)
+		public void initialize(Routine routine, ResultSet rs)
 				throws SQLException {
 			routine.setName(rs.getString(COLUMN_PROCEDURE_NAME));
 			routine.setDescription(rs.getString(COLUMN_REMARKS));

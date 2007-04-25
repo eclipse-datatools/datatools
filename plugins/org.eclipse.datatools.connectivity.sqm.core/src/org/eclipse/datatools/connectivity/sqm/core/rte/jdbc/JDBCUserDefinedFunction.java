@@ -10,6 +10,8 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
@@ -19,6 +21,8 @@ import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideMan
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDFColumnLoader;
+import org.eclipse.datatools.modelbase.sql.routines.Parameter;
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
@@ -37,8 +41,15 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 	public void refresh() {
 		synchronized (parametersLoaded) {
 			if (parametersLoaded.booleanValue()) {
+				setReturnScalar(null);
 				parametersLoaded = Boolean.FALSE;
-				getParameterLoader().clearColumns(super.getParameters());
+			}
+		}
+
+		synchronized (resultTableLoaded) {
+			if (resultTableLoaded.booleanValue()) {
+				setReturnTable(null);
+				resultTableLoaded = Boolean.FALSE;
 			}
 		}
 
@@ -65,6 +76,22 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 		return super.getParameters();
 	}
 
+	public Parameter getReturnScalar() {
+		synchronized (parametersLoaded) {
+			if (!parametersLoaded.booleanValue())
+				loadParameters();
+		}
+		return super.getReturnScalar();
+	}
+
+	public RoutineResultTable getReturnTable() {
+		synchronized (resultTableLoaded) {
+			if (!resultTableLoaded.booleanValue())
+				loadResultTable();
+		}
+		return super.getReturnTable();
+	}
+
 	protected JDBCUDFColumnLoader createParameterLoader() {
 		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
 			getDefinition(this.getCatalogDatabase());
@@ -89,31 +116,76 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 	}
 
 	private void loadParameters() {
+		boolean deliver = eDeliver();
 		try {
-			List parameters = getParameterLoader().loadColumns();
-			int numParameters = parameters.size();
-			if (numParameters > 0
-					&& parameters.get(numParameters - 1) instanceof RoutineResultTable) {
-				setReturnTable((RoutineResultTable) parameters.get(numParameters - 1));
-				parameters.remove(numParameters - 1);
+			List parametersContainer = super.getParameters();
+			List existingParameters = new ArrayList(parametersContainer);
+
+			eSetDeliver(false);
+
+			parametersContainer.clear();
+			setReturnScalar(null);
+
+			getParameterLoader().loadParameters(parametersContainer, existingParameters);
+			getParameterLoader().clearColumns(existingParameters);
+			
+			for (Iterator it = parametersContainer.iterator(); it.hasNext(); ) {
+				Parameter p = (Parameter)it.next();
+				if (p.getMode() == ParameterMode.OUT_LITERAL) {
+					setReturnScalar(p);
+					it.remove();
+					break;
+				}
 			}
-			super.getParameters().addAll(parameters);
+			
 			parametersLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		finally {
+			eSetDeliver(deliver);
+		}
+	}
+	
+	private void loadResultTable() {
+		boolean deliver = eDeliver();
+		try {
+			eSetDeliver(false);
+
+			List returnTableList = getParameterLoader().loadRoutineResultTables();
+			if (returnTableList.size() > 0) {
+				setReturnTable((RoutineResultTable)returnTableList.get(0));
+			}
+			
+			resultTableLoaded = Boolean.TRUE;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
+		}
 	}
 
 	public boolean eIsSet(EStructuralFeature eFeature) {
-		if (eDerivedStructuralFeatureID(eFeature) == SQLRoutinesPackage.PROCEDURE__PARAMETERS) {
-			this.getParameters();
+		switch (eDerivedStructuralFeatureID(eFeature)) {
+		case SQLRoutinesPackage.USER_DEFINED_FUNCTION__PARAMETERS:
+			getParameters();
+			break;
+		case SQLRoutinesPackage.USER_DEFINED_FUNCTION__RETURN_TABLE:
+			getReturnTable();
+			break;
+		case SQLRoutinesPackage.USER_DEFINED_FUNCTION__RETURN_SCALAR:
+			getReturnScalar();
+			break;
 		}
 
 		return super.eIsSet(eFeature);
 	}
 
 	private Boolean parametersLoaded = Boolean.FALSE;
+	private Boolean resultTableLoaded = Boolean.FALSE;
 	private SoftReference paremeterLoaderRef;
 
 }

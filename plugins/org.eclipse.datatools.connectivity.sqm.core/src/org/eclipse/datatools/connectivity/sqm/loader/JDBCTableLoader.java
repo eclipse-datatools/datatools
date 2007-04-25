@@ -221,6 +221,11 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 					}
 				}
 				else {
+					ITableFactory tableFactory = getTableFactory(rs
+							.getString(COLUMN_TABLE_TYPE));
+					if (tableFactory != null) {
+						tableFactory.initialize(table, rs);
+					}
 					containmentList.add(table);
 					if (table instanceof ICatalogObject) {
 						((ICatalogObject) table).refresh();
@@ -300,15 +305,12 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected Table processRow(ResultSet rs) throws SQLException {
-		String tableType = rs.getString(COLUMN_TABLE_TYPE);
-		if (!mTableFactories.containsKey(tableType)) {
+		ITableFactory tableFactory = getTableFactory(rs
+				.getString(COLUMN_TABLE_TYPE));
+		if (tableFactory == null) {
 			return null;
 		}
-
-		ITableFactory tableFactory = (ITableFactory) mTableFactories
-				.get(tableType);
-		Table table = tableFactory.createTable(rs);
-		return table;
+		return tableFactory.createTable(rs);
 	}
 
 	/**
@@ -382,6 +384,17 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		 * @throws SQLException if anything goes wrong
 		 */
 		Table createTable(ResultSet rs) throws SQLException;
+		
+		/**
+		 * Initializes a table object based on the meta-data in the result set.
+		 * The table object may be a new table requiring initialization or an
+		 * existing table that is being reinitialized.
+		 * 
+		 * @param table the table to initialize
+		 * @param rs the result set
+		 * @throws SQLException if anything goes wrong
+		 */
+		void initialize(Table table, ResultSet rs) throws SQLException;
 
 		/**
 		 * Specify the column names supported by the result set. These names can
@@ -449,7 +462,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		 * @param rs the result set
 		 * @throws SQLException if anything goes wrong
 		 */
-		protected void initialize(Table table, ResultSet rs)
+		public void initialize(Table table, ResultSet rs)
 				throws SQLException {
 			if (mSupportedColumns.contains(COLUMN_REF_GENERATION)) {
 				String srcg = rs.getString(COLUMN_REF_GENERATION);
@@ -563,7 +576,7 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader.TableFactory#initialize(org.eclipse.datatools.modelbase.sql.tables.Table,
 		 *      java.sql.ResultSet)
 		 */
-		protected void initialize(Table table, ResultSet rs)
+		public void initialize(Table table, ResultSet rs)
 				throws SQLException {
 			super.initialize(table, rs);
 			((TemporaryTable) table).setLocal(true);

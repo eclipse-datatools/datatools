@@ -204,6 +204,7 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 					}
 				}
 				else {
+					initialize(column, rs);
 					containmentList.add(column);
 					if (column instanceof ICatalogObject) {
 						((ICatalogObject) column).refresh();
@@ -393,14 +394,17 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 		}
 
 		// Couldn't find predefined type. Try looking for a ref or udt.
-		if (typeName == null)
+		if (typeName == null) {
+			column.setDataType(null);
 			return;
+		}
 
 		// see if we can locate a UDT
 		if (Types.REF == typeCode) {
 			ReferenceDataType ref = createReferenceDataType();
 			if (ref == null) {
 				// TODO: Add some logging maybe?
+				column.setDataType(null);
 				return;
 			}
 			UserDefinedType udt = findUserDefinedType(typeName);

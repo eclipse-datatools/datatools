@@ -191,6 +191,7 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 					if (existingPK != null
 							&& pkName.equals(existingPK.getName())) {
 						pk = existingPK;
+						pk.getMembers().clear();
 						if (existingPK instanceof ICatalogObject) {
 							((ICatalogObject) pk).refresh();
 						}
@@ -267,8 +268,11 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						uc = createUniqueConstraint();
 						uc.setName(ucName);
 					}
-					else if (uc instanceof ICatalogObject) {
-						((ICatalogObject) uc).refresh();
+					else {
+						uc.getMembers().clear();
+						if (uc instanceof ICatalogObject) {
+							((ICatalogObject) uc).refresh();
+						}
 					}
 					containmentList.add(uc);
 					constraints.put(ucName, uc);
@@ -334,8 +338,11 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						fk = createForeignKey();
 						fk.setName(fkName);
 					}
-					else if (fk instanceof ICatalogObject) {
-						((ICatalogObject) fk).refresh();
+					else {
+						fk.getMembers().clear();
+						if (fk instanceof ICatalogObject) {
+							((ICatalogObject) fk).refresh();
+						}
 					}
 					containmentList.add(fk);
 					switch (rs.getShort(COLUMN_UPDATE_RULE)) {

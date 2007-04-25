@@ -161,8 +161,12 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 						index = createIndex();
 						initIndex(index, rs);
 					}
-					else if (index instanceof ICatalogObject) {
-						((ICatalogObject) index).refresh();
+					else {
+						initIndex(index, rs);
+						index.getIncludedMembers().clear();
+						if (index instanceof ICatalogObject) {
+							((ICatalogObject) index).refresh();
+						}
 					}
 					containmentList.add(index);
 				}

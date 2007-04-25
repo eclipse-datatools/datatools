@@ -10,6 +10,7 @@ package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
 
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
@@ -19,7 +20,6 @@ import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideMan
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCProcedureColumnLoader;
-import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -35,7 +35,11 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 		synchronized (parametersLoaded) {
 			if (parametersLoaded.booleanValue()) {
 				parametersLoaded = Boolean.FALSE;
-				getParameterLoader().clearColumns(super.getParameters());
+			}
+		}
+		synchronized (resultTablesLoaded) {
+			if (resultTablesLoaded.booleanValue()) {
+				resultTablesLoaded = Boolean.FALSE;
 			}
 		}
 
@@ -62,6 +66,14 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 		return super.getParameters();
 	}
 
+	public EList getResultSet() {
+		synchronized (resultTablesLoaded) {
+			if (!resultTablesLoaded.booleanValue())
+				loadRoutineResultTables();
+		}
+		return super.getResultSet();
+	}
+
 	protected JDBCProcedureColumnLoader createParameterLoader() {
 		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
 			getDefinition(this.getCatalogDatabase());
@@ -85,31 +97,64 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 	}
 
 	private void loadParameters() {
+		boolean deliver = eDeliver();
 		try {
-			List parameters = getParameterLoader().loadColumns();
-			int numParameters = parameters.size();
-			if (numParameters > 0
-					&& parameters.get(numParameters - 1) instanceof RoutineResultTable) {
-				getResultSet().add(parameters.get(numParameters - 1));
-				parameters.remove(numParameters - 1);
-			}
-			super.getParameters().addAll(parameters);
+			List parametersContainer = super.getParameters();
+			List existingParameters = new ArrayList(parametersContainer);
+
+			eSetDeliver(false);
+
+			parametersContainer.clear();
+
+			getParameterLoader().loadParameters(parametersContainer, existingParameters);
+			getParameterLoader().clearColumns(existingParameters);
+			
 			parametersLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		finally {
+			eSetDeliver(deliver);
+		}
+	}
+	
+	private void loadRoutineResultTables() {
+		boolean deliver = eDeliver();
+		try {
+			List resultTablesContainer = super.getResultSet();
+
+			eSetDeliver(false);
+
+			resultTablesContainer.clear();
+
+			resultTablesContainer.addAll(getParameterLoader().loadRoutineResultTables());
+			
+			resultTablesLoaded = Boolean.TRUE;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			eSetDeliver(deliver);
+		}
 	}
 
 	public boolean eIsSet(EStructuralFeature eFeature) {
-		if (eDerivedStructuralFeatureID(eFeature) == SQLRoutinesPackage.PROCEDURE__PARAMETERS) {
-			this.getParameters();
+		switch (eDerivedStructuralFeatureID(eFeature)) {
+		case SQLRoutinesPackage.PROCEDURE__PARAMETERS:
+			getParameters();
+			break;
+		case SQLRoutinesPackage.PROCEDURE__MAX_RESULT_SETS:
+			getMaxResultSets();
+			break;
 		}
 
 		return super.eIsSet(eFeature);
 	}
 
 	private Boolean parametersLoaded = Boolean.FALSE;
+	private Boolean resultTablesLoaded = Boolean.FALSE;
 	private SoftReference paremeterLoaderRef;
 
 }

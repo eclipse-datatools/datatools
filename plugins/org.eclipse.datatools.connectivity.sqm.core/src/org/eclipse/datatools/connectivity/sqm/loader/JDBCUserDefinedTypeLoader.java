@@ -181,6 +181,21 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 					}
 				}
 				else {
+					IUDTFactory udtFactory = null;
+					switch (rs.getInt(COLUMN_DATA_TYPE)) {
+					case Types.JAVA_OBJECT:
+						udtFactory = mJavaTypeFactory;
+						break;
+					case Types.STRUCT:
+						udtFactory = mStructTypeFactory;
+						break;
+					case Types.DISTINCT:
+						udtFactory = mDistinctTypeFactory;
+						break;
+					}
+					if (udtFactory != null) {
+						udtFactory.initialize(udt, rs);
+					}
 					containmentList.add(udt);
 					if (udt instanceof ICatalogObject) {
 						((ICatalogObject) udt).refresh();
@@ -311,6 +326,17 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		 * @throws SQLException if anything goes wrong
 		 */
 		UserDefinedType createUDT(ResultSet rs) throws SQLException;
+		
+		/**
+		 * Initializes a UDT object based on the meta-data in the result set.
+		 * The UDT object may be a new UDT object requiring initialization or an
+		 * existing UDT object that is being reinitialized.
+		 * 
+		 * @param udt the UDT to initialize
+		 * @param rs the result set
+		 * @throws SQLException if anything goes wrong
+		 */
+		void initialize(UserDefinedType udt, ResultSet rs) throws SQLException;
 	}
 
 	/**
@@ -364,7 +390,7 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.StructTypeFactory#initialize(org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType,
 		 *      java.sql.ResultSet)
 		 */
-		protected void initialize(UserDefinedType udt, ResultSet rs)
+		public void initialize(UserDefinedType udt, ResultSet rs)
 				throws SQLException {
 			super.initialize(udt, rs);
 
@@ -425,7 +451,7 @@ public class JDBCUserDefinedTypeLoader extends JDBCBaseLoader {
 		 * @param rs the result set
 		 * @throws SQLException if anything goes wrong
 		 */
-		protected void initialize(UserDefinedType udt, ResultSet rs)
+		public void initialize(UserDefinedType udt, ResultSet rs)
 				throws SQLException {
 			udt.setName(rs.getString(COLUMN_TYPE_NAME));
 			udt.setDescription(rs.getString(COLUMN_REMARKS));
