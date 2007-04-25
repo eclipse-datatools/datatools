@@ -32,6 +32,7 @@ import javax.wsdl.extensions.UnknownExtensibilityElement;
 import javax.wsdl.extensions.soap.SOAPAddress;
 import javax.wsdl.extensions.soap.SOAPBinding;
 import javax.wsdl.extensions.soap.SOAPBody;
+import javax.wsdl.extensions.soap.SOAPHeader;
 import javax.wsdl.extensions.soap.SOAPOperation;
 import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLReader;
@@ -43,33 +44,38 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * A utility class that handles all wsdl-involved operation
+ * A utility class that handles all wsdl-involved operations
  */
 
 public class WSDLAdvisor
 {
 
-	public static String RE_DELIMITER_OPEARTION = "\\Q$-$\\E";//$NON-NLS-1$
+	public static final String RE_DELIMITER_OPEARTION = "\\Q$-$\\E";//$NON-NLS-1$
 	public static final String XML_DECLARATION = "<?xml version=\"1.0\"?>";//$NON-NLS-1$
 	public static final String SOAP_ENVELOPE_START = "<SOAP-ENV:Envelope";//$NON-NLS-1$
 	public static final String SOAP_ENVELOPE_END = "</SOAP-ENV:Envelope>";//$NON-NLS-1$
+	public static final String SOAP_HEADER_START = "<SOAP-ENV:Header>";//$NON-NLS-1$
+	public static final String SOAP_HEADER_END = "</SOAP-ENV:Header>";//$NON-NLS-1$
 	public static final String SOAP_BODY_START = "<SOAP-ENV:Body>";//$NON-NLS-1$
 	public static final String SOAP_BODY_END = "</SOAP-ENV:Body>";//$NON-NLS-1$
 	public static final String NS_SOAP_ENV = "http://schemas.xmlsoap.org/soap/envelope/";//$NON-NLS-1$
 	public static final String NS_SOAP_ENC = "http://schemas.xmlsoap.org/soap/encoding/";//$NON-NLS-1$
-	public static final String NS_xsi = "http://www.w3.org/2001/XMLSchema-instance";//$NON-NLS-1$
-	public static final String NS_xsd = "http://www.w3.org/2001/XMLSchema";//$NON-NLS-1$
+	public static final String NS_XSI = "http://www.w3.org/2001/XMLSchema-instance";//$NON-NLS-1$
+	public static final String NS_XSD = "http://www.w3.org/2001/XMLSchema";//$NON-NLS-1$
 	public static final String NS_KEY_SOAP_ENV = "SOAP-ENV";//$NON-NLS-1$
 	public static final String NS_KEY_SOAP_ENC = "SOAP-ENC";//$NON-NLS-1$
 	public static final String NS_KEY_XSI = "xsi";//$NON-NLS-1$
 	public static final String NS_KEY_XSD = "xsd";//$NON-NLS-1$
 	public static final String NS_KEY_DEFAULT = "m";//$NON-NLS-1$
+	public static final String NS_DEFAULT = NS_KEY_DEFAULT + ":"; //$NON-NLS-1$
+	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
-	private static String defaultNS = NS_KEY_DEFAULT + ":";
 	private static Map definitionMap = new HashMap( );
+	private static List primitiveDataTypeList;
 
 	/**
-	 * Get the definition, this is the starting point to browse a operation tree
+	 * Gets the definition, this is the starting point to browse a operation
+	 * tree
 	 * 
 	 * @param wsdlURI
 	 * @return
@@ -83,8 +89,8 @@ public class WSDLAdvisor
 		try
 		{
 			WSDLReader reader = WSDLFactory.newInstance( ).newWSDLReader( );
-			reader.setFeature( "javax.wsdl.verbose", true );
-			reader.setFeature( "javax.wsdl.importDocuments", true );
+			reader.setFeature( "javax.wsdl.verbose", true ); //$NON-NLS-1$
+			reader.setFeature( "javax.wsdl.importDocuments", true ); //$NON-NLS-1$
 			definition = reader.readWSDL( null, wsdlURI );
 
 			definitionMap.put( wsdlURI, definition );
@@ -98,6 +104,7 @@ public class WSDLAdvisor
 	}
 
 	/**
+	 * Retrieves the locationURI
 	 * 
 	 * @param wsdlURI
 	 * @param operationTrace
@@ -117,7 +124,7 @@ public class WSDLAdvisor
 				opSplit[0] ) );// service
 		Port port = service.getPort( opSplit[1] );// port
 		List extElements = port.getExtensibilityElements( );
-		String locationURI = "";
+		String locationURI = EMPTY_STRING;
 		if ( !WSUtil.isNull( extElements ) )
 		{
 			for ( int i = 0; i < extElements.size( ); i++ )
@@ -146,6 +153,7 @@ public class WSDLAdvisor
 	}
 
 	/**
+	 * Retrieves the SOAPActionURI
 	 * 
 	 * @param wsdlURI
 	 * @param operationTrace
@@ -159,7 +167,7 @@ public class WSDLAdvisor
 			return null;
 
 		List extElements = bindingOperation.getExtensibilityElements( );
-		String soapActionURI = "";
+		String soapActionURI = EMPTY_STRING;
 		if ( !WSUtil.isNull( extElements ) )
 		{
 			for ( int i = 0; i < extElements.size( ); i++ )
@@ -173,6 +181,35 @@ public class WSDLAdvisor
 		}
 
 		return soapActionURI;
+	}
+
+	/**
+	 * Retrieves the document of the operation
+	 * 
+	 * @param operation
+	 * @return
+	 */
+	public static String retrieveDocument( Operation operation )
+	{
+		String result = EMPTY_STRING;
+		if ( WSUtil.isNull( operation ) )
+			return result;
+
+		Element element = operation.getDocumentationElement( );
+		if ( !WSUtil.isNull( element ) )
+		{
+			NodeList nodes = element.getChildNodes( );
+			for ( int i = 0; i < nodes.getLength( ); i++ )
+			{
+				Node node = nodes.item( i );
+				if ( node.getNodeType( ) != Node.TEXT_NODE )
+					continue;
+
+				result += node.getNodeValue( );
+			}
+		}
+
+		return result;
 	}
 
 	private static BindingOperation getBindingOperation( String wsdlURI,
@@ -198,6 +235,11 @@ public class WSDLAdvisor
 	}
 
 	/**
+	 * Generates the template (WSDL 1.1, SOAP 1.2 compliant) based on the given
+	 * location of wsdlFile and the selected opeartion. The following attributes
+	 * and their combinations are recognizable 1. style: document|rpc 2.header:
+	 * with|without 3. dataType: simple|complex 4.complexType: value|reference
+	 * [5.complexType: sequence|choice]
 	 * 
 	 * @param wsdlURI
 	 * @param operationTrace
@@ -206,7 +248,7 @@ public class WSDLAdvisor
 	public static String getSOAPRequestTemplate( String wsdlURI,
 			String operationTrace )
 	{
-		String template = "";
+		String template = EMPTY_STRING;
 		if ( !checkOperationTrace( operationTrace ) )
 			return template;
 
@@ -215,6 +257,7 @@ public class WSDLAdvisor
 			return template;
 
 		template = buildStart( )
+				+ buildHeader( wsdlURI, operationTrace )
 				+ buildBody( wsdlURI, operationTrace ) + buildEnd( );
 
 		return template;
@@ -234,14 +277,14 @@ public class WSDLAdvisor
 
 	private static String enter( )
 	{
-		return "\n";
+		return "\n"; //$NON-NLS-1$
 	}
 
 	private static String tab( int num )
 	{
-		String tabs = "";
+		String tabs = ""; //$NON-NLS-1$
 		for ( int i = 0; i < num; i++ )
-			tabs += "\t";
+			tabs += "\t"; //$NON-NLS-1$
 
 		return tabs;
 	}
@@ -252,20 +295,20 @@ public class WSDLAdvisor
 
 		checkNamespace( namespaceURIs, NS_KEY_SOAP_ENV, NS_SOAP_ENV );
 		checkNamespace( namespaceURIs, NS_KEY_SOAP_ENC, NS_SOAP_ENC );
-		checkNamespace( namespaceURIs, NS_KEY_XSI, NS_xsi );
-		checkNamespace( namespaceURIs, NS_KEY_XSD, NS_xsd );
+		checkNamespace( namespaceURIs, NS_KEY_XSI, NS_XSI );
+		checkNamespace( namespaceURIs, NS_KEY_XSD, NS_XSD );
 
-		String result = "";
+		String result = EMPTY_STRING;
 		Set uris = namespaceURIs.keySet( );
 		Iterator iterator = uris.iterator( );
 		while ( iterator.hasNext( ) )
 		{
 			String uri = (String) iterator.next( );
 			String prefix = (String) namespaceURIs.get( uri );
-			result += enter( ) + "xmlns:" + prefix + "=\"" + uri + "\"";//$NON-NLS-1$//$NON-NLS-1$//$NON-NLS-1$
+			result += enter( ) + "xmlns:" + prefix + "=\"" + uri + "\"";//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 		}
 
-		return result + ">";
+		return result + ">"; //$NON-NLS-1$
 	}
 
 	private static void checkNamespace( Map namespaceURIs, String namespace,
@@ -280,11 +323,235 @@ public class WSDLAdvisor
 				resultNS = namespace;
 				while ( namespaceURIs.containsValue( resultNS ) )
 				{
-					resultNS += "_" + Integer.toString( namespaceURIs.size( ) );
+					resultNS += "_" + Integer.toString( namespaceURIs.size( ) ); //$NON-NLS-1$
 				}
 				namespaceURIs.put( namespaceURI, resultNS );
 			}
 		}
+	}
+
+	private static String buildHeader( String wsdlURI, String operationTrace )
+	{
+		String result = EMPTY_STRING;
+		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
+				operationTrace );
+		if ( WSUtil.isNull( bindingOperation ) )
+			return result;
+
+		BindingInput bindingInput = bindingOperation.getBindingInput( );
+		List extElements = bindingInput.getExtensibilityElements( );
+		if ( !WSUtil.isNull( extElements ) )
+		{
+			for ( int i = 0; i < extElements.size( ); i++ )
+			{
+				if ( extElements.get( i ) instanceof SOAPHeader )
+				{
+					SOAPHeader soapHeader = ( (SOAPHeader) extElements.get( i ) );
+					String nameSpace = soapHeader.getMessage( )
+							.getNamespaceURI( );
+					String localPart = soapHeader.getPart( );
+					if ( !WSUtil.isNull( localPart ) )
+					{
+						List paramNameList = new ArrayList( );
+						List paramTypeList = new ArrayList( );
+						addParamComplexType( wsdlURI,
+								localPart,
+								paramNameList,
+								paramTypeList );
+
+						result += enter( ) + tab( 1 ) + SOAP_HEADER_START;
+						result += enter( )
+								+ tab( 2 ) + "<" + NS_DEFAULT + localPart + " " //$NON-NLS-1$//$NON-NLS-2$
+								+ getQNameSpace( nameSpace ) + ">"; //$NON-NLS-1$
+						result += buildInputParameters( wsdlURI,
+								NS_DEFAULT,
+								paramNameList,
+								paramTypeList,
+								3 );
+						result += enter( )
+								+ tab( 2 )
+								+ "</" + NS_DEFAULT + localPart + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+						result += enter( ) + tab( 1 ) + SOAP_HEADER_END;
+					}
+					break;
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Retrieves all the inputParameters without concerning complexType
+	 * 
+	 * @param wsdlURI
+	 * @param localPart
+	 * @param paramNameList
+	 * @param paramTypeList
+	 */
+	private static void addParamComplexType( String wsdlURI, String localPart,
+			List paramNameList, List paramTypeList )
+	{
+		Definition definition = getDefinition( wsdlURI );
+		Types types = definition.getTypes( );
+		List extElements = types.getExtensibilityElements( );
+		for ( int i = 0; i < extElements.size( ); i++ )
+		{
+			if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
+			{
+				Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
+				List teList = retrieveTargetElementList( element, localPart );
+				for ( int j = 0; j < teList.size( ); j++ )
+				{
+					Element te = (Element) teList.get( j );
+					if ( !WSUtil.isNull( te ) )
+					{
+						paramNameList.add( te.getAttribute( "name" ) );//$NON-NLS-1$
+						paramTypeList.add( te.getAttribute( "type" ) ); //$NON-NLS-1$
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Retrieves the targetElementList as specified by the localPart
+	 * 
+	 * @param element
+	 * @param localPart
+	 * @return
+	 */
+	private static List retrieveTargetElementList( Element element,
+			String localPart )
+	{
+		List teList = new ArrayList( );
+		NodeList nodes = element.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node node = nodes.item( i );
+			if ( node.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap nodeMap = node.getAttributes( );
+			if ( !WSUtil.isNull( nodeMap )
+					&& !WSUtil.isNull( nodeMap.getNamedItem( "name" ) )//$NON-NLS-1$
+					&& localPart.equalsIgnoreCase( nodeMap.getNamedItem( "name" )//$NON-NLS-1$
+							.getNodeValue( ) ) )
+			{
+				if ( WSUtil.isNull( nodeMap.getNamedItem( "type" ) ) )//$NON-NLS-1$
+					retrieveNamedElements( teList, node );
+				// in case the type is still a reference
+				else
+					retrieveTargetElementList( element,
+							nodeMap.getNamedItem( "type" ).getNodeName( ) );//$NON-NLS-1$
+			}
+		}
+
+		return teList;
+	}
+
+	/**
+	 * Adds the named elements to a list
+	 * 
+	 * @param teList
+	 * @param node
+	 */
+	private static void retrieveNamedElements( List teList, Node node )
+	{
+		NodeList subs = node.getChildNodes( );
+		for ( int i = 0; i < subs.getLength( ); i++ )
+		{
+			Node sub = subs.item( i );
+			if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap subMap = sub.getAttributes( );
+			if ( WSUtil.isNull( subMap )
+					|| WSUtil.isNull( subMap.getNamedItem( "name" ) ) )//$NON-NLS-1$;
+			{
+				retrieveNamedElements( teList, sub );
+			}
+			else
+			{
+				teList.add( (Element) sub );
+			}
+		}
+	}
+
+	/**
+	 * With full knowledge of complexType(reference|value), this method builds
+	 * inputParameter block, each of which follows a pattern looking like:
+	 * either <i1 xsi:type="xsd:int">&?i1?&</i1> or <in0> <street
+	 * xsi:type="xsd:string">&?street?&</street> <postcode
+	 * xsi:type="xsd:int">&?postcode?&</postcode> </in0>
+	 * 
+	 * @param wsdlURI
+	 * @param nameSpace
+	 * @param paramNames
+	 * @param paramTypes
+	 * @param tabCount
+	 * 
+	 * @return
+	 */
+	private static String buildInputParameters( String wsdlURI,
+			String nameSpace, List paramNames, List paramTypes, int tabCount )
+	{
+		String result = EMPTY_STRING;
+		for ( int i = 0; i < paramNames.size( ); i++ )
+		{
+			String paramName = paramNames.get( i ).toString( );
+			String paramType = paramTypes.get( i ).toString( );
+
+			// complexType reference
+			if ( !isPrimitiveDataType( paramType ) )
+			{
+				List paramNameList = new ArrayList( );
+				List paramTypeList = new ArrayList( );
+				addParamComplexType( wsdlURI,
+						getParamTypeLocalPart( paramType ),
+						paramNameList,
+						paramTypeList );
+
+				result += enter( )
+						+ tab( tabCount ) + "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+				result += buildInputParameters( wsdlURI,
+						nameSpace,
+						paramNameList,
+						paramTypeList,
+						tabCount + 1 );
+				result += enter( )
+						+ tab( tabCount ) + "</" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+			}
+			// complexType value
+			else
+			{
+				result += enter( )
+						+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
+						+ buildParamType( paramType ) + ">&?" + paramName //$NON-NLS-1$
+						+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+
+		return result;
+	}
+
+	private static String getParamTypeLocalPart( String paramType )
+	{
+		return paramType.substring( paramType.lastIndexOf( ":" ) + 1 ); //$NON-NLS-1$
+	}
+
+	private static String buildParamType( String paramType )
+	{
+		String result = EMPTY_STRING;
+		if ( WSUtil.isNull( paramType ) )
+			return result;
+
+		result += " " //$NON-NLS-1$
+				+ NS_KEY_XSI + ":type=\"" //$NON-NLS-1$
+				+ NS_KEY_XSD + ":" //$NON-NLS-1$
+				+ getParamTypeLocalPart( paramType ) + "\""; //$NON-NLS-1$
+
+		return result;
 	}
 
 	private static String buildBody( String wsdlURI, String operationTrace )
@@ -334,7 +601,7 @@ public class WSDLAdvisor
 
 	private static String buildBodyRPC( String wsdlURI, String operationTrace )
 	{
-		String result = "";
+		String result = EMPTY_STRING;
 		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
 				operationTrace );
 		if ( WSUtil.isNull( bindingOperation ) )
@@ -348,47 +615,29 @@ public class WSDLAdvisor
 
 		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
 		{
-			result += enter( )
-					+ tab( 2 ) + "<" + defaultNS + operation.getName( ) + " "
-					+ getQNameSpace( getNameSpaceRPC( bindingOperation ) )
-					+ ">";
-
+			List paramNameList = new ArrayList( );
+			List paramTypeList = new ArrayList( );
 			for ( int i = 0; i < parts.size( ); i++ )
 			{
 				Part part = (Part) parts.get( i );
-				List paramNameList = new ArrayList( );
-				List paramTypeList = new ArrayList( );
 
 				QName typeName = part.getTypeName( );
-				if ( WSUtil.isNull( typeName )
-						|| typeName.getNamespaceURI( )
-								.equalsIgnoreCase( NS_xsd ) )
-				{
-					paramNameList.add( part.getName( ) );
-					paramTypeList.add( WSUtil.getNonNullString( WSUtil.isNull( typeName )
-							? "" : typeName.getLocalPart( ) ) );
-
-					result += buildInputParameters( "",
-							paramNameList,
-							paramTypeList );
-				}
-				else
-				{
-					result += enter( ) + tab( 3 ) + "<" + part.getName( ) + ">";
-					addParamComplexType( wsdlURI,
-							typeName,
-							paramNameList,
-							paramTypeList );
-					result += buildInputParameters( "",
-							paramNameList,
-							paramTypeList );
-					result += enter( )
-							+ tab( 3 ) + "</" + part.getName( ) + ">";
-				}
+				paramNameList.add( part.getName( ) );
+				paramTypeList.add( WSUtil.getNonNullString( WSUtil.isNull( typeName )
+						? EMPTY_STRING : typeName.getLocalPart( ) ) );
 			}
 
 			result += enter( )
-					+ tab( 2 ) + "</" + defaultNS + operation.getName( ) + ">";
+					+ tab( 2 ) + "<" + NS_DEFAULT + operation.getName( ) + " " //$NON-NLS-1$ //$NON-NLS-2$
+					+ getQNameSpace( getNameSpaceRPC( bindingOperation ) )
+					+ ">"; //$NON-NLS-1$
+			result += buildInputParameters( wsdlURI,
+					EMPTY_STRING,
+					paramNameList,
+					paramTypeList,
+					3 );
+			result += enter( )
+					+ tab( 2 ) + "</" + NS_DEFAULT + operation.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		return result;
@@ -398,7 +647,7 @@ public class WSDLAdvisor
 	{
 		BindingInput bindingInput = bindingOperation.getBindingInput( );
 		List extElements = bindingInput.getExtensibilityElements( );
-		String nameSpace = "";
+		String nameSpace = EMPTY_STRING;
 
 		if ( !WSUtil.isNull( extElements ) )
 		{
@@ -418,111 +667,14 @@ public class WSDLAdvisor
 	private static String getQNameSpace( String nameSpace )
 	{
 		if ( WSUtil.isNull( nameSpace ) )
-			return "";
+			return EMPTY_STRING;
 		else
-			return "xmlns:" + NS_KEY_DEFAULT + "=\"" + nameSpace + "\"";//$NON-NLS-1$//$NON-NLS-1$//$NON-NLS-1$;
-	}
-
-	private static void addParamComplexType( String wsdlURI, QName qName,
-			List paramNameList, List paramTypeList )
-	{
-		String namespace = "";
-		Definition definition = getDefinition( wsdlURI );
-		Types types = definition.getTypes( );
-		List extElements = types.getExtensibilityElements( );
-		for ( int i = 0; i < extElements.size( ); i++ )
-		{
-			if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
-			{
-				Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
-				List teList = retrieveTargetElements( element, qName );
-				for ( int j = 0; j < teList.size( ); j++ )
-				{
-					Element te = (Element) teList.get( j );
-					if ( !WSUtil.isNull( te ) )
-					{
-						paramNameList.add( te.getAttribute( "name" ) );//$NON-NLS-1$
-						paramTypeList.add( te.getAttribute( "type" ) );//$NON-NLS-1$
-					}
-				}
-			}
-		}
-	}
-
-	private static List retrieveTargetElements( Element element, QName qName )
-	{
-		List teList = new ArrayList( );
-		NodeList nodes = element.getChildNodes( );
-		for ( int i = 0; i < nodes.getLength( ); i++ )
-		{
-			Node node = nodes.item( i );
-			if ( node.getNodeType( ) != Node.ELEMENT_NODE )
-				continue;
-
-			NamedNodeMap nodeMap = node.getAttributes( );
-			if ( !WSUtil.isNull( nodeMap )
-					&& !WSUtil.isNull( nodeMap.getNamedItem( "name" ) )//$NON-NLS-1$
-					&& qName.getLocalPart( )
-							.equals( nodeMap.getNamedItem( "name" )//$NON-NLS-1$
-									.getNodeValue( ) ) )
-			{
-				retrieveNamedElements( teList, node );
-			}
-		}
-
-		return teList;
-	}
-
-	private static void retrieveNamedElements( List teList, Node node )
-	{
-		NodeList subs = node.getChildNodes( );
-		for ( int i = 0; i < subs.getLength( ); i++ )
-		{
-			Node sub = subs.item( i );
-			if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
-				continue;
-
-			NamedNodeMap subMap = sub.getAttributes( );
-			if ( WSUtil.isNull( subMap )
-					|| WSUtil.isNull( subMap.getNamedItem( "name" ) ) )//$NON-NLS-1$;
-			{
-				retrieveNamedElements( teList, sub );
-			}
-			else
-			{
-				teList.add( (Element) sub );
-			}
-		}
-	}
-
-	private static String buildInputParameters( String nameSpace,
-			List paramNames, List paramTypes )
-	{
-		String result = "";
-		for ( int i = 0; i < paramNames.size( ); i++ )
-		{
-			String paramName = paramNames.get( i ).toString( );
-			String paramType = paramTypes.get( i ).toString( );
-
-			result += enter( )
-					+ tab( 3 )
-					+ "<"
-					+ nameSpace
-					+ paramName
-					+ " "
-					+ NS_KEY_XSI
-					+ ":type=\""
-					+ ( paramType.indexOf( NS_KEY_XSD ) == -1
-							? ( NS_KEY_XSD + ":" ) : "" ) + paramType + "\">&?"
-					+ paramName + "?&</" + nameSpace + paramName + ">";
-		}
-
-		return result;
+			return "xmlns:" + NS_KEY_DEFAULT + "=\"" + nameSpace + "\"";//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$//;
 	}
 
 	private static String buildBodyDoc( String wsdlURI, String operationTrace )
 	{
-		String result = "";
+		String result = EMPTY_STRING;
 		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
 				operationTrace );
 		if ( WSUtil.isNull( bindingOperation ) )
@@ -539,28 +691,25 @@ public class WSDLAdvisor
 			for ( int i = 0; i < parts.size( ); i++ )
 			{
 				Part part = (Part) parts.get( i );
+				if ( WSUtil.isNull( part.getElementName( ) ) )
+					continue;
 
 				List paramNameList = new ArrayList( );
 				List paramTypeList = new ArrayList( );
 
-				addParamComplexType( wsdlURI,
-						part.getElementName( ),
-						paramNameList,
-						paramTypeList );
+				addParamComplexType( wsdlURI, part.getElementName( )
+						.getLocalPart( ), paramNameList, paramTypeList );
 
-				result += enter( )
-						+ tab( 2 )
-						+ "<"
-						+ defaultNS
-						+ part.getElementName( ).getLocalPart( )
-						+ " "
-						+ getQNameSpace( getNameSpaceDoc( wsdlURI ) )
-						+ ">"
-						+ buildInputParameters( defaultNS,
-								paramNameList,
-								paramTypeList ) + enter( ) + tab( 2 ) + "</"
-						+ defaultNS + part.getElementName( ).getLocalPart( )
-						+ ">";
+				result += enter( ) + tab( 2 ) + "<" + NS_DEFAULT //$NON-NLS-1$
+						+ part.getElementName( ).getLocalPart( ) + " " //$NON-NLS-1$
+						+ getQNameSpace( getNameSpaceDoc( wsdlURI ) ) + ">"; //$NON-NLS-1$
+				result += buildInputParameters( wsdlURI,
+						NS_DEFAULT,
+						paramNameList,
+						paramTypeList,
+						3 );
+				result += enter( ) + tab( 2 ) + "</" + NS_DEFAULT //$NON-NLS-1$
+						+ part.getElementName( ).getLocalPart( ) + ">"; //$NON-NLS-1$
 			}
 		}
 
@@ -569,7 +718,7 @@ public class WSDLAdvisor
 
 	private static String getNameSpaceDoc( String wsdlURI )
 	{
-		String namespace = "";
+		String namespace = EMPTY_STRING;
 		Definition definition = getDefinition( wsdlURI );
 		Types types = definition.getTypes( );
 		List extElements = types.getExtensibilityElements( );
@@ -584,6 +733,42 @@ public class WSDLAdvisor
 		}
 
 		return namespace;
+	}
+
+	private static boolean isPrimitiveDataType( String dataType )
+	{
+		if ( WSUtil.isNull( dataType ) )
+			return true;
+
+		return getDataTypeList( ).contains( dataType.substring( dataType.indexOf( ":" ) + 1 ).toLowerCase( ) ); //$NON-NLS-1$
+	}
+
+	private static List getDataTypeList( )
+	{
+		if ( WSUtil.isNull( primitiveDataTypeList ) )
+			primitiveDataTypeList = new ArrayList( );
+
+		if ( primitiveDataTypeList.isEmpty( ) )
+			initDataTypeList( );
+
+		return primitiveDataTypeList;
+	}
+
+	/**
+	 * Initialize all the primitive dataTypes acceptable
+	 */
+	private static void initDataTypeList( )
+	{
+		primitiveDataTypeList.add( "short" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "int" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "float" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "double" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "decimal" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "string" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "boolean" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "datetime " ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "date" ); //$NON-NLS-1$
+		primitiveDataTypeList.add( "time" ); //$NON-NLS-1$
 	}
 
 }
