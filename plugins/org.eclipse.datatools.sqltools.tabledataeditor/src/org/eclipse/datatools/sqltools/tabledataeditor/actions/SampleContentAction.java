@@ -61,7 +61,24 @@ public class SampleContentAction extends AbstractAction
 
     private String getFullyQualifiedName(Table table)
     {
-        return this.wrapName(table.getSchema().getName()) + "." + this.wrapName(table.getName()); //$NON-NLS-1$
+        // return this.wrapName(table.getSchema().getName()) + "." + this.wrapName(table.getName()); //$NON-NLS-1$
+        
+        Database db = table.getSchema().getCatalog() != null ?
+            table.getSchema().getCatalog().getDatabase() :
+            table.getSchema().getDatabase();
+
+        RDBCorePlugin plugin = RDBCorePlugin.getDefault();
+
+        DatabaseDefinition dbDefinition = 
+            plugin.getDatabaseDefinitionRegistry().getDefinition(db);
+
+       if (dbDefinition.supportsSchema()) {
+            return this.wrapName(table.getSchema().getName())
+                    + "." + this.wrapName(table.getName()); //$NON-NLS-1$
+        } else {
+            return this.wrapName(table.getName()); //$NON-NLS-1$
+        }
+
     }
 
     private Database getDatabase (Schema schema)

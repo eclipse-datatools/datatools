@@ -17,6 +17,9 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.Output;
@@ -182,7 +185,20 @@ public class LoadData
     }
     
     protected String getFullyQualifiedName() {
-    	return "\"" + table.getSchema().getName() + "\".\"" + table.getName() + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        Database db = table.getSchema().getCatalog() != null ?
+            table.getSchema().getCatalog().getDatabase() :
+            table.getSchema().getDatabase();
+        
+        RDBCorePlugin plugin = RDBCorePlugin.getDefault();
+
+        DatabaseDefinition dbDefinition = 
+            plugin.getDatabaseDefinitionRegistry().getDefinition(db);
+
+        if (dbDefinition.supportsSchema()) {
+            return "\"" + table.getSchema().getName() + "\".\"" + table.getName() + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        } else {
+            return "\"" + table.getName() + "\""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        }
     }
     
 }

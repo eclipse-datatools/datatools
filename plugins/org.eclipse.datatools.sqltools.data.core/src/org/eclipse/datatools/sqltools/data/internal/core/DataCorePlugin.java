@@ -135,8 +135,17 @@ public class DataCorePlugin extends Plugin
     	Database db = table.getSchema().getCatalog() != null ?
     			table.getSchema().getCatalog().getDatabase():
     			table.getSchema().getDatabase();
-        return quoteIdentifier(db, table.getSchema().getName()) 
-            + "." + quoteIdentifier(db, table.getName()); //$NON-NLS-1$
+
+        RDBCorePlugin plugin = RDBCorePlugin.getDefault();
+        DatabaseDefinition dbDefinition = 
+            plugin.getDatabaseDefinitionRegistry().getDefinition(db);
+
+        if (dbDefinition.supportsSchema()) {
+            return quoteIdentifier(db, table.getSchema().getName())
+                    + "." + quoteIdentifier(db, table.getName()); //$NON-NLS-1$
+        } else {
+            return quoteIdentifier(db, table.getName()); //$NON-NLS-1$
+        }
     }
     
     public static String getQualifiedUDTName(UserDefinedType udt)
@@ -144,8 +153,17 @@ public class DataCorePlugin extends Plugin
     	Database db = udt.getSchema().getCatalog() != null ?
     			udt.getSchema().getCatalog().getDatabase():
     			udt.getSchema().getDatabase();
-    	return quoteIdentifier(db, udt.getSchema().getName()) 
-        + "." + quoteIdentifier(db, udt.getName()); //$NON-NLS-1$
+                
+        RDBCorePlugin plugin = RDBCorePlugin.getDefault();
+        DatabaseDefinition dbDefinition = 
+            plugin.getDatabaseDefinitionRegistry().getDefinition(db);
+
+        if (dbDefinition.supportsSchema()) {
+            return quoteIdentifier(db, udt.getSchema().getName()) 
+            + "." + quoteIdentifier(db, udt.getName()); //$NON-NLS-1$
+          } else {
+            return quoteIdentifier(db, udt.getName()); //$NON-NLS-1$
+          }
     }
     
     public static String quoteIdentifier(Database db, String s)

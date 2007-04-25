@@ -369,10 +369,20 @@ public class TableDataImpl implements ITableData {
     {
         //return DataCorePlugin.getQualifiedTableName(sqlTable);
     	StringBuffer sb = new StringBuffer(50);
-    	sb.append(DataCorePlugin.quoteIdentifier(con, sqlTable.getSchema().getName()))
-    	  .append(".")
-    	  .append(DataCorePlugin.quoteIdentifier(con, sqlTable.getName()));
-    	return sb.toString();    	
+        org.eclipse.datatools.modelbase.sql.schema.Database db =
+            sqlTable.getSchema().getCatalog() != null ?
+                                    sqlTable.getSchema().getCatalog().getDatabase():
+                                    sqlTable.getSchema().getDatabase();
+
+        RDBCorePlugin plugin = RDBCorePlugin.getDefault();
+
+        DatabaseDefinition dbDefinition = plugin.getDatabaseDefinitionRegistry().getDefinition(db);
+
+        if (dbDefinition.supportsSchema()) 
+          sb.append(DataCorePlugin.quoteIdentifier(con,sqlTable.getSchema().getName())).append(".");
+
+        sb.append(DataCorePlugin.quoteIdentifier(con, sqlTable.getName()));    		 
+        return sb.toString();    		 
     }
     
     /**
