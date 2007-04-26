@@ -39,3 +39,4 @@ query_streamClosed=Flux fermé
 query_invalidTableName=Nom de table incorrect \:
 
 dateUtil.ConvertFails=Echec de la conversion en date. Source :
+dateFormatISO_cannotConvert=Impossible de convertir la valeur de {0}.

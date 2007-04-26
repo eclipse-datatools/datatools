@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=この sortModeNone をともなう sortS
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=ソート・カラムはすでに存在します。sortModeSingleColumn モードでは、1 つの最大ダイナミック・ソート・カラムのみが許可されています。
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=sortModeSingleOrder モードは 1 つのソート順のみをサポートします。
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=sortModeSingleOrder モードのときのみサポートされます。
+sortSpec_INDEX_OUT_OF_BOUND=インデックス : {0}、カウント : {1}
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=置換する文字列値がありません\: {0}
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=区切り文字は、空のストリングにしたり、空白文字を含んだりしてはいけません。

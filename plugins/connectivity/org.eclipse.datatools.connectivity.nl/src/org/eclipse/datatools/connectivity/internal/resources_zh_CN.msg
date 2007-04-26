@@ -34,3 +34,4 @@ trace.error.propertiesPersistenceHook=无法装入 propertiesPersistenceHook，使用缺
 trace.error.propertiesPersistenceHookSaveError=调用属性持久挂钩时出错；保存所有属性（概要文件为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookLoadError=调用属性持久挂钩时出错；未设置瞬态属性（概要文件为 {0}，扩展名为 {1}）
 DriverUtil.taskName = 正在处理 {0} 中的类
+Category.Name.Unknown=不支持

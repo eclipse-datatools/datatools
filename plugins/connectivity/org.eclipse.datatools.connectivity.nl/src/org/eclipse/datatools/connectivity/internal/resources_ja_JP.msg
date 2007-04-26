@@ -35,3 +35,4 @@ trace.error.propertiesPersistenceHookSaveError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚Éƒ
 trace.error.propertiesPersistenceHookLoadError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½; ˆêƒvƒƒpƒeƒB[‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ (ƒvƒƒtƒ@ƒCƒ‹\={0}AŠg’£q\={1})
 
 DriverUtil.taskName = {0} ‚ÅƒNƒ‰ƒX‚ğˆ—’†‚Å‚·B
+Category.Name.Unknown=ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB

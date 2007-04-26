@@ -39,3 +39,4 @@ query_streamClosed=Corriente cerrada
 query_invalidTableName=Nombre de tabla no válido\:
 
 dateUtil.ConvertFails=Error al convertir la fecha. Fuente:
+dateFormatISO_cannotConvert=No se puede convertir el valor de {0}.

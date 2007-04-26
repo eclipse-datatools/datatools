@@ -35,3 +35,4 @@ trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persis
 trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})
 
 DriverUtil.taskName = Procesando clases en {0}
+Category.Name.Unknown=No admitido

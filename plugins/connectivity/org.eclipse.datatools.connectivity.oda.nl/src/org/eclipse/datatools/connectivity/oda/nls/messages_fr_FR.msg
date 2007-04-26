@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=Cette spécification de tri avec so
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=Une colonne de tri existe déjà.  Le mode sortModeSingleColumn autorise au maximum une colonne de tri dynamique.
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=Le mode sortModeSingleOrder prend en charge uniquement un ordre de tri.
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=Pris en charge uniquement en mode sortModeSingleOrder.
+sortSpec_INDEX_OUT_OF_BOUND=Index : {0}, nombre : {1}.
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=Aucune valeur de chaîne à remplacer \: {0}.
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=Le délimiteur ne peut pas être une chaîne vide ou contenir uniquement des espaces.

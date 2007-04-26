@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=sortModeNone이 있는 sortSpec에는 �
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=정렬 열이 이미 있습니다. sortModeSingleColumn 모드는 최대 하나의 동적 정렬 열을 허용합니다.
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=sortModeSingleOrder 모드는 하나의 하나의 정렬 열만 지원합니다.
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=sortModeSingleOrder 모드에서만 지원됩니다.
+sortSpec_INDEX_OUT_OF_BOUND=인덱스: {0}, 카운트: {1}.
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=바꿀 문자열 값 없음\: {0}.
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=분리문자는 빈 문자열 또는 공백만을 포함할 수 없습니다.

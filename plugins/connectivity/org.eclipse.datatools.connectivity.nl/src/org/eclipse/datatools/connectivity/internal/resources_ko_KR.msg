@@ -35,3 +35,4 @@ trace.error.propertiesPersistenceHookSaveError=특성 지속 후크 호출 중에 오류 발�
 trace.error.propertiesPersistenceHookLoadError=특성 지속 후크 호출 중에 오류 발생; 임시 특성이 설정되지 않음(프로파일\={0}, 확장\={1})
 
 DriverUtil.taskName = {0}의 클래스 처리 중
+Category.Name.Unknown=지원 안 함

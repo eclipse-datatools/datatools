@@ -39,4 +39,5 @@ query_streamClosed=ストリームがクローズされました。
 query_invalidTableName=無効なテーブル名\:
 
 dateUtil.ConvertFails=日付に変換できません。 ソース :
+dateFormatISO_cannotConvert={0} の値を変換できません。
 

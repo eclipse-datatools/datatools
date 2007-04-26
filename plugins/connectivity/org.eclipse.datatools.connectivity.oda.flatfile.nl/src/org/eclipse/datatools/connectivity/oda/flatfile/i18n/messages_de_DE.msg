@@ -39,3 +39,4 @@ query_streamClosed=Datenstrom geschlossen
 query_invalidTableName=Ungültiger Tabellenname\:
 
 dateUtil.ConvertFails=Konvertierung in Datum ist fehlgeschlagen. Quelle:
+dateFormatISO_cannotConvert=Wert {0} kann nicht umgewandelt werden.

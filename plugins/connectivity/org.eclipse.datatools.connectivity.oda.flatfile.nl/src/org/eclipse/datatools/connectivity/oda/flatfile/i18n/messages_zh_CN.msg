@@ -39,3 +39,4 @@ query_streamClosed=流已关闭
 query_invalidTableName=表名无效：
 
 dateUtil.ConvertFails=转换为日期失败。 源:
+dateFormatISO_cannotConvert=无法转换 {0} 的值。

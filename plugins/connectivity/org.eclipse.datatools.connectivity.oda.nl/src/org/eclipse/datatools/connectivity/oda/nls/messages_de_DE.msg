@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=Dieser Wert für 'sortSpec' mit 'so
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=Es ist bereits eine Sortierspalte vorhanden.  Der Modus 'sortModeSingleColumn' lässt maximal eine dynamische Sortierspalte zu.
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=Der Modus 'sortModeSingleOrder' unterstützt nur eine Sortierreihenfolge.
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=Wird nur im Modus 'sortModeSingleOrder' unterstützt.
+sortSpec_INDEX_OUT_OF_BOUND=Index: {0}, Anzahl: {1}.
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=Kein Zeichenfolgewert für Ersetzung\: {0}.
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=Der Begrenzer darf keine leere Zeichenfolge sein oder ausschließlich Leerzeichen enthalten.

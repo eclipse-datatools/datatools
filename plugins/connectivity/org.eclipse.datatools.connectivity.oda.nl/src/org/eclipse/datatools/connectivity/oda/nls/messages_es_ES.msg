@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=Este sortSpec con sortModeNone no 
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=Ya existe una columna de ordenación.  La modalidad sortModeSingleColumn permite una columna de ordenación dinámica como máximo.
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=La modalidad sortModeSingleOrder soporta solamente un orden de clasificación.
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=Solo soportado en la modalidad sortModeSingleOrder.
+sortSpec_INDEX_OUT_OF_BOUND=Índice: {0}, recuento: {1}.
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=No hay ningún valor de serie a sustituir\: {0}.
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=El delimitador no puede ser una serie vacía ni contener solamente espacios.

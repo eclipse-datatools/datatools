@@ -34,3 +34,4 @@ trace.error.propertiesPersistenceHook=''propertiesPersistenceHook'' konnte nicht
 trace.error.propertiesPersistenceHookSaveError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Alle Eigenschaften bleiben permanent bestehen (Profil\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookLoadError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Temporäre Eigenschaften werden nicht festgelegt (Profil\={0}, Erweiterung\={1})
 DriverUtil.taskName = Klassen werden in {0} verarbeitet
+Category.Name.Unknown=Nicht unterstützt

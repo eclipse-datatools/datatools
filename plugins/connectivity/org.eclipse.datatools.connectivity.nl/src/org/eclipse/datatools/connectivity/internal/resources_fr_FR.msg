@@ -35,3 +35,4 @@ trace.error.propertiesPersistenceHookSaveError=Erreur lors de l''appel du point 
 trace.error.propertiesPersistenceHookLoadError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; propriétés transitoires non définies (profil\={0}, extension\={1})
 
 DriverUtil.taskName = Traitement des classes dans {0}
+Category.Name.Unknown=Non pris en charge

@@ -26,6 +26,7 @@ sortSpec_NO_DYNAMIC_SORT_KEY_FOR_SORTMODENONE=具有 sortModeNone 的 sortSpec 不允
 sortSpec_ONE_SORTCOLUMN_FOR_SINGLE_COLUMN_MODE=排序列已存在。sortModeSingleColumn 方式最多只允许使用一个动态排序列。
 sortSpec_ONE_SORTORDER_FOR_SINGLE_ORDER_MODE=sortModeSingleOrder 方式只支持一个排序顺序。
 sortSpec_ONLY_IN_SINGLE_ORDER_MODE=只有在 sortModeSingleOrder 方式下才受支持。
+sortSpec_INDEX_OUT_OF_BOUND=索引: {0}，计数: {1}。
 #
 stringSubUtil_NO_STRING_VALUE_TO_REPLACE=没有要替换的字符串值：{0}。
 stringSubUtil_DELIMITER_CANNOT_BE_EMPTY=定界符不能是空字符串，也不能只包含空格。
