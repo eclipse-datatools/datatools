@@ -435,15 +435,18 @@ public class ControlConnectionManager implements IControlConnectionManager, ICat
 			IConnectionProfile connectionProfile = ((ConnectionInfoImpl) connInfo)
 					.getConnectionProfile();
 			DatabaseIdentifier dbid = new DatabaseIdentifier(connectionProfile.getName(), catalogDatabase.getName());
-			IControlConnection con = (IControlConnection)_controlConnectionMap.get(dbid);
-			if (con == null)
+			ServerIdentifier serverId = ProfileUtil.getServerIdentifier(dbid);
+			HashSet cons = getControlConnections(serverId); 
+			if (cons != null && cons.size() > 0)
 			{
-				dbid = new DatabaseIdentifier(connectionProfile.getName());
-				con = (IControlConnection)_controlConnectionMap.get(dbid);
-			}
-			if (con != null)
-			{
-				con.refresh(SQLDevToolsUtil.getProcIdentifier(dbid, (SQLObject)dmElement));
+				ProcIdentifier procId = SQLDevToolsUtil.getProcIdentifier((SQLObject)dmElement);
+				for (Iterator it = cons.iterator(); it.hasNext();) {
+					IControlConnection con = (IControlConnection) it.next();
+					if (con != null)
+					{
+						con.refresh(procId);
+					}
+				}
 			}
 		}
 	}
