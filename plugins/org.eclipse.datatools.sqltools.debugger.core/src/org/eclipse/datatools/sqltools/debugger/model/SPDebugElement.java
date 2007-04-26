@@ -99,9 +99,13 @@ public class SPDebugElement extends PlatformObject implements IDebugElement
         //{
         //    return getDebugTarget(); 
         //}
-        if (adapter == IDebugTarget.class) 
+        else if (adapter == IDebugTarget.class) 
         {
             return getDebugTarget(); 
+        }
+        else if (adapter == ILaunch.class) 
+        {
+        	return getLaunch(); 
         }
         return super.getAdapter(adapter);
     }

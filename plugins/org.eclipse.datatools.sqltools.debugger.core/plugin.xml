@@ -60,7 +60,7 @@
                   showTitle="true"
                   ratio="0.25"
                   relationship="top"
-                  relative="org.eclipse.ui.editorss"
+                  relative="org.eclipse.ui.editors"
                   id="org.eclipse.debug.ui.DebugView"/>
 		<!-- Top right -->
          <view
@@ -92,8 +92,8 @@
                   visible="true"
                   showTitle="true"
                   ratio="0.65"
-                  relationship="bottom"
-                  relative="org.eclipse.ui.editorss"
+                  relationship="stack"
+                  relative="org.eclipse.ui.console.ConsoleView"
                   id="org.eclipse.datatools.sqltools.result.resultView"/>	
          <view
                   closeable="true"
@@ -125,7 +125,7 @@
                   showTitle="true"
                   ratio="0.75"
                   relationship="right"
-                  relative="org.eclipse.ui.editorss"
+                  relative="org.eclipse.ui.editors"
                   id="org.eclipse.ui.views.ContentOutline"/>	
 
 

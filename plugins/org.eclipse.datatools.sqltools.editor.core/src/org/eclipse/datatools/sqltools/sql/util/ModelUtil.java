@@ -496,29 +496,8 @@ public class ModelUtil {
             }
             else
             {
-                EList schemas = db.getSchemas();
-                if (schemas == null || schemas.size() == 0)
-                {
-                    EList catalogs = db.getCatalogs();
-                    if (catalogs != null)
-                    {
-                        for (Iterator iter = catalogs.iterator(); iter.hasNext();)
-                        {
-                            Catalog catalog = (Catalog) iter.next();
-                            schemas = (EList) catalog.getSchemas();
-                            object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
-                            if (object != null)
-                            {
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
-                }
-
+                EList schemas = getSchemas(db, proc.getDatabaseName());
+                object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
             }
         }
         return object;
