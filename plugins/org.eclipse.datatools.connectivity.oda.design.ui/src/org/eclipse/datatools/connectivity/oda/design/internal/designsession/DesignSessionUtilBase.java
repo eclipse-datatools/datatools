@@ -216,24 +216,43 @@ public class DesignSessionUtilBase
             IParameterMetaData pmd, 
             int i )
     {
-        try
+        // iterate thru each optional attribute, even if any of them
+        // has an exception
+        int count = 1;
+        while( count > 0 )
         {
-            paramAttrs.setPrecision( pmd.getPrecision(i) );
-            paramAttrs.setScale( pmd.getScale(i) );
-            paramAttrs.setNullability( 
-                    toElementNullability( pmd.isNullable(i) ));
-        }
-        catch( UnsupportedOperationException e )
-        {
-            // ignore; optional attributes
-            // TODO - log info
-            e.printStackTrace();
-        }
-        catch( OdaException odaEx )
-        {
-            // ignore; optional attributes
-            // TODO - log info
-            odaEx.printStackTrace();
+            try
+            {
+                switch( count++ )
+                {
+                case 1:
+                    paramAttrs.setName( pmd.getParameterName(i) );
+                    continue;
+                case 2:
+                    paramAttrs.setPrecision( pmd.getPrecision(i) );
+                    continue;
+                case 3:
+                    paramAttrs.setScale( pmd.getScale(i) );
+                    continue;
+                case 4:
+                    paramAttrs.setNullability( 
+                        toElementNullability( pmd.isNullable(i) ));
+                default:
+                    return;  // no more attributes, exit iteration
+                }
+            }
+            catch( UnsupportedOperationException e )
+            {
+                // ignore; optional attributes
+                // TODO - log info
+                e.printStackTrace();
+            }
+            catch( OdaException odaEx )
+            {
+                // ignore; optional attributes
+                // TODO - log info
+                odaEx.printStackTrace();
+            }
         }
     }
 
