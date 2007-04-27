@@ -45,5 +45,4 @@ public interface IDataServerLaunchPreferenceSection extends IDataServerPreferenc
      * @return
      */
     public abstract void setMode(int mode);
-
 }

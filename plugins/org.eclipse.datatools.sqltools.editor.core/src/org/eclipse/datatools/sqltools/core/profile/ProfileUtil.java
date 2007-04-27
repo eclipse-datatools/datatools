@@ -219,7 +219,19 @@ public class ProfileUtil
     }
 
 
-
+    public static boolean profileExist(String name)
+    {
+        try
+        {
+            getProfile(name);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+    
     /**
      * Given the connection profile name, return a DataVendorIdentifier object which identifies the data server type
      * that profileName points to. Basically, there are 2 approaches to do it: 1. connect to server using a specific
