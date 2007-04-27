@@ -30,6 +30,7 @@ button.refresh=Aktualisieren
 menu.menuItem.removeAll=Alles entfernen
 menu.menuItem.remove=Entfernen
 lable.selectXmlFile=Geben Sie den URL der &XML-Quelldatei an, oder suchen Sie die Datei mit den Daten:
+label.selectEncoding=&Codierung für oben festgelegte XML-Quelldatei und -Schema auswählen:
 lable.selectXmlSchmaFile=Geben Sie den URL des X&ML-Schemas an, oder suchen\n Sie nach der Datei, die das\n Schema enthält. Lassen Sie das Feld leer, falls kein Schema vorhanden ist:
 label.preview=&Erste
 label.useXMLFileFromDataSource=Die in der Datenquelle definierte XML-Datei verwenden

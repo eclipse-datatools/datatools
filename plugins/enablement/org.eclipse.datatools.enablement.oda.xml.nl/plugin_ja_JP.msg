@@ -17,10 +17,13 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
+oda.data.source.category.name=DTP XML データソース
+
 datasource.name=DTP XML のデータソース
 dataset.name=DTP XML のデータセット
 
 datasource.property.xmlFile=XML データソースファイル
+datasource.property.xmlEncoding=XML データソースエンコード
 datasource.property.schemaFile=XML スキーマファイル
 oda.data.source.name=DTP XML ファイル
 connection.profile.name=DTP XML ファイルのデータソースの接続プロファイル

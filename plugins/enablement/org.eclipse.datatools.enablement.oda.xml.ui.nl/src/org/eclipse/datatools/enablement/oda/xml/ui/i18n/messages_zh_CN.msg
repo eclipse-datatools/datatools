@@ -30,6 +30,7 @@ button.refresh=刷新
 menu.menuItem.removeAll=全部删除
 menu.menuItem.remove=删除
 lable.selectXmlFile=输入 XML 源的 URL，或浏览到包含该数据的文件(&X):
+label.selectEncoding=为上面指定的 XML 源和架构选择编码(&E):
 lable.selectXmlSchmaFile=输入 XML 架构的 URL，或浏览到\n 包含该架构的文件。如果没有可用架构，请将此字段留空(&M):
 label.preview=预览源数据的前
 label.useXMLFileFromDataSource=使用数据源中定义的 XML 文件

@@ -30,6 +30,7 @@ button.refresh=更新
 menu.menuItem.removeAll=すべて削除
 menu.menuItem.remove=削除
 lable.selectXmlFile=XML ソースの URL を入力するか、データが入っているファイルを参照してください(&X) :
+label.selectEncoding=上で指定した XML ソースとスキーマのエンコード(&E) :
 lable.selectXmlSchmaFile=XML スキーマの URL を入力するか、スキーマが入っている\nファイルを参照してください。スキーマがない場合は、このフィールドを空白のままにしておいてください(&M) :
 label.preview=ソースデータの最初の
 label.useXMLFileFromDataSource=データソースに定義されている XML ファイルを使用する

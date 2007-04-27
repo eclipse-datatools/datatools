@@ -30,6 +30,7 @@ button.refresh=Actualizar
 menu.menuItem.removeAll=Quitar todos
 menu.menuItem.remove=Quitar
 lable.selectXmlFile=Introduzca la URL de la fuente &XML o busque el archivo que contiene los datos:
+label.selectEncoding=Seleccionar &codificación para la fuente XML y el esquema especificado anteriormente:
 lable.selectXmlSchmaFile=Introduzca la URL del esquema X&ML o busque el archivo que contiene el\n esquema. Déjelo vacío si no hay ningún esquema disponible:
 label.preview=&Previsualizar las primeras
 label.useXMLFileFromDataSource=Utilizar el archivo XML definido en la fuente de datos

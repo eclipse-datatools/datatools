@@ -30,6 +30,7 @@ button.refresh=새로 고침
 menu.menuItem.removeAll=모두 제거
 menu.menuItem.remove=제거
 lable.selectXmlFile=XML 소스의 URL을 입력하거나 소스 데이터가 포함된 파일을 찾습니다(&X).
+label.selectEncoding=위에 지정된 XML 원본 및 스키마의 인코딩 선택(&E):
 lable.selectXmlSchmaFile=XML 스키마의 URL을 입력하거나 스키마가 포함된 파일을\n 찾습니다. 사용 가능한 스키마가 없는 경우 아무 것도 입력하지 않습니다(&M).
 label.preview=소스 데이터 처음
 label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용

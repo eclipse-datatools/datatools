@@ -30,6 +30,7 @@ button.refresh=Actualiser
 menu.menuItem.removeAll=Supprimer tout
 menu.menuItem.remove=Supprimer
 lable.selectXmlFile=Entrez l'URL de la source &XML ou accédez au fichier contenant les données :
+label.selectEncoding=Sélectionner le &codage du schéma et de la source XML spécifiés ci-dessus :
 lable.selectXmlSchmaFile=Entrez l'URL du schéma X&ML ou accédez au fichier contenant le\n schéma. Ne renseignez pas ce champ si aucun schéma n'est disponible :
 label.preview=A&perçu des
 label.useXMLFileFromDataSource=Utiliser le fichier XML défini dans la source de données
