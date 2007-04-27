@@ -12,7 +12,7 @@ public class GenericDdlScript {
     }
 	
     public void addAlterTableStatement(String statement) {
-    	createTableStatements.addElement(statement);
+    	alterTableStatements.addElement(statement);
     }
 	
     public void addDropViewStatement(String statement) {
