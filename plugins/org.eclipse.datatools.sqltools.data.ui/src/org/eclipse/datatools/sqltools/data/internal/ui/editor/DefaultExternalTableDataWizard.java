@@ -120,7 +120,7 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
         } catch (Exception e){
             setWindowTitle(Messages.getString("DefaultExternalTableDataEditorWizard.DefaultTitle"));  //$NON-NLS-1$
         }
-		setDefaultPageImageDescriptor(DataUIPlugin.getDefault().getImageDescriptor("ext_table_editor"));  //$NON-NLS-1$
+		setDefaultPageImageDescriptor(DataUIPlugin.getDefault().getPngImageDescriptor("ext_table_editor"));  //$NON-NLS-1$
 	}
 
     /**

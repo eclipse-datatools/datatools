@@ -290,6 +290,22 @@ public class DataUIPlugin extends AbstractUIPlugin
 		return null;
 	}	
 
+	/**
+	 * This gets a .png from the icons folder.
+	 */
+	public ImageDescriptor getPngImageDescriptor(String key) {
+		try {			
+			return ImageDescriptor.createFromURL(					
+					new URL(
+							getBundle().getEntry("/"),						   //$NON-NLS-1$
+							"icons" + java.io.File.separator + key + ".png")); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		catch (Exception e) {
+			writeLog(IStatus.ERROR, 0, e.getMessage(), e);
+		}
+		return null;
+	}	
+	
     /**
      * Collects all extensions for the externalTableDataEditor extension point 
      * and stores it in a list.
