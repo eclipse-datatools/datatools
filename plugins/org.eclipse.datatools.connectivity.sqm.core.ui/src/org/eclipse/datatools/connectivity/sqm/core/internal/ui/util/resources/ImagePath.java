@@ -51,7 +51,7 @@ public class ImagePath
     public static final String CONNECTION = "connection.gif"; //$NON-NLS-1$
     public static final String FILTER_WIZARD_DIALOG= "filter.gif"; //$NON-NLS-1$
     public static final String FILTER_DECORATION = "filter_decorate.gif"; //$NON-NLS-1$
-    public static final String FILTER_WIZARD = "filter_wiz.gif"; //$NON-NLS-1$
+    public static final String FILTER_WIZARD = "filter_wiz.png"; //$NON-NLS-1$
     public static final String PK_COLUMN = "pkColumn.gif"; //$NON-NLS-1$
     public static final String PKFK_COLUMN = "pkfk_rdbcolumn.gif"; //$NON-NLS-1$
     public static final String FK_COLUMN = "fk_rdbcolumn.gif"; //$NON-NLS-1$
@@ -60,7 +60,7 @@ public class ImagePath
     public static final String FK_DECORATION = "fk_decorate.gif"; //$NON-NLS-1$
     public static final String PKFK_DECORATION = "pkfk_decorate.gif"; //$NON-NLS-1$
     public static final String PK_DECORATION = "pk_decorate.gif"; //$NON-NLS-1$
-    public static final String GENERATE_DDL_WIZARD = "generate_ddl_wiz.gif"; //$NON-NLS-1$
+    public static final String GENERATE_DDL_WIZARD = "generate_ddl_wiz.png"; //$NON-NLS-1$
     public static final String SAMPLE_CONTENT = "sampleContents.gif"; //$NON-NLS-1$
 }
 
