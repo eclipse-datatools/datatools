@@ -74,6 +74,8 @@ public class SaveAsDialog extends TitleAreaDialog
     private static final String       ENCODING       = "UTF-8";
     private IEditorPart               _editor;
     private boolean                   _execSaveAs = true;
+    
+    private boolean                   _openMode = true;
 
     /**
      * Creates a new Save As dialog for no specific file.
@@ -317,8 +319,11 @@ public class SaveAsDialog extends TitleAreaDialog
                         // set the correct charset for this file
                         file.setCharset(ENCODING, new NullProgressMonitor()); //$NON-NLS-1$
 
-                        IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-                        _editor = IDE.openEditor(page, file, true);
+                        if(_openMode)
+                        {
+                            IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+                            _editor = IDE.openEditor(page, file, true);
+                        }
                     }
                 }
                 catch (CoreException e)
@@ -407,5 +412,10 @@ public class SaveAsDialog extends TitleAreaDialog
     public IEditorPart getEditor()
     {
         return _editor;
+    }
+    
+    public void setOpenMode(boolean openMode)
+    {
+        _openMode = openMode;
     }
 }
