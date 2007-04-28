@@ -1,14 +1,12 @@
-/*******************************************************************************
+/***********************************************************************************************************************
  * Copyright (c) 2004, 2005 Sybase, Inc. and others.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * 
+ * All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse
+ * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     Sybase, Inc. - initial API and implementation
- *******************************************************************************/
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.core.dbitem;
 
 import java.sql.DatabaseMetaData;
@@ -39,18 +37,21 @@ public class ParameterDescriptor
 
     /**
      * Constructs a ParameterDescriptor
+     * 
      * @param databaseIdentifier
      * @param name parameter name
-     * @param parmType @see #org.eclipse.datatools.modelbase.sql.routines.ParameterMode
+     * @param parmType
+     * @see #org.eclipse.datatools.modelbase.sql.routines.ParameterMode
      * @param sqlDataType data type defined in <code>java.sql.Types</code>
-     * @param precision parameter precision 
+     * @param precision parameter precision
      * @param scale parameter scale
      * @param typeName parameter type name
-     * @param nullable @see <code>DatabaseMetaData</code>
-     * @param comment optional comment 
+     * @param nullable
+     * @see <code>DatabaseMetaData</code>
+     * @param comment optional comment
      */
     public ParameterDescriptor(DatabaseIdentifier databaseIdentifier, String name, int parmType, int sqlDataType,
-        int precision, short scale, String typeName, short nullable, String comment)
+            int precision, short scale, String typeName, short nullable, String comment)
     {
         this._name = name;
         this._parmType = parmType;
@@ -75,7 +76,10 @@ public class ParameterDescriptor
 
     /**
      * Returns how <code>NULL</code> values are allowed.
-     * @return either <code>DatabaseMetaData.procedureNoNulls</code>, <code>DatabaseMetaData.procedureNullableUnknown</code> or <code>DatabaseMetaData.procedureNullable</code>
+     * 
+     * @return either <code>DatabaseMetaData.procedureNoNulls</code>,
+     *         <code>DatabaseMetaData.procedureNullableUnknown</code> or
+     *         <code>DatabaseMetaData.procedureNullable</code>
      */
     protected int getNullable()
     {
@@ -129,6 +133,7 @@ public class ParameterDescriptor
 
     /**
      * Retrieves the designated parameter's number of decimal digits.
+     * 
      * @return parameter data type precision
      */
     public int getPrecision()
@@ -138,6 +143,7 @@ public class ParameterDescriptor
 
     /**
      * Retrieves the designated parameter's number of digits to right of the decimal point.
+     * 
      * @return parameter data type scale
      */
     public short getScale()
@@ -150,9 +156,9 @@ public class ParameterDescriptor
      */
     public String getParamTypeAsString()
     {
-    	//TODO MO
-    	//return ParameterMode.get(_parmType).toString();
-    	switch (_parmType)
+        // TODO MO
+        // return ParameterMode.get(_parmType).toString();
+        switch (_parmType)
         {
             case DatabaseMetaData.procedureColumnIn:
                 return Parameter.INPUT;
@@ -176,7 +182,7 @@ public class ParameterDescriptor
     public boolean isStringType()
     {
         return _sqlDataType == Types.CHAR || _sqlDataType == Types.VARCHAR || _sqlDataType == Types.LONGVARCHAR
-            || _sqlDataType == Types.DATE || _sqlDataType == Types.TIME || _sqlDataType == Types.TIMESTAMP;
+                || _sqlDataType == Types.DATE || _sqlDataType == Types.TIME || _sqlDataType == Types.TIMESTAMP;
     }
 
     /**
@@ -223,4 +229,10 @@ public class ParameterDescriptor
     {
         _sqlTypeNameFromParser = typeNameFromParser;
     }
+
+    public void setNullable(short nullable)
+    {
+        _nullable = nullable;
+    }
+
 }
