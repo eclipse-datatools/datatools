@@ -241,7 +241,8 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         {
         	SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByDBDefName(names[i]);
             SQLParser pp = config.getSQLService().getSQLParser();
-            if (pp != null && !pp.isComplete())
+            //For CR:list all supported database definitions
+            if (pp != null && pp.isComplete())
             {
                 nameValues[j + 1] = names[i];
                 j++;
