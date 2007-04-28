@@ -14,8 +14,10 @@ package org.eclipse.datatools.enablement.oda.xml.util;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -69,6 +71,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private boolean stopCurrentThread;
 	
 	private Map cachedValues;
+	
+	private List filterColumns;
 	/**
 	 * 
 	 * @param fileName
@@ -84,6 +88,14 @@ public class SaxParser extends DefaultHandler implements Runnable
 		currentElementRecoder = new HashMap();
 		stopCurrentThread = false;
 		cachedValues = new HashMap( );
+	}
+
+	public SaxParser( XMLDataInputStream xdis,
+			SaxParserConsumer saxParserConsumer,
+			List filterColumns )
+	{
+		this( xdis, saxParserConsumer );
+		this.filterColumns = filterColumns;
 	}
 
 	/*
@@ -304,11 +316,63 @@ public class SaxParser extends DefaultHandler implements Runnable
 		}
 		pathHolder.push( elementName+"["+((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+"]" );
 		spConsumer.detectNewRow( pathHolder.getPath( ), true );
+		
+		int[] attrOrder = generateAttrOrder( atts );
+		for ( int i = 0; i < attrOrder.length; i++ )
+		{
+			spConsumer.manipulateData( getAttributePath( atts, attrOrder[i] ),
+					atts.getValue( attrOrder[i] ) );
+			spConsumer.detectNewRow( getAttributePath( atts, attrOrder[i] ), true );
+		}
+	}
+	
+	/**
+	 * Generates an attributeOrder according to the predicates being used. Note
+	 * it can't handle the case-secenario where there exists a dependence cycle
+	 * e.g. [@type='sub']/@id, [@id='2']/@type
+	 * 
+	 * @param atts
+	 * @return
+	 */
+	private int[] generateAttrOrder( Attributes atts )
+	{
+		int[] orders = new int[atts.getLength( )];
+		if ( orders.length == 0 )
+			return orders;
+		
+		List orderList = new ArrayList( );
+		List temp = new ArrayList( );
+
 		for ( int i = 0; i < atts.getLength( ); i++ )
 		{
-			spConsumer.manipulateData( getAttributePath( atts, i ), atts.getValue( i ) );
-			spConsumer.detectNewRow( getAttributePath( atts, i ),true );
+			if ( isFilter( getAttributePath( atts, i ) ) )
+				orderList.add( new Integer( i ) );
+			else
+				temp.add( new Integer( i ) );
 		}
+		
+		orderList.addAll( temp );
+		for ( int i = 0; i < orderList.size( ); i++ )
+		{
+			orders[i] = ( (Integer) orderList.get( i ) ).intValue( );
+		}
+
+		return orders;
+	}
+	
+	private boolean isFilter( String path )
+	{
+		if ( filterColumns == null )
+			return false;
+		
+		for ( int i = 0; i < filterColumns.size( ); i++ )
+		{
+			if ( XPathParserUtil.match( path,
+					( (ColumnInfo) filterColumns.get( i ) ).getColumnPath( ) ) )
+				return true;
+		}
+
+		return false;
 	}
 
 	/**

@@ -416,6 +416,16 @@ public class RelationInformation
 		return ((TableInfo) this.tableInfos.get(tableName))
 				.getColumnFilters(columnName);
 	}
+	
+	/**
+	 * 
+	 * @param tableName
+	 * @return
+	 */
+	public List getTableFilterColumns( String tableName )
+	{
+		return ( (TableInfo) this.tableInfos.get( tableName ) ).getFilterColumns( );
+	}
 }
 
 /**
@@ -535,6 +545,29 @@ class TableInfo
 	public HashMap getColumnFilters( String columnName )
 	{
 		return ((ColumnInfo)(this.columnInfos.get( columnName ))).getFilters();
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List getFilterColumns( )
+	{
+		Object[] names = this.columnInfos.keySet( ).toArray( );
+		String[] temp = new String[names.length];
+		for ( int i = 0; i < names.length; i++ )
+		{
+			temp[( (ColumnInfo) columnInfos.get( names[i] ) ).getColumnIndex( ) - 1] = names[i].toString( );
+		}
+
+		List filterColumnList = new ArrayList( );
+		for ( int i = 0; i < temp.length; i++ )
+		{
+			if ( SaxParserUtil.isTempColumn( temp[i] ) )
+				filterColumnList.add( columnInfos.get( temp[i] ) );
+		}
+
+		return filterColumnList;
 	}
 	
 	/**

@@ -134,7 +134,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 				throw new OdaException( e.getLocalizedMessage( ) );
 			}
 		}
-		sp = new SaxParser( xdis , this );
+		sp = new SaxParser( xdis, this, relationInfo.getTableFilterColumns( tableName ) );
 		spThread = new Thread( sp );
 		spThread.start();
 	}
