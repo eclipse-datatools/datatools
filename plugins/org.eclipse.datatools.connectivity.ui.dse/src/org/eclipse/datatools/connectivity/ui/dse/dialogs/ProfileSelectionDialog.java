@@ -86,16 +86,20 @@ public class ProfileSelectionDialog extends TitleAreaDialog {
 
 		return container;
     }
+	
+	protected ProfileSelectionComposite getComposite() {
+		return this.composite;
+	}
 
 	public void fillInDefaultValues()
     {
-		composite.fillInDefaultValues();
+		getComposite().fillInDefaultValues();
    		initListeners();
    		validate();
     }
 
     private void initListeners() {
-    	composite.addChangeListener(new MyChangeListener());
+    	getComposite().addChangeListener(new MyChangeListener());
     }
 	/**
 	 * Returns the profile name
@@ -160,14 +164,14 @@ public class ProfileSelectionDialog extends TitleAreaDialog {
 	}
 
 	public boolean close() {
-		this.composite.dispose();
+		this.getComposite().dispose();
 		return super.close();
 	}
 	
 	private class MyChangeListener implements ChangeListener {
 
 		public void stateChanged(ChangeEvent arg0) {
-			ProfileSelectionDialog.this._profile = ProfileSelectionDialog.this.composite.getCPName();
+			ProfileSelectionDialog.this._profile = ProfileSelectionDialog.this.getComposite().getCPName();
 		}
 		
 	}

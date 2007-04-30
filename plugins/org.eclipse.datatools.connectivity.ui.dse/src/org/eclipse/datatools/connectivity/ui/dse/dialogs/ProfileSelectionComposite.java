@@ -45,21 +45,21 @@ public class ProfileSelectionComposite {
 	public static String JDBC_CATEGORY = "org.eclipse.datatools.connectivity.db.category"; //$NON-NLS-1$
 
 	// Initial profile name for selection
-    private String _profile = null;
+	protected String _profile = null;
     
     // Initial category ID to filter profiles with
-    private String _category = null;
+    protected String _category = null;
     
     // Hosted dialog page
-    private ProfileSelectionDialogPage page = null;
+    protected ProfileSelectionDialogPage page = null;
 
     // custom filter for viewer contents
-    private ViewerFilter _filter;
+    protected ViewerFilter _filter;
     
     // listener variables
-    private HashMap _connectListeners = null;
-    private boolean _listenersInited = false;
-	private ListenerList changeListeners;
+    protected HashMap _connectListeners = null;
+    protected boolean _listenersInited = false;
+    protected ListenerList changeListeners;
 
     /**
      * Simple Constructor
@@ -77,7 +77,7 @@ public class ProfileSelectionComposite {
      * @param category
      */
     public ProfileSelectionComposite(Composite parent, int style, String category) {
-    	this(parent, style, category, true, true, true, false);
+    	this(parent, style, category, true, true, true, false, true);
     }
     
     /**
@@ -92,6 +92,9 @@ public class ProfileSelectionComposite {
     	this(parent, style, category, limitToProfiles, true, true, false);
     }
     
+    public ProfileSelectionComposite(Composite parent, int style, String category, boolean limitToProfiles, boolean canNew, boolean canConnect, boolean canSelect) {
+    	this(parent, style, category, limitToProfiles, canNew, canConnect, canSelect, true);
+    }
     /**
      * Constructor 
      * @param parent
@@ -102,7 +105,7 @@ public class ProfileSelectionComposite {
      * @param canConnect - indicate whether user can connect/disconnect profiles
      * @param canSelect - indicate whether user can select one or more profiles
      */
-    public ProfileSelectionComposite(Composite parent, int style, String category, boolean limitToProfiles, boolean canNew, boolean canConnect, boolean canSelect) {
+    public ProfileSelectionComposite(Composite parent, int style, String category, boolean limitToProfiles, boolean canNew, boolean canConnect, boolean canSelect, boolean createNow) {
         _connectListeners = new HashMap();
         changeListeners = new ListenerList();
         
@@ -111,13 +114,16 @@ public class ProfileSelectionComposite {
     	getPage().setShowConnect(canConnect);
     	getPage().setShowNew(canNew);
     	getPage().setShowSelectButtons(canSelect);
-    	getPage().createControl(parent, false, false);
     	
-    	IConnectionProfile profile = null;
-    	if (this._profile != null)
-    		profile = ProfileManager.getInstance().getProfileByName(this._profile);
-
-        ((ProfileSelectionDialogPage)getPage()).init( profile, null, this._filter, getCategoryObject());
+    	if (createNow) {
+    		getPage().createControl(parent, false, false);
+    	
+    		IConnectionProfile profile = null;
+    		if (this._profile != null)
+    			profile = ProfileManager.getInstance().getProfileByName(this._profile);
+    		
+    		((ProfileSelectionDialogPage)getPage()).init( profile, null, this._filter, getCategoryObject());
+    	}
 	}
 
 	/**
