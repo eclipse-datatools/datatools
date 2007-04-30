@@ -131,7 +131,7 @@ public class ModelUtil {
 	 * @return
 	 */
     public static String getDatabaseName(EObject obj) {
-        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        EObject container = obj;
         while (container != null)
         {
             obj = container;
@@ -155,7 +155,7 @@ public class ModelUtil {
      * @return
      */
     public static Catalog getCatalog(EObject obj) {
-        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        EObject container = obj;
         while (container != null)
         {
             obj = container;
@@ -188,7 +188,11 @@ public class ModelUtil {
      * @return
      */
     public static Schema getSchema(EObject obj) {
-        EObject container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+    	if (obj instanceof Trigger)
+    	{
+    		return ((Trigger)obj).getSchema();
+    	}    	
+        EObject container = obj;
         while (container != null)
         {
             obj = container;
@@ -508,11 +512,17 @@ public class ModelUtil {
             boolean caseSensitive, boolean refresh)
     {
         SQLObject object = null;
+        //the schema name used to perform the search 
+        String owner = proc.getOwnerName();
+        if (proc.getType() == ProcIdentifier.TYPE_TRIGGER && proc.getTableOwnerName() != null)
+        {
+        	owner = proc.getTableOwnerName();
+        }
         Iterator i = schemas.iterator();
         for (; i.hasNext();)
         {
             Schema schema = (Schema) i.next();
-            if (schema.getName() != null && equals(schema.getName(), proc.getOwnerName(), caseSensitive))
+            if (schema.getName() != null && equals(schema.getName(), owner, caseSensitive))
             {
                 // trigger is not routine in SQL model
                 if (proc.getType() == ProcIdentifier.TYPE_TRIGGER)
@@ -535,6 +545,7 @@ public class ModelUtil {
                                         && equals(trigger.getName(), proc.getProcName(), caseSensitive))
                                 {
                                     object = trigger;
+                                    return object;
                                 }
                             }
 
@@ -554,6 +565,7 @@ public class ModelUtil {
                         if (equals(routine.getName(), proc.getProcName(), caseSensitive))
                         {
                             object = routine;
+                            return object;
                         }
                     }
                 }
