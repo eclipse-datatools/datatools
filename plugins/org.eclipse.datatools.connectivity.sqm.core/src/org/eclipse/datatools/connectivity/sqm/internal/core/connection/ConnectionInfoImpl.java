@@ -594,7 +594,6 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 
     public ConnectionInfoImpl(IConnectionProfile profile, Class factoryClass) {
         super(profile, factoryClass);
-        //TODO set DBDefinition and connection name
         String vendor = null;
         String version = null;
         String databaseName = null;
@@ -610,6 +609,9 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
         }
         DatabaseDefinitionRegistry defRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
         DatabaseDefinition dbDef = defRegistry.getDefinition(vendor, version);
+        if (dbDef == null){
+        	dbDef = defRegistry.getDefinition("Generic JDBC", "1.0");
+        }
         this.setDatabaseDefinition(dbDef);
         this.setDatabaseName(databaseName);
         
@@ -624,6 +626,10 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
     		jdbcConnection = profile.createConnection(Connection.class.getName());
     		Connection connection = (Connection) jdbcConnection.getRawConnection();
     		if (connection != null) {
+    			DatabaseDefinition detectedDBDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().recognize(connection);
+    			if(detectedDBDefinition != null) {
+    				this.setDatabaseDefinition(detectedDBDefinition);
+    			}
     			this.setSharedConnection(connection);
     	        new DatabaseProviderHelper().setDatabase(connection,
     	                this, this.getDatabaseName());
