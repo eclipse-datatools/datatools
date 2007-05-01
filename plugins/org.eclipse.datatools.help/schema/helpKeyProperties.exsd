@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.help">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.datatools.help" id="helpKeyProperties" name="Help Key Properties"/>
+      </appInfo>
+      <documentation>
+         This extension point supports the abstraction of help context IDs (and context-specific help search expressions for dynamic context-sensitive help) from the code in UI plug-ins.
+&lt;p&gt;Context-sensitive help plug-ins, which declare contributions via the org.eclipse.help.contexts extension point, can also use this extension point to declare helpKey .properties files contributions. UI plug-ins that call the org.eclipse.datatools.help.ContextProviderDelegate method can use those helpKey .properties files to dynamically set help context IDs on widgets that adapt to IContextProvider.&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="contextIds"/>
+            <element ref="searchExpressions" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="contextIds">
+      <annotation>
+         <documentation>
+            The &amp;lt;contextIds&amp;gt; element identifies a .properties file that defines help context IDs for a UI plug-in.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="plugin" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the UI plug-in for which a help context ID .properties file is contributed by a context-sensitive help plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a help context ID .properties file contributed by a context-sensitive help plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="searchExpressions">
+      <annotation>
+         <documentation>
+            The &amp;lt;searchExpressions&amp;gt; element identifies a .properties file that defines context-specific help search expressions for a UI plug-in.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="plugin" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the UI plug-in for which a help search expression .properties file is contributed by a context-sensitive help plug-in.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="file" type="string" use="required">
+            <annotation>
+               <documentation>
+                  a help search expression .properties file contributed by a context-sensitive help plug-in.
+&lt;p&gt;For each UI plug-in that a particular context-sensitive help plug-in contributes .properties files, the &amp;lt;contextIds&amp;gt; and &amp;lt;searchExpressions&amp;gt; elements must be declared in the org.eclipse.datatools.help.helpKeyProperties extension.&lt;/p&gt;
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         DTP 1.5
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         The following is an example of using the Help Key Properties extension point in the plug-in manifest (plugin.xml file) of a context-sensitive help plug-in:
+&lt;p&gt;
+&lt;pre&gt;
+     &lt;extension point=&quot;org.eclipse.datatools.help.helpKeyProperties&quot;&gt;
+         &lt;contextIds plugin=&quot;org.eclipse.datatools.connectivity.ui&quot;
+             file=&quot;org.eclipse.datatools.connectivity.ui_contextIds.properties&quot;/&gt;
+         &lt;searchExpressions plugin=&quot;org.eclipse.datatools.connectivity.ui&quot;
+             file=&quot;org.eclipse.datatools.connectivity.ui_searchExpressions.properties&quot;/&gt;
+     &lt;/extension&gt;
+&lt;/pre&gt;
+&lt;/p&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         To take advantage of the help context ID abstraction, workbench parts must implement IContextProvider and call the org.eclipse.datatools.help.ContextProviderDelegate method.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         The default implementation of org.eclipse.datatools.help supports this extension point.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2007 Sybase, Inc.
+&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>
