@@ -699,7 +699,12 @@ public class InternalProfileManager {
 		}
 		
 		for (Iterator it = nameToProfileMap.values().iterator(); it.hasNext(); ) {
-			((IConnectionProfile)it.next()).addPropertySetListener(mPropertySetListener);
+			ConnectionProfile profile = (ConnectionProfile)it.next();
+
+			// Have any profiles migrate themselves from older versions.
+			profile.migrate();
+
+			profile.addPropertySetListener(mPropertySetListener);
 		}
 		
 		mProfiles = (IConnectionProfile[]) nameToProfileMap.values().toArray(

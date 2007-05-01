@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.ui.actions;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
@@ -88,9 +89,11 @@ public class ImportProfileViewAction extends Action implements
 							for (int i = 0; i < profiles.length; i++) {
 								if (manager.getProfileByName(profiles[i]
 										.getName()) == null) {
+									((ConnectionProfile) profiles[i]).migrate();
 									manager.addProfile(profiles[i]);
 								}
 								else if (dlg.isOverwritten()) {
+									((ConnectionProfile) profiles[i]).migrate();
 									manager.modifyProfile(profiles[i]);
 								}
 								if (commonNav != null)
@@ -130,9 +133,11 @@ public class ImportProfileViewAction extends Action implements
 								}
 								if (repo
 										.getProfileByName(profiles[i].getName()) == null) {
+									((ConnectionProfile) profiles[i]).migrate();
 									repo.addProfile(profiles[i]);
 								}
 								else if (dlg.isOverwritten()) {
+									((ConnectionProfile) profiles[i]).migrate();
 									repo.modifyProfile(profiles[i]);
 								}
 								if (commonNav != null)

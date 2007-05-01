@@ -20,10 +20,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.ConnectionProfileMigratorBase;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IConnectionProfileMigrator;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IPropertiesPersistenceHook;
 import org.eclipse.datatools.connectivity.PropertiesPersistenceHook;
@@ -53,6 +55,10 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 
 	public static final String ATTR_PROPERTIES_PERSISTENCE_HOOK = "propertiesPersistenceHook"; //$NON-NLS-1$
 
+	public static final String ATTR_CLASS = "class"; //$NON-NLS-1$
+
+	public static final String ELEM_MIGRATION = "migration"; //$NON-NLS-1$
+
     static final IPropertiesPersistenceHook DEFAULT_PROPERTIES_PERSISTENCE_HOOK = new PropertiesPersistenceHook();
 
 	private String mName;
@@ -76,6 +82,9 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	private boolean mMaintainConnection = true;
 
 	private IPropertiesPersistenceHook mPropertiesPersistenceHook;
+	
+	private IConnectionProfileMigrator mMigrator;
+	private boolean mMigratorLoaded = false;
 
 	/**
 	 * 
@@ -208,7 +217,8 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	private void loadPropertiesPersistenceHook() {
 		if (mPropertiesPersistenceHook == null) {
 			mPropertiesPersistenceHook = DEFAULT_PROPERTIES_PERSISTENCE_HOOK;
-			if (mElement.getAttribute(ATTR_PROPERTIES_PERSISTENCE_HOOK) != null) {
+			if (mElement != null
+					&& mElement.getAttribute(ATTR_PROPERTIES_PERSISTENCE_HOOK) != null) {
 				try {
 					mPropertiesPersistenceHook = (IPropertiesPersistenceHook) mElement
 							.createExecutableExtension(ATTR_PROPERTIES_PERSISTENCE_HOOK);
@@ -270,6 +280,61 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 		return mMaintainConnection;
 	}
 	
+	public IConnectionProfileMigrator getMigrator() {
+		loadMigrator();
+		return mMigrator;
+	}
+	
+	private void loadMigrator() {
+		if (!mMigratorLoaded) {
+			mMigratorLoaded = true;
+			if (mElement == null) {
+				return;
+			}
+			IConfigurationElement[] migrationElements = mElement
+					.getChildren(ELEM_MIGRATION);
+			if (migrationElements == null || migrationElements.length == 0) {
+				return;
+			}
+			String migratorImpl = migrationElements[0].getAttribute(ATTR_CLASS);
+			if (migratorImpl != null && migratorImpl.length() > 0) {
+				try {
+					mMigrator = (IConnectionProfileMigrator) migrationElements[0]
+							.createExecutableExtension(ATTR_CLASS);
+				}
+				catch (CoreException e) {
+					String error = ConnectivityPlugin.getDefault()
+							.getResourceString("trace.error.migration", //$NON-NLS-1$
+									new Object[] { mId, migratorImpl});
+					ConnectivityPlugin.getDefault().log(error);
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err.println(error);
+						e.printStackTrace();
+					}
+				}
+			}
+			else {
+				try {
+					IConnectionProfileMigrator migrator = new ConnectionProfileMigratorBase();
+					((ConnectionProfileMigratorBase) migrator)
+							.setInitializationData(migrationElements[0], null,
+									null);
+					mMigrator = migrator;
+				}
+				catch (CoreException e) {
+					String error = ConnectivityPlugin.getDefault()
+							.getResourceString("trace.error.migration", //$NON-NLS-1$
+									new Object[] { mId, migratorImpl});
+					ConnectivityPlugin.getDefault().log(error);
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err.println(error);
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
 	public boolean compatibleWithRepository(IConnectionProfile repository) {
 		//RJC: TODO: Implement and integrate this with the new wizard and
 		// copy/move actions

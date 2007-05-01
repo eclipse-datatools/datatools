@@ -42,6 +42,7 @@ import org.eclipse.datatools.connectivity.IConnectListener;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IConnectionProfileMigrator;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
@@ -244,9 +245,14 @@ public class ConnectionProfile extends PlatformObject implements
 	}
 
 	public void internalSetProperties(String type, Properties props) {
-		Properties newProps = new Properties();
-		newProps.putAll(props);
-		mPropertiesMap.put(type, newProps);
+		if (props == null) {
+			mPropertiesMap.remove(type);
+		}
+		else {
+			Properties newProps = new Properties();
+			newProps.putAll(props);
+			mPropertiesMap.put(type, newProps);
+		}
 		InternalProfileManager.getInstance().setDirty(true);
 	}
 
@@ -381,6 +387,44 @@ public class ConnectionProfile extends PlatformObject implements
 			disconnect();
 		}
 	}
+	
+	public void migrate() {
+		IConnectionProfileMigrator migrator = mProvider.getMigrator();
+		if (migrator == null) {
+			return;
+		}
+		boolean oldIsCreating = mIsCreating;
+		mIsCreating = false;
+		try {
+			String newID = migrator.getNewProviderID();
+			if (newID != null && !newID.equals(mProfileId)) {
+				// Take care of migrating to the new provider
+				// get the existing base properties
+				Properties baseProps = getBaseProperties();
+				// set the current base properties to null
+				setBaseProperties(null);
+				// update the profile provider and provider id
+				mProfileId = newID;
+				mProvider = (ConnectionProfileProvider) ConnectionProfileManager
+						.getInstance().getProvider(newID);
+				// restore the base properties using the new provider id
+				setBaseProperties(baseProps);
+				// re-initialize the managed connections
+				initManagedConnections();
+			}
+			// let the migrator do its thing
+			migrator.performMigration(this);
+			/*
+			 * RJC: TODO: Think about adding migration support to profile
+			 * extensions. We need to get the list of extensions from the old
+			 * provider. Should we delete extensions that do not apply to the
+			 * new provider?
+			 */
+		}
+		finally {
+			mIsCreating = oldIsCreating;
+		}
+	}
 
 	public boolean isConnected() {
 		return mConnected;
@@ -467,6 +511,9 @@ public class ConnectionProfile extends PlatformObject implements
 	protected void firePropertySetChangeEvent(String type,Properties oldProps, Properties newProps) {
 		if (oldProps == null) {
 			oldProps = new Properties();
+		}
+		if (newProps == null) {
+			newProps = new Properties();
 		}
 		IPropertySetChangeEvent event = new PropertySetChangeEvent(this, type, oldProps, newProps);
 		firePropertySetChangeEvent(event);

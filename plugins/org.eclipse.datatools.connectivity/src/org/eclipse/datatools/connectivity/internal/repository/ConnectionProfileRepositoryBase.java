@@ -324,6 +324,7 @@ public abstract class ConnectionProfileRepositoryBase implements
 				ConnectionProfile profile = (ConnectionProfile) it.next();
 				profile.setRepository(this);
 				mProfiles.put(profile.getName(), profile);
+				profile.migrate();
 				profile.addPropertySetListener(mPropertySetListener);
 			}
 		}

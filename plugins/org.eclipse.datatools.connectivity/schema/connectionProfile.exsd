@@ -114,6 +114,9 @@
          </documentation>
       </annotation>
       <complexType>
+         <sequence>
+            <element ref="migration" minOccurs="0" maxOccurs="1"/>
+         </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
@@ -452,6 +455,69 @@
             <annotation>
                <documentation>
                   The connection profile supported by this factory.  This should reference a &lt;samp&gt;connectionProfile/@id&lt;/samp&gt;.  If this field is specified, this factory will only be available for the specified profile, otherwise this factory will be available for all profiles with the specified &lt;code&gt;factory&lt;/code&gt;.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="migration">
+      <annotation>
+         <documentation>
+            Use this element to add migration support for a deprecated profile type (e.g. ID changes, property changes, etc.).
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="propertyMigration" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="newProviderID" type="string">
+            <annotation>
+               <documentation>
+                  The ID of the new profile provider to which the old profile should be associated with.  If this attribute is not specified, the ID of the profile provider is not changed.  However, propertyMigration elements, if any, will still be processed and applied.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  A migration implementation that allows the provider to perform a specialized migration.  Use this method if you require a more complex migration algorithm (i.e. anything other than simple name and property mapping).
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.ConnectionProfileMigratorBase:org.eclipse.datatools.connectivity.IConnectionProfileMigrator"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyMigration">
+      <annotation>
+         <documentation>
+            This element is used to specify a simple mapping for property key names from a source profile to a target profile.
+
+If this element is used, the targetProfile attribute must be set.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="oldPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the source profile.  If this property is not specified, the new property will be defaulted with the value of newValue.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the target profile.  If this value is not specified, the old property will be deleted.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newValue" type="string">
+            <annotation>
+               <documentation>
+                  Use this attribute for populating a default property value for a new property.  newPropertyKey must be set.
                </documentation>
             </annotation>
          </attribute>
