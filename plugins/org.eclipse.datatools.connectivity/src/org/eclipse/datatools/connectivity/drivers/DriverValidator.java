@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 
 import com.ibm.icu.util.StringTokenizer;
@@ -86,12 +87,33 @@ public class DriverValidator {
 		IConfigurationElement[] templateProps = this.mTemplate.getProperties();
 		for (int i = 0; i < templateProps.length; i++) {
 			IConfigurationElement element = templateProps[i];
+			String id = element.getAttribute("id");//$NON-NLS-1$
+			OverrideTemplateDescriptor[] otds = 
+				OverrideTemplateDescriptor.getByDriverTemplate(this.mTemplate.getId());
 			String name = element.getAttribute("name"); //$NON-NLS-1$
+			if (otds != null && otds.length > 0) {
+				String temp =
+					otds[0].getPropertyNameFromId(id);
+				if (temp != null && temp.length() > 0)
+					name = temp;
+			}
 			String required = element.getAttribute("required"); //$NON-NLS-1$
+			if (otds != null && otds.length > 0) {
+				String temp =
+					otds[0].getPropertyRequiredFromId(id);
+				if (temp != null && temp.length() > 0)
+					required = temp;
+			}
 			boolean propRequired = true;
 			if (required != null && required.equals("false")) //$NON-NLS-1$
 				propRequired = false;
-			String value = instance.getNamedProperty(name);
+			String value = instance.getNamedPropertyByID(id);
+			if (otds != null && otds.length > 0) {
+				String temp =
+					otds[0].getPropertyValueFromId(id);
+				if (temp != null && temp.length() > 0)
+					value = temp;
+			}
 			boolean exists = (value != null);
 			boolean notEmpty = false;
 			if (exists)

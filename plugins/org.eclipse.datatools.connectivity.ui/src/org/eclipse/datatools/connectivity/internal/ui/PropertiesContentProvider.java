@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.internal.ui;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
@@ -67,7 +68,16 @@ public class PropertiesContentProvider implements IStructuredContentProvider {
 			IConfigurationElement[] props = target.getProperties();
 			ArrayList list = new ArrayList();
 			for (int i = 0; i < props.length; i++) {
+				String id = props[i].getAttribute("id");//$NON-NLS-1$
 				String visible = props[i].getAttribute("visible"); //$NON-NLS-1$
+				OverrideTemplateDescriptor[] otds = 
+					OverrideTemplateDescriptor.getByDriverTemplate(target.getId());
+				if (otds != null && otds.length > 0) {
+					String temp =
+						otds[0].getPropertyVisibleFromId(id);
+					if (temp != null || temp.length() > 0)
+						visible = temp;
+				}
 				boolean propvisible = true;
 				if (visible != null && visible.equals("false")) //$NON-NLS-1$
 					propvisible = false;

@@ -12,6 +12,9 @@ The driverExtension is used by developers to define templates that describe the 
 &lt;p&gt;
 The driver definitions are intended to be used in conjunction with connection profiles, where the driver definition specifies the mechanics (e.g. JAR files, driver class names, etc.) necessary for opening the connection and where the connection profile specifies the particulars for connecting to a specific server (e.g. host, port, user ID, password, etc.).
 &lt;/p&gt;
+&lt;p&gt;
+In addition, using the driverTemplateOverride functionality, adopters can take existing driver templates (such as for one of the Enablement projects) and update the driver&apos;s jar list to actually point to a wrapped jar, or update individual properties of a template to fit a particular use. 
+&lt;/p&gt;
       </documentation>
    </annotation>
 
@@ -19,7 +22,8 @@ The driver definitions are intended to be used in conjunction with connection pr
       <complexType>
          <sequence>
             <element ref="category" minOccurs="0" maxOccurs="unbounded"/>
-            <element ref="driverTemplate"/>
+            <element ref="driverTemplate" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="driverTemplateOverride" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -228,13 +232,13 @@ The driver definitions are intended to be used in conjunction with connection pr
 
 Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
 
-	private static String DRIVER_CLASS_PROP_ID = &quot;org.eclipse.datatools.connectivity.db.driverClass&quot;; //$NON-NLS-1$
-	
-	public DriverClassBrowsePropertyDescriptor() {
-		super(DRIVER_CLASS_PROP_ID, 
-				ConnectivityUIPlugin.getDefault().getResourceString(&quot;DriverClassBrowsePropertyDescriptor.property.label&quot;)); //$NON-NLS-1$
-	}
-	
+ private static String DRIVER_CLASS_PROP_ID = &quot;org.eclipse.datatools.connectivity.db.driverClass&quot;; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString(&quot;DriverClassBrowsePropertyDescriptor.property.label&quot;)); //$NON-NLS-1$
+ }
+ 
 Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
                </documentation>
                <appInfo>
@@ -246,6 +250,175 @@ Also note that there is a new interface that your Property Descriptor can extend
             <annotation>
                <documentation>
                   The category tag is used to provide an optional category for your template properties. The default is &quot;General&quot; if no category is specified for the property. You can use this to group properties in arbitrary categories.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="driverTemplateOverride">
+      <annotation>
+         <documentation>
+            This element is used to identify a template override
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="1">
+            <element ref="propertyOverrides"/>
+         </sequence>
+         <attribute name="targetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the driver template to be overridden.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The overridden display name for this driver type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The overridden description of this driver type. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="parentCategory" type="string">
+            <annotation>
+               <documentation>
+                  The id of the category to which this template belongs.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="jarList" type="string">
+            <annotation>
+               <documentation>
+                  The list of JAR files used to create the classpath used when connecting using this driver.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="createDefault" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this template should be used to create a default driver definition instance.  If set to true, a driver definition instance with the name specified in the template is guaranteed to exist in the list of driver definitions.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="emptyJarListIsOK" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not it is valid for the jarList property to be empty.  Default is false.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyOverrides">
+      <annotation>
+         <documentation>
+            Parent container for specific driver definition overridden properties
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="propertyOverride"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="propertyOverride">
+      <annotation>
+         <documentation>
+            A property override definition for a driver template
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="targetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the property to override. Must match the property ID from the driver template you are overriding.  Used to identify this property in the driver definition.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The overridden display name for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  The overridden description of this property. This value will be used in the UI to describe a particular type.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string">
+            <annotation>
+               <documentation>
+                  The overridden default value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="visible" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this property is visible and editable to the user.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="example" type="string">
+            <annotation>
+               <documentation>
+                  Specifies an example value for this property.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="required" type="boolean">
+            <annotation>
+               <documentation>
+                  Specifies whether or not this is a required property.  Default is true.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="customPropertyDescriptor" type="string">
+            <annotation>
+               <documentation>
+                  Provides a way to override a custom property descriptor that extends the class org.eclipse.ui.views.properties.PropertyDescriptor. An example of this is the class org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor, which provides a property editor that masks the characters for a password property. Anything you can implement as a property descriptor for the Properties Viewer, you can use here. Or if you want to make the property values read-only, you can use org.eclipse.ui.views.properties.PropertyDescriptor directly.
+
+Note that your property descriptor must implement a zero-argument constructor in order to be created correctly. This zero-argument constructor should provide the id and display name of the property you are editing. For example:
+
+ private static String DRIVER_CLASS_PROP_ID = &quot;org.eclipse.datatools.connectivity.db.driverClass&quot;; //$NON-NLS-1$
+ 
+ public DriverClassBrowsePropertyDescriptor() {
+  super(DRIVER_CLASS_PROP_ID, 
+    ConnectivityUIPlugin.getDefault().getResourceString(&quot;DriverClassBrowsePropertyDescriptor.property.label&quot;)); //$NON-NLS-1$
+ }
+ 
+Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="category" type="string">
+            <annotation>
+               <documentation>
+                  The category tag is used to override the category for your template properties. The default is &quot;General&quot; if no category is specified for the property. You can use this to group properties in arbitrary categories.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="remove" type="boolean">
+            <annotation>
+               <documentation>
+                  Indicates if this property should be removed
                </documentation>
             </annotation>
          </attribute>
@@ -295,6 +468,16 @@ Also note that there is a new interface that your Property Descriptor can extend
                   visible=&quot;true&quot;/&gt;
          &lt;/properties&gt;
       &lt;/driverTemplate&gt;
+    &lt;driverTemplateOverride
+          jarList=&quot;[PLUGIN]\mydriver\driver.jar&quot;
+          name=&quot;Override for Generic JDBC Driver&quot;
+          targetId=&quot;org.eclipse.datatools.connectivity.db.genericDriverTemplate&quot;&gt;
+       &lt;propertyOverrides&gt;
+          &lt;propertyOverride
+                value=&quot;my.class&quot;
+                targetId=&quot;org.eclipse.datatools.connectivity.db.driverClass&quot;/&gt;
+       &lt;/propertyOverrides&gt;
+    &lt;/driverTemplateOverride&gt;
    &lt;/extension&gt;
       </documentation>
    </annotation>
@@ -322,7 +505,7 @@ Also note that there is a new interface that your Property Descriptor can extend
          <meta.section type="copyright"/>
       </appInfo>
       <documentation>
-         &lt;p&gt;Copyright (c) 2004-2005 Sybase, Inc.&lt;/p&gt;
+         &lt;p&gt;Copyright (c) 2004-2007 Sybase, Inc.&lt;/p&gt;
 &lt;p&gt;All rights reserved. This program and the accompanying materials
 are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at

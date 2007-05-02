@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 import com.ibm.icu.text.Collator;
@@ -45,6 +46,8 @@ public class TemplateDescriptor implements Comparable {
 
 	private static final String EXTENSION_POINT_NAME = "driverExtension"; //$NON-NLS-1$
 	private static final String DRIVERTEMPLATE_ELEMENT_TAG = "driverTemplate"; //$NON-NLS-1$
+	private static final String PROPERTIES_ELEMENT_TAG = "properties";//$NON-NLS-1$
+	private static final String PROPERTY_ELEMENT_TAG = "property";//$NON-NLS-1$
 
 	// attributes
 	private static final String CREATEDEFAULT_TAG = "createDefault"; //$NON-NLS-1$
@@ -142,6 +145,12 @@ public class TemplateDescriptor implements Comparable {
 	 * Returns the parent category id.
 	 */
 	public String getParentCategory() {
+		// First of all check overrides:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getParentCategory() != null)
+				return overrides[0].getParentCategory();
+		}
 		return this.fElement.getAttribute(PARENTCATEGORY_ATTRIBUTE);
 	}
 
@@ -149,7 +158,17 @@ public class TemplateDescriptor implements Comparable {
 	 * Returns the file list
 	 */
 	public String getJarList() {
-		String jarList = this.fElement.getAttribute(JARLIST_ATTRIBUTE);
+		// First of all check overrides, then take the first one:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		StringBuffer jarListBuf = new StringBuffer();
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getJarList() != null && overrides[0].getJarList().length() > 0) {
+				jarListBuf.append(overrides[0].getJarList());
+			}
+		}
+
+		String jarList = jarListBuf.length() > 0 ?
+			jarListBuf.toString() : this.fElement.getAttribute(JARLIST_ATTRIBUTE);
 		if (jarList == null) {
 			jarList = new String();
 		}
@@ -175,6 +194,14 @@ public class TemplateDescriptor implements Comparable {
 	 * Returns the 'create default' flag value.
 	 */
 	public boolean getCreateDefaultFlag() {
+		// First of all check overrides:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getCreateDefaultFlag() != null) {
+				Boolean flag = Boolean.valueOf(overrides[0].getCreateDefaultFlag());
+				return flag.booleanValue();
+			}
+		}
 		if (this.fElement.getAttribute(CREATEDEFAULT_TAG) != null) {
 			Boolean flag = Boolean.valueOf(this.fElement
 					.getAttribute(CREATEDEFAULT_TAG));
@@ -187,6 +214,13 @@ public class TemplateDescriptor implements Comparable {
 	 * Returns the 'create default' flag value. Default = false
 	 */
 	public boolean getEmptyJarListIsOKFlag() {
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getEmptyJarListIsOKFlag() != null) {
+				Boolean flag = Boolean.valueOf(overrides[0].getEmptyJarListIsOKFlag());
+				return flag.booleanValue();
+			}
+		}
 		if (this.fElement.getAttribute(EMPTYJARLISTOK_TAG) != null) {
 			Boolean flag = Boolean.valueOf(this.fElement
 					.getAttribute(EMPTYJARLISTOK_TAG));
@@ -206,33 +240,49 @@ public class TemplateDescriptor implements Comparable {
 	 * Returns the template name.
 	 */
 	public String getName() {
+		// First of all check overrides:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getName() != null && overrides[0].getName().length() > 0) {
+				String name = overrides[0].getName();
+				if (!name.equals(getId()))
+					return name;
+			}
+		}
 		String name = this.fElement.getAttribute(NAME_ATTRIBUTE);
 		if (name == null && getId() != null)
 			name = getId();
 		return name;
 	}
-
+	
 	/**
 	 * Returns the list of configuration elements for the template properties.
 	 */
 	public IConfigurationElement[] getProperties() {
 		IConfigurationElement[] propertyRoot = this.fElement
-				.getChildren("properties"); //$NON-NLS-1$
+				.getChildren(PROPERTIES_ELEMENT_TAG);
 		if (propertyRoot != null && propertyRoot.length == 1) {
 			IConfigurationElement[] childElements = propertyRoot[0]
-					.getChildren("property"); //$NON-NLS-1$
+					.getChildren(PROPERTY_ELEMENT_TAG);
 			return childElements;
 		}
 		return new IConfigurationElement[0];
 	}
-
+	
 	public String getPropertyValue(String propName) {
 		String value = ""; //$NON-NLS-1$
 		IConfigurationElement[] props = getProperties();
 		for (int i = 0; i < props.length; i++) {
+			String id = props[i].getAttribute("id"); //$NON-NLS-1$
 			if (props[i].getAttribute(NAME_ATTRIBUTE) != null) {
 				String name = props[i].getAttribute(NAME_ATTRIBUTE);
 				String tempvalue = props[i].getAttribute(VALUE_ATTRIBUTE);
+				// First of all check overrides:
+				OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+				if (overrides != null && overrides.length > 0) {
+					if (overrides[0].getPropertyValueFromId(id) != null)
+						tempvalue = overrides[0].getPropertyValueFromId(id);
+				}
 				if (name.equals(propName)) {
 					value = tempvalue;
 					break;
@@ -240,6 +290,24 @@ public class TemplateDescriptor implements Comparable {
 			}
 		}
 		return value;
+	}
+
+	public String getPropertyValueFromId(String propId) {
+		return getPropertyAttributeValueByID(propId, VALUE_ATTRIBUTE);
+	}
+
+	private String getPropertyAttributeValueByID(String propId, String attribute) {
+		String attr_value = new String();
+		IConfigurationElement[] props = getProperties();
+		for (int i = 0; i < props.length; i++) {
+			if (props[i].getAttribute(ID_ATTRIBUTE) != null) {
+				if (propId.equals(props[i].getAttribute(ID_ATTRIBUTE))) {
+					attr_value = props[i].getAttribute(attribute);
+					break;
+				}
+			}
+		}
+		return attr_value;
 	}
 
 	public String getPropertyIDFromName(String propName) {
@@ -264,6 +332,12 @@ public class TemplateDescriptor implements Comparable {
 	 */
 	public String getDescription() {
 		String description = this.fElement.getAttribute(DESCRIPTION_ATTRIBUTE);
+
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getDescription() != null)
+				description = overrides[0].getDescription();
+		}
 		if (description == null)
 			description = ""; //$NON-NLS-1$
 		return description;
@@ -314,7 +388,14 @@ public class TemplateDescriptor implements Comparable {
 		if (templateprops != null && templateprops.length > 0) {
 			for (int i=0; i < templateprops.length; i++) {
 				IConfigurationElement prop = templateprops[i];
+				String id = prop.getAttribute("id"); //$NON-NLS-1$
 				String visible = prop.getAttribute("visible"); //$NON-NLS-1$
+				// First of all check overrides:
+				OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+				if (overrides != null && overrides.length > 0) {
+					if (overrides[0].getPropertyVisibleFromId(id) != null)
+						visible = overrides[0].getPropertyVisibleFromId(id);
+				}
 				if (visible == null || (visible.equals("true"))) { //$NON-NLS-1$
 					return true;
 				}					

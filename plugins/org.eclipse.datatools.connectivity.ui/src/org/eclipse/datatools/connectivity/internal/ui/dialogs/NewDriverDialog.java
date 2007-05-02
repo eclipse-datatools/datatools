@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
@@ -374,7 +375,19 @@ public class NewDriverDialog extends TitleAreaDialog {
 				for (int i = 0; i < templateprops.length; i++) {
 					IConfigurationElement prop = templateprops[i];
 					String id = prop.getAttribute("id"); //$NON-NLS-1$
+					
 					String value = prop.getAttribute("value"); //$NON-NLS-1$
+					OverrideTemplateDescriptor[] otds = 
+						OverrideTemplateDescriptor.getByDriverTemplate(this.mDriverTemplateDescriptor.getId());
+					if (otds != null && otds.length > 0) {
+						boolean removetemp =
+							otds[0].getPropertyRemoveFlagFromID(id);
+						if (removetemp) continue;
+						String valuetemp =
+							otds[0].getPropertyValueFromId(id);
+						if (valuetemp != null && valuetemp.length() > 0)
+							value = valuetemp;
+					}
 					props.setProperty(id, value == null ? new String()
 							: value);
 				}

@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.swt.widgets.Shell;
@@ -72,8 +73,17 @@ public class DriverInstancePropertySource implements IPropertySource {
 		if (descriptor != null) {
 			IConfigurationElement[] props = descriptor.getProperties();
 			ArrayList list = new ArrayList();
+			OverrideTemplateDescriptor[] otds = 
+				OverrideTemplateDescriptor.getByDriverTemplate(descriptor.getId());
 			for (int i = 0; i < props.length; i++) {
+				String id = props[i].getAttribute(P_ID);
 				String visible = props[i].getAttribute(P_VISIBLE);
+				if (otds != null && otds.length > 0) {
+					String temp =
+						otds[0].getPropertyVisibleFromId(id);
+					if (temp != null && temp.length() > 0)
+						visible = temp;
+				}
 				boolean propvisible = true;
 				if (visible != null && visible.equalsIgnoreCase(Boolean.toString(false)))
 					propvisible = false;
@@ -84,10 +94,28 @@ public class DriverInstancePropertySource implements IPropertySource {
 				Iterator iter = list.iterator();
 				while (iter.hasNext()) {
 					IConfigurationElement ice = (IConfigurationElement) iter.next();
-					String name = ice.getAttribute(P_NAME);
 					String id = ice.getAttribute(P_ID);
+					String name = ice.getAttribute(P_NAME);
+					if (otds != null && otds.length > 0) {
+						String temp =
+							otds[0].getPropertyNameFromId(id);
+						if (temp != null && temp.length() > 0)
+							name = temp;
+					}
 					String ctceClass = ice.getAttribute(P_CUSTOM_PROPERTY_DESCRIPTOR);
+					if (otds != null && otds.length > 0) {
+						String temp =
+							otds[0].getPropertyCustomPropDescriptorFromId(id);
+						if (temp != null && temp.length() > 0)
+							ctceClass = temp;
+					}
 					String category = ice.getAttribute(P_CATEGORY);
+					if (otds != null && otds.length > 0) {
+						String temp =
+							otds[0].getPropertyCategoryFromId(id);
+						if (temp != null && temp.length() > 0)
+							category = temp;
+					}
 					if (category == null) {
 						category = ConnectivityUIPlugin.getDefault().getResourceString("properties.category.general"); //$NON-NLS-1$
 					}

@@ -23,6 +23,7 @@ import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverPropertySourceProvider;
@@ -538,8 +539,20 @@ public class EditDriverDialog extends TitleAreaDialog {
 				String id = prop.getAttribute("id"); //$NON-NLS-1$
 				String value = this.mPropertySet.getBaseProperties()
 						.getProperty(id);
-				if (value == null)
+				if (value == null) {
 					value = prop.getAttribute("value"); //$NON-NLS-1$
+					OverrideTemplateDescriptor[] otds = 
+						OverrideTemplateDescriptor.getByDriverTemplate(this.descriptor.getId());
+					if (otds != null && otds.length > 0) {
+						boolean removetemp =
+							otds[0].getPropertyRemoveFlagFromID(id);
+						if (removetemp) continue;
+						String valuetemp =
+							otds[0].getPropertyValueFromId(id);
+						if (valuetemp != null && valuetemp.length() > 0)
+							value = valuetemp;
+					}
+				}
 				props.setProperty(id, value);
 			}
 		}
@@ -578,9 +591,20 @@ public class EditDriverDialog extends TitleAreaDialog {
 					value = this.mPropertySet.getBaseProperties().getProperty(
 							id);
 				}
-				if (value == null)
+				if (value == null) {
 					value = prop.getAttribute("value"); //$NON-NLS-1$
-
+					OverrideTemplateDescriptor[] otds = 
+						OverrideTemplateDescriptor.getByDriverTemplate(this.descriptor.getId());
+					if (otds != null && otds.length > 0) {
+						boolean removetemp =
+							otds[0].getPropertyRemoveFlagFromID(id);
+						if (removetemp) continue;
+						String valuetemp =
+							otds[0].getPropertyValueFromId(id);
+						if (valuetemp != null && valuetemp.length() > 0)
+							value = valuetemp;
+					}
+				}
 				props.setProperty(id, value);
 			}
 		}

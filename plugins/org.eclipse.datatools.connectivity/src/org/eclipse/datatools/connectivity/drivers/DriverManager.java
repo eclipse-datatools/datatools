@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
@@ -516,6 +517,14 @@ public class DriverManager {
 					IConfigurationElement prop = templateprops[i];
 					String propid = prop.getAttribute("id"); //$NON-NLS-1$
 					String propvalue = prop.getAttribute("value"); //$NON-NLS-1$
+					OverrideTemplateDescriptor[] otds = 
+						OverrideTemplateDescriptor.getByDriverTemplate(template.getId());
+					if (otds != null && otds.length > 0) {
+						String temp =
+							otds[0].getPropertyValueFromId(id);
+						if (temp != null)
+							propvalue = temp;
+					}
 					props.setProperty(propid, propvalue == null ? new String()
 						: propvalue);
 				}

@@ -127,6 +127,19 @@ public class DriverInstance {
 		return rtnStr;
 	}
 
+	public String getNamedPropertyByID(String id) {
+		String rtnStr = ""; //$NON-NLS-1$
+		if (this.mInstanceProps != null) {
+			if (id != null) {
+				rtnStr = this.mInstanceProps.getProperty(id);
+			}
+		}
+		if (rtnStr == null) {
+			rtnStr = getTemplate().getPropertyValueFromId(id);
+		}
+		return rtnStr;
+	}
+
 	/**
 	 * Retrieve a property value by property id.
 	 * @param id Property ID
