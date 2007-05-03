@@ -239,6 +239,9 @@ public class JDBCTable extends PersistentTableImpl implements ICatalogObject {
 			pkLoaded = Boolean.TRUE;
 
 			List existingUCs = internalGetUniqueConstraints(container);
+			if (pk != null) {
+				existingUCs.remove(pk);
+			}
 			container.removeAll(existingUCs);
 			getConstraintLoader().loadUniqueConstraints(getPrimaryKey(),
 					container, existingUCs);
