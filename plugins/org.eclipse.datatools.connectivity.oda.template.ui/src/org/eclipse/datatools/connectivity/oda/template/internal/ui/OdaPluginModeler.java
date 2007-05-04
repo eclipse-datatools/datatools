@@ -23,9 +23,6 @@ import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginModelFactory;
-import org.eclipse.pde.internal.core.ibundle.IBundle;
-import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
-import org.osgi.framework.Constants;
 
 /**
  * A helper responsible for updating an ODA plug-in model with ODA-specific extensions
@@ -92,7 +89,8 @@ class OdaPluginModeler
         IPluginLibrary exportPackage = factory.createLibrary();
         exportPackage.setName( "src" ); //$NON-NLS-1$
         exportPackage.setExported( true );
-        exportPackage.setContentFilters( new String[]{ getKeyPackageName() } );
+        String exportPackageFilter = getKeyPackageName() + ".*"; //$NON-NLS-1$
+        exportPackage.setContentFilters( new String[]{ exportPackageFilter } );
         if ( ! exportPackage.isInTheModel() )
             odaModel.getPluginBase().add( exportPackage );
 
@@ -466,7 +464,13 @@ class OdaPluginModeler
      */
     void adjustManifestHeaders( IPluginModelBase odaModel, boolean forRuntimeBundle )
     {
-        if( odaModel == null )
+        /* TODO - remove workaround code;
+         * bug 173393 is fixed in PDE UI Template 3.3M7;
+         * keeps work-around code below as comments for now, in case anyone needs it
+         * to work with Eclipse Platform 3.3 M4 thru M6
+         */
+        
+/*        if( odaModel == null )
             return;     // nothing to adjust, ignore
 
         // model object type got changed in PDE UI Template 3.3M4 to 
@@ -479,9 +483,9 @@ class OdaPluginModeler
         if( forRuntimeBundle )
         {
             IBundle bundle = ((IBundlePluginModelBase) odaModel ).getBundleModel().getBundle();
-//        bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
+            bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
             bundle.setHeader( Constants.EXPORT_PACKAGE, getKeyPackageName() );  
         }
-    }
+*/    }
 
 }
