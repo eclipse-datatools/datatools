@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+            class="org.eclipse.datatools.enablement.jdt.classpath.internal.DriverClasspathContainerInitializer"
+            id="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY"/>
+   </extension>
+   <extension
+         point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+            class="org.eclipse.datatools.enablement.jdt.classpath.internal.DriverClasspathContainerPage"
+            id="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY"
+            name="%driver.classpath.container.name"/>
+   </extension>
+
+</plugin>
