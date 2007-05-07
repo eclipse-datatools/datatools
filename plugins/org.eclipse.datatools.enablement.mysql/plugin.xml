@@ -35,4 +35,55 @@
             class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
         </generator>
     </extension>
+	
+	 <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+        <catalog
+            version="5.0"
+            product="MySql"
+            provider="org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogProvider">
+        </catalog>
+    </extension>
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+        <generator
+            version="5.0"
+            product="MySql"
+            class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
+        </generator>
+    </extension>
+	
+	 <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+        <catalog
+            version="5.1"
+            product="MySql"
+            provider="org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogProvider">
+        </catalog>
+    </extension>
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+        <generator
+            version="5.1"
+            product="MySql"
+            class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
+        </generator>
+    </extension>
+	
+	 <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.catalog">
+        <catalog
+            version="5.2"
+            product="MySql"
+            provider="org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogProvider">
+        </catalog>
+    </extension>
+    <extension
+        point="org.eclipse.datatools.connectivity.sqm.core.ddlGeneration">
+        <generator
+            version="5.2"
+            product="MySql"
+            class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
+        </generator>
+    </extension>
 </plugin>
