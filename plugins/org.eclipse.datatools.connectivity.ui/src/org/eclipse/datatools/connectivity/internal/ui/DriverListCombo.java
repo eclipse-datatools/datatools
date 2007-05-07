@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.internal.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -431,6 +432,26 @@ public class DriverListCombo {
 		return rtn;
 	}
 
+	private class TemplateDescriptorComparator implements Comparator {
+
+		public int compare(Object arg0, Object arg1) {
+			TemplateDescriptor td1 = (TemplateDescriptor) arg0;
+			TemplateDescriptor td2 = (TemplateDescriptor) arg1;
+			return td1.getName().compareToIgnoreCase(td2.getName());
+		}
+		
+	}
+	
+	private class PropertySetComparator implements Comparator {
+
+		public int compare(Object arg0, Object arg1) {
+			IPropertySet ps1 = (IPropertySet) arg0;
+			IPropertySet ps2 = (IPropertySet) arg1;
+			return ps1.getName().compareToIgnoreCase(ps2.getName());
+		}
+		
+	}
+
 	/**
 	 * Refresh the combo list
 	 */
@@ -461,8 +482,12 @@ public class DriverListCombo {
 			else {
 				populateAssociatedDriverTypes(category,templates);
 			}
-			for (int i = 0; i < templates.size(); i++)  {
-				TemplateDescriptor template = (TemplateDescriptor) templates.get(i);
+			TemplateDescriptorComparator comparator = 
+				new TemplateDescriptorComparator();
+			Object[] templatesArray = templates.toArray();
+			Arrays.sort(templatesArray, comparator);
+			for (int i = 0; i < templatesArray.length; i++)  {
+				TemplateDescriptor template = (TemplateDescriptor) templatesArray[i];
 				for (int j = 0; j < psets.length; j++) {
 					IPropertySet pset = psets[j];
 					String driverType = pset.getBaseProperties().getProperty(
@@ -477,6 +502,9 @@ public class DriverListCombo {
 			}
 		}
 		else {
+			PropertySetComparator comparator = 
+				new PropertySetComparator();
+			Arrays.sort(psets, comparator);
 			for (int i = 0; i < psets.length; i++) {
 				IPropertySet pset = psets[i];
 				getCombo().add(pset.getName());
