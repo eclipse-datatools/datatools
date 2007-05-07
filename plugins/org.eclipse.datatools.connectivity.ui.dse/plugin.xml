@@ -272,6 +272,11 @@
          point="org.eclipse.ui.navigator.viewer">
       <viewer
             viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <options>
+            <property
+                  name="org.eclipse.ui.navigator.enforceHasChildren"
+                  value="true"/> 
+         </options>
          <popupMenu
                allowsPlatformContributions="true"
                id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
