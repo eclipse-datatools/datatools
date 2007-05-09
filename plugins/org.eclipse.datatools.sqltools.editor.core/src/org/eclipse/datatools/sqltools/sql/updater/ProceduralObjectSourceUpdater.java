@@ -36,6 +36,7 @@ public abstract class ProceduralObjectSourceUpdater
     protected SQLParser _parser;
     protected SQLObject _routine = null;
     protected ParserParameters _parserParameters;
+    protected boolean _testMode = false;
     
     public ProceduralObjectSourceUpdater(SQLObject _object, DatabaseDefinition dbDefinition)
     {
@@ -93,4 +94,19 @@ public abstract class ProceduralObjectSourceUpdater
 //    }
     
     public abstract void setBody(String body);
+    
+    /**
+     * In test mode, the updater should validate the updated source and revert it back if error occurs.
+     * 
+     * @param testMode
+     */
+    public void setTestMode(boolean testMode)
+    {
+    	_testMode = testMode;
+    }
+    
+    public boolean getTestMode()
+    {
+    	return _testMode;
+    }
 }

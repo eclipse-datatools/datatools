@@ -117,6 +117,14 @@ public class ProcIdentifierImpl implements ProcIdentifier
         return (String) propertyMap.get(PROP_TABLENAME);
     }
 
+    /* (non-Javadoc)
+     * @see com.sybase.stf.dmp.core.ProcIdentifier#getTableOwnerName()
+     */
+    public String getTableOwnerName()
+    {
+    	return (String) propertyMap.get(PROP_TABLEOWNERNAME);
+    }
+    
     /*
      * (non-Javadoc)
      * 
@@ -243,7 +251,14 @@ public class ProcIdentifierImpl implements ProcIdentifier
 	        if (config != null)
 	        {
 	        	DBHelper h = config.getDBHelper();
-	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER));  
+	            String tableOwnerName = (String)map.get(PROP_TABLEOWNERNAME);
+	            if (tableOwnerName == null && type == ProcIdentifier.TYPE_TRIGGER)
+	            {
+	            	//assume they are the same
+	            	tableOwnerName = (String)map.get(PROP_OWNER);
+	            }
+	        	
+	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER), tableOwnerName);  
 	        }
             return new ProcIdentifierImpl(type, new DatabaseIdentifier(profile, dbname), map);
         }
@@ -272,7 +287,14 @@ public class ProcIdentifierImpl implements ProcIdentifier
 	        if (config != null)
 	        {
 	        	DBHelper h = config.getDBHelper();
-	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER));  
+	            String tableOwnerName = (String)map.get(PROP_TABLEOWNERNAME);
+	            if (tableOwnerName == null && type == ProcIdentifier.TYPE_TRIGGER)
+	            {
+	            	//assume they are the same
+	            	tableOwnerName = (String)map.get(PROP_OWNER);
+	            }
+	        	
+	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER), tableOwnerName);  
 	        }
             return new ProcIdentifierImpl(type, new DatabaseIdentifier(profile, dbname), map);
         }
@@ -301,7 +323,12 @@ public class ProcIdentifierImpl implements ProcIdentifier
 
         if (getType() == TYPE_TRIGGER && getTableName() != null && getTableName().length() > 0)
         {
-            s = "("+getProfileName()+")"+getDatabaseName()+"."+getOwnerName()+"."+getTableName()+"."+getDisplayString();
+        	String tableOwner = getTableOwnerName();
+        	if (tableOwner == null)
+        	{
+        		tableOwner = getOwnerName();
+        	}
+            s = "("+getProfileName()+")"+getDatabaseName()+"."+tableOwner+"."+getTableName()+"."+getDisplayString();
         }
         else
         {

@@ -168,16 +168,15 @@ public class ProfileUtil
         //get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
         DatabaseDefinitionRegistry databaseDefinitionRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
 		DatabaseDefinition definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
-		if (definition == null)
-		{
-			id = SQLToolsFacade.recognize(id.getProductName(), id.getVersion());
-			definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
-		}
+		
 		if (definition == null)
 		{
 			//resolve aliases
 			id = SQLToolsFacade.recognize(id.getProductName(), id.getVersion());
-			definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
+			if (id != null)
+			{
+				definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());
+			}
 		}
 		if (definition == null)
 		{

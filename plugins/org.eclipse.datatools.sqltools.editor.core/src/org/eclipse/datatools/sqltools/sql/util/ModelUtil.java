@@ -514,11 +514,10 @@ public class ModelUtil {
         SQLObject object = null;
         //the schema name used to perform the search 
         String owner = proc.getOwnerName();
-//TODO: Fix me! Doesn't build! (184709)
-//        if (proc.getType() == ProcIdentifier.TYPE_TRIGGER && proc.getTableOwnerName() != null)
-//        {
-//        	owner = proc.getTableOwnerName();
-//        }
+        if (proc.getType() == ProcIdentifier.TYPE_TRIGGER && proc.getTableOwnerName() != null)
+        {
+        	owner = proc.getTableOwnerName();
+        }
         Iterator i = schemas.iterator();
         for (; i.hasNext();)
         {

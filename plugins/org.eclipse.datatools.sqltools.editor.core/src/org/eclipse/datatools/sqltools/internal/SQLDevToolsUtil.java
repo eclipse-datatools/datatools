@@ -112,7 +112,7 @@ public class SQLDevToolsUtil {
 			Table table = ((Trigger) routine).getSubjectTable();
 			proc = h.getProcIdentifier(databaseIdentifier, routine.getName(),
 					ProcIdentifier.TYPE_TRIGGER, table.getName(), schema
-							.getName());
+							.getName(), table.getSchema().getName());
 		} else if (routine instanceof Event) {
 			String creator = "";
 			EStructuralFeature creatorFeature = routine.eClass()

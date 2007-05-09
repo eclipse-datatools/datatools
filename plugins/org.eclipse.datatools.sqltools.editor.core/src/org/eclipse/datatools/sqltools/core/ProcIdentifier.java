@@ -32,6 +32,7 @@ public interface ProcIdentifier
     public static final String PROP_NAME = "NAME"; //$NON-NLS-1$
     public static final String PROP_NUMBER = "NUMBER";	// for stored procedure's group number //$NON-NLS-1$
     public static final String PROP_TABLENAME = "TABLENAME";	// for trigger's owner table //$NON-NLS-1$
+    public static final String PROP_TABLEOWNERNAME = "TABLEOWNERNAME";	// for trigger's subject table's owner//$NON-NLS-1$
 
     // the following two property is for in the future we may remove databaseidentifer,
     // and put info also as dynamic property.
@@ -57,6 +58,13 @@ public interface ProcIdentifier
      */
     public String getOwnerName();
 
+    /**
+     * Gets owner name of the subject table when the procedural object type is trigger .
+     * @since 1.5
+     * @return null if the procedural object type is not trigger. otherwise, it may equals to getOwnerName().
+     */
+    public String getTableOwnerName();
+    
     /**
      * 
      * @return the database identifier

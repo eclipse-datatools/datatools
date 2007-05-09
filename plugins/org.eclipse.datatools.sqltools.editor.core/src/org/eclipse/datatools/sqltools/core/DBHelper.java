@@ -72,25 +72,55 @@ public class DBHelper {
 			DatabaseIdentifier databaseIdentifier, String dbObjectName,
 			int dbObjectType, String tableName, String ownerName)
 	{
-        Map map = new HashMap();
-
-        //don't put it null values which will cause problem when encoding/decoding
-        if (ownerName != null)
+        String tableOwnerName = null;
+        if (dbObjectType == ProcIdentifier.TYPE_TRIGGER)
         {
-        	map.put(ProcIdentifier.PROP_OWNER, ownerName);
+        	//assume they are the same
+        	tableOwnerName = ownerName;
         }
-        if (dbObjectName != null)
-        {
-        	map.put(ProcIdentifier.PROP_NAME, dbObjectName);
-        }
-        if (tableName != null)
-        {
-        	map.put(ProcIdentifier.PROP_TABLENAME, tableName);
-        }
-        
-        return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
+        return getProcIdentifier(databaseIdentifier, dbObjectName, dbObjectType, tableName, ownerName, tableOwnerName);
 	}
 
+	/**
+	 * Returns a ProcIdentifer based on the profilename and object name & type. 
+	 * Compared with the ealier version, it has an additional parameter specifying
+	 * the table owner name. This is necessary when the database server supports
+	 * creating triggers under another owner other than the subject table's owner. 
+	 * 
+	 * @param databaseIdentifier
+	 * @param dbObjectName
+	 * @param dbObjectType @see <code>ProcIdentifier</code>
+	 * @param tableOwnerName the subject table's owner
+	 * @return a ProcIdentifer object
+	 * @since 1.5
+	 */
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, String dbObjectName,
+			int dbObjectType, String tableName, String ownerName, String tableOwnerName)
+	{
+		Map map = new HashMap();
+		
+		//don't put it null values which will cause problem when encoding/decoding
+		if (ownerName != null)
+		{
+			map.put(ProcIdentifier.PROP_OWNER, ownerName);
+		}
+		if (dbObjectName != null)
+		{
+			map.put(ProcIdentifier.PROP_NAME, dbObjectName);
+		}
+		if (tableName != null)
+		{
+			map.put(ProcIdentifier.PROP_TABLENAME, tableName);
+		}
+		if (tableOwnerName != null)
+		{
+			map.put(ProcIdentifier.PROP_TABLEOWNERNAME, tableOwnerName);
+		}
+		
+		return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
+	}
+	
 	public boolean justWarnings(SQLException sqlexception)
 	{
 		do
