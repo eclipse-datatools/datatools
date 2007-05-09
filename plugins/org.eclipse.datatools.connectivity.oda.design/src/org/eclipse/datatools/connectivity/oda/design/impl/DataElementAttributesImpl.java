@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataElementAttributesImpl.java,v 1.7 2007/03/16 11:47:22 lchan Exp $
+ * $Id: DataElementAttributesImpl.java,v 1.8 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -367,13 +367,25 @@ public class DataElementAttributesImpl extends EObjectImpl implements
     {
         return m_name;
     }
-
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.DataElementAttributes#setName(java.lang.String)
+     * @generated NOT
+     */
+    public void setName( String newName )
+    {
+        if( newName == null )
+            newName = EMPTY_STR;  // cannot be null per design definition
+        setNameGen( newName );
+    }
+    
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setName( String newName )
+    public void setNameGen( String newName )
     {
         String oldName = m_name;
         m_name = newName;
