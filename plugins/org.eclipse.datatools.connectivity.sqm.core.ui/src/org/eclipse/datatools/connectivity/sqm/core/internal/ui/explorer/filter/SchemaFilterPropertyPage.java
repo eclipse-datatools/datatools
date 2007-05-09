@@ -10,12 +10,15 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 
 public class SchemaFilterPropertyPage extends DefaultFilterPropertyPage {
 
 	public SchemaFilterPropertyPage() {
 		super();
+		setDefaultPageTitle(
+				ResourceLoader.getResourceLoader().queryString("_UI_SCHEMA_FILTER_PAGE_TITLE")); //$NON-NLS-1$
 	}
 
 	protected String getConnectionFilterType() {

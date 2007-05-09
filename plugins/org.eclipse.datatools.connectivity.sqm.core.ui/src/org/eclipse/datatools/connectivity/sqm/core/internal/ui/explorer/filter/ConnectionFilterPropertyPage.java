@@ -112,10 +112,13 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			.queryString("_UI_DESCRIPTION_SELECTION_ONLY"); //$NON-NLS-1$
 
 	private boolean hideExpressionOption = false;
+	
+	protected String defaultTitleText = "Connection Filter Properties";
 
 	public ConnectionFilterPropertyPage() {
 		super();
-		setMessage(DEFAULT_MESSAGE);
+		setDescription(DEFAULT_MESSAGE);
+		setTitle(getDefaultPageTitle());
 	}
 
 	/*
@@ -217,7 +220,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 		if (hideExpressionOption) {
 			DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;
-			setMessage(DEFAULT_MESSAGE);
+			setDescription(DEFAULT_MESSAGE);
 		}
 
 		if (!hideExpressionOption) {
@@ -512,6 +515,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 				if (expressionField.getText().length() == 0) {
 					this.setMessage(resource
 							.queryString("_UI_MESSAGE_CRITERIA_REQUIRED")); //$NON-NLS-1$
+					this.setTitle(getDefaultPageTitle());
 					this.setErrorMessage(null);
 					isValid = false;
 				}
@@ -520,7 +524,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 						|| (expressionField.getText().indexOf('"') > -1)) {
 					this.setErrorMessage(resource
 							.queryString("_UI_MESSAGE_NO_QUOTES")); //$NON-NLS-1$
-					this.setMessage(DEFAULT_MESSAGE);
+					this.setDescription(DEFAULT_MESSAGE);
+					this.setTitle(getDefaultPageTitle());
 					isValid = false;
 				}
 			}
@@ -537,14 +542,17 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 				if (!isItemSelected) {
 					this.setMessage(resource
 							.queryString("_UI_MESSAGE_SELECTION_REQUIRED")); //$NON-NLS-1$
+					this.setTitle(getDefaultPageTitle());
 					this.setErrorMessage(null);
 					isValid = false;
 				}
 			}
 		}
 		if (isValid) {
-			setMessage(DEFAULT_MESSAGE);
+			setMessage(null);
 			setErrorMessage(null);
+			setDescription(DEFAULT_MESSAGE);
+			setTitle(getDefaultPageTitle());
 			setValid(isValid);
 		}
 		return isValid;
@@ -722,4 +730,12 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
         setErrorMessage(null);
         setValid(true);
     }    
+    
+    public void setDefaultPageTitle ( String title ) {
+    	defaultTitleText = title;
+    }
+    
+    public String getDefaultPageTitle () {
+    	return defaultTitleText;
+    }
 }
