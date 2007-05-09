@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor;
 
+import java.lang.reflect.Method;
+import java.net.URI;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
@@ -43,9 +46,7 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IPathEditorInput;
-import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.ILocationProvider;
 
@@ -137,7 +138,24 @@ public class SQLScrapbookEditor extends SQLEditor {
         } else if (input instanceof ILocationProvider) {
         	IFileStore store = EFS.getLocalFileSystem().getStore(((ILocationProvider) input).getPath(input));
         	newInput = new ExternalSQLFileEditorInput(store);
-        }
+		} else if (input instanceof IAdaptable) {
+			URI uri = (URI)((IAdaptable)input).getAdapter(URI.class);
+			if (uri == null)
+			{
+				//TO run DTP both on Eclipse 3.2 and 3.3, we have to use java reflection to get the URI info from Eclipse 3.3 object FileStoreEditorInput
+				Class clazz = input.getClass();
+				try {
+					Method getURI = clazz.getMethod("getURI", null);
+					uri = (URI)getURI.invoke(input, null);
+				} catch (Exception e) {
+				}
+			}
+			if (uri != null)
+			{
+				IFileStore store = EFS.getStore(uri);
+				newInput = new ExternalSQLFileEditorInput(store);
+			}
+		}
 		
 		if (newInput == null){
 			super.doSetInput(input);			
