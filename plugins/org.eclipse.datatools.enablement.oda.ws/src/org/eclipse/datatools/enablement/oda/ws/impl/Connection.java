@@ -7,9 +7,10 @@
 
 package org.eclipse.datatools.enablement.oda.ws.impl;
 
+import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
@@ -39,6 +40,15 @@ public class Connection implements IConnection
 	 */
 	public void open( Properties connProperties ) throws OdaException
 	{
+		try
+		{
+			ping( connProperties );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( );
+		}
+		
 		this.connProperties = connProperties;
 		isCustom = !WSUtil.isNull( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) );
 		if ( isCustom )
@@ -52,6 +62,26 @@ public class Connection implements IConnection
 		}
 
 		m_isOpen = true;
+	}
+	
+	private void ping( Properties connProperties ) throws OdaException,
+			MalformedURLException, IOException
+	{
+		if ( WSUtil.isNull( connProperties.getProperty( Constants.WSDL_URI ) )
+				&& WSUtil.isNull( connProperties.getProperty( Constants.SOAP_ENDPOINT ) )
+				&& WSUtil.isNull( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) ) )
+			throw new OdaException( );
+
+		pingURL( connProperties.getProperty( Constants.WSDL_URI ) );
+		pingURL( connProperties.getProperty( Constants.SOAP_ENDPOINT ) );
+	}
+
+	private void pingURL( String spec ) throws MalformedURLException,
+			IOException
+	{
+		if ( !WSUtil.isNull( spec ) )
+			if ( !new File( spec ).exists( ) )
+				new URL( spec ).openStream( );
 	}
 
 	/*
@@ -114,39 +144,7 @@ public class Connection implements IConnection
 		{
 			java2SOAPManager.newQuery( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) );
 		}
-		catch ( SecurityException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IllegalArgumentException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( NoSuchMethodException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IllegalAccessException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( InvocationTargetException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( ClassNotFoundException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( InstantiationException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( URISyntaxException e )
+		catch ( Exception e )
 		{
 			throw new OdaException( e );
 		}

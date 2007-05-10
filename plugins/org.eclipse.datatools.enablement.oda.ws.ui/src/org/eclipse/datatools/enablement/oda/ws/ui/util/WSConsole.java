@@ -16,8 +16,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -305,39 +303,7 @@ public class WSConsole
 			j2s.newQuery( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) );
 			return (InputStream) j2s.executeQuery( );
 		}
-		catch ( SecurityException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IllegalArgumentException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( NoSuchMethodException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IllegalAccessException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( InvocationTargetException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( ClassNotFoundException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( InstantiationException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IOException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( URISyntaxException e )
+		catch ( Exception e )
 		{
 			throw new OdaException( e );
 		}

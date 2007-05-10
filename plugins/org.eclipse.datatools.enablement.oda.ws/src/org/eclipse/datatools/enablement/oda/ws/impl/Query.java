@@ -8,7 +8,6 @@
 package org.eclipse.datatools.enablement.oda.ws.impl;
 
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -172,23 +171,7 @@ public class Query implements IQuery
 		{
 			return (InputStream) java2SOAPManager.executeQuery( );
 		}
-		catch ( IllegalArgumentException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( SecurityException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( IllegalAccessException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( InvocationTargetException e )
-		{
-			throw new OdaException( e );
-		}
-		catch ( NoSuchMethodException e )
+		catch ( Exception e )
 		{
 			throw new OdaException( e );
 		}
