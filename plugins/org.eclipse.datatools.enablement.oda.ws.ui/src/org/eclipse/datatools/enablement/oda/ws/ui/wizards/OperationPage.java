@@ -144,8 +144,7 @@ public class OperationPage extends DataSetWizardPage
 					Operation operation = (Operation) item.getData( );
 					operationTrace = toOperationTrace( item );
 					operationName.setText( WSUIUtil.getNonNullString( operation.getName( ) ) );
-					// TODO better doc
-					operationDescription.setText( operation.toString( ) );
+					operationDescription.setText( WSDLAdvisor.retrieveDocument( operation ) );
 					setPageComplete( true );
 				}
 				else

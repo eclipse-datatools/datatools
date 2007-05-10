@@ -185,6 +185,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
 		savePage( design );
+		WSUIUtil.savePage( design );
 		return design;
 	}
 

@@ -172,7 +172,6 @@ public class WSUIUtil
 			// no result set definition available, reset previous derived
 			// metadata
 			dataSetDesign.setResultSets( null );
-			e.printStackTrace( );
 		}
 
 		// proceed to get parameter design definition
@@ -186,7 +185,6 @@ public class WSUIUtil
 			// no parameter definition available, reset previous derived
 			// metadata
 			dataSetDesign.setParameters( null );
-			ex.printStackTrace( );
 		}
 
 		/*
