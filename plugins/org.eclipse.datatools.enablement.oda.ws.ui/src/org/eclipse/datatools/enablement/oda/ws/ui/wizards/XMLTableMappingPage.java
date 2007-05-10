@@ -48,6 +48,8 @@ public class XMLTableMappingPage extends XPathChoosePage
 	{
 		dataSetDesign.getPrivateProperties( )
 				.setProperty( Constants.XML_QUERYTEXT, queryText );
+		WSConsole.getInstance( ).setPropertyValue( Constants.XML_QUERYTEXT,
+				queryText );
 	}
 
 	protected String getXSDFileURI( )
