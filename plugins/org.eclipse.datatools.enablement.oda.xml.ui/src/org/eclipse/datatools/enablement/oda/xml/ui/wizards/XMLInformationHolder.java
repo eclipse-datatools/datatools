@@ -222,4 +222,13 @@ public class XMLInformationHolder
 	{
 		prop = null;
 	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public static boolean hasDestroyed( )
+	{
+		return prop == null;
+	}
 }

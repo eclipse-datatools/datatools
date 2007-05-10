@@ -148,6 +148,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	public void createPageCustomControl( Composite parent )
 	{
 		setControl( createPageControl( parent ) );
+		if( XMLInformationHolder.hasDestroyed() )
+			XMLInformationHolder.start( this.getInitializationDesign( ) );
 		initializeControl( );
 		if ( selectedTreeItemText != null )
 			populateXMLTree( );
@@ -1428,6 +1430,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
      */
 	private void savePage( DataSetDesign dataSetDesign ) throws OdaException
 	{
+    	if( XMLInformationHolder.hasDestroyed( ) )
+    		return;
+    	
 		if ( dataSetDesign != null )
 		{
 			if ( getQueryText( dataSetDesign ) == null )
@@ -1489,4 +1494,12 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		super.setVisible( visible );
 		getControl( ).setFocus( );
 	}
+	
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+    protected void cleanup()
+    {
+    	XMLInformationHolder.destory( );
+    }	
 }

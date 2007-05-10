@@ -139,12 +139,12 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	private void initializeControl( )
 	{
 		DataSetDesign dataSetDesign = getDataSetDesign( );
-
-		XMLInformationHolder.destory( );
-		XMLInformationHolder.start( dataSetDesign );
-
 		if ( dataSetDesign == null )
 			return; // nothing to initialize
+
+		if ( XMLInformationHolder.hasDestroyed( ) )
+			XMLInformationHolder.start( dataSetDesign );
+
 		String xmlFile = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE );
 		if ( xmlFile == null || xmlFile.trim( ).length( ) == 0 )
 		{
@@ -532,6 +532,9 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
      */
     private void savePage( DataSetDesign dataSetDesign ) throws OdaException
 	{
+    	if( XMLInformationHolder.hasDestroyed( ) )
+    		return;
+    	
 		if ( dataSetDesign.getPrivateProperties( ) == null )
 		{
 			try
@@ -668,4 +671,12 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		super.setVisible( visible );
 		getControl( ).setFocus( );
 	}
+	
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+    protected void cleanup()
+    {
+    	XMLInformationHolder.destory( );
+    }
 }

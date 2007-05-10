@@ -102,6 +102,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	public void createPageCustomControl( Composite parent )
 	{
 		setControl( createPageControl( parent ) );
+		
+		if( XMLInformationHolder.hasDestroyed() )
+			XMLInformationHolder.start( this.getInitializationDesign( ) );
 		initializeControl( );
 		populateXMLTree( );
 		
@@ -605,6 +608,8 @@ public class XPathChoosePage extends DataSetWizardPage
      */
     private void savePage( DataSetDesign dataSetDesign ) throws OdaException
 	{
+    	if( XMLInformationHolder.hasDestroyed( ) )
+    		return;
 		if ( dataSetDesign != null
 				&& getQueryText( dataSetDesign ) != null
 				&& !getQueryText( dataSetDesign )
@@ -651,5 +656,12 @@ public class XPathChoosePage extends DataSetWizardPage
 		getControl( ).setFocus( );
 	}
 	
+	/*
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+    protected void cleanup()
+    {
+    	XMLInformationHolder.destory( );
+    }	
 
 }
