@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws; singleton:=true
-Bundle-Version: 1.0.0.200704031
+Bundle-Version: 1.0.0.200705101
 Bundle-ClassPath: .,
  src
 Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.Activator
