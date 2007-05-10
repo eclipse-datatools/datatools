@@ -108,7 +108,12 @@ public class ViewPropertyAction extends Action {
 		if (foundSettings) {
 			propertyDialog.getShell().setSize(mShellWidth, mShellHeight);
 			propertyDialog.getShell().layout();
+		// if not, initialize 'mShellWidth' and 'mShellHeigth'
+		}else{
+			mShellHeight = propertyDialog.getShell().getSize().y;
+			mShellWidth = propertyDialog.getShell().getSize().x;
 		}
+		
 		this.mShell = propertyDialog.getShell();
 		propertyDialog.getShell().setText(title);
 		
