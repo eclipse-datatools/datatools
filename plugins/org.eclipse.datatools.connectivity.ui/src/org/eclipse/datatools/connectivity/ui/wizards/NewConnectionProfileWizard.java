@@ -16,17 +16,23 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCreateChange;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ltk.core.refactoring.PerformChangeOperation;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
  * Base connection profile wizard
@@ -99,6 +105,37 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
     	{
     		throw ce;
     	}	
+    	
+        // get the view part of DSE.
+		IWorkbenchPart part = PlatformUI
+				.getWorkbench()
+				.getActiveWorkbenchWindow()
+				.getActivePage()
+				.findView(
+						"org.eclipse.datatools.connectivity.DataSourceExplorerNavigator");//$NON-NLS-1$
+		
+    	// select the newly created CP in DSE.
+		if (part != null) {
+			final ISelection targetSelection = new StructuredSelection(
+					ProfileManager.getInstance().getProfileByName(
+							getProfileName()));
+			ISetSelectionTarget target = null;
+			if (part instanceof ISetSelectionTarget) {
+				target = (ISetSelectionTarget) part;
+			} else {
+				target = (ISetSelectionTarget) part
+						.getAdapter(ISetSelectionTarget.class);
+			}
+
+			if (target != null) {
+				final ISetSelectionTarget finalTarget = target;
+				getShell().getDisplay().asyncExec(new Runnable() {
+					public void run() {
+						finalTarget.selectReveal(targetSelection);
+					}
+				});
+			}
+		}
 	}
 
 	/**
