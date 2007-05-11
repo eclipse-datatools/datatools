@@ -62,11 +62,13 @@ public class DBHelper {
 
 	/**
 	 * Returns a ProcIdentifer based on the profilename and object name & type
+	 * @see {@link #getProcIdentifier(DatabaseIdentifier, String, int, String, String, String)}
 	 * 
 	 * @param databaseIdentifier
 	 * @param dbObjectName
 	 * @param dbObjectType @see <code>ProcIdentifier</code>
 	 * @return a ProcIdentifer object
+	 * 
 	 */
 	public ProcIdentifier getProcIdentifier(
 			DatabaseIdentifier databaseIdentifier, String dbObjectName,

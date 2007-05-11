@@ -26,9 +26,11 @@ import org.eclipse.datatools.sqltools.db.derby.core.DerbyProcIdentifier;
  */
 public class DerbyHelper extends DBHelper {
 
-	public ProcIdentifier getProcIdentifier(DatabaseIdentifier databaseIdentifier, String dbObjectName, int dbObjectType, String tableName, String ownerName) {
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, String dbObjectName,
+			int dbObjectType, String tableName, String ownerName,
+			String tableOwnerName) {
         Map map = new HashMap();
-
         //don't put it null values which will cause problem when encoding/decoding
         if (ownerName != null)
         {
