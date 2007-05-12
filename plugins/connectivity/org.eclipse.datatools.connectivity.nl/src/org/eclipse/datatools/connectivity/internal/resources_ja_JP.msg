@@ -33,6 +33,11 @@ error.savedriversxml = ドライバ定義のデータを保存中にエラーが発生しました。
 trace.error.propertiesPersistenceHook=propertiesPersistenceHook をロードできませんでした。デフォルトを使用します (プロファイル・タイプ\={0}, 拡張子\={1})
 trace.error.propertiesPersistenceHookSaveError=プロパティー永続フックの起動中にエラーが発生しました; すべてのプロパティーを保持します (プロファイル\={0}、拡張子\={1})
 trace.error.propertiesPersistenceHookLoadError=プロパティー永続フックの起動中にエラーが発生しました; 一時プロパティーが設定されていません (プロファイル\={0}、拡張子\={1})
+trace.error.migration = 接続プロファイルのプロバイダ (ID={0}、移行クラス={1}) の移行要素を読み込み中にエラーが発生しました。
+
+migration.error.providerDoesNotExist = 移行要素の読み込み中にエラーが発生しました。指定した newProviderID が無効です (newProviderID={0})。
+migration.error.invalidPropertyMigrationElement = 移行要素の読み込み中にエラーが発生しました。propertyMigration には、newPropertyKey か oldPropertyKey、またはその両方を指定する必要があります。
+migration.error.unknownParentElement = 移行要素の読み込み中にエラーが発生しました。親要素が不明です (親要素名={0})。
 
 DriverUtil.taskName = {0} でクラスを処理中です。
 Category.Name.Unknown=サポートされていません。

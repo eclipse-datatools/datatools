@@ -33,5 +33,11 @@ error.savedriversxml = 保存驱动程序定义数据时出错。
 trace.error.propertiesPersistenceHook=无法装入 propertiesPersistenceHook，使用缺省值（概要文件类型为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookSaveError=调用属性持久挂钩时出错；保存所有属性（概要文件为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookLoadError=调用属性持久挂钩时出错；未设置瞬态属性（概要文件为 {0}，扩展名为 {1}）
+trace.error.migration = 为连接配置文件提供程序加载迁移元素时出错(id={0}，迁移类={1})
+
+migration.error.providerDoesNotExist = 加载迁移元素时出错: 指定的 newProviderID 无效(newProviderID={0})
+migration.error.invalidPropertyMigrationElement = 加载迁移元素时出错: propertyMigration 必须指定 newPropertyKey、oldPropertyKey 或二者
+migration.error.unknownParentElement = 加载迁移元素时出错: 未知父元素(父元素名称={0})
+
 DriverUtil.taskName = 正在处理 {0} 中的类
 Category.Name.Unknown=不支持

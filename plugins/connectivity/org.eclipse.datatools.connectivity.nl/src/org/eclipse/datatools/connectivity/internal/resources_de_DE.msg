@@ -33,5 +33,11 @@ error.savedriversxml = Fehler beim Speichern der Treiberdefinitionsdaten.
 trace.error.propertiesPersistenceHook=''propertiesPersistenceHook'' konnte nicht geladen werden; Standardwert wird verwendet (Profiltyp\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookSaveError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Alle Eigenschaften bleiben permanent bestehen (Profil\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookLoadError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Temporäre Eigenschaften werden nicht festgelegt (Profil\={0}, Erweiterung\={1})
+trace.error.migration = Fehler beim Laden des Migrationselements für Verbindungsprofil-Anbieter (id={0}, migration class={1})
+
+migration.error.providerDoesNotExist = Fehler beim Laden des Migrationselements: Angegebene neue Anbieter-ID ist ungültig (newProviderID={0})
+migration.error.invalidPropertyMigrationElement = Fehler beim Laden des Migrationselements: Eigenschaftsmigration muss neuen oder alten Eigenschaftsschlüssel oder beides enthalten
+migration.error.unknownParentElement = Fehler beim Laden des Migrationselements: Unbekanntes übergeordnetes Element (parent element name={0})
+
 DriverUtil.taskName = Klassen werden in {0} verarbeitet
 Category.Name.Unknown=Nicht unterstützt

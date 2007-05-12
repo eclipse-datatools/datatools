@@ -33,6 +33,11 @@ error.savedriversxml = Error al guardar los datos de definición de controlador.
 trace.error.propertiesPersistenceHook=No se ha podido cargar propertiesPersistenceHook, se utiliza el valor predeterminado (tipo de perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persistente de propiedades; se persisten todas las propiedades (perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})
+trace.error.migration = Error al cargar el elemento de migración para el proveedor de perfil de conexión (id={0}, clase de migración={1})
+
+migration.error.providerDoesNotExist = Error al cargar el elemento de migración: el newProviderID especificado no es válido (newProviderID={0})
+migration.error.invalidPropertyMigrationElement = Error al cargar el elemento de migración: propertyMigration debe especificar una newPropertyKey, una oldPropertyKey o ambas
+migration.error.unknownParentElement = Error al cargar el elemento de migración: elemento principal desconocido (nombre del elemento principal={0})
 
 DriverUtil.taskName = Procesando clases en {0}
 Category.Name.Unknown=No admitido
