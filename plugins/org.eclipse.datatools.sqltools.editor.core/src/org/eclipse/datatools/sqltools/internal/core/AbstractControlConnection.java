@@ -310,6 +310,8 @@ public class AbstractControlConnection implements IControlConnection {
 			throw new SQLException(
 					Messages.AbstractControlConnection_invalid_store_procedure_description); //$NON-NLS-1$
 		}
+        //refresh the catalog object to get the new definition
+        ModelUtil.findProceduralObject(proc, true);
 	}
 
 	public IDBItem getDBItem(ProcIdentifier procIdentifier) {
