@@ -193,4 +193,13 @@ public class SQLEditorActionContributorExtension implements IMenuListener, ISQLE
     {
     }
 
+    public void setSQLEditor(SQLEditor sqlEditor)
+    {
+        this.sqlEditor = sqlEditor;
+    }
+
+    public SQLEditor getSQLEditor()
+    {
+        return sqlEditor;
+    }
 }

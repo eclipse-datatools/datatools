@@ -283,12 +283,22 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     private InformationPresenter                              _informationPresenter;
     private IEditorPart                        _parentEditor                     = null;
 
+    Collection _fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+    
+    
     /**
      * Constructs an instance of this class. This is the default constructor.
      */
     public SQLEditor() {
         super();
         _symbolInserter = new SymbolInserter(this);
+        if (_fExtensions != null)
+        {
+            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
+                ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+                ext.setSQLEditor(this);
+            }  
+        }        
     }
 
     public void init(IEditorSite site, IEditorInput input) throws PartInitException
@@ -728,11 +738,13 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
 
 
-        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
-        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
-        	ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
-        	ext.contributeToContextMenu(menu);
-		}
+        if (_fExtensions != null)
+        {
+            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
+                ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+                ext.contributeToContextMenu(menu);
+            }  
+        } 
         
         //database specific actions go here
         HashMap dbActions = editorService.getAdditionalActions();
@@ -1417,11 +1429,13 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         	actionList.add(action);
         }
         //TODO notify ISQLEditorActionContributorExtension
-        Collection fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
-        for (Iterator iter = fExtensions.iterator(); iter.hasNext();) {
-            ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
-            ext.updateAction();
-        }
+        if (_fExtensions != null)
+        {
+            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
+                ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
+                ext.updateAction();
+            }  
+        } 
         
         Iterator iterator = actionList.iterator();
         while (iterator.hasNext())

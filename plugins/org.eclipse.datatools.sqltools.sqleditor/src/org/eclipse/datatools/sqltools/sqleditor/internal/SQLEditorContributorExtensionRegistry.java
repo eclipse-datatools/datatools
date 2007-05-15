@@ -1,18 +1,17 @@
-/*******************************************************************************
+/***********************************************************************************************************************
  * Copyright (c) 2004, 2005 Sybase, Inc. and others.
- *
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+ * 
+ * All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse
+ * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     Sybase, Inc. - initial API and implementation
- *******************************************************************************/
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ **********************************************************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -26,59 +25,72 @@ import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionContributorExten
  * @author Hui Cao
  * 
  */
-public class SQLEditorContributorExtensionRegistry {
+public class SQLEditorContributorExtensionRegistry
+{
 
-	private static SQLEditorContributorExtensionRegistry instance = null;
-	private ArrayList _extensions = new ArrayList();
-	
-	private SQLEditorContributorExtensionRegistry() {
-		init();
-	}
-	
-	public static SQLEditorContributorExtensionRegistry getInstance()
-	{
-		if (instance == null)
-		{
-			instance = new SQLEditorContributorExtensionRegistry();
-		}
-		return instance;
-	}
-	
-	private void init()
-	{
-        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint(SQLEditorPlugin.PLUGIN_ID, "actionExtensions"); //$NON-NLS-1$ //$NON-NLS-2$
-        IExtension[] extensions = extensionPoint.getExtensions();
-        for (int i = 0; i < extensions.length; ++i)
+    private static SQLEditorContributorExtensionRegistry instance = null;
+
+    private IExtension[]                                 _extensions;
+
+    // List extensionContributors = new ArrayList();
+
+    private SQLEditorContributorExtensionRegistry()
+    {
+        init();
+    }
+
+    public static synchronized SQLEditorContributorExtensionRegistry getInstance()
+    {
+        if (instance == null)
         {
-            IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
-            for (int j = 0; j < configElements.length; ++j)
+            instance = new SQLEditorContributorExtensionRegistry();
+        }
+        return instance;
+    }
+
+    private void init()
+    {
+        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+        IExtensionPoint extensionPoint = pluginRegistry
+                .getExtensionPoint(SQLEditorPlugin.PLUGIN_ID, "actionExtensions"); //$NON-NLS-1$ //$NON-NLS-2$
+        _extensions = extensionPoint.getExtensions();
+    }
+
+    public Collection getExtensions()
+    {
+        // Change it For CR:441544-1: CA: [DTP/A] Content assist, formatting and toolbar
+        // There are duplicated execte all/execute selected buttones in toolbar
+        List extensionContributors = new ArrayList();
+        if (_extensions != null && _extensions.length > 0)
+        {
+            for (int i = 0; i < _extensions.length; ++i)
             {
-                if (configElements[j].getName().equals("actionExtension")) 
+                IConfigurationElement[] configElements = _extensions[i].getConfigurationElements();
+                for (int j = 0; j < configElements.length; ++j)
                 {
-                    try
+                    if (configElements[j].getName().equals("actionExtension"))
                     {
-                        ISQLEditorActionContributorExtension factory = (ISQLEditorActionContributorExtension) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
-                        _extensions.add(factory);
-                    }
-                    catch (Exception e)
-                    {
-                    	try
-                    	{
-                    		SQLEditorPlugin.getDefault().log(e);
-                    	}
-                    	catch (Exception ee)
+                        try
                         {
-                    		ee.printStackTrace();
+                            ISQLEditorActionContributorExtension factory = (ISQLEditorActionContributorExtension) configElements[j]
+                                    .createExecutableExtension("class"); //$NON-NLS-1$
+                            extensionContributors.add(factory);
+                        }
+                        catch (Exception e)
+                        {
+                            try
+                            {
+                                SQLEditorPlugin.getDefault().log(e);
+                            }
+                            catch (Exception ee)
+                            {
+                                ee.printStackTrace();
+                            }
                         }
                     }
                 }
             }
-        }		
-	}
-	
-	public Collection getExtensions()
-	{
-		return _extensions;
-	}
+        }
+        return extensionContributors;
+    }
 }
