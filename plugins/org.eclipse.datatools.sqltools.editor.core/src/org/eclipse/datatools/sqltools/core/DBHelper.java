@@ -123,6 +123,21 @@ public class DBHelper {
 		return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
 	}
 	
+	/**
+	 * Returns a ProcIdentifer based on the profilename and object name & type. 
+	 * 
+	 * @param databaseIdentifier
+	 * @param dbObjectType @see <code>ProcIdentifier</code>
+	 * @param map all other information such as procedural object name, owner, etc
+	 * @return a ProcIdentifer object
+	 * @since 1.5
+	 */
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, int dbObjectType, Map map)
+	{
+		return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
+	}
+	
 	public boolean justWarnings(SQLException sqlexception)
 	{
 		do

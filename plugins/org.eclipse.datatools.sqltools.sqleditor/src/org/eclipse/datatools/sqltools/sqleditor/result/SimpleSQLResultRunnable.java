@@ -14,13 +14,11 @@ package org.eclipse.datatools.sqltools.sqleditor.result;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
@@ -42,8 +40,6 @@ public class SimpleSQLResultRunnable extends ResultSupportRunnable
     protected int                _connid;
     protected IConnectionTracker _tracker;
     protected boolean            _promptVar = false;
-    /*holds the var declarations in the scope from the beginning of the selected text up to the very beginning*/
-    protected HashMap            _varDecs   = null;
     protected ILaunchConfiguration _configuration;
 
 //    /**

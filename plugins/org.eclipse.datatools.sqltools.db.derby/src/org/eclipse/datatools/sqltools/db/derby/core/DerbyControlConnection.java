@@ -49,41 +49,6 @@ public class DerbyControlConnection extends AbstractControlConnection implements
 	}
 
 	protected void aboutToDisconnect() {
-		IWorkbenchWindow[] wins = PlatformUI.getWorkbench()
-				.getWorkbenchWindows();
-		for (int i = 0; i < wins.length; i++) {
-			IWorkbenchPage[] pages = wins[i].getPages();
-			for (int j = 0; j < pages.length; j++) {
-				IEditorReference[] editors = pages[j].getEditorReferences();
-				for (int k = 0; k < editors.length; k++) {
-					try {
-						IEditorInput input = editors[k].getEditorInput();
-						if (input instanceof SQLEditorStorageEditorInput) {
-							IConnectionProfile profile = ((SQLEditorStorageEditorInput) input)
-							.getConnectionInfo().getConnectionProfile();
-							boolean connected = profile != null && profile.isConnected();
-									
-							if (connected) {
-								final IEditorPart editor = editors[k]
-										.getEditor(false);
-								if (editor != null) {
-									final IWorkbenchPage page = pages[j];
-									PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable(){
-										public void run() {
-											page.closeEditor(editor, true);		
-										}
-									}
-									);
-								}
-							}
-						}
-					} catch (Exception e) {
-						EditorCorePlugin.getDefault().log(e);
-					}
-
-				}
-			}
-		}
 	}
 
 	protected IDatatype getUserDataType(String typeName) throws SQLException {

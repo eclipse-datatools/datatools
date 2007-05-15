@@ -371,45 +371,8 @@ public class ConnectionInfoComposite extends AbstractConnectionInfoComposite imp
             _combodbName.setEnabled(false);
         }
 
-        _combodbName.addFocusListener(new FocusListener()
-        {
-
-            public void focusGained(FocusEvent e)
-            {
-                initDBNames();
-            }
-
-            public void focusLost(FocusEvent e)
-            {
-
-            }
-        });
-
         _combodbName.addSelectionListener(this);
 
-    }
-
-    protected void initDBNames()
-    {
-        _combodbName.removeAll();
-        if (_profileName != null)
-        {
-            List list = ProfileUtil.getDatabaseList(_profileName, (_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT );
-            Iterator iterator = list.iterator();
-            while (iterator.hasNext())
-            {
-                String dbname = iterator.next().toString();
-                _combodbName.add(dbname);
-            }
-        }
-        if (_dbName != null)
-        {
-            if (_combodbName.getItemCount() == 0)
-            {
-                _combodbName.add(_dbName);
-            }
-            _combodbName.setText(_dbName);
-        }
     }
 
     String constructItemName(String type, String name)

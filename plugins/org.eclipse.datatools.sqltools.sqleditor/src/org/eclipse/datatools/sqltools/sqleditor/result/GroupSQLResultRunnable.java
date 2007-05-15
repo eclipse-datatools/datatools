@@ -24,6 +24,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.ConnectionService;
+import org.eclipse.datatools.sqltools.core.services.ExecutionService;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionTracker;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
@@ -89,6 +90,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
     private String[] _groups;
     private Runnable _currentJob = null;
     private boolean  _promptVar  = false;
+    /*holds the var declarations in the scope from the beginning of the selected text up to the very beginning*/
     private HashMap  _varDefs    = null;
     private String   _parentDisplayName;
     /**
@@ -154,6 +156,13 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             {
                 resultsViewAPI.createNewInstance(getOperationCommand(), null);
             }
+            HashMap addInfo = null;
+            if (_varDefs != null && _promptVar)
+            {
+            	addInfo = new HashMap();
+            	addInfo.put(ExecutionService.KEY_PROMPT_VAR, Boolean.TRUE);
+            	addInfo.put(ExecutionService.KEY_VAR_DECLARATION, _varDefs);
+            }
             for (int i = 0; i < _groups.length; i++)
             {
                 OperationCommand parentCommand = _groups.length > 1 ? getOperationCommand() : null;
@@ -164,7 +173,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                 }
                 _currentJob = f.getExecutionService()
 				.createAdHocScriptRunnable(getConnection(), _groups[i], false, _tracker, monitor,
-	                    getDatabaseIdentifier(), null, null);
+	                    getDatabaseIdentifier(), null, addInfo);
 				if (_currentJob == null) {
 					_currentJob = new SimpleSQLResultRunnable(getConnection(), _groups[i], false, _tracker, monitor,
 							getDatabaseIdentifier(), null);

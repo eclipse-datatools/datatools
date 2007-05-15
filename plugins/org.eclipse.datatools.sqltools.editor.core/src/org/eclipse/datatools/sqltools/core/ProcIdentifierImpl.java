@@ -132,7 +132,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
      */
     public int hashCode()
     {
-        return this._database.hashCode() + propertyMap.hashCode();
+        return getProfileName().hashCode() + getProcName().hashCode();
     }
 
     /*
@@ -251,14 +251,7 @@ public class ProcIdentifierImpl implements ProcIdentifier
 	        if (config != null)
 	        {
 	        	DBHelper h = config.getDBHelper();
-	            String tableOwnerName = (String)map.get(PROP_TABLEOWNERNAME);
-	            if (tableOwnerName == null && type == ProcIdentifier.TYPE_TRIGGER)
-	            {
-	            	//assume they are the same
-	            	tableOwnerName = (String)map.get(PROP_OWNER);
-	            }
-	        	
-	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), (String)map.get(PROP_NAME), type, (String)map.get(PROP_TABLENAME), (String)map.get(PROP_OWNER), tableOwnerName);  
+	        	return h.getProcIdentifier(new DatabaseIdentifier(profile, dbname), type, map);  
 	        }
             return new ProcIdentifierImpl(type, new DatabaseIdentifier(profile, dbname), map);
         }

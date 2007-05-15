@@ -185,8 +185,16 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 
         CallableStatement cstmt = (CallableStatement) stmt;
         if (cstmt == null || pws == null)
-        return;
+        {
+        	return;
+        }
         int j = 0;
+        
+        int returnParamIndex = _sql.indexOf("{?");
+        if (returnParamIndex >= 0)
+        {
+        	j++;//return parameter should be the first
+        }
         for (int i = 0; i < pws.length; i++)
         {
             int sqlType = pws[i].getParameterDescriptor().getSqlDataType();
@@ -204,8 +212,11 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
             {
                 j++;
             }
+            else if (paramType == DatabaseMetaData.procedureColumnReturn && returnParamIndex >= 0)
+            {
+            	cstmt.registerOutParameter(1, sqlType);
+            }
             else if (paramType == DatabaseMetaData.procedureColumnUnknown //FIXME treat UNKNOWN type as OUT type
-            || paramType == DatabaseMetaData.procedureColumnReturn
                 || paramType == DatabaseMetaData.procedureColumnOut
                 || paramType == DatabaseMetaData.procedureColumnInOut)
             {
@@ -234,6 +245,12 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
         return;
 
         int j = 0;
+        int returnParamIndex = _sql.indexOf("{?");
+        if (returnParamIndex >= 0)
+        {
+        	j++;//return parameter should be the first
+        }
+        
         int k = 0;
         List values = null;
         try
@@ -263,9 +280,14 @@ public class CallableSQLResultRunnable extends ResultSupportRunnable
 //            }
 //            else if (paramType == ParameterMode.IN
 //            || paramType == ParameterMode.INOUT)
+            if (paramType == DatabaseMetaData.procedureColumnReturn)
+            {
+            	//we have take return parameter into account
+                continue;
+            }
             if (paramType == DatabaseMetaData.procedureColumnOut || paramType == DatabaseMetaData.procedureColumnReturn)
             {
-                j++;
+            	j++;
             }
             else if (paramType == DatabaseMetaData.procedureColumnIn
             || paramType == DatabaseMetaData.procedureColumnInOut)

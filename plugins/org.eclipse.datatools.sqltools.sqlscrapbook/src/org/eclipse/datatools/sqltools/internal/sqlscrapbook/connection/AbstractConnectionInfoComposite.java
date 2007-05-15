@@ -524,6 +524,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
                 String newProfile = getNewProfileName(currentNames, newNames);
                 if (newProfile != null)
                 {
+                    ProfileUtil.connectProfile(newProfile);
                     init(_dbVendorId.toString(), newProfile, null);
                     updateFields();
                 }

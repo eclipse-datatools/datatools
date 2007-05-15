@@ -47,4 +47,9 @@ public class DerbyHelper extends DBHelper {
 
         return new DerbyProcIdentifier(dbObjectType, databaseIdentifier, map);
 	}
+	
+	public ProcIdentifier getProcIdentifier(
+			DatabaseIdentifier databaseIdentifier, int dbObjectType, Map map) {
+		return new DerbyProcIdentifier(dbObjectType, databaseIdentifier, map);
+	}
 }

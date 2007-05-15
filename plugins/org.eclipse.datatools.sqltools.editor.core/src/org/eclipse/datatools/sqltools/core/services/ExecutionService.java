@@ -29,6 +29,8 @@ import org.eclipse.debug.core.ILaunchConfiguration;
  */
 public class ExecutionService
 {
+    public static final String KEY_PROMPT_VAR = "KEY_PROMPT_VAR";
+    public static final String KEY_VAR_DECLARATION = "KEY_VAR_DECLARATION";
 
 	/**
      * Returns a <code>Runnable</code> object capable of running a stored procedure. Might be null.

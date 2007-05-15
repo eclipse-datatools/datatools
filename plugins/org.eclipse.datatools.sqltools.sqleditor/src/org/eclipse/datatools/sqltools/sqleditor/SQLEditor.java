@@ -113,9 +113,11 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.internal.texteditor.NLSUtility;
@@ -127,6 +129,7 @@ import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionConstants;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.IUpdate;
+import org.eclipse.ui.texteditor.ResourceAction;
 import org.eclipse.ui.texteditor.TextEditorAction;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
@@ -341,6 +344,21 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 				"AddTemplateAction.", this)); //$NON-NLS-1$
         markAsSelectionDependentAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, getAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID));
+
+		final Shell shell;
+		if (getSourceViewer() != null)
+			shell= getSourceViewer().getTextWidget().getShell();
+		else
+			shell= null;
+		a= new ResourceAction(bundle, "Editor.ContextPreferencesAction.") { //$NON-NLS-1$
+			public void run() {
+				String[] preferencePages= collectContextMenuPreferencePages();
+				if (preferencePages.length > 0 && (shell == null || !shell.isDisposed()))
+					PreferencesUtil.createPreferenceDialogOn(shell, preferencePages[0], preferencePages, null).open();
+			}
+		};
+		a.setId(ITextEditorActionConstants.CONTEXT_PREFERENCES);
+		setAction(ITextEditorActionConstants.CONTEXT_PREFERENCES, a);
 
     }
 
@@ -742,6 +760,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             dbSubMenuMgr.add(new Separator(ITextEditorActionConstants.MB_ADDITIONS));
             menu.appendToGroup(ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, dbSubMenuMgr);
         }        
+
+		IAction preferencesAction= getAction(ITextEditorActionConstants.CONTEXT_PREFERENCES);
+		menu.appendToGroup(IWorkbenchActionConstants.MB_ADDITIONS, new Separator(ITextEditorActionConstants.GROUP_SETTINGS));
+		menu.appendToGroup(ITextEditorActionConstants.GROUP_SETTINGS, preferencesAction);
 
     }
 
@@ -1668,4 +1690,13 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     {
     	return getConnectionInfo().isConnected();
     }
+    
+	protected String[] collectContextMenuPreferencePages() {
+		String[] parent = super.collectContextMenuPreferencePages();
+		String[] prefs = new String[parent.length + 1];
+		System.arraycopy(parent, 0, prefs, 1, parent.length);
+		prefs[0] = "org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor";
+		return prefs;
+	}
+
 } // end class
