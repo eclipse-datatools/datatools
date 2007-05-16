@@ -75,7 +75,7 @@
             class="org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileActionFilter"
             id="org.eclipse.datatools.connectivity.ui"
             namespace="org.eclipse.datatools.connectivity.profile.property"
-            properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID"
+            properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID,connectionState"
             type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
    </extension>
 
@@ -113,6 +113,13 @@
             </or>
          </possibleChildren>
       </navigatorContent>
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.ui.actions.WorkOfflineActionProvider"
+            id="org.eclipse.datatools.connectivity.internal.ui.actions.WorkOfflineActionProvider">
+            <enablement>
+  	        	<instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+         	</enablement>
+      </actionProvider>
    </extension>
       <extension
             point="org.eclipse.ui.navigator.viewer">
@@ -121,6 +128,11 @@
                <contentExtension pattern="org.eclipse.datatools.connectivity.repositoryContent"/>
             </includes>
          </viewerContentBinding>
+         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <actionExtension pattern="org.eclipse.datatools.connectivity.internal.ui.actions.WorkOfflineActionProvider"/>
+            </includes>
+         </viewerActionBinding>
       </extension>
 
 </plugin>

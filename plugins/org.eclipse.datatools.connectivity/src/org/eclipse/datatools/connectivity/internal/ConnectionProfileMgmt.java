@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -345,10 +345,12 @@ public class ConnectionProfileMgmt {
 				Element driverElem = document.createElement(DRIVERREFTAG);
 				DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
 				String driverName = di.getName();
-				String driverType = di.getTemplate().getId();
-				appendPropertyToElement ( document, driverElem, DRIVERNAMEATTR, driverName );
-				appendPropertyToElement ( document, driverElem, DRIVERTYPEIDATTR, driverType );
-				child.appendChild(driverElem);
+				if (di.getTemplate() != null) {
+					String driverType = di.getTemplate().getId();
+					appendPropertyToElement ( document, driverElem, DRIVERNAMEATTR, driverName );
+					appendPropertyToElement ( document, driverElem, DRIVERTYPEIDATTR, driverType );
+					child.appendChild(driverElem);
+				}
 			}
 			rootElement.appendChild(child);
 		}

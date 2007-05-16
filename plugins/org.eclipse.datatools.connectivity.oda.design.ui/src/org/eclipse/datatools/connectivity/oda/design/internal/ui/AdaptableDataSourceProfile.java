@@ -19,6 +19,7 @@ import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.PlatformObject;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
@@ -34,7 +35,6 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
-import org.eclipse.ui.IPropertyListener;
 
 /**
  * Implementation of connection profile for 
@@ -487,6 +487,60 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
 
         // TODO Auto-generated method stub
         return true;
+	}
+
+	public boolean canWorkOffline() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().canWorkOffline();
+
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int getConnectionState() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().getConnectionState();
+
+		// TODO Auto-generated method stub
+		return DISCONNECTED_STATE;
+	}
+
+	public IStatus saveWorkOfflineData() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().saveWorkOfflineData();
+
+		// TODO Auto-generated method stub
+		return Status.CANCEL_STATUS;
+	}
+
+	public void saveWorkOfflineData(IJobChangeListener listener) {
+        if( hasLinkedProfile() )
+            getLinkedProfile().saveWorkOfflineData(listener);
+
+		// TODO Auto-generated method stub
+	}
+
+	public boolean supportsWorkOfflineMode() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().supportsWorkOfflineMode();
+
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public IStatus workOffline() {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().workOffline();
+
+		// TODO Auto-generated method stub
+		return Status.CANCEL_STATUS;
+	}
+
+	public void workOffline(IJobChangeListener listener) {
+        if( hasLinkedProfile() )
+            getLinkedProfile().workOffline(listener);
+
+		// TODO Auto-generated method stub
 	}
 
 }

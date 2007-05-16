@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2007 Sybase, Inc.
+ * Copyright (c) 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -15,19 +15,18 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 
-public class CreateConnectionJob extends Job {
+public class CreateOfflineConnectionJob extends Job {
 
 	private ManagedConnection mManagedConnection;
 	private Object mFamily;
 
-	public CreateConnectionJob(ManagedConnection managedConnection,
-								Object family) {
+	public CreateOfflineConnectionJob(ManagedConnection managedConnection,
+										Object family) {
 		super(ConnectivityPlugin.getDefault().getResourceString(
-				"CreateConnectionJob.name", //$NON-NLS-1$
+				"CreateOfflineConnectionJob.name", //$NON-NLS-1$
 				new Object[] {
 						managedConnection.getConnectionFactoryProvider()
 								.getName(),
@@ -44,7 +43,7 @@ public class CreateConnectionJob extends Job {
 	private IConnectionFactoryProvider getConnectionFactoryProvider() {
 		return mManagedConnection.getConnectionFactoryProvider();
 	}
-	
+
 	private IConnectionProfile getConnectionProfile() {
 		return mManagedConnection.getConnectionProfile();
 	}
@@ -53,20 +52,11 @@ public class CreateConnectionJob extends Job {
 		IStatus status = Status.OK_STATUS;
 		monitor.beginTask(getName(), IProgressMonitor.UNKNOWN);
 		try {
-			mManagedConnection.createConnection(monitor);
-			IConnection connection = mManagedConnection.getConnection();
-			if (connection.getConnectException() != null) {
-				status = new Status(IStatus.ERROR, ConnectivityPlugin
-						.getDefault().getBundle().getSymbolicName(), -1,
-						ConnectivityPlugin.getDefault().getResourceString(
-								"CreateConnectionJob.error", //$NON-NLS-1$
-								new Object[] {
-										getConnectionFactoryProvider()
-												.getName(),
-										getConnectionProfile().getName(),
-										connection.getConnectException()
-												.getMessage()}), connection
-								.getConnectException());
+			if (mManagedConnection.canWorkOffline()) {
+				mManagedConnection.workOffline(monitor);
+			}
+			else if (mManagedConnection.isConnected()) {
+				mManagedConnection.close();
 			}
 		}
 		catch (CoreException e) {
@@ -76,7 +66,7 @@ public class CreateConnectionJob extends Job {
 			status = new Status(IStatus.ERROR, ConnectivityPlugin.getDefault()
 					.getBundle().getSymbolicName(), -1, ConnectivityPlugin
 					.getDefault().getResourceString(
-							"CreateConnectionJob.error", //$NON-NLS-1$
+							"CreateOfflineConnectionJob.error", //$NON-NLS-1$
 							new Object[] {
 									getConnectionFactoryProvider().getName(),
 									getConnectionProfile().getName(),

@@ -30,6 +30,8 @@ public class CCOverLayIconUtility {
 
 	public static final ImageDescriptor RUNNING = create(
 			"icons/full/ovr16/", "obj_ovr_server.gif"); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final ImageDescriptor OFFLINE = create(
+			"icons/full/ovr16/", "obj_ovr_server_off.gif"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	private static CCOverLayIconUtility _Default;
 
@@ -49,6 +51,9 @@ public class CCOverLayIconUtility {
 		InternalOverlayIcon icon;
 		if (overlay == RUNNING) {
 			icon = new InternalOverlayIcon(baseImage, RUNNING, true, false);
+		}
+		else if (overlay == OFFLINE) {
+			icon = new InternalOverlayIcon(baseImage, OFFLINE, true, false);
 		}
 		else {
 			icon = new InternalOverlayIcon(baseImage, null, true, true);

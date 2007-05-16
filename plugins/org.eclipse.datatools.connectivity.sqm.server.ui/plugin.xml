@@ -65,30 +65,6 @@
             </or>
          </enablement>
       </actionProvider>
-      <actionProvider
-            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.providers.WorkOfflineProvider"
-            id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.WorkOfflineProvider">
-            <enablement>
-	            <and>
-  	        		<adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-				    <test
-						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
-	                    value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
-	            </and>
-         	</enablement>
-      </actionProvider>
-      <actionProvider
-            class="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.providers.SaveOfflineProvider"
-            id="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.SaveOfflineProvider">
-            <enablement>
-	            <and>
-  	        		<adapt type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
-				    <test
-						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
-	                    value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
-	            </and>
-         	</enablement>
-      </actionProvider>
    </extension>
    <extension
          point="org.eclipse.core.runtime.adapters">

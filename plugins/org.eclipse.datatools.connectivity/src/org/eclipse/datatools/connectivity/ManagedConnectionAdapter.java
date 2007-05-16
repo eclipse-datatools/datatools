@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -17,7 +17,8 @@ package org.eclipse.datatools.connectivity;
  *
  * Created on Jan 23, 2006
  */
-public class ManagedConnectionAdapter implements IManagedConnectionListener {
+public class ManagedConnectionAdapter implements
+		IManagedConnectionOfflineListener {
 
 	public ManagedConnectionAdapter() {
 		super();
@@ -52,6 +53,31 @@ public class ManagedConnectionAdapter implements IManagedConnectionListener {
 	 * @see org.eclipse.datatools.connectivity.IManagedConnectionListener#closed(org.eclipse.datatools.connectivity.ConnectEvent)
 	 */
 	public void closed(ConnectEvent event) {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionOfflineListener#aboutToAttach(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
+	public void aboutToAttach(ConnectEvent event) {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionOfflineListener#aboutToDetach(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
+	public void aboutToDetach(ConnectEvent event) {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionOfflineListener#workingOffline(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
+	public void workingOffline(ConnectEvent event) {
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.IManagedConnectionOfflineListener#okToDetach(org.eclipse.datatools.connectivity.ConnectEvent)
+	 */
+	public boolean okToDetach(ConnectEvent event) {
+		return true;
 	}
 
 }

@@ -74,7 +74,8 @@ public class CPRepositoryContentProvider implements ITreeContentProvider {
 		}
 
 		private boolean isChildProfile(IConnectionProfile profile) {
-			if (profile.getParentProfile() == null || !profile.isConnected()) {
+			if (profile.getParentProfile() == null
+					|| profile.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
 				return false;
 			}
 			IManagedConnection imc = profile
@@ -198,7 +199,7 @@ public class CPRepositoryContentProvider implements ITreeContentProvider {
 		if (IConnectionProfile.CONNECTION_PROFILE_PROPERTY_SET.equals(event
 				.getPropertySetType())
 				&& event
-						.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID) != null) {
+						.getChangedProperty(IConnectionProfile.CONNECTION_STATE_PROPERTY_ID) != null) {
 			refreshViewer(event.getConnectionProfile(), false);
 		}
 	}

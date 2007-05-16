@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -91,10 +91,28 @@ public interface IManagedConnection {
 	 * connections).
 	 * 
 	 * The connection should be retrieved from the Job by the listener using
-	 * CreateConnectionJob.getConnection() after the Job has finished.
+	 * {@link ICloneConnectionJob#getConnection()} after the Job has finished.
 	 * 
 	 * @param listener cannot be null
 	 */
 	void cloneConnection(IJobChangeListener listener);
+
+	/**
+	 * @return true if the active connection represents an offline connection.
+	 */
+	boolean isWorkingOffline();
+	
+	/**
+	 * Interface implemented by the Job used in
+	 * {@link #cloneConnection(IJobChangeListener)}. This interface is provided
+	 * to give the consumer access to the created {@link IConnection}.
+	 */
+	public interface ICloneConnectionJob {
+
+		/**
+		 * @return the connection object created by the Job
+		 */
+		IConnection getConnection();
+	}
 
 }

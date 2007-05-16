@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -13,6 +13,8 @@ package org.eclipse.datatools.connectivity;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 
@@ -31,9 +33,15 @@ public interface IConnectionProfile {
 	static final String CONNECTION_PROFILE_PROPERTY_SET = IConnectionProfile.class.getName();
 
 	/**
-	 * Property ID for "connected" state.
+	 * Property ID for boolean "connected" state.
+	 * @deprecated use {@link #CONNECTION_STATE_PROPERTY_ID}
 	 */
 	static final String CONNECTED_PROPERTY_ID = "connected"; //$NON-NLS-1$
+
+	/**
+	 * Property ID for "connection" state.
+	 */
+	static final String CONNECTION_STATE_PROPERTY_ID = "connectionState"; //$NON-NLS-1$
 
 	/**
 	 * Property ID for profile name.
@@ -54,6 +62,27 @@ public interface IConnectionProfile {
 	 * Property ID for profile instance ID.
 	 */
 	static final String INSTANCE_ID_PROPERTY_ID = "instanceID"; //$NON-NLS-1$
+	
+	// Connection states
+	
+	/**
+	 * When the connection profile is in this state, no active connections to
+	 * the server exist.
+	 */
+	static final int DISCONNECTED_STATE = 0;
+
+	/**
+	 * When the connection profile is in this state, active connections to the
+	 * server exist.
+	 */
+	static final int CONNECTED_STATE = 1;
+
+	/**
+	 * When the connection profile is in this state, no active connections to
+	 * the server exist. However, cached server data has been loaded into memory
+	 * and is available for use.
+	 */
+	static final int WORKING_OFFLINE_STATE = 2;
 
 	// General profile methods
 
@@ -164,8 +193,17 @@ public interface IConnectionProfile {
 
 	/**
 	 * @return true if consumers should create connections to this profile
+	 * 
+	 * @deprecated Use {@link #getConnectionState()}
 	 */
 	boolean isConnected();
+	
+	/**
+	 * @return the connection state of this profile. May be one of:
+	 *         {@link #DISCONNECTED}, {@link #CONNECTED},
+	 *         {@link #WORKING_OFFLINE}
+	 */
+	int getConnectionState();
 
 	/**
 	 * This method blocks until all registered connect listeners have been
@@ -209,6 +247,53 @@ public interface IConnectionProfile {
 	 *        null.
 	 */
 	void disconnect(IJobChangeListener listener);
+
+	/**
+	 * This method blocks until all registered connect listeners that support
+	 * working offline have been notified to restore offline data.
+	 * 
+	 * @return the status of the operation. Status.OK_STATUS if all went well.
+	 */
+	IStatus workOffline();
+
+	/**
+	 * This method returns immediately after spawning a Job which notifies all
+	 * registered connect listeners that support working offline have been
+	 * notified to restore offline data. The caller can pass in a job listener
+	 * so it can be notified of the status of the job. The status returned by
+	 * the job upon completion can be used to determine whether or not the
+	 * operation was successful.
+	 * 
+	 * @param listener a job listener that can be used to notify the caller of
+	 *        the state of the job spawned to restore offline data. Can be null.
+	 */
+	void workOffline(IJobChangeListener listener);
+	
+	/**
+	 * @return true if one or more connection factories associated with this
+	 *         connection profile's provider support working offline.
+	 */
+	boolean supportsWorkOfflineMode();
+	
+	/**
+	 * @return true if this connection profile supports working offline and data
+	 *         has been saved for working offline.
+	 */
+	boolean canWorkOffline();
+	
+	/**
+	 * Saves the state of the connection profile for working in an offline mode.
+	 * If the connection profile does not support working in an offline mode, no
+	 * exception is thrown and the method will return immediately.
+	 */
+	IStatus saveWorkOfflineData();
+
+	/**
+	 * Saves the state of the connection profile for working in an offline mode.
+	 * Same as {@link #saveWorkOfflineData()} except that it returns
+	 * immediately, without waiting for the save offline data job to complete.
+	 */
+	void saveWorkOfflineData(IJobChangeListener listener);
 
 	/**
 	 * Add a connect listener to this profile.

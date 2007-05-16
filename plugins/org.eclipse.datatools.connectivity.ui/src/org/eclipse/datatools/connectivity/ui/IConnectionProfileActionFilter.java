@@ -76,4 +76,11 @@ public interface IConnectionProfileActionFilter extends IActionFilter {
 	public static final String PROFILE_PROPERTY_VIEW_ID = "org.eclipse.datatools.connectivity.profile.property.containingViewID"; //$NON-NLS-1$
 	public static final String VIEW_ID = "containingViewID"; //$NON-NLS-1$
 
+	/**
+	 * Used to filter profiles with a specific connection state (DISCONNECTED,
+	 * CONNECTED, WORKING_OFFLINE)
+	 */
+	public static final String PROFILE_PROPERTY_CONNECTION_STATE = "org.eclipse.datatools.connectivity.profile.property.connectionState"; //$NON-NLS-1$
+	public static final String CONNECTION_STATE = "connectionState"; //$NON-NLS-1$
+
 }

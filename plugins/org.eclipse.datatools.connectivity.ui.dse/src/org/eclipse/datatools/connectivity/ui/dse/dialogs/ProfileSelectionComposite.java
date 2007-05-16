@@ -143,7 +143,7 @@ public class ProfileSelectionComposite {
 								if (IConnectionProfile.CONNECTION_PROFILE_PROPERTY_SET.equals(event
 										.getPropertySetType())
 										&& event
-												.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID) != null) {
+												.getChangedProperty(IConnectionProfile.CONNECTION_STATE_PROPERTY_ID) != null) {
 									initListboxContent();
 								}
 							}

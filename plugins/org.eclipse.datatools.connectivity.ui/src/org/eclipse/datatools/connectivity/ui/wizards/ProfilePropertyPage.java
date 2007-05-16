@@ -106,7 +106,8 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 		if (changed) {
 			profile.setProperties(getPropertiesID(),newProps);
 
-			if (mAffectsConnectionProperties && profile.isConnected()) {
+			if (mAffectsConnectionProperties
+					&& profile.getConnectionState() != IConnectionProfile.DISCONNECTED_STATE) {
 				if (MessageDialog
 						.openQuestion(
 								getShell(),

@@ -63,7 +63,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 			else if (IConnectionProfile.CONNECTION_PROFILE_PROPERTY_SET
 					.equals(event.getPropertySetType())) {
 				final IChangedProperty icp = event
-						.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID);
+						.getChangedProperty(IConnectionProfile.CONNECTION_STATE_PROPERTY_ID);
 				if (icp != null) {
 					getControl().getDisplay().asyncExec(new Runnable() {
 
@@ -225,8 +225,8 @@ public class CPVersionPropertyPage extends PropertyPage implements
 			}
 		});
 
-		mUpdateVersionInfoButton.setEnabled(!getConnectionProfile()
-				.isConnected());
+		mUpdateVersionInfoButton.setEnabled(getConnectionProfile()
+				.getConnectionState() == IConnectionProfile.DISCONNECTED_STATE);
 	}
 
 	private void deleteControls(Composite content) {

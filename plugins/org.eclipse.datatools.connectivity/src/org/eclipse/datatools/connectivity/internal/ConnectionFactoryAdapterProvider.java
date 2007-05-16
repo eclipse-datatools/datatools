@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -11,15 +11,18 @@
 package org.eclipse.datatools.connectivity.internal;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.ISafeRunnable;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionFactory;
-import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IOfflineConnection;
+import org.eclipse.datatools.connectivity.IOfflineConnectionFactory;
 
-public class ConnectionFactoryAdapterProvider implements IConnectionFactoryProvider {
+public class ConnectionFactoryAdapterProvider implements InternalConnectionFactoryProvider {
 
 	public static final String ATTR_FACTORY = "factory"; //$NON-NLS-1$
 	public static final String ATTR_ID = "id"; //$NON-NLS-1$
@@ -76,6 +79,9 @@ public class ConnectionFactoryAdapterProvider implements IConnectionFactoryProvi
 		if (mConnectionFactory == null) {
 			return null;
 		}
+		if (supportsWorkOfflineMode()) {
+			return createConnection(profile,new NullProgressMonitor());
+		}
 		return mConnectionFactory.createConnection(profile);
 	}
 
@@ -86,6 +92,36 @@ public class ConnectionFactoryAdapterProvider implements IConnectionFactoryProvi
 			return null;
 		}
 		return mConnectionFactory.createConnection(profile, uid, pwd);
+	}
+
+	public boolean supportsWorkOfflineMode() {
+		initFactory();
+		return mConnectionFactory != null
+				&& mConnectionFactory instanceof IOfflineConnectionFactory;
+	}
+
+	public boolean canWorkOffline(IConnectionProfile profile) {
+		return supportsWorkOfflineMode()
+				&& ((IOfflineConnectionFactory) mConnectionFactory)
+						.canWorkOffline(profile);
+	}
+
+	public IOfflineConnection createConnection(IConnectionProfile profile,
+			IProgressMonitor monitor) {
+		if (supportsWorkOfflineMode()) {
+			return ((IOfflineConnectionFactory) mConnectionFactory)
+					.createConnection(profile, monitor);
+		}
+		return null;
+	}
+
+	public IOfflineConnection createOfflineConnection(
+			IConnectionProfile profile, IProgressMonitor monitor) {
+		if (supportsWorkOfflineMode()) {
+			return ((IOfflineConnectionFactory) mConnectionFactory)
+					.createOfflineConnection(profile, monitor);
+		}
+		return null;
 	}
 
 	private void init(IConfigurationElement element) {

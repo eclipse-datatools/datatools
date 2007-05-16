@@ -587,7 +587,8 @@ public class InternalProfileManager {
 			internalProfile.setDescription(newDesc);
 		if (autoConnect != null && !autoConnect.equals(oldAutoConnect)) {
 			internalProfile.setAutoConnect(autoConnect.booleanValue());
-			if (autoConnect.booleanValue() && !internalProfile.isConnected()) {
+			if (autoConnect.booleanValue()
+					&& internalProfile.getConnectionState() == IConnectionProfile.DISCONNECTED_STATE) {
 				internalProfile.connect(null);
 			}
 		}

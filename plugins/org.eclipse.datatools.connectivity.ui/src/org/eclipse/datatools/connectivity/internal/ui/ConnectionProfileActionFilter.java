@@ -73,6 +73,9 @@ public class ConnectionProfileActionFilter extends PropertyTester implements ICo
 			}
 			return false;
 		}
+		else if (name.equals(PROFILE_PROPERTY_CONNECTION_STATE) || name.equals(CONNECTION_STATE)) {
+			return profile.getConnectionState() == getConnectionStateFromString(value);
+		}
 		else {
 			return false;
 		}
@@ -80,6 +83,19 @@ public class ConnectionProfileActionFilter extends PropertyTester implements ICo
 
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		return testAttribute(receiver, property, expectedValue == null ? null : expectedValue.toString());
+	}
+	
+	private int getConnectionStateFromString(String value) {
+		if ("DISCONNECTED".equalsIgnoreCase(value)) {
+			return IConnectionProfile.DISCONNECTED_STATE;
+		}
+		else if ("CONNECTED".equalsIgnoreCase(value)) {
+			return IConnectionProfile.CONNECTED_STATE;
+		}
+		else if ("WORKING_OFFLINE".equalsIgnoreCase(value)) {
+			return IConnectionProfile.WORKING_OFFLINE_STATE;
+		}
+		return -1;
 	}
 
 }

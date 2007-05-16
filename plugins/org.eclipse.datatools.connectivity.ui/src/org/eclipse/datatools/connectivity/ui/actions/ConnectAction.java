@@ -162,7 +162,7 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) instanceof IConnectionProfile) {
 				IConnectionProfile profile = (IConnectionProfile) list.get(i);
-				if (profile.isConnected())
+				if (profile.getConnectionState() == IConnectionProfile.CONNECTED_STATE)
 					return false;
 			}
 		}

@@ -200,7 +200,7 @@ public class ProfileConnectionManager {
 	private IConnection createConnection(IConnectionProfile icp,
 			String factoryID) {
 		IConnection con = null;
-		if (icp.isConnected()) {
+		if (icp.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
 			con = icp.createConnection(factoryID);
 		}
 		return con;

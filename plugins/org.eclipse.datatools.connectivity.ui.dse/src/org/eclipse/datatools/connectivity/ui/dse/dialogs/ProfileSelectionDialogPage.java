@@ -360,8 +360,7 @@ public class ProfileSelectionDialogPage extends
 		else {
 			Object obj = selection.getFirstElement();
 			boolean isProfile = obj instanceof IConnectionProfile;
-			boolean isProfileDisConnected = isProfile && !((IConnectionProfile) obj).isConnected();
-			boolean isProfileConnected = isProfile && ((IConnectionProfile) obj).isConnected();
+			boolean isProfileDisConnected = isProfile && ((IConnectionProfile) obj).getConnectionState() == IConnectionProfile.DISCONNECTED_STATE;
 
 			if (isProfileDisConnected) {
 				if (mConnect != null)
@@ -372,10 +371,8 @@ public class ProfileSelectionDialogPage extends
 			else {
 				if (mConnect != null)
 					mConnect.setEnabled(false);
-				if (isProfileConnected) {
-					if (mSelectAll != null)
-						mSelectAll.setEnabled(true);
-				}
+				if (mSelectAll != null)
+					mSelectAll.setEnabled(true);
 			}
 			if (obj instanceof IConnectionProfile) {
 				((IConnectionProfile) obj).removePropertySetListener(this);
@@ -431,7 +428,7 @@ public class ProfileSelectionDialogPage extends
 			// Connect to the connection profile
 			Display.getCurrent().readAndDispatch();
 			ProfileConnectionManager.getProfileConnectionManagerInstance().manageProfileConnection(profile, "com.sybase.ebd.eai.wsmf.providers.IWSMFProvider", this); //$NON-NLS-1$
-			if (!profile.isConnected()) {
+			if (profile.getConnectionState() != IConnectionProfile.CONNECTED_STATE) {
 				
 				try {
 					IRunnableWithProgress op = new IRunnableWithProgress(){
@@ -450,8 +447,8 @@ public class ProfileSelectionDialogPage extends
 							}
 							if (Display.getCurrent() != null)
 								Display.getCurrent().readAndDispatch();
-							mConnect.setEnabled(!((IConnectionProfile) selection.getFirstElement())
-									.isConnected());
+							mConnect.setEnabled(((IConnectionProfile) selection.getFirstElement())
+									.getConnectionState() != IConnectionProfile.CONNECTED_STATE);
 							inConnect = false;
 							doneConnect = true;
 		        			if (mViewer != null && !mViewer.getTree().isDisposed())
@@ -490,11 +487,11 @@ public class ProfileSelectionDialogPage extends
 	 * @see org.eclipse.datatools.connectivity.IPropertySetListener#propertySetChanged(org.eclipse.datatools.connectivity.IPropertySetChangeEvent)
 	 */
 	public void propertySetChanged(IPropertySetChangeEvent event) {
-		if (event.getChangedProperty(IConnectionProfile.CONNECTED_PROPERTY_ID) != null) {
+		if (event.getChangedProperty(IConnectionProfile.CONNECTION_STATE_PROPERTY_ID) != null) {
 		    final IConnectionProfile profile = (IConnectionProfile) event.getConnectionProfile(); 
 		    Runnable torun = new Runnable() {
                 public void run() {
-        			if (profile != null && !((IConnectionProfile) profile).isConnected()) {
+        			if (profile != null && ((IConnectionProfile) profile).getConnectionState() != IConnectionProfile.CONNECTED_STATE) {
         				if (mConnect != null && !mConnect.isDisposed() && !mConnect.isEnabled()) {
         					mConnect.setEnabled(true);
         				}
@@ -776,7 +773,7 @@ public class ProfileSelectionDialogPage extends
 
                     if (obj instanceof IConnectionProfile) {
                         connectionProfile = (IConnectionProfile) obj;
-                        setEnabled(!connectionProfile.isConnected());
+                        setEnabled(connectionProfile.getConnectionState() != IConnectionProfile.CONNECTED_STATE);
                     }
                 }
             }
@@ -815,7 +812,7 @@ public class ProfileSelectionDialogPage extends
 
                     if (obj instanceof IConnectionProfile) {
                         connectionProfile = (IConnectionProfile) obj;
-                        setEnabled(connectionProfile.isConnected());
+                        setEnabled(connectionProfile.getConnectionState() != IConnectionProfile.DISCONNECTED_STATE);
                     }
                 }
             }

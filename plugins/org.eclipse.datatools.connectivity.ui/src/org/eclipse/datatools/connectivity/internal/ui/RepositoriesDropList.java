@@ -14,6 +14,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
@@ -71,7 +72,7 @@ public class RepositoriesDropList extends DropListViewer {
 		public String getText(Object element) {
 			IConnectionProfile profile = (IConnectionProfile) element;
 			StringBuffer sb = new StringBuffer(profile.getName());
-			if (profile.isConnected()) {
+			if (profile.getConnectionState() != IConnectionProfile.DISCONNECTED_STATE) {
 				Properties props = profile
 						.getProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID);
 				String serverName = props
@@ -111,9 +112,11 @@ public class RepositoriesDropList extends DropListViewer {
 		public boolean select(Viewer viewer, Object parentElement,
 				Object element) {
 			ConnectionProfile repo = (ConnectionProfile) element;
-			IConnectionProfileRepository repoConn = repo.isConnected() ? ((IConnectionProfileRepository) repo
-					.getManagedConnection(
-							IConnectionProfileRepository.class.getName())
+			IManagedConnection managedConnection = repo
+					.getManagedConnection(IConnectionProfileRepository.class
+							.getName());
+			IConnectionProfileRepository repoConn = managedConnection
+					.isConnected() ? ((IConnectionProfileRepository) managedConnection
 					.getConnection().getRawConnection())
 					: null;
 			boolean retVal = repoConn != null

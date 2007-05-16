@@ -267,7 +267,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     public boolean hasChildren(Object element)
     {
     	if (element instanceof IConnectionProfile)
-    		return ((IConnectionProfile)element).isConnected();
+    		return ((IConnectionProfile) element).getConnectionState() != IConnectionProfile.DISCONNECTED_STATE;
     	return getChildren(element).length > 0;
 //    	return true;
 //        return (isServerExplorerViewer ()) ? 

@@ -35,10 +35,15 @@ import java.util.Properties;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IOfflineConnection;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.IServerVersionProvider;
@@ -50,6 +55,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.ResourceUtil;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.CatalogUtil;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.DatabaseProviderHelper;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -60,7 +66,7 @@ import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 
-public class ConnectionInfoImpl extends VersionProviderConnection implements ConnectionInfo {
+public class ConnectionInfoImpl extends VersionProviderConnection implements ConnectionInfo, IOfflineConnection {
 	
 	private static final String PASSWORD = "password"; //$NON-NLS-1$
 	private static final String USER = "user"; //$NON-NLS-1$
@@ -82,6 +88,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	private Collection projects = null;
 	private boolean detectDefinition = false;
 	private IConnection jdbcConnection;
+	private Throwable connectException;
 	private IPropertySetListener profilePropertyListener = new IPropertySetListener() {
 
 		public void propertySetChanged(IPropertySetChangeEvent event) {
@@ -93,6 +100,18 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	};
 	
 	public static final String TECHNOLOGY_ROOT_KEY = "jdbc"; //$NON-NLS-1$
+	
+	/* package */static IPath getConnectionDirectory(String name) {
+		IPath path = RDBCorePlugin.getDefault().getStateLocation();
+		path = path.append(ConnectionInfo.CONNECTION);
+		if(name != null) path = path.append(name + "/"); //$NON-NLS-1$
+		return path;
+	}
+	
+	/* package */static File getConnectionFile(String name) {
+		IPath connectionPath = getConnectionDirectory(name);
+		return connectionPath.append("cache.xmi").toFile();
+	}
 	
 	public String getName() {
 		return this.name;
@@ -329,9 +348,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 
 	public void cacheDatabase(Database database) throws IOException {
 		if(this.name == null) throw new IllegalStateException();
-	    IPath path = initConnectionDirectory();
-		path = path.append("cache.xmi"); //$NON-NLS-1$
-		OutputStream out = new FileOutputStream(path.toFile());
+	    initConnectionDirectory();
+		OutputStream out = new FileOutputStream(getConnectionFile(name));
 		Resource r = new XMIResourceImpl();
 		r.getContents().add(database);
 		ResourceUtil.resolveDanglingReferences(r);
@@ -343,13 +361,12 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 
 	public Database getCachedDatabase() {
 		if(this.name == null) throw new IllegalStateException();
-	    IPath path = initConnectionDirectory();
-		path = path.append("cache.xmi"); //$NON-NLS-1$
-		File file = path.toFile();
+		initConnectionDirectory();
+		File file = getConnectionFile(name);
 		if(file.exists()) {
 			Resource r = new XMIResourceImpl();
 			try {
-				InputStream in = new FileInputStream(path.toFile());
+				InputStream in = new FileInputStream(file);
 				r.load(in, (Map) null);
 				EList l = r.getContents();
 				Database database = (Database) l.get(0);
@@ -380,9 +397,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 	
 	private IPath initConnectionDirectory() {
-		IPath path = RDBCorePlugin.getDefault().getStateLocation();
-		path = path.append(ConnectionInfo.CONNECTION);
-		if(this.name != null) path = path.append(this.name + "/"); //$NON-NLS-1$
+		IPath path = getConnectionDirectory(name);
 		File dir = path.toFile();
 		if(!dir.exists()) {
 			dir.mkdirs();
@@ -623,44 +638,37 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
         
         if (createConnection)
         {
-    		jdbcConnection = profile.createConnection(Connection.class.getName());
-    		Connection connection = (Connection) jdbcConnection.getRawConnection();
-    		if (connection != null) {
-    			DatabaseDefinition detectedDBDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().recognize(connection);
-    			if(detectedDBDefinition != null) {
-    				this.setDatabaseDefinition(detectedDBDefinition);
-    			}
-    			this.setSharedConnection(connection);
-    	        new DatabaseProviderHelper().setDatabase(connection,
-    	                this, this.getDatabaseName());
-    	        profile.addPropertySetListener(profilePropertyListener);
-    		}
+        	initializeJDBCConnection();
         }
         else
         {
-            jdbcConnection = new IConnection ()
-            {
-                public void close()
-                {
-                }
-
-                public Throwable getConnectException()
-                {
-                    return null;
-                }
-
-                public IConnectionProfile getConnectionProfile()
-                {
-                    return profile;
-                }
-
-                public Object getRawConnection()
-                {
-                    return null;
-                }
-            };
-            profile.addPropertySetListener(profilePropertyListener);
+            jdbcConnection = null;
+            Database database = getCachedDatabase();
+            if (database != null) {
+            	setSharedDatabase(database);
+            }
         }
+        profile.addPropertySetListener(profilePropertyListener);
+	}
+	
+	private void initializeJDBCConnection() {
+		IConnectionProfile profile = getConnectionProfile();
+		jdbcConnection = profile.createConnection(Connection.class.getName());
+		connectException = jdbcConnection.getConnectException();
+		Connection connection = (Connection) jdbcConnection.getRawConnection();
+		if (connection != null) {
+			DatabaseDefinition detectedDBDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().recognize(connection);
+			if(detectedDBDefinition != null) {
+				this.setDatabaseDefinition(detectedDBDefinition);
+				Properties props = profile.getBaseProperties();
+				props.setProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID, detectedDBDefinition.getProduct());
+				props.setProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, detectedDBDefinition.getVersion());
+				profile.setBaseProperties(props);
+			}
+			this.setSharedConnection(connection);
+	        new DatabaseProviderHelper().setDatabase(connection,
+	                this, this.getDatabaseName());
+		}
 	}
 	
 	private void processFilterChanges(IPropertySetChangeEvent event) {
@@ -768,15 +776,25 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 
 	public Throwable getConnectException() {
-		return jdbcConnection.getConnectException();
+		return connectException;
 	}
 
 	public String getProviderName() {
-		return ((IServerVersionProvider)jdbcConnection).getProviderName();
+		return jdbcConnection == null ? getConnectionProfile().getProperties(
+				ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID)
+				.getProperty(ConnectionProfileConstants.PROP_SERVER_NAME)
+				: ((IServerVersionProvider) jdbcConnection).getProviderName();
 	}
 
 	public Version getProviderVersion() {
-		return ((IServerVersionProvider)jdbcConnection).getProviderVersion();
+		return jdbcConnection == null ? Version
+				.valueOf(getConnectionProfile()
+						.getProperties(
+								ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID)
+						.getProperty(
+								ConnectionProfileConstants.PROP_SERVER_VERSION))
+				: ((IServerVersionProvider) jdbcConnection)
+						.getProviderVersion();
 	}
 
 	protected String getTechnologyRootKey() {
@@ -784,14 +802,67 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 
 	public String getTechnologyName() {
-		return ((IServerVersionProvider)jdbcConnection).getTechnologyName();
+		return jdbcConnection == null ? getConnectionProfile()
+				.getProperties(
+						ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID)
+				.getProperty(
+						ConnectionProfileConstants
+								.createTechnologyNameKey(getTechnologyRootKey()))
+				: ((IServerVersionProvider) jdbcConnection).getTechnologyName();
 	}
 
 	public Version getTechnologyVersion() {
-		return ((IServerVersionProvider)jdbcConnection).getTechnologyVersion();
+		return jdbcConnection == null ? Version
+				.valueOf(getConnectionProfile()
+						.getProperties(
+								ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID)
+						.getProperty(
+								ConnectionProfileConstants
+										.createTechnologyVersionKey(getTechnologyRootKey())))
+				: ((IServerVersionProvider) jdbcConnection)
+						.getTechnologyVersion();
 	}
 
 	public Object getRawConnection() {
 		return this;
 	}
+
+	public void attach(IProgressMonitor monitor) throws CoreException {
+		initializeJDBCConnection();
+		monitor.done();
+	}
+
+	public void detach(IProgressMonitor monitor) throws CoreException {
+		save(monitor);
+		removeSharedConnection();
+	}
+
+	public boolean isWorkingOffline() {
+		return connectException == null && sharedConnection == null
+				&& sharedDatabase != null;
+	}
+
+	public void save(IProgressMonitor monitor) throws CoreException {
+		monitor
+				.beginTask(
+						"Save Offline SQL Model for " + getName(), 100);
+		monitor.worked(5);
+		new CatalogUtil().load(sharedDatabase, monitor, 90);
+		if (!monitor.isCanceled()) {
+			monitor.subTask(""); //$NON-NLS-1$
+			try {
+				cacheDatabase(sharedDatabase);
+			}
+			catch (IOException e) {
+				Status status = new Status(Status.ERROR, RDBCorePlugin
+						.getDefault().getBundle().getSymbolicName(), -1,
+						"Error saving offline SQL Model for {0}.", e);
+				throw new CoreException(status);
+			}
+		}
+		else {
+			throw new CoreException(Status.CANCEL_STATUS);
+		}
+	}
+
 }

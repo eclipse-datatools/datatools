@@ -131,7 +131,7 @@ public abstract class CommonContentProviderBase implements
 		if (extension == null) {
 			extension = createContentExtension(profile);
 			mProfileToExtensionNode.put(profile, extension);
-			if (profile.isConnected()) {
+			if (profile.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
 				extension.openConnection();
 			}
 		}

@@ -77,7 +77,7 @@ public class DisconnectAction implements IActionDelegate {
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) instanceof IConnectionProfile) {
 				IConnectionProfile profile = (IConnectionProfile) list.get(i);
-				if (!profile.isConnected())
+				if (profile.getConnectionState() == IConnectionProfile.DISCONNECTED_STATE)
 					return false;
 			}
 		}

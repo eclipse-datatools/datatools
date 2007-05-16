@@ -45,6 +45,8 @@ public class SharedImages {
 
 	public static String IMAGE_RUNNING = "/image/running"; //$NON-NLS-1$
 
+	public static String IMAGE_OFFLINE = "/image/offline"; //$NON-NLS-1$
+
 	public static final String IMG_OBJ_SERVER_STARTED = NAME_PREFIX
 			+ "server_started_obj.gif"; //$NON-NLS-1$
 

@@ -11,6 +11,8 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui;
 import java.net.URL;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.CatalogTaskLabelProvider;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.CatalogUtil;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -76,6 +78,7 @@ public class RDBCoreUIPlugin extends AbstractUIPlugin
         try
         {
             super.start(ctx);
+            CatalogUtil.setDefaultCatalogTaskLabelProvider(new CatalogTaskLabelProvider());
             imageRegistry = this.createImageRegistry();
         }
         catch (Throwable e)
@@ -90,6 +93,7 @@ public class RDBCoreUIPlugin extends AbstractUIPlugin
 	{
         try
         {
+            CatalogUtil.setDefaultCatalogTaskLabelProvider(null);
             super.stop(ctx);
         }
         catch (Throwable e)
