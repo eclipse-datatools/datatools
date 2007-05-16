@@ -2,14 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws.ui; singleton:=true
-Bundle-Version: 1.0.0.200705162
+Bundle-Version: 1.0.0.200705171
 Bundle-Activator: org.eclipse.datatools.enablement.oda.ws.ui.Activator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="3.0.3",
- org.eclipse.datatools.enablement.oda.ws,
- org.eclipse.datatools.enablement.oda.xml.ui,
- javax.wsdl;bundle-version="[1.4.0,1.5.0)"
+Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="[3.0.4,4.0.0)",
+ org.eclipse.datatools.enablement.oda.ws;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.enablement.oda.xml.ui;bundle-version="[1.0.1,2.0.0)",
+ javax.wsdl;bundle-version="[1.4.0,1.5.0)",
+ org.w3c.dom
 Eclipse-LazyStart: true

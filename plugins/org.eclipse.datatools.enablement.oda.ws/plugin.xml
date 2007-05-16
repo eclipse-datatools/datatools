@@ -7,7 +7,7 @@
             driverClass="org.eclipse.datatools.enablement.oda.ws.impl.Driver"
             defaultDisplayName="%data.source.name"
             setThreadContextClassLoader="false"
-            odaVersion="3.0"
+            odaVersion="3.1"
             id="org.eclipse.datatools.enablement.oda.ws">
          <properties>
             <propertyGroup
