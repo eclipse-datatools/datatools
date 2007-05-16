@@ -254,7 +254,8 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
                 Object result = null; //getViewer().getParent(element);
                 result = result != null ? result : element instanceof IVirtualNode ? ((IVirtualNode) element).getParent()
                         : null;
-                result = result != null ? result : containmentService.getContainer((EObject) element);
+                result = result != null ? result : element instanceof EObject ? containmentService.getContainer((EObject) element)
+                		: null;
                 return result;
             }
         }
