@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
+import java.util.Collection;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.action.Action;
@@ -58,8 +60,9 @@ public class ViewPropertyAction extends Action {
 	public static boolean hasContributors(Object selected) {
 		if (selected == null || !(selected instanceof IAdaptable))
 			return false;
-		return PropertyPageContributorManager.getManager().hasContributorsFor(
-				selected);
+		Collection contributors = PropertyPageContributorManager.getManager()
+				.getApplicableContributors(selected);
+		return contributors != null && contributors.size() > 0;
 	}
 
 	/*
