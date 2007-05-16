@@ -306,8 +306,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private static boolean isBidi( )
 	{
-		String lang = ( String ) System.getProperties( ).get( "osgi.nl.user" );
-		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang) 
+		String lang = ( String ) System.getProperties( ).get( "osgi.nl.user" ); //$NON-NLS-1$
+		if ("iw".equals(lang) || "ar".equals(lang) || "fa".equals(lang)  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				|| "ur".equals(lang)) //$NON-NLS-1$
 			return true;
 		else
