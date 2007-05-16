@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: DTP ODA-XML Driver
+Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml;singleton:=true
-Bundle-Version: 1.0.1.200704281
+Bundle-Version: 1.0.1.200705161
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
