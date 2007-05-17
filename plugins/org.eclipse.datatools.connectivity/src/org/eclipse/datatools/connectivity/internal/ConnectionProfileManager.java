@@ -12,7 +12,9 @@ package org.eclipse.datatools.connectivity.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -69,6 +71,8 @@ public class ConnectionProfileManager {
 	private Map mConfigurationTypes = null;
 
 	private Map mConnectionFactoryAdapters = null;
+	
+	private Collection mDisabledProviders = null;
 
 	public static ConnectionProfileManager getInstance() {
 		return sInstance;
@@ -130,6 +134,7 @@ public class ConnectionProfileManager {
 		mCategories = new HashMap();
 		mConfigurationTypes = new HashMap();
 		mConnectionFactoryAdapters = new HashMap();
+		mDisabledProviders = new HashSet();
 
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IExtensionPoint exp = registry.getExtensionPoint(EXTENSION_ID);
@@ -184,6 +189,8 @@ public class ConnectionProfileManager {
 		
 		registerConnectionFactoryAdapters();
 		
+		mProviders.keySet().removeAll(mDisabledProviders);
+		
 		initializeRepositoriesEnabledProperty();
 	}
 
@@ -198,6 +205,9 @@ public class ConnectionProfileManager {
 		            ConnectivityPlugin.getDefault()
 		                .getResourceString( "assert.invalid.profile", //$NON-NLS-1$
 						new Object[] { p.getId() + ": " + element.toString() } )); //$NON-NLS-1$
+		    
+		    // Mark the existing profile to be disabled
+		    mDisabledProviders.add(p.getId());
 		}
 	}
 
