@@ -108,7 +108,7 @@ public class DefaultIdentifierValidator implements IIdentifierValidator
     public ValidatorMessage doValidCheck(String value, int identifierType, DatabaseIdentifier databaseIdentifier)
     {
         // step 1 check character length
-        ValidatorMessage errorMsg = checkIdentiferLength(value);
+        ValidatorMessage errorMsg = checkIdentiferLength(value, identifierType);
         if (ValidatorMessage.hasError(errorMsg, _level))
         {
             return errorMsg;
@@ -261,7 +261,7 @@ public class DefaultIdentifierValidator implements IIdentifierValidator
      * @param value
      * @return
      */
-    protected ValidatorMessage checkIdentiferLength(String value)
+    protected ValidatorMessage checkIdentiferLength(String value, int identifierType)
     {
         return null;
     }
