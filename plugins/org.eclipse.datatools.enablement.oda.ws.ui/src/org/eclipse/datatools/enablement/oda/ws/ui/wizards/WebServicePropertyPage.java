@@ -59,4 +59,14 @@ public class WebServicePropertyPage extends DataSourceEditorPage
 		pageHelper.initCustomControl( profileProps );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#refresh()
+	 */
+	public void refresh( )
+	{
+		enableAllControls( getControl( ), isSessionEditable( ) );
+	}
+
 }

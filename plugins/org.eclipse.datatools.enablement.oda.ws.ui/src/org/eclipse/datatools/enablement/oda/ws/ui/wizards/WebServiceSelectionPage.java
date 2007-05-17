@@ -29,9 +29,13 @@ public class WebServiceSelectionPage extends DataSourceWizardPage
 	public WebServiceSelectionPage( String pageName )
 	{
 		super( pageName );
-		// TODO Auto-generated constructor stub
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 */
 	public void createPageCustomControl( Composite parent )
 	{
 		if ( pageHelper == null )
@@ -41,21 +45,41 @@ public class WebServiceSelectionPage extends DataSourceWizardPage
 		pageHelper.initCustomControl( wsProperties );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#setInitialProperties(java.util.Properties)
+	 */
 	public void setInitialProperties( Properties dataSourceProps )
 	{
 		wsProperties = dataSourceProps;
 		if ( pageHelper == null )
 			return; // ignore, wait till createPageCustomControl to initialize
-		
+
 		pageHelper.initCustomControl( wsProperties );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#collectCustomProperties()
+	 */
 	public Properties collectCustomProperties( )
 	{
 		if ( pageHelper != null )
 			return pageHelper.collectCustomProperties( wsProperties );
 
 		return ( wsProperties != null ) ? wsProperties : new Properties( );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#refresh()
+	 */
+	public void refresh( )
+	{
+		enableAllControls( getControl( ), isSessionEditable( ) );
 	}
 
 }
