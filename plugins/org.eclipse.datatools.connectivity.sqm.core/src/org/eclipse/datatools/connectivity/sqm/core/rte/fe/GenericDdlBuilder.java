@@ -7,6 +7,8 @@ import java.util.Iterator;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
+import org.eclipse.datatools.modelbase.sql.constraints.Assertion;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
@@ -16,12 +18,23 @@ import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
+import org.eclipse.datatools.modelbase.sql.datatypes.AttributeDefinition;
+import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
+import org.eclipse.datatools.modelbase.sql.datatypes.Domain;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.routines.Function;
+import org.eclipse.datatools.modelbase.sql.routines.Method;
+import org.eclipse.datatools.modelbase.sql.routines.Parameter;
+import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
+import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
+import org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.schema.Sequence;
 import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
@@ -32,6 +45,7 @@ import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.CheckType;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.EObject;
@@ -102,12 +116,43 @@ public class GenericDdlBuilder {
     protected final static String REFERENCING          = "REFERENCING"; //$NON-NLS-1$
     protected final static String NEW                  = "NEW"; //$NON-NLS-1$
     protected final static String OLD                  = "OLD"; //$NON-NLS-1$
-    protected final static String NEW_TABLE            = "NEW_TABLE"; //$NON-NLS-1$
-    protected final static String OLD_TABLE            = "OLD_TABLE"; //$NON-NLS-1$
+    protected final static String NEW_TABLE            = "NEW TABLE"; //$NON-NLS-1$
+    protected final static String OLD_TABLE            = "OLD TABLE"; //$NON-NLS-1$
     protected final static String EACH                 = "EACH"; //$NON-NLS-1$
     protected final static String ROW                  = "ROW"; //$NON-NLS-1$
     protected final static String STATEMENT            = "STATEMENT"; //$NON-NLS-1$
     protected final static String WHEN                 = "WHEN"; //$NON-NLS-1$
+    protected static final String LANGUAGE             = "LANGUAGE"; //$NON-NLS-1$
+    protected static final String PARAMETER_STYLE      = "PARAMETER STYLE"; //$NON-NLS-1$
+    protected static final String DETERMINISTIC        = "DETERMINISTIC"; //$NON-NLS-1$
+    protected static final String NOT_DETERMINISTIC    = "NOT DETERMINISTIC"; //$NON-NLS-1$
+    protected static final String DYNAMIC_RESULT_SETS  = "DYNAMIC RESULT SETS"; //$NON-NLS-1$
+    protected static final String RETURNS              = "RETURNS"; //$NON-NLS-1$
+    protected static final String CAST_FROM            = "CAST FROM"; //$NON-NLS-1$
+    protected static final String RETURNS_NULL_ON_NULL_INPUT = "RETURNS NULL ON NULL INPUT"; //$NON-NLS-1$
+    protected static final String CALLED_ON_NULL_INPUT = "CALLED ON NULL INPUT"; //$NON-NLS-1$
+    protected static final String TRANSFORM_GROUP      = "TRANSFORM GROUP"; //$NON-NLS-1$
+    protected static final String STATIC_DISPATCH      = "STATIC DISPATCH"; //$NON-NLS-1$
+    protected static final String SCHEMA               = "SCHEMA"; //$NON-NLS-1$
+    protected static final String AUTHORIZATION        = "AUTHORIZATION"; //$NON-NLS-1$
+    protected static final String GLOBAL               = "GLOBAL"; //$NON-NLS-1$
+    protected static final String TEMPORARY            = "TEMPORARY"; //$NON-NLS-1$
+    protected static final String ON_COMMIT            = "ON COMMIT"; //$NON-NLS-1$
+    protected static final String PRESERVE             = "PRESERVE"; //$NON-NLS-1$
+    protected static final String ROWS                 = "ROWS"; //$NON-NLS-1$
+    protected static final String UNDER                = "UNDER"; //$NON-NLS-1$
+    protected static final String INSTANTIABLE         = "INSTANTIABLE"; //$NON-NLS-1$
+    protected static final String NOT_INSTANTIABLE     = "NOT INSTANTIABLE"; //$NON-NLS-1$
+    protected static final String FINAL                = "FINAL"; //$NON-NLS-1$
+    protected static final String NOT_FINAL            = "NOT FINAL"; //$NON-NLS-1$
+    protected static final String OVERRIDING           = "OVERRIDING"; //$NON-NLS-1$
+    protected static final String STATIC               = "STATIC"; //$NON-NLS-1$
+    protected static final String INSTANCE             = "INSTANCE"; //$NON-NLS-1$
+    protected static final String SPECIFIC             = "SPECIFIC"; //$NON-NLS-1$
+    protected static final String DOMAIN               = "DOMAIN"; //$NON-NLS-1$
+    protected static final String REFERENCES_ARE_CHECKED = "REFERENCES ARE CHECKED"; //$NON-NLS-1$
+    protected static final String REFERENCES_ARE_NOT_CHECKED = "REFERENCES ARE NOT CHECKED"; //$NON-NLS-1$
+	protected static final String ASSERTION            = "ASSERTION"; //$NON-NLS-1$
 
     
     public String dropTrigger(Trigger trigger, boolean quoteIdentifiers, boolean qualifyNames) {
@@ -131,21 +176,69 @@ public class GenericDdlBuilder {
         return DROP + SPACE + TABLE + SPACE + getName(table, quoteIdentifiers, qualifyNames);
     }
 
-    public String createTable(BaseTable table, boolean quoteIdentifiers, boolean qualifyNames) {
-        String statement = CREATE + SPACE + TABLE + SPACE + getName(table, quoteIdentifiers, qualifyNames)
-        	+ SPACE + LEFT_PARENTHESIS + NEWLINE ;
+	public String dropProcedure(Procedure procedure, boolean quoteIdentifiers, boolean qualifyNames) {
+        return DROP + SPACE + PROCEDURE + SPACE + getName(procedure, quoteIdentifiers, qualifyNames);
+	}
+
+	public String dropFunction(UserDefinedFunction function, boolean quoteIdentifiers, boolean qualifyNames) {
+        return DROP + SPACE + FUNCTION + SPACE + getName(function, quoteIdentifiers, qualifyNames);
+	}
+
+	public String dropSchema(Schema schema, boolean quoteIdentifiers, boolean qualifyNames) {
+        return DROP + SPACE + SCHEMA + SPACE + getName(schema, quoteIdentifiers, qualifyNames);
+	}
+
+	public String dropUserDefinedType(UserDefinedType type, boolean quoteIdentifiers, boolean qualifyNames) {
+		if (type instanceof Domain) {
+	        return DROP + SPACE + DOMAIN + SPACE + getName(type, quoteIdentifiers, qualifyNames);
+		}
+        return DROP + SPACE + TYPE + SPACE + getName(type, quoteIdentifiers, qualifyNames);
+	}
+
+	public String dropAssertion(Assertion assertion, boolean quoteIdentifiers, boolean qualifyNames) {
+        return DROP + SPACE + ASSERTION + SPACE + getName(assertion, quoteIdentifiers, qualifyNames);
+	}
+
+	public String createTable(BaseTable table, boolean quoteIdentifiers, boolean qualifyNames) {
+        StringBuffer statement = new StringBuffer();
+        boolean isTemp = table instanceof TemporaryTable;
+        
+        statement.append(CREATE).append(SPACE);
+        if (isTemp) {
+        	if (((TemporaryTable)table).isLocal()) {
+        		statement.append(LOCAL).append(SPACE);
+        	}
+        	else {
+        		statement.append(GLOBAL).append(SPACE);
+        	}
+        	statement.append(TEMPORARY).append(SPACE);
+        }
+        statement.append(TABLE).append(SPACE).append(getName(table, quoteIdentifiers, qualifyNames)).append(SPACE);
+        
+        statement.append(LEFT_PARENTHESIS).append(NEWLINE);
         Iterator it = table.getColumns().iterator();
         while(it.hasNext()) {
             Column column = (Column) it.next();
-            statement += TAB + TAB + getColumnString(column, quoteIdentifiers);
+            statement.append(TAB).append(TAB).append(getColumnString(column, quoteIdentifiers));
             if(it.hasNext()) {
-                statement += COMMA;                
+                statement.append(COMMA);                
             }
-            statement += NEWLINE;                
+            statement.append(NEWLINE);                
         }
-        statement += TAB + RIGHT_PARENTHESIS;
+        statement.append(TAB).append(RIGHT_PARENTHESIS);
         
-        return statement;
+        if (isTemp) {
+        	statement.append(NEWLINE).append(TAB).append(ON_COMMIT).append(SPACE);
+        	if (((TemporaryTable)table).isDeleteOnCommit()) {
+        		statement.append(DELETE).append(SPACE);
+        	}
+        	else {
+        		statement.append(PRESERVE).append(SPACE);
+        	}
+        	statement.append(ROWS);
+        }
+        
+        return statement.toString();
     }
     
     public String alterTableAddColumn(Column column,  boolean quoteIdentifiers, boolean qualifyNames) {
@@ -235,10 +328,16 @@ public class GenericDdlBuilder {
         final String oldTable = trigger.getOldTable();
 
         if(newRow != null && newRow.length() != 0) {
-            statement += REFERENCING + SPACE + NEW + SPACE + AS + SPACE + newRow + NEWLINE;
+            statement += REFERENCING + SPACE + NEW + SPACE + ROW + SPACE + AS + SPACE + newRow + NEWLINE;
         }
         if(oldRow != null && oldRow.length() != 0) {
-            statement += REFERENCING + SPACE + OLD + SPACE + AS + SPACE + oldRow + NEWLINE;
+            statement += REFERENCING + SPACE + OLD + SPACE + ROW + SPACE + AS + SPACE + oldRow + NEWLINE;
+        }
+        if(newTable != null && newTable.length() != 0) {
+            statement += REFERENCING + SPACE + NEW + SPACE + TABLE + SPACE + AS + SPACE + newTable + NEWLINE;
+        }
+        if(oldTable != null && oldTable.length() != 0) {
+            statement += REFERENCING + SPACE + OLD + SPACE + TABLE + SPACE + AS + SPACE + oldTable + NEWLINE;
         }
 
         if(trigger.getActionGranularity() == ActionGranularityType.ROW_LITERAL) {
@@ -257,14 +356,455 @@ public class GenericDdlBuilder {
         return statement;
     }
     
+    public String createProcedure(Procedure procedure,
+			boolean quoteIdentifiers, boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE PROCEDURE procedure_name
+		statement.append(CREATE).append(SPACE).append(PROCEDURE).append(SPACE)
+				.append(getName(procedure, quoteIdentifiers, qualifyNames))
+				.append(SPACE);
+
+		// parameters
+		statement.append(getParameterListClause(procedure,quoteIdentifiers));
+
+		// begin characteristics
+		// language
+		if (procedure.getLanguage() != null
+				&& procedure.getLanguage().length() > 0) {
+			statement.append(TAB).append(LANGUAGE).append(SPACE).append(
+					procedure.getLanguage()).append(NEWLINE);
+		}
+
+		// parameter style
+		if (procedure.getParameterStyle() != null
+				&& procedure.getParameterStyle().length() > 0) {
+			statement.append(TAB).append(PARAMETER_STYLE).append(SPACE).append(
+					procedure.getParameterStyle()).append(NEWLINE);
+		}
+
+		// determinism
+		if (procedure.isDeterministic()) {
+			statement.append(TAB).append(DETERMINISTIC).append(NEWLINE);
+		}
+		else {
+			statement.append(TAB).append(NOT_DETERMINISTIC).append(NEWLINE);
+		}
+
+		// SQL data access
+		if (procedure.getSqlDataAccess() != null) {
+			statement.append(TAB).append(
+					procedure.getSqlDataAccess().toString()).append(NEWLINE);
+		}
+
+		// null-call
+		// nothing to do
+
+		// transform group
+		// nothing to do
+
+		// dynamic result sets
+		if (procedure.getMaxResultSets() > 0) {
+			statement.append(TAB).append(DYNAMIC_RESULT_SETS).append(SPACE)
+					.append(procedure.getMaxResultSets()).append(NEWLINE);
+		}
+		// end characteristics
+
+		// body
+		if (procedure.getSource() != null) {
+			String body = procedure.getSource().getBody();
+			if (body != null && body.length() > 0) {
+				statement.append(body).append(NEWLINE);
+			}
+		}
+
+		return statement.toString();
+	}
+
+    public String createUserDefinedFunction(UserDefinedFunction function, boolean quoteIdentifiers, boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE FUNCTION function_name
+		statement.append(CREATE).append(SPACE).append(FUNCTION).append(SPACE)
+				.append(getName(function, quoteIdentifiers, qualifyNames))
+				.append(SPACE);
+
+		// parameters
+		statement.append(getParameterListClause(function,quoteIdentifiers));
+		
+		// returns
+		statement.append(getReturnsClause(function,quoteIdentifiers));
+
+		// begin characteristics
+		// language
+		if (function.getLanguage() != null
+				&& function.getLanguage().length() > 0) {
+			statement.append(TAB).append(LANGUAGE).append(SPACE).append(
+					function.getLanguage()).append(NEWLINE);
+		}
+
+		// parameter style
+		if (function.getParameterStyle() != null
+				&& function.getParameterStyle().length() > 0) {
+			statement.append(TAB).append(PARAMETER_STYLE).append(SPACE).append(
+					function.getParameterStyle()).append(NEWLINE);
+		}
+
+		// determinism
+		if (function.isDeterministic()) {
+			statement.append(TAB).append(DETERMINISTIC).append(NEWLINE);
+		}
+		else {
+			statement.append(TAB).append(NOT_DETERMINISTIC).append(NEWLINE);
+		}
+
+		// SQL data access
+		if (function.getSqlDataAccess() != null) {
+			statement.append(TAB).append(
+					function.getSqlDataAccess().toString()).append(NEWLINE);
+		}
+
+		// null-call
+		if (function.isNullCall()) {
+			statement.append(TAB).append(RETURNS_NULL_ON_NULL_INPUT).append(NEWLINE);
+		}
+		else {
+			statement.append(TAB).append(CALLED_ON_NULL_INPUT).append(NEWLINE);
+		}
+
+		// transform group
+		if (function.getTransformGroup() != null
+				&& function.getTransformGroup().length() > 0) {
+			statement.append(TAB).append(TRANSFORM_GROUP).append(SPACE).append(
+					function.getTransformGroup()).append(NEWLINE);
+		}
+
+		// dynamic result sets
+		// nothing to do
+		// end characteristics
+
+		// dispatch
+		if (function.isStatic()) {
+			statement.append(TAB).append(STATIC_DISPATCH).append(NEWLINE);
+		}
+
+		// body
+		if (function.getSource() != null) {
+			String body = function.getSource().getBody();
+			if (body != null && body.length() > 0) {
+				statement.append(body).append(NEWLINE);
+			}
+		}
+
+		return statement.toString();
+    }
+    
+    protected String getParameterListClause(Routine routine, boolean quoteIdentifiers) {
+    	StringBuffer statement = new StringBuffer();
+		statement.append(LEFT_PARENTHESIS).append(NEWLINE);
+		for (Iterator it = routine.getParameters().iterator(); it.hasNext();) {
+			Parameter param = (Parameter) it.next();
+			String name = param.getName();
+			ParameterMode mode = param.getMode();
+
+			// formatting
+			statement.append(TAB).append(TAB);
+
+			// mode (IN, INOUT, OUT)
+			if (mode != null) {
+				statement.append(mode.toString()).append(SPACE);
+			}
+
+			// name
+			if (name != null && name.length() > 0) {
+				statement.append(
+						quoteIdentifiers ? getQuotedIdentifierString(param)
+								: name).append(SPACE);
+			}
+
+			// type
+			statement.append(getDataTypeString(param, routine.getSchema()));
+
+			// locator
+			// TODO: anything?
+
+			if (it.hasNext()) {
+				// prepare for the next parameter
+				statement.append(COMMA);
+				statement.append(NEWLINE);
+			}
+		}
+		statement.append(RIGHT_PARENTHESIS).append(NEWLINE);
+		
+		return statement.toString();
+    }
+    
+    protected String getReturnsClause(Function function, boolean quoteIdentifiers) {
+    	StringBuffer statement = new StringBuffer();
+    	
+		statement.append(TAB).append(RETURNS).append(SPACE);
+		if (function.getReturnScalar() != null) {
+			statement.append(getDataTypeString(function.getReturnScalar(),
+					function.getSchema()));
+			if (function.getReturnCast() != null) {
+				statement.append(SPACE).append(CAST_FROM).append(
+						getDataTypeString(function.getReturnCast(), function
+								.getSchema()));
+			}
+		}
+		else if (function.getReturnTable() != null) {
+			statement.append(ROW).append(SPACE).append(LEFT_PARENTHESIS).append(NEWLINE);
+			for (Iterator it = function.getReturnTable().getColumns().iterator(); it.hasNext();) {
+				Column col = (Column) it.next();
+				String name = col.getName();
+
+				// formatting
+				statement.append(TAB).append(TAB);
+				
+				// name
+				if (name != null && name.length() > 0) {
+					statement.append(
+							quoteIdentifiers ? getQuotedIdentifierString(col)
+									: name).append(SPACE);
+				}
+				
+				// type
+				statement.append(getDataTypeString(col,function.getSchema()));
+				
+				if (it.hasNext()) {
+					// prepare for the next parameter
+					statement.append(COMMA);
+					statement.append(NEWLINE);
+				}
+			}
+			statement.append(TAB).append(RIGHT_PARENTHESIS);
+		}
+		statement.append(NEWLINE);
+		
+		return statement.toString();
+    }
+
+    public String createSchema(Schema schema, boolean quoteIdentifiers,
+			boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE SCHEMA schema_name
+		statement.append(CREATE).append(SPACE).append(SCHEMA).append(SPACE)
+				.append(getName(schema, quoteIdentifiers, qualifyNames));
+
+		// AUTHORIZATION
+		if (schema.getOwner() != null) {
+			statement.append(SPACE).append(AUTHORIZATION).append(SPACE).append(
+					getName(schema.getOwner(), quoteIdentifiers));
+		}
+
+		return statement.toString();
+	}
+
+    public String createUserDefinedType(UserDefinedType type, boolean quoteIdentifiers,
+			boolean qualifyNames) {
+		if (type instanceof StructuredUserDefinedType) {
+			return createStructuredUserDefinedType((StructuredUserDefinedType)type,quoteIdentifiers,qualifyNames);
+		}
+		else if (type instanceof Domain) {
+			return createDomain((Domain)type,quoteIdentifiers,qualifyNames);
+		}
+		else if (type instanceof DistinctUserDefinedType) {
+			return createDistinctUserDefinedType((DistinctUserDefinedType)type,quoteIdentifiers,qualifyNames);
+		}
+
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE TYPE type_name
+		statement.append(CREATE).append(SPACE).append(TYPE).append(SPACE)
+				.append(getName(type, quoteIdentifiers, qualifyNames));
+
+		return statement.toString();
+	}
+    
+    protected String createStructuredUserDefinedType(StructuredUserDefinedType type, boolean quoteIdentifiers,
+			boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE TYPE type_name
+		statement.append(CREATE).append(SPACE).append(TYPE).append(SPACE)
+				.append(getName(type, quoteIdentifiers, qualifyNames)).append(NEWLINE);
+
+		// subtype
+		if (type.getSuper() != null) {
+			statement.append(TAB).append(UNDER).append(SPACE).append(getName(type.getSuper(),quoteIdentifiers,qualifyNames)).append(NEWLINE);
+		}
+		
+		statement.append(TAB).append(AS).append(SPACE).append(LEFT_PARENTHESIS).append(NEWLINE);
+		for (Iterator it = type.getAttributes().iterator(); it.hasNext();) {
+			AttributeDefinition attr = (AttributeDefinition)it.next();
+			statement.append(TAB).append(TAB).append(getAttributeString(attr,quoteIdentifiers));
+		}
+		statement.append(TAB).append(RIGHT_PARENTHESIS).append(NEWLINE);
+		
+		// instantiable
+		if (type.isInstantiable()) {
+			statement.append(TAB).append(INSTANTIABLE).append(NEWLINE);
+		}
+		else {
+			statement.append(TAB).append(NOT_INSTANTIABLE).append(NEWLINE);
+		}
+		
+		// finality
+		if (type.isFinal()) {
+			// should never be this
+			statement.append(TAB).append(FINAL).append(NEWLINE);
+		}
+		else {
+			statement.append(TAB).append(NOT_FINAL).append(NEWLINE);
+		}
+		
+		// reference type
+		// nothing to do
+		
+		// cast
+		// nothing to do
+		
+		// method list
+		for (Iterator methodIt = type.getMethods().iterator(); methodIt.hasNext(); ) {
+			Method method = (Method)methodIt.next();
+			
+			if (method.isOverriding()) {
+				statement.append(OVERRIDING).append(SPACE);
+			}
+
+			if (method.isStatic()) {
+				statement.append(STATIC);
+			}
+			else {
+				statement.append(INSTANCE);
+			}
+			statement.append(SPACE).append(getName(method,quoteIdentifiers,qualifyNames)).append(SPACE);
+			
+			// parameters
+			statement.append(getParameterListClause(method,quoteIdentifiers));
+			
+			// returns
+			statement.append(getReturnsClause(method,quoteIdentifiers));
+			
+			if (method.getSpecificName() != null && method.getSpecificName().length() > 0) {
+				statement.append(TAB).append(SPECIFIC).append(SPACE).append(getSpecificName(method,quoteIdentifiers,qualifyNames)).append(NEWLINE);
+			}
+
+			// begin characteristics
+			// language
+			if (method.getLanguage() != null
+					&& method.getLanguage().length() > 0) {
+				statement.append(TAB).append(LANGUAGE).append(SPACE).append(
+						method.getLanguage()).append(NEWLINE);
+			}
+
+			// parameter style
+			if (method.getParameterStyle() != null
+					&& method.getParameterStyle().length() > 0) {
+				statement.append(TAB).append(PARAMETER_STYLE).append(SPACE).append(
+						method.getParameterStyle()).append(NEWLINE);
+			}
+
+			// determinism
+			if (method.isDeterministic()) {
+				statement.append(TAB).append(DETERMINISTIC).append(NEWLINE);
+			}
+			else {
+				statement.append(TAB).append(NOT_DETERMINISTIC).append(NEWLINE);
+			}
+
+			// SQL data access
+			if (method.getSqlDataAccess() != null) {
+				statement.append(TAB).append(
+						method.getSqlDataAccess().toString()).append(NEWLINE);
+			}
+
+			// null-call
+			if (method.isNullCall()) {
+				statement.append(TAB).append(RETURNS_NULL_ON_NULL_INPUT).append(NEWLINE);
+			}
+			else {
+				statement.append(TAB).append(CALLED_ON_NULL_INPUT).append(NEWLINE);
+			}
+
+			// transform group
+			if (method.getTransformGroup() != null
+					&& method.getTransformGroup().length() > 0) {
+				statement.append(TAB).append(TRANSFORM_GROUP).append(SPACE).append(
+						method.getTransformGroup()).append(NEWLINE);
+			}
+			// end characteristics
+
+			if (methodIt.hasNext()) {
+				// prepare for the next parameter
+				statement.append(COMMA);
+				statement.append(NEWLINE);
+			}
+		}
+
+		return statement.toString();
+    }
+
+    protected String createDomain(Domain type, boolean quoteIdentifiers,
+			boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE DOMAIN type_name
+		statement.append(CREATE).append(SPACE).append(DOMAIN).append(SPACE)
+				.append(getName(type, quoteIdentifiers, qualifyNames)).append(
+						SPACE).append(AS).append(SPACE).append(
+						getDataTypeString(type));
+
+		if (type.getDefaultValue() != null) {
+			statement.append(SPACE).append(DEFAULT).append(SPACE).append(
+					type.getDefaultValue());
+		}
+		
+		for (Iterator it = type.getConstraint().iterator(); it.hasNext(); ) {
+			Object obj = it.next();
+			if (obj instanceof CheckConstraint) {
+				statement.append(NEWLINE).append(getCheckConstraintClause((CheckConstraint)obj, quoteIdentifiers));
+			}
+		}
+
+		return statement.toString();
+	}
+
+    protected String createDistinctUserDefinedType(
+			DistinctUserDefinedType type, boolean quoteIdentifiers,
+			boolean qualifyNames) {
+		StringBuffer statement = new StringBuffer();
+
+		// CREATE TYPE type_name
+		statement.append(CREATE).append(SPACE).append(TYPE).append(SPACE)
+				.append(getName(type, quoteIdentifiers, qualifyNames)).append(
+						SPACE).append(AS).append(SPACE).append(
+						getDataTypeString(type)).append(SPACE).append(FINAL);
+
+		return statement.toString();
+	}
+
+    public String createAssertion(Assertion assertion,
+			boolean quoteIdentifiers, boolean qualifyNames) {
+		String text = CREATE + SPACE + ASSERTION + SPACE
+				+ getName(assertion, quoteIdentifiers, qualifyNames) + SPACE
+				+ CHECK + SPACE + LEFT_PARENTHESIS
+				+ assertion.getSearchCondition().getSQL() + RIGHT_PARENTHESIS;
+		if (assertion.isDeferrable()) {
+			text += SPACE + getDeferrableClause(assertion);
+		}
+		return text;
+	}
+
     public String addCheckConstraint(CheckConstraint constraint, boolean quoteIdentifiers, boolean qualifyNames) {
         BaseTable table = constraint.getBaseTable();
         String tableName = table.getName();
         String schemaName = table.getSchema().getName();
 
         if(quoteIdentifiers) {
-            tableName = this.getDoubleQuotedString(tableName);
-            schemaName = this.getDoubleQuotedString(schemaName);
+            tableName = this.getQuotedIdentifierString(table);
+            schemaName = this.getQuotedIdentifierString(table.getSchema());
         }
         if(qualifyNames) {
             tableName = schemaName + DOT + tableName;
@@ -291,7 +831,7 @@ public class GenericDdlBuilder {
             parentKey = this.getKeyColumns(uniqueConstraint);
         }
         else if(index != null) {
-            Table indexedTable = index.getTable();
+        	parentTable = index.getTable();
             parentKey = this.getParentKeyColumns(index, quoteIdentifiers);
         }
         if(parentTable == null) {
@@ -374,7 +914,7 @@ public class GenericDdlBuilder {
     protected String getColumnString(Column column, boolean quoteIdentifiers) {
         String columnName = column.getName();
         if(quoteIdentifiers) {
-            columnName = this.getDoubleQuotedString(columnName);
+            columnName = this.getQuotedIdentifierString(column);
         }
         
         String columnString = columnName + SPACE + getDataTypeString(column,column.getTable().getSchema());
@@ -388,6 +928,53 @@ public class GenericDdlBuilder {
         }
         
         return columnString;
+    }
+
+    protected String getAttributeString(AttributeDefinition attr, boolean quoteIdentifiers) {
+        String attrName = attr.getName();
+        if(quoteIdentifiers) {
+        	attrName = this.getQuotedIdentifierString(attr);
+        }
+        
+        StringBuffer attrString = new StringBuffer();
+        
+        // name
+        attrString.append(attrName).append(SPACE);
+        
+        // type
+        attrString.append(getDataTypeString(attr,((UserDefinedType)attr.eContainer()).getSchema())).append(SPACE);
+        
+        // scope
+        if (attr.isScopeChecked()) {
+        	attrString.append(REFERENCES_ARE_CHECKED);
+        }
+        else {
+        	attrString.append(REFERENCES_ARE_NOT_CHECKED);
+        }
+        if (attr.getScopeCheck() != null && attr.getScopeCheck() != ReferentialActionType.NO_ACTION_LITERAL) {
+        	attrString.append(SPACE).append(ON).append(SPACE).append(DELETE).append(SPACE);
+        	switch(attr.getScopeCheck().getValue()) {
+        	case ReferentialActionType.CASCADE:
+        		attrString.append(CASCADE);
+        		break;
+        	case ReferentialActionType.RESTRICT:
+        		attrString.append(RESTRICT);
+        		break;
+        	case ReferentialActionType.SET_NULL:
+        		attrString.append(SET).append(SPACE).append(NULL);
+        		break;
+        	case ReferentialActionType.SET_DEFAULT:
+        		attrString.append(SET).append(SPACE).append(DEFAULT);
+        		break;
+        	}
+        }
+        
+        // default
+        if(attr.getDefaultValue() != null) {
+          attrString.append(SPACE).append(DEFAULT).append(SPACE).append(attr.getDefaultValue());
+        }
+        
+        return attrString.toString();
     }
 
     protected String getAddUniqueConstraintClause(UniqueConstraint constraint, boolean quoteIdentifiers) {
@@ -411,9 +998,13 @@ public class GenericDdlBuilder {
     }
 
     protected String getAddCheckConstraintClause(CheckConstraint constraint, boolean quoteIdentifiers) {
+        return ADD + SPACE + getCheckConstraintClause(constraint,quoteIdentifiers);
+    }
+    
+    protected String getCheckConstraintClause(CheckConstraint constraint, boolean quoteIdentifiers) {
         String constraintName = getName(constraint, quoteIdentifiers);
 
-        String text =  ADD + SPACE + CONSTRAINT + SPACE + constraintName + SPACE + CHECK
+        String text = CONSTRAINT + SPACE + constraintName + SPACE + CHECK
         	+ SPACE + LEFT_PARENTHESIS + constraint.getSearchCondition().getSQL() + RIGHT_PARENTHESIS;
         if(constraint.isDeferrable()) {
             text += SPACE + getDeferrableClause(constraint);
@@ -448,7 +1039,7 @@ public class GenericDdlBuilder {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();
             if (quoteIdentifiers) {
-                columnName = this.getDoubleQuotedString(columnName);
+                columnName = this.getQuotedIdentifierString(m.getColumn());
             }
             columns = columnName + SPACE + m.getIncrementType().getName();
         }
@@ -461,7 +1052,7 @@ public class GenericDdlBuilder {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();
             if(quoteIdentifiers) {
-                columnName = this.getDoubleQuotedString(columnName);
+                columnName = this.getQuotedIdentifierString(m.getColumn());
             }
             columns += COMMA + SPACE;
             columns += columnName + SPACE + m.getIncrementType().getName();
@@ -476,7 +1067,7 @@ public class GenericDdlBuilder {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();
             if(quoteIdentifiers) {
-                columnName = this.getDoubleQuotedString(columnName);
+                columnName = this.getQuotedIdentifierString(m.getColumn());
             }
             columns = columnName;
         }
@@ -489,7 +1080,7 @@ public class GenericDdlBuilder {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();
             if (quoteIdentifiers) {
-                columnName = this.getDoubleQuotedString(columnName);
+                columnName = this.getQuotedIdentifierString(m.getColumn());
             }
             columns += COMMA + SPACE + columnName;
         }
@@ -520,13 +1111,42 @@ public class GenericDdlBuilder {
         return null;
     }
 
+    protected String getDataTypeString(DistinctUserDefinedType typedElement) {
+		PredefinedDataType containedType = typedElement
+				.getPredefinedRepresentation();
+		if (containedType != null) {
+			EObject root = ContainmentServiceImpl.INSTANCE
+					.getRootElement(typedElement);
+			if (root instanceof Database) {
+				DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition((Database) root);
+				return def.getPredefinedDataTypeFormattedName((PredefinedDataType) containedType);
+			}
+		}
+		return null;
+	}
+
     protected String getName(TableConstraint constraint, boolean quoteIdentifiers) {
         String name = constraint.getName();
 
         if(quoteIdentifiers) {
-            name = this.getDoubleQuotedString(name);
+            name = this.getQuotedIdentifierString(constraint);
         }
     
+        return name;
+    }
+
+    protected String getName(Assertion assertion, boolean quoteIdentifiers, boolean qualifyNames) {
+        String name = assertion.getName();
+        String schemaName = assertion.getSchema().getName();
+    
+        if(quoteIdentifiers) {
+            name = this.getQuotedIdentifierString(assertion);
+            schemaName  = this.getQuotedIdentifierString(assertion.getSchema());
+        }
+        if(qualifyNames) {
+            name = schemaName + DOT + name;
+        }
+		
         return name;
     }
 
@@ -535,8 +1155,8 @@ public class GenericDdlBuilder {
         String schemaName = trigger.getSchema().getName();
     
         if(quoteIdentifiers) {
-            name = this.getDoubleQuotedString(name);
-            schemaName  = this.getDoubleQuotedString(schemaName);
+            name = this.getQuotedIdentifierString(trigger);
+            schemaName  = this.getQuotedIdentifierString(trigger.getSchema());
         }
         if(qualifyNames) {
             name = schemaName + DOT + name;
@@ -550,8 +1170,8 @@ public class GenericDdlBuilder {
         String schemaName = routine.getSchema().getName();
 
         if(quoteIdentifiers) {
-            name = this.getDoubleQuotedString(name);
-            schemaName  = this.getDoubleQuotedString(schemaName);
+            name = this.getQuotedIdentifierString(routine);
+            schemaName  = this.getQuotedIdentifierString(routine.getSchema());
         }
         if(qualifyNames) {
             name = schemaName + DOT + name;
@@ -560,15 +1180,23 @@ public class GenericDdlBuilder {
         return name;
     }
 
-    protected String getName(Index index, boolean quoteIdentifiers, boolean qualifyNames) {
-        Table table = index.getTable();
+    protected String getSpecificName(Method method, boolean quoteIdentifiers, boolean qualifyNames) {
+        String name = method.getSpecificName();
 
+        if(quoteIdentifiers) {
+            name = this.getQuotedIdentifierString(method);
+        }
+
+        return name;
+    }
+
+    protected String getName(Index index, boolean quoteIdentifiers, boolean qualifyNames) {
         String indexName = index.getName();
         String schemaName = index.getSchema().getName();
 
         if(quoteIdentifiers) {
-            indexName = this.getDoubleQuotedString(indexName);
-            schemaName = this.getDoubleQuotedString(schemaName);
+            indexName = this.getQuotedIdentifierString(index);
+            schemaName = this.getQuotedIdentifierString(index.getSchema());
         }
 
         if(qualifyNames) {
@@ -583,8 +1211,8 @@ public class GenericDdlBuilder {
         String schemaName = table.getSchema().getName();
 
         if(quoteIdentifiers) {
-            tableName = this.getDoubleQuotedString(tableName);
-            schemaName = this.getDoubleQuotedString(schemaName);
+            tableName = this.getQuotedIdentifierString(table);
+            schemaName = this.getQuotedIdentifierString(table.getSchema());
         }
 
         if(qualifyNames) {
@@ -599,8 +1227,8 @@ public class GenericDdlBuilder {
         String schemaName = sequence.getSchema().getName();
 
         if(quoteIdentifiers) {
-            sequenceName = this.getDoubleQuotedString(sequenceName);
-            schemaName = this.getDoubleQuotedString(schemaName);
+            sequenceName = this.getQuotedIdentifierString(sequence);
+            schemaName = this.getQuotedIdentifierString(sequence.getSchema());
         }
 
         if(qualifyNames) {
@@ -615,8 +1243,8 @@ public class GenericDdlBuilder {
         String schemaName = type.getSchema().getName();
 
         if(quoteIdentifiers) {
-            typeName = this.getDoubleQuotedString(typeName);
-            schemaName = this.getDoubleQuotedString(schemaName);
+            typeName = this.getQuotedIdentifierString(type);
+            schemaName = this.getQuotedIdentifierString(type.getSchema());
         }
 
         if(qualifyNames) {
@@ -625,9 +1253,67 @@ public class GenericDdlBuilder {
     
         return typeName;
     }
+    
+    protected String getName(Schema schema, boolean quoteIdentifiers, boolean qualifyNames) {
+        String schemaName = schema.getName();
+
+        if(quoteIdentifiers) {
+            schemaName = this.getQuotedIdentifierString(schema);
+        }
+
+        if(qualifyNames) {
+        	// TODO: need to accommodate catalogs
+        }
+    
+        return schemaName;
+    }
+    
+    protected String getName(AuthorizationIdentifier authID, boolean quoteIdentifiers) {
+        String authIDName = authID.getName();
+
+        if(quoteIdentifiers) {
+        	authIDName = this.getQuotedIdentifierString(authID);
+        }
+
+        return authIDName;
+    }
+    
+    protected DatabaseDefinition getDatabaseDefinition(EObject object) {
+		EObject root = ContainmentServiceImpl.INSTANCE.getRootElement(object);
+		if (root instanceof Database) {
+			return DatabaseDefinitionRegistryImpl.INSTANCE
+					.getDefinition((Database) root);
+		}
+		return null;
+	}
+    
+    protected String getQuotedIdentifierString(SQLObject object) {
+		DatabaseDefinition dbDef = getDatabaseDefinition(object);
+		if (dbDef == null) {
+			return getDoubleQuotedString(object.getName());
+		}
+
+		String quote = dbDef.getIdentifierQuoteString();
+		StringTokenizer tokenizer = new StringTokenizer(object.getName(), quote);
+		String result = null;
+		if (tokenizer.countTokens() > 1) {
+			if (tokenizer.hasMoreTokens()) {
+				result = tokenizer.nextToken();
+			}
+			while (tokenizer.hasMoreTokens()) {
+				result = result + quote + quote + tokenizer.nextToken();
+			}
+		}
+		else {
+			if (tokenizer.hasMoreTokens()) {
+				result = tokenizer.nextToken();
+			}
+		}
+		return quote + result + quote;
+	}
 
     protected String getSingleQuotedString(String orignal) {
-  	StringTokenizer tokenizer = new StringTokenizer(orignal, SINGLE_QUOTE);
+  	    StringTokenizer tokenizer = new StringTokenizer(orignal, SINGLE_QUOTE);
         String result = tokenizer.nextToken();
         while(tokenizer.hasMoreTokens()) {
             result =  result + SINGLE_QUOTE + SINGLE_QUOTE + tokenizer.nextToken();
@@ -653,4 +1339,5 @@ public class GenericDdlBuilder {
         }
         return DOUBLE_QUOTE + result + DOUBLE_QUOTE;
     }
+
 }

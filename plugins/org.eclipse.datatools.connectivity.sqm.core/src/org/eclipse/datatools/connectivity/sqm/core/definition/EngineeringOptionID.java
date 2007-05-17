@@ -33,6 +33,7 @@ public class EngineeringOptionID {
 	public final static String GENERATE_PK_CONSTRAINTS  = "GENERATE_PK_CONSTRAINTS"; //$NON-NLS-1$
 	public final static String GENERATE_FK_CONSTRAINTS  = "GENERATE_FK_CONSTRAINTS"; //$NON-NLS-1$
 	public final static String GENERATE_CK_CONSTRAINTS  = "GENERATE_CK_CONSTRAINTS"; //$NON-NLS-1$
+	public final static String GENERATE_ASSERTIONS  = "GENERATE_ASSERTIONS"; //$NON-NLS-1$
 		
     public static final int DATABASE = 1;
     public static final int SCHEMA = 2;

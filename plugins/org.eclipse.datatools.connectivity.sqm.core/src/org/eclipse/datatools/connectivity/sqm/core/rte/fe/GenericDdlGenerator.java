@@ -16,6 +16,7 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGenerationOptions;
+import org.eclipse.datatools.modelbase.sql.constraints.Assertion;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
@@ -116,6 +117,31 @@ public class GenericDdlGenerator implements DDLGenerator {
                 String statement = builder.createIndex((Index) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addCreateIndexStatement(statement);
             }
+            else if(o instanceof Procedure) {
+            	if (!this.generateStoredProcedures(options)) continue;
+                String statement = builder.createProcedure((Procedure) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addCreateStoredProcedureStatement(statement);
+            }
+            else if(o instanceof UserDefinedFunction) {
+            	if (!this.generateFunctions(options)) continue;
+                String statement = builder.createUserDefinedFunction((UserDefinedFunction) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addCreateUserDefinedFunctionStatement(statement);
+            }
+            else if(o instanceof Schema) {
+            	if (!this.generateSchemas(options)) continue;
+                String statement = builder.createSchema((Schema) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addCreateSchemaStatement(statement);
+            }
+            else if(o instanceof UserDefinedType) {
+            	if (!this.generateSchemas(options)) continue;
+                String statement = builder.createUserDefinedType((UserDefinedType) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addCreateUserDefinedTypeStatement(statement);
+            }
+            else if(o instanceof Assertion) {
+            	if (!this.generateAssertions(options)) continue;
+                String statement = builder.createAssertion((Assertion) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addCreateAssertionStatement(statement);
+            }
         }
         return script.getStatements();
     }
@@ -165,6 +191,31 @@ public class GenericDdlGenerator implements DDLGenerator {
             	if (!this.generateIndexes(options)) continue;
                 String statement = builder.dropIndex((Index) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addDropIndexStatement(statement);
+            }
+            else if(o instanceof Procedure) {
+            	if (!this.generateStoredProcedures(options)) continue;
+                String statement = builder.dropProcedure((Procedure) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addDropStoredProcedureStatement(statement);
+            }
+            else if(o instanceof UserDefinedFunction) {
+            	if (!this.generateFunctions(options)) continue;
+                String statement = builder.dropFunction((UserDefinedFunction) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addDropUserDefinedFunctionStatement(statement);
+            }
+            else if(o instanceof Schema) {
+            	if (!this.generateSchemas(options)) continue;
+                String statement = builder.dropSchema((Schema) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addDropSchemaStatement(statement);
+            }
+            else if(o instanceof UserDefinedType) {
+            	if (!this.generateSchemas(options)) continue;
+                String statement = builder.dropUserDefinedType((UserDefinedType) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addDropUserDefinedTypeStatement(statement);
+            }
+            else if(o instanceof Assertion) {
+            	if (!this.generateAssertions(options)) continue;
+                String statement = builder.dropAssertion((Assertion) o, quoteIdentifiers, qualifyNames);
+                if(statement != null) script.addDropAssertionStatement(statement);
             }
         }
         return script.getStatements();
@@ -260,6 +311,10 @@ public class GenericDdlGenerator implements DDLGenerator {
     
     public boolean generateFKConstraints(EngineeringOption[] options){
         return getOptionValueByID(EngineeringOptionID.GENERATE_FK_CONSTRAINTS, options);
+    }
+    
+    public boolean generateAssertions(EngineeringOption[] options){
+        return getOptionValueByID(EngineeringOptionID.GENERATE_ASSERTIONS, options);
     }
     
     private boolean getOptionValueByID(String optionID, EngineeringOption[] options){
@@ -359,6 +414,8 @@ public class GenericDdlGenerator implements DDLGenerator {
                 return new EngineeringOption(id,resource.getString("GENERATE_SEQUENCE"), resource.getString("GENERATE_SEQUENCE_DES"),true,additional_element); //$NON-NLS-1$ //$NON-NLS-2$
             else if (id.equalsIgnoreCase(EngineeringOptionID.GENERATE_USER_DEFINED_TYPE))
                 return new EngineeringOption(id,resource.getString("GENERATE_USER_DEFINED_TYPE"), resource.getString("GENERATE_USER_DEFINED_TYPE_DES"),true,additional_element); //$NON-NLS-1$ //$NON-NLS-2$
+            else if (id.equalsIgnoreCase(EngineeringOptionID.GENERATE_ASSERTIONS))
+                return new EngineeringOption(id,resource.getString("GENERATE_ASSERTIONS"), resource.getString("GENERATE_GENERATE_ASSERTION_DES"),true,additional_element); //$NON-NLS-1$ //$NON-NLS-2$
         } catch (Exception e) {
             //The resource was not found
         	e.printStackTrace();
@@ -522,6 +579,10 @@ public class GenericDdlGenerator implements DDLGenerator {
         public Integer getMask(Class key) {
             return (Integer)data.get(key);
         }
+    }
+    
+    protected final void setDdlBuilder(GenericDdlBuilder builder) {
+    	this.builder = builder;
     }
     
 	
