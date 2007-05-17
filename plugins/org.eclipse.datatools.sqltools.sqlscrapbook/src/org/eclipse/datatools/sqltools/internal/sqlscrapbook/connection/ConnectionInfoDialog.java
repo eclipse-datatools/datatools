@@ -12,6 +12,8 @@
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -148,6 +150,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 		    _checkboxOverride = new Button(composite, SWT.CHECK);
 		    _checkboxOverride.setText(Messages.SelectProfileDialog_override_profile); //$NON-NLS-1$
 		    _checkboxOverride.setToolTipText(Messages.SelectProfileDialog_override_profile_tooltip); //$NON-NLS-1$
+		    _checkboxOverride.setSelection(SqlscrapbookPlugin.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.SQLFILE_SAVE_CONNECTION_INFO));
 		    _checkboxOverride.addListener(SWT.Selection, this);
 		}
 		
