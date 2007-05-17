@@ -653,11 +653,11 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         StringBuffer sb = new StringBuffer();
         if (routine.isDeterministic())
         {
-            sb.append(DETERMINISTIC).append(NEWLINE);
+            sb.append(ISybaseDdlConstants.DETERMINISTIC).append(NEWLINE);
         }
         else
         {
-            sb.append(NOT).append(SPACE).append(DETERMINISTIC).append(NEWLINE);
+            sb.append(NOT).append(SPACE).append(ISybaseDdlConstants.DETERMINISTIC).append(NEWLINE);
         }
         return sb.toString();
     }
