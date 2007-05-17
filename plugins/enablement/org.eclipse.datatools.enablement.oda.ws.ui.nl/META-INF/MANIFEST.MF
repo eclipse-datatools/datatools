@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Web Services Data Source Designer Nl Fragment
+Bundle-Name: ODA Web Services Data Source Designer Nl Fragment
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ws.ui.nl
 Bundle-Version: 1.0.0.qualifier
 Fragment-Host: org.eclipse.datatools.enablement.oda.ws.ui;bundle-version="[1.0.0,2.0.0)"
