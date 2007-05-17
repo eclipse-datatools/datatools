@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Nl Fragment
+Bundle-Name: ODA Flat File Runtime Driver Nl Fragment
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.flatfile.nl1
-Bundle-Version: 3.0.3.qualifier
-Fragment-Host: org.eclipse.datatools.connectivity.oda.flatfile;bundle-version="[3.0.3,4.0.0)"
+Bundle-Version: 3.0.4.qualifier
+Fragment-Host: org.eclipse.datatools.connectivity.oda.flatfile;bundle-version="[3.0.4,4.0.0)"
 Bundle-Localization: nl_fragment
+Bundle-Vendor: Eclipse.org
 
