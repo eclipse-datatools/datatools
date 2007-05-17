@@ -13,13 +13,15 @@ package org.eclipse.datatools.connectivity.ui;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IProfileListener;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.internal.navigator.NavigatorContentService;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
@@ -49,6 +51,18 @@ public abstract class CommonContentProviderBase implements
 	private ITreeContentProvider mDelegate;
 	private IExtensionStateModel mStateModel;
 	private Viewer mViewer;
+	private IProfileListener mProfileListener = new IProfileListener() {
+
+		public void profileAdded(IConnectionProfile profile) {
+		}
+
+		public void profileChanged(IConnectionProfile profile) {
+		}
+
+		public void profileDeleted(IConnectionProfile profile) {
+		}
+		
+	};
 
 	/**
 	 * The delegate content provider should be minimally capable of handling
@@ -73,6 +87,7 @@ public abstract class CommonContentProviderBase implements
 
 	public void dispose() {
 		mDelegate.dispose();
+		ProfileManager.getInstance().removeProfileListener(mProfileListener);
 		for (Iterator it = mProfileToExtensionNode.values().iterator(); it
 				.hasNext();) {
 			((IContentExtension) it.next()).dispose();
@@ -91,6 +106,7 @@ public abstract class CommonContentProviderBase implements
 
 	public void init(ICommonContentExtensionSite aConfig) {
 		mStateModel = aConfig.getExtensionStateModel();
+		ProfileManager.getInstance().addProfileListener(mProfileListener);
 	}
 
 	/* (non-Javadoc)
@@ -265,16 +281,31 @@ public abstract class CommonContentProviderBase implements
 		CommonViewer viewer = (CommonViewer) mViewer;
 		INavigatorContentService contentService = viewer
 				.getNavigatorContentService();
-		NavigatorContentService ncs = (NavigatorContentService) contentService;
-		
-		ITreeContentProvider[] contentProviders = ncs
-				.findRootContentProviders(extension.getConnectionProfile());
+		Set contentExtensions = contentService
+				.findRootContentExtensions(extension.getConnectionProfile());
+
 		/*
 		 * check for more than two contentproviders since the list will include
 		 * the root content provider for the view.
 		 */
 		return extension.isVisible()
-				|| (contentProviders != null && contentProviders.length > 2);
+				|| (contentExtensions != null && contentExtensions.size() > 2);
+	}
+	
+	protected void handleProfileAdded(IConnectionProfile profile) {
+	}
+	
+	protected void handleProfileChanged(IConnectionProfile profile) {
+	}
+	
+	protected void handleProfileDeleted(IConnectionProfile profile) {
+		if (mProfileToExtensionNode.containsKey(profile)) {
+			IContentExtension contentExtension = (IContentExtension) mProfileToExtensionNode
+					.remove(profile);
+			if (contentExtension != null) {
+				contentExtension.dispose();
+			}
+		}
 	}
 
 }
