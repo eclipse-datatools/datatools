@@ -1,7 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Nl Fragment
+Bundle-Name: ODA XML Data Source Designer Nl Fragment
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.ui.nl
-Bundle-Version: 1.0.0.qualifier
-Fragment-Host: org.eclipse.datatools.enablement.oda.xml.ui;bundle-version="[1.0.0,2.0.0)"
-Bundle-Localization: plugin
+Bundle-Version: 1.0.1.qualifier
+Fragment-Host: org.eclipse.datatools.enablement.oda.xml.ui;bundle-version="[1.0.1,2.0.0)"
+Bundle-Localization: nl_fragment
+Bundle-Vendor: Eclipse.org
