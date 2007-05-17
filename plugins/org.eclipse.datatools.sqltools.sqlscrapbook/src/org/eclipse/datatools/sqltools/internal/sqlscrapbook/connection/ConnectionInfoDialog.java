@@ -57,11 +57,18 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	/**
 	 * @param parentShell
 	 */
-	public ConnectionInfoDialog(Shell parentShell,
-			ISQLEditorConnectionInfo connInfo) {
-		this(parentShell, connInfo, false, Messages.SelectProfileDialog_title);
+	public ConnectionInfoDialog(Shell parentShell) {
+		this(parentShell, null);
 	}
 
+	/**
+	 * @param parentShell
+	 */
+	public ConnectionInfoDialog(Shell parentShell,
+	        ISQLEditorConnectionInfo connInfo) {
+	    this(parentShell, connInfo, false, Messages.SelectProfileDialog_title);
+	}
+	
 	/**
 	 * @param parentShell
 	 * @param connInfo
