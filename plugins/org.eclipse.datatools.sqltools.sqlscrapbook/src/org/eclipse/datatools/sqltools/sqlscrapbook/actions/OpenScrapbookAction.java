@@ -7,6 +7,8 @@ import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.jface.action.IAction;
@@ -42,8 +44,8 @@ public class OpenScrapbookAction implements IWorkbenchWindowActionDelegate {
 	public void run(IAction action) {
         String scrap = "";
         SQLEditorStorageEditorInput editorStorageEditorInput = new SQLEditorStorageEditorInput("", scrap);
-        //TODO get the default connection info from preference page
-        ISQLEditorConnectionInfo editorConnectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
+        ISQLEditorConnectionInfo editorConnectionInfo = SQLFileUtil.getConnectionInfoFromPreference();
+
         editorStorageEditorInput.setConnectionInfo(editorConnectionInfo);
 
         // the name will show as the title of the editor

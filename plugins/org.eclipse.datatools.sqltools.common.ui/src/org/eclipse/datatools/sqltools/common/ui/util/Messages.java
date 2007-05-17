@@ -23,6 +23,7 @@ public final class Messages extends NLS {
 
 	public static String HTML2TextReader_listItemPrefix;
 	public static String HTMLTextPresenter_ellipse;
+    public static String common_error;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -12,6 +12,10 @@
 package org.eclipse.datatools.sqltools.common.ui.util;
 
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.common.ui.internal.Activator;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -33,6 +37,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.PlatformUI;
 /**
  * This utility class provides convenience methods in creating controls on
  * preference pages.
@@ -1096,5 +1101,25 @@ public class SWTUtils
             result += table.getGridLineWidth() * (rows - 1);
         }
         return result;
+    }
+    
+    public static void processError(final String msg, final Exception error, final IStatus status)
+    {
+        PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable()
+        {
+            public void run()
+            {
+                IStatus stat = status;
+                if (stat == null)
+                {
+                    stat = new Status(IStatus.ERROR, Activator.PLUGIN_ID, 0, error.getMessage() == null ? "" : error //$NON-NLS-1$
+                        .getMessage(), error);
+                }
+                String title = Messages.common_error;
+                ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, msg, stat);
+            }
+        }
+        );
+        Activator.getDefault().log(msg, error); //$NON-NLS-1$
     }
 }

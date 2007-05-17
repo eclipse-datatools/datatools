@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.Connectio
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.ExceptionHandler;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -130,7 +131,9 @@ public class NewSQLScrapbookFileWizardPage extends WizardNewFileCreationPage {
     public void createPageControl(Composite parent)
     {
         super.createPageControl(parent);
-        _group = new ConnectionInfoGroup(parent, this, null, null, false, false);
+
+        ISQLEditorConnectionInfo connInfo = SQLFileUtil.getConnectionInfoFromPreference();
+        _group = new ConnectionInfoGroup(parent, this, connInfo, false, false);
 
         PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, IHelpContextIds.NEW_SQL_FILE);
     }

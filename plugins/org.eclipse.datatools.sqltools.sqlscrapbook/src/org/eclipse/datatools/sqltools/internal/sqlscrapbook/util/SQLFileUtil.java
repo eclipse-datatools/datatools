@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 
 /**
@@ -66,4 +67,21 @@ public class SQLFileUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Returns the default connection info stored in preference. If the preference value
+	 * is not set, SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO is returned.
+	 * @return
+	 */
+    public static ISQLEditorConnectionInfo getConnectionInfoFromPreference()
+    {
+        ISQLEditorConnectionInfo editorConnectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
+        String dftConn = SqlscrapbookPlugin.getDefault().getPreferenceStore().getString(PreferenceConstants.SQLEDITOR_CONNECTION_INFO);
+        if (dftConn != null && !dftConn.equals(""))
+        {
+            editorConnectionInfo = SQLEditorConnectionInfo.decode(dftConn);
+        }
+        return editorConnectionInfo;
+    }
+	
 }

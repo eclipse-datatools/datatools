@@ -38,15 +38,6 @@ public class EditorPerspective implements IPerspectiveFactory, EditorConstants
         // Bottom 
         IFolderLayout bottom = layout.createFolder("bottom", IPageLayout.BOTTOM, 0.75f, editorArea);
         bottom.addView(EditorConstants.RESULTS_VIEW);
-        bottom.addView(IPageLayout.ID_TASK_LIST);
-        bottom.addView(IPageLayout.ID_PROBLEM_VIEW);
-        bottom.addView(EditorConstants.LOG_VIEW);
-
-        // right 
-        IFolderLayout right = layout.createFolder("right", IPageLayout.RIGHT, 0.75f, editorArea);
-        right.addView(IPageLayout.ID_OUTLINE);
-        
-
     }
 
 

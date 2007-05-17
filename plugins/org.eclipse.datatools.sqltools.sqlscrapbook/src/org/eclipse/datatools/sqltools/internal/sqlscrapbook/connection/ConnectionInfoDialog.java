@@ -18,6 +18,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
@@ -31,30 +32,52 @@ import org.eclipse.ui.PlatformUI;
  * 
  */
 public class ConnectionInfoDialog extends Dialog implements Listener {
-	private ConnectionInfoGroup _group = null;
+	protected ConnectionInfoGroup _group = null;
 
 	private boolean _isConnected = false;
 
 	private boolean _mustConnect = false;
 
-	private ISQLEditorConnectionInfo _connInfo = null;
+	/**
+	 * Dialog style used to determine whether to show _checkboxOverride
+	 */
+	private boolean _promptOverride = false;
 
 	/**
-	 * @param parentShell
+	 * Whether override the files's original connection info
 	 */
-	public ConnectionInfoDialog(Shell parentShell) {
-		this(parentShell, null);
-	}
+	private boolean _override = false;
 
+	private ISQLEditorConnectionInfo _connInfo = null;
+
+	private Button _checkboxOverride = null;
+	
+	private String _title = Messages.SelectProfileDialog_title;
+	
 	/**
 	 * @param parentShell
 	 */
 	public ConnectionInfoDialog(Shell parentShell,
 			ISQLEditorConnectionInfo connInfo) {
-		super(parentShell);
-		this._connInfo = connInfo;
+		this(parentShell, connInfo, false, Messages.SelectProfileDialog_title);
 	}
 
+	/**
+	 * @param parentShell
+	 * @param connInfo
+	 * @param promptOverride whether to show the check box prompting user to override the files's original connection info
+	 */
+	public ConnectionInfoDialog(Shell parentShell,
+	        ISQLEditorConnectionInfo connInfo, boolean promptOverride, String title) {
+	    super(parentShell);
+	    setShellStyle(SWT.CLOSE | SWT.MAX | SWT.TITLE | SWT.BORDER
+                | SWT.APPLICATION_MODAL | SWT.RESIZE | getDefaultOrientation());
+	    
+	    this._connInfo = connInfo;
+	    this._promptOverride = promptOverride;
+	    this._title = title;
+	}
+	
 	/**
 	 * Returns the <code>ISQLEditorConnectionInfo</code> object specified by
 	 * user. This should be called after {@link #finish()}.
@@ -71,6 +94,15 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	}
 
 	/**
+	 * Returns whether the user chooses to override the files's original connection info. 
+	 * @return
+	 */
+	public boolean overrideConnectionInfo()
+    {
+        return _override;
+    }
+
+	/**
 	 * Sets whether user can finish this dialog without connecting.
 	 * @param mustConnect true if user has to connect, default is false.
 	 */
@@ -79,11 +111,14 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	}
 
 	protected Control createDialogArea(Composite parent) {
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent.getShell(),
-				IHelpContextIds.ATTACHING_PROFILE);
+		Composite composite = createOuterArea(parent);
+		createConnectionArea(composite);
+		return composite;
+	}
 
-		Composite composite = (Composite) super.createDialogArea(parent);
-		if (_connInfo == null || _connInfo.getConnectionProfile() == null ) {
+    protected void createConnectionArea(Composite composite)
+    {
+        if (_connInfo == null || _connInfo.getConnectionProfile() == null ) {
 			Label label = new Label(composite, SWT.NONE);
 // BZ168411: Disabling error message for no cp selected because of problems on Linux
 //           To be resolved post DTP 1.0
@@ -101,16 +136,32 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 		}
 		_group = new ConnectionInfoGroup(composite, this, _connInfo, true,
 				_mustConnect);
+		if (_promptOverride)
+		{
+		    _checkboxOverride = new Button(composite, SWT.CHECK);
+		    _checkboxOverride.setText(Messages.SelectProfileDialog_override_profile); //$NON-NLS-1$
+		    _checkboxOverride.setToolTipText(Messages.SelectProfileDialog_override_profile_tooltip); //$NON-NLS-1$
+		    _checkboxOverride.addListener(SWT.Selection, this);
+		}
+		
 		checkOK();
-		return composite;
-	}
+    }
+
+    protected Composite createOuterArea(Composite parent)
+    {
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent.getShell(),
+				IHelpContextIds.ATTACHING_PROFILE);
+
+		Composite composite = (Composite) super.createDialogArea(parent);
+        return composite;
+    }
 
 	/*
 	 * (non-Javadoc) Method declared in Window.
 	 */
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText(Messages.SelectProfileDialog_title); 
+		shell.setText(_title);
 	}
 
 	protected void okPressed() {
@@ -140,9 +191,12 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 		if (event.widget == _group) {
 			checkOK();
 		}
+		else if (event.widget == _checkboxOverride) {
+		    _override = _checkboxOverride.getSelection();
+		}
 	}
 
-	private boolean checkOK() {
+	protected boolean checkOK() {
 		boolean enabled = _group.canFinish();
 		if (getButton(IDialogConstants.OK_ID) != null) {
 			getButton(IDialogConstants.OK_ID).setEnabled(enabled);

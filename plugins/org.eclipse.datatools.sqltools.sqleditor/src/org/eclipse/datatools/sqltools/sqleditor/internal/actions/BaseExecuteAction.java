@@ -33,7 +33,7 @@ import org.eclipse.ui.texteditor.IUpdate;
  */
 public abstract class BaseExecuteAction extends Action implements IUpdate
 {
-    private Job _job;
+    protected Job _job;
 
     public abstract DatabaseIdentifier getDatabaseIdentifier();
     public abstract String getSQLStatements();

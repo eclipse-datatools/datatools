@@ -62,15 +62,21 @@ Listener {
     public ConnectionInfoComposite2(Composite parent, int style, Listener listener, ISQLEditorConnectionInfo connInfo,
             Collection supportedDBDefinitionNames, int infoStyle)
     {
+        this(parent, style, listener, connInfo, supportedDBDefinitionNames, infoStyle, null);
+    }
+
+    public ConnectionInfoComposite2(Composite parent, int style, Listener listener, ISQLEditorConnectionInfo connInfo,
+            Collection supportedDBDefinitionNames, int infoStyle, String title)
+    {
         super(parent, style, listener, connInfo, supportedDBDefinitionNames, STYLE_SEPARATE_TYPE_NAME | infoStyle);
-        createContents();
+        createContents(title);
         if ((_style & STYLE_LAZY_INIT ) == 0)
         {
             init();
         }        
     }
-
-    protected Control createContents() {
+    
+    protected Control createContents(String title) {
         this.setLayoutData(new GridData(GridData.FILL_BOTH));
         org.eclipse.swt.layout.GridLayout gridLayout1 = new GridLayout();
         gridLayout1.marginWidth = 0;
@@ -82,13 +88,13 @@ Listener {
             //STYLE_SINGLE_GROUP
             gridLayout1.numColumns = 1;
             group = new Group(this, SWT.NONE);
-            group.setText(Messages.ConnectionInfoGroup_profile_group);
+            group.setText(title == null? Messages.ConnectionInfoGroup_profile_group: title);
         }
         else
         {
             gridLayout1.numColumns = 2;    
             Label prefix = new Label(this, SWT.NONE);
-            prefix.setText(Messages.ConnectionInfoGroup_profile);
+            prefix.setText(title == null?Messages.ConnectionInfoGroup_profile: title);
             prefix.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_CENTER, GridData.VERTICAL_ALIGN_END, false, true));
             group = new Group(this, SWT.NONE);
         }
@@ -106,6 +112,7 @@ Listener {
         // add controls to composite as necessary
         org.eclipse.swt.layout.GridLayout gridLayout1 = new GridLayout();
         org.eclipse.swt.layout.GridData gridData3 = new org.eclipse.swt.layout.GridData();
+        org.eclipse.swt.layout.GridData gridData4 = new org.eclipse.swt.layout.GridData();
 
         gridLayout1.marginWidth = 5;
         gridLayout1.marginHeight = 5;
@@ -144,7 +151,12 @@ Listener {
             label.setText(Messages.ConnectionInfoGroup_status);
             
             _labelStatus = new Label(group, SWT.NONE);
+            _labelStatus.setText(Messages.ConnectionInfoGroup_status_disconnected);//to take up the place
             _labelStatus.setText(getStatus());
+            gridData4.grabExcessHorizontalSpace = true;
+            gridData4.horizontalAlignment = org.eclipse.swt.layout.GridData.BEGINNING;
+            _labelStatus.setLayoutData(gridData4);
+            
         }
     }
 

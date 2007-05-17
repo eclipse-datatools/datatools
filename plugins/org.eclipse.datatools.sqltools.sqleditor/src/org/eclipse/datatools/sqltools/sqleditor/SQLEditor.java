@@ -451,7 +451,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     {
         super.updatePartControl(input);
         refreshActionStatus();
-        refreshConnectionStatus();
     }
 
     private void hookContextMenu()

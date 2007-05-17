@@ -40,10 +40,21 @@ public final class Messages extends NLS {
 	public static String ConnectionInfoGroup_type;
 	public static String ConnectionInfoGroup_status_connected;
 	public static String ConnectionInfoGroup_status_disconnected;
+	public static String ConnectionInfoGroup_database_name;
+	public static String SelectProfileDialog_override_profile;
+	public static String FilesConnectionInfoDialog_column_name;
+    public static String FilesConnectionInfoDialog_column_type;
+    public static String FilesConnectionInfoDialog_column_profile;
+    public static String FilesConnectionInfoDialog_column_database;
+    public static String ConnectionInfoDialog_title_for_file;
+    public static String ConnectionInfoDialog_file_conn_info;
+    public static String FileExecution_job_name;
+    public static String SELECT_ALL_TITLE;
+    public static String DESELECT_ALL_TITLE;
+    public static String SelectProfileDialog_override_profile_tooltip;
 
     static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
 
-	public static String ConnectionInfoGroup_database_name;
 }

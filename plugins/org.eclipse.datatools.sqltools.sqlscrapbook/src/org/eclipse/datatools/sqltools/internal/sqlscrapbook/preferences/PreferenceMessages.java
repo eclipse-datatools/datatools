@@ -18,7 +18,9 @@ public final class PreferenceMessages extends NLS
     }
 
     public static String SQLFilePage_description;
-    public static String SQLFilePage_connect_database_fail_title;
+    public static String SQLFilePage_default_connection;
+    public static String SQLFilePage_override_profile;
+    
     static 
     {
         NLS.initializeMessages(BUNDLE_NAME, PreferenceMessages.class);

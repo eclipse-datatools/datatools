@@ -68,7 +68,6 @@ public final class Messages extends NLS {
 	public static String DeployAction_save_information;
 	public static String DeployAction_save_message;
 	public static String BaseExecuteAction_job_title;
-;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

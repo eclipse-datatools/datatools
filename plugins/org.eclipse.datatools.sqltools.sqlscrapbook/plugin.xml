@@ -54,16 +54,15 @@
       </wizard>
    </extension>
    
-   <!-- preference pages 
+   <!-- preference pages --> 
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.SQLFilePage"
+            class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.SQLScrapbookPage"
             category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
             name="%datatools.preferences.sqlfile.name"
             id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.sqlfile"/>
    </extension>
-   -->
    
    <extension
          point="org.eclipse.ui.commands">
@@ -112,7 +111,12 @@
             <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
                   
         </perspectiveExtension>
-
+        <!-- extension to the DTP debugger perspective -->
+        <perspectiveExtension
+             targetID="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective">
+            <!-- Add New SQL File Wizard shortcuts !-->
+            <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
+        </perspectiveExtension>
     </extension>
    
 </plugin>

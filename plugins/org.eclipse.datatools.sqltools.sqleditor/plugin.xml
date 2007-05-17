@@ -73,11 +73,24 @@
              <!-- Add View Shortcuts !-->
             <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
             <viewShortcut id="org.eclipse.datatools.sqltools.result.resultView" />
+            <viewShortcut id="org.eclipse.ui.views.ContentOutline" />
                         
             <!-- Add Perspective shortcuts !-->
             <perspectiveShortcut id="ConfigPerspective" />
             <perspectiveShortcut id="org.eclipse.datatools.sqltools.debugger.perspectives.DebuggerPerspective" />
-                  
+
+		<!-- Outline as Fastview !-->
+          <view
+                  closeable="true"
+                  standalone="false"
+                  moveable="true"
+                  visible="true"
+                  showTitle="true"
+                  ratio="0.25"
+                  relationship="fast"
+                  relative="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
+                  id="org.eclipse.ui.views.ContentOutline"/>   
+                                    
         </perspectiveExtension>
 
     </extension>

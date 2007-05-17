@@ -17,9 +17,9 @@ import java.util.HashMap;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobManager;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
@@ -125,7 +125,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         boolean allSucceeded = true;
         //Obtain the Platform job manager
         ResultsViewAPI resultsViewAPI = ResultsViewAPI.getInstance();
-        IJobManager manager = Platform.getJobManager();
+        IJobManager manager = Job.getJobManager();
         if (monitor == null)
         {
             monitor = manager.createProgressGroup();
@@ -188,6 +188,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                     }
 					ResultSupportRunnable resultSupportRunnable = ((ResultSupportRunnable)_currentJob);
                     resultSupportRunnable.setParentOperCommand(parentCommand);
+                    resultSupportRunnable.setConsumerName(_consumerName);
 					resultSupportRunnable.setProgressGroup(monitor, 1);
 					resultSupportRunnable.schedule();
                     
@@ -289,7 +290,16 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             }
         }
         resultsViewAPI.updateStatus(getOperationCommand(), resultsViewAPI.calculateStatus(getOperationCommand()));
-        return allSucceeded ? Status.OK_STATUS : Status.CANCEL_STATUS;
+        if (allSucceeded)
+        {
+            return Status.OK_STATUS;
+        }
+        else
+        {
+            //don't return error status to prevent eclipse from poping up errors 
+            IStatus info = new Status(IStatus.INFO, SQLEditorPlugin.PLUGIN_ID, Messages.GroupSQLResultRunnable_not_complete);
+            return info;
+        }
     }
 
     public void run()
