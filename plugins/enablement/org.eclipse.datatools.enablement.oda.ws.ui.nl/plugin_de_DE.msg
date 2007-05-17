@@ -1,0 +1,34 @@
+###############################################################################
+# Copyright (c) 2007 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#
+###############################################################################
+# Plug-in Configuration
+#
+oda.data.source.id=org.eclipse.datatools.enablement.oda.ws
+#
+###############################################################################
+# NLS strings
+#
+plugin.name=Eclipse Data Tools Platform Web Services ODA Designer
+data.source.name=Web Services Data Source
+connection.profile.name=Web Services Data Source Connection Profile
+newwizard.name=Web Services Data Source
+newwizard.description=Create a Web Services data source connection profile
+wizard.window.title=New Web Services Data Source Profile
+wizard.data.source.page.title=Web Services Data Source
+profile.propertypage.name=Web Services Data Source Connection Properties
+wizard.data.set.window.title=New Web Services Data Set
+wizard.data.set.page.title=Query
+
+oda.ws.operation=Operation
+oda.ws.soaprequest=SOAP Request
+oda.ws.soapresponse=SOAP Response
+oda.ws.tablemapping=Table Mapping
+oda.ws.columnmapping=Column Mapping
