@@ -19,15 +19,19 @@ import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPCategoryWizardNode;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCategoryWizard;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvider;
+import org.eclipse.datatools.connectivity.ui.wizards.ICPWizard;
+import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizard;
-import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
@@ -174,19 +178,30 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		if (wizardNodes.size() > 1) {
 			return null;
 		}
-		IWizardNode wizardNode = (IWizardNode) wizardNodes.get(0);
+		IWizard wizard;
+		CPWizardNode wizardNode = (CPWizardNode) wizardNodes.get(0);
 		if (wizardNode instanceof CPCategoryWizardNode) {
-			IWizard wizard = getDefaultWizard(
-					((CPCategoryWizardNode) wizardNode).getProvider()
-							.getCategory(), null);
+			wizard = getDefaultWizard(((CPCategoryWizardNode) wizardNode)
+					.getProvider().getCategory(), null);
 			if (wizard == null) {
-				return wizardNode.getWizard();
-			}
-			else {
-				return wizard;
+				wizard = wizardNode.getWizard();
+				if (wizard instanceof NewCategoryWizard) {
+					((NewCategoryWizard) wizard)
+							.initWizardCategory((IWizardCategoryProvider) wizardNode
+									.getProvider());
+				}
 			}
 		}
-		return wizardNode.getWizard();
+		else {
+			wizard = wizardNode.getWizard();
+			if (wizard instanceof ICPWizard) {
+				((ICPWizard) wizard)
+						.initProviderID(((ProfileWizardProvider) wizardNode
+								.getProvider()).getProfile());
+				((ICPWizard) wizard).setParentProfile(parentProfile);
+			}
+		}
+		return wizard;
 	}
 	
 	/**
