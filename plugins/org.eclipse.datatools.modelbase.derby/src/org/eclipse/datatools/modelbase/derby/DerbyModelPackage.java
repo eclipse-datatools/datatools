@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.derby;
 
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -238,6 +240,179 @@ public interface DerbyModelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.derby.impl.DerbySchemaImpl <em>Derby Schema</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.derby.impl.DerbySchemaImpl
+	 * @see org.eclipse.datatools.modelbase.derby.impl.DerbyModelPackageImpl#getDerbySchema()
+	 * @generated
+	 */
+	int DERBY_SCHEMA = 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__EANNOTATIONS = SQLSchemaPackage.SCHEMA__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__NAME = SQLSchemaPackage.SCHEMA__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__DEPENDENCIES = SQLSchemaPackage.SCHEMA__DEPENDENCIES;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__DESCRIPTION = SQLSchemaPackage.SCHEMA__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Label</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__LABEL = SQLSchemaPackage.SCHEMA__LABEL;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__COMMENTS = SQLSchemaPackage.SCHEMA__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Triggers</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__TRIGGERS = SQLSchemaPackage.SCHEMA__TRIGGERS;
+
+	/**
+	 * The feature id for the '<em><b>Indices</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__INDICES = SQLSchemaPackage.SCHEMA__INDICES;
+
+	/**
+	 * The feature id for the '<em><b>Tables</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__TABLES = SQLSchemaPackage.SCHEMA__TABLES;
+
+	/**
+	 * The feature id for the '<em><b>Sequences</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__SEQUENCES = SQLSchemaPackage.SCHEMA__SEQUENCES;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__DATABASE = SQLSchemaPackage.SCHEMA__DATABASE;
+
+	/**
+	 * The feature id for the '<em><b>Catalog</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__CATALOG = SQLSchemaPackage.SCHEMA__CATALOG;
+
+	/**
+	 * The feature id for the '<em><b>Assertions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__ASSERTIONS = SQLSchemaPackage.SCHEMA__ASSERTIONS;
+
+	/**
+	 * The feature id for the '<em><b>User Defined Types</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__USER_DEFINED_TYPES = SQLSchemaPackage.SCHEMA__USER_DEFINED_TYPES;
+
+	/**
+	 * The feature id for the '<em><b>Char Sets</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__CHAR_SETS = SQLSchemaPackage.SCHEMA__CHAR_SETS;
+
+	/**
+	 * The feature id for the '<em><b>Routines</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__ROUTINES = SQLSchemaPackage.SCHEMA__ROUTINES;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA__OWNER = SQLSchemaPackage.SCHEMA__OWNER;
+
+	/**
+	 * The number of structural features of the '<em>Derby Schema</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERBY_SCHEMA_FEATURE_COUNT = SQLSchemaPackage.SCHEMA_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.derby.Synonym <em>Synonym</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,6 +432,16 @@ public interface DerbyModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSynonym_Table();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.derby.DerbySchema <em>Derby Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Derby Schema</em>'.
+	 * @see org.eclipse.datatools.modelbase.derby.DerbySchema
+	 * @generated
+	 */
+	EClass getDerbySchema();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -297,6 +482,16 @@ public interface DerbyModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SYNONYM__TABLE = eINSTANCE.getSynonym_Table();
+
+			/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.derby.impl.DerbySchemaImpl <em>Derby Schema</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.derby.impl.DerbySchemaImpl
+		 * @see org.eclipse.datatools.modelbase.derby.impl.DerbyModelPackageImpl#getDerbySchema()
+		 * @generated
+		 */
+		EClass DERBY_SCHEMA = eINSTANCE.getDerbySchema();
 
 	}
 

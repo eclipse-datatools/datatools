@@ -12,5 +12,6 @@
     <genClasses ecoreClass="derby.ecore#//Synonym">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference derby.ecore#//Synonym/Table"/>
     </genClasses>
+    <genClasses ecoreClass="derby.ecore#//DerbySchema"/>
   </genPackages>
 </genmodel:GenModel>

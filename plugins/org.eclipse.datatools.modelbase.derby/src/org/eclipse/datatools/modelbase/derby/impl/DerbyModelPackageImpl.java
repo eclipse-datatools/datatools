@@ -12,6 +12,7 @@ package org.eclipse.datatools.modelbase.derby.impl;
 
 import org.eclipse.datatools.modelbase.derby.DerbyModelFactory;
 import org.eclipse.datatools.modelbase.derby.DerbyModelPackage;
+import org.eclipse.datatools.modelbase.derby.DerbySchema;
 import org.eclipse.datatools.modelbase.derby.Synonym;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
@@ -68,6 +69,13 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * @generated
 	 */
 	private EClass synonymEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass derbySchemaEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -171,6 +179,15 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDerbySchema() {
+		return derbySchemaEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DerbyModelFactory getDerbyModelFactory() {
 		return (DerbyModelFactory)getEFactoryInstance();
 	}
@@ -196,6 +213,8 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 		// Create classes and their features
 		synonymEClass = createEClass(SYNONYM);
 		createEReference(synonymEClass, SYNONYM__TABLE);
+
+		derbySchemaEClass = createEClass(DERBY_SCHEMA);
 	}
 
 	/**
@@ -228,10 +247,13 @@ public class DerbyModelPackageImpl extends EPackageImpl implements DerbyModelPac
 		// Add supertypes to classes
 		synonymEClass.getESuperTypes().add(theSQLTablesPackage.getTable());
 		synonymEClass.getESuperTypes().add(theSQLSchemaPackage.getSQLObject());
+		derbySchemaEClass.getESuperTypes().add(theSQLSchemaPackage.getSchema());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(synonymEClass, Synonym.class, "Synonym", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSynonym_Table(), theSQLTablesPackage.getTable(), null, "Table", null, 1, 1, Synonym.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(derbySchemaEClass, DerbySchema.class, "DerbySchema", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

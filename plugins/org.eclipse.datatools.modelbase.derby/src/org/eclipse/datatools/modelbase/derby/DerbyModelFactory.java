@@ -39,6 +39,15 @@ public interface DerbyModelFactory extends EFactory {
 	Synonym createSynonym();
 
 	/**
+	 * Returns a new object of class '<em>Derby Schema</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Derby Schema</em>'.
+	 * @generated
+	 */
+	DerbySchema createDerbySchema();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

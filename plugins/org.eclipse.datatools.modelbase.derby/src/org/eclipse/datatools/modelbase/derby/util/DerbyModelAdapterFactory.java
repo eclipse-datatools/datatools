@@ -14,6 +14,8 @@ import org.eclipse.datatools.modelbase.derby.*;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
+
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -83,6 +85,9 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 			public Object caseSynonym(Synonym object) {
 				return createSynonymAdapter();
 			}
+			public Object caseDerbySchema(DerbySchema object) {
+				return createDerbySchemaAdapter();
+			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -94,6 +99,9 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 			}
 			public Object caseTable(Table object) {
 				return createTableAdapter();
+			}
+			public Object caseSchema(Schema object) {
+				return createSchemaAdapter();
 			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
@@ -124,6 +132,20 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSynonymAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.derby.DerbySchema <em>Derby Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.derby.DerbySchema
+	 * @generated
+	 */
+	public Adapter createDerbySchemaAdapter() {
 		return null;
 	}
 
@@ -180,6 +202,20 @@ public class DerbyModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.schema.Schema <em>Schema</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.Schema
+	 * @generated
+	 */
+	public Adapter createSchemaAdapter() {
 		return null;
 	}
 

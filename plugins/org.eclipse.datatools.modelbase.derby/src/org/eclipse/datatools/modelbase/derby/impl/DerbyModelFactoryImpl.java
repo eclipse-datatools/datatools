@@ -65,6 +65,7 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DerbyModelPackage.SYNONYM: return createSynonym();
+			case DerbyModelPackage.DERBY_SCHEMA: return createDerbySchema();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -78,6 +79,16 @@ public class DerbyModelFactoryImpl extends EFactoryImpl implements DerbyModelFac
 	public Synonym createSynonym() {
 		SynonymImpl synonym = new SynonymImpl();
 		return synonym;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DerbySchema createDerbySchema() {
+		DerbySchemaImpl derbySchema = new DerbySchemaImpl();
+		return derbySchema;
 	}
 
 	/**

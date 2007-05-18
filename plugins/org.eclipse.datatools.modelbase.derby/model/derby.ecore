@@ -6,4 +6,5 @@
   <eClassifiers xsi:type="ecore:EClass" name="Synonym" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Table ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="Table" lowerBound="1" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Table"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DerbySchema" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Schema"/>
 </ecore:EPackage>

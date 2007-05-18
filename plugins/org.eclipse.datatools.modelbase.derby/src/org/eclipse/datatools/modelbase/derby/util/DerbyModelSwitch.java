@@ -16,6 +16,8 @@ import org.eclipse.datatools.modelbase.derby.*;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
+
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 import org.eclipse.emf.ecore.EClass;
@@ -107,6 +109,16 @@ public class DerbyModelSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DerbyModelPackage.DERBY_SCHEMA: {
+				DerbySchema derbySchema = (DerbySchema)theEObject;
+				Object result = caseDerbySchema(derbySchema);
+				if (result == null) result = caseSchema(derbySchema);
+				if (result == null) result = caseSQLObject(derbySchema);
+				if (result == null) result = caseENamedElement(derbySchema);
+				if (result == null) result = caseEModelElement(derbySchema);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -123,6 +135,21 @@ public class DerbyModelSwitch {
 	 * @generated
 	 */
 	public Object caseSynonym(Synonym object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Derby Schema</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Derby Schema</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseDerbySchema(DerbySchema object) {
 		return null;
 	}
 
@@ -183,6 +210,21 @@ public class DerbyModelSwitch {
 	 * @generated
 	 */
 	public Object caseTable(Table object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Schema</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Schema</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSchema(Schema object) {
 		return null;
 	}
 
