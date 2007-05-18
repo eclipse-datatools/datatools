@@ -10,17 +10,24 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.CPCategoryWizardNode;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
@@ -74,11 +81,13 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 * @see org.eclipse.jface.action.IAction#run()
 	 */
 	public void run() {
-		NewCPWizard wizard;
+		IWizard wizard = getDefaultWizard(new String(), categoryID);
 		WizardDialog wizardDialog;
 
 		ViewerFilter viewerFilter = new NewCPWizardCategoryFilter(categoryID);
-		wizard = new NewCPWizard(viewerFilter,parentProfile);
+		if (wizard == null) {
+			wizard = new NewCPWizard(viewerFilter,parentProfile);
+		}
 		wizardDialog = new WizardDialog(ConnectivityUIPlugin.getDefault()
 				.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 		wizardDialog.setBlockOnOpen(true);
@@ -146,6 +155,38 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 */
 	public IConnectionProfile getAddedProfile() {
 		return this.addedProfile;
+	}
+	
+	private IWizard getDefaultWizard(String parentCategoryID, String categoryID) {
+		List wizardNodes = new CPWizardSelectionPage(new String())
+				.getCatagoryItems(parentCategoryID);
+		if (categoryID != null) {
+			ViewerFilter filter = new NewCPWizardCategoryFilter(categoryID);
+			for (Iterator it = wizardNodes.iterator(); it.hasNext();) {
+				if (!filter.select(null, null, it.next())) {
+					it.remove();
+				}
+			}
+		}
+		if (wizardNodes == null || wizardNodes.size() == 0) {
+			return null;
+		}
+		if (wizardNodes.size() > 1) {
+			return null;
+		}
+		IWizardNode wizardNode = (IWizardNode) wizardNodes.get(0);
+		if (wizardNode instanceof CPCategoryWizardNode) {
+			IWizard wizard = getDefaultWizard(
+					((CPCategoryWizardNode) wizardNode).getProvider()
+							.getCategory(), null);
+			if (wizard == null) {
+				return wizardNode.getWizard();
+			}
+			else {
+				return wizard;
+			}
+		}
+		return wizardNode.getWizard();
 	}
 	
 	/**

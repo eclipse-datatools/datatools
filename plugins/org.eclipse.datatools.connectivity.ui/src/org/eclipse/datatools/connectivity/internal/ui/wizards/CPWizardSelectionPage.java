@@ -139,7 +139,7 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 		return wizardNodes;
 	}
 	
-	protected CPWizardSelectionPage(String id) {
+	public CPWizardSelectionPage(String id) {
 		super(id);
 		setTitle(ConnectivityUIPlugin.getDefault().getResourceString(
 				"CPWizardSelectionPage.title")); //$NON-NLS-1$
