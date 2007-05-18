@@ -233,7 +233,7 @@
             id="org.eclipse.datatools.connectivity.dsexplorer.content"
             labelProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileLabelProvider"
             name="%DSE.content"
-            priority="normal">
+            priority="higher">
          <actionProvider
                class="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
                id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
