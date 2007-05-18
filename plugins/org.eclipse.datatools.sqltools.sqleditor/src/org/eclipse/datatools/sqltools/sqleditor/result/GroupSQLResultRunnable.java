@@ -299,7 +299,8 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             //don't return error status to prevent eclipse from poping up errors 
 // Broken! Read and understand http://wiki.eclipse.org/index.php/DTP_1.5_Development_Environment
 //            IStatus info = new Status(IStatus.INFO, SQLEditorPlugin.PLUGIN_ID, Messages.GroupSQLResultRunnable_not_complete);
-            return info;
+//            return info;
+        	return null;
         }
     }
 
