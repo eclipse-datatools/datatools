@@ -39,7 +39,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -619,6 +618,9 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
                 IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
             databaseName = profile.getBaseProperties().getProperty(
                     IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID);
+            if (databaseName == null || databaseName.trim().length() == 0) {
+            	databaseName = profile.getName();
+           	}
         } catch (Exception e){
             e.printStackTrace();
         }

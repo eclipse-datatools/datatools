@@ -44,6 +44,10 @@ public class DatabaseProviderHelper
     public void setDatabase (Connection connection, ConnectionInfo info, String databaseName)
 	{
         Database database = getCatalogDatabase (connection, info);
-        database.setName (databaseName);
+        if (database.getName() == null || database.getName().trim().length() == 0 ) {
+        	if (databaseName != null && databaseName.length() != 0) {
+        		database.setName(databaseName);
+        	}
+        }
 	}
 }
