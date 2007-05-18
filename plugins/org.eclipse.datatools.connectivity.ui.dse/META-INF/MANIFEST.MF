@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse; singleton:=true
-Bundle-Version: 1.0.0.200705161
+Bundle-Version: 1.0.0.200705181
 Bundle-Activator: org.eclipse.datatools.connectivity.ui.dse.DSEPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -16,11 +16,16 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.navigator.resources;bundle-version="[3.2.0,4.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
- org.eclipse.ltk.core.refactoring;bundle-version="[3.2.0,4.0.0)"
+ org.eclipse.ltk.core.refactoring;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.help;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.help;bundle-version="[0.9.1,2.0.0)",
+ org.eclipse.help.base,
+ org.eclipse.ui.workbench.texteditor
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.connectivity.ui.dse,
  org.eclipse.datatools.connectivity.ui.dse.actions,
  org.eclipse.datatools.connectivity.ui.dse.dialogs,
  org.eclipse.datatools.connectivity.ui.dse.dialogs.filters,
+ org.eclipse.datatools.connectivity.ui.dse.dnd,
  org.eclipse.datatools.connectivity.ui.dse.views
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
