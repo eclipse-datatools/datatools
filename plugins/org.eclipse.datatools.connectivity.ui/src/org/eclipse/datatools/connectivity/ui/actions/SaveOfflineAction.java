@@ -23,7 +23,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IActionDelegate2;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
 public class SaveOfflineAction extends BaseSelectionListenerAction implements
@@ -35,7 +34,6 @@ public class SaveOfflineAction extends BaseSelectionListenerAction implements
 		super(ConnectivityUIPlugin.getDefault().getResourceString(
 				"DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE"));//$NON-NLS-1$
 		setToolTipText(getText());
-		setActionDefinitionId(ActionFactory.REFRESH.getId());
 	}
 
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
