@@ -169,7 +169,7 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
                 if (_groups.length > 1)
                 {
                     resultsViewAPI.appendStatusMessage(getOperationCommand(), _groups[i]);
-                    monitor.subTask(NLS.bind(Messages.GroupSQLResultRunnable_groups, (new Object[]{"" + i}))); //$NON-NLS-1$ //$NON-NLS-2$
+                    monitor.subTask(NLS.bind(Messages.GroupSQLResultRunnable_group, (new Object[]{"" + i}))); //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 _currentJob = f.getExecutionService()
 				.createAdHocScriptRunnable(getConnection(), _groups[i], false, _tracker, monitor,
