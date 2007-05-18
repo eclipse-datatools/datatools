@@ -811,7 +811,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
     {
         SybaseASABaseUserDefinedType asaUDT = (SybaseASABaseUserDefinedType)udt;
         StringBuffer sb = new StringBuffer(128);
-        sb.append(CREATE).append(SPACE).append(DOMAIN).append(SPACE)
+        sb.append(CREATE).append(SPACE).append(ISybaseASADdlConstants.DOMAIN).append(SPACE)
             .append(DOUBLE_QUOTE).append(asaUDT.getName()).append(DOUBLE_QUOTE).append(SPACE);
         
         // datatype
@@ -1484,7 +1484,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
     {
         SybaseASABaseUserDefinedType asaUDT = (SybaseASABaseUserDefinedType)udt;
         StringBuffer sb = new StringBuffer(128);
-        sb.append(DROP).append(SPACE).append(DOMAIN).append(SPACE).append(asaUDT.getName());
+        sb.append(DROP).append(SPACE).append(ISybaseASADdlConstants.DOMAIN).append(SPACE).append(asaUDT.getName());
 
         return sb.toString();
     }
@@ -1672,11 +1672,11 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
             {
                 if (((Procedure)routine).getMaxResultSets() > 0)
                 {
-                    sb.append(TAB).append(DYNAMIC_RESULT_SETS).append(SPACE).append(((Procedure)routine).getMaxResultSets()).append(NEWLINE);
+                    sb.append(TAB).append(ISybaseASADdlConstants.DYNAMIC_RESULT_SETS).append(SPACE).append(((Procedure)routine).getMaxResultSets()).append(NEWLINE);
                 }
             }
             sb.append(TAB).append(EXTERNAL_NAME).append(SPACE).append(routine.getExternalName()).append(SPACE);
-            sb.append(LANGUAGE).append(SPACE).append(JAVA).append(NEWLINE);
+            sb.append(ISybaseASADdlConstants.LANGUAGE).append(SPACE).append(JAVA).append(NEWLINE);
         }
         else
         {
@@ -1691,7 +1691,7 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         if(function.getReturnScalar() != null) {
             Parameter scaler = function.getReturnScalar();
             StringBuffer sb = new StringBuffer();
-            sb.append(RETURNS).append(SPACE).append(getDataTypeString(scaler,function.getSchema())).append(NEWLINE);
+            sb.append(ISybaseASADdlConstants.RETURNS).append(SPACE).append(getDataTypeString(scaler,function.getSchema())).append(NEWLINE);
             return sb.toString();
         }
         return EMPTY_STRING;
