@@ -201,13 +201,12 @@ public class WebServiceSelectionPageHelper
 		if ( props == null )
 			props = new Properties( );
 
-		Properties prop = new Properties( );
-		prop.setProperty( Constants.SOAP_ENDPOINT, getSoapEndPointString( ) );
-		prop.setProperty( Constants.CUSTOM_CONNECTION_CLASS,
+		props.setProperty( Constants.SOAP_ENDPOINT, getSoapEndPointString( ) );
+		props.setProperty( Constants.CUSTOM_CONNECTION_CLASS,
 				getCustomClassString( ) );
-		prop.setProperty( Constants.WSDL_URI, getWsdlURIString( ) );
+		props.setProperty( Constants.WSDL_URI, getWsdlURIString( ) );
 
-		return prop;
+		return props;
 	}
 
 	/**
