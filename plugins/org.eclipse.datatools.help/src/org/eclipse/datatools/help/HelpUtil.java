@@ -28,10 +28,14 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.help.HelpSystem;
+import org.eclipse.help.IContext;
 import org.eclipse.help.IContextProvider;
 import org.eclipse.swt.events.HelpEvent;
 import org.eclipse.swt.events.HelpListener;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
@@ -72,15 +76,31 @@ public class HelpUtil
 				}
 				if (provider != null) {
 					if ((provider.getContextChangeMask() & IContextProvider.SELECTION) != 0) {
-						Object		context = provider.getContext(event.widget);
+						IContext		context = HelpSystem.getContext(getHelpKey(event.widget));
 						
 						if (context != null) {
-							event.widget.setData(HELP_KEY, context);
+							// determine a location in the upper right corner of the
+							// widget
+							Point point = computePopUpLocation(event.widget.getDisplay());
+							// display the help
+							PlatformUI.getWorkbench().getHelpSystem().displayContext(context, point.x, point.y);
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Determines the location for the help popup shell given the widget which
+	 * orginated the request for help.
+	 * 
+	 * @param display
+	 *            the display where the help will appear
+	 */
+	private static Point computePopUpLocation(Display display) {
+		Point point = display.getCursorLocation();
+		return new Point(point.x + 15, point.y);
 	}
 	
 	private static HelpListener getHelpListener()
@@ -98,7 +118,7 @@ public class HelpUtil
 			control.removeHelpListener(getHelpListener());
 			control.addHelpListener(getHelpListener());
 		}
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(control, contextId);
+		control.setData(HELP_KEY, contextId);
 	}
 	
 	public static String getHelpKey(Object target)
