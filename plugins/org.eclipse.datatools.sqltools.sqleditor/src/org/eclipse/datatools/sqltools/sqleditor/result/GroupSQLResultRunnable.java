@@ -44,6 +44,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
 {
+    public static final int  EXECUTION_NESTED_ERROR = 1000000;
     private final class ConfirmAction extends Action
     {
         boolean _goon = false;
@@ -297,10 +298,8 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         else
         {
             //don't return error status to prevent eclipse from poping up errors 
-// Broken! Read and understand http://wiki.eclipse.org/index.php/DTP_1.5_Development_Environment
-//            IStatus info = new Status(IStatus.INFO, SQLEditorPlugin.PLUGIN_ID, Messages.GroupSQLResultRunnable_not_complete);
-//            return info;
-        	return null;
+            IStatus info = new Status(IStatus.INFO, SQLEditorPlugin.PLUGIN_ID, EXECUTION_NESTED_ERROR, Messages.GroupSQLResultRunnable_not_complete, null);
+            return info;
         }
     }
 
