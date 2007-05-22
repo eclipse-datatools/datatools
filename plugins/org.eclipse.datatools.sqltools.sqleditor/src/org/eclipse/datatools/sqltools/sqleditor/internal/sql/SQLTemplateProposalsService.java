@@ -17,6 +17,8 @@ import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContext;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
+import org.eclipse.datatools.sqltools.editor.template.SQLTemplate;
+import org.eclipse.datatools.sqltools.editor.template.TemplateConstant;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
@@ -29,7 +31,7 @@ import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.templates.GlobalTemplateVariables;
 import org.eclipse.jface.text.templates.Template;
 import org.eclipse.jface.text.templates.TemplateContextType;
-import org.eclipse.jface.text.templates.TemplateProposal;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
 /**
@@ -102,15 +104,13 @@ public class SQLTemplateProposalsService {
 					{
 						if (isStatementStart) {
 							proposals.add(new SQLTemplateProposal(editor, templates[i],
-									context, region, SQLEditorResources
-											.getImage("template_obj"),
+									context, region, getTemplateImage(templates[i]),
 									SQLCompletionProposal.TEMPLATE));
 						}
 					} else if (SQLParserCompletionEngine.startsWithIgnoreCase(templates[i].getName(),
 							word)) {
 						proposals.add(new SQLTemplateProposal(editor, templates[i],
-								context, region, SQLEditorResources
-										.getImage("template_obj"),
+								context, region, getTemplateImage(templates[i]),
 								SQLCompletionProposal.TEMPLATE));
 					}
 				}
@@ -127,8 +127,7 @@ public class SQLTemplateProposalsService {
 										_WORD_SELECTION) != -1 || (multipleLinesSelected && template
 								.getPattern().indexOf(_LINE_SELECTION) != -1))) {
 					proposals.add(new SQLTemplateProposal(editor, templates[i], context,
-							region, SQLEditorResources
-							.getImage("template"),
+							region, getTemplateImage(templates[i]),
 							SQLCompletionProposal.TEMPLATE));
 				}
 			}
@@ -136,6 +135,18 @@ public class SQLTemplateProposalsService {
 		return proposals;
 	}
 
+	private Image getTemplateImage(Template template)
+	{
+	    if (template instanceof SQLTemplate)
+	    {
+	        SQLTemplate sqlTemplate = (SQLTemplate) template;
+	        if (sqlTemplate.getId().startsWith(TemplateConstant.INTELLIGENT_TEMPLATE))
+	        {
+	            return SQLEditorResources.getImage("intelligent_template");
+	        }
+	    }
+	    return SQLEditorResources.getImage("template_obj");
+	}
 	/**
 	 * Returns <code>true</code> if one line is completely selected or if
 	 * multiple lines are selected. Being completely selected means that all
