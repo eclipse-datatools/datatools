@@ -16,5 +16,10 @@ package org.eclipse.datatools.enablement.oda.ws.ui.util;
  */
 
 public class Constants
+		extends
+			org.eclipse.datatools.enablement.oda.ws.util.Constants
 {
+
+	public static String DELIMITER_OPEARTION = "$-$";//$NON-NLS-1$
+
 }

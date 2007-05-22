@@ -15,8 +15,8 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -51,11 +51,19 @@ public class WebServiceSelectionPageHelper
 
 	static final String DEFAULT_MESSAGE = Messages.getString( "webServiceSelectionPage.message.default" ); //$NON-NLS-1$
 
+	/**
+	 * 
+	 * @param page
+	 */
 	WebServiceSelectionPageHelper( WizardPage page )
 	{
 		wizardPage = page;
 	}
 
+	/**
+	 * 
+	 * @param page
+	 */
 	WebServiceSelectionPageHelper( PreferencePage page )
 	{
 		propertyPage = page;

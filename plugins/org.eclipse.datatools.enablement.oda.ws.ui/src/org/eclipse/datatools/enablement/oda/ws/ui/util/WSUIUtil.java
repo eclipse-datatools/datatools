@@ -28,26 +28,20 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ws.impl.Driver;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 
 /**
  * 
  */
 
-public class WSUIUtil
+public class WSUIUtil extends WSUtil
 {
 
-	public static boolean isNull( Object object )
-	{
-		return WSUtil.isNull( object );
-	}
-
-	public static String getNonNullString( String value )
-	{
-		return WSUtil.getNonNullString( value );
-	}
-
+	/**
+	 * Makes sure the public and private properties are not empty
+	 * 
+	 * @param design
+	 */
 	public static void checkExisted( DataSetDesign design )
 	{
 		if ( design.getPublicProperties( ) == null )
@@ -81,25 +75,22 @@ public class WSUIUtil
 	private static Properties getDataSetInitialPrivateProperties( )
 	{
 		Properties props = new Properties( );
-		props.setProperty( Constants.OPERATION_TRACE, "" );
-		props.setProperty( Constants.XML_QUERYTEXT, "" );
+		props.setProperty( Constants.OPERATION_TRACE, EMPTY_STRING );
+		props.setProperty( Constants.XML_QUERYTEXT, EMPTY_STRING );
 
 		return props;
 	}
 
+	/**
+	 * Consumes the driver and updates the dataSetDesign
+	 * 
+	 * @param dataSetDesign
+	 */
 	public static void savePage( DataSetDesign dataSetDesign )
 	{
-		// obtain query's current runtime metadata, and maps it to the
-		// dataSetDesign
 		IConnection conn = null;
 		try
 		{
-			// instantiate your custom ODA runtime driver class
-			/*
-			 * Note: You may need to manually update your ODA runtime
-			 * extension's plug-in manifest to export its package for visibility
-			 * here.
-			 */
 			IDriver driver = new Driver( );
 
 			// obtain and open a live connection
@@ -107,8 +98,6 @@ public class WSUIUtil
 			Properties connProps = DesignUtil.convertDataSourceProperties( dataSetDesign.getDataSourceDesign( ) );
 			conn.open( connProps );
 
-			// update the data set design with the
-			// query's current runtime metadata
 			updateDesign( dataSetDesign, conn, dataSetDesign.getQueryText( ) );
 		}
 		catch ( OdaException e )
@@ -135,11 +124,6 @@ public class WSUIUtil
 		IQuery query = conn.newQuery( null );
 		query.prepare( queryText );
 
-		// TODO a runtime driver might require a query to first execute before
-		// its metadata is available
-		// query.setMaxRows( 1 );
-		// query.executeQuery( );
-
 		// set soapParameters
 		SOAPParameter[] soapParameters = WSConsole.getInstance( )
 				.getParameters( );
@@ -152,13 +136,14 @@ public class WSUIUtil
 			}
 		}
 
-		// set xmlQuery note: it was save to design not to model cuz
+		// set xmlQuery note: it was save to design not to model due to
 		// compatibility issue
 		query.setProperty( Constants.XML_QUERYTEXT,
 				dataSetDesign.getPrivateProperties( )
 						.getProperty( Constants.XML_QUERYTEXT ) );
-		// operationTrace is needed here to get soapAction and, if applicable,
-		// soapEndPoint
+
+		// set operationTrace: necessary here to get soapAction and, if
+		// applicable, soapEndPoint
 		query.setProperty( Constants.OPERATION_TRACE, WSConsole.getInstance( )
 				.getPropertyValue( Constants.OPERATION_TRACE ) );
 
@@ -239,15 +224,8 @@ public class WSUIUtil
 		paramDesign.setDerivedMetaData( true );
 		dataSetDesign.setParameters( paramDesign );
 
-		// TODO replace below with data source specific implementation;
-		// hard-coded parameter's default value for demo purpose
 		if ( paramDesign.getParameterDefinitions( ).size( ) > 0 )
 		{
-			// ParameterDefinition paramDef = (ParameterDefinition)
-			// paramDesign.getParameterDefinitions( )
-			// .get( 0 );
-			// if ( paramDef != null )
-			// paramDef.setDefaultScalarValue( "dummy default value" );
 			WSConsole.getInstance( )
 					.merge2ParameterDefinitions( paramDesign.getParameterDefinitions( ) );
 		}

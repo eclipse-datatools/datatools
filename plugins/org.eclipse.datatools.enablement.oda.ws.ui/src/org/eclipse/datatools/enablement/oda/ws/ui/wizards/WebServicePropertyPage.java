@@ -25,6 +25,9 @@ public class WebServicePropertyPage extends DataSourceEditorPage
 
 	private WebServiceSelectionPageHelper pageHelper;
 
+	/**
+	 * 
+	 */
 	public WebServicePropertyPage( )
 	{
 		super( );

@@ -26,6 +26,10 @@ public class WebServiceSelectionPage extends DataSourceWizardPage
 	private WebServiceSelectionPageHelper pageHelper;
 	private Properties wsProperties;
 
+	/**
+	 * 
+	 * @param pageName
+	 */
 	public WebServiceSelectionPage( String pageName )
 	{
 		super( pageName );

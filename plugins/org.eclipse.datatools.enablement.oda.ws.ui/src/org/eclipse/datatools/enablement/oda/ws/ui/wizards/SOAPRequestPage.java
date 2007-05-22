@@ -16,9 +16,9 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
@@ -154,7 +154,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				queryText.setText( "" );
+				queryText.setText( WSUIUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -166,7 +166,14 @@ public class SOAPRequestPage extends DataSetWizardPage
 	 */
 	private void initializeControl( )
 	{
+		initWSConsole( );
 		initFromModel( );
+	}
+	
+	private void initWSConsole( )
+	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			WSConsole.getInstance( ).start( getInitializationDesign( ) );
 	}
 
 	private void initFromModel( )
@@ -195,18 +202,31 @@ public class SOAPRequestPage extends DataSetWizardPage
 	 */
 	private void savePage( DataSetDesign dataSetDesign )
 	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			return;
+		
 		dataSetDesign.setQueryText( WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT ) );
 		// parametes at this point has already be applied to model which will in
 		// turn be applied to dataSetDesign later together with xmlQueryText
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
 	public IWizardPage getNextPage( )
 	{
 		saveToModel( );
 		return super.getNextPage( );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+	 */
 	protected boolean canLeave( )
 	{
 		saveToModel( );
@@ -225,6 +245,16 @@ public class SOAPRequestPage extends DataSetWizardPage
 		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
 				.getTemplate( ) ) );
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+	protected void cleanup( )
+	{
+		WSConsole.getInstance( ).terminateSession( );
+	}
 
 	class ParameterInputDialog extends StatusDialog
 	{
@@ -236,11 +266,19 @@ public class SOAPRequestPage extends DataSetWizardPage
 		private final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
 		private final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
+		/**
+		 * 
+		 */
 		public ParameterInputDialog( )
 		{
 			super( PlatformUI.getWorkbench( ).getDisplay( ).getActiveShell( ) );
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.jface.dialogs.StatusDialog#create()
+		 */
 		public void create( )
 		{
 			super.create( );
@@ -252,6 +290,11 @@ public class SOAPRequestPage extends DataSetWizardPage
 			getShell( ).setText( getTitle( ) );
 		}
 
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+		 */
 		protected Control createDialogArea( Composite parent )
 		{
 			Composite composite = (Composite) super.createDialogArea( parent );
@@ -322,14 +365,14 @@ public class SOAPRequestPage extends DataSetWizardPage
 				public String getColumnText( Object element, int columnIndex )
 				{
 					SOAPParameter param = ( (SOAPParameter) element );
-					String value = "";
+					String value = WSUIUtil.EMPTY_STRING;
 					switch ( columnIndex )
 					{
 						case 0 :
 							value = param.getName( );
 							break;
 						case 1 :
-							value = "";
+							value = WSUIUtil.EMPTY_STRING;
 							break;
 						case 2 :
 							value = param.getDefaultValue( );
@@ -384,7 +427,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 				public Object getValue( Object element, String property )
 				{
-					return ( (SOAPParameter) element ).getDefaultValue( );
+					return WSUIUtil.getNonNullString( ( (SOAPParameter) element ).getDefaultValue( ) );
 				}
 
 				public void modify( Object element, String property,

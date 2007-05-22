@@ -17,18 +17,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.wsdl.Binding;
-import javax.wsdl.Definition;
-import javax.wsdl.Operation;
-import javax.wsdl.Port;
-import javax.wsdl.PortType;
-import javax.wsdl.Service;
-import javax.xml.namespace.QName;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -39,7 +29,6 @@ import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
 import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
@@ -49,20 +38,24 @@ import org.eclipse.emf.common.util.EList;
  * A utility class to handle ws design-time model which involves some properties
  * and util methods.
  * 
- * stardand case-secnario: initial: design->model->page
+ * standard case-scenario: initial: design->model->page
  * intermedial:canLeave/getNextPage(refresh) page->model final:model->design
  */
 
 public class WSConsole
 {
 
-	public static String DELIMITER_OPEARTION = "$-$";//$NON-NLS-1$
 	private static String XML_TEMP_FILE = "xmlTempFile";// //$NON-NLS-1$
 	private static WSConsole instance;
 
 	private Properties props;
 	private SOAPParameter[] parameters;
+	private boolean isSessionOK = false;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public static synchronized WSConsole getInstance( )
 	{
 		if ( instance == null )
@@ -71,6 +64,11 @@ public class WSConsole
 		return instance;
 	}
 
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
 	public String getPropertyValue( String key )
 	{
 		if ( props == null )
@@ -79,6 +77,11 @@ public class WSConsole
 		return props.getProperty( key );
 	}
 
+	/**
+	 * 
+	 * @param key
+	 * @param value
+	 */
 	public void setPropertyValue( String key, String value )
 	{
 		if ( props == null )
@@ -88,11 +91,17 @@ public class WSConsole
 			props.setProperty( key, value );
 	}
 
+	/**
+	 * Populates all the required properties available in dataSetDesign
+	 * 
+	 * @param dataSetDesign
+	 */
 	public void start( DataSetDesign dataSetDesign )
 	{
 		if ( dataSetDesign == null )
 			return;
 
+		isSessionOK = true;
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText != null && queryText.trim( ).length( ) > 0 )
 		{
@@ -107,25 +116,25 @@ public class WSConsole
 		{
 			Property xmlFileURI = dataSetDesign.getPublicProperties( )
 					.findProperty( Constants.XML_FILE_URI );
-			setPropertyValue( Constants.XML_FILE_URI, xmlFileURI == null ? ""
-					: xmlFileURI.getValue( ) );
+			setPropertyValue( Constants.XML_FILE_URI, xmlFileURI == null
+					? WSUIUtil.EMPTY_STRING : xmlFileURI.getValue( ) );
 
 			Property xsdFileURI = dataSetDesign.getPublicProperties( )
 					.findProperty( Constants.XSD_FILE_URI );
-			setPropertyValue( Constants.XSD_FILE_URI, xmlFileURI == null ? ""
-					: xsdFileURI.getValue( ) );
+			setPropertyValue( Constants.XSD_FILE_URI, xmlFileURI == null
+					? WSUIUtil.EMPTY_STRING : xsdFileURI.getValue( ) );
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
 			Property operationTrace = dataSetDesign.getPrivateProperties( )
 					.findProperty( Constants.OPERATION_TRACE );
 			setPropertyValue( Constants.OPERATION_TRACE, operationTrace == null
-					? "" : operationTrace.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : operationTrace.getValue( ) );
 
 			Property xmlQueryText = dataSetDesign.getPrivateProperties( )
 					.findProperty( Constants.XML_QUERYTEXT );
 			setPropertyValue( Constants.XML_QUERYTEXT, xmlQueryText == null
-					? "" : xmlQueryText.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : xmlQueryText.getValue( ) );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{
@@ -136,79 +145,84 @@ public class WSConsole
 				Property soapEndPoint = dataSourceDesign.getPublicProperties( )
 						.findProperty( Constants.SOAP_ENDPOINT );
 				setPropertyValue( Constants.SOAP_ENDPOINT, soapEndPoint == null
-						? "" : soapEndPoint.getValue( ) );
+						? WSUIUtil.EMPTY_STRING : soapEndPoint.getValue( ) );
 
 				Property customConnectionClass = dataSourceDesign.getPublicProperties( )
 						.findProperty( Constants.CUSTOM_CONNECTION_CLASS );
 				setPropertyValue( Constants.CUSTOM_CONNECTION_CLASS,
-						customConnectionClass == null ? ""
+						customConnectionClass == null ? WSUIUtil.EMPTY_STRING
 								: customConnectionClass.getValue( ) );
 			}
 			if ( dataSourceDesign.getPrivateProperties( ) != null )
 			{
 				Property wsdlURI = dataSourceDesign.getPrivateProperties( )
 						.findProperty( Constants.WSDL_URI );
-				setPropertyValue( Constants.WSDL_URI, wsdlURI == null ? ""
-						: wsdlURI.getValue( ) );
+				setPropertyValue( Constants.WSDL_URI, wsdlURI == null
+						? WSUIUtil.EMPTY_STRING : wsdlURI.getValue( ) );
 			}
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public void end( )
 	{
 		instance = null;
 	}
 
+	/**
+	 * 
+	 */
+	public void terminateSession( )
+	{
+		isSessionOK = false;
+		props = null;
+		parameters = null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isSessionOK( )
+	{
+		return isSessionOK;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
 	public SOAPParameter[] getParameters( )
 	{
 		return parameters;
 	}
 
+	/**
+	 * 
+	 * @param soapParameters
+	 */
 	public void setParameters( SOAPParameter[] soapParameters )
 	{
 		this.parameters = soapParameters;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getTemplate( )
 	{
 		return WSDLAdvisor.getSOAPRequestTemplate( getPropertyValue( Constants.WSDL_URI ),
 				getPropertyValue( Constants.OPERATION_TRACE ) );
 	}
 
-	private Operation getOperation( )
-	{
-		String operationTrace = getPropertyValue( Constants.OPERATION_TRACE );
-		if ( WSUIUtil.isNull( operationTrace ) )
-			return null;
-
-		String[] opSplit = operationTrace.split( WSDLAdvisor.RE_DELIMITER_OPEARTION );
-		if ( opSplit.length != 3 )
-			return null;
-
-		String wsdlURI = getPropertyValue( Constants.WSDL_URI );
-		Definition definition = WSDLAdvisor.getDefinition( wsdlURI );
-		if ( definition == null )
-			return null;
-
-		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
-				opSplit[0] ) );// service
-		Port port = service.getPort( opSplit[1] );// port
-		Binding binding = port.getBinding( );
-		PortType portType = binding.getPortType( );
-		List operations = portType.getOperations( );
-		Iterator opIterator = operations.iterator( );
-		while ( opIterator.hasNext( ) )
-		{
-			Operation operation = (Operation) opIterator.next( );
-			if ( operation.getName( ).equals( opSplit[2] ) )// operation
-			{
-				return operation;
-			}
-		}
-
-		return null;
-	}
-
+	/**
+	 * 
+	 * @return
+	 * @throws OdaException
+	 */
 	public String getXMLFileURI( ) throws OdaException
 	{
 		String xmlFileURI = getPropertyValue( Constants.XML_FILE_URI );
@@ -227,10 +241,15 @@ public class WSConsole
 		return WSUIUtil.getNonNullString( xmlFileURI );
 	}
 
+	/**
+	 * 
+	 * @throws OdaException
+	 */
 	public void createXMLTempFileURI( ) throws OdaException
 	{
 		File file = generateTempXMLFile( );
-		String xmlTempFileURI = file == null ? "" : file.getAbsolutePath( );
+		String xmlTempFileURI = file == null ? WSUIUtil.EMPTY_STRING
+				: file.getAbsolutePath( );
 
 		setPropertyValue( Constants.XML_TEMP_FILE_URI, xmlTempFileURI );
 	}
@@ -351,6 +370,10 @@ public class WSConsole
 		return soapResponse;
 	}
 
+	/**
+	 * 
+	 * @param dataSetParams
+	 */
 	public void initSOAPParameters( DataSetParameters dataSetParams )
 	{
 		EList parameterDefinitions = dataSetParams.getParameterDefinitions( );
@@ -369,6 +392,10 @@ public class WSConsole
 
 	}
 
+	/**
+	 * 
+	 * @param parameterDefinitions
+	 */
 	public void merge2ParameterDefinitions( EList parameterDefinitions )
 	{
 		if ( !canMerge( parameters, parameterDefinitions ) )

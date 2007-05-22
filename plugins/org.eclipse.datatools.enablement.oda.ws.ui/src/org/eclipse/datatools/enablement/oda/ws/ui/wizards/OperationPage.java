@@ -24,9 +24,9 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.ui.Activator;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
@@ -54,8 +54,8 @@ public class OperationPage extends DataSetWizardPage
 	private transient Label operationName;
 	private transient Label operationDescription;
 
-	private String operationTrace = "";
-	private String wsdlURI = "";
+	private String operationTrace = WSUIUtil.EMPTY_STRING;
+	private String wsdlURI = WSUIUtil.EMPTY_STRING;
 
 	private Image wsdlImage;
 	private Image serviceImage;
@@ -64,6 +64,10 @@ public class OperationPage extends DataSetWizardPage
 
 	private static String DEFAULT_MESSAGE = Messages.getString( "operationPage.message.default" );//$NON-NLS-1$
 
+	/**
+	 * 
+	 * @param pageName
+	 */
 	public OperationPage( String pageName )
 	{
 		super( pageName );
@@ -149,8 +153,8 @@ public class OperationPage extends DataSetWizardPage
 				}
 				else
 				{
-					operationName.setText( "" );
-					operationDescription.setText( "" );
+					operationName.setText( WSUIUtil.EMPTY_STRING );
+					operationDescription.setText( WSUIUtil.EMPTY_STRING );
 					setPageComplete( false );
 				}
 			}
@@ -167,8 +171,8 @@ public class OperationPage extends DataSetWizardPage
 		Port port = (Port) item.getParentItem( ).getData( );
 		Operation operation = (Operation) item.getData( );
 		return service.getQName( ).getLocalPart( )
-				+ WSConsole.DELIMITER_OPEARTION + port.getName( )
-				+ WSConsole.DELIMITER_OPEARTION + operation.getName( );
+				+ Constants.DELIMITER_OPEARTION + port.getName( )
+				+ Constants.DELIMITER_OPEARTION + operation.getName( );
 	}
 
 	private void setupTextComposite( Composite parent )
@@ -221,10 +225,8 @@ public class OperationPage extends DataSetWizardPage
 
 	private void initWSConsole( )
 	{
-		DataSetDesign dataSetDesign = getInitializationDesign( );
-
-		WSConsole.getInstance( ).end( );
-		WSConsole.getInstance( ).start( dataSetDesign );
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			WSConsole.getInstance( ).start( getInitializationDesign( ) );
 	}
 
 	private void initFromModel( )
@@ -302,7 +304,7 @@ public class OperationPage extends DataSetWizardPage
 		if ( WSUIUtil.isNull( operationTrace ) )
 			return;
 
-		FontData fontData = new FontData( "", 8, SWT.BOLD );
+		FontData fontData = new FontData( WSUIUtil.EMPTY_STRING, 8, SWT.BOLD );
 		treeItem.setFont( new Font( null, fontData ) );
 
 		operationTree.setSelection( new TreeItem[]{
@@ -326,17 +328,30 @@ public class OperationPage extends DataSetWizardPage
 
 	private void savePage( DataSetDesign design )
 	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			return;
+
 		design.getPrivateProperties( ).setProperty( Constants.OPERATION_TRACE,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.OPERATION_TRACE ) );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+	 */
 	protected boolean canLeave( )
 	{
 		saveToModle( );
 		return super.canLeave( );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
 	public IWizardPage getNextPage( )
 	{
 		saveToModle( );
@@ -352,6 +367,16 @@ public class OperationPage extends DataSetWizardPage
 	{
 		WSConsole.getInstance( ).setPropertyValue( Constants.OPERATION_TRACE,
 				operationTrace );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+	protected void cleanup( )
+	{
+		WSConsole.getInstance( ).terminateSession( );
 	}
 
 }

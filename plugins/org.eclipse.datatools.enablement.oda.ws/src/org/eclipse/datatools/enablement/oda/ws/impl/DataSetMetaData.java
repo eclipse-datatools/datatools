@@ -72,7 +72,7 @@ public class DataSetMetaData implements IDataSetMetaData
 	public String getDataSourceProductName() throws OdaException
 	{
         // TODO Auto-generated method stub
-		return "DTP Web Service Data Source";
+		return "DTP Web Service Data Source"; //$NON-NLS-1$
 	}
 
 	/*

@@ -15,9 +15,9 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
-import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
@@ -49,13 +49,17 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private transient Text xsdFileURI;
 	private transient Text soapEndPoint;
 
+	/**
+	 * 
+	 * @param pageName
+	 */
 	public SOAPResponsePage( String pageName )
 	{
 		super( pageName );
 		setMessage( DEFAULT_MESSAGE );
 	}
 
-	private static String DEFAULT_MESSAGE = Messages.getString( "soapResponsePage.message.default" );
+	private static String DEFAULT_MESSAGE = Messages.getString( "soapResponsePage.message.default" ); //$NON-NLS-1$
 
 	/*
 	 * (non-Javadoc)
@@ -114,7 +118,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				xsdFileURI.setText( "" );
+				xsdFileURI.setText( WSUIUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -149,7 +153,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
-						"*.xsd", "*.*"
+						"*.xsd", "*.*" //$NON-NLS-1$//$NON-NLS-2$
 				} );
 				if ( xsdFileURI.getText( ) != null
 						&& xsdFileURI.getText( ).trim( ).length( ) > 0 )
@@ -198,7 +202,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				xmlFileURI.setText( "" );
+				xmlFileURI.setText( WSUIUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -266,7 +270,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 						.getDisplay( )
 						.getActiveShell( ), SWT.OPEN );
 				dialog.setFilterExtensions( new String[]{
-						"*.xml", "*.*"
+						"*.xml", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
 				} );
 				if ( xmlFileURI.getText( ) != null
 						&& xmlFileURI.getText( ).trim( ).length( ) > 0 )
@@ -291,7 +295,14 @@ public class SOAPResponsePage extends DataSetWizardPage
 	 */
 	private void initializeControl( )
 	{
+		initWSConsole( );
 		initFromModel( );
+	}
+
+	private void initWSConsole( )
+	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			WSConsole.getInstance( ).start( getInitializationDesign( ) );
 	}
 
 	private void initFromModel( )
@@ -331,6 +342,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void savePage( DataSetDesign design )
 	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			return;
+
 		design.getPublicProperties( ).setProperty( Constants.XML_FILE_URI,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.XML_FILE_URI ) );
@@ -352,6 +366,11 @@ public class SOAPResponsePage extends DataSetWizardPage
 		return super.canLeave( );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
 	public IWizardPage getNextPage( )
 	{
 		saveToModel( );
@@ -371,6 +390,16 @@ public class SOAPResponsePage extends DataSetWizardPage
 				soapEndPoint.getText( ) );
 		WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
 				xmlFileURI.getText( ) );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#cleanup()
+	 */
+	protected void cleanup( )
+	{
+		WSConsole.getInstance( ).terminateSession( );
 	}
 
 }

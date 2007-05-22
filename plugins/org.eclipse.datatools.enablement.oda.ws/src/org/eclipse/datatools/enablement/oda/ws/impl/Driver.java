@@ -82,7 +82,7 @@ public class Driver implements IDriver
                                 .getDataTypeMapping( nativeDataTypeCode );
         if( typeMapping != null )
             return typeMapping.getNativeType();
-        return "Non-defined"; 
+        return "Non-defined";  //$NON-NLS-1$
     }
 
 }

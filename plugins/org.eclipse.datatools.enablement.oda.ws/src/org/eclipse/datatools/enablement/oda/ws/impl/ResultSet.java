@@ -107,7 +107,7 @@ public class ResultSet implements IResultSet
         // TODO replace with data source specific implementation
         
         // hard-coded for demo purpose
-        return "row" + getRow() + "_column" + index + " value";
+        return "row" + getRow() + "_column" + index + " value";   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
 	}
 
 	/*

@@ -18,6 +18,14 @@ package org.eclipse.datatools.enablement.oda.ws.util;
 public class WSUtil
 {
 
+	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+	/**
+	 * Tests whether or not the given object is null
+	 * 
+	 * @param object
+	 * @return
+	 */
 	public static boolean isNull( Object object )
 	{
 		if ( object == null )
@@ -29,9 +37,16 @@ public class WSUtil
 		return false;
 	}
 
+	/**
+	 * Gets an empty string if the given string is null, the string itself will
+	 * be returned as is if otherwise
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static String getNonNullString( String value )
 	{
-		return value == null ? "" : value;
+		return value == null ? EMPTY_STRING : value;
 	}
 
 }

@@ -41,7 +41,7 @@ public class ResultSetMetaData implements IResultSetMetaData
         // TODO replace with data source specific implementation
 
         // hard-coded for demo purpose
-        return "Column" + index;
+        return "Column" + index; //$NON-NLS-1$
 	}
 
 	/*

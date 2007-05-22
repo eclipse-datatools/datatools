@@ -28,15 +28,22 @@ public class SOAPRequest
 	// template could be considered as the subset of queryText with non
 	// parameters involved, queryText is defined by users
 	private String[] template;
-	private String queryText = "";
+	private String queryText = WSUtil.EMPTY_STRING;
 	private SOAPParameter[] parameters;
 
+	/**
+	 * 
+	 * @param queryText
+	 */
 	public SOAPRequest( String queryText )
 	{
 		this.queryText = queryText;
 		init( );
 	}
 
+	/**
+	 * 
+	 */
 	public SOAPRequest( )
 	{
 	}
@@ -54,16 +61,22 @@ public class SOAPRequest
 		generateParameters( );
 	}
 
+	/**
+	 * 
+	 */
 	public void generateTemplate( )
 	{
 		if ( !WSUtil.isNull( queryText ) )
 			template = queryText.split( RE_PARAMETER );
 	}
 
+	/**
+	 * 
+	 */
 	public void generateParameters( )
 	{
 		// string length >1 means there is (are) parameter(s)
-		// paramters.length=strings.length-1
+		// parameters.length=strings.length-1
 		if ( !WSUtil.isNull( template ) && template.length > 1 )
 		{
 			parameters = new SOAPParameter[template.length - 1];
@@ -82,42 +95,76 @@ public class SOAPRequest
 		}
 	}
 
+	/**
+	 * 
+	 * @param queryText
+	 */
 	public void setQueryText( String queryText )
 	{
 		this.queryText = queryText;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getQueryText( )
 	{
 		return queryText;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String[] getTemplate( )
 	{
 		return template;
 	}
 
+	/**
+	 * 
+	 * @param template
+	 */
 	public void setTemplate( String[] template )
 	{
 		this.template = template;
 	}
 
+	/**
+	 * 
+	 * @param parameters
+	 */
 	public void setParameters( SOAPParameter[] parameters )
 	{
 		this.parameters = parameters;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public SOAPParameter[] getParameters( )
 	{
 		return parameters;
 	}
 
+	/**
+	 * 
+	 * @param parameterId
+	 * @param value
+	 */
 	public void setParameterValue( int parameterId, String value )
 	{
 		if ( !WSUtil.isNull( parameters ) && parameters.length >= parameterId )
 			parameters[parameterId - 1].setDefaultValue( value );
 	}
 
+	/**
+	 * 
+	 * @param name
+	 * @param value
+	 */
 	public void setParameterValue( String name, String value )
 	{
 		if ( !WSUtil.isNull( parameters ) && !WSUtil.isNull( name ) )
@@ -138,12 +185,12 @@ public class SOAPRequest
 	public String toXML( )
 	{
 		if ( template == null )
-			return "";
+			return WSUtil.EMPTY_STRING;
 
 		if ( parameters == null )
 			return template[template.length - 1];
 
-		String soapRequest = "";
+		String soapRequest = WSUtil.EMPTY_STRING;
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			soapRequest += template[i];

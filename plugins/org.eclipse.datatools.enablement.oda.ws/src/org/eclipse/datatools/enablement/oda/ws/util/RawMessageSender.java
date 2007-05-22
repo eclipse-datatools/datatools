@@ -26,13 +26,19 @@ import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 public class RawMessageSender
 {
 
-	private String spec = "";
-	private String message = "";
-	private String soapAction = "";
+	private String spec = WSUtil.EMPTY_STRING;
+	private String message = WSUtil.EMPTY_STRING;
+	private String soapAction = WSUtil.EMPTY_STRING;
 
 	private SOAPResponse soapResponse;
 	private HttpURLConnection connection;
 
+	/**
+	 * 
+	 * @param spec
+	 * @param message
+	 * @param soapAction
+	 */
 	public RawMessageSender( String spec, String message, String soapAction )
 	{
 		this.spec = spec;
@@ -40,25 +46,44 @@ public class RawMessageSender
 		this.soapAction = soapAction;
 	}
 
+	/**
+	 * 
+	 */
 	public RawMessageSender( )
 	{
 	}
 
+	/**
+	 * 
+	 * @param message
+	 */
 	public void setMessage( String message )
 	{
 		this.message = message;
 	}
 
+	/**
+	 * 
+	 * @param soapAction
+	 */
 	public void setSoapAction( String soapAction )
 	{
 		this.soapAction = soapAction;
 	}
 
+	/**
+	 * 
+	 * @param spec
+	 */
 	public void setSpec( String spec )
 	{
 		this.spec = spec;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public SOAPResponse getSOAPResponse( )
 	{
 		Thread t = new Thread( new SOAPResponseCollector( ) );
@@ -80,12 +105,12 @@ public class RawMessageSender
 				URL url = new URL( spec );
 
 				connection = (HttpURLConnection) url.openConnection( );
-				connection.setRequestMethod( "POST" );
-				connection.setRequestProperty( "Content-Length",
+				connection.setRequestMethod( "POST" ); //$NON-NLS-1$
+				connection.setRequestProperty( "Content-Length", //$NON-NLS-1$
 						String.valueOf( message.length( ) ) );
-				connection.setRequestProperty( "Content-Type", "text/xml" );
-				connection.setRequestProperty( "Connection", "Close" );
-				connection.setRequestProperty( "SoapAction", soapAction );
+				connection.setRequestProperty( "Content-Type", "text/xml" );  //$NON-NLS-1$//$NON-NLS-2$
+				connection.setRequestProperty( "Connection", "Close" ); //$NON-NLS-1$ //$NON-NLS-2$
+				connection.setRequestProperty( "SoapAction", soapAction ); //$NON-NLS-1$
 				connection.setDoOutput( true );
 
 				PrintWriter pw = new PrintWriter( connection.getOutputStream( ) );

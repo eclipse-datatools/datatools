@@ -49,10 +49,10 @@ public class Query implements IQuery
 
 	private int m_maxRows;
 	private boolean isCustom = false;
-	private String xmlQueryText = "";
-	private String soapEndPoint = "";
-	private String operationTrace = "";
-	private String wsdlURI = "";
+	private String xmlQueryText = WSUtil.EMPTY_STRING;
+	private String soapEndPoint = WSUtil.EMPTY_STRING;
+	private String operationTrace = WSUtil.EMPTY_STRING;
+	private String wsdlURI = WSUtil.EMPTY_STRING;
 
 	public Query( RawMessageSender rawMessageSender, Properties connProperties )
 	{

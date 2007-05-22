@@ -28,13 +28,23 @@ public class SOAPResponse
 
 	private InputStream inputStream;
 	private int streamType;
-	private String streamInfo = "";
+	private String streamInfo = WSUtil.EMPTY_STRING;
 
+	/**
+	 * 
+	 * @param inputStream
+	 */
 	public SOAPResponse( InputStream inputStream )
 	{
-		this( inputStream, INPUT_STREAM, "" );
+		this( inputStream, INPUT_STREAM, WSUtil.EMPTY_STRING );
 	}
 
+	/**
+	 * 
+	 * @param inputStream
+	 * @param streamType
+	 * @param streamInfo
+	 */
 	public SOAPResponse( InputStream inputStream, int streamType,
 			String streamInfo )
 	{
@@ -43,21 +53,37 @@ public class SOAPResponse
 		this.streamInfo = streamInfo;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public InputStream getInputStream( )
 	{
 		return inputStream;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getStreamType( )
 	{
 		return streamType;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getStreamInfo( )
 	{
 		return streamInfo;
 	}
 
+	/**
+	 * 
+	 * @throws IOException
+	 */
 	public void close( ) throws IOException
 	{
 		if ( WSUtil.isNull( inputStream ) )

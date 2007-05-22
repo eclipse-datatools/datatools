@@ -45,7 +45,7 @@ public class Java2SOAPManager
 
 	/**
 	 * Make ready the custom connection instance which is able to retrieve an
-	 * inputstream when calling query mehod
+	 * inputstream when calling query method
 	 * 
 	 * @param className
 	 * @throws SecurityException
@@ -108,6 +108,14 @@ public class Java2SOAPManager
 		return query.invoke( aQuery, arguments );
 	}
 
+	/**
+	 * 
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
 	public void close( ) throws SecurityException, NoSuchMethodException,
 			IllegalArgumentException, IllegalAccessException,
 			InvocationTargetException
@@ -147,7 +155,7 @@ public class Java2SOAPManager
 		if ( url == null )
 			return null;
 
-		return new URL( url.toString( ) + Constants.DIRECTORY_LIB + "/" );
+		return new URL( url.toString( ) + Constants.DIRECTORY_LIB + "/" ); //$NON-NLS-1$
 	}
 
 	private URL getInstallDirectory( ) throws OdaException, IOException
@@ -169,31 +177,55 @@ public class Java2SOAPManager
 		return new URLClassLoader( urlList, ClassLoader.getSystemClassLoader( ) );
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Map getAppConext( )
 	{
 		return appConext == null ? new HashMap( ) : appConext;
 	}
 
+	/**
+	 * 
+	 * @param appConext
+	 */
 	public void setAppConext( Map appConext )
 	{
 		this.appConext = appConext;
 	}
 
+	/**
+	 * 
+	 * @param connectionProperties
+	 */
 	public void setConnectionProperties( Map connectionProperties )
 	{
 		this.connectionProperties = connectionProperties;
 	}
 
+	/**
+	 * 
+	 * @param parameterValues
+	 */
 	public void setParameterValues( Map parameterValues )
 	{
 		this.parameterValues = parameterValues;
 	}
 
+	/**
+	 * 
+	 * @param queryProperties
+	 */
 	public void setQueryProperties( Map queryProperties )
 	{
 		this.queryProperties = queryProperties;
 	}
 
+	/**
+	 * 
+	 * @param queryText
+	 */
 	public void setQueryText( String queryText )
 	{
 		this.queryText = queryText;

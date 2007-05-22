@@ -13,6 +13,8 @@ package org.eclipse.datatools.enablement.oda.ws.soap;
 
 import java.sql.Types;
 
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
+
 /**
  * 
  */
@@ -25,21 +27,45 @@ public class SOAPParameter
 	private int type;
 	private String value;
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 */
 	public SOAPParameter( int id, String name )
 	{
 		this( id, name, Types.VARCHAR );
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param type
+	 */
 	public SOAPParameter( int id, String name, int type )
 	{
-		this( id, name, type, "" );
+		this( id, name, type, WSUtil.EMPTY_STRING );
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param defaultValue
+	 */
 	public SOAPParameter( int id, String name, String defaultValue )
 	{
 		this( id, name, Types.VARCHAR, defaultValue );
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param type
+	 * @param defaultValue
+	 */
 	public SOAPParameter( int id, String name, int type, String defaultValue )
 	{
 		this.id = id;
@@ -48,26 +74,46 @@ public class SOAPParameter
 		this.value = defaultValue;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getId( )
 	{
 		return id;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getName( )
 	{
 		return name;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getType( )
 	{
 		return type;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getDefaultValue( )
 	{
 		return value;
 	}
 
+	/**
+	 * 
+	 * @param value
+	 */
 	public void setDefaultValue( String value )
 	{
 		this.value = value;
