@@ -130,6 +130,10 @@ public class ProfileUtil
     		{
     			IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
     			IConnection ic = mc.getConnection();
+    			if (ic == null)
+    			{
+    			    return SQLMODEL_MODE_NONE;
+    			}
     			Object rawConn = ic.getRawConnection();
     			if (rawConn instanceof ConnectionInfo)
     			{
@@ -466,6 +470,10 @@ public class ProfileUtil
             }
             IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
             IConnection ic = mc.getConnection();
+            if (ic == null)
+            {
+                return null;
+            }
             Object rawConn = ic.getRawConnection();
             if (rawConn instanceof ConnectionInfo)
             {
