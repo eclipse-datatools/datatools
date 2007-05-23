@@ -11,8 +11,8 @@
 package org.eclipse.datatools.sqltools.result.internal.utils;
 
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
-import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.model.ResultItem;
 import org.eclipse.osgi.util.NLS;
 
 /**

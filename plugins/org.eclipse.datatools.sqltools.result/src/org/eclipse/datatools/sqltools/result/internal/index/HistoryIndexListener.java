@@ -15,8 +15,8 @@ import java.util.List;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManagerListener;
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
-import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
 /**
  * Listener to add or remove result instance from result history index writer

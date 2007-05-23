@@ -21,9 +21,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
-import org.eclipse.datatools.sqltools.result.internal.model.XMLResultSetObject;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;

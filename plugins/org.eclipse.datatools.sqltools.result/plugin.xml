@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension-point id="reExecuteScript" name="Re-execute History Result Entry" schema="schema/reExecuteScript.exsd"/>
+   <extension-point id="resultSetOutputter" name="resultSetOutputter" schema="schema/resultSetOutputter.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -68,6 +69,42 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer class="org.eclipse.datatools.sqltools.result.internal.preference.ResultsViewPreferenceInitializer"/>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.sqltools.result.resultSetOutputter">
+      <Ouputter
+            class="org.eclipse.datatools.sqltools.result.internal.export.TextOutputter"
+            fileExtension="txt"
+            supportDelimiter="true"
+            supportXMLResult="true"
+            typeId="org.eclipse.datatools.sqltools.result.textOutputter"
+            typeName="Plain Text">
+      </Ouputter>
+      <Ouputter
+            class="org.eclipse.datatools.sqltools.result.internal.export.XMLOutputter"
+            fileExtension="xml"
+            supportDelimiter="false"
+            supportXMLResult="true"
+            typeId="org.eclipse.datatools.sqltools.result.xmloutputter"
+            typeName="XML">
+      </Ouputter>
+      <Ouputter
+            class="org.eclipse.datatools.sqltools.result.internal.export.HTMLOutputter"
+            extensionFilter="*.html;*.htm"
+            fileExtension="html"
+            supportDelimiter="false"
+            supportXMLResult="false"
+            typeId="org.eclipse.datatools.sqltools.result.htmloutputter"
+            typeName="HTML">
+      </Ouputter>
+      <Ouputter
+            class="org.eclipse.datatools.sqltools.result.internal.export.CSVOutputter"
+            fileExtension="csv"
+            supportDelimiter="false"
+            supportXMLResult="false"
+            typeId="org.eclipse.datatools.sqltools.result.csvoutputter"
+            typeName="CSV File">
+      </Ouputter>
    </extension>
 
 </plugin>

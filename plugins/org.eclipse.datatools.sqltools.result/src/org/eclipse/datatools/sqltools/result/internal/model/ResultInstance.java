@@ -26,6 +26,8 @@ import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
 /**
  * A standard implementation of <code>IResultInstance</code>

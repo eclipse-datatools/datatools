@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.result.internal.index;
 
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 
 /**
  * An index used to search the result history

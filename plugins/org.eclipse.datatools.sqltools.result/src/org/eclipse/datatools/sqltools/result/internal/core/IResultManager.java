@@ -14,8 +14,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.OperationCommand;
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
-import org.eclipse.datatools.sqltools.result.internal.model.ResultItem;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
 /**
  * Manages all results.
