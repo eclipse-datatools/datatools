@@ -24,6 +24,7 @@ public final class Messages extends NLS {
 
 	public static String MultipleTabsModeSection_warning;
     public static String MultipleTabsModeSection_warning_info;
+	public static String ResultFormatWizardPage_all_files;
     public static String ResultHistoryPage_no_column_selected;
     public static String ResultHistorySection_status;
 	public static String ResultHistoryPage_operation;
