@@ -1,13 +1,13 @@
 package org.eclipse.datatools.sqltools.result.internal.index;
 
+import junit.framework.Assert;
+import junit.framework.TestCase;
+
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
-import org.eclipse.datatools.sqltools.result.internal.model.IResultInstance;
-
-import junit.framework.Assert;
-import junit.framework.TestCase;
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 
 /**
  * This class is to test the lucene index which is used for results searching purpose.
