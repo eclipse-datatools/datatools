@@ -329,7 +329,8 @@ public class ProfileUtil
         String port = null;
         String url = profile1Props.getProperty(URL);
 
-        return new ServerIdentifier(host, port, url, getDatabaseVendorDefinitionId(databaseIdentifier.getProfileName()));
+        DBHelper helper = SQLToolsFacade.getDBHelper(databaseIdentifier);
+        return helper.getServerIdentifier(host, port, url, ProfileUtil.getDatabaseVendorDefinitionId(databaseIdentifier.getProfileName()));
     }
 
 

@@ -138,6 +138,20 @@ public class DBHelper {
 		return new ProcIdentifierImpl(dbObjectType, databaseIdentifier, map);
 	}
 	
+	/**
+	 * Returns a ServerIdentifier identifying a data server. Can be override to provide
+	 * a customized ServerIdentifier which handles a specialized url format.
+	 * @param host
+	 * @param port
+	 * @param url
+	 * @param dbIdentifier
+	 * @return
+	 */
+	public ServerIdentifier getServerIdentifier(String host, String port, String url, DatabaseVendorDefinitionId dbIdentifier)
+	{
+	    return new ServerIdentifier(host, port, url, dbIdentifier);
+	}
+	
 	public boolean justWarnings(SQLException sqlexception)
 	{
 		do

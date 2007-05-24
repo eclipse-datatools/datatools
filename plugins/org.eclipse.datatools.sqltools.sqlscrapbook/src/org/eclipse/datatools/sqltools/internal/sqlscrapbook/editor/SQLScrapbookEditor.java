@@ -209,7 +209,13 @@ public class SQLScrapbookEditor extends SQLEditor {
 	        SQLFileUtil.setEncodedConnectionInfo(((IFileEditorInput)getEditorInput()).getFile(), connInfo.encode());
 	    }
 	    // refresh title tooltip
-	    setTitleToolTip(getTitleToolTip());
+	    getSite().getShell().getDisplay().asyncExec(new Runnable(){
+            public void run()
+            {
+                setTitleToolTip(getTitleToolTip());
+            }
+        });
+	    
 	}	
 	
 	public void dispose() {

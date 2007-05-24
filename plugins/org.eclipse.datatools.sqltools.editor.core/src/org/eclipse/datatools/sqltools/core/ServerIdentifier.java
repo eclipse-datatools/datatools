@@ -6,6 +6,7 @@ package org.eclipse.datatools.sqltools.core;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.eclipse.jface.util.Assert;
 
@@ -18,13 +19,13 @@ import org.eclipse.jface.util.Assert;
  */
 public class ServerIdentifier
 {
-    private DatabaseVendorDefinitionId _productIdentifier;
+    private DatabaseVendorDefinitionId _dbIdentifier;
     private String            _host;
     private String            _port;
     private String            _url;
     private String            _protocol;
 
-    public ServerIdentifier(String host, String port, String url, DatabaseVendorDefinitionId procIdentifier)
+    public ServerIdentifier(String host, String port, String url, DatabaseVendorDefinitionId dbIdentifier)
     {
         Assert.isTrue(url != null && url.matches(".*:.*"));
         ArrayList result = parseUrl(url);
@@ -52,7 +53,7 @@ public class ServerIdentifier
         _host = _host == null ? "" : _host;
         _port = _port == null ? "" : _port;
         this._url = url;
-        this._productIdentifier = procIdentifier;
+        this._dbIdentifier = dbIdentifier;
     }
 
     public String getHost()
@@ -153,18 +154,17 @@ public class ServerIdentifier
 
     public DatabaseVendorDefinitionId getDatabaseVendorDefinitionId()
     {
-        return _productIdentifier;
+        return _dbIdentifier;
     }
 
     /**
      * Parses the url and put protocol, host and port into an ArrayList. Since different database may have different
-     * format of url, we can only make sure that this method works fine for Sybase database. For example, MSSQL:
-     * jdbc:microsoft:sqlserver://MyServer:1433 DB2_7: jdbc.db2://myHost:6789/myDatabase
+     * format of url, the default implementation only works with the common url format: protocol:host:port/database?properties
      * 
      * @param url for Sybase databases, it is in the form of: protocol:host:port/database?properties, notice that
      *            protocol itself can contain semicolons
      */
-    public static ArrayList parseUrl(String url1)
+    public ArrayList parseUrl(String url1)
     {
         Assert.isTrue(url1 != null && url1.matches(".*:.*"));
         try
@@ -178,7 +178,7 @@ public class ServerIdentifier
             int end = url1.length();
             if (url1.indexOf('/') > 0)
             {
-                end = url1.indexOf('/');
+                end = url1.lastIndexOf('/');
             }
             String port1 = url1.substring(url1.lastIndexOf(':') + 1, end);
             try
@@ -193,6 +193,10 @@ public class ServerIdentifier
 
             String host1 = url1.substring(url1.lastIndexOf(':') + 1);
 
+            if (host1.startsWith("//"))
+            {
+                host1 = host1.substring(2);
+            }
             String protocol1 = url1.substring(0, url1.lastIndexOf(':'));
             result.add(protocol1);
             result.add(host1);
@@ -205,4 +209,5 @@ public class ServerIdentifier
             return null;
         }
     }
+    
 }
