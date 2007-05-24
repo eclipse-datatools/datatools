@@ -180,9 +180,14 @@ public class ServerIdentifier
             {
                 end = url1.lastIndexOf('/');
             }
-            String port1 = url1.substring(url1.lastIndexOf(':') + 1, end);
+            String port1 = "";
             try
             {
+                int lastColon = url1.lastIndexOf(':') + 1;
+                if (lastColon < end)
+                {
+                    port1 = url1.substring(lastColon, end);
+                }
                 Integer.parseInt(port1);
                 url1 = url1.substring(0, url1.lastIndexOf(':'));
             }
