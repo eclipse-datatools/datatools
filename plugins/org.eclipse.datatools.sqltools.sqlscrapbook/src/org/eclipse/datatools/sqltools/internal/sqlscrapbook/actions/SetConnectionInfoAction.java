@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLScrapbookImages;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoDialog;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
@@ -46,6 +47,7 @@ public class SetConnectionInfoAction extends TextEditorAction
         super(bundle, prefix, editor);
         _sqlEditor = (SQLScrapbookEditor) editor;
         PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.ATTACH_CONNECTION_PROFILE_ACTION);
+        setImageDescriptor(SQLScrapbookImages.DESC_ATTACH_PROFILE);
     }
 
     public void run()
