@@ -12,6 +12,7 @@
 package org.eclipse.datatools.enablement.oda.xml.impl;
 
 import java.sql.Types;
+import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
@@ -93,7 +94,7 @@ public final class DataTypes
 	 */
 	public static boolean isValidType( String typeName )
 	{
-        String preparedTypeName = typeName.trim().toUpperCase();
+        String preparedTypeName = typeName.trim( ).toUpperCase( Locale.ENGLISH );
         
         // check the data type definition in my plugin manifest for all other types
         DataTypeMapping typeMapping = null;

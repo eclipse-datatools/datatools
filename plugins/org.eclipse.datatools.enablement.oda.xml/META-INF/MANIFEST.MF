@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml;singleton:=true
-Bundle-Version: 1.0.1.200705161
+Bundle-Version: 1.0.1.200705241
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.datatools.connectivity.oda;bundle-version="[3.1.0,4.
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.enablement.oda.xml;x-internal:=false,
  org.eclipse.datatools.enablement.oda.xml.i18n;x-friends:="org.eclipse.birt.report.data.oda.xml",
- org.eclipse.datatools.enablement.oda.xml.impl;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests",
+ org.eclipse.datatools.enablement.oda.xml.impl;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests,org.eclipse.datatools.enablement.oda.ws",
  org.eclipse.datatools.enablement.oda.xml.util;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.date;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.tests",
  org.eclipse.datatools.enablement.oda.xml.util.ui;x-friends:="org.eclipse.birt.report.data.oda.xml,org.eclipse.datatools.enablement.oda.xml.ui,org.eclipse.datatools.enablement.oda.xml.tests"
