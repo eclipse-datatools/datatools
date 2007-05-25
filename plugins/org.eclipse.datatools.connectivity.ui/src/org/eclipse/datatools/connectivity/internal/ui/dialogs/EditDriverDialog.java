@@ -27,6 +27,11 @@ import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescrip
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverPropertySourceProvider;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -60,7 +65,8 @@ import com.ibm.icu.util.StringTokenizer;
  * 
  * @author brianf
  */
-public class EditDriverDialog extends TitleAreaDialog {
+public class EditDriverDialog extends TitleAreaDialog 
+	implements IContextProvider {
 
 	// memento keys
 	public final static String MEMENTO_ROOT = "Drivers Edit Driver_Dialog_Root";//$NON-NLS-1$
@@ -88,6 +94,9 @@ public class EditDriverDialog extends TitleAreaDialog {
 	private String mDriverName;
 	private String mJarList;
 	private String mDriverTypeID;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * Constructor
@@ -131,6 +140,8 @@ public class EditDriverDialog extends TitleAreaDialog {
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createDialogArea(Composite parent) {
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG);
 		Composite area = (Composite) super.createDialogArea(parent);
 		area.setLayout(new GridLayout());
 
@@ -793,4 +804,15 @@ public class EditDriverDialog extends TitleAreaDialog {
 		return newPset;
 	}
 	                                                        
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
 }

@@ -15,8 +15,14 @@ import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.IHelpContextsSQMCoreUI;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -44,7 +50,9 @@ import org.osgi.service.prefs.Preferences;
 /**
  * @author ljulien
  */
-public class LabelDecoratorPreference extends PreferencePage implements IWorkbenchPreferencePage
+public class LabelDecoratorPreference 
+	extends PreferencePage 
+	implements IWorkbenchPreferencePage, IContextProvider
 {
     private static final String DECORATION_KEY = "org.eclipse.datatools.connectivity.sqm.core.ui.column.decoration"; //$NON-NLS-1$
     
@@ -397,4 +405,28 @@ public class LabelDecoratorPreference extends PreferencePage implements IWorkben
     {
         return getColumnString(preferences.get(DECORATION_KEY, getColumnTextDefault()), dataType, isNullable, isPK, isFK);
     }
+
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(RDBCoreUIPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
+	public void createControl(Composite parent) {
+		super.createControl(parent);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), 
+				HelpUtil.getContextId(IHelpContextsSQMCoreUI.LABEL_DECORATOR_PREFERENCE_PAGE, 
+							RDBCoreUIPlugin.getDefault().getBundle().getSymbolicName()));
+	}
 }

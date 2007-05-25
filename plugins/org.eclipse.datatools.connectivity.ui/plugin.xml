@@ -17,16 +17,24 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
             name="%Extension.PropertyPage.General.Name"
             class="org.eclipse.datatools.connectivity.internal.ui.wizards.CPPropetyPage"
             id="org.eclipse.datatools.connectivity.internal.ui.properties.ProfileGeneralPropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
       </page>
       <page
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
             class="org.eclipse.datatools.connectivity.internal.ui.wizards.CPVersionPropertyPage"
             name="%Extension.PropertyPage.Version.Name"
             id="org.eclipse.datatools.connectivity.internal.ui.properties.ProfileVersionPropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
       </page>
    </extension>
    <extension

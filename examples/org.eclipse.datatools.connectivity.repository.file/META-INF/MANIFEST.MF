@@ -2,12 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Connection Profile File Based Repository Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.repository.file;singleton:=true
-Bundle-Version: 1.0.0.200703301
+Bundle-Version: 1.0.0.200705251
 Bundle-Activator: org.eclipse.datatools.connectivity.repository.file.FileRepositoryPlugin
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.datatools.connectivity,
- org.eclipse.datatools.connectivity.ui
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.help,
+ org.eclipse.help.base
 Eclipse-LazyStart: true

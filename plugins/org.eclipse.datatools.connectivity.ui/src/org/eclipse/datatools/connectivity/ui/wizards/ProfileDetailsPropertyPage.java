@@ -16,6 +16,7 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -60,8 +61,10 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		btnPing.setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE);
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
 		return container;
 	}

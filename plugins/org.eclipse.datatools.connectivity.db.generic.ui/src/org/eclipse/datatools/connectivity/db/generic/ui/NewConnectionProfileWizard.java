@@ -10,15 +10,17 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.db.generic.ui;
 
-
-
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.db.generic.GenericDBPlugin;
 import org.eclipse.datatools.connectivity.db.generic.IDBConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * @see Wizard
@@ -70,5 +72,27 @@ public class NewConnectionProfileWizard
 		props.setProperty(IDBDriverDefinitionConstants.URL_PROP_ID,
 				this.mPropPage.getURL());
 		return props;
+	}
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(GenericDBUIPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp(getShell(), HelpUtil.getContextId(
+				IHelpContextsGenericDBProfile.GENERIC_DB_PROFILE_WIZARD,
+				GenericDBUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 }

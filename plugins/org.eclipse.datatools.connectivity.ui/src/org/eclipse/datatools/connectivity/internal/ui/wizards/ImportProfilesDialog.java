@@ -19,10 +19,15 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.RepositoriesDropList;
-import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -43,7 +48,7 @@ import org.eclipse.swt.widgets.Text;
 /**
  * @author shongxum
  */
-public class ImportProfilesDialog extends Dialog {
+public class ImportProfilesDialog extends TrayDialog implements IContextProvider {
 
 	private Text txtFile;
 
@@ -63,12 +68,18 @@ public class ImportProfilesDialog extends Dialog {
 	
 	private IConnectionProfile mRepository;
 
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
 	public ImportProfilesDialog(Shell parentShell) {
 		super(parentShell);
 	}
 
 	protected Control createDialogArea(Composite parent) {
-		Composite container = (Composite) super.createDialogArea(parent);
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_IMPORT_PROFILES_DIALOG);
+
+        Composite container = (Composite) super.createDialogArea(parent);
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 20;
 		gridLayout.numColumns = 3;
@@ -281,5 +292,17 @@ public class ImportProfilesDialog extends Dialog {
 		}
 		mOverwrite = btnOverwrite.getSelection();
 		super.okPressed();
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

@@ -24,6 +24,11 @@ import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent.IChangedProperty;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,11 +47,14 @@ import org.eclipse.ui.dialogs.PropertyPage;
  * Created on Jun 3, 2005
  */
 public class CPVersionPropertyPage extends PropertyPage implements
-		IWorkbenchPropertyPage {
+		IWorkbenchPropertyPage, IContextProvider {
 
 	private static final int INDENT_TECH_VERSION = 20;
 
 	private Button mUpdateVersionInfoButton;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	private IPropertySetListener mPropertySetListener = new IPropertySetListener() {
 
@@ -97,7 +105,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 	 * @see org.eclipse.jface.preference.PreferencePage#createContents(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createContents(Composite parent) {
-		Composite content = new Composite(parent, SWT.NULL);
+        Composite content = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
 		content.setLayout(layout);
 
@@ -105,6 +113,8 @@ public class CPVersionPropertyPage extends PropertyPage implements
 
 		getConnectionProfile().addPropertySetListener(mPropertySetListener);
 
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_VERSION_PROPERTIES, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 		return content;
 	}
 
@@ -243,4 +253,15 @@ public class CPVersionPropertyPage extends PropertyPage implements
 		return profile;
 	}
 
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
 }

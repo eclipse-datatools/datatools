@@ -28,8 +28,13 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeSorter;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.EditDriverDialog;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.NewDriverDialog;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -67,7 +72,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * @author brianf
  */
 public class DriverPreferences extends PreferencePage implements
-		IWorkbenchPreferencePage {
+		IWorkbenchPreferencePage, IContextProvider {
 
 	// ui elements
 	private Button mAddButton;
@@ -84,6 +89,9 @@ public class DriverPreferences extends PreferencePage implements
 
 	// dirty flag for save/no save
 	private boolean mDirty = false;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * Default Constructor
@@ -117,7 +125,7 @@ public class DriverPreferences extends PreferencePage implements
 	 * @see org.eclipse.jface.preference.PreferencePage#createContents(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createContents(Composite parent) {
-		Font font = parent.getFont();
+        Font font = parent.getFont();
 
 		Composite content = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -627,5 +635,24 @@ public class DriverPreferences extends PreferencePage implements
 		if (topset.getBaseProperties().size() > 0) {
 			topset.getBaseProperties().putAll(fromPset.getBaseProperties());
 		}
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
+	public void createControl(Composite parent) {
+		super.createControl(parent);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp(getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_DRIVER_PREFERENCES, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+
 	}
 }

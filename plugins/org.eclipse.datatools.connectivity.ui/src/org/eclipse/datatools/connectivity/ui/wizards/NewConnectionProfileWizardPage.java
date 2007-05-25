@@ -24,6 +24,10 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.RepositoriesDropList;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizardPage;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -39,12 +43,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author shongxum
  */
-public class NewConnectionProfileWizardPage extends BaseWizardPage {
+public class NewConnectionProfileWizardPage 
+	extends BaseWizardPage 
+	implements IContextProvider {
 
 	private Text mCPName;
 	private Text mCPDesc;
@@ -59,6 +64,9 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 
     private static final String EMPTY_STRING = "";      //$NON-NLS-1$
     
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
 	/**
 	 * Constructor
 	 */
@@ -235,8 +243,10 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 		validate();
 		setErrorMessage(null);
 		
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_PAGE);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_PAGE);
 	}
 
 	private void handleModify() {
@@ -358,4 +368,15 @@ public class NewConnectionProfileWizardPage extends BaseWizardPage {
 				.getSelection()).getFirstElement();
 	}
 	
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
 }

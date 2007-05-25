@@ -24,6 +24,10 @@ import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.internal.ui.DelimitedStringList;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -40,7 +44,9 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author ledunnel
  */
-public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
+public class GenericDBProfilePropertyPage 
+	extends ProfileDetailsPropertyPage
+	implements IContextProvider {
 
 	private static final String EMPTY_STRING = new String();
 
@@ -344,5 +350,26 @@ public class GenericDBProfilePropertyPage extends ProfileDetailsPropertyPage {
 		}
 	}
 
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(GenericDBUIPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
+	protected Control createContents(Composite parent) {
+		Control contents = super.createContents(parent);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpContextsGenericDBProfile.GENERIC_DB_PROFILE_WIZARD_PAGE, GenericDBUIPlugin.getDefault().getBundle().getSymbolicName()));
+		return contents;
+	}
 }
 

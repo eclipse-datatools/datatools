@@ -12,12 +12,15 @@ package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author danielva
@@ -25,10 +28,13 @@ import org.eclipse.ui.PlatformUI;
  * Introduction Wizard Page
  */
 
-public class IntroWizardPage extends BaseWizardPage {
+public class IntroWizardPage extends BaseWizardPage implements IContextProvider {
 
 	private Text _txtIntroduction;
 	private static final String PAGE_NAME = "IntroductionWizardPage"; //$NON-NLS-1$
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * Constructor
@@ -47,7 +53,7 @@ public class IntroWizardPage extends BaseWizardPage {
 	 * @see org.eclipse.jface.dialogs.DialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-		GridData gd;
+        GridData gd;
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout gl = new GridLayout();
 
@@ -65,8 +71,23 @@ public class IntroWizardPage extends BaseWizardPage {
 
 		setControl(composite);
 		setPageComplete(true);
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_INTRO_WIZARD_PAGE);
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_INTRO_WIZARD_PAGE);
 
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_INTRO_WIZARD_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

@@ -16,6 +16,10 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizardPage;
 import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizard;
@@ -28,14 +32,18 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author shongxum
  */
-public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
+public abstract class ConnectionProfileDetailsPage 
+	extends BaseWizardPage
+	implements IContextProvider {
 	
 	protected Button btnPing;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * @param name
@@ -80,8 +88,11 @@ public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
 		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		btnPing.setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_DETAILS_PAGE);
+
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_DETAILS_PAGE);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 	public abstract void createCustomControl(Composite parent);
@@ -120,5 +131,17 @@ public abstract class ConnectionProfileDetailsPage extends BaseWizardPage {
 				}
 			});
 		}
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

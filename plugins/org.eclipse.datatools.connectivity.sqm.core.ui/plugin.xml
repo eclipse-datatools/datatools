@@ -289,34 +289,51 @@
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.SchemaFilterPropertyPage"
-          name="%DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+          name="%DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <enabledWhen>
+         <instanceof
+               value="org.eclipse.datatools.connectivity.IConnectionProfile">
+         </instanceof>
+      </enabledWhen>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultTableFilterPropertyPage"
-          name="%DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+          name="%DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <enabledWhen>
+         <instanceof
+               value="org.eclipse.datatools.connectivity.IConnectionProfile">
+         </instanceof>
+      </enabledWhen>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.DefaultSPFilterPropertyPage"
-          name="%DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME"
-          objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+          name="%DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME">
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <enabledWhen>
+         <instanceof
+               value="org.eclipse.datatools.connectivity.IConnectionProfile">
+         </instanceof>
+      </enabledWhen>
     </page>
     <page
           class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
           id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.FilterNodeFilterPropertyPage"
-          name="%FILTER_SETTINGS_PROPERTY_PAGE_NAME"
-          objectClass="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode"/>
+          name="%FILTER_SETTINGS_PROPERTY_PAGE_NAME">
+       <enabledWhen>
+          <instanceof
+                value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode">
+          </instanceof>
+       </enabledWhen>
+    </page>
  </extension>
 </plugin>

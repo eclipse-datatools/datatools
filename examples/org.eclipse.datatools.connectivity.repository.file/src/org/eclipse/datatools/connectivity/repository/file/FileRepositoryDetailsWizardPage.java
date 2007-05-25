@@ -11,6 +11,9 @@
 package org.eclipse.datatools.connectivity.repository.file;
 
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -134,4 +137,24 @@ public class FileRepositoryDetailsWizardPage extends
 		setPageComplete(errorMessage == null);
 	}
 
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(FileRepositoryPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
+	public void createControl(Composite parent) {
+		super.createControl(parent);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpContextsRepositoryFile.FILE_REPOSITORY_PROFILE_WIZARD_PAGE, FileRepositoryPlugin.getDefault().getBundle().getSymbolicName()));
+	}
 }

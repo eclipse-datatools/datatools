@@ -21,6 +21,10 @@ import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.ui.wizards.ICPWizard;
 import org.eclipse.datatools.connectivity.ui.wizards.IProfileWizardProvider;
 import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -47,16 +51,20 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author shongxum
  * 
  */
-public class CPWizardSelectionPage extends WizardSelectionPage {
+public class CPWizardSelectionPage 
+	extends WizardSelectionPage
+	implements IContextProvider {
 
 	private String category = ""; //$NON-NLS-1$
 	private TableViewer tableViewer;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	private ViewerFilter viewerFilter = new ViewerFilter() {
 
@@ -164,7 +172,7 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-		// <!-- Created by SWT-Designer
+        // <!-- Created by SWT-Designer
 		Composite container = new Composite(parent, SWT.NULL);
 		container.setLayout(new GridLayout());
 		setControl(container);
@@ -230,8 +238,11 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 				});
 
 		setPageComplete(false);
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_CP_WIZARD_PAGE);
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_CP_WIZARD_PAGE);
+
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( tableViewer.getTable(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_CP_WIZARD_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
 	}
 
@@ -301,4 +312,17 @@ public class CPWizardSelectionPage extends WizardSelectionPage {
 
 		return wizard.getStartingPage();
 	}	
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
 }

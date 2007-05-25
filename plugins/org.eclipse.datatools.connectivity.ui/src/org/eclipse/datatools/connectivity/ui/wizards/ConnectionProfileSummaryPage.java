@@ -17,6 +17,10 @@ import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ISummaryDataSource;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
 import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -24,16 +28,20 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Summary Page + Test Connection
  * 
  * @author shongxum
  */
-public class ConnectionProfileSummaryPage extends SummaryWizardPage {
+public class ConnectionProfileSummaryPage 
+	extends SummaryWizardPage
+	implements IContextProvider {
 
 	private ISummaryDataSource dataSource;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * @param source
@@ -60,8 +68,10 @@ public class ConnectionProfileSummaryPage extends SummaryWizardPage {
 		});
 		button.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		button.setText(ConnectivityUIPlugin.getDefault().getResourceString("ConnectionProfileSummaryPage.button.testConnection")); //$NON-NLS-1$
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_SUMMARY_PAGE);
+//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
+//				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_SUMMARY_PAGE);
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_SUMMARY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
 	}
 
@@ -87,5 +97,17 @@ public class ConnectionProfileSummaryPage extends SummaryWizardPage {
 				}
 			});
 		}
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

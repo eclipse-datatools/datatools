@@ -27,6 +27,11 @@ import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeFilter;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeSorter;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -58,7 +63,8 @@ import org.eclipse.swt.widgets.Shell;
  * 
  * @author brianf
  */
-public class DriverDefinitionsDialog extends TitleAreaDialog {
+public class DriverDefinitionsDialog extends TitleAreaDialog 
+	implements IContextProvider {
 
 	// memento keys
 	public final static String MEMENTO_ROOT = "Drivers Definitions Driver_Dialog_Root";//$NON-NLS-1$
@@ -87,6 +93,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 
 	// stashed selected propertyset
 	private IPropertySet selectedPS = null;
+
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
 	/**
 	 * Constructor
@@ -119,6 +128,8 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createDialogArea(Composite parent) {
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_DRIVER_DEFINITION_DIALOG);
 		Composite area = (Composite) super.createDialogArea(parent);
 
 		Font font = parent.getFont();
@@ -617,5 +628,17 @@ public class DriverDefinitionsDialog extends TitleAreaDialog {
 						.setSelection(new StructuredSelection(cloned));
 			}
 		}
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

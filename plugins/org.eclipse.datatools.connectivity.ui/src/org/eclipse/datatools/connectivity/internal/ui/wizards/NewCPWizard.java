@@ -12,17 +12,23 @@ package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 /**
  * @see Wizard
  */
-public class NewCPWizard extends BaseWizard implements INewWizard {
+public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvider {
 
 	private CPWizardSelectionPage mProfilePage;
 
@@ -86,5 +92,29 @@ public class NewCPWizard extends BaseWizard implements INewWizard {
 	
 	public IConnectionProfile getParentProfile() {
 		return mParentProfile;
+	}
+
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+//		HelpUtil.setHelp(getShell(), IHelpConstants.CONTEXT_ID_NEW_CP_WIZARD);
+		HelpUtil.setHelp(getShell(), HelpUtil.getContextId(
+				IHelpConstants.CONTEXT_ID_NEW_CP_WIZARD,
+				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+	}
+
+	private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(
+			ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

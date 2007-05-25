@@ -26,6 +26,10 @@ import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeFilter;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -93,6 +97,9 @@ public class NewDriverDialog extends TitleAreaDialog {
 	
 	private String mErrorMessage = null;
 
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
 	/**
 	 * Constructor
 	 * 
@@ -124,7 +131,10 @@ public class NewDriverDialog extends TitleAreaDialog {
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createDialogArea(Composite parent) {
-		Font font = parent.getFont();
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_NEW_DRIVER_DIALOG);
+
+        Font font = parent.getFont();
 
 		Composite area = (Composite) super.createDialogArea(parent);
 		area.setLayout(new GridLayout());
@@ -463,5 +473,17 @@ public class NewDriverDialog extends TitleAreaDialog {
 	
 	protected boolean needEditImmediately(TemplateDescriptor descriptor) {
 		return !descriptor.getEmptyJarListIsOKFlag() || descriptor.hasVisibleProperties();
+	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
 	}
 }

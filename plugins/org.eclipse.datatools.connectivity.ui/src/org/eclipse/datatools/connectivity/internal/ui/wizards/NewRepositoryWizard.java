@@ -11,7 +11,11 @@
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.swt.widgets.Composite;
 
 public class NewRepositoryWizard extends NewCPWizard {
 
@@ -21,6 +25,14 @@ public class NewRepositoryWizard extends NewCPWizard {
 				null);
 		setDefaultPageImageDescriptor(SharedImages.DESC_WIZBAN);
 		setWindowTitle("New Repository Wizard Window"); //$NON-NLS-1$
+	}
+
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp(getShell(), HelpUtil.getContextId(
+				IHelpConstants.CONTEXT_ID_NEW_REPOSITORY_WIZARD,
+				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 }

@@ -18,16 +18,22 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCreateChange;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizard;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ltk.core.refactoring.PerformChangeOperation;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
@@ -40,7 +46,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * @author shongxum
  */
 public abstract class NewConnectionProfileWizard extends BaseWizard implements
-		INewWizard, ICPWizard {
+		INewWizard, ICPWizard, IContextProvider {
 
 	protected NewConnectionProfileWizardPage mProfilePage;
 	protected SummaryWizardPage mSummaryPage;
@@ -210,4 +216,26 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 		addPage(mSummaryPage);
 	}
 
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp(getShell(), HelpUtil.getContextId(
+				IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_WIZARD,
+				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+	}
+
+	private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(
+			ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
 }
