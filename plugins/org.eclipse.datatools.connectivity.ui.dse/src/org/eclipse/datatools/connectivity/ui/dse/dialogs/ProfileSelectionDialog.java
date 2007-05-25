@@ -14,6 +14,11 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.eclipse.datatools.connectivity.ui.dse.DSEPlugin;
+import org.eclipse.datatools.connectivity.ui.dse.IHelpContextsConnectivityUIDSE;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
@@ -29,7 +34,8 @@ import org.eclipse.swt.widgets.Shell;
  * Dialog to allow others to select a profile.
  * @author brianf
  */
-public class ProfileSelectionDialog extends TitleAreaDialog {
+public class ProfileSelectionDialog extends TitleAreaDialog 
+	implements IContextProvider {
 
     private String _profile;
     private String _category;
@@ -38,7 +44,10 @@ public class ProfileSelectionDialog extends TitleAreaDialog {
 	private boolean mShowConnect = true;
 	private boolean mShowSelectButtons = false;
     
-    private ProfileSelectionComposite composite = null;
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(DSEPlugin.getDefault().getBundle().getSymbolicName());
+
+	private ProfileSelectionComposite composite = null;
 
     /**
      * Constructor
@@ -47,6 +56,8 @@ public class ProfileSelectionDialog extends TitleAreaDialog {
     public ProfileSelectionDialog(Shell parentShell) {
         super(parentShell);
         setShellStyle( getShellStyle() | SWT.RESIZE );
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp(getShell(), HelpUtil.getContextId(IHelpContextsConnectivityUIDSE.PROFILE_SELECTION_DIALOG, DSEPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /* (non-Javadoc)
@@ -175,4 +186,17 @@ public class ProfileSelectionDialog extends TitleAreaDialog {
 		}
 		
 	}
+
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
+
 }
