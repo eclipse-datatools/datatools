@@ -336,18 +336,21 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 			MySqlCatalogForeignKey fk = null;
 			MySqlCatalogTable fkTable = null;
 			String fkTableName = ""; //$NON-NLS-1$
+			String fkName = ""; //$NON-NLS-1$
 			while (r.next()) {
 
 				final String fkTable_Name = r.getString("PKTABLE_NAME"); //$NON-NLS-1$
-				if (!fkTableName.equals(fkTable_Name)) {
+				final String fk_Name = r.getString("FK_NAME"); //$NON-NLS-1$
+				if (!fkTableName.equals(fkTable_Name) || !fkName.equals(fk_Name)) {
+					// build a new FK on a break in either the table name or the foreign key name
 					fkTable = this.getTable(fkTable_Name);
 
-					if (fkTable == null)
+					if (fkTable == null || fk_Name == null)
 						continue;
 					fkTableName = fkTable_Name;
+					fkName = fk_Name;
 					fk = new MySqlCatalogForeignKey();
-					final String fkName = r.getString("FK_NAME"); //$NON-NLS-1$
-					fk.setName(fkName);
+					fk.setName(fk_Name);
 					if (fkTable.getPrimaryKey() != null) {
 						fk.setUniqueConstraint(fkTable.getPrimaryKey());
 					} else {
