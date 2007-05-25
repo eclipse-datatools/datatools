@@ -5,7 +5,7 @@
 # http://www.eclipse.org/legal/epl-v10.html
 #
 # Contributors:
-#  Actuate Corporation  - initial API and implementation
+#  Actuate Corporation - initial API and implementation
 #
 ###############################################################################
 # Plug-in Profile Configuration
@@ -15,11 +15,11 @@ oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
 ###############################################################################
 # NLS Strings
 #
-plugin.name=Concepteur de fichiers à plat ODA DTP
-newwizard.name=Source de données de fichiers à plat ODA
+plugin.name=Eclipse Data Tools Platform Flat File ODA Designer
+newwizard.name=Source de données sous forme de fichier plat
 newwizard.description=Créer un profil de connexion de fichier à plat ODA
 wizard.window.title=Nouveau profil de source de données à plat
 wizard.data.source.page.title=Sélection du dossier
-profile.propertypage.name=Propriétés de connexion de la source de données de fichiers à plat ODA
+profile.propertypage.name=Propriétés de la connexion à la source de données sous forme de fichier plat
 wizard.data.set.page.title=Sélection des colonnes
 wizard.data.set.title=Sélection du tableau

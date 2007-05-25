@@ -126,3 +126,8 @@ DriverClassBrowsePropertyDescriptor.noclasses.msg = No hay clases de controlador
 StatusBar.Connected = Conectado
 StatusBar.Disconnected = Desconectado
 StatusBar.ConnectedMessage = {0} ({1})
+
+StatusBar.WorkingOffline = Trabajo sin conexión
+
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = &Trabajar sin conexión
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = &Guardar sin conexión

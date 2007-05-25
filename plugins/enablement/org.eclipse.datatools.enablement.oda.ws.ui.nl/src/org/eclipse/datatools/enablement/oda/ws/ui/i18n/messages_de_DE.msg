@@ -18,43 +18,43 @@
 # Common
 
 # WebServiceSelectionPage
-webServiceSelectionPage.message.default=Web Services Data Source
-webServiceSelectionPage.message.error=Specify the SOAP End Point URL or Select a WSDL Descriptor
-webServiceSelectionPage.group.wsdl=WSDL Descriptor
-webServiceSelectionPage.group.endPoint=SOAP End Point
-webServiceSelectionPage.group.customClass=Custom Connection Class
-webServiceSelectionPage.label.wsdl=If the WSDL descriptor of the Web Services is available, enter its URL or browse to its location in the local file system
-webServiceSelectionPage.label.wsdlURI=WSDL URL or Location:
-webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. This value is optional if a custom connection class is used
-webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here
-webServiceSelectionPage.button.browse=Browse...
+webServiceSelectionPage.message.default=Datenquelle für Web-Dienste
+webServiceSelectionPage.message.error=Geben Sie den URL des SOAP-Endpunkts an, oder wählen Sie einen WSDL-Deskriptor.
+webServiceSelectionPage.group.wsdl=WSDL-Deskriptor
+webServiceSelectionPage.group.endPoint=SOAP-Endpunkt
+webServiceSelectionPage.group.customClass=Benutzerdefinierte Verbindungsklasse
+webServiceSelectionPage.label.wsdl=Wenn der WSDL-Deskriptor der Web-Dienste verfügbar ist, geben Sie den URL ein, oder geben Sie den Speicherort im lokalen Dateisystem an.
+webServiceSelectionPage.label.wsdlURI=URL oder Speicherort für WSDL:
+webServiceSelectionPage.label.endPoint=Geben Sie den URL des SOAP-Endpunkts an. Bei Verwendung einer benutzerdefinierten Verbindungsklasse ist dieser Wert optional.
+webServiceSelectionPage.label.customClass=Wenn Verbindung und Abfrage für die Web-Dienste über eine benutzerdefinierte Java-Klasse erfolgen, geben Sie hier den vollständig qualifizierten Klassennamen ein.
+webServiceSelectionPage.button.browse=Durchsuchen...
 
 # OperationPage
-operationPage.message.default=Select an operation defined in the data source's WSDL descriptor
-operationPage.label.selectOpearation=Selected Operation
-operationPage.label.document=Documentation
+operationPage.message.default=Wählen Sie einen im WSDL-Deskriptor der Datenquelle definierten Vorgang aus.
+operationPage.label.selectOpearation=Ausgewählter Vorgang
+operationPage.label.document=Dokumentation
 
 # SoapRequestPage
-soapRequestPage.message.default=Edit the SOAP request template of this data set. You may leave the text empty if your data source's custom connecion class code does not require a query text
-soapRequestPage.button.generateTemplate=Generate Template
-soapRequestPage.button.insertParameter=Insert\n Parameter...
-soapRequestPage.button.clear=Clear
+soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für den Code der benutzerdefinierten Verbindungsklasse Ihrer Datenquelle kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.
+soapRequestPage.button.generateTemplate=Vorlage erstellen
+soapRequestPage.button.insertParameter=Parameter\n einfügen...
+soapRequestPage.button.clear=Entf
 
 # ParameterInputDialog
 parameterInputDialog.column.name=Name
-parameterInputDialog.column.type=Data Type
-parameterInputDialog.column.defaultValue=Default Value
+parameterInputDialog.column.type=Datentyp
+parameterInputDialog.column.defaultValue=Standardwert
 
 # SoapResponsePage
-soapResponsePage.message.default=Edit the SOAP response
-soapResponsePage.group.schema=Select SOAP Response Schema
-soapResponsePage.group.xml=Select Sample SOAP response message
-soapResponsePage.radio.defaultSchema=Use operation response schema defined in data source WSDL
-soapResponsePage.radio.externalSchema=Use external XML schema file:
-soapResponsePage.radio.endPoint=Query Web Services at SOAP end point:
-soapResponsePage.radio.externalXML=Use external sample data file
-soapResponsePage.button.browse=Browse...
-soapResponsePage.button.connect=Connect Now
+soapResponsePage.message.default=SOAP-Antwort bearbeiten
+soapResponsePage.group.schema=SOAP-Antwortschema auswählen
+soapResponsePage.group.xml=Beispiel-SOAP-Antwortnachricht auswählen
+soapResponsePage.radio.defaultSchema=In Datenquellen-WSDL definiertes Vorgangs-Antwortschema verwenden
+soapResponsePage.radio.externalSchema=Externe XML-Schema-Datei verwenden:
+soapResponsePage.radio.endPoint=Web-Dienste an SOAP-Endpunkt abfragen:
+soapResponsePage.radio.externalXML=Externe Beispiel-Datendatei verwenden
+soapResponsePage.button.browse=Durchsuchen...
+soapResponsePage.button.connect=Jetzt verbinden
 
 # XMLTableMappingPage
 

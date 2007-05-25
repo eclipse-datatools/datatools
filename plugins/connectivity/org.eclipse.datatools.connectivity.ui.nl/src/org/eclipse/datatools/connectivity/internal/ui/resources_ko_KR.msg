@@ -126,3 +126,8 @@ DriverClassBrowsePropertyDescriptor.noclasses.msg = 현재 jar 목록에 사용 가능한 
 StatusBar.Connected = 연결됨
 StatusBar.Disconnected = 연결 해제
 StatusBar.ConnectedMessage = {0} ({1})
+
+StatusBar.WorkingOffline = 오프라인 작업
+
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = 오프라인으로 작업(&W)
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = 오프라인으로 저장(&S)

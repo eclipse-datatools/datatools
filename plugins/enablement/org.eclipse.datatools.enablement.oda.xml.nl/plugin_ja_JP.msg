@@ -17,16 +17,17 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-oda.data.source.category.name=DTP XML データソース
+plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
+oda.data.source.category.name=XML データソース
 
-datasource.name=DTP XML のデータソース
-dataset.name=DTP XML のデータセット
+datasource.name=XML データソース
+dataset.name=XML データセット
 
 datasource.property.xmlFile=XML データソースファイル
 datasource.property.xmlEncoding=XML データソースエンコード
 datasource.property.schemaFile=XML スキーマファイル
-oda.data.source.name=DTP XML ファイル
-connection.profile.name=DTP XML ファイルのデータソースの接続プロファイル
+oda.data.source.name=XML データソース
+connection.profile.name=XML データソース接続プロファイル
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #

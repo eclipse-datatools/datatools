@@ -7,10 +7,10 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-plugin.name=Laufzeittreiber für DTP-ODA-Flachdatei
+plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
 datasource.name=Datenquelle für Flachdatei
 dataset.name=Datensatz für Flachdatei
-oda.data.source.category.name=Unstrukturierte CSV-Dateien
+oda.data.source.category.name=Unstrukturierte Datenquelle
 connection.profile.name=ODA-Verbindungsprofil für unstrukturierte Datenquelle
 
 datasource.property.home=Stamm&ordner

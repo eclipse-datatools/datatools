@@ -18,43 +18,43 @@
 # Common
 
 # WebServiceSelectionPage
-webServiceSelectionPage.message.default=Web Services Data Source
-webServiceSelectionPage.message.error=Specify the SOAP End Point URL or Select a WSDL Descriptor
-webServiceSelectionPage.group.wsdl=WSDL Descriptor
-webServiceSelectionPage.group.endPoint=SOAP End Point
-webServiceSelectionPage.group.customClass=Custom Connection Class
-webServiceSelectionPage.label.wsdl=If the WSDL descriptor of the Web Services is available, enter its URL or browse to its location in the local file system
-webServiceSelectionPage.label.wsdlURI=WSDL URL or Location:
-webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. This value is optional if a custom connection class is used
-webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here
-webServiceSelectionPage.button.browse=Browse...
+webServiceSelectionPage.message.default=Web Services 数据源
+webServiceSelectionPage.message.error=指定 SOAP 终结点 URL 或选择 WSDL 描述符
+webServiceSelectionPage.group.wsdl=WSDL 描述符
+webServiceSelectionPage.group.endPoint=SOAP 终结点
+webServiceSelectionPage.group.customClass=自定义连接类
+webServiceSelectionPage.label.wsdl=如果 Web Services 的 WSDL 描述符可用，请输入其 URL 或浏览到其在本地文件系统中的所在位置
+webServiceSelectionPage.label.wsdlURI=WSDL URL 或位置:
+webServiceSelectionPage.label.endPoint=指定 SOAP 终结点 URL。如果使用了自定义连接类，此值可选。
+webServiceSelectionPage.label.customClass=如果 Web Services 的连接和查询是通过自定义 Java 类来完成的，请在此处输入完全限定类名称
+webServiceSelectionPage.button.browse=浏览...
 
 # OperationPage
-operationPage.message.default=Select an operation defined in the data source's WSDL descriptor
-operationPage.label.selectOpearation=Selected Operation
-operationPage.label.document=Documentation
+operationPage.message.default=选择在数据源的 WSDL 描述符中定义的操作
+operationPage.label.selectOpearation=选定的操作
+operationPage.label.document=文档
 
 # SoapRequestPage
-soapRequestPage.message.default=Edit the SOAP request template of this data set. You may leave the text empty if your data source's custom connecion class code does not require a query text
-soapRequestPage.button.generateTemplate=Generate Template
-soapRequestPage.button.insertParameter=Insert\n Parameter...
-soapRequestPage.button.clear=Clear
+soapRequestPage.message.default=编辑此数据集的 SOAP 请求模板。如果您的数据源自定义连接类代码不需要查询文本，您可以将文本留空。
+soapRequestPage.button.generateTemplate=生成模板
+soapRequestPage.button.insertParameter=插入\n 参数...
+soapRequestPage.button.clear=清除
 
 # ParameterInputDialog
-parameterInputDialog.column.name=Name
-parameterInputDialog.column.type=Data Type
-parameterInputDialog.column.defaultValue=Default Value
+parameterInputDialog.column.name=名称
+parameterInputDialog.column.type=数据类型
+parameterInputDialog.column.defaultValue=默认值
 
 # SoapResponsePage
-soapResponsePage.message.default=Edit the SOAP response
-soapResponsePage.group.schema=Select SOAP Response Schema
-soapResponsePage.group.xml=Select Sample SOAP response message
-soapResponsePage.radio.defaultSchema=Use operation response schema defined in data source WSDL
-soapResponsePage.radio.externalSchema=Use external XML schema file:
-soapResponsePage.radio.endPoint=Query Web Services at SOAP end point:
-soapResponsePage.radio.externalXML=Use external sample data file
-soapResponsePage.button.browse=Browse...
-soapResponsePage.button.connect=Connect Now
+soapResponsePage.message.default=编辑 SOAP 响应
+soapResponsePage.group.schema=选择 SOAP 响应架构
+soapResponsePage.group.xml=选择示例 SOAP 响应消息
+soapResponsePage.radio.defaultSchema=使用在数据源 WSDL 中定义的操作响应架构
+soapResponsePage.radio.externalSchema=使用外部l XML 架构文件:
+soapResponsePage.radio.endPoint=在 SOAP 终结点查询 Web Services:
+soapResponsePage.radio.externalXML=使用外部示例数据文件
+soapResponsePage.button.browse=浏览...
+soapResponsePage.button.connect=立即连接
 
 # XMLTableMappingPage
 

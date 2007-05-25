@@ -127,3 +127,7 @@ StatusBar.Connected = Verbunden
 StatusBar.Disconnected = Verbindung getrennt
 StatusBar.ConnectedMessage = {0} ({1})
 
+StatusBar.WorkingOffline = Offline arbeiten
+
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = Offline &arbeiten
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = Offline &speichern

@@ -17,18 +17,18 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.ws
 # NLS strings
 #
 plugin.name=Eclipse Data Tools Platform Web Services ODA Designer
-data.source.name=Web Services Data Source
-connection.profile.name=Web Services Data Source Connection Profile
-newwizard.name=Web Services Data Source
-newwizard.description=Create a Web Services data source connection profile
-wizard.window.title=New Web Services Data Source Profile
-wizard.data.source.page.title=Web Services Data Source
-profile.propertypage.name=Web Services Data Source Connection Properties
-wizard.data.set.window.title=New Web Services Data Set
-wizard.data.set.page.title=Query
+data.source.name=웹 서비스 데이터 원본
+connection.profile.name=웹 서비스 데이터 원본 연결 프로필
+newwizard.name=웹 서비스 데이터 원본
+newwizard.description=웹 서비스 데이터 원본 연결 프로필 생성
+wizard.window.title=새 웹 서비스 데이터 원본 연결 프로필
+wizard.data.source.page.title=웹 서비스 데이터 원본
+profile.propertypage.name=웹 서비스 데이터 원본 연결 속성
+wizard.data.set.window.title=새 웹 서비스 데이터 집합
+wizard.data.set.page.title=쿼리
 
-oda.ws.operation=Operation
-oda.ws.soaprequest=SOAP Request
-oda.ws.soapresponse=SOAP Response
-oda.ws.tablemapping=Table Mapping
-oda.ws.columnmapping=Column Mapping
+oda.ws.operation=연산
+oda.ws.soaprequest=SOAP 요청
+oda.ws.soapresponse=SOAP 응답
+oda.ws.tablemapping=테이블 매핑
+oda.ws.columnmapping=열 매핑

@@ -5,7 +5,7 @@
 # http://www.eclipse.org/legal/epl-v10.html
 #
 # Contributors:
-#  Actuate Corporation  - initial API and implementation
+#  Actuate Corporation - initial API and implementation
 #
 ###############################################################################
 # Plug-in Profile Configuration
@@ -15,11 +15,11 @@ oda.data.source.id=org.eclipse.datatools.connectivity.oda.flatfile
 ###############################################################################
 # NLS Strings
 #
-plugin.name=DTP ODA Flat File Designer
-newwizard.name=ODA フラット・ファイル・データ・ソース
+plugin.name=Eclipse Data Tools Platform Flat File ODA Designer
+newwizard.name=フラットファイルのデータソース
 newwizard.description=ODA フラット・ファイル接続プロファイルの作成
 wizard.window.title=新規フラット・ファイル・データ・ソース・プロファイル
 wizard.data.source.page.title=フォルダーの選択
-profile.propertypage.name=ODA フラット・ファイル・データ・ソース接続プロパティー
+profile.propertypage.name=フラットファイルのデータソースの接続プロパティ
 wizard.data.set.page.title=列の選択
 wizard.data.set.title=表の選択

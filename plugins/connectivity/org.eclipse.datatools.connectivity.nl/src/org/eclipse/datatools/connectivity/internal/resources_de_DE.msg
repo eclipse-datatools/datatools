@@ -41,3 +41,16 @@ migration.error.unknownParentElement = Fehler beim Laden des Migrationselements:
 
 DriverUtil.taskName = Klassen werden in {0} verarbeitet
 Category.Name.Unknown=Nicht unterstützt
+
+WorkOfflineJob.name = {0} wird in Offline-Modus geändert.
+WorkOfflineJob.status.error = Offline-Verbindungen zu {1} konnten für eine oder mehrere Erweiterungen nicht erstellt werden.
+
+SaveWorkOfflineDataJob.name = Speichern Sie die Offline-Daten für {1}.
+SaveWorkOfflineDataJob.status = Speichern Sie den Status der Offline-Daten.
+
+CreateOfflineConnectionJob.name = Offline-Verbindung {0} zu {1} wird erstellt.
+CreateOfflineConnectionJob.error = Fehler beim Erstellen der Offline-Verbindung {0} zu {1}. (Fehler\: {2})
+
+ManagedConnection_save_not_connected_error = Verbindung zum Server erforderlich, um Offline-Daten zu speichern.
+ManagedConnection_offline_not_supported_error = {0} unterstützt Offline-Arbeiten nicht.
+

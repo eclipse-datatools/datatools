@@ -41,3 +41,15 @@ migration.error.unknownParentElement = 加载迁移元素时出错: 未知父元素(父元素名称
 
 DriverUtil.taskName = 正在处理 {0} 中的类
 Category.Name.Unknown=不支持
+
+WorkOfflineJob.name = 将 {0} 更改为脱机工作模式。
+WorkOfflineJob.status.error = 无法为一个或多个扩展创建到 {1} 的脱机连接。
+
+SaveWorkOfflineDataJob.name = 保存 {1} 的脱机数据。
+SaveWorkOfflineDataJob.status = 保存脱机数据状态。
+
+CreateOfflineConnectionJob.name = 创建到 {1} 的脱机 {0} 连接。
+CreateOfflineConnectionJob.error = 创建到 {1} 的脱机 {0} 连接时出错。(错误: {2})
+
+ManagedConnection_save_not_connected_error = 必须连接到服务器才能保存脱机数据。
+ManagedConnection_offline_not_supported_error = {0} 不支持脱机工作。

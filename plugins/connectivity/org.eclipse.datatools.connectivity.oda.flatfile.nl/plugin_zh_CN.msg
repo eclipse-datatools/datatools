@@ -7,10 +7,10 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-plugin.name=DTP ODA 平面文件运行时驱动程序
+plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
 datasource.name=平面文件数据源
 dataset.name=平面文件数据集
-oda.data.source.category.name=CSV 平面文件
+oda.data.source.category.name=平面文件数据源
 connection.profile.name=ODA 平面文件数据源连接配置文件
 
 datasource.property.home=主文件夹(&F)

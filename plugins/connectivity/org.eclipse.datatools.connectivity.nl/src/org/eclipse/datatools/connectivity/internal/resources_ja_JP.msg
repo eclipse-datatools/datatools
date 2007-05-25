@@ -41,3 +41,15 @@ migration.error.unknownParentElement = ˆÚs—v‘f‚Ì“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚
 
 DriverUtil.taskName = {0} ‚ÅƒNƒ‰ƒX‚ğˆ—’†‚Å‚·B
 Category.Name.Unknown=ƒTƒ|[ƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB
+
+WorkOfflineJob.name = ƒIƒtƒ‰ƒCƒ“ƒ‚[ƒh‚Åì‹Æ‚·‚é‚½‚ß‚É {0} ‚ğ•ÏX‚µ‚Ä‚¢‚Ü‚·B
+WorkOfflineJob.status.error = 1 ‚Â‚Ü‚½‚Í•¡”‚ÌŠg’£‹@”\—p‚Ì {1} ‚Ö‚ÌƒIƒtƒ‰ƒCƒ“Ú‘±‚ğŠm—§‚Å‚«‚Ü‚¹‚ñB
+
+SaveWorkOfflineDataJob.name = {1} ‚ÌƒIƒtƒ‰ƒCƒ“ƒf[ƒ^‚ğ•Û‘¶‚µ‚Ü‚·B
+SaveWorkOfflineDataJob.status = ƒIƒtƒ‰ƒCƒ“ƒf[ƒ^‚ÌƒXƒe[ƒ^ƒX‚ğ•Û‘¶‚µ‚Ü‚·B
+
+CreateOfflineConnectionJob.name = {1} ‚Ö‚ÌƒIƒtƒ‰ƒCƒ“‚Ì {0} Ú‘±‚ğŠm—§‚µ‚Ä‚¢‚Ü‚·B
+CreateOfflineConnectionJob.error = {1} ‚Ö‚ÌƒIƒtƒ‰ƒCƒ“‚Ì {0} Ú‘±‚ğŠm—§’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½ (ƒGƒ‰[\: {2})B
+
+ManagedConnection_save_not_connected_error = ƒIƒtƒ‰ƒCƒ“ƒf[ƒ^‚ğ•Û‘¶‚·‚é‚É‚ÍAƒT[ƒo‚ÉÚ‘±‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
+ManagedConnection_offline_not_supported_error = {0} ‚Å‚ÍƒIƒtƒ‰ƒCƒ“‚Åì‹Æ‚Å‚«‚Ü‚¹‚ñB

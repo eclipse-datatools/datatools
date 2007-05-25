@@ -127,3 +127,7 @@ StatusBar.Connected = 接続されています
 StatusBar.Disconnected = 切断されています
 StatusBar.ConnectedMessage = {0} ({1})
 
+StatusBar.WorkingOffline = オフラインで作業中
+
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = オフラインで作業(&W)
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = オフラインで保存(&S)

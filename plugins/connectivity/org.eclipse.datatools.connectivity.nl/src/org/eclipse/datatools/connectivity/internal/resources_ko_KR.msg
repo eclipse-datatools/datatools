@@ -41,3 +41,15 @@ migration.error.unknownParentElement = 마이그레이션 요소를 로딩하는 중 오류 발생
 
 DriverUtil.taskName = {0}의 클래스 처리 중
 Category.Name.Unknown=지원 안 함
+
+WorkOfflineJob.name = {0}을(를) 오프라인 작업 모드로 변경하고 있습니다.
+WorkOfflineJob.status.error = 하나 이상의 확장을 위해 {1}에 대한 오프라인 연결을 만들 수 없습니다.
+
+SaveWorkOfflineDataJob.name = {1}의 오프라인 데이터를 저장합니다.
+SaveWorkOfflineDataJob.status = 오프라인 데이터 상태를 저장합니다.
+
+CreateOfflineConnectionJob.name = {1}에 대한 오프라인 {0} 연결을 만들고 있습니다.
+CreateOfflineConnectionJob.error = {1}에 대한 오프라인 {0} 연결을 만드는 도중 오류가 발생했습니다(오류\: {2}).
+
+ManagedConnection_save_not_connected_error = 오프라인 데이터를 저장하려면 서버에 연결되어 있어야 합니다.
+ManagedConnection_offline_not_supported_error = {0}이(가) 오프라인 작업을 지원하지 않습니다.

@@ -17,13 +17,13 @@ oda.data.source.id=org.eclipse.datatools.enablement.oda.ws
 # NLS String
 #
 plugin.name=Eclipse Data Tools Platform Web Services ODA Runtime Driver
-data.source.name=Web Services Data Source
-data.set.name=Web Services Data Set
+data.source.name=웹 서비스 데이터 원본
+data.set.name=웹 서비스 데이터 집합
 
-connection.profile.name=Web Services Data Source Connection Profile
+connection.profile.name=웹 서비스 데이터 원본 연결 프로필
 
-datasource.property.soapEndPoint=SOAP End Point
-datasource.property.connectionClass=Connection Class
-datasource.property.connectionTimeOut=Connection Time Out
-dataset.property.xmlFileURI=XML File
-dataset.property.xsdFileURI=Schema File
+datasource.property.soapEndPoint=SOAP 끝점
+datasource.property.connectionClass=연결 클래스
+datasource.property.connectionTimeOut=연결 시간 초과
+dataset.property.xmlFileURI=XML 파일
+dataset.property.xsdFileURI=스키마 파일

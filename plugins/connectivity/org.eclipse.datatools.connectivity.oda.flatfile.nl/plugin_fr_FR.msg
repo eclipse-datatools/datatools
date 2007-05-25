@@ -7,10 +7,10 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-plugin.name=Pilote d'exécution de fichiers à plat ODA DTP
+plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
 datasource.name=Source de données de fichier à plat
 dataset.name=Ensemble de fichiers à plat
-oda.data.source.category.name=Fichiers plats CSV
+oda.data.source.category.name=Source de données sous forme de fichier plat
 connection.profile.name=Profil de connexion de source de données sous forme de fichier plat ODA
 
 datasource.property.home=Dossier &racine

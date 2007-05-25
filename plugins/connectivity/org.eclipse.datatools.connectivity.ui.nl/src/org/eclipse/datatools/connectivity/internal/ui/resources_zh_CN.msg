@@ -126,3 +126,8 @@ DriverClassBrowsePropertyDescriptor.noclasses.msg = Ã»ÓÐ¿É¹©µ±Ç° jar ÁÐ±íÊ¹ÓÃµÄÇ
 StatusBar.Connected = ÒÑÁ¬½Ó
 StatusBar.Disconnected = ÒÑ¶Ï¿ªÁ¬½Ó
 StatusBar.ConnectedMessage = {0} ({1})
+
+StatusBar.WorkingOffline = ÍÑ»ú¹¤×÷
+
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = ÍÑ»ú¹¤×÷(&W)
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = ÍÑ»ú±£´æ(&S)

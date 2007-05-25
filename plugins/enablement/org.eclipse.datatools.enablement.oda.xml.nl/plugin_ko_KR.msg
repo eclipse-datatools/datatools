@@ -1,3 +1,5 @@
+plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
+oda.data.source.category.name=XML Data Source
 ###############################################################################
 # Copyright (c) 2004, 2007 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
@@ -17,16 +19,17 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-oda.data.source.category.name=DTP XML 데이터 원본
+plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
+oda.data.source.category.name=XML 데이터 원본
 
-datasource.name=DTP XML 데이터 원본
-dataset.name=DTP XML 데이터 집합
+datasource.name=XML 데이터 원본
+dataset.name=XML 데이터 집합
 
 datasource.property.xmlFile=XML 데이터 원본 파일
 datasource.property.xmlEncoding=XML 데이터 원본 인코딩
 datasource.property.schemaFile=XML 스키마 파일
-oda.data.source.name=DTP XML 파일
-connection.profile.name=DTP XML 파일 데이터 원본 연결 프로필
+oda.data.source.name=XML 데이터 원본
+connection.profile.name=XML 데이터 원본 연결 프로필
 #
 #  Below NLS messages apply to all ODA data sources; should be re-factored
 #

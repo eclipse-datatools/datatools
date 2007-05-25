@@ -7,10 +7,10 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-plugin.name=DTP ODA Flat File Run-time Driver
+plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
 datasource.name=フラット・ファイル・データ・ソース
 dataset.name=フラット・ファイル・データ・セット
-oda.data.source.category.name=CSV フラットファイル
+oda.data.source.category.name=フラットファイルのデータソース
 connection.profile.name=ODA フラットファイルのデータソースの接続プロファイル
 
 datasource.property.home=ホームフォルダ(&F)

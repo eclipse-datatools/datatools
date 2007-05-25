@@ -41,3 +41,15 @@ migration.error.unknownParentElement = Erreur lors du chargement de l'élément de
 
 DriverUtil.taskName = Traitement des classes dans {0}
 Category.Name.Unknown=Non pris en charge
+
+WorkOfflineJob.name = Modification de {0} pour travailler en mode hors ligne.
+WorkOfflineJob.status.error = Impossible de créer des connexions hors ligne à {1} pour au moins une extension.
+
+SaveWorkOfflineDataJob.name = Enregistrer les données hors ligne pour {1}.
+SaveWorkOfflineDataJob.status = Enregistrer l'état des données hors ligne.
+
+CreateOfflineConnectionJob.name = Création de la connexion hors ligne de {0} à {1}.
+CreateOfflineConnectionJob.error = Erreur lors de la création de la connexion hors ligne de {0} à {1}. (Erreur \: {2})
+
+ManagedConnection_save_not_connected_error = Connexion indispensable au serveur pour enregistrer des données hors ligne.
+ManagedConnection_offline_not_supported_error = {0} ne prend pas en charge le travail hors ligne.

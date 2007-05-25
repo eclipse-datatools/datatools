@@ -7,10 +7,10 @@ oda.parent.category.id=org.eclipse.datatools.connectivity.oda.profileCategory
 ###############################################################################
 # NLS String
 ###############################################################################
-plugin.name=Controlador de tiempo de ejecución de archivo plano de ODA de DTP
+plugin.name=Eclipse Data Tools Platform Flat File ODA Runtime Driver
 datasource.name=Origen de datos de archivo plano
 dataset.name=Conjunto de datos de archivo plano
-oda.data.source.category.name=Archivos sin formato CSV
+oda.data.source.category.name=Fuente de datos de archivo sin formato
 connection.profile.name=Perfil de conexión de fuente de datos de archivo sin formato ODA
 
 datasource.property.home=Ca&rpeta de inicio
