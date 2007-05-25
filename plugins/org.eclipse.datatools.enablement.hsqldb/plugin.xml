@@ -105,11 +105,15 @@
       <page
             class="org.eclipse.datatools.enablement.hsqldb.ui.properties.HSQLDBPropertyPage"
             id="org.eclipse.datatools.enablement.hsqldb.connectionProfile.profileProperties"
-            name="%profile.page.name"
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+            name="%profile.page.name">
          <filter
                name="org.eclipse.datatools.profile.property.id"
                value="org.eclipse.datatools.enablement.hsqldb.connectionProfile"/>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
       </page>
    </extension>
 <!--
