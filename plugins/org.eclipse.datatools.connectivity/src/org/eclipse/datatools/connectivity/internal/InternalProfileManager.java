@@ -24,6 +24,10 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
@@ -64,6 +68,26 @@ public class InternalProfileManager {
 			// Pass this through to any listeners on the manager
 			fireProfileChanged(event.getConnectionProfile(),null,null,null);
 		}
+	};
+	
+	private IProfileListener1 mProfileChangeListener = new IProfileListener1() {
+
+		public void profileChanged(IConnectionProfile profile, String oldName,
+				String oldDesc, Boolean oldAutoConnect) {
+			removeOldFailureMarkers(oldName);
+		}
+
+		public void profileAdded(IConnectionProfile profile) {
+		}
+
+		public void profileChanged(IConnectionProfile profile) {
+			removeOldFailureMarkers(profile.getName());
+		}
+
+		public void profileDeleted(IConnectionProfile profile) {
+			removeOldFailureMarkers(profile.getName());
+		}
+		
 	};
 
 	private InternalProfileManager() {
@@ -501,6 +525,30 @@ public class InternalProfileManager {
 	}
 
 	/**
+	 * Remove connection failure markers for the profile when we 
+	 * delete the profile.
+	 * 
+	 * @param oldProfileName
+	 */
+	private void removeOldFailureMarkers(String oldProfileName) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		try {
+			IMarker[] markers = resource.findMarkers(
+					"org.eclipse.datatools.connectivity.ui.profileFailure", true, //$NON-NLS-1$
+					IResource.DEPTH_INFINITE);
+			for (int i = 0; i < markers.length; i++) {
+				if (markers[i].getAttribute(IMarker.LOCATION, new String())
+						.equals(oldProfileName)) {
+					markers[i].delete();
+				}
+			}
+			resource.refreshLocal(IResource.DEPTH_INFINITE, null);
+		}
+		catch (CoreException e) {
+		}
+	}
+
+	/**
 	 * Modify an existing connection profile
 	 * 
 	 * @param profile
@@ -716,6 +764,7 @@ public class InternalProfileManager {
 		}
 
 		autoConnectProfiles();
+		addProfileListener(mProfileChangeListener);
 	}
 
 	public void fireProfileAdded(IConnectionProfile profile) {
