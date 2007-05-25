@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.plan;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
@@ -18,7 +20,9 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.plan.IPlanOption;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.action.Action;
+import org.eclipse.swt.custom.BusyIndicator;
 
 /**
  * The action class to explain the SQL statement or routine object.
@@ -29,6 +33,7 @@ import org.eclipse.jface.action.Action;
 public abstract class BaseExplainAction extends Action
 {
     protected PlanRequest _planRequest;
+    protected Connection  _conn;
 
     /**
      * Subclass should implement this method to returns the database identifier
@@ -57,7 +62,6 @@ public abstract class BaseExplainAction extends Action
         {
             return;
         }
-
         String sql = getSQLStatements();
         DatabaseIdentifier databaseIdentifier = getDatabaseIdentifier();
         if (databaseIdentifier == null || sql == null)
@@ -78,8 +82,20 @@ public abstract class BaseExplainAction extends Action
         _planRequest = createPlanRequest(sql, databaseDefinitionId, planType, PlanRequest.VIEW_ACTIVATE);
 
         GroupPlanSupportRunnable thread = createGroupPlanSupportRunnable(_planRequest, databaseIdentifier);
+        if(_conn != null)
+        {
+            thread.setConnection(_conn);
+        }
         thread.setUser(true);
         thread.schedule();
+        try
+        {
+            thread.join();
+        }
+        catch (Exception e)
+        {
+        }
+        handleEnd(_conn);
     }
 
     /**
@@ -147,5 +163,20 @@ public abstract class BaseExplainAction extends Action
     public PlanRequest getPlanRequest()
     {
         return _planRequest;
+    }
+    
+    protected void handleEnd(Connection connection)
+    {
+        try
+        {
+            if(connection != null && !connection.isClosed())
+            {
+                connection.close();
+            }
+        }
+        catch (SQLException e)
+        {
+            
+        }
     }
 }

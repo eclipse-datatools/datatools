@@ -18,6 +18,7 @@ import org.eclipse.datatools.sqltools.routineeditor.launching.SQLToolsLaunchProf
 import org.eclipse.datatools.sqltools.routineeditor.parameter.internal.LaunchConfigurationParamsHistoryListener;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -39,6 +40,19 @@ public class RoutineEditorActivator extends AbstractUIPlugin {
 		plugin = this;
 	}
 
+    /**
+     * Returns the standard display to be used. The method first checks, if the thread calling this method has an
+     * associated dispaly. If so, this display is returned. Otherwise the method returns the default display.
+     */
+    public static Display getStandardDisplay()
+    {
+        Display display;
+        display = Display.getCurrent();
+        if (display == null)
+        display = Display.getDefault();
+        return display;
+    }
+    
 	/**
 	 * This method is called upon plug-in activation
 	 */

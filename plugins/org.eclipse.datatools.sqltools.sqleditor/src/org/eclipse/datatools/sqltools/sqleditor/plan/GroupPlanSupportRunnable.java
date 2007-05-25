@@ -178,6 +178,10 @@ public class GroupPlanSupportRunnable extends PlanSupportRunnable
 
             if (planRunnable != null)
             {
+                if(getConnection() != null)
+                {
+                    planRunnable.setConnection(getConnection());
+                }
                 planRunnable.setProgressGroup(monitor, 1);
                 planRunnable.schedule();
                 try

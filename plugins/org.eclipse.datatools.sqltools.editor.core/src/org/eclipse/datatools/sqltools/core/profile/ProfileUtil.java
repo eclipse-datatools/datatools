@@ -253,7 +253,7 @@ public class ProfileUtil
 		try {
 			profile = getProfile(profileName);
 		} catch (NoSuchProfileException e) {
-			EditorCorePlugin.getDefault().log(e);
+			//EditorCorePlugin.getDefault().log(e);
 		}
     	if (profile != null) {
 			// try to get vendor name and version from connection profile first,

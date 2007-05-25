@@ -35,6 +35,7 @@ public abstract class PlanSupportRunnable extends Job
     protected Statement   _stmt;
     protected String      _profileName;
     protected String      _dbName;
+    protected boolean     _needReleaseConn = true;
 
     public PlanSupportRunnable()
     {
@@ -101,6 +102,10 @@ public abstract class PlanSupportRunnable extends Job
      */
     protected void handleEnd(Connection connection, Statement stmt)
     {
+        if (!_needReleaseConn)
+        {
+            return;
+        }
         try
         {
             if(stmt != null)
@@ -143,6 +148,18 @@ public abstract class PlanSupportRunnable extends Job
         return _conn;
     }
 
+    /**
+     * Passes a connection in, otherwise this class will create a new connection to get the plan
+     * @param conn database connection
+     */
+    public void setConnection(Connection conn)
+    {
+        _conn = conn;
+        
+        // Dont release the connection if it is not newly-created
+        _needReleaseConn = false;
+    }
+    
     public PlanRequest getRequest()
     {
         return _request;
