@@ -118,11 +118,11 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void initializeControl( )
 	{
-		xsdFileName = getXSDFileURI( );
-		xmlFileName = getInitXMLFileURI( );
-		xmlEncoding = getXMLEncoding( );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 	
-		String queryText = getInitQueryText( );
+		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 
 		String tableName = XMLRelationInfoUtil.getTableName( queryText );
 		if ( tableName != null )
@@ -149,46 +149,22 @@ public class XPathChoosePage extends DataSetWizardPage
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
 		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.rowMapping" );
-		XMLInformationHolder.start( dataSetDesign );
+		if ( XMLInformationHolder.hasDestroyed( ) )
+			XMLInformationHolder.start( dataSetDesign );
 		
 		refresh( );
 	}
 	
 	protected void refresh( )
 	{
-		xmlFileName = getXMLFileURI( );
-		xsdFileName = getXSDFileURI( );
-		xmlEncoding = getXMLEncoding( );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 		populateXMLTree( );
 		backupRootPath( );
 		setMessage( DEFAULT_MESSAGE );
 	}
 	
-	protected String getXSDFileURI( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-	}
-
-	protected String getInitXMLFileURI( )
-	{
-		return getXMLFileURI( );
-	}
-
-	protected String getXMLEncoding( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST);
-	}
-	
-	protected String getXMLFileURI( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-	}
-	
-	protected String getInitQueryText( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
-	}
-
     /**
     * 
     * @param parent
@@ -382,6 +358,10 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void populateXMLTree( )
 	{
+		if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
+				&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
+			return;
+		
 		try
 		{
 			availableXmlTree.removeAll( );

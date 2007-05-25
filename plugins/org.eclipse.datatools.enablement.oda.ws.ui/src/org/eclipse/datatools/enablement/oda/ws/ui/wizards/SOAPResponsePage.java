@@ -384,12 +384,21 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
+		// ws and xml are initially same, which are both gotten from
+		// design, the difference is ws is then accoutable for design while
+		// xml is for xmlHolder
 		WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
 				xsdFileURI.getText( ) );
+		WSConsole.getInstance( )
+				.setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
+						xsdFileURI.getText( ) );
 		WSConsole.getInstance( ).setPropertyValue( Constants.SOAP_ENDPOINT,
 				soapEndPoint.getText( ) );
 		WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
 				xmlFileURI.getText( ) );
+		WSConsole.getInstance( )
+				.setXMLPropertyValue( Constants.CONST_PROP_FILELIST,
+						xmlFileURI.getText( ) );
 	}
 
 	/*

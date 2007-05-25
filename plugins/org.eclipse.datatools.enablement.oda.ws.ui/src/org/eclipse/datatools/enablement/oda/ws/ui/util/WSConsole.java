@@ -29,9 +29,12 @@ import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
+import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
 import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
+import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLInformationHolder;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -92,6 +95,26 @@ public class WSConsole
 	}
 
 	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public String getXMLPropertyValue( String key )
+	{
+		return XMLInformationHolder.getPropertyValue( key );
+	}
+
+	/**
+	 * 
+	 * @param key
+	 * @param value
+	 */
+	public void setXMLPropertyValue( String key, String value )
+	{
+		XMLInformationHolder.setPropertyValue( key, value );
+	}
+
+	/**
 	 * Populates all the required properties available in dataSetDesign
 	 * 
 	 * @param dataSetDesign
@@ -101,7 +124,13 @@ public class WSConsole
 		if ( dataSetDesign == null )
 			return;
 
+		startWS( dataSetDesign );
+		startXML( dataSetDesign );
 		isSessionOK = true;
+	}
+
+	private void startWS( DataSetDesign dataSetDesign )
+	{
 		String queryText = dataSetDesign.getQueryText( );
 		if ( queryText != null && queryText.trim( ).length( ) > 0 )
 		{
@@ -163,6 +192,42 @@ public class WSConsole
 		}
 	}
 
+	private void startXML( DataSetDesign dataSetDesign )
+	{
+		if ( dataSetDesign.getPrivateProperties( ) != null )
+		{
+			String queryText = dataSetDesign.getPrivateProperties( )
+					.findProperty( Constants.XML_QUERYTEXT )
+					.getValue( );
+
+			if ( queryText != null && queryText.trim( ).length( ) > 0 )
+			{
+				setXMLPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+						queryText );
+				String tableName = XMLRelationInfoUtil.getTableName( queryText );
+				setXMLPropertyValue( Constants.CONST_PROP_TABLE_NAME, tableName );
+
+				String xpath = XMLRelationInfoUtil.getXPathExpression( queryText,
+						tableName );
+				setXMLPropertyValue( Constants.CONST_PROP_XPATH, xpath );
+			}
+		}
+		if ( dataSetDesign.getPublicProperties( ) != null )
+		{
+			Property xmlFile = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.XML_FILE_URI );
+			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null
+					? WSUIUtil.EMPTY_STRING : xmlFile.getValue( ) );
+
+			Property schema = dataSetDesign.getPublicProperties( )
+					.findProperty( Constants.XSD_FILE_URI );
+			setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
+					schema == null ? WSUIUtil.EMPTY_STRING : schema.getValue( ) );
+		}
+
+		setXMLPropertyValue( Constants.CONST_PROP_MAX_ROW, "-1" ); //$NON-NLS-1$
+	}
+
 	/**
 	 * 
 	 */
@@ -179,6 +244,7 @@ public class WSConsole
 		isSessionOK = false;
 		props = null;
 		parameters = null;
+		XMLInformationHolder.destory( );
 	}
 
 	/**
@@ -223,22 +289,23 @@ public class WSConsole
 	 * @return
 	 * @throws OdaException
 	 */
-	public String getXMLFileURI( ) throws OdaException
+	public void updateXMLFileURI( ) throws OdaException
 	{
-		String xmlFileURI = getPropertyValue( Constants.XML_FILE_URI );
-		if ( WSUIUtil.isNull( xmlFileURI ) )
+		String xmlFileURI = getXMLPropertyValue( Constants.CONST_PROP_FILELIST );
+		if ( !WSUIUtil.isNull( xmlFileURI ) )
+			return;
+
+		String xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
+		if ( WSUIUtil.isNull( xmlTempFileURI ) )
 		{
-			String xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
-			if ( WSUIUtil.isNull( xmlTempFileURI ) )
-			{
-				// there is no xml temp file, create one
-				createXMLTempFileURI( );
-				xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
-			}
-			xmlFileURI = xmlTempFileURI;
+			// there is no xml temp file, create one
+			createXMLTempFileURI( );
+			xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
 		}
 
-		return WSUIUtil.getNonNullString( xmlFileURI );
+		xmlFileURI = xmlTempFileURI;
+		setXMLPropertyValue( Constants.CONST_PROP_FILELIST,
+				WSUIUtil.getNonNullString( xmlFileURI ) );
 	}
 
 	/**
@@ -294,7 +361,7 @@ public class WSConsole
 		{
 			SOAPResponse soapResponse = connectNow( );
 			if ( soapResponse == null )
-				return null;
+				throw new OdaException( Messages.getString( "wsConsole.message.error.cantRetrieveSOAPResponse" ) ); //$NON-NLS-1$
 
 			return soapResponse.getInputStream( );
 		}

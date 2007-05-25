@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.ui;singleton:=true
-Bundle-Version: 1.0.1.200705161
+Bundle-Version: 1.0.1.200705251
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin
 Bundle-Vendor: Eclipse.org
@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.enablement.oda.xml;bundle-version="[1.0.1,2.0.0)"
 Eclipse-LazyStart: true
-Export-Package: org.eclipse.datatools.enablement.oda.xml.ui.wizards;x-friends:="org.eclipse.birt.report.data.oda.xml.ui,org.eclipse.datatools.enablement.oda.ws.ui"
+Export-Package: org.eclipse.datatools.enablement.oda.xml.ui.utils;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
+ org.eclipse.datatools.enablement.oda.xml.ui.wizards;x-friends:="org.eclipse.birt.report.data.oda.xml.ui,org.eclipse.datatools.enablement.oda.ws.ui"
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
 

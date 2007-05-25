@@ -123,16 +123,18 @@ public class RawMessageSender
 			}
 			catch ( MalformedURLException e )
 			{
-				soapResponse = new SOAPResponse( connection.getErrorStream( ),
-						SOAPResponse.ERROR_STREAM,
-						e.getMessage( ) );
+				if ( !WSUtil.isNull( connection ) )
+					soapResponse = new SOAPResponse( connection.getErrorStream( ),
+							SOAPResponse.ERROR_STREAM,
+							e.getMessage( ) );
 
 			}
 			catch ( IOException e )
 			{
-				soapResponse = new SOAPResponse( connection.getErrorStream( ),
-						SOAPResponse.ERROR_STREAM,
-						e.getMessage( ) );
+				if ( !WSUtil.isNull( connection ) )
+					soapResponse = new SOAPResponse( connection.getErrorStream( ),
+							SOAPResponse.ERROR_STREAM,
+							e.getMessage( ) );
 			}
 		}
 	}

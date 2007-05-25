@@ -17,6 +17,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
@@ -27,17 +28,6 @@ public class XMLColumnMappingPage
 			org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage
 {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#needsPopulate(java.lang.String,
-	 *      java.lang.String)
-	 */
-	protected boolean needsPopulate( String xsdFile, String xmlFile )
-	{
-		return !( WSUIUtil.isNull( xsdFile ) && WSUIUtil.isNull( xmlFile ) );
-	}
-
 	/**
 	 * 
 	 * @param pageName
@@ -45,6 +35,23 @@ public class XMLColumnMappingPage
 	public XMLColumnMappingPage( String pageName )
 	{
 		super( pageName );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 */
+	public void createPageCustomControl( Composite parent )
+	{
+		initWSConsole( );
+		super.createPageCustomControl( parent );
+	}
+
+	private void initWSConsole( )
+	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			WSConsole.getInstance( ).start( getInitializationDesign( ) );
 	}
 
 	/*
@@ -86,54 +93,34 @@ public class XMLColumnMappingPage
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getXSDFileURI()
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#refresh()
 	 */
-	protected String getXSDFileURI( )
+	public void refresh( )
 	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XSD_FILE_URI ) );
+		updateXMLFileURI( );
+		super.refresh( );
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getInitXMLFileURI()
-	 */
-	protected String getInitXMLFileURI( )
+	private void updateXMLFileURI( )
 	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XML_FILE_URI ) );
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getXMLFileURI()
-	 */
-	protected String getXMLFileURI( )
-	{
-		String xmlFileURI = WSUIUtil.EMPTY_STRING;
 		try
 		{
-			xmlFileURI = WSConsole.getInstance( ).getXMLFileURI( );
+			WSConsole.getInstance( ).updateXMLFileURI( );
 		}
 		catch ( OdaException e )
 		{
 			setMessage( e.getMessage( ), IMessageProvider.ERROR );
 		}
-
-		return xmlFileURI;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getInitQueryText()
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#cleanup()
 	 */
-	protected String getInitQueryText( )
+	protected void cleanup( )
 	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XML_QUERYTEXT ) );
+		WSConsole.getInstance( ).terminateSession( );
 	}
 
 }

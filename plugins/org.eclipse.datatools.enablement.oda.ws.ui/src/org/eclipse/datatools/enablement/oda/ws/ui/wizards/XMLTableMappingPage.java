@@ -18,6 +18,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
@@ -33,6 +34,23 @@ public class XMLTableMappingPage extends XPathChoosePage
 	public XMLTableMappingPage( String pageName )
 	{
 		super( pageName );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 */
+	public void createPageCustomControl( Composite parent )
+	{
+		initWSConsole( );
+		super.createPageCustomControl( parent );
+	}
+
+	private void initWSConsole( )
+	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			WSConsole.getInstance( ).start( getInitializationDesign( ) );
 	}
 
 	/*
@@ -74,64 +92,34 @@ public class XMLTableMappingPage extends XPathChoosePage
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#getXSDFileURI()
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#refresh()
 	 */
-	protected String getXSDFileURI( )
+	protected void refresh( )
 	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XSD_FILE_URI ) );
+		updateXMLFileURI( );
+		super.refresh( );
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#getInitXMLFileURI()
-	 */
-	protected String getInitXMLFileURI( )
+	private void updateXMLFileURI( )
 	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XML_FILE_URI ) );
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#getXMLFileURI()
-	 */
-	protected String getXMLFileURI( )
-	{
-		String xmlFileURI = WSUIUtil.EMPTY_STRING;
 		try
 		{
-			xmlFileURI = WSConsole.getInstance( ).getXMLFileURI( );
+			WSConsole.getInstance( ).updateXMLFileURI( );
 		}
 		catch ( OdaException e )
 		{
 			setMessage( e.getMessage( ), IMessageProvider.ERROR );
 		}
-
-		return xmlFileURI;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#refresh()
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#cleanup()
 	 */
-	protected void refresh( )
+	protected void cleanup( )
 	{
-		super.refresh( );
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage#getInitQueryText()
-	 */
-	protected String getInitQueryText( )
-	{
-		return WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.XML_QUERYTEXT ) );
+		WSConsole.getInstance( ).terminateSession( );
 	}
 
 }

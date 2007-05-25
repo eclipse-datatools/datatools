@@ -164,10 +164,10 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private void initializeControl( )
 	{
-		xsdFileName = getXSDFileURI( );
-		xmlFileName = getInitXMLFileURI( );
-		xmlEncoding = getXMLEncoding( );
-		String queryText = getInitQueryText( );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
+		String queryText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
 		tableName = XMLRelationInfoUtil.getTableName( queryText );
 
 		if ( tableName != null && tableName.trim( ).length( ) > 0 )
@@ -207,41 +207,17 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	public void refresh( )
 	{
 		selectedTreeItemText = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XPATH );
-		xsdFileName = getXSDFileURI( );
-		xmlFileName = getXMLFileURI( );
-		xmlEncoding = getXMLEncoding( );
+		xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
+		xmlFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
+		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 		/*if ( xsdFileName == null || xsdFileName.trim( ).equals( "" ) )
 			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		if ( selectedTreeItemText != null )
 		{
 			selectedItem = null;
 			populateXMLTree( );
-		}	
-	}
-	
-	protected String getXSDFileURI( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST );
-	}
-	
-	protected String getInitXMLFileURI( )
-	{
-		return getXMLFileURI( );
-	}
-	
-	protected String getXMLFileURI( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );
-	}
-	
-	protected String getXMLEncoding( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
-	}
-	
-	protected String getInitQueryText( )
-	{
-		return XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
+		}
+		setPageProperties( );
 	}
 	
 	/*
@@ -252,7 +228,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
 		DEFAULT_PAGE_Message = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );
-		XMLInformationHolder.start( dataSetDesign );
+		if ( XMLInformationHolder.hasDestroyed( ) )
+			XMLInformationHolder.start( dataSetDesign );
 		this.setMessage( DEFAULT_PAGE_Message );
 		refresh( );
 	}
@@ -856,7 +833,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private void populateXMLTree( )
 	{
-		if ( !needsPopulate( xsdFileName, xmlFileName ) )
+		if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
+				&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
 			return;
 		
 		try
@@ -925,11 +903,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		{
 			e.printStackTrace( );
 		}
-	}
-	
-	protected boolean needsPopulate( String xsdFile, String xmlFile )
-	{
-		return true;
 	}
 
 	/**
