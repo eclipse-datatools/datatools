@@ -53,7 +53,7 @@ public final class DataTypes
 		  if ( typeName == null || typeName.trim().length() == 0 )
     		return STRING;
 		  
-	      String preparedTypeName = typeName.trim().toUpperCase();
+	      String preparedTypeName = typeName.trim( ).toUpperCase( Locale.ENGLISH );
 	        
 	      // get the data type definition from my plugin manifest for all other types
 	      DataTypeMapping typeMapping = getManifest().getDataSetType( null )
