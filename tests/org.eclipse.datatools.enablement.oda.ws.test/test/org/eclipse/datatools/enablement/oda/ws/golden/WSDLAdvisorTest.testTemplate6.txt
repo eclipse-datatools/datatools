@@ -14,10 +14,8 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SOAP-ENV:Body>
 		<m:GetGlobalLastClosingPrice xmlns:m="http://www.xignite.com/services/">
 			<m:Identifier xsi:type="xsd:string">&?Identifier?&</m:Identifier>
-			<m:IdentifierType>
-			</m:IdentifierType>
-			<m:AdjustmentMethod>
-			</m:AdjustmentMethod>
+			<m:IdentifierType>&?IdentifierType?&</m:IdentifierType>
+			<m:AdjustmentMethod>&?AdjustmentMethod?&</m:AdjustmentMethod>
 		</m:GetGlobalLastClosingPrice>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
