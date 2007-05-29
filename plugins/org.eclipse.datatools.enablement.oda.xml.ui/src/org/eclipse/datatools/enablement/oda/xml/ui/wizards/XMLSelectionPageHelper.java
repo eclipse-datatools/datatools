@@ -44,7 +44,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class XMLSelectionPageHelper
 {
-    private static final String AUTO_ENCODING = "Auto";
+    private static final String AUTO_ENCODING = Messages.getString( "wizard.autoEncoding" );
 	private WizardPage m_wizardPage;
     private PreferencePage m_propertyPage;
 
