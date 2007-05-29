@@ -55,6 +55,7 @@ public class OperationPage extends DataSetWizardPage
 	private transient Label operationDescription;
 
 	private String operationTrace = WSUIUtil.EMPTY_STRING;
+	private String initOperationTrace = WSUIUtil.EMPTY_STRING;
 	private String wsdlURI = WSUIUtil.EMPTY_STRING;
 
 	private Image wsdlImage;
@@ -137,6 +138,7 @@ public class OperationPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent event )
 			{
 				handle( );
+				testDirty( );
 			}
 
 			private void handle( )
@@ -157,6 +159,17 @@ public class OperationPage extends DataSetWizardPage
 					operationDescription.setText( WSUIUtil.EMPTY_STRING );
 					setPageComplete( false );
 				}
+			}
+
+			private void testDirty( )
+			{
+				if ( !WSUIUtil.isNull( initOperationTrace )
+						&& !initOperationTrace.equals( operationTrace ) )
+					setMessage( Messages.getString( "operationPage.message.operationChanged" ), //$NON-NLS-1$
+							INFORMATION );
+
+				else
+					setMessage( DEFAULT_MESSAGE );
 			}
 
 		} );
@@ -234,6 +247,8 @@ public class OperationPage extends DataSetWizardPage
 		wsdlURI = WSConsole.getInstance( )
 				.getPropertyValue( Constants.WSDL_URI );
 		operationTrace = WSConsole.getInstance( )
+				.getPropertyValue( Constants.OPERATION_TRACE );
+		initOperationTrace = WSConsole.getInstance( )
 				.getPropertyValue( Constants.OPERATION_TRACE );
 	}
 
@@ -334,6 +349,26 @@ public class OperationPage extends DataSetWizardPage
 		design.getPrivateProperties( ).setProperty( Constants.OPERATION_TRACE,
 				WSConsole.getInstance( )
 						.getPropertyValue( Constants.OPERATION_TRACE ) );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 */
+	protected void refresh( DataSetDesign dataSetDesign )
+	{
+		super.refresh( dataSetDesign );
+
+		refresh( );
+	}
+
+	private void refresh( )
+	{
+		initFromModel( );
+		populateTree( );
+		
+		setMessage( DEFAULT_MESSAGE );
 	}
 
 	/*

@@ -137,7 +137,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		Button button = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		layoutData.widthHint = 70;
+		layoutData.widthHint = 100;
 		button.setLayoutData( layoutData );
 		button.setText( Messages.getString( "soapResponsePage.button.browse" ) );//$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
@@ -213,7 +213,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		Button button = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		layoutData.widthHint = 70;
+		layoutData.widthHint = 100;
 		button.setLayoutData( layoutData );
 		button.setText( Messages.getString( "soapResponsePage.button.connect" ) );//$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
@@ -254,7 +254,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		Button button = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
-		layoutData.widthHint = 70;
+		layoutData.widthHint = 100;
 		button.setLayoutData( layoutData );
 		button.setText( Messages.getString( "soapResponsePage.button.browse" ) );//$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
@@ -360,6 +360,34 @@ public class SOAPResponsePage extends DataSetWizardPage
 								.getPropertyValue( Constants.SOAP_ENDPOINT ) );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 */
+	protected void refresh( DataSetDesign dataSetDesign )
+	{
+		super.refresh( dataSetDesign );
+
+		if ( isDirty( dataSetDesign ) )
+			refresh( );
+	}
+
+	// TODO
+	private boolean isDirty( DataSetDesign dataSetDesign )
+	{
+		return false;
+	}
+
+	void refresh( )
+	{
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+	 */
 	protected boolean canLeave( )
 	{
 		saveToModel( );
@@ -384,21 +412,12 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
-		// ws and xml are initially same, which are both gotten from
-		// design, the difference is ws is then accoutable for design while
-		// xml is for xmlHolder
 		WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
 				xsdFileURI.getText( ) );
-		WSConsole.getInstance( )
-				.setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-						xsdFileURI.getText( ) );
 		WSConsole.getInstance( ).setPropertyValue( Constants.SOAP_ENDPOINT,
 				soapEndPoint.getText( ) );
 		WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
 				xmlFileURI.getText( ) );
-		WSConsole.getInstance( )
-				.setXMLPropertyValue( Constants.CONST_PROP_FILELIST,
-						xmlFileURI.getText( ) );
 	}
 
 	/*

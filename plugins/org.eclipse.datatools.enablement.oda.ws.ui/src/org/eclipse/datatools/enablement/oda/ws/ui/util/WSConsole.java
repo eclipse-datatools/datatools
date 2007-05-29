@@ -286,15 +286,38 @@ public class WSConsole
 
 	/**
 	 * 
+	 */
+	public void updateXSDFileURI( )
+	{
+		String xsdFileURI = WSUIUtil.getNonNullString( getPropertyValue( Constants.XSD_FILE_URI ) );
+		if ( !xsdFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST ) ) )
+			setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
+					xsdFileURI );
+	}
+
+	/**
+	 * 
 	 * @return
 	 * @throws OdaException
 	 */
 	public void updateXMLFileURI( ) throws OdaException
 	{
-		String xmlFileURI = getXMLPropertyValue( Constants.CONST_PROP_FILELIST );
-		if ( !WSUIUtil.isNull( xmlFileURI ) )
-			return;
+		// Constants.XML_FILE_URI and Constants.CONST_PROP_FILELIST are
+		// initially same, both of which are gotten from design, the difference
+		// is the former will then be accoutable for design while the latter is
+		// for xmlHolder alone
 
+		// check if there is explicit xmlURI
+		String xmlFileURI = getPropertyValue( Constants.XML_FILE_URI );
+		if ( !WSUIUtil.isNull( xmlFileURI ) )
+		{
+			if ( !xmlFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
+				setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlFileURI );
+
+			return;
+		}
+
+		// check if there is implicit xmlURI
 		String xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
 		if ( WSUIUtil.isNull( xmlTempFileURI ) )
 		{
@@ -302,10 +325,9 @@ public class WSConsole
 			createXMLTempFileURI( );
 			xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
 		}
-
-		xmlFileURI = xmlTempFileURI;
-		setXMLPropertyValue( Constants.CONST_PROP_FILELIST,
-				WSUIUtil.getNonNullString( xmlFileURI ) );
+		if ( !WSUIUtil.isNull( xmlTempFileURI )
+				&& !xmlTempFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
+			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlTempFileURI );
 	}
 
 	/**

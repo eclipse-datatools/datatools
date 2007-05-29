@@ -96,14 +96,15 @@ public class XMLTableMappingPage extends XPathChoosePage
 	 */
 	protected void refresh( )
 	{
-		updateXMLFileURI( );
+		updateXMLProps( );
 		super.refresh( );
 	}
 
-	private void updateXMLFileURI( )
+	private void updateXMLProps( )
 	{
 		try
 		{
+			WSConsole.getInstance( ).updateXSDFileURI( );
 			WSConsole.getInstance( ).updateXMLFileURI( );
 		}
 		catch ( OdaException e )

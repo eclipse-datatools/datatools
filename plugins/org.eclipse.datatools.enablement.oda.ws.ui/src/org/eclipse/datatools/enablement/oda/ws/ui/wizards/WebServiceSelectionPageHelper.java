@@ -93,10 +93,10 @@ public class WebServiceSelectionPageHelper
 		group.setLayoutData( layoutData );
 		group.setText( Messages.getString( "webServiceSelectionPage.group.wsdl" ) );//$NON-NLS-1$
 
-		Label label = new Label( group, SWT.NONE );
+		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		layoutData.horizontalSpan = 3;
-		layoutData.heightHint = 20;
+		layoutData.heightHint = 30;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.wsdl" ) );//$NON-NLS-1$
 
@@ -160,9 +160,9 @@ public class WebServiceSelectionPageHelper
 		group.setLayoutData( layoutData );
 		group.setText( Messages.getString( "webServiceSelectionPage.group.endPoint" ) );//$NON-NLS-1$
 
-		Label label = new Label( group, SWT.NONE );
+		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 20;
+		layoutData.heightHint = 30;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.endPoint" ) );//$NON-NLS-1$
 
@@ -186,9 +186,9 @@ public class WebServiceSelectionPageHelper
 		group.setLayoutData( layoutData );
 		group.setText( Messages.getString( "webServiceSelectionPage.group.customClass" ) );//$NON-NLS-1$
 
-		Label label = new Label( group, SWT.NONE );
+		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 20;
+		layoutData.heightHint = 30;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.customClass" ) );//$NON-NLS-1$
 

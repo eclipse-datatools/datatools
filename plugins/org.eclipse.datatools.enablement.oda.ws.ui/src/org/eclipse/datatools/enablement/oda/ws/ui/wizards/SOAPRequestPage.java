@@ -19,6 +19,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellModifier;
@@ -112,13 +113,16 @@ public class SOAPRequestPage extends DataSetWizardPage
 		Button button = new Button( composite, SWT.NONE );
 		button.setText( Messages.getString( "soapRequestPage.button.generateTemplate" ) ); //$NON-NLS-1$
 		layoutData = new GridData( );
-		layoutData.widthHint = 100;
+		layoutData.widthHint = 120;
 		button.setLayoutData( layoutData );
 		button.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				refresh( );
+				if ( MessageDialog.openConfirm( null,
+						Messages.getString( "soapRequestPage.title.generateTemplate" ), //$NON-NLS-1$
+						Messages.getString( "soapRequestPage.message.generateTemplate" ) ) ) //$NON-NLS-1$
+					refresh( );
 			}
 
 		} );
@@ -126,7 +130,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		button = new Button( composite, SWT.NONE );
 		button.setText( Messages.getString( "soapRequestPage.button.insertParameter" ) );//$NON-NLS-1$
 		layoutData = new GridData( );
-		layoutData.widthHint = 100;
+		layoutData.widthHint = 120;
 		button.setLayoutData( layoutData );
 
 		button.addSelectionListener( new SelectionAdapter( ) {
@@ -148,7 +152,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		button = new Button( composite, SWT.NONE );
 		button.setText( Messages.getString( "soapRequestPage.button.clear" ) ); //$NON-NLS-1$
 		layoutData = new GridData( );
-		layoutData.widthHint = 100;
+		layoutData.widthHint = 120;
 		button.setLayoutData( layoutData );
 		button.addSelectionListener( new SelectionAdapter( ) {
 
@@ -169,7 +173,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		initWSConsole( );
 		initFromModel( );
 	}
-	
+
 	private void initWSConsole( )
 	{
 		if ( !WSConsole.getInstance( ).isSessionOK( ) )
@@ -204,11 +208,36 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		if ( !WSConsole.getInstance( ).isSessionOK( ) )
 			return;
-		
+
 		dataSetDesign.setQueryText( WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT ) );
 		// parametes at this point has already be applied to model which will in
 		// turn be applied to dataSetDesign later together with xmlQueryText
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 */
+	protected void refresh( DataSetDesign dataSetDesign )
+	{
+		super.refresh( dataSetDesign );
+
+		if ( isDirty( dataSetDesign ) )
+			refresh( );
+	}
+
+	// TODO
+	private boolean isDirty( DataSetDesign dataSetDesign )
+	{
+		return false;
+	}
+
+	void refresh( )
+	{
+		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
+				.getTemplate( ) ) );
 	}
 
 	/*
@@ -240,12 +269,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 		WSConsole.getInstance( ).setParameters( parameters );
 	}
 
-	void refresh( )
-	{
-		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getTemplate( ) ) );
-	}
-	
 	/*
 	 * (non-Javadoc)
 	 * 
