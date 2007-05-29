@@ -73,7 +73,6 @@ public class Connection implements IConnection
 			throw new OdaException( );
 
 		pingURL( connProperties.getProperty( Constants.WSDL_URI ) );
-		pingURL( connProperties.getProperty( Constants.SOAP_ENDPOINT ) );
 	}
 
 	private void pingURL( String spec ) throws MalformedURLException,
