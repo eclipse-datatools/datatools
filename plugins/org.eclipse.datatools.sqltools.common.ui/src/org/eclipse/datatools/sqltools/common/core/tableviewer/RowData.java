@@ -164,4 +164,13 @@ public class RowData implements IRowData, Cloneable
     {
         _tableData = data;
     }
+    
+    public void updateValueWithoutNotification(int col, Object value)
+    {
+        if (_state == STATE_ORIGINAL)
+        {
+            _state = STATE_UPDATED;
+        }
+        _newData[col] = value;
+    }
 }
