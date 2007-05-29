@@ -122,6 +122,9 @@ public class WSDLAdvisor
 		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
 		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
 				opSplit[0] ) );// service
+		if ( WSUtil.isNull( service ) )
+			return null;
+
 		Port port = service.getPort( opSplit[1] );// port
 		List extElements = port.getExtensibilityElements( );
 		String locationURI = EMPTY_STRING;
@@ -225,6 +228,9 @@ public class WSDLAdvisor
 		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
 		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
 				opSplit[0] ) );// service
+		if ( WSUtil.isNull( service ) )
+			return null;
+
 		Port port = service.getPort( opSplit[1] );// port
 		BindingOperation bindingOperation = port.getBinding( )
 				.getBindingOperation( opSplit[2],// operation
@@ -512,15 +518,28 @@ public class WSDLAdvisor
 						paramNameList,
 						paramTypeList );
 
-				result += enter( )
-						+ tab( tabCount ) + "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
-				result += buildInputParameters( wsdlURI,
-						nameSpace,
-						paramNameList,
-						paramTypeList,
-						tabCount + 1 );
-				result += enter( )
-						+ tab( tabCount ) + "</" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+				// temporarily solution to handle simpleType
+				if ( paramNameList.isEmpty( ) && paramTypeList.isEmpty( ) )
+				{
+					result += enter( )
+							+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
+							+ ">&?" + paramName //$NON-NLS-1$
+							+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+				}
+				else
+				{
+					result += enter( )
+							+ tab( tabCount )
+							+ "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					result += buildInputParameters( wsdlURI,
+							nameSpace,
+							paramNameList,
+							paramTypeList,
+							tabCount + 1 );
+					result += enter( )
+							+ tab( tabCount )
+							+ "</" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+				}
 			}
 			// complexType value
 			else
