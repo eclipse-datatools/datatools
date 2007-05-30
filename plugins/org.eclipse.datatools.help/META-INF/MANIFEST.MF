@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %PluginName
 Bundle-SymbolicName: org.eclipse.datatools.help; singleton:=true
-Bundle-Version: 1.5.0.200704241
+Bundle-Version: 1.5.0.200705301
 Bundle-ClassPath: .
 Bundle-Vendor: %ProviderName
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.help,
+Require-Bundle: org.eclipse.help;visibility:=reexport,
  org.eclipse.core.runtime,
  org.eclipse.ui
 Export-Package: org.eclipse.datatools.help
