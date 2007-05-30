@@ -88,6 +88,9 @@ public class WSUIUtil extends WSUtil
 	 */
 	public static void savePage( DataSetDesign dataSetDesign )
 	{
+		if ( !WSConsole.getInstance( ).isSessionOK( ) )
+			return;
+		
 		IConnection conn = null;
 		try
 		{
@@ -131,8 +134,9 @@ public class WSUIUtil extends WSUtil
 		{
 			for ( int i = 0; i < soapParameters.length; i++ )
 			{
-				query.setString( soapParameters[i].getId( ),
-						soapParameters[i].getDefaultValue( ) );
+				if ( !isNull( soapParameters[i] ) )
+					query.setString( soapParameters[i].getId( ),
+							soapParameters[i].getDefaultValue( ) );
 			}
 		}
 

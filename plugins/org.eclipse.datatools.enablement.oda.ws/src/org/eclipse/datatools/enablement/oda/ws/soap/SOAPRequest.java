@@ -201,4 +201,40 @@ public class SOAPRequest
 		return soapRequest;
 	}
 
+	/**
+	 * Convenient method to manipulate query after parameters have been changed
+	 * 
+	 * @param soapParameters
+	 * @return
+	 */
+	public String manipulateQuery( )
+	{
+		if ( WSUtil.isNull( template ) )
+			return WSUtil.EMPTY_STRING;
+
+		if ( WSUtil.isNull( parameters ) )
+			return template[template.length - 1];
+
+		String soapRequest = WSUtil.EMPTY_STRING;
+		for ( int i = 0; i < parameters.length; i++ )
+		{
+			if ( !WSUtil.isNull( parameters[i] ) )
+			{
+				soapRequest += template[i];
+				if ( WSUtil.isNull( parameters[i].getDefaultValue( ) ) )
+					soapRequest += buildParameter( parameters[i].getName( ) );
+				else
+					soapRequest += parameters[i].getDefaultValue( );
+			}
+		}
+		soapRequest += template[template.length - 1];
+
+		return soapRequest;
+	}
+
+	private String buildParameter( String paramName )
+	{
+		return "&?" + paramName + "?&"; //$NON-NLS-1$//$NON-NLS-2$
+	}
+
 }

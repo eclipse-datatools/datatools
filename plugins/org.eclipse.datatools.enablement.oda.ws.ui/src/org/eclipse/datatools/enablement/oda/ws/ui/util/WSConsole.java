@@ -493,9 +493,12 @@ public class WSConsole
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			// apply name & defaultValue
-			ParameterDefinition paramDef = (ParameterDefinition) parameterDefinitions.get( i );
-			paramDef.getAttributes( ).setName( parameters[i].getName( ) );
-			paramDef.setDefaultScalarValue( parameters[i].getDefaultValue( ) );
+			if ( !WSUIUtil.isNull( parameters[i] ) )
+			{
+				ParameterDefinition paramDef = (ParameterDefinition) parameterDefinitions.get( i );
+				paramDef.getAttributes( ).setName( parameters[i].getName( ) );
+				paramDef.setDefaultScalarValue( parameters[i].getDefaultValue( ) );
+			}
 		}
 	}
 
@@ -509,6 +512,20 @@ public class WSConsole
 			return false;
 
 		return true;
+	}
+
+	/**
+	 * 
+	 * @param queryText
+	 * @param params
+	 * @return
+	 */
+	public String manipulateTemplate( )
+	{
+		SOAPRequest soapRequest = new SOAPRequest( getPropertyValue( Constants.WS_QUERYTEXT ) );
+		soapRequest.setParameters( parameters );
+
+		return soapRequest.manipulateQuery( );
 	}
 
 }

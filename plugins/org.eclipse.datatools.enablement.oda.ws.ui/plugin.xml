@@ -27,6 +27,11 @@
                wizardPageClass="org.eclipse.datatools.enablement.oda.ws.ui.wizards.OperationPage">
          </dataSetPage>
          <dataSetPage
+               displayName="%oda.ws.soapparameters"
+               id="org.eclipse.datatools.enablement.oda.ws.ui.SOAPParametersPage"
+               wizardPageClass="org.eclipse.datatools.enablement.oda.ws.ui.wizards.SOAPParametersPage">
+         </dataSetPage>
+         <dataSetPage
                displayName="%oda.ws.soaprequest"
                id="org.eclipse.datatools.enablement.oda.ws.ui.SOAPRequestPage"
                wizardPageClass="org.eclipse.datatools.enablement.oda.ws.ui.wizards.SOAPRequestPage">

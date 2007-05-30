@@ -20,6 +20,7 @@ import javax.wsdl.Operation;
 import javax.wsdl.Port;
 import javax.wsdl.Service;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.ui.Activator;
@@ -28,6 +29,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -57,6 +59,7 @@ public class OperationPage extends DataSetWizardPage
 	private String operationTrace = WSUIUtil.EMPTY_STRING;
 	private String initOperationTrace = WSUIUtil.EMPTY_STRING;
 	private String wsdlURI = WSUIUtil.EMPTY_STRING;
+	private String wsQuery = WSUIUtil.EMPTY_STRING;
 
 	private Image wsdlImage;
 	private Image serviceImage;
@@ -138,7 +141,6 @@ public class OperationPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent event )
 			{
 				handle( );
-				testDirty( );
 			}
 
 			private void handle( )
@@ -159,17 +161,6 @@ public class OperationPage extends DataSetWizardPage
 					operationDescription.setText( WSUIUtil.EMPTY_STRING );
 					setPageComplete( false );
 				}
-			}
-
-			private void testDirty( )
-			{
-				if ( !WSUIUtil.isNull( initOperationTrace )
-						&& !initOperationTrace.equals( operationTrace ) )
-					setMessage( Messages.getString( "operationPage.message.operationChanged" ), //$NON-NLS-1$
-							INFORMATION );
-
-				else
-					setMessage( DEFAULT_MESSAGE );
 			}
 
 		} );
@@ -367,7 +358,7 @@ public class OperationPage extends DataSetWizardPage
 	{
 		initFromModel( );
 		populateTree( );
-		
+
 		setMessage( DEFAULT_MESSAGE );
 	}
 
@@ -379,7 +370,46 @@ public class OperationPage extends DataSetWizardPage
 	protected boolean canLeave( )
 	{
 		saveToModle( );
+		testDirty( );
+
 		return super.canLeave( );
+	}
+
+	private void testDirty( )
+	{
+		if ( !WSUIUtil.isNull( initOperationTrace )
+				&& !initOperationTrace.equals( operationTrace ) )
+			if ( MessageDialog.openConfirm( null,
+					Messages.getString( "operationPage.title.operationChanged" ), Messages.getString( "operationPage.message.operationChanged" ) ) )//$NON-NLS-1$ //$NON-NLS-2$
+			{
+				regenerateTemplate( );
+				try
+				{
+					WSConsole.getInstance( ).createXMLTempFileURI( );
+				}
+				catch ( OdaException e )
+				{
+				}
+			}
+	}
+
+	private void regenerateTemplate( )
+	{
+		wsQuery = WSUIUtil.getNonNullString( WSConsole.getInstance( )
+				.getTemplate( ) );
+		if ( !WSUIUtil.isNull( wsQuery ) )
+			WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
+					wsQuery );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	public boolean canFlipToNextPage( )
+	{
+		return isPageComplete( );
 	}
 
 	/*
@@ -392,8 +422,8 @@ public class OperationPage extends DataSetWizardPage
 		saveToModle( );
 
 		IWizardPage page = super.getNextPage( );
-		if ( page instanceof SOAPRequestPage )
-			( (SOAPRequestPage) page ).refresh( );
+		if ( page instanceof SOAPParametersPage )
+			( (SOAPParametersPage) page ).refresh( );
 
 		return page;
 	}

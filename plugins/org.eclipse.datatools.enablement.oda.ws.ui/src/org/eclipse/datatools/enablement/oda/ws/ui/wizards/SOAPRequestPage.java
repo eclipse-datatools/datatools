@@ -111,7 +111,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		composite.setLayoutData( layoutData );
 
 		Button button = new Button( composite, SWT.NONE );
-		button.setText( Messages.getString( "soapRequestPage.button.generateTemplate" ) ); //$NON-NLS-1$
+		button.setText( Messages.getString( "soapRequestPage.button.regenerateTemplate" ) ); //$NON-NLS-1$
 		layoutData = new GridData( );
 		layoutData.widthHint = 120;
 		button.setLayoutData( layoutData );
@@ -120,9 +120,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				if ( MessageDialog.openConfirm( null,
-						Messages.getString( "soapRequestPage.title.generateTemplate" ), //$NON-NLS-1$
-						Messages.getString( "soapRequestPage.message.generateTemplate" ) ) ) //$NON-NLS-1$
-					refresh( );
+						Messages.getString( "soapRequestPage.title.regenerateTemplate" ), //$NON-NLS-1$
+						Messages.getString( "soapRequestPage.message.regenerateTemplate" ) ) ) //$NON-NLS-1$
+					regenerateTemplate( );
 			}
 
 		} );
@@ -162,7 +162,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 			}
 
 		} );
+	}
 
+	private void regenerateTemplate( )
+	{
+		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
+				.getTemplate( ) ) );
 	}
 
 	/**
@@ -224,20 +229,23 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		super.refresh( dataSetDesign );
 
-		if ( isDirty( dataSetDesign ) )
-			refresh( );
-	}
-
-	// TODO
-	private boolean isDirty( DataSetDesign dataSetDesign )
-	{
-		return false;
+		initFromModel( );
 	}
 
 	void refresh( )
 	{
 		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getTemplate( ) ) );
+				.manipulateTemplate( ) ) );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	public boolean canFlipToNextPage( )
+	{
+		return isPageComplete( );
 	}
 
 	/*
@@ -480,7 +488,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 			SOAPParameter[] soapParameters = soapRequest.getParameters( );
 			for ( int i = 0; i < parameters.length; i++ )
 			{
-				soapParameters[i].setDefaultValue( parameters[i].getDefaultValue( ) );
+				if ( !WSUIUtil.isNull( parameters[i] ) )
+					soapParameters[i].setDefaultValue( parameters[i].getDefaultValue( ) );
 			}
 		}
 
@@ -495,8 +504,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			for ( int i = 0; i < parameters.length; i++ )
 			{
-				if ( !parameters[i].getName( )
-						.equals( soapParameters[i].getName( ) ) )
+				if ( !WSUIUtil.isNull( parameters[i] )
+						&& !parameters[i].getName( )
+								.equals( soapParameters[i].getName( ) ) )
 					return false;
 			}
 

@@ -397,6 +397,16 @@ public class SOAPResponsePage extends DataSetWizardPage
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	public boolean canFlipToNextPage( )
+	{
+		return isPageComplete( );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
 	 */
 	public IWizardPage getNextPage( )
