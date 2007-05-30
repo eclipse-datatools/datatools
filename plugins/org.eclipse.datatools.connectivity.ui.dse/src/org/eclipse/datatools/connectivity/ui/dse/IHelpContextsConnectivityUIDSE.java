@@ -12,6 +12,10 @@ package org.eclipse.datatools.connectivity.ui.dse;
 
 public interface IHelpContextsConnectivityUIDSE {
 
+	/**
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.ui.dse
+	 */
+
 	/*
 	 * CONTEXT_ID_CONNECTIVITY_DSE_VIEW =
 	 * Data Source Explorer

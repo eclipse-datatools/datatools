@@ -12,6 +12,10 @@ package org.eclipse.datatools.connectivity.db.generic.ui;
 
 public interface IHelpContextsGenericDBProfile {
 
+	/**
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.db.generic.ui
+	 */
+
 	/*
 	 * GENERIC_DB_PROFILE_WIZARD_PAGE = the wizard page that collects SQL Model - JDBC Connection profile
 	 * details such as the JDBC url, user id, password, etc.

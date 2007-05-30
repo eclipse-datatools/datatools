@@ -12,6 +12,10 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui;
 
 public interface IHelpContextsSQMCoreUI {
 
+	/**
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.sqm.core.ui
+	 */
+
 	/*
 	 * DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE -
 	 * SP filter page for connection profile properties

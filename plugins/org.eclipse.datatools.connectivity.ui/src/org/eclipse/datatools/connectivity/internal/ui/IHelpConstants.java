@@ -12,9 +12,13 @@ package org.eclipse.datatools.connectivity.internal.ui;
 
 
 /**
- * @author brandow
+ * @author brandow, brianf
  */
 public interface IHelpConstants {
+	
+	/**
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.ui
+	 */
 
 	/*
 	 * CONTEXT_ID_CP_PROPERTY_PAGE =

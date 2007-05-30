@@ -52,8 +52,4 @@ public class DataSourceExplorerView extends CommonNavigator
 		super.createPartControl(parent);
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(getCommonViewer().getTree(), IHelpContextsConnectivityUIDSE.CONTEXT_ID_CONNECTIVITY_DSE_VIEW);
 	}
-
-	protected String getFrameToolTipText(Object anElement) {
-		return getPartName();
-	}
 }

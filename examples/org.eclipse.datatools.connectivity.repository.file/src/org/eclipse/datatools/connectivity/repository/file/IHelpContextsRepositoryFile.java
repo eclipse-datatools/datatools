@@ -12,6 +12,10 @@ package org.eclipse.datatools.connectivity.repository.file;
 
 public interface IHelpContextsRepositoryFile {
 
+	/**
+	 * TPS_helpKey_constants_for_plug-in: org.eclipse.datatools.connectivity.repository.file
+	 */
+
 	/*
 	 * FILE_REPOSITORY_PROFILE_WIZARD_PAGE = the wizard page that collects details for the
 	 * file repository profile
