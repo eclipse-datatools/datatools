@@ -283,22 +283,12 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
     private InformationPresenter                              _informationPresenter;
     private IEditorPart                        _parentEditor                     = null;
 
-    Collection _fExtensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
-    
-    
     /**
      * Constructs an instance of this class. This is the default constructor.
      */
     public SQLEditor() {
         super();
         _symbolInserter = new SymbolInserter(this);
-        if (_fExtensions != null)
-        {
-            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
-                ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
-                ext.setSQLEditor(this);
-            }  
-        }        
     }
 
     public void init(IEditorSite site, IEditorInput input) throws PartInitException
@@ -736,10 +726,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 
         addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
 
-
-        if (_fExtensions != null)
+        Collection extensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        if (extensions != null)
         {
-            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
+            for (Iterator iter = extensions.iterator(); iter.hasNext();) {
                 ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
                 ext.contributeToContextMenu(menu);
             }  
@@ -1428,9 +1418,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         	actionList.add(action);
         }
         //TODO notify ISQLEditorActionContributorExtension
-        if (_fExtensions != null)
+        Collection extensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
+        if (extensions != null)
         {
-            for (Iterator iter = _fExtensions.iterator(); iter.hasNext();) {
+            for (Iterator iter = extensions.iterator(); iter.hasNext();) {
                 ISQLEditorActionContributorExtension ext = (ISQLEditorActionContributorExtension) iter.next();
                 ext.updateAction();
             }  

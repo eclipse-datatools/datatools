@@ -118,17 +118,4 @@ public interface ISQLEditorActionContributorExtension
      * @param isSQLEditorPage whether the active page is an embeded instance of SQLEditor.
      */
     public void updateAction(boolean isSQLEditorPage);
-
-    /**
-     * Set the editor for the extended contributor.
-     * @param sqlEditor the editor for the extended contributor
-     */
-    void setSQLEditor(SQLEditor sqlEditor);
-
-    /**
-     * Get the editor for the extended contributor.
-     * @return SQLEditor
-     */
-    SQLEditor getSQLEditor();
-
 }
