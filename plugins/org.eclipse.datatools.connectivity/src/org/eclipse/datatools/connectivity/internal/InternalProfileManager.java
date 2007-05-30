@@ -542,7 +542,6 @@ public class InternalProfileManager {
 					markers[i].delete();
 				}
 			}
-			resource.refreshLocal(IResource.DEPTH_INFINITE, null);
 		}
 		catch (CoreException e) {
 		}
