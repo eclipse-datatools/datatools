@@ -8,6 +8,7 @@
 package org.eclipse.datatools.enablement.oda.ws.impl;
 
 import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -169,7 +170,15 @@ public class Query implements IQuery
 	{
 		try
 		{
-			return (InputStream) java2SOAPManager.executeQuery( );
+			Object o = java2SOAPManager.executeQuery( );
+			if( o instanceof InputStream )
+				return (InputStream)o;
+			else if( o instanceof String )
+			{
+				return new ByteArrayInputStream( o.toString( ).getBytes( ) );
+			}
+				
+			return null;
 		}
 		catch ( Exception e )
 		{

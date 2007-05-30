@@ -29,8 +29,8 @@ public class Java2SOAPManager
 {
 
 	private static final String METHOD_CONNECT = "connect";//$NON-NLS-1$
-	private static final String METHOD_QUERY = "query";//$NON-NLS-1$
-	private static final String METHOD_DISCONNECT = "disconnect";//$NON-NLS-1$
+	private static final String METHOD_QUERY = "executeQuery";//$NON-NLS-1$
+	private static final String METHOD_CLOSE = "close";//$NON-NLS-1$
 
 	// connection
 	private Map connectionProperties;
@@ -110,23 +110,35 @@ public class Java2SOAPManager
 
 	/**
 	 * 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 * @throws SecurityException
 	 * @throws NoSuchMethodException
 	 * @throws IllegalArgumentException
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public void close( ) throws SecurityException, NoSuchMethodException,
-			IllegalArgumentException, IllegalAccessException,
-			InvocationTargetException
+	public void close( ) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException 
 	{
 		Class clazz = aQuery.getClass( );
 		Class[] parameterTypes = new Class[]{};
 		Object[] arguments = new Object[]{};
 
-		Method disconnect = clazz.getMethod( METHOD_DISCONNECT, parameterTypes );
-
-		disconnect.invoke( aQuery, arguments );
+		Method close = null;
+		
+			try
+			{
+				close = clazz.getMethod( METHOD_CLOSE, parameterTypes );
+			}
+			catch ( SecurityException e )
+			{}
+			catch ( NoSuchMethodException e )
+			{}
+		
+		if( close == null )
+			return;
+		close.invoke( aQuery, arguments );
 	}
 
 	private Class loadClass( String className ) throws ClassNotFoundException,

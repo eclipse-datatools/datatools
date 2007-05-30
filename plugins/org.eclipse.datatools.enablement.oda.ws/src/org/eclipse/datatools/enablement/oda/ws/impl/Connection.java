@@ -132,7 +132,9 @@ public class Connection implements IConnection
 		// assumes that this driver supports only one type of data set,
 		// ignores the specified dataSetType
 		if ( isCustom )
-			byCustom( );
+		{
+			return byCustom( );
+		}
 
 		return new Query( rawMessageSender, connProperties );
 	}
