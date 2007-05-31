@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2006 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
