@@ -22,6 +22,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.emf.ecore.EClass;
 
 
 public interface DatabaseDefinition {
@@ -137,4 +138,17 @@ public interface DatabaseDefinition {
 	public boolean supportsEvents();
 	public boolean supportsSQLUDFs();
 	public boolean supportsStoredProcedures();
+	
+	public boolean supportsPackage();
+	
+	public boolean isAuthorizationIdentifierSupported();
+	public boolean isRoleSupported();
+	public boolean isUserSupported();
+	public boolean isGroupSupported();
+	public boolean isRoleAuthorizationSupported();
+	
+	public List getPrivilegedElementClasses();
+	public boolean isPrivilegedElementClass(EClass clss);
+	public List getPrivilegeActions(EClass privilegedElementClass);
+	public List getActionElementClasses(EClass privilegedElementClass, String action);
 }

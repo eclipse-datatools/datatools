@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
 import java.net.URL;
 import java.text.MessageFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,8 @@ import org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
@@ -56,6 +59,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
@@ -70,15 +74,19 @@ import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
 import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
@@ -1615,6 +1623,172 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		return this.databaseVendorDefinition.getDebuggerDefinition();
 	}
 	
+	public boolean supportsPackage() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isPackageSupported();
+	}
+	
+	public EClass getMetaClass(String metaClassName) {
+		EClass eClass = null;
+		
+		eClass = (EClass)SQLSchemaPackage.eINSTANCE.getEClassifier(metaClassName);
+		if (eClass == null) {
+			eClass = (EClass)SQLTablesPackage.eINSTANCE.getEClassifier(metaClassName);
+		}
+		if (eClass == null) {
+			eClass = (EClass)SQLRoutinesPackage.eINSTANCE.getEClassifier(metaClassName);
+		}
+		if (eClass == null) {
+			eClass = (EClass)SQLConstraintsPackage.eINSTANCE.getEClassifier(metaClassName);
+		}
+		if (eClass == null) {
+			eClass = (EClass)SQLSchemaPackage.eINSTANCE.getEClassifier(metaClassName);
+		}
+		
+		return eClass;
+	}
+	
+	public boolean isAuthorizationIdentifierSupported() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isAuthorizationIdentifierSupported();
+	}
+	
+	public boolean isRoleSupported() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isRoleSupported();
+	}
+	
+	public boolean isUserSupported() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isUserSupported();
+	}
+	
+	public boolean isGroupSupported() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isGroupSupported();
+	}
+	
+	public boolean isRoleAuthorizationSupported() {
+		this.loadDatabaseDefinition();
+		return this.databaseVendorDefinition.isRoleAuthorizationSupported();
+	}
+	
+	public List getPrivilegedElementClasses() {
+		this.loadDatabaseDefinition();
+		
+		this.loadPrivilegeDefinitions();
+		List privilegedElementClasses = new ArrayList();
+		privilegedElementClasses.addAll(this.eClassToPrivilegeDefinitionMap.keySet());
+		
+		return privilegedElementClasses;
+	}
+	
+	public boolean isPrivilegedElementClass(EClass clss) {
+		this.loadDatabaseDefinition();
+		this.loadPrivilegeDefinitions();
+		
+		boolean result = this.eClassToPrivilegeDefinitionMap.keySet().contains(clss);
+		if (result == false) {
+			EClass superClss = this.getSuperMetaClass(clss);
+			result = this.eClassToPrivilegeDefinitionMap.keySet().contains(superClss);
+		}
+		
+		return result;
+	}
+	
+	public List getPrivilegeActions(EClass privilegedElementClass) {
+		this.loadDatabaseDefinition();
+		
+		this.loadPrivilegeDefinitions();
+		List privilegeNames = new ArrayList();
+		List privilegeDefinitions = (List)this.eClassToPrivilegeDefinitionMap.get(privilegedElementClass);
+		if ( (privilegeDefinitions == null) || privilegeDefinitions.isEmpty()) {
+			EClass superClss = this.getSuperMetaClass(privilegedElementClass);
+			privilegeDefinitions = (List)this.eClassToPrivilegeDefinitionMap.get(superClss);
+		}
+		if (privilegeDefinitions != null) {
+			Iterator privilegeDefinitionsIter = privilegeDefinitions.iterator();
+			while(privilegeDefinitionsIter.hasNext()) {
+				PrivilegeDefinition privilegeDefinition = (PrivilegeDefinition)privilegeDefinitionsIter.next();
+				privilegeNames.add(privilegeDefinition.getName());
+			}
+		}
+		
+		return privilegeNames;
+	}
+	
+	public List getActionElementClasses(EClass privilegedElementClass, String action) {
+		this.loadDatabaseDefinition();
+		
+		this.loadPrivilegeDefinitions();
+		List actionElementClasses = new ArrayList();
+		List privilegeDefinitions = (List)this.eClassToPrivilegeDefinitionMap.get(privilegedElementClass);
+		if ( (privilegeDefinitions == null) || privilegeDefinitions.isEmpty()) {
+			EClass superClss = this.getSuperMetaClass(privilegedElementClass);
+			privilegeDefinitions = (List)this.eClassToPrivilegeDefinitionMap.get(superClss);
+		}
+		if (privilegeDefinitions != null) {
+			Iterator privilegeDefinitionsIter = privilegeDefinitions.iterator();
+			while(privilegeDefinitionsIter.hasNext()) {
+				PrivilegeDefinition privilegeDefinition = (PrivilegeDefinition)privilegeDefinitionsIter.next();
+				Iterator actionClassDefinitionsIter = privilegeDefinition.getActionElementDefinitions().iterator();
+				if ( privilegeDefinition.getName().equalsIgnoreCase(action) && !privilegeDefinition.getActionElementDefinitions().isEmpty() ) {
+					while(actionClassDefinitionsIter.hasNext()) {
+						PrivilegedElementDefinition privilegedElementDefinition = (PrivilegedElementDefinition)actionClassDefinitionsIter.next();
+						String metaClassName = privilegedElementDefinition.getName();
+						if ( (metaClassName != null) && (metaClassName.length() > 0) ) {
+							EClass eClass = this.getMetaClass(metaClassName);
+							if (eClass != null) {
+								actionElementClasses.add(eClass);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return actionElementClasses;
+	}
+	
+	private EClass getSuperMetaClass(EClass eClass) {
+		if (eClass != null) {
+			Iterator eClassIterator = this.eClassToPrivilegeDefinitionMap.keySet().iterator();
+			while(eClassIterator.hasNext()) {
+				EClass currentEClass = (EClass)eClassIterator.next();
+				if (currentEClass.isSuperTypeOf(eClass)) {
+					return currentEClass;
+				}
+			}
+		}
+		
+		return eClass;
+	}
+	
+	private void loadPrivilegeDefinitions() {
+		if (this.eClassToPrivilegeDefinitionMap == null) {
+			this.eClassToPrivilegeDefinitionMap = new HashMap();
+		}
+		List privilegedElementDefinitions = this.databaseVendorDefinition.getPrivilegedElementDefinitions();
+		if (privilegedElementDefinitions != null) {
+			Iterator privilegedElementIter = privilegedElementDefinitions.iterator();
+			while(privilegedElementIter.hasNext()) {
+				PrivilegedElementDefinition privilegedElementDefinition = (PrivilegedElementDefinition)privilegedElementIter.next();
+				String metaClassName = privilegedElementDefinition.getName();
+				if ( (metaClassName != null) && (metaClassName.length() > 0) ) {
+						EClass eClass = this.getMetaClass(metaClassName);
+						if (eClass != null) {
+							Iterator privilegeDefinitionIter = privilegedElementDefinition.getPrivilegeDefinitions().iterator();
+							List privilegesDefinitions = new ArrayList();
+							while(privilegeDefinitionIter.hasNext()) {
+								privilegesDefinitions.add((PrivilegeDefinition)privilegeDefinitionIter.next());
+							}
+							this.eClassToPrivilegeDefinitionMap.put(eClass, privilegesDefinitions);
+						}
+				}
+			}
+		}
+	}
+	
 	private DatabaseVendorDefinition loadDatabaseDefinition() {
 		if(this.databaseVendorDefinition == null) {	 
 			// Load specified databaseType on demand
@@ -1674,6 +1848,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	private DatabaseVendorDefinition databaseVendorDefinition = null;
 	private HashMap nameToPrimitiveDataTypeDefinitionMap = null;
 	private HashMap nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap = null;
+	private HashMap eClassToPrivilegeDefinitionMap = null;
 	
 	private DataModelElementFactory factory = null;
 	private DDLParser parser = null;
