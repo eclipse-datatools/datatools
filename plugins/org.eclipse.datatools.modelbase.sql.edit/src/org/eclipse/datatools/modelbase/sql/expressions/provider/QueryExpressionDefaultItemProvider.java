@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionDefaultItemProvider.java,v 1.1 2005/08/02 22:56:32 ledunnel Exp $
+ * $Id: QueryExpressionDefaultItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -79,8 +79,10 @@ public class QueryExpressionDefaultItemProvider
 				 getResourceLocator(),
 				 getString("_UI_QueryExpressionDefault_SQL_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_QueryExpressionDefault_SQL_feature", "_UI_QueryExpressionDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLExpressionsPackage.eINSTANCE.getQueryExpressionDefault_SQL(),
+				 SQLExpressionsPackage.Literals.QUERY_EXPRESSION_DEFAULT__SQL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -93,7 +95,7 @@ public class QueryExpressionDefaultItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/QueryExpressionDefault"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryExpressionDefault")); //$NON-NLS-1$
 	}
 
 	/**

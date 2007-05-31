@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TemporaryTableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: TemporaryTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -78,8 +78,10 @@ public class TemporaryTableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TemporaryTable_local_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_TemporaryTable_local_feature", "_UI_TemporaryTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTemporaryTable_Local(),
+				 SQLTablesPackage.Literals.TEMPORARY_TABLE__LOCAL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -98,8 +100,10 @@ public class TemporaryTableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TemporaryTable_deleteOnCommit_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_TemporaryTable_deleteOnCommit_feature", "_UI_TemporaryTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTemporaryTable_DeleteOnCommit(),
+				 SQLTablesPackage.Literals.TEMPORARY_TABLE__DELETE_ON_COMMIT,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -112,7 +116,7 @@ public class TemporaryTableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/TemporaryTable"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TemporaryTable")); //$NON-NLS-1$
 	}
 
 	/**

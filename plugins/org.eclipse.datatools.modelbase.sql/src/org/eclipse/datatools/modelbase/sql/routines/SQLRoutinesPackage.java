@@ -131,6 +131,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	int ROUTINE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTINE__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,6 +330,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	int SOURCE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOURCE__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Body</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,6 +419,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__PRIVILEGES = SQLSchemaPackage.TYPED_ELEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -528,6 +555,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	 * @ordered
 	 */
 	int PROCEDURE__COMMENTS = ROUTINE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCEDURE__PRIVILEGES = ROUTINE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -745,6 +781,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION__COMMENTS = ROUTINE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION__PRIVILEGES = ROUTINE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -1009,6 +1054,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	int ROUTINE_RESULT_TABLE__COMMENTS = SQLTablesPackage.TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROUTINE_RESULT_TABLE__PRIVILEGES = SQLTablesPackage.TABLE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1170,6 +1224,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	 * @ordered
 	 */
 	int METHOD__COMMENTS = FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__PRIVILEGES = FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
@@ -1452,6 +1515,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	int USER_DEFINED_FUNCTION__COMMENTS = FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_DEFINED_FUNCTION__PRIVILEGES = FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1712,6 +1784,15 @@ public interface SQLRoutinesPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUILT_IN_FUNCTION__COMMENTS = FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILT_IN_FUNCTION__PRIVILEGES = FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Specific Name</b></em>' attribute.

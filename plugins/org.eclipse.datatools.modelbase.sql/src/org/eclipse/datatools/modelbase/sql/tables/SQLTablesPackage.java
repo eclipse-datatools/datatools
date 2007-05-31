@@ -130,6 +130,15 @@ public interface SQLTablesPackage extends EPackage {
 	int TABLE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -291,6 +300,15 @@ public interface SQLTablesPackage extends EPackage {
 	 * @ordered
 	 */
 	int DERIVED_TABLE__COMMENTS = TABLE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERIVED_TABLE__PRIVILEGES = TABLE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -463,6 +481,15 @@ public interface SQLTablesPackage extends EPackage {
 	 * @ordered
 	 */
 	int VIEW_TABLE__COMMENTS = DERIVED_TABLE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_TABLE__PRIVILEGES = DERIVED_TABLE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -646,6 +673,15 @@ public interface SQLTablesPackage extends EPackage {
 	int BASE_TABLE__COMMENTS = TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASE_TABLE__PRIVILEGES = TABLE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -825,6 +861,15 @@ public interface SQLTablesPackage extends EPackage {
 	 * @ordered
 	 */
 	int TEMPORARY_TABLE__COMMENTS = BASE_TABLE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY_TABLE__PRIVILEGES = BASE_TABLE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -1026,6 +1071,15 @@ public interface SQLTablesPackage extends EPackage {
 	int PERSISTENT_TABLE__COMMENTS = BASE_TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSISTENT_TABLE__PRIVILEGES = BASE_TABLE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1207,6 +1261,15 @@ public interface SQLTablesPackage extends EPackage {
 	int COLUMN__COMMENTS = SQLSchemaPackage.TYPED_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__PRIVILEGES = SQLSchemaPackage.TYPED_ELEMENT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1368,6 +1431,15 @@ public interface SQLTablesPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRIGGER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRIGGER__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.

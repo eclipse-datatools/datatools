@@ -95,12 +95,6 @@ public class SQLAccessControlAdapterFactory extends AdapterFactoryImpl {
 			public Object caseRoleAuthorization(RoleAuthorization object) {
 				return createRoleAuthorizationAdapter();
 			}
-			public Object caseTablePrivilege(TablePrivilege object) {
-				return createTablePrivilegeAdapter();
-			}
-			public Object caseDoubleObjectPrivilege(DoubleObjectPrivilege object) {
-				return createDoubleObjectPrivilegeAdapter();
-			}
 			public Object caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
@@ -209,34 +203,6 @@ public class SQLAccessControlAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRoleAuthorizationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege <em>Table Privilege</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege
-	 * @generated
-	 */
-	public Adapter createTablePrivilegeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege <em>Double Object Privilege</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege
-	 * @generated
-	 */
-	public Adapter createDoubleObjectPrivilegeAdapter() {
 		return null;
 	}
 

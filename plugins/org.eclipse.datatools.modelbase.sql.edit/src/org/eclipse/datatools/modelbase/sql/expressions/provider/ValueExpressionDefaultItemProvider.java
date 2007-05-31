@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionDefaultItemProvider.java,v 1.1 2005/08/02 22:56:32 ledunnel Exp $
+ * $Id: ValueExpressionDefaultItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -79,8 +79,10 @@ public class ValueExpressionDefaultItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ValueExpressionDefault_SQL_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionDefault_SQL_feature", "_UI_ValueExpressionDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLExpressionsPackage.eINSTANCE.getValueExpressionDefault_SQL(),
+				 SQLExpressionsPackage.Literals.VALUE_EXPRESSION_DEFAULT__SQL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -93,7 +95,7 @@ public class ValueExpressionDefaultItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/ValueExpressionDefault"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ValueExpressionDefault")); //$NON-NLS-1$
 	}
 
 	/**

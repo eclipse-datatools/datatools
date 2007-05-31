@@ -73,6 +73,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//schema/SQLObject/label"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/comments"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//schema/SQLObject/privileges"/>
         <genOperations ecoreOperation="sqlmodel.ecore#//schema/SQLObject/addEAnnotation">
           <genParameters ecoreParameter="sqlmodel.ecore#//schema/SQLObject/addEAnnotation/source"/>
         </genOperations>
@@ -569,6 +571,8 @@
         ecorePackage="sqlmodel.ecore#//accesscontrol">
       <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/ownedSchema"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/Database"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/receivedRoleAuthorization"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/grantedRoleAuthorization"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/AuthorizationIdentifier/grantedPrivilege"/>
@@ -577,13 +581,20 @@
       <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Privilege">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/grantable"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/action"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/Privilege/withHierarchy"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/grantor"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/grantee"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/actionObjects"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Privilege/object"/>
       </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Group">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Group/user"/>
       </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/User"/>
+      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/User">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/User/group"/>
+      </genClasses>
       <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/Role">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/Role/roleAuthorization"/>
       </genClasses>
@@ -592,12 +603,6 @@
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/role"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/grantee"/>
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/RoleAuthorization/grantor"/>
-      </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/TablePrivilege">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sqlmodel.ecore#//accesscontrol/TablePrivilege/withHierarchy"/>
-      </genClasses>
-      <genClasses ecoreClass="sqlmodel.ecore#//accesscontrol/DoubleObjectPrivilege">
-        <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference sqlmodel.ecore#//accesscontrol/DoubleObjectPrivilege/object2"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SourceItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: SourceItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -79,8 +79,10 @@ public class SourceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Source_body_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Source_body_feature", "_UI_Source_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getSource_Body(),
+				 SQLRoutinesPackage.Literals.SOURCE__BODY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -93,7 +95,7 @@ public class SourceItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Source"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Source")); //$NON-NLS-1$
 	}
 
 	/**

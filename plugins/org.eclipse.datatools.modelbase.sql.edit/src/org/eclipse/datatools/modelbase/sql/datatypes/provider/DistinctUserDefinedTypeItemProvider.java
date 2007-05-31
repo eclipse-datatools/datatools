@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DistinctUserDefinedTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: DistinctUserDefinedTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -74,7 +74,7 @@ public class DistinctUserDefinedTypeItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation());
+			childrenFeatures.add(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION);
 		}
 		return childrenFeatures;
 	}
@@ -86,7 +86,7 @@ public class DistinctUserDefinedTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/DistinctUserDefinedType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DistinctUserDefinedType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -132,57 +132,57 @@ public class DistinctUserDefinedTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createBooleanDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createIntervalDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createBinaryStringDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createTimeDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createDataLinkDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createDateDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createIntegerDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDistinctUserDefinedType_PredefinedRepresentation(),
+				(SQLDataTypesPackage.Literals.DISTINCT_USER_DEFINED_TYPE__PREDEFINED_REPRESENTATION,
 				 SQLDataTypesFactory.eINSTANCE.createXMLDataType()));
 	}
 

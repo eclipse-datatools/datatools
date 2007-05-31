@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IndexMemberItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: IndexMemberItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -80,8 +80,10 @@ public class IndexMemberItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IndexMember_incrementType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IndexMember_incrementType_feature", "_UI_IndexMember_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndexMember_IncrementType(),
+				 SQLConstraintsPackage.Literals.INDEX_MEMBER__INCREMENT_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -100,8 +102,10 @@ public class IndexMemberItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IndexMember_column_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IndexMember_column_feature", "_UI_IndexMember_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndexMember_Column(),
+				 SQLConstraintsPackage.Literals.INDEX_MEMBER__COLUMN,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -114,7 +118,7 @@ public class IndexMemberItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/IndexMember"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IndexMember")); //$NON-NLS-1$
 	}
 
 	/**

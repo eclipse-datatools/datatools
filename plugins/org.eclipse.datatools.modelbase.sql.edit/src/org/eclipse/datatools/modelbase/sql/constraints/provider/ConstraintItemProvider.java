@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
+ * $Id: ConstraintItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -81,8 +81,10 @@ public class ConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Constraint_deferrable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_deferrable_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getConstraint_Deferrable(),
+				 SQLConstraintsPackage.Literals.CONSTRAINT__DEFERRABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -101,8 +103,10 @@ public class ConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Constraint_initiallyDeferred_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_initiallyDeferred_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getConstraint_InitiallyDeferred(),
+				 SQLConstraintsPackage.Literals.CONSTRAINT__INITIALLY_DEFERRED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -121,8 +125,10 @@ public class ConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Constraint_enforced_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_enforced_feature", "_UI_Constraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getConstraint_Enforced(),
+				 SQLConstraintsPackage.Literals.CONSTRAINT__ENFORCED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -135,7 +141,7 @@ public class ConstraintItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Constraint"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Constraint")); //$NON-NLS-1$
 	}
 
 	/**

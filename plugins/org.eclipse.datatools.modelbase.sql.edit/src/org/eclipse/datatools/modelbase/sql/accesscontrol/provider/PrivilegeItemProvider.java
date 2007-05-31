@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PrivilegeItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: PrivilegeItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -63,7 +63,9 @@ public class PrivilegeItemProvider
 
 			addGrantablePropertyDescriptor(object);
 			addActionPropertyDescriptor(object);
+			addWithHierarchyPropertyDescriptor(object);
 			addGrantorPropertyDescriptor(object);
+			addActionObjectsPropertyDescriptor(object);
 			addObjectPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -82,8 +84,10 @@ public class PrivilegeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Privilege_grantable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_grantable_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getPrivilege_Grantable(),
+				 SQLAccessControlPackage.Literals.PRIVILEGE__GRANTABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -102,9 +106,33 @@ public class PrivilegeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Privilege_action_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_action_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getPrivilege_Action(),
+				 SQLAccessControlPackage.Literals.PRIVILEGE__ACTION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the With Hierarchy feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addWithHierarchyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Privilege_withHierarchy_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_withHierarchy_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLAccessControlPackage.Literals.PRIVILEGE__WITH_HIERARCHY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -122,7 +150,31 @@ public class PrivilegeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Privilege_grantor_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_grantor_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getPrivilege_Grantor(),
+				 SQLAccessControlPackage.Literals.PRIVILEGE__GRANTOR,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Action Objects feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addActionObjectsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Privilege_actionObjects_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_actionObjects_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLAccessControlPackage.Literals.PRIVILEGE__ACTION_OBJECTS,
+				 true,
+				 false,
 				 true,
 				 null,
 				 null,
@@ -142,8 +194,10 @@ public class PrivilegeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Privilege_object_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Privilege_object_feature", "_UI_Privilege_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getPrivilege_Object(),
+				 SQLAccessControlPackage.Literals.PRIVILEGE__OBJECT,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -156,7 +210,7 @@ public class PrivilegeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Privilege"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Privilege")); //$NON-NLS-1$
 	}
 
 	/**
@@ -185,6 +239,7 @@ public class PrivilegeItemProvider
 		switch (notification.getFeatureID(Privilege.class)) {
 			case SQLAccessControlPackage.PRIVILEGE__GRANTABLE:
 			case SQLAccessControlPackage.PRIVILEGE__ACTION:
+			case SQLAccessControlPackage.PRIVILEGE__WITH_HIERARCHY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

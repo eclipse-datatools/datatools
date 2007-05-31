@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -242,7 +244,7 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 	 */
 	public EList getAuthorizationIds() {
 		if (authorizationIds == null) {
-			authorizationIds = new EObjectResolvingEList(AuthorizationIdentifier.class, this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS);
+			authorizationIds = new EObjectWithInverseResolvingEList(AuthorizationIdentifier.class, this, SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS, SQLAccessControlPackage.AUTHORIZATION_IDENTIFIER__DATABASE);
 		}
 		return authorizationIds;
 	}
@@ -284,6 +286,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return ((InternalEList)getEvents()).basicAdd(otherEnd, msgs);
 			case SQLSchemaPackage.DATABASE__CATALOGS:
 				return ((InternalEList)getCatalogs()).basicAdd(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
+				return ((InternalEList)getAuthorizationIds()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -301,6 +305,8 @@ public class DatabaseImpl extends SQLObjectImpl implements Database {
 				return ((InternalEList)getEvents()).basicRemove(otherEnd, msgs);
 			case SQLSchemaPackage.DATABASE__CATALOGS:
 				return ((InternalEList)getCatalogs()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.DATABASE__AUTHORIZATION_IDS:
+				return ((InternalEList)getAuthorizationIds()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}

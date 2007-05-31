@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -79,9 +80,35 @@ public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	 */
 	public EList getUser() {
 		if (user == null) {
-			user = new EObjectResolvingEList(User.class, this, SQLAccessControlPackage.GROUP__USER);
+			user = new EObjectWithInverseResolvingEList.ManyInverse(User.class, this, SQLAccessControlPackage.GROUP__USER, SQLAccessControlPackage.USER__GROUP);
 		}
 		return user;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.GROUP__USER:
+				return ((InternalEList)getUser()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case SQLAccessControlPackage.GROUP__USER:
+				return ((InternalEList)getUser()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

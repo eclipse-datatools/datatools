@@ -36,6 +36,7 @@ public interface Group extends AuthorizationIdentifier {
 	/**
 	 * Returns the value of the '<em><b>User</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.accesscontrol.User}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.User#getGroup <em>Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>User</em>' reference list isn't clear,
@@ -44,7 +45,8 @@ public interface Group extends AuthorizationIdentifier {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>User</em>' reference list.
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getGroup_User()
-	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.User"
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.User#getGroup
+	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.User" opposite="group"
 	 * @generated
 	 */
 	EList getUser();

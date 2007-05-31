@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLStatementDefaultItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: SQLStatementDefaultItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.statements.provider;
 
@@ -78,8 +78,10 @@ public class SQLStatementDefaultItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SQLStatementDefault_SQL_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SQLStatementDefault_SQL_feature", "_UI_SQLStatementDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLStatementsPackage.eINSTANCE.getSQLStatementDefault_SQL(),
+				 SQLStatementsPackage.Literals.SQL_STATEMENT_DEFAULT__SQL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -92,7 +94,7 @@ public class SQLStatementDefaultItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/SQLStatementDefault"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SQLStatementDefault")); //$NON-NLS-1$
 	}
 
 	/**

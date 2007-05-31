@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SequenceItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: SequenceItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -77,8 +77,10 @@ public class SequenceItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Sequence_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Sequence_schema_feature", "_UI_Sequence_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSequence_Schema(),
+				 SQLSchemaPackage.Literals.SEQUENCE__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -95,7 +97,7 @@ public class SequenceItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLSchemaPackage.eINSTANCE.getSequence_Identity());
+			childrenFeatures.add(SQLSchemaPackage.Literals.SEQUENCE__IDENTITY);
 		}
 		return childrenFeatures;
 	}
@@ -107,7 +109,7 @@ public class SequenceItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Sequence"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Sequence")); //$NON-NLS-1$
 	}
 
 	/**
@@ -153,7 +155,7 @@ public class SequenceItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getSequence_Identity(),
+				(SQLSchemaPackage.Literals.SEQUENCE__IDENTITY,
 				 SQLSchemaFactory.eINSTANCE.createIdentitySpecifier()));
 	}
 

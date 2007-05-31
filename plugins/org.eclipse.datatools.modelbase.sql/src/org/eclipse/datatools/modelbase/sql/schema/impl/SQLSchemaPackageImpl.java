@@ -526,6 +526,15 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSQLObject_Privileges() {
+		return (EReference)sqlObjectEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSequence() {
 		return sequenceEClass;
 	}
@@ -817,6 +826,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__DESCRIPTION);
 		createEAttribute(sqlObjectEClass, SQL_OBJECT__LABEL);
 		createEReference(sqlObjectEClass, SQL_OBJECT__COMMENTS);
+		createEReference(sqlObjectEClass, SQL_OBJECT__PRIVILEGES);
 
 		sequenceEClass = createEClass(SEQUENCE);
 		createEReference(sequenceEClass, SEQUENCE__IDENTITY);
@@ -936,6 +946,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEAttribute(getSQLObject_Description(), ecorePackage.getEString(), "description", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getSQLObject_Label(), ecorePackage.getEString(), "label", null, 0, 1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getSQLObject_Comments(), this.getComment(), this.getComment_SQLObject(), "comments", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getSQLObject_Privileges(), theSQLAccessControlPackage.getPrivilege(), theSQLAccessControlPackage.getPrivilege_Object(), "privileges", null, 0, -1, SQLObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(sqlObjectEClass, theEcorePackage.getEAnnotation(), "addEAnnotation", 0, 1); //$NON-NLS-1$
 		addEParameter(op, ecorePackage.getEString(), "source", 0, 1); //$NON-NLS-1$
@@ -971,7 +982,7 @@ public class SQLSchemaPackageImpl extends EPackageImpl implements SQLSchemaPacka
 		initEReference(getDatabase_Schemas(), this.getSchema(), this.getSchema_Database(), "schemas", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_Events(), this.getEvent(), this.getEvent_Database(), "events", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabase_Catalogs(), this.getCatalog(), this.getCatalog_Database(), "catalogs", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getDatabase_AuthorizationIds(), theSQLAccessControlPackage.getAuthorizationIdentifier(), null, "authorizationIds", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabase_AuthorizationIds(), theSQLAccessControlPackage.getAuthorizationIdentifier(), theSQLAccessControlPackage.getAuthorizationIdentifier_Database(), "authorizationIds", null, 0, -1, Database.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		addEOperation(databaseEClass, this.getList(), "getUserDefinedTypes", 0, 1); //$NON-NLS-1$
 

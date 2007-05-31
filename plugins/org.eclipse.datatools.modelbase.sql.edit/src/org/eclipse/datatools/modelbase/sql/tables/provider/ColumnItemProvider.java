@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ColumnItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: ColumnItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -85,8 +85,10 @@ public class ColumnItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Column_implementationDependent_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_implementationDependent_feature", "_UI_Column_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getColumn_ImplementationDependent(),
+				 SQLTablesPackage.Literals.COLUMN__IMPLEMENTATION_DEPENDENT,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -105,8 +107,10 @@ public class ColumnItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Column_nullable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_nullable_feature", "_UI_Column_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getColumn_Nullable(),
+				 SQLTablesPackage.Literals.COLUMN__NULLABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -125,8 +129,10 @@ public class ColumnItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Column_defaultValue_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_defaultValue_feature", "_UI_Column_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getColumn_DefaultValue(),
+				 SQLTablesPackage.Literals.COLUMN__DEFAULT_VALUE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -145,8 +151,10 @@ public class ColumnItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Column_scopeCheck_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_scopeCheck_feature", "_UI_Column_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getColumn_ScopeCheck(),
+				 SQLTablesPackage.Literals.COLUMN__SCOPE_CHECK,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -165,8 +173,10 @@ public class ColumnItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Column_scopeChecked_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Column_scopeChecked_feature", "_UI_Column_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getColumn_ScopeChecked(),
+				 SQLTablesPackage.Literals.COLUMN__SCOPE_CHECKED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -183,8 +193,8 @@ public class ColumnItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getColumn_IdentitySpecifier());
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getColumn_GenerateExpression());
+			childrenFeatures.add(SQLTablesPackage.Literals.COLUMN__IDENTITY_SPECIFIER);
+			childrenFeatures.add(SQLTablesPackage.Literals.COLUMN__GENERATE_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -208,7 +218,7 @@ public class ColumnItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Column"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Column")); //$NON-NLS-1$
 	}
 
 	/**
@@ -262,12 +272,12 @@ public class ColumnItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getColumn_IdentitySpecifier(),
+				(SQLTablesPackage.Literals.COLUMN__IDENTITY_SPECIFIER,
 				 SQLSchemaFactory.eINSTANCE.createIdentitySpecifier()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getColumn_GenerateExpression(),
+				(SQLTablesPackage.Literals.COLUMN__GENERATE_EXPRESSION,
 				 SQLExpressionsFactory.eINSTANCE.createValueExpressionDefault()));
 	}
 

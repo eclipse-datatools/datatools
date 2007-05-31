@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CharacterSetItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: CharacterSetItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -82,8 +82,10 @@ public class CharacterSetItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_repertoire_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_repertoire_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Repertoire(),
+				 SQLDataTypesPackage.Literals.CHARACTER_SET__REPERTOIRE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -102,8 +104,10 @@ public class CharacterSetItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_defaultCollation_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_defaultCollation_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_DefaultCollation(),
+				 SQLDataTypesPackage.Literals.CHARACTER_SET__DEFAULT_COLLATION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -122,8 +126,10 @@ public class CharacterSetItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_encoding_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_encoding_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Encoding(),
+				 SQLDataTypesPackage.Literals.CHARACTER_SET__ENCODING,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -142,8 +148,10 @@ public class CharacterSetItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterSet_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterSet_schema_feature", "_UI_CharacterSet_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterSet_Schema(),
+				 SQLDataTypesPackage.Literals.CHARACTER_SET__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -156,7 +164,7 @@ public class CharacterSetItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/CharacterSet"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CharacterSet")); //$NON-NLS-1$
 	}
 
 	/**

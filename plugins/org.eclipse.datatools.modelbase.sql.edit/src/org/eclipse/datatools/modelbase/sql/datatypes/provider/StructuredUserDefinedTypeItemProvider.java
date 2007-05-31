@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StructuredUserDefinedTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: StructuredUserDefinedTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -84,8 +84,10 @@ public class StructuredUserDefinedTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StructuredUserDefinedType_instantiable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_StructuredUserDefinedType_instantiable_feature", "_UI_StructuredUserDefinedType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Instantiable(),
+				 SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__INSTANTIABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -104,8 +106,10 @@ public class StructuredUserDefinedTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StructuredUserDefinedType_final_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_StructuredUserDefinedType_final_feature", "_UI_StructuredUserDefinedType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Final(),
+				 SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__FINAL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -124,8 +128,10 @@ public class StructuredUserDefinedTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StructuredUserDefinedType_super_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_StructuredUserDefinedType_super_feature", "_UI_StructuredUserDefinedType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Super(),
+				 SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__SUPER,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -144,8 +150,10 @@ public class StructuredUserDefinedTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_StructuredUserDefinedType_sub_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_StructuredUserDefinedType_sub_feature", "_UI_StructuredUserDefinedType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Sub(),
+				 SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__SUB,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -162,8 +170,8 @@ public class StructuredUserDefinedTypeItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Attributes());
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Methods());
+			childrenFeatures.add(SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__ATTRIBUTES);
+			childrenFeatures.add(SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__METHODS);
 		}
 		return childrenFeatures;
 	}
@@ -187,7 +195,7 @@ public class StructuredUserDefinedTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/StructuredUserDefinedType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StructuredUserDefinedType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -238,12 +246,12 @@ public class StructuredUserDefinedTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Attributes(),
+				(SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__ATTRIBUTES,
 				 SQLDataTypesFactory.eINSTANCE.createAttributeDefinition()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getStructuredUserDefinedType_Methods(),
+				(SQLDataTypesPackage.Literals.STRUCTURED_USER_DEFINED_TYPE__METHODS,
 				 SQLRoutinesFactory.eINSTANCE.createMethod()));
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferenceConstraintItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: ReferenceConstraintItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -77,8 +77,10 @@ public class ReferenceConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ReferenceConstraint_members_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceConstraint_members_feature", "_UI_ReferenceConstraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getReferenceConstraint_Members(),
+				 SQLConstraintsPackage.Literals.REFERENCE_CONSTRAINT__MEMBERS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -91,7 +93,7 @@ public class ReferenceConstraintItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/ReferenceConstraint"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceConstraint")); //$NON-NLS-1$
 	}
 
 	/**

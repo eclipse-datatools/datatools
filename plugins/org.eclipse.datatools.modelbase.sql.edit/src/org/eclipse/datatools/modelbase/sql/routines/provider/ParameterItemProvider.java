@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: ParameterItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -84,8 +84,10 @@ public class ParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Parameter_mode_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_mode_feature", "_UI_Parameter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getParameter_Mode(),
+				 SQLRoutinesPackage.Literals.PARAMETER__MODE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -104,8 +106,10 @@ public class ParameterItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Parameter_locator_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_locator_feature", "_UI_Parameter_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getParameter_Locator(),
+				 SQLRoutinesPackage.Literals.PARAMETER__LOCATOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -122,7 +126,7 @@ public class ParameterItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption());
+			childrenFeatures.add(SQLRoutinesPackage.Literals.PARAMETER__STRING_TYPE_OPTION);
 		}
 		return childrenFeatures;
 	}
@@ -134,7 +138,7 @@ public class ParameterItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Parameter"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Parameter")); //$NON-NLS-1$
 	}
 
 	/**
@@ -184,7 +188,7 @@ public class ParameterItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption(),
+				(SQLRoutinesPackage.Literals.PARAMETER__STRING_TYPE_OPTION,
 				 SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType()));
 	}
 
@@ -199,8 +203,8 @@ public class ParameterItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getParameter_StringTypeOption();
+			childFeature == SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE ||
+			childFeature == SQLRoutinesPackage.Literals.PARAMETER__STRING_TYPE_OPTION;
 
 		if (qualify) {
 			return getString

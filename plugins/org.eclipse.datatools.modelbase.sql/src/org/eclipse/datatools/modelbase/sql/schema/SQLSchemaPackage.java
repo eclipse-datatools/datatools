@@ -141,13 +141,22 @@ public interface SQLSchemaPackage extends EPackage {
 	int SQL_OBJECT__COMMENTS = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_OBJECT__PRIVILEGES = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>SQL Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 4;
+	int SQL_OBJECT_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -202,6 +211,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int IDENTITY_SPECIFIER__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IDENTITY_SPECIFIER__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Generation Type</b></em>' attribute.
@@ -331,6 +349,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int TYPED_ELEMENT__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPED_ELEMENT__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,6 +449,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int DEPENDENCY__COMMENTS = SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Target End</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -511,6 +547,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int SCHEMA__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCHEMA__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Triggers</b></em>' reference list.
@@ -685,6 +730,15 @@ public interface SQLSchemaPackage extends EPackage {
 	int SEQUENCE__COMMENTS = TYPED_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE__PRIVILEGES = TYPED_ELEMENT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -792,6 +846,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATABASE__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Vendor</b></em>' attribute.
@@ -919,6 +982,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>For</b></em>' attribute.
@@ -1074,6 +1146,15 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int CATALOG__COMMENTS = SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATALOG__PRIVILEGES = SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Database</b></em>' reference.
@@ -1467,6 +1548,17 @@ public interface SQLSchemaPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSQLObject_Comments();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Privileges</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges()
+	 * @see #getSQLObject()
+	 * @generated
+	 */
+	EReference getSQLObject_Privileges();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.schema.Sequence <em>Sequence</em>}'.
@@ -2018,6 +2110,14 @@ public interface SQLSchemaPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SQL_OBJECT__COMMENTS = eINSTANCE.getSQLObject_Comments();
+
+		/**
+		 * The meta object literal for the '<em><b>Privileges</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SQL_OBJECT__PRIVILEGES = eINSTANCE.getSQLObject_Privileges();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.schema.impl.SequenceImpl <em>Sequence</em>}' class.

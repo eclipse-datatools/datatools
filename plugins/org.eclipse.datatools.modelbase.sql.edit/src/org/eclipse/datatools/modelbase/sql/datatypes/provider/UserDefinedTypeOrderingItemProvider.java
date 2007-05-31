@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UserDefinedTypeOrderingItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: UserDefinedTypeOrderingItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -81,8 +81,10 @@ public class UserDefinedTypeOrderingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingForm_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingForm_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingForm(),
+				 SQLDataTypesPackage.Literals.USER_DEFINED_TYPE_ORDERING__ORDERING_FORM,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -101,8 +103,10 @@ public class UserDefinedTypeOrderingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingCategory_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingCategory_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingCategory(),
+				 SQLDataTypesPackage.Literals.USER_DEFINED_TYPE_ORDERING__ORDERING_CATEGORY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -121,8 +125,10 @@ public class UserDefinedTypeOrderingItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedTypeOrdering_orderingRoutine_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedTypeOrdering_orderingRoutine_feature", "_UI_UserDefinedTypeOrdering_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getUserDefinedTypeOrdering_OrderingRoutine(),
+				 SQLDataTypesPackage.Literals.USER_DEFINED_TYPE_ORDERING__ORDERING_ROUTINE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -135,7 +141,7 @@ public class UserDefinedTypeOrderingItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/UserDefinedTypeOrdering"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserDefinedTypeOrdering")); //$NON-NLS-1$
 	}
 
 	/**

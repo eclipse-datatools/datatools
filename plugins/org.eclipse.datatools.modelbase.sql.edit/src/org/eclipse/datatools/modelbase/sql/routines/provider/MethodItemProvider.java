@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MethodItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: MethodItemProvider.java,v 1.3 2006/10/18 18:37:51 avainchte Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -79,8 +79,10 @@ public class MethodItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Method_overriding_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Method_overriding_feature", "_UI_Method_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getMethod_Overriding(),
+				 SQLRoutinesPackage.Literals.METHOD__OVERRIDING,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -99,8 +101,10 @@ public class MethodItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Method_constructor_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Method_constructor_feature", "_UI_Method_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getMethod_Constructor(),
+				 SQLRoutinesPackage.Literals.METHOD__CONSTRUCTOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -113,7 +117,7 @@ public class MethodItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Method"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Method")); //$NON-NLS-1$
 	}
 
 	/**
@@ -170,9 +174,9 @@ public class MethodItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
+			childFeature == SQLRoutinesPackage.Literals.ROUTINE__PARAMETERS ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_SCALAR ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_CAST;
 
 		if (qualify) {
 			return getString

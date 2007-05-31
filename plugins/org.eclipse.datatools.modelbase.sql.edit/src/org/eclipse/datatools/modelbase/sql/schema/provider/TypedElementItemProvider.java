@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TypedElementItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: TypedElementItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -77,8 +77,10 @@ public class TypedElementItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TypedElement_referencedType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_TypedElement_referencedType_feature", "_UI_TypedElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getTypedElement_ReferencedType(),
+				 SQLSchemaPackage.Literals.TYPED_ELEMENT__REFERENCED_TYPE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -95,7 +97,7 @@ public class TypedElementItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType());
+			childrenFeatures.add(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE);
 		}
 		return childrenFeatures;
 	}
@@ -107,7 +109,7 @@ public class TypedElementItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/TypedElement"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TypedElement")); //$NON-NLS-1$
 	}
 
 	/**
@@ -153,62 +155,62 @@ public class TypedElementItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createRowDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createBooleanDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createIntervalDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createBinaryStringDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createTimeDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createDataLinkDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createDateDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createIntegerDataType()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getTypedElement_ContainedType(),
+				(SQLSchemaPackage.Literals.TYPED_ELEMENT__CONTAINED_TYPE,
 				 SQLDataTypesFactory.eINSTANCE.createXMLDataType()));
 	}
 

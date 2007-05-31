@@ -21,6 +21,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.ExtendedDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.IndexDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.NicknameDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SchemaDefinition;
@@ -67,6 +68,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getSchemaDefinition <em>Schema Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getDebuggerDefinition <em>Debugger Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getPrivilegedElementDefinitions <em>Privileged Element Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -93,6 +95,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isEventSupported <em>Event Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isPackageSupported <em>Package Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isAuthorizationIdentifierSupported <em>Authorization Identifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isRoleSupported <em>Role Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isGroupSupported <em>Group Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isUserSupported <em>User Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseVendorDefinitionImpl#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -268,6 +276,16 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected DebuggerDefinition debuggerDefinition = null;
+
+	/**
+	 * The cached value of the '{@link #getPrivilegedElementDefinitions() <em>Privileged Element Definitions</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrivilegedElementDefinitions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList privilegedElementDefinitions = null;
 
 	/**
 	 * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
@@ -788,6 +806,126 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * @ordered
 	 */
 	protected boolean storedProcedureSupported = STORED_PROCEDURE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isPackageSupported() <em>Package Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPackageSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean PACKAGE_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isPackageSupported() <em>Package Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isPackageSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean packageSupported = PACKAGE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isAuthorizationIdentifierSupported() <em>Authorization Identifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAuthorizationIdentifierSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean AUTHORIZATION_IDENTIFIER_SUPPORTED_EDEFAULT = true;
+
+	/**
+	 * The cached value of the '{@link #isAuthorizationIdentifierSupported() <em>Authorization Identifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAuthorizationIdentifierSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean authorizationIdentifierSupported = AUTHORIZATION_IDENTIFIER_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRoleSupported() <em>Role Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRoleSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ROLE_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRoleSupported() <em>Role Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRoleSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean roleSupported = ROLE_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isGroupSupported() <em>Group Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGroupSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean GROUP_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isGroupSupported() <em>Group Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isGroupSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean groupSupported = GROUP_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUserSupported() <em>User Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUserSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USER_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUserSupported() <em>User Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUserSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean userSupported = USER_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isRoleAuthorizationSupported() <em>Role Authorization Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRoleAuthorizationSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRoleAuthorizationSupported() <em>Role Authorization Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRoleAuthorizationSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean roleAuthorizationSupported = ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1358,6 +1496,132 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isPackageSupported() {
+		return packageSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPackageSupported(boolean newPackageSupported) {
+		boolean oldPackageSupported = packageSupported;
+		packageSupported = newPackageSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED, oldPackageSupported, packageSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAuthorizationIdentifierSupported() {
+		return authorizationIdentifierSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAuthorizationIdentifierSupported(boolean newAuthorizationIdentifierSupported) {
+		boolean oldAuthorizationIdentifierSupported = authorizationIdentifierSupported;
+		authorizationIdentifierSupported = newAuthorizationIdentifierSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED, oldAuthorizationIdentifierSupported, authorizationIdentifierSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isRoleSupported() {
+		return roleSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRoleSupported(boolean newRoleSupported) {
+		boolean oldRoleSupported = roleSupported;
+		roleSupported = newRoleSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED, oldRoleSupported, roleSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isGroupSupported() {
+		return groupSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGroupSupported(boolean newGroupSupported) {
+		boolean oldGroupSupported = groupSupported;
+		groupSupported = newGroupSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED, oldGroupSupported, groupSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUserSupported() {
+		return userSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUserSupported(boolean newUserSupported) {
+		boolean oldUserSupported = userSupported;
+		userSupported = newUserSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED, oldUserSupported, userSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isRoleAuthorizationSupported() {
+		return roleAuthorizationSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRoleAuthorizationSupported(boolean newRoleAuthorizationSupported) {
+		boolean oldRoleAuthorizationSupported = roleAuthorizationSupported;
+		roleAuthorizationSupported = newRoleAuthorizationSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED, oldRoleAuthorizationSupported, roleAuthorizationSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PREDEFINED_DATA_TYPE_DEFINITIONS:
@@ -1394,6 +1658,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return basicSetViewDefinition(null, msgs);
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				return basicSetDebuggerDefinition(null, msgs);
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
+				return ((InternalEList)getPrivilegedElementDefinitions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1439,6 +1705,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return getViewDefinition();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				return getDebuggerDefinition();
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
+				return getPrivilegedElementDefinitions();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return getVendor();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -1491,6 +1759,18 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return isSqlUDFSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
 				return isStoredProcedureSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED:
+				return isPackageSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED:
+				return isAuthorizationIdentifierSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED:
+				return isRoleSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED:
+				return isGroupSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED:
+				return isUserSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
+				return isRoleAuthorizationSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1554,6 +1834,10 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				setDebuggerDefinition((DebuggerDefinition)newValue);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
+				getPrivilegedElementDefinitions().clear();
+				getPrivilegedElementDefinitions().addAll((Collection)newValue);
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor((String)newValue);
@@ -1633,6 +1917,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
 				setStoredProcedureSupported(((Boolean)newValue).booleanValue());
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED:
+				setPackageSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED:
+				setAuthorizationIdentifierSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED:
+				setRoleSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED:
+				setGroupSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED:
+				setUserSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
+				setRoleAuthorizationSupported(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1694,6 +1996,9 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				setDebuggerDefinition((DebuggerDefinition)null);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
+				getPrivilegedElementDefinitions().clear();
 				return;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				setVendor(VENDOR_EDEFAULT);
@@ -1773,6 +2078,24 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
 				setStoredProcedureSupported(STORED_PROCEDURE_SUPPORTED_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED:
+				setPackageSupported(PACKAGE_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED:
+				setAuthorizationIdentifierSupported(AUTHORIZATION_IDENTIFIER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED:
+				setRoleSupported(ROLE_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED:
+				setGroupSupported(GROUP_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED:
+				setUserSupported(USER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
+				setRoleAuthorizationSupported(ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1818,6 +2141,8 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return viewDefinition != null;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION:
 				return debuggerDefinition != null;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS:
+				return privilegedElementDefinitions != null && !privilegedElementDefinitions.isEmpty();
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VENDOR:
 				return VENDOR_EDEFAULT == null ? vendor != null : !VENDOR_EDEFAULT.equals(vendor);
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__VERSION:
@@ -1870,6 +2195,18 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 				return sqlUDFSupported != SQL_UDF_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED:
 				return storedProcedureSupported != STORED_PROCEDURE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED:
+				return packageSupported != PACKAGE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED:
+				return authorizationIdentifierSupported != AUTHORIZATION_IDENTIFIER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED:
+				return roleSupported != ROLE_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED:
+				return groupSupported != GROUP_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__USER_SUPPORTED:
+				return userSupported != USER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED:
+				return roleAuthorizationSupported != ROLE_AUTHORIZATION_SUPPORTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2548,6 +2885,18 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList getPrivilegedElementDefinitions() {
+		if (privilegedElementDefinitions == null) {
+			privilegedElementDefinitions = new EObjectContainmentEList(PrivilegedElementDefinition.class, this, DatabaseDefinitionPackage.DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS);
+		}
+		return privilegedElementDefinitions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
@@ -2604,6 +2953,18 @@ public class DatabaseVendorDefinitionImpl extends EObjectImpl implements Databas
 		result.append(sqlUDFSupported);
 		result.append(", storedProcedureSupported: "); //$NON-NLS-1$
 		result.append(storedProcedureSupported);
+		result.append(", packageSupported: "); //$NON-NLS-1$
+		result.append(packageSupported);
+		result.append(", authorizationIdentifierSupported: "); //$NON-NLS-1$
+		result.append(authorizationIdentifierSupported);
+		result.append(", roleSupported: "); //$NON-NLS-1$
+		result.append(roleSupported);
+		result.append(", groupSupported: "); //$NON-NLS-1$
+		result.append(groupSupported);
+		result.append(", userSupported: "); //$NON-NLS-1$
+		result.append(userSupported);
+		result.append(", roleAuthorizationSupported: "); //$NON-NLS-1$
+		result.append(roleAuthorizationSupported);
 		result.append(')');
 		return result.toString();
 	}

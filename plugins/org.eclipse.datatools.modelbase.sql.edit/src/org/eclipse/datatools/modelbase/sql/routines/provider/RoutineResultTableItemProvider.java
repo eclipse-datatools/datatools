@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RoutineResultTableItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: RoutineResultTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -69,7 +69,7 @@ public class RoutineResultTableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/RoutineResultTable"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RoutineResultTable")); //$NON-NLS-1$
 	}
 
 	/**

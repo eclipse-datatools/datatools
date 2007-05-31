@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: TableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -87,8 +87,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_supertable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_supertable_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Supertable(),
+				 SQLTablesPackage.Literals.TABLE__SUPERTABLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -107,8 +109,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_subtables_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_subtables_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Subtables(),
+				 SQLTablesPackage.Literals.TABLE__SUBTABLES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -127,8 +131,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_schema_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Schema(),
+				 SQLTablesPackage.Literals.TABLE__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -147,8 +153,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_udt_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_udt_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Udt(),
+				 SQLTablesPackage.Literals.TABLE__UDT,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -167,8 +175,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_triggers_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_triggers_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Triggers(),
+				 SQLTablesPackage.Literals.TABLE__TRIGGERS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -187,8 +197,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_index_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_index_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Index(),
+				 SQLTablesPackage.Literals.TABLE__INDEX,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -207,8 +219,10 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_selfRefColumnGeneration_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_selfRefColumnGeneration_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_SelfRefColumnGeneration(),
+				 SQLTablesPackage.Literals.TABLE__SELF_REF_COLUMN_GENERATION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -227,7 +241,9 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_insertable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_insertable_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Insertable(),
+				 SQLTablesPackage.Literals.TABLE__INSERTABLE,
+				 false,
+				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
@@ -247,7 +263,9 @@ public class TableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Table_updatable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Table_updatable_feature", "_UI_Table_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTable_Updatable(),
+				 SQLTablesPackage.Literals.TABLE__UPDATABLE,
+				 false,
+				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
@@ -265,7 +283,7 @@ public class TableItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getTable_Columns());
+			childrenFeatures.add(SQLTablesPackage.Literals.TABLE__COLUMNS);
 		}
 		return childrenFeatures;
 	}
@@ -277,7 +295,7 @@ public class TableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Table"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Table")); //$NON-NLS-1$
 	}
 
 	/**
@@ -328,7 +346,7 @@ public class TableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getTable_Columns(),
+				(SQLTablesPackage.Literals.TABLE__COLUMNS,
 				 SQLTablesFactory.eINSTANCE.createColumn()));
 	}
 

@@ -201,6 +201,24 @@ public interface DatabaseDefinitionFactory extends EFactory {
 	DebuggerDefinition createDebuggerDefinition();
 
 	/**
+	 * Returns a new object of class '<em>Privileged Element Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Privileged Element Definition</em>'.
+	 * @generated
+	 */
+	PrivilegedElementDefinition createPrivilegedElementDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Privilege Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Privilege Definition</em>'.
+	 * @generated
+	 */
+	PrivilegeDefinition createPrivilegeDefinition();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

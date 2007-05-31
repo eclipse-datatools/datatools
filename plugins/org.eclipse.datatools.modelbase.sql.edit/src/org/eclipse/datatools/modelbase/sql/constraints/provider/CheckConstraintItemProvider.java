@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CheckConstraintItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: CheckConstraintItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -74,7 +74,7 @@ public class CheckConstraintItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLConstraintsPackage.eINSTANCE.getCheckConstraint_SearchCondition());
+			childrenFeatures.add(SQLConstraintsPackage.Literals.CHECK_CONSTRAINT__SEARCH_CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -86,7 +86,7 @@ public class CheckConstraintItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/CheckConstraint"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CheckConstraint")); //$NON-NLS-1$
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class CheckConstraintItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLConstraintsPackage.eINSTANCE.getCheckConstraint_SearchCondition(),
+				(SQLConstraintsPackage.Literals.CHECK_CONSTRAINT__SEARCH_CONDITION,
 				 SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault()));
 	}
 

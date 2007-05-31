@@ -98,7 +98,7 @@
       eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/ValueExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unaryOperator" eType="#//ValueExpressionUnaryOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/DataType"
-        containment="true"/>
+        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valuesRow" eType="#//ValuesRow"
         transient="true" eOpposite="#//ValuesRow/exprList"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orderByValueExpr" eType="#//OrderByValueExpression"

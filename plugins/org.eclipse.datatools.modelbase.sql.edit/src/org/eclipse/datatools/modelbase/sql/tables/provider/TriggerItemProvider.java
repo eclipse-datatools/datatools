@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TriggerItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: TriggerItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -93,8 +93,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_schema_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_Schema(),
+				 SQLTablesPackage.Literals.TRIGGER__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -113,8 +115,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_subjectTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_subjectTable_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_SubjectTable(),
+				 SQLTablesPackage.Literals.TRIGGER__SUBJECT_TABLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -133,8 +137,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_triggerColumn_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_triggerColumn_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_TriggerColumn(),
+				 SQLTablesPackage.Literals.TRIGGER__TRIGGER_COLUMN,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -153,8 +159,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_actionGranularity_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_actionGranularity_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_ActionGranularity(),
+				 SQLTablesPackage.Literals.TRIGGER__ACTION_GRANULARITY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -173,7 +181,9 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_timeStamp_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_timeStamp_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_TimeStamp(),
+				 SQLTablesPackage.Literals.TRIGGER__TIME_STAMP,
+				 false,
+				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -193,8 +203,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_actionTime_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_actionTime_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_ActionTime(),
+				 SQLTablesPackage.Literals.TRIGGER__ACTION_TIME,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -213,8 +225,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_updateType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_updateType_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_UpdateType(),
+				 SQLTablesPackage.Literals.TRIGGER__UPDATE_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -233,8 +247,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_insertType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_insertType_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_InsertType(),
+				 SQLTablesPackage.Literals.TRIGGER__INSERT_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -253,8 +269,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_deleteType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_deleteType_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_DeleteType(),
+				 SQLTablesPackage.Literals.TRIGGER__DELETE_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -273,8 +291,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_oldRow_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_oldRow_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_OldRow(),
+				 SQLTablesPackage.Literals.TRIGGER__OLD_ROW,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -293,8 +313,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_newRow_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_newRow_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_NewRow(),
+				 SQLTablesPackage.Literals.TRIGGER__NEW_ROW,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -313,8 +335,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_oldTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_oldTable_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_OldTable(),
+				 SQLTablesPackage.Literals.TRIGGER__OLD_TABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -333,8 +357,10 @@ public class TriggerItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Trigger_newTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Trigger_newTable_feature", "_UI_Trigger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getTrigger_NewTable(),
+				 SQLTablesPackage.Literals.TRIGGER__NEW_TABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -351,8 +377,8 @@ public class TriggerItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getTrigger_ActionStatement());
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getTrigger_When());
+			childrenFeatures.add(SQLTablesPackage.Literals.TRIGGER__ACTION_STATEMENT);
+			childrenFeatures.add(SQLTablesPackage.Literals.TRIGGER__WHEN);
 		}
 		return childrenFeatures;
 	}
@@ -376,7 +402,7 @@ public class TriggerItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Trigger"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Trigger")); //$NON-NLS-1$
 	}
 
 	/**
@@ -435,12 +461,12 @@ public class TriggerItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getTrigger_ActionStatement(),
+				(SQLTablesPackage.Literals.TRIGGER__ACTION_STATEMENT,
 				 SQLStatementsFactory.eINSTANCE.createSQLStatementDefault()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getTrigger_When(),
+				(SQLTablesPackage.Literals.TRIGGER__WHEN,
 				 SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault()));
 	}
 

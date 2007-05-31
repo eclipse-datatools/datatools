@@ -228,13 +228,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = 16;
 
 	/**
+	 * The feature id for the '<em><b>Privileged Element Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS = 17;
+
+	/**
 	 * The feature id for the '<em><b>Vendor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VENDOR = 17;
+	int DATABASE_VENDOR_DEFINITION__VENDOR = 18;
 
 	/**
 	 * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -243,7 +252,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VERSION = 18;
+	int DATABASE_VENDOR_DEFINITION__VERSION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Constraints Supported</b></em>' attribute.
@@ -252,7 +261,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 19;
+	int DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED = 20;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Identifier Length</b></em>' attribute.
@@ -261,7 +270,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 20;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 21;
 
 	/**
 	 * The feature id for the '<em><b>Trigger Supported</b></em>' attribute.
@@ -270,7 +279,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 21;
+	int DATABASE_VENDOR_DEFINITION__TRIGGER_SUPPORTED = 22;
 
 	/**
 	 * The feature id for the '<em><b>Snapshot View Supported</b></em>' attribute.
@@ -279,7 +288,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 22;
+	int DATABASE_VENDOR_DEFINITION__SNAPSHOT_VIEW_SUPPORTED = 23;
 
 	/**
 	 * The feature id for the '<em><b>Join Supported</b></em>' attribute.
@@ -288,7 +297,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 23;
+	int DATABASE_VENDOR_DEFINITION__JOIN_SUPPORTED = 24;
 
 	/**
 	 * The feature id for the '<em><b>View Trigger Supported</b></em>' attribute.
@@ -297,7 +306,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 24;
+	int DATABASE_VENDOR_DEFINITION__VIEW_TRIGGER_SUPPORTED = 25;
 
 	/**
 	 * The feature id for the '<em><b>Tablespaces Supported</b></em>' attribute.
@@ -306,7 +315,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 25;
+	int DATABASE_VENDOR_DEFINITION__TABLESPACES_SUPPORTED = 26;
 
 	/**
 	 * The feature id for the '<em><b>Maximum Comment Length</b></em>' attribute.
@@ -315,7 +324,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 26;
+	int DATABASE_VENDOR_DEFINITION__MAXIMUM_COMMENT_LENGTH = 27;
 
 	/**
 	 * The feature id for the '<em><b>Sequence Supported</b></em>' attribute.
@@ -324,7 +333,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 27;
+	int DATABASE_VENDOR_DEFINITION__SEQUENCE_SUPPORTED = 28;
 
 	/**
 	 * The feature id for the '<em><b>MQT Supported</b></em>' attribute.
@@ -333,7 +342,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 28;
+	int DATABASE_VENDOR_DEFINITION__MQT_SUPPORTED = 29;
 
 	/**
 	 * The feature id for the '<em><b>Schema Supported</b></em>' attribute.
@@ -342,7 +351,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 29;
+	int DATABASE_VENDOR_DEFINITION__SCHEMA_SUPPORTED = 30;
 
 	/**
 	 * The feature id for the '<em><b>Alias Supported</b></em>' attribute.
@@ -351,7 +360,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 30;
+	int DATABASE_VENDOR_DEFINITION__ALIAS_SUPPORTED = 31;
 
 	/**
 	 * The feature id for the '<em><b>Synonym Supported</b></em>' attribute.
@@ -360,7 +369,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 31;
+	int DATABASE_VENDOR_DEFINITION__SYNONYM_SUPPORTED = 32;
 
 	/**
 	 * The feature id for the '<em><b>User Defined Type Supported</b></em>' attribute.
@@ -369,7 +378,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 32;
+	int DATABASE_VENDOR_DEFINITION__USER_DEFINED_TYPE_SUPPORTED = 33;
 
 	/**
 	 * The feature id for the '<em><b>Domain Supported</b></em>' attribute.
@@ -378,7 +387,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 33;
+	int DATABASE_VENDOR_DEFINITION__DOMAIN_SUPPORTED = 34;
 
 	/**
 	 * The feature id for the '<em><b>SQL Statement Supported</b></em>' attribute.
@@ -387,7 +396,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 34;
+	int DATABASE_VENDOR_DEFINITION__SQL_STATEMENT_SUPPORTED = 35;
 
 	/**
 	 * The feature id for the '<em><b>Nickname Supported</b></em>' attribute.
@@ -396,7 +405,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 35;
+	int DATABASE_VENDOR_DEFINITION__NICKNAME_SUPPORTED = 36;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DML Supported</b></em>' attribute.
@@ -405,7 +414,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 36;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DML_SUPPORTED = 37;
 
 	/**
 	 * The feature id for the '<em><b>Quoted DDL Supported</b></em>' attribute.
@@ -414,7 +423,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 37;
+	int DATABASE_VENDOR_DEFINITION__QUOTED_DDL_SUPPORTED = 38;
 
 	/**
 	 * The feature id for the '<em><b>Xml Supported</b></em>' attribute.
@@ -423,7 +432,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__XML_SUPPORTED = 38;
+	int DATABASE_VENDOR_DEFINITION__XML_SUPPORTED = 39;
 
 	/**
 	 * The feature id for the '<em><b>MQT Index Supported</b></em>' attribute.
@@ -432,7 +441,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED = 39;
+	int DATABASE_VENDOR_DEFINITION__MQT_INDEX_SUPPORTED = 40;
 
 	/**
 	 * The feature id for the '<em><b>Event Supported</b></em>' attribute.
@@ -441,7 +450,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = 40;
+	int DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED = 41;
 
 	/**
 	 * The feature id for the '<em><b>Sql UDF Supported</b></em>' attribute.
@@ -450,7 +459,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = 41;
+	int DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED = 42;
 
 	/**
 	 * The feature id for the '<em><b>Stored Procedure Supported</b></em>' attribute.
@@ -459,7 +468,61 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 42;
+	int DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = 43;
+
+	/**
+	 * The feature id for the '<em><b>Package Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED = 44;
+
+	/**
+	 * The feature id for the '<em><b>Authorization Identifier Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED = 45;
+
+	/**
+	 * The feature id for the '<em><b>Role Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED = 46;
+
+	/**
+	 * The feature id for the '<em><b>Group Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED = 47;
+
+	/**
+	 * The feature id for the '<em><b>User Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__USER_SUPPORTED = 48;
+
+	/**
+	 * The feature id for the '<em><b>Role Authorization Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED = 49;
 
 	/**
 	 * The number of structural features of the '<em>Database Vendor Definition</em>' class.
@@ -468,7 +531,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 43;
+	int DATABASE_VENDOR_DEFINITION_FEATURE_COUNT = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
@@ -2199,6 +2262,80 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int DEBUGGER_DEFINITION_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl <em>Privileged Element Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPrivilegedElementDefinition()
+	 * @generated
+	 */
+	int PRIVILEGED_ELEMENT_DEFINITION = 19;
+
+	/**
+	 * The feature id for the '<em><b>Privilege Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGED_ELEMENT_DEFINITION__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Privileged Element Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGED_ELEMENT_DEFINITION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl <em>Privilege Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPrivilegeDefinition()
+	 * @generated
+	 */
+	int PRIVILEGE_DEFINITION = 20;
+
+	/**
+	 * The feature id for the '<em><b>Action Element Definitions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE_DEFINITION__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Privilege Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE_DEFINITION_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.CheckOption <em>Check Option</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2206,7 +2343,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getCheckOption()
 	 * @generated
 	 */
-	int CHECK_OPTION = 19;
+	int CHECK_OPTION = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.LanguageType <em>Language Type</em>}' enum.
@@ -2216,7 +2353,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLanguageType()
 	 * @generated
 	 */
-	int LANGUAGE_TYPE = 20;
+	int LANGUAGE_TYPE = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParameterStyle <em>Parameter Style</em>}' enum.
@@ -2226,7 +2363,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParameterStyle()
 	 * @generated
 	 */
-	int PARAMETER_STYLE = 21;
+	int PARAMETER_STYLE = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType <em>Parent Delete DRI Rule Type</em>}' enum.
@@ -2236,7 +2373,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentDeleteDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_DELETE_DRI_RULE_TYPE = 22;
+	int PARENT_DELETE_DRI_RULE_TYPE = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType <em>Parent Update DRI Rule Type</em>}' enum.
@@ -2246,7 +2383,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getParentUpdateDRIRuleType()
 	 * @generated
 	 */
-	int PARENT_UPDATE_DRI_RULE_TYPE = 23;
+	int PARENT_UPDATE_DRI_RULE_TYPE = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.ProcedureType <em>Procedure Type</em>}' enum.
@@ -2256,7 +2393,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getProcedureType()
 	 * @generated
 	 */
-	int PROCEDURE_TYPE = 24;
+	int PROCEDURE_TYPE = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceType <em>Table Space Type</em>}' enum.
@@ -2266,7 +2403,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getTableSpaceType()
 	 * @generated
 	 */
-	int TABLE_SPACE_TYPE = 25;
+	int TABLE_SPACE_TYPE = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology <em>Percent Free Terminology</em>}' enum.
@@ -2276,7 +2413,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPercentFreeTerminology()
 	 * @generated
 	 */
-	int PERCENT_FREE_TERMINOLOGY = 26;
+	int PERCENT_FREE_TERMINOLOGY = 28;
 
 
 	/**
@@ -2287,7 +2424,7 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getLengthUnit()
 	 * @generated
 	 */
-	int LENGTH_UNIT = 27;
+	int LENGTH_UNIT = 29;
 
 
 	/**
@@ -2587,6 +2724,72 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getDatabaseVendorDefinition_StoredProcedureSupported();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isPackageSupported <em>Package Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Package Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isPackageSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_PackageSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isAuthorizationIdentifierSupported <em>Authorization Identifier Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Authorization Identifier Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isAuthorizationIdentifierSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_AuthorizationIdentifierSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleSupported <em>Role Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Role Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_RoleSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isGroupSupported <em>Group Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Group Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isGroupSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_GroupSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported <em>User Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>User Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_UserSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Role Authorization Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EAttribute getDatabaseVendorDefinition_RoleAuthorizationSupported();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPredefinedDataTypeDefinitions <em>Predefined Data Type Definitions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2772,6 +2975,17 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDatabaseVendorDefinition_DebuggerDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPrivilegedElementDefinitions <em>Privileged Element Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Privileged Element Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPrivilegedElementDefinitions()
+	 * @see #getDatabaseVendorDefinition()
+	 * @generated
+	 */
+	EReference getDatabaseVendorDefinition_PrivilegedElementDefinitions();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition <em>Predefined Data Type Definition</em>}'.
@@ -4637,6 +4851,70 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getDebuggerDefinition_ConditionSupported();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition <em>Privileged Element Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Privileged Element Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition
+	 * @generated
+	 */
+	EClass getPrivilegedElementDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getPrivilegeDefinitions <em>Privilege Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Privilege Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getPrivilegeDefinitions()
+	 * @see #getPrivilegedElementDefinition()
+	 * @generated
+	 */
+	EReference getPrivilegedElementDefinition_PrivilegeDefinitions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition#getName()
+	 * @see #getPrivilegedElementDefinition()
+	 * @generated
+	 */
+	EAttribute getPrivilegedElementDefinition_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition <em>Privilege Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Privilege Definition</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition
+	 * @generated
+	 */
+	EClass getPrivilegeDefinition();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition#getActionElementDefinitions <em>Action Element Definitions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Action Element Definitions</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition#getActionElementDefinitions()
+	 * @see #getPrivilegeDefinition()
+	 * @generated
+	 */
+	EReference getPrivilegeDefinition_ActionElementDefinitions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition#getName()
+	 * @see #getPrivilegeDefinition()
+	 * @generated
+	 */
+	EAttribute getPrivilegeDefinition_Name();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.dbdefinition.SequenceDefinition#getDefaultDataTypeDefinition <em>Default Data Type Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4906,6 +5184,14 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		EReference DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION = eINSTANCE.getDatabaseVendorDefinition_DebuggerDefinition();
 
 		/**
+		 * The meta object literal for the '<em><b>Privileged Element Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS = eINSTANCE.getDatabaseVendorDefinition_PrivilegedElementDefinitions();
+
+		/**
 		 * The meta object literal for the '<em><b>Vendor</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5112,6 +5398,54 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_StoredProcedureSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Package Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_PackageSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Authorization Identifier Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_AuthorizationIdentifierSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Role Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_RoleSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Group Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_GroupSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>User Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__USER_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_UserSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Role Authorization Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED = eINSTANCE.getDatabaseVendorDefinition_RoleAuthorizationSupported();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl <em>Predefined Data Type Definition</em>}' class.
@@ -6524,6 +6858,58 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DEBUGGER_DEFINITION__CONDITION_SUPPORTED = eINSTANCE.getDebuggerDefinition_ConditionSupported();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl <em>Privileged Element Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegedElementDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPrivilegedElementDefinition()
+		 * @generated
+		 */
+		EClass PRIVILEGED_ELEMENT_DEFINITION = eINSTANCE.getPrivilegedElementDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Privilege Definitions</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS = eINSTANCE.getPrivilegedElementDefinition_PrivilegeDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRIVILEGED_ELEMENT_DEFINITION__NAME = eINSTANCE.getPrivilegedElementDefinition_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl <em>Privilege Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.PrivilegeDefinitionImpl
+		 * @see org.eclipse.datatools.modelbase.dbdefinition.impl.DatabaseDefinitionPackageImpl#getPrivilegeDefinition()
+		 * @generated
+		 */
+		EClass PRIVILEGE_DEFINITION = eINSTANCE.getPrivilegeDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Element Definitions</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS = eINSTANCE.getPrivilegeDefinition_ActionElementDefinitions();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRIVILEGE_DEFINITION__NAME = eINSTANCE.getPrivilegeDefinition_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.CheckOption <em>Check Option</em>}' enum.

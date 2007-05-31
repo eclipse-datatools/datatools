@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PersistentTableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: PersistentTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -66,7 +66,7 @@ public class PersistentTableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/PersistentTable"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/PersistentTable")); //$NON-NLS-1$
 	}
 
 	/**

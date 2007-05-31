@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: EventItemProvider.java,v 1.1 2006/03/03 21:46:47 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -83,8 +83,10 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_for_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_for_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getEvent_For(),
+				 SQLSchemaPackage.Literals.EVENT__FOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -103,8 +105,10 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_condition_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_condition_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getEvent_Condition(),
+				 SQLSchemaPackage.Literals.EVENT__CONDITION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -123,8 +127,10 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_action_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_action_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getEvent_Action(),
+				 SQLSchemaPackage.Literals.EVENT__ACTION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -143,8 +149,10 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_enabled_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_enabled_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getEvent_Enabled(),
+				 SQLSchemaPackage.Literals.EVENT__ENABLED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -163,8 +171,10 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_Database_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_Database_feature", "_UI_Event_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getEvent_Database(),
+				 SQLSchemaPackage.Literals.EVENT__DATABASE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -177,7 +187,7 @@ public class EventItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Event"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Event")); //$NON-NLS-1$
 	}
 
 	/**

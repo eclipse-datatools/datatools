@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getSchemaDefinition <em>Schema Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getViewDefinition <em>View Definition</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getDebuggerDefinition <em>Debugger Definition</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getPrivilegedElementDefinitions <em>Privileged Element Definitions</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVendor <em>Vendor</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#getVersion <em>Version</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isConstraintsSupported <em>Constraints Supported</em>}</li>
@@ -64,6 +65,12 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isEventSupported <em>Event Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isSqlUDFSupported <em>Sql UDF Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isStoredProcedureSupported <em>Stored Procedure Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isPackageSupported <em>Package Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isAuthorizationIdentifierSupported <em>Authorization Identifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleSupported <em>Role Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isGroupSupported <em>Group Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported <em>User Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,7 +78,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface DatabaseVendorDefinition extends EObject{
+public interface DatabaseVendorDefinition extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Vendor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -756,6 +763,163 @@ public interface DatabaseVendorDefinition extends EObject{
 	void setStoredProcedureSupported(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Package Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Package Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Package Supported</em>' attribute.
+	 * @see #setPackageSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_PackageSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isPackageSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isPackageSupported <em>Package Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Package Supported</em>' attribute.
+	 * @see #isPackageSupported()
+	 * @generated
+	 */
+	void setPackageSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Authorization Identifier Supported</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Authorization Identifier Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Authorization Identifier Supported</em>' attribute.
+	 * @see #setAuthorizationIdentifierSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_AuthorizationIdentifierSupported()
+	 * @model default="true"
+	 * @generated
+	 */
+	boolean isAuthorizationIdentifierSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isAuthorizationIdentifierSupported <em>Authorization Identifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Authorization Identifier Supported</em>' attribute.
+	 * @see #isAuthorizationIdentifierSupported()
+	 * @generated
+	 */
+	void setAuthorizationIdentifierSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Role Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Role Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Role Supported</em>' attribute.
+	 * @see #setRoleSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_RoleSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isRoleSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleSupported <em>Role Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Role Supported</em>' attribute.
+	 * @see #isRoleSupported()
+	 * @generated
+	 */
+	void setRoleSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Group Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Group Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group Supported</em>' attribute.
+	 * @see #setGroupSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_GroupSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isGroupSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isGroupSupported <em>Group Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Group Supported</em>' attribute.
+	 * @see #isGroupSupported()
+	 * @generated
+	 */
+	void setGroupSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>User Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Supported</em>' attribute.
+	 * @see #setUserSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_UserSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isUserSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isUserSupported <em>User Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>User Supported</em>' attribute.
+	 * @see #isUserSupported()
+	 * @generated
+	 */
+	void setUserSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Role Authorization Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Role Authorization Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Role Authorization Supported</em>' attribute.
+	 * @see #setRoleAuthorizationSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_RoleAuthorizationSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isRoleAuthorizationSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.DatabaseVendorDefinition#isRoleAuthorizationSupported <em>Role Authorization Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Role Authorization Supported</em>' attribute.
+	 * @see #isRoleAuthorizationSupported()
+	 * @generated
+	 */
+	void setRoleAuthorizationSupported(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Predefined Data Type Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition}.
 	 * <!-- begin-user-doc -->
@@ -1176,5 +1340,21 @@ public interface DatabaseVendorDefinition extends EObject{
 	 * @generated
 	 */
 	void setDebuggerDefinition(DebuggerDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Privileged Element Definitions</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Privileged Element Definitions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Privileged Element Definitions</em>' containment reference list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getDatabaseVendorDefinition_PrivilegedElementDefinitions()
+	 * @model type="org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition" containment="true"
+	 * @generated
+	 */
+	EList getPrivilegedElementDefinitions();
 
 } // DatabaseVendorDefinition

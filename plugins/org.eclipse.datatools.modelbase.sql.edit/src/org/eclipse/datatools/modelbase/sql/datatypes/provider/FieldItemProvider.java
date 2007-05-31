@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FieldItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: FieldItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -80,8 +80,10 @@ public class FieldItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Field_scopeCheck_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Field_scopeCheck_feature", "_UI_Field_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getField_ScopeCheck(),
+				 SQLDataTypesPackage.Literals.FIELD__SCOPE_CHECK,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -100,8 +102,10 @@ public class FieldItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Field_scopeChecked_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Field_scopeChecked_feature", "_UI_Field_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getField_ScopeChecked(),
+				 SQLDataTypesPackage.Literals.FIELD__SCOPE_CHECKED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -114,7 +118,7 @@ public class FieldItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Field"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Field")); //$NON-NLS-1$
 	}
 
 	/**

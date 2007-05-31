@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RoutineItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: RoutineItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -91,8 +91,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_specificName_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_specificName_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_SpecificName(),
+				 SQLRoutinesPackage.Literals.ROUTINE__SPECIFIC_NAME,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -111,8 +113,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_language_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_language_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_Language(),
+				 SQLRoutinesPackage.Literals.ROUTINE__LANGUAGE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -131,8 +135,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_parameterStyle_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_parameterStyle_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_ParameterStyle(),
+				 SQLRoutinesPackage.Literals.ROUTINE__PARAMETER_STYLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -151,8 +157,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_deterministic_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_deterministic_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_Deterministic(),
+				 SQLRoutinesPackage.Literals.ROUTINE__DETERMINISTIC,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -171,8 +179,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_sqlDataAccess_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_sqlDataAccess_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_SqlDataAccess(),
+				 SQLRoutinesPackage.Literals.ROUTINE__SQL_DATA_ACCESS,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -191,8 +201,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_creationTS_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_creationTS_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_CreationTS(),
+				 SQLRoutinesPackage.Literals.ROUTINE__CREATION_TS,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -211,8 +223,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_lastAlteredTS_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_lastAlteredTS_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_LastAlteredTS(),
+				 SQLRoutinesPackage.Literals.ROUTINE__LAST_ALTERED_TS,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -231,8 +245,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_authorizationID_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_authorizationID_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_AuthorizationID(),
+				 SQLRoutinesPackage.Literals.ROUTINE__AUTHORIZATION_ID,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -251,8 +267,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_security_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_security_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_Security(),
+				 SQLRoutinesPackage.Literals.ROUTINE__SECURITY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -271,8 +289,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_externalName_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_externalName_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_ExternalName(),
+				 SQLRoutinesPackage.Literals.ROUTINE__EXTERNAL_NAME,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -291,8 +311,10 @@ public class RoutineItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Routine_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Routine_schema_feature", "_UI_Routine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getRoutine_Schema(),
+				 SQLRoutinesPackage.Literals.ROUTINE__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -309,8 +331,8 @@ public class RoutineItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters());
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getRoutine_Source());
+			childrenFeatures.add(SQLRoutinesPackage.Literals.ROUTINE__PARAMETERS);
+			childrenFeatures.add(SQLRoutinesPackage.Literals.ROUTINE__SOURCE);
 		}
 		return childrenFeatures;
 	}
@@ -334,7 +356,7 @@ public class RoutineItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Routine"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Routine")); //$NON-NLS-1$
 	}
 
 	/**
@@ -393,12 +415,12 @@ public class RoutineItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters(),
+				(SQLRoutinesPackage.Literals.ROUTINE__PARAMETERS,
 				 SQLRoutinesFactory.eINSTANCE.createParameter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getRoutine_Source(),
+				(SQLRoutinesPackage.Literals.ROUTINE__SOURCE,
 				 SQLRoutinesFactory.eINSTANCE.createSource()));
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ForeignKeyItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: ForeignKeyItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -84,8 +84,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_match_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_match_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_Match(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__MATCH,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -104,8 +106,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_onUpdate_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_onUpdate_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_OnUpdate(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__ON_UPDATE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -124,8 +128,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_onDelete_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_onDelete_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_OnDelete(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__ON_DELETE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -144,8 +150,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_uniqueConstraint_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_uniqueConstraint_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_UniqueConstraint(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__UNIQUE_CONSTRAINT,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -164,8 +172,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_referencedMembers_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_referencedMembers_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_ReferencedMembers(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__REFERENCED_MEMBERS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -184,8 +194,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_uniqueIndex_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_uniqueIndex_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_UniqueIndex(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__UNIQUE_INDEX,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -204,8 +216,10 @@ public class ForeignKeyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ForeignKey_referencedTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ForeignKey_referencedTable_feature", "_UI_ForeignKey_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getForeignKey_ReferencedTable(),
+				 SQLConstraintsPackage.Literals.FOREIGN_KEY__REFERENCED_TABLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -218,7 +232,7 @@ public class ForeignKeyItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/ForeignKey"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ForeignKey")); //$NON-NLS-1$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IdentitySpecifierItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: IdentitySpecifierItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -81,8 +81,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_generationType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_generationType_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_GenerationType(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__GENERATION_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -101,8 +103,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_startValue_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_startValue_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_StartValue(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__START_VALUE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -121,8 +125,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_increment_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_increment_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_Increment(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__INCREMENT,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -141,8 +147,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_minimum_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_minimum_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_Minimum(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__MINIMUM,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -161,8 +169,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_maximum_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_maximum_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_Maximum(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__MAXIMUM,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -181,8 +191,10 @@ public class IdentitySpecifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IdentitySpecifier_cycleOption_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IdentitySpecifier_cycleOption_feature", "_UI_IdentitySpecifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getIdentitySpecifier_CycleOption(),
+				 SQLSchemaPackage.Literals.IDENTITY_SPECIFIER__CYCLE_OPTION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -195,7 +207,7 @@ public class IdentitySpecifierItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/IdentitySpecifier"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IdentitySpecifier")); //$NON-NLS-1$
 	}
 
 	/**

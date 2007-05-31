@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SchemaItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: SchemaItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -62,6 +62,7 @@ public class SchemaItemProvider
 			addTablesPropertyDescriptor(object);
 			addSequencesPropertyDescriptor(object);
 			addDatabasePropertyDescriptor(object);
+			addCatalogPropertyDescriptor(object);
 			addAssertionsPropertyDescriptor(object);
 			addUserDefinedTypesPropertyDescriptor(object);
 			addCharSetsPropertyDescriptor(object);
@@ -84,8 +85,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_triggers_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_triggers_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Triggers(),
+				 SQLSchemaPackage.Literals.SCHEMA__TRIGGERS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -104,8 +107,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_indices_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_indices_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Indices(),
+				 SQLSchemaPackage.Literals.SCHEMA__INDICES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -124,8 +129,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_tables_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_tables_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Tables(),
+				 SQLSchemaPackage.Literals.SCHEMA__TABLES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -144,8 +151,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_sequences_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_sequences_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Sequences(),
+				 SQLSchemaPackage.Literals.SCHEMA__SEQUENCES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -164,7 +173,31 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_database_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_database_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Database(),
+				 SQLSchemaPackage.Literals.SCHEMA__DATABASE,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Catalog feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCatalogPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Schema_Catalog_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_Catalog_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.Literals.SCHEMA__CATALOG,
+				 true,
+				 false,
 				 true,
 				 null,
 				 null,
@@ -184,8 +217,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_assertions_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_assertions_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Assertions(),
+				 SQLSchemaPackage.Literals.SCHEMA__ASSERTIONS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -204,8 +239,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_userDefinedTypes_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_userDefinedTypes_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_UserDefinedTypes(),
+				 SQLSchemaPackage.Literals.SCHEMA__USER_DEFINED_TYPES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -224,8 +261,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_charSets_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_charSets_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_CharSets(),
+				 SQLSchemaPackage.Literals.SCHEMA__CHAR_SETS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -244,8 +283,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_routines_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_routines_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Routines(),
+				 SQLSchemaPackage.Literals.SCHEMA__ROUTINES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -264,8 +305,10 @@ public class SchemaItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Schema_owner_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Schema_owner_feature", "_UI_Schema_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSchema_Owner(),
+				 SQLSchemaPackage.Literals.SCHEMA__OWNER,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -278,7 +321,7 @@ public class SchemaItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Schema"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Schema")); //$NON-NLS-1$
 	}
 
 	/**

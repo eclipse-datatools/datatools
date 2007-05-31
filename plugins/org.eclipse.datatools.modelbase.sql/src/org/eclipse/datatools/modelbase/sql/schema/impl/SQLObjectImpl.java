@@ -18,6 +18,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
+
 import org.eclipse.datatools.modelbase.sql.schema.Comment;
 import org.eclipse.datatools.modelbase.sql.schema.Dependency;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -58,6 +61,7 @@ import commonj.sdo.Type;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getComments <em>Comments</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.impl.SQLObjectImpl#getPrivileges <em>Privileges</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,6 +134,16 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 	 * @ordered
 	 */
 	protected EList comments = null;
+
+	/**
+	 * The cached value of the '{@link #getPrivileges() <em>Privileges</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPrivileges()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList privileges = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -213,6 +227,18 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			comments = new EObjectWithInverseResolvingEList(Comment.class, this, SQLSchemaPackage.SQL_OBJECT__COMMENTS, SQLSchemaPackage.COMMENT__SQL_OBJECT);
 		}
 		return comments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getPrivileges() {
+		if (privileges == null) {
+			privileges = new EObjectWithInverseResolvingEList(Privilege.class, this, SQLSchemaPackage.SQL_OBJECT__PRIVILEGES, SQLAccessControlPackage.PRIVILEGE__OBJECT);
+		}
+		return privileges;
 	}
 
 	/**
@@ -1386,6 +1412,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 		switch (featureID) {
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return ((InternalEList)getComments()).basicAdd(otherEnd, msgs);
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				return ((InternalEList)getPrivileges()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -1401,6 +1429,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return ((InternalEList)getDependencies()).basicRemove(otherEnd, msgs);
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return ((InternalEList)getComments()).basicRemove(otherEnd, msgs);
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				return ((InternalEList)getPrivileges()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1420,6 +1450,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return getLabel();
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return getComments();
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				return getPrivileges();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1445,6 +1477,10 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				getComments().clear();
 				getComments().addAll((Collection)newValue);
 				return;
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				getPrivileges().clear();
+				getPrivileges().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1468,6 +1504,9 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				getComments().clear();
 				return;
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				getPrivileges().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1487,6 +1526,8 @@ public abstract class SQLObjectImpl extends ENamedElementImpl implements SQLObje
 				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 			case SQLSchemaPackage.SQL_OBJECT__COMMENTS:
 				return comments != null && !comments.isEmpty();
+			case SQLSchemaPackage.SQL_OBJECT__PRIVILEGES:
+				return privileges != null && !privileges.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

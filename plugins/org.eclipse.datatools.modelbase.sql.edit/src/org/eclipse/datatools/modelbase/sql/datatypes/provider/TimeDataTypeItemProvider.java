@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TimeDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: TimeDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -79,8 +79,10 @@ public class TimeDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TimeDataType_fractionalSecondsPrecision_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_TimeDataType_fractionalSecondsPrecision_feature", "_UI_TimeDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getTimeDataType_FractionalSecondsPrecision(),
+				 SQLDataTypesPackage.Literals.TIME_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -99,8 +101,10 @@ public class TimeDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_TimeDataType_timeZone_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_TimeDataType_timeZone_feature", "_UI_TimeDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getTimeDataType_TimeZone(),
+				 SQLDataTypesPackage.Literals.TIME_DATA_TYPE__TIME_ZONE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -113,7 +117,7 @@ public class TimeDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/TimeDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TimeDataType")); //$NON-NLS-1$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IndexItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: IndexItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -87,8 +87,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_Schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_Schema_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_Schema(),
+				 SQLConstraintsPackage.Literals.INDEX__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -107,8 +109,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_clustered_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_clustered_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_Clustered(),
+				 SQLConstraintsPackage.Literals.INDEX__CLUSTERED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -127,8 +131,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_fillFactor_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_fillFactor_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_FillFactor(),
+				 SQLConstraintsPackage.Literals.INDEX__FILL_FACTOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -147,8 +153,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_unique_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_unique_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_Unique(),
+				 SQLConstraintsPackage.Literals.INDEX__UNIQUE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -167,8 +175,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_systemGenerated_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_systemGenerated_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_SystemGenerated(),
+				 SQLConstraintsPackage.Literals.INDEX__SYSTEM_GENERATED,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -187,8 +197,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_table_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_table_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_Table(),
+				 SQLConstraintsPackage.Literals.INDEX__TABLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -207,8 +219,10 @@ public class IndexItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Index_ForeignKey_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Index_ForeignKey_feature", "_UI_Index_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getIndex_ForeignKey(),
+				 SQLConstraintsPackage.Literals.INDEX__FOREIGN_KEY,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -225,8 +239,8 @@ public class IndexItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLConstraintsPackage.eINSTANCE.getIndex_Members());
-			childrenFeatures.add(SQLConstraintsPackage.eINSTANCE.getIndex_IncludedMembers());
+			childrenFeatures.add(SQLConstraintsPackage.Literals.INDEX__MEMBERS);
+			childrenFeatures.add(SQLConstraintsPackage.Literals.INDEX__INCLUDED_MEMBERS);
 		}
 		return childrenFeatures;
 	}
@@ -250,7 +264,7 @@ public class IndexItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Index"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Index")); //$NON-NLS-1$
 	}
 
 	/**
@@ -303,12 +317,12 @@ public class IndexItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLConstraintsPackage.eINSTANCE.getIndex_Members(),
+				(SQLConstraintsPackage.Literals.INDEX__MEMBERS,
 				 SQLConstraintsFactory.eINSTANCE.createIndexMember()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLConstraintsPackage.eINSTANCE.getIndex_IncludedMembers(),
+				(SQLConstraintsPackage.Literals.INDEX__INCLUDED_MEMBERS,
 				 SQLConstraintsFactory.eINSTANCE.createIndexMember()));
 	}
 
@@ -323,8 +337,8 @@ public class IndexItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == SQLConstraintsPackage.eINSTANCE.getIndex_Members() ||
-			childFeature == SQLConstraintsPackage.eINSTANCE.getIndex_IncludedMembers();
+			childFeature == SQLConstraintsPackage.Literals.INDEX__MEMBERS ||
+			childFeature == SQLConstraintsPackage.Literals.INDEX__INCLUDED_MEMBERS;
 
 		if (qualify) {
 			return getString

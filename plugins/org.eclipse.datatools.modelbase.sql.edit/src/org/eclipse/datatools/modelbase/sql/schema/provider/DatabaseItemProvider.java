@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DatabaseItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
+ * $Id: DatabaseItemProvider.java,v 1.3 2006/03/03 21:46:47 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -62,6 +62,7 @@ public class DatabaseItemProvider
 			addVersionPropertyDescriptor(object);
 			addSchemasPropertyDescriptor(object);
 			addEventsPropertyDescriptor(object);
+			addCatalogsPropertyDescriptor(object);
 			addAuthorizationIdsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -80,8 +81,10 @@ public class DatabaseItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Database_vendor_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Database_vendor_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Vendor(),
+				 SQLSchemaPackage.Literals.DATABASE__VENDOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -100,8 +103,10 @@ public class DatabaseItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Database_version_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Database_version_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Version(),
+				 SQLSchemaPackage.Literals.DATABASE__VERSION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -120,8 +125,10 @@ public class DatabaseItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Database_schemas_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Database_schemas_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Schemas(),
+				 SQLSchemaPackage.Literals.DATABASE__SCHEMAS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -140,7 +147,31 @@ public class DatabaseItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Database_events_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Database_events_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_Events(),
+				 SQLSchemaPackage.Literals.DATABASE__EVENTS,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Catalogs feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCatalogsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Database_catalogs_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_Database_catalogs_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.Literals.DATABASE__CATALOGS,
+				 true,
+				 false,
 				 true,
 				 null,
 				 null,
@@ -160,8 +191,10 @@ public class DatabaseItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Database_authorizationIds_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Database_authorizationIds_feature", "_UI_Database_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDatabase_AuthorizationIds(),
+				 SQLSchemaPackage.Literals.DATABASE__AUTHORIZATION_IDS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -174,7 +207,7 @@ public class DatabaseItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Database"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Database")); //$NON-NLS-1$
 	}
 
 	/**

@@ -84,6 +84,8 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 			case DatabaseDefinitionPackage.VIEW_DEFINITION: return createViewDefinition();
 			case DatabaseDefinitionPackage.FIELD_QUALIFIER_DEFINITION: return createFieldQualifierDefinition();
 			case DatabaseDefinitionPackage.DEBUGGER_DEFINITION: return createDebuggerDefinition();
+			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION: return createPrivilegedElementDefinition();
+			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION: return createPrivilegeDefinition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -337,6 +339,26 @@ public class DatabaseDefinitionFactoryImpl extends EFactoryImpl implements Datab
 	public DebuggerDefinition createDebuggerDefinition() {
 		DebuggerDefinitionImpl debuggerDefinition = new DebuggerDefinitionImpl();
 		return debuggerDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrivilegedElementDefinition createPrivilegedElementDefinition() {
+		PrivilegedElementDefinitionImpl privilegedElementDefinition = new PrivilegedElementDefinitionImpl();
+		return privilegedElementDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrivilegeDefinition createPrivilegeDefinition() {
+		PrivilegeDefinitionImpl privilegeDefinition = new PrivilegeDefinitionImpl();
+		return privilegeDefinition;
 	}
 
 	/**

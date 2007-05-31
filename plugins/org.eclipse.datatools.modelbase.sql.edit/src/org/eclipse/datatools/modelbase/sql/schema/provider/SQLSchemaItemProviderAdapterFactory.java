@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
+ * $Id: SQLSchemaItemProviderAdapterFactory.java,v 1.3 2006/03/03 21:46:47 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -202,6 +202,50 @@ public class SQLSchemaItemProviderAdapterFactory extends SQLSchemaAdapterFactory
 		}
 
 		return eventItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.schema.Comment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommentItemProvider commentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Comment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createCommentAdapter() {
+		if (commentItemProvider == null) {
+			commentItemProvider = new CommentItemProvider(this);
+		}
+
+		return commentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.schema.Catalog} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CatalogItemProvider catalogItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.schema.Catalog}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Adapter createCatalogAdapter() {
+		if (catalogItemProvider == null) {
+			catalogItemProvider = new CatalogItemProvider(this);
+		}
+
+		return catalogItemProvider;
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UserDefinedTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: UserDefinedTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -79,8 +79,10 @@ public class UserDefinedTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UserDefinedType_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UserDefinedType_schema_feature", "_UI_UserDefinedType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getUserDefinedType_Schema(),
+				 SQLDataTypesPackage.Literals.USER_DEFINED_TYPE__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -97,7 +99,7 @@ public class UserDefinedTypeItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getUserDefinedType_Ordering());
+			childrenFeatures.add(SQLDataTypesPackage.Literals.USER_DEFINED_TYPE__ORDERING);
 		}
 		return childrenFeatures;
 	}
@@ -145,7 +147,7 @@ public class UserDefinedTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getUserDefinedType_Ordering(),
+				(SQLDataTypesPackage.Literals.USER_DEFINED_TYPE__ORDERING,
 				 SQLDataTypesFactory.eINSTANCE.createUserDefinedTypeOrdering()));
 	}
 

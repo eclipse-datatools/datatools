@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BaseTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: BaseTableItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -77,8 +77,10 @@ public class BaseTableItemProvider
 				 getResourceLocator(),
 				 getString("_UI_BaseTable_referencingForeignKeys_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_BaseTable_referencingForeignKeys_feature", "_UI_BaseTable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLTablesPackage.eINSTANCE.getBaseTable_ReferencingForeignKeys(),
+				 SQLTablesPackage.Literals.BASE_TABLE__REFERENCING_FOREIGN_KEYS,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -95,7 +97,7 @@ public class BaseTableItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getBaseTable_Constraints());
+			childrenFeatures.add(SQLTablesPackage.Literals.BASE_TABLE__CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -107,7 +109,7 @@ public class BaseTableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/BaseTable"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BaseTable")); //$NON-NLS-1$
 	}
 
 	/**
@@ -153,22 +155,22 @@ public class BaseTableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getBaseTable_Constraints(),
+				(SQLTablesPackage.Literals.BASE_TABLE__CONSTRAINTS,
 				 SQLConstraintsFactory.eINSTANCE.createCheckConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getBaseTable_Constraints(),
+				(SQLTablesPackage.Literals.BASE_TABLE__CONSTRAINTS,
 				 SQLConstraintsFactory.eINSTANCE.createForeignKey()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getBaseTable_Constraints(),
+				(SQLTablesPackage.Literals.BASE_TABLE__CONSTRAINTS,
 				 SQLConstraintsFactory.eINSTANCE.createUniqueConstraint()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getBaseTable_Constraints(),
+				(SQLTablesPackage.Literals.BASE_TABLE__CONSTRAINTS,
 				 SQLConstraintsFactory.eINSTANCE.createPrimaryKey()));
 	}
 

@@ -130,6 +130,12 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 			public Object caseDebuggerDefinition(DebuggerDefinition object) {
 				return createDebuggerDefinitionAdapter();
 			}
+			public Object casePrivilegedElementDefinition(PrivilegedElementDefinition object) {
+				return createPrivilegedElementDefinitionAdapter();
+			}
+			public Object casePrivilegeDefinition(PrivilegeDefinition object) {
+				return createPrivilegeDefinitionAdapter();
+			}
 			public Object defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -411,6 +417,34 @@ public class DatabaseDefinitionAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDebuggerDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition <em>Privileged Element Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition
+	 * @generated
+	 */
+	public Adapter createPrivilegedElementDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition <em>Privilege Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition
+	 * @generated
+	 */
+	public Adapter createPrivilegeDefinitionAdapter() {
 		return null;
 	}
 

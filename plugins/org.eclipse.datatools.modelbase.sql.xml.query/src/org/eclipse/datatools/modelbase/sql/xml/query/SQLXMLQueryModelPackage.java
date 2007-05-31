@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLXMLQueryModelPackage.java,v 1.1 2005/12/22 22:21:18 bpayton Exp $
+ * $Id: SQLXMLQueryModelPackage.java,v 1.2 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -129,6 +129,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION__PRIVILEGES = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -544,6 +553,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_CONCAT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_CONCAT__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -979,6 +997,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_ITEM__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1068,6 +1095,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_NAMESPACE_DECLARATION_PREFIX__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_PREFIX__PRIVILEGES = XML_NAMESPACE_DECLARATION_ITEM__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
@@ -1170,6 +1206,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_NAMESPACE_DECLARATION_DEFAULT__COMMENTS = XML_NAMESPACE_DECLARATION_ITEM__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACE_DECLARATION_DEFAULT__PRIVILEGES = XML_NAMESPACE_DECLARATION_ITEM__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1268,6 +1313,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_ATTRIBUTE_DECLARATION_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_ATTRIBUTE_DECLARATION_ITEM__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -1656,6 +1710,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_ELEMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -2118,6 +2181,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_ITEM__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2504,6 +2576,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_FOREST__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_FOREST__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -2957,6 +3038,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_COMMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_COMMENT__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3390,6 +3480,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_DOCUMENT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_DOCUMENT__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3821,6 +3920,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_PARSE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PARSE__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -4265,6 +4373,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PI__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PI__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4705,6 +4822,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_QUERY__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_QUERY__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -5158,6 +5284,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_TEXT__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_TEXT__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5589,6 +5724,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_VALIDATE__COMMENTS = XML_VALUE_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE__PRIVILEGES = XML_VALUE_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -6033,6 +6177,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_EXPRESSION_CAST__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_EXPRESSION_CAST__PRIVILEGES = SQLQueryModelPackage.VALUE_EXPRESSION_CAST__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6421,6 +6574,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE__COMMENTS = SQLQueryModelPackage.PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE__PRIVILEGES = SQLQueryModelPackage.PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6609,6 +6771,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_PREDICATE_CONTENT__COMMENTS = XML_PREDICATE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_CONTENT__PRIVILEGES = XML_PREDICATE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6801,6 +6972,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_DOCUMENT__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_DOCUMENT__PRIVILEGES = XML_PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6989,6 +7169,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_PREDICATE_EXISTS__COMMENTS = XML_PREDICATE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_EXISTS__PRIVILEGES = XML_PREDICATE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -7199,6 +7388,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_PREDICATE_VALID__COMMENTS = XML_PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_PREDICATE_VALID__PRIVILEGES = XML_PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7389,6 +7587,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_QUERY_EXPRESSION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_EXPRESSION__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Xquery Expr Content</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7487,6 +7694,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_QUERY_ARGUMENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_ARGUMENT_LIST__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Passing Mechanism</b></em>' attribute.
@@ -7605,6 +7821,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_QUERY_ARGUMENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_QUERY_ARGUMENT_ITEM__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8002,6 +8227,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_SERIALIZE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION__PRIVILEGES = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8464,6 +8698,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_SERIALIZE_FUNCTION_TARGET__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION_TARGET__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8850,6 +9093,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_AGGREGATE_FUNCTION__COMMENTS = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_AGGREGATE_FUNCTION__PRIVILEGES = SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9285,6 +9537,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_CONCAT_CONTENT_ITEM__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9671,6 +9932,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_COMMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_COMMENT_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10061,6 +10331,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_DOCUMENT_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10449,6 +10728,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_AGGREGATE_SORT_SPECIFICATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_AGGREGATE_SORT_SPECIFICATION__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Aggregate Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10538,6 +10826,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_FOREST_CONTENT_ITEM__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10928,6 +11225,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_PARSE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PARSE_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11314,6 +11620,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_PI_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_PI_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -11704,6 +12019,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_FUNCTION__COMMENTS = SQLQueryModelPackage.TABLE_FUNCTION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_FUNCTION__PRIVILEGES = SQLQueryModelPackage.TABLE_FUNCTION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11883,6 +12207,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_TEXT_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_TEXT_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -12273,6 +12606,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_CONTENT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_CONTENT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12661,6 +13003,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_ITEM__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12741,6 +13092,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_TABLE_COLUMN_DEFINITION_REGULAR__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_REGULAR__PRIVILEGES = XML_TABLE_COLUMN_DEFINITION_ITEM__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
@@ -12861,6 +13221,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__COMMENTS = XML_TABLE_COLUMN_DEFINITION_ITEM__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_ORDINALITY__PRIVILEGES = XML_TABLE_COLUMN_DEFINITION_ITEM__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Function</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -12941,6 +13310,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
@@ -13032,6 +13410,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__PRIVILEGES = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
@@ -13152,6 +13539,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__COMMENTS = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_IDENTIFIER__PRIVILEGES = XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Value Function Validate</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13261,6 +13657,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAME__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Validate Element</b></em>' container reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13341,6 +13746,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT_NAMESPACE__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>No Namespace</b></em>' attribute.
@@ -13441,6 +13855,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_NAMESPACES_DECLARATION__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_NAMESPACES_DECLARATION__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Namespace Decltem List</b></em>' containment reference list.
@@ -13589,6 +14012,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_ELEMENT_CONTENT_LIST__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Null Handling Option</b></em>' attribute.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13687,6 +14119,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_VALUE_FUNCTION_QUERY_RETURNING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_QUERY_RETURNING__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Returning Option</b></em>' attribute.
@@ -13789,6 +14230,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_VALUE_FUNCTION_VALIDATE_ELEMENT__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Validate Element Namespace</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -13887,6 +14337,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_TABLE_COLUMN_DEFINITION_DEFAULT__COMMENTS = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_TABLE_COLUMN_DEFINITION_DEFAULT__PRIVILEGES = SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -14275,6 +14734,15 @@ public interface SQLXMLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int XML_SERIALIZE_FUNCTION_ENCODING__COMMENTS = SQLQueryModelPackage.SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_SERIALIZE_FUNCTION_ENCODING__PRIVILEGES = SQLQueryModelPackage.SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Encoding Name</b></em>' attribute.

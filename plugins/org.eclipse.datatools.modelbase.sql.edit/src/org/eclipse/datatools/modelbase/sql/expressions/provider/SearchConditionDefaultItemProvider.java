@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionDefaultItemProvider.java,v 1.1 2005/08/02 22:56:32 ledunnel Exp $
+ * $Id: SearchConditionDefaultItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.expressions.provider;
 
@@ -79,8 +79,10 @@ public class SearchConditionDefaultItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SearchConditionDefault_SQL_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SearchConditionDefault_SQL_feature", "_UI_SearchConditionDefault_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLExpressionsPackage.eINSTANCE.getSearchConditionDefault_SQL(),
+				 SQLExpressionsPackage.Literals.SEARCH_CONDITION_DEFAULT__SQL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -93,7 +95,7 @@ public class SearchConditionDefaultItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/SearchConditionDefault"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SearchConditionDefault")); //$NON-NLS-1$
 	}
 
 	/**

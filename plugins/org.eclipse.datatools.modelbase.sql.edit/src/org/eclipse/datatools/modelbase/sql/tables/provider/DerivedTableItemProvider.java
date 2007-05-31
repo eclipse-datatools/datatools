@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DerivedTableItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: DerivedTableItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.tables.provider;
 
@@ -73,7 +73,7 @@ public class DerivedTableItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLTablesPackage.eINSTANCE.getDerivedTable_QueryExpression());
+			childrenFeatures.add(SQLTablesPackage.Literals.DERIVED_TABLE__QUERY_EXPRESSION);
 		}
 		return childrenFeatures;
 	}
@@ -85,7 +85,7 @@ public class DerivedTableItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/DerivedTable"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DerivedTable")); //$NON-NLS-1$
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class DerivedTableItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLTablesPackage.eINSTANCE.getDerivedTable_QueryExpression(),
+				(SQLTablesPackage.Literals.DERIVED_TABLE__QUERY_EXPRESSION,
 				 SQLExpressionsFactory.eINSTANCE.createQueryExpressionDefault()));
 	}
 

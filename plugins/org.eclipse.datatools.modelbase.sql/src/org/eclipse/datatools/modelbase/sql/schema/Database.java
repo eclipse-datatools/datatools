@@ -149,6 +149,7 @@ public interface Database extends SQLObject {
 	/**
 	 * Returns the value of the '<em><b>Authorization Ids</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getDatabase <em>Database</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Authorization Ids</em>' reference list isn't clear,
@@ -157,7 +158,8 @@ public interface Database extends SQLObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Authorization Ids</em>' reference list.
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getDatabase_AuthorizationIds()
-	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier"
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getDatabase
+	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier" opposite="Database"
 	 * @generated
 	 */
 	EList getAuthorizationIds();

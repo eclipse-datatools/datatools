@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DependencyItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: DependencyItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -77,8 +77,10 @@ public class DependencyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Dependency_targetEnd_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_targetEnd_feature", "_UI_Dependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDependency_TargetEnd(),
+				 SQLSchemaPackage.Literals.DEPENDENCY__TARGET_END,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -97,8 +99,10 @@ public class DependencyItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Dependency_dependencyType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Dependency_dependencyType_feature", "_UI_Dependency_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getDependency_DependencyType(),
+				 SQLSchemaPackage.Literals.DEPENDENCY__DEPENDENCY_TYPE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -111,7 +115,7 @@ public class DependencyItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Dependency"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Dependency")); //$NON-NLS-1$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FunctionItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: FunctionItemProvider.java,v 1.3 2006/10/18 18:37:51 avainchte Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -84,8 +84,10 @@ public class FunctionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Function_nullCall_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_nullCall_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getFunction_NullCall(),
+				 SQLRoutinesPackage.Literals.FUNCTION__NULL_CALL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -104,8 +106,10 @@ public class FunctionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Function_static_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_static_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getFunction_Static(),
+				 SQLRoutinesPackage.Literals.FUNCTION__STATIC,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -124,8 +128,10 @@ public class FunctionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Function_transformGroup_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_transformGroup_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getFunction_TransformGroup(),
+				 SQLRoutinesPackage.Literals.FUNCTION__TRANSFORM_GROUP,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -144,8 +150,10 @@ public class FunctionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Function_typePreserving_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_typePreserving_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getFunction_TypePreserving(),
+				 SQLRoutinesPackage.Literals.FUNCTION__TYPE_PRESERVING,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -164,8 +172,10 @@ public class FunctionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Function_mutator_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Function_mutator_feature", "_UI_Function_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getFunction_Mutator(),
+				 SQLRoutinesPackage.Literals.FUNCTION__MUTATOR,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -182,9 +192,9 @@ public class FunctionItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnTable());
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar());
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast());
+			childrenFeatures.add(SQLRoutinesPackage.Literals.FUNCTION__RETURN_TABLE);
+			childrenFeatures.add(SQLRoutinesPackage.Literals.FUNCTION__RETURN_SCALAR);
+			childrenFeatures.add(SQLRoutinesPackage.Literals.FUNCTION__RETURN_CAST);
 		}
 		return childrenFeatures;
 	}
@@ -208,7 +218,7 @@ public class FunctionItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Function"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Function")); //$NON-NLS-1$
 	}
 
 	/**
@@ -263,17 +273,17 @@ public class FunctionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnTable(),
+				(SQLRoutinesPackage.Literals.FUNCTION__RETURN_TABLE,
 				 SQLRoutinesFactory.eINSTANCE.createRoutineResultTable()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar(),
+				(SQLRoutinesPackage.Literals.FUNCTION__RETURN_SCALAR,
 				 SQLRoutinesFactory.eINSTANCE.createParameter()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast(),
+				(SQLRoutinesPackage.Literals.FUNCTION__RETURN_CAST,
 				 SQLRoutinesFactory.eINSTANCE.createParameter()));
 	}
 
@@ -288,9 +298,9 @@ public class FunctionItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
+			childFeature == SQLRoutinesPackage.Literals.ROUTINE__PARAMETERS ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_SCALAR ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_CAST;
 
 		if (qualify) {
 			return getString

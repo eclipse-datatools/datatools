@@ -12,6 +12,8 @@ package org.eclipse.datatools.modelbase.sql.accesscontrol;
 
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Privilege</b></em>'.
@@ -26,7 +28,10 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#isGrantable <em>Grantable</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getAction <em>Action</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#isWithHierarchy <em>With Hierarchy</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantor <em>Grantor</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantee <em>Grantee</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getActionObjects <em>Action Objects</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getObject <em>Object</em>}</li>
  * </ul>
  * </p>
@@ -89,6 +94,32 @@ public interface Privilege extends SQLObject {
 	void setAction(String value);
 
 	/**
+	 * Returns the value of the '<em><b>With Hierarchy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>With Hierarchy</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>With Hierarchy</em>' attribute.
+	 * @see #setWithHierarchy(boolean)
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_WithHierarchy()
+	 * @model
+	 * @generated
+	 */
+	boolean isWithHierarchy();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#isWithHierarchy <em>With Hierarchy</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>With Hierarchy</em>' attribute.
+	 * @see #isWithHierarchy()
+	 * @generated
+	 */
+	void setWithHierarchy(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Grantor</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getGrantedPrivilege <em>Granted Privilege</em>}'.
 	 * <!-- begin-user-doc -->
@@ -117,7 +148,52 @@ public interface Privilege extends SQLObject {
 	void setGrantor(AuthorizationIdentifier value);
 
 	/**
+	 * Returns the value of the '<em><b>Grantee</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getReceivedPrivilege <em>Received Privilege</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Grantee</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grantee</em>' container reference.
+	 * @see #setGrantee(AuthorizationIdentifier)
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_Grantee()
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getReceivedPrivilege
+	 * @model opposite="receivedPrivilege"
+	 * @generated
+	 */
+	AuthorizationIdentifier getGrantee();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantee <em>Grantee</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grantee</em>' container reference.
+	 * @see #getGrantee()
+	 * @generated
+	 */
+	void setGrantee(AuthorizationIdentifier value);
+
+	/**
+	 * Returns the value of the '<em><b>Action Objects</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.SQLObject}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Action Objects</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Action Objects</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_ActionObjects()
+	 * @model type="org.eclipse.datatools.modelbase.sql.schema.SQLObject"
+	 * @generated
+	 */
+	EList getActionObjects();
+
+	/**
 	 * Returns the value of the '<em><b>Object</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object</em>' reference isn't clear,
@@ -127,7 +203,8 @@ public interface Privilege extends SQLObject {
 	 * @return the value of the '<em>Object</em>' reference.
 	 * @see #setObject(SQLObject)
 	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage#getPrivilege_Object()
-	 * @model required="true"
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges
+	 * @model opposite="privileges" required="true"
 	 * @generated
 	 */
 	SQLObject getObject();

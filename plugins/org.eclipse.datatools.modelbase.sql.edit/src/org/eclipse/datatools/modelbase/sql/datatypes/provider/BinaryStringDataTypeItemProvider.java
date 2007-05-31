@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BinaryStringDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: BinaryStringDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -78,8 +78,10 @@ public class BinaryStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_BinaryStringDataType_length_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_BinaryStringDataType_length_feature", "_UI_BinaryStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getBinaryStringDataType_Length(),
+				 SQLDataTypesPackage.Literals.BINARY_STRING_DATA_TYPE__LENGTH,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -92,7 +94,7 @@ public class BinaryStringDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/BinaryStringDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/BinaryStringDataType")); //$NON-NLS-1$
 	}
 
 	/**

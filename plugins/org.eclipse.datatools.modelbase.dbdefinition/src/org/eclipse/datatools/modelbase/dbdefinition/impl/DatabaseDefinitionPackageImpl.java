@@ -29,6 +29,8 @@ import org.eclipse.datatools.modelbase.dbdefinition.ParentDeleteDRIRuleType;
 import org.eclipse.datatools.modelbase.dbdefinition.ParentUpdateDRIRuleType;
 import org.eclipse.datatools.modelbase.dbdefinition.PercentFreeTerminology;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegeDefinition;
+import org.eclipse.datatools.modelbase.dbdefinition.PrivilegedElementDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ProcedureType;
 import org.eclipse.datatools.modelbase.dbdefinition.QueryDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.SQLSyntaxDefinition;
@@ -220,6 +222,20 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass privilegedElementDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass privilegeDefinitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum checkOptionEEnum = null;
 
 	/**
@@ -372,15 +388,6 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * @generated
 	 */
 	public EAttribute getDatabaseVendorDefinition_Vendor() {
-		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(17);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDatabaseVendorDefinition_Version() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(18);
 	}
 
@@ -389,7 +396,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_ConstraintsSupported() {
+	public EAttribute getDatabaseVendorDefinition_Version() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(19);
 	}
 
@@ -398,7 +405,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MaximumIdentifierLength() {
+	public EAttribute getDatabaseVendorDefinition_ConstraintsSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(20);
 	}
 
@@ -407,7 +414,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_TriggerSupported() {
+	public EAttribute getDatabaseVendorDefinition_MaximumIdentifierLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(21);
 	}
 
@@ -416,7 +423,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SnapshotViewSupported() {
+	public EAttribute getDatabaseVendorDefinition_TriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(22);
 	}
 
@@ -425,7 +432,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_JoinSupported() {
+	public EAttribute getDatabaseVendorDefinition_SnapshotViewSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(23);
 	}
 
@@ -434,7 +441,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_ViewTriggerSupported() {
+	public EAttribute getDatabaseVendorDefinition_JoinSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(24);
 	}
 
@@ -443,7 +450,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_TablespacesSupported() {
+	public EAttribute getDatabaseVendorDefinition_ViewTriggerSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(25);
 	}
 
@@ -452,7 +459,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MaximumCommentLength() {
+	public EAttribute getDatabaseVendorDefinition_TablespacesSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(26);
 	}
 
@@ -461,7 +468,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SequenceSupported() {
+	public EAttribute getDatabaseVendorDefinition_MaximumCommentLength() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(27);
 	}
 
@@ -470,7 +477,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MQTSupported() {
+	public EAttribute getDatabaseVendorDefinition_SequenceSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(28);
 	}
 
@@ -479,7 +486,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SchemaSupported() {
+	public EAttribute getDatabaseVendorDefinition_MQTSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(29);
 	}
 
@@ -488,7 +495,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_AliasSupported() {
+	public EAttribute getDatabaseVendorDefinition_SchemaSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(30);
 	}
 
@@ -497,7 +504,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SynonymSupported() {
+	public EAttribute getDatabaseVendorDefinition_AliasSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(31);
 	}
 
@@ -506,7 +513,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_UserDefinedTypeSupported() {
+	public EAttribute getDatabaseVendorDefinition_SynonymSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(32);
 	}
 
@@ -515,7 +522,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_DomainSupported() {
+	public EAttribute getDatabaseVendorDefinition_UserDefinedTypeSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(33);
 	}
 
@@ -524,7 +531,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SQLStatementSupported() {
+	public EAttribute getDatabaseVendorDefinition_DomainSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(34);
 	}
 
@@ -533,7 +540,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_NicknameSupported() {
+	public EAttribute getDatabaseVendorDefinition_SQLStatementSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(35);
 	}
 
@@ -542,7 +549,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_QuotedDMLSupported() {
+	public EAttribute getDatabaseVendorDefinition_NicknameSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(36);
 	}
 
@@ -551,7 +558,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_QuotedDDLSupported() {
+	public EAttribute getDatabaseVendorDefinition_QuotedDMLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(37);
 	}
 
@@ -560,7 +567,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_XmlSupported() {
+	public EAttribute getDatabaseVendorDefinition_QuotedDDLSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(38);
 	}
 
@@ -569,7 +576,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_MQTIndexSupported() {
+	public EAttribute getDatabaseVendorDefinition_XmlSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(39);
 	}
 
@@ -578,7 +585,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_EventSupported() {
+	public EAttribute getDatabaseVendorDefinition_MQTIndexSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(40);
 	}
 
@@ -587,7 +594,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_SqlUDFSupported() {
+	public EAttribute getDatabaseVendorDefinition_EventSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(41);
 	}
 
@@ -596,8 +603,71 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDatabaseVendorDefinition_StoredProcedureSupported() {
+	public EAttribute getDatabaseVendorDefinition_SqlUDFSupported() {
 		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(42);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_StoredProcedureSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(43);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_PackageSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(44);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_AuthorizationIdentifierSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(45);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_RoleSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(46);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_GroupSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(47);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_UserSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(48);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDatabaseVendorDefinition_RoleAuthorizationSupported() {
+		return (EAttribute)databaseVendorDefinitionEClass.getEStructuralFeatures().get(49);
 	}
 
 	/**
@@ -751,6 +821,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 */
 	public EReference getDatabaseVendorDefinition_DebuggerDefinition() {
 		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDatabaseVendorDefinition_PrivilegedElementDefinitions() {
+		return (EReference)databaseVendorDefinitionEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -2297,6 +2376,60 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPrivilegedElementDefinition() {
+		return privilegedElementDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPrivilegedElementDefinition_PrivilegeDefinitions() {
+		return (EReference)privilegedElementDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPrivilegedElementDefinition_Name() {
+		return (EAttribute)privilegedElementDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPrivilegeDefinition() {
+		return privilegeDefinitionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPrivilegeDefinition_ActionElementDefinitions() {
+		return (EReference)privilegeDefinitionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPrivilegeDefinition_Name() {
+		return (EAttribute)privilegeDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getSequenceDefinition_DefaultDataTypeDefinition() {
 		return (EReference)sequenceDefinitionEClass.getEStructuralFeatures().get(1);
 	}
@@ -2428,6 +2561,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__SCHEMA_DEFINITION);
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VIEW_DEFINITION);
 		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__DEBUGGER_DEFINITION);
+		createEReference(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__PRIVILEGED_ELEMENT_DEFINITIONS);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VENDOR);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__VERSION);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__CONSTRAINTS_SUPPORTED);
@@ -2454,6 +2588,12 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__EVENT_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__SQL_UDF_SUPPORTED);
 		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__STORED_PROCEDURE_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__PACKAGE_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__AUTHORIZATION_IDENTIFIER_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__ROLE_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__GROUP_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__USER_SUPPORTED);
+		createEAttribute(databaseVendorDefinitionEClass, DATABASE_VENDOR_DEFINITION__ROLE_AUTHORIZATION_SUPPORTED);
 
 		predefinedDataTypeDefinitionEClass = createEClass(PREDEFINED_DATA_TYPE_DEFINITION);
 		createEReference(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION);
@@ -2645,6 +2785,14 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		debuggerDefinitionEClass = createEClass(DEBUGGER_DEFINITION);
 		createEAttribute(debuggerDefinitionEClass, DEBUGGER_DEFINITION__CONDITION_SUPPORTED);
 
+		privilegedElementDefinitionEClass = createEClass(PRIVILEGED_ELEMENT_DEFINITION);
+		createEReference(privilegedElementDefinitionEClass, PRIVILEGED_ELEMENT_DEFINITION__PRIVILEGE_DEFINITIONS);
+		createEAttribute(privilegedElementDefinitionEClass, PRIVILEGED_ELEMENT_DEFINITION__NAME);
+
+		privilegeDefinitionEClass = createEClass(PRIVILEGE_DEFINITION);
+		createEReference(privilegeDefinitionEClass, PRIVILEGE_DEFINITION__ACTION_ELEMENT_DEFINITIONS);
+		createEAttribute(privilegeDefinitionEClass, PRIVILEGE_DEFINITION__NAME);
+
 		// Create enums
 		checkOptionEEnum = createEEnum(CHECK_OPTION);
 		languageTypeEEnum = createEEnum(LANGUAGE_TYPE);
@@ -2704,6 +2852,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEReference(getDatabaseVendorDefinition_SchemaDefinition(), this.getSchemaDefinition(), null, "schemaDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabaseVendorDefinition_ViewDefinition(), this.getViewDefinition(), null, "viewDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEReference(getDatabaseVendorDefinition_DebuggerDefinition(), this.getDebuggerDefinition(), null, "debuggerDefinition", null, 1, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getDatabaseVendorDefinition_PrivilegedElementDefinitions(), this.getPrivilegedElementDefinition(), null, "privilegedElementDefinitions", null, 0, -1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_Vendor(), ecorePackage.getEString(), "vendor", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_Version(), ecorePackage.getEString(), "version", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_ConstraintsSupported(), ecorePackage.getEBoolean(), "constraintsSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -2730,6 +2879,12 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getDatabaseVendorDefinition_EventSupported(), ecorePackage.getEBoolean(), "eventSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_SqlUDFSupported(), ecorePackage.getEBoolean(), "sqlUDFSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDatabaseVendorDefinition_StoredProcedureSupported(), ecorePackage.getEBoolean(), "storedProcedureSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getDatabaseVendorDefinition_PackageSupported(), ecorePackage.getEBoolean(), "packageSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDatabaseVendorDefinition_AuthorizationIdentifierSupported(), ecorePackage.getEBoolean(), "authorizationIdentifierSupported", "true", 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEAttribute(getDatabaseVendorDefinition_RoleSupported(), ecorePackage.getEBoolean(), "roleSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDatabaseVendorDefinition_GroupSupported(), ecorePackage.getEBoolean(), "groupSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDatabaseVendorDefinition_UserSupported(), ecorePackage.getEBoolean(), "userSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDatabaseVendorDefinition_RoleAuthorizationSupported(), ecorePackage.getEBoolean(), "roleAuthorizationSupported", null, 0, 1, DatabaseVendorDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(predefinedDataTypeDefinitionEClass, PredefinedDataTypeDefinition.class, "PredefinedDataTypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getPredefinedDataTypeDefinition_LeadingFieldQualifierDefinition(), this.getFieldQualifierDefinition(), null, "leadingFieldQualifierDefinition", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -2920,6 +3075,14 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 
 		initEClass(debuggerDefinitionEClass, DebuggerDefinition.class, "DebuggerDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDebuggerDefinition_ConditionSupported(), ecorePackage.getEBoolean(), "conditionSupported", null, 0, 1, DebuggerDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(privilegedElementDefinitionEClass, PrivilegedElementDefinition.class, "PrivilegedElementDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPrivilegedElementDefinition_PrivilegeDefinitions(), this.getPrivilegeDefinition(), null, "privilegeDefinitions", null, 0, -1, PrivilegedElementDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPrivilegedElementDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PrivilegedElementDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+		initEClass(privilegeDefinitionEClass, PrivilegeDefinition.class, "PrivilegeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getPrivilegeDefinition_ActionElementDefinitions(), this.getPrivilegedElementDefinition(), null, "actionElementDefinitions", null, 0, -1, PrivilegeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPrivilegeDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, PrivilegeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		// Initialize enums and add enum literals
 		initEEnum(checkOptionEEnum, CheckOption.class, "CheckOption"); //$NON-NLS-1$

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RoleItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: RoleItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -77,8 +77,10 @@ public class RoleItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Role_roleAuthorization_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Role_roleAuthorization_feature", "_UI_Role_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getRole_RoleAuthorization(),
+				 SQLAccessControlPackage.Literals.ROLE__ROLE_AUTHORIZATION,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -91,7 +93,7 @@ public class RoleItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Role"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Role")); //$NON-NLS-1$
 	}
 
 	/**

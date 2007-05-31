@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackage.java,v 1.1 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: SQLQueryModelPackage.java,v 1.2 2007/02/08 17:00:24 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -127,6 +127,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SQL_QUERY_OBJECT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SQL_QUERY_OBJECT__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The number of structural features of the '<em>SQL Query Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -198,6 +207,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_STATEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_STATEMENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The number of structural features of the '<em>Query Statement</em>' class.
@@ -273,6 +291,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_CHANGE_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_CHANGE_STATEMENT__PRIVILEGES = QUERY_STATEMENT__PRIVILEGES;
+
+	/**
 	 * The number of structural features of the '<em>Query Change Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -344,6 +371,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_DELETE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_DELETE_STATEMENT__PRIVILEGES = QUERY_CHANGE_STATEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Where Current Of Clause</b></em>' containment reference.
@@ -444,6 +480,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_INSERT_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_INSERT_STATEMENT__PRIVILEGES = QUERY_CHANGE_STATEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Source Query</b></em>' containment reference.
@@ -555,6 +600,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_SELECT_STATEMENT__COMMENTS = QUERY_STATEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SELECT_STATEMENT__PRIVILEGES = QUERY_STATEMENT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Expr</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -644,6 +698,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_UPDATE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_UPDATE_STATEMENT__PRIVILEGES = QUERY_CHANGE_STATEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Assignment Clause</b></em>' containment reference list.
@@ -755,6 +818,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_ASSIGNMENT_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_ASSIGNMENT_EXPRESSION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Update Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -855,6 +927,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int CURSOR_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CURSOR_REFERENCE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Update Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -944,6 +1025,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_SEARCH_CONDITION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SEARCH_CONDITION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -1109,6 +1199,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_REFERENCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_REFERENCE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1216,6 +1315,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TABLE_EXPRESSION__COMMENTS = TABLE_REFERENCE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_EXPRESSION__PRIVILEGES = TABLE_REFERENCE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -1361,6 +1469,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_EXPRESSION_BODY__COMMENTS = TABLE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_EXPRESSION_BODY__PRIVILEGES = TABLE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -1560,6 +1677,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_VALUE_EXPRESSION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_VALUE_EXPRESSION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -1932,6 +2058,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_EXPRESSION_ROOT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_EXPRESSION_ROOT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Insert Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2086,6 +2221,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUES_ROW__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUES_ROW__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Insert Statement</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2184,6 +2328,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_VALUES__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_VALUES__PRIVILEGES = QUERY_EXPRESSION_BODY__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -2394,6 +2547,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_JOINED__COMMENTS = TABLE_REFERENCE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_JOINED__PRIVILEGES = TABLE_REFERENCE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2539,6 +2701,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int WITH_TABLE_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_TABLE_SPECIFICATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Expression Root</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2646,6 +2817,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE__PRIVILEGES = QUERY_SEARCH_CONDITION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -2838,6 +3018,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SEARCH_CONDITION_COMBINED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_CONDITION_COMBINED__PRIVILEGES = QUERY_SEARCH_CONDITION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3028,6 +3217,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_SPECIFICATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3135,6 +3333,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ORDER_BY_VALUE_EXPRESSION__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_VALUE_EXPRESSION__PRIVILEGES = ORDER_BY_SPECIFICATION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
@@ -3253,6 +3460,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_COMBINED__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_COMBINED__PRIVILEGES = QUERY_EXPRESSION_BODY__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -3479,6 +3695,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int QUERY_SELECT__COMMENTS = QUERY_EXPRESSION_BODY__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_SELECT__PRIVILEGES = QUERY_EXPRESSION_BODY__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -3743,6 +3968,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SPECIFICATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3825,6 +4059,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_RESULT_SPECIFICATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_RESULT_SPECIFICATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3905,6 +4148,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULT_TABLE_ALL_COLUMNS__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_TABLE_ALL_COLUMNS__PRIVILEGES = QUERY_RESULT_SPECIFICATION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
@@ -3996,6 +4248,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int RESULT_COLUMN__COMMENTS = QUERY_RESULT_SPECIFICATION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_COLUMN__PRIVILEGES = QUERY_RESULT_SPECIFICATION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
@@ -4096,6 +4357,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE_BASIC__COMMENTS = PREDICATE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_BASIC__PRIVILEGES = PREDICATE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4315,6 +4585,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED__PRIVILEGES = PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4503,6 +4782,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE_BETWEEN__COMMENTS = PREDICATE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_BETWEEN__PRIVILEGES = PREDICATE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -4731,6 +5019,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_EXISTS__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_EXISTS__PRIVILEGES = PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4930,6 +5227,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN__PRIVILEGES = PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5127,6 +5433,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE_LIKE__COMMENTS = PREDICATE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_LIKE__PRIVILEGES = PREDICATE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5355,6 +5670,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IS_NULL__COMMENTS = PREDICATE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IS_NULL__PRIVILEGES = PREDICATE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5561,6 +5885,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE_QUANTIFIED_VALUE_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED_VALUE_SELECT__PRIVILEGES = PREDICATE_QUANTIFIED__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -5789,6 +6122,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_QUANTIFIED_ROW_SELECT__COMMENTS = PREDICATE_QUANTIFIED__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_QUANTIFIED_ROW_SELECT__PRIVILEGES = PREDICATE_QUANTIFIED__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6004,6 +6346,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDICATE_IN_VALUE_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_SELECT__PRIVILEGES = PREDICATE_IN__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -6223,6 +6574,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_LIST__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_LIST__PRIVILEGES = PREDICATE_IN__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6440,6 +6800,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int PREDICATE_IN_VALUE_ROW_SELECT__COMMENTS = PREDICATE_IN__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_IN_VALUE_ROW_SELECT__PRIVILEGES = PREDICATE_IN__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6655,6 +7024,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_ATOMIC__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_ATOMIC__PRIVILEGES = QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7025,6 +7403,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_SIMPLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_SIMPLE__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7404,6 +7791,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_COLUMN__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_COLUMN__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -7821,6 +8217,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_VARIABLE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_VARIABLE__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8200,6 +8605,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_SCALAR_SELECT__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_SCALAR_SELECT__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8577,6 +8991,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_LABELED_DURATION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_LABELED_DURATION__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -8967,6 +9390,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9344,6 +9776,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CAST__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CAST__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -9725,6 +10166,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_NULL_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_NULL_VALUE__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10095,6 +10545,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_DEFAULT_VALUE__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_DEFAULT_VALUE__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10463,6 +10922,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_FUNCTION__COMMENTS = VALUE_EXPRESSION_ATOMIC__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_FUNCTION__PRIVILEGES = VALUE_EXPRESSION_ATOMIC__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -10880,6 +11348,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COMBINED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_COMBINED__PRIVILEGES = QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11277,6 +11754,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS__PRIVILEGES = GROUPING_SPECIFICATION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11366,6 +11852,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUPING__COMMENTS = GROUPING_SPECIFICATION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING__PRIVILEGES = GROUPING_SPECIFICATION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
@@ -11459,6 +11954,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_SETS_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11539,6 +12043,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUPING_SETS_ELEMENT_SUBLIST__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT_SUBLIST__PRIVILEGES = GROUPING_SETS_ELEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
@@ -11630,6 +12143,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUPING_SETS_ELEMENT_EXPRESSION__COMMENTS = GROUPING_SETS_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_SETS_ELEMENT_EXPRESSION__PRIVILEGES = GROUPING_SETS_ELEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Grouping Sets</b></em>' container reference.
@@ -11730,6 +12252,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUPER_GROUP__COMMENTS = GROUPING__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP__PRIVILEGES = GROUPING__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
@@ -11841,6 +12372,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int GROUPING_EXPRESSION__COMMENTS = GROUPING__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUPING_EXPRESSION__PRIVILEGES = GROUPING__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Query Select</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11950,6 +12490,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int SUPER_GROUP_ELEMENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12030,6 +12579,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUPER_GROUP_ELEMENT_SUBLIST__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT_SUBLIST__PRIVILEGES = SUPER_GROUP_ELEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
@@ -12121,6 +12679,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUPER_GROUP_ELEMENT_EXPRESSION__COMMENTS = SUPER_GROUP_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_GROUP_ELEMENT_EXPRESSION__PRIVILEGES = SUPER_GROUP_ELEMENT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Super Group</b></em>' container reference.
@@ -12221,6 +12788,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE_SEARCH__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SEARCH__PRIVILEGES = VALUE_EXPRESSION_CASE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -12609,6 +13185,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE_SIMPLE__COMMENTS = VALUE_EXPRESSION_CASE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SIMPLE__PRIVILEGES = VALUE_EXPRESSION_CASE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -13008,6 +13593,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_ELSE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_ELSE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Value Expr Case</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13097,6 +13691,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SEARCH_CONTENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
@@ -13199,6 +13802,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Value Expr Case Simple</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13297,6 +13909,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TABLE_IN_DATABASE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_IN_DATABASE__PRIVILEGES = TABLE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -13489,6 +14110,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_FUNCTION__COMMENTS = TABLE_EXPRESSION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_FUNCTION__PRIVILEGES = TABLE_EXPRESSION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13634,6 +14264,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int COLUMN_NAME__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN_NAME__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Correlation</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13723,6 +14362,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int TABLE_NESTED__COMMENTS = TABLE_REFERENCE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_NESTED__PRIVILEGES = TABLE_REFERENCE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.
@@ -13843,6 +14491,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_MERGE_STATEMENT__COMMENTS = QUERY_CHANGE_STATEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_MERGE_STATEMENT__PRIVILEGES = QUERY_CHANGE_STATEMENT__PRIVILEGES;
+
+	/**
 	 * The number of structural features of the '<em>Query Merge Statement</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13914,6 +14571,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEARCH_CONDITION_NESTED__COMMENTS = QUERY_SEARCH_CONDITION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEARCH_CONDITION_NESTED__PRIVILEGES = QUERY_SEARCH_CONDITION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Negated Condition</b></em>' attribute.
@@ -14086,6 +14752,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_EXPRESSION_NESTED__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_EXPRESSION_NESTED__PRIVILEGES = QUERY_VALUE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
@@ -14467,6 +15142,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int ORDER_BY_ORDINAL__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_ORDINAL__PRIVILEGES = ORDER_BY_SPECIFICATION__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14585,6 +15269,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_CORRELATION__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CORRELATION__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Table Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14676,6 +15369,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_SOURCE__COMMENTS = SQL_QUERY_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE__PRIVILEGES = SQL_QUERY_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14756,6 +15458,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int UPDATE_SOURCE_EXPR_LIST__COMMENTS = UPDATE_SOURCE__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE_EXPR_LIST__PRIVILEGES = UPDATE_SOURCE__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
@@ -14849,6 +15560,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	int UPDATE_SOURCE_QUERY__COMMENTS = UPDATE_SOURCE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPDATE_SOURCE_QUERY__PRIVILEGES = UPDATE_SOURCE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Update Assignment Expr</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14938,6 +15658,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ORDER_BY_RESULT_COLUMN__COMMENTS = ORDER_BY_SPECIFICATION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDER_BY_RESULT_COLUMN__PRIVILEGES = ORDER_BY_SPECIFICATION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Descending</b></em>' attribute.
@@ -15056,6 +15785,15 @@ public interface SQLQueryModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int WITH_TABLE_REFERENCE__COMMENTS = TABLE_EXPRESSION__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_TABLE_REFERENCE__PRIVILEGES = TABLE_EXPRESSION__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Table Joined Right</b></em>' container reference.

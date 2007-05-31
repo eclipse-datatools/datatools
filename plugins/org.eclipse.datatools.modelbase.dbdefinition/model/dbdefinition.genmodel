@@ -99,6 +99,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/schemaDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/viewDefinition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/debuggerDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//DatabaseVendorDefinition/privilegedElementDefinitions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/vendor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/version"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/constraintsSupported"/>
@@ -125,6 +126,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/eventSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/sqlUDFSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/storedProcedureSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/packageSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/authorizationIdentifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/groupSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/userSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DatabaseVendorDefinition/roleAuthorizationSupported"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//PredefinedDataTypeDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierDefinition"/>
@@ -315,6 +322,14 @@
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//DebuggerDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//DebuggerDefinition/conditionSupported"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//PrivilegedElementDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PrivilegedElementDefinition/privilegeDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PrivilegedElementDefinition/name"/>
+    </genClasses>
+    <genClasses ecoreClass="dbdefinition.ecore#//PrivilegeDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference dbdefinition.ecore#//PrivilegeDefinition/actionElementDefinitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PrivilegeDefinition/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntegerDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: IntegerDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -67,7 +67,7 @@ public class IntegerDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/IntegerDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IntegerDataType")); //$NON-NLS-1$
 	}
 
 	/**

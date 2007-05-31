@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProcedureItemProvider.java,v 1.1 2005/08/02 22:56:29 ledunnel Exp $
+ * $Id: ProcedureItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -80,8 +80,10 @@ public class ProcedureItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Procedure_maxResultSets_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Procedure_maxResultSets_feature", "_UI_Procedure_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getProcedure_MaxResultSets(),
+				 SQLRoutinesPackage.Literals.PROCEDURE__MAX_RESULT_SETS,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -100,8 +102,10 @@ public class ProcedureItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Procedure_oldSavePoint_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Procedure_oldSavePoint_feature", "_UI_Procedure_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLRoutinesPackage.eINSTANCE.getProcedure_OldSavePoint(),
+				 SQLRoutinesPackage.Literals.PROCEDURE__OLD_SAVE_POINT,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -118,7 +122,7 @@ public class ProcedureItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLRoutinesPackage.eINSTANCE.getProcedure_ResultSet());
+			childrenFeatures.add(SQLRoutinesPackage.Literals.PROCEDURE__RESULT_SET);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +134,7 @@ public class ProcedureItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Procedure"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Procedure")); //$NON-NLS-1$
 	}
 
 	/**
@@ -180,7 +184,7 @@ public class ProcedureItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLRoutinesPackage.eINSTANCE.getProcedure_ResultSet(),
+				(SQLRoutinesPackage.Literals.PROCEDURE__RESULT_SET,
 				 SQLRoutinesFactory.eINSTANCE.createRoutineResultTable()));
 	}
 

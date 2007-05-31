@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableConstraintItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: TableConstraintItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -67,7 +67,7 @@ public class TableConstraintItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/TableConstraint"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TableConstraint")); //$NON-NLS-1$
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ReferenceDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: ReferenceDataTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -78,8 +78,10 @@ public class ReferenceDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ReferenceDataType_scopeTable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceDataType_scopeTable_feature", "_UI_ReferenceDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getReferenceDataType_ScopeTable(),
+				 SQLDataTypesPackage.Literals.REFERENCE_DATA_TYPE__SCOPE_TABLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -98,8 +100,10 @@ public class ReferenceDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ReferenceDataType_referencedType_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceDataType_referencedType_feature", "_UI_ReferenceDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getReferenceDataType_ReferencedType(),
+				 SQLDataTypesPackage.Literals.REFERENCE_DATA_TYPE__REFERENCED_TYPE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));

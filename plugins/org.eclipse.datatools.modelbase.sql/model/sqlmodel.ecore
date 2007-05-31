@@ -111,6 +111,8 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
           eType="#//schema/Comment" eOpposite="#//schema/Comment/SQLObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="privileges" upperBound="-1"
+          eType="#//accesscontrol/Privilege" eOpposite="#//accesscontrol/Privilege/object"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Sequence" eSuperTypes="#//schema/TypedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -135,7 +137,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="catalogs" upperBound="-1"
           eType="#//schema/Catalog" eOpposite="#//schema/Catalog/Database"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="authorizationIds" upperBound="-1"
-          eType="#//accesscontrol/AuthorizationIdentifier"/>
+          eType="#//accesscontrol/AuthorizationIdentifier" eOpposite="#//accesscontrol/AuthorizationIdentifier/Database"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="Date" instanceClassName="java.util.Date"/>
     <eClassifiers xsi:type="ecore:EDataType" name="List" instanceClassName="java.util.List"/>
@@ -1093,6 +1095,8 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ownedSchema" upperBound="-1"
           eType="#//schema/Schema" eOpposite="#//schema/Schema/owner"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Database" lowerBound="1"
+          eType="#//schema/Database" eOpposite="#//schema/Database/authorizationIds"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="receivedRoleAuthorization"
           upperBound="-1" eType="#//accesscontrol/RoleAuthorization" eOpposite="#//accesscontrol/RoleAuthorization/grantee"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="grantedRoleAuthorization"
@@ -1100,7 +1104,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="grantedPrivilege" upperBound="-1"
           eType="#//accesscontrol/Privilege" eOpposite="#//accesscontrol/Privilege/grantor"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="receivedPrivilege" upperBound="-1"
-          eType="#//accesscontrol/Privilege" containment="true"/>
+          eType="#//accesscontrol/Privilege" containment="true" eOpposite="#//accesscontrol/Privilege/grantee"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Privilege" eSuperTypes="#//schema/SQLObject">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1108,22 +1112,29 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="grantable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="withHierarchy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="grantor" lowerBound="1"
           eType="#//accesscontrol/AuthorizationIdentifier" eOpposite="#//accesscontrol/AuthorizationIdentifier/grantedPrivilege"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="grantee" eType="#//accesscontrol/AuthorizationIdentifier"
+          transient="true" eOpposite="#//accesscontrol/AuthorizationIdentifier/receivedPrivilege"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="actionObjects" upperBound="-1"
           eType="#//schema/SQLObject"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+          eType="#//schema/SQLObject" eOpposite="#//schema/SQLObject/privileges"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//accesscontrol/AuthorizationIdentifier">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="user" upperBound="-1"
-          eType="#//accesscontrol/User"/>
+          eType="#//accesscontrol/User" eOpposite="#//accesscontrol/User/group"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//accesscontrol/AuthorizationIdentifier">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.34.1 Authorization Identifiers"/>
       </eAnnotations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="group" upperBound="-1"
+          eType="#//accesscontrol/Group" eOpposite="#//accesscontrol/Group/user"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//accesscontrol/AuthorizationIdentifier">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1143,19 +1154,6 @@
           eType="#//accesscontrol/AuthorizationIdentifier" eOpposite="#//accesscontrol/AuthorizationIdentifier/receivedRoleAuthorization"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="grantor" lowerBound="1"
           eType="#//accesscontrol/AuthorizationIdentifier" eOpposite="#//accesscontrol/AuthorizationIdentifier/grantedRoleAuthorization"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="TablePrivilege" eSuperTypes="#//accesscontrol/Privilege">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="withHierarchy" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="DoubleObjectPrivilege" eSuperTypes="#//accesscontrol/Privilege">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Reference: 5WD-02-Foundation-2002-12 4.34.2 Privileges"/>
-      </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="object2" lowerBound="1"
-          eType="#//schema/SQLObject"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

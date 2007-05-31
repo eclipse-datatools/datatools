@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RowDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: RowDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -74,7 +74,7 @@ public class RowDataTypeItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getRowDataType_Fields());
+			childrenFeatures.add(SQLDataTypesPackage.Literals.ROW_DATA_TYPE__FIELDS);
 		}
 		return childrenFeatures;
 	}
@@ -86,7 +86,7 @@ public class RowDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/RowDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RowDataType")); //$NON-NLS-1$
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class RowDataTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getRowDataType_Fields(),
+				(SQLDataTypesPackage.Literals.ROW_DATA_TYPE__FIELDS,
 				 SQLDataTypesFactory.eINSTANCE.createField()));
 	}
 

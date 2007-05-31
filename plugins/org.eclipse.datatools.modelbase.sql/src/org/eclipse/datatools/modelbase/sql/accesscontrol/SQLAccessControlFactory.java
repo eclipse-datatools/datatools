@@ -75,24 +75,6 @@ public interface SQLAccessControlFactory extends EFactory {
 	RoleAuthorization createRoleAuthorization();
 
 	/**
-	 * Returns a new object of class '<em>Table Privilege</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Table Privilege</em>'.
-	 * @generated
-	 */
-	TablePrivilege createTablePrivilege();
-
-	/**
-	 * Returns a new object of class '<em>Double Object Privilege</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Double Object Privilege</em>'.
-	 * @generated
-	 */
-	DoubleObjectPrivilege createDoubleObjectPrivilege();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

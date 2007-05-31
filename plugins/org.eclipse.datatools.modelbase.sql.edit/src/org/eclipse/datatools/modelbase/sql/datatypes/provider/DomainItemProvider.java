@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DomainItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: DomainItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -79,8 +79,10 @@ public class DomainItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Domain_defaultValue_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Domain_defaultValue_feature", "_UI_Domain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDomain_DefaultValue(),
+				 SQLDataTypesPackage.Literals.DOMAIN__DEFAULT_VALUE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -97,7 +99,7 @@ public class DomainItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLDataTypesPackage.eINSTANCE.getDomain_Constraint());
+			childrenFeatures.add(SQLDataTypesPackage.Literals.DOMAIN__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -109,7 +111,7 @@ public class DomainItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Domain"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Domain")); //$NON-NLS-1$
 	}
 
 	/**
@@ -158,7 +160,7 @@ public class DomainItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLDataTypesPackage.eINSTANCE.getDomain_Constraint(),
+				(SQLDataTypesPackage.Literals.DOMAIN__CONSTRAINT,
 				 SQLConstraintsFactory.eINSTANCE.createCheckConstraint()));
 	}
 

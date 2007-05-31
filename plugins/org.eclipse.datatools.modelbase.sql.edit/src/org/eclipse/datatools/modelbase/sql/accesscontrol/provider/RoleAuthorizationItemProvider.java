@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RoleAuthorizationItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: RoleAuthorizationItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -82,8 +82,10 @@ public class RoleAuthorizationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RoleAuthorization_grantable_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_RoleAuthorization_grantable_feature", "_UI_RoleAuthorization_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getRoleAuthorization_Grantable(),
+				 SQLAccessControlPackage.Literals.ROLE_AUTHORIZATION__GRANTABLE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -102,8 +104,10 @@ public class RoleAuthorizationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RoleAuthorization_role_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_RoleAuthorization_role_feature", "_UI_RoleAuthorization_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getRoleAuthorization_Role(),
+				 SQLAccessControlPackage.Literals.ROLE_AUTHORIZATION__ROLE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -122,8 +126,10 @@ public class RoleAuthorizationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RoleAuthorization_grantee_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_RoleAuthorization_grantee_feature", "_UI_RoleAuthorization_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getRoleAuthorization_Grantee(),
+				 SQLAccessControlPackage.Literals.ROLE_AUTHORIZATION__GRANTEE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -142,8 +148,10 @@ public class RoleAuthorizationItemProvider
 				 getResourceLocator(),
 				 getString("_UI_RoleAuthorization_grantor_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_RoleAuthorization_grantor_feature", "_UI_RoleAuthorization_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getRoleAuthorization_Grantor(),
+				 SQLAccessControlPackage.Literals.ROLE_AUTHORIZATION__GRANTOR,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -156,7 +164,7 @@ public class RoleAuthorizationItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/RoleAuthorization"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/RoleAuthorization")); //$NON-NLS-1$
 	}
 
 	/**

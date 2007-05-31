@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AuthorizationIdentifierItemProvider.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: AuthorizationIdentifierItemProvider.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -63,6 +63,7 @@ public class AuthorizationIdentifierItemProvider
 			super.getPropertyDescriptors(object);
 
 			addOwnedSchemaPropertyDescriptor(object);
+			addDatabasePropertyDescriptor(object);
 			addReceivedRoleAuthorizationPropertyDescriptor(object);
 			addGrantedRoleAuthorizationPropertyDescriptor(object);
 			addGrantedPrivilegePropertyDescriptor(object);
@@ -83,7 +84,31 @@ public class AuthorizationIdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_ownedSchema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_ownedSchema_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_OwnedSchema(),
+				 SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA,
+				 true,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Database feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatabasePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AuthorizationIdentifier_Database_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_Database_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__DATABASE,
+				 true,
+				 false,
 				 true,
 				 null,
 				 null,
@@ -103,8 +128,10 @@ public class AuthorizationIdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_receivedRoleAuthorization_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_receivedRoleAuthorization_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedRoleAuthorization(),
+				 SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -123,8 +150,10 @@ public class AuthorizationIdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_grantedRoleAuthorization_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_grantedRoleAuthorization_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_GrantedRoleAuthorization(),
+				 SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -143,8 +172,10 @@ public class AuthorizationIdentifierItemProvider
 				 getResourceLocator(),
 				 getString("_UI_AuthorizationIdentifier_grantedPrivilege_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_AuthorizationIdentifier_grantedPrivilege_feature", "_UI_AuthorizationIdentifier_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_GrantedPrivilege(),
+				 SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -161,7 +192,7 @@ public class AuthorizationIdentifierItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedPrivilege());
+			childrenFeatures.add(SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE);
 		}
 		return childrenFeatures;
 	}
@@ -173,7 +204,7 @@ public class AuthorizationIdentifierItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/AuthorizationIdentifier"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/AuthorizationIdentifier")); //$NON-NLS-1$
 	}
 
 	/**
@@ -219,18 +250,8 @@ public class AuthorizationIdentifierItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedPrivilege(),
+				(SQLAccessControlPackage.Literals.AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE,
 				 SQLAccessControlFactory.eINSTANCE.createPrivilege()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedPrivilege(),
-				 SQLAccessControlFactory.eINSTANCE.createTablePrivilege()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedPrivilege(),
-				 SQLAccessControlFactory.eINSTANCE.createDoubleObjectPrivilege()));
 	}
 
 	/**

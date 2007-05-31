@@ -206,6 +206,18 @@ public class DatabaseDefinitionSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DatabaseDefinitionPackage.PRIVILEGED_ELEMENT_DEFINITION: {
+				PrivilegedElementDefinition privilegedElementDefinition = (PrivilegedElementDefinition)theEObject;
+				Object result = casePrivilegedElementDefinition(privilegedElementDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DatabaseDefinitionPackage.PRIVILEGE_DEFINITION: {
+				PrivilegeDefinition privilegeDefinition = (PrivilegeDefinition)theEObject;
+				Object result = casePrivilegeDefinition(privilegeDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -492,6 +504,36 @@ public class DatabaseDefinitionSwitch {
 	 * @generated
 	 */
 	public Object caseDebuggerDefinition(DebuggerDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Privileged Element Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Privileged Element Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePrivilegedElementDefinition(PrivilegedElementDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpretting the object as an instance of '<em>Privilege Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Privilege Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object casePrivilegeDefinition(PrivilegeDefinition object) {
 		return null;
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLAccessControlItemProviderAdapterFactory.java,v 1.1 2005/08/02 22:56:31 ledunnel Exp $
+ * $Id: SQLAccessControlItemProviderAdapterFactory.java,v 1.2 2005/12/22 22:37:41 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.accesscontrol.provider;
 
@@ -180,50 +180,6 @@ public class SQLAccessControlItemProviderAdapterFactory extends SQLAccessControl
 		}
 
 		return roleAuthorizationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected TablePrivilegeItemProvider tablePrivilegeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createTablePrivilegeAdapter() {
-		if (tablePrivilegeItemProvider == null) {
-			tablePrivilegeItemProvider = new TablePrivilegeItemProvider(this);
-		}
-
-		return tablePrivilegeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected DoubleObjectPrivilegeItemProvider doubleObjectPrivilegeItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Adapter createDoubleObjectPrivilegeAdapter() {
-		if (doubleObjectPrivilegeItemProvider == null) {
-			doubleObjectPrivilegeItemProvider = new DoubleObjectPrivilegeItemProvider(this);
-		}
-
-		return doubleObjectPrivilegeItemProvider;
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLObjectItemProvider.java,v 1.1 2005/08/02 22:56:27 ledunnel Exp $
+ * $Id: SQLObjectItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.provider;
 
@@ -62,6 +62,8 @@ public class SQLObjectItemProvider
 
 			addDescriptionPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
+			addCommentsPropertyDescriptor(object);
+			addPrivilegesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -79,8 +81,10 @@ public class SQLObjectItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SQLObject_description_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_description_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSQLObject_Description(),
+				 SQLSchemaPackage.Literals.SQL_OBJECT__DESCRIPTION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -99,9 +103,55 @@ public class SQLObjectItemProvider
 				 getResourceLocator(),
 				 getString("_UI_SQLObject_label_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_label_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLSchemaPackage.eINSTANCE.getSQLObject_Label(),
+				 SQLSchemaPackage.Literals.SQL_OBJECT__LABEL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Comments feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SQLObject_comments_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_comments_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.Literals.SQL_OBJECT__COMMENTS,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Privileges feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPrivilegesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SQLObject_privileges_feature"), //$NON-NLS-1$
+				 getString("_UI_PropertyDescriptor_description", "_UI_SQLObject_privileges_feature", "_UI_SQLObject_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 SQLSchemaPackage.Literals.SQL_OBJECT__PRIVILEGES,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
@@ -117,7 +167,7 @@ public class SQLObjectItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLSchemaPackage.eINSTANCE.getSQLObject_Dependencies());
+			childrenFeatures.add(SQLSchemaPackage.Literals.SQL_OBJECT__DEPENDENCIES);
 		}
 		return childrenFeatures;
 	}
@@ -129,7 +179,7 @@ public class SQLObjectItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/SQLObject"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SQLObject")); //$NON-NLS-1$
 	}
 
 	/**
@@ -179,7 +229,7 @@ public class SQLObjectItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLSchemaPackage.eINSTANCE.getSQLObject_Dependencies(),
+				(SQLSchemaPackage.Literals.SQL_OBJECT__DEPENDENCIES,
 				 SQLSchemaFactory.eINSTANCE.createDependency()));
 	}
 

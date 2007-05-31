@@ -131,6 +131,15 @@ public interface DerbyModelPackage extends EPackage {
 	int SYNONYM__COMMENTS = SQLTablesPackage.TABLE__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYNONYM__PRIVILEGES = SQLTablesPackage.TABLE__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Columns</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

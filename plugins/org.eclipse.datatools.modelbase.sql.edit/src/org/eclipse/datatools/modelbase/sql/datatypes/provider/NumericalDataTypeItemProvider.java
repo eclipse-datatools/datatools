@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NumericalDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: NumericalDataTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -78,8 +78,10 @@ public class NumericalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_NumericalDataType_precision_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_NumericalDataType_precision_feature", "_UI_NumericalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getNumericalDataType_Precision(),
+				 SQLDataTypesPackage.Literals.NUMERICAL_DATA_TYPE__PRECISION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));

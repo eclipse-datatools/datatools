@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CharacterStringDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: CharacterStringDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -82,8 +82,10 @@ public class CharacterStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterStringDataType_length_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterStringDataType_length_feature", "_UI_CharacterStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterStringDataType_Length(),
+				 SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE__LENGTH,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -102,8 +104,10 @@ public class CharacterStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterStringDataType_coercibility_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterStringDataType_coercibility_feature", "_UI_CharacterStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterStringDataType_Coercibility(),
+				 SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE__COERCIBILITY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -122,7 +126,9 @@ public class CharacterStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterStringDataType_fixedLength_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterStringDataType_fixedLength_feature", "_UI_CharacterStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterStringDataType_FixedLength(),
+				 SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE__FIXED_LENGTH,
+				 false,
+				 false,
 				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
@@ -142,8 +148,10 @@ public class CharacterStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterStringDataType_collationName_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterStringDataType_collationName_feature", "_UI_CharacterStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterStringDataType_CollationName(),
+				 SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE__COLLATION_NAME,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -162,8 +170,10 @@ public class CharacterStringDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_CharacterStringDataType_characterSet_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_CharacterStringDataType_characterSet_feature", "_UI_CharacterStringDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getCharacterStringDataType_CharacterSet(),
+				 SQLDataTypesPackage.Literals.CHARACTER_STRING_DATA_TYPE__CHARACTER_SET,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -176,7 +186,7 @@ public class CharacterStringDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/CharacterStringDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CharacterStringDataType")); //$NON-NLS-1$
 	}
 
 	/**

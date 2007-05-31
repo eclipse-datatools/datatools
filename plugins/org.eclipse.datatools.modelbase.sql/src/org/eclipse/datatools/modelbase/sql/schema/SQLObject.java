@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getLabel <em>Label</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getComments <em>Comments</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject#getPrivileges <em>Privileges</em>}</li>
  * </ul>
  * </p>
  *
@@ -129,6 +130,24 @@ public interface SQLObject extends EDataObject, ENamedElement {
 	 * @generated
 	 */
 	EList getComments();
+
+	/**
+	 * Returns the value of the '<em><b>Privileges</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege}.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Privileges</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Privileges</em>' reference list.
+	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject_Privileges()
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getObject
+	 * @model type="org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege" opposite="object"
+	 * @generated
+	 */
+	EList getPrivileges();
 
 	/**
 	 * <!-- begin-user-doc -->

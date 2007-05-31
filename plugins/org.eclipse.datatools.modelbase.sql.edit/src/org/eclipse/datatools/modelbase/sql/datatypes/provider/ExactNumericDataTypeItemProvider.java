@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ExactNumericDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: ExactNumericDataTypeItemProvider.java,v 1.3 2006/03/09 23:46:15 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -78,8 +78,10 @@ public class ExactNumericDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ExactNumericDataType_scale_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExactNumericDataType_scale_feature", "_UI_ExactNumericDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getExactNumericDataType_Scale(),
+				 SQLDataTypesPackage.Literals.EXACT_NUMERIC_DATA_TYPE__SCALE,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));

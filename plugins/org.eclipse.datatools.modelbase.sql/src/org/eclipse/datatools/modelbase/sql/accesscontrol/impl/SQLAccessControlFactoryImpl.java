@@ -67,8 +67,6 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 			case SQLAccessControlPackage.USER: return createUser();
 			case SQLAccessControlPackage.ROLE: return createRole();
 			case SQLAccessControlPackage.ROLE_AUTHORIZATION: return createRoleAuthorization();
-			case SQLAccessControlPackage.TABLE_PRIVILEGE: return createTablePrivilege();
-			case SQLAccessControlPackage.DOUBLE_OBJECT_PRIVILEGE: return createDoubleObjectPrivilege();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -122,26 +120,6 @@ public class SQLAccessControlFactoryImpl extends EFactoryImpl implements SQLAcce
 	public RoleAuthorization createRoleAuthorization() {
 		RoleAuthorizationImpl roleAuthorization = new RoleAuthorizationImpl();
 		return roleAuthorization;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TablePrivilege createTablePrivilege() {
-		TablePrivilegeImpl tablePrivilege = new TablePrivilegeImpl();
-		return tablePrivilege;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DoubleObjectPrivilege createDoubleObjectPrivilege() {
-		DoubleObjectPrivilegeImpl doubleObjectPrivilege = new DoubleObjectPrivilegeImpl();
-		return doubleObjectPrivilege;
 	}
 
 	/**

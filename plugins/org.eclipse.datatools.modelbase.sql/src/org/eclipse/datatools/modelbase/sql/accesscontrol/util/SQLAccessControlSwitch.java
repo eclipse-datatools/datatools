@@ -151,26 +151,6 @@ public class SQLAccessControlSwitch {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SQLAccessControlPackage.TABLE_PRIVILEGE: {
-				TablePrivilege tablePrivilege = (TablePrivilege)theEObject;
-				Object result = caseTablePrivilege(tablePrivilege);
-				if (result == null) result = casePrivilege(tablePrivilege);
-				if (result == null) result = caseSQLObject(tablePrivilege);
-				if (result == null) result = caseENamedElement(tablePrivilege);
-				if (result == null) result = caseEModelElement(tablePrivilege);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SQLAccessControlPackage.DOUBLE_OBJECT_PRIVILEGE: {
-				DoubleObjectPrivilege doubleObjectPrivilege = (DoubleObjectPrivilege)theEObject;
-				Object result = caseDoubleObjectPrivilege(doubleObjectPrivilege);
-				if (result == null) result = casePrivilege(doubleObjectPrivilege);
-				if (result == null) result = caseSQLObject(doubleObjectPrivilege);
-				if (result == null) result = caseENamedElement(doubleObjectPrivilege);
-				if (result == null) result = caseEModelElement(doubleObjectPrivilege);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -262,36 +242,6 @@ public class SQLAccessControlSwitch {
 	 * @generated
 	 */
 	public Object caseRoleAuthorization(RoleAuthorization object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Table Privilege</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Table Privilege</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseTablePrivilege(TablePrivilege object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpretting the object as an instance of '<em>Double Object Privilege</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpretting the object as an instance of '<em>Double Object Privilege</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public Object caseDoubleObjectPrivilege(DoubleObjectPrivilege object) {
 		return null;
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AssertionItemProvider.java,v 1.1 2005/08/02 22:56:20 ledunnel Exp $
+ * $Id: AssertionItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -80,8 +80,10 @@ public class AssertionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Assertion_schema_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Assertion_schema_feature", "_UI_Assertion_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getAssertion_Schema(),
+				 SQLConstraintsPackage.Literals.ASSERTION__SCHEMA,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -100,8 +102,10 @@ public class AssertionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Assertion_constrainedTables_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_Assertion_constrainedTables_feature", "_UI_Assertion_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getAssertion_ConstrainedTables(),
+				 SQLConstraintsPackage.Literals.ASSERTION__CONSTRAINED_TABLES,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -118,7 +122,7 @@ public class AssertionItemProvider
 	public Collection getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(SQLConstraintsPackage.eINSTANCE.getAssertion_SearchCondition());
+			childrenFeatures.add(SQLConstraintsPackage.Literals.ASSERTION__SEARCH_CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -130,7 +134,7 @@ public class AssertionItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/Assertion"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Assertion")); //$NON-NLS-1$
 	}
 
 	/**
@@ -176,7 +180,7 @@ public class AssertionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(SQLConstraintsPackage.eINSTANCE.getAssertion_SearchCondition(),
+				(SQLConstraintsPackage.Literals.ASSERTION__SEARCH_CONDITION,
 				 SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault()));
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UniqueConstraintItemProvider.java,v 1.1 2005/08/02 22:56:19 ledunnel Exp $
+ * $Id: UniqueConstraintItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.constraints.provider;
 
@@ -77,8 +77,10 @@ public class UniqueConstraintItemProvider
 				 getResourceLocator(),
 				 getString("_UI_UniqueConstraint_ForeignKey_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_UniqueConstraint_ForeignKey_feature", "_UI_UniqueConstraint_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLConstraintsPackage.eINSTANCE.getUniqueConstraint_ForeignKey(),
+				 SQLConstraintsPackage.Literals.UNIQUE_CONSTRAINT__FOREIGN_KEY,
 				 true,
+				 false,
+				 false,
 				 null,
 				 null,
 				 null));
@@ -91,7 +93,7 @@ public class UniqueConstraintItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/UniqueConstraint"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UniqueConstraint")); //$NON-NLS-1$
 	}
 
 	/**

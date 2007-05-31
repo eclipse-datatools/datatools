@@ -130,6 +130,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int CONSTRAINT__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -228,6 +237,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSERTION__COMMENTS = CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSERTION__PRIVILEGES = CONSTRAINT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
@@ -357,6 +375,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int TABLE_CONSTRAINT__COMMENTS = CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TABLE_CONSTRAINT__PRIVILEGES = CONSTRAINT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -464,6 +491,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int REFERENCE_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_CONSTRAINT__PRIVILEGES = TABLE_CONSTRAINT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
@@ -584,6 +620,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int CHECK_CONSTRAINT__COMMENTS = TABLE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHECK_CONSTRAINT__PRIVILEGES = TABLE_CONSTRAINT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -700,6 +745,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int FOREIGN_KEY__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREIGN_KEY__PRIVILEGES = REFERENCE_CONSTRAINT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
@@ -883,6 +937,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int UNIQUE_CONSTRAINT__COMMENTS = REFERENCE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNIQUE_CONSTRAINT__PRIVILEGES = REFERENCE_CONSTRAINT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1010,6 +1073,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	int PRIMARY_KEY__COMMENTS = UNIQUE_CONSTRAINT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIMARY_KEY__PRIVILEGES = UNIQUE_CONSTRAINT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Deferrable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1135,6 +1207,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDEX__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Schema</b></em>' reference.
@@ -1289,6 +1370,15 @@ public interface SQLConstraintsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INDEX_MEMBER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDEX_MEMBER__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
 
 	/**
 	 * The feature id for the '<em><b>Increment Type</b></em>' attribute.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UserDefinedFunctionItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
+ * $Id: UserDefinedFunctionItemProvider.java,v 1.3 2006/10/18 18:37:51 avainchte Exp $
  */
 package org.eclipse.datatools.modelbase.sql.routines.provider;
 
@@ -68,7 +68,7 @@ public class UserDefinedFunctionItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/UserDefinedFunction"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/UserDefinedFunction")); //$NON-NLS-1$
 	}
 
 	/**
@@ -118,9 +118,9 @@ public class UserDefinedFunctionItemProvider
 		Object childObject = child;
 
 		boolean qualify =
-			childFeature == SQLRoutinesPackage.eINSTANCE.getRoutine_Parameters() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnScalar() ||
-			childFeature == SQLRoutinesPackage.eINSTANCE.getFunction_ReturnCast();
+			childFeature == SQLRoutinesPackage.Literals.ROUTINE__PARAMETERS ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_SCALAR ||
+			childFeature == SQLRoutinesPackage.Literals.FUNCTION__RETURN_CAST;
 
 		if (qualify) {
 			return getString

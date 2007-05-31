@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataLinkDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: DataLinkDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -84,8 +84,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_length_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_length_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Length(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__LENGTH,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -104,8 +106,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_linkControl_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_linkControl_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_LinkControl(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__LINK_CONTROL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -124,8 +128,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_integrityControl_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_integrityControl_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_IntegrityControl(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__INTEGRITY_CONTROL,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -144,8 +150,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_readPermission_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_readPermission_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_ReadPermission(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__READ_PERMISSION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -164,8 +172,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_writePermission_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_writePermission_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_WritePermission(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__WRITE_PERMISSION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -184,8 +194,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_recovery_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_recovery_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Recovery(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__RECOVERY,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
@@ -204,8 +216,10 @@ public class DataLinkDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_DataLinkDataType_unlink_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_DataLinkDataType_unlink_feature", "_UI_DataLinkDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getDataLinkDataType_Unlink(),
+				 SQLDataTypesPackage.Literals.DATA_LINK_DATA_TYPE__UNLINK,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -218,7 +232,7 @@ public class DataLinkDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/DataLinkDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataLinkDataType")); //$NON-NLS-1$
 	}
 
 	/**

@@ -129,6 +129,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int AUTHORIZATION_IDENTIFIER__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHORIZATION_IDENTIFIER__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Schema</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,13 +147,22 @@ public interface SQLAccessControlPackage extends EPackage {
 	int AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHORIZATION_IDENTIFIER__DATABASE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Received Role Authorization</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
+	int AUTHORIZATION_IDENTIFIER__RECEIVED_ROLE_AUTHORIZATION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Granted Role Authorization</b></em>' reference list.
@@ -153,7 +171,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
+	int AUTHORIZATION_IDENTIFIER__GRANTED_ROLE_AUTHORIZATION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Granted Privilege</b></em>' reference list.
@@ -162,7 +180,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+	int AUTHORIZATION_IDENTIFIER__GRANTED_PRIVILEGE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Received Privilege</b></em>' containment reference list.
@@ -171,7 +189,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+	int AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Authorization Identifier</em>' class.
@@ -180,7 +198,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHORIZATION_IDENTIFIER_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
+	int AUTHORIZATION_IDENTIFIER_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.PrivilegeImpl <em>Privilege</em>}' class.
@@ -247,6 +265,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int PRIVILEGE__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Grantable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -265,13 +292,40 @@ public interface SQLAccessControlPackage extends EPackage {
 	int PRIVILEGE__ACTION = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>With Hierarchy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE__WITH_HIERARCHY = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Grantor</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVILEGE__GRANTOR = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 2;
+	int PRIVILEGE__GRANTOR = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Grantee</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE__GRANTEE = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Action Objects</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PRIVILEGE__ACTION_OBJECTS = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' reference.
@@ -280,7 +334,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVILEGE__OBJECT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 3;
+	int PRIVILEGE__OBJECT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Privilege</em>' class.
@@ -289,7 +343,7 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PRIVILEGE_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
+	int PRIVILEGE_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.GroupImpl <em>Group</em>}' class.
@@ -356,6 +410,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int GROUP__COMMENTS = AUTHORIZATION_IDENTIFIER__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__PRIVILEGES = AUTHORIZATION_IDENTIFIER__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Schema</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -363,6 +426,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__OWNED_SCHEMA = AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__DATABASE = AUTHORIZATION_IDENTIFIER__DATABASE;
 
 	/**
 	 * The feature id for the '<em><b>Received Role Authorization</b></em>' reference list.
@@ -483,6 +555,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int USER__COMMENTS = AUTHORIZATION_IDENTIFIER__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__PRIVILEGES = AUTHORIZATION_IDENTIFIER__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Schema</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -490,6 +571,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__OWNED_SCHEMA = AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__DATABASE = AUTHORIZATION_IDENTIFIER__DATABASE;
 
 	/**
 	 * The feature id for the '<em><b>Received Role Authorization</b></em>' reference list.
@@ -528,13 +618,22 @@ public interface SQLAccessControlPackage extends EPackage {
 	int USER__RECEIVED_PRIVILEGE = AUTHORIZATION_IDENTIFIER__RECEIVED_PRIVILEGE;
 
 	/**
+	 * The feature id for the '<em><b>Group</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER__GROUP = AUTHORIZATION_IDENTIFIER_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>User</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER_FEATURE_COUNT = AUTHORIZATION_IDENTIFIER_FEATURE_COUNT + 0;
+	int USER_FEATURE_COUNT = AUTHORIZATION_IDENTIFIER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.RoleImpl <em>Role</em>}' class.
@@ -601,6 +700,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int ROLE__COMMENTS = AUTHORIZATION_IDENTIFIER__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE__PRIVILEGES = AUTHORIZATION_IDENTIFIER__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Owned Schema</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -608,6 +716,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROLE__OWNED_SCHEMA = AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA;
+
+	/**
+	 * The feature id for the '<em><b>Database</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE__DATABASE = AUTHORIZATION_IDENTIFIER__DATABASE;
 
 	/**
 	 * The feature id for the '<em><b>Received Role Authorization</b></em>' reference list.
@@ -728,6 +845,15 @@ public interface SQLAccessControlPackage extends EPackage {
 	int ROLE_AUTHORIZATION__COMMENTS = SQLSchemaPackage.SQL_OBJECT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Privileges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE_AUTHORIZATION__PRIVILEGES = SQLSchemaPackage.SQL_OBJECT__PRIVILEGES;
+
+	/**
 	 * The feature id for the '<em><b>Grantable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -773,243 +899,6 @@ public interface SQLAccessControlPackage extends EPackage {
 	int ROLE_AUTHORIZATION_FEATURE_COUNT = SQLSchemaPackage.SQL_OBJECT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.TablePrivilegeImpl <em>Table Privilege</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.TablePrivilegeImpl
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl#getTablePrivilege()
-	 * @generated
-	 */
-	int TABLE_PRIVILEGE = 6;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__EANNOTATIONS = PRIVILEGE__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__NAME = PRIVILEGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__DEPENDENCIES = PRIVILEGE__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__DESCRIPTION = PRIVILEGE__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__LABEL = PRIVILEGE__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__COMMENTS = PRIVILEGE__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Grantable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__GRANTABLE = PRIVILEGE__GRANTABLE;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__ACTION = PRIVILEGE__ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Grantor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__GRANTOR = PRIVILEGE__GRANTOR;
-
-	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__OBJECT = PRIVILEGE__OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>With Hierarchy</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE__WITH_HIERARCHY = PRIVILEGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Table Privilege</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TABLE_PRIVILEGE_FEATURE_COUNT = PRIVILEGE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.DoubleObjectPrivilegeImpl <em>Double Object Privilege</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.DoubleObjectPrivilegeImpl
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl#getDoubleObjectPrivilege()
-	 * @generated
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE = 7;
-
-	/**
-	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__EANNOTATIONS = PRIVILEGE__EANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__NAME = PRIVILEGE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__DEPENDENCIES = PRIVILEGE__DEPENDENCIES;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__DESCRIPTION = PRIVILEGE__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__LABEL = PRIVILEGE__LABEL;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__COMMENTS = PRIVILEGE__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Grantable</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__GRANTABLE = PRIVILEGE__GRANTABLE;
-
-	/**
-	 * The feature id for the '<em><b>Action</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__ACTION = PRIVILEGE__ACTION;
-
-	/**
-	 * The feature id for the '<em><b>Grantor</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__GRANTOR = PRIVILEGE__GRANTOR;
-
-	/**
-	 * The feature id for the '<em><b>Object</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__OBJECT = PRIVILEGE__OBJECT;
-
-	/**
-	 * The feature id for the '<em><b>Object2</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE__OBJECT2 = PRIVILEGE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Double Object Privilege</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_OBJECT_PRIVILEGE_FEATURE_COUNT = PRIVILEGE_FEATURE_COUNT + 1;
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier <em>Authorization Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1029,6 +918,17 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAuthorizationIdentifier_OwnedSchema();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getDatabase <em>Database</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Database</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getDatabase()
+	 * @see #getAuthorizationIdentifier()
+	 * @generated
+	 */
+	EReference getAuthorizationIdentifier_Database();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier#getReceivedRoleAuthorization <em>Received Role Authorization</em>}'.
@@ -1107,6 +1007,17 @@ public interface SQLAccessControlPackage extends EPackage {
 	EAttribute getPrivilege_Action();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#isWithHierarchy <em>With Hierarchy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>With Hierarchy</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#isWithHierarchy()
+	 * @see #getPrivilege()
+	 * @generated
+	 */
+	EAttribute getPrivilege_WithHierarchy();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantor <em>Grantor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1116,6 +1027,28 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPrivilege_Grantor();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantee <em>Grantee</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Grantee</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getGrantee()
+	 * @see #getPrivilege()
+	 * @generated
+	 */
+	EReference getPrivilege_Grantee();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getActionObjects <em>Action Objects</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Action Objects</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getActionObjects()
+	 * @see #getPrivilege()
+	 * @generated
+	 */
+	EReference getPrivilege_ActionObjects();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege#getObject <em>Object</em>}'.
@@ -1158,6 +1091,17 @@ public interface SQLAccessControlPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getUser();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.User#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Group</em>'.
+	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.User#getGroup()
+	 * @see #getUser()
+	 * @generated
+	 */
+	EReference getUser_Group();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.Role <em>Role</em>}'.
@@ -1235,48 +1179,6 @@ public interface SQLAccessControlPackage extends EPackage {
 	EReference getRoleAuthorization_Grantor();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege <em>Table Privilege</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Table Privilege</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege
-	 * @generated
-	 */
-	EClass getTablePrivilege();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege#isWithHierarchy <em>With Hierarchy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>With Hierarchy</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.TablePrivilege#isWithHierarchy()
-	 * @see #getTablePrivilege()
-	 * @generated
-	 */
-	EAttribute getTablePrivilege_WithHierarchy();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege <em>Double Object Privilege</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Double Object Privilege</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege
-	 * @generated
-	 */
-	EClass getDoubleObjectPrivilege();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege#getObject2 <em>Object2</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Object2</em>'.
-	 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.DoubleObjectPrivilege#getObject2()
-	 * @see #getDoubleObjectPrivilege()
-	 * @generated
-	 */
-	EReference getDoubleObjectPrivilege_Object2();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1315,6 +1217,14 @@ public interface SQLAccessControlPackage extends EPackage {
 		 * @generated
 		 */
 		EReference AUTHORIZATION_IDENTIFIER__OWNED_SCHEMA = eINSTANCE.getAuthorizationIdentifier_OwnedSchema();
+
+		/**
+		 * The meta object literal for the '<em><b>Database</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AUTHORIZATION_IDENTIFIER__DATABASE = eINSTANCE.getAuthorizationIdentifier_Database();
 
 		/**
 		 * The meta object literal for the '<em><b>Received Role Authorization</b></em>' reference list feature.
@@ -1375,12 +1285,36 @@ public interface SQLAccessControlPackage extends EPackage {
 		EAttribute PRIVILEGE__ACTION = eINSTANCE.getPrivilege_Action();
 
 		/**
+		 * The meta object literal for the '<em><b>With Hierarchy</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PRIVILEGE__WITH_HIERARCHY = eINSTANCE.getPrivilege_WithHierarchy();
+
+		/**
 		 * The meta object literal for the '<em><b>Grantor</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference PRIVILEGE__GRANTOR = eINSTANCE.getPrivilege_Grantor();
+
+		/**
+		 * The meta object literal for the '<em><b>Grantee</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVILEGE__GRANTEE = eINSTANCE.getPrivilege_Grantee();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Objects</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PRIVILEGE__ACTION_OBJECTS = eINSTANCE.getPrivilege_ActionObjects();
 
 		/**
 		 * The meta object literal for the '<em><b>Object</b></em>' reference feature.
@@ -1417,6 +1351,14 @@ public interface SQLAccessControlPackage extends EPackage {
 		 * @generated
 		 */
 		EClass USER = eINSTANCE.getUser();
+
+		/**
+		 * The meta object literal for the '<em><b>Group</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER__GROUP = eINSTANCE.getUser_Group();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.RoleImpl <em>Role</em>}' class.
@@ -1478,42 +1420,6 @@ public interface SQLAccessControlPackage extends EPackage {
 		 */
 		EReference ROLE_AUTHORIZATION__GRANTOR = eINSTANCE.getRoleAuthorization_Grantor();
 
-		/**
-		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.TablePrivilegeImpl <em>Table Privilege</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.TablePrivilegeImpl
-		 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl#getTablePrivilege()
-		 * @generated
-		 */
-		EClass TABLE_PRIVILEGE = eINSTANCE.getTablePrivilege();
-
-		/**
-		 * The meta object literal for the '<em><b>With Hierarchy</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TABLE_PRIVILEGE__WITH_HIERARCHY = eINSTANCE.getTablePrivilege_WithHierarchy();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.accesscontrol.impl.DoubleObjectPrivilegeImpl <em>Double Object Privilege</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.DoubleObjectPrivilegeImpl
-		 * @see org.eclipse.datatools.modelbase.sql.accesscontrol.impl.SQLAccessControlPackageImpl#getDoubleObjectPrivilege()
-		 * @generated
-		 */
-		EClass DOUBLE_OBJECT_PRIVILEGE = eINSTANCE.getDoubleObjectPrivilege();
-
-		/**
-		 * The meta object literal for the '<em><b>Object2</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DOUBLE_OBJECT_PRIVILEGE__OBJECT2 = eINSTANCE.getDoubleObjectPrivilege_Object2();
-
-	}
+}
 
 } //SQLAccessControlPackage

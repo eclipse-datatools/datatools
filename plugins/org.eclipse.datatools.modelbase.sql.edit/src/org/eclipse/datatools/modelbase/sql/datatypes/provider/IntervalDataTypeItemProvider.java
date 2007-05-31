@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntervalDataTypeItemProvider.java,v 1.1 2005/08/02 22:56:25 ledunnel Exp $
+ * $Id: IntervalDataTypeItemProvider.java,v 1.2 2005/12/22 22:37:40 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.datatypes.provider;
 
@@ -82,8 +82,10 @@ public class IntervalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntervalDataType_leadingQualifier_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntervalDataType_leadingQualifier_feature", "_UI_IntervalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getIntervalDataType_LeadingQualifier(),
+				 SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE__LEADING_QUALIFIER,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -102,8 +104,10 @@ public class IntervalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntervalDataType_trailingQualifier_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntervalDataType_trailingQualifier_feature", "_UI_IntervalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getIntervalDataType_TrailingQualifier(),
+				 SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE__TRAILING_QUALIFIER,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
@@ -122,8 +126,10 @@ public class IntervalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntervalDataType_leadingFieldPrecision_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntervalDataType_leadingFieldPrecision_feature", "_UI_IntervalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getIntervalDataType_LeadingFieldPrecision(),
+				 SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE__LEADING_FIELD_PRECISION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -142,8 +148,10 @@ public class IntervalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntervalDataType_trailingFieldPrecision_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntervalDataType_trailingFieldPrecision_feature", "_UI_IntervalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getIntervalDataType_TrailingFieldPrecision(),
+				 SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE__TRAILING_FIELD_PRECISION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -162,8 +170,10 @@ public class IntervalDataTypeItemProvider
 				 getResourceLocator(),
 				 getString("_UI_IntervalDataType_fractionalSecondsPrecision_feature"), //$NON-NLS-1$
 				 getString("_UI_PropertyDescriptor_description", "_UI_IntervalDataType_fractionalSecondsPrecision_feature", "_UI_IntervalDataType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-				 SQLDataTypesPackage.eINSTANCE.getIntervalDataType_FractionalSecondsPrecision(),
+				 SQLDataTypesPackage.Literals.INTERVAL_DATA_TYPE__FRACTIONAL_SECONDS_PRECISION,
 				 true,
+				 false,
+				 false,
 				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
@@ -176,7 +186,7 @@ public class IntervalDataTypeItemProvider
 	 * @generated
 	 */
 	public Object getImage(Object object) {
-		return getResourceLocator().getImage("full/obj16/IntervalDataType"); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IntervalDataType")); //$NON-NLS-1$
 	}
 
 	/**
