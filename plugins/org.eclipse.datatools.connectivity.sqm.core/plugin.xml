@@ -85,7 +85,7 @@
       <connectionFactoryAdapter
             class="org.eclipse.datatools.connectivity.sqm.core.SQMConnectionFactory"
             id="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"
-            name="SQL Model Connection"
+            name="%SQLModelConnectionName"
             factory="java.sql.Connection"/>
       <profileExtension
             id="org.eclipse.datatools.connectivity.sqm.filterSettings"
