@@ -1,27 +1,24 @@
-//----------------------------------------------------------------------
-//  Handler.java
-//
-//  Copyright (c) 2004, 2005 Actuate Corporation.
-// All rights reserved. This program and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
-//
-// Contributors:
-//  Actuate Corporation  - initial API and implementation
-//  
-//  Handler is the base class from which all Handlers derive from.
-//  Handlers processes the LogRecord using its Formatter and 
-//  then publishes it.
-//----------------------------------------------------------------------
+/*
+ ******************************************************************************
+ * Copyright (c) 2004, 2005 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *     
+ ******************************************************************************
+ */
 
 package org.eclipse.datatools.connectivity.oda.util.logging;
 
 /**
  * <code>Handler</code> is an abstract class that takes <code>LogRecords</code> 
- * from a <code>Logger</code> and outputs them. All log handler should inherit 
- * from this class and may publish log records to its supported sources. (i.e. 
- * console, file, etc. )
+ * from a <code>Logger</code> and processes them using its Formatter. 
+ * All log handler should inherit from this class and may publish 
+ * log records to its supported sources. (e.g. console, file, etc. )
  */
 public abstract class Handler
 {

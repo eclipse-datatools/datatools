@@ -1,19 +1,16 @@
-//----------------------------------------------------------------------
-//  LoggingErrorHandler.java
-//
-//  Copyright (c) 2004, 2005 Actuate Corporation.
-// All rights reserved. This program and the accompanying materials
-// are made available under the terms of the Eclipse Public License v1.0
-// which accompanies this distribution, and is available at
-// http://www.eclipse.org/legal/epl-v10.html
-//
-// Contributors:
-//  Actuate Corporation  - initial API and implementation
-//
-//  LoggingErrorHandler simply catches all exceptions generated within 
-//  the logging framework.  The caller will not have to be concerned 
-//  with dealing with exceptions during logging.
-//----------------------------------------------------------------------
+/*
+ ******************************************************************************
+ * Copyright (c) 2004, 2006 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *     
+ ******************************************************************************
+ */
 
 package org.eclipse.datatools.connectivity.oda.util.logging;
 
