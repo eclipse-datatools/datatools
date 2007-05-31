@@ -380,6 +380,15 @@ public class DriverListCombo {
 		if (this.mComboList.getItemCount() > 0) {
 			this.mComboList.select(0);
 		}
+		else {
+			if (DriverListCombo.this.mNullDriverValid)
+				DriverListCombo.this.mErrorMessage = null;
+			else
+				DriverListCombo.this.mErrorMessage = DriverMgmtMessages
+						.getString("DriverValidator.msg.no_driver_selected"); //$NON-NLS-1$
+		}
+
+		fireChangedEvent(this.mComboList.getParent());
 	}
 
 	private boolean passesFilter(TemplateDescriptor template, IPropertySet pset) {
