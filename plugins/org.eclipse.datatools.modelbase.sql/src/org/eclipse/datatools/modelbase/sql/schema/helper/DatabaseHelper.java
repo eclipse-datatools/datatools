@@ -16,6 +16,7 @@ import java.util.Vector;
 
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 /**
@@ -47,10 +48,32 @@ public class DatabaseHelper
         for (Iterator it = database.getSchemas().iterator(); it.hasNext();)
         {
             Schema schema = (Schema) it.next();
-            if (compareIdentifiers(database,schema.getName(),schemaName) == 0) {
+            if (compareIdentifiers(database,schema.getName(),schemaName) == 0)
+{
                 returnSchema = schema;
+                break;
             }
         }
+        if (returnSchema == null){
+        	if (database.getCatalogs() != null) {
+        		List catalogs = database.getCatalogs();
+                Iterator itCatalogs = catalogs.iterator();
+                while (itCatalogs.hasNext()){
+                	Catalog catalog = (Catalog) itCatalogs.next();
+                    if (catalog.getSchemas()  != null && catalog.getSchemas().size() > 0){
+                    	for (Iterator it = catalog.getSchemas().iterator(); it.hasNext();)
+                        {
+                    		Schema schema = (Schema) it.next();
+                            if (compareIdentifiers(database,schema.getName(),schemaName) == 0) {
+                            	returnSchema = schema;
+                                break;
+                            }
+                        }// for
+                    }
+                }
+        	}
+        }
+
 
         return returnSchema;
     }
