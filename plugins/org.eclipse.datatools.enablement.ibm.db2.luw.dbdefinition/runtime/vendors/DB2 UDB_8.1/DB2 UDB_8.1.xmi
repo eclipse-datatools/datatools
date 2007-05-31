@@ -150,6 +150,75 @@
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="30"/>
+  <privilegedElementDefinitions name="Database">
+    <privilegeDefinitions name="BINDADD"/>
+    <privilegeDefinitions name="CONNECT"/>
+    <privilegeDefinitions name="CREATETAB"/>
+    <privilegeDefinitions name="CREATE_EXTERNAL_ROUTINE"/>
+    <privilegeDefinitions name="CREATE_NOT_FENCED_ROUTINE"/>
+    <privilegeDefinitions name="IMPLICIT_SCHEMA"/>
+    <privilegeDefinitions name="DBADM"/>
+    <privilegeDefinitions name="LOAD"/>
+    <privilegeDefinitions name="QUIESCE_CONNECT"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Schema">
+  	<privilegeDefinitions name="ALTERIN"/>
+  	<privilegeDefinitions name="CREATEIN"/>
+    <privilegeDefinitions name="DROPIN"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="PersistentTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="CONTROL"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="ViewTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="CONTROL"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Nickname">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="CONTROL"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="REFERENCES"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions xmi:id="COLUMN_1" name="Column"/>
+  <privilegedElementDefinitions name="MaterializedQueryTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="CONTROL"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Routine">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Sequence">
+  	<privilegeDefinitions name="ALTER"/>
+  	<privilegeDefinitions name="USAGE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Index">
+  	<privilegeDefinitions name="CONTROL"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Tablespace">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Package">
+    <privilegeDefinitions name="BIND"/>
+  	<privilegeDefinitions name="CONTROL"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
   <SQLSyntaxDefinition>
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>

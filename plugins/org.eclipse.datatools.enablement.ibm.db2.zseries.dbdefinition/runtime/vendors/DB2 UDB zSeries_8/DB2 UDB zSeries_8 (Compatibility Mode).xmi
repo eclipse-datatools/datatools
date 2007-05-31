@@ -138,6 +138,101 @@
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
+  <privilegedElementDefinitions name="DatabaseInstance">
+  	<privilegeDefinitions name="DBADM"/>
+	<privilegeDefinitions name="DBCTRL"/>
+	<privilegeDefinitions name="DBMAINT"/>
+	<privilegeDefinitions name="CREATETAB"/>
+	<privilegeDefinitions name="CREATETS"/>
+	<privilegeDefinitions name="DISPLAYDB"/>
+	<privilegeDefinitions name="DROP"/>
+	<privilegeDefinitions name="IMAGCOPY"/>
+	<privilegeDefinitions name="LOAD"/>
+	<privilegeDefinitions name="RECOVERDB"/>
+	<privilegeDefinitions name="REORG"/>
+	<privilegeDefinitions name="REPAIR"/>
+	<privilegeDefinitions name="STARTDB"/>
+	<privilegeDefinitions name="STATS"/>
+	<privilegeDefinitions name="STOPDB"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Schema">
+  	<privilegeDefinitions name="ALTERIN"/>
+  	<privilegeDefinitions name="CREATEIN"/>
+    <privilegeDefinitions name="DROPIN"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="PersistentTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="TRIGGER"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="ViewTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions xmi:id="COLUMN_1" name="Column"/>
+  <privilegedElementDefinitions name="MaterializedQueryTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="TRIGGER"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Routine">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Sequence">
+  	<privilegeDefinitions name="ALTER"/>
+  	<privilegeDefinitions name="USAGE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="UserDefinedType">
+  	<privilegeDefinitions name="USAGE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Tablespace">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="BufferPool">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="StorageGroup">
+  	<privilegeDefinitions name="USE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Package">
+    <privilegeDefinitions name="BIND"/>
+  	<privilegeDefinitions name="COPY"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="System">
+	<privilegeDefinitions name="ARCHIVE"/>
+	<privilegeDefinitions name="BINDADD"/>
+	<privilegeDefinitions name="BINDAGENT"/>
+	<privilegeDefinitions name="BSDS"/>
+	<privilegeDefinitions name="CREATEALIAS"/>
+	<privilegeDefinitions name="CREATEDBA"/>
+	<privilegeDefinitions name="CREATEDBC"/>
+	<privilegeDefinitions name="CREATESG"/>
+	<privilegeDefinitions name="CREATETMTAB"/>
+	<privilegeDefinitions name="DISPLAY"/>
+	<privilegeDefinitions name="MONITOR1"/>
+	<privilegeDefinitions name="MONITOR2"/>
+	<privilegeDefinitions name="RECOVER"/>
+	<privilegeDefinitions name="STOPALL"/>
+	<privilegeDefinitions name="STOSPACE"/>
+	<privilegeDefinitions name="SYSADM"/>
+	<privilegeDefinitions name="SYSCTRL"/>
+	<privilegeDefinitions name="SYSOPR"/>
+	<privilegeDefinitions name="TRACE"/>
+  </privilegedElementDefinitions>
   <SQLSyntaxDefinition>
     <keywords>ABSOLUTE</keywords>
     <keywords>ACCESS</keywords>

@@ -176,6 +176,41 @@
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
+  <privilegedElementDefinitions name="Database">
+  	<privilegeDefinitions name="CONNECT"/>
+	<privilegeDefinitions name="RESOURCE"/>
+	<privilegeDefinitions name="DBA"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="PersistentTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="UNDER"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="ViewTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="INSERT"/>
+    <privilegeDefinitions name="SELECT" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="UNDER"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions xmi:id="COLUMN_1" name="Column"/>
+  <privilegedElementDefinitions name="Routine">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Sequence">
+  	<privilegeDefinitions name="ALTER"/>
+  	<privilegeDefinitions name="SELECT"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="UserDefinedType">
+  	<privilegeDefinitions name="USAGE"/>
+  	<privilegeDefinitions name="UNDER"/>
+  </privilegedElementDefinitions>
   <SQLSyntaxDefinition>
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
