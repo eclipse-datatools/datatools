@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseDBSpace.java,v 1.3 2007/02/08 01:41:33 linsong Exp $
+ * $Id: SybaseASABaseDBSpace.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -25,61 +25,60 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  * @model
  * @generated
  */
-public interface SybaseASABaseDBSpace extends SQLObject
-{
-    /**
-     * Returns the value of the '<em><b>File Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+public interface SybaseASABaseDBSpace extends SQLObject {
+	/**
+	 * Returns the value of the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>File Name</em>' attribute.
-     * @see #setFileName(String)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseDBSpace_FileName()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>File Name</em>' attribute.
+	 * @see #setFileName(String)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseDBSpace_FileName()
+	 * @model
+	 * @generated
+	 */
 	String getFileName();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace#getFileName <em>File Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace#getFileName <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>File Name</em>' attribute.
-     * @see #getFileName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>File Name</em>' attribute.
+	 * @see #getFileName()
+	 * @generated
+	 */
 	void setFileName(String value);
 
-    /**
-     * Returns the value of the '<em><b>Database</b></em>' reference.
-     * The default value is <code>""</code>.
-     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getDbSpaces <em>Db Spaces</em>}'.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the value of the '<em><b>Database</b></em>' reference.
+	 * The default value is <code>""</code>.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getDbSpaces <em>Db Spaces</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Database</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Database</em>' reference.
-     * @see #setDatabase(SybaseASABaseDatabase)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseDBSpace_Database()
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getDbSpaces
-     * @model opposite="dbSpaces" required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Database</em>' reference.
+	 * @see #setDatabase(SybaseASABaseDatabase)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseDBSpace_Database()
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase#getDbSpaces
+	 * @model opposite="dbSpaces" required="true"
+	 * @generated
+	 */
 	SybaseASABaseDatabase getDatabase();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace#getDatabase <em>Database</em>}' reference.
-     * <!-- begin-user-doc -->
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace#getDatabase <em>Database</em>}' reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Database</em>' reference.
-     * @see #getDatabase()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Database</em>' reference.
+	 * @see #getDatabase()
+	 * @generated
+	 */
 	void setDatabase(SybaseASABaseDatabase value);
 
 } // SybaseASABaseDBSpace

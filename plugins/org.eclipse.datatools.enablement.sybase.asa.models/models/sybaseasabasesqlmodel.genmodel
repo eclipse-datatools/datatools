@@ -22,6 +22,7 @@
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/BEFORE"/>
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/AFTER"/>
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/RESOLVE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//SybaseASABaseActionTime/ASE"/>
     </genEnums>
     <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//EventType">
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventType/NOEVENTTYPE"/>
@@ -47,9 +48,9 @@
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//JavaSupportType/JDK118"/>
     </genEnums>
     <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//EventLocationType">
-      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/CONSOLIDATED"/>
-      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/REMOTE"/>
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/ALL"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/REMOTE"/>
+      <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//EventLocationType/CONSOLIDATED"/>
     </genEnums>
     <genEnums ecoreEnum="sybaseasabasesqlmodel.ecore#//IntervalUnitType">
       <genEnumLiterals ecoreEnumLiteral="sybaseasabasesqlmodel.ecore#//IntervalUnitType/HOURS"/>
@@ -142,6 +143,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/columnConstraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/typeOfDefault"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/unique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/isComputedColumn"/>
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/isLiteralDefault"/>
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/getGlobalIncrementPartitionSize"/>
     </genClasses>
@@ -177,6 +179,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/order"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/sybaseASABaseActionTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/remoteName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/updateColumnType"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/getOldName"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/getNewName"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setOldName">
+        <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setOldName/oldName"/>
+      </genOperations>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setNewName">
+        <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseTrigger/setNewName/newName"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseProxyTable/remoteObjectLocation"/>
@@ -202,6 +213,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseParameter/parmType"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseGroup"/>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseUser"/>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema">
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getNormalTables"/>
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getTempTables"/>
@@ -210,6 +222,13 @@
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables">
         <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables/systemFlag"/>
       </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/isLiteral"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/partitionSize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/type"/>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/parse"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

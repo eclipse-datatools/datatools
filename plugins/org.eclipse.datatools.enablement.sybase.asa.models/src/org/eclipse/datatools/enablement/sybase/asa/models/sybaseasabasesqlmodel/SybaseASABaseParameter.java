@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseParameter.java,v 1.4 2007/02/28 01:02:33 hcao Exp $
+ * $Id: SybaseASABaseParameter.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -26,35 +26,34 @@ import org.eclipse.datatools.modelbase.sql.routines.Parameter;
  * @model
  * @generated
  */
-public interface SybaseASABaseParameter extends Parameter, SybaseParameter 
-{
-    /**
-     * Returns the value of the '<em><b>Parm Type</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType}.
-     * <!-- begin-user-doc -->
+public interface SybaseASABaseParameter extends Parameter, SybaseParameter {
+	/**
+	 * Returns the value of the '<em><b>Parm Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parm Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Parm Type</em>' attribute.
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType
-     * @see #setParmType(ParameterType)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseParameter_ParmType()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Parm Type</em>' attribute.
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType
+	 * @see #setParmType(ParameterType)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseParameter_ParmType()
+	 * @model
+	 * @generated
+	 */
 	ParameterType getParmType();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseParameter#getParmType <em>Parm Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseParameter#getParmType <em>Parm Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parm Type</em>' attribute.
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType
-     * @see #getParmType()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Parm Type</em>' attribute.
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType
+	 * @see #getParmType()
+	 * @generated
+	 */
 	void setParmType(ParameterType value);
 
 } // SybaseASABaseParameter

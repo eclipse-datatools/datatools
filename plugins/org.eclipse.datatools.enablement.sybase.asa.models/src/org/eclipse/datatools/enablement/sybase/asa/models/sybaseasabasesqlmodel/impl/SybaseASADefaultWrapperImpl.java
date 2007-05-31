@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADefaultWrapperImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
+ * $Id: SybaseASADefaultWrapperImpl.java,v 1.2 2007/03/19 16:37:07 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -38,99 +38,98 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseASADefaultWrapper
 {
-    /**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String VALUE_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
     protected String value = VALUE_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #isIsLiteral() <em>Is Literal</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #isIsLiteral() <em>Is Literal</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIsLiteral()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIsLiteral()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean IS_LITERAL_EDEFAULT = false;
 
-    /**
-     * The cached value of the '{@link #isIsLiteral() <em>Is Literal</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #isIsLiteral() <em>Is Literal</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isIsLiteral()
-     * @generated
-     * @ordered
-     */
+	 * @see #isIsLiteral()
+	 * @generated
+	 * @ordered
+	 */
     protected boolean isLiteral = IS_LITERAL_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getPartitionSize() <em>Partition Size</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #getPartitionSize() <em>Partition Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPartitionSize()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPartitionSize()
+	 * @generated
+	 * @ordered
+	 */
     protected static final int PARTITION_SIZE_EDEFAULT = -1;
 
-    /**
-     * The cached value of the '{@link #getPartitionSize() <em>Partition Size</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #getPartitionSize() <em>Partition Size</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getPartitionSize()
-     * @generated
-     * @ordered
-     */
+	 * @see #getPartitionSize()
+	 * @generated
+	 * @ordered
+	 */
     protected int partitionSize = PARTITION_SIZE_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
     protected static final TypeOfDefault TYPE_EDEFAULT = TypeOfDefault.NO_DEFAULT_LITERAL;
 
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
     protected TypeOfDefault type = TYPE_EDEFAULT;
 
     protected boolean isComputed;
     
     protected String rawValue;
     
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected SybaseASADefaultWrapperImpl()
-    {
-        super();
-    }
+	 * @generated
+	 */
+    protected SybaseASADefaultWrapperImpl() {
+		super();
+	}
 
     public SybaseASADefaultWrapperImpl(String value, boolean isComputed)
     {
@@ -142,107 +141,98 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
         parse();
     }
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected EClass eStaticClass()
-    {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_DEFAULT_WRAPPER;
-    }
+	 * @generated
+	 */
+    protected EClass eStaticClass() {
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_DEFAULT_WRAPPER;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getValue()
-    {
-        return value;
-    }
+	 * @generated
+	 */
+    public String getValue() {
+		return value;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setValue(String newValue)
-    {
-        String oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE, oldValue, value));
-    }
+	 * @generated
+	 */
+    public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE, oldValue, value));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean isIsLiteral()
-    {
-        return isLiteral;
-    }
+	 * @generated
+	 */
+    public boolean isIsLiteral() {
+		return isLiteral;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setIsLiteral(boolean newIsLiteral)
-    {
-        boolean oldIsLiteral = isLiteral;
-        isLiteral = newIsLiteral;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL, oldIsLiteral, isLiteral));
-    }
+	 * @generated
+	 */
+    public void setIsLiteral(boolean newIsLiteral) {
+		boolean oldIsLiteral = isLiteral;
+		isLiteral = newIsLiteral;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL, oldIsLiteral, isLiteral));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public int getPartitionSize()
-    {
-        return partitionSize;
-    }
+	 * @generated
+	 */
+    public int getPartitionSize() {
+		return partitionSize;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setPartitionSize(int newPartitionSize)
-    {
-        int oldPartitionSize = partitionSize;
-        partitionSize = newPartitionSize;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE, oldPartitionSize, partitionSize));
-    }
+	 * @generated
+	 */
+    public void setPartitionSize(int newPartitionSize) {
+		int oldPartitionSize = partitionSize;
+		partitionSize = newPartitionSize;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE, oldPartitionSize, partitionSize));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public TypeOfDefault getType()
-    {
-        return type;
-    }
+	 * @generated
+	 */
+    public TypeOfDefault getType() {
+		return type;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(TypeOfDefault newType)
-    {
-        TypeOfDefault oldType = type;
-        type = newType == null ? TYPE_EDEFAULT : newType;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE, oldType, type));
-    }
+	 * @generated
+	 */
+    public void setType(TypeOfDefault newType) {
+		TypeOfDefault oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE, oldType, type));
+	}
 
     /**
      * Parses the string value and assign to other database memebers accordingly
@@ -306,119 +296,110 @@ public class SybaseASADefaultWrapperImpl extends EObjectImpl implements SybaseAS
         return content;
     }
     
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public Object eGet(int featureID, boolean resolve, boolean coreType)
-    {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
-                return getValue();
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
-                return isIsLiteral() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-                return new Integer(getPartitionSize());
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
-                return getType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	 * @generated
+	 */
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
+				return getValue();
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
+				return isIsLiteral() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
+				return new Integer(getPartitionSize());
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
+				return getType();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eSet(int featureID, Object newValue)
-    {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
-                setValue((String)newValue);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
-                setIsLiteral(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-                setPartitionSize(((Integer)newValue).intValue());
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
-                setType((TypeOfDefault)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	 * @generated
+	 */
+    public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
+				setValue((String)newValue);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
+				setIsLiteral(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
+				setPartitionSize(((Integer)newValue).intValue());
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
+				setType((TypeOfDefault)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public void eUnset(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
-                setIsLiteral(IS_LITERAL_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-                setPartitionSize(PARTITION_SIZE_EDEFAULT);
-                return;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
-                setType(TYPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	 * @generated
+	 */
+    public void eUnset(int featureID) {
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
+				setIsLiteral(IS_LITERAL_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
+				setPartitionSize(PARTITION_SIZE_EDEFAULT);
+				return;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean eIsSet(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
-                return isLiteral != IS_LITERAL_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
-                return partitionSize != PARTITION_SIZE_EDEFAULT;
-            case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
-                return type != TYPE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+	 * @generated
+	 */
+    public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__IS_LITERAL:
+				return isLiteral != IS_LITERAL_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__PARTITION_SIZE:
+				return partitionSize != PARTITION_SIZE_EDEFAULT;
+			case SybaseasabasesqlmodelPackage.SYBASE_ASA_DEFAULT_WRAPPER__TYPE:
+				return type != TYPE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public String toString()
-    {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+    public String toString() {
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: "); //$NON-NLS-1$
-        result.append(value);
-        result.append(", isLiteral: "); //$NON-NLS-1$
-        result.append(isLiteral);
-        result.append(", partitionSize: "); //$NON-NLS-1$
-        result.append(partitionSize);
-        result.append(", type: "); //$NON-NLS-1$
-        result.append(type);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(", isLiteral: ");
+		result.append(isLiteral);
+		result.append(", partitionSize: ");
+		result.append(partitionSize);
+		result.append(", type: ");
+		result.append(type);
+		result.append(')');
+		return result.toString();
+	}
 
     public boolean isSystemDefault()
     {

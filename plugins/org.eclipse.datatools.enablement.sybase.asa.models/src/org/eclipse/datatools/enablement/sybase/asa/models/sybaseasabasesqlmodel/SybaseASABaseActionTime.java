@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseActionTime.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
+ * $Id: SybaseASABaseActionTime.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -22,194 +22,184 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * @generated
  */
 public final class SybaseASABaseActionTime extends AbstractEnumerator {
-    /**
-     * The '<em><b>BEFORE</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>BEFORE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>BEFORE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #BEFORE_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
+	 * @see #BEFORE_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
 	public static final int BEFORE = 0;
 
-    /**
-     * The '<em><b>AFTER</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>AFTER</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>AFTER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #AFTER_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
+	 * @see #AFTER_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
 	public static final int AFTER = 1;
 
-    /**
-     * The '<em><b>RESOLVE</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>RESOLVE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>RESOLVE</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #RESOLVE_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
+	 * @see #RESOLVE_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
 	public static final int RESOLVE = 2;
 
-    /**
-     * The '<em><b>ASE</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>ASE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>ASE</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #ASE_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
+	 * @see #ASE_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
     public static final int ASE = 3;
 
-    /**
-     * The '<em><b>BEFORE</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>BEFORE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #BEFORE
-     * @generated
-     * @ordered
-     */
+	 * @see #BEFORE
+	 * @generated
+	 * @ordered
+	 */
 	public static final SybaseASABaseActionTime BEFORE_LITERAL = new SybaseASABaseActionTime(BEFORE, "BEFORE", "BEFORE"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>AFTER</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>AFTER</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #AFTER
-     * @generated
-     * @ordered
-     */
+	 * @see #AFTER
+	 * @generated
+	 * @ordered
+	 */
 	public static final SybaseASABaseActionTime AFTER_LITERAL = new SybaseASABaseActionTime(AFTER, "AFTER", "AFTER"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>RESOLVE</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>RESOLVE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #RESOLVE
-     * @generated
-     * @ordered
-     */
+	 * @see #RESOLVE
+	 * @generated
+	 * @ordered
+	 */
 	public static final SybaseASABaseActionTime RESOLVE_LITERAL = new SybaseASABaseActionTime(RESOLVE, "RESOLVE", "RESOLVE"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * The '<em><b>ASE</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>ASE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #ASE
-     * @generated
-     * @ordered
-     */
+	 * @see #ASE
+	 * @generated
+	 * @ordered
+	 */
     public static final SybaseASABaseActionTime ASE_LITERAL = new SybaseASABaseActionTime(ASE, "ASE", "ASE"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * An array of all the '<em><b>Sybase ASA Base Action Time</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	/**
+	 * An array of all the '<em><b>Sybase ASA Base Action Time</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	private static final SybaseASABaseActionTime[] VALUES_ARRAY =
-        new SybaseASABaseActionTime[]
-        {
-            BEFORE_LITERAL,
-            AFTER_LITERAL,
-            RESOLVE_LITERAL,
-            ASE_LITERAL,
-        };
+		new SybaseASABaseActionTime[] {
+			BEFORE_LITERAL,
+			AFTER_LITERAL,
+			RESOLVE_LITERAL,
+			ASE_LITERAL,
+		};
 
-    /**
-     * A public read-only list of all the '<em><b>Sybase ASA Base Action Time</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	/**
+	 * A public read-only list of all the '<em><b>Sybase ASA Base Action Time</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static SybaseASABaseActionTime get(String literal)
-    {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            SybaseASABaseActionTime result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal))
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static SybaseASABaseActionTime get(String literal) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			SybaseASABaseActionTime result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static SybaseASABaseActionTime getByName(String name)
-    {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            SybaseASABaseActionTime result = VALUES_ARRAY[i];
-            if (result.getName().equals(name))
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static SybaseASABaseActionTime getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			SybaseASABaseActionTime result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Sybase ASA Base Action Time</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static SybaseASABaseActionTime get(int value)
-    {
-        switch (value)
-        {
-            case BEFORE: return BEFORE_LITERAL;
-            case AFTER: return AFTER_LITERAL;
-            case RESOLVE: return RESOLVE_LITERAL;
-            case ASE: return ASE_LITERAL;
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static SybaseASABaseActionTime get(int value) {
+		switch (value) {
+			case BEFORE: return BEFORE_LITERAL;
+			case AFTER: return AFTER_LITERAL;
+			case RESOLVE: return RESOLVE_LITERAL;
+			case ASE: return ASE_LITERAL;
+		}
+		return null;	
+	}
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private SybaseASABaseActionTime(int value, String name, String literal)
-    {
-        super(value, name, literal);
-    }
+	 * @generated
+	 */
+	private SybaseASABaseActionTime(int value, String name, String literal) {
+		super(value, name, literal);
+	}
 
 } //SybaseASABaseActionTime

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABasePrimaryKeyImpl.java,v 1.3 2007/02/08 01:41:31 linsong Exp $
+ * $Id: SybaseASABasePrimaryKeyImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -21,24 +21,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SybaseASABasePrimaryKeyImpl extends SybaseASABaseUniqueConstraintImpl implements SybaseASABasePrimaryKey 
 {
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected SybaseASABasePrimaryKeyImpl()
-    {
-        super();
-    }
+	 * @generated
+	 */
+	protected SybaseASABasePrimaryKeyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected EClass eStaticClass()
-    {
-        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PRIMARY_KEY;
-    }
+	 * @generated
+	 */
+	protected EClass eStaticClass() {
+		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PRIMARY_KEY;
+	}
 
 } //SybaseASABasePrimaryKeyImpl

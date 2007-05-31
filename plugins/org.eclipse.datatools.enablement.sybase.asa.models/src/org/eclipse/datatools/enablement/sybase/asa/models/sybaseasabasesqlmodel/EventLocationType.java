@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventLocationType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
+ * $Id: EventLocationType.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -22,167 +22,157 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  * @generated
  */
 public final class EventLocationType extends AbstractEnumerator {
-    /**
-     * The '<em><b>CONSOLIDATED</b></em>' literal value.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CONSOLIDATED</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @see #CONSOLIDATED_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
-	public static final int CONSOLIDATED = 2;
-
-    /**
-     * The '<em><b>REMOTE</b></em>' literal value.
-     * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>REMOTE</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-     * @see #REMOTE_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
-	public static final int REMOTE = 1;
-
-    /**
-     * The '<em><b>ALL</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>ALL</b></em>' literal value.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>ALL</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #ALL_LITERAL
-     * @model
-     * @generated
-     * @ordered
-     */
+	 * @see #ALL_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
 	public static final int ALL = 0;
 
-    /**
-     * The '<em><b>CONSOLIDATED</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>REMOTE</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>REMOTE</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #CONSOLIDATED
-     * @generated
-     * @ordered
-     */
-	public static final EventLocationType CONSOLIDATED_LITERAL = new EventLocationType(CONSOLIDATED, "CONSOLIDATED", "CONSOLIDATED"); //$NON-NLS-1$ //$NON-NLS-2$
+	 * @see #REMOTE_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int REMOTE = 1;
 
-    /**
-     * The '<em><b>REMOTE</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>CONSOLIDATED</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>CONSOLIDATED</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-     * @see #REMOTE
-     * @generated
-     * @ordered
-     */
-	public static final EventLocationType REMOTE_LITERAL = new EventLocationType(REMOTE, "REMOTE", "REMOTE"); //$NON-NLS-1$ //$NON-NLS-2$
+	 * @see #CONSOLIDATED_LITERAL
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int CONSOLIDATED = 2;
 
-    /**
-     * The '<em><b>ALL</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>ALL</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #ALL
-     * @generated
-     * @ordered
-     */
+	 * @see #ALL
+	 * @generated
+	 * @ordered
+	 */
 	public static final EventLocationType ALL_LITERAL = new EventLocationType(ALL, "ALL", "ALL"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * An array of all the '<em><b>Event Location Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>REMOTE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private static final EventLocationType[] VALUES_ARRAY =
-        new EventLocationType[]
-        {
-            CONSOLIDATED_LITERAL,
-            REMOTE_LITERAL,
-            ALL_LITERAL,
-        };
+	 * @see #REMOTE
+	 * @generated
+	 * @ordered
+	 */
+	public static final EventLocationType REMOTE_LITERAL = new EventLocationType(REMOTE, "REMOTE", "REMOTE"); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * A public read-only list of all the '<em><b>Event Location Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	/**
+	 * The '<em><b>CONSOLIDATED</b></em>' literal object.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @see #CONSOLIDATED
+	 * @generated
+	 * @ordered
+	 */
+	public static final EventLocationType CONSOLIDATED_LITERAL = new EventLocationType(CONSOLIDATED, "CONSOLIDATED", "CONSOLIDATED"); //$NON-NLS-1$ //$NON-NLS-2$
+
+	/**
+	 * An array of all the '<em><b>Event Location Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private static final EventLocationType[] VALUES_ARRAY =
+		new EventLocationType[] {
+			ALL_LITERAL,
+			REMOTE_LITERAL,
+			CONSOLIDATED_LITERAL,
+		};
+
+	/**
+	 * A public read-only list of all the '<em><b>Event Location Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
-    /**
-     * Returns the '<em><b>Event Location Type</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Event Location Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static EventLocationType get(String literal)
-    {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            EventLocationType result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal))
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static EventLocationType get(String literal) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			EventLocationType result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Event Location Type</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Event Location Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static EventLocationType getByName(String name)
-    {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i)
-        {
-            EventLocationType result = VALUES_ARRAY[i];
-            if (result.getName().equals(name))
-            {
-                return result;
-            }
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static EventLocationType getByName(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			EventLocationType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the '<em><b>Event Location Type</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	/**
+	 * Returns the '<em><b>Event Location Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static EventLocationType get(int value)
-    {
-        switch (value)
-        {
-            case CONSOLIDATED: return CONSOLIDATED_LITERAL;
-            case REMOTE: return REMOTE_LITERAL;
-            case ALL: return ALL_LITERAL;
-        }
-        return null;
-    }
+	 * @generated
+	 */
+	public static EventLocationType get(int value) {
+		switch (value) {
+			case ALL: return ALL_LITERAL;
+			case REMOTE: return REMOTE_LITERAL;
+			case CONSOLIDATED: return CONSOLIDATED_LITERAL;
+		}
+		return null;	
+	}
 
-    /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	/**
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	private EventLocationType(int value, String name, String literal)
-    {
-        super(value, name, literal);
-    }
+	 * @generated
+	 */
+	private EventLocationType(int value, String name, String literal) {
+		super(value, name, literal);
+	}
 
 } //EventLocationType

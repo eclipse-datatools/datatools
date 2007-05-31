@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADatabaseImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
+ * $Id: SybaseASADatabaseImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -28,145 +28,132 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements SybaseASADatabase 
 {
-    /**
-     * The default value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isASECompatible()
-     * @generated
-     * @ordered
-     */
+	 * @see #isASECompatible()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean ASE_COMPATIBLE_EDEFAULT = false;
 
-    /**
-     * The cached value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isASECompatible()
-     * @generated
-     * @ordered
-     */
+	 * @see #isASECompatible()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean aseCompatible = ASE_COMPATIBLE_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected SybaseASADatabaseImpl()
-    {
-        super();
-    }
+	 * @generated
+	 */
+	protected SybaseASADatabaseImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected EClass eStaticClass()
-    {
-        return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_DATABASE;
-    }
+	 * @generated
+	 */
+	protected EClass eStaticClass() {
+		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_DATABASE;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isASECompatible()
-    {
-        return aseCompatible;
-    }
+	 * @generated
+	 */
+	public boolean isASECompatible() {
+		return aseCompatible;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setASECompatible(boolean newASECompatible)
-    {
-        boolean oldASECompatible = aseCompatible;
-        aseCompatible = newASECompatible;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE, oldASECompatible, aseCompatible));
-    }
+	 * @generated
+	 */
+	public void setASECompatible(boolean newASECompatible) {
+		boolean oldASECompatible = aseCompatible;
+		aseCompatible = newASECompatible;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE, oldASECompatible, aseCompatible));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
-                return isASECompatible() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
+				return isASECompatible() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void eSet(int featureID, Object newValue)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
-                setASECompatible(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
+				setASECompatible(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void eUnset(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
-                setASECompatible(ASE_COMPATIBLE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
+				setASECompatible(ASE_COMPATIBLE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean eIsSet(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
-                return aseCompatible != ASE_COMPATIBLE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
+				return aseCompatible != ASE_COMPATIBLE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public String toString()
-    {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (ASECompatible: "); //$NON-NLS-1$
-        result.append(aseCompatible);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ASECompatible: ");
+		result.append(aseCompatible);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASADatabaseImpl

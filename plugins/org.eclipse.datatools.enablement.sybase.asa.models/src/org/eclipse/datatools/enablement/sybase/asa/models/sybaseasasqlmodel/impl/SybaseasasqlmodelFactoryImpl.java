@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
+ * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
+
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.*;
 
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
@@ -27,133 +29,119 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements SybaseasasqlmodelFactory 
 {
-    /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public static SybaseasasqlmodelFactory init()
-    {
-        try
-        {
-            SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore");  //$NON-NLS-1$
-            if (theSybaseasasqlmodelFactory != null)
-            {
-                return theSybaseasasqlmodelFactory;
-            }
-        }
-        catch (Exception exception)
-        {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new SybaseasasqlmodelFactoryImpl();
-    }
+	 * @generated
+	 */
+	public static SybaseasasqlmodelFactory init() {
+		try {
+			SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"); 
+			if (theSybaseasasqlmodelFactory != null) {
+				return theSybaseasasqlmodelFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new SybaseasasqlmodelFactoryImpl();
+	}
 
-    /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseasasqlmodelFactoryImpl()
-    {
-        super();
-    }
+	 * @generated
+	 */
+	public SybaseasasqlmodelFactoryImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public EObject create(EClass eClass)
-    {
-        switch (eClass.getClassifierID())
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE: return createSybaseASADatabase();
-            case SybaseasasqlmodelPackage.SYBASE_ASA_TABLE: return createSybaseASATable();
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY: return createSybaseASAForeignKey();
-            case SybaseasasqlmodelPackage.SYBASE_ASA_INDEX: return createSybaseASAIndex();
-            case SybaseasasqlmodelPackage.SYBASE_ASA_TEMP_TABLE: return createSybaseASATempTable();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-    }
+	 * @generated
+	 */
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE: return createSybaseASADatabase();
+			case SybaseasasqlmodelPackage.SYBASE_ASA_TABLE: return createSybaseASATable();
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY: return createSybaseASAForeignKey();
+			case SybaseasasqlmodelPackage.SYBASE_ASA_INDEX: return createSybaseASAIndex();
+			case SybaseasasqlmodelPackage.SYBASE_ASA_TEMP_TABLE: return createSybaseASATempTable();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseASADatabase createSybaseASADatabase()
-    {
-        SybaseASADatabaseImpl sybaseASADatabase = new SybaseASADatabaseImpl();
-        return sybaseASADatabase;
-    }
+	 * @generated
+	 */
+	public SybaseASADatabase createSybaseASADatabase() {
+		SybaseASADatabaseImpl sybaseASADatabase = new SybaseASADatabaseImpl();
+		return sybaseASADatabase;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseASATable createSybaseASATable()
-    {
-        SybaseASATableImpl sybaseASATable = new SybaseASATableImpl();
-        return sybaseASATable;
-    }
+	 * @generated
+	 */
+	public SybaseASATable createSybaseASATable() {
+		SybaseASATableImpl sybaseASATable = new SybaseASATableImpl();
+		return sybaseASATable;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseASAForeignKey createSybaseASAForeignKey()
-    {
-        SybaseASAForeignKeyImpl sybaseASAForeignKey = new SybaseASAForeignKeyImpl();
-        return sybaseASAForeignKey;
-    }
+	 * @generated
+	 */
+	public SybaseASAForeignKey createSybaseASAForeignKey() {
+		SybaseASAForeignKeyImpl sybaseASAForeignKey = new SybaseASAForeignKeyImpl();
+		return sybaseASAForeignKey;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseASAIndex createSybaseASAIndex()
-    {
-        SybaseASAIndexImpl sybaseASAIndex = new SybaseASAIndexImpl();
-        return sybaseASAIndex;
-    }
+	 * @generated
+	 */
+	public SybaseASAIndex createSybaseASAIndex() {
+		SybaseASAIndexImpl sybaseASAIndex = new SybaseASAIndexImpl();
+		return sybaseASAIndex;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseASATempTable createSybaseASATempTable()
-    {
-        SybaseASATempTableImpl sybaseASATempTable = new SybaseASATempTableImpl();
-        return sybaseASATempTable;
-    }
+	 * @generated
+	 */
+	public SybaseASATempTable createSybaseASATempTable() {
+		SybaseASATempTableImpl sybaseASATempTable = new SybaseASATempTableImpl();
+		return sybaseASATempTable;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public SybaseasasqlmodelPackage getSybaseasasqlmodelPackage()
-    {
-        return (SybaseasasqlmodelPackage)getEPackage();
-    }
+	 * @generated
+	 */
+	public SybaseasasqlmodelPackage getSybaseasasqlmodelPackage() {
+		return (SybaseasasqlmodelPackage)getEPackage();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
-	public static SybaseasasqlmodelPackage getPackage()
-    {
-        return SybaseasasqlmodelPackage.eINSTANCE;
-    }
+	 * @deprecated
+	 * @generated
+	 */
+	public static SybaseasasqlmodelPackage getPackage() {
+		return SybaseasasqlmodelPackage.eINSTANCE;
+	}
 
 } //SybaseasasqlmodelFactoryImpl

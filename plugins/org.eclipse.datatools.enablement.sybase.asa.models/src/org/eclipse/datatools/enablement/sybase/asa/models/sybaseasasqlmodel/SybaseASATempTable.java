@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASATempTable.java,v 1.3 2007/02/08 01:41:36 linsong Exp $
+ * $Id: SybaseASATempTable.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -24,33 +24,32 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  * @model
  * @generated
  */
-public interface SybaseASATempTable extends SybaseASABaseTempTable
-{
-    /**
-     * Returns the value of the '<em><b>Pctfree</b></em>' attribute.
-     * The default value is <code>"-1"</code>.
-     * <!-- begin-user-doc -->
+public interface SybaseASATempTable extends SybaseASABaseTempTable {
+	/**
+	 * Returns the value of the '<em><b>Pctfree</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pctfree</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-     * @return the value of the '<em>Pctfree</em>' attribute.
-     * @see #setPctfree(int)
-     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage#getSybaseASATempTable_Pctfree()
-     * @model default="-1"
-     * @generated
-     */
+	 * @return the value of the '<em>Pctfree</em>' attribute.
+	 * @see #setPctfree(int)
+	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage#getSybaseASATempTable_Pctfree()
+	 * @model default="-1"
+	 * @generated
+	 */
 	int getPctfree();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable#getPctfree <em>Pctfree</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable#getPctfree <em>Pctfree</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Pctfree</em>' attribute.
-     * @see #getPctfree()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Pctfree</em>' attribute.
+	 * @see #getPctfree()
+	 * @generated
+	 */
 	void setPctfree(int value);
 
 } // SybaseASATempTable

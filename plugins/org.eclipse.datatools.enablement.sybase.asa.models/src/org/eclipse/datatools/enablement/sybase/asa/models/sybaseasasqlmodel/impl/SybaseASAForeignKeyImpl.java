@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASAForeignKeyImpl.java,v 1.1 2007/03/05 15:52:18 jgraham Exp $
+ * $Id: SybaseASAForeignKeyImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -29,200 +29,185 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASAForeignKeyImpl extends SybaseASABaseForeignKeyImpl implements SybaseASAForeignKey 
 {
-    /**
-     * The default value of the '{@link #isCheckOnCommit() <em>Check On Commit</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #isCheckOnCommit() <em>Check On Commit</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isCheckOnCommit()
-     * @generated
-     * @ordered
-     */
+	 * @see #isCheckOnCommit()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean CHECK_ON_COMMIT_EDEFAULT = false;
 
-    /**
-     * The cached value of the '{@link #isCheckOnCommit() <em>Check On Commit</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #isCheckOnCommit() <em>Check On Commit</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isCheckOnCommit()
-     * @generated
-     * @ordered
-     */
+	 * @see #isCheckOnCommit()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean checkOnCommit = CHECK_ON_COMMIT_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The default value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isNullable()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
 	protected static final boolean NULLABLE_EDEFAULT = false;
 
-    /**
-     * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
-     * <!-- begin-user-doc -->
+	/**
+	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @see #isNullable()
-     * @generated
-     * @ordered
-     */
+	 * @see #isNullable()
+	 * @generated
+	 * @ordered
+	 */
 	protected boolean nullable = NULLABLE_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected SybaseASAForeignKeyImpl()
-    {
-        super();
-    }
+	 * @generated
+	 */
+	protected SybaseASAForeignKeyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	protected EClass eStaticClass()
-    {
-        return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_FOREIGN_KEY;
-    }
+	 * @generated
+	 */
+	protected EClass eStaticClass() {
+		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_FOREIGN_KEY;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isCheckOnCommit()
-    {
-        return checkOnCommit;
-    }
+	 * @generated
+	 */
+	public boolean isCheckOnCommit() {
+		return checkOnCommit;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setCheckOnCommit(boolean newCheckOnCommit)
-    {
-        boolean oldCheckOnCommit = checkOnCommit;
-        checkOnCommit = newCheckOnCommit;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT, oldCheckOnCommit, checkOnCommit));
-    }
+	 * @generated
+	 */
+	public void setCheckOnCommit(boolean newCheckOnCommit) {
+		boolean oldCheckOnCommit = checkOnCommit;
+		checkOnCommit = newCheckOnCommit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT, oldCheckOnCommit, checkOnCommit));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean isNullable()
-    {
-        return nullable;
-    }
+	 * @generated
+	 */
+	public boolean isNullable() {
+		return nullable;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void setNullable(boolean newNullable)
-    {
-        boolean oldNullable = nullable;
-        nullable = newNullable;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE, oldNullable, nullable));
-    }
+	 * @generated
+	 */
+	public void setNullable(boolean newNullable) {
+		boolean oldNullable = nullable;
+		nullable = newNullable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE, oldNullable, nullable));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
-                return isCheckOnCommit() ? Boolean.TRUE : Boolean.FALSE;
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
-                return isNullable() ? Boolean.TRUE : Boolean.FALSE;
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	 * @generated
+	 */
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
+				return isCheckOnCommit() ? Boolean.TRUE : Boolean.FALSE;
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
+				return isNullable() ? Boolean.TRUE : Boolean.FALSE;
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void eSet(int featureID, Object newValue)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
-                setCheckOnCommit(((Boolean)newValue).booleanValue());
-                return;
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
-                setNullable(((Boolean)newValue).booleanValue());
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	 * @generated
+	 */
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
+				setCheckOnCommit(((Boolean)newValue).booleanValue());
+				return;
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
+				setNullable(((Boolean)newValue).booleanValue());
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public void eUnset(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
-                setCheckOnCommit(CHECK_ON_COMMIT_EDEFAULT);
-                return;
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
-                setNullable(NULLABLE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	 * @generated
+	 */
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
+				setCheckOnCommit(CHECK_ON_COMMIT_EDEFAULT);
+				return;
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
+				setNullable(NULLABLE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public boolean eIsSet(int featureID)
-    {
-        switch (featureID)
-        {
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
-                return checkOnCommit != CHECK_ON_COMMIT_EDEFAULT;
-            case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
-                return nullable != NULLABLE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+	 * @generated
+	 */
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__CHECK_ON_COMMIT:
+				return checkOnCommit != CHECK_ON_COMMIT_EDEFAULT;
+			case SybaseasasqlmodelPackage.SYBASE_ASA_FOREIGN_KEY__NULLABLE:
+				return nullable != NULLABLE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-     * @generated
-     */
-	public String toString()
-    {
-        if (eIsProxy()) return super.toString();
+	 * @generated
+	 */
+	public String toString() {
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (checkOnCommit: "); //$NON-NLS-1$
-        result.append(checkOnCommit);
-        result.append(", nullable: "); //$NON-NLS-1$
-        result.append(nullable);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (checkOnCommit: ");
+		result.append(checkOnCommit);
+		result.append(", nullable: ");
+		result.append(nullable);
+		result.append(')');
+		return result.toString();
+	}
 
 } //SybaseASAForeignKeyImpl
