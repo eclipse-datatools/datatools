@@ -425,16 +425,15 @@ public class DataSourceDesignSessionBase
         
         wizard.addPages();
         
-        if( wizard.getStartingPage() instanceof NewConnectionProfileWizardPage )
+        NewConnectionProfileWizardPage profileNamePage = 
+            getNewProfileNamePage( wizard );
+        if( profileNamePage != null )
         {
             if( aDataSourceName == null || aDataSourceName.length() == 0 )
                 throw new OdaException( Messages.designSession_invalidArgument );
                 
             // process the given wizard's profile name page,
-            // with automatically assigned attributes.
-            NewConnectionProfileWizardPage profileNamePage =
-                (NewConnectionProfileWizardPage) wizard.getStartingPage();
-            
+            // with automatically assigned attributes.            
             profileNamePage.setProfileName( aDataSourceName );
             profileNamePage.setProfileDescription( aDataSourceDesc );
             profileNamePage.setPageComplete( true );
@@ -706,6 +705,18 @@ public class DataSourceDesignSessionBase
         return( m_odaDataSourceId != null && m_odaDataSourceId.length() > 0 );
     }
     
+    private NewConnectionProfileWizardPage getNewProfileNamePage( 
+            NewDataSourceWizard wizard )
+    {
+        // TODO - use class.getSimpleName() when build w/ JDK 1.5
+        IWizardPage page =
+            wizard.getPage( "NewConnectionProfileWizardPage" ); //$NON-NLS-1$
+        if( page != null && page instanceof NewConnectionProfileWizardPage )
+            return (NewConnectionProfileWizardPage) page;
+        else
+            return null;
+    }
+
     /**
      * Represents the reference information of an external
      * connection profile.
