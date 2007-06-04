@@ -32,7 +32,7 @@ public interface IHelpConstants {
 	 * wizard selection page in New Connection Profile wizard
 	 */
 	public static final String CONTEXT_ID_CP_WIZARD_PAGE = 
-			"CONTEXT_ID_CP_PROPERTY_PAGE"; //$NON-NLS-1$
+			"CONTEXT_ID_CP_WIZARD_PAGE"; //$NON-NLS-1$
 
 	/*
 	 * CONTEXT_ID_INTRO_WIZARD_PAGE =

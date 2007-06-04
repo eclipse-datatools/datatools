@@ -5,6 +5,7 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <connectionProfile
             category="org.eclipse.datatools.connectivity.connectionProfileRepositoryCategory"
+            icon="icons/local_file_repository.GIF"
             id="org.eclipse.datatools.connectivity.repository.file.connectionProfile"
             name="File Based Connection Profile Repository"
             pingFactory="org.eclipse.datatools.connectivity.repository.file.FileRepositoryConnectionFactory"

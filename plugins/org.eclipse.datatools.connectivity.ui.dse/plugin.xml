@@ -59,7 +59,7 @@
          </action>
          <action
                class="org.eclipse.datatools.connectivity.ui.actions.AddRepositoryViewAction"
-               icon="icons/full/clcl16/add_server.gif"
+               icon="icons/new_repository_action.gif"
                id="org.eclipse.datatools.connectivity.internal.ui.viewactions.addrepository"
                label="%DSE.AddRepo.label"
                style="push"

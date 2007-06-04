@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.ui.IActionFilter;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.views.properties.IPropertySource;

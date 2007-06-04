@@ -76,6 +76,8 @@ public class SharedImages {
 
 	public static final String IMG_WIZBAN = NAME_PREFIX + "new_wiz.gif"; //$NON-NLS-1$
 
+	public static final String IMG_LOCAL_REPOSITORY = NAME_PREFIX + "local_repository.gif"; //$NON-NLS-1$
+
 	private static final String T_OBJ = "obj16"; //$NON-NLS-1$
 
 	private static final String T_WIZBAN = "wizban"; //$NON-NLS-1$
@@ -99,6 +101,9 @@ public class SharedImages {
 
 	public static final ImageDescriptor DESC_OBJ_DEFAULT_SERVER_STOPPED = createManaged(
 			T_OBJ, IMG_OBJ_DEFAULT_SERVER_STOPPED);
+
+	public static final ImageDescriptor DESC_LOCAL_REPOSITORY = createManaged(T_CLCL,
+			IMG_LOCAL_REPOSITORY);
 
 	public static final ImageDescriptor DESC_ADD_SERVER = createManaged(T_CLCL,
 			IMG_ADD_SERVER);
