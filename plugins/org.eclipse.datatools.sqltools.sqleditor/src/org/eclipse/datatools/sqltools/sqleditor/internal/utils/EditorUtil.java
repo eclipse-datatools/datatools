@@ -3,6 +3,7 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.internal.utils;
 
+import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
@@ -10,6 +11,7 @@ import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -204,6 +206,32 @@ public class EditorUtil
                 		editor.setConnectionInfo(info);
                 	}
         		}
+            }
+            else if(input.getAdapter(ProcIdentifier.class) instanceof ProcIdentifier)
+            {
+            	ProcIdentifier prodId = (ProcIdentifier)input.getAdapter(ProcIdentifier.class);
+            	IEditorPart editorPart = ref.getEditor(false);
+            	if (oldName.equals(prodId.getProfileName())) {
+            		prodId.getDatabaseIdentifier().setProfileName(newName);
+					if (editorPart instanceof SQLEditor) {
+						SQLEditor editor = (SQLEditor) editorPart;
+						ISQLEditorConnectionInfo info = editor.getConnectionInfo();
+						info.setConnectionProfileName(newName);
+						if (editor != null) {
+							editor.setConnectionInfo(info);
+						}
+					}
+					else if (editorPart.getAdapter(SQLEditor.class) instanceof SQLEditor) {
+						SQLEditor editor = (SQLEditor) editorPart
+								.getAdapter(SQLEditor.class);
+						ISQLEditorConnectionInfo info = editor.getConnectionInfo();
+						info.setConnectionProfileName(newName);
+						if (editor != null) {
+							editor.setConnectionInfo(info);
+						}
+
+					}
+				}
             }
         }
      }

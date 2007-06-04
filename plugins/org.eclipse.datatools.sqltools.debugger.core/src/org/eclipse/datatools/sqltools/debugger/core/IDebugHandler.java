@@ -120,4 +120,9 @@ public interface IDebugHandler
      * @return
      */
     public int getNumOfDebugProcess();
+    
+    /**
+     * Set the profile name
+     */
+    public void setProfileName(String profileName);
 }

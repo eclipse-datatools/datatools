@@ -39,6 +39,7 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	//The shared instance.
 	private static EditorCorePlugin plugin;
 	private IControlConnectionManager       _controlConnectionManager;
+	boolean _registered = false;
 
 	/**
 	 * The constructor.
@@ -59,12 +60,16 @@ public class EditorCorePlugin extends AbstractUIPlugin {
         });
 	}
 
-	private void register() {
-		ProfileManager pManager = ProfileManager.getInstance();
-        IConnectionProfile[] profiles = ProfileUtil.getProfiles();
-        SQLToolsProfileProxyListener listener = SQLToolsProfileProxyListener.getInstance();
-        listener.init(profiles);
-        pManager.addProfileListener(listener);
+	private synchronized void register() {
+		if (!_registered)
+        {
+            ProfileManager pManager = ProfileManager.getInstance();
+            IConnectionProfile[] profiles = ProfileUtil.getProfiles();
+            SQLToolsProfileProxyListener listener = SQLToolsProfileProxyListener.getInstance();
+            listener.init(profiles);
+            pManager.addProfileListener(listener);
+            _registered = true;
+        }
 	}
 	
 	/**
