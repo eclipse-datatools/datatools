@@ -300,6 +300,11 @@ public class DriverManager {
 		if (jarList == null) return null;
 		
 		IPropertySet pset = createDefaultInstance(templateID);
+		
+		// if for some reason, we get back a null, pass that back
+		if (pset == null)
+			return null;
+		
 		pset.setName(name);
 		String prefix = DriverMgmtMessages
 				.getString("NewDriverDialog.text.id_prefix"); //$NON-NLS-1$
