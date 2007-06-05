@@ -24,21 +24,28 @@ webServiceSelectionPage.group.wsdl=WSDL 記述子
 webServiceSelectionPage.group.endPoint=SOAP エンドポイント
 webServiceSelectionPage.group.customClass=カスタム接続クラス
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
-webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所 :
-webServiceSelectionPage.label.endPoint=SOAP エンドポイントの URL を指定してください。カスタム接続クラスを使用している場合は、この値を指定しなくてもかまいません。
-webServiceSelectionPage.label.customClass=カスタム Java クラスを使用して Web サービスへの接続やクエリを行う場合は、ここに完全修飾クラス名を入力してください。
-webServiceSelectionPage.button.browse=参照...
+webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
+webServiceSelectionPage.label.endPoint=SOAP エンドポイントの URL を指定してください。カスタム接続クラスを使用している場合は、この値を指定しなくてもかまいません(&E)
+webServiceSelectionPage.label.customClass=カスタム Java クラスを使用して Web サービスへの接続やクエリを行う場合は、ここに完全修飾クラス名を入力してください(&J)
+webServiceSelectionPage.button.browse=参照(&B)...
 
 # OperationPage
 operationPage.message.default=データソースの WSDL 記述子で定義されている処理を選択してください。
+operationPage.message.operationChanged=Confrim to regenerate the SOAP request and reconnect the End Point
+operationPage.title.operationChanged=Operation Changed
 operationPage.label.selectOpearation=選択済みの処理
 operationPage.label.document=文書
 
+# SoapParametersPage
+soapParametersPage.message.default=Enter the parameters of chosen WSDL operation
+
 # SoapRequestPage
 soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。データソースのカスタム接続クラスコードにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
-soapRequestPage.button.generateTemplate=テンプレートの生成
-soapRequestPage.button.insertParameter=パラメタの\n挿入...
-soapRequestPage.button.clear=クリア
+soapRequestPage.message.regenerateTemplate=This will regenerate the query text template based on the SOAP operation you have selected. It will remove any modifications you have made to the text.\n\nAre you sure?
+soapRequestPage.title.regenerateTemplate=Regenerate Template
+soapRequestPage.button.regenerateTemplate=&Regenerate Template
+soapRequestPage.button.insertParameter=パラメタの挿入(&I)...
+soapRequestPage.button.clear=クリア(&C)
 
 # ParameterInputDialog
 parameterInputDialog.column.name=名前
@@ -49,13 +56,16 @@ parameterInputDialog.column.defaultValue=デフォルト値
 soapResponsePage.message.default=SOAP 応答の編集
 soapResponsePage.group.schema=SOAP 応答スキーマの選択
 soapResponsePage.group.xml=サンプル SOAP 応答メッセージの選択
-soapResponsePage.radio.defaultSchema=データソース WSDL で定義した処理応答スキーマを使用する
-soapResponsePage.radio.externalSchema=外部 XML スキーマファイルを使用する :
-soapResponsePage.radio.endPoint=SOAP エンドポイントで Web サービスをクエリする
-soapResponsePage.radio.externalXML=外部サンプルデータファイルを使用する
-soapResponsePage.button.browse=参照...
-soapResponsePage.button.connect=今すぐ接続
+soapResponsePage.radio.defaultSchema=データソース WSDL で定義した処理応答スキーマを使用する(&O)
+soapResponsePage.radio.externalSchema=外部 XML スキーマファイルを使用する(&S) :
+soapResponsePage.radio.endPoint=SOAP エンドポイントで Web サービスをクエリする(&E) :
+soapResponsePage.radio.externalXML=外部サンプルデータファイルを使用する(&D)
+soapResponsePage.button.browse=参照(&B)...
+soapResponsePage.button.connect=今すぐ接続(&C)
 
 # XMLTableMappingPage
 
 # XMLColumnMappingPage
+
+# WSConsole
+wsConsole.message.error.cantRetrieveSOAPResponse=SOAP 応答を取得できません。エンドポイントを確認してください。

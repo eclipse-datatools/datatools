@@ -24,21 +24,29 @@ webServiceSelectionPage.group.wsdl=Descripteur WSDL
 webServiceSelectionPage.group.endPoint=Point de fin SOAP
 webServiceSelectionPage.group.customClass=Classe de connexion personnalisée
 webServiceSelectionPage.label.wsdl=Si le descripteur WSDL des Services Web est disponible, entrez son URL ou recherchez son emplacement dans le système de fichiers local
-webServiceSelectionPage.label.wsdlURI=URL ou emplacement du descripteur WSDL :
-webServiceSelectionPage.label.endPoint=Spécifiez l'URL du point de fin SOAP. Cette valeur est facultative si vous utilisez une classe de connexion personnalisée
-webServiceSelectionPage.label.customClass=Si les connexions et les requêtes vers les Services Web sont effectuées par l'intermédiaire d'une classe Java personnalisée, indiquez ici le nom de classe complet
-webServiceSelectionPage.button.browse=Parcourir...
+webServiceSelectionPage.label.wsdlURI=URL ou emplacement du descripteur &WSDL :
+webServiceSelectionPage.label.endPoint=Spécifiez l'URL du point de &fin SOAP. Cette valeur est facultative si vous utilisez une classe de connexion personnalisée
+webServiceSelectionPage.label.customClass=Si les connexions et les requêtes vers les Services Web sont effectuées par l'intermédiaire d'une classe &Java personnalisée, indiquez ici le nom de classe complet
+webServiceSelectionPage.button.browse=&Parcourir...
 
 # OperationPage
 operationPage.message.default=Sélectionnez une opération définie dans le descripteur WSDL de la source de données
+operationPage.message.operationChanged=Confrim to regenerate the SOAP request and reconnect the End Point
+operationPage.title.operationChanged=Operation Changed
 operationPage.label.selectOpearation=Opération sélectionnée
 operationPage.label.document=Documentation
 
+# SoapParametersPage
+soapParametersPage.message.default=Enter the parameters of chosen WSDL operation
+
 # SoapRequestPage
 soapRequestPage.message.default=Modifiez le modèle de requête SOAP de ce jeu de données. Inutile de remplir cette zone si le code de classe de la connexion personnalisée de votre source de données ne requiert aucun texte de requête
-soapRequestPage.button.generateTemplate=Générer un modèle
-soapRequestPage.button.insertParameter=Insérer\n paramètre...
-soapRequestPage.button.clear=Effacer
+soapRequestPage.message.regenerateTemplate=This will regenerate the query text template based on the SOAP operation you have selected. It will remove any modifications you have made to the text.\n\nAre you sure?
+soapRequestPage.title.regenerateTemplate=Regenerate Template
+soapRequestPage.button.regenerateTemplate=&Regenerate Template
+soapRequestPage.button.insertParameter=&Insérer paramètre...
+soapRequestPage.button.clear=&Effacer
+
 
 # ParameterInputDialog
 parameterInputDialog.column.name=Nom
@@ -49,13 +57,16 @@ parameterInputDialog.column.defaultValue=Valeur par défaut
 soapResponsePage.message.default=Modifier la réponse SOAP
 soapResponsePage.group.schema=Sélectionner le schéma de réponse SOAP
 soapResponsePage.group.xml=Sélectionner l'exemple de message de réponse SOAP
-soapResponsePage.radio.defaultSchema=Utiliser le schéma de réponse d'opération défini dans la source de données WSDL
-soapResponsePage.radio.externalSchema=Utiliser le fichier de schéma XML externe :
-soapResponsePage.radio.endPoint=Services Web de la requête au point de fin SOAP :
-soapResponsePage.radio.externalXML=Utiliser l'exemple de fichier de données externe
-soapResponsePage.button.browse=Parcourir...
-soapResponsePage.button.connect=Se connecter maintenant
+soapResponsePage.radio.defaultSchema=Utiliser le schéma de réponse d'&opération défini dans la source de données WSDL
+soapResponsePage.radio.externalSchema=Utiliser le fichier de &schéma XML externe :
+soapResponsePage.radio.endPoint=Services Web de la requête au point de &fin SOAP :
+soapResponsePage.radio.externalXML=Utiliser l'exemple de fichier de &données externe
+soapResponsePage.button.browse=&Parcourir...
+soapResponsePage.button.connect=&Se connecter maintenant
 
 # XMLTableMappingPage
 
 # XMLColumnMappingPage
+
+# WSConsole
+wsConsole.message.error.cantRetrieveSOAPResponse=La réponse SOAP ne peut pas être récupérée, vérifiez le point de fin
