@@ -10,10 +10,16 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.ProfileRule;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
@@ -36,12 +42,16 @@ import org.eclipse.ui.dialogs.PropertyPage;
 
 public class CPPropetyPage extends PropertyPage 
 	implements IContextProvider {
+	
+	private static Map sProfileToProfileRuleMap = new HashMap(); // IConnectionProfile,ProfileRule
 
 	private Text txtProfileName;
 
 	private Text txtProfileDesc;
 
 	private Button btnAutoConnect;
+	
+	private ISchedulingRule profileRule;
 
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
@@ -107,17 +117,32 @@ public class CPPropetyPage extends PropertyPage
 
 	public boolean performOk() {
 		IConnectionProfile profile = getConnectionProfile();
-		try {
-			ProfileManager.getInstance().modifyProfile(profile,
-					txtProfileName.getText(), txtProfileDesc.getText(),
-					new Boolean(btnAutoConnect.getSelection()));
-		}
-		catch (ConnectionProfileException e) {
-			ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
-					.getDefault().getResourceString("dialog.exception.title"), //$NON-NLS-1$
-					ConnectivityUIPlugin.getDefault().getResourceString(
-							"dialog.exception.message", //$NON-NLS-1$
-							new Object[] { e.getMessage()}), e); //$NON-NLS-1$
+		boolean autoConnectChanged = btnAutoConnect.getSelection() != profile.isAutoConnect();
+		if (autoConnectChanged
+				|| !txtProfileName.getText().equals(profile.getName())
+				|| !txtProfileDesc.getText().equals(profile.getDescription())) {
+			if (autoConnectChanged && profileRule == null) {
+				/*
+				 * block connect jobs until the dialog is closed. if the user
+				 * also changed connection related properties, the connect job
+				 * may be executed prior to those changes being committed.
+				 */
+				profileRule = getProfileRule(profile);
+				Platform.getJobManager().beginRule(profileRule,
+						null);
+			}
+			try {
+				ProfileManager.getInstance().modifyProfile(profile,
+						txtProfileName.getText(), txtProfileDesc.getText(),
+						new Boolean(btnAutoConnect.getSelection()));
+			}
+			catch (ConnectionProfileException e) {
+				ExceptionHandler.showException(getShell(), ConnectivityUIPlugin
+						.getDefault().getResourceString("dialog.exception.title"), //$NON-NLS-1$
+						ConnectivityUIPlugin.getDefault().getResourceString(
+								"dialog.exception.message", //$NON-NLS-1$
+								new Object[] { e.getMessage()}), e); //$NON-NLS-1$
+			}
 		}
 		return true;
 	}
@@ -183,5 +208,47 @@ public class CPPropetyPage extends PropertyPage
 
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
+	}
+
+	public void dispose() {
+		if (profileRule != null) {
+			Platform.getJobManager().endRule(profileRule);
+			profileRule = null;
+		}
+		super.dispose();
+	}
+	
+	/**
+	 * This is an internal utility method used to workaround some locking issues
+	 * caused by the way we're using it. The basic problem here is that the
+	 * begin/endRule() calls must be matched, but we can't accommodate that
+	 * given the order of execution within the property dialog, so we have:
+	 * 
+	 * Page1.performOK(), Page2.performOK(), ... PageN.performOK() (which is
+	 * where we call IJobManager.beginRule()).
+	 * 
+	 * followed by:
+	 * 
+	 * Page1.dispose(), Page2.dispose(), ... PageN.dispose() (which is where we
+	 * call IJobManager.endRule()).
+	 * 
+	 * To work around this, we reuse the same rule instance (provided by this
+	 * method) across all pages. This fakes the job manager into thinking the
+	 * calls are nested correctly.
+	 * 
+	 * We use this mechanism to prevent other profile jobs (e.g. connect) from
+	 * running until after all pages have performed their OK logic.
+	 * 
+	 * @param profile
+	 * @return the scheduling rule for the profile
+	 */
+	public static ISchedulingRule getProfileRule(IConnectionProfile profile) {
+		ISchedulingRule rule = (ISchedulingRule) sProfileToProfileRuleMap
+				.get(profile);
+		if (rule == null) {
+			rule = new ProfileRule(profile);
+			sProfileToProfileRuleMap.put(profile, rule);
+		}
+		return rule;
 	}
 }

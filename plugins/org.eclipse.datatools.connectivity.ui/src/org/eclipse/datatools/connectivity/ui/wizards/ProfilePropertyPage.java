@@ -14,8 +14,11 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.CPPropetyPage;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -36,6 +39,8 @@ import org.eclipse.ui.dialogs.PropertyPage;
 public abstract class ProfilePropertyPage extends PropertyPage {
 	
 	private boolean mAffectsConnectionProperties;
+
+	private ISchedulingRule mProfileRule;
 
 	protected ProfilePropertyPage() {
 		this(false);
@@ -119,13 +124,33 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 										.getDefault()
 										.getResourceString(
 												"ConnectionProfileDetailsPage.AskReconnect"))) { //$NON-NLS-1$
-					profile.disconnect(null);
-					profile.connect(null);
+
+					if (mProfileRule == null) {
+						/*
+						 * block the actual connect attempt until after the dialog
+						 * is closed. this will allow any other property pages to
+						 * commit their changes on the profile prior to the connect
+						 * being executed.
+						 */
+						mProfileRule = CPPropetyPage.getProfileRule(profile);
+						Platform.getJobManager().beginRule(mProfileRule,
+								null);
+						profile.disconnect(null);
+						profile.connect(null);
+					}
 				}
 			}
 		}
 
 		return super.performOk();
+	}
+
+	public void dispose() {
+		if (mProfileRule != null) {
+			Platform.getJobManager().endRule(mProfileRule);
+			mProfileRule = null;
+		}
+		super.dispose();
 	}
 
 }
