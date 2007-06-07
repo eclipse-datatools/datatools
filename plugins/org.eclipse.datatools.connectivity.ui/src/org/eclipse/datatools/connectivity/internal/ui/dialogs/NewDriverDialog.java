@@ -132,7 +132,9 @@ public class NewDriverDialog extends TitleAreaDialog {
 	 */
 	protected Control createDialogArea(Composite parent) {
         getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_NEW_DRIVER_DIALOG);
+        HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_DRIVER_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
         Font font = parent.getFont();
 

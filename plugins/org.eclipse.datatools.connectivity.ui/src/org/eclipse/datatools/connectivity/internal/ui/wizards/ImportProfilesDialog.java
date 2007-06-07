@@ -77,7 +77,9 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 
 	protected Control createDialogArea(Composite parent) {
         getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_IMPORT_PROFILES_DIALOG);
+        HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_IMPORT_PROFILES_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
         Composite container = (Composite) super.createDialogArea(parent);
 		final GridLayout gridLayout = new GridLayout();

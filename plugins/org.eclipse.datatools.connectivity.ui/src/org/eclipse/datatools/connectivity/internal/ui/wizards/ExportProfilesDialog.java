@@ -101,9 +101,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 	}
 
 	protected Control createDialogArea(Composite parent) {
-        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG);
-
+        
         Composite container = (Composite) super.createDialogArea(parent);
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 20;
@@ -149,7 +147,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 						.getResourceString("ExportProfilesDialog.button.text")); //$NON-NLS-1$
 			}
 			{
-				final Label label = new Label(group, SWT.NONE);
+				new Label(group, SWT.NONE);
 			}
 			{
 				final Button button = new Button(group, SWT.NONE);
@@ -216,6 +214,11 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			btnEncryption = button;
 		}
 
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+//      HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG);
+        String contextId = HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG, 
+  				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+      HelpUtil.setHelp( getShell(), contextId);
 		return container;
 	}
 

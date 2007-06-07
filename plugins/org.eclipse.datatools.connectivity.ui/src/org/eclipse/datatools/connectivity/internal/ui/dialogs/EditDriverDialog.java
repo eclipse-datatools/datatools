@@ -141,7 +141,9 @@ public class EditDriverDialog extends TitleAreaDialog
 	 */
 	protected Control createDialogArea(Composite parent) {
         getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG);
+        HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 		Composite area = (Composite) super.createDialogArea(parent);
 		area.setLayout(new GridLayout());
 

@@ -129,7 +129,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 	 */
 	protected Control createDialogArea(Composite parent) {
         getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_DRIVER_DEFINITION_DIALOG);
+        HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_DRIVER_DEFINITION_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 		Composite area = (Composite) super.createDialogArea(parent);
 
 		Font font = parent.getFont();
