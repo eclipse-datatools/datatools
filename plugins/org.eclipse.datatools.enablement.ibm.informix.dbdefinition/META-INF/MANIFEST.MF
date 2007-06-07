@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.informix.dbdefinition; singleton:=true
-Bundle-Version: 1.0.0.200609291
+Bundle-Version: 1.0.0.200706071
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Eclipse-AutoStart: true
