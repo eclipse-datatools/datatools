@@ -59,6 +59,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	// parameters for page, different from soapParameters
 	private SOAPParameter[] parameters;
 	private static String DEFAULT_MESSAGE = Messages.getString( "soapRequestPage.message.default" );//$NON-NLS-1$
+	private boolean saved = false;
 
 	public SOAPRequestPage( String pageName )
 	{
@@ -191,6 +192,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 				.getPropertyValue( Constants.WS_QUERYTEXT );
 		queryText.setText( WSUIUtil.getNonNullString( wsQueryText ) );
 		parameters = WSConsole.getInstance( ).getParameters( );
+		saved = false;
 	}
 
 	/*
@@ -214,6 +216,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 		if ( !WSConsole.getInstance( ).isSessionOK( ) )
 			return;
 
+		if ( isControlCreated( ) && !saved )
+			saveToModel( );
+
 		dataSetDesign.setQueryText( WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT ) );
 		// parametes at this point has already be applied to model which will in
@@ -236,6 +241,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
 				.manipulateTemplate( ) ) );
+		parameters = WSConsole.getInstance( ).getParameters( );
+		saved = false;
 	}
 
 	/*
@@ -275,6 +282,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 		WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
 				queryText.getText( ) );
 		WSConsole.getInstance( ).setParameters( parameters );
+		saved = true;
 	}
 
 	/*
@@ -473,9 +481,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 		private void initParameters( )
 		{
-			soapRequest = new SOAPRequest( );
-			soapRequest.setQueryText( queryText.getText( ) );
-			soapRequest.init( );
+			soapRequest = new SOAPRequest( queryText.getText( ) );
 			mergeParameters( );
 			viewer.setInput( soapRequest.getParameters( ) );
 		}

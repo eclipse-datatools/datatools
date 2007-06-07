@@ -54,6 +54,8 @@ public class WSConsole
 	private Properties props;
 	private SOAPParameter[] parameters;
 	private boolean isSessionOK = false;
+	private static final int BACKWARD = 0;
+	private static final int FORWARD = 1;
 
 	/**
 	 * 
@@ -445,10 +447,8 @@ public class WSConsole
 		String soapAction = WSUIUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( getPropertyValue( Constants.WSDL_URI ),
 				getPropertyValue( Constants.OPERATION_TRACE ) ) );
 
-		SOAPRequest soapRequest = new SOAPRequest( );
-		soapRequest.setQueryText( query );
-		soapRequest.generateTemplate( );
-		soapRequest.setParameters( parameters );
+		SOAPRequest soapRequest = new SOAPRequest( query );
+		populateSOAPParameterValues( soapRequest, parameters );
 		String message = soapRequest.toXML( );
 
 		RawMessageSender rawMessageSender = new RawMessageSender( spec,
@@ -457,6 +457,19 @@ public class WSConsole
 		SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( );
 
 		return soapResponse;
+	}
+
+	private void populateSOAPParameterValues( SOAPRequest soapRequest,
+			SOAPParameter[] soapParameters )
+	{
+		if ( WSUIUtil.isNull( soapRequest ) || WSUIUtil.isNull( soapParameters ) )
+			return;
+
+		for ( int i = 0; i < soapParameters.length; i++ )
+		{
+			soapRequest.setParameterValue( soapParameters[i].getId( ),
+					soapParameters[i].getDefaultValue( ) );
+		}
 	}
 
 	/**
@@ -515,6 +528,7 @@ public class WSConsole
 	}
 
 	/**
+	 * Convenient method to manipulate query after parameters have been changed
 	 * 
 	 * @param queryText
 	 * @param params
@@ -523,9 +537,67 @@ public class WSConsole
 	public String manipulateTemplate( )
 	{
 		SOAPRequest soapRequest = new SOAPRequest( getPropertyValue( Constants.WS_QUERYTEXT ) );
-		soapRequest.setParameters( parameters );
+		String[] template = soapRequest.getTemplate( );
 
-		return soapRequest.manipulateQuery( );
+		String wsQueryText = WSUIUtil.EMPTY_STRING;
+		// retrieve whole queryText with defaultValue if applicable
+		for ( int i = 0; i < parameters.length; i++ )
+		{
+			wsQueryText += template[i];
+			if ( WSUIUtil.isNull( parameters[i].getDefaultValue( ) ) )
+				wsQueryText += buildParameter( parameters[i].getName( ) );
+			else
+				wsQueryText += parameters[i].getDefaultValue( );
+		}
+		wsQueryText += template[template.length - 1];
+
+		// eliminate unused parameters
+		StringBuffer buffer = new StringBuffer( wsQueryText );
+
+		for ( int i = 0; i < parameters.length; i++ )
+		{
+			if ( !parameters[i].isUsed( ) )
+			{
+				int offset = getOffset( wsQueryText, parameters[i].getName( ) );
+				int start = getFirstIndex( wsQueryText, offset, BACKWARD, '<' );
+				start = getFirstIndex( wsQueryText, start, BACKWARD, '\n' );
+				int end = getFirstIndex( wsQueryText, offset, FORWARD, '>' );
+				end = getFirstIndex( wsQueryText, end, FORWARD, '\n' );
+
+				buffer.delete( start, end );
+				wsQueryText = buffer.toString( );
+			}
+		}
+
+		return wsQueryText;
+	}
+
+	private String buildParameter( String paramName )
+	{
+		return "&?" + paramName + "?&"; //$NON-NLS-1$//$NON-NLS-2$
+	}
+
+	private int getOffset( String queryText, String paramName )
+	{
+		return queryText.indexOf( buildParameter( paramName ) );
+	}
+
+	private int getFirstIndex( String string, int index, int dir, char ch )
+	{
+		while ( string.charAt( index ) != ch )
+		{
+			switch ( dir )
+			{
+				case BACKWARD :
+					index--;
+					break;
+				case FORWARD :
+					index++;
+					break;
+			}
+		}
+
+		return index;
 	}
 
 }

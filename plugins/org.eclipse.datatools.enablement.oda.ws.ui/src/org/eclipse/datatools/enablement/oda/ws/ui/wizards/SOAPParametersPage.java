@@ -24,8 +24,10 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -44,7 +46,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * 
+ * This class is NOT intended to be used in edit mode
  */
 
 public class SOAPParametersPage extends DataSetWizardPage
@@ -57,10 +59,13 @@ public class SOAPParametersPage extends DataSetWizardPage
 	private CheckboxTableViewer viewer;
 	private SOAPRequest soapRequest;
 	private String wsQueryText;
-	// parameters for page, different from soapParameters
-	private SOAPParameter[] parameters;
+
 	private static String DEFAULT_MESSAGE = Messages.getString( "soapParametersPage.message.default" );//$NON-NLS-1$
 
+	/**
+	 * 
+	 * @param pageName
+	 */
 	public SOAPParametersPage( String pageName )
 	{
 		super( pageName );
@@ -141,7 +146,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 			public void inputChanged( Viewer viewer, Object oldInput,
 					Object newInput )
 			{
-				
 			}
 
 			public void dispose( )
@@ -192,6 +196,20 @@ public class SOAPParametersPage extends DataSetWizardPage
 			{
 			}
 		} );
+		viewer.addCheckStateListener( new ICheckStateListener( ) {
+
+			public void checkStateChanged( CheckStateChangedEvent event )
+			{
+				if ( !event.getChecked( )
+						&& event.getElement( ) instanceof SOAPParameter )
+				{
+					( (SOAPParameter) event.getElement( ) ).setDefaultValue( WSUIUtil.EMPTY_STRING );
+					viewer.refresh( );
+				}
+
+			}
+
+		} );
 	}
 
 	private void setupEditors( )
@@ -227,8 +245,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 			{
 				SOAPParameter soapParameter = (SOAPParameter) ( (TableItem) element ).getData( );
 				soapParameter.setDefaultValue( value.toString( ) );
-
-				viewer.refresh( ); 
+				viewer.refresh( );
 			}
 		} );
 	}
@@ -253,7 +270,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 	{
 		wsQueryText = WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT );
-		parameters = WSConsole.getInstance( ).getParameters( );
 	}
 
 	private void initViewer( )
@@ -261,51 +277,17 @@ public class SOAPParametersPage extends DataSetWizardPage
 		if ( WSUIUtil.isNull( wsQueryText ) )
 			return;
 
-		soapRequest = new SOAPRequest( );
-		soapRequest.setQueryText( wsQueryText );
-		soapRequest.init( );
-		mergeParameters( );
+		soapRequest = new SOAPRequest( wsQueryText );
 		SOAPParameter[] soapParameters = soapRequest.getParameters( );
 		if ( !WSUIUtil.isNull( soapParameters ) )
 		{
 			viewer.setInput( soapParameters );
 			for ( int i = 0; i < soapParameters.length; i++ )
 			{
-				if ( !WSUIUtil.isNull( soapParameters[i] ) )
-					viewer.setChecked( soapParameters[i], true );
+				viewer.setChecked( soapParameters[i],
+						soapParameters[i].isUsed( ) );
 			}
 		}
-	}
-
-	private void mergeParameters( )
-	{
-		if ( !canMerge( ) )
-			return;
-
-		SOAPParameter[] soapParameters = soapRequest.getParameters( );
-		for ( int i = 0; i < parameters.length; i++ )
-		{
-			soapParameters[i].setDefaultValue( parameters[i].getDefaultValue( ) );
-		}
-	}
-
-	private boolean canMerge( )
-	{
-		SOAPParameter[] soapParameters = soapRequest.getParameters( );
-		if ( parameters == null || soapParameters == null )
-			return false;
-
-		if ( parameters.length != soapParameters.length )
-			return false;
-
-		for ( int i = 0; i < parameters.length; i++ )
-		{
-			if ( !parameters[i].getName( )
-					.equals( soapParameters[i].getName( ) ) )
-				return false;
-		}
-
-		return true;
 	}
 
 	/*
@@ -316,24 +298,12 @@ public class SOAPParametersPage extends DataSetWizardPage
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
 		savePage( design );
-		WSUIUtil.savePage( design );
 		return design;
 	}
 
 	private void savePage( DataSetDesign dataSetDesign )
 	{
 		// TODO nothing to save
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#refresh(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
-	 */
-	protected void refresh( DataSetDesign dataSetDesign )
-	{
-		initFromModel( );
-		initViewer( );
 	}
 
 	/*
@@ -362,18 +332,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 		return page;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
-	 */
-	protected boolean canLeave( )
-	{
-		viewer.refresh( );
-		saveToModel( );
-		return super.canLeave( );
-	}
-
 	private void saveToModel( )
 	{
 		WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
@@ -383,26 +341,17 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 	private SOAPParameter[] getSOAPParameters( )
 	{
+		SOAPParameter[] targets = soapRequest.getParameters( );
+
 		Object[] candidates = (Object[]) viewer.getCheckedElements( );
 		List manipulated = getManipulatedIndexList( candidates );
 
-		SOAPParameter[] targets = soapRequest.getParameters( );
-		if ( WSUIUtil.isNull( targets ) || manipulated.isEmpty( ) )
-			return targets;
-
-		List result = new ArrayList();
 		for ( int i = 0; i < targets.length; i++ )
 		{
-			if ( ! (targets[i] != null && !manipulated.contains( new Integer( targets[i].getId( ) ) ) ))
-				result.add( targets[i] );
+			targets[i].setUsed( manipulated.contains( new Integer( targets[i].getId( ) ) ) );
 		}
-		SOAPParameter[] r = new SOAPParameter[result.size( )];
-		for( int i = 0; i < result.size( ); i++ )
-		{
-			r[i] = (SOAPParameter)result.get( i );
-		}
-		
-		return r;
+
+		return targets;
 	}
 
 	private List getManipulatedIndexList( Object[] soapParameters )

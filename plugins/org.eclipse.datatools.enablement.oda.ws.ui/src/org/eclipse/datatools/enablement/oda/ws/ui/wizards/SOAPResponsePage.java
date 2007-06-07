@@ -49,6 +49,8 @@ public class SOAPResponsePage extends DataSetWizardPage
 	private transient Text xsdFileURI;
 	private transient Text soapEndPoint;
 
+	private boolean saved = false;
+
 	/**
 	 * 
 	 * @param pageName
@@ -327,6 +329,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		soapEndPoint.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
 				.getPropertyValue( Constants.SOAP_ENDPOINT ) ) );
+		saved = false;
 	}
 
 	/*
@@ -344,6 +347,10 @@ public class SOAPResponsePage extends DataSetWizardPage
 	{
 		if ( !WSConsole.getInstance( ).isSessionOK( ) )
 			return;
+
+		// ok being clicked without leaving the page
+		if ( isControlCreated( ) && !saved )
+			saveToModel( );
 
 		design.getPublicProperties( ).setProperty( Constants.XML_FILE_URI,
 				WSConsole.getInstance( )

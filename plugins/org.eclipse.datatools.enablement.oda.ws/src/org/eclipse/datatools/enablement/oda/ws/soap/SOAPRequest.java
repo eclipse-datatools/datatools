@@ -28,7 +28,6 @@ public class SOAPRequest
 	// template could be considered as the subset of queryText with non
 	// parameters involved, queryText is defined by users
 	private String[] template;
-	private String queryText = WSUtil.EMPTY_STRING;
 	private SOAPParameter[] parameters;
 
 	/**
@@ -37,46 +36,22 @@ public class SOAPRequest
 	 */
 	public SOAPRequest( String queryText )
 	{
-		this.queryText = queryText;
-		init( );
-	}
-
-	/**
-	 * 
-	 */
-	public SOAPRequest( )
-	{
-	}
-
-	/**
-	 * Initiates parameters & template
-	 * 
-	 */
-	public void init( )
-	{
 		if ( WSUtil.isNull( queryText ) )
 			return;
 
-		generateTemplate( );
-		generateParameters( );
+		generateTemplate( queryText );
+		generateParameters( queryText );
 	}
 
-	/**
-	 * 
-	 */
-	public void generateTemplate( )
+	private void generateTemplate( String queryText )
 	{
-		if ( !WSUtil.isNull( queryText ) )
-			template = queryText.split( RE_PARAMETER );
+		template = queryText.split( RE_PARAMETER );
 	}
 
-	/**
-	 * 
-	 */
-	public void generateParameters( )
+	private void generateParameters( String queryText )
 	{
-		// string length >1 means there is (are) parameter(s)
-		// parameters.length=strings.length-1
+		// template.length >1 means there is (are) parameter(s)
+		// parameters.length=template.length-1
 		if ( !WSUtil.isNull( template ) && template.length > 1 )
 		{
 			parameters = new SOAPParameter[template.length - 1];
@@ -97,47 +72,11 @@ public class SOAPRequest
 
 	/**
 	 * 
-	 * @param queryText
-	 */
-	public void setQueryText( String queryText )
-	{
-		this.queryText = queryText;
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	public String getQueryText( )
-	{
-		return queryText;
-	}
-
-	/**
-	 * 
 	 * @return
 	 */
 	public String[] getTemplate( )
 	{
 		return template;
-	}
-
-	/**
-	 * 
-	 * @param template
-	 */
-	public void setTemplate( String[] template )
-	{
-		this.template = template;
-	}
-
-	/**
-	 * 
-	 * @param parameters
-	 */
-	public void setParameters( SOAPParameter[] parameters )
-	{
-		this.parameters = parameters;
 	}
 
 	/**
@@ -199,42 +138,6 @@ public class SOAPRequest
 		soapRequest += template[template.length - 1];
 
 		return soapRequest;
-	}
-
-	/**
-	 * Convenient method to manipulate query after parameters have been changed
-	 * 
-	 * @param soapParameters
-	 * @return
-	 */
-	public String manipulateQuery( )
-	{
-		if ( WSUtil.isNull( template ) )
-			return WSUtil.EMPTY_STRING;
-
-		if ( WSUtil.isNull( parameters ) )
-			return template[template.length - 1];
-
-		String soapRequest = WSUtil.EMPTY_STRING;
-		for ( int i = 0; i < parameters.length; i++ )
-		{
-			if ( !WSUtil.isNull( parameters[i] ) )
-			{
-				soapRequest += template[i];
-				if ( WSUtil.isNull( parameters[i].getDefaultValue( ) ) )
-					soapRequest += buildParameter( parameters[i].getName( ) );
-				else
-					soapRequest += parameters[i].getDefaultValue( );
-			}
-		}
-		soapRequest += template[template.length - 1];
-
-		return soapRequest;
-	}
-
-	private String buildParameter( String paramName )
-	{
-		return "&?" + paramName + "?&"; //$NON-NLS-1$//$NON-NLS-2$
 	}
 
 }

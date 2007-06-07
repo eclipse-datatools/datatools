@@ -26,6 +26,10 @@ public class SOAPParameter
 	private String name;
 	private int type;
 	private String value;
+	
+	private boolean used = true;
+	private int minOccurs = 1;
+	private int maxOccurs = 1;
 
 	/**
 	 * 
@@ -117,6 +121,60 @@ public class SOAPParameter
 	public void setDefaultValue( String value )
 	{
 		this.value = value;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public boolean isUsed( )
+	{
+		return used;
+	}
+
+	/**
+	 * 
+	 * @param used
+	 */
+	public void setUsed( boolean used )
+	{
+		this.used = used;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getMinOccurs( )
+	{
+		return minOccurs;
+	}
+
+	/**
+	 * 
+	 * @param minOccurs
+	 */
+	public void setMinOccurs( int minOccurs )
+	{
+		this.minOccurs = minOccurs;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getMaxOccurs( )
+	{
+		return maxOccurs;
+	}
+
+	/**
+	 * 
+	 * @param maxOccurs
+	 */
+	public void setMaxOccurs( int maxOccurs )
+	{
+		this.maxOccurs = maxOccurs;
 	}
 
 }
