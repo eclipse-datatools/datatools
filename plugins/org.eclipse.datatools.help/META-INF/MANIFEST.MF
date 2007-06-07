@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %PluginName
 Bundle-SymbolicName: org.eclipse.datatools.help; singleton:=true
-Bundle-Version: 1.5.0.200705301
+Bundle-Version: 1.5.0.200706071
 Bundle-ClassPath: .
 Bundle-Vendor: %ProviderName
 Bundle-Localization: plugin
