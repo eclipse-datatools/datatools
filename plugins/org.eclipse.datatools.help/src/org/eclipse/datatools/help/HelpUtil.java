@@ -189,6 +189,9 @@ public class HelpUtil
 			{
 				bundleString = properties[i].getProperty(helpKey);
 			}
+			if (bundleString != null && bundleString.indexOf(".") == -1) {
+				bundleString = helpPluginID + "." + bundleString;
+			}
 			return bundleString;
 		}
 		catch (MissingResourceException e)
