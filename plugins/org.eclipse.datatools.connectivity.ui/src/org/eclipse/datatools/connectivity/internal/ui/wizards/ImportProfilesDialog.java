@@ -73,14 +73,10 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 
 	public ImportProfilesDialog(Shell parentShell) {
 		super(parentShell);
+		setShellStyle(SWT.CLOSE | SWT.RESIZE);
 	}
 
 	protected Control createDialogArea(Composite parent) {
-        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp( getShell(), 
-        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_IMPORT_PROFILES_DIALOG, 
-        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
-
         Composite container = (Composite) super.createDialogArea(parent);
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 20;
@@ -211,6 +207,11 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 			}
 
 		}
+
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_IMPORT_PROFILES_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
 		return container;
 	}
