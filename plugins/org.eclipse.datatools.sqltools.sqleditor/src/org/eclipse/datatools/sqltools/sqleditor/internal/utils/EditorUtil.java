@@ -43,6 +43,11 @@ public class EditorUtil
             {
                 ISQLEditorInput sqlEditorInput = (ISQLEditorInput) input;
                 ISQLEditorConnectionInfo info = sqlEditorInput.getConnectionInfo();
+                String editorProfile = info.getConnectionProfileName();
+                if (editorProfile == null || !editorProfile.equals(profileName))
+                {
+                    continue;
+                }
                 //FIXME: 
 //                // Because now DMP support multi-db, profile can be used for whole database server(multi-db) or just
 //                // one database.
