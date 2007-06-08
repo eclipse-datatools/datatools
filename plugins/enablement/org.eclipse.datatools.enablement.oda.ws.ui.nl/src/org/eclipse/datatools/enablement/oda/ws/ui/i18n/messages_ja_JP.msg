@@ -25,25 +25,25 @@ webServiceSelectionPage.group.endPoint=SOAP エンドポイント
 webServiceSelectionPage.group.customClass=カスタム接続クラス
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
 webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
-webServiceSelectionPage.label.endPoint=SOAP エンドポイントの URL を指定してください。カスタム接続クラスを使用している場合は、この値を指定しなくてもかまいません(&E)
+webServiceSelectionPage.label.endPoint=SOAP のエンドポイント URL の指定(&E) (WSDL で定義したエンドポイントを使用する場合や、エンドポイントの \nURL を必要としないカスタム接続クラスを使用する場合は、この値を省略できます)
 webServiceSelectionPage.label.customClass=カスタム Java クラスを使用して Web サービスへの接続やクエリを行う場合は、ここに完全修飾クラス名を入力してください(&J)
 webServiceSelectionPage.button.browse=参照(&B)...
 
 # OperationPage
 operationPage.message.default=データソースの WSDL 記述子で定義されている処理を選択してください。
-operationPage.message.operationChanged=Confrim to regenerate the SOAP request and reconnect the End Point
-operationPage.title.operationChanged=Operation Changed
+operationPage.message.operationChanged=SOAP リクエストの生成とエンドポイントへの接続をやり直しますか ?
+operationPage.title.operationChanged=操作の変更
 operationPage.label.selectOpearation=選択済みの処理
 operationPage.label.document=文書
 
 # SoapParametersPage
-soapParametersPage.message.default=Enter the parameters of chosen WSDL operation
+soapParametersPage.message.default=指定した WSDL 操作のパラメタを入力してください。
 
 # SoapRequestPage
 soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。データソースのカスタム接続クラスコードにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
-soapRequestPage.message.regenerateTemplate=This will regenerate the query text template based on the SOAP operation you have selected. It will remove any modifications you have made to the text.\n\nAre you sure?
-soapRequestPage.title.regenerateTemplate=Regenerate Template
-soapRequestPage.button.regenerateTemplate=&Regenerate Template
+soapRequestPage.message.regenerateTemplate=指定した SOAP 操作に基づいたクエリテキストのテンプレートが再生成されるため、テキストへの変更はすべて上書きされます。\n\n続行しますか ?
+soapRequestPage.title.regenerateTemplate=テンプレートの再生成
+soapRequestPage.button.regenerateTemplate=テンプレートの再生成(&R)
 soapRequestPage.button.insertParameter=パラメタの挿入(&I)...
 soapRequestPage.button.clear=クリア(&C)
 

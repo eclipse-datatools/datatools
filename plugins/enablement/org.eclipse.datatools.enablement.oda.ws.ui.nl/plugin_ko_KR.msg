@@ -27,7 +27,8 @@ profile.propertypage.name=웹 서비스 데이터 원본 연결 속성
 wizard.data.set.window.title=새 웹 서비스 데이터 집합
 wizard.data.set.page.title=쿼리
 
-oda.ws.operation=연산
+oda.ws.operation=WSDL 작업
+oda.ws.soapparameters=SOAP 매개 변수
 oda.ws.soaprequest=SOAP 요청
 oda.ws.soapresponse=SOAP 응답
 oda.ws.tablemapping=테이블 매핑

@@ -11,6 +11,7 @@ DSE.Connect.label = 连接(&C)
 DSE.Disconnect.label = 断开连接(&D)
 DSE.SelectAll.label = 全选(&A)
 DSE.DeselectAll.label = 取消全选(&D)
+DSE.View.Tooltip = 数据源资源管理器
 ServersView.action.newCP = 新建(&N)...
 ProfileSelectionDialogPage.validation.error = 请选择配置文件。
 NewConnectionProfileWizard.title=新建连接概要文件

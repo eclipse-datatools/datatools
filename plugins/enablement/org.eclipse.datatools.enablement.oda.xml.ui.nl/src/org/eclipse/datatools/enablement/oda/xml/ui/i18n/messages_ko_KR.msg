@@ -1,3 +1,14 @@
+###############################################################################
+# Copyright (c) 2004, 2007 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=XML 데이터 원본
 wizard.defaultMessage.selectFolder=XML 파일과 스키마 정보의 URL을 정의하십시오.
@@ -81,3 +92,4 @@ file.choose=찾아보기(&B)...
 title.warning=경고
 
 datasource.propertyPage.tooltip=XML 데이터 원본
+wizard.autoEncoding=자동

@@ -25,25 +25,25 @@ webServiceSelectionPage.group.endPoint=SOAP 끝점
 webServiceSelectionPage.group.customClass=사용자 지정 연결 클래스
 webServiceSelectionPage.label.wsdl=웹 서비스의 WSDL 설명자가 있으면 해당 URL을 입력하거나 로컬 파일 시스템에서 위치를 찾으십시오.
 webServiceSelectionPage.label.wsdlURI=WSDL URL 또는 위치(&W):
-webServiceSelectionPage.label.endPoint=SOAP 끝점 URL을 지정합니다. 사용자 지정 연결 클래스를 사용할 경우 이 값은 옵션 항목입니다(&E).
+webServiceSelectionPage.label.endPoint=SOAP 끝점 URL(&E)을 지정합니다. WSDL에서 정의된 끝점을 사용하는 경우나, 끝점 URL이 필요하지 않는\n사용자 지정 연결 클래스를 사용할 경우 이 값을 생략해도 됩니다.
 webServiceSelectionPage.label.customClass=웹 서비스 연결 및 쿼리가 사용자 지정 Java 클래스를 통해 이루어진 경우 여기에 정규화된 클래스 이름을 입력하십시오(&J).
 webServiceSelectionPage.button.browse=찾아보기(&B)...
 
 # OperationPage
 operationPage.message.default=데이터 원본의 WSDL 설명자에 정의된 작업을 선택하십시오.
-operationPage.message.operationChanged=Confrim to regenerate the SOAP request and reconnect the End Point
-operationPage.title.operationChanged=Operation Changed
+operationPage.message.operationChanged=SOAP 요청을 다시 생성하고 끝점에 다시 연결할 것인지 확인합니다.
+operationPage.title.operationChanged=작업이 변경됨
 operationPage.label.selectOpearation=선택된 작업
 operationPage.label.document=설명서
 
 # SoapParametersPage
-soapParametersPage.message.default=Enter the parameters of chosen WSDL operation
+soapParametersPage.message.default=선택된 WSDL 작업의 매개 변수를 입력하십시오.
 
 # SoapRequestPage
 soapRequestPage.message.default=이 데이터 집합의 SOAP 요청 템플릿을 편집합니다. 데이터 원본의 사용자 지정 연결 클래스 코드가 쿼리 텍스트를 필요로 하지 않을 경우 입력란을 비워두셔도 됩니다.
-soapRequestPage.message.regenerateTemplate=This will regenerate the query text template based on the SOAP operation you have selected. It will remove any modifications you have made to the text.\n\nAre you sure?
-soapRequestPage.title.regenerateTemplate=Regenerate Template
-soapRequestPage.button.regenerateTemplate=&Regenerate Template
+soapRequestPage.message.regenerateTemplate=선택한 SOAP 작업에 근거한 쿼리 텍스트 템플릿이 다시 생성될 것입니다. 이전에 해당 텍스트에 기록한 변경 사항이 모두 사라질 것입니다.\n\n계속하시겠습니까?
+soapRequestPage.title.regenerateTemplate=템플릿 다시 생성
+soapRequestPage.button.regenerateTemplate=템플릿 다시 생성(&R)
 soapRequestPage.button.insertParameter=매개 변수 삽입(&I)...
 soapRequestPage.button.clear=지우기(&C)
 

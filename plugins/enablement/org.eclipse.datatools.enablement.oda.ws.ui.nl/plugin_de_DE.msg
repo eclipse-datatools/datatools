@@ -27,7 +27,8 @@ profile.propertypage.name=Datenquellen-Verbindungseigenschaften für Web-Dienste
 wizard.data.set.window.title=Neuer Datensatz für Web-Dienste
 wizard.data.set.page.title=Abfrage
 
-oda.ws.operation=Betrieb
+oda.ws.operation=WSDL-Vorgang
+oda.ws.soapparameters=SOAP-Parameter
 oda.ws.soaprequest=SOAP-Anforderung
 oda.ws.soapresponse=SOAP-Antwort
 oda.ws.tablemapping=Tabellenzuordnung

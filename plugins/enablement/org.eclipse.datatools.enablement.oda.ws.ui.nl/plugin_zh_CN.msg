@@ -27,7 +27,8 @@ profile.propertypage.name=Web Services 数据源连接属性
 wizard.data.set.window.title=新建 Web Services 数据集
 wizard.data.set.page.title=查询
 
-oda.ws.operation=操作
+oda.ws.operation=WSDL 操作
+oda.ws.soapparameters=SOAP 参数
 oda.ws.soaprequest=SOAP 请求
 oda.ws.soapresponse=SOAP 响应
 oda.ws.tablemapping=表映射

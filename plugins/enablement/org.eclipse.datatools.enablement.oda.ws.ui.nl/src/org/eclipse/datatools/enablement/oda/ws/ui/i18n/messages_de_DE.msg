@@ -25,25 +25,25 @@ webServiceSelectionPage.group.endPoint=SOAP-Endpunkt
 webServiceSelectionPage.group.customClass=Benutzerdefinierte Verbindungsklasse
 webServiceSelectionPage.label.wsdl=Wenn der WSDL-Deskriptor der Web-Dienste verfügbar ist, geben Sie den URL ein, oder geben Sie den Speicherort im lokalen Dateisystem an.
 webServiceSelectionPage.label.wsdlURI=URL oder Speicherort für &WSDL:
-webServiceSelectionPage.label.endPoint=Geben Sie den URL des SOAP-&Endpunkts an. Bei Verwendung einer benutzerdefinierten Verbindungsklasse ist dieser Wert optional.
+webServiceSelectionPage.label.endPoint=Geben Sie die URL des SOAP-&Endpunkts an. Sie können diesen Wert weglassen, wenn Sie den im WSDL definierten Endpunkt\noder eine benutzerdefinierte Verbindungsklasse verwenden, für die keine Endpunkt-URL erforderlich ist.
 webServiceSelectionPage.label.customClass=Wenn Verbindung und Abfrage für die Web-Dienste über eine benutzerdefinierte &Java-Klasse erfolgen, geben Sie hier den vollständig qualifizierten Klassennamen ein.
 webServiceSelectionPage.button.browse=&Durchsuchen...
 
 # OperationPage
 operationPage.message.default=Wählen Sie einen im WSDL-Deskriptor der Datenquelle definierten Vorgang aus.
-operationPage.message.operationChanged=Confrim to regenerate the SOAP request and reconnect the End Point
-operationPage.title.operationChanged=Operation Changed
+operationPage.message.operationChanged=Bestätigen Sie zum Neuerzeugen der SOAP-Anforderung und zum Neuverbinden des Endpunkts.
+operationPage.title.operationChanged=Vorgang geändert
 operationPage.label.selectOpearation=Ausgewählter Vorgang
 operationPage.label.document=Dokumentation
 
 # SoapParametersPage
-soapParametersPage.message.default=Enter the parameters of chosen WSDL operation
+soapParametersPage.message.default=Geben Sie die Parameter des gewählten WSDL-Vorgangs ein.
 
 # SoapRequestPage
 soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für den Code der benutzerdefinierten Verbindungsklasse Ihrer Datenquelle kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.
-soapRequestPage.message.regenerateTemplate=This will regenerate the query text template based on the SOAP operation you have selected. It will remove any modifications you have made to the text.\n\nAre you sure?
-soapRequestPage.title.regenerateTemplate=Regenerate Template
-soapRequestPage.button.regenerateTemplate=&Regenerate Template
+soapRequestPage.message.regenerateTemplate=Die Abfragetext-Vorlage wird auf Grundlage des gewählten SOAP-Vorgangs neu erstellt. Alle am Text vorgenommenen Änderungen gehen verloren.\n\nMöchten Sie wirklich fortfahren?
+soapRequestPage.title.regenerateTemplate=Vorlage neu erstellen
+soapRequestPage.button.regenerateTemplate=Vorlage &neu erstellen
 soapRequestPage.button.insertParameter=Parameter e&infügen...
 soapRequestPage.button.clear=&Entf
 

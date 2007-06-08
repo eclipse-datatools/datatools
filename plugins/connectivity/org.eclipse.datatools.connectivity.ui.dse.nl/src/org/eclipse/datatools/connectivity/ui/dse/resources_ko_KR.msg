@@ -11,6 +11,7 @@ DSE.Connect.label = 연결(&C)
 DSE.Disconnect.label = 연결 해제(&D)
 DSE.SelectAll.label = 모두 선택(&A)
 DSE.DeselectAll.label = 모두 선택 취소(&D)
+DSE.View.Tooltip = 데이터 원본 탐색기
 ServersView.action.newCP = 새로 만들기(&N)...
 ProfileSelectionDialogPage.validation.error = 프로필을 선택하십시오.
 NewConnectionProfileWizard.title=새 연결 프로파일

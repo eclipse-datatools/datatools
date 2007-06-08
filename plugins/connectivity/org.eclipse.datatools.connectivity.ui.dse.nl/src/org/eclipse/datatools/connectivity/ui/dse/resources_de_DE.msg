@@ -11,6 +11,7 @@ DSE.Connect.label = &Verbindung herstellen
 DSE.Disconnect.label = V&erbindung trennen
 DSE.SelectAll.label = Alles m&arkieren
 DSE.DeselectAll.label = A&uswahl aufheben
+DSE.View.Tooltip = Datenquellen-Explorer
 ServersView.action.newCP = &Neu...
 ProfileSelectionDialogPage.validation.error = Wählen Sie ein Profil aus.
 NewConnectionProfileWizard.title=Neues Verbindungsprofil

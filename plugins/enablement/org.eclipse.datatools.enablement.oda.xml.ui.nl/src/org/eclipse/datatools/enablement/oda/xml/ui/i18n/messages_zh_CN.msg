@@ -1,3 +1,14 @@
+###############################################################################
+# Copyright (c) 2004, 2007 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=XML 数据源
 wizard.defaultMessage.selectFolder=定义 XML 文件和架构信息的 URL。
@@ -81,3 +92,4 @@ file.choose=浏览(&B)...
 title.warning=警告
 
 datasource.propertyPage.tooltip=XML 数据源
+wizard.autoEncoding=自动

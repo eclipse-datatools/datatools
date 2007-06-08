@@ -27,7 +27,8 @@ profile.propertypage.name=Propriétés de la connexion à la source de données Serv
 wizard.data.set.window.title=Nouveau jeu de données Services Web
 wizard.data.set.page.title=Requête
 
-oda.ws.operation=Opération
+oda.ws.operation=Opération WSDL
+oda.ws.soapparameters=Paramètres SOAP
 oda.ws.soaprequest=Requête SOAP
 oda.ws.soapresponse=Réponse SOAP
 oda.ws.tablemapping=Mise en correspondance de table

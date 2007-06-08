@@ -27,7 +27,8 @@ profile.propertypage.name=Web サービスのデータソースの接続プロパティ
 wizard.data.set.window.title=Web サービスのデータセットの新規作成
 wizard.data.set.page.title=クエリ
 
-oda.ws.operation=操作
+oda.ws.operation=WSDL 操作
+oda.ws.soapparameters=SOAP パラメタ
 oda.ws.soaprequest=SOAP リクエスト
 oda.ws.soapresponse=SOAP 応答
 oda.ws.tablemapping=テーブルのマッピング

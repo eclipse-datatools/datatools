@@ -11,6 +11,7 @@ DSE.Connect.label = 接続(&C)
 DSE.Disconnect.label = 切断(&D)
 DSE.SelectAll.label = すべて選択(&A)
 DSE.DeselectAll.label = すべて選択解除(&D)
+DSE.View.Tooltip = データソースのエクスプローラ
 ServersView.action.newCP = 新規(&N)...
 ProfileSelectionDialogPage.validation.error = プロファイルを選択してください。
 NewConnectionProfileWizard.title=新規接続プロファイル

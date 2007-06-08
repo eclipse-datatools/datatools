@@ -1,3 +1,14 @@
+###############################################################################
+# Copyright (c) 2004, 2007 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=Fuente de datos XML
 wizard.defaultMessage.selectFolder=Defina las URL al archivo XML y la información de esquema.
@@ -81,3 +92,4 @@ file.choose=&Examinar...
 title.warning=Advertencia
 
 datasource.propertyPage.tooltip=Fuente de datos XML
+wizard.autoEncoding=Automático

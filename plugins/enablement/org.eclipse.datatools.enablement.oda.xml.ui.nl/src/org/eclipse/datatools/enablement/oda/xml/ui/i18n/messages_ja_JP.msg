@@ -1,3 +1,14 @@
+###############################################################################
+# Copyright (c) 2004, 2007 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=XML データソース
 wizard.defaultMessage.selectFolder=XML ファイルとスキーマ情報に ULR を定義してください。
@@ -81,3 +92,4 @@ file.choose=参照(&B)...
 title.warning=警告
 
 datasource.propertyPage.tooltip=XML データソース
+wizard.autoEncoding=自動
