@@ -40,6 +40,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
@@ -76,7 +77,8 @@ import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
  */
 public class WizardNewFileCreationPage extends WizardPage implements Listener
 {
-    private static final int          _SIZING_CONTAINER_GROUP_HEIGHT = 250;
+    private static final int          _SIZING_CONTAINER_GROUP_HEIGHT = 200;
+    private static final int          _SIZING_CONTAINER_GROUP_SMALL_HEIGHT = 60;
     // the current resource selection
     private IStructuredSelection      _currentSelection;
 
@@ -187,8 +189,13 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
     protected void createPageControl(Composite parent)
     {
         // resource and container group
+        int height = _SIZING_CONTAINER_GROUP_HEIGHT;
+        if (Display.getDefault().getBounds().height <= 600)
+        {
+            height = _SIZING_CONTAINER_GROUP_SMALL_HEIGHT;
+        }
         _resourceGroup = new ResourceAndContainerGroup(parent, this, getNewFileLabel(), Messages
-            .WizardNewFileCreationPage_file, false, _SIZING_CONTAINER_GROUP_HEIGHT); //$NON-NLS-1$
+            .WizardNewFileCreationPage_file, false, height); //$NON-NLS-1$
         _resourceGroup.setAllowExistingResources(false);
         initialPopulateContainerNameField();
         createAdvancedControls(parent);
