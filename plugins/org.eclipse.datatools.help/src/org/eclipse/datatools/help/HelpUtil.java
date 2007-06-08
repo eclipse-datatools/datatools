@@ -11,9 +11,10 @@
  *******************************************************************************/ 
 package org.eclipse.datatools.help;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,7 +27,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.help.HelpSystem;
 import org.eclipse.help.IContext;
@@ -171,15 +171,16 @@ public class HelpUtil
 		{
 			if (properties == null)
 			{
-				String		propertiesFiles[] = getPropertiesFiles(helpPluginID, bundleType);
+				URLConnection		propertiesFiles[] = getPropertiesFiles(helpPluginID, bundleType);
 				
 				properties = new Properties[propertiesFiles.length];
 				for (int i = 0; i < propertiesFiles.length; i++)
 				{
-					String file = new Path(propertiesFiles[i]).toOSString();
-					FileInputStream	fis = new FileInputStream(file);
+					URLConnection connection = (URLConnection) propertiesFiles[i];
+					InputStream is = connection.getInputStream();
+//					FileInputStream	fis = new FileInputStream(file);
 					properties[i] = new Properties();
-					properties[i].load(fis);
+					properties[i].load(is);
 				}
     			_properties.put(helpPluginID + ';' + bundleType, properties);
 			}
@@ -189,9 +190,11 @@ public class HelpUtil
 			{
 				bundleString = properties[i].getProperty(helpKey);
 			}
-			if (bundleString != null && bundleString.indexOf(".") == -1) {
+			if (bundleString != null && bundleString.length() > 0 && bundleString.indexOf(".") == -1) {
 				bundleString = helpPluginID + "." + bundleString;
 			}
+			if (bundleString.trim().length() == 0)
+				bundleString = null;
 			return bundleString;
 		}
 		catch (MissingResourceException e)
@@ -206,7 +209,7 @@ public class HelpUtil
 	
 	private static HashMap	_properties = new HashMap();
 	
-	private static String[] getPropertiesFiles(String pluginIDToMatch, String bundleType)
+	private static URLConnection[] getPropertiesFiles(String pluginIDToMatch, String bundleType)
 	{
 		IExtensionPoint exp = Platform.getExtensionRegistry().getExtensionPoint("org.eclipse.datatools.help", "helpKeyProperties"); //$NON-NLS-1$ //$NON-NLS-2$
 		IExtension[] exts = exp.getExtensions();
@@ -233,12 +236,13 @@ public class HelpUtil
 					Bundle	helpPluginBundle = Platform.getBundle(helpPluginID);
 					URL		propertiesFileURL = helpPluginBundle.getResource(propertiesFile);
 					propertiesFileURL = FileLocator.resolve(propertiesFileURL);
-					propertiesFile = propertiesFileURL.getFile();
-					if (propertiesFile.charAt(0) == '/')
-					{
-						propertiesFile = propertiesFile.substring(1);
-					}
-					propertiesFiles.add(propertiesFile);
+					URLConnection connection = propertiesFileURL.openConnection();
+//					propertiesFile = propertiesFileURL.getFile();
+//					if (propertiesFile.charAt(0) == '/')
+//					{
+//						propertiesFile = propertiesFile.substring(1);
+//					}
+					propertiesFiles.add(connection);
 				}
 				catch (IOException ioe)
 				{
@@ -246,6 +250,6 @@ public class HelpUtil
 				}
 			}
 		}
-		return (String[])propertiesFiles.toArray(new String[propertiesFiles.size()]);
+		return (URLConnection[])propertiesFiles.toArray(new URLConnection[propertiesFiles.size()]);
 	}
 }
