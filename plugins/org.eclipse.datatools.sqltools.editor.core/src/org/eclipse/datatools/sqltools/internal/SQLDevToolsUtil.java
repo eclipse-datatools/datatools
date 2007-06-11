@@ -248,6 +248,11 @@ public class SQLDevToolsUtil {
      */
     public static boolean isQuotedIdentifierOn(DatabaseIdentifier databaseIdentifier)
     {
+        if (databaseIdentifier == null)
+        {
+            return false;
+        }
+        
         boolean quotedIdentifier = false;
         Object quotedIdentifierCfg = null;
         try
