@@ -39,6 +39,8 @@ public final class PreferenceMessages extends NLS
     public static String SQLEditor_maxLineButton;
     public static String SQLEditor_maxLineButton_tooltip;
     public static String SQLEditor_showPromptDialog;
+    public static String SQLEditor_showSyntaxErorrDetail;
+    public static String SQLEditor_showSyntaxErorrDetail_tooltip;
     public static String SQLEditor_typing_title;
     public static String SQLEditor_typingAidsGroup_title;
     public static String SQLEditor_typingAidsTable_columnName1;

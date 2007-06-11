@@ -13,8 +13,11 @@ import java.util.Iterator;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
+import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.editor.ISQLEditorMarker;
 import org.eclipse.datatools.sqltools.sqleditor.sql.AbstractSQLEditorTextHover;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -199,6 +202,7 @@ public class SQLAnnotationHover extends AbstractSQLEditorTextHover implements IT
     private String getHoverInfo()
     {
         String text = null;
+        IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
         for (int i = 0; i < _fAnnotations.size(); i++)
         {
             Annotation annotation = (Annotation) _fAnnotations.get(i);
@@ -210,7 +214,14 @@ public class SQLAnnotationHover extends AbstractSQLEditorTextHover implements IT
                     if (marker.getType().equals(EditorConstants.SYNTAX_MARKER_TYPE)
                     || marker.getType().equals(EditorConstants.PORTABILITY_MARKER_TYPE))
                     {
-                        text = (String) marker.getAttribute(IMarker.MESSAGE);
+                        if (store.getBoolean(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL))
+                        {
+                            text = (String) marker.getAttribute(IMarker.MESSAGE);
+                        }
+                        else
+                        {
+                            text = (String) marker.getAttribute(ISQLEditorMarker.SHORT_MESSAGE);
+                        }
                         //TODO: consider combine multiple annotations
                         break;
                     }

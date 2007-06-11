@@ -88,6 +88,7 @@ public class ParseException extends Exception
      * If this object has been created due to a parse error, and you do not catch it (it gets thrown from the parser),
      * then this method is called during the printing of the final stack trace, and hence the correct error message gets
      * displayed.
+     * @see #getShortMessage()
    */
     public String getMessage() 
     {
@@ -95,16 +96,28 @@ public class ParseException extends Exception
         {
             return super.getMessage();
         }
+        int maxSize = getExpectedTokenSequencesMaxSize();
+        StringBuffer expected = buildExpectedTokenMessage();
+        StringBuffer retval = buildShortMessage(maxSize);
+        if (expectedTokenSequences.length == 1)
+        {
+            retval.append(Messages.ParseException_expecting).append(eol).append("    "); 
+        }
+        else 
+        {
+            retval.append(Messages.ParseException_expection_oneof).append(eol).append("    "); 
+        }
+        retval.append(expected);
+        return retval.toString();
+    }
+
+    private StringBuffer buildExpectedTokenMessage()
+    {
         StringBuffer expected = new StringBuffer(""); //$NON-NLS-1$
-        int maxSize = 0;
         //        int count = 0;
         for (int i = 0; i < expectedTokenSequences.length; i++)
         {
             int width = 0;
-            if (maxSize < expectedTokenSequences[i].length)
-            {
-                maxSize = expectedTokenSequences[i].length;
-            }
             for (int j = 0; j < expectedTokenSequences[i].length; j++)
             {
                 expected.append(tokenImage[expectedTokenSequences[i][j]]).append(" "); //$NON-NLS-1$
@@ -123,6 +136,11 @@ public class ParseException extends Exception
              */
             expected.append(eol).append("    "); //$NON-NLS-1$
         }
+        return expected;
+    }
+
+    private StringBuffer buildShortMessage(int maxSize)
+    {
         StringBuffer retval = new StringBuffer(Messages.ParseException_encountered); 
         Token tok = currentToken.next;
         for (int i = 0; i < maxSize; i++) 
@@ -141,16 +159,39 @@ public class ParseException extends Exception
         //retval
         //    .append(DmpMessages.getString("ParseException.atline")).append(currentToken.next.beginLine).append(DmpMessages.getString("ParseException.atcolumn")).append(currentToken.next.beginColumn); //$NON-NLS-1$ //$NON-NLS-2$
         retval.append(Messages.ParseException_period + eol); 
-        if (expectedTokenSequences.length == 1)
+        return retval;
+    }
+    
+    /**
+     * This method has the standard behavior when this object has been created using the standard constructors.
+     * Otherwise, it uses "currentToken" to generate a parse error message and returns it.
+     * If this object has been created due to a parse error, and you do not catch it (it gets thrown from the parser),
+     * then this method is called during the printing of the final stack trace, and hence the correct error message gets
+     * displayed.
+     * @see #getMessage()
+   */
+    public String getShortMessage() 
+    {
+        if (!specialConstructor)
         {
-            retval.append(Messages.ParseException_expecting).append(eol).append("    "); 
+            return super.getMessage();
         }
-        else 
-        {
-            retval.append(Messages.ParseException_expection_oneof).append(eol).append("    "); 
-        }
-        retval.append(expected);
+        int maxSize = getExpectedTokenSequencesMaxSize();
+        StringBuffer retval = buildShortMessage(maxSize);
         return retval.toString();
+    }
+
+    private int getExpectedTokenSequencesMaxSize()
+    {
+        int maxSize = 0;
+        for (int i = 0; i < expectedTokenSequences.length; i++)
+        {
+            if (maxSize < expectedTokenSequences[i].length)
+            {
+                maxSize = expectedTokenSequences[i].length;
+            }
+        }
+        return maxSize;
     }
 
     /**

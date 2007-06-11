@@ -65,6 +65,7 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
     private Button            _maxLineButton;
     private Text             _maxLineText;
     private Button           _promptDisableButton;
+    private Button           _showSyntaxErorrDetail;
 
 
     //Typing tab variables
@@ -224,7 +225,9 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         );
 
         _promptDisableButton = SWTUtils.createCheckBox(syntaxValidationGroup, PreferenceMessages.SQLEditor_showPromptDialog, 1, 20);
-
+        
+        _showSyntaxErorrDetail = SWTUtils.createCheckBox(syntaxValidationGroup, PreferenceMessages.SQLEditor_showSyntaxErorrDetail, 2, 5);
+        _showSyntaxErorrDetail.setToolTipText(PreferenceMessages.SQLEditor_showSyntaxErorrDetail_tooltip);
         return composite;
     }
 
@@ -270,6 +273,7 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         _maxLineButton.setEnabled(syntaxValidationEnabled);
         _maxLineText.setEnabled(syntaxValidationEnabled);
         _promptDisableButton.setEnabled(syntaxValidationEnabled);
+        _showSyntaxErorrDetail.setEnabled(syntaxValidationEnabled);
         updateMaxLineText();
     }
 
@@ -381,7 +385,7 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
         _promptDisableButton.setSelection(_store.getBoolean(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION));
 
-
+        _showSyntaxErorrDetail.setSelection(_store.getBoolean(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL));
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
@@ -408,7 +412,7 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
         _store.setValue(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION, _promptDisableButton.getSelection());
 
-
+        _store.setValue(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL, _showSyntaxErorrDetail.getSelection());
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
@@ -440,11 +444,13 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
         _promptDisableButton.setSelection(_store.getDefaultBoolean(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION));
 
+        _showSyntaxErorrDetail.setSelection(_store.getDefaultBoolean(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL));
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
             _typingAidsTable.getItems()[i].setChecked(_store.getDefaultBoolean(_typingAidsPreferences[i]));
         }
+        update();
     }
 
     /*

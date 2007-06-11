@@ -255,6 +255,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
 					storageName = _input.getName() + ": ";//$NON-NLS-1$
 				}
                 attrs.put(IMarker.MESSAGE, storageName + ex.getMessage());
+                attrs.put(ISQLEditorMarker.SHORT_MESSAGE, storageName + ex.getShortMessage());
                 updateAnnotation(ex, EditorConstants.SYNTAX_MARKER_TYPE, attrs);
             }
         }
