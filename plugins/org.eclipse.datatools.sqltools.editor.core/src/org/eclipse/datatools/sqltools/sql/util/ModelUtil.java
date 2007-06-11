@@ -470,7 +470,6 @@ public class ModelUtil {
         return findProceduralObject(proc, refresh, true);
     }
     
-    
     /**
      * 
      * @param proc
@@ -478,6 +477,17 @@ public class ModelUtil {
      * @return
      */
     public static SQLObject findProceduralObject(ProcIdentifier proc, boolean refresh, boolean caseSensitive)
+    {
+        return findProceduralObject(proc, refresh, caseSensitive, false);
+    }
+    
+    /**
+     * 
+     * @param proc
+     * @param refresh Whether to refresh the procedural object's parent folder
+     * @return
+     */
+    public static SQLObject findProceduralObject(ProcIdentifier proc, boolean refresh, boolean caseSensitive, boolean ignoreTableName)
     {
         SQLObject object = null;
         Database db = ProfileUtil.getDatabase(proc.getDatabaseIdentifier());
@@ -502,15 +512,14 @@ public class ModelUtil {
             else
             {
                 EList schemas = getSchemas(db, proc.getDatabaseName());
-                object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh);
+                object = findProceduralObjectFromSchema(schemas, proc, caseSensitive, refresh, ignoreTableName);
             }
         }
         return object;
-    }
-    
-    
+    }    
+   
     private static SQLObject findProceduralObjectFromSchema(EList schemas, ProcIdentifier proc,
-            boolean caseSensitive, boolean refresh)
+            boolean caseSensitive, boolean refresh, boolean ignoreTableName)
     {
         SQLObject object = null;
         //the schema name used to perform the search 
@@ -532,7 +541,7 @@ public class ModelUtil {
                     for (Iterator iter = tables.iterator(); iter.hasNext();)
                     {
                         Table table = (Table) iter.next();
-                        if (equals(table.getName(), proc.getTableName(), caseSensitive))
+                        if (ignoreTableName || equals(table.getName(), proc.getTableName(), caseSensitive))
                         {
                             if (refresh && table instanceof ICatalogObject)
                             {
@@ -542,7 +551,7 @@ public class ModelUtil {
                             for (Iterator itera = triggers.iterator(); itera.hasNext();)
                             {
                                 Trigger trigger = (Trigger) itera.next();
-                                if (equals(table.getName(), proc.getTableName(), caseSensitive)
+                                if ((ignoreTableName || equals(table.getName(), proc.getTableName(), caseSensitive))
                                         && equals(trigger.getName(), proc.getProcName(), caseSensitive))
                                 {
                                     object = trigger;
