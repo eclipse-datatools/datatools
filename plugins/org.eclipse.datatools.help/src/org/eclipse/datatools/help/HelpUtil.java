@@ -43,8 +43,8 @@ import org.osgi.framework.Bundle;
 public class HelpUtil
 {
 	public static String			HELP_KEY = "org.eclipse.ui.help"; //$NON-NLS-1$
-//TODO: Replace the com.sybase... value with something appropriate to DTP
-	public static String			CONTEXT_PROVIDER_KEY = "com.sybase.stf.help.context.provider"; //$NON-NLS-1$
+
+	public static String			CONTEXT_PROVIDER_KEY = "org.eclipse.datatools.help.context.provider"; //$NON-NLS-1$
 	
 	private static HelpListener		_helpListener = null;
 	
@@ -103,6 +103,10 @@ public class HelpUtil
 		return new Point(point.x + 15, point.y);
 	}
 	
+	/**
+	 * Returns the help listener
+	 * @return
+	 */
 	private static HelpListener getHelpListener()
 	{
 		if (_helpListener == null)
@@ -112,6 +116,11 @@ public class HelpUtil
 		return _helpListener;
 	}
 	
+	/**
+	 * Sets the help for a particular control
+	 * @param control
+	 * @param contextId
+	 */
 	public static void setHelp(Control control, String contextId)
 	{
 		if (control != null) {
@@ -121,6 +130,12 @@ public class HelpUtil
 		control.setData(HELP_KEY, contextId);
 	}
 	
+	/**
+	 * Retrieves the help key back from a particular control
+	 * @see setHelp
+	 * @param target
+	 * @return
+	 */
 	public static String getHelpKey(Object target)
 	{
 		if (target instanceof Control)
@@ -138,10 +153,9 @@ public class HelpUtil
 		return null;
 	}
 	
-//	TODO: Replace the com.sybase... value with something appropriate to DTP	
 	/**
 	 * @param helpKey 
-	 * @param bundleID e.g. "com.sybase.stf.service.framework.ServiceFrameworkContextIds"
+	 * @param helpPluginID e.g. "org.eclipse.datatools.connectivity.ui"
 	 * @return
 	 */
 	public static String getContextId(String helpKey, String helpPluginID)
@@ -149,10 +163,9 @@ public class HelpUtil
 		return getHelpString(helpKey, helpPluginID, "contextIds"); //$NON-NLS-1$
 	}
 
-//	TODO: Replace the com.sybase... value with something appropriate to DTP
 	/**
 	 * @param helpKey 
-	 * @param bundleID e.g. "com.sybase.stf.service.framework.ServiceFrameworkSearchExpressions"
+	 * @param helpPluginID e.g. "org.eclipse.datatools.connectivity.ui"
 	 * @return
 	 */
 	public static String getSearchExpression(String helpKey, String helpPluginID)
@@ -160,6 +173,13 @@ public class HelpUtil
 		return getHelpString(helpKey, helpPluginID, "searchExpressions"); //$NON-NLS-1$
 	}
 	
+	/**
+	 * Retrieves the help string from the bundled properties
+	 * @param helpKey
+	 * @param helpPluginID
+	 * @param bundleType
+	 * @return
+	 */
 	private static String getHelpString(String helpKey, String helpPluginID, String bundleType)
 	{
 		if (helpKey == null)
@@ -178,7 +198,6 @@ public class HelpUtil
 				{
 					URLConnection connection = (URLConnection) propertiesFiles[i];
 					InputStream is = connection.getInputStream();
-//					FileInputStream	fis = new FileInputStream(file);
 					properties[i] = new Properties();
 					properties[i].load(is);
 				}
@@ -193,7 +212,7 @@ public class HelpUtil
 			if (bundleString != null && bundleString.length() > 0 && bundleString.indexOf(".") == -1) {
 				bundleString = helpPluginID + "." + bundleString;
 			}
-			if (bundleString.trim().length() == 0)
+			if (bundleString != null && bundleString.trim().length() == 0)
 				bundleString = null;
 			return bundleString;
 		}
@@ -209,6 +228,12 @@ public class HelpUtil
 	
 	private static HashMap	_properties = new HashMap();
 	
+	/**
+	 * Retrieves URLConnections to jarred doc context plugins to retrieve the appropriate properties files
+	 * @param pluginIDToMatch
+	 * @param bundleType
+	 * @return
+	 */
 	private static URLConnection[] getPropertiesFiles(String pluginIDToMatch, String bundleType)
 	{
 		IExtensionPoint exp = Platform.getExtensionRegistry().getExtensionPoint("org.eclipse.datatools.help", "helpKeyProperties"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -234,15 +259,12 @@ public class HelpUtil
 				{
 					String	helpPluginID = exts[index].getNamespaceIdentifier();
 					Bundle	helpPluginBundle = Platform.getBundle(helpPluginID);
-					URL		propertiesFileURL = helpPluginBundle.getResource(propertiesFile);
-					propertiesFileURL = FileLocator.resolve(propertiesFileURL);
-					URLConnection connection = propertiesFileURL.openConnection();
-//					propertiesFile = propertiesFileURL.getFile();
-//					if (propertiesFile.charAt(0) == '/')
-//					{
-//						propertiesFile = propertiesFile.substring(1);
-//					}
-					propertiesFiles.add(connection);
+					if (helpPluginBundle != null) {
+						URL		propertiesFileURL = helpPluginBundle.getResource(propertiesFile);
+						propertiesFileURL = FileLocator.resolve(propertiesFileURL);
+						URLConnection connection = propertiesFileURL.openConnection();
+						propertiesFiles.add(connection);
+					}
 				}
 				catch (IOException ioe)
 				{
