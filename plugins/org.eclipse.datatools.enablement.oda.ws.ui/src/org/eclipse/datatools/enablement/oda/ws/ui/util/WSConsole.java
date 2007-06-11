@@ -539,6 +539,9 @@ public class WSConsole
 		SOAPRequest soapRequest = new SOAPRequest( getPropertyValue( Constants.WS_QUERYTEXT ) );
 		String[] template = soapRequest.getTemplate( );
 
+		if ( WSUIUtil.isNull( template ) || WSUIUtil.isNull( parameters ) )
+			return getTemplate( );
+
 		String wsQueryText = WSUIUtil.EMPTY_STRING;
 		// retrieve whole queryText with defaultValue if applicable
 		for ( int i = 0; i < parameters.length; i++ )

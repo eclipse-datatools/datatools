@@ -342,6 +342,8 @@ public class SOAPParametersPage extends DataSetWizardPage
 	private SOAPParameter[] getSOAPParameters( )
 	{
 		SOAPParameter[] targets = soapRequest.getParameters( );
+		if ( WSUIUtil.isNull( targets ) )
+			return targets;
 
 		Object[] candidates = (Object[]) viewer.getCheckedElements( );
 		List manipulated = getManipulatedIndexList( candidates );
