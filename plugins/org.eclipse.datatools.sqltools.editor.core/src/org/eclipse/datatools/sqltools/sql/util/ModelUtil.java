@@ -317,7 +317,7 @@ public class ModelUtil {
     }
 
     /**
-     * This method is used to find the table object in existing SQL modle.
+     * This method is used to find the table object in existing SQL model.
      * @param dbid
      * @param dbname
      * @param schemaName
@@ -330,13 +330,13 @@ public class ModelUtil {
     }
     
     /**
-     * This method is used to find the table object in existing SQL modle.
+     * This method is used to find the table object in existing SQL model.
      * Attention: the method does not support ASE non-sharable temp table.
-     * @param dbid
-     * @param dbname
-     * @param schemaName
-     * @param tableName
-     * @param refresh
+     * @param dbid Database identifier
+     * @param dbname Database name
+     * @param schemaName Schema name
+     * @param tableName Table name
+     * @param refresh Refresh
      * @return
      */
     public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh)
@@ -345,16 +345,34 @@ public class ModelUtil {
     }
     
     /**
-     * This method is used to find the table object in existing SQL modle.
+     * This method is used to find the table object in existing SQL model.
      * Attention: the method does not support ASE non-sharable temp table.
-     * @param dbid
-     * @param dbname
-     * @param schemaName
-     * @param tableName
-     * @param refresh
+     * @param dbid Database identifier
+     * @param dbname Database name
+     * @param schemaName Schema name
+     * @param tableName Table name
+     * @param refresh Refresh
+     * @param casesensivie Case sensitive when compare two objects
      * @return
      */
-    public static Table findTableObject(DatabaseIdentifier dbid,String dbname,String schemaName,String tableName,boolean refresh,boolean caseSensitive )
+    public static Table findTableObject(DatabaseIdentifier dbid, String dbname,String schemaName, String tableName, boolean refresh, boolean caseSensitive)
+    {
+    	return findTableObject(dbid, dbname, schemaName, tableName, refresh, caseSensitive, true);
+    }
+    
+    /**
+     * This method is used to find the table object in existing SQL model.
+     * Attention: the method does not support ASE non-sharable temp table.
+     * @param dbid Database identifier
+     * @param dbname Database name
+     * @param schemaName Schema name
+     * @param tableName Table name
+     * @param refresh Refresh
+     * @param casesensivie Case sensitive when compare two objects
+     * @param findInAllCatalogs if true, find the table in all catalogs; otherwise just in current catalog
+     * @return
+     */
+    public static Table findTableObject(DatabaseIdentifier dbid, String dbname, String schemaName, String tableName, boolean refresh, boolean caseSensitive, boolean findInAllCatalogs)
     {
         Database db = ProfileUtil.getDatabase(dbid);
         Table tableObject = null;
@@ -380,35 +398,32 @@ public class ModelUtil {
            
             tableObject = findTableFromSchema(schemas, schemaName, tableName, caseSensitive, refresh);
         }        
-        
-        
-        
-        
-        // Find table from other catalogs
-        if (tableObject == null)
-        {
-            EList schemas = db.getSchemas();
-            if (schemas != null || schemas.size() != 0)
-            {
-                EList catalogs = db.getCatalogs();
-                if (catalogs != null)
-                {
-                    for (Iterator iter = catalogs.iterator(); iter.hasNext();)
-                    {
-                        Catalog catalog = (Catalog) iter.next();
-                        if (!equals(catalog.getName(), dbname, caseSensitive))
-                        {
-                            schemas = (EList) catalog.getSchemas();
-                            tableObject = findTableFromSchema(schemas, schemaName, tableName, caseSensitive, refresh);
-                            if (tableObject != null)
-                            {
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                
+        if (findInAllCatalogs) {
+			// Find table from other catalogs
+			if (tableObject == null) {
+				EList schemas = db.getSchemas();
+				if (schemas != null || schemas.size() != 0) {
+					EList catalogs = db.getCatalogs();
+					if (catalogs != null) {
+						for (Iterator iter = catalogs.iterator(); iter
+								.hasNext();) {
+							Catalog catalog = (Catalog) iter.next();
+							if (!equals(catalog.getName(), dbname,
+									caseSensitive)) {
+								schemas = (EList) catalog.getSchemas();
+								tableObject = findTableFromSchema(schemas,
+										schemaName, tableName, caseSensitive,
+										refresh);
+								if (tableObject != null) {
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
         return tableObject;
     }
     
