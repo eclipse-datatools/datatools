@@ -96,9 +96,6 @@ public class ImportProfileViewAction extends Action implements
 									((ConnectionProfile) profiles[i]).migrate();
 									manager.modifyProfile(profiles[i]);
 								}
-								if (commonNav != null)
-									commonNav.getCommonViewer().refresh(
-											profiles[i]);
 							}
 						}
 						catch (ConnectionProfileException e) {
@@ -140,11 +137,6 @@ public class ImportProfileViewAction extends Action implements
 									((ConnectionProfile) profiles[i]).migrate();
 									repo.modifyProfile(profiles[i]);
 								}
-								if (commonNav != null)
-									RefreshProfileJob
-											.scheduleRefreshProfileJob(
-													profiles[i], commonNav
-															.getCommonViewer());
 							}
 						}
 						catch (ConnectionProfileException e) {

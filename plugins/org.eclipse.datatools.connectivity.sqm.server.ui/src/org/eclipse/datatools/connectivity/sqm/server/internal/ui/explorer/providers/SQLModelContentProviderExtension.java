@@ -20,7 +20,6 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.
 import org.eclipse.datatools.connectivity.ui.CommonContentProviderBase;
 import org.eclipse.datatools.connectivity.ui.IContentExtension;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 
 /**
  * This class is a content provider implemention for navigatorContent
@@ -38,10 +37,7 @@ public class SQLModelContentProviderExtension extends CommonContentProviderBase 
 		return new SQLModelContentExtension(profile);
 	}
 
-	public void init(ICommonContentExtensionSite aConfig) {
-	}
-
-    public IContentExtension getContentExtension(final IConnectionProfile profile) 
+   public IContentExtension getContentExtension(final IConnectionProfile profile) 
     {
         final Properties prop = profile.getProperties(ServerToolsUIConstants.OFFLINE_PROPERTY_SET);
         if (prop == null || prop.isEmpty())

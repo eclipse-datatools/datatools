@@ -54,12 +54,15 @@ public abstract class CommonContentProviderBase implements
 	private IProfileListener mProfileListener = new IProfileListener() {
 
 		public void profileAdded(IConnectionProfile profile) {
+			handleProfileAdded(profile);
 		}
 
 		public void profileChanged(IConnectionProfile profile) {
+			handleProfileChanged(profile);
 		}
 
 		public void profileDeleted(IConnectionProfile profile) {
+			handleProfileDeleted(profile);
 		}
 		
 	};
