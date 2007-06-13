@@ -77,6 +77,10 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
 
     public void profileDeleted(IConnectionProfile profile)
     {
+        if (!ProfileUtil.isSupportedProfile(profile))
+        {
+            return;
+        }
         //close controlconnection
         //for supporting multi db profile, multi controlConnections are returned by profileName.
         //Those controlConnections are closed when this profile is deleted.
@@ -122,6 +126,7 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         ConnectProfile dmpConnectProfile = new ConnectProfile(profile);
         boolean onlyNameChanged = oldProfile.isOnlyNameChanged(dmpConnectProfile);
 
+        oldName = oldProfile.getName();
         //controlconnection
 
         IControlConnection[] controlCons = EditorCorePlugin.getControlConnectionManager().getControlConnections(oldName);

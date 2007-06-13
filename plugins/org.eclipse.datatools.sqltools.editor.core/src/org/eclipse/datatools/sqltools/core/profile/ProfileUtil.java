@@ -249,12 +249,18 @@ public class ProfileUtil
     public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(String profileName)
     {
     	IConnectionProfile profile = null;
-    	DatabaseVendorDefinitionId vendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
 		try {
 			profile = getProfile(profileName);
 		} catch (NoSuchProfileException e) {
 			//EditorCorePlugin.getDefault().log(e);
 		}
+		
+		return getDatabaseVendorDefinitionId(profile);
+    }
+    
+    public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(IConnectionProfile profile)
+    {
+        DatabaseVendorDefinitionId vendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
     	if (profile != null) {
 			// try to get vendor name and version from connection profile first,
 			// because this should
@@ -277,7 +283,7 @@ public class ProfileUtil
 		    		}
 					EditorCorePlugin.getDefault().log(
 							NLS.bind(Messages.ProfileUtil_error_getdriver,
-									(new Object[] { profileName })));
+									(new Object[] { profile.getName() })));
 				} else {
 					DriverInstance driver = DriverManager.getInstance()
 							.getDriverInstanceByID(driverID);
@@ -841,18 +847,27 @@ public class ProfileUtil
 	 */
 	public static boolean isSupportedProfile(IConnectionProfile profile)
 	{
-	    Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
-		DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(profile.getName());
-		if (names == null || vendorId == null) {
-			return false;
-		}
-		for (Iterator iter = names.iterator(); iter.hasNext();) {
-			String name = (String) iter.next();
-			if (vendorId.toString().equals(name)) {
-				return true;
-			}
-		}
-	     return false;
+        Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
+        DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(profile);
+        if (names == null || vendorId == null)
+        {
+            return false;
+        }
+        // Return false when vendorId is 'Generic JDBC' and the profile is not a database profile.
+        if (vendorId.equals(SQLToolsFacade.getDefaultDatabaseVendorDefinitionId()) &&
+                !isDatabaseProfile(profile.getName()))
+        {
+            return false;
+        }
+        for (Iterator iter = names.iterator(); iter.hasNext();)
+        {
+            String name = (String) iter.next();
+            if (vendorId.toString().equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
 	}
 
 	/**
