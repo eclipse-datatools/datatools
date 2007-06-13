@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.db.generic.test
-Bundle-Version: 0.9.0.200605101
+Bundle-Version: 1.0.0.200706131
 Bundle-Activator: org.eclipse.sqltools.db.generic.test.Activator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",

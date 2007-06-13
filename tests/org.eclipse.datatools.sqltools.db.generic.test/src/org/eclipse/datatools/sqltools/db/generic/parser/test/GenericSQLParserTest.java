@@ -14,7 +14,12 @@ package org.eclipse.datatools.sqltools.db.generic.parser.test;
 import java.net.URL;
 
 import org.eclipse.datatools.sqltools.db.generic.parser.GenericSQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
+import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
+import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Hui Cao
@@ -41,5 +46,21 @@ public class GenericSQLParserTest extends ParserTest
         String[] files = new String[1];
         files[0]= url.getFile();
         return files;
+    }
+    
+    public void testTerminators()
+    {
+        String sql = "select * from testtable1;\r\n"
+            + "insert into testtable1 values(a, 2)";
+        SQLParser p = getParser();
+        IDocument doc = new Document(sql);
+        ParserParameters parserParameters = new ParserParameters(true, SQLParserConstants.TYPE_SQL_ROOT);
+        parserParameters.setProperty(ParserParameters.PARAM_CONSUME_EXCEPTION, Boolean.FALSE);
+        ParsingResult result = p.parse(sql, parserParameters);
+        if (result.getRootNode() == null)
+        {
+            fail("Unable to create AST.");
+        }
+        assertEquals("Statement Terminator is not generated correctly", result.getRootNode().jjtGetNumChildren(), 3);
     }
 }

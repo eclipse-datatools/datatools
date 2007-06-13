@@ -76,6 +76,8 @@
 		<property name="build.result.folder" value="${basedir}"/>
 		<property name="temp.folder" value="${basedir}/temp.folder"/>
 		<property name="plugin.destination" value="${basedir}"/>
+		<property name="parser.dir" value="${basedir}/src/org/eclipse/datatools/sqltools/db/generic/parser"/>
+        <property name="3rdpartyplugins.dir" value="${basedir}/../3rdpartyplugins"/>
 	</target>
 
 	<target name="properties" if="eclipse.running">
@@ -184,6 +186,21 @@
 		</delete>
 		<zip destfile="${plugin.destination}/${module.name}_${plugin.version}.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
 		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="parser.build" depends="init">
+        <mkdir dir="${parser.dir}"/>
+		<!-- precompile -->
+        <delete failonerror="false" file="${parser.dir}/sql.jj"/>
+		<jjtree javacchome="${3rdpartyplugins.dir}/javacc-3.2" target="${basedir}/grammar/sql.jjt"  outputdirectory="${parser.dir}">
+		</jjtree>
+		<javacc javacchome="${3rdpartyplugins.dir}/javacc-3.2" target="${parser.dir}/sql.jj" ignorecase="true" debugparser="false" debugtokenmanager="false" debuglookahead="false" static="false" forcelacheck="false" errorreporting="true" javaunicodeescape="true" outputdirectory="${parser.dir}">
+		</javacc>
+		<delete failonerror="false" file="${parser.dir}/sql.jj"/>
+        <delete failonerror="false" file="${parser.dir}/Token.java"/>
+        <delete failonerror="false" file="${parser.dir}/TokenMgrError.java"/>
+        <delete failonerror="false" file="${parser.dir}/JavaCharStream.java"/>
+        <delete failonerror="false" file="${parser.dir}/ParseException.java"/>
 	</target>
 
 </project>

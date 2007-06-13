@@ -988,13 +988,13 @@ Token UK_VARCHAR_S1() : {Token t;}
 	        }catch (ParseException e) {
 	           	//TODO can we create an UnknownStatement?
 	            exceptions.add(e);
-	            error_skiptobefore(new int[]{SEMICOLON, END}, STMT_START);
+	            error_skiptobefore(new int[]{END}, STMT_START);
 	        } catch (Throwable t) { 
 	        //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
 	        	ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
 	        	e.currentToken = getToken(0);
 		        exceptions.add(e);
-	            error_skiptobefore(new int[]{END, SEMICOLON}, STMT_START);
+	            error_skiptobefore(new int[]{END}, STMT_START);
 	        }    
 	            
 	         )* <EOF>
@@ -1037,13 +1037,13 @@ void statement() : {setScope("SQL Statement", SCOPE_DEFAULT);/*the default scope
          
         }catch(ParseException e){
           exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START);
         } catch (Throwable t) { 
         //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
         	ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
         	e.currentToken = getToken(0);
 	        exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START);
         }    
         {
         }
@@ -1061,14 +1061,14 @@ void unknown_sql_stmt() : {}
 		<WAITFOR> | <WHILE> | <WRITETEXT>| <ID>
 	 )
 	 {
-	 	error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+	 	error_skiptobefore(new int[]{END}, STMT_START);
 	 } 
 }
 
 void any_stmt_token():{}
 {
 	{
-	 	error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+	 	error_skiptobefore(new int[]{END}, STMT_START);
 	} 
 }
 
