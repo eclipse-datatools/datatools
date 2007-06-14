@@ -36,6 +36,6 @@ stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=字符串替换值不能为空。
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=文本字符串不能为空。
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=“名称－值”映射不能为空。
 #
-profileProperty_PROFILE_NAME=连接配置文件名称
-profileProperty_PROFILE_STORE_PATH=连接配置文件存储 URL
+profileProperty_PROFILE_NAME=连接配置文件名称(&P)
+profileProperty_PROFILE_STORE_PATH=连接配置文件存储 URL(&U)
 profileProperty_GROUP_PROPERTIES=外部连接配置文件引用

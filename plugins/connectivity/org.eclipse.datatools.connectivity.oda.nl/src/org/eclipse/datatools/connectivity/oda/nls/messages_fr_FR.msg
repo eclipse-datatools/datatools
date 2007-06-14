@@ -36,6 +36,6 @@ stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=La valeur de substitution des ch
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=La chaîne de texte ne peut pas être null.
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=La mappe nom-valeur ne peut pas être null.
 #
-profileProperty_PROFILE_NAME=Nom de profil de connexion
-profileProperty_PROFILE_STORE_PATH=URL de l'emplacement de stockage des profils de connexion
+profileProperty_PROFILE_NAME=Nom de &profil de connexion
+profileProperty_PROFILE_STORE_PATH=&URL de l'emplacement de stockage des profils de connexion
 profileProperty_GROUP_PROPERTIES=Référence du profil de connexion externe

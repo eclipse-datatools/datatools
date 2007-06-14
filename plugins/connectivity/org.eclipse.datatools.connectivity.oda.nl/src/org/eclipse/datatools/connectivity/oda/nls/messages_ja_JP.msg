@@ -36,6 +36,6 @@ stringSubUtil_SUBSTITUTION_VALUE_CANNOT_BE_NULL=ストリング置換値は NULL にできま
 stringSubUtil_TEXT_STRING_CANNOT_BE_NULL=テキスト・ストリングは NULL にできません。
 stringSubUtil_NAME_VALUE_MAP_CANNOT_BE_NULL=名前値マップは NULL にできません。
 #
-profileProperty_PROFILE_NAME=接続プロファイル名
-profileProperty_PROFILE_STORE_PATH=接続プロファイルストアの URL
+profileProperty_PROFILE_NAME=接続プロファイル名(&P)
+profileProperty_PROFILE_STORE_PATH=接続プロファイルストアの URL(&U)
 profileProperty_GROUP_PROPERTIES=接続プロファイルの外部参照
