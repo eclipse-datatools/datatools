@@ -244,8 +244,8 @@ public class FileFormatWizardPage extends WizardPage
     {
         int style = (extract) ? SWT.SAVE : SWT.OPEN;        
         FileDialog dilaog = new FileDialog(Display.getCurrent().getActiveShell(), style);
-        dilaog.setFilterExtensions( new String[] { "*.data" } ); //$NON-NLS-1$
-        dilaog.setFilterNames( new String[] { Messages.getString("FileFormatWizardPage.FilterName") } ); //$NON-NLS-1$
+        dilaog.setFilterExtensions( new String[] { "*.data", "*.csv" , "*.*" } ); //$NON-NLS-1$
+        dilaog.setFilterNames( null );
         dilaog.setFilterPath(fileText.getText());
 		String s = dilaog.open();
 		if (s!=null && s.length()>0) {
