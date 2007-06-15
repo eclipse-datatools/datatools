@@ -14,8 +14,8 @@ package org.eclipse.datatools.connectivity.internal.ui;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
-import org.eclipse.jface.util.ListenerList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -107,6 +107,8 @@ public class DelimitedStringList extends Composite {
 					fireChangedEvent(e.getSource());
 				}
 			});
+			
+			this.mAddButton.setEnabled(false);
 		}
 		{
 			final Composite mSpacerComposite = new Composite(this, SWT.NONE);
@@ -121,7 +123,7 @@ public class DelimitedStringList extends Composite {
 			final GridData gridData = new GridData(
 					GridData.HORIZONTAL_ALIGN_FILL
 							| GridData.VERTICAL_ALIGN_FILL);
-			gridData.verticalSpan = 4;
+			gridData.verticalSpan = 5;
 			this.mPropsList.setLayoutData(gridData);
 			this.mPropsList.addSelectionListener(new SelectionAdapter() {
 
