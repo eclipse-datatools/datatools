@@ -111,8 +111,10 @@ public class DefaultColumnDataAccessor implements IColumnDataAccessor
         if (val==null) {
             s += " is null"; //$NON-NLS-1$   	
 	    } else {
-            s += "=CAST(? AS "; //$NON-NLS-1$
-			s += TableDataImpl.getFormattedTypeName(sqlCol) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+            //s += "=CAST(? AS "; //$NON-NLS-1$
+            //s += TableDataImpl.getFormattedTypeName(sqlCol) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+	    	// removed CAST AS since some database may not support CAST
+	    	s += "=?"; //$NON-NLS-1$	    	
         }
         return s;
 	}
