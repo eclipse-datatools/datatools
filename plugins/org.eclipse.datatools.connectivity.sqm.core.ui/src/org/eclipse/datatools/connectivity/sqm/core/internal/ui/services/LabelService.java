@@ -32,11 +32,20 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
+import org.eclipse.datatools.modelbase.sql.routines.Routine;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -259,10 +268,58 @@ public class LabelService implements ILabelService
     
     private String buildConnectionName (Object object, String name)
     {
-    	// TODO: Fix this code
    //     String connectionName = connectionManager.getConnectionInfo(((ICatalogObject)object).getCatalogDatabase()).getName();
     //    return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName});
-    	return MessageFormat.format(CONNECTION_NAME, new String [] {name, "NO_NAME_FOUND"}); //$NON-NLS-1$
+    	String connectionName = "NO_NAME_FOUND";
+    	Database db = null;
+    	if (object instanceof ICatalogObject) {
+    		ICatalogObject catObject = (ICatalogObject) object;
+    		db = catObject.getCatalogDatabase();
+    	}
+    	else {
+    		db = getDatabase(object);
+    	}
+    	if (db != null) {
+    		ConnectionInfo cinfo =
+    			DatabaseConnectionRegistry.getConnectionForDatabase(db);
+    		if (cinfo != null && cinfo.getConnectionProfile() != null)
+    			connectionName = cinfo.getConnectionProfile().getName();
+    	}
+    	return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName}); //$NON-NLS-1$
+    }
+    
+    private Database getDatabase (Object object) {
+    	Database db = null;
+    	if (object instanceof Database) {
+    		db = (Database) object;
+    	}
+    	else if (object instanceof Catalog) {
+    		db = ((Catalog) object).getDatabase();
+    	}
+    	else if (object instanceof Schema) {
+    		db = ((Schema) object).getCatalog().getDatabase();
+    	}
+    	else if (object instanceof Routine) {
+    		Object container = ((Routine) object).getSchema();
+    		return getDatabase(container);
+    	}
+    	else if (object instanceof Table) {
+    		Object container = ((Table) object).getSchema();
+    		return getDatabase(container);
+    	}
+    	else if (object instanceof Column) {
+    		Object container = ((Column)object).getContainer();
+    		return getDatabase(container);
+    	}
+    	else if (object instanceof Index) {
+    		Object container = ((Index) object).getTable();
+    		return getDatabase(container);
+    	}
+    	else if (object instanceof SQLObject) {
+    		Object container = ((SQLObject) object).getContainer();
+    		return getDatabase(container);
+    	}
+    	return db;
     }
     
     private String buildProjectName (IProject project, String name)
