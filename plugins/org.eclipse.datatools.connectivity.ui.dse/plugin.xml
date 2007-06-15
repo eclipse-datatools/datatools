@@ -241,6 +241,7 @@
                <or>
                   <instanceof value="org.eclipse.datatools.connectivity.ICategory"/>
                   <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+           		  <instanceof value="org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode" />
                </or>
             </enablement>
          </actionProvider>
