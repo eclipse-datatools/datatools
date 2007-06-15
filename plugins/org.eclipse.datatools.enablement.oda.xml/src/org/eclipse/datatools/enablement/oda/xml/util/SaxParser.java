@@ -446,7 +446,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 			if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
 				currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
 						+ currentCacheValue;
-			cachedValues.put( pathHolder.getPath( ), currentCacheValue.trim( ) );
+			
+			cachedValues.put( pathHolder.getPath( ), currentCacheValue );
 		}
 	}
 
