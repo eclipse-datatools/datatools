@@ -36,6 +36,7 @@ import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceInfo;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
@@ -480,21 +481,47 @@ public class TableReferenceResolver implements PostParseProcessor
     protected List checkForUnloadedDatabaseSchemas()
     {
         List errorList = new ArrayList();
+        boolean foundSchemas = false;
 
         // TODO: how to deal with databases that don't support schemas
-        if (database != null && database.getSchemas().isEmpty())
-        {
-            // make it the most important, first error as most further resolving depends on it
-            errorList.add(0, new SQLParseErrorInfo(0, 0, 0, 0, null, null,
-                            SQLQueryParserMessages.getString(
-                                            ERROR_MESSAGE_KEY_DATABASE_SCHEMAS_NOTLOADED,
-                                            new String[] {database.getName()}),
-                            ERROR_CODE_DATABASE_SCHEMAS_NOTLOADED));
+        if (database != null){
+            // First check to see if schemas are attached to the database object directly.
+            List schemaList = database.getSchemas();
+            if (schemaList != null && schemaList.size() > 0) {
+                foundSchemas = true;
+            }
+            
+            // Otherwise we need to see if there are any catalogs attached to the
+            // database, and look for schemas belonging to the catalog.
+            List catalogList = database.getCatalogs();
+            if (!foundSchemas && catalogList != null) {
+                Iterator catalogListIter = catalogList.iterator();
+                while (catalogListIter.hasNext() && foundSchemas == false){
+                    Catalog catalog = (Catalog) catalogListIter.next();
+                    schemaList = catalog.getSchemas();
+                    if (schemaList != null && schemaList.size() > 0) {
+                        foundSchemas = true;
+                    }
+                }
+            }
+        }
+
+        // If we didn't find any schemas anywhere, create a parse error.
+        // Make it the most important, first error as most further resolving depends on it.
+        if (!foundSchemas){
+            errorList.add(0, 
+                new SQLParseErrorInfo( 0, 0, 0, 0, null, null,
+                    SQLQueryParserMessages.getString( 
+                        ERROR_MESSAGE_KEY_DATABASE_SCHEMAS_NOTLOADED,
+                        new String[] {database.getName()}
+                    ), 
+                    ERROR_CODE_DATABASE_SCHEMAS_NOTLOADED 
+                )
+            );
         }
 
         return errorList;
-    }
-    
+    }    
     
     /**
      * Checks if the defaultSchema given to this
