@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform Lexer Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql.lexer
-Bundle-Version: 1.0.0.200706151
+Bundle-Version: 1.0.0.200706161
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.lexer.LexerPlugin
 Bundle-Vendor: Eclipse.org
 Export-Package: 

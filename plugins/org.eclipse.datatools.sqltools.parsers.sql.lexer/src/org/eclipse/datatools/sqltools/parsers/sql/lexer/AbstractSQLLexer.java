@@ -17,6 +17,7 @@ import lpg.lpgjavaruntime.IntSegmentedTuple;
 import lpg.lpgjavaruntime.LexParser;
 import lpg.lpgjavaruntime.LpgLexStream;
 import lpg.lpgjavaruntime.ParseTable;
+import lpg.lpgjavaruntime.PrsStream;
 import lpg.lpgjavaruntime.Token;
 
 public abstract class AbstractSQLLexer extends LpgLexStream {
@@ -49,7 +50,12 @@ protected final static int ECLIPSE_TAB_VALUE = 4;
     
     protected List commentTokens = null;
     
-    
+    /**
+     * Lex the input characters
+     * @param prsStream Parser where the tokens are sent to 
+     */
+	public abstract void lexer(PrsStream prsStream);
+	
     protected final void makeComment(int kind)
 {
     int startOffset = lexParser.getToken(1),

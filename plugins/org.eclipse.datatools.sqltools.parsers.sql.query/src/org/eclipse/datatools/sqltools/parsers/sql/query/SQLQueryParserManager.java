@@ -22,6 +22,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserFactory;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserManager;
+import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessor;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
@@ -141,12 +142,12 @@ public class SQLQueryParserManager extends SQLParserManager {
         return INTERNAL_DEFAULT_POST_PARSE_PROCESSOR_LIST;
     }
     
-    protected SQLLexer createLexer(String input)
+    protected AbstractSQLLexer createLexer(String input)
     {
         return new SQLLexer(input.toCharArray(),false,getCharacterKindMap());
     }
     
-    protected SQLParser createParser(SQLLexer lexer, boolean syntaxCheckOnly)throws SQLParserInternalException
+    protected SQLParser createParser(AbstractSQLLexer lexer, boolean syntaxCheckOnly)throws SQLParserInternalException
     {
         return new SQLQueryParser(lexer,
                 (SQLQueryParserFactory) getParserFactory(),

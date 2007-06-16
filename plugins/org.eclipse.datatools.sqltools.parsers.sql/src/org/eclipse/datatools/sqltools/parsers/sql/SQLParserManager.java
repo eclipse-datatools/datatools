@@ -21,6 +21,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
+import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLCharacterKindMap;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
 import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLVariableSymbols;
@@ -302,10 +303,10 @@ public abstract class SQLParserManager {
     // protected methods, to be implemented! design pattern: template method
     // *************************************************************************
     
-    protected abstract SQLParser createParser(SQLLexer lexer, boolean syntaxCheckOnly)
+    protected abstract SQLParser createParser(AbstractSQLLexer lexer, boolean syntaxCheckOnly)
     	throws SQLParserInternalException;
     
-    protected abstract SQLLexer createLexer(String input);
+    protected abstract AbstractSQLLexer createLexer(String input);
     
     //protected abstract SQLParserFactory getParserFactory();
     
@@ -322,10 +323,10 @@ public abstract class SQLParserManager {
         configParser(sourceFormat, postParseProcessors);
     }
 
-    protected SQLLexer lexer = null;
-    protected SQLParser parser = null;
+    protected AbstractSQLLexer lexer = null;
+    protected AbstractSQLParser parser = null;
     
-    protected SQLLexer getLexer(String input)
+    protected AbstractSQLLexer getLexer(String input)
     {
         // we still have to create a new parser for each call, work out with
         // Gerry to keep one parser instance
@@ -341,7 +342,7 @@ public abstract class SQLParserManager {
         return lexer;
     }
     
-    protected SQLParser getParser(SQLLexer lexer, boolean syntaxCheckOnly)throws SQLParserInternalException
+    protected AbstractSQLParser getParser(AbstractSQLLexer lexer, boolean syntaxCheckOnly)throws SQLParserInternalException
     {
         // we still have to create a new parser for each call, work out with
         // Gerry to keep one parser instance
@@ -396,11 +397,11 @@ public abstract class SQLParserManager {
 	    input = input.concat( String.valueOf(sourceFormat.getStatementTerminator()) );
 
         if (debugPerformance) timeBeforeLexerInit = System.currentTimeMillis();
-        SQLLexer lexer = getLexer(input); // Create the input stream
+        AbstractSQLLexer lexer = getLexer(input); // Create the input stream
         if (debugPerformance) timeAfterLexerInit = System.currentTimeMillis();
         
         if (debugPerformance) timeBeforeParserInit = timeAfterLexerInit;
-        SQLParser sqlmodelParser = getParser(lexer,syntaxCheckOnly);
+        AbstractSQLParser sqlmodelParser = getParser(lexer,syntaxCheckOnly);
         if (debugPerformance) timeAfterParserInit = System.currentTimeMillis();
         
         if (debugPerformance) {
