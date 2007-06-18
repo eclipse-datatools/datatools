@@ -11,9 +11,9 @@
  *******************************************************************************/
 
 package org.eclipse.datatools.sqltools.core;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -273,7 +273,7 @@ public class DataTypeProvider
             {
                 continue;
             }
-            if (!isDataTypeCaseSensitive(databaseIdentifier) || types[i] instanceof PredefinedDataType)
+            if (types[i] instanceof PredefinedDataType)
             {
                 dispStr = dispStr.toLowerCase();
             }
@@ -282,7 +282,7 @@ public class DataTypeProvider
                 dispStrings.add(dispStr);
             }
         }
-        Collections.sort(dispStrings);
+        Collections.sort(dispStrings, new TypeNameComparator());
         return (String[]) dispStrings.toArray(new String[dispStrings.size()]);
     }
 
@@ -577,5 +577,23 @@ public class DataTypeProvider
             }
         }
         return false;
+    }
+    
+    class TypeNameComparator implements Comparator
+    {
+        public int compare(Object o1, Object o2)
+        {
+            if (o1 == null || o2 == null)
+            {
+                return 0;
+            }
+            if (!(o1 instanceof String) || !(o2 instanceof String))
+            {
+                return 0;
+            }
+            String s1 = ((String) o1).toLowerCase();
+            String s2 = ((String) o2).toLowerCase();
+            return s1.compareTo(s2);
+        }
     }
 }
