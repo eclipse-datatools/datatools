@@ -85,15 +85,15 @@
          point="org.eclipse.ui.actionSets">
       <actionSet
             id="org.eclipse.datatools.sqltools.sqlscrapbook.actionSet"
-            label="SQL Scrapbook Action Set"
+            label="%sql_scrapbook"
             visible="false">
          <action
                class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
                icon="images/scrapbook.gif"
                id="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
-               label="Open SQL Scrapboo&amp;k"
+               label="%open_sql_scrapbook"
                toolbarPath="group.sqleditor.open"
-               tooltip="Open scrapbook to edit SQL statements">
+               tooltip="%open_sql_scrapbook_tooltip">
          </action>
       </actionSet>
    </extension> 

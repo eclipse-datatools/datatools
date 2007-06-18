@@ -36,6 +36,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.source.IOverviewRuler;
 import org.eclipse.jface.text.source.IVerticalRuler;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -76,7 +77,8 @@ public class SQLScrapbookEditor extends SQLEditor {
             fDefaultComposite.setLayout(gridLayout);
             fDefaultComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
-            connBar = new ConnectionInfoComposite2(fDefaultComposite, SWT.NONE, this, SQLScrapbookEditor.this
+            //since SQL Editor is always left to right, we need to tell the composite explicitly about the orientation
+            connBar = new ConnectionInfoComposite2(fDefaultComposite, Window.getDefaultOrientation(), this, SQLScrapbookEditor.this
                     .getConnectionInfo(), null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
                     | AbstractConnectionInfoComposite.STYLE_SHOW_STATUS | AbstractConnectionInfoComposite.STYLE_SINGLE_GROUP | AbstractConnectionInfoComposite.STYLE_LAZY_INIT);
             connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
