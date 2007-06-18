@@ -74,17 +74,15 @@ public class HelpUtil
 						break;
 					}
 				}
-				if (provider != null) {
-					if ((provider.getContextChangeMask() & IContextProvider.SELECTION) != 0) {
-						IContext		context = HelpSystem.getContext(getHelpKey(event.widget));
-						
-						if (context != null) {
-							// determine a location in the upper right corner of the
-							// widget
-							Point point = computePopUpLocation(event.widget.getDisplay());
-							// display the help
-							PlatformUI.getWorkbench().getHelpSystem().displayContext(context, point.x, point.y);
-						}
+				if ((provider == null) || ((provider.getContextChangeMask() & IContextProvider.SELECTION) != 0)) {
+					IContext		context = HelpSystem.getContext(getHelpKey(event.widget));
+					
+					if (context != null) {
+						// determine a location in the upper right corner of the
+						// widget
+						Point point = computePopUpLocation(event.widget.getDisplay());
+						// display the help
+						PlatformUI.getWorkbench().getHelpSystem().displayContext(context, point.x, point.y);
 					}
 				}
 			}
@@ -123,6 +121,9 @@ public class HelpUtil
 	 */
 	public static void setHelp(Control control, String contextId)
 	{
+		if (contextId == null) {
+			return;
+		}
 		if (control != null) {
 			control.removeHelpListener(getHelpListener());
 			control.addHelpListener(getHelpListener());
