@@ -15,6 +15,8 @@ import java.util.Map;
 
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
+import org.eclipse.datatools.sqltools.db.derby.internal.Messages;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * 
@@ -40,11 +42,11 @@ public class DerbyProcIdentifier extends ProcIdentifierImpl {
 
         if (getType() == TYPE_TRIGGER && getTableName() != null && getTableName().length() > 0)
         {
-            s = "("+getProfileName()+")"+getOwnerName()+"."+getTableName()+"."+getDisplayString();
+            s = NLS.bind(Messages.ProcIdentifierImpl_trigger_long_display_string, new Object[]{getProfileName(), getOwnerName(), getTableName(), getDisplayString()});
         }
         else
         {
-            s = "("+getProfileName()+")"+getOwnerName()+"."+getDisplayString();
+            s = NLS.bind(Messages.ProcIdentifierImpl_long_display_string, new Object[]{getProfileName(), getOwnerName(), getDisplayString()});
         }
         return s;
     }

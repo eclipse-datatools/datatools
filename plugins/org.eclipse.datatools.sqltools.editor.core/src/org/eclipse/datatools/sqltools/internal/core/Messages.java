@@ -31,6 +31,8 @@ public static String DefaultSQLSyntax_exception_splitSQL;
 public static String ControlConnectionManager_unknownServerType;
 public static String AbstractControlConnection_connection_already_being_debugged;
 public static String AbstractControlConnection_invalid_store_procedure_description;
+public static String ProcIdentifierImpl_trigger_long_display_string;
+public static String ProcIdentifierImpl_long_display_string;
 
 
 static {

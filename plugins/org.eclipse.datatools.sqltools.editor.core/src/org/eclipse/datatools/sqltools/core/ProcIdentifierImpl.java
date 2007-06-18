@@ -19,6 +19,7 @@ import java.util.Map;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.datatools.sqltools.internal.core.Messages;
+import org.eclipse.osgi.util.NLS;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -321,11 +322,11 @@ public class ProcIdentifierImpl implements ProcIdentifier
         	{
         		tableOwner = getOwnerName();
         	}
-            s = "("+getProfileName()+")"+getDatabaseName()+"."+tableOwner+"."+getTableName()+"."+getDisplayString();
+        	s = NLS.bind(Messages.ProcIdentifierImpl_trigger_long_display_string, new Object[]{getProfileName(), getDatabaseName(), tableOwner, getTableName(), getDisplayString()});
         }
         else
         {
-            s = "("+getProfileName()+")"+getDatabaseName()+"."+getOwnerName()+"."+getDisplayString();
+            s = NLS.bind(Messages.ProcIdentifierImpl_long_display_string, new Object[]{getProfileName(), getDatabaseName(), getOwnerName(), getDisplayString()});
         }
         return s;
     }

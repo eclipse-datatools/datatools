@@ -25,6 +25,8 @@ public final class Messages extends NLS {
 	public static String SQLParser_datatype_judgeLengthAndScale;
 	public static String SQLParser_datatype_exceed_maxlength;
 	public static String plugin_internal_error;
+	public static String ProcIdentifierImpl_trigger_long_display_string;
+	public static String ProcIdentifierImpl_long_display_string;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
