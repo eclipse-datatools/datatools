@@ -78,6 +78,7 @@ import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
 public class WizardNewFileCreationPage extends WizardPage implements Listener
 {
     private static final int          _SIZING_CONTAINER_GROUP_HEIGHT = 200;
+    private static final int          _SIZING_CONTAINER_GROUP_MEDIAM_HEIGHT = 100;
     private static final int          _SIZING_CONTAINER_GROUP_SMALL_HEIGHT = 60;
     // the current resource selection
     private IStructuredSelection      _currentSelection;
@@ -190,9 +191,14 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
     {
         // resource and container group
         int height = _SIZING_CONTAINER_GROUP_HEIGHT;
-        if (Display.getDefault().getBounds().height <= 600)
+        int screenHeight = Display.getDefault().getBounds().height;
+        if (screenHeight <= 600)
         {
             height = _SIZING_CONTAINER_GROUP_SMALL_HEIGHT;
+        }
+        else if (screenHeight <= 768)
+        {
+            height = _SIZING_CONTAINER_GROUP_MEDIAM_HEIGHT;
         }
         _resourceGroup = new ResourceAndContainerGroup(parent, this, getNewFileLabel(), Messages
             .WizardNewFileCreationPage_file, false, height); //$NON-NLS-1$
