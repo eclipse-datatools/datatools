@@ -21,6 +21,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.ViewForm;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -56,6 +58,7 @@ public class ExecutionPlansDrawer
     // Use browser to display node detail
     private Browser                  _browser;
     private static final int         COMBO_ITEM_MAX_LEN = 90;
+    private static final int         TOOLTIP_BOX_WIDTH  = 150;
 
     /**
      * This class is constructed in <code>GraphicsPlanControl</code>, we use <code>ViewForm</code> to contain the
@@ -107,6 +110,14 @@ public class ExecutionPlansDrawer
         gridData11.verticalAlignment = GridData.CENTER;
         _comboQuery.setLayoutData(gridData11);
         _comboQuery.addSelectionListener(_comboSelectionListener);
+        //tooltip to show full sql statement for every combo item
+        _comboQuery.addMouseTrackListener(new MouseTrackAdapter()
+        {
+            public void mouseHover(MouseEvent e)
+            {
+                _comboQuery.setToolTipText(addLineSeparator(_planDocs[_comboQuery.getSelectionIndex()].getName()));
+            }   
+        });
     }
 
     /**
@@ -137,6 +148,36 @@ public class ExecutionPlansDrawer
         // Note: setMinimumSize has no effect upon the scroll bar
         _scComposite.setMinSize(_graphicComposite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
         _scComposite.redraw();
+    }
+    
+    private String addLineSeparator(String str)
+    {
+        StringBuffer sb = new StringBuffer("");
+        int length = str.length();
+        while (length > TOOLTIP_BOX_WIDTH)
+        {
+            if (sb.toString().length() > 0)
+            {
+                sb.append(System.getProperty("line.separator"));
+            }
+            int i = TOOLTIP_BOX_WIDTH;
+            for (; i > 0; i--)
+            {
+                if (str.charAt(i) == ',' || str.charAt(i) == ' ')
+                {
+                    break;
+                }
+            }
+            sb.append(str.substring(0, i));
+            str = str.substring(i);
+            length = str.length();
+        }
+        if (sb.toString().length() > 0)
+        {
+            sb.append(System.getProperty("line.separator"));
+        }
+        sb.append(str);
+        return sb.toString();
     }
 
     /**
@@ -176,6 +217,11 @@ public class ExecutionPlansDrawer
             _planDocs = parser.parsePlan(instance.getRawPlan());
             // Cache the execution plan documents
             instance.setPlanDocuments(_planDocs);
+        }
+        //set tooltip on canvas to show full sql statement when there is only one plan 
+        if (instance.getPlanDocuments() != null && instance.getPlanDocuments().length == 1)
+        {
+            _canvas.setToolTipText(addLineSeparator(instance.getPlanDocuments()[0].getName()));
         }
         _planDocs = instance.getPlanDocuments();
         

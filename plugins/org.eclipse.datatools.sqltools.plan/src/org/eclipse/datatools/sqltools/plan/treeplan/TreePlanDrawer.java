@@ -72,7 +72,7 @@ public class TreePlanDrawer extends AbstractPlanDrawer
     private String                 _htmlStart       = "<html><body>";
     private String                 _htmlEnd         = "</body></html>";
     private static final String    HTML_FILE_NAME   = "query_plan.html"; 
-    
+    private String                 _canvasTip       = "";
     public TreePlanDrawer()
     {
         super();
@@ -118,6 +118,35 @@ public class TreePlanDrawer extends AbstractPlanDrawer
         
         page.add(new TextFlow(tooltip));
         node1.setToolTip(page);
+        
+        //Suppress the canvas' tooltip on the node
+        node1.addMouseMotionListener(new MouseMotionListener()
+        {
+            public void mouseDragged(MouseEvent me)
+            {
+
+            }
+
+            public void mouseEntered(MouseEvent me)
+            {
+                _canvas.setToolTipText("");
+            }
+
+            public void mouseExited(MouseEvent me)
+            {
+                _canvas.setToolTipText(_canvasTip);
+            }
+
+            public void mouseHover(MouseEvent me)
+            {
+
+            }
+
+            public void mouseMoved(MouseEvent me)
+            {
+
+            }
+        });
         _node2Plan.put(node1, plan);
         node1.setLocation(new Point(x, y));
         if (node1.getChildren().size() == 2)
@@ -216,6 +245,7 @@ public class TreePlanDrawer extends AbstractPlanDrawer
      */
     private void draw()
     {
+        _canvasTip = _canvas.getToolTipText();
         _node2Plan.clear();
         TreeExecutionPlanDocument treeModel = (TreeExecutionPlanDocument) _planDoc;
         _lws.getRootFigure().erase();
