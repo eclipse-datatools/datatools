@@ -37,6 +37,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -98,7 +99,7 @@ public class FolderSelectionPageHelper
 
 		setupTypeLineCheckBox( content );
 		
-		Utility.setSystemHelp( content,
+		Utility.setSystemHelp( getControl(),
 				IHelpConstants.CONEXT_ID_DATASOURCE_FLATFILE );
 	}
 
@@ -521,4 +522,18 @@ public class FolderSelectionPageHelper
 		else if ( propertyPage != null )
 			propertyPage.setMessage( newMessage, newType );
 	}
+	
+    private Control getControl()
+    {
+        if ( wizardPage != null )
+            return wizardPage.getControl();
+        if ( propertyPage != null )
+            return propertyPage.getControl();
+        
+        assert( false );
+        return null;
+    }
+
 }
+
+
