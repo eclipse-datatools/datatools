@@ -305,6 +305,9 @@ public class ProfileSelectionDialogPage extends
 	 * set up the controls... 
 	 */
 	protected void initControls() {
+		if (mViewer == null) {
+			return;
+		}
 		if (mInitialSelection != null) {
 			mViewer.setSelection(new StructuredSelection(mInitialSelection));
 			mViewer.getTree().showSelection();

@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
@@ -145,13 +146,26 @@ public class ConnectionProfileDropAssistant extends CommonDropAdapterAssistant {
 
 			initializeSelection();
 
-			result = handleValidate(target);
+			result = handleValidate(target, operation);
 		}
 
 		return result;
 	}
 
-	private IStatus handleValidate(Object target) {
+	private IStatus handleValidate(Object target, int operation) {
+		//disallow dropping of repository data and dropping of profile data from read-only repository
+		for (Iterator iter = mElements.iterator(); iter.hasNext();) {
+			Object data = iter.next();
+			if (data instanceof ConnectionProfile) {
+				IConnectionProfileRepository repo = ((ConnectionProfile) data)
+						.getRepository();
+				// data from non-local read-only repository
+				if (operation != DND.DROP_COPY && repo != null && repo.isReadOnly()) {
+					return Status.CANCEL_STATUS;
+				}
+			}
+		}
+		
 		if (target instanceof LocalRepositoryNode) {
 			// make sure not dropping cp to it's own repository
 			for (Iterator iter = mElements.iterator(); iter.hasNext();) {
