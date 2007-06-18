@@ -102,4 +102,11 @@ In Data Type, select the correct data type for the column.
 Set the number of rows of XML data to parse if the XML data source does not use a schema file to define the data structure.
 </description>
 </context>
+<context id="Wizard_ConnectionProfile_ID" title="New Data Source - Select a Connection Profile">
+<description>Use this dialog box to select a connection profile for creating a data source.
+
+
+
+</description>
+</context>
 </contexts>
