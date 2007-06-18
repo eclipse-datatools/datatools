@@ -33,6 +33,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -44,7 +45,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class XMLSelectionPageHelper
 {
-    private static final String AUTO_ENCODING = Messages.getString( "wizard.autoEncoding" );
+    private static final String AUTO_ENCODING = Messages.getString( "wizard.autoEncoding" ); //$NON-NLS-1$
 	private WizardPage m_wizardPage;
     private PreferencePage m_propertyPage;
 
@@ -104,7 +105,7 @@ public class XMLSelectionPageHelper
 		label2.setLayoutData( data );
 		setupEncodingControl( composite );
 		
-		XMLRelationInfoUtil.setSystemHelp( composite,
+		XMLRelationInfoUtil.setSystemHelp( getControl(),
 				IHelpConstants.CONEXT_ID_DATASOURCE_XML );
     }
     
@@ -333,4 +334,13 @@ public class XMLSelectionPageHelper
 		else if ( m_propertyPage != null )
 			m_propertyPage.setMessage( message );
 	}
+    
+    private Control getControl()
+    {
+        if ( m_wizardPage != null )
+            return m_wizardPage.getControl();
+        assert( m_propertyPage != null );
+        return m_propertyPage.getControl();
+    }
+
 }
