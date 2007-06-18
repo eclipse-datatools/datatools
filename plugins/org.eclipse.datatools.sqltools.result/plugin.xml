@@ -78,7 +78,7 @@
             supportDelimiter="true"
             supportXMLResult="true"
             typeId="org.eclipse.datatools.sqltools.result.textOutputter"
-            typeName="Plain Text">
+            typeName="%Outputter.plain.text">
       </Ouputter>
       <Ouputter
             class="org.eclipse.datatools.sqltools.result.internal.export.XMLOutputter"
@@ -86,7 +86,7 @@
             supportDelimiter="false"
             supportXMLResult="true"
             typeId="org.eclipse.datatools.sqltools.result.xmloutputter"
-            typeName="XML">
+            typeName="%Outputter.xml">
       </Ouputter>
       <Ouputter
             class="org.eclipse.datatools.sqltools.result.internal.export.HTMLOutputter"
@@ -95,7 +95,7 @@
             supportDelimiter="false"
             supportXMLResult="false"
             typeId="org.eclipse.datatools.sqltools.result.htmloutputter"
-            typeName="HTML">
+            typeName="%Outputter.html">
       </Ouputter>
       <Ouputter
             class="org.eclipse.datatools.sqltools.result.internal.export.CSVOutputter"
@@ -103,7 +103,7 @@
             supportDelimiter="false"
             supportXMLResult="false"
             typeId="org.eclipse.datatools.sqltools.result.csvoutputter"
-            typeName="CSV File">
+            typeName="%Outputter.csv">
       </Ouputter>
    </extension>
 

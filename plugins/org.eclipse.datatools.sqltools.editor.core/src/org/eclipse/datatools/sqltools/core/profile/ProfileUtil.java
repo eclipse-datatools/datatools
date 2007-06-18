@@ -169,6 +169,18 @@ public class ProfileUtil
     public static DatabaseDefinition getDatabaseDefinition(String profileName)
     {
         DatabaseVendorDefinitionId id = getDatabaseVendorDefinitionId(profileName);
+        return getDatabaseDefinition(id);
+    }
+    
+    /**
+     * Returns the associated DatabaseVendorDefinition object from the given connection profile.
+     * The DatabaseVendorDefinition object is contributed by vendor tool plugins. Clients of 
+     * this API must be aware that the return value might be null.
+     * @param profile
+     * @return
+     */
+    public static DatabaseDefinition getDatabaseDefinition(DatabaseVendorDefinitionId id)
+    {
         //get DatabaseVendorDefinition from DatabaseVendorDefinitionId by looking up the registry
         DatabaseDefinitionRegistry databaseDefinitionRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
 		DatabaseDefinition definition = databaseDefinitionRegistry.getDefinition(id.getProductName(), id.getVersion());

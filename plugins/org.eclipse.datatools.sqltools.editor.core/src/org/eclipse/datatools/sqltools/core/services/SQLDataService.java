@@ -12,6 +12,8 @@
 package org.eclipse.datatools.sqltools.core.services;
 
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
+import org.eclipse.datatools.sqltools.core.DataTypeProvider;
+import org.eclipse.datatools.sqltools.core.DataTypeValidator;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ISqlDataValidator;
 
@@ -65,4 +67,21 @@ public class SQLDataService
 		return DataTypeHelper.getJDBCTypeForNamedType(aTypeName);
 	}
 	
+    /**
+     * Returns the data type provider for this database
+     * @return the data type provider
+     */
+    public DataTypeProvider getDataTypeProvider()
+    {
+        return new DataTypeProvider();
+    }
+    
+    /**
+     * Returns the data type validator for this database
+     * @return the data type validator
+     */
+    public DataTypeValidator getDataTypeValidator()
+    {
+        return new DataTypeValidator();
+    }
 }
