@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCopyProcessor;
@@ -118,9 +120,12 @@ public class DuplicateProfileAction extends Action implements IActionDelegate {
 			action.setEnabled(false);
 			if (structuredSelection.size() == 1) {
 				Object selectedResource = structuredSelection.getFirstElement();
-				action.setEnabled(selectedResource instanceof IConnectionProfile);
-				if (selectedResource instanceof IConnectionProfile)
+				if (selectedResource instanceof ConnectionProfile) {
+					IConnectionProfileRepository repo = ((ConnectionProfile) selectedResource)
+							.getRepository();
+					action.setEnabled(repo == null || !repo.isReadOnly());
 					mConnectionProfile = (IConnectionProfile) selectedResource;
+				}
 			}
 		}
 	}

@@ -16,6 +16,8 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileDeleteProcessor;
@@ -95,14 +97,31 @@ public class DeleteAction extends Action implements IActionDelegate {
 	 *      org.eclipse.jface.viewers.ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		boolean enabled = false;
 		mIterator = null;
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			action.setEnabled(structuredSelection.size() > 0);
 			if (structuredSelection.size() > 0) {
-				mIterator = structuredSelection.iterator();
+				enabled = true;
+				//need to take care of the enabled state of the delete action when multiple 
+				//profiles(even from different repositories) or the repositories themselves are selected.
+				for (Iterator it = structuredSelection.iterator(); enabled && it.hasNext();) {
+					Object obj = it.next();
+					if (obj instanceof ConnectionProfile) {
+						IConnectionProfileRepository repo = ((ConnectionProfile) obj)
+								.getRepository();
+						enabled = repo == null || !repo.isReadOnly();
+					}
+					else {
+						enabled = false;
+					}
+				}
+				if (enabled) {
+					mIterator = structuredSelection.iterator();
+				}
 			}
 		}
+		action.setEnabled(enabled);
 	}
 	
 	/* (non-Javadoc)
