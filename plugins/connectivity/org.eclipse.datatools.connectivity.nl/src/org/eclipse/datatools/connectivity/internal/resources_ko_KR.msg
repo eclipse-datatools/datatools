@@ -45,7 +45,7 @@ Category.Name.Unknown=지원 안 함
 WorkOfflineJob.name = {0}을(를) 오프라인 작업 모드로 변경하고 있습니다.
 WorkOfflineJob.status.error = 하나 이상의 확장을 위해 {1}에 대한 오프라인 연결을 만들 수 없습니다.
 
-SaveWorkOfflineDataJob.name = {1}의 오프라인 데이터를 저장합니다.
+SaveWorkOfflineDataJob.name = {0}의 오프라인 데이터를 저장합니다.
 SaveWorkOfflineDataJob.status = 오프라인 데이터 상태를 저장합니다.
 
 CreateOfflineConnectionJob.name = {1}에 대한 오프라인 {0} 연결을 만들고 있습니다.

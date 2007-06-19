@@ -45,7 +45,7 @@ Category.Name.Unknown=Nicht unterstützt
 WorkOfflineJob.name = {0} wird in Offline-Modus geändert.
 WorkOfflineJob.status.error = Offline-Verbindungen zu {1} konnten für eine oder mehrere Erweiterungen nicht erstellt werden.
 
-SaveWorkOfflineDataJob.name = Speichern Sie die Offline-Daten für {1}.
+SaveWorkOfflineDataJob.name = Speichern Sie die Offline-Daten für {0}.
 SaveWorkOfflineDataJob.status = Speichern Sie den Status der Offline-Daten.
 
 CreateOfflineConnectionJob.name = Offline-Verbindung {0} zu {1} wird erstellt.

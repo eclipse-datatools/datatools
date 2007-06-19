@@ -45,7 +45,7 @@ Category.Name.Unknown=Non pris en charge
 WorkOfflineJob.name = Modification de {0} pour travailler en mode hors ligne.
 WorkOfflineJob.status.error = Impossible de créer des connexions hors ligne à {1} pour au moins une extension.
 
-SaveWorkOfflineDataJob.name = Enregistrer les données hors ligne pour {1}.
+SaveWorkOfflineDataJob.name = Enregistrer les données hors ligne pour {0}.
 SaveWorkOfflineDataJob.status = Enregistrer l'état des données hors ligne.
 
 CreateOfflineConnectionJob.name = Création de la connexion hors ligne de {0} à {1}.

@@ -45,7 +45,7 @@ Category.Name.Unknown=No admitido
 WorkOfflineJob.name = Cambio de {0} para trabajar en modo desconectado.
 WorkOfflineJob.status.error = No se han podido crear conexiones offline con {1} para una o más extensiones.
 
-SaveWorkOfflineDataJob.name = Guardar datos sin conexión para {1}.
+SaveWorkOfflineDataJob.name = Guardar datos sin conexión para {0}.
 SaveWorkOfflineDataJob.status = Guardar el estado de los datos sin conexión.
 
 CreateOfflineConnectionJob.name = Creando conexiones {0} offline con {1}.

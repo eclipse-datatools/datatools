@@ -45,7 +45,7 @@ Category.Name.Unknown=サポートされていません。
 WorkOfflineJob.name = オフラインモードで作業するために {0} を変更しています。
 WorkOfflineJob.status.error = 1 つまたは複数の拡張機能用の {1} へのオフライン接続を確立できません。
 
-SaveWorkOfflineDataJob.name = {1} のオフラインデータを保存します。
+SaveWorkOfflineDataJob.name = {0} のオフラインデータを保存します。
 SaveWorkOfflineDataJob.status = オフラインデータのステータスを保存します。
 
 CreateOfflineConnectionJob.name = {1} へのオフラインの {0} 接続を確立しています。

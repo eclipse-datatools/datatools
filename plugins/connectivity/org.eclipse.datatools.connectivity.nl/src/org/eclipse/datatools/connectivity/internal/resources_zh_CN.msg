@@ -45,7 +45,7 @@ Category.Name.Unknown=不支持
 WorkOfflineJob.name = 将 {0} 更改为脱机工作模式。
 WorkOfflineJob.status.error = 无法为一个或多个扩展创建到 {1} 的脱机连接。
 
-SaveWorkOfflineDataJob.name = 保存 {1} 的脱机数据。
+SaveWorkOfflineDataJob.name = 保存 {0} 的脱机数据。
 SaveWorkOfflineDataJob.status = 保存脱机数据状态。
 
 CreateOfflineConnectionJob.name = 创建到 {1} 的脱机 {0} 连接。
