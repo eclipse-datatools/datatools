@@ -52,11 +52,11 @@ public class PredefinedDataTypeValidator
             Integer length = (Integer) type.eGet(f);
             if (length != null)
             {
-                if (length < 0)
+                if (length.intValue() < 0)
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_length_shouldbe_positive, type.getName());
                 }
-                if (length > typeDef.getMaximumLength())
+                if (length.intValue() > typeDef.getMaximumLength())
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_length_exceed_max, new Object[]
                     {
@@ -72,12 +72,12 @@ public class PredefinedDataTypeValidator
             Integer precision = (Integer) type.eGet(f);
             if (precision != null)
             {
-                if (precision < 0)
+                if (precision.intValue() < 0)
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_precision_positive, type.getName());
                 }
             }
-            if (precision > typeDef.getMaximumPrecision())
+            if (precision.intValue() > typeDef.getMaximumPrecision())
             {
                 return NLS.bind(Messages.PredefinedDataTypeValidator_precision_exceed_max, new Object[]
                 {
@@ -92,14 +92,14 @@ public class PredefinedDataTypeValidator
             Integer scale = (Integer) type.eGet(f);
             if (scale != null)
             {
-                if (scale < typeDef.getMinimumScale())
+                if (scale.intValue() < typeDef.getMinimumScale())
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_scale_below_min, new Object[]
                     {
                         type.getName(), new Integer(typeDef.getMinimumScale())
                     });
                 }
-                if (scale > typeDef.getMaximumScale())
+                if (scale.intValue() > typeDef.getMaximumScale())
                 {
                     return NLS.bind(Messages.PredefinedDataTypeValidator_precision_exceed_max, new Object[]
                     {
@@ -117,7 +117,7 @@ public class PredefinedDataTypeValidator
             EStructuralFeature sf = type.eClass().getEStructuralFeature(DataTypeProvider.SCALE_FEATURE);
             Integer scale = (Integer) type.eGet(sf);
 
-            if (precision != null && scale != null && precision < scale)
+            if (precision != null && scale != null && precision.intValue() < scale.intValue())
             {
                 return NLS.bind(Messages.PredefinedDataTypeValidator_precision_lessthan_scale, type
                         .getName());
