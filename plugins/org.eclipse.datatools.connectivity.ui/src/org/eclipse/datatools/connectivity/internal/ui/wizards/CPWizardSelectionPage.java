@@ -265,7 +265,8 @@ public class CPWizardSelectionPage
 			((ICPWizard) wizard)
 					.initProviderID(((ProfileWizardProvider) wizardProvider)
 							.getProfile());
-			((ICPWizard) wizard).setParentProfile(((NewCPWizard)getWizard()).getParentProfile());
+			if (getWizard() instanceof NewCPWizard)
+				((ICPWizard) wizard).setParentProfile(((NewCPWizard)getWizard()).getParentProfile());
 		}
 		else if (wizard instanceof NewCategoryWizard) {
 			NewCategoryWizard catWizard = (NewCategoryWizard) wizard;
