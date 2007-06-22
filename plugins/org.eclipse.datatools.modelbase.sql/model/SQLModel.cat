@@ -30,20 +30,6 @@
 	    value      	(value Text "SQLModel")))
     quid       	"3E9B1F8201C1"
     documentation 	
-|The class descriptions are copied from SQL99 standard:
-|Title: (ISO-ANSI Working Draft) Foundation (SQL/Foundation)
-|Author: Jim Melton (Editor)
-|References:
-|1) WG3:ZSH-012 = H2-2002-566 = 5WD-01-Framework-2002-12, WD 9075-1 (SQL/Framework), December, 2002
-|2) WG3:ZSH-013 = H2-2002-567 = 5WD-02-Foundation-2002-12, WD 9075-2 (SQL/Foundation), December, 2002
-|3) WG3:ZSH-014 = H2-2002-568 = 5WD-03-CLI-2002-12, WD 9075-3 (SQL/CLI), December, 2002
-|4) WG3:ZSH-015 = H2-2002-569 = 5WD-04-PSM-2002-12, WD 9075-4 (SQL/PSM), December, 2002
-|5) WG3:ZSH-016 = H2-2002-570 = 5WD-09-MED-2002-12, WD 9075-9 (SQL/MED), December, 2002
-|6) WG3:ZSH-017 = H2-2002-571 = 5WD-10-OLB-2002-12, WD 9075-10 (SQL/OLB), December, 2002
-|7) WG3:ZSH-018 = H2-2002-572 = 5WD-11-Schemata-2002-12, WD 9075-11 (SQL/Schemata), December, 2002
-|8) WG3:ZSH-019 = H2-2002-573 = 5WD-13-JRT-2002-12, WD 9075-13 (SQL/JRT), December, 2002
-|9) WG3:ZSH-020 = H2-2002-574 = 5WD-14-XML-2002-12, WD 9075-14 (SQL/XML), December, 2002
-|
     
     exportControl 	"Public"
     logical_models 	(list unit_reference_list
