@@ -1,8 +1,13 @@
-/*
- * Created on 2005-3-25
+/*******************************************************************************
+ * Copyright (c) 2005 -- 2007 Sybase, Inc.
  * 
- * Copyright (c) Sybase, Inc. 2004 All rights reserved.
- */
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.datatools.sqltools.common.ui.resource;
 
 /**

@@ -1,6 +1,13 @@
-/*
- * Created on 2005-5-24 Confidential property of Sybase, Inc. Copyright (c) Sybase, Inc. 2004-2006. All rights reserved.
- */
+/*******************************************************************************
+ * Copyright (c) 2005 -- 2007 Sybase, Inc.
+ * 
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Sybase, Inc. - initial API and implementation
+ ******************************************************************************/
 
 package org.eclipse.datatools.sqltools.core.profile;
 
