@@ -25,9 +25,9 @@ oda.data.source.category.name=XML 데이터 원본
 datasource.name=XML 데이터 원본
 dataset.name=XML 데이터 집합
 
-datasource.property.xmlFile=XML 데이터 원본 파일
-datasource.property.xmlEncoding=XML 데이터 원본 인코딩
-datasource.property.schemaFile=XML 스키마 파일
+datasource.property.xmlFile=XML 데이터 원본 파일(&X)
+datasource.property.xmlEncoding=XML 데이터 원본 인코딩(&E)
+datasource.property.schemaFile=XML 스키마 파일(&S)
 oda.data.source.name=XML 데이터 원본
 connection.profile.name=XML 데이터 원본 연결 프로필
 #

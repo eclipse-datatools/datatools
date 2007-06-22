@@ -22,8 +22,8 @@ data.set.name=Conjunto de datos de servicios web
 
 connection.profile.name=Perfil de conexión de fuente de datos de servicios web
 
-datasource.property.soapEndPoint=Punto final de SOAP
-datasource.property.connectionClass=Clase de conexión
-datasource.property.connectionTimeOut=Tiempo de conexión agotado
+datasource.property.soapEndPoint=Punto final de &SOAP
+datasource.property.connectionClass=&Clase de conexión
+datasource.property.connectionTimeOut=&Tiempo límite de conexión
 dataset.property.xmlFileURI=Archivo XML
 dataset.property.xsdFileURI=Archivo de esquema

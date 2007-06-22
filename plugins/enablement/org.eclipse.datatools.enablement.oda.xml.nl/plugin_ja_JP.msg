@@ -23,9 +23,9 @@ oda.data.source.category.name=XML データソース
 datasource.name=XML データソース
 dataset.name=XML データセット
 
-datasource.property.xmlFile=XML データソースファイル
-datasource.property.xmlEncoding=XML データソースエンコード
-datasource.property.schemaFile=XML スキーマファイル
+datasource.property.xmlFile=XML データソースファイル(&X)
+datasource.property.xmlEncoding=XML データソースエンコード(&E)
+datasource.property.schemaFile=XML スキーマファイル(&S)
 oda.data.source.name=XML データソース
 connection.profile.name=XML データソース接続プロファイル
 #

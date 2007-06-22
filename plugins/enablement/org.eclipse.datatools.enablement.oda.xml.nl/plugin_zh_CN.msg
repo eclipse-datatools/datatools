@@ -23,9 +23,9 @@ oda.data.source.category.name=XML 数据源
 datasource.name=XML 数据源
 dataset.name=XML 数据集
 
-datasource.property.xmlFile=XML 数据源文件
-datasource.property.xmlEncoding=XML 日期源编码
-datasource.property.schemaFile=XML 架构文件
+datasource.property.xmlFile=XML 数据源文件(&X)
+datasource.property.xmlEncoding=XML 日期源编码(&E)
+datasource.property.schemaFile=XML 架构文件(&S)
 oda.data.source.name=XML 数据源
 connection.profile.name=XML 数据源连接配置文件
 #

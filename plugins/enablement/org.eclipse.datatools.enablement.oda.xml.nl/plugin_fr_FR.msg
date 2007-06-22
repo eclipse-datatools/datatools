@@ -23,9 +23,9 @@ oda.data.source.category.name=Source de données XML
 datasource.name=Source de données XML
 dataset.name=Jeu de données XML
 
-datasource.property.xmlFile=Fichier de source de données XML
-datasource.property.xmlEncoding=Codage de la source de données XML
-datasource.property.schemaFile=Fichier de schéma XML
+datasource.property.xmlFile=Fichier de source de données &XML
+datasource.property.xmlEncoding=Codag&e de la source de données XML
+datasource.property.schemaFile=Fichier de &schéma XML
 oda.data.source.name=Source de données XML
 connection.profile.name=Profil de connexion à la source de données XML
 #

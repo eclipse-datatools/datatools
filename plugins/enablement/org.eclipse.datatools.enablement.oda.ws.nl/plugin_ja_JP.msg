@@ -22,8 +22,8 @@ data.set.name=Web サービスのデータセット
 
 connection.profile.name=Web サービスのデータソースの接続プロファイル
 
-datasource.property.soapEndPoint=SOAP エンドポイント
-datasource.property.connectionClass=接続クラス
-datasource.property.connectionTimeOut=接続のタイムアウト
+datasource.property.soapEndPoint=SOAP エンドポイント(&S)
+datasource.property.connectionClass=接続クラス(&C)
+datasource.property.connectionTimeOut=接続のタイムアウト(&T)
 dataset.property.xmlFileURI=XML ファイル
 dataset.property.xsdFileURI=スキーマファイル

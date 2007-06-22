@@ -23,9 +23,9 @@ oda.data.source.category.name=Fuente de datos XML
 datasource.name=Fuente de datos XML
 dataset.name=Conjunto de datos XML
 
-datasource.property.xmlFile=Archivo de fuente de datos XML
-datasource.property.xmlEncoding=Codificación de la fuente de datos XML
-datasource.property.schemaFile=Archivo del esquema XML
+datasource.property.xmlFile=Archivo de fuente de datos &XML
+datasource.property.xmlEncoding=Codificación de la fuente de &datos XML
+datasource.property.schemaFile=&Archivo del esquema XML
 oda.data.source.name=Fuente de datos XML
 connection.profile.name=Perfil de conexión de fuente de datos XML
 #

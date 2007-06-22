@@ -23,9 +23,9 @@ oda.data.source.category.name=XML-Datenquelle
 datasource.name=XML-Datenquelle
 dataset.name=XML-Datensatz
 
-datasource.property.xmlFile=XML-Datenquellendatei
-datasource.property.xmlEncoding=XML-Datenquellen-Codierung
-datasource.property.schemaFile=XML-Schema-Datei
+datasource.property.xmlFile=&XML-Datenquellendatei
+datasource.property.xmlEncoding=XML-Datenquellen-&Codierung
+datasource.property.schemaFile=XML-&Schema-Datei
 oda.data.source.name=XML-Datenquelle
 connection.profile.name=XML-Datenquellen-Verbindungsprofil
 #
