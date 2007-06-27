@@ -43,7 +43,9 @@ public class ShowCategoryAction implements IViewActionDelegate {
 		this.view = view;
 		if (view instanceof CommonNavigator) {
 			IExtensionStateModel stateModel = ((CommonNavigator)view).getNavigatorContentService().findStateModel(DSEPlugin.SERVERS_VIEW_CONTENT_EXTENSION_ID);
-			currentState = stateModel.getBooleanProperty(DSEPlugin.PROP_SHOW_CATEGORIES);
+			//set default show_category stateprop to true
+			stateModel.setBooleanProperty(DSEPlugin.PROP_SHOW_CATEGORIES,
+					currentState);
 		}
 
 	}
