@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -48,9 +48,14 @@ public class ExtensionExplorer
     {
         if( sm_instance == null )
         {
-            sm_instance = new ExtensionExplorer();
-            
-            sm_instance.refresh();
+            synchronized ( ExtensionExplorer.class )
+            {
+                if( sm_instance == null )
+                {
+                    sm_instance = new ExtensionExplorer();                    
+                    sm_instance.refresh();
+                }
+            }
         }
         return sm_instance;
     }
