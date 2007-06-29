@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
@@ -37,6 +39,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPropertyPage;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -52,7 +55,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 	private static final int INDENT_TECH_VERSION = 20;
 
 	private Button mUpdateVersionInfoButton;
-
+	
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
@@ -231,7 +234,49 @@ public class CPVersionPropertyPage extends PropertyPage implements
 		mUpdateVersionInfoButton.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent event) {
-				getConnectionProfile().connect(null);
+				Display.getCurrent().syncExec( new Runnable() {
+
+					public void run() {
+						getConnectionProfile().connect(new IJobChangeListener() {
+
+							public void aboutToRun(IJobChangeEvent event) {
+								// ignore event
+							}
+
+							public void awake(IJobChangeEvent event) {
+								// ignore event
+							}
+
+							public void done(IJobChangeEvent event) {
+								final Composite content = (Composite) getControl();
+								if (content == null || content.isDisposed()) {
+									return;
+								}
+								Display.getDefault().syncExec( new Runnable() {
+
+									public void run() {
+										deleteControls(content);
+										createControls(content);
+										content.layout(true);
+										content.redraw();
+									}
+								});
+							}
+
+							public void running(IJobChangeEvent event) {
+								// ignore event
+							}
+
+							public void scheduled(IJobChangeEvent event) {
+								// ignore event
+							}
+
+							public void sleeping(IJobChangeEvent event) {
+								// ignore event
+							}
+						});
+					}
+				});
 			}
 		});
 
