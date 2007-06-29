@@ -105,7 +105,7 @@ public class ResultSetObject implements IResultSetObject
             
             for (int i = 0; i < columnCount; i++)
             {
-                _columnNames[i] = meta.getColumnName(i + 1);
+                _columnNames[i] = meta.getColumnLabel(i + 1);
                 _columnDisplaySizes[i] = meta.getColumnDisplaySize(i + 1);
                 _columnTypes[i] = meta.getColumnType(i + 1);
             }
