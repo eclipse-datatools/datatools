@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
@@ -24,6 +25,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.contentassist.SQLDBProposalsRequest;
@@ -294,7 +296,16 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 			if ((proposalsType & SQLParserConstants.SCOPE_TRIGGERS) == SQLParserConstants.SCOPE_TRIGGERS) {
 				loadTriggers(schema, false);
 			}
-
+            if ((proposalsType & SQLParserConstants.SCOPE_VIEWS) == SQLParserConstants.SCOPE_VIEWS) {
+                loadViews(schema, false);
+            }
+            if ((proposalsType & SQLParserConstants.SCOPE_INDEXES) == SQLParserConstants.SCOPE_INDEXES) {
+                loadIndexes(schema, false);
+            }
+            if ((proposalsType & SQLParserConstants.SCOPE_SEGMENT) == SQLParserConstants.SCOPE_SEGMENT) {
+                loadSegments(schema, false);
+            }
+            
 			if ((proposalsType & SQLParserConstants.SCOPE_COLUMNS) == SQLParserConstants.SCOPE_COLUMNS 
                  || (proposalsType & SQLParserConstants.SCOPE_WITHOUT_TABLE) == SQLParserConstants.SCOPE_WITHOUT_TABLE) {
 				String realTableName = request.getRealTable();
@@ -552,6 +563,70 @@ public class SQLDBProposalsService implements ISQLDBProposalsService {
 		return loaded;
 	}
 
+	/**
+     * Creates and stores a list of <code>SQLDBProposal</code> objects for
+     * each views associated with the given schema. Retrieve the list using
+     * getDBProposals().
+     * 
+     * @param schema
+     *            the <code>Schema</code> object for which views are needed
+     * @param clear
+     *            when true, clear the existing list of proposals before loading
+     */
+    protected void loadViews(Schema schema, boolean clear) {
+        if (schema != null) {
+            if (clear) {
+                fDBProposalList.clear();
+            }
+            EList tables = schema.getTables();
+
+            for (int i = 0; i < tables.size(); i++) {
+                Table table = (Table) tables.get(i);
+                if (table instanceof ViewTable) {
+                    fDBProposalList.add(new SQLDBProposal(table));
+                }
+            }
+        }
+    }
+    
+    /**
+     * Creates and stores a list of <code>SQLDBProposal</code> objects for
+     * each index associated with the given schema. Retrieve the list using
+     * getDBProposals().
+     * 
+     * @param schema
+     *            the <code>Schema</code> object for which indexes are needed
+     * @param clear
+     *            when true, clear the existing list of proposals before loading
+     */
+    protected void loadIndexes(Schema schema, boolean clear) {
+        if (schema != null) {
+            if (clear) {
+                fDBProposalList.clear();
+            }
+            EList indexes = schema.getIndices();
+
+            for (int i = 0; i < indexes.size(); i++) {
+                Index index = (Index) indexes.get(i);
+                fDBProposalList.add(new SQLDBProposal(index));
+            }
+        }
+    }
+    
+    /**
+     * Creates and stores a list of <code>SQLDBProposal</code> objects for
+     * each segment associated with the given schema. Retrieve the list using
+     * getDBProposals().
+     * 
+     * @param schema
+     *            the <code>Schema</code> object for which segments are needed
+     * @param clear
+     *            when true, clear the existing list of proposals before loading
+     */
+    protected void loadSegments(Schema schema, boolean clear) {
+        // It will be implemented in derived classes.
+    }
+    
 	public ISQLEditorConnectionInfo getSQLEditorConnectionInfo() {
 		return fConnInfo;
 	}

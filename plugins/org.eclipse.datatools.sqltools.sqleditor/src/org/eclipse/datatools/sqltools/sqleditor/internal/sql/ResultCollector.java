@@ -30,6 +30,8 @@ public class ResultCollector
     private ArrayList _variableList          = new ArrayList();
     private ArrayList _template              = new ArrayList();
     private ArrayList _operator              = new ArrayList();
+    private ArrayList _indexList             = new ArrayList();
+    private ArrayList _segmentList           = new ArrayList();
     /** The other list * */
     private ArrayList _otherList             = new ArrayList();
 
@@ -179,6 +181,22 @@ public class ResultCollector
     }
 
     /**
+     * @return Returns the indexList.
+     */
+    public ArrayList getIndexList()
+    {
+        return _indexList;
+    }
+
+    /**
+     * @param list The indexList to set.
+     */
+    public void setIndexList(ArrayList list)
+    {
+        _indexList = list;
+    }
+
+    /**
      * @return Returns the columnList.
      */
     public ArrayList getColumnList()
@@ -208,6 +226,22 @@ public class ResultCollector
     public void setOtherList(ArrayList list)
     {
         _otherList = list;
+    }
+
+    /**
+     * @return Returns the segmentList.
+     */
+    public ArrayList getSegmentList()
+    {
+        return _segmentList;
+    }
+
+    /**
+     * @param list The segmentList to set.
+     */
+    public void setSegmentList(ArrayList list)
+    {
+        _segmentList = list;
     }
 
     public void addReservedKeyword(SQLCompletionProposal completionProposal)
@@ -256,7 +290,7 @@ public class ResultCollector
         _results = new ArrayList[] 
         {
             _databaseList, _columnList, _tableList, _viewList, _storedProcedureList, _functionList, _triggerList,
-                _eventList, _reservedKeywordList, _unreservedKeywordList, _variableList, _operator
+                _indexList, _eventList, _reservedKeywordList, _unreservedKeywordList, _variableList, _operator, _segmentList
         }
         ;
 
@@ -322,6 +356,12 @@ public class ResultCollector
                 break;
             case SQLParser.SCOPE_VIEWS:
                 setViewList(proposals);
+                break;          
+            case SQLParser.SCOPE_INDEXES:
+                setIndexList(proposals);
+                break;          
+            case SQLParser.SCOPE_SEGMENT:
+                setSegmentList(proposals);
                 break;          
             case SQLParser.SCOPE_TABLES | SQLParser.SCOPE_STORED_PROCEDURES:
             	//FIXME when will this happen?

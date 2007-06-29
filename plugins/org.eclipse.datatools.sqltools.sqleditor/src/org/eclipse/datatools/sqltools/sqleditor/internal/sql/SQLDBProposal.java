@@ -11,6 +11,7 @@
 
 package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
@@ -42,6 +43,8 @@ public class SQLDBProposal {
 	public final static int TRIGGER_OBJTYPE = 7;
 	public final static int EVENT_OBJTYPE = 8;
 	public final static int TABLEALIAS_OBJTYPE = 9;
+    public final static int INDEX_OBJTYPE = 10;
+    public final static int SEGMENT_OBJTYPE = 11;
     public static final int UNKNOWN_OBJTYPE = -1;
 
     private EObject fDBObject; // database model object
@@ -158,7 +161,7 @@ public class SQLDBProposal {
         	setImage( SQLEditorResources.getImage( "event" )); //$NON-NLS-1$
         }
         else if (dbObject instanceof Trigger) {
-        	fType = FUNCTION_OBJTYPE;
+        	fType = TRIGGER_OBJTYPE;
         	fName = ((Trigger) dbObject).getName();
             fParentName = ((Trigger) dbObject).getSubjectTable().getSchema().getName()
             + "." + ((Trigger) dbObject).getSubjectTable().getName();
@@ -166,6 +169,16 @@ public class SQLDBProposal {
             fGrandParentName = ((Table) fParentObject).getSchema().getName();
             fGrandGrandParentName = ModelUtil.getDatabaseName(((Table) fParentObject).getSchema());
             setImage( SQLEditorResources.getImage( "trigger" )); //$NON-NLS-1$
+        }
+        else if (dbObject instanceof Index) {
+            fType = INDEX_OBJTYPE;
+            fName = ((Index) dbObject).getName();
+            fParentName = ((Index) dbObject).getTable().getSchema().getName()
+            + "." + ((Index) dbObject).getTable().getName();
+            fParentObject = ((Index) dbObject).getTable();
+            fGrandParentName = ((Table) fParentObject).getSchema().getName();
+            fGrandGrandParentName = ModelUtil.getDatabaseName(((Table) fParentObject).getSchema());
+            setImage( SQLEditorResources.getImage( "index" )); //$NON-NLS-1$
         }
         else if (dbObject instanceof Catalog)
         {
@@ -285,6 +298,24 @@ public class SQLDBProposal {
      */
     public void setParentName( String parentName ) {
         fParentName = parentName;
+    }
+
+    /**
+     * Sets the type for this content assist proposal.
+     * 
+     * @param type the type to set
+     */
+    public void setType( int type ) {
+        fType = type;
+    }
+
+    /**
+     * Sets the name to the given name.
+     * 
+     * @param name the name to set
+     */
+    public void setName( String name ) {
+        fName = name;
     }
 
     /**

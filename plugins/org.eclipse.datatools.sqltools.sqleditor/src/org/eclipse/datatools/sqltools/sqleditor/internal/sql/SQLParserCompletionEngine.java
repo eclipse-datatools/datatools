@@ -696,7 +696,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			boolean displayParent = !notShowTable && needsDisplayOwner(proposal, length);
             
 			displayParent = displayParent && proposal.getDBObject() != null;
-			if (displayParent) {
+			if (displayParent && proposal.getParentAlias() != null) {
 				display.append(proposal.getParentAlias());
 				display.append('.');
 			}
@@ -768,7 +768,6 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 				return false;
 			}
 		} else if (proposal.getDBObject() instanceof Event
-				|| proposal.getDBObject() instanceof Trigger
 				|| proposal.getDBObject() instanceof Database
                 || proposal.getDBObject() instanceof Catalog) {
 			return false;

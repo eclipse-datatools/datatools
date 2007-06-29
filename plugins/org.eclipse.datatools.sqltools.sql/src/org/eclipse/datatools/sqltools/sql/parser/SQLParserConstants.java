@@ -76,11 +76,15 @@ public interface SQLParserConstants
     /**
      * Scope constant indicating variable list information is required.
      */
-    public final static int SCOPE_REFERENCE_VARIABLES  = 0x10000;
+    public final static int SCOPE_REFERENCE_VARIABLES  = 0x2000;
     /**
      * Scope constant indicating table name should be removed for columns. Combined with SCOPE_COLUMNS.
      */
-    public final static int SCOPE_WITHOUT_TABLE        = 0x20000;
+    public final static int    SCOPE_WITHOUT_TABLE     = 0x4000;
+    /**
+     * Scope constant indicating the segment scope.
+     */
+    public final static int    SCOPE_SEGMENT           = 0x8000;
 
     // SQL statement types
 
