@@ -29,5 +29,6 @@ public class ExecutionPlanInitializer extends AbstractPreferenceInitializer
         store.setDefault(PreferenceConstants.EXPORT_FORMAT_DEFAULT_ENCODEING, true);
         store.setDefault(PreferenceConstants.EXPORT_FORMAT_OTHER_ENCODEING, false);
         store.setDefault(PreferenceConstants.EXPORT_FORMAT_OTHER_ENCODEING_SELECTION, -1);
+        store.setDefault(PreferenceConstants.EXPORT_FORMAT_PREF_ENCODING, System.getProperty("file.encoding", "UTF-8"));
     }
 }
