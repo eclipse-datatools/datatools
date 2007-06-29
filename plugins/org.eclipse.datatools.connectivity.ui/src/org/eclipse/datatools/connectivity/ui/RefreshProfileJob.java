@@ -24,7 +24,7 @@ import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileRule;
-import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.ui.progress.UIJob;
 
@@ -100,7 +100,7 @@ public class RefreshProfileJob extends UIJob {
 	 * @param name
 	 */
 	private RefreshProfileJob(IConnectionProfile profile, TreeViewer viewer) {
-		super(ConnectivityPlugin.getDefault().getResourceString(
+		super(ConnectivityUIPlugin.getDefault().getResourceString(
 				"actions.connect.uijob")); //$NON-NLS-1$
 		setRule(new ProfileRule(profile));
 		setSystem(false);
