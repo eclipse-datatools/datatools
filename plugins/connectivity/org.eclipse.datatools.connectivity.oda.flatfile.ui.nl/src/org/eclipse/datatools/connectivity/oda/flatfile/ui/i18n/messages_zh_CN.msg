@@ -19,7 +19,7 @@ editor.title.type=类型
 
 datatypes.dateTime=时间戳
 datatypes.decimal=大十进制
-datatypes.float=双线
+datatypes.float=双精度
 datatypes.integer=整数
 datatypes.string=字符串
 datatypes.date=日期
