@@ -16,8 +16,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
 
-import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.IEncodedStorage;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 
@@ -25,7 +27,7 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
  * This class implements the IStorage interface to facilitate launching the SQL
  * Editor from an editor input that isn't based on a file.
  */
-public class SQLEditorStorage implements IStorage 
+public class SQLEditorStorage implements IEncodedStorage 
 {
     /** The contents of this storage object */
     private InputStream fContents;
@@ -54,8 +56,16 @@ public class SQLEditorStorage implements IStorage
     public SQLEditorStorage( String name, String source ) 
     {
         super();
-        setName( name );
-        setContents( new ByteArrayInputStream( source.getBytes() ) );
+        setName( name );        
+        try
+        {
+            setContents( new ByteArrayInputStream( source.getBytes(getCharset()) ) );
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            // if unsupported, just use the default encoding from OS
+            setContents( new ByteArrayInputStream( source.getBytes() ) );
+        }
     }
 
     /**
@@ -97,7 +107,7 @@ public class SQLEditorStorage implements IStorage
             Reader in = null;
             try 
             {
-                in = new BufferedReader( new InputStreamReader( contentsStream ));
+                in = new BufferedReader(new InputStreamReader(contentsStream, getCharset()));
                 StringBuffer buffer = new StringBuffer();
                 char[] readBuffer = new char[2048];
                 int n = in.read( readBuffer );
@@ -108,7 +118,7 @@ public class SQLEditorStorage implements IStorage
                 }
                 contentsString = buffer.toString();
             }
-            catch (IOException x) 
+            catch (Exception x) 
             {
                 // ignore and save empty content
             }
@@ -187,6 +197,12 @@ public class SQLEditorStorage implements IStorage
     public void setName( String name ) 
     {
         fName = name;
+    }
+
+    public String getCharset()
+    {
+        // return the resource encoding defined in Preference page(General -->Workspace-->Text file encoding)
+        return ResourcesPlugin.getEncoding();
     }
 
 }
