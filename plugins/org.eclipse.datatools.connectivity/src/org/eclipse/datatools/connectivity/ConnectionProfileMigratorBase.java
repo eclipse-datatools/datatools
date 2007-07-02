@@ -95,7 +95,7 @@ public class ConnectionProfileMigratorBase implements
 			String newKey = (String) entry.getValue();
 			String value = props.getProperty(oldKey);
 			props.remove(oldKey);
-			if (newKey != null) {
+			if (newKey != null && value !=null) {
 				props.setProperty(newKey, value);
 			}
 		}

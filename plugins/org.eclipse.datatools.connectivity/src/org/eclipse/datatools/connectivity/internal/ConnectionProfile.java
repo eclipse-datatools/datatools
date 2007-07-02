@@ -396,7 +396,7 @@ public class ConnectionProfile extends PlatformObject implements
 			return;
 		}
 		boolean oldIsCreating = mIsCreating;
-		mIsCreating = false;
+		mIsCreating = true;
 		try {
 			String newID = migrator.getNewProviderID();
 			if (newID != null && !newID.equals(mProfileId)) {
