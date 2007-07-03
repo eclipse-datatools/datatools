@@ -12,6 +12,7 @@ package  org.eclipse.datatools.connectivity.ui.dse.dialogs.filters;
 
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
@@ -32,6 +33,9 @@ public class DownToProfilesOnlyFilter extends ViewerFilter {
 		}
 		else if (element instanceof IConnectionProfile) {
 			return true;
+		}
+		else if (element instanceof LocalRepositoryNode) {
+            return true;
 		}
 		return false;
 	}

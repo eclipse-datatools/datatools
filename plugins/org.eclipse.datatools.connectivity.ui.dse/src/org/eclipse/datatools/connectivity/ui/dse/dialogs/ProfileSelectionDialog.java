@@ -56,8 +56,8 @@ public class ProfileSelectionDialog extends TitleAreaDialog
     public ProfileSelectionDialog(Shell parentShell) {
         super(parentShell);
         setShellStyle( getShellStyle() | SWT.RESIZE );
-        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp(getShell(), HelpUtil.getContextId(IHelpContextsConnectivityUIDSE.PROFILE_SELECTION_DIALOG, DSEPlugin.getDefault().getBundle().getSymbolicName()));
+        parentShell.setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp(parentShell, HelpUtil.getContextId(IHelpContextsConnectivityUIDSE.PROFILE_SELECTION_DIALOG, DSEPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /* (non-Javadoc)

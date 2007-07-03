@@ -191,15 +191,17 @@ public class ProfileSelectionDialogPage extends
 		navigatorService = mCommonViewer.getNavigatorContentService();			
 		
 		// Turn off categories.
-        Set rootExtensions = navigatorService
-				.findRootContentExtensions(ProfileManager.getInstance());
-		for (Iterator iterator = rootExtensions.iterator(); iterator.hasNext();) {
-			INavigatorContentExtension extension = (INavigatorContentExtension) iterator
-					.next();
-			ITreeContentProvider provider = extension.getContentProvider();
-			if (extension.getContentProvider() instanceof ConnectionProfileContentProvider) {
-				((ConnectionProfileContentProvider) provider)
-						.setShowCategories(false);
+		if (mLimitToProfiles) {
+	        Set rootExtensions = navigatorService
+					.findRootContentExtensions(ProfileManager.getInstance());
+			for (Iterator iterator = rootExtensions.iterator(); iterator.hasNext();) {
+				INavigatorContentExtension extension = (INavigatorContentExtension) iterator
+						.next();
+				ITreeContentProvider provider = extension.getContentProvider();
+				if (extension.getContentProvider() instanceof ConnectionProfileContentProvider) {
+					((ConnectionProfileContentProvider) provider)
+							.setShowCategories(false);
+				}
 			}
 		}
 		

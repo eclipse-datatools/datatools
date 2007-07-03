@@ -46,12 +46,27 @@ public class ProfileCategoryFilter extends ViewerFilter {
 			if (retVal) {
 				return true;
 			}
+		} else if (element instanceof ICategory) {
+			ICategory cat = (ICategory) element;
+			boolean retVal = false;
+			if (mCategory == null)
+				retVal = true;
+			while (cat != null && mCategory != null) {
+				retVal = mCategory.equals(cat.getId());
+				if (retVal)
+					break;
+				cat = cat.getParent();
+			}
+			if (retVal) {
+				return true;
+			}
 		}
-		return false;
+		return true;
 	}
 
 	/**
 	 * Set the category and get the ID from it
+	 * 
 	 * @param category
 	 */
 	public void setSelectedCategory (ICategory category) {
