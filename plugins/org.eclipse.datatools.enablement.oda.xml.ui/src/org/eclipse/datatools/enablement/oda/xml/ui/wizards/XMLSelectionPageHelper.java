@@ -253,7 +253,7 @@ public class XMLSelectionPageHelper
 		m_schemaLocation.setLayoutData( data );
 
 		browseFolderButton = new Button( composite, SWT.NONE );
-		browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
+		browseFolderButton.setText( Messages.getString( "schema.choose" ) ); //$NON-NLS-1$
 		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
