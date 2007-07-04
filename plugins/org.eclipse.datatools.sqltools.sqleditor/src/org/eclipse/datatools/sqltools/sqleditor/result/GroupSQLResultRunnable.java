@@ -149,6 +149,19 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
         	{
 				Connection conn = conService.createConnection(
 						_databaseIdentifier, true);
+				if(conn == null)
+				{
+				    resultsViewAPI.createNewInstance(getOperationCommand(), null);
+				    resultsViewAPI.appendStatusMessage(getOperationCommand(),
+                            Messages.GroupSQLResultRunnable_fail_to_create_conn);
+                    resultsViewAPI.appendThrowable(getOperationCommand(), new Exception(NLS.bind(
+                            Messages.GroupSQLResultRunnable_fail_to_create_conn_to, _databaseIdentifier.toString())));
+				    resultsViewAPI.updateStatus(getOperationCommand(), OperationCommand.STATUS_FAILED);
+		            
+				    //don't return error status to prevent eclipse from poping up errors 
+		            IStatus info = new Status(IStatus.INFO, SQLEditorPlugin.PLUGIN_ID, EXECUTION_NESTED_ERROR, Messages.GroupSQLResultRunnable_not_complete, null);
+		            return info;
+				}
 				setConnection(conn);
 				_connid = SQLToolsFacade.getConnectionId(_databaseIdentifier, _connection);
                 _closeCon = true;

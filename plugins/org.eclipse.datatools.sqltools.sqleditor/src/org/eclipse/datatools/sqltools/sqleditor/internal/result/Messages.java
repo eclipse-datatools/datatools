@@ -36,6 +36,8 @@ public final class Messages extends NLS {
 	public static String GroupSQLResultRunnable_title;
 	public static String GroupSQLResultRunnable_message;
     public static String GroupSQLResultRunnable_not_complete;
+    public static String GroupSQLResultRunnable_fail_to_create_conn;
+    public static String GroupSQLResultRunnable_fail_to_create_conn_to;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
