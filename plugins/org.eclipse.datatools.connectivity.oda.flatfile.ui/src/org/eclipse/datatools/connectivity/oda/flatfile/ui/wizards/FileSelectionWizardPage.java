@@ -1143,7 +1143,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			File file, IConnection conn ) throws OdaException
 	{
 		java.util.Properties prop = new java.util.Properties( );
-		prop.put( CommonConstants.CONN_HOME_DIR_PROP, file.getParent( ) );
+		if ( file != null )
+			prop.put( CommonConstants.CONN_HOME_DIR_PROP, file.getParent( ) );
 		prop.put( CommonConstants.CONN_DELIMITER_TYPE, flatfileDelimiterType );
 		prop.put( CommonConstants.CONN_CHARSET_PROP, charSet );
 		prop.put( CommonConstants.CONN_INCLCOLUMNNAME_PROP, inclColumnNameLine );
