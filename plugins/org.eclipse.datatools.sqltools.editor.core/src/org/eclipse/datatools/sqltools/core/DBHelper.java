@@ -26,7 +26,9 @@ import java.util.Map;
  */
 
 public class DBHelper {
-	/**
+	protected static final String LINE_SEPARATOR = System.getProperty("line.separator");
+
+    /**
 	 * Given a trigger, returns the table name. Default implementation simply
 	 * return the table name defined in <code>ProcIdentifier</code>.
 	 * 
@@ -225,4 +227,22 @@ public class DBHelper {
 	    return null;
 	}
 
+	/**
+     * Returns all error messages by following the exception chain.
+     * @param exception
+     * @return 
+     */
+    public String getExceptionChainMessage(SQLException exception)
+    {
+        if (exception != null)
+        {
+            StringBuffer sb = new StringBuffer(exception.getMessage()).append(LINE_SEPARATOR);
+            if (exception.getNextException() != null && exception.getNextException() != exception)
+            {
+                sb.append(getExceptionChainMessage(exception.getNextException()));
+            }
+            return sb.toString();
+        }
+        return null;
+    }
 }

@@ -246,6 +246,10 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         }
         catch (Exception e)
         {
+            if (EditorCorePlugin.getDefault() == null)
+            {
+            	return;
+            }
             // in fact, we do not throw out exception at this point
         	EditorCorePlugin.getDefault().log(e);
         }
