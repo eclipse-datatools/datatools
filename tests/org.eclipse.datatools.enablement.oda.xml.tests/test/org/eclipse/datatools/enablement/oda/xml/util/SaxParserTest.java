@@ -53,7 +53,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{time;String;}"
 			+ "#-# filter4#:#[//Book[@type='fiction']]#:#{book.title;String;/Title},{book.author_paul;String;/Author[@type='firstclass']}"			
 			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}"
-			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}";
+			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}"
+			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}";
 
 	private RelationInformation ri;
 
@@ -827,5 +828,48 @@ public class SaxParserTest extends BaseTest
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST18_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST18_GOLDEN_XML ) ) );
+	}
+	
+	/**
+	 * Tests the case when there exist empty elements in the xml file
+	 * 
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test19( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST19_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.EMPTY_ELEMENT )
+				.createXMLDataInputStream( ),
+				ri,
+				"emptyElement",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST19_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST19_GOLDEN_XML ) ) );
 	}
 }

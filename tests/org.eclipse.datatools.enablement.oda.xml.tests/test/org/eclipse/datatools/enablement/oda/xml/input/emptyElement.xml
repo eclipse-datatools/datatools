@@ -1,0 +1,28 @@
+<?xml version="1.0" ?> 
+<NewDataSet>
+  <program>
+    <ProgramID>1</ProgramID>     
+    <ProgramName>Prog1</ProgramName>     
+    <activity>
+      <ActivityID>100</ActivityID>
+      <ActivityName>Act1</ActivityName>
+    </activity>
+    <activity>
+      <ActivityID>101</ActivityID>
+      <ActivityName/>
+    </activity>
+  </program>
+
+  <program>
+    <ProgramID>2</ProgramID>     
+    <ProgramName/>     
+    <activity>
+      <ActivityID>102</ActivityID>
+      <ActivityName>Act3</ActivityName>
+    </activity>
+    <activity>
+      <ActivityID>103</ActivityID>
+      <ActivityName>Act4</ActivityName>
+    </activity>
+  </program>
+</NewDataSet>

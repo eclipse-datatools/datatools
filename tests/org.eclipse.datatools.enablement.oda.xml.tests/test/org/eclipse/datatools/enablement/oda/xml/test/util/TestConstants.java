@@ -32,6 +32,7 @@ public class TestConstants
 	public static final String TEST_RELATIVE_LOCATION = home+"test/org/eclipse/datatools/enablement/oda/xml/input/sample.xml";
 	public static final String MIXED_FILTER = home+"test/org/eclipse/datatools/enablement/oda/xml/input/TestMixedFilter.xml";
 	public static final String NESTED_TABLE_ROOT_FILTER = home+"test/org/eclipse/datatools/enablement/oda/xml/input/nestedTableRootFilter.xml";
+	public static final String EMPTY_ELEMENT = home+"test/org/eclipse/datatools/enablement/oda/xml/input/emptyElement.xml";
 	
 	public static final String BOOKSTORE_XML_FILE = home + "test/org/eclipse/datatools/enablement/oda/xml/input/BookStore.xml";
 	public static final String BOOKSTORE_XSD_FILE = home + "test/org/eclipse/datatools/enablement/oda/xml/input/BookStore.xsd";
@@ -108,6 +109,8 @@ public class TestConstants
 	public static final String SAX_PARSER_TEST17_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test17.txt";
 	public static final String SAX_PARSER_TEST18_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test18.txt";
 	public static final String SAX_PARSER_TEST18_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test18.txt";
+	public static final String SAX_PARSER_TEST19_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test19.txt";
+	public static final String SAX_PARSER_TEST19_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test19.txt";
 
 	//public static final String SAX_PARSER_TESTLARGE_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.testLarge.txt";
 
