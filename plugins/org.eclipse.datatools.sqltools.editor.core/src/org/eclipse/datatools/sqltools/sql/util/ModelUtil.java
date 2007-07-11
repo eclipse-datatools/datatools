@@ -433,6 +433,10 @@ public class ModelUtil {
         Table tableObject = null;
         for (Iterator i = schemas.iterator(); i.hasNext();)
         {
+            if (tableName == null || tableName.equals(""))
+            {
+                break;
+            }
             Schema schema = (Schema) i.next();
             if (schema.getName() != null && equals(schema.getName(), schemaName, caseSensitive))
             {
