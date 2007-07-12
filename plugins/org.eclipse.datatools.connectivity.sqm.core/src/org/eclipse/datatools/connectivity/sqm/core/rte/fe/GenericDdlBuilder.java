@@ -828,7 +828,7 @@ public class GenericDdlBuilder {
         String parentKey = null;
         if(uniqueConstraint != null) {
             parentTable = uniqueConstraint.getBaseTable();
-            parentKey = this.getKeyColumns(uniqueConstraint);
+            parentKey = this.getKeyColumns(uniqueConstraint, quoteIdentifiers);
         }
         else if(index != null) {
         	parentTable = index.getTable();
@@ -841,7 +841,7 @@ public class GenericDdlBuilder {
 
         String statement = ALTER + SPACE + TABLE + SPACE + getName(foreignKey.getBaseTable(), quoteIdentifiers, qualifyNames)
         	+ SPACE + ADD + SPACE + CONSTRAINT + SPACE + getName(foreignKey, quoteIdentifiers) + SPACE + FOREIGN_KEY 
-        	+ SPACE + LEFT_PARENTHESIS + this.getKeyColumns(foreignKey) + RIGHT_PARENTHESIS + NEWLINE;
+        	+ SPACE + LEFT_PARENTHESIS + this.getKeyColumns(foreignKey, quoteIdentifiers) + RIGHT_PARENTHESIS + NEWLINE;
         statement += TAB + REFERENCES + SPACE + getName(parentTable, quoteIdentifiers, qualifyNames) + SPACE + LEFT_PARENTHESIS
         	+ parentKey + RIGHT_PARENTHESIS;
 		
@@ -982,7 +982,7 @@ public class GenericDdlBuilder {
 
         String text =  ADD + SPACE + CONSTRAINT + SPACE + constraintName 
         	+ SPACE + getUniqueConstraintType(constraint) + SPACE
-        	+ LEFT_PARENTHESIS + this.getKeyColumns(constraint) + RIGHT_PARENTHESIS;
+        	+ LEFT_PARENTHESIS + this.getKeyColumns(constraint, quoteIdentifiers) + RIGHT_PARENTHESIS;
         
         if(constraint.isDeferrable()) {
             text += SPACE + getDeferrableClause(constraint);
@@ -1012,12 +1012,19 @@ public class GenericDdlBuilder {
         return text;
     }
 
-    protected String getKeyColumns(ReferenceConstraint constraint) {
+    protected String getKeyColumns(ReferenceConstraint constraint, boolean quoteIdentifiers) {
         String columns = null;
         Iterator it = constraint.getMembers().iterator();
         if(it.hasNext()) {
             Column c = (Column) it.next();
-            columns = c.getName();
+            final String columnName;
+            if (quoteIdentifiers) {
+                columnName = getQuotedIdentifierString(c);
+            } else {
+            	columnName = c.getName();
+            }
+            
+            columns = columnName;
         }
         else {
             // TODO report error
@@ -1026,7 +1033,13 @@ public class GenericDdlBuilder {
         
         while(it.hasNext()) {
             Column c = (Column) it.next();
-            columns += COMMA + SPACE + c.getName();
+            final String columnName;
+            if (quoteIdentifiers) {
+                columnName = getQuotedIdentifierString(c);
+            } else {
+            	columnName = c.getName();
+            }
+            columns += COMMA + SPACE + columnName;
         }
         
         return columns;
