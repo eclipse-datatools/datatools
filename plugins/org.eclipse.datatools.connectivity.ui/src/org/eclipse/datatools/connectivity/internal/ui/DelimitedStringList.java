@@ -138,6 +138,7 @@ public class DelimitedStringList extends Composite {
 					GridData.HORIZONTAL_ALIGN_FILL));
 			this.mUpButton.setText(DriverMgmtMessages
 					.getString("DelimitedStringList.button.up"));//$NON-NLS-1$
+			this.mUpButton.setEnabled(false);
 			this.mUpButton.addSelectionListener(new SelectionAdapter() {
 
 				public void widgetSelected(SelectionEvent e) {
@@ -192,6 +193,7 @@ public class DelimitedStringList extends Composite {
 			this.mHiddenText.setLayoutData(gridData);
 			this.mHiddenText.setVisible(false);
 		}
+		updatePropertyButtons();
 	}
 
 	/**
@@ -222,6 +224,7 @@ public class DelimitedStringList extends Composite {
 	private void addStringToList() {
 		if (this.mAddText.getText().length() > 0) {
 			this.mPropsList.add(this.mAddText.getText().trim());
+			this.mClearAllButton.setEnabled(true);
 			String selected = getSelection();
 			this.mHiddenText.setText(selected.trim());
 			this.mAddText.setSelection(0, this.mAddText.getText().length());
@@ -351,22 +354,27 @@ public class DelimitedStringList extends Composite {
 	/**
 	 * Update button state based on what's selected
 	 */
-	private void updatePropertyButtons() {
+	public void updatePropertyButtons() {
 		this.mDownButton.setEnabled(false);
 		this.mUpButton.setEnabled(false);
 		this.mRemoveButton.setEnabled(false);
+		this.mClearAllButton.setEnabled(false);
+			
+		if (this.mPropsList.getItemCount() > 0) {
+			
+			this.mClearAllButton.setEnabled(true);
+			
+			if(this.mPropsList.getSelectionCount() == 1){
+				int selection = this.mPropsList.getSelectionIndex();
 
-		if (this.mPropsList.getItemCount() > 0
-				&& this.mPropsList.getSelectionCount() == 1) {
-			int selection = this.mPropsList.getSelectionIndex();
+				this.mRemoveButton.setEnabled(true);
 
-			this.mRemoveButton.setEnabled(true);
+				if (selection - 1 >= 0)
+					this.mUpButton.setEnabled(true);
 
-			if (selection - 1 >= 0)
-				this.mUpButton.setEnabled(true);
-
-			if (selection + 1 < this.mPropsList.getItemCount())
-				this.mDownButton.setEnabled(true);
+				if (selection + 1 < this.mPropsList.getItemCount())
+					this.mDownButton.setEnabled(true);
+			}
 		}
 
 		String value = ""; //$NON-NLS-1$
@@ -403,6 +411,7 @@ public class DelimitedStringList extends Composite {
 	public void setSelection(String str_list) {
 		String[] str_array = parseString(str_list);
 		this.mPropsList.setItems(str_array);
+		updatePropertyButtons();
 	}
 
 	/**
@@ -473,5 +482,7 @@ public class DelimitedStringList extends Composite {
 	public void removeChangeListener(ChangeListener listener) {
 		this.changeListeners.remove(listener);
 	}
+	
+	
 
 }
