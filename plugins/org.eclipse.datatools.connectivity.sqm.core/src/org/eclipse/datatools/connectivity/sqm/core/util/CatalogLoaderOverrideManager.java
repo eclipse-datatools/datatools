@@ -93,7 +93,6 @@ public final class CatalogLoaderOverrideManager {
 						            + product + " " + version, e); //$NON-NLS-1$
 							RDBCorePlugin.getDefault().getLog().log(status);
 						}
-						break;
 					}
 				}
 			}
