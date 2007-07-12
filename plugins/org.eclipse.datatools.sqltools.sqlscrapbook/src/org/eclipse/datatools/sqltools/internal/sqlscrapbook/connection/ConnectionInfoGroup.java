@@ -384,7 +384,7 @@ public class ConnectionInfoGroup extends AbstractConnectionInfoComposite impleme
 
         if (_supportedDBDefinitionNames == null)
 		{
-            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+            _supportedDBDefinitionNames = SQLToolsFacade.getAllAvailableDBDefinitionNames();
         }
 		_comboType.setItems((String[]) _supportedDBDefinitionNames
 				.toArray(new String[0]));

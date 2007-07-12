@@ -163,7 +163,7 @@ public class ConnectionInfoComposite extends AbstractConnectionInfoComposite imp
         IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
         if (_supportedDBDefinitionNames == null)
         {
-            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+            _supportedDBDefinitionNames = SQLToolsFacade.getAllAvailableDBDefinitionNames();
         }
     
         ArrayList rightProfiles = new ArrayList();

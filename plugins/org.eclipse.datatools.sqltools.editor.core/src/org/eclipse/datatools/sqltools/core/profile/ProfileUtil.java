@@ -248,7 +248,7 @@ public class ProfileUtil
     }
     
     /**
-     * Given the connection profile name, return a DataVendorIdentifier object which identifies the data server type
+     * Given the connection profile name, return a DatabaseVendorDefinitionId object which identifies the data server type
      * that profileName points to. Basically, there are 2 approaches to do it: 1. connect to server using a specific
      * factoryId (which is not defined by DTP connectivity layer yet), then get DatabaseDefinition from the
      * ISQLEditorConnectionInfo object; 2. find driver template, then get the vendor and version info from it. Since the latter
@@ -260,69 +260,81 @@ public class ProfileUtil
      */
     public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(String profileName)
     {
-    	IConnectionProfile profile = null;
-		try {
-			profile = getProfile(profileName);
-		} catch (NoSuchProfileException e) {
-			//EditorCorePlugin.getDefault().log(e);
-		}
-		
-		return getDatabaseVendorDefinitionId(profile);
+		return getDatabaseVendorDefinitionId(profileName, true, true);
     }
     
     public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(IConnectionProfile profile)
     {
-        DatabaseVendorDefinitionId vendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
-    	if (profile != null) {
-			// try to get vendor name and version from connection profile first,
-			// because this should
-			// be the REAL info.
-			String vendor = getVendorInProperties(profile);
-            //do not try to connect to get the REAL version, which might be annoying in some cases
-			String version = getVersionInProperties(profile);
-			if (vendor != null && version != null) {
-				vendorId = new DatabaseVendorDefinitionId(vendor, version);
-			} else {
-
-				// then try to get the info from driver template, this is the
-				// DECLARED info.
-				String driverID = profile.getBaseProperties().getProperty(
-						ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
-				if (driverID == null) {
-		    		if (profile.getCategory()== null || !DATABASE_CATEGORY_ID.equals(profile.getCategory().getId()))
-		    		{
-		    			return null;
-		    		}
-					EditorCorePlugin.getDefault().log(
-							NLS.bind(Messages.ProfileUtil_error_getdriver,
-									(new Object[] { profile.getName() })));
-				} else {
-					DriverInstance driver = DriverManager.getInstance()
-							.getDriverInstanceByID(driverID);
-					if (driver != null) {
-						vendor = driver
-								.getProperty(DRIVER_DB_VENDOR_NAME);
-						version = driver
-								.getProperty(DRIVER_DB_VERSION);
-						vendorId = new DatabaseVendorDefinitionId(vendor,
-								version);
-					}
-				}
-			}
-    	}
-    	Collection vendors = SQLToolsFacade.getSupportedDBDefinitionNames();
-    	if(vendors.contains(vendorId.toString()))
-    	{
-    		return vendorId;
-    	}
-    	else
-    	{
-    		vendorId = SQLToolsFacade.getCanonicalDatabaseVendorDefinitionId(vendorId);
-    	}
-    	//TODO shall we keep a hashmap?
-    	return vendorId;
+        return getDatabaseVendorDefinitionId(profile, true, true);
     }
 
+    public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(String profileName, boolean getCacheInfo, boolean normalize)
+    {
+        IConnectionProfile profile = null;
+        try {
+            profile = getProfile(profileName);
+        } catch (NoSuchProfileException e) {
+            //EditorCorePlugin.getDefault().log(e);
+        }
+        
+        return getDatabaseVendorDefinitionId(profile, getCacheInfo, normalize);
+    }
+
+    /**
+     * Returns a DatabaseVendorDefinitionId object which identifies the data server type.
+     * @param profile connection profile
+     * @param getCacheInfo 
+     * @param normalize whether needs to normalize the DatabaseVendorDefinitionId to conform with the database definition declaration
+     * @return
+     */
+    public static DatabaseVendorDefinitionId getDatabaseVendorDefinitionId(IConnectionProfile profile, boolean getCacheInfo, boolean normalize)
+    {
+        DatabaseVendorDefinitionId vendorId = SQLDevToolsConfiguration.getDefaultInstance().getDatabaseVendorDefinitionId(); 
+        if (profile != null) {
+            // try to get vendor name and version from connection profile first,
+            // because this should
+            // be the REAL info.
+            String vendor = getVendorInProperties(profile);
+            //do not try to connect to get the REAL version, which might be annoying in some cases
+            String version = getVersionInProperties(profile);
+            if (getCacheInfo && vendor != null && version != null) {
+                vendorId = new DatabaseVendorDefinitionId(vendor, version);
+            } else {
+
+                // then try to get the info from driver template, this is the
+                // DECLARED info.
+                String driverID = profile.getBaseProperties().getProperty(
+                        ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
+                if (driverID == null) {
+                    if (profile.getCategory()== null || !DATABASE_CATEGORY_ID.equals(profile.getCategory().getId()))
+                    {
+                        return null;
+                    }
+                    EditorCorePlugin.getDefault().log(
+                            NLS.bind(Messages.ProfileUtil_error_getdriver,
+                                    (new Object[] { profile.getName() })));
+                } else {
+                    DriverInstance driver = DriverManager.getInstance()
+                            .getDriverInstanceByID(driverID);
+                    if (driver != null) {
+                        vendor = driver
+                                .getProperty(DRIVER_DB_VENDOR_NAME);
+                        version = driver
+                                .getProperty(DRIVER_DB_VERSION);
+                        vendorId = new DatabaseVendorDefinitionId(vendor,
+                                version);
+                    }
+                }
+            }
+        }
+
+        if (normalize)
+        {
+            return SQLToolsFacade.getDeclaredDatabaseVendorDefinitionId(vendorId);
+        }
+        return vendorId;
+    }
+    
     private static ArrayList _unknowVersionProfiles = new ArrayList();
 
     /**
@@ -994,7 +1006,7 @@ public class ProfileUtil
 	    // For example: ASA, ASE, ASIQ, Replication Server
 	    List profileList = new ArrayList();
 	
-	    Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
+	    Collection ids = SQLToolsFacade.getAllAvailableDBDefinitionIds();
 	    // get profileList based on profileId
 	    for (int i = 0; i < allProfiles.length; i++)
 	    {
@@ -1004,9 +1016,9 @@ public class ProfileUtil
 	    		continue;
 	    	}
 	        // For the profile id of ASE, ASE15 is same, add 'break' to avoid duplicate profiles.
-	    	for (Iterator iter = names.iterator(); iter.hasNext();) {
-				String name = (String) iter.next();
-				if (vendorId.toString().equals(name))
+	    	for (Iterator iter = ids.iterator(); iter.hasNext();) {
+	    	    DatabaseVendorDefinitionId id = (DatabaseVendorDefinitionId) iter.next();
+				if (vendorId.equals(id))
 				{
 					profileList.add(allProfiles[i]);
 					break;

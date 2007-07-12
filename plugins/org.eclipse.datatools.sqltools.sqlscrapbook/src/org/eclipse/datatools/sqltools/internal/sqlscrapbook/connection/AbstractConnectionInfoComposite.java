@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -85,9 +86,11 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     protected int _style = STYLE_SHOW_STATUS | STYLE_SEPARATE_TYPE_NAME | STYLE_LABEL_GROUP;
     /**
      * The supported database definition name list. If it is null, the default database definition name list will be
-     * returned.
+     * returned. This collection should only be used for display, while _supportedDBDefinitionIds should be used for
+     * comparison.
      */
     protected Collection _supportedDBDefinitionNames = null;
+    protected Collection _supportedDBDefinitionIds = null;
 
     public AbstractConnectionInfoComposite(Composite parent, int style)
     {
@@ -113,7 +116,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         }
 
         this._listener = listener;
-        _supportedDBDefinitionNames = supportedDBDefinitionNames;
+        setSupportedDBDefinitionNames(supportedDBDefinitionNames );
         this._style = infoStyle;
     }
 
@@ -231,7 +234,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         //init type
         if (_supportedDBDefinitionNames == null)
         {
-            _supportedDBDefinitionNames = SQLToolsFacade.getSupportedDBDefinitionNames();
+            setSupportedDBDefinitionNames(SQLToolsFacade.getAllAvailableDBDefinitionNames());
         }
         getProfileTypeControl().setItems((String[]) _supportedDBDefinitionNames
                 .toArray(new String[0]));
@@ -271,26 +274,51 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         {
             return;
         }
-        SQLDevToolsConfiguration factory = SQLToolsFacade
-                .getConfigurationByProfileName(profileName);
-        if (factory != null) {
-            String dbDefName = factory.getDatabaseVendorDefinitionId()
-                    .toString();
-            if (!dbDefName.equals(getProfileTypeControl().getText()))
+        DatabaseVendorDefinitionId cacheId = ProfileUtil.getDatabaseVendorDefinitionId(profileName, true, true);
+        DatabaseVendorDefinitionId currentDbId = new DatabaseVendorDefinitionId(getProfileTypeControl().getText());
+        if (!cacheId.equals(currentDbId))
+        {
+            DatabaseVendorDefinitionId matchId = findDatabaseVendorDefinitionId(cacheId);
+            if (matchId != null)
             {
-                getProfileTypeControl().setText(dbDefName);
+                getProfileTypeControl().setText(matchId.toString());
+            }
+            else
+            {
+                //don't use cached product name and version. e.g. the product name for Derby returned by JDBC driver is "Apache Derby",
+                //which is different with the database definition. 
+                DatabaseVendorDefinitionId driverId = ProfileUtil.getDatabaseVendorDefinitionId(profileName, false, false);
+                matchId = findDatabaseVendorDefinitionId(driverId);
+                if (matchId != null)
+                {
+                    getProfileTypeControl().setText(matchId.toString());
+                }
             }
         }
     }
+    
+    protected DatabaseVendorDefinitionId findDatabaseVendorDefinitionId(DatabaseVendorDefinitionId dbId)
+    {
+        String dbIdName = dbId.toString();
+        for (Iterator it = _supportedDBDefinitionIds.iterator(); it.hasNext();)
+        {
+            DatabaseVendorDefinitionId existId = (DatabaseVendorDefinitionId) it.next();
+            if (existId.equals(dbId))
+            {
+                return existId;
+            }
+        }
+        return null;
+    }
 
     /**
-     * Refreshes the connection profile name combo box
-     * TODO add all profiles when type is null or undefined so that user can select profile first
+     * Refreshes the connection profile name combo box 
+     * 
      * @param dbVendorName
      */
     protected void initProfileNames(String dbVendorName, String initialProfName) {
         ArrayList rightProfiles = new ArrayList();
-        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
+        IConnectionProfile profiles[] = ProfileUtil.getProfiles();//filter out non-supported profiles
         if (dbVendorName == null || dbVendorName.equals("") || dbVendorName.equals(DATABASE_VENDOR_DEFINITION_ID.toString())) { //$NON-NLS-1$
             for (int i = 0; i < profiles.length; i++) {
                 rightProfiles.add(profiles[i].getName());
@@ -299,22 +327,22 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         else
         {
             DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
-            SQLDevToolsConfiguration selectedConfig = SQLToolsFacade.getConfiguration(null, selectedDbVendorId);
-            SQLDevToolsConfiguration defaultConfig = SQLToolsFacade.getDefaultConfiguration();
-            // there will be only one instance for each type of configuration, so we
-            // can use == here
-            boolean isDefault = selectedConfig == defaultConfig;
-            
-
             for (int i = 0; i < profiles.length; i++) {
-                DatabaseVendorDefinitionId dbVendorId = ProfileUtil
-                        .getDatabaseVendorDefinitionId(profiles[i].getName());
-                if (selectedDbVendorId.equals(dbVendorId)) {
+                DatabaseVendorDefinitionId cacheId = ProfileUtil.getDatabaseVendorDefinitionId(profiles[i], true,
+                        true);
+                DatabaseVendorDefinitionId driverId = ProfileUtil.getDatabaseVendorDefinitionId(profiles[i], false,
+                        false);
+                if (selectedDbVendorId.equals(cacheId)) {
                     rightProfiles.add(profiles[i].getName());
-                }else if (isDefault)
+                }
+                else if (selectedDbVendorId.equals(driverId))
                 {
-                    SQLDevToolsConfiguration config = SQLToolsFacade.getConfiguration(null, dbVendorId);
-                    if (selectedConfig == config)
+                    //try to see whether this profile belongs to other db definition type
+                    if (_supportedDBDefinitionIds.contains(cacheId))
+                    {
+                        continue;
+                    }
+                    else
                     {
                         rightProfiles.add(profiles[i].getName());
                     }
@@ -389,7 +417,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
 
     protected String[] getCurrentProfileNames()
     {
-        IConnectionProfile profiles[] = ProfileManager.getInstance().getProfiles();
+        IConnectionProfile profiles[] = ProfileUtil.getProfiles();
         String[] currentNames = new String[profiles.length];
         for (int i = 0; i < profiles.length; i++)
         {
@@ -530,6 +558,22 @@ public abstract class AbstractConnectionInfoComposite extends Composite
                 }
                 notifyListener();
             }
+        }
+    }
+    
+    protected void setSupportedDBDefinitionNames(Collection names)
+    {
+        if (names == null)
+        {
+            names = SQLToolsFacade.getAllAvailableDBDefinitionNames();
+        }
+        _supportedDBDefinitionNames = names;
+        _supportedDBDefinitionIds = new HashSet();
+        for (Iterator it = names.iterator(); it.hasNext();)
+        {
+            String name = (String) it.next();
+            DatabaseVendorDefinitionId id = new DatabaseVendorDefinitionId(name);
+            _supportedDBDefinitionIds.add(id);
         }
     }
 
