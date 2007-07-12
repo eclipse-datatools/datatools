@@ -295,6 +295,7 @@ public abstract class ConnectionProfileRepositoryBase implements
 			}
 		}
 
+		internalGetProfiles().remove(oldName);
 		internalGetProfiles().put(profile.getName(), profile);
 
 		fireProfileChanged(profile, oldName, oldDesc, oldAutoConnect);
