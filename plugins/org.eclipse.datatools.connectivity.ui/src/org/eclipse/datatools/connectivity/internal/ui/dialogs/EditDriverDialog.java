@@ -13,6 +13,9 @@ package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 import java.io.File;
 import java.util.Properties;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Path;
@@ -38,6 +41,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -97,6 +101,14 @@ public class EditDriverDialog extends TitleAreaDialog
 
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+	
+	// listener for property changes to re-validate 
+	private ChangeListener psetChangedListener = new ChangeListener(){
+
+		public void stateChanged(ChangeEvent arg0) {
+			isValid();
+		}
+	};
 
 	/**
 	 * Constructor
@@ -108,6 +120,11 @@ public class EditDriverDialog extends TitleAreaDialog
 		this.setShellStyle(getShellStyle() | SWT.RESIZE | SWT.DIALOG_TRIM);
 	}
 
+	/**
+	 * Constructor
+	 * @param parentShell
+	 * @param driverTypeID
+	 */
 	public EditDriverDialog(Shell parentShell, String driverTypeID) {
 		this(parentShell);
 		this.mDriverTypeID = driverTypeID;
@@ -115,6 +132,11 @@ public class EditDriverDialog extends TitleAreaDialog
 				.getDriverTemplateDescriptor(this.mDriverTypeID);
 	}
 
+	/**
+	 * Constructor
+	 * @param parentShell
+	 * @param pset
+	 */
 	public EditDriverDialog(Shell parentShell, IPropertySet pset) {
 		this(parentShell);
 		setPropertySet(pset);
@@ -128,6 +150,11 @@ public class EditDriverDialog extends TitleAreaDialog
 		}
 	}
 
+	/*
+	 * Create the property sheet page
+	 * @param book
+	 * @return
+	 */
 	protected IPage createDefaultPage(PageBook book) {
         PropertySheetPage page = new PropertySheetPage();
         page.createControl(book);
@@ -322,6 +349,7 @@ public class EditDriverDialog extends TitleAreaDialog
 						else {
 							mpsp = new DriverPropertySourceProvider();
 						}
+						mpsp.addChangeListener(psetChangedListener);
 						page.setPropertySourceProvider(mpsp);
 				        book.showPage(page.getControl());
 						page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
@@ -342,6 +370,10 @@ public class EditDriverDialog extends TitleAreaDialog
 		return area;
 	}
 	
+	
+	/*
+	 * Update property descriptors for the selected instance
+	 */
 	private void updatePropertyDescriptors() {
         PropertySheetPage page = new PropertySheetPage();
         page.createControl(book);
@@ -357,6 +389,9 @@ public class EditDriverDialog extends TitleAreaDialog
 		page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
 	}
 
+	/*
+	 * Make sure the name isn't used already
+	 */
 	private void validateName() {
 		boolean isOk = false;
 
@@ -575,6 +610,8 @@ public class EditDriverDialog extends TitleAreaDialog
 		
 		saveState();
 		
+		this.psetChangedListener = null;
+
 		super.okPressed();
 	}
 
@@ -634,6 +671,9 @@ public class EditDriverDialog extends TitleAreaDialog
 		return this.mPropertySet;
 	}
 	
+	/**
+	 * Return the initial property set (used to cancel pending changes)
+	 */
 	public IPropertySet getInitialPropertySet() {
 		return this.mInitialPropertySet;
 	}
@@ -652,7 +692,7 @@ public class EditDriverDialog extends TitleAreaDialog
 		return null;
 	}
 
-	/**
+	/*
 	 * Update the UI from the property set
 	 */
 	private void updateFromPropertySet() {
@@ -697,7 +737,7 @@ public class EditDriverDialog extends TitleAreaDialog
 		this.mInitialPropertySet = DuplicatePropertySet(propset);
 	}
 
-	/**
+	/*
 	 * Create a list from an array of strings
 	 * 
 	 * @param items
@@ -758,10 +798,30 @@ public class EditDriverDialog extends TitleAreaDialog
 					this.descriptor, testSet);
 			boolean flag = testValidator.isValid();
 			if (!flag) {
-				setErrorMessage(testValidator.getMessage());
+				try {
+					setErrorMessage(testValidator.getMessage());
+				} catch (SWTException e) {
+					if (e.code == SWT.ERROR_WIDGET_DISPOSED) {
+						// move on... this is to get around a weird
+						// bug in the platform having to do with
+						// custom property descriptors 
+					}
+					else
+						throw e;
+				}
 			}
 			else
-				setErrorMessage(null);
+				try {
+					setErrorMessage(null);
+				} catch (SWTException e) {
+					if (e.code == SWT.ERROR_WIDGET_DISPOSED) {
+						// move on... this is to get around a weird
+						// bug in the platform having to do with
+						// custom property descriptors 
+					}
+					else
+						throw e;
+				}
 		}
 	}
 
@@ -788,6 +848,7 @@ public class EditDriverDialog extends TitleAreaDialog
 	 */
 	protected void cancelPressed() {
 		this.mPropertySet = this.mInitialPropertySet;
+		this.psetChangedListener = null;
 		super.cancelPressed();
 	}
 	
@@ -806,14 +867,23 @@ public class EditDriverDialog extends TitleAreaDialog
 		return newPset;
 	}
 	                                                        
+	/* (non-Javadoc)
+	 * @see org.eclipse.help.IContextProvider#getContext(java.lang.Object)
+	 */
 	public IContext getContext(Object target) {
 		return contextProviderDelegate.getContext(target);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.help.IContextProvider#getContextChangeMask()
+	 */
 	public int getContextChangeMask() {
 		return contextProviderDelegate.getContextChangeMask();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.help.IContextProvider#getSearchExpression(java.lang.Object)
+	 */
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
 	}

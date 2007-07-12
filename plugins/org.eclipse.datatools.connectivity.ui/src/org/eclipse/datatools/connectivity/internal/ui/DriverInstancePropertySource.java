@@ -16,8 +16,12 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
@@ -43,13 +47,18 @@ public class DriverInstancePropertySource implements IPropertySource {
 	
 	private DriverInstance mDI;
 	private TemplateDescriptor descriptor = null;
+	
+	// change listeners
+	private ListenerList changeListeners;
 
 	/**
-	 * @param cp
+	 * Constructor
+	 * @param di - incoming driver instance
 	 */
 	public DriverInstancePropertySource(DriverInstance di) {
 		mDI = di;
 		this.descriptor = mDI.getTemplate();
+		changeListeners = new ListenerList();
 	}
 
 	/*
@@ -59,6 +68,15 @@ public class DriverInstancePropertySource implements IPropertySource {
 	 */
 	public Object getEditableValue() {
 		return mDI;
+	}
+	
+	/*
+	 * Pass in an instance to work on
+	 * @param di
+	 */
+	public void setDriverInstance (DriverInstance di) {
+		mDI = di;
+		this.descriptor = mDI.getTemplate();
 	}
 
 	/*
@@ -131,6 +149,7 @@ public class DriverInstancePropertySource implements IPropertySource {
 								if (pd instanceof IDriverInstancePropertyDescriptor ) {
 									((IDriverInstancePropertyDescriptor)pd).setDriverInstance(this.mDI);
 								}
+								
 								descList.add(pd);
 							} catch (SecurityException e) {
 								ExceptionHandler.showException(new Shell(), 
@@ -221,6 +240,39 @@ public class DriverInstancePropertySource implements IPropertySource {
 		String strid = (String) id;
 		if (this.mDI.getPropertySet() != null) {
 			this.mDI.getPropertySet().getBaseProperties().setProperty(strid, (String) value);
+			fireChangedEvent(this);
 		}
+	}
+	
+	/*
+	 * If we changed, fire a changed event.
+	 * 
+	 * @param source
+	 */
+	private void fireChangedEvent(Object source) {
+		ChangeEvent e = new ChangeEvent(source);
+		// inform any listeners of the resize event
+		Object[] listeners = this.changeListeners.getListeners();
+		for (int i = 0; i < listeners.length; ++i) {
+			((ChangeListener) listeners[i]).stateChanged(e);
+		}
+	}
+
+	/**
+	 * Add a change listener
+	 * 
+	 * @param listener
+	 */
+	public void addChangeListener(ChangeListener listener) {
+		this.changeListeners.add(listener);
+	}
+
+	/**
+	 * Remove a change listener.
+	 * 
+	 * @param listener
+	 */
+	public void removeChangeListener(ChangeListener listener) {
+		this.changeListeners.remove(listener);
 	}
 }
