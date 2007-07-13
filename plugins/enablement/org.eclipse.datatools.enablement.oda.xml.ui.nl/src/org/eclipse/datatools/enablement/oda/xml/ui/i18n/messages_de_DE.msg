@@ -89,6 +89,7 @@ columnName.typeName=Typ
 
 dataset.new=Neuer Datensatz
 file.choose=&Durchsuchen ...
+schema.choose=Durch&suchen...
 title.warning=Warnung
 
 datasource.propertyPage.tooltip=XML-Datenquelle

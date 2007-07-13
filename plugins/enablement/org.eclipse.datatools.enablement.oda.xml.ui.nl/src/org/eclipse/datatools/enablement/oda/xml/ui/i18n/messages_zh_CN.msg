@@ -89,6 +89,7 @@ columnName.typeName=类型
 
 dataset.new=新数据集
 file.choose=浏览(&B)...
+schema.choose=浏览(&S)...
 title.warning=警告
 
 datasource.propertyPage.tooltip=XML 数据源

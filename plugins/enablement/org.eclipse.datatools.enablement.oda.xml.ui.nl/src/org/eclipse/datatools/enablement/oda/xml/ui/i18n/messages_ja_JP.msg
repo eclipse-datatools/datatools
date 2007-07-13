@@ -89,6 +89,7 @@ columnName.typeName=型
 
 dataset.new=新規データセット
 file.choose=参照(&B)...
+schema.choose=参照(&S)...
 title.warning=警告
 
 datasource.propertyPage.tooltip=XML データソース

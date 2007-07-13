@@ -89,6 +89,7 @@ columnName.typeName=Tipo
 
 dataset.new=Nuevo conjunto de datos
 file.choose=&Examinar...
+schema.choose=E&xaminar...
 title.warning=Advertencia
 
 datasource.propertyPage.tooltip=Fuente de datos XML

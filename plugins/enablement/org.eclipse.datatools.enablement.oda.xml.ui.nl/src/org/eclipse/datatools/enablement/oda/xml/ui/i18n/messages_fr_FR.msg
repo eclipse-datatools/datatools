@@ -89,6 +89,7 @@ columnName.typeName=Type
 
 dataset.new=Nouveau jeu de données
 file.choose=&Parcourir...
+schema.choose=&Parcourir...
 title.warning=Avertissement
 
 datasource.propertyPage.tooltip=Source de données XML

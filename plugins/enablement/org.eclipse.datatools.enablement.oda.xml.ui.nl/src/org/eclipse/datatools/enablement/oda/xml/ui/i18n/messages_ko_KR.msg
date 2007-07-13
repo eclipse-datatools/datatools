@@ -89,6 +89,7 @@ columnName.typeName=형식
 
 dataset.new=새 데이터 집합
 file.choose=찾아보기(&B)...
+schema.choose=찾아보기(&S)...
 title.warning=경고
 
 datasource.propertyPage.tooltip=XML 데이터 원본
