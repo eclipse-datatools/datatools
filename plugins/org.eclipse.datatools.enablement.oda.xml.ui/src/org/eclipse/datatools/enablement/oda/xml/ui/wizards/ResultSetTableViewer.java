@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.4 $ $Date: 2007/04/17 06:22:33 $
+ * @version $Revision: 1.5 $ $Date: 2007/05/31 02:21:09 $
  */
 public final class ResultSetTableViewer
 {
@@ -192,7 +192,9 @@ public final class ResultSetTableViewer
 
 			IQuery query = conn.newQuery( null );
 
-			int maxRow = Integer.parseInt( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW ) );
+			int maxRow = Integer.parseInt( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW ) != null
+					? XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW )
+					: "-1" ); //$NON-NLS-1$
 			query.setMaxRows( maxRow );
 			query.prepare( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 			rs = query.executeQuery( );
