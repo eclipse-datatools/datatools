@@ -15,9 +15,14 @@ import java.util.List;
 
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.Category;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPCategoryWizardNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardNode;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPWizardSelectionPage;
@@ -30,6 +35,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.IWizardCategoryProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardDialog;
@@ -123,6 +129,43 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 *      org.eclipse.jface.viewers.ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			Object sel = ((IStructuredSelection) selection).getFirstElement();
+			// always enable add action on local repository node.
+			if (sel instanceof LocalRepositoryNode) {
+				action.setEnabled(true);
+			}
+			// disable add action on read-only non-local repository
+			if (sel instanceof IConnectionProfile) {
+				IManagedConnection imc = ((IConnectionProfile) sel)
+						.getManagedConnection(IConnectionProfileRepositoryConstants.REPOSITORY_CONNECTION_FACTORY_ID);
+				if (imc != null && imc.isConnected()) {
+					IConnectionProfileRepository repo = (IConnectionProfileRepository) imc
+							.getConnection().getRawConnection();
+					action.setEnabled(!repo.isReadOnly());
+				}
+			// update enabled state for add action on categories.
+			} else if (sel instanceof ICategory) {
+				if (sel instanceof Category) {
+					IConnectionProfile profile = ((Category) sel)
+							.getRepositoryProfile();
+					// disable add action on categories in read-only
+					// non-local repository
+					if (profile != null) {
+						IManagedConnection imc = profile
+								.getManagedConnection(IConnectionProfileRepositoryConstants.REPOSITORY_CONNECTION_FACTORY_ID);
+						if (imc != null && imc.isConnected()) {
+							IConnectionProfileRepository repo = (IConnectionProfileRepository) imc
+									.getConnection().getRawConnection();
+							action.setEnabled(!repo.isReadOnly());
+						}
+					// enable add action on categories in local repository.
+					} else {
+						action.setEnabled(true);
+					}
+				}
+			}
+		}
 	}
 	
 	/**
