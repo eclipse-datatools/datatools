@@ -1010,7 +1010,12 @@ public class ProfileUtil
 	    // get profileList based on profileId
 	    for (int i = 0; i < allProfiles.length; i++)
 	    {
-	    	DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(allProfiles[i].getName());
+	    	if (isDatabaseProfile(allProfiles[i]))
+	    	{
+	    		profileList.add(allProfiles[i]);
+				continue;
+	    	}
+	    	DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(allProfiles[i].getName(), false, false);
 	    	if (vendorId == null)
 	    	{
 	    		continue;
