@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase;singleton:=true
-Bundle-Version: 1.0.0.200706071
+Bundle-Version: 1.0.1.200707131
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.Activator
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
