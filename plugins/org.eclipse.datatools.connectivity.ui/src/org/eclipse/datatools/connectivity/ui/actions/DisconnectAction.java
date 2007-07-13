@@ -13,6 +13,10 @@ package org.eclipse.datatools.connectivity.ui.actions;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -39,7 +43,30 @@ public class DisconnectAction implements IActionDelegate {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i) instanceof IConnectionProfile) {
 					IConnectionProfile profile = (IConnectionProfile) list.get(i);
+					disConnectSubProfiles(profile);
 					profile.disconnect(null);
+				}
+			}
+		}
+	}
+
+	private void disConnectSubProfiles(IConnectionProfile parent) {
+		if (!parent.getCategory().getId().equals(
+				IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID)) {
+			return;
+		}
+		IConnectionProfile[] profiles = InternalProfileManager.getInstance()
+				.getProfiles(true);
+		for (int i = 0; i < profiles.length; i++) {
+			ConnectionProfile profile = (ConnectionProfile) profiles[i];
+			IConnectionProfileRepository repository = profile.getRepository();
+			if (repository != null) {
+				if (repository.getRepositoryProfile() != null
+						&& repository.getRepositoryProfile() == parent
+						&& profile.isConnected()) {
+					profile.disconnect();
+					//notify listeners to remove the contentExtension from the mProfileToExtension map.
+					InternalProfileManager.getInstance().fireProfileDeleted(profile);
 				}
 			}
 		}

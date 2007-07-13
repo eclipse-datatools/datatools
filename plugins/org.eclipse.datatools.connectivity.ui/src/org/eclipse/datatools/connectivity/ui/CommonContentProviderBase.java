@@ -145,6 +145,10 @@ public abstract class CommonContentProviderBase implements
 	 * extension will be created if one does not already exist.
 	 */
 	public IContentExtension getContentExtension(IConnectionProfile profile) {
+		//make sure we create contentExtension only after profile's connected.
+		if(!profile.isConnected()){
+			return null;
+		}
 		IContentExtension extension = (IContentExtension) mProfileToExtensionNode
 				.get(profile);
 		if (extension == null) {
