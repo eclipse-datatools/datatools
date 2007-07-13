@@ -447,29 +447,7 @@ public class ModelUtil {
                 for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
                 {
                     Table table = (Table) iter.next();
-                    //FIXME: 
-                    //handle non-sharable temp table for ASE,these code should be removed when
-                    //temp table catalog loader is ready
-                    if(tableName.startsWith("#"))
-                    {
-                        String tempTableNameInDB=table.getName();
-                        //Database will add 17 digital number after temp table name
-                        String nameWithoutPostfix = tempTableNameInDB.substring(tempTableNameInDB.length()-17, tempTableNameInDB.length());
-                        //ASE database does not add under score "_" as postfix, so we judge it firstly.
-                        if (equals(nameWithoutPostfix, tableName, caseSensitive))
-                        {
-                            tableObject =  table;
-                        }
-                        for(int k=nameWithoutPostfix.length();k>=0&&'_'==nameWithoutPostfix.charAt(k);k--)
-                        {
-                            if(equals(tableName, nameWithoutPostfix.substring(0, k), caseSensitive))
-                            {
-                                tableObject = table;
-                            }
-                        }
-                        
-                    }
-                    else if (equals(table.getName(), tableName, caseSensitive))
+                    if (equals(table.getName(), tableName, caseSensitive))
                     {
                         tableObject = table;
                     }
