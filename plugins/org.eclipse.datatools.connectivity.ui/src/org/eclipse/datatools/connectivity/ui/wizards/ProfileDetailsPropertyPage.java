@@ -25,7 +25,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Base property page implementation for connection profiles.
@@ -91,4 +90,19 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 		});
 	}
 
+	protected void setPingButtonEnabled(boolean enabled)
+    {
+        if (btnPing != null && !btnPing.isDisposed())
+        {
+            btnPing.setEnabled(enabled);
+        }
+    }
+
+	protected void setPingButtonVisible(boolean visible)
+    {
+        if (btnPing != null && !btnPing.isDisposed())
+        {
+            btnPing.setVisible(visible);
+        }
+    }
 }

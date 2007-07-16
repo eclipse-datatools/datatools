@@ -144,4 +144,20 @@ public abstract class ConnectionProfileDetailsPage
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
 	}
+
+	protected void setPingButtonEnabled(boolean enabled)
+    {
+        if (btnPing != null && !btnPing.isDisposed())
+        {
+            btnPing.setEnabled(enabled);
+        }
+    }
+
+	protected void setPingButtonVisible(boolean visible)
+    {
+        if (btnPing != null && !btnPing.isDisposed())
+        {
+            btnPing.setVisible(visible);
+        }
+    }
 }
