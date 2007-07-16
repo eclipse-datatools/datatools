@@ -106,10 +106,19 @@ public class InternalProfileManager {
 	 * @return connection profiles
 	 */
 	public IConnectionProfile[] getProfiles(boolean searchRepositories) {
+		ArrayList cps = new ArrayList();
 		if (mProfiles == null) {
 			loadProfiles();
 		}
-		return mProfiles;
+		
+		cps.addAll(Arrays.asList(mProfiles));
+		
+		if (searchRepositories) {
+			for (Iterator it = mRepositories.iterator(); it.hasNext(); ) {
+				cps.addAll(Arrays.asList(((IConnectionProfileRepository)it.next()).getProfiles()));
+			}
+		}
+		return (IConnectionProfile[])cps.toArray(new IConnectionProfile[0]);
 	}
 
 	/**

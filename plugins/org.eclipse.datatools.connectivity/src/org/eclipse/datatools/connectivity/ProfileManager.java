@@ -41,6 +41,16 @@ public class ProfileManager implements IAdaptable {
 	public IConnectionProfile[] getProfiles() {
 		return InternalProfileManager.getInstance().getProfiles(false);
 	}
+	
+	/**
+	 * Get all connection profiles persisted in workspace
+	 * 
+	 * @param searchRepositories
+	 * @return connection profiles
+	 */
+	public IConnectionProfile[] getProfiles(boolean searchRepositories) {
+		return InternalProfileManager.getInstance().getProfiles(searchRepositories);
+	}
 
 	/**
 	 * Get category by name
