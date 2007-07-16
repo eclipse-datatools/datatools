@@ -93,6 +93,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 	// stashed selected propertyset
 	private IPropertySet selectedPS = null;
+	
+	// OK Button
+	private Button mOKButton = null;
 
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
@@ -187,6 +190,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 									.setText(""); //$NON-NLS-1$
 							DriverDefinitionsDialog.this.mErrorLabel
 									.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+							if (DriverDefinitionsDialog.this.mOKButton != null)
+								DriverDefinitionsDialog.this.mOKButton
+									.setEnabled(false);
 						}
 						else if (selection.getFirstElement() instanceof IPropertySet) {
 							DriverDefinitionsDialog.this.mAddButton
@@ -197,6 +203,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 									.setEnabled(true);
 							DriverDefinitionsDialog.this.selectedPS = (IPropertySet) selection
 									.getFirstElement();
+							if (DriverDefinitionsDialog.this.mOKButton != null)
+								DriverDefinitionsDialog.this.mOKButton
+									.setEnabled(true);
 							if (DriverDefinitionsDialog.this.selectedPS != null) {
 								validate(DriverDefinitionsDialog.this.selectedPS);
 							}
@@ -372,10 +381,16 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
 	 */
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
+		this.mOKButton = createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,
 				true);
 		createButton(parent, IDialogConstants.CANCEL_ID,
 				IDialogConstants.CANCEL_LABEL, false);
+		if (this.selectedPS == null ) {
+			this.mOKButton.setEnabled(false);
+		}
+		else {
+			this.mOKButton.setEnabled(true);
+		}
 	}
 
 	/*
