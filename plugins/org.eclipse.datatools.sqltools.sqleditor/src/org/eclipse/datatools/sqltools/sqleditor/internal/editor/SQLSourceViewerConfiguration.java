@@ -17,6 +17,7 @@ import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsServic
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLInformationProvider;
 import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLCommentAutoIndentStrategy;
 import org.eclipse.datatools.sqltools.sqleditor.internal.indent.SQLStringAutoIndentStrategy;
@@ -42,6 +43,9 @@ import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
 import org.eclipse.jface.text.formatter.IFormattingStrategy;
+import org.eclipse.jface.text.information.IInformationPresenter;
+import org.eclipse.jface.text.information.IInformationProvider;
+import org.eclipse.jface.text.information.InformationPresenter;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
 import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.BufferedRuleBasedScanner;
@@ -339,6 +343,21 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
             "--", "" 
         }
         ; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+
+    public IInformationPresenter getInformationPresenter(ISourceViewer sourceViewer)
+    {
+        InformationPresenter presenter = new InformationPresenter(getInformationControlCreator(sourceViewer));
+        presenter.setDocumentPartitioning(getConfiguredDocumentPartitioning(sourceViewer));
+
+        // Register information provider
+        IInformationProvider provider = new SQLInformationProvider(getSQLEditor());
+        String[] contentTypes = getConfiguredContentTypes(sourceViewer);
+        for (int i = 0; i < contentTypes.length; i++)
+            presenter.setInformationProvider(provider, contentTypes[i]);
+
+        presenter.setSizeConstraints(60, 10, true, true);
+        return presenter;
     }
     
 } // end class

@@ -56,6 +56,10 @@ public class SQLWordFinder
 
     public static int getWordStartOffset(String text, int startIndex)
     {
+        if (text == null || startIndex >= text.length())
+        {
+            return -1;
+        }
         for (int offset = startIndex; offset >= 0; offset--)
         {
             char c = text.charAt(offset);
