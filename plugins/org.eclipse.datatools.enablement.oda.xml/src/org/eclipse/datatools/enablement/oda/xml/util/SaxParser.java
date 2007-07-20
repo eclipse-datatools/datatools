@@ -73,6 +73,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private Map cachedValues;
 	
 	private List filterColumns;
+	private List exceptions;
 	/**
 	 * 
 	 * @param fileName
@@ -88,6 +89,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		currentElementRecoder = new HashMap();
 		stopCurrentThread = false;
 		cachedValues = new HashMap( );
+		exceptions = new ArrayList( );
 	}
 
 	public SaxParser( XMLDataInputStream xdis,
@@ -143,13 +145,23 @@ public class SaxParser extends DefaultHandler implements Runnable
 		}
 		catch ( Exception e )
 		{
-			throw new RuntimeException(e.getLocalizedMessage());
+			exceptions.add( e );
 		}
 		finally
 		{
 			this.alive = false;
 			spConsumer.wakeup( );
 		}
+	}
+	
+	/**
+	 * Indicates whether exception occurred
+	 * 
+	 * @return
+	 */
+	public boolean exceptionOccurred( )
+	{
+		return !exceptions.isEmpty( );
 	}
 
 	/**
