@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
@@ -141,12 +142,12 @@ public abstract class CommonContentProviderBase implements
 	/**
 	 * @param profile
 	 * 
-	 * @return the contente extension for the specified profile.  A content
+	 * @return the content extension for the specified profile.  A content
 	 * extension will be created if one does not already exist.
 	 */
 	public IContentExtension getContentExtension(IConnectionProfile profile) {
 		//make sure we create contentExtension only after profile's connected.
-		if(!profile.isConnected()){
+		if(profile.getConnectionState() != IConnectionProfile.CONNECTED_STATE){
 			return null;
 		}
 		IContentExtension extension = (IContentExtension) mProfileToExtensionNode
@@ -155,7 +156,15 @@ public abstract class CommonContentProviderBase implements
 			extension = createContentExtension(profile);
 			mProfileToExtensionNode.put(profile, extension);
 			if (profile.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
-				extension.openConnection();
+				try {
+					extension.openConnection();
+				} catch (ExceptionInInitializerError e) {
+					ConnectivityUIPlugin.getDefault().log(e);
+					extension.closeConnection();
+				} catch (Throwable e2) {
+					ConnectivityUIPlugin.getDefault().log(e2);
+					extension.closeConnection();
+				}
 			}
 		}
 		return extension;

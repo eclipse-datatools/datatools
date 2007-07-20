@@ -450,14 +450,20 @@ public class ProfileSelectionDialogPage extends
 									profile.disconnect();
 									break;
 							}
-							if (Display.getCurrent() != null)
+							if (Display.getCurrent() != null) {
 								Display.getCurrent().readAndDispatch();
-							mConnect.setEnabled(((IConnectionProfile) selection.getFirstElement())
-									.getConnectionState() != IConnectionProfile.CONNECTED_STATE);
-							inConnect = false;
-							doneConnect = true;
-		        			if (mViewer != null && !mViewer.getTree().isDisposed())
-		        				mViewer.getTree().setFocus();
+								Display.getCurrent().syncExec(new Runnable() {
+	
+									public void run() {
+										mConnect.setEnabled(((IConnectionProfile) selection.getFirstElement())
+												.getConnectionState() != IConnectionProfile.CONNECTED_STATE);
+										inConnect = false;
+										doneConnect = true;
+					        			if (mViewer != null && !mViewer.getTree().isDisposed())
+					        				mViewer.getTree().setFocus();
+									}
+								});
+							}
 						}};
 				   new ProgressMonitorDialog(getControl().getShell()).run(true, false, op);
 				} catch (InvocationTargetException e) {
