@@ -871,7 +871,7 @@ public class ProfileUtil
 	 */
 	public static boolean isSupportedProfile(IConnectionProfile profile)
 	{
-        Collection names = SQLToolsFacade.getSupportedDBDefinitionNames();
+        Collection names = SQLToolsFacade.getAllAvailableDBDefinitionNames();
         DatabaseVendorDefinitionId vendorId = getDatabaseVendorDefinitionId(profile);
         if (names == null || vendorId == null)
         {
