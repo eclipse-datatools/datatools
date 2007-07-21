@@ -236,7 +236,7 @@ public class ConnectionProfileDropAssistant extends CommonDropAdapterAssistant {
 				.getActiveWorkbenchWindow()
 				.getActivePage()
 				.findView(
-						"org.eclipse.datatools.connectivity.DataSourceExplorerNavigator");
+						"org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"); //$NON-NLS-1$
 
 		final CommonViewer viewer = ((CommonNavigator) view).getCommonViewer();
 

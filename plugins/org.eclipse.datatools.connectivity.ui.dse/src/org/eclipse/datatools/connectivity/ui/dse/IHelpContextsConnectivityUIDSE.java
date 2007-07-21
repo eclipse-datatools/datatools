@@ -28,5 +28,5 @@ public interface IHelpContextsConnectivityUIDSE {
 	 * PROFILE_SELECTION_DIALOG Context ID for the Profile Selection Dialog
 	 * 
 	 */
-	public static final String PROFILE_SELECTION_DIALOG = "PROFILE_SELECTION_DIALOG";
+	public static final String PROFILE_SELECTION_DIALOG = "PROFILE_SELECTION_DIALOG"; //$NON-NLS-1$
 }
