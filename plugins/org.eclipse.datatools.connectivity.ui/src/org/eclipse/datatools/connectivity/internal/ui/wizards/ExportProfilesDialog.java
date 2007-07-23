@@ -122,7 +122,6 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 				final CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer
 						.newCheckList(group, SWT.V_SCROLL | SWT.BORDER
 								| SWT.H_SCROLL);
-				checkboxTableViewer.setSorter(new ViewerSorter());
 				checkboxTableViewer.setLabelProvider(new TableLabelProvider());
 				checkboxTableViewer.setContentProvider(new ContentProvider());
 				final Table table = checkboxTableViewer.getTable();
@@ -131,7 +130,9 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 				gridData_1.widthHint = 392;
 				table.setLayoutData(gridData_1);
 				checkboxTableViewer.setInput(new Object());
+				checkboxTableViewer.setSorter(new ProfileSorter());
 				tvViewer = checkboxTableViewer;
+				checkboxTableViewer.refresh();
 			}
 			{
 				final Button button = new Button(group, SWT.NONE);
@@ -310,5 +311,16 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
+	}
+	
+	private class ProfileSorter extends ViewerSorter {
+
+		public int compare(Viewer viewer, Object e1, Object e2) {
+			if (e1 instanceof IConnectionProfile && e2 instanceof IConnectionProfile) {
+				return ((IConnectionProfile)e1).getName().compareToIgnoreCase(((IConnectionProfile)e2).getName());
+			}
+			return super.compare(viewer, e1, e2);
+		}
+		
 	}
 }

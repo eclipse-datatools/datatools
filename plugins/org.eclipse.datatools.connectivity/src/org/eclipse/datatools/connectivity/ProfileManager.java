@@ -39,7 +39,7 @@ public class ProfileManager implements IAdaptable {
 	 * @return connection profiles
 	 */
 	public IConnectionProfile[] getProfiles() {
-		return InternalProfileManager.getInstance().getProfiles(false);
+		return InternalProfileManager.getInstance().getProfiles(true);
 	}
 	
 	/**
