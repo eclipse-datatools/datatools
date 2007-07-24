@@ -53,12 +53,15 @@ public class FolderSelectionPageHelper
 	private transient Button typeLineCheckBox = null;
 	private transient Button browseFolderButton = null;
 	private transient Combo charSetSelectionCombo = null;
-	private transient Group flatfileStyleGroup = null;
-	private transient Button flatfileCSVRadioBox = null;
-	private transient Button flatfileSSVRadioBox = null;
-	private transient Button flatfilePSVRadioBox = null;
-	private transient Button flatfileTSVRadioBox = null;
 	private transient Button columnNameLineCheckBox = null;
+	private transient Combo flatFileStyleCombo = null;
+
+	private static final String[] flatFileStyles= new String[]{
+		Messages.getString( "label.flatfileComma" ),
+		Messages.getString( "label.flatfileSemicolon" ),
+		Messages.getString( "label.flatfilePipe" ),
+		Messages.getString( "label.flatfileTab" ),
+	};
 
 	private SortedMap charSetMap;
 
@@ -93,7 +96,7 @@ public class FolderSelectionPageHelper
 
 		setupCharset( content );
 
-		setupFlatfileStyleGroup( content );
+		setupFlatfileStyleList( content );
 
 		setupColumnNameLineCheckBox( content );
 
@@ -112,24 +115,6 @@ public class FolderSelectionPageHelper
 		if ( folderLocation == null )
 			return EMPTY_STRING;
 		return getFolderLocationString( );
-	}
-
-	/**
-	 * 
-	 * @return
-	 */
-	String getFlatfileStyle( )
-	{
-		if ( flatfileCSVRadioBox.getSelection( ) )
-			return CommonConstants.DELIMITER_COMMA;
-		else if ( flatfileSSVRadioBox.getSelection( ) )
-			return CommonConstants.DELIMITER_SEMICOLON;
-		else if ( flatfilePSVRadioBox.getSelection( ) )
-			return CommonConstants.DELIMITER_PIPE;
-		else if ( flatfileTSVRadioBox.getSelection( ) )
-			return CommonConstants.DELIMITER_TAB;
-		else
-			return CommonConstants.DELIMITER_COMMA;
 	}
 
 	/**
@@ -209,7 +194,7 @@ public class FolderSelectionPageHelper
 		setFolderLocationString( folderPath );
 
 		String delimiterType = profileProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
-		initRadioBoxSelection( delimiterType );
+		initFlatfileSytleSelection( delimiterType );
 
 		String hasColumnNameLine = profileProps.getProperty( CommonConstants.CONN_INCLCOLUMNNAME_PROP );
 		if ( hasColumnNameLine == null )
@@ -242,6 +227,33 @@ public class FolderSelectionPageHelper
 
 	/**
 	 * 
+	 * @return the selected flatfile style
+	 */
+	private String getFlatfileStyle( )
+	{
+		String value = flatFileStyleCombo.getText( );
+		//return value;
+		if( value.equals( flatFileStyles[0] ) )
+		{
+			return CommonConstants.DELIMITER_COMMA;
+		}
+		else if( value.equals( flatFileStyles[1] ) )
+		{
+			return CommonConstants.DELIMITER_SEMICOLON;
+		}
+		else if( value.equals( flatFileStyles[2] ) )
+		{
+			return CommonConstants.DELIMITER_PIPE;
+		}
+		else if( value.equals( flatFileStyles[3] ) )
+		{
+			return CommonConstants.DELIMITER_TAB;
+		}
+		return CommonConstants.DELIMITER_COMMA;
+	}
+
+	/**
+	 * 
 	 * @param folderPath
 	 */
 	private void setFolderLocationString( String folderPath )
@@ -262,31 +274,26 @@ public class FolderSelectionPageHelper
 	 * 
 	 * @param delimiterType
 	 */
-	private void initRadioBoxSelection( String delimiterType )
+	private void initFlatfileSytleSelection( String delimiterType )
 	{
-		boolean csvSelected = false;
-		boolean ssvSelected = false;
-		boolean vsvBarSelected = false;
-		boolean tsvSelected = false;
-
-		if ( delimiterType == null )
-			csvSelected = true;
 		if ( CommonConstants.DELIMITER_COMMA.equals( delimiterType ) )
-			csvSelected = true;
-		if ( CommonConstants.DELIMITER_SEMICOLON.equals( delimiterType ) )
-			ssvSelected = true;
-		if ( CommonConstants.DELIMITER_PIPE.equals( delimiterType ) )
-			vsvBarSelected = true;
-		if ( CommonConstants.DELIMITER_TAB.equals( delimiterType ) )
-			tsvSelected = true;
-
-		flatfileCSVRadioBox.setSelection( csvSelected );
-		flatfileSSVRadioBox.setSelection( ssvSelected );
-		flatfilePSVRadioBox.setSelection( vsvBarSelected );
-		flatfileTSVRadioBox.setSelection( tsvSelected );
-
+		{
+			flatFileStyleCombo.select( 0 );
+		}
+		else if ( CommonConstants.DELIMITER_SEMICOLON.equals( delimiterType ) )
+		{
+			flatFileStyleCombo.select( 1 );
+		}
+		else if ( CommonConstants.DELIMITER_PIPE.equals( delimiterType ) )
+		{
+			flatFileStyleCombo.select( 2 );
+		}
+		else if ( CommonConstants.DELIMITER_TAB.equals( delimiterType ) )
+		{
+			flatFileStyleCombo.select( 3 );
+		}
 	}
-
+	
 	/**
 	 * 
 	 * @param composite
@@ -395,57 +402,27 @@ public class FolderSelectionPageHelper
 	}
 
 	/**
+	 * To set up the flatfile styles' list
 	 * 
 	 * @param composite
 	 */
-	private void setupFlatfileStyleGroup( Composite composite )
+	private void setupFlatfileStyleList( Composite composite )
 	{
 		Label labelCSVType = new Label( composite, SWT.NONE );
 		labelCSVType.setText( Messages.getString( "label.selectFlatfileStyle" ) ); //$NON-NLS-1$
 
-		flatfileStyleGroup = new Group( composite, SWT.SHADOW_NONE );
-		GridLayout groupGridLayout = new GridLayout( );
-		flatfileStyleGroup.setToolTipText( Messages.getString( "tooltip.flatfilestyle" ) ); //$NON-NLS-1$
-		groupGridLayout.numColumns = 4;
-		GridData ggd = new GridData( );
-		ggd.horizontalAlignment = GridData.FILL;
-		flatfileStyleGroup.setLayoutData( ggd );
-		flatfileStyleGroup.setLayout( groupGridLayout );
+		flatFileStyleCombo = new Combo( composite, SWT.READ_ONLY );
+		GridData data = new GridData(  GridData.HORIZONTAL_ALIGN_FILL );
+		data.horizontalSpan = 2;
+		flatFileStyleCombo.setLayoutData( data );
 
-		flatfileCSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfileCSVRadioBox.setText( Messages.getString( "label.flatfileComma" ) ); //$NON-NLS-1$
-		GridData gd = new GridData( );
-		gd.horizontalAlignment = GridData.FILL;
-		gd.grabExcessHorizontalSpace = true;
-		flatfileCSVRadioBox.setLayoutData( gd );
-		flatfileCSVRadioBox.pack( );
-		flatfileCSVRadioBox.setSelection( true );
-		flatfileCSVRadioBox.setToolTipText( Messages.getString( "tooltip.csv" ) ); //$NON-NLS-1$
-
-		flatfileSSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfileSSVRadioBox.setText( Messages.getString( "label.flatfileSemicolon" ) ); //$NON-NLS-1$
-		flatfileSSVRadioBox.setLayoutData( gd );
-		flatfileSSVRadioBox.pack( );
-		flatfileSSVRadioBox.setSelection( false );
-		flatfileSSVRadioBox.setToolTipText( Messages.getString( "tooltip.ssv" ) ); //$NON-NLS-1$
-
-		flatfileTSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfileTSVRadioBox.setText( Messages.getString( "label.flatfileTab" ) ); //$NON-NLS-1$
-		flatfileTSVRadioBox.setLayoutData( gd );
-		flatfileTSVRadioBox.pack( );
-		flatfileTSVRadioBox.setSelection( false );
-		flatfileTSVRadioBox.setToolTipText( Messages.getString( "tooltip.tsv" ) ); //$NON-NLS-1$
-
-		flatfilePSVRadioBox = new Button( flatfileStyleGroup, SWT.RADIO );
-		flatfilePSVRadioBox.setText( Messages.getString( "label.flatfilePipe" ) ); //$NON-NLS-1$
-		flatfilePSVRadioBox.setLayoutData( gd );
-		flatfilePSVRadioBox.pack( );
-		flatfilePSVRadioBox.setSelection( false );
-		flatfilePSVRadioBox.setToolTipText( Messages.getString( "tooltip.psv" ) ); //$NON-NLS-1$
-
-		flatfileStyleGroup.pack( );
+		for ( int i = 0; i < flatFileStyles.length; i++ )
+		{
+			flatFileStyleCombo.add( flatFileStyles[i] );
+		}
+		flatFileStyleCombo.select( 0 );
 	}
-
+	
 	/**
 	 * 
 	 * @param composite
