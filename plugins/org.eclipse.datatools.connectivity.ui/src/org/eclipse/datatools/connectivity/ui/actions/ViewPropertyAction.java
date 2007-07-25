@@ -13,17 +13,36 @@ package org.eclipse.datatools.connectivity.ui.actions;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.IPageChangedListener;
+import org.eclipse.jface.dialogs.PageChangedEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.ui.dialogs.PropertyPage;
 import org.eclipse.ui.internal.dialogs.PropertyDialog;
 import org.eclipse.ui.internal.dialogs.PropertyPageContributorManager;
 import org.eclipse.ui.internal.dialogs.PropertyPageManager;
@@ -135,13 +154,189 @@ public class ViewPropertyAction extends Action {
 				}
 			}
 		});
+
+		// check to see if the profile is in a read-only repository
+		// and if so, disable the controls on each page selected
+		boolean inReadOnlyRepository = false;
+		if (getSelectedObject() instanceof IConnectionProfile) {
+			IConnectionProfile profile = (IConnectionProfile) getSelectedObject();
+			if (profile.getParentProfile() != null) {
+				IManagedConnection imc = ((IConnectionProfile) profile.getParentProfile())
+					.getManagedConnection(IConnectionProfileRepositoryConstants.REPOSITORY_CONNECTION_FACTORY_ID);
+				if (imc != null && imc.isConnected()) {
+					IConnectionProfileRepository repo = (IConnectionProfileRepository) imc
+							.getConnection().getRawConnection();
+					inReadOnlyRepository = repo.isReadOnly();
+				}
+			}
+		}
+		
+		// handle the initial page selected in the dialog for the
+		// read only repository page disabling...
+		propertyDialog.addPageChangedListener( new PropertyPageChangeListener(inReadOnlyRepository) );
+		if (inReadOnlyRepository && propertyDialog.getSelectedPage() != null) {
+			PropertyPage page = (PropertyPage) propertyDialog.getSelectedPage();
+			if (propertyDialog.getSelectedPage() instanceof ConnectionProfileDetailsPage ||
+					propertyDialog.getSelectedPage() instanceof ProfileDetailsPropertyPage) {
+				if (page.getControl() instanceof Composite) {
+					Composite composite = (Composite) page.getControl();
+					if (inReadOnlyRepository)
+						disableControls(composite, !inReadOnlyRepository, true);
+				}
+			}
+			else if (propertyDialog.getSelectedPage() instanceof PropertyPage) {
+				if (page.getControl() instanceof Composite) {
+					Composite composite = (Composite) page.getControl();
+					disableControls(composite, !inReadOnlyRepository);
+				}
+			}
+		}
 		int rtn_val = propertyDialog.open();
 		if (rtn_val == Dialog.OK)
 			saveState();
 
 		mViewer.setSelection(mViewer.getSelection());
 	}
+	
+	/*
+	 * Page change listener to disable controls for profiles
+	 * in a read-only repository.
+	 * 
+	 * @author brianf
+	 *
+	 */
+	private class PropertyPageChangeListener implements IPageChangedListener {
+		
+		private boolean inReadOnlyRepository = false;
+		
+		/*
+		 * Constructor
+		 * @param flag
+		 */
+		public PropertyPageChangeListener( boolean flag ) {
+			inReadOnlyRepository = flag;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.dialogs.IPageChangedListener#pageChanged(org.eclipse.jface.dialogs.PageChangedEvent)
+		 */
+		public void pageChanged(PageChangedEvent event) {
+			if (event.getSelectedPage() instanceof ConnectionProfileDetailsPage ||
+					event.getSelectedPage() instanceof ProfileDetailsPropertyPage) {
+				PropertyPage page = (PropertyPage) event.getSelectedPage();
+				if (page.getControl() instanceof Composite) {
+					Composite composite = (Composite) page.getControl();
+					if (inReadOnlyRepository)
+						disableControls(composite, !inReadOnlyRepository, true);
+				}
+			}
+			else if (event.getSelectedPage() instanceof PropertyPage) {
+				PropertyPage page = (PropertyPage) event.getSelectedPage();
+				if (page.getControl() instanceof Composite) {
+					Composite composite = (Composite) page.getControl();
+					if (inReadOnlyRepository)
+						disableControls(composite, !inReadOnlyRepository);
+				}
+			}
+		}
+	}
+	
+	/*
+	 * Disable controls on a composite
+	 * @param parent
+	 * @param enabled
+	 */
+	private void disableControls ( Composite parent, boolean enabled ) {
+		disableControls(parent, enabled, false);
+	}
+	
+	/*
+	 * Disable controls on a composite, but have a special case
+	 * for the Test Connection (Ping) button 
+	 * @param parent
+	 * @param enabled
+	 * @param checkForPing
+	 */
+	private void disableControls ( Composite parent, boolean enabled, boolean checkForPing ) {
+		for (int i = 0; i < parent.getChildren().length; i++) {
+			
+			if (parent.getChildren()[i] instanceof TabFolder) {
+				Control[] tabList = ((TabFolder) parent.getChildren()[i]).getTabList();
+				for (int j = 0; j < tabList.length; j++) {
+					if (tabList[j] instanceof Composite) {
+						disableControls((Composite) tabList[j], enabled, checkForPing);
+					}
+					tabList[j].setEnabled(false);
+				}
+			}
+			else if (parent.getChildren()[i] instanceof Composite) {
+				disableControls((Composite) parent.getChildren()[i], enabled, checkForPing);
+				if (parentHasCombo((Composite)parent.getChildren()[i], enabled)) {
+					parent.getChildren()[i].setEnabled(enabled);
+				}
+			}
+			else {
+				if (parent.getChildren()[i] instanceof Label) {
+					// ignore
+				}
+				else if (parent.getChildren()[i] instanceof List) {
+					Color bg = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND); 
+					((List)parent.getChildren()[i]).setBackground(bg);
+					((List)parent.getChildren()[i]).setEnabled(enabled);
+				}
+				else if (parent.getChildren()[i] instanceof TabFolder) {
+					//ignore
+				}
+				else if (parent.getChildren()[i] instanceof Button) {
+					if (checkForPing) {
+						String pingLabel = ConnectivityUIPlugin.getDefault().getResourceString(
+							"ConnectionProfileDetailsPage.Button.TestConnection");
+						Button btn = (Button) parent.getChildren()[i];
+						if (!btn.isDisposed() && btn.getText().equals(pingLabel)) {
+							btn.setEnabled(true);
+						}
+						else {
+							btn.setEnabled(enabled);
+						}
+					}
+					else {
+						parent.getChildren()[i].setEnabled(enabled);
+					}
+				}
+				else {
+					parent.getChildren()[i].setEnabled(enabled);
+				}
+			}
+		}
+	}
+	
+	/*
+	 * See if the composite has a combo on it. If so, set the background
+	 * so it looks disabled.
+	 * @param parent
+	 * @param enabled
+	 * @return
+	 */
+	private boolean parentHasCombo ( Composite parent, boolean enabled ) {
+		if (parent.getChildren().length > 0) {
+			Control[] controls = parent.getChildren();
+			for (int i = 0; i < controls.length; i++) {
+				if (controls[i] instanceof Combo) {
+					if (!enabled) {
+						Color bg = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND); 
+						((Combo)controls[i]).setBackground(bg);
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * Get the selected object 
+	 * @return
+	 */
 	public Object getSelectedObject() {
 		ISelection selection = mViewer.getSelection();
 		Object selectedObj = null;
