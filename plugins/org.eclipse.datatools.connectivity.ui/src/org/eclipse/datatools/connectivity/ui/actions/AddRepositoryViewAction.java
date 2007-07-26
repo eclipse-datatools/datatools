@@ -11,12 +11,18 @@
 package org.eclipse.datatools.connectivity.ui.actions;
 
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.viewers.ISelection;
 
 public class AddRepositoryViewAction extends AddProfileViewAction {
 
 	public void run() {
 		setCategory(IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID);
 		super.run();
+	} 
+	
+	public void selectionChanged(IAction action, ISelection selection) {
+		//ignore selection change here because we should always enable repository view
 	}
 
 }
