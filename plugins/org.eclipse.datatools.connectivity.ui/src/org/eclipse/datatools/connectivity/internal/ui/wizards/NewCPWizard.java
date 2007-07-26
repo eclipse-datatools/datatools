@@ -79,6 +79,9 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		if (mViewerFilter == null) {
+			mViewerFilter = new NewCPWizardCategoryFilter(null);
+		}
 	}
 
 	/*
