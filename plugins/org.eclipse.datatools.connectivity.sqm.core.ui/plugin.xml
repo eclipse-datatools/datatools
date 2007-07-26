@@ -293,6 +293,9 @@
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.categoryID"
+            value="org.eclipse.datatools.connectivity.db.category"/>
       <enabledWhen>
          <instanceof
                value="org.eclipse.datatools.connectivity.IConnectionProfile">
@@ -306,6 +309,9 @@
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.categoryID"
+            value="org.eclipse.datatools.connectivity.db.category"/>
       <enabledWhen>
          <instanceof
                value="org.eclipse.datatools.connectivity.IConnectionProfile">
@@ -319,6 +325,9 @@
       <filter
             name="org.eclipse.datatools.connectivity.profile.property.factoryID"
             value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
+      <filter
+            name="org.eclipse.datatools.connectivity.profile.property.categoryID"
+            value="org.eclipse.datatools.connectivity.db.category"/>
       <enabledWhen>
          <instanceof
                value="org.eclipse.datatools.connectivity.IConnectionProfile">
