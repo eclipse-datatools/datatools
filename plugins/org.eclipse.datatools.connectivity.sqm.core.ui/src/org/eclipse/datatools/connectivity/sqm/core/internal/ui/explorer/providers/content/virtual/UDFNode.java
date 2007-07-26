@@ -40,11 +40,15 @@ public class UDFNode extends VirtualNode implements IUDFNode, IFilterNode
     public String getFilterName() {
 		Schema schema = (Schema) getParent();
 		if (schema.getCatalog() == null) {
+			// we use the STORED_PROCEDURE_FILTER now because that's the filter page used for the moment
 			return schema.getName() + IFilterNode.SEPARATOR
-					+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+//					+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+					+ ConnectionFilter.STORED_PROCEDURE_FILTER;
 		}
+		// we use the STORED_PROCEDURE_FILTER now because that's the filter page used for the moment
 		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
 				+ schema.getName() + IFilterNode.SEPARATOR
-				+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+//				+ ConnectionFilter.USER_DEFINED_FUNCTION_FILTER;
+				+ ConnectionFilter.STORED_PROCEDURE_FILTER;
 	}
 }

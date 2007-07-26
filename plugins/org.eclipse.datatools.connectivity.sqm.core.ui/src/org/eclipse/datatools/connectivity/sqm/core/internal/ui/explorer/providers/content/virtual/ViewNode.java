@@ -40,12 +40,16 @@ public class ViewNode extends VirtualNode implements IViewNode, IFilterNode
     public String getFilterName() {
 		Schema schema = (Schema) getParent();
 		if (schema.getCatalog() == null) {
+			// we use the TABLE_FILTER now because that's the filter page used for the moment
 			return schema.getName() + IFilterNode.SEPARATOR
-					+ ConnectionFilter.VIEW_FILTER;
+//					+ ConnectionFilter.VIEW_FILTER;
+					+ ConnectionFilter.TABLE_FILTER;
 		}
+		// we use the TABLE_FILTER now because that's the filter page used for the moment
 		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
 				+ schema.getName() + IFilterNode.SEPARATOR
-				+ ConnectionFilter.VIEW_FILTER;
+//				+ ConnectionFilter.VIEW_FILTER;
+				+ ConnectionFilter.TABLE_FILTER;
 	}
 
 }

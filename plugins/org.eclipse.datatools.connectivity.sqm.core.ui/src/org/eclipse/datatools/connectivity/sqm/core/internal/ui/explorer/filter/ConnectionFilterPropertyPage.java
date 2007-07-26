@@ -722,13 +722,14 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
         disableFilterCheckbox.setSelection(true);
         expressionField.setText("");
         expressionPredicate.select(0);
-        selectionTable.clearAll();
+        selectionTable.removeAll();
         selectionPredicate.select(0);
         expressionRadioButton.setSelection(true);
         selectionRadioButton.setSelection(false);
         enableFilterSpecificationControls(false);
         setErrorMessage(null);
         setValid(true);
+        isSelectionListPopulated = false;
     }    
     
     public void setDefaultPageTitle ( String title ) {
