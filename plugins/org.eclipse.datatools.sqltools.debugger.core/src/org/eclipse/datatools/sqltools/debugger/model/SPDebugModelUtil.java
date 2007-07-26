@@ -18,8 +18,10 @@ import java.util.List;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.debugger.breakpoint.SPLineBreakpoint;
 import org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerCorePlugin;
 import org.eclipse.datatools.sqltools.routineeditor.RoutineAnnotationModel;
@@ -229,11 +231,11 @@ public class SPDebugModelUtil
     public static boolean supportCondition(SPLineBreakpoint bp) throws CoreException
     {
     	//see bug 109112
-//        DatabaseDefinition dbDef = ProfileUtil.getDatabaseDefinition(bp.getProcIdentifier().getDatabaseIdentifier().getProfileName());
-//        if (dbDef != null )
-//        {
-//            return dbDef.getDebuggerDefinition()!= null && dbDef.getDebuggerDefinition().isConditionSupported();
-//        }
+        DatabaseDefinition dbDef = ProfileUtil.getDatabaseDefinition(bp.getProcIdentifier().getDatabaseIdentifier().getProfileName());
+        if (dbDef != null )
+        {
+            return dbDef.getDebuggerDefinition()!= null && dbDef.getDebuggerDefinition().isConditionSupported();
+        }
         return false;
 
     }
