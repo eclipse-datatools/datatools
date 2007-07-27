@@ -171,13 +171,20 @@ public abstract class DataSourceWizardPageCore extends
     /**
      * Marks the inherited Test Connection (Ping) button as visible
      * if the argument is true, and marks it invisible otherwise. 
-     * <br>The visibility state setting takes effect only 
-     * during <code>createControl</code>.
+     * <br>The visibility state setting takes effect 
+     * during <code>createControl</code> if this is called before the 
+     * ping button is created.
      * @param enabled   the new visibility state
      */
     protected void setPingButtonVisible( boolean visible )
     {
-        m_setPingButtonVisible = new Boolean( visible );
+        m_setPingButtonVisible = null;  // first reset previous state
+        
+        // saves the state if the ping button is not created yet
+        if( this.btnPing == null )      
+            m_setPingButtonVisible = new Boolean( visible );
+        else
+            super.setPingButtonVisible( visible );
     }
 
     /* (non-Javadoc)
@@ -189,8 +196,8 @@ public abstract class DataSourceWizardPageCore extends
         
         // now that all control contents are created, go ahead and 
         // override visibility of the inherited Test Connection ping button
-        if( m_setPingButtonVisible != null && this.btnPing != null )
-            this.btnPing.setVisible( m_setPingButtonVisible.booleanValue() );
+        if( m_setPingButtonVisible != null )
+            super.setPingButtonVisible( m_setPingButtonVisible.booleanValue() );
     }
     
     /**
