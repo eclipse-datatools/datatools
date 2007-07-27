@@ -470,7 +470,7 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
      */
     protected String getNewFileLabel()
     {
-        return ""; //$NON-NLS-1$
+        return Messages.WizardNewFileCreationPage_fileLabel;
     }
 
     /**
