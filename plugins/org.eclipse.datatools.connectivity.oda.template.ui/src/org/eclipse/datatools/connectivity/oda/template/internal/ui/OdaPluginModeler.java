@@ -54,7 +54,7 @@ class OdaPluginModeler
 
     OdaPluginModeler( OdaTemplateSection section )
     {
-        assert( m_section != null );
+        assert( section != null );
         m_section = section;
     }
     
