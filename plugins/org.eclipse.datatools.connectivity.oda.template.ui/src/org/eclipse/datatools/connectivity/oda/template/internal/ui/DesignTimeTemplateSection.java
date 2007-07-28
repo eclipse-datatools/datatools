@@ -19,11 +19,13 @@ import java.util.ArrayList;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.oda.template.ui.nls.Messages;
+import org.eclipse.osgi.service.resolver.VersionRange;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
+import org.osgi.framework.Version;
 
 /**
  * A section of the ODA designer plug-in template wizard that generates a new 
@@ -204,10 +206,14 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         if( odaRuntimePluginId == null )
             odaRuntimePluginId = getDefaultRuntimePluginId();
         
+        Version version304 = new Version( 3, 0, 4 );
+        Version version400 = new Version( 4, 0, 0 );
+        VersionRange compatible304 = new VersionRange( version304, true, version400, false );       
+
         return new IPluginReference[] 
                     { new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.design.ui",  //$NON-NLS-1$
-                        "3.0.4" ),  //$NON-NLS-1$
+                        compatible304.toString() ),
                       new CompatiblePluginReference( 
                         odaRuntimePluginId,
                         null ) };
