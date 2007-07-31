@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,7 +21,9 @@ import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
@@ -420,5 +422,14 @@ public abstract class DataSetWizardPageCore extends WizardPage
         cleanup();
         super.dispose();
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.jface.dialogs.DialogPage#performHelp()
+     */
+    public void performHelp( )
+	{
+		getControl().notifyListeners( SWT.Help, new Event() );
+	}
 
 }

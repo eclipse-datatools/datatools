@@ -25,6 +25,7 @@ import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PropertyPage;
 
 /**
@@ -71,9 +72,28 @@ public class DataSetEditorPageCore extends PropertyPage
     {
         noDefaultAndApplyButton();
         getCustomPage().createControl( parent );
-        return getCustomPage().getControl();
+        
+        Control wrappedControl = getCustomPage().getControl();
+        setHelpContext( wrappedControl );
+        return wrappedControl;
     }
 
+    /**
+     * Sets the help context id, if exists, of the given wrapped page control
+     * on this wrapper's top level control.
+     */
+    private void setHelpContext( Control wrappedControl )
+    {
+        if( wrappedControl == null )
+            return;     // nothing to set
+        
+        Object wrappedPageHelpContextId = 
+            wrappedControl.getData( "org.eclipse.ui.help" ); //$NON-NLS-1$
+        if( wrappedPageHelpContextId != null && wrappedPageHelpContextId instanceof String )
+            PlatformUI.getWorkbench().getHelpSystem()
+                .setHelp( getControl(), (String) wrappedPageHelpContextId );
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.jface.preference.PreferencePage#setContainer(org.eclipse.jface.preference.IPreferencePageContainer)
      */
@@ -113,6 +133,14 @@ public class DataSetEditorPageCore extends PropertyPage
     public boolean okToLeave()
     {
         return super.okToLeave() && getCustomPage().canLeave();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.preference.PreferencePage#performHelp()
+     */
+    public void performHelp()
+    {
+        getCustomPage().performHelp();
     }
 
     /**
