@@ -61,6 +61,11 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
             if (mc != null)
             {
             	mc.addConnectionListener(this);
+            	if (mc.isConnected() && mc.getConnection() != null)
+            	{
+            		//to handle auto connect profiles
+            		opened(new ConnectEvent(profiles[i], mc, this));
+            	}
             }
         }
         

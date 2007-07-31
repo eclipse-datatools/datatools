@@ -42,7 +42,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     private static SQLDevToolsConfiguration DEFAULT_CONFIG                = SQLDevToolsConfiguration.getDefaultInstance();
 	private static ArrayList _listeners = new ArrayList();
     //Hui Cao: we lazy load the factory classes to avoid circular dependency. Consequently all getXXX methods should check this field.
-    private boolean                             _factoriesLoaded             = false;
+    private Boolean                             _factoriesLoaded             = Boolean.FALSE;
     private Map                                 _products                    = new TreeMap();
     private Map                                 _factoriesById               = new TreeMap();
     private Map                                 _factoriesByVendorIdentifier = new TreeMap();
@@ -133,93 +133,97 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 
     private synchronized void init()
     {
-        if (_factoriesLoaded)
-        {
-            return;
-        }
-        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint(EditorCorePlugin.PLUGIN_ID, "dbConfigurations"); //$NON-NLS-1$ //$NON-NLS-2$
-        IExtension[] extensions = extensionPoint.getExtensions();
-        for (int i = 0; i < extensions.length; ++i)
-        {
-            IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
-            for (int j = 0; j < configElements.length; ++j)
-            {
-                if (configElements[j].getName().equals("dbConfiguration")) 
-                {
-                    //$NON-NLS-1$
-                    String product = configElements[j].getAttribute("product"); //$NON-NLS-1$
-                    String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
-                    //String desc = configElements[j].getAttribute("description"); //$NON-NLS-1$
-                    String name = product + "_" + version;
-                    String id = configElements[j].getAttribute("id"); //$NON-NLS-1$
-                    String supportsDebugging = configElements[j].getAttribute("supportsDebugging"); //$NON-NLS-1$
-                    String isDefault = configElements[j].getAttribute("default"); //$NON-NLS-1$
-                    if (id == null)
-                    {
-                    	id = name;
-                    }
-                    String className = configElements[j].getAttribute("configurationClass");
-                    try
-                    {
-                        //Hui Cao: caution here: if the instantiated factoryClass in turn calls this registry during initialization, error will occur. 
-                        SQLDevToolsConfiguration factory = (SQLDevToolsConfiguration) configElements[j].createExecutableExtension("configurationClass"); //$NON-NLS-1$
-                        DatabaseVendorDefinitionId dbVendorId = new DatabaseVendorDefinitionId(product, version);
-                        factory.setDatabaseVendorDefinitionId(dbVendorId);
-
-                        if (this._products.containsKey(product))
-                        {
-                            ((Map) this._products.get(product)).put(version, factory);
-                        }
-                        else
-                        {
-                            Map versions = new TreeMap();
-                            versions.put(version, factory);
-                            this._products.put(product, versions);
-                        }
-                        if (!this._factoriesById.containsKey(id))
-                        {
-                            this._factoriesById.put(id, factory);
-                        }
-
-                        DatabaseVendorDefinitionId identifier = new DatabaseVendorDefinitionId(product, version); 
-                        if (!this._factoriesByVendorIdentifier.containsKey(identifier))
-                        {
-                            this._factoriesByVendorIdentifier.put(identifier, factory);
-                        }
-
-                        if (!this._factoriesByName.containsKey(name))
-                        {
-                            this._factoriesByName.put(name, factory);
-                        }
-                        if ("true".equals(supportsDebugging))
-                        {
-                        	_debuggerFactories.add(factory);
-                        }
-                        if ("true".equals(isDefault))
-                        {
-                        	DEFAULT_CONFIG = factory;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                    	e.printStackTrace();
-                    	try
-                    	{
-                    		IStatus status = new Status(IStatus.ERROR, EditorCorePlugin.PLUGIN_ID, IStatus.ERROR,
-                            "The error was detected when creating the database recognizer " + className, e);
-                    		EditorCorePlugin.getDefault().log(status);
-                    	}
-                    	catch (Exception ee)
-                        {
-                    		ee.printStackTrace();
-                        }
-                    }
-                }
-            }
-        }
-
-        _factoriesLoaded = true;
+    	synchronized(_factoriesLoaded)
+    	{
+    		if (_factoriesLoaded.booleanValue())
+    		{
+    			return;
+    		}
+    		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+    		IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint(EditorCorePlugin.PLUGIN_ID, "dbConfigurations"); //$NON-NLS-1$ //$NON-NLS-2$
+    		IExtension[] extensions = extensionPoint.getExtensions();
+    		for (int i = 0; i < extensions.length; ++i)
+    		{
+    			IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
+    			for (int j = 0; j < configElements.length; ++j)
+    			{
+    				if (configElements[j].getName().equals("dbConfiguration")) 
+    				{
+    					//$NON-NLS-1$
+    					String product = configElements[j].getAttribute("product"); //$NON-NLS-1$
+    					String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
+    					//String desc = configElements[j].getAttribute("description"); //$NON-NLS-1$
+    					String name = product + "_" + version;
+    					String id = configElements[j].getAttribute("id"); //$NON-NLS-1$
+    					String supportsDebugging = configElements[j].getAttribute("supportsDebugging"); //$NON-NLS-1$
+    					String isDefault = configElements[j].getAttribute("default"); //$NON-NLS-1$
+    					if (id == null)
+    					{
+    						id = name;
+    					}
+    					String className = configElements[j].getAttribute("configurationClass");
+    					try
+    					{
+    						//Hui Cao: caution here: if the instantiated factoryClass in turn calls this registry during initialization, error will occur. 
+    						SQLDevToolsConfiguration factory = (SQLDevToolsConfiguration) configElements[j].createExecutableExtension("configurationClass"); //$NON-NLS-1$
+    						DatabaseVendorDefinitionId dbVendorId = new DatabaseVendorDefinitionId(product, version);
+    						factory.setDatabaseVendorDefinitionId(dbVendorId);
+    						
+    						if (this._products.containsKey(product))
+    						{
+    							((Map) this._products.get(product)).put(version, factory);
+    						}
+    						else
+    						{
+    							Map versions = new TreeMap();
+    							versions.put(version, factory);
+    							this._products.put(product, versions);
+    						}
+    						if (!this._factoriesById.containsKey(id))
+    						{
+    							this._factoriesById.put(id, factory);
+    						}
+    						
+    						DatabaseVendorDefinitionId identifier = new DatabaseVendorDefinitionId(product, version); 
+    						if (!this._factoriesByVendorIdentifier.containsKey(identifier))
+    						{
+    							this._factoriesByVendorIdentifier.put(identifier, factory);
+    						}
+    						
+    						if (!this._factoriesByName.containsKey(name))
+    						{
+    							this._factoriesByName.put(name, factory);
+    						}
+    						if ("true".equals(supportsDebugging))
+    						{
+    							_debuggerFactories.add(factory);
+    						}
+    						if ("true".equals(isDefault))
+    						{
+    							DEFAULT_CONFIG = factory;
+    						}
+    					}
+    					catch (Exception e)
+    					{
+    						e.printStackTrace();
+    						try
+    						{
+    							IStatus status = new Status(IStatus.ERROR, EditorCorePlugin.PLUGIN_ID, IStatus.ERROR,
+    									"The error was detected when creating the database recognizer " + className, e);
+    							EditorCorePlugin.getDefault().log(status);
+    						}
+    						catch (Exception ee)
+    						{
+    							ee.printStackTrace();
+    						}
+    					}
+    				}
+    			}
+    		}
+    		
+    		_factoriesLoaded = Boolean.TRUE;
+    		
+    	}
         for (Iterator iter = _listeners.iterator(); iter.hasNext();) {
 			final IConfigurationRegistryListener l = (IConfigurationRegistryListener) iter.next();
 			new Thread()
@@ -241,15 +245,20 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
     public void addConfigurationRegistryListener(final IConfigurationRegistryListener listener)
     {
     	_listeners.add(listener);
-    	if (_factoriesLoaded)
-    	{
-    		new Thread()
-			{
-				public void run()
+    	new Thread() {
+			public void run() {
+				synchronized(_factoriesLoaded)
 				{
-					listener.configurationLoaded();
+					if (_factoriesLoaded.booleanValue())
+					{
+						listener.configurationLoaded();
+					}
+					else
+					{
+						init();
+					}
 				}
-			}.start();
-    	}
+			}
+		}.start();
     }
 }
