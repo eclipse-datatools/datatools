@@ -26,7 +26,6 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -60,12 +59,9 @@ import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ContextInformation;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.contentassist.IContextInformation;
-import org.eclipse.jface.text.templates.TemplateProposal;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.internal.Workbench;
 
 /**
@@ -191,9 +187,8 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			parseText = _fFullText.substring(_fStartOffset, _fWordOffset + 1);
 		}
 
-		ParserParameters pp = new ParserParameters(
-				_editor.getEditorInput() instanceof IFileEditorInput
-						|| _editor.getEditorInput() instanceof ILocationProvider);
+        boolean useDelimiter = _editor.getSQLType() == SQLParserConstants.TYPE_SQL_ROOT;
+        ParserParameters pp = new ParserParameters(useDelimiter, _editor.getSQLType());
 		prepareParserParameter(pp);
 		ParsingResult result = _parser.parse(parseText
 				+ SQLParser.SPECIAL_TOKEN, pp);
