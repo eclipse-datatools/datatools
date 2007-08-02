@@ -89,7 +89,17 @@
                   ratio="0.25"
                   relationship="fast"
                   relative="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
-                  id="org.eclipse.ui.views.ContentOutline"/>   
+                  id="org.eclipse.ui.views.ContentOutline"/>
+          <view
+                closeable="true"
+                id="org.eclipse.datatools.sqltools.plan.planView"
+                moveable="true"
+                relationship="stack"
+                relative="org.eclipse.datatools.sqltools.result.resultView"
+                showTitle="true"
+                standalone="false"
+                visible="true">
+          </view>   
                                     
         </perspectiveExtension>
 
