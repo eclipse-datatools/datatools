@@ -16,11 +16,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.IConnectionInitializer;
@@ -156,6 +154,38 @@ public class ConnectionService
     public void closeConnection(Connection connection, int connId, DatabaseIdentifier databaseIdentifier) throws SQLException
     {
         ProfileUtil.closeConnection(databaseIdentifier.getProfileName(), databaseIdentifier.getDBname(), connection);
+    }
+
+
+    /**
+     * Get an ConnectionProcessor
+     * @return
+     */
+    public ConnectionProcessor getConnectionProcessor(DatabaseIdentifier databaseIdentifier){
+        return null;
+    }
+    
+    /**
+     * This interface can be implemented to do vendor-specific processing of the connection, 
+     * e.g. parse the SQLException and append messages to SQL results view. 
+     */
+    public interface ConnectionProcessor {
+        /**
+         * Initializes the environment for running
+         * @param con
+         */
+        public void prepare(Connection con);
+        
+        /**
+         * Does the specific thing
+         * @param object object to be processed, e.g. OperationCommand
+         */
+        public void process(Object object);
+        
+        /**
+         * Releases all resources that were initialized at the point of preparation
+         */
+        public void release();
     }
 
 }
