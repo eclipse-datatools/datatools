@@ -32,6 +32,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sql.updater.ProceduralObjectSourceUpdater;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IRegion;
 import org.eclipse.osgi.util.NLS;
 
 
@@ -42,7 +43,6 @@ import org.eclipse.osgi.util.NLS;
  */
 public class SQLService
 {
-
     /**
      * Returns an <code>ISQLSyntax</code> object which can be used to highlight sql statements in SQL editor.
      * 
@@ -82,19 +82,22 @@ public class SQLService
      * @return sql statement array
      */
 	public String[] splitSQL(String sql) {
-		if (getSQLParser() == null)
+		SQLParser parser = getSQLParser();
+		if (parser == null)
 		{
 			return new String[]{sql};
 		}
 	    ArrayList groups = new ArrayList();
 	    try
 	    {
-	        SQLParser parser = getSQLParser();
 	        IDocument doc = new Document(sql);
-	        ParsingResult result = parser.parse(sql, new ParserParameters(true));
+	        ParserParameters parserParameters = new ParserParameters(true);
+	        parserParameters.setProperty(ParserParameters.PARAM_CONSUME_EXCEPTION, Boolean.FALSE);
+			ParsingResult result = parser.parse(sql, parserParameters);
+	        
             if (result.getExceptions() != null && !result.getExceptions().isEmpty())
             {
-                return new String[]{sql};
+                return splitSQLByTerminatorLine(sql, parser.getStatementTerminators());
             }
 
 	        IASTStart root = result.getRootNode();
@@ -141,7 +144,41 @@ public class SQLService
 	    }
 	    return (String[]) groups.toArray(new String[groups.size()]);
 	}
-
+	
+	public String[] splitSQLByTerminatorLine(String sql, String[] terminators)
+	{
+		IDocument doc = new Document(sql);
+		ArrayList groups = new ArrayList();
+		int index = 0;
+		int numberOfLines = doc.getNumberOfLines();
+		try {
+			for (int i = 0; i < numberOfLines; i++) {
+				IRegion r = doc.getLineInformation(i);
+				String line = doc.get(r.getOffset(), r.getLength());
+				for (int j = 0; j < terminators.length; j++) {
+					if (line.trim().equalsIgnoreCase(terminators[j])) {
+						String string = doc.get(index, r.getOffset() - index);
+						if (string.trim().length() > 0) {
+							groups.add(string);
+						}
+						index = r.getOffset() + doc.getLineLength(i);
+						break;
+					}
+				}
+			}
+			if (index < doc.getLength() - 1) {
+				String string = doc.get(index, doc.getLength() - index);
+				if (string.trim().length() > 0) {
+					groups.add(string);
+				}
+			}
+		} catch (Exception e) {
+			//parse error, simply return
+			return new String[]{sql};
+		}
+		return (String[]) groups.toArray(new String[groups.size()]);
+	}
+	
 	public ParserProposalAdvisor getParserProposalAdvisor()
 	{
 		return new ParserProposalAdvisor();
