@@ -394,6 +394,36 @@ public class InternalProfileManager {
 	}
 
 	/**
+	 * Duplicate a connection profile but won't add it into ProfileManager or IConnectionProfileRepository.
+	 * 
+	 * @param source
+	 * @param repo
+	 * @param newName
+	 * @return IConnectionProfile
+	 * 
+	 */
+	public IConnectionProfile cloneProfile(IConnectionProfile source,
+			IConnectionProfile repo, String newName){
+		Properties props = (Properties) source.getBaseProperties().clone();
+		ConnectionProfile newProfile = new ConnectionProfile(newName, source.getDescription(),
+				source.getProviderId(), repo == null ? new String() : repo.getName(), source
+						.isAutoConnect() , UUID.createUUID().toString());
+		newProfile.setBaseProperties(props);
+
+		// now that we have the base profile and its properties set,
+		// walk through any extended properties and grab those also
+		Set extensionIDs = ((ConnectionProfile) source).getPropertiesMap()
+				.keySet();
+		Iterator iter = extensionIDs.iterator();
+		while (iter.hasNext()) {
+			String key = (String) iter.next();
+			Properties oldProps = source.getProperties(key);
+			Properties newProps = (Properties) oldProps.clone();
+			newProfile.setProperties(key, newProps);
+		}
+		return newProfile;			
+	}
+	/**
 	 * Add a connection profile object to the profiles cache. Throws
 	 * ConnectionProfileException if the new profile's name already exists in
 	 * cache.

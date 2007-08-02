@@ -129,7 +129,7 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 *      org.eclipse.jface.viewers.ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (selection instanceof IStructuredSelection) {
+		if (selection instanceof IStructuredSelection && action != null) {
 			Object sel = ((IStructuredSelection) selection).getFirstElement();
 			// always enable add action on local repository node.
 			if (sel instanceof LocalRepositoryNode) {

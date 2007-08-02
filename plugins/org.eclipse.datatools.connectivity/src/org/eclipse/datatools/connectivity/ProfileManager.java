@@ -176,6 +176,18 @@ public class ProfileManager implements IAdaptable {
 	}
 
 	/**
+	 * Duplicate a connection profile but won't add it into ProfileManager or IConnectionProfileRepository
+	 * 
+	 * @param profile
+	 * @param newName
+	 * @return IConnectionProfile
+	 * @throws ConnectionProfileException
+	 */
+	public IConnectionProfile copyProfile(IConnectionProfile profile, String newName)
+			throws ConnectionProfileException {
+		return InternalProfileManager.getInstance().cloneProfile(profile, null, newName);
+	}
+	/**
 	 * Add a connection profile object to the profiles cache. Throws
 	 * ConnectionProfileException if the new profile's name already exists in
 	 * cache.
