@@ -61,12 +61,14 @@ public class Query implements IQuery
 	private String soapEndPoint = WSUtil.EMPTY_STRING;
 	private String operationTrace = WSUtil.EMPTY_STRING;
 	private String wsdlURI = WSUtil.EMPTY_STRING;
+	private long connectionTimeout;
 
 	public Query( RawMessageSender rawMessageSender, Properties connProperties )
 	{
 		this.rawMessageSender = rawMessageSender;
 		this.wsdlURI = ( (Properties) connProperties ).getProperty( Constants.WSDL_URI );
 		this.soapEndPoint = ( (Properties) connProperties ).getProperty( Constants.SOAP_ENDPOINT );
+		this.connectionTimeout = WSUtil.parseLong( ( (Properties) connProperties ).getProperty( Constants.CONNECTION_TIMEOUT ) );
 		this.m_maxRows = 0;
 	}
 
@@ -164,7 +166,7 @@ public class Query implements IQuery
 			rawMessageSender.setSpec( WSUtil.getNonNullString( soapEndPoint ) );
 			rawMessageSender.setSoapAction( WSUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( wsdlURI,
 					operationTrace ) ) );
-			SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( );
+			SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( connectionTimeout );
 
 			if ( WSUtil.isNull( soapResponse ) )
 				return null;
@@ -178,13 +180,11 @@ public class Query implements IQuery
 		try
 		{
 			Object o = java2SOAPManager.executeQuery( );
-			if( o instanceof InputStream )
-				return (InputStream)o;
-			else if( o instanceof String )
-			{
+			if ( o instanceof InputStream )
+				return (InputStream) o;
+			else if ( o instanceof String )
 				return new ByteArrayInputStream( o.toString( ).getBytes( ) );
-			}
-				
+
 			return null;
 		}
 		catch ( Exception e )

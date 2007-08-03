@@ -49,4 +49,18 @@ public class WSUtil
 		return value == null ? EMPTY_STRING : value;
 	}
 
+	/**
+	 * Parses the string argument as a signed decimal <code>long</code>.
+	 * 
+	 * @param string
+	 * @return 0 if the argument is null or empty string
+	 */
+	public static long parseLong( String string )
+	{
+		if ( WSUtil.isNull( string ) )
+			return 0;
+
+		return Long.parseLong( string );
+	}
+
 }

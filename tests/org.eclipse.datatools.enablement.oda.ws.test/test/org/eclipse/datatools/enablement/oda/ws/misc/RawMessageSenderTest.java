@@ -63,7 +63,7 @@ public class RawMessageSenderTest extends BaseTest
 					message,
 					soapAction );
 
-			assertEquals( 0, rms.getSOAPResponse( ).getStreamType( ) );
+			assertEquals( 0, rms.getSOAPResponse( 0 ).getStreamType( ) );
 		}
 	}
 

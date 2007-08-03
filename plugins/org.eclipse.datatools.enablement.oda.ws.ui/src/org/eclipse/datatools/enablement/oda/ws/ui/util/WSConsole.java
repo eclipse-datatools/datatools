@@ -12,6 +12,7 @@
 package org.eclipse.datatools.enablement.oda.ws.ui.util;
 
 import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -183,6 +184,12 @@ public class WSConsole
 				setPropertyValue( Constants.CUSTOM_CONNECTION_CLASS,
 						customConnectionClass == null ? WSUIUtil.EMPTY_STRING
 								: customConnectionClass.getValue( ) );
+				
+				Property connectionTimeOut = dataSourceDesign.getPublicProperties( )
+						.findProperty( Constants.CONNECTION_TIMEOUT );
+				setPropertyValue( Constants.CONNECTION_TIMEOUT,
+						connectionTimeOut == null ? "0" //$NON-NLS-1$
+								: connectionTimeOut.getValue( ) );
 			}
 			if ( dataSourceDesign.getPrivateProperties( ) != null )
 			{
@@ -411,7 +418,14 @@ public class WSConsole
 		try
 		{
 			j2s.newQuery( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) );
-			return (InputStream) j2s.executeQuery( );
+
+			Object o = j2s.executeQuery( );
+			if ( o instanceof InputStream )
+				return (InputStream) o;
+			else if ( o instanceof String )
+				return new ByteArrayInputStream( o.toString( ).getBytes( ) );
+
+			return null;
 		}
 		catch ( Exception e )
 		{
@@ -454,7 +468,7 @@ public class WSConsole
 		RawMessageSender rawMessageSender = new RawMessageSender( spec,
 				message,
 				soapAction );
-		SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( );
+		SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( WSUIUtil.parseLong( getPropertyValue( Constants.CONNECTION_TIMEOUT ) ) );
 
 		return soapResponse;
 	}

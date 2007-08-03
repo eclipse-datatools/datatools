@@ -82,13 +82,19 @@ public class RawMessageSender
 
 	/**
 	 * 
+	 * @param timeout
 	 * @return
 	 */
-	public SOAPResponse getSOAPResponse( )
+	public SOAPResponse getSOAPResponse( long timeout )
 	{
 		Thread t = new Thread( new SOAPResponseCollector( ) );
 		t.start( );
-		while ( t.isAlive( ) )
+		try
+		{
+			timeout = timeout == 0 ? 0 : Math.max( 60000, timeout );
+			t.join( timeout );
+		}
+		catch ( InterruptedException e )
 		{
 		}
 
@@ -108,7 +114,7 @@ public class RawMessageSender
 				connection.setRequestMethod( "POST" ); //$NON-NLS-1$
 				connection.setRequestProperty( "Content-Length", //$NON-NLS-1$
 						String.valueOf( message.length( ) ) );
-				connection.setRequestProperty( "Content-Type", "text/xml" );  //$NON-NLS-1$//$NON-NLS-2$
+				connection.setRequestProperty( "Content-Type", "text/xml" ); //$NON-NLS-1$//$NON-NLS-2$
 				connection.setRequestProperty( "Connection", "Close" ); //$NON-NLS-1$ //$NON-NLS-2$
 				connection.setRequestProperty( "SoapAction", soapAction ); //$NON-NLS-1$
 				connection.setDoOutput( true );
