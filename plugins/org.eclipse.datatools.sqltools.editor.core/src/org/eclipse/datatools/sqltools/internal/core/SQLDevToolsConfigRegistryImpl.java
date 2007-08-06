@@ -255,7 +255,7 @@ public final class SQLDevToolsConfigRegistryImpl implements SQLDevToolsConfigReg
 					}
 					else
 					{
-						init();
+						SQLDevToolsConfigRegistryImpl.this.init();
 					}
 				}
 			}
