@@ -75,7 +75,13 @@ public class HelpUtil
 					}
 				}
 				if ((provider == null) || ((provider.getContextChangeMask() & IContextProvider.SELECTION) != 0)) {
-					IContext		context = HelpSystem.getContext(getHelpKey(event.widget));
+
+					String id = getHelpKey(event.widget); 
+
+                    IContext context = null;
+                    if (id  != null)  { 
+                    	context = HelpSystem.getContext(id ); 					
+                    }
 					
 					if (context != null) {
 						// determine a location in the upper right corner of the
@@ -262,9 +268,13 @@ public class HelpUtil
 					Bundle	helpPluginBundle = Platform.getBundle(helpPluginID);
 					if (helpPluginBundle != null) {
 						URL		propertiesFileURL = helpPluginBundle.getResource(propertiesFile);
-						propertiesFileURL = FileLocator.resolve(propertiesFileURL);
-						URLConnection connection = propertiesFileURL.openConnection();
-						propertiesFiles.add(connection);
+						try {
+							propertiesFileURL = FileLocator.resolve(propertiesFileURL);
+							URLConnection connection = propertiesFileURL.openConnection();
+							propertiesFiles.add(connection);
+						} catch (NullPointerException npe) {
+							npe.printStackTrace();
+						}
 					}
 				}
 				catch (IOException ioe)
