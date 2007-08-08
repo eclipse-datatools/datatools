@@ -44,7 +44,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * Configure SQL Editor preferences.
@@ -58,11 +57,10 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
     private PreferencePage   _preferencePage;
     //General tab variables
-    private Button           _showLineNumber;
     private Button           _syntaxValidation;
     private Label            _portabilityCheckLabel;
     private Combo            _portabilityCheckCombo;
-    private Button            _maxLineButton;
+    private Button           _maxLineButton;
     private Text             _maxLineText;
     private Button           _promptDisableButton;
     private Button           _showSyntaxErorrDetail;
@@ -157,10 +155,6 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout gridLayout = new GridLayout(1, true);
         composite.setLayout(gridLayout);
-
-        //Show line number
-        _showLineNumber = SWTUtils.createCheckBox(composite, PreferenceMessages.SQLEditor_showLineNumber,
-            2, 0);
 
         // syntax validation group
         Group syntaxValidationGroup = SWTUtils.createGroup(composite, PreferenceMessages.SQLEditor_syntaxValidationGroup, 1);
@@ -372,9 +366,6 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
      */
     private void initializeValues()
     {
-        _showLineNumber.setSelection(_store
-            .getBoolean(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER));
-
         _syntaxValidation.setSelection(_store.getBoolean(PreferenceConstants.SYNTAX_VALIDATION));
 
         _portabilityCheckCombo.setText(_store.getString(PreferenceConstants.EDITOR_PORTABILITY_CHECK_TARGET));
@@ -399,9 +390,6 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
      */
     public boolean performOk()
     {
-        _store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER, _showLineNumber
-            .getSelection());
-
         _store.setValue(PreferenceConstants.SYNTAX_VALIDATION, _syntaxValidation.getSelection());
 
         _store.setValue(PreferenceConstants.EDITOR_PORTABILITY_CHECK_TARGET, _portabilityCheckCombo.getText());
@@ -429,9 +417,6 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
     protected void performDefaults()
     {
         super.performDefaults();
-
-        _showLineNumber.setSelection(_store
-            .getDefaultBoolean(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER));
 
         _syntaxValidation.setSelection(_store.getDefaultBoolean(PreferenceConstants.SYNTAX_VALIDATION));
 

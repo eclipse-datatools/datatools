@@ -1827,13 +1827,6 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
     }
 
-    protected boolean isLineNumberRulerVisible()
-    {
-        IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
-        return store != null ? store
-            .getBoolean(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER) : false;
-    }
-
     /**
 	 * Returns the outmost sql statement type that's allowed in this editor. The default sqlType is SQLParserConstants.TYPE_SQL_ROOT, which means any sql statements can occur.
 	 * @return

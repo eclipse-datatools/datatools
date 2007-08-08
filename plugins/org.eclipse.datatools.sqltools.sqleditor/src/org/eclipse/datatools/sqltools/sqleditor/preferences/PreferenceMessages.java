@@ -32,7 +32,6 @@ public final class PreferenceMessages extends NLS
     public static String CodeAssist_autoActivationDelay;
     public static String CodeAssist_autoActivationTriggers;
     public static String SQLEditor_general_title;
-    public static String SQLEditor_showLineNumber;
     public static String SQLEditor_syntaxValidationGroup;
     public static String SQLEditor_syntaxValidation;
     public static String SQLEditor_syntaxValidation_tooltip;

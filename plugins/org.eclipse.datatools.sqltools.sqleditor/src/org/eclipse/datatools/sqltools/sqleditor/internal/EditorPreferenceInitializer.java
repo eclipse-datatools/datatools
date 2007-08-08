@@ -47,12 +47,6 @@ public class EditorPreferenceInitializer extends AbstractPreferenceInitializer
         store.setDefault(PreferenceConstants.AUTO_ACTIVATION_DELAY, Integer.valueOf(
             SQLEditorPlugin.getDefault().getProperties().getProperty(PreferenceConstants.AUTO_ACTIVATION_DELAY, "500")).intValue());
         store.setDefault(PreferenceConstants.AUTO_ACTIVATION_TRIGGER, " .@(");
-
-        store.setDefault(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER, Boolean.valueOf(
-            SQLEditorPlugin.getDefault().getProperties()
-            .getProperty(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_LINE_NUMBER_RULER, "true"))
-            .booleanValue());
-
        
         //code assist
         store.setDefault(PreferenceConstants.SHOW_OWNER_OF_TABLE, false);
