@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse; singleton:=true
-Bundle-Version: 1.0.1.200708031
+Bundle-Version: 1.0.1.200708081
 Bundle-Activator: org.eclipse.datatools.connectivity.ui.dse.DSEPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin

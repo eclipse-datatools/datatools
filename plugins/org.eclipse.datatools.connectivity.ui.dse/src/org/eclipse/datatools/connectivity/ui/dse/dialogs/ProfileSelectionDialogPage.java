@@ -19,6 +19,7 @@ import java.util.StringTokenizer;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.connectivity.ICategory;
+import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
@@ -432,7 +433,10 @@ public class ProfileSelectionDialogPage extends
 			
 			// Connect to the connection profile
 			Display.getCurrent().readAndDispatch();
-			ProfileConnectionManager.getProfileConnectionManagerInstance().manageProfileConnection(profile, "com.sybase.ebd.eai.wsmf.providers.IWSMFProvider", this); //$NON-NLS-1$
+			IConnectionFactoryProvider factoryProvider = profile.getProvider().getConnectionFactory("java.sql.Connection");
+			if(factoryProvider !=null){
+				ProfileConnectionManager.getProfileConnectionManagerInstance().manageProfileConnection(profile, "org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo", this); //$NON-NLS-1$
+			}
 			if (profile.getConnectionState() != IConnectionProfile.CONNECTED_STATE) {
 				
 				try {
