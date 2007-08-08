@@ -633,7 +633,7 @@ public class ConnectionProfile extends PlatformObject implements
 	public boolean equals(Object obj) {
 		if (obj instanceof ConnectionProfile) {
 			return obj == this
-					|| ((ConnectionProfile) obj).getInstanceID().equals(getInstanceID());
+					|| (((ConnectionProfile) obj).getInstanceID().equals(getInstanceID()) && (((ConnectionProfile) obj).getName().equals(getName())));
 		}
 		return false;
 	}
