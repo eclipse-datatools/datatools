@@ -696,7 +696,9 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 	
 	private void fireFilterRemoved(String filterID) {
-		Iterator it = this.filterListeners.iterator();
+		Collection cachedListener = new LinkedList();
+		cachedListener.addAll(filterListeners);
+		Iterator it = cachedListener.iterator();
 		while (it.hasNext()) {
 			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
 			try {
@@ -713,7 +715,9 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 
 	private void fireFilterAdded(String filterID) {
-		Iterator it = this.filterListeners.iterator();
+		Collection cachedListener = new LinkedList();
+		cachedListener.addAll(filterListeners);
+		Iterator it = cachedListener.iterator();
 		while (it.hasNext()) {
 			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
 			try {
@@ -730,7 +734,9 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 	}
 
 	private void fireFilterChanged(String filterID) {
-		Iterator it = this.filterListeners.iterator();
+		Collection cachedListener = new LinkedList();
+		cachedListener.addAll(filterListeners);
+		Iterator it = cachedListener.iterator();
 		while (it.hasNext()) {
 			ConnectionFilterListener l = (ConnectionFilterListener) it.next();
 			try {
