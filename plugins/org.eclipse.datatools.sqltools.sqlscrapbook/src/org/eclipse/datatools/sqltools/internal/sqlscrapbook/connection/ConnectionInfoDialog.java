@@ -11,6 +11,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ui.actions.ConnectAction;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
@@ -175,13 +178,30 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	}
 
 	protected void okPressed() {
-		if (!_group.canFinish()) {
-			return;
-		}
-		_group.finish();
-		_isConnected = _group.isConnected();
-		_connInfo = _group.getConnectionInfo();
-		super.okPressed();
+        if(!_connInfo.isConnected() && _mustConnect)
+        {
+            try
+            {
+                IConnectionProfile profile = ProfileUtil.getProfile(_connInfo.getConnectionProfileName());
+                ConnectAction connAction = new ConnectAction();
+                connAction.connect(profile, null);
+            }
+            catch (Exception e)
+            {
+                return;
+            }
+        }
+        if (!_mustConnect || (_mustConnect && _connInfo.isConnected()))
+        {
+            if (!_group.canFinish())
+            {
+                return;
+            }
+            _group.finish();
+            _isConnected = _group.isConnected();
+            _connInfo = _group.getConnectionInfo();
+            super.okPressed();
+        }
 	}
 
 	protected void createButtonsForButtonBar(Composite parent) {

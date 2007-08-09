@@ -51,6 +51,8 @@ public final class Messages extends NLS {
     public static String FileExecution_job_name;
     public static String SELECT_ALL_TITLE;
     public static String DESELECT_ALL_TITLE;
+    public static String UP_TITLE;
+    public static String DOWN_TITLE;
     public static String SelectProfileDialog_override_profile_tooltip;
 
     static {

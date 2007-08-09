@@ -132,7 +132,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         getDbNamesControl().removeAll();
         if (_profileName != null)
         {
-            List list = ProfileUtil.getDatabaseList(_profileName, (_style & STYLE_MUST_CONNECT) == STYLE_MUST_CONNECT );
+            List list = ProfileUtil.getDatabaseList(_profileName, false);
             Iterator iterator = list.iterator();
             while (iterator.hasNext())
             {
