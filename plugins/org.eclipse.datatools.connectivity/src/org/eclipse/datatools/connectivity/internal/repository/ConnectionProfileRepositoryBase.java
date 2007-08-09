@@ -410,4 +410,14 @@ public abstract class ConnectionProfileRepositoryBase implements
 				.toArray(new ICategory[rootCategories.size()]);
 	}
 
+	public boolean equals(Object obj) {
+		if(obj instanceof IConnectionProfileRepository){
+			return ((IConnectionProfileRepository) obj).getRepositoryProfile().getName()
+					.equals(getRepositoryProfile().getName());
+		}
+		
+		
+		return false;
+	}
+
 }

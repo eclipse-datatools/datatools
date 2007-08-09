@@ -864,7 +864,34 @@ public class InternalProfileManager {
 	}
 	
 	public void addRepository(IConnectionProfileRepository repository) {
+
+		checkDuplicatedRepository(repository);
+
 		mRepositories.add(repository);
+	}
+
+	/**
+	 * Since every time the client requests a connection from a repository, a
+	 * new repository instance is generated and in turns calls addRepository()
+	 * method to register itself into the list of the ProfileManager. However,
+	 * this would bring about dozens of duplicated instance of repositories and possibly
+	 * with different phases(e.g. after user modify the configuration and ping
+	 * again). The following method was mainly added to prevent such cases.
+	 * 
+	 * @param repository
+	 */
+	private void checkDuplicatedRepository(
+			IConnectionProfileRepository repository) {
+		
+		Collection cachedRepositoryList = new HashSet();
+		cachedRepositoryList.addAll(mRepositories);
+		for (Iterator itr = cachedRepositoryList.iterator(); itr.hasNext();) {
+			IConnectionProfileRepository eRepository = (IConnectionProfileRepository) itr
+					.next();
+			if (eRepository.equals(repository)) {
+				mRepositories.remove(eRepository);
+			}
+		}
 	}
 
 	public void removeRepository(IConnectionProfileRepository repository) {
