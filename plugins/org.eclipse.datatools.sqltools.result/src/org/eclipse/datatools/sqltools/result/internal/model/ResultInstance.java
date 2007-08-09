@@ -169,7 +169,15 @@ public class ResultInstance implements IResultInstance
     {
         if (_terminateHandler != null)
         {
-            _terminateHandler.run();
+        	// Can not block UI
+        	Thread th = new Thread()
+        	{
+				public void run()
+				{
+					_terminateHandler.run();
+				}
+        	};
+            th.start();
         }
         _status = OperationCommand.STATUS_TERMINATED;
         
