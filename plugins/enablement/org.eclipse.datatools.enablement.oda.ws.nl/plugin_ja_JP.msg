@@ -25,5 +25,5 @@ connection.profile.name=Web サービスのデータソースの接続プロファイル
 datasource.property.soapEndPoint=SOAP エンドポイント(&S)
 datasource.property.connectionClass=接続クラス(&C)
 datasource.property.connectionTimeOut=接続のタイムアウト(&T)
-dataset.property.xmlFileURI=XML ファイル
-dataset.property.xsdFileURI=スキーマファイル
+dataset.property.xmlFileURI=XML ファイル(&X)
+dataset.property.xsdFileURI=スキーマファイル(&S)

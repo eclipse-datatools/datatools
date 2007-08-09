@@ -25,5 +25,5 @@ connection.profile.name=Web Services 数据源连接配置文件
 datasource.property.soapEndPoint=SOAP 终结点(&S)
 datasource.property.connectionClass=连接类(&C)
 datasource.property.connectionTimeOut=连接超时(&T)
-dataset.property.xmlFileURI=XML 文件
-dataset.property.xsdFileURI=架构文件
+dataset.property.xmlFileURI=XML 文件(&X)
+dataset.property.xsdFileURI=架构文件(&S)

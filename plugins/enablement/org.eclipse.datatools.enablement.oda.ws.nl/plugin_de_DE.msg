@@ -25,5 +25,5 @@ connection.profile.name=Datenquellen-Verbindungsprofil für Web-Dienste
 datasource.property.soapEndPoint=&SOAP-Endpunkt
 datasource.property.connectionClass=Verbindungs&klasse
 datasource.property.connectionTimeOut=&Zeitüberschreitung für Verbindung
-dataset.property.xmlFileURI=XML-Datei
-dataset.property.xsdFileURI=Schema-Datei
+dataset.property.xmlFileURI=&XML-Datei
+dataset.property.xsdFileURI=&Schema-Datei
