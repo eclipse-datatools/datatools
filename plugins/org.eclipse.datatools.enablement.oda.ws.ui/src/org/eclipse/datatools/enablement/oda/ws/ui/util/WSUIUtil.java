@@ -225,9 +225,11 @@ public class WSUIUtil extends WSUtil
 
 		// no exception in conversion; go ahead and assign to specified
 		// dataSetDesign
-		paramDesign.setDerivedMetaData( true );
 		dataSetDesign.setParameters( paramDesign );
-
+		if ( isNull( paramDesign ) )
+			return;
+		
+		paramDesign.setDerivedMetaData( true );
 		if ( paramDesign.getParameterDefinitions( ).size( ) > 0 )
 		{
 			WSConsole.getInstance( )
