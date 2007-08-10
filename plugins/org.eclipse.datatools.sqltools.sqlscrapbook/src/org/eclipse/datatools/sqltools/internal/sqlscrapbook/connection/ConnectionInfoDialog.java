@@ -178,11 +178,11 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
 	}
 
 	protected void okPressed() {
-        if(!_connInfo.isConnected() && _mustConnect)
+	    if(_mustConnect && _group.getConnectionInfo()!=null && !_group.getConnectionInfo().isConnected())
         {
             try
             {
-                IConnectionProfile profile = ProfileUtil.getProfile(_connInfo.getConnectionProfileName());
+                IConnectionProfile profile = ProfileUtil.getProfile(_group.getConnectionInfo().getConnectionProfileName());
                 ConnectAction connAction = new ConnectAction();
                 connAction.connect(profile, null);
             }
@@ -191,7 +191,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
                 return;
             }
         }
-        if (!_mustConnect || (_mustConnect && _connInfo.isConnected()))
+        if (!_mustConnect || (_group.getConnectionInfo()!=null && _group.getConnectionInfo().isConnected()))
         {
             if (!_group.canFinish())
             {
