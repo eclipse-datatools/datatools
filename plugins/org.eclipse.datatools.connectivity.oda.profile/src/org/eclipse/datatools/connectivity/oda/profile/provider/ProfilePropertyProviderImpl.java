@@ -95,6 +95,9 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     protected IConnectionProfile getConnectionProfile( Properties candidateProperties,
             Object connPropContext ) 
     {
+        if( candidateProperties == null || candidateProperties.isEmpty() )
+            return null;
+        
         String profileName = getProfileName( candidateProperties );
         if( profileName == null )
             return null;    // no external profile is specified in properties

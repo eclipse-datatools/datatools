@@ -19,8 +19,7 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
-import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.ExtensionExplorer;
-import org.eclipse.datatools.connectivity.oda.consumer.util.manifest.PropertyProviderManifest;
+import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 
 /**
  * Handles ODA connection properties and the
@@ -30,6 +29,12 @@ class ConnectionPropertyHandler extends OdaObject
 {
     private String m_consumerApplId;
     private Object m_connPropContext;
+    private IPropertyProvider m_propertyProvider;
+    
+    ConnectionPropertyHandler( Object context )
+    {
+        processConsumerAppContext( context );
+    }
     
     /**
      * Returns the ODA consumer application id, mapped to the
@@ -58,7 +63,7 @@ class ConnectionPropertyHandler extends OdaObject
      * in the application context.
      * @param context   connection application context set by the consumer application
      */
-    void processConsumerAppContext( Object context )
+    private void processConsumerAppContext( Object context )
     {
         final String methodName = "ConnectionPropertyHandler.processConsumerAppContext( " + //$NON-NLS-1$
                                     context + " )\t"; //$NON-NLS-1$
@@ -130,27 +135,12 @@ class ConnectionPropertyHandler extends OdaObject
     private IPropertyProvider getExtensionPropertyProvider()
         throws OdaException
     {
-        final String methodName = "ConnectionPropertyHandler.getExtensionPropertyProvider()\t"; //$NON-NLS-1$
-
-        String applicationId = getConsumerApplicationId();
-        if( applicationId == null || applicationId.length() == 0 )
+        if( m_propertyProvider == null )
         {
-            log( methodName, "No ODA consumer application id specified in application context." ); //$NON-NLS-1$
-            return null;    // no consumer application id specified in appContext
+            String applicationId = getConsumerApplicationId();
+            m_propertyProvider = ProviderUtil.createPropertyProvider( applicationId );
         }
-        
-        PropertyProviderManifest providerManifest = 
-            ExtensionExplorer.getInstance().getPropertyProviderManifest( applicationId );
-        if( providerManifest == null )
-        {
-            log( methodName, "No IPropertyProvider found for " + applicationId ); //$NON-NLS-1$
-            return null;    // no extension defined by application
-        }
-          
-        IPropertyProvider extnProvider = providerManifest.createProvider();
-        log( methodName, "Found IPropertyProvider " + extnProvider  //$NON-NLS-1$
-                            + " for " + applicationId ); //$NON-NLS-1$
-        return extnProvider;
+        return m_propertyProvider;
     }
 
 }

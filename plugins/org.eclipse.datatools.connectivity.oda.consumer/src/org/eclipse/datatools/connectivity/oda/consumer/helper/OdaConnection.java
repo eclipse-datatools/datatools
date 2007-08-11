@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -721,7 +721,7 @@ public class OdaConnection extends OdaObject
 	 */
 	private void processConsumerAppContext( Object context )
 	{
-        getPropertyHandler().processConsumerAppContext( context );
+	    m_propertyHandler = new ConnectionPropertyHandler( context );
 	}
 	
     /**
@@ -730,7 +730,7 @@ public class OdaConnection extends OdaObject
     protected ConnectionPropertyHandler getPropertyHandler()
     {
         if( m_propertyHandler == null )
-            m_propertyHandler = new ConnectionPropertyHandler();
+            m_propertyHandler = new ConnectionPropertyHandler( null );
         return m_propertyHandler;
     }
     
