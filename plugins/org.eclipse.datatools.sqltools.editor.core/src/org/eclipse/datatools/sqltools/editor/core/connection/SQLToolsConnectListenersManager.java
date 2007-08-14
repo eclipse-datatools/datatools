@@ -56,7 +56,13 @@ public class SQLToolsConnectListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            okToClose = ((ISQLToolsConnectListener) listeners[i]).okToClose(event);
+            try
+            {
+                okToClose = ((ISQLToolsConnectListener) listeners[i]).okToClose(event);
+            }
+            catch (Exception e)
+            {
+            }
             if (!okToClose)
             {
                 return okToClose;
@@ -70,7 +76,13 @@ public class SQLToolsConnectListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsConnectListener) listeners[i]).aboutToClose(event);
+            try
+            {
+                ((ISQLToolsConnectListener) listeners[i]).aboutToClose(event);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 
@@ -79,7 +91,13 @@ public class SQLToolsConnectListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsConnectListener) listeners[i]).profileConnected(event);
+            try
+            {
+                ((ISQLToolsConnectListener) listeners[i]).profileConnected(event);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 
@@ -88,7 +106,13 @@ public class SQLToolsConnectListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsConnectListener) listeners[i]).closeConnection(event);
+            try
+            {
+                ((ISQLToolsConnectListener) listeners[i]).closeConnection(event);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 }

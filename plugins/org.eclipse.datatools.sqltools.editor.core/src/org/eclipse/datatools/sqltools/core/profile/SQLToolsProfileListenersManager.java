@@ -64,7 +64,13 @@ public class SQLToolsProfileListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsProfileListener) listeners[i]).profileAdded(profile);
+            try
+            {
+                ((ISQLToolsProfileListener) listeners[i]).profileAdded(profile);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 
@@ -73,17 +79,30 @@ public class SQLToolsProfileListenersManager
         Object[] listeners = _listeners.getListeners();
         for (int i = 0; i < listeners.length; i++)
         {
-            ((ISQLToolsProfileListener) listeners[i]).profileDeleted(profile);
+            try
+            {
+                ((ISQLToolsProfileListener) listeners[i]).profileDeleted(profile);
+            }
+            catch (Exception e)
+            {
+            }
         }
     }
 
-    public void fireProfileChanged(IConnectionProfile profile, String oldName,
-			String oldDesc, Boolean oldAutoConnect, boolean onlyNameChanged,
-			ConnectProfile oldProfile) {
-		Object[] listeners = _listeners.getListeners();
-		for (int i = 0; i < listeners.length; i++) {
-			((ISQLToolsProfileListener) listeners[i]).profileChanged(profile,
-					oldName, oldDesc, oldAutoConnect, onlyNameChanged, oldProfile);
-		}
-	}
+    public void fireProfileChanged(IConnectionProfile profile, String oldName, String oldDesc, Boolean oldAutoConnect,
+            boolean onlyNameChanged, ConnectProfile oldProfile)
+    {
+        Object[] listeners = _listeners.getListeners();
+        for (int i = 0; i < listeners.length; i++)
+        {
+            try
+            {
+                ((ISQLToolsProfileListener) listeners[i]).profileChanged(profile, oldName, oldDesc, oldAutoConnect,
+                        onlyNameChanged, oldProfile);
+            }
+            catch (Exception e)
+            {
+            }
+        }
+    }
 }
