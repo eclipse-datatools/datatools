@@ -15,6 +15,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.profile.SQLToolsProfileProxyListener;
 import org.eclipse.datatools.sqltools.internal.core.ControlConnectionManager;
@@ -76,6 +78,10 @@ public class EditorCorePlugin extends AbstractUIPlugin {
 	 * This method is called when the plug-in is stopped
 	 */
 	public void stop(BundleContext context) throws Exception {
+        if (_controlConnectionManager == null)
+        {
+            RefreshManager.getInstance().removeListener(null, (ICatalogObjectListener)_controlConnectionManager);
+        }
 		super.stop(context);
 		plugin = null;
 	}
@@ -102,7 +108,9 @@ public class EditorCorePlugin extends AbstractUIPlugin {
     {
         if (getDefault()._controlConnectionManager == null)
         {
-            getDefault()._controlConnectionManager = new ControlConnectionManager();
+            ControlConnectionManager controlConnectionManager = new ControlConnectionManager();
+			getDefault()._controlConnectionManager = controlConnectionManager;
+            RefreshManager.getInstance().AddListener(null, controlConnectionManager);
         }
         return getDefault()._controlConnectionManager;
     }

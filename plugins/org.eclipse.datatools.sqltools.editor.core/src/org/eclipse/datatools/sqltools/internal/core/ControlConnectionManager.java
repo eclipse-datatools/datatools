@@ -71,7 +71,6 @@ public class ControlConnectionManager implements IControlConnectionManager, ICat
     Map                        _resourceDisposeListeners   = new Hashtable();
     
     public ControlConnectionManager() {
-    	RefreshManager.getInstance().AddListener(null, this);
 	}
     
     /* (non-Javadoc)

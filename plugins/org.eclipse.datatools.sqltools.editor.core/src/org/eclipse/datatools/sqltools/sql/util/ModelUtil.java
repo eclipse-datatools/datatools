@@ -31,7 +31,9 @@ import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
@@ -39,6 +41,7 @@ import org.eclipse.datatools.sqltools.core.DatabaseVendorDefinitionId;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 import org.eclipse.datatools.sqltools.sql.reference.internal.Datatype;
 import org.eclipse.emf.common.util.EList;
@@ -442,7 +445,15 @@ public class ModelUtil {
             {
                 if (refresh)
                 {
-                    ((ICatalogObject) schema).refresh();
+                	if (schema instanceof ICatalogObject2)
+                	{
+                		String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__TABLES));
+                		((ICatalogObject2) schema).refresh(context);
+                	}
+                	else
+                	{
+                		((ICatalogObject) schema).refresh();
+                	}
                 }
                 for (Iterator iter = schema.getTables().iterator(); iter.hasNext();)
                 {
@@ -494,7 +505,15 @@ public class ModelUtil {
             {
                 if (refresh)
                 {
-                    ((ICatalogObject) db).refresh();
+                	if (db instanceof ICatalogObject2)
+                	{
+                		String context = ((ICatalogObject2) db).getRefreshContext(new Integer(SQLSchemaPackage.DATABASE__EVENTS));
+                		((ICatalogObject2) db).refresh(context);
+                	}
+                	else
+                	{
+                		((ICatalogObject) db).refresh();
+                	}
                 }
                 EList events = db.getEvents();
                 for (Iterator iter = events.iterator(); iter.hasNext();)
@@ -542,7 +561,15 @@ public class ModelUtil {
                         {
                             if (refresh && table instanceof ICatalogObject)
                             {
-                                ((ICatalogObject) table).refresh();
+                            	if (table instanceof ICatalogObject2)
+                            	{
+                            		String context = ((ICatalogObject2) table).getRefreshContext(new Integer(SQLTablesPackage.TABLE__TRIGGERS));
+                            		((ICatalogObject2) table).refresh(context);
+                            	}
+                            	else
+                            	{
+                            		((ICatalogObject) table).refresh();
+                            	}
                             }
                             EList triggers = table.getTriggers();
                             for (Iterator itera = triggers.iterator(); itera.hasNext();)
@@ -563,7 +590,15 @@ public class ModelUtil {
                 {
                     if (refresh)
                     {
-                        ((ICatalogObject) schema).refresh();
+                    	if (schema instanceof ICatalogObject2)
+                    	{
+                    		String context = ((ICatalogObject2) schema).getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                    		((ICatalogObject2) schema).refresh(context);
+                    	}
+                    	else
+                    	{
+                    		((ICatalogObject) schema).refresh();
+                    	}
                     }
                     EList routines = schema.getRoutines();
                     for (Iterator iter = routines.iterator(); iter.hasNext();)
