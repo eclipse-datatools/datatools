@@ -91,8 +91,7 @@ public class LabelService implements ILabelService
 				if(configElements[j].getName().equals("contributor"))//$NON-NLS-1$
 				{
 					LabelInfo li = new LabelInfo(configElements[j]);
-					String type = li.getType();
-					
+					String type = li.getType();			
                     if( !typeProvider.containsKey( type ) ) typeProvider.put( type, new ArrayList() ); 
                        ( ( List )typeProvider.get( type ) ).add( li );
 				}
@@ -180,12 +179,17 @@ public class LabelService implements ILabelService
             if (this.typeProvider.containsKey(name))
             {
                 Iterator labelInfoListIterator = ( ( List )typeProvider.get( name ) ).iterator();
+                LabelInfo returnLocalLabelInfo = null;
                 while( labelInfoListIterator.hasNext() )
                 {
                     LabelInfo localLabelInfo = ( LabelInfo )labelInfoListIterator.next();
-                    if( localLabelInfo.getSelector() == null ) return localLabelInfo;
+                    if( localLabelInfo.getSelector() == null ){
+                    	returnLocalLabelInfo = localLabelInfo;
+                    	continue;
+                    }
                     else if( localLabelInfo.getSelector().select( element ) ) return localLabelInfo;
                 }
+                return returnLocalLabelInfo;
             }
         }
         return null;
@@ -201,12 +205,18 @@ public class LabelService implements ILabelService
             if (this.typeProvider.containsKey(name))
             {
                 Iterator labelInfoListIterator = ( ( List )typeProvider.get( name ) ).iterator();
+                LabelInfo returnLabelInfo = null;
                 while( labelInfoListIterator.hasNext() )
                 {
                     LabelInfo localLabelInfo = ( LabelInfo )labelInfoListIterator.next();
-                    if( localLabelInfo.getSelector() == null ) return localLabelInfo;
+                    if( localLabelInfo.getSelector() == null ){
+                    	returnLabelInfo = localLabelInfo;
+                    	continue;
+//                    	return localLabelInfo;
+                    }
                     else if( localLabelInfo.getSelector().select( element ) ) return localLabelInfo;
                 }
+                return returnLabelInfo;
             }
         }
         return null;
@@ -253,7 +263,7 @@ public class LabelService implements ILabelService
         }
         return null;
     }
-
+    
     public String getDisplayType()
     {
         if (matchLabelService())
