@@ -17,7 +17,9 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -115,6 +117,13 @@ public class DriverInstance {
 	 */
 	public String getNamedProperty(String name) {
 		String rtnStr = ""; //$NON-NLS-1$
+		if (getTemplate() == null) {
+			handleException(null, 
+					ConnectivityPlugin.getDefault().getResourceString(
+							"drivers.error.finding.property.no.template",  //$NON-NLS-1$
+							new Object[] { name }));
+			return rtnStr;
+		}
 		if (this.mInstanceProps != null) {
 			String id = getTemplate().getPropertyIDFromName(name);
 			if (id != null) {
@@ -127,6 +136,11 @@ public class DriverInstance {
 		return rtnStr;
 	}
 
+	/**
+	 * Retrieve a property value by property id
+	 * @param id Property id
+	 * @return String Property value
+	 */
 	public String getNamedPropertyByID(String id) {
 		String rtnStr = ""; //$NON-NLS-1$
 		if (this.mInstanceProps != null) {
@@ -135,6 +149,14 @@ public class DriverInstance {
 			}
 		}
 		if (rtnStr == null) {
+			if (getTemplate() == null) {
+				handleException(null, 
+						ConnectivityPlugin.getDefault().getResourceString(
+								"drivers.error.finding.property.no.template",  //$NON-NLS-1$
+								new Object[] { id }));
+				rtnStr = ""; //$NON-NLS-1$
+				return rtnStr;
+			}
 			rtnStr = getTemplate().getPropertyValueFromId(id);
 		}
 		return rtnStr;
@@ -240,4 +262,26 @@ public class DriverInstance {
 		return getId().hashCode();
 	}
 	
+	/**
+	 * Logs an exception
+	 * @param exception
+	 * @param message
+	 */
+	public void handleException(Throwable exception, String message) {
+		ConnectivityPlugin
+				.getDefault()
+				.log(
+						new Status(
+								Status.ERROR,
+								ConnectivityPlugin.getDefault()
+										.getBundle().getSymbolicName(),
+								-1,
+								ConnectivityPlugin
+										.getDefault()
+										.getResourceString(
+												"plugin.internal_error", //$NON-NLS-1$
+												new Object[] { message }),
+								exception));
+	}
+
 }
