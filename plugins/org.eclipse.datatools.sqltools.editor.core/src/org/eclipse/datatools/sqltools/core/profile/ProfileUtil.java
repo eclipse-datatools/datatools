@@ -488,7 +488,15 @@ public class ProfileUtil
     {
         try {
             IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
-            if (!profile.isConnected())
+            IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
+            IConnection ic = mc.getConnection();
+            if (ic == null)
+            {
+                return null;
+            }
+            //during the profile connected event notification, 
+            //IManagedConnection is connected while IConnectionProfile is not 
+            if (!mc.isConnected())
             {
                 if (connect)
                 {
@@ -498,12 +506,6 @@ public class ProfileUtil
                 {
                     return null;
                 }
-            }
-            IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
-            IConnection ic = mc.getConnection();
-            if (ic == null)
-            {
-                return null;
             }
             Object rawConn = ic.getRawConnection();
             if (rawConn instanceof ConnectionInfo)
