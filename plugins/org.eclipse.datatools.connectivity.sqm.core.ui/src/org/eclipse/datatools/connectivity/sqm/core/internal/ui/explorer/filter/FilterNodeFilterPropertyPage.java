@@ -24,6 +24,7 @@ public class FilterNodeFilterPropertyPage extends ConnectionFilterPropertyPage {
 
 	public FilterNodeFilterPropertyPage() {
 		super();
+		//setHideSelectionOption(true);
 	}
 
 	public void setElement(IAdaptable element) {

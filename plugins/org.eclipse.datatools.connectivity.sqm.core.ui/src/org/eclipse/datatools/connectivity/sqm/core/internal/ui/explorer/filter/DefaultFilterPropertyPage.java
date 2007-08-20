@@ -19,6 +19,7 @@ public abstract class DefaultFilterPropertyPage extends ConnectionFilterProperty
 
 	public DefaultFilterPropertyPage() {
 		super();
+		setHideSelectionOption(true);
 	}
 
 	protected ConnectionFilter getConnectionFilter() {

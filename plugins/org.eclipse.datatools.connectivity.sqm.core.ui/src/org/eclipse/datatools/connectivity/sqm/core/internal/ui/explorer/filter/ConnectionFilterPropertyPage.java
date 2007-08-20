@@ -54,6 +54,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			.getResourceLoader();
 
 	protected ISelection selection;
+	
+	private Label descriptionLabel;
 
 	private Button disableFilterCheckbox;
 
@@ -110,14 +112,19 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 	private static final String SELECTION_ONLY_MESSAGE = resource
 			.queryString("_UI_DESCRIPTION_SELECTION_ONLY"); //$NON-NLS-1$
-
+	
+	private static final String EXPRESSION_ONLY_MESSAGE = resource
+		.queryString("_UI_DESCRIPTION_EXPRESSION_ONLY"); //$NON-NLS-1$
+	
 	private boolean hideExpressionOption = false;
+	
+	private boolean hideSelectionOption = false;
 	
 	protected String defaultTitleText = "Connection Filter Properties";
 
 	public ConnectionFilterPropertyPage() {
 		super();
-		setDescription(DEFAULT_MESSAGE);
+//		setDescription(DEFAULT_MESSAGE);
 		setTitle(getDefaultPageTitle());
 	}
 
@@ -162,18 +169,20 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	}
 
 	private void enableSelectionGroupControls(boolean isEnabled) {
-		selectionGroup.setEnabled(isEnabled);
-		selectionPredicate.setEnabled(isEnabled);
-		selectionTable.setEnabled(isEnabled);
-		selectAllButton.setEnabled(isEnabled);
-		deselectAllButton.setEnabled(isEnabled);
-		TableItem[] tableItems = selectionTable.getItems();
-		int tableItemCount = tableItems.length;
-		for (int index = 0; index < tableItemCount; index++) {
-			tableItems[index].setGrayed(!isEnabled);
-		}
-		if (isEnabled && !isSelectionListPopulated) {
-			populateSelectionTable();
+		if (!hideSelectionOption) {
+			selectionGroup.setEnabled(isEnabled);
+			selectionPredicate.setEnabled(isEnabled);
+			selectionTable.setEnabled(isEnabled);
+			selectAllButton.setEnabled(isEnabled);
+			deselectAllButton.setEnabled(isEnabled);
+			TableItem[] tableItems = selectionTable.getItems();
+			int tableItemCount = tableItems.length;
+			for (int index = 0; index < tableItemCount; index++) {
+				tableItems[index].setGrayed(!isEnabled);
+			}
+			if (isEnabled && !isSelectionListPopulated) {
+				populateSelectionTable();
+			}
 		}
 	}
 
@@ -181,7 +190,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		if (!hideExpressionOption) {
 			if (isEnabled) {
 				expressionRadioButton.setEnabled(true);
-				selectionRadioButton.setEnabled(true);
+				if (!hideSelectionOption)
+					selectionRadioButton.setEnabled(true);
 				if (expressionRadioButton.getSelection()) {
 					enableSelectionGroupControls(false);
 					enableExpressionGroupControls(true);
@@ -195,7 +205,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 				enableExpressionGroupControls(false);
 				enableSelectionGroupControls(false);
 				expressionRadioButton.setEnabled(false);
-				selectionRadioButton.setEnabled(false);
+				if (!hideSelectionOption)
+					selectionRadioButton.setEnabled(false);
 			}
 		}
 		else {
@@ -218,9 +229,29 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 		GridData gd = null;
 
+		descriptionLabel = new Label(composite, SWT.WRAP);
+		descriptionLabel.setText(DEFAULT_MESSAGE);
+		gd = new GridData();
+		gd.verticalAlignment = GridData.BEGINNING;
+		gd.horizontalIndent = -5;
+		descriptionLabel.setLayoutData(gd);
+		
+		Label spacer = new Label ( composite, SWT.NONE);
+		spacer.setText(" ");
+		gd = new GridData();
+		gd.verticalAlignment = GridData.BEGINNING;
+		spacer.setLayoutData(gd);
+
 		if (hideExpressionOption) {
 			DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;
-			setDescription(DEFAULT_MESSAGE);
+			this.setDescription(DEFAULT_MESSAGE);
+		}
+		else if (hideSelectionOption) {
+			DEFAULT_MESSAGE = EXPRESSION_ONLY_MESSAGE;
+			this.setDescription(DEFAULT_MESSAGE);
+		}
+		else {
+			this.setDescription(DEFAULT_MESSAGE);
 		}
 
 		if (!hideExpressionOption) {
@@ -269,56 +300,58 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			expressionField = new Text(expressionGroup, SWT.BORDER);
 			gd = new GridData(GridData.FILL_HORIZONTAL);
 			expressionField.setLayoutData(gd);
+		}
 
+		if (!hideSelectionOption) {
 			selectionRadioButton = new Button(composite, SWT.RADIO);
 			selectionRadioButton.setText(resource
 					.queryString("_UI_RADIO_BUTTON_SELECTION")); //$NON-NLS-1$
 			gd = new GridData();
 			gd.verticalAlignment = GridData.BEGINNING;
 			selectionRadioButton.setLayoutData(gd);
+
+			selectionGroup = new Group(composite, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 2;
+			layout.verticalSpacing = 5;
+			selectionGroup.setLayout(layout);
+			gd = new GridData(GridData.FILL_BOTH | GridData.GRAB_VERTICAL);
+			selectionGroup.setLayoutData(gd);
+	
+			selectionPredicate = new Combo(selectionGroup, SWT.READ_ONLY);
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 2;
+			selectionPredicate.setLayoutData(gd);
+			INCLUDE_ITEMS_TEXT = resource.queryString("_UI_COMBO_INCLUDE_ITEMS"); //$NON-NLS-1$
+			EXCLUDE_ITEMS_TEXT = resource.queryString("_UI_COMBO_EXCLUDE_ITEMS"); //$NON-NLS-1$
+			selectionPredicate.add(INCLUDE_ITEMS_TEXT);
+			selectionPredicate.add(EXCLUDE_ITEMS_TEXT);
+	
+			selectionTable = new Table(selectionGroup, SWT.CHECK | SWT.BORDER);
+			gd = new GridData(GridData.FILL_BOTH);
+			selectionTable.setLayoutData(gd);
+	
+			Composite buttonComposite = new Composite(selectionGroup, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 1;
+			layout.verticalSpacing = 5;
+			buttonComposite.setLayout(layout);
+			buttonComposite.setLayoutData(new GridData(GridData.FILL_VERTICAL
+					| GridData.VERTICAL_ALIGN_BEGINNING));
+	
+			selectAllButton = new Button(buttonComposite, SWT.NONE);
+			selectAllButton.setText(resource.queryString("_UI_BUTTON_SELECT_ALL")); //$NON-NLS-1$
+			selectAllButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
+					| GridData.VERTICAL_ALIGN_BEGINNING));
+	
+			deselectAllButton = new Button(buttonComposite, SWT.NONE);
+			deselectAllButton.setText(resource
+					.queryString("_UI_BUTTON_DESELECT_ALL")); //$NON-NLS-1$
+			deselectAllButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
+					| GridData.VERTICAL_ALIGN_BEGINNING));
 		}
-
-		selectionGroup = new Group(composite, SWT.NONE);
-		layout = new GridLayout();
-		layout.numColumns = 2;
-		layout.verticalSpacing = 5;
-		selectionGroup.setLayout(layout);
-		gd = new GridData(GridData.FILL_BOTH | GridData.GRAB_VERTICAL);
-		selectionGroup.setLayoutData(gd);
-
-		selectionPredicate = new Combo(selectionGroup, SWT.READ_ONLY);
-		gd = new GridData();
-		gd.verticalAlignment = GridData.BEGINNING;
-		gd.horizontalSpan = 2;
-		selectionPredicate.setLayoutData(gd);
-		INCLUDE_ITEMS_TEXT = resource.queryString("_UI_COMBO_INCLUDE_ITEMS"); //$NON-NLS-1$
-		EXCLUDE_ITEMS_TEXT = resource.queryString("_UI_COMBO_EXCLUDE_ITEMS"); //$NON-NLS-1$
-		selectionPredicate.add(INCLUDE_ITEMS_TEXT);
-		selectionPredicate.add(EXCLUDE_ITEMS_TEXT);
-
-		selectionTable = new Table(selectionGroup, SWT.CHECK | SWT.BORDER);
-		gd = new GridData(GridData.FILL_BOTH);
-		selectionTable.setLayoutData(gd);
-
-		Composite buttonComposite = new Composite(selectionGroup, SWT.NONE);
-		layout = new GridLayout();
-		layout.numColumns = 1;
-		layout.verticalSpacing = 5;
-		buttonComposite.setLayout(layout);
-		buttonComposite.setLayoutData(new GridData(GridData.FILL_VERTICAL
-				| GridData.VERTICAL_ALIGN_BEGINNING));
-
-		selectAllButton = new Button(buttonComposite, SWT.NONE);
-		selectAllButton.setText(resource.queryString("_UI_BUTTON_SELECT_ALL")); //$NON-NLS-1$
-		selectAllButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
-				| GridData.VERTICAL_ALIGN_BEGINNING));
-
-		deselectAllButton = new Button(buttonComposite, SWT.NONE);
-		deselectAllButton.setText(resource
-				.queryString("_UI_BUTTON_DESELECT_ALL")); //$NON-NLS-1$
-		deselectAllButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
-				| GridData.VERTICAL_ALIGN_BEGINNING));
-
+			
 		disableFilterCheckbox = new Button(composite, SWT.CHECK);
 		disableFilterCheckbox.setText(resource
 				.queryString("_UI_CHECKBOX_DISABLE_FILTER")); //$NON-NLS-1$
@@ -332,24 +365,29 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		disableFilterCheckbox.addListener(SWT.Selection, this);
 		if (!hideExpressionOption) {
 			expressionRadioButton.addListener(SWT.Selection, this);
-			selectionRadioButton.addListener(SWT.Selection, this);
+			if (!hideSelectionOption)
+				selectionRadioButton.addListener(SWT.Selection, this);
 			expressionField.addListener(SWT.Modify, this);
 		}
-		selectionTable.addListener(SWT.Selection, this);
-		selectionPredicate.addListener(SWT.Selection, this);
-		selectAllButton.addListener(SWT.Selection, this);
-		deselectAllButton.addListener(SWT.Selection, this);
+		if (!hideSelectionOption) {
+			selectionTable.addListener(SWT.Selection, this);
+			selectionPredicate.addListener(SWT.Selection, this);
+			selectAllButton.addListener(SWT.Selection, this);
+			deselectAllButton.addListener(SWT.Selection, this);
+		}
 
 		disableFilterCheckbox.setSelection(false);
 		if (!hideExpressionOption) {
 			expressionRadioButton.setSelection(true);
 			expressionPredicate.select(expressionPredicate
 					.indexOf(STARTS_WITH_TEXT));
-			selectionPredicate.select(selectionPredicate
+			if (!hideSelectionOption) {
+				selectionPredicate.select(selectionPredicate
 					.indexOf(INCLUDE_ITEMS_TEXT));
-			enableSelectionGroupControls(false);
+				enableSelectionGroupControls(false);
+			}
 		}
-		else {
+		else if (!hideSelectionOption) {
 			selectionPredicate.select(selectionPredicate
 					.indexOf(INCLUDE_ITEMS_TEXT));
 		}
@@ -361,7 +399,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 	protected void initializeValues() {
 		isSelectionListPopulated = false;
-		selectionTable.removeAll();
+		if (!hideSelectionOption)
+			selectionTable.removeAll();
 
 		ConnectionFilter connFilter = getConnectionFilter();
 
@@ -370,7 +409,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			String predicate = connFilter.getPredicate();
 			if (!hideExpressionOption && isPredicateAnExpression(predicate)) {
 				expressionRadioButton.setSelection(true);
-				selectionRadioButton.setSelection(false);
+				if (!hideSelectionOption)
+					selectionRadioButton.setSelection(false);
 				expressionPredicate.select(expressionPredicate
 						.indexOf(findExpressionPredicate(predicate)));
 				expressionField.setText(findExpressionValue(predicate));
@@ -378,15 +418,18 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			}
 			else {
 				if (!hideExpressionOption) {
-					selectionRadioButton.setSelection(true);
+					if (!hideSelectionOption)
+						selectionRadioButton.setSelection(true);
 					expressionRadioButton.setSelection(false);
 				}
-				if (isPredicateNegated(predicate)) {
-					selectionPredicate.select(selectionPredicate
-							.indexOf(EXCLUDE_ITEMS_TEXT));
+				if (!hideSelectionOption) {
+					if (isPredicateNegated(predicate)) {
+						selectionPredicate.select(selectionPredicate
+								.indexOf(EXCLUDE_ITEMS_TEXT));
+					}
+					populateSelectionTable();
+					selectSelectionFilterItems(findSelectionFilterItems(predicate));
 				}
-				populateSelectionTable();
-				selectSelectionFilterItems(findSelectionFilterItems(predicate));
 				enableFilterSpecificationControls(true);
 			}
 		}
@@ -529,7 +572,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 					isValid = false;
 				}
 			}
-			else {
+			else if (!hideSelectionOption) {
 				TableItem[] items = selectionTable.getItems();
 				int itemCount = items.length;
 				boolean isItemSelected = false;
@@ -549,11 +592,11 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			}
 		}
 		if (isValid) {
-			setMessage(null);
-			setErrorMessage(null);
-			setDescription(DEFAULT_MESSAGE);
-			setTitle(getDefaultPageTitle());
-			setValid(isValid);
+			this.setMessage(null);
+			this.setErrorMessage(null);
+			this.setDescription(DEFAULT_MESSAGE);
+			this.setTitle(getDefaultPageTitle());
+			this.setValid(isValid);
 		}
 		return isValid;
 	}
@@ -599,7 +642,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 							+ IDENTIFIER_DELIMITER;
 				}
 			}
-			else {
+			else if (!hideSelectionOption){
 				String itemList = ""; //$NON-NLS-1$
 
 				// Generate Item list
@@ -722,10 +765,12 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
         disableFilterCheckbox.setSelection(true);
         expressionField.setText("");
         expressionPredicate.select(0);
-        selectionTable.removeAll();
-        selectionPredicate.select(0);
+        if (!hideSelectionOption) {
+        	selectionTable.removeAll();
+        	selectionPredicate.select(0);
+            selectionRadioButton.setSelection(false);
+        }
         expressionRadioButton.setSelection(true);
-        selectionRadioButton.setSelection(false);
         enableFilterSpecificationControls(false);
         setErrorMessage(null);
         setValid(true);
@@ -739,4 +784,19 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
     public String getDefaultPageTitle () {
     	return defaultTitleText;
     }
+    
+    public boolean getHideSelectionOption() {
+    	return hideSelectionOption;
+    }
+
+    public void setHideSelectionOption(boolean flag) {
+    	hideSelectionOption = flag;
+    }
+
+	public void setDescription(String description) {
+		if (this.descriptionLabel != null) {
+			this.descriptionLabel.setText(description);
+		}
+	}
+
 }
