@@ -125,7 +125,7 @@ public class ExtensionExplorer
         // first check if specified dataSourceId's manifest
         // is already in cache, and use it
         DriverExtensionManifest aManifest =
-            (DriverExtensionManifest) m_bridgeManifests.get( driverType );
+            (DriverExtensionManifest) getBridgeManifests().get( driverType );
         if( aManifest != null )
             return aManifest;
         
@@ -141,7 +141,7 @@ public class ExtensionExplorer
         aManifest = new DriverExtensionManifest( extension );
         
         // keep it in cached collection
-        m_bridgeManifests.put( driverType, aManifest );
+        getBridgeManifests().put( driverType, aManifest );
         
         return aManifest;
     }
@@ -219,7 +219,7 @@ public class ExtensionExplorer
         // first check if specified dataSourceId's manifest
         // is already in cache, and use it
         PropertyProviderManifest aManifest =
-            (PropertyProviderManifest) m_propProviderManifests.get( applicationId );
+            (PropertyProviderManifest) getPropProviderManifests().get( applicationId );
         if( aManifest != null )
             return aManifest;
         
@@ -235,7 +235,7 @@ public class ExtensionExplorer
         aManifest = new PropertyProviderManifest( extension );
         
         // keep it in cached collection
-        m_propProviderManifests.put( applicationId, aManifest );
+        getPropProviderManifests().put( applicationId, aManifest );
         
         return aManifest;       
     }
@@ -264,6 +264,20 @@ public class ExtensionExplorer
 
         // expects only one, as defined in extension point schema
         return namedElements[0];
+    }
+
+    private Hashtable getBridgeManifests()
+    {
+        if( m_bridgeManifests == null )
+            m_bridgeManifests = new Hashtable();
+        return m_bridgeManifests;
+    }
+
+    private Hashtable getPropProviderManifests()
+    {
+        if( m_propProviderManifests == null )
+            m_propProviderManifests = new Hashtable();
+        return m_propProviderManifests;
     }
 
 }
