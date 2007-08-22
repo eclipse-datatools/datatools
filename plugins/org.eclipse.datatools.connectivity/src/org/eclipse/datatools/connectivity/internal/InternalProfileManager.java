@@ -376,7 +376,7 @@ public class InternalProfileManager {
 		Properties props = (Properties) source.getBaseProperties().clone();
 		IConnectionProfile newProfile = createProfile(newName, source
 				.getDescription(), source.getProviderId(), props,
-				repo == null ? new String() : repo.getName(), source
+				repo == null ? new String() : repo.getInstanceID(), source
 						.isAutoConnect());
 
 		// now that we have the base profile and its properties set,
@@ -406,7 +406,7 @@ public class InternalProfileManager {
 			IConnectionProfile repo, String newName){
 		Properties props = (Properties) source.getBaseProperties().clone();
 		ConnectionProfile newProfile = new ConnectionProfile(newName, source.getDescription(),
-				source.getProviderId(), repo == null ? new String() : repo.getName(), source
+				source.getProviderId(), repo == null ? new String() : repo.getInstanceID(), source
 						.isAutoConnect() , UUID.createUUID().toString());
 		newProfile.setBaseProperties(props);
 

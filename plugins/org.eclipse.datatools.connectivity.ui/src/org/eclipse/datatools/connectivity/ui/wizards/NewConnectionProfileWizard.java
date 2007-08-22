@@ -97,7 +97,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 						mProfilePage.getProfileName(), mProfilePage
 								.getProfileDescription(), mProviderID,
 						getProfileProperties(), repo == null ? null : repo
-								.getName(), mProfilePage.getAutoConnect(),
+								.getInstanceID(), mProfilePage.getAutoConnect(),
 						getShell()));
     	try 
     	{

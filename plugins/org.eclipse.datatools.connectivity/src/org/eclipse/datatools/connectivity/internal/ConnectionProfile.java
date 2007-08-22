@@ -181,7 +181,7 @@ public class ConnectionProfile extends PlatformObject implements
 		if (mParentProfile == null || mParentProfile.length() == 0) {
 			return null;
 		}
-		return ProfileManager.getInstance().getProfileByName(mParentProfile);
+		return ProfileManager.getInstance().getProfileByInstanceID(mParentProfile);
 	}
 
 	
@@ -196,7 +196,7 @@ public class ConnectionProfile extends PlatformObject implements
 			mParentProfile = null;
 		}
 		else {
-			mParentProfile = mRepository.getRepositoryProfile().getName();
+			mParentProfile = mRepository.getRepositoryProfile().getInstanceID();
 		}
 	}
 
