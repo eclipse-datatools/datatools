@@ -96,8 +96,8 @@ public class SQLCodeScanner extends RuleBasedScanner {
         rules.add( new EndOfLineRule( "--", commentToken )); //$NON-NLS-1$
 
         // Add rules for delimited identifiers and string literals.
-        rules.add( new SingleLineRule( "'", "'", stringToken, '\\' )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        rules.add( new SingleLineRule( "\"", "\"", delimitedIdentifierToken, '\\' )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        rules.add( new SingleLineRule( "'", "'", stringToken, (char) 0 )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        rules.add( new SingleLineRule( "\"", "\"", delimitedIdentifierToken, (char) 0 )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
         // Add generic whitespace rule.
         rules.add( new WhitespaceRule( new SQLWhiteSpaceDetector() ));

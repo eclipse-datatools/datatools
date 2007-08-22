@@ -172,10 +172,10 @@ public class SQLPartitionScanner extends RuleBasedPartitionScanner implements IS
 
 	private void initRules() {
 		//Add rule for identifier which is enclosed in double quotes.
-        _rules.add(new SingleLineRule("\"", "\"", _sqlDoubleQuotesIdentifier, '\\'));
+        _rules.add(new SingleLineRule("\"", "\"", _sqlDoubleQuotesIdentifier, (char) 0));
 
         //Add rule for SQL string.
-        _rules.add(new MultiLineRule("'", "'", _sqlString, '\\', true));
+        _rules.add(new MultiLineRule("'", "'", _sqlString, (char) 0, true));
 
         //comments
         _rules.add( new EndOfLineRule( "--", _comment));
