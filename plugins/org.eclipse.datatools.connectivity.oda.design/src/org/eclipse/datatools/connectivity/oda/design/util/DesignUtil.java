@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.10 2007/03/22 03:58:13 lchan Exp $
+ * $Id: DesignUtil.java,v 1.11 2007/04/11 02:59:53 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -37,6 +37,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
 /**
@@ -52,6 +53,9 @@ public class DesignUtil
     private static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.design.util"; //$NON-NLS-1$
     private static String sm_className;
     private static Logger sm_logger;
+    
+    private static final String CANT_DIAGNOSE_WARNING_MSG = "Unable to diagnose ODA design objects, possibly due to unavailablity of the EcorePlugin resource bundle";  //$NON-NLS-1$
+    
     
     // class has static methods only; not intended to instantiate
     private DesignUtil()
@@ -115,6 +119,9 @@ public class DesignUtil
      */
     public static Diagnostic diagnoseObject( EObject eObject )
     {
+        if( ! canDiagnose() )
+            return null;    // assumes eObject is valid
+        
         Diagnostician designDiagnostician = getDiagnostician();
         return designDiagnostician.validate( eObject );
     }
@@ -162,6 +169,29 @@ public class DesignUtil
         }
 
         return errMsg;
+    }
+    
+    /**
+     * When loading EMF plugins in a runtime web application in Eclipse 3.3, 
+     * Plugin.start() of 3 EMF plug-ins were not called. 
+     * This led to null bundles of those EMF plug-ins, and triggers NPE when tried 
+     * to use the associated resource bundles (Eclipse Bugzilla 200892).
+     * Before a fix is available, this work-around attempts to detect this use case,
+     * and logs a warning message. 
+     * The caller can then avoid the use of the emf.ecore Diagnostician class, 
+     * which triggers a NPE in accessing its resource bundle.
+     */
+    private static boolean canDiagnose()
+    {
+        final String methodName = "canDiagnose()"; //$NON-NLS-1$
+
+        boolean canDiagnose = ( EcorePlugin.getPlugin() != null &&
+                 EcorePlugin.getPlugin().getBundle() != null );
+        
+        if( ! canDiagnose )
+            getLogger().logp( Level.WARNING, sm_className, methodName, CANT_DIAGNOSE_WARNING_MSG );
+        
+        return canDiagnose;
     }
     
     /**
