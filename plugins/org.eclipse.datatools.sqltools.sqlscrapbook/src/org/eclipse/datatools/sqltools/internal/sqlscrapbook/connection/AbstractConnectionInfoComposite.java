@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
@@ -289,6 +290,10 @@ public abstract class AbstractConnectionInfoComposite extends Composite
                 //which is different with the database definition. 
                 DatabaseVendorDefinitionId driverId = ProfileUtil.getDatabaseVendorDefinitionId(profileName, false, false);
                 matchId = findDatabaseVendorDefinitionId(driverId);
+                if (matchId == null)
+                {
+                	matchId = SQLToolsFacade.getDefaultDatabaseVendorDefinitionId();
+                }
                 if (matchId != null)
                 {
                     getProfileTypeControl().setText(matchId.toString());
@@ -327,6 +332,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         else
         {
             DatabaseVendorDefinitionId selectedDbVendorId = new DatabaseVendorDefinitionId(dbVendorName);
+            boolean isDefault = selectedDbVendorId.equals(SQLToolsFacade.getDefaultDatabaseVendorDefinitionId());
             for (int i = 0; i < profiles.length; i++) {
                 DatabaseVendorDefinitionId cacheId = ProfileUtil.getDatabaseVendorDefinitionId(profiles[i], true,
                         true);
@@ -339,6 +345,18 @@ public abstract class AbstractConnectionInfoComposite extends Composite
                 {
                     //try to see whether this profile belongs to other db definition type
                     if (_supportedDBDefinitionIds.contains(cacheId))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        rightProfiles.add(profiles[i].getName());
+                    }
+                }
+                else if (isDefault)
+                {
+                    //try to see whether this profile belongs to other db definition type
+                    if (_supportedDBDefinitionIds.contains(cacheId) || _supportedDBDefinitionIds.contains(driverId))
                     {
                         continue;
                     }
@@ -565,7 +583,29 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     {
         if (names == null)
         {
-            names = SQLToolsFacade.getAllAvailableDBDefinitionNames();
+        	DBDefinitionFilterRegistry reg = DBDefinitionFilterRegistry.getInstance();
+        	ArrayList filtered = reg.getFilteredDefinitions();
+        	if (filtered != null && !filtered.isEmpty())
+        	{
+        		Collection ids = SQLToolsFacade.getAllAvailableDBDefinitionIds();
+        		for (Iterator it = ids.iterator(); it.hasNext();) {
+					DatabaseVendorDefinitionId id = (DatabaseVendorDefinitionId) it.next();
+					if (filtered.contains(id))
+					{
+						it.remove();
+					}
+				}
+        		names = new TreeSet();
+                for (Iterator it = ids.iterator(); it.hasNext();)
+                {
+                    DatabaseVendorDefinitionId id = (DatabaseVendorDefinitionId) it.next();
+                    names.add(id.toString());
+                }
+        	}
+        	else
+        	{
+        		names = SQLToolsFacade.getAllAvailableDBDefinitionNames();
+        	}
         }
         _supportedDBDefinitionNames = names;
         _supportedDBDefinitionIds = new HashSet();
