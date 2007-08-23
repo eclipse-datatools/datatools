@@ -83,4 +83,8 @@ public interface IConnectionProfileActionFilter extends IActionFilter {
 	public static final String PROFILE_PROPERTY_CONNECTION_STATE = "org.eclipse.datatools.connectivity.profile.property.connectionState"; //$NON-NLS-1$
 	public static final String CONNECTION_STATE = "connectionState"; //$NON-NLS-1$
 
+	public static final String PROFILE_PROPERTY_DB_VENDOR = "org.eclipse.datatools.connectivity.profile.property.dbVendor";	//$NON-NLS-1$
+	public static final String DB_VENDOR = "dbVendor";	//$NON-NLS-1$
+	public static final String PROFILE_PROPERTY_DB_VERSION = "org.eclipse.datatools.connectivity.profile.property.dbVersion";	//$NON-NLS-1$
+	public static final String DB_VERSION = "dbVersion";	//$NON-NLS-1$
 }

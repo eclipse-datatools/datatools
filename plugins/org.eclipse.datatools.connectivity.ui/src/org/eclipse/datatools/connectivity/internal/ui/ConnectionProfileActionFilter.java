@@ -32,7 +32,6 @@ public class ConnectionProfileActionFilter extends PropertyTester implements ICo
 		if (target == null || !(target instanceof IConnectionProfile)) {
 			return false;
 		}
-
 		IConnectionProfile profile = (IConnectionProfile) target;
 		if (name.equals(PROFILE_PROPERTY_PROFILE_TYPE_ID) || name.equals(TYPE_ID)) {
 			return profile.getProviderId().equals(value);
@@ -75,6 +74,14 @@ public class ConnectionProfileActionFilter extends PropertyTester implements ICo
 		}
 		else if (name.equals(PROFILE_PROPERTY_CONNECTION_STATE) || name.equals(CONNECTION_STATE)) {
 			return profile.getConnectionState() == getConnectionStateFromString(value);
+		}
+		else if (name.equals(PROFILE_PROPERTY_DB_VENDOR) || name.equals(DB_VENDOR)){
+			return profile.getBaseProperties().getProperty("org.eclipse.datatools.connectivity.db.vendor")	//$NON-NLS-1$	
+						.equals(value);
+		}
+		else if (name.equals(PROFILE_PROPERTY_DB_VERSION) || name.equals(DB_VERSION)){
+			return profile.getBaseProperties().getProperty("org.eclipse.datatools.connectivity.db.version")	//$NON-NLS-1$	
+						.equals(value);
 		}
 		else {
 			return false;

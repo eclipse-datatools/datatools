@@ -83,7 +83,7 @@
             class="org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileActionFilter"
             id="org.eclipse.datatools.connectivity.ui"
             namespace="org.eclipse.datatools.connectivity.profile.property"
-            properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID,connectionState"
+            properties="factoryID,isConnected,maintainConnection,supportsPing,hasExtendedProperties,id,extensionID,categoryID,containingViewID,connectionState,dbVendor,dbVersion"
             type="org.eclipse.datatools.connectivity.IConnectionProfile"/>
    </extension>
 
