@@ -6,7 +6,6 @@ package org.eclipse.datatools.sqltools.core;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.eclipse.jface.util.Assert;
 
@@ -106,7 +105,7 @@ public class ServerIdentifier
             }
             catch (UnknownHostException e)
             {
-            	EditorCorePlugin.getDefault().log(e);
+            	//EditorCorePlugin.getDefault().log(e);
             }
 
             if (protocol1.equals(protocol2) && host1.equals(host2) && port1.trim().equals(port2.trim()))
@@ -147,7 +146,7 @@ public class ServerIdentifier
         }
         catch (UnknownHostException e)
         {
-        	EditorCorePlugin.getDefault().log(e);
+        	//EditorCorePlugin.getDefault().log(e);
         }
         return _host.hashCode();
     }
