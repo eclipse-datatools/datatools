@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.11 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignUtil.java,v 1.12 2007/08/23 03:53:48 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -37,7 +37,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
 /**
@@ -53,9 +52,6 @@ public class DesignUtil
     private static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.design.util"; //$NON-NLS-1$
     private static String sm_className;
     private static Logger sm_logger;
-    
-    private static final String CANT_DIAGNOSE_WARNING_MSG = "Unable to diagnose ODA design objects, possibly due to unavailablity of the EcorePlugin resource bundle";  //$NON-NLS-1$
-    
     
     // class has static methods only; not intended to instantiate
     private DesignUtil()
@@ -183,7 +179,15 @@ public class DesignUtil
      */
     private static boolean canDiagnose()
     {
-        final String methodName = "canDiagnose()"; //$NON-NLS-1$
+        return true;
+        
+        /* below workaround assumes that EMF is used in 
+         * plugin mode, which is not necessarily true; 
+         * keep the code commented for now
+         */
+/*        
+        final String methodName = "canDiagnose()"; //$NON-NLS-1$   
+        final String CANT_DIAGNOSE_WARNING_MSG = "Unable to diagnose ODA design objects, possibly due to unavailablity of the EcorePlugin resource bundle";  //$NON-NLS-1$
 
         boolean canDiagnose = ( EcorePlugin.getPlugin() != null &&
                  EcorePlugin.getPlugin().getBundle() != null );
@@ -192,7 +196,7 @@ public class DesignUtil
             getLogger().logp( Level.WARNING, sm_className, methodName, CANT_DIAGNOSE_WARNING_MSG );
         
         return canDiagnose;
-    }
+*/    }
     
     /**
      * Converts the public and private properties defined in an 
