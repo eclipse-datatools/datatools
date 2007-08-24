@@ -115,20 +115,7 @@
                   relationship="right"
                   relative="org.eclipse.ui.editorss"
                   id="org.eclipse.ui.views.ContentOutline"/>	
-
-
-		<!-- Database Explorer as Fastview !-->
-          <view
-                  closeable="true"
-                  standalone="false"
-                  moveable="true"
-                  visible="true"
-                  showTitle="true"
-                  ratio="0.3"
-                  relationship="fast"
-                  relative="org.eclipse.debug.ui.DebugView"
-                  id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"/>                
-             
+          
              <!-- Add View Shortcuts !-->
             <viewShortcut id="org.eclipse.debug.ui.DebugView" />  
             <viewShortcut id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" />
