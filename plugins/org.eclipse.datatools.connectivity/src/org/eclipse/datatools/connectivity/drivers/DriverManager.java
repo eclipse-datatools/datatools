@@ -526,7 +526,7 @@ public class DriverManager {
 						OverrideTemplateDescriptor.getByDriverTemplate(template.getId());
 					if (otds != null && otds.length > 0) {
 						String temp =
-							otds[0].getPropertyValueFromId(id);
+							otds[0].getPropertyValueFromId(propid);
 						if (temp != null)
 							propvalue = temp;
 					}
