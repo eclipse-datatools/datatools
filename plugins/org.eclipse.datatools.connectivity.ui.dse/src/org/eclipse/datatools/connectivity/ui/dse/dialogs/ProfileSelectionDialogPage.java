@@ -32,6 +32,7 @@ import org.eclipse.datatools.connectivity.ui.dse.DSEPlugin;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.filters.DownToProfilesOnlyFilter;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.filters.ProfileCategoryFilter;
 import org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider;
+import org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileSorter;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -301,7 +302,7 @@ public class ProfileSelectionDialogPage extends
 			});
 		}
 		
-		mViewer.setSorter(new ViewerSorter());
+		mViewer.setSorter(new ConnectionProfileSorter());
 	}
 
 	/**
