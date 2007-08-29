@@ -661,7 +661,7 @@ public class ConnectionProfileMgmt {
 			else {
 				is = fis;
 			}
-			ConnectivityPlugin.getDefault().log("Opened file stream");
+			//ConnectivityPlugin.getDefault().log("Opened file stream");
 			InputSource source = new InputSource(is);
 			source.setEncoding("UTF-8"); //$NON-NLS-1$
 			Document document = null;
@@ -782,7 +782,7 @@ public class ConnectionProfileMgmt {
 			if (is != null)
 				try {
 					is.close();
-					ConnectivityPlugin.getDefault().log("Closed file stream");
+					//ConnectivityPlugin.getDefault().log("Closed file stream");
 				} catch (IOException e) {
 					throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
 							ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
