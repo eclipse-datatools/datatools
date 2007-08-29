@@ -37,6 +37,7 @@ import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignSessionUtilBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
@@ -48,6 +49,9 @@ import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
  */
 public class DesignSessionUtil extends DesignSessionUtilBase
 {
+    // logging variable
+    private static final String sm_className = DesignSessionUtil.class.getName();
+
     // class has static methods only; no need to instantiate
     private DesignSessionUtil()
     {
@@ -379,6 +383,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                             IResultSetMetaData md )
         throws OdaException
     {
+        final String methodName = "toResultSetColumnsDesign( IResultSetMetaData )"; //$NON-NLS-1$
         if( md == null || md.getColumnCount() == 0 )
             return null; // nothing to convert
         
@@ -408,19 +413,28 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                 columnAttrs.setPrecision( md.getPrecision(i) );
                 columnAttrs.setScale( md.getScale(i) );
                 
-                outAttrs.setLabel( md.getColumnLabel(i) );
+                String columnLabel = md.getColumnLabel(i);
+                outAttrs.setLabel( columnLabel );
 
                 formatHints.setDisplaySize( md.getColumnDisplayLength(i) );                
+                if( columnLabel != null )
+                    columnAttrs.setUiDisplayName( columnLabel );
             }
-            catch( UnsupportedOperationException e )
+            catch( UnsupportedOperationException ex )
             {
                 // ignore; optional attributes
-                // TODO - log info
+                // log info
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.info( sm_className, methodName, 
+                        "Some optional metadata of column " + i + " are not available.", ex ); //$NON-NLS-1$ //$NON-NLS-2$
             }
             catch( OdaException odaEx )
             {
                 // ignore; optional attributes
-                // TODO - log info
+                // log warning about exception
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, methodName, 
+                        "Some optional metadata of column " + i + " are not available.", odaEx ); //$NON-NLS-1$ //$NON-NLS-2$
             }
 
             columnDef.setAttributes( columnAttrs );
