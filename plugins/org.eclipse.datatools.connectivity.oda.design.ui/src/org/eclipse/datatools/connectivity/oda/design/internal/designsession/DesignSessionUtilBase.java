@@ -40,6 +40,10 @@ import org.eclipse.datatools.connectivity.oda.util.manifest.Property;
  */
 public class DesignSessionUtilBase
 {
+
+    // logging variable
+    private static final String sm_className = DesignSessionUtilBase.class.getName();
+
     // class has static methods only; no need to instantiate
     protected DesignSessionUtilBase()
     {
@@ -241,18 +245,26 @@ public class DesignSessionUtilBase
                     return;  // no more attributes, exit iteration
                 }
             }
-            catch( UnsupportedOperationException e )
+            catch( UnsupportedOperationException ex )
             {
                 // ignore; optional attributes
-                // TODO - log info
-                e.printStackTrace();
+                ex.printStackTrace();
+                // log info
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.info( sm_className, "toElementOptionalAttributes",  //$NON-NLS-1$
+                        "The optional metadata attribute " + (count - 1) +  //$NON-NLS-1$
+                        " of parameter " + i + " is not available.", ex ); //$NON-NLS-1$ //$NON-NLS-2$
             }
             catch( OdaException odaEx )
             {
                 // ignore; optional attributes
-                // TODO - log info
                 odaEx.printStackTrace();
-            }
+                // log warning about exception
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, "toElementOptionalAttributes",  //$NON-NLS-1$
+                        "The optional metadata attribute " + (count - 1) +  //$NON-NLS-1$
+                        " of parameter " + i + " is not available.", odaEx ); //$NON-NLS-1$ //$NON-NLS-2$
+           }
         }
     }
 

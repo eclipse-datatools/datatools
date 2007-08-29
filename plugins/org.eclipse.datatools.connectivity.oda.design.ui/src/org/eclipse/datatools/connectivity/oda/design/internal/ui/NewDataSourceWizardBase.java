@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
@@ -64,6 +65,9 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
 
     private static final String ODA_UI_EXT_PT = 
     	"org.eclipse.datatools.connectivity.oda.design.ui.dataSource"; //$NON-NLS-1$
+
+    // logging variable
+    private static final String sm_className = NewDataSourceWizardBase.class.getName();
     
     protected NewDataSourceWizardBase( String odaDataSourceId )
         throws OdaException
@@ -395,9 +399,12 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         {
             finishDataSourceDesign();
         }
-        catch( OdaException e )
+        catch( OdaException ex )
         {
-            // TODO error logging
+            // log warning about exception
+            DesignerLogger logger = DesignerLogger.getInstance( DesignerLogger.PLUGIN_LOGGER_NAME );
+            logger.warning( sm_className, "performFinish",  //$NON-NLS-1$
+                    "Caught exception while finishDataSourceDesign.", ex ); //$NON-NLS-1$
             return false;
         }
         
@@ -457,10 +464,14 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             newDesign.setName( getProfileName() );
             newDesign.setDisplayName( getProfileDescription() );
         }
-        catch( RuntimeException e ) 
+        catch( RuntimeException ex ) 
         {
             // ignore in case wizard profile page is not available
-            // TODO log error
+            // log warning about exception
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "createDataSourceDesign",  //$NON-NLS-1$
+                    "Caught exception while copying profile attributes from wizard profile page.", ex ); //$NON-NLS-1$
+
             newDesign.setName( getOdaDataSourceId() );
         }
         

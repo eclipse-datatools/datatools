@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetPageInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
@@ -43,6 +44,9 @@ public class DataSetWizardBase extends Wizard
     private DataSetDesign m_editDataSetDesign;
     private DesignerState m_responseDesignerState;
     private SessionStatus m_responseSessionStatus;
+
+    // logging variable
+    private static final String sm_className = DataSetWizardBase.class.getName();
 
     protected DataSetWizardBase()
     {
@@ -76,9 +80,12 @@ public class DataSetWizardBase extends Wizard
         {
             finishDataSetDesign();
         }
-        catch( OdaException e )
+        catch( OdaException ex )
         {
-            // TODO - error logging
+            // log warning about exception
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "performFinish",  //$NON-NLS-1$
+                    "Caught exception while finishDataSetDesign.", ex ); //$NON-NLS-1$
             return false;
         }
         return true;

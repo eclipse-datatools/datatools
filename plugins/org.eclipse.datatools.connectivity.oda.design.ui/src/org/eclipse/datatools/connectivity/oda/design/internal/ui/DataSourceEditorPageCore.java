@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
@@ -45,6 +46,9 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private Properties m_dataSourceProps;
     private DesignerState m_responseDesignerState;
     private Boolean m_setPingButtonVisible;
+
+    // logging variable
+    private static final String sm_className = DataSourceEditorPageCore.class.getName();
 
     /**
      * Sub-class may override this method to further update
@@ -368,10 +372,13 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         {
             editedDataSource = finishDataSourceDesign();
         }
-        catch( OdaException e )
+        catch( OdaException ex )
         {
-            // TODO error logging
             editedDataSource = null;
+            // log warning about exception
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "finishEditSession",  //$NON-NLS-1$
+                    "Caught exception while finishDataSourceDesign.", ex ); //$NON-NLS-1$
         }
             
         // update design session with edited data source design, which

@@ -59,6 +59,9 @@ public class DataSourceDesignSessionBase
     private boolean m_useProfileSelectionPage = USE_PROFILE_PAGE_DEFAULT_SETTING;
     private ProfileSelectionWizard m_profileSelectionWizard;
     private ProfileSelectionEditorPage m_profileEditorPage;
+
+    // logging variable
+    private static final String sm_className = DataSourceDesignSessionBase.class.getName();
     
     /** Not allowed to instantiate the class directly;
      *  must start a design session using a static start method
@@ -170,7 +173,6 @@ public class DataSourceDesignSessionBase
 
         if( m_editorPage != editorPage )
         {
-            // TODO - log warning if m_editorPage != null
             m_editorPage = editorPage;
         }
 
@@ -564,11 +566,14 @@ public class DataSourceDesignSessionBase
         {
             wizard = getExtendedWizard();
         }
-        catch( OdaException e )
+        catch( OdaException ex )
         {
-            // TODO - error logging
-            // wizard session has error
-            e.printStackTrace();
+            // wizard session has error;
+            // log as warning
+            ex.printStackTrace();
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "finishNewDataSource",  //$NON-NLS-1$
+                    "Caught exception while getting an extended wizard.", ex ); //$NON-NLS-1$
         }
         
         // up to wizard to validate whether it has a valid design to return
@@ -679,7 +684,10 @@ public class DataSourceDesignSessionBase
         }
         catch( OdaException ex )
         {
-            // TODO - log error
+            // log error
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.severe( sm_className, "finishEditDataSource",  //$NON-NLS-1$
+                    "Caught exception while getting an extended editor page.", ex ); //$NON-NLS-1$
             throw ex;    // editor page session has error
         }
         
@@ -854,10 +862,14 @@ public class DataSourceDesignSessionBase
                     OdaProfileExplorer.getInstance().getProfileByName( 
                         m_instanceName, m_storageFile );    // use default store if null is specified
             }
-            catch( OdaException e )
+            catch( OdaException ex )
             {
-                // TODO log warning
-                e.printStackTrace();
+                // log as warning
+                ex.printStackTrace();
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, "getInstanceByName",  //$NON-NLS-1$
+                        "Caught exception while getting an instance of connection profile by name (" +  //$NON-NLS-1$
+                        m_instanceName + ") from " + m_storageFile + " .", ex ); //$NON-NLS-1$ //$NON-NLS-2$
             } 
             return profileInstance;
         }
