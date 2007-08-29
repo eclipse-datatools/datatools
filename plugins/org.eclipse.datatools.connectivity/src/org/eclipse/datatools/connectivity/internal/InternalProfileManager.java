@@ -11,7 +11,11 @@
 package org.eclipse.datatools.connectivity.internal;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +45,7 @@ import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 
 /**
- * ProfileManger is a singleton class serverd as a helper class for connection
+ * ProfileManger is a singleton class serving as a helper class for connection
  * profiles access. It also caches connection profiles and only persists to
  * storage when changes made and at Eclipse shutdown.
  * 
@@ -58,7 +62,7 @@ public class InternalProfileManager {
 	private Set mRepositories = new HashSet();
 
 	private boolean mIsDirty = false;
-
+	
 	private ListenerList mProfileListeners = new ListenerList();
 	
 	private IPropertySetListener mPropertySetListener = new IPropertySetListener() {
@@ -370,6 +374,15 @@ public class InternalProfileManager {
 		return newProfile.getName();
 	}
 	
+	/**
+	 * Copy a connection profile
+	 * 
+	 * @param source
+	 * @param repo
+	 * @param newName
+	 * @return
+	 * @throws ConnectionProfileException
+	 */
 	public IConnectionProfile copyProfile(IConnectionProfile source,
 			IConnectionProfile repo, String newName)
 			throws ConnectionProfileException {
@@ -423,6 +436,7 @@ public class InternalProfileManager {
 		}
 		return newProfile;			
 	}
+	
 	/**
 	 * Add a connection profile object to the profiles cache. Throws
 	 * ConnectionProfileException if the new profile's name already exists in
@@ -487,6 +501,12 @@ public class InternalProfileManager {
 		}
 	}
 	
+	/**
+	 * Remove a profile from the list of profiles
+	 * 
+	 * @param profile
+	 * @throws ConnectionProfileException
+	 */
 	public void removeProfile(IConnectionProfile profile)
 			throws ConnectionProfileException {
 		if (profile.getParentProfile() != null) {
@@ -693,6 +713,10 @@ public class InternalProfileManager {
 		if (mIsDirty) {
 			try {
 				ConnectionProfileMgmt.saveCPs(getProfiles(false));
+
+				// backup to default backup file
+				backupProfilesData(null);
+				
 				setDirty(false);
 			}
 			catch (Exception e) {
@@ -702,7 +726,7 @@ public class InternalProfileManager {
 	}
 
 	/**
-	 * Register a listener for proifle operation
+	 * Register a listener for profile operation
 	 * 
 	 * @param listener
 	 */
@@ -738,8 +762,18 @@ public class InternalProfileManager {
 		IConnectionProfile[] scps;
 		IConnectionProfile[] dcps;
 
-		if (serverFile.exists()) {
+		// see if the default server file exists or we made a backup
+		if (serverFile.exists() || backupFileExists()) {
 			try {
+				
+				// If we crashed and the main file is gone, restore the backup
+				if (!serverFile.exists() && backupFileExists()) {
+					restoreFromBackupProfilesData();
+				}
+				
+				// Save a checkpoint in case of a crash
+				backupProfilesData(serverFile);
+				
 				scps = ConnectionProfileMgmt.loadCPs(serverFile);
 			}
 			catch (Exception e) {
@@ -753,7 +787,13 @@ public class InternalProfileManager {
 		if (defaultFile != null && defaultFile.exists()
 				&& defaultFile.lastModified() > serverFile.lastModified()) {
 			try {
+
 				dcps = ConnectionProfileMgmt.loadCPs(defaultFile);
+				
+				// save a checkpoint, which automatically creates
+				// a backup
+				saveChanges();
+				
 			}
 			catch (Exception e) {
 				ConnectivityPlugin.getDefault().log(e);
@@ -804,7 +844,58 @@ public class InternalProfileManager {
 		autoConnectProfiles();
 		addProfileListener(mProfileChangeListener);
 	}
+	
+	private void backupProfilesData ( File ioFile ) {
+		if (ioFile != null && ioFile.exists()) {
+			File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
+				.append(ConnectionProfileMgmt.BACKUP_FILENAME).toFile();
+			try {
+				copy(ioFile, backupFile);
+			} catch (IOException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
+		}
+		else {
+			File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
+				.append(ConnectionProfileMgmt.FILENAME).toFile();
+			backupProfilesData(serverFile);
+		}
+	}
+	
+    private void copy(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+    
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
+    }
 
+	private void restoreFromBackupProfilesData() {
+		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
+			.append(ConnectionProfileMgmt.FILENAME).toFile();
+		if (!serverFile.exists()) {
+			File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
+				.append(ConnectionProfileMgmt.BACKUP_FILENAME).toFile();
+			try {
+				copy(backupFile, serverFile);
+			} catch (IOException e) {
+				ConnectivityPlugin.getDefault().log(e);
+			}
+		}
+	}
+	
+	private boolean backupFileExists() {
+		File backupFile = ConnectivityPlugin.getDefault().getStateLocation()
+			.append(ConnectionProfileMgmt.BACKUP_FILENAME).toFile();
+		return backupFile.exists();
+	}
+	
 	public void fireProfileAdded(IConnectionProfile profile) {
 		Object[] ls = mProfileListeners.getListeners();
 		for (int i = 0; i < ls.length; ++i) {
@@ -863,6 +954,10 @@ public class InternalProfileManager {
 		mIsDirty = isDirty;
 	}
 	
+	/**
+	 * Add a repository to the cache
+	 * @param repository
+	 */
 	public void addRepository(IConnectionProfileRepository repository) {
 
 		checkDuplicatedRepository(repository);
@@ -894,6 +989,10 @@ public class InternalProfileManager {
 		}
 	}
 
+	/**
+	 * Remove a repository from the cache
+	 * @param repository
+	 */
 	public void removeRepository(IConnectionProfileRepository repository) {
 		mRepositories.remove(repository);
 	}

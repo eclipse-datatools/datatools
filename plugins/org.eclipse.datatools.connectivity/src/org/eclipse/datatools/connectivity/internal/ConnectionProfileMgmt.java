@@ -70,6 +70,8 @@ public class ConnectionProfileMgmt {
 
 	public final static String FILENAME = "ServerProfiles.dat"; //$NON-NLS-1$
 
+	public final static String BACKUP_FILENAME = "ServerProfiles.bak"; //$NON-NLS-1$
+
 	public final static String DEFAULTCP_FILENAME = "WorkSpaceServerConnectionProfiles.xml"; //$NON-NLS-1$
 
 	private final static String ROOTNAME = "DataTools.ServerProfiles"; //$NON-NLS-1$
@@ -648,16 +650,18 @@ public class ConnectionProfileMgmt {
 		throws CoreException 
 	{
 		IConnectionProfile retVal[] = null;
+		InputStream is = null;
 		try {
 			if (!file.exists())
 				return new IConnectionProfile[0];
-			InputStream is, fis = new FileInputStream(file);
+			FileInputStream fis = new FileInputStream(file);
 			if (isp != null) {
 				is = new CipherInputStream(fis, isp.createDecryptionCipher());
 			}
 			else {
 				is = fis;
 			}
+			ConnectivityPlugin.getDefault().log("Opened file stream");
 			InputSource source = new InputSource(is);
 			source.setEncoding("UTF-8"); //$NON-NLS-1$
 			Document document = null;
@@ -774,6 +778,15 @@ public class ConnectionProfileMgmt {
 //		} catch (SAXException e) {
 //			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
 //					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+		} finally {
+			if (is != null)
+				try {
+					is.close();
+					ConnectivityPlugin.getDefault().log("Closed file stream");
+				} catch (IOException e) {
+					throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+							ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
+				}
 		}
 		return retVal;
 	}
