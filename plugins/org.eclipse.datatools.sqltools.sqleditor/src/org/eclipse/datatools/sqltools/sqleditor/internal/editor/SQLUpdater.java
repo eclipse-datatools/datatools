@@ -104,6 +104,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
 
     public void documentChanged(DocumentEvent event)
     {
+    	setNeedToParse(true);
         _editor.getSite().getShell().getDisplay().timerExec(1000, this);
     }
 
@@ -174,6 +175,7 @@ public class SQLUpdater implements Runnable, IDocumentListener, IPropertyChangeL
                 }
             }
         }
+        setNeedToParse(false);
     }
 
     /**

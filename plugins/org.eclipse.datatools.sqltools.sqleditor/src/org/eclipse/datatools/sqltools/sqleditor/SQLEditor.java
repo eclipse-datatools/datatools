@@ -1580,13 +1580,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      */
     public ParsingResult getParsingResult()
     {
-        boolean validationOn = SQLEditorPlugin.getDefault().getPreferenceStore().getBoolean(
-            PreferenceConstants.SYNTAX_VALIDATION);
         /*
          * If the "Enable syntax validation" is turned off and current editor is needed to be parsed again to keep the
          * parsing result in sync with the editor content, then we will parse it
          */
-        if (!validationOn && _fSQLUpdater.needToParse())
+        if (_fSQLUpdater.needToParse())
         {
         	ISQLEditorConnectionInfo connInfo = getConnectionInfo();
         	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), connInfo.getDatabaseVendorDefinitionId());
