@@ -527,7 +527,7 @@ public class DriverManager {
 					if (otds != null && otds.length > 0) {
 						String temp =
 							otds[0].getPropertyValueFromId(propid);
-						if (temp != null)
+						if (temp != null && temp.length() > 0)
 							propvalue = temp;
 					}
 					props.setProperty(propid, propvalue == null ? new String()
