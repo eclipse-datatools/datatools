@@ -53,3 +53,5 @@ CreateOfflineConnectionJob.error = 创建到 {1} 的脱机 {0} 连接时出错。(错误: {2})
 
 ManagedConnection_save_not_connected_error = 必须连接到服务器才能保存脱机数据。
 ManagedConnection_offline_not_supported_error = {0} 不支持脱机工作。
+
+drivers.error.finding.property.no.template = 尝试从驱动程序模板中检索 {0} 时出现问题。

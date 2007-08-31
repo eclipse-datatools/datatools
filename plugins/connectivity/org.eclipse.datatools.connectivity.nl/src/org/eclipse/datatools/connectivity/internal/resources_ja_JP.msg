@@ -53,3 +53,5 @@ CreateOfflineConnectionJob.error = {1} へのオフラインの {0} 接続を確立中にエラー
 
 ManagedConnection_save_not_connected_error = オフラインデータを保存するには、サーバに接続する必要があります。
 ManagedConnection_offline_not_supported_error = {0} ではオフラインで作業できません。
+
+drivers.error.finding.property.no.template = ドライバのテンプレートから {0} を取得しようとしたときにエラーが発生しました。

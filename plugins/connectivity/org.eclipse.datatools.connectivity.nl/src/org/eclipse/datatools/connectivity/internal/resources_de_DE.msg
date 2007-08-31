@@ -54,3 +54,5 @@ CreateOfflineConnectionJob.error = Fehler beim Erstellen der Offline-Verbindung 
 ManagedConnection_save_not_connected_error = Verbindung zum Server erforderlich, um Offline-Daten zu speichern.
 ManagedConnection_offline_not_supported_error = {0} unterstützt Offline-Arbeiten nicht.
 
+drivers.error.finding.property.no.template = Beim Versuch, {0} aus der Treibervorlage abzurufen, ist ein Problem aufgetreten.
+
