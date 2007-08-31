@@ -296,6 +296,29 @@ public class SPDebugModelUtil
         }
     }
     
+    /**
+     * Renames procid to newprocid in all breakpoints.
+     * @param procid old <code>Routine</code> identifier
+     * @param newprocid new <code>Routine</code> identifier
+     */
+    public static void changeAllBreakpointForSP(ProcIdentifier procid, ProcIdentifier newprocid)
+    {
+        IBreakpointManager manager = DebugPlugin.getDefault().getBreakpointManager();
+        List list = findAllSPLineBreakpointForSP(procid);
+        for (int i=0, size=list.size(); i<size; i++)
+        {
+            SPLineBreakpoint bp = (SPLineBreakpoint) list.get(i);
+            try
+            {
+                bp.setProcId(newprocid.encode());
+            }
+            catch(Exception ex)
+            {
+                // skip
+            }
+        }
+    }
+    
     public static boolean isProcInDebugging(ProcIdentifier procid)
     {
         if (procid == null)
