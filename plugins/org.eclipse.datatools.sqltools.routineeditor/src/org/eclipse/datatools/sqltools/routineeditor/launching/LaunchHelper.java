@@ -442,4 +442,45 @@ public class LaunchHelper implements RoutineLaunchConfigurationAttribute
         }
 
     }
+
+    
+    public static void renameAllConfigurations(ProcIdentifier oldProc, ProcIdentifier newProc)
+    {
+        ILaunchConfigurationType type = LaunchHelper.getLaunchConfigType();
+        try {
+            ILaunchConfiguration[] configs = DebugPlugin.getDefault()
+                    .getLaunchManager().getLaunchConfigurations(type);
+            for (int i = 0; i < configs.length; i++) {
+                try
+                {
+                    ProcIdentifier p = readProcIdentifier(configs[i]);
+                    if (oldProc.equals(p)) {
+                        // get the working copy of this configuration and modify
+                        // it then doSave()
+                        ILaunchConfigurationWorkingCopy copy = configs[i].getWorkingCopy();
+                        copy.setAttribute(RoutineLaunchConfigurationAttribute.ROUTINE_LAUNCH_PROCID, newProc.encode());
+                        copy.doSave();
+                        // after proc is saved, we can call constructDirectInvocationSQLString
+                        String sql = constructDirectInvocationSQLString(configs[i]);
+                        copy.setAttribute(RoutineLaunchConfigurationAttribute.ROUTINE_LAUNCH_SQL, sql);
+                        if (configs[i].getName().equals(oldProc.getProcName()))
+                        {
+                            String newName = DebugPlugin.getDefault().getLaunchManager()
+                                    .generateUniqueLaunchConfigurationNameFrom(newProc.getProcName());
+                            copy.rename(newName);
+                        }
+                        copy.doSave();
+                    }
+
+                }catch(Exception e)
+                {
+                    // ignore
+                }
+            }
+        } catch (CoreException ex) {
+            RoutineEditorActivator.getDefault().log(ex);
+        }
+
+    }
+ 
 }
