@@ -119,5 +119,22 @@
             <newWizardShortcut id="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard"/>
         </perspectiveExtension>
     </extension>
+    
+    <extension  
+  		point="org.eclipse.ui.navigator.navigatorContent">
+   		<commonWizard
+         	type="new"
+         	wizardId="org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards.NewSQLScrapbookFileCreationWizard">
+      		<enablement>
+         		<or>
+            	<adapt type="org.eclipse.core.resources.IFile" /> 
+    			<adapt type="org.eclipse.core.resources.IFolder" />
+           		<adapt type="org.eclipse.core.resources.IProject" /> 
+             	<adapt type="org.eclipse.core.resources.IWorkspaceRoot" /> 
+         		</or>
+      		</enablement>
+   		</commonWizard>   
+	</extension> 
+    
    
 </plugin>
