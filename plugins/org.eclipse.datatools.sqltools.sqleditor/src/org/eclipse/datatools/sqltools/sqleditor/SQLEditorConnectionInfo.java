@@ -228,7 +228,8 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 			try {
 				_sharedConn = ProfileUtil.getReusableConnection(new DatabaseIdentifier(_profileName, _databaseName));
 			} catch (Exception e) {
-				SQLEditorPlugin.getDefault().log(e);
+				//there's a possibility that getConnectionProfile().isConnected() but !ManagedConnection.isConnected()
+				//SQLEditorPlugin.getDefault().log(e);
 			}
 		}
 		return _sharedConn;
