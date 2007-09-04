@@ -110,7 +110,10 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         //self clean up
         _profiles.remove(new ConnectProfile(profile));
         IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
-        mc.removeConnectionListener(this);
+        if (mc != null)
+        {
+        	mc.removeConnectionListener(this);
+        }
         _dmpProfileManager.fireProfileDeleted(profile);
     }
 
