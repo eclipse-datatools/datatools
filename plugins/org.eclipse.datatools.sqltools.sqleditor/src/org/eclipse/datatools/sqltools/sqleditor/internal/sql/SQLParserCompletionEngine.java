@@ -40,6 +40,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParser;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.ast.IASTSQLParam;
+import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
@@ -353,8 +354,8 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			Database database = _editor.getConnectionInfo().getDatabase();
 			
 			if (database != null && user != null) {
-				for (Iterator iter = database.getSchemas().iterator(); iter
-						.hasNext();) {
+			    EList schemas = ModelUtil.getSchemas(database, _editor.getConnectionInfo().getDatabaseName());
+				for (Iterator iter = schemas.iterator(); iter.hasNext();) {
 					Schema schema = (Schema) iter.next();
 					if (schema.getName().equals(user)) {
 						EList udts = schema.getUserDefinedTypes();
