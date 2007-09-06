@@ -17,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
@@ -31,6 +32,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.ui.PlatformUI;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -68,6 +70,8 @@ public class LoadPlanAction extends Action
         setToolTipText(Messages.LoadPlanAction_tooltip); 
         this.setImageDescriptor(Images.DESC_IMPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_IMPORT_PLAN_DISABLE);
+        
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.LOAD_PLAN_ACTION);
     }
 
     public void run()

@@ -10,10 +10,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
 import org.eclipse.jface.action.Action;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Hui Cao
@@ -31,6 +33,8 @@ public class RemoveAllPlansAction extends Action
         setToolTipText(Messages.RemoveAllPlansAction_remove_all_plans_name_tooltip); 
         setImageDescriptor(Images.DESC_REMOVEALL);
         setDisabledImageDescriptor(Images.DESC_REMOVEALL_DISABLE);
+        
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.REMOVE_ALL_PLAN_ACTION);
     }
 
     public void run()

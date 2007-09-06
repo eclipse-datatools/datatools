@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.view;
 
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
@@ -96,7 +97,7 @@ public class PlanView extends ViewPart
      */
     public void createPartControl(Composite parent)
     {
-    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent.getShell(), PlanConstants.HELP_PLAN_VIEW);
+    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, IHelpConstants.PLAN_VIEW);
         _fPagebook = new PageBook(parent, SWT.NONE);
 
         // Page 1 of page book (no plan label)
@@ -392,6 +393,7 @@ public class PlanView extends ViewPart
                                            }
                                        }
                                    };
+
 }
 
 class VerticalLayoutAction extends Action
@@ -399,7 +401,7 @@ class VerticalLayoutAction extends Action
     SashForm _sash;
 
     /**
-     *  
+     * 
      */
     public VerticalLayoutAction(SashForm sash)
     {

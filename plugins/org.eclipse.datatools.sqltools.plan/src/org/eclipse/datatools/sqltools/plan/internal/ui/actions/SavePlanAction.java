@@ -23,6 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
@@ -40,6 +41,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.ui.PlatformUI;
 import org.w3c.dom.Attr;
 import org.w3c.dom.CDATASection;
 import org.w3c.dom.Document;
@@ -80,6 +82,8 @@ public class SavePlanAction extends Action
         setToolTipText(Messages.SavePlanAction_saveplan_tooltip); 
         this.setImageDescriptor(Images.DESC_EXPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_EXPORT_PLAN_DISABLE);
+        
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.SAVE_PLAN_ACTION);
     }
 
     /**

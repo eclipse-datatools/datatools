@@ -11,11 +11,13 @@
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
 
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.ui.view.PlanView;
 import org.eclipse.datatools.sqltools.plan.internal.util.Images;
 import org.eclipse.jface.action.Action;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Hui Cao
@@ -36,6 +38,8 @@ public class RemovePlanAction extends Action
         this.setImageDescriptor(Images.DESC_REMOVE);
         this.setDisabledImageDescriptor(Images.DESC_REMOVE_DISABLE);
         this._planView = planView;
+        
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.REMOVE_PLAN_ACTION);
     }
 
     public void run()

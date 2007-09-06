@@ -16,9 +16,14 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.preferences.AbstractDBPreferenceFieldPage;
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -43,7 +48,7 @@ import org.eclipse.ui.IWorkbench;
  * 
  * @author Dafan Yang
  */
-public class ExecutionPlanPage extends AbstractDBPreferenceFieldPage
+public class ExecutionPlanPage extends AbstractDBPreferenceFieldPage implements IContextProvider
 {
     private Group  _planViewOrientation;
     private Button _verticalLayout;
@@ -63,6 +68,9 @@ public class ExecutionPlanPage extends AbstractDBPreferenceFieldPage
 
     protected Control createContents(Composite parent)
     {
+        getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp(parent.getShell(), IHelpConstants.EXECUTION_PLAN_PREFERENCE);
+        
         Composite comp = new Composite(parent, SWT.NONE);
         comp.setLayoutData(new GridData(GridData.FILL_BOTH));
         GridLayout layout = new GridLayout();
@@ -277,5 +285,23 @@ public class ExecutionPlanPage extends AbstractDBPreferenceFieldPage
         {
             return false;
         }
+    }
+    
+    private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(PlanViewPlugin.getDefault()
+                                                                    .getBundle().getSymbolicName());
+
+    public IContext getContext(Object target)
+    {
+        return contextProviderDelegate.getContext(target);
+    }
+
+    public int getContextChangeMask()
+    {
+        return contextProviderDelegate.getContextChangeMask();
+    }
+
+    public String getSearchExpression(Object target)
+    {
+        return contextProviderDelegate.getSearchExpression(target);
     }
 }

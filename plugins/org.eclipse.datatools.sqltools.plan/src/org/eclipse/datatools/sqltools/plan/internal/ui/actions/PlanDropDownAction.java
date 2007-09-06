@@ -11,6 +11,7 @@
 package org.eclipse.datatools.sqltools.plan.internal.ui.actions;
 
 
+import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanServiceRegistry;
 import org.eclipse.datatools.sqltools.plan.internal.IPlanInstance;
@@ -25,6 +26,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Hui Cao
@@ -49,6 +51,8 @@ public class PlanDropDownAction extends Action implements IMenuCreator
 
         this._planView = planView;
         setMenuCreator(this);
+        
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.PLAN_DROP_DOWN_ACTION);
     }
 
     public void dispose()

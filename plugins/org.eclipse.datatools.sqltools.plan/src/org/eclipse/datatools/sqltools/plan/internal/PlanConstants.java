@@ -25,7 +25,7 @@ public interface PlanConstants
     public static final String DATABASE_DEFINITION_ID       = "databaseVendorDefinitionId";
     public static final String PLAN_SERVICE_CLASS           = "serviceClass";
 
-    // help context ids
-    public static final String HELP_PLAN_VIEW                = PLUGIN_ID + "plan_view";                            //$NON-NLS-1$
+    // help context ids move to IHelpConstants
+//    public static final String HELP_PLAN_VIEW                = PLUGIN_ID + "plan_view";                            //$NON-NLS-1$
 
 }
