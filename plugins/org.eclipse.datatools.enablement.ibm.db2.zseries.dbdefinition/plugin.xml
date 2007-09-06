@@ -28,6 +28,22 @@
             versionDisplayString="%V8NewFunctionVersionString"
             file="runtime/vendors/DB2 UDB zSeries_8/DB2 UDB zSeries_8 (New-Function Mode).xmi">
       </definition>
+            <definition
+            product="DB2 UDB zSeries"
+            version="V9 (Compatibility Mode)"
+            productDisplayString="%V9CompatibilityProductString"
+            versionDisplayString="%V9CompatibilityVersionString"
+            description="%V9CompatibilityDescription"
+            file="runtime/vendors/DB2 UDB zSeries_V9/DB2 UDB zSeries_V9 (Compatibility Mode).xmi">
+      </definition>
+      <definition
+            product="DB2 UDB zSeries"
+            version="V9 (New-Function Mode)"            
+            productDisplayString="%V9NewFunctionProductString"
+            versionDisplayString="%V9NewFunctionVersionString"
+            description="%V9NewFunctionDescription"
+            file="runtime/vendors/DB2 UDB zSeries_V9/DB2 UDB zSeries_V9 (New-Function Mode).xmi">
+       </definition>
    </extension>
    
 </plugin>
