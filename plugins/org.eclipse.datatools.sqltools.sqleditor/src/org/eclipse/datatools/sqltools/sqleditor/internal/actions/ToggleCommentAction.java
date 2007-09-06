@@ -56,7 +56,7 @@ public class ToggleCommentAction extends TextEditorAction implements IPageUpdate
     /** The comment prefixes */
     private Map                  _prefixesMap;
     private boolean              _isSourcePage = true;
-
+    
     /**
      * Creates and initializes the action for the given sql editor. The action configures its visual representation from
      * the given resource bundle.
@@ -71,6 +71,8 @@ public class ToggleCommentAction extends TextEditorAction implements IPageUpdate
     {
         super(bundle, prefix, editor);
         setActionDefinitionId(ISQLEditorActionConstants.TOGGLE_COMMENT);
+        update();
+        
         PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.TOGGLE_COMMENT_ACTION);
     }
 
