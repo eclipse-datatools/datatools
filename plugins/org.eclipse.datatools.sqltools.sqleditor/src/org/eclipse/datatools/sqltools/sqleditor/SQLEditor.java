@@ -1576,7 +1576,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      * always keep the parsing result up-to-date, if it is off, we will check if the parsing result is kept sync with
      * the editor content, if not, we will parse it to get the synchronized parsing result
      * 
-     * @return the recent parsing result since the last modification
+     * @return the recent parsing result since the last modification, may only be null when parser can't be found
      */
     public ParsingResult getParsingResult()
     {
@@ -1589,6 +1589,11 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         	ISQLEditorConnectionInfo connInfo = getConnectionInfo();
         	SQLDevToolsConfiguration conf = SQLToolsFacade.getConfiguration(getDatabaseIdentifier(), connInfo.getDatabaseVendorDefinitionId());
             SQLParser parser = conf.getSQLService().getSQLParser();
+            if (parser == null)
+            {
+            	return null;
+            }
+            
             String content = getSourceViewer().getDocument().get();
             // Add '\n' to avoid parser to throw exception when last line is single line comment.
             content = content + "\n"; //$NON-NLS-1$
