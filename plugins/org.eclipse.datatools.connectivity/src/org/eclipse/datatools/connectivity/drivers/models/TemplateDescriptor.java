@@ -393,7 +393,8 @@ public class TemplateDescriptor implements Comparable {
 				// First of all check overrides:
 				OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
 				if (overrides != null && overrides.length > 0) {
-					if (overrides[0].getPropertyVisibleFromId(id) != null)
+					if (overrides[0].getPropertyVisibleFromId(id) != null 
+						    && overrides[0].getPropertyVisibleFromId(id).length() > 0)
 						visible = overrides[0].getPropertyVisibleFromId(id);
 				}
 				if (visible == null || (visible.equals("true"))) { //$NON-NLS-1$
