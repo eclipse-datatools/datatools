@@ -19,6 +19,7 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
 import org.eclipse.datatools.sqltools.core.ProcIdentifierImpl;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
@@ -307,7 +308,7 @@ public class SPDebugModelUtil
         List list = findAllSPLineBreakpointForSP(procid);
         for (int i=0, size=list.size(); i<size; i++)
         {
-            SPLineBreakpoint bp = (SPLineBreakpoint) list.get(i);
+            SPLineBreakpoint bp = (SPLineBreakpoint) list.get(i);            
             try
             {
                 bp.setProcId(newprocid.encode());
@@ -358,5 +359,108 @@ public class SPDebugModelUtil
             }
         }
         return false;
+    }
+    
+    /**
+     * Tests whether there is a procedural object is in debugging session 
+     * @param connectionProfileName name of connection profile
+     * @return Array of the procedural object name
+     */
+    public static String[] hasProcInDebugging(String connectionProfileName)
+    {
+        if (connectionProfileName == null || connectionProfileName.trim().length() < 1)
+        {
+            return null;
+        }
+        ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+        IDebugTarget[] targets = manager.getDebugTargets();
+        List names = new ArrayList();
+        for (int i = 0; i < targets.length; i++)
+        {
+            if (targets[i] instanceof SPDebugTarget)
+            {
+                SPThread thread = ((SPDebugTarget) targets[i]).getSPThread();
+                if (thread == null)
+                {
+                    continue;
+                }
+                IStackFrame[] frames;
+                try
+                {
+                    frames = thread.getStackFrames();
+                    for (int j = 0; j < frames.length; j++)
+                    {
+                        if (frames[j] instanceof SPStackFrame)
+                        {
+                            ProcIdentifier debugProc = ((SPStackFrame) frames[j]).getProcIdentifier();
+                            if (connectionProfileName.equals(debugProc.getDatabaseIdentifier().getProfileName()))
+                            {
+                                names.add(debugProc.getProcName());
+                            }
+                        }
+                    }
+                }
+                catch (DebugException e)
+                {
+                }
+            }
+        }
+        if (names.size() > 0)
+        {
+            return (String[])names.toArray(new String[names.size()]);
+        }
+        else 
+        {
+            return null;
+        }
+    }
+    
+    /**
+     * Changes the profile name hold in DatabaseIdentifier of ProcIdentifier
+     * @param oldName
+     * @param newName
+     */
+    public static void changeProfileName(String oldName, String newName)
+    {
+        if (oldName == null || newName == null || oldName.equals(newName))
+        {
+            return;
+        }
+        
+        ILaunchManager manager = DebugPlugin.getDefault().getLaunchManager();
+        
+        IDebugTarget[] targets = manager.getDebugTargets();
+        for (int i = 0; i < targets.length; i++)
+        {
+            if (targets[i] instanceof SPDebugTarget)
+            {
+                SPThread thread = ((SPDebugTarget) targets[i]).getSPThread();
+                if (thread == null)
+                {
+                    continue;
+                }
+                IStackFrame[] frames;
+                try
+                {
+                    //Change the profile name in StackFrames
+                    frames = thread.getStackFrames();
+                    for (int j = 0; j < frames.length; j++)
+                    {
+                        if (frames[j] instanceof SPStackFrame)
+                        {
+                            ProcIdentifier debugProc = ((SPStackFrame) frames[j]).getProcIdentifier();
+                            DatabaseIdentifier databaseIdentifier = debugProc.getDatabaseIdentifier();
+                            if (oldName.equals(databaseIdentifier.getProfileName()))
+                            {
+                                databaseIdentifier.setProfileName(newName);
+                            }
+                        }
+                    }                    
+                }
+                catch (DebugException e)
+                {
+                }               
+            }
+        }
     }
 }

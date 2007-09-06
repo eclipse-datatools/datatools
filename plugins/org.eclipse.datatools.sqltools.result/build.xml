@@ -55,6 +55,7 @@
 			<include name="org.eclipse.emf.common*.jar"/>
 			<include name="org.eclipse.emf.ecore*.jar"/>
 			<include name="org.apache.lucene*.jar"/>
+			<include name="org.eclipse.help*.jar"/>
         </fileset>		
 		<fileset dir="${eclipse.home}/plugins">
 			<!-- Include expanded plug-ins -->
