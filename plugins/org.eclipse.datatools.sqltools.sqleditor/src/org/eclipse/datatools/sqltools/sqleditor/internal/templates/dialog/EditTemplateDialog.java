@@ -11,7 +11,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.debug.internal.ui.actions.StatusInfo;
+import org.eclipse.help.IContext;
+import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
@@ -69,7 +75,7 @@ import org.eclipse.ui.texteditor.IUpdate;
  * @author Hui Cao
  *  
  */
-public class EditTemplateDialog extends StatusDialog
+public class EditTemplateDialog extends StatusDialog implements IContextProvider
 {
 
     private static class TextViewerAction extends Action implements IUpdate
@@ -141,6 +147,20 @@ public class EditTemplateDialog extends StatusDialog
 
     private final TemplateVariableProcessor _fTemplateProcessor = new TemplateVariableProcessor();
 
+    private ContextProviderDelegate contextProviderDelegate = new ContextProviderDelegate(SQLEditorPlugin.getDefault().getBundle().getSymbolicName());
+    
+    public IContext getContext(Object target) {
+        return contextProviderDelegate.getContext(target);
+    }
+    
+    public int getContextChangeMask() {
+        return contextProviderDelegate.getContextChangeMask();
+    }
+    
+    public String getSearchExpression(Object target) {
+        return contextProviderDelegate.getSearchExpression(target);
+    }
+    
     /**
      * Creates a new dialog.
      * 
@@ -205,6 +225,9 @@ public class EditTemplateDialog extends StatusDialog
      */
     protected Control createDialogArea(Composite ancestor)
     {
+        getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        HelpUtil.setHelp(ancestor, IHelpContextIds.EDIT_TEMPLATE_DIALOG);
+        
         Composite parent = new Composite(ancestor, SWT.NONE);
         GridLayout layout = new GridLayout();
         layout.numColumns = 2;
