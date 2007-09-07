@@ -1047,7 +1047,9 @@ public class GenericDdlBuilder {
 
     protected String getIndexKeyColumns(Index index, boolean quoteIdentifiers) {
         String columns;
-        Iterator it = index.getMembers().iterator();
+
+        // changed from getMembers() to fix BZ 195533 - BTF
+        Iterator it = index.getIncludedMembers().iterator();
         if(it.hasNext()) {
             IndexMember m = (IndexMember) it.next();
             String columnName = m.getColumn().getName();
