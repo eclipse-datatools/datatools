@@ -240,7 +240,7 @@ public class DesignSessionUtilBase
                     continue;
                 case 4:
                     paramAttrs.setNullability( 
-                        toElementNullability( pmd.isNullable(i) ));
+                            convertParameterNullability( pmd.isNullable(i) ));
                 default:
                     return;  // no more attributes, exit iteration
                 }
@@ -269,21 +269,43 @@ public class DesignSessionUtilBase
     }
 
     /**
-     * Converts the value of the ODA runtime nullability
-     * to that of the ODA design-time definition.
-     * @param odaNullability an ODA runtime nullability value
-     * @return
+     * Converts the value of an ODA runtime result set column nullability
+     * to corresponding value used in an ODA design-time element definition.
+     * @param columnNullability an ODA IResultSetMetaData nullability constant
+     * @return  corresponding constant for use in an ODA design-time definition
      */
-    protected static ElementNullability toElementNullability( int odaNullability )
+    protected static ElementNullability convertResultColumnNullability( int columnNullability )
     {
         ElementNullability toValue;
-        switch( odaNullability )
+        switch( columnNullability )
         {
             case IResultSetMetaData.columnNoNulls:
                 toValue = ElementNullability.NOT_NULLABLE_LITERAL; break;
             case IResultSetMetaData.columnNullableUnknown:
                 toValue = ElementNullability.UNKNOWN_LITERAL; break;
             case IResultSetMetaData.columnNullable:
+            default:
+                toValue = ElementNullability.NULLABLE_LITERAL; break;
+        }
+        return toValue;
+    }
+    
+    /**
+     * Converts the value of an ODA runtime parameter nullability
+     * to corresponding value used in an ODA design-time element definition.
+     * @param parameterNullability an ODA IParameterMetaData nullability constant
+     * @return  corresponding constant for use in an ODA design-time definition
+     */
+    protected static ElementNullability convertParameterNullability( int parameterNullability )
+    {
+        ElementNullability toValue;
+        switch( parameterNullability )
+        {
+            case IParameterMetaData.parameterNoNulls:
+                toValue = ElementNullability.NOT_NULLABLE_LITERAL; break;
+            case IParameterMetaData.parameterNullableUnknown:
+                toValue = ElementNullability.UNKNOWN_LITERAL; break;
+            case IParameterMetaData.parameterNullable:
             default:
                 toValue = ElementNullability.NULLABLE_LITERAL; break;
         }

@@ -409,7 +409,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             {
                 columnAttrs.setName( md.getColumnName(i) );
                 columnAttrs.setNullability( 
-                        toElementNullability( md.isNullable(i) ));
+                        convertResultColumnNullability( md.isNullable(i) ));
                 columnAttrs.setPrecision( md.getPrecision(i) );
                 columnAttrs.setScale( md.getScale(i) );
                 
@@ -555,14 +555,38 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     }
 
     /**
-     * Converts the value of the ODA runtime nullability
-     * to that of the ODA design-time definition.
-     * @param odaNullability an ODA runtime nullability value
-     * @return
+     * Converts the value of an ODA runtime (result set column) nullability
+     * to corresponding value used in an ODA design-time definition.
+     * @param odaNullability an ODA runtime nullability constant
+     * @return  corresponding constant for use in an ODA design-time definition
+     * @deprecated As of 3.0.5, replaced by {@link #convertResultColumnNullability( int )}. 
      */
     public static ElementNullability toElementNullability( int odaNullability )
     {
-        return DesignSessionUtilBase.toElementNullability( odaNullability );
+        // for backward compatibility (Bugzilla 202407)
+        return convertResultColumnNullability( odaNullability );
+    }
+
+    /**
+     * Converts the value of an ODA runtime result set column nullability
+     * to corresponding value used in an ODA design-time element definition.
+     * @param columnNullability an ODA IResultSetMetaData nullability constant
+     * @return  corresponding constant for use in an ODA design-time definition
+     */
+    public static ElementNullability convertResultColumnNullability( int columnNullability )
+    {
+        return DesignSessionUtilBase.convertResultColumnNullability( columnNullability );
     }
     
+    /**
+     * Converts the value of an ODA runtime parameter nullability
+     * to corresponding value used in an ODA design-time element definition.
+     * @param parameterNullability an ODA IParameterMetaData nullability constant
+     * @return  corresponding constant for use in an ODA design-time definition
+     */
+    public static ElementNullability convertParameterNullability( int parameterNullability )
+    {
+        return DesignSessionUtilBase.convertParameterNullability( parameterNullability );
+    }
+
 }
