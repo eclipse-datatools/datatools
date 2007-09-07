@@ -29,6 +29,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
@@ -504,10 +505,10 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                 DesignFactory.eINSTANCE.createDataElementAttributes();
             paramAttrs.setPosition( i );
             paramAttrs.setNativeDataTypeCode( pmd.getParameterType(i) );
-
             toElementOptionalAttributes( paramAttrs, pmd, i );
             
             paramDefn.setAttributes( paramAttrs );
+            adjustParameterDefaultAttributes( paramDefn );
             
             dataSetParams.getParameterDefinitions().add( paramDefn );
         }
@@ -589,4 +590,25 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         return DesignSessionUtilBase.convertParameterNullability( parameterNullability );
     }
 
+    /**
+     * Adjusts the parameter's design-time attributes to ensure 
+     * that their default values are consistent with those converted from 
+     * the runtime metadata.
+     */
+    private static void adjustParameterDefaultAttributes( ParameterDefinition paramDefn )
+    {
+        assert( paramDefn != null );
+        DataElementAttributes basicAttrs = paramDefn.getAttributes();
+        if( basicAttrs == null )
+            return;     // no attributes to adjust from
+        
+        // a required input parameter (default setting) normally does not allow null value;
+        // adjusts to optional if it is explicitly defined to allow null value
+        if( paramDefn.isInput() && basicAttrs.allowsNull() )
+        {
+            InputElementAttributes inputAttributes = paramDefn.getEditableInputElementAttributes();
+            inputAttributes.setOptional( true );
+        }
+    }
+    
 }
