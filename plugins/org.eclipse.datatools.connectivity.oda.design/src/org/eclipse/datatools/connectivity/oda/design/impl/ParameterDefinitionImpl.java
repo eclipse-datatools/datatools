@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinitionImpl.java,v 1.2 2006/11/09 00:50:27 lchan Exp $
+ * $Id: ParameterDefinitionImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -202,6 +202,18 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
         if( !isInput() || !isScalar() )
             return; // ignore specified value
 
+        InputElementAttributes inputAttributes = getEditableInputElementAttributes();
+        assert( inputAttributes != null );
+
+        inputAttributes.setDefaultScalarValue( value );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#getEditableInputElementAttributes()
+     * @generated NOT
+     */
+    public InputElementAttributes getEditableInputElementAttributes()
+    {
         InputParameterAttributes paramAttributes = getInputAttributes();
         if( paramAttributes == null )
         {
@@ -218,8 +230,7 @@ public class ParameterDefinitionImpl extends EObjectImpl implements
                     .createInputElementAttributes();
             paramAttributes.setElementAttributes( inputAttributes );
         }
-
-        inputAttributes.setDefaultScalarValue( value );
+        return inputAttributes;
     }
 
     /**

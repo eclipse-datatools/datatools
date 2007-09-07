@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: ParameterDefinition.java,v 1.4 2006/11/15 08:12:26 lchan Exp $
+ * $Id: ParameterDefinition.java,v 1.5 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -194,6 +194,18 @@ public interface ParameterDefinition extends EObject
      * @generated
      */
     InputParameterAttributes getInputAttributes();
+
+    /**
+     * A short-cut method that returns the value of the 
+     * '<em><b>Element Attributes</b></em>' containment referenced by
+     * the '<em><b>Input Attributes</b></em>' containment reference.  
+     * If no reference is set, a new instance is assigned and returned.
+     * @return the value of the '<em>Element Attributes</em>' containment reference.
+     * @see #getInputAttributes()
+     * @since 3.0.5
+     * @generated NOT
+     */
+    InputElementAttributes getEditableInputElementAttributes();
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterDefinition#getInputAttributes <em>Input Attributes</em>}' containment reference.
