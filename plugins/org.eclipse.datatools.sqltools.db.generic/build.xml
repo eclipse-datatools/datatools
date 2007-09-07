@@ -140,7 +140,7 @@
 			<fileset dir="${build.result.folder}/@dot" includes="**"			/>
 		</copy>
 		<copy todir="${destination.temp.folder}/${module.name}_${plugin.version}" failonerror="true" overwrite="false">
-			<fileset dir="${basedir}" includes="plugin.xml,META-INF/,about.html,grammar/"			/>
+			<fileset dir="${basedir}" includes="plugin.xml,plugin.properties,META-INF/,about.html,grammar/"			/>
 		</copy>
 	</target>
 
