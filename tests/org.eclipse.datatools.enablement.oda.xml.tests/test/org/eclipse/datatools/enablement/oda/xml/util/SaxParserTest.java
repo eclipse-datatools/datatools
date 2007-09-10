@@ -38,7 +38,7 @@ public class SaxParserTest extends BaseTest
 
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
-	private String testString = "book#-TNAME-#book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
+	private String testString = "book#-TNAME-#/*book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
 			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat;String;../@category}"
 			+ "#-# aut  hor  #:#[//book/author]#:#{title;String;../title},{lang;String;../title/@lang},{author;String;/@name},{country;String;/@country},{date;String;../date},{isn;String;../isn},{category;String;../@category}"
 			+ "#-# title#:#[/library/*/ad/../title]#:#{title;String;},{lang;String;/@lang},{author;String;../*/@name}"
@@ -54,7 +54,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# filter4#:#[//Book[@type='fiction']]#:#{book.title;String;/Title},{book.author_paul;String;/Author[@type='firstclass']}"			
 			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}"
 			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}"
-			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}";
+			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}"
+			+ "#-# tableFilter#:#[/BookStore/Book[@id=\"A\"]/Author]#:#{book.author;String;}";
 
 	private RelationInformation ri;
 
@@ -872,4 +873,49 @@ public class SaxParserTest extends BaseTest
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST19_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST19_GOLDEN_XML ) ) );
 	}
+
+	/**
+	 * This is a test for table filter. A filter on an attribute of high level of root should be
+	 * carry forward whenever as appropriate. 
+	 * @throws OdaException
+	 * @throws IOException
+	 */
+	public void test20( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST20_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		ResultSet rs = new ResultSet( XMLDataInputStreamCreator.getCreator( TestConstants.TABLE_FILTER )
+				.createXMLDataInputStream( ),
+				ri,
+				"tableFilter",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST20_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST20_GOLDEN_XML ) ) );
+	}
+
+
 }

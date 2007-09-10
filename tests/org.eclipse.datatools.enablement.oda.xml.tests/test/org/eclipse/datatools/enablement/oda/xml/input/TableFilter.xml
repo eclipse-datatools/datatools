@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<BookStore>
+        <Book id="A">
+                <Author>Time Catth</Author>      
+                <Author>Richard Bach</Author>
+        </Book>
+        <Book>
+                <Author>J. Krishnamurti</Author>
+        </Book>
+</BookStore>
