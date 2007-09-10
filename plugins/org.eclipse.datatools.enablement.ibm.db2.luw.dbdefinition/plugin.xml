@@ -23,7 +23,7 @@
       <definition
             product="DB2 UDB"
             version="V9.1"
-            description="%V82Description"
+            description="%V91Description"
             productDisplayString="%V91ProductString"
             versionDisplayString="%V91VersionString"
             file="runtime/vendors/DB2 UDB_9.1/DB2 UDB_9.1.xmi">
