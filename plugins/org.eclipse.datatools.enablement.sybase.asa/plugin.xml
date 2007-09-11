@@ -18,7 +18,7 @@
             profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.enablement.sybase.asa.NewJDBCASAConnectionProfileWizard"
-            icon="icons/jdbc_16.gif"
+            icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.sybase.asa.NewConnectionProfileWizard"
             name="%profile.asa.wizard.title"
             profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
