@@ -1204,28 +1204,29 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 */
 	private String saveQueryString( )
 	{
-		String queryString = "";
-		String tablePath = "[" + selectedTreeItemText + "]";
-		queryString = tableName
-				+ RelationInformation.CONST_TABLE_COLUMN_DELIMITER + tablePath
-				+ RelationInformation.CONST_TABLE_COLUMN_DELIMITER;
-
-		Iterator rowObj = this.columnMappingList.iterator( );
-		if ( rowObj != null )
+		if ( !this.columnMappingList.isEmpty( ) )
 		{
+			String tablePath = "[" + selectedTreeItemText + "]";
+			String queryString = tableName +
+					RelationInformation.CONST_TABLE_COLUMN_DELIMITER +
+					tablePath +
+					RelationInformation.CONST_TABLE_COLUMN_DELIMITER;
 			String rowStr = "";
+			Iterator rowObj = this.columnMappingList.iterator( );
 			while ( rowObj.hasNext( ) )
 			{
 				ColumnMappingElement element = (ColumnMappingElement) rowObj.next( );
-				rowStr = "{"
-						+ element.getColumnName( ) + ";" + element.getTypeStandardString()
-						+ ";" + element.getXPath( ) + "}";
+				rowStr = "{" +
+						element.getColumnName( ) + ";" +
+						element.getTypeStandardString( ) + ";" +
+						element.getXPath( ) + "}";
 				if ( rowObj.hasNext( ) )
 					rowStr = rowStr + ",";
 				queryString = queryString + rowStr;
 			}
+			return queryString;
 		}
-		return queryString;
+		return null;
 	}
 
 	/**

@@ -48,6 +48,7 @@ public class WebServiceSelectionPageHelper
 	private transient Text wsdlURI;
 	private transient Text soapEndPoint;
 	private transient Text customClass;
+	private transient Text driverClassPath;
 
 	static final String DEFAULT_MESSAGE = Messages.getString( "webServiceSelectionPage.message.default" ); //$NON-NLS-1$
 
@@ -77,12 +78,12 @@ public class WebServiceSelectionPageHelper
 	{
 		Composite composite = new Composite( parent, SWT.NONE );
 		GridLayout layout = new GridLayout( 1, false );
-		layout.verticalSpacing = 10;
 		composite.setLayout( layout );
 
 		setupWSDLGroup( composite );
 		setupEndPointGroup( composite );
 		setupCustomClassGroup( composite );
+		setupClassPathGroup( composite );
 	}
 
 	private void setupWSDLGroup( Composite parent )
@@ -96,7 +97,7 @@ public class WebServiceSelectionPageHelper
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		layoutData.horizontalSpan = 3;
-		layoutData.heightHint = 30;
+		layoutData.heightHint = 20;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.wsdl" ) );//$NON-NLS-1$
 
@@ -162,7 +163,7 @@ public class WebServiceSelectionPageHelper
 
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 30;
+		layoutData.heightHint = 35;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.endPoint" ) );//$NON-NLS-1$
 
@@ -188,13 +189,32 @@ public class WebServiceSelectionPageHelper
 
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 30;
+		layoutData.heightHint = 25;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.customClass" ) );//$NON-NLS-1$
 
 		customClass = new Text( group, SWT.BORDER );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		customClass.setLayoutData( layoutData );
+	}
+	
+	private void setupClassPathGroup( Composite parent )
+	{
+		Group group = new Group( parent, SWT.SHADOW_ETCHED_IN );
+		group.setLayout( new GridLayout( 1, false ) );
+		GridData layoutData = new GridData( GridData.FILL_HORIZONTAL );
+		group.setLayoutData( layoutData );
+		group.setText( Messages.getString( "webServiceSelectionPage.group.classPath" ) );//$NON-NLS-1$
+
+		Label label = new Label( group, SWT.WRAP );
+		layoutData = new GridData( GridData.FILL_HORIZONTAL );
+		layoutData.heightHint = 20;
+		label.setLayoutData( layoutData );
+		label.setText( Messages.getString( "webServiceSelectionPage.label.classPath" ) );//$NON-NLS-1$
+
+		driverClassPath = new Text( group, SWT.BORDER );
+		layoutData = new GridData( GridData.FILL_HORIZONTAL );
+		driverClassPath.setLayoutData( layoutData );
 	}
 
 	/**
@@ -213,6 +233,7 @@ public class WebServiceSelectionPageHelper
 		props.setProperty( Constants.CUSTOM_CONNECTION_CLASS,
 				getCustomClassString( ) );
 		props.setProperty( Constants.WSDL_URI, getWsdlURIString( ) );
+		props.setProperty( Constants.CUSTOM_DRIVER_CLASS_PATH, getDriverClassPathString( ) );
 
 		return props;
 	}
@@ -233,6 +254,7 @@ public class WebServiceSelectionPageHelper
 		setWsdlURIString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.WSDL_URI ) ) );
 		setSoapEndPointString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.SOAP_ENDPOINT ) ) );
 		setCustomClassString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) ) );
+		setDriverClassPathString( WSUIUtil.getNonNullString( profileProps.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH ) ) );
 	}
 
 	private void verifyPage( )
@@ -284,6 +306,16 @@ public class WebServiceSelectionPageHelper
 	private void setWsdlURIString( String text )
 	{
 		wsdlURI.setText( TextProcessorWrapper.process( text ) );
+	}
+	
+	private String getDriverClassPathString( )
+	{
+		return TextProcessorWrapper.deprocess( driverClassPath.getText( ) );
+	}
+
+	private void setDriverClassPathString( String text )
+	{
+		driverClassPath.setText( TextProcessorWrapper.process( text ) );
 	}
 
 	private String getSoapEndPointString( )

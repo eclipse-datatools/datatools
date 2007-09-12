@@ -39,7 +39,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.3 $ $Date: 2007/03/28 02:04:14 $
+ * @version $Revision: 1.1 $ $Date: 2007/06/25 16:33:23 $
  */
 public final class ColumnMappingTableViewer
 {

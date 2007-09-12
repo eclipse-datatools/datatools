@@ -96,21 +96,21 @@ public class XMLTableMappingPage extends XPathChoosePage
 	 */
 	protected void refresh( )
 	{
-		updateXMLProps( );
-		super.refresh( );
-	}
-
-	private void updateXMLProps( )
-	{
 		try
 		{
-			WSConsole.getInstance( ).updateXSDFileURI( );
-			WSConsole.getInstance( ).updateXMLFileURI( );
+			updateXMLProps( );
+			super.refresh( );
 		}
 		catch ( OdaException e )
 		{
 			setMessage( e.getMessage( ), IMessageProvider.ERROR );
 		}
+	}
+
+	private void updateXMLProps( ) throws OdaException
+	{
+		WSConsole.getInstance( ).updateXSDFileURI( );
+		WSConsole.getInstance( ).updateXMLFileURI( );
 	}
 
 	/*

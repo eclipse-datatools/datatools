@@ -136,7 +136,12 @@ public class RelationInformation
 
 				String filterColumnXpath = tableRootWithFilter.replaceAll(
 						"\\Q=\\E.*", "]");
-				String filterOriginalColumnXpath = tableRawRoot.replaceAll("\\Q=\\E.*", "]");
+				int backRef = tableRootWithFilter.split( "/" ).length - filterColumnXpath.split( "/" ).length;
+				String tableFilterPart = tableRawRoot.replaceAll( ".*\\Q[\\E", "" ).replaceAll( "\\Q=\\E.*", "" );
+				for( int n = 0; n < backRef; n++ )
+				{
+					tableFilterPart = "../"+tableFilterPart;
+				}
 				String tempColumnName = SaxParserUtil.createTableRootTempColumnNameForFilter( );
 
 				// TODO support multiple filters in one column.
@@ -144,7 +149,7 @@ public class RelationInformation
 
 				tableInfo.addColumn(new ColumnInfo( columns.length + filterColumnInfos.size( ) + 1, tempColumnName,
 						"String", filterColumnXpath, null,
-						filterOriginalColumnXpath, null));
+						tableFilterPart, null));
 			}
 			
 			this.tableInfos.put( temp[0].trim( ), tableInfo );
@@ -692,7 +697,7 @@ class TableInfo
 	public String[] getSimpleNestXMLColumnNames( )
 	{
 		ArrayList temp = new ArrayList();
-		String[] columnNames = getColumnNames();
+		String[] columnNames = getRealColumnNames();
 		for( int i = 0; i < columnNames.length; i++)
 		{
 			String nestedXMLColumnPathPrefix = ((ColumnInfo)columnInfos.get(columnNames[i])).getColumnPath();

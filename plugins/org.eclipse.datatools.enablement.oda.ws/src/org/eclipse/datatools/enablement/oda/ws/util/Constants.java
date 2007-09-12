@@ -25,6 +25,7 @@ public class Constants
 	public static final String SOAP_ENDPOINT = "soapEndPoint";//$NON-NLS-1$
 	public static final String CUSTOM_CONNECTION_CLASS = "connectionClass";//$NON-NLS-1$
 	public static final String CONNECTION_TIMEOUT = "connectionTimeOut";//$NON-NLS-1$
+	public static final String CUSTOM_DRIVER_CLASS_PATH = "driverClassPath";//$NON-NLS-1$
 
 	// private properties
 	public static final String WSDL_URI = "wsdlURI";//$NON-NLS-1$

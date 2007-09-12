@@ -62,6 +62,15 @@ public class Connection implements IConnection
 		{
 			java2SOAPManager = new Java2SOAPManager( );
 			java2SOAPManager.setConnectionProperties( connProperties );
+			String driverPath= connProperties.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH );
+			try
+			{
+				java2SOAPManager.newQuery( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) , driverPath );
+			}
+			catch ( Exception e )
+			{
+				throw new OdaException( e );
+			}		
 		}
 		else
 		{
@@ -150,7 +159,7 @@ public class Connection implements IConnection
 	{
 		try
 		{
-			java2SOAPManager.newQuery( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) );
+			java2SOAPManager.newQuery( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ),connProperties.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH ) );
 		}
 		catch ( Exception e )
 		{

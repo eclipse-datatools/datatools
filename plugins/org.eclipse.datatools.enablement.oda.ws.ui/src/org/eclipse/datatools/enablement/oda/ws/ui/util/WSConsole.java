@@ -185,6 +185,12 @@ public class WSConsole
 						customConnectionClass == null ? WSUIUtil.EMPTY_STRING
 								: customConnectionClass.getValue( ) );
 				
+				Property customDriverPath = dataSourceDesign.getPublicProperties( )
+				.findProperty( Constants.CUSTOM_DRIVER_CLASS_PATH );
+				setPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH,
+						customDriverPath == null ? WSUIUtil.EMPTY_STRING
+						: customDriverPath.getValue( ) );
+				
 				Property connectionTimeOut = dataSourceDesign.getPublicProperties( )
 						.findProperty( Constants.CONNECTION_TIMEOUT );
 				setPropertyValue( Constants.CONNECTION_TIMEOUT,
@@ -391,7 +397,7 @@ public class WSConsole
 		else
 		{
 			SOAPResponse soapResponse = connectNow( );
-			if ( soapResponse == null )
+			if ( soapResponse == null || soapResponse.getInputStream( ) == null )
 				throw new OdaException( Messages.getString( "wsConsole.message.error.cantRetrieveSOAPResponse" ) ); //$NON-NLS-1$
 
 			return soapResponse.getInputStream( );
@@ -417,7 +423,7 @@ public class WSConsole
 
 		try
 		{
-			j2s.newQuery( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) );
+			j2s.newQuery( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ),getPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH ) );
 
 			Object o = j2s.executeQuery( );
 			if ( o instanceof InputStream )
@@ -440,6 +446,8 @@ public class WSConsole
 				WSUIUtil.getNonNullString( getPropertyValue( Constants.SOAP_ENDPOINT ) ) );
 		p.put( Constants.CUSTOM_CONNECTION_CLASS,
 				WSUIUtil.getNonNullString( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) ) );
+		p.put( Constants.CUSTOM_DRIVER_CLASS_PATH,
+				WSUIUtil.getNonNullString( getPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH ) ) );
 		p.put( Constants.CONNECTION_TIMEOUT,
 				WSUIUtil.getNonNullString( getPropertyValue( Constants.CONNECTION_TIMEOUT ) ) );
 

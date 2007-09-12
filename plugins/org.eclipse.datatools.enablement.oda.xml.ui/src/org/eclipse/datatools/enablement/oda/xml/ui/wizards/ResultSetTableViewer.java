@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.5 $ $Date: 2007/05/31 02:21:09 $
+ * @version $Revision: 1.2 $ $Date: 2007/07/13 02:50:52 $
  */
 public final class ResultSetTableViewer
 {
