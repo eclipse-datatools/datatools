@@ -182,11 +182,19 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     public void notifyChanged(final ICatalogObject dmElement, int eventType) {
         if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH && viewer != null)
         {
-            viewer.getControl().getDisplay().syncExec(new Runnable() {
-                public void run() {
-                    viewer.refresh(dmElement, true);
-                }
-            });
+            //this may occur in rare cases where dispose() is not called.
+            if (viewer.getControl().isDisposed())
+            {
+                RefreshManager.getInstance().removeListener(null, this);
+            }
+            else
+            {
+                viewer.getControl().getDisplay().syncExec(new Runnable() {
+                    public void run() {
+                        viewer.refresh(dmElement, true);
+                    }
+                });
+            }
         }
 	}
 
