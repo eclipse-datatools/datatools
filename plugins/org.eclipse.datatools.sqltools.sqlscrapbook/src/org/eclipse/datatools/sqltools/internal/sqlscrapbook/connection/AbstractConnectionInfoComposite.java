@@ -497,55 +497,61 @@ public abstract class AbstractConnectionInfoComposite extends Composite
         readControlValues();
         if (e.widget == getProfileTypeControl()) {
             initProfileNames(getProfileTypeControl().getText(), null);
+            updateDBNamesControl();
         }
         else if (e.widget == getProfileNamesControl())
         {
             initTypebyProfile(_profileName);
-            // TODO when DatabaseDefinition.supportsCatalog is introduced, adjust _combodbName accordingly
-            if (getProfileNamesControl().getSelectionIndex() != -1)
-            {
-                if (getDbNamesControl() != null)
-                {
-                    getDbNamesControl().removeAll();
-                    _dbName = null;
-
-                    if (_profileName != null)
-                    {
-                        IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(
-                                _profileName);
-                        if (ProfileUtil.isDatabaseProfile(connectionProfile))
-                        {
-                            getDbNamesControl().setEnabled(true);
-                        }
-                        else
-                        {
-                            getDbNamesControl().setEnabled(false);
-                        }
-                    }
-                    else
-                    {
-                        getDbNamesControl().setEnabled(false);
-                    }
-                }
-            }
-            else
-            {
-                if (getDbNamesControl() != null)
-                {
-                    getDbNamesControl().removeAll();
-                    getDbNamesControl().setEnabled(false);
-                }
-            }
-            //180481 populate database names in focusGained does not work on linux
-            if (getDbNamesControl() != null && getDbNamesControl().isEnabled())
-            {
-                initDBNames();
-            }
+            updateDBNamesControl();
         }
         updateFields();
         notifyListener();        
     }
 
+	protected void updateDBNamesControl() {
+		// TODO when DatabaseDefinition.supportsCatalog is introduced, adjust _combodbName accordingly
+		if (getProfileNamesControl().getSelectionIndex() != -1)
+		{
+		    if (getDbNamesControl() != null)
+		    {
+		        getDbNamesControl().removeAll();
+		        _dbName = null;
+
+		        if (_profileName != null)
+		        {
+		            IConnectionProfile connectionProfile = ProfileManager.getInstance().getProfileByName(
+		                    _profileName);
+		            if (ProfileUtil.isDatabaseProfile(connectionProfile))
+		            {
+		                getDbNamesControl().setEnabled(true);
+		            }
+		            else
+		            {
+		                getDbNamesControl().setEnabled(false);
+		            }
+		        }
+		        else
+		        {
+		            getDbNamesControl().setEnabled(false);
+		        }
+		    }
+		}
+		else
+		{
+		    if (getDbNamesControl() != null)
+		    {
+		        getDbNamesControl().removeAll();
+		        getDbNamesControl().setEnabled(false);
+		    }
+		}
+		//180481 populate database names in focusGained does not work on linux
+		if (getDbNamesControl() != null && getDbNamesControl().isEnabled())
+		{
+		    initDBNames();
+		}
+	}
+
+    
     /*
      * (non-Javadoc)
      * 
