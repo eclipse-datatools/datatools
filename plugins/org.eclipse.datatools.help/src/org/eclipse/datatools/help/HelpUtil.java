@@ -48,6 +48,8 @@ public class HelpUtil
 	
 	private static HelpListener		_helpListener = null;
 	
+	private static boolean			_debug = Platform.inDebugMode();
+	
 	// To prevent this class from being instantiated
 	private HelpUtil()
 	{
@@ -76,11 +78,13 @@ public class HelpUtil
 				}
 				if ((provider == null) || ((provider.getContextChangeMask() & IContextProvider.SELECTION) != 0)) {
 
-					String id = getHelpKey(event.widget); 
+					String id = getHelpKey(event.widget);
+					debugMessage("Requested help for id = " + id);
 
                     IContext context = null;
                     if (id  != null)  { 
                     	context = HelpSystem.getContext(id ); 					
+    					debugMessage("Retrieved context (" + context + ") for id = " + id);
                     }
 					
 					if (context != null) {
@@ -153,6 +157,7 @@ public class HelpUtil
 				
 				if (contextId != null && contextId instanceof String)
 				{
+					debugMessage("--getHelpKey returns " + (String)contextId);
 					return (String)contextId;
 				}
 			}
@@ -221,6 +226,7 @@ public class HelpUtil
 			}
 			if (bundleString != null && bundleString.trim().length() == 0)
 				bundleString = null;
+			debugMessage("--getHelpString (helpkey = " + helpKey + ", helpPluginId = " + helpPluginID + " returned " + bundleString);
 			return bundleString;
 		}
 		catch (MissingResourceException e)
@@ -264,16 +270,29 @@ public class HelpUtil
 				
 				try
 				{
+					debugMessage("---Getting Property Files---");
 					String	helpPluginID = exts[index].getNamespaceIdentifier();
+					debugMessage("helpPluginID = " + helpPluginID);
 					Bundle	helpPluginBundle = Platform.getBundle(helpPluginID);
+					debugMessage("helpPluginBundle = " + helpPluginBundle.getLocation());
 					if (helpPluginBundle != null) {
 						URL		propertiesFileURL = helpPluginBundle.getResource(propertiesFile);
+						debugMessage("propertiesFileURL = " + propertiesFileURL );
+						if (propertiesFileURL == null) {
+							debugMessage("didn't find resource = " + propertiesFile );
+							continue;
+						}
+						else {
+							debugMessage("found resource: " + propertiesFile ) ;
+						}
 						try {
 							propertiesFileURL = FileLocator.resolve(propertiesFileURL);
 							URLConnection connection = propertiesFileURL.openConnection();
 							propertiesFiles.add(connection);
 						} catch (NullPointerException npe) {
+							debugMessage("Failed to get property file: " + propertiesFile );
 							npe.printStackTrace();
+							continue;
 						}
 					}
 				}
@@ -284,5 +303,16 @@ public class HelpUtil
 			}
 		}
 		return (URLConnection[])propertiesFiles.toArray(new URLConnection[propertiesFiles.size()]);
+	}
+	
+	/*
+	 * Puts a message in the development console if the 
+	 * -debug option is set for the running workbench instance
+	 * @param message
+	 */
+	private static void debugMessage ( String message ) {
+		if (_debug) {
+			System.out.println("HelpUtil <Debug>: " + message);
+		}
 	}
 }
