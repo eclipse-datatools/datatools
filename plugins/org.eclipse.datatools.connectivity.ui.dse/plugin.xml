@@ -22,7 +22,7 @@
       <viewContribution
             targetID="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
             id="org.eclipse.datatools.connectivity.internal.ui.viewActions2">
-         <action
+<!--         <action
                id="org.eclipse.datatools.connectivity.internal.ui.viewactions.expandall"
                toolbarPath="slot2"
                hoverIcon="icons/full/clcl16/expandall.gif"
@@ -33,6 +33,7 @@
                menubarPath="slot2"
                tooltip="%DSE.ExpandAll.tooltip">
          </action>
+-->
          <action
                class="org.eclipse.datatools.connectivity.ui.dse.actions.ShowCategoryAction"
                hoverIcon="icons/full/clcl16/extensions.gif"
