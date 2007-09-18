@@ -1,6 +1,73 @@
 <?xml version="1.0" encoding="ASCII"?>
 <DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="MySql" version="5.1" maximumIdentifierLength="64" joinSupported="true" tablespacesSupported="false" maximumCommentLength="60" schemaSupported="false" aliasSupported="true" SQLStatementSupported="true">
-  <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" maximumValue="127" minimumValue="-128" primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="byte">
+  <predefinedDataTypeDefinitions xmi:id="BIT_1" keyConstraintSupported="true"
+maximumValue="1" minimumValue="0" primitiveType="SMALLINT" jdbcEnumType="-6"
+javaClassName="byte">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>BIT</name>
+    <name>BOOL</name>
+    <name>BOOLEAN</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TINYINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="255" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="byte">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="65535" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>SMALLINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="MEDIUMINT_UNSIGNED"
+keyConstraintSupported="true" maximumValue="16777215" minimumValue="0"
+primitiveType="SMALLINT" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>MEDIUMINT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_UNSIGNED"
+keyConstraintSupported="true" maximumValue="4294967295" minimumValue="0"
+primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>0</defaultValueTypes>
+    <name>INTEGER UNSIGNED</name>
+    <name>INT UNSIGNED</name>    
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BIGINT_UNSIGNED"
+keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT"
+jdbcEnumType="-5" javaClassName="java.math.BigInteger">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIGINT UNSIGNED</name>
+    <name>SERIAL</name>    
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="REAL_UNSIGNED"
+keyConstraintSupported="true" primitiveType="REAL" jdbcEnumType="7"
+javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_UNSIGNED_PRECISION"
+keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8"
+javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE UNSIGNED</name>
+    <name>DOUBLE UNSIGNED PRECISION</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_UNSIGNED"
+keyConstraintSupported="true" primitiveType="FLOAT" jdbcEnumType="6"
+javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>FLOAT UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_UNSIGNED"
+scaleSupported="true" precisionSupported="true" maximumPrecision="64"
+keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3"
+javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DECIMAL UNSIGNED</name>
+    <name>DEC UNSIGNED</name>
+  </predefinedDataTypeDefinitions>
+    <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" maximumValue="127" minimumValue="-128" primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="byte">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TINYINT</name>
   </predefinedDataTypeDefinitions>
