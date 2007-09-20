@@ -17,6 +17,7 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.ui.dse.DSEPlugin;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -60,13 +61,13 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		newConnectionRadioButton = new Button(composite, SWT.RADIO);
-		newConnectionRadioButton.setText("Create new connection"); //$NON-NLS-1$
+		newConnectionRadioButton.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.CreateNewConnection.button")); //$NON-NLS-1$
 		GridData gd = new GridData();
 		gd.verticalAlignment = GridData.BEGINNING;
 		newConnectionRadioButton.setLayoutData(gd);
 
 		existingConnectionRadioButton = new Button(composite, SWT.RADIO);
-		existingConnectionRadioButton.setText("Use existing connection"); //$NON-NLS-1$
+		existingConnectionRadioButton.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.UseExistingConnection.button")); //$NON-NLS-1$
 		gd = new GridData();
 		gd.verticalAlignment = GridData.BEGINNING;
 		existingConnectionRadioButton.setLayoutData(gd);
@@ -79,7 +80,7 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		indentationComposite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
 		existingConnectionsGroup = new Group(indentationComposite, SWT.NONE);
-		existingConnectionsGroup.setText("Existing Connections"); //$NON-NLS-1$
+		existingConnectionsGroup.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.ExistingConnections.group")); //$NON-NLS-1$
 		layout = new GridLayout();
 		layout.numColumns = 1;
 		layout.verticalSpacing = 5;
@@ -94,7 +95,7 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		existingConnectionsList.setLayoutData(gd);
 
 		propertiesLabel = new Label(existingConnectionsGroup, SWT.NONE);
-		propertiesLabel.setText("Properties:"); //$NON-NLS-1$
+		propertiesLabel.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.Properties.label")); //$NON-NLS-1$
 		gd = new GridData();
 		propertiesLabel.setLayoutData(gd);
 
@@ -106,12 +107,12 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		connectionPropertiesTable.setHeaderVisible(true);
 
 		TableColumn tc1 = new TableColumn(connectionPropertiesTable, SWT.NONE);
-		tc1.setText("Property"); //$NON-NLS-1$
+		tc1.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.Property.columnHeader")); //$NON-NLS-1$
 		tc1.setResizable(true);
 		tc1.setWidth(140);
 
 		TableColumn tc2 = new TableColumn(connectionPropertiesTable, SWT.NONE);
-		tc2.setText("Value"); //$NON-NLS-1$
+		tc2.setText(DSEPlugin.getDefault().getResourceString("ExistingConnectionsDialogPage.Value.columnHeader")); //$NON-NLS-1$
 		tc2.setResizable(true);
 		tc2.setWidth(250);
 
