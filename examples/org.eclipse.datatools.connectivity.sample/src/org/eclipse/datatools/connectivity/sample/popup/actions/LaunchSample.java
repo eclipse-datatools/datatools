@@ -10,12 +10,16 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sample.popup.actions;
 
+import org.eclipse.datatools.connectivity.sample.wizards.SampleConnectionWizard;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IActionDelegate;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
 
 public class LaunchSample implements IObjectActionDelegate {
 
@@ -36,11 +40,14 @@ public class LaunchSample implements IObjectActionDelegate {
 	 * @see IActionDelegate#run(IAction)
 	 */
 	public void run(IAction action) {
-		Shell shell = new Shell();
-		MessageDialog.openInformation(
-			shell,
-			"Sample Plug-in",
-			"Launch Sample was executed.");
+		SampleConnectionWizard wizard = new SampleConnectionWizard();
+		wizard.setNeedsProgressMonitor(true);
+
+		WizardDialog dialog = new WizardDialog(Display.getCurrent()
+				.getActiveShell(), wizard);
+		dialog.setMinimumPageSize(300, 350);
+		dialog.create();
+		dialog.open();
 	}
 
 	/**

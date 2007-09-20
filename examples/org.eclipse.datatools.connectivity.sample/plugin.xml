@@ -19,7 +19,7 @@
                label="Launch Sample"
                class="org.eclipse.datatools.connectivity.sample.popup.actions.LaunchSample"
                menubarPath="org.eclipse.datatools.connectivity.sample.menu1/group1"
-               enablesFor="multiple"
+               enablesFor="*"
                id="org.eclipse.datatools.connectivity.sample.newAction">
          </action>
       </objectContribution>
