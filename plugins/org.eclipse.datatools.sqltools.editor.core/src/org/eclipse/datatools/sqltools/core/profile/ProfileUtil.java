@@ -478,12 +478,49 @@ public class ProfileUtil
 		return getDatabase(databaseIdentifier, true);
     }
 
+    //  BZ202306: Major adopter regression caused by changes to getDatabase(DatabaseIdentifier, boolean) as commented out below.
+    // <jgraham> Restoring old code for the time being.
+    
     /**
      * Returns the SQL model <code>Database</code> object identified by
      * <code>databaseIdentifier</code>.
      * 
      * @return the SQL model <code>Database</code> object
      */
+    public static Database getDatabase(DatabaseIdentifier databaseIdentifier, boolean connect)
+    {
+        try {
+            IConnectionProfile profile = getProfile(databaseIdentifier.getProfileName());
+            if (!profile.isConnected())
+            {
+                if (connect)
+                {
+                    profile.connect();
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
+            IConnection ic = mc.getConnection();
+            if (ic == null)
+            {
+                return null;
+            }
+            Object rawConn = ic.getRawConnection();
+            if (rawConn instanceof ConnectionInfo)
+            {
+                ConnectionInfo ci = (ConnectionInfo)rawConn;
+                return ci.getSharedDatabase();
+            }
+        } catch (NoSuchProfileException e) {
+            EditorCorePlugin.getDefault().log(e);
+        }
+        return null;
+    }
+    
+    /**
     public static Database getDatabase(DatabaseIdentifier databaseIdentifier, boolean connect)
     {
         try {
@@ -518,6 +555,7 @@ public class ProfileUtil
         }
         return null;
     }
+    */
     
     /**
      * Gets the shared connection from the connection profile 
