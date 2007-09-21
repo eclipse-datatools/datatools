@@ -119,13 +119,6 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		initializeDialogUnits(composite);
 
 		newConnectionRadioButton.addListener(SWT.Selection, this);
-		newConnectionRadioButton.addListener(SWT.Selection, new Listener() {
-
-			public void handleEvent(Event event) {
-				onCreateNewConnectionSelectionChanged();
-
-			}
-		});
 		existingConnectionRadioButton.addListener(SWT.Selection, this);
 		existingConnectionsList.addListener(SWT.Selection, this);
 
@@ -144,14 +137,7 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		}
 
 	}
-
-	/**
-	 * Override this method to handle the radio button selection change event
-	 * 
-	 */
-	protected void onCreateNewConnectionSelectionChanged() {
-	}
-
+	
 	/**
 	 * Returns the list of existing connections to display to the user. Override
 	 * this method to provide a filtered list of connections.
@@ -303,5 +289,17 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 					.setSelection(new String[] { connectionName });
 			updateConnectionProperties();
 		}
+	}
+	
+	public void addSelectionChangedListener(Listener listener){
+		newConnectionRadioButton.addListener(SWT.Selection, listener);
+		existingConnectionRadioButton.addListener(SWT.Selection, listener);
+		existingConnectionsList.addListener(SWT.Selection, listener);
+	}
+	
+	public void removeSelectionChangedListener(Listener listener){
+		newConnectionRadioButton.removeListener(SWT.Selection, listener);
+		existingConnectionRadioButton.removeListener(SWT.Selection, listener);
+		existingConnectionsList.removeListener(SWT.Selection, listener);
 	}
 }
