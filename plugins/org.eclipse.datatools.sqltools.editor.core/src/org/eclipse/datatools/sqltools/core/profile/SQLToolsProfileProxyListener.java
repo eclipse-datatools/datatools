@@ -11,10 +11,12 @@
 
 package org.eclipse.datatools.sqltools.core.profile;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.ConnectEvent;
+import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.IManagedConnectionListener;
@@ -24,6 +26,8 @@ import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
+import org.eclipse.datatools.sqltools.core.ServerIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.SQLToolsConnectListenersManager;
 
 /**
@@ -36,6 +40,8 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
     SQLToolsConnectListenersManager _dmpConnectManager;
 
     private static SQLToolsProfileProxyListener INSTANCE = null;
+
+    private ConnectionRegistryListener _connRegistryListener = new ConnectionRegistryListener();
     
     private SQLToolsProfileProxyListener()
     {
@@ -67,6 +73,16 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
             		opened(new ConnectEvent(profiles[i], mc, this));
             	}
             }
+            mc = profiles[i].getManagedConnection(Connection.class.getName());
+            if (mc != null)
+            {
+                mc.addConnectionListener(_connRegistryListener);
+                if (mc.isConnected() && mc.getConnection() != null)
+                {
+                    //to handle auto connect profiles
+                    _connRegistryListener.opened(new ConnectEvent(profiles[i], mc, this));
+                }
+            }
         }
         
     }
@@ -82,6 +98,11 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
         if (mc != null)
         {
         	mc.addConnectionListener(this);
+        }
+        mc = profile.getManagedConnection(Connection.class.getName());
+        if (mc != null)
+        {
+            mc.addConnectionListener(_connRegistryListener);
         }
         _dmpProfileManager.fireProfileAdded(profile);
 
@@ -229,6 +250,8 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
 						.getOrCreateControlConnection(databaseIdentifier);
 			}
 
+			registerSkippedConnection(event);
+			
             // fire all dmp connect listeners
             try
             {
@@ -299,5 +322,74 @@ public class SQLToolsProfileProxyListener implements IProfileListener1, IManaged
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private int getConnectionId(ConnectEvent event, DatabaseIdentifier databaseIdentifier)
+    {
+        if (event != null && event.getConnection() != null && event.getConnection().getConnection() != null)
+        {            
+            IManagedConnection mc = event.getConnection();
+            IConnection conn = mc.getConnection();
+            if (conn != null)
+            {
+                Object obj = conn.getRawConnection();
+                if (obj instanceof Connection)
+                {
+                    Connection connection = (Connection)obj;
+                    int connectionId = SQLToolsFacade.getConnectionId(databaseIdentifier, connection);
+                    return connectionId;
+                } 
+                else if (obj instanceof ConnectionInfo)
+                {
+                    Connection connection = ((ConnectionInfo)obj).getSharedConnection();
+                    int connectionId = SQLToolsFacade.getConnectionId(databaseIdentifier, connection);
+                    return connectionId;
+                } 
+            }               
+        }
+        return -1;
+    }
+		
+	private void registerSkippedConnection(ConnectEvent event)
+    {
+        final IConnectionProfile profile = event.getConnectionProfile();
+        String dbName = ProfileUtil.getProfileDatabaseName(profile.getName());
+        DatabaseIdentifier databaseIdentifier = new DatabaseIdentifier(profile.getName(), dbName);
 
+        //register skiped connection
+        int connectionId = getConnectionId(event, databaseIdentifier);
+        if (connectionId > -1)
+        {
+            ServerIdentifier si = ProfileUtil.getServerIdentifier(databaseIdentifier);
+            EditorCorePlugin.getControlConnectionManager().registerSkippedConnection(si, connectionId);
+        }
+    }
+	
+	/*
+	 * This class is used to register skipped connection to Control Connection Manager
+	 */
+	class ConnectionRegistryListener implements IManagedConnectionListener
+    {
+
+        public void aboutToClose(ConnectEvent event)
+        {
+        }
+
+        public void closed(ConnectEvent event)
+        {
+        }
+
+        public void modified(ConnectEvent event)
+        {
+        }
+
+        public boolean okToClose(ConnectEvent event)
+        {
+            return true;
+        }
+
+        public void opened(ConnectEvent event)
+        {
+            registerSkippedConnection(event);
+        }       
+    }
 }
