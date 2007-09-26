@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <!-- Register the editor and action contributor class for the SQL Builder. -->
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.datatools.sqltools.sqlbuilder"
+            class="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder"
+            icon="images/qrydoc.gif"
+            default="true"
+            extensions="sql"
+            contributorClass="org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor"
+            name="%_UI_BUILDER_NAME">
+      </editor>
+   </extension>
+   <!-- preference initializer -->
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferenceInitializer">
+      </initializer>
+    </extension>
+   <!-- preference pages -->
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            name="%SQLBuilder.PreferencePageName"
+            class="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data" 
+            id="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage">
+      </page>
+    </extension>
+      
+</plugin>
