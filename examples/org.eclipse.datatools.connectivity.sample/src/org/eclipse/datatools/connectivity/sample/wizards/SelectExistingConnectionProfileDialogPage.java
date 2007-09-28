@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.sample.wizards;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Vector;
 
@@ -22,9 +23,16 @@ import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.ConnectionDisplayProperty;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.ExistingConnectionProfilesDialogPage;
+import org.eclipse.swt.widgets.Event;
 
 public class SelectExistingConnectionProfileDialogPage extends
 		ExistingConnectionProfilesDialogPage {
+	private SelectExistingConnectionWizardPage page;
+	
+	public SelectExistingConnectionProfileDialogPage(SelectExistingConnectionWizardPage page, boolean isShowProperties, boolean isPropertiesSectionExpanded){
+		super(isShowProperties, isPropertiesSectionExpanded);
+		this.page = page;
+	}
 
 	protected ConnectionDisplayProperty[] updateConnectionDisplayProperties(
 			IConnectionProfile connectionProfile,
@@ -60,7 +68,6 @@ public class SelectExistingConnectionProfileDialogPage extends
 	}
 
 	protected IConnectionProfile[] getConnectionsToDisplay() {
-		String vendor = "Derby";
 		Vector filteredProfilesCollection = new Vector();
 		IConnectionProfile[] filteredProfiles = new IConnectionProfile[] {};
 		IConnectionProfile[] allProfiles = ProfileManager.getInstance()
@@ -68,12 +75,10 @@ public class SelectExistingConnectionProfileDialogPage extends
 		final int infoLength = allProfiles.length;
 		if (infoLength > 0) {
 			for (int index = 0; index < infoLength; index++) {
-				String vendorPropertyValue = ((String) allProfiles[index]
-						.getBaseProperties()
-						.get(
-								IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID));
-				if ((vendorPropertyValue != null)
-						&& (vendorPropertyValue.equals(vendor))) {
+				Map factories =  allProfiles[index]
+						.getProvider().getConnectionFactories();
+				if ((factories != null)
+						&& (factories.containsKey("java.sql.Connection"))) {
 					filteredProfilesCollection.add(allProfiles[index]);
 				}
 				filteredProfiles = new IConnectionProfile[filteredProfilesCollection
@@ -98,4 +103,10 @@ public class SelectExistingConnectionProfileDialogPage extends
 		}
 		return jarList;
 	}
+	
+	public void handleEvent(Event event) {
+		super.handleEvent(event);
+		page.handleEvent(event);
+	}
+	
 }

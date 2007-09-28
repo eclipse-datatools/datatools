@@ -10,21 +10,25 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sample.wizards;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 
 public class SelectExistingConnectionWizardPage extends WizardPage {
 
+	SelectExistingConnectionProfileDialogPage dialogPage;
+	
 	protected SelectExistingConnectionWizardPage(String pageName) {
 		super(pageName);
 	}
 
 	public void createControl(Composite parent) {
         setTitle("Sample Page"); //$NON-NLS-1$
-        setMessage("Select an existing connection.");
+        setMessage("Select a connection.  This sample wizard will only display JDBC connections \nto demonstrate the filter capabilities of the dialog page.");
         
         Composite container = new Composite(parent, SWT.NULL);
         GridLayout gridLayout = new GridLayout();
@@ -38,9 +42,20 @@ public class SelectExistingConnectionWizardPage extends WizardPage {
         gridData.grabExcessVerticalSpace = true;
         container.setLayoutData(gridData);
 
-        SelectExistingConnectionProfileDialogPage composite = new SelectExistingConnectionProfileDialogPage ();
-        composite.createControl(container); 
+        dialogPage = new SelectExistingConnectionProfileDialogPage (this, true, true);
+        dialogPage.createControl(container); 
         setControl(container);
 	}
 
+	public void handleEvent(Event event) {
+		this.getContainer().updateButtons();
+	}
+	
+	public IConnectionProfile getSelectedConnection(){
+		IConnectionProfile connection =null;
+		if(dialogPage != null){
+			connection = dialogPage.getSelectedConnection();
+		}
+		return connection;
+	}
 }
