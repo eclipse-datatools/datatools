@@ -455,9 +455,9 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     }
 
     public void refreshSource(String inputStr) {
-        sourceViewer.removeTextListener(textChangeListener);
+        //sourceViewer.removeTextListener(textChangeListener);
         document.set(inputStr);
-        sourceViewer.addTextListener(textChangeListener);
+        //sourceViewer.addTextListener(textChangeListener);
     }
 
     public void revertToLastKnownProperSource() {

@@ -171,6 +171,7 @@ public final class Messages extends NLS {
 	public static String _UI_DIALOG_OMIT_SCHEMA_TITLE;
 	public static String _UI_DIALOG_OMIT_SCHEMA_GROUP_TITLE;
 	public static String _UI_DIALOG_OMIT_SCHEMA_IN_SQL;
+	public static String _UI_DIALOG_OMIT_SCHEMA_USE_AUID_USER_AS_CURRENT_SCHEMA;
 	public static String _UI_DIALOG_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA;
 	public static String _UI_DIALOG_OMIT_SCHEMA_SPECIFY_SCHEMA_IN_SQL;
 	public static String _UI_DIALOG_OMIT_SCHEMA_CURRENT_SCHEMA;

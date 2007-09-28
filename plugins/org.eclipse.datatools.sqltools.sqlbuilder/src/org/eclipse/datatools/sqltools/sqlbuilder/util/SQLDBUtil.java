@@ -11,7 +11,7 @@ public class SQLDBUtil {
     	DatabaseDefinition dbDef = null;
     	Database database = connInfo.getDatabase();
     	if (database != null){
-    		RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(database);
+    		dbDef = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(database);
     	}
 		return dbDef;
 	}

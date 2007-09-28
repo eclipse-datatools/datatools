@@ -34,7 +34,6 @@ import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarCont
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.util.OmitSchemaChangedNotifier;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WindowUtility;
@@ -44,7 +43,6 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.SQLTreeViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.GraphControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
-import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -97,7 +95,8 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  * SQL Query Builder content editor
  */
 public class SQLBuilder extends EditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, QueryEventListener,
-		Observer {
+	Observer
+		 {
 
     protected SQLDomainModel sqlDomainModel;
     protected DesignViewer designViewer;
@@ -106,7 +105,7 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
     protected SQLTreeViewer contentOutlinePage;
     protected IFile ifile;
     protected boolean created;
-    ISQLEditorInput sqlEditorInput = null;
+    ISQLBuilderEditorInput sqlBuilderEditorInput = null;
 
     // The following variable are for EMF.edit stuff
     protected AdapterFactoryEditingDomain editingDomain;
@@ -146,7 +145,6 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
 
         builder = this;
         sqlDomainModel = new SQLDomainModel();  
-        // JDLTODO OmitSchemaChangedNotifier.getInstance().addObserver(this);
 
         BasicCommandStack commandStack = new BasicCommandStack();
         commandStack.addCommandStackListener(new CommandStackListener() {
@@ -356,10 +354,10 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
                 updateDirtyStatus();
             }
             else {
-            	if (sqlEditorInput != null
-            			&& sqlEditorInput instanceof SQLBuilderFileEditorInput
+            	if (sqlBuilderEditorInput != null
+            			&& sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput
             			&& sqlDomainModel.getIFile() != null){
-            		SQLBuilderFileEditorInput sQLBuilderFileEditorInput = (SQLBuilderFileEditorInput)sqlEditorInput;
+            		SQLBuilderFileEditorInput sQLBuilderFileEditorInput = (SQLBuilderFileEditorInput)sqlBuilderEditorInput;
             		SQLFileUtil.setEncodedOmitSchemaInfo(sQLBuilderFileEditorInput.getFile(), sQLBuilderFileEditorInput.getOmitSchemaInfo().encode());
             	}
             	
@@ -449,25 +447,33 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
         setInput( editorInput );
         site.setSelectionProvider( this );
 
-        if (editorInput instanceof ISQLEditorInput) {
-            sqlEditorInput = (ISQLEditorInput) editorInput;
+        if (editorInput instanceof ISQLBuilderEditorInput) {
+        	sqlBuilderEditorInput = (ISQLBuilderEditorInput) editorInput;
         }
         else if (editorInput instanceof IFileEditorInput){
-        	sqlEditorInput = new SQLBuilderFileEditorInput(((IFileEditorInput) editorInput).getFile());
+        	sqlBuilderEditorInput = new SQLBuilderFileEditorInput(((IFileEditorInput) editorInput).getFile());
         }
         
-        if (sqlEditorInput != null) {
+        if (sqlBuilderEditorInput != null) {
 
-            /* Get the basic settings (name, connection, database) from the editor 
+            /* Get the basic settings (name, connection, omitSchemaInfo database) from the editor 
              * input. */
-            String title = sqlEditorInput.getName();
+            String title = sqlBuilderEditorInput.getName();
             setPartName(title);
             
-            ISQLEditorConnectionInfo connInfo = sqlEditorInput.getConnectionInfo();
+            SQLBuilderOmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput.getOmitSchemaInfo();
+            sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
+            omitSchemaInfo.addObserver(this);
+            
+            ISQLEditorConnectionInfo connInfo = sqlBuilderEditorInput.getConnectionInfo();
             sqlDomainModel.setConnectionInfo(connInfo);
+            
+            // After setting omitSchemaInfo and connectionInfo, call setCurrentSchema
+            sqlDomainModel.setCurrentSchema();
                        
             // Calling connInfo.getDatabase() tries to connect to the database
             Database db = connInfo.getDatabase();
+
             if (db == null && connInfo != null) {
                 throw new PartInitException( NLS.bind(Messages._EXC_OPEN_SQL_FILE_NOT_CONNECTED, connInfo.getConnectionProfileName()));
             }
@@ -476,10 +482,10 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
             /* Load the initial SQL from the editor input. Note that persistance is
              * handled differently if the input is a FileEditorInput vs. a 
              * StorageEditorInput. Handle the file case first. */
-            if (sqlEditorInput instanceof SQLBuilderFileEditorInput) {
-            	SQLBuilderFileEditorInput fileEditorInput = (SQLBuilderFileEditorInput) sqlEditorInput;
+            if (sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput) {
+            	SQLBuilderFileEditorInput sqlBuilderFileEditorInput = (SQLBuilderFileEditorInput) sqlBuilderEditorInput;
                 try {
-                    IFile fileResource = fileEditorInput.getFile();
+                    IFile fileResource = sqlBuilderFileEditorInput.getFile();
                     if (fileResource != null) {
                         created = sqlDomainModel.openFileResource(fileResource);
                         if (created == false) {
@@ -500,8 +506,8 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
             
             /* Handle the case where the input is based on an IStorage
              * object. */
-            else if (sqlEditorInput instanceof SQLEditorStorageEditorInput) {
-                SQLEditorStorageEditorInput storageEditorInput = (SQLEditorStorageEditorInput) sqlEditorInput;
+            else if (sqlBuilderEditorInput instanceof SQLEditorStorageEditorInput) {
+                SQLEditorStorageEditorInput storageEditorInput = (SQLEditorStorageEditorInput) sqlBuilderEditorInput;
                 IStorage storageResource = storageEditorInput.getStorage();
                 try {
                     created = sqlDomainModel.openStorageResource(storageResource);
@@ -722,14 +728,15 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
     }
     
     /**
-     * This method is called when user changes the SQL Builder preferences
+     * Implementation of Observer interface.
+     * This method is called when user changes the omit schema settings
      * @param ob the object calling this method
      * @param arg the argument passed to the notifyObservers method
      */
     public void update(Observable ob, Object arg) {    	
-    	if (ob instanceof OmitSchemaChangedNotifier) {    		
-    		OmitSchemaChangedNotifier notifier = (OmitSchemaChangedNotifier)ob;
-    		sqlDomainModel.setOmitSchema(notifier.isOmitSchema());
+    	if (ob instanceof SQLBuilderOmitSchemaInfo) {    		
+    		//SQLBuilderOmitSchemaInfo notifier = (SQLBuilderOmitSchemaInfo)ob;
+    		//sqlDomainModel.setOmitSchema((notifier.getOmitCurrentSchema()));
     		sqlDomainModel.setCurrentSchema();    		
     		sourceViewer.refreshSource(sqlDomainModel.getSQLStatement().getSQL());    		
     	}    	
@@ -796,7 +803,6 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
 	}
 
 	public void dispose(){
-        OmitSchemaChangedNotifier.getInstance().deleteObserver(this);
 		super.dispose();
 	}
 	

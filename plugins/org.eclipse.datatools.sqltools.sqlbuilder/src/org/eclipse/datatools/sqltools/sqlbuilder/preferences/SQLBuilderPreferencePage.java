@@ -37,6 +37,7 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
 	
     Button _btnUseAUIDAsCurrentSchema;
     Button _btnSpecifyCurrentSchema;
+    Label _lblCurrentSchema;
     Text _txtCurrentSchema;
     Button _btnOmitCurrentSchemaInSQL;
 
@@ -108,11 +109,11 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         }
         );
 
-        Label lblCurrentSchema = new Label(groupOmitSchema, SWT.LEFT);
-        lblCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_CURRENT_SCHEMA);
+        _lblCurrentSchema = new Label(groupOmitSchema, SWT.LEFT);
+        _lblCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_CURRENT_SCHEMA);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
         gd.horizontalSpan = 1;
-        lblCurrentSchema.setLayoutData(gd);
+        _lblCurrentSchema.setLayoutData(gd);
         
         _txtCurrentSchema = new Text(groupOmitSchema, SWT.BORDER);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
@@ -133,15 +134,18 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
 			_btnUseAUIDAsCurrentSchema.setEnabled(true);
 			_btnSpecifyCurrentSchema.setEnabled(true);
 			if (_btnUseAUIDAsCurrentSchema.getSelection()){
+				_lblCurrentSchema.setEnabled(false);
 				_txtCurrentSchema.setEnabled(false);
 			}
 			else {
+				_lblCurrentSchema.setEnabled(true);
 				_txtCurrentSchema.setEnabled(true);
 			}
 		}
 		else {
 			_btnUseAUIDAsCurrentSchema.setEnabled(false);
 			_btnSpecifyCurrentSchema.setEnabled(false);
+			_lblCurrentSchema.setEnabled(false);
 			_txtCurrentSchema.setEnabled(false);
 		}
 	}

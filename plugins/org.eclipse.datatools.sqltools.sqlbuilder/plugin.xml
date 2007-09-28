@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
-   <!-- Register the editor and action contributor class for the SQL Builder. -->
+   <!-- Register the editor and action contributor class for the SQL Query Builder. -->
    <extension
          point="org.eclipse.ui.editors">
       <editor

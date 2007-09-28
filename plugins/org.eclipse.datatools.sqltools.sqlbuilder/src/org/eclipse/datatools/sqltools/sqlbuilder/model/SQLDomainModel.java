@@ -52,8 +52,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManagerPro
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
-import org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferenceConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.RSCCoreUIUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLDBUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
@@ -65,7 +65,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -83,9 +82,7 @@ public class SQLDomainModel {
     private IFile sqlFileResource;
     private IProject project;
     private ISQLEditorConnectionInfo connectionInfo;
-    protected boolean omitSchema; // whether or not to call the omitschema option
-    private boolean omitSchemaUseAUID; // whether to use auth ID as current schema
-    private String omitSchemaSchema; // The schema specified in the omit schema preferences
+    private SQLBuilderOmitSchemaInfo _omitSchemaInfo;
     private String currentSchema; // current schema name
     private String initialSource; // content of IFile, may be invalid statement
     private boolean unmatchedSource; // whether or not the source matches the Model
@@ -104,7 +101,6 @@ public class SQLDomainModel {
      * Constructs an instance of this class.  This is the default constructor.
      */
     public SQLDomainModel() {
-    	getOmitSchemaPreferences();
     }
 
     /**
@@ -115,23 +111,11 @@ public class SQLDomainModel {
      * @param aDatabase the database to use
      */
     public SQLDomainModel(QueryStatement aStatement, Database aDatabase) {
-    	getOmitSchemaPreferences();
         sqlStatement = aStatement;
         database = aDatabase;
     }
 
-    /*
-     * Gets the SQL Builder preference settings for omitting the current schema in
-     * generated SQL
-     * 
-     */
-    private void getOmitSchemaPreferences(){
-    	IPreferenceStore store = SQLBuilderPlugin.getPlugin().getPreferenceStore();
-    	omitSchema = store.getBoolean(SQLBuilderPreferenceConstants.OMIT_CURRENT_SCHEMA_IN_SQL);
-    	omitSchemaUseAUID = store.getBoolean(SQLBuilderPreferenceConstants.OMIT_CURRENT_SCHEMA_USE_AUID);
-    	omitSchemaSchema = store.getString(SQLBuilderPreferenceConstants.OMIT_CURRENT_SCHEMA_CURRENT_SCHEMA);
-    }
-    
+   
     /**
      * Gets the editing domain for this statement.
      * 
@@ -621,7 +605,25 @@ public class SQLDomainModel {
      */
     public void setConnectionInfo(ISQLEditorConnectionInfo info) {
         connectionInfo = info;
-        setCurrentSchema();
+    }
+
+    /**
+     * Sets the <code>SQLBuilderOmitSchemaInfo</code> object associated with this statement to 
+     * the given object.
+     *  
+     * @param info the SQLBuilderOmitSchemaInfo object to set
+     */
+    public void setOmitSchemaInfo(SQLBuilderOmitSchemaInfo info) {
+        _omitSchemaInfo = info;
+    }
+
+    /**
+     * Gets the <code>SQLBuilderOmitSchemaInfo</code> object associated with this statement
+     *  
+     * @param info the SQLBuilderOmitSchemaInfo object to get
+     */
+    public SQLBuilderOmitSchemaInfo getOmitSchemaInfo() {
+        return _omitSchemaInfo;
     }
 
     /**
@@ -782,32 +784,22 @@ public class SQLDomainModel {
 
  
     /**
-     * Sets the omitSchema flag
-     * @param omit whether or not to parse with the omit schema option set.
-     * If omit schema option is set, the SQL text will not contain the schema
-     * whenever the schema matches the current schema
-     */
-    public void setOmitSchema(boolean omit) {
-        omitSchema = omit;
-    }
-
-    /**
      * Sets the current schema
      * 
      * @param the current schema to set
      */
     public void setCurrentSchema() {
     	// Set currentSchema
-    	if (omitSchemaUseAUID){
-    		currentSchema = getDefaultSchema();;
+    	if (_omitSchemaInfo.getUseAUIDAsCurrentSchema()){
+    		currentSchema = getUserName();
     	}
     	else {
-    		currentSchema = omitSchemaSchema;
+    		currentSchema = _omitSchemaInfo.getCurrentSchema();
     	}
     	
     	// Set SQLQuerySourceFormat omitSchema
     	SQLQuerySourceFormat sourceFormat = getSqlSourceFormat();
-        if (omitSchema) {
+        if (_omitSchemaInfo.getOmitCurrentSchema()) {
             sourceFormat.setOmitSchema(currentSchema);
         }
         else {
@@ -1027,10 +1019,10 @@ public class SQLDomainModel {
 
             // Configure the source format object with the omit schema option.
             String curSchema = getCurrentSchema();
-            if (omitSchema == true) {
+            if (_omitSchemaInfo.getOmitCurrentSchema() == true) {
                 sqlSourceFormat.setOmitSchema(curSchema);
             }
-            else if (omitSchema != true) {
+            else if (_omitSchemaInfo.getOmitCurrentSchema() != true) {
                 sqlSourceFormat.setOmitSchema(null);
             }
             
@@ -1063,7 +1055,7 @@ public class SQLDomainModel {
 
         SQLQuerySourceFormat srcFormat = sqlStatement.getSourceInfo().getSqlFormat();
 
-        if (omitSchema) {
+        if (_omitSchemaInfo.getOmitCurrentSchema()) {
             // tell parser to return schema with statement
             srcFormat.setOmitSchema(null);
         }
@@ -1081,7 +1073,7 @@ public class SQLDomainModel {
 
         SQLQuerySourceFormat srcFormat = getSqlSourceFormat();
 
-        if (omitSchema) {
+        if (_omitSchemaInfo.getOmitCurrentSchema()) {
             // reset source format to current schema
             srcFormat.setOmitSchema(currentSchema);
         }
@@ -1141,31 +1133,44 @@ public class SQLDomainModel {
     }
 
     /**
-     * Gets the default schema.  This is normally the login user id.
+     * Gets the default schema for the current connection profile.  This is normally the login user id.
      * 
      * @return the default schema
      */
-    private String getDefaultSchema() {
+    public String getDefaultSchema() {
         String defaultSchema = null;
-        String userName = "";
         if(connectionInfo != null)
         {
         	defaultSchema = connectionInfo.getDefaultSchemaName();
         	if (defaultSchema == null){
-        		IConnectionProfile cp = connectionInfo.getConnectionProfile();
-        		if (cp != null){
-        			Properties props = cp.getBaseProperties();
-        			Object objUserName = props.get("org.eclipse.datatools.connectivity.db.username");
-        			if (objUserName instanceof String){
-        				// JDLTODO: remove .toUpperCase()
-        				defaultSchema = userName.toUpperCase();
-        			}
-        		}
+        		defaultSchema = getUserName();
         	}
         }
         return (String)SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(defaultSchema);
     }
 
+    /**
+     * Gets the user name for the current connection profile
+     */
+    public String getUserName() {
+        String userName = "";
+        if(connectionInfo != null)
+        {
+    		IConnectionProfile cp = connectionInfo.getConnectionProfile();
+    		if (cp != null){
+    			Properties props = cp.getBaseProperties();
+    			Object objUserName = props.get("org.eclipse.datatools.connectivity.db.username");
+    			if (objUserName instanceof String){
+    				userName = (String)objUserName;
+    				if (userName == null){
+    					userName = "";
+    				}
+    			}
+    		}
+    	}
+        return userName;
+    }
+    
     /**
      * Gets the configuration object to configure list of PostParseProcessor
      * objects for the parser. PostParseProcessor objects are used by the parser

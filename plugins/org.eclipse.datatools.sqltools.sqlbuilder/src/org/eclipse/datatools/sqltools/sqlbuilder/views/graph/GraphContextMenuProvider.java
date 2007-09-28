@@ -90,8 +90,10 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
 
         selectAll = new SelectAllColumnsAction();
         deselectAll = new DeselectAllColumnsAction();
-
-        omitCurrentSchema = new OmitCurrentSchemaAction(domainModel);
+        
+        if (domainModel.getDatabaseDefinition().supportsSchema()){
+        	omitCurrentSchema = new OmitCurrentSchemaAction(domainModel);
+        }
     }
 
     protected void addGlobalActionsAtStart(IMenuManager menu) {
@@ -101,7 +103,9 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
     }
 
     protected void addGlobalActionsAtEnd(IMenuManager menu) {
-        menu.add(omitCurrentSchema);
+    	if (omitCurrentSchema != null){
+    		menu.add(omitCurrentSchema);
+    	}
     }
 
     protected void addContextActions(IMenuManager menu, List selectedEditParts) {
@@ -235,7 +239,6 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
         replaceSelectTable.setElement(statement);
         tableAlias.setStatement(statement);
         createJoin.setStatement(statement);
-        omitCurrentSchema.setStatement(statement);
     }
 
     protected void updateCurrentStatement(EditPartViewer viewer) {
