@@ -53,7 +53,6 @@ public class ExtensionExplorer
                 if( sm_instance == null )
                 {
                     sm_instance = new ExtensionExplorer();                    
-                    sm_instance.refresh();
                 }
             }
         }
@@ -65,7 +64,10 @@ public class ExtensionExplorer
      */
     public static void releaseInstance()
     {
-        sm_instance = null;
+        synchronized( ExtensionExplorer.class )
+        {
+            sm_instance = null;
+        }
     }
 
     private ExtensionExplorer()
@@ -79,8 +81,11 @@ public class ExtensionExplorer
     public void refresh()
     {
         // reset the cached collection of extension manifest instances
-        m_bridgeManifests = new Hashtable();
-        m_propProviderManifests = new Hashtable();
+        synchronized( this )
+        {
+            m_bridgeManifests = null;
+            m_propProviderManifests = null;
+        }
     }
     
     /**
@@ -269,14 +274,26 @@ public class ExtensionExplorer
     private Hashtable getBridgeManifests()
     {
         if( m_bridgeManifests == null )
-            m_bridgeManifests = new Hashtable();
+        {
+            synchronized( this )
+            {
+                if( m_bridgeManifests == null )
+                    m_bridgeManifests = new Hashtable();
+            }
+        }
         return m_bridgeManifests;
     }
 
     private Hashtable getPropProviderManifests()
     {
         if( m_propProviderManifests == null )
-            m_propProviderManifests = new Hashtable();
+        {
+            synchronized( this )
+            {
+                if( m_propProviderManifests == null )
+                    m_propProviderManifests = new Hashtable();
+            }
+        }
         return m_propProviderManifests;
     }
 

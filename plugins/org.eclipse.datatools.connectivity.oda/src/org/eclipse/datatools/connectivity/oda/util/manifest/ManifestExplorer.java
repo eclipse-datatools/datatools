@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -60,8 +60,16 @@ public class ManifestExplorer
 	public static ManifestExplorer getInstance()
 	{
 	    if( sm_instance == null )
-	        sm_instance = new ManifestExplorer();            
-
+	    {
+            synchronized( ManifestExplorer.class )
+            {
+                if( sm_instance == null )
+                {
+                    sm_instance = new ManifestExplorer();
+                }
+            }
+	    }
+	    
         return sm_instance;
 	}
     
@@ -70,14 +78,23 @@ public class ManifestExplorer
      */
     public static void releaseInstance()
     {
-        sm_instance = null;
-        sm_logger = null;
+        synchronized( ManifestExplorer.class )
+        {
+            sm_instance = null;
+            sm_logger = null;
+        }
     }
     
     static Logger getLogger()
     {
         if( sm_logger == null )
-            sm_logger = Logger.getLogger( PACKAGE_NAME );        
+        {
+            synchronized( ManifestExplorer.class )
+            {
+                if( sm_logger == null )
+                    sm_logger = Logger.getLogger( PACKAGE_NAME );
+            }
+        }
         return sm_logger;
     }
 	
@@ -91,14 +108,26 @@ public class ManifestExplorer
      */
     public void refresh()
     {
+        if( m_manifestsById == null )
+            return;     // done; nothing to reset
+
         // reset the cached collection of ODA extension manifest instances
-        m_manifestsById = null;
+        synchronized( this )
+        {
+            m_manifestsById = null;
+        }
     }
 
     private Hashtable getCachedManifests()
     {
     	if( m_manifestsById == null )
-            m_manifestsById = new Hashtable();
+    	{
+            synchronized( this )
+            {
+                if( m_manifestsById == null )
+                    m_manifestsById = new Hashtable();
+            }
+    	}
     	return m_manifestsById;
     }
 	
