@@ -173,16 +173,27 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
         menuManager.add(new Separator("edit")); //$NON-NLS-1$
         contentOutlinePage.fillContextMenu();
 
-        boolean enable = !SQLBuilder.isStatementProper(sqlDomainModel);
         if (actionBarContributor != null) {
+            boolean enableRevert = !SQLBuilder.isStatementProper(sqlDomainModel);
             IAction revertToDefaultAction = actionBarContributor.getAction( SQLBuilderActionBarContributor.REVERT_TO_DEFAULT_ACTION_ID );
             if (revertToDefaultAction != null) {
-                revertToDefaultAction.setEnabled(enable);
+                revertToDefaultAction.setEnabled(enableRevert);
             }
             
             IAction revertToPreviousAction = actionBarContributor.getAction( SQLBuilderActionBarContributor.REVERT_TO_PREVIOUS_ACTION_ID );
             if (revertToPreviousAction != null) {
-                revertToPreviousAction.setEnabled(enable);
+                revertToPreviousAction.setEnabled(enableRevert);
+            }
+            IAction omitCurrentSchemaAction =  actionBarContributor.getAction( SQLBuilderActionBarContributor.OMIT_CURRENT_SCHEMA_ACTION_ID );
+            if (omitCurrentSchemaAction != null) {
+            	boolean enableOmitCurrentSchema = false;
+            	if (getDomainModel() != null && getDomainModel().getDatabaseDefinition() != null){
+            		enableOmitCurrentSchema = getDomainModel().getDatabaseDefinition().supportsSchema();
+            	}
+            	else {
+            		enableOmitCurrentSchema = false;
+            	}
+            	omitCurrentSchemaAction.setEnabled(enableOmitCurrentSchema);
             }
         }
     }
@@ -461,7 +472,7 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
             String title = sqlBuilderEditorInput.getName();
             setPartName(title);
             
-            SQLBuilderOmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput.getOmitSchemaInfo();
+            OmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput.getOmitSchemaInfo();
             sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
             omitSchemaInfo.addObserver(this);
             
@@ -734,8 +745,8 @@ public class SQLBuilder extends EditorPart implements IEditingDomainProvider, IS
      * @param arg the argument passed to the notifyObservers method
      */
     public void update(Observable ob, Object arg) {    	
-    	if (ob instanceof SQLBuilderOmitSchemaInfo) {    		
-    		//SQLBuilderOmitSchemaInfo notifier = (SQLBuilderOmitSchemaInfo)ob;
+    	if (ob instanceof OmitSchemaInfo) {    		
+    		//OmitSchemaInfo notifier = (OmitSchemaInfo)ob;
     		//sqlDomainModel.setOmitSchema((notifier.getOmitCurrentSchema()));
     		sqlDomainModel.setCurrentSchema();    		
     		sourceViewer.refreshSource(sqlDomainModel.getSQLStatement().getSQL());    		

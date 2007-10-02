@@ -13,15 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.graph;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.gef.ContextMenuProvider;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
@@ -36,11 +27,12 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
 import org.eclipse.datatools.modelbase.sql.query.helper.JoinHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.TableHelper;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.DefineJoinTypeAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.OmitCurrentSchemaAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.TableAliasAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ExpressionHelper;
@@ -53,6 +45,12 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.ISQLEditP
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.JoinEditPart;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.SQLRootEditPart;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.TableEditPart;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.gef.ContextMenuProvider;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartViewer;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuManager;
 
 public class GraphContextMenuProvider extends ContextMenuProvider {
 
@@ -65,7 +63,6 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
     CreateJoinAction createJoin; // used for select statement only
     DefineJoinTypeAction defineJoinType; // used for select statement only
     RemoveJoinAction removeJoin; // used for select statement only
-    OmitCurrentSchemaAction omitCurrentSchema; // all statements
 
     SelectAllColumnsAction selectAll; // used for select, update
     DeselectAllColumnsAction deselectAll; // used for select, update
@@ -91,21 +88,12 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
         selectAll = new SelectAllColumnsAction();
         deselectAll = new DeselectAllColumnsAction();
         
-        if (domainModel.getDatabaseDefinition().supportsSchema()){
-        	omitCurrentSchema = new OmitCurrentSchemaAction(domainModel);
-        }
     }
 
     protected void addGlobalActionsAtStart(IMenuManager menu) {
         // always have an add menu item
         // for update, delete and insert - actions text changes to replace statement contains a table
         menu.add(addTable);
-    }
-
-    protected void addGlobalActionsAtEnd(IMenuManager menu) {
-    	if (omitCurrentSchema != null){
-    		menu.add(omitCurrentSchema);
-    	}
     }
 
     protected void addContextActions(IMenuManager menu, List selectedEditParts) {
@@ -258,7 +246,6 @@ public class GraphContextMenuProvider extends ContextMenuProvider {
         updateCurrentStatement(getViewer());
         addGlobalActionsAtStart(menu);
         addContextActions(menu, getViewer().getSelectedEditParts());
-        addGlobalActionsAtEnd(menu);
     }
 
     /**

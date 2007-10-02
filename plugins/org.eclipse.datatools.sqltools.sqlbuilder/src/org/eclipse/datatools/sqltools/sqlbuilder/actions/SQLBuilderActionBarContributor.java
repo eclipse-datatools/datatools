@@ -64,6 +64,10 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
     public static final String REVERT_TO_DEFAULT_ACTION_ID = "RevertToDefaultAction"; //$NON-NLS-1$
 //    public static final String REVERT_TO_DEFAULT_ACTION_LABEL = "datatools.sqlbuilder.RevertToDefaultAction.label"; //$NON-NLS-1$
 //    public static final String REVERT_TO_DEFAULT_ACTION_PREFIX = "datatools.sqlbuilder.RevertToDefaultAction."; //$NON-NLS-1$
+
+    public static final String OMIT_CURRENT_SCHEMA_ACTION_ID = "OmitCurrentSchema"; //$NON-NLS-1$
+//  public static final String OMIT_CURRENT_SCHEMA_ACTION_LABEL = "datatools.sqlbuilder.OmitCurrentSchemaAction.label"; //$NON-NLS-1$
+//  public static final String OMIT_CURRENT_SCHEMA_ACTION_PREFIX = "datatools.sqlbuilder.OmitCurrentSchemaAction."; //$NON-NLS-1$
     
     protected static final String RUN_MENU_ID = "org.eclipse.ui.run";  //$NON-NLS-1$
     protected static final String RUN_MENU_EXTERNAL_TOOLS_GROUP_ID = "ExternalToolsGroup";  //$NON-NLS-1$
@@ -73,6 +77,7 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
     protected static final String SQL_MENU_RUN_SQL_ACTION_ID = "SQLMenuRunSQLAction"; //$NON-NLS-1$
     protected static final String SQL_MENU_REVERT_TO_PREVIOUS_ACTION_ID = "SQLMenuRevertToPreviousAction"; //$NON-NLS-1$
     protected static final String SQL_MENU_REVERT_TO_DEFAULT_ACTION_ID = "SQLMenuRevertToDefaultAction"; //$NON-NLS-1$
+    protected static final String SQL_MENU_OMIT_CURRENT_SCHEMA_ACTION_ID = "SQLMenuOmitCurrentSchemaAction"; //$NON-NLS-1$
     
     protected static final String TOOLBAR_RUN_SQL_ACTION_ID = "ToolBarRunSQLAction"; //$NON-NLS-1$
     
@@ -83,10 +88,12 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
     protected RetargetAction fToolBarRunSQLAction;
     protected RetargetAction fSQLMenuRevertToPreviousAction;
     protected RetargetAction fSQLMenuRevertToDefaultAction;
+    protected RetargetAction fSQLMenuOmitCurrentSchemaAction;
    
     private ExecuteAction fRunSQLAction;
-    private RevertToDefaultAction fRevertToDefaultAction;
     private RevertToPreviousAction fRevertToPreviousAction;
+    private RevertToDefaultAction fRevertToDefaultAction;
+    private OmitCurrentSchemaAction fOmitCurrentSchemaAction;
     
     /** The actions registered with the editor. */  
     private Map fActions = new HashMap(10);
@@ -122,6 +129,7 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
 
         fSQLMenuRevertToPreviousAction = new RetargetAction(SQL_MENU_REVERT_TO_PREVIOUS_ACTION_ID, Messages.datatools_sqlbuilder_RevertToPreviousAction_label );    
         fSQLMenuRevertToDefaultAction = new RetargetAction(SQL_MENU_REVERT_TO_DEFAULT_ACTION_ID, Messages.datatools_sqlbuilder_RevertToDefaultAction_label);
+        fSQLMenuOmitCurrentSchemaAction = new RetargetAction(SQL_MENU_OMIT_CURRENT_SCHEMA_ACTION_ID, Messages.datatools_sqlbuilder_OmitCurrentSchemaAction_label );    
         
         /* Create the "handler" actions.  (These actions get bound to the menu and toolbar
          * action objects.  These actions do the actual work.) */
@@ -129,14 +137,19 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
         fRunSQLAction.setId( RUN_SQL_ACTION_ID );
         setAction( RUN_SQL_ACTION_ID, fRunSQLAction );
         
-        fRevertToDefaultAction = new RevertToDefaultAction();
-        fRevertToDefaultAction.setId( REVERT_TO_DEFAULT_ACTION_ID );
-        setAction( REVERT_TO_DEFAULT_ACTION_ID, fRevertToDefaultAction );
-        
         fRevertToPreviousAction = new RevertToPreviousAction();
         fRevertToPreviousAction.setId( REVERT_TO_PREVIOUS_ACTION_ID );
         fRevertToPreviousAction.setShell( Display.getCurrent().getActiveShell() );
         setAction( REVERT_TO_PREVIOUS_ACTION_ID, fRevertToPreviousAction );
+
+        fRevertToDefaultAction = new RevertToDefaultAction();
+        fRevertToDefaultAction.setId( REVERT_TO_DEFAULT_ACTION_ID );
+        setAction( REVERT_TO_DEFAULT_ACTION_ID, fRevertToDefaultAction );
+        
+        fOmitCurrentSchemaAction = new OmitCurrentSchemaAction();
+        fOmitCurrentSchemaAction.setId( OMIT_CURRENT_SCHEMA_ACTION_ID );
+        fOmitCurrentSchemaAction.setShell( Display.getCurrent().getActiveShell() );
+        setAction( OMIT_CURRENT_SCHEMA_ACTION_ID, fOmitCurrentSchemaAction );
     }
     
     /**
@@ -178,6 +191,7 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
         sqlMenu.add(fSQLMenuRunSQLAction);
         sqlMenu.add(fSQLMenuRevertToPreviousAction);            
         sqlMenu.add(fSQLMenuRevertToDefaultAction);            
+        sqlMenu.add(fSQLMenuOmitCurrentSchemaAction);            
     }
 
     /**
@@ -203,8 +217,9 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
             workbenchPage.removePartListener( fRunMenuRunSQLAction );
             workbenchPage.removePartListener( fSQLMenuRunSQLAction );
             workbenchPage.removePartListener( fSQLMenuRunSQLAction );
-            workbenchPage.removePartListener( fSQLMenuRevertToDefaultAction );
             workbenchPage.removePartListener( fSQLMenuRevertToPreviousAction );
+            workbenchPage.removePartListener( fSQLMenuRevertToDefaultAction );
+            workbenchPage.removePartListener( fSQLMenuOmitCurrentSchemaAction );
         }
     }
 
@@ -249,22 +264,25 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
         bars.setGlobalActionHandler(RUN_MENU_RUN_SQL_ACTION_ID, fRunSQLAction);
         bars.setGlobalActionHandler(SQL_MENU_RUN_SQL_ACTION_ID, fRunSQLAction);
         bars.setGlobalActionHandler(TOOLBAR_RUN_SQL_ACTION_ID, fRunSQLAction);
-        bars.setGlobalActionHandler(SQL_MENU_REVERT_TO_DEFAULT_ACTION_ID, fRevertToDefaultAction );
         bars.setGlobalActionHandler(SQL_MENU_REVERT_TO_PREVIOUS_ACTION_ID, fRevertToPreviousAction );
+        bars.setGlobalActionHandler(SQL_MENU_REVERT_TO_DEFAULT_ACTION_ID, fRevertToDefaultAction );
+        bars.setGlobalActionHandler(SQL_MENU_OMIT_CURRENT_SCHEMA_ACTION_ID, fOmitCurrentSchemaAction );
         
         page.addPartListener(fRunMenuRunSQLAction);
         page.addPartListener(fSQLMenuRunSQLAction);
         page.addPartListener(fToolBarRunSQLAction);
-        page.addPartListener(fSQLMenuRevertToDefaultAction);
         page.addPartListener(fSQLMenuRevertToPreviousAction);
+        page.addPartListener(fSQLMenuRevertToDefaultAction);
+        page.addPartListener(fSQLMenuOmitCurrentSchemaAction);
         
         IWorkbenchPart activePart = page.getActivePart();
         if (activePart != null) {
             fRunMenuRunSQLAction.partActivated(activePart);
             fSQLMenuRunSQLAction.partActivated(activePart);
             fToolBarRunSQLAction.partActivated(activePart);
-            fSQLMenuRevertToDefaultAction.partActivated(activePart);
             fSQLMenuRevertToPreviousAction.partActivated(activePart);
+            fSQLMenuRevertToDefaultAction.partActivated(activePart);
+            fSQLMenuOmitCurrentSchemaAction.partActivated(activePart);
         }
     }
     
@@ -307,15 +325,25 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
             }
             
             fRunSQLAction.setActiveEditor( sqlBuilder );
-            fRevertToDefaultAction.setActiveEditor( activeEditor );
             fRevertToPreviousAction.setActiveEditor( activeEditor );
+            fRevertToDefaultAction.setActiveEditor( activeEditor );
+            fOmitCurrentSchemaAction.setActiveEditor( activeEditor );
             
             SQLDomainModel domainModel = sqlBuilder.getDomainModel();
             if (domainModel != null) {
-                boolean enable = !domainModel.isProper();
-                fRevertToDefaultAction.setEnabled(enable);
-                fRevertToPreviousAction.setEnabled(enable);
-            }
+                boolean enableRevert = !domainModel.isProper();
+                fRevertToPreviousAction.setEnabled(enableRevert);
+                fRevertToDefaultAction.setEnabled(enableRevert);
+                
+                boolean enableOmitCurrentSchema;
+                if (domainModel.getDatabaseDefinition() != null){
+                	enableOmitCurrentSchema = domainModel.getDatabaseDefinition().supportsSchema();
+                }
+                else {
+                	enableOmitCurrentSchema = false;
+                }
+                fOmitCurrentSchemaAction.setEnabled(enableOmitCurrentSchema);
+           }
             
             IActionBars bars = getActionBars();
             if (bars != null) {

@@ -10,43 +10,53 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.OmitCurrentSchemaDialog;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 
-public class OmitCurrentSchemaAction extends Action {
+public class OmitCurrentSchemaAction extends EditorAction {
 
-	SQLDomainModel _domainModel;
-    SQLBuilderOmitSchemaInfo _omitSchemaInfo;
-
-    public OmitCurrentSchemaAction(SQLDomainModel domainModel) {
-        super(org.eclipse.datatools.sqltools.sqlbuilder.Messages._UI_ACTION_OMIT_CURRENT_SCHEMA);
-        _domainModel = domainModel;
-        _omitSchemaInfo = domainModel.getOmitSchemaInfo();
+    /**
+     * Constructs an instance of this class.  This is the default constructor.
+     */
+    public OmitCurrentSchemaAction() {
+        this(Messages._UI_OMIT_CURRENT_SCHEMA);
     }
 
-    Shell getShell() {
-        return org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin.getPlugin().getWorkbench().getActiveWorkbenchWindow().getShell();
+    /**
+     * Constructs an instance of this class with the given action label.
+     * 
+     * @param label the action label to use
+     */
+    public OmitCurrentSchemaAction(String label) {
+        super(label);
     }
-
+    
     public void run() {
 
-    	SQLBuilderOmitSchemaInfo tmpOmitSchemaInfo = new SQLBuilderOmitSchemaInfo();
-    	tmpOmitSchemaInfo.copyOmitSchemaInfo(_omitSchemaInfo);
-        OmitCurrentSchemaDialog dialog = new OmitCurrentSchemaDialog(getShell(), tmpOmitSchemaInfo, _domainModel.getUserName());
+        IEditorPart activeEditor = getActiveEditor();
+        if (activeEditor instanceof SQLBuilder) {
+            SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
+            OmitSchemaInfo omitSchemaInfo = sqlBuilder.getDomainModel().getOmitSchemaInfo();
+            String userName = sqlBuilder.getDomainModel().getUserName();
+            
+            OmitSchemaInfo tmpOmitSchemaInfo = new OmitSchemaInfo();
+            tmpOmitSchemaInfo.copyOmitSchemaInfo(omitSchemaInfo);
+            OmitCurrentSchemaDialog dialog = new OmitCurrentSchemaDialog(getShell(), tmpOmitSchemaInfo, userName);
 
-        dialog.create();
+            dialog.create();
 
-        dialog.setBlockOnOpen(true);
-        int value = dialog.open();
-        if (value == Window.CANCEL){
-            return;
-        }
-        else {
-        	_omitSchemaInfo.copyOmitSchemaInfo(tmpOmitSchemaInfo);
+            dialog.setBlockOnOpen(true);
+            int value = dialog.open();
+            if (value == Window.CANCEL){
+            	return;
+            }
+            else {
+            	omitSchemaInfo.copyOmitSchemaInfo(tmpOmitSchemaInfo);
+            }
         }
     }
 }

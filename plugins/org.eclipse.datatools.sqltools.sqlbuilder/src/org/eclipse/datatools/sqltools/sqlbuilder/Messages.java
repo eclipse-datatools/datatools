@@ -344,6 +344,7 @@ public final class Messages extends NLS {
 	public static String _UI_CLEAR_TO_TEMPLATE;
 	public static String _UI_REVERT_TO_LAST_CORRECT_SOURCE;
 	public static String _UI_LAST_CORRECT_SOURCE;
+	public static String _UI_OMIT_CURRENT_SCHEMA;
 	public static String _UI_DIALOG_EXECUTE_SQL_TITLE;
 	public static String _UI_BUTTON_EXECUTE_CLOSE;
 	public static String _UI_LABEL_SQL_STATEMENT;
@@ -413,6 +414,10 @@ public final class Messages extends NLS {
 	public static String datatools_sqlbuilder_RevertToDefaultAction_tooltip;
 	public static String datatools_sqlbuilder_RevertToDefaultAction_image;
 	public static String datatools_sqlbuilder_RevertToDefaultAction_description;
+	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_label;
+	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_tooltip;
+	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_image;
+	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_description;
     public static String VIEW_UTILITY_DEFAULT_FONT_UI_;
     public static String STRING_MATCH_EXPECTED_EXCEPTION_MESSAGE; 
     public static String STRING_MATCH_RETURNED_EXCEPTION_MESSAGE;

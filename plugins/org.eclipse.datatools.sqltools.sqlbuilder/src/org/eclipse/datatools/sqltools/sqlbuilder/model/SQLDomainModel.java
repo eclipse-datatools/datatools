@@ -52,7 +52,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManagerPro
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.RSCCoreUIUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLDBUtil;
@@ -82,7 +82,7 @@ public class SQLDomainModel {
     private IFile sqlFileResource;
     private IProject project;
     private ISQLEditorConnectionInfo connectionInfo;
-    private SQLBuilderOmitSchemaInfo _omitSchemaInfo;
+    private OmitSchemaInfo _omitSchemaInfo;
     private String currentSchema; // current schema name
     private String initialSource; // content of IFile, may be invalid statement
     private boolean unmatchedSource; // whether or not the source matches the Model
@@ -608,21 +608,21 @@ public class SQLDomainModel {
     }
 
     /**
-     * Sets the <code>SQLBuilderOmitSchemaInfo</code> object associated with this statement to 
+     * Sets the <code>OmitSchemaInfo</code> object associated with this statement to 
      * the given object.
      *  
-     * @param info the SQLBuilderOmitSchemaInfo object to set
+     * @param info the OmitSchemaInfo object to set
      */
-    public void setOmitSchemaInfo(SQLBuilderOmitSchemaInfo info) {
+    public void setOmitSchemaInfo(OmitSchemaInfo info) {
         _omitSchemaInfo = info;
     }
 
     /**
-     * Gets the <code>SQLBuilderOmitSchemaInfo</code> object associated with this statement
+     * Gets the <code>OmitSchemaInfo</code> object associated with this statement
      *  
-     * @param info the SQLBuilderOmitSchemaInfo object to get
+     * @param info the OmitSchemaInfo object to get
      */
-    public SQLBuilderOmitSchemaInfo getOmitSchemaInfo() {
+    public OmitSchemaInfo getOmitSchemaInfo() {
         return _omitSchemaInfo;
     }
 

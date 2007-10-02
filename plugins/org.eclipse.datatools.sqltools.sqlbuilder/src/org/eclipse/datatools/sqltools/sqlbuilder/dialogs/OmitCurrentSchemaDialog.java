@@ -12,7 +12,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.dialogs;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -40,7 +40,7 @@ import org.eclipse.ui.help.WorkbenchHelp;
  */
 public class OmitCurrentSchemaDialog extends Dialog {
 
-    SQLBuilderOmitSchemaInfo _omitSchemaInfo;
+    OmitSchemaInfo _omitSchemaInfo;
     String _userName;
 
     Button _btnUseAUIDAsCurrentSchema;
@@ -53,7 +53,7 @@ public class OmitCurrentSchemaDialog extends Dialog {
      * Creates a dialog for OmitCurrentSchema settings with an OK and Cancel button.
      */
 
-    public OmitCurrentSchemaDialog(Shell parentShell, SQLBuilderOmitSchemaInfo omitSchemaInfo, String userName) {
+    public OmitCurrentSchemaDialog(Shell parentShell, OmitSchemaInfo omitSchemaInfo, String userName) {
         super(parentShell);
         _omitSchemaInfo = omitSchemaInfo;
         _userName = userName;
@@ -95,6 +95,8 @@ public class OmitCurrentSchemaDialog extends Dialog {
         
         GridLayout compositeLayout = new GridLayout(1, true);
         composite.setLayout(compositeLayout);
+		gd = new GridData(SWT.FILL, GridData.FILL, true, false);
+		composite.setLayoutData(gd);
 
        
 		Group groupOmitSchema = new Group(composite, SWT.SHADOW_ETCHED_IN);
