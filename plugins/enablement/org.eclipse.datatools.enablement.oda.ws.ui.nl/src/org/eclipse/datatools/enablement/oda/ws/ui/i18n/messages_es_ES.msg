@@ -22,7 +22,7 @@ webServiceSelectionPage.message.default=Fuente de datos de servicios web
 webServiceSelectionPage.message.error=Especifique la URL del punto final de SOAP o seleccione un descriptor WSDL
 webServiceSelectionPage.group.wsdl=Descriptor WSDL
 webServiceSelectionPage.group.endPoint=Punto final de SOAP
-webServiceSelectionPage.group.customClass=Clase de conexión personalizada
+webServiceSelectionPage.group.customClass=Clase de controlador personalizado
 webServiceSelectionPage.label.wsdl=Si está disponible el descriptor WSDL de los servicios web, introduzca su URL o busque su ubicación en el sistema de archivos locales
 webServiceSelectionPage.label.wsdlURI=URL o ubicación de &WSDL:
 webServiceSelectionPage.label.endPoint=Especifique la URL del punto &final de SOAP. Puede omitir este valor si se debe utilizar el punto final definido en WSDL o si no está utilizando un tipo de conexión personalizada que no requiere una URL de punto final.
@@ -68,4 +68,4 @@ soapResponsePage.button.connect=&Conectar ahora
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=La respuesta SOAP no se puede recuperar, verifique el punto final.
+wsConsole.message.error.cantRetrieveSOAPResponse=La respuesta SOAP no se puede recuperar, verifique la red o la configuración de respuesta SOAP

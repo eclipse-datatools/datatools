@@ -22,7 +22,7 @@ webServiceSelectionPage.message.default=웹 서비스 데이터 원본
 webServiceSelectionPage.message.error=SOAP 끝점 URL을 지정하거나 WSDL 설명자를 선택하십시오.
 webServiceSelectionPage.group.wsdl=WSDL 설명자
 webServiceSelectionPage.group.endPoint=SOAP 끝점
-webServiceSelectionPage.group.customClass=사용자 지정 연결 클래스
+webServiceSelectionPage.group.customClass=사용자 지정 드라이버 클래스
 webServiceSelectionPage.label.wsdl=웹 서비스의 WSDL 설명자가 있으면 해당 URL을 입력하거나 로컬 파일 시스템에서 위치를 찾으십시오.
 webServiceSelectionPage.label.wsdlURI=WSDL URL 또는 위치(&W):
 webServiceSelectionPage.label.endPoint=SOAP 끝점 URL(&E)을 지정합니다. WSDL에서 정의된 끝점을 사용하는 경우나, 끝점 URL이 필요하지 않는\n사용자 지정 연결 클래스를 사용할 경우 이 값을 생략해도 됩니다.
@@ -69,4 +69,4 @@ soapResponsePage.button.connect=지금 연결하기(&C)
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=SOAP 응답을 검색할 수 없습니다. 끝점을 확인하십시오.
+wsConsole.message.error.cantRetrieveSOAPResponse=SOAP 응답을 검색할 수 없습니다. 네트워크 또는 SOAP 응답 설정을 확인하십시오.

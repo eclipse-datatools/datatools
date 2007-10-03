@@ -22,7 +22,7 @@ webServiceSelectionPage.message.default=Web Services 数据源
 webServiceSelectionPage.message.error=指定 SOAP 终结点 URL 或选择 WSDL 描述符
 webServiceSelectionPage.group.wsdl=WSDL 描述符
 webServiceSelectionPage.group.endPoint=SOAP 终结点
-webServiceSelectionPage.group.customClass=自定义连接类
+webServiceSelectionPage.group.customClass=自定义驱动程序类
 webServiceSelectionPage.label.wsdl=如果 Web Services 的 WSDL 描述符可用，请输入其 URL 或浏览到其在本地文件系统中的所在位置
 webServiceSelectionPage.label.wsdlURI=WSDL URL 或位置(&W):
 webServiceSelectionPage.label.endPoint=指定 SOAP 终结点 URL(&E)。如果要使用 WSDL 中定义的终结点，\n或者您正在使用不需要终结点 URL 的自定义连接类，则可以忽略此值
@@ -69,4 +69,4 @@ soapResponsePage.button.connect=立即连接(&C)
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=无法检索 SOAP 响应，请验证终结点
+wsConsole.message.error.cantRetrieveSOAPResponse=无法检索 SOAP 响应，请验证网络或 SOAP 响应设置

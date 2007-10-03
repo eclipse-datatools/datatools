@@ -22,7 +22,7 @@ webServiceSelectionPage.message.default=Datenquelle für Web-Dienste
 webServiceSelectionPage.message.error=Geben Sie den URL des SOAP-Endpunkts an, oder wählen Sie einen WSDL-Deskriptor.
 webServiceSelectionPage.group.wsdl=WSDL-Deskriptor
 webServiceSelectionPage.group.endPoint=SOAP-Endpunkt
-webServiceSelectionPage.group.customClass=Benutzerdefinierte Verbindungsklasse
+webServiceSelectionPage.group.customClass=Benutzerdefinierte Treiberklasse
 webServiceSelectionPage.label.wsdl=Wenn der WSDL-Deskriptor der Web-Dienste verfügbar ist, geben Sie den URL ein, oder geben Sie den Speicherort im lokalen Dateisystem an.
 webServiceSelectionPage.label.wsdlURI=URL oder Speicherort für &WSDL:
 webServiceSelectionPage.label.endPoint=Geben Sie die URL des SOAP-&Endpunkts an. Sie können diesen Wert weglassen, wenn Sie den im WSDL definierten Endpunkt\noder eine benutzerdefinierte Verbindungsklasse verwenden, für die keine Endpunkt-URL erforderlich ist.
@@ -69,4 +69,4 @@ soapResponsePage.button.connect=&Jetzt verbinden
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=SOAP-Antwort kann nicht abgerufen werden, überprüfen Sie den Endpunkt.
+wsConsole.message.error.cantRetrieveSOAPResponse=SOAP-Antwort kann nicht abgerufen werden. Überprüfen Sie die Netzwerkeinstellungen oder die Einstellungen für die SOAP-Antwort.

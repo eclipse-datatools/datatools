@@ -22,7 +22,7 @@ webServiceSelectionPage.message.default=Web サービスのデータソース
 webServiceSelectionPage.message.error=SOAP エンドポイントの URL を指定するか、WSDL 記述子を選択してください。
 webServiceSelectionPage.group.wsdl=WSDL 記述子
 webServiceSelectionPage.group.endPoint=SOAP エンドポイント
-webServiceSelectionPage.group.customClass=カスタム接続クラス
+webServiceSelectionPage.group.customClass=カスタムドライバクラス
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
 webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
 webServiceSelectionPage.label.endPoint=SOAP のエンドポイント URL の指定(&E) (WSDL で定義したエンドポイントを使用する場合や、エンドポイントの \nURL を必要としないカスタム接続クラスを使用する場合は、この値を省略できます)
@@ -68,4 +68,4 @@ soapResponsePage.button.connect=今すぐ接続(&C)
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=SOAP 応答を取得できません。エンドポイントを確認してください。
+wsConsole.message.error.cantRetrieveSOAPResponse=SOAP 応答を取得できません。ネットワークと SOAP 応答の設定を確認してください。
