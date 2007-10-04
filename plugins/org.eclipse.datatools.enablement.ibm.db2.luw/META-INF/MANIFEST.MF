@@ -1,7 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Luw Plug-in
-Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw
-Bundle-Version: 1.0.0
-Require-Bundle: org.eclipse.core.runtime
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw;singleton:=true
+Bundle-Version: 1.0.0.200710041
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
+ org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)"
 Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.enablement.ibm.db2.internal.luw
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
