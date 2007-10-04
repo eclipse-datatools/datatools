@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.zseries.ui;singleton:=true
-Bundle-Version: 1.0.0.200709132
+Bundle-Version: 1.0.0.200710041
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui

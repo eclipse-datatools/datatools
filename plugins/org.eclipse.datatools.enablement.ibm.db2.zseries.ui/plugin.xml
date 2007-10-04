@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.NewZSeriesConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.NewZSeriesConnectionProfileWizard"
+            name="%profile.db2.zseries.wizard.title"
+            profile="org.eclipse.datatools.enablement.ibm.db2.zseries.connectionProfile"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.ZSeriesDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.profileProperties"
+            name="%profile.db2.zseries.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.ibm.db2.zseries.connectionProfile"/>
+      </page>
+   </extension>
+   
+ </plugin>  
