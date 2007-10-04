@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Iseries Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.iseries
+Bundle-Version: 1.0.0

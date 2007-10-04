@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Luw Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.luw
+Bundle-Version: 1.0.0
+Require-Bundle: org.eclipse.core.runtime
+Eclipse-LazyStart: true
