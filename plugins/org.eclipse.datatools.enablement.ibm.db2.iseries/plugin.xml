@@ -82,7 +82,6 @@
                   required="false"
                   visible="true"/>
             <property
-                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="%driverPWD"
@@ -142,7 +141,6 @@
                   required="false"
                   visible="true"/>
             <property
-                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="%driverPWD"
@@ -202,7 +200,6 @@
                   required="false"
                   visible="true"/>
             <property
-                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="%driverPWD"
