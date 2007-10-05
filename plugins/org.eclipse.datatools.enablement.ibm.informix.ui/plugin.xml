@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.NewInformixConnectionProfileWizard"
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.ibm.informix.NewInformixConnectionProfileWizard"
+            name="%profile.informix.wizard.title"
+            profile="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.ibm.informix.internal.ui.InformixDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.ibm.informix.profileProperties"
+            name="%profile.informix.properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
+      </page>
+   </extension>
+   
+ </plugin>  
