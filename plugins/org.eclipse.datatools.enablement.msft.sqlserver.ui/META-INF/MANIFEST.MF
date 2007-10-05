@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.msft.sqlserver.ui
+Bundle-Version: 1.0.0
