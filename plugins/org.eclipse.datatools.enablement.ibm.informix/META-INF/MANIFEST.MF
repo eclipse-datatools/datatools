@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Informix Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.informix
+Bundle-Version: 1.0.0
