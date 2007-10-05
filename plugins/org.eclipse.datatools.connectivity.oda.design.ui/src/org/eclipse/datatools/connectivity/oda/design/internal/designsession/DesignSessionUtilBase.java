@@ -17,6 +17,8 @@ package org.eclipse.datatools.connectivity.oda.design.internal.designsession;
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
+import org.eclipse.datatools.connectivity.oda.consumer.services.impl.ProviderUtil;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -28,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElemen
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
+import org.eclipse.datatools.connectivity.oda.profile.Constants;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataSetType;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
@@ -97,6 +100,55 @@ public class DesignSessionUtilBase
         }        
     }
     
+    /**
+     * Obtains the effective property names and values to use at runtime to open
+     * a connection to a data source.
+     * @param dataSourceDesign  a data source design definition that contains
+     *              static connection properties info. 
+     *              It may include properties that reference an
+     *              externalized connection profile instance, whose property 
+     *              name-value pairs would take precedence over the static property values
+     * @return  the set of effective property name-value pairs for opening a data source connection
+     * @throws OdaException
+     * @since 3.0.6
+     */
+    protected static java.util.Properties getEffectiveDataSourceProperties( 
+            DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        java.util.Properties candidateProps = DesignUtil.convertDataSourceProperties( dataSourceDesign );
+        IPropertyProvider profilePropProvider = getOdaProfilePropertyProvider();
+        if( profilePropProvider != null )
+        {
+            candidateProps = profilePropProvider.getDataSourceProperties( candidateProps, null );
+        }
+    
+        return candidateProps;
+    }
+
+    /**
+    * Gets the ODA property provider which can locate and 
+	* read properties from a connection profile. 
+    */
+    private static IPropertyProvider getOdaProfilePropertyProvider()
+    {
+        IPropertyProvider odaProfilePropProvider = null;
+        try
+        {
+            odaProfilePropProvider = 
+                ProviderUtil.createPropertyProvider( Constants.CONN_PROFILE_APPL_ID );
+        }
+        catch( OdaException ex )
+        {
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "getProfilePropertyProvider()", //$NON-NLS-1$
+                    "Unable to get ODA Profile property provider.", ex ); //$NON-NLS-1$
+            return null;
+        }
+    
+        return odaProfilePropProvider;
+    }
+
     /**
      * Returns the data set ui element manifest that
      * defines customized data set designer

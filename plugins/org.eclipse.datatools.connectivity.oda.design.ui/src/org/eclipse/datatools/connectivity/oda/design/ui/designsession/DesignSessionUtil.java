@@ -285,7 +285,17 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                                 linkedProfileName ));
         return profile;
     }
-        
+
+    /*
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignSessionUtilBase#getEffectiveDataSourceProperties( org.eclipse.datatools.connectivity.oda.design.Properties )
+     */
+    public static java.util.Properties getEffectiveDataSourceProperties( 
+            DataSourceDesign dataSourceDesign )
+        throws OdaException
+    {
+        return DesignSessionUtilBase.getEffectiveDataSourceProperties( dataSourceDesign );
+    }
+
     /**
      * Indicates whether the given ODA data source type has
      * implemented a valid 

@@ -206,14 +206,14 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         if( odaRuntimePluginId == null )
             odaRuntimePluginId = getDefaultRuntimePluginId();
         
-        Version version304 = new Version( 3, 0, 4 );
+        Version version306 = new Version( 3, 0, 6 );
         Version version400 = new Version( 4, 0, 0 );
-        VersionRange compatible304 = new VersionRange( version304, true, version400, false );       
+        VersionRange compatible306 = new VersionRange( version306, true, version400, false );       
 
         return new IPluginReference[] 
                     { new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.design.ui",  //$NON-NLS-1$
-                        compatible304.toString() ),
+                        compatible306.toString() ),
                       new CompatiblePluginReference( 
                         odaRuntimePluginId,
                         null ) };

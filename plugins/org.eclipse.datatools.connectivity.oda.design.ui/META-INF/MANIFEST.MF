@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui; singleton:=true
-Bundle-Version: 3.0.5.200709071
+Bundle-Version: 3.0.6.200710051
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
@@ -17,5 +17,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[1.0.0,2.0.0)";visibility:=reexport,
  org.eclipse.datatools.connectivity.oda;bundle-version="[3.1.0,4.0.0)";visibility:=reexport,
  org.eclipse.datatools.connectivity.oda.profile;bundle-version="[3.0.4,4.0.0)";visibility:=reexport,
- org.eclipse.datatools.connectivity.oda.design;bundle-version="[3.0.4,4.0.0)";visibility:=reexport
+ org.eclipse.datatools.connectivity.oda.design;bundle-version="[3.0.4,4.0.0)";visibility:=reexport,
+ org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.1.1,4.0.0)"
 Eclipse-LazyStart: true

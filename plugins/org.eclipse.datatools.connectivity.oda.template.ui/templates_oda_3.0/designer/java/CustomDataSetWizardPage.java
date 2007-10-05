@@ -245,8 +245,8 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
             // obtain and open a live connection
             customConn = customDriver.getConnection( null );
             java.util.Properties connProps = 
-                DesignUtil.convertDataSourceProperties( 
-                        getInitializationDesign().getDataSourceDesign() );
+                DesignSessionUtil.getEffectiveDataSourceProperties( 
+                         getInitializationDesign().getDataSourceDesign() );
             customConn.open( connProps );
 
             // update the data set design with the 
