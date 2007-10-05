@@ -35,11 +35,10 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
 {
     private IPreferenceStore _store	= getPreferenceStore();
 	
+    Button _btnOmitCurrentSchemaInSQL;
     Button _btnUseAUIDAsCurrentSchema;
     Button _btnSpecifyCurrentSchema;
-    Label _lblCurrentSchema;
     Text _txtCurrentSchema;
-    Button _btnOmitCurrentSchemaInSQL;
 
 	protected Control createContents(Composite parent) {
 		
@@ -52,24 +51,16 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         GridLayout compositeLayout = new GridLayout(1, true);
         composite.setLayout(compositeLayout);
               
-		Group groupOmitSchema = new Group(composite, SWT.SHADOW_ETCHED_IN);
-		gd = new GridData(SWT.FILL, GridData.BEGINNING, true, false);
-		groupOmitSchema.setLayoutData(gd);
-
-		GridLayout groupOmitSchemaLayout = new GridLayout(3, true);
-		groupOmitSchema.setLayout(groupOmitSchemaLayout);
-		groupOmitSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_GROUP_TITLE);
-
-		Label lblCurrentSchemaGroupDesc = new Label(groupOmitSchema, SWT.LEFT);
-		lblCurrentSchemaGroupDesc.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_GROUP_DESC);
+		Label lblCurrentSchemaDesc = new Label(composite, SWT.LEFT);
+		lblCurrentSchemaDesc.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_DESC);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
-        gd.horizontalSpan = 3;
-        lblCurrentSchemaGroupDesc.setLayoutData(gd); 
+        gd.horizontalSpan = 1;
+        lblCurrentSchemaDesc.setLayoutData(gd); 
 		
-        _btnOmitCurrentSchemaInSQL = new Button(groupOmitSchema, SWT.CHECK);
+        _btnOmitCurrentSchemaInSQL = new Button(composite, SWT.CHECK);
         _btnOmitCurrentSchemaInSQL.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_IN_SQL);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
-        gd.horizontalSpan = 3;
+        gd.horizontalSpan = 1;
         _btnOmitCurrentSchemaInSQL.setLayoutData(gd);
         
         _btnOmitCurrentSchemaInSQL.addSelectionListener(new SelectionAdapter()
@@ -81,7 +72,15 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         }
         );
         
-        _btnUseAUIDAsCurrentSchema = new Button(groupOmitSchema, SWT.RADIO);
+        Group groupSpecifySchema = new Group(composite, SWT.SHADOW_ETCHED_IN);
+		gd = new GridData(SWT.FILL, GridData.BEGINNING, true, false);
+		groupSpecifySchema.setLayoutData(gd);
+
+		GridLayout groupSpecifySchemaLayout = new GridLayout(3, true);
+		groupSpecifySchema.setLayout(groupSpecifySchemaLayout);
+		groupSpecifySchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE);
+        
+		_btnUseAUIDAsCurrentSchema = new Button(groupSpecifySchema, SWT.RADIO);
         _btnUseAUIDAsCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
         gd.horizontalSpan = 3;
@@ -95,10 +94,10 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         }
         );
         
-        _btnSpecifyCurrentSchema = new Button(groupOmitSchema, SWT.RADIO);
-        _btnSpecifyCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_IN_SQL);
+        _btnSpecifyCurrentSchema = new Button(groupSpecifySchema, SWT.RADIO);
+        _btnSpecifyCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
-        gd.horizontalSpan = 3;
+        gd.horizontalSpan = 1;
         _btnSpecifyCurrentSchema.setLayoutData(gd);
         _btnSpecifyCurrentSchema.addSelectionListener(new SelectionAdapter()
         {
@@ -109,13 +108,7 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         }
         );
 
-        _lblCurrentSchema = new Label(groupOmitSchema, SWT.LEFT);
-        _lblCurrentSchema.setText(Messages._UI_PREFERENCES_OMIT_SCHEMA_CURRENT_SCHEMA);
-        gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
-        gd.horizontalSpan = 1;
-        _lblCurrentSchema.setLayoutData(gd);
-        
-        _txtCurrentSchema = new Text(groupOmitSchema, SWT.BORDER);
+        _txtCurrentSchema = new Text(groupSpecifySchema, SWT.BORDER);
         gd = new GridData(SWT.FILL, SWT.BOTTOM, true, false);
         gd.horizontalSpan = 2;
         _txtCurrentSchema.setLayoutData(gd);
@@ -134,18 +127,15 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
 			_btnUseAUIDAsCurrentSchema.setEnabled(true);
 			_btnSpecifyCurrentSchema.setEnabled(true);
 			if (_btnUseAUIDAsCurrentSchema.getSelection()){
-				_lblCurrentSchema.setEnabled(false);
 				_txtCurrentSchema.setEnabled(false);
 			}
 			else {
-				_lblCurrentSchema.setEnabled(true);
 				_txtCurrentSchema.setEnabled(true);
 			}
 		}
 		else {
 			_btnUseAUIDAsCurrentSchema.setEnabled(false);
 			_btnSpecifyCurrentSchema.setEnabled(false);
-			_lblCurrentSchema.setEnabled(false);
 			_txtCurrentSchema.setEnabled(false);
 		}
 	}
