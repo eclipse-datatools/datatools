@@ -231,7 +231,7 @@ public abstract class AbstractConnectivityTemplateSection extends OptionTemplate
 	private boolean isJavaPackageValid (TemplateOption changedOption) {
 		if (changedOption.getName().equals(KEY_PACKAGE_NAME)) {
 			String value = (String) changedOption.getValue();
-			if (value.contains("package")) { //$NON-NLS-1$
+			if (value.indexOf("package") > -1) { //$NON-NLS-1$
 				return false;
 			}
 		}

@@ -148,7 +148,7 @@ public class ProfileSampleTemplateSection extends AbstractConnectivityTemplateSe
 		
 		IPluginElement instanceOfElement = factory.createElement(enabledWhenElement);
 		instanceOfElement.setName("instanceof"); //$NON-NLS-1$
-		instanceOfElement.setAttribute("value", IConnectionProfile.class.getCanonicalName()); //$NON-NLS-1$
+		instanceOfElement.setAttribute("value", IConnectionProfile.class.getName()); //$NON-NLS-1$
 		enabledWhenElement.add(instanceOfElement);
 
 		proppageElement.add(enabledWhenElement);
@@ -169,9 +169,9 @@ public class ProfileSampleTemplateSection extends AbstractConnectivityTemplateSe
 	protected void initializeOptions()
 	{
 		String profileName = Messages.getString("ConnectionProfileTemplateSection.DefaultProfileName");  //$NON-NLS-1$
-		String sanitizedProfileName = profileName.replace(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		sanitizedProfileName = sanitizedProfileName.replace("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		sanitizedProfileName = sanitizedProfileName.replace(".", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		String sanitizedProfileName = profileName.replaceAll(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		sanitizedProfileName = sanitizedProfileName.replaceAll("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		sanitizedProfileName = sanitizedProfileName.replaceAll("\\.", ""); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		String packageName = "org.mycompany." + sanitizedProfileName.toLowerCase();//$NON-NLS-1$
 		String propertyPageName = sanitizedProfileName + "PropertyPage"; //$NON-NLS-1$

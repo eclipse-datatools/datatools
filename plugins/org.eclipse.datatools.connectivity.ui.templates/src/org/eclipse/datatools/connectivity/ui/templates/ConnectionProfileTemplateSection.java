@@ -151,9 +151,9 @@ public class ConnectionProfileTemplateSection extends AbstractConnectivityTempla
 	protected void initializeOptions()
 	{
 		String profileName = Messages.getString("ConnectionProfileTemplateSection.DefaultProfileName");  //$NON-NLS-1$
-		String sanitizedProfileName = profileName.replace(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		sanitizedProfileName = sanitizedProfileName.replace("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
-		sanitizedProfileName = sanitizedProfileName.replace(".", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		String sanitizedProfileName = profileName.replaceAll(" ", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		sanitizedProfileName = sanitizedProfileName.replaceAll("_", ""); //$NON-NLS-1$ //$NON-NLS-2$
+		sanitizedProfileName = sanitizedProfileName.replaceAll("\\.", ""); //$NON-NLS-1$ //$NON-NLS-2$
 		
 		String packageName = "org.mycompany." + sanitizedProfileName.toLowerCase();//$NON-NLS-1$
 		initializeOption( KEY_PROFILE_NAME, profileName);

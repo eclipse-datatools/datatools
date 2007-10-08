@@ -233,8 +233,8 @@ public class DriverPropertyDialog extends TrayDialog {
 			String visible = propObject.getPropertyVisible();
 			String required = propObject.getPropertyRequired();
 			String category = propObject.getPropertyCategory();
-			boolean visibleFlag = Boolean.parseBoolean(visible);
-			boolean requiredFlag = Boolean.parseBoolean(required);
+			boolean visibleFlag = Boolean.getBoolean(visible.toLowerCase());
+			boolean requiredFlag = Boolean.getBoolean(required.toLowerCase());
 			
 			if (id != null && id.trim().length() > 0 && idText != null) {
 				idText.setText(id);
