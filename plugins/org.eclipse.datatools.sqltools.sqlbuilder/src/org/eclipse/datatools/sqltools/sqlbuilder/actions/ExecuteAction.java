@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.BaseExecuteAction;
@@ -27,7 +28,7 @@ public class ExecuteAction extends BaseExecuteAction {
      * Creates an instance of this class.  This is the default constructor.
      */
     public ExecuteAction() {
-    	
+    	this.setText(Messages._UI_MENU_EXECUTE);
     }
 
     public void setActiveEditor(SQLBuilder sqlBuilder){
