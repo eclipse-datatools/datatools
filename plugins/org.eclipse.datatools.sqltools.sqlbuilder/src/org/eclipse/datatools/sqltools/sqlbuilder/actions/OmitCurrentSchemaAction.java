@@ -40,8 +40,8 @@ public class OmitCurrentSchemaAction extends EditorAction {
         IEditorPart activeEditor = getActiveEditor();
         if (activeEditor instanceof SQLBuilder) {
             SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-            OmitSchemaInfo omitSchemaInfo = sqlBuilder.getDomainModel().getOmitSchemaInfo();
-            String userName = sqlBuilder.getDomainModel().getUserName();
+            OmitSchemaInfo omitSchemaInfo = sqlBuilder.getSQLBuilderUI().getDomainModel().getOmitSchemaInfo();
+            String userName = sqlBuilder.getSQLBuilderUI().getDomainModel().getUserName();
             
             OmitSchemaInfo tmpOmitSchemaInfo = new OmitSchemaInfo();
             tmpOmitSchemaInfo.copyOmitSchemaInfo(omitSchemaInfo);

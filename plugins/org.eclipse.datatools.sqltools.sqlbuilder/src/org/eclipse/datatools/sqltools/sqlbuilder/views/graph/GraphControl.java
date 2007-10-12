@@ -66,6 +66,7 @@ import org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectImpl;
 import org.eclipse.datatools.modelbase.sql.query.impl.QueryStatementImpl;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
@@ -81,7 +82,7 @@ public class GraphControl extends ContentViewer {
     protected EditDomain editDomain;
     protected Control control;
     protected ScrollingGraphicalViewer graphView;
-    private SQLBuilder sqlBuilder;
+    private SQLBuilderUI sqlBuilder;
 
     public GraphControl(SQLDomainModel domainModel) {
         this.domainModel = domainModel;
@@ -443,7 +444,7 @@ public class GraphControl extends ContentViewer {
 
     }
 
-    public void setSQLBuilder(SQLBuilder sb) {
+    public void setSQLBuilder(SQLBuilderUI sb) {
         sqlBuilder = sb;
     }
 

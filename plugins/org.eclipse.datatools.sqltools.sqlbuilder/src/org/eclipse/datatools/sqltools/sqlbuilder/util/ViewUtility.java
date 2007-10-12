@@ -115,6 +115,20 @@ public class ViewUtility
     return composite;
   }
 
+  public static Composite createNestedComposite(Composite parent, int style) {
+		Composite comp = new Composite(parent, style);
+		GridLayout compLayout = new GridLayout();
+		compLayout.marginHeight = 2;
+		compLayout.marginWidth = 2;
+		comp.setLayout(compLayout);
+
+		GridData data = new GridData(GridData.FILL, GridData.FILL, true, true);
+		comp.setLayoutData(data);
+
+		return comp;
+	}
+
+  
   public static Label createHorizontalFiller(Composite parent, int horizontalSpan)
   {
     Label label = new Label(parent, SWT.LEFT);

@@ -315,7 +315,7 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
             SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
             sqlBuilder.setActionBarContributor( this );
             
-            SQLSourceViewer sourceViewer = sqlBuilder.getSourceViewer();
+            SQLSourceViewer sourceViewer = sqlBuilder.getSQLBuilderUI().getSourceViewer();
             if (sourceViewer != null) {
                 IAction contentAssistAction = sourceViewer.getAction(CONTENT_ASSIST_ACTION_ID);
                 fEditMenuContentAssistAction.setAction(contentAssistAction);
@@ -329,7 +329,7 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
             fRevertToDefaultAction.setActiveEditor( activeEditor );
             fOmitCurrentSchemaAction.setActiveEditor( activeEditor );
             
-            SQLDomainModel domainModel = sqlBuilder.getDomainModel();
+            SQLDomainModel domainModel = sqlBuilder.getSQLBuilderUI().getDomainModel();
             if (domainModel != null) {
                 boolean enableRevert = !domainModel.isProper();
                 fRevertToPreviousAction.setEnabled(enableRevert);

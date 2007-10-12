@@ -41,8 +41,8 @@ public class ExecuteAction extends BaseExecuteAction {
 
         if (activeEditor instanceof SQLBuilder) {
             SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-    		String profileName = sqlBuilder.getDomainModel().getConnectionInfo().getConnectionProfileName();
-    		String dbName = sqlBuilder.getDomainModel().getConnectionInfo().getDatabaseName();
+    		String profileName = sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo().getConnectionProfileName();
+    		String dbName = sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo().getDatabaseName();
     		return new DatabaseIdentifier(profileName, dbName);
     	}
         return null;
@@ -64,15 +64,15 @@ public class ExecuteAction extends BaseExecuteAction {
 
 	public String getSQLStatements() {
         //Begin - to enforce parse before Execute
-        boolean currentTextModified = _sqlBuilder.getSourceViewer().isTextChanged();
-        _sqlBuilder.getSourceViewer().setTextChanged(true);
-        _sqlBuilder.getSourceViewer().setParseRequired(true); // QVO RATLC01112036 (2006-09-20)
-        _sqlBuilder.reparseIfRequired(); //Don't delete
-        _sqlBuilder.getSourceViewer().setTextChanged(currentTextModified);
+        boolean currentTextModified = _sqlBuilder.getSQLBuilderUI().getSourceViewer().isTextChanged();
+        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setTextChanged(true);
+        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setParseRequired(true); // QVO RATLC01112036 (2006-09-20)
+        _sqlBuilder.getSQLBuilderUI().reparseIfRequired(); //Don't delete
+        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setTextChanged(currentTextModified);
         //End - to enforce parse before Execute
 
         // execute the query and send results to the Output View
-        SQLDomainModel domainModel = _sqlBuilder.getDomainModel();
+        SQLDomainModel domainModel = _sqlBuilder.getSQLBuilderUI().getDomainModel();
         if (domainModel != null) {
             QueryStatement stmt = domainModel.getSQLStatement();
             return stmt.getSQL();
@@ -84,7 +84,7 @@ public class ExecuteAction extends BaseExecuteAction {
 
 
 	public void update() {
-		ISQLEditorConnectionInfo connectionInfo = _sqlBuilder.getDomainModel().getConnectionInfo();
+		ISQLEditorConnectionInfo connectionInfo = _sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo();
 		setEnabled(_sqlBuilder != null && connectionInfo.isConnected());
 	}
 

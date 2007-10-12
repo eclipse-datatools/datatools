@@ -37,6 +37,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubFullSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
@@ -76,14 +77,14 @@ public class SQLTreeViewer extends ContentOutlinePage {
     //ExecuteAction executeStatementAction;
 
     MenuManager menu;
-    SQLBuilder sqlBuilder;
+    SQLBuilderUI sqlBuilder;
     SQLDomainModel domainModel;
 
     IContentProvider contentProvider;
     ILabelProvider labelProvider;
     Object input;
 
-    public SQLTreeViewer(SQLBuilder sqlBuilder, IContentProvider contentProvider, ILabelProvider labelProvider, Object input)
+    public SQLTreeViewer(SQLBuilderUI sqlBuilder, IContentProvider contentProvider, ILabelProvider labelProvider, Object input)
 
     {
         this.sqlBuilder = sqlBuilder;
@@ -285,7 +286,7 @@ public class SQLTreeViewer extends ContentOutlinePage {
     }
 
     private void enableMenus() {
-        boolean proper = SQLBuilder.isStatementProper(domainModel);
+        boolean proper = SQLBuilderUI.isStatementProper(domainModel);
 
         addSubFullSelectAction.setEnabled(proper);
         addSubSelectAction.setEnabled(proper);

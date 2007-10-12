@@ -30,6 +30,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReference
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -97,7 +98,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     private boolean isParseRequired = false;
     protected QueryEventListener qListener = null;
     private ITextListener textChangeListener;
-    protected SQLBuilder sqlbuilder;
+    protected SQLBuilderUI sqlbuilder;
 
     private String lastKnownProperSource;
     private boolean handleImproper;
@@ -308,7 +309,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
         target.addDropListener(new org.eclipse.datatools.sqltools.sqlbuilder.views.RDBTableDropListener(this, sqlDomainModel));
     }
 
-    public void setSQLBuilder(SQLBuilder sqlbuilder) {
+    public void setSQLBuilder(SQLBuilderUI sqlbuilder) {
         this.sqlbuilder = sqlbuilder;
     }
 
@@ -632,8 +633,8 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
                 if (errorList.size() > 0) {
                     SQLParseErrorInfo errorInfo = (SQLParseErrorInfo) errorList.get(0);
                     if (sqlbuilder != null) {
-                        sqlbuilder.getDesginViewer().setEnabled(isParseSuccess);
-                        sqlbuilder.getGraphControl().setEnabled(isParseSuccess);
+                        sqlbuilder.getDesignViewer().setEnabled(isParseSuccess);
+                        sqlbuilder.getGraphViewer().setEnabled(isParseSuccess);
 
                         //SQLBuilderPlugin plugin = SQLBuilderPlugin.getPlugin();
                         String parseErrMsg = getParseErrorMessageString(errorInfo);

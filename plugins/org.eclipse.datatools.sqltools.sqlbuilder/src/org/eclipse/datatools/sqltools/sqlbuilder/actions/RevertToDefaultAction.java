@@ -45,7 +45,7 @@ public class RevertToDefaultAction extends EditorAction {
         IEditorPart activeEditor = getActiveEditor();
         if (activeEditor instanceof SQLBuilder) {
             SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-            SQLSourceViewer sourceViewer = sqlBuilder.getSourceViewer();
+            SQLSourceViewer sourceViewer = sqlBuilder.getSQLBuilderUI().getSourceViewer();
             if (sourceViewer != null) {
                 sourceViewer.revertToDefaultSource();
             }
