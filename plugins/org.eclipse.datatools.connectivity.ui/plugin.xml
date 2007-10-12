@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension-point id="driverPropertyEditor" name="Driver Property Editor" schema="schema/driverPropertyEditor.exsd"/>
    <extension point="org.eclipse.ui.preferencePages">
    	<page name="%datatools.preference.page.name" class="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
    	id = "org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>

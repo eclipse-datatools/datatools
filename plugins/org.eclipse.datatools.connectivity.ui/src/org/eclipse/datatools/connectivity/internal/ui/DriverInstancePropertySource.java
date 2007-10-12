@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.datatools.connectivity.internal.ui.drivers.DriverPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -121,6 +122,12 @@ public class DriverInstancePropertySource implements IPropertySource {
 							name = temp;
 					}
 					String ctceClass = ice.getAttribute(P_CUSTOM_PROPERTY_DESCRIPTOR);
+					DriverPropertyEditorDescriptor[] dpeds =
+						DriverPropertyEditorDescriptor.getByDriverTemplateAndProperty(descriptor.getId(), id);
+					if (dpeds != null && dpeds.length > 0) {
+						ctceClass = dpeds[0].getCustomPropertyEditor();
+						ice = dpeds[0].getElement();
+					}
 					if (otds != null && otds.length > 0) {
 						String temp =
 							otds[0].getPropertyCustomPropDescriptorFromId(id);
