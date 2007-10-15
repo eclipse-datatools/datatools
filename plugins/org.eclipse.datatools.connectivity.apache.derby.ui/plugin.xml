@@ -47,6 +47,52 @@
 		</contributor>
 	</extension>
 	
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby101.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.derby102.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.derby.db2UniversalDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.db2UniversalDriver"
+            id="org.eclipse.datatools.connectivity.derby101.db2UniversalDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby101.clientDriver"
+            id="org.eclipse.datatools.connectivity.derby101.clientDriver.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.derby102.clientDriver"
+            id="org.eclipse.datatools.connectivity.derby102.clientDriver.ui.propertyEditor.password">
+      </propertyEditor>
+   </extension>
+	
 	<extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard

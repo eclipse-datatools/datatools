@@ -113,7 +113,7 @@
                   name="%DRIVER_CLASS_PROPERTY_NAME"
                   value="org.apache.derby.jdbc.EmbeddedDriver"
                   required="true"
-                  visible="false"/>
+                  visible="true"/>
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.vendor"
