@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -44,11 +44,45 @@ public class OdaProfileExplorer
      * Static method to return the singleton instance.
      * @return
      */
-    public static synchronized OdaProfileExplorer getInstance()
+    public static OdaProfileExplorer getInstance()
     {
         if( sm_instance == null )
-            sm_instance = new OdaProfileExplorer();
+        {
+            synchronized( OdaProfileExplorer.class )
+            {
+                if( sm_instance == null )
+                    sm_instance = new OdaProfileExplorer();
+            }
+        }
         return sm_instance;
+    }
+    
+    /**
+     * Singleton instance release method.
+     */
+    public static void releaseInstance()
+    {
+        synchronized( OdaProfileExplorer.class )
+        {
+            sm_instance = null;
+            sm_logger = null;
+        }
+    }
+
+    /**
+     * Returns the class logger.
+     */
+    private static Logger getLogger()
+    {
+        if( sm_logger == null )
+        {
+            synchronized( OdaProfileExplorer.class )
+            {
+                if( sm_logger == null )
+                    sm_logger = Logger.getLogger( sm_className );
+            }
+        }
+        return sm_logger;
     }
 
     protected OdaProfileExplorer()
@@ -89,13 +123,14 @@ public class OdaProfileExplorer
      * current profile storage file for subsequent use.
      * @param odaDataSourceId   the unique id of the data source element
      *                      in an ODA data source extension.
-     * @param storageFile   a file that stores profile instances
+     * @param storageFile   a file that stores profile instances; may be null, which 
+     *                      will use the default store of the Connectivity plugin
      * @return  a <code>Map</code> containing the instance Id
      *          and display name of all existing profiles of given odaDataSourceId.
      *          The connection profiles' instance Id and display name
      *          are stored as the key and value strings in the returned <code>Map</code> instance.
      *          Returns an empty collection if there are 
-     *          no matching connection profiles found in default store.
+     *          no matching connection profiles found in specified store.
      * @throws OdaException if unable to read from given storageFile,
      *                      or to cache the found profiles
      */
@@ -233,16 +268,6 @@ public class OdaProfileExplorer
     {
         return ConnectionProfileMgmt.getStorageLocation().append( 
                     ConnectionProfileMgmt.FILENAME ).toFile();
-    }
-
-    /**
-     * Returns the class logger.
-     */
-    private static Logger getLogger()
-    {
-        if( sm_logger == null )
-            sm_logger = Logger.getLogger( sm_className );
-        return sm_logger;
     }
 
 }
