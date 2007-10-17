@@ -66,6 +66,7 @@ public class FolderSelectionPageHelper
 
 	static final String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
 
+	private static final int CORRECT_FOLDER = 0;
 	private static final int ERROR_FOLDER = 1;
 	private static final int ERROR_EMPTY_PATH = 2;
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
@@ -349,7 +350,7 @@ public class FolderSelectionPageHelper
 	 */
 	private int verifyFileLocation( )
 	{
-		int result = 0;
+		int result = CORRECT_FOLDER;
 		String folderLocationValue = getFolderLocationString( );
 		if ( folderLocationValue.trim( ).length( ) > 0 )
 		{
@@ -371,6 +372,14 @@ public class FolderSelectionPageHelper
 			setMessage( Messages.getString( "error.emptyPath" ), IMessageProvider.ERROR ); //$NON-NLS-1$
 			setPageComplete( false );
 			result = ERROR_EMPTY_PATH;
+		}
+		if( result == CORRECT_FOLDER )
+			return result;
+		
+		if( wizardPage == null )
+		{
+			setPageComplete( true );
+			setMessage( Messages.getString( "error.invalidFlatFilePath" ), IMessageProvider.ERROR ); //$NON-NLS-1$
 		}
 		return result;
 	}
