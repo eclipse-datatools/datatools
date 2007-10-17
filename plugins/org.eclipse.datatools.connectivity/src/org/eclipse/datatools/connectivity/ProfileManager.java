@@ -28,8 +28,12 @@ public class ProfileManager implements IAdaptable {
 	private static ProfileManager mManager = null;
 
 	public static ProfileManager getInstance() {
-		if (mManager == null)
-			mManager = new ProfileManager();
+		if (mManager == null) {
+			synchronized( ProfileManager.class ) {
+				if (mManager == null)
+					mManager = new ProfileManager();
+			}
+		}
 		return mManager;
 	}
 

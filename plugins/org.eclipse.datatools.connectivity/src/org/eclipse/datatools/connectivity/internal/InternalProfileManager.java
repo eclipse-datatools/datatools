@@ -102,7 +102,10 @@ public class InternalProfileManager {
 
 	public static InternalProfileManager getInstance() {
 		if (mManager == null)
-			mManager = new InternalProfileManager();
+			synchronized( InternalProfileManager.class ) {
+				if (mManager == null)
+					mManager = new InternalProfileManager();
+			}
 		return mManager;
 	}
 
