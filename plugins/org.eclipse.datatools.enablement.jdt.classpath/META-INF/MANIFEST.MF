@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.jdt.classpath;singleton:=true
-Bundle-Version: 1.0.0.200706071
+Bundle-Version: 1.0.1.200710171
 Bundle-Activator: org.eclipse.datatools.enablement.jdt.classpath.internal.ConnJDTPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
