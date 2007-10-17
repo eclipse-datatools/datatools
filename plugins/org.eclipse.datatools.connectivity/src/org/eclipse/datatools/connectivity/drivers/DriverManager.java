@@ -45,6 +45,8 @@ public class DriverManager {
 	
 	private static boolean driversResetOnce = false;
 	
+	private static boolean mDebug = false;
+	
 	/**
 	 * Retrieve an instance of the DriverManager
 	 * @return DriverManager
@@ -675,7 +677,8 @@ public class DriverManager {
 	}
 	
 	private void debug ( String msg ) {
-		System.out.println("Debug: " + msg);
+		if (mDebug)
+			System.out.println("Debug: " + msg);
 	}
 
 }
