@@ -172,8 +172,12 @@ public class XMLFileManager {
 		        getTransformer().transform(source, result);	
 			}
 			finally {
-				if (writer != null)
+				if (writer != null) {
 					writer.close();
+				}
+				if (outs != null) {
+					outs.close();
+				}
 			}
 		} catch (IOException e) {
 			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
@@ -195,6 +199,7 @@ public class XMLFileManager {
 	 */
 	public static synchronized IPropertySet[] loadPropertySets() throws CoreException 
 	{
+		InputStream fis = null;
 		try {
 			IPath path = getStorageLocation();
 			path = path.append(mFileName);
@@ -202,7 +207,7 @@ public class XMLFileManager {
 			if (!file.exists())
 				return new IPropertySet[0];
 			
-			InputStream fis = new FileInputStream(file);
+			fis = new FileInputStream(file);
 			InputSource source = new InputSource(fis);
 			source.setEncoding("UTF-8"); //$NON-NLS-1$
 		    Document document = getDocumentBuilder().parse(source);
@@ -221,6 +226,14 @@ public class XMLFileManager {
 					pss.add(ps);
 				}
 			}
+			if (fis != null) { 
+				try {
+					fis.close();
+				} catch (IOException e) {
+					throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+							ConnectivityPlugin.getDefault().getResourceString("error.loaddriversxml"), e));//$NON-NLS-1$
+				}
+			}				
 			return (IPropertySet[]) pss.toArray(new IPropertySet[0]);
 		} catch (IOException e) {
 			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
@@ -228,6 +241,15 @@ public class XMLFileManager {
 		} catch (SAXException e) {
 			throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
 					ConnectivityPlugin.getDefault().getResourceString("error.loaddriversxml"), e));//$NON-NLS-1$
+		} finally {
+			if (fis != null) {
+				try {
+					fis.close();
+				} catch (IOException e) {
+					throw new CoreException(new Status(Status.ERROR, ConnectivityPlugin.PLUGIN_ID, -1, 
+							ConnectivityPlugin.getDefault().getResourceString("error.loaddriversxml"), e));//$NON-NLS-1$
+				}
+			}
 		}
 	}
 

@@ -17,8 +17,11 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 import com.ibm.icu.util.StringTokenizer;
@@ -29,10 +32,16 @@ import com.ibm.icu.util.StringTokenizer;
  */
 public class DriverInstance {
 
+	public static final String ELEM_MIGRATION = "migration"; //$NON-NLS-1$
+	public static final String ATTR_CLASS = "class"; //$NON-NLS-1$
+	public static final String ATTR_DRIVERTEMPLATEID = "newDriverTemplateID"; //$NON-NLS-1$
+
 	private TemplateDescriptor mTemplate;
 	private IPropertySet mInstance;
 	private Properties mInstanceProps;
 	private SoftReference mClassLoader;
+	private IDriverMigrator mMigrator;
+	private boolean mMigratorLoaded = false;
 
 	/**
 	 * Basic constructor. Picks up template details from the property set.
@@ -284,4 +293,101 @@ public class DriverInstance {
 								exception));
 	}
 
+
+	public synchronized boolean migrate() {
+		IDriverMigrator migrator = getMigrator(mTemplate.getElement());
+		if (migrator == null) {
+			return false;
+		}
+		boolean changed = false;
+		String newID = migrator.getNewDriverTemplateID();
+		if (newID != null && !newID.equals(mTemplate.getId())) {
+			// Take care of migrating to the new provider
+			// get the existing base properties
+			Properties baseProps = mInstance.getBaseProperties();
+			// set the current base properties to null
+			mInstance.setBaseProperties(null);
+			
+			// Change the template ID
+			baseProps.setProperty(
+					IDriverMgmtConstants.PROP_DEFN_TYPE, newID);
+			
+			// Now re-set the base properties
+			mInstance.setBaseProperties(baseProps);
+			
+			changed = true;
+		}
+		// let the migrator do its thing
+		boolean migrated = migrator.performMigration(this);
+
+		return changed || migrated;
+	}
+
+	/**
+	 * Retrieves the migrator for the incoming configuration element. 
+	 * The config element must be from the TemplateDescriptor used 
+	 * to define the Driver.
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public IDriverMigrator getMigrator(IConfigurationElement element) {
+		loadMigrator(element);
+		return mMigrator;
+	}
+	
+	/*
+	 * Loads the actual migration class from the configuration element
+	 * @param element
+	 */
+	private void loadMigrator(IConfigurationElement element) {
+		if (!mMigratorLoaded) {
+			mMigratorLoaded = true;
+			if (element == null) {
+				return;
+			}
+			IConfigurationElement[] migrationElements = element
+					.getChildren(ELEM_MIGRATION);
+			if (migrationElements == null || migrationElements.length == 0) {
+				return;
+			}
+			String migratorImpl = migrationElements[0].getAttribute(ATTR_CLASS);
+			String newID = migrationElements[0].getAttribute(ATTR_DRIVERTEMPLATEID);
+			if (migratorImpl != null && migratorImpl.length() > 0) {
+				try {
+					mMigrator = (IDriverMigrator) migrationElements[0]
+							.createExecutableExtension(ATTR_CLASS);
+				}
+				catch (CoreException e) {
+					String error = ConnectivityPlugin.getDefault()
+							.getResourceString("trace.error.migration", //$NON-NLS-1$
+									new Object[] { getId(), migratorImpl});
+					ConnectivityPlugin.getDefault().log(error);
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err.println(error);
+						e.printStackTrace();
+					}
+				}
+			}
+			else if (newID != null && newID.length() > 0) {
+				try {
+					IDriverMigrator migrator = new DriverMigratorBase();
+					((DriverMigratorBase) migrator)
+							.setInitializationData(migrationElements[0], null,
+									null);
+					mMigrator = migrator;
+				}
+				catch (CoreException e) {
+					String error = ConnectivityPlugin.getDefault()
+							.getResourceString("trace.error.migration", //$NON-NLS-1$
+									new Object[] { getId(), migratorImpl});
+					ConnectivityPlugin.getDefault().log(error);
+					if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+						System.err.println(error);
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
 }

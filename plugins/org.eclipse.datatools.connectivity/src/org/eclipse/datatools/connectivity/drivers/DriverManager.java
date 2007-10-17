@@ -39,7 +39,11 @@ public class DriverManager {
 
 	private static DriverManager sInstance;
 	
-	private HashMap mDriverInstanceMap;
+	private static HashMap mDriverInstanceMap;
+	
+	private static boolean refreshDriverMap = false;
+	
+	private static boolean driversResetOnce = false;
 	
 	/**
 	 * Retrieve an instance of the DriverManager
@@ -53,14 +57,33 @@ public class DriverManager {
 	}
 
 	private synchronized void loadAllInstances() {
+		loadAllInstances(true);
+	}
+	
+	private synchronized void loadAllInstances(boolean migrate) {
+		debug ("loadAllInstances: migrate = " + migrate);
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
 			IPropertySet[] psets = XMLFileManager.loadPropertySets();
 			if (psets.length > 0) {
+				boolean changed = false;
 				for (int i = 0; i < psets.length; i++) {
 					IPropertySet pset = psets[i];
 					DriverInstance ndi = new DriverInstance(pset);
-					mDriverInstanceMap.put(ndi.getId(), ndi);
+					if (migrate) {
+						changed = ndi.migrate();
+					}
+					if (changed) {
+						IPropertySet migratedPset = ndi.getPropertySet();
+						debug ("loadAllInstances: migrated di = " + migratedPset.getID() );
+						psets[i] = migratedPset;
+						DriverInstance mndi = new DriverInstance(migratedPset);
+						mDriverInstanceMap.put(mndi.getId(), mndi);
+						saveChanges(psets);
+						refreshDriverMap = true;
+					}
+					else 
+						mDriverInstanceMap.put(ndi.getId(), ndi);
 				}
 
 				return;
@@ -70,7 +93,18 @@ public class DriverManager {
 			ConnectivityPlugin.getDefault().log(e);
 		}
 	}
-	
+
+	private void saveChanges(IPropertySet[] psets) {
+		debug("saveChanges");
+		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
+		try {
+			XMLFileManager.saveNamedPropertySet(psets);
+		}
+		catch (CoreException e) {
+			ConnectivityPlugin.getDefault().log(e);
+		}
+	}
+
 	private DriverManager() {
 		resetDefaultInstances();
 	}
@@ -399,6 +433,12 @@ public class DriverManager {
 	 */
 	public void resetDefaultInstances() {
 
+		if (!driversResetOnce) 
+			driversResetOnce = true;
+		else
+			return;
+		debug ("resetDefaultInstances");
+		
 		// Start building a list
 		ArrayList psets_list = new ArrayList();
 
@@ -410,9 +450,12 @@ public class DriverManager {
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 
 		// load the hash map from the file to in memory
-		if (mDriverInstanceMap == null) {
+		if (mDriverInstanceMap == null || refreshDriverMap) {
+			debug ("resetDefaultInstances: loading hash map");
 			mDriverInstanceMap = new HashMap();
-			loadAllInstances();
+			loadAllInstances(true);
+			if (refreshDriverMap) 
+				refreshDriverMap = false;
 		}
 
 		// Now grab all the driver instances from the file
@@ -631,4 +674,8 @@ public class DriverManager {
 		return jarList;
 	}
 	
+	private void debug ( String msg ) {
+		System.out.println("Debug: " + msg);
+	}
+
 }

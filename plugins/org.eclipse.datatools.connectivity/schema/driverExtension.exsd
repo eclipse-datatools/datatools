@@ -96,6 +96,7 @@ In addition, using the driverTemplateOverride functionality, adopters can take e
       <complexType>
          <sequence>
             <element ref="properties" minOccurs="0" maxOccurs="1"/>
+            <element ref="migration" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -242,7 +243,7 @@ Note that your property descriptor must implement a zero-argument constructor in
 Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor" deprecated="true"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -404,7 +405,7 @@ Note that your property descriptor must implement a zero-argument constructor in
 Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor:" deprecated="true"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -419,6 +420,67 @@ Also note that there is a new interface that your Property Descriptor can extend
             <annotation>
                <documentation>
                   Indicates if this property should be removed
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="migration">
+      <annotation>
+         <documentation>
+            Use this element to add migration support for a deprecated driver type (e.g. ID changes, property changes, etc.). Make sure if you are migrating driver definitions of one template to another and the first driver template was set to &quot;createDefault = true&quot;, that you set the old driver template to createDefault = false or the driver manager will attempt to recreate the older template and then migrate it. 
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="propertyMigration" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="newDriverTemplateID" type="string">
+            <annotation>
+               <documentation>
+                  The ID of the new driver template to which the old driver template should be associated with.  If this attribute is not specified, the ID of the driver template is not changed.  However, propertyMigration elements, if any, will still be processed and applied.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string">
+            <annotation>
+               <documentation>
+                  A migration implementation that allows the provider to perform a specialized migration.  Use this method if you require a more complex migration algorithm (i.e. anything other than simple name and property mapping).
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.drivers.DriverMigratorBase:org.eclipse.datatools.connectivity.drivers.IDriverMigrator"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="propertyMigration">
+      <annotation>
+         <documentation>
+            This element is used to specify a simple mapping for property key names from a source driver definition to a target driver definition
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="oldPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the source driver definition  If this property is not specified, the new property will be defaulted with the value of newValue.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newPropertyKey" type="string">
+            <annotation>
+               <documentation>
+                  The key name in the target driver definition  If this value is not specified, the old property will be deleted.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="newValue" type="string">
+            <annotation>
+               <documentation>
+                  Use this attribute for populating a default property value for a new property.  newPropertyKey must be set.
                </documentation>
             </annotation>
          </attribute>

@@ -11,6 +11,7 @@
 package org.eclipse.datatools.connectivity.drivers;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
@@ -130,4 +131,19 @@ public class PropertySetImpl implements IPropertySet {
 			return this.mID.hashCode();
 		return super.hashCode();
 	}
+
+	public String toString() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("ID: " + mID + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		buffer.append("Name: " + mName + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		Properties props = getBaseProperties();
+		Iterator iter = props.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry entry = (Map.Entry) iter.next();
+			buffer.append("Property name: " + (String)entry.getKey() + ", "); //$NON-NLS-1$ //$NON-NLS-2$
+			buffer.append("Property value: " + (String) entry.getValue() + "\n"); //$NON-NLS-1$ //$NON-NLS-2$
+		}
+		return buffer.toString();
+	}
+
 }
