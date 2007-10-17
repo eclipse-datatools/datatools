@@ -15,8 +15,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
 import org.eclipse.jface.action.IAction;
@@ -311,39 +312,11 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
     public void setActiveEditor(IEditorPart activeEditor) {
         super.setActiveEditor( activeEditor );
         
-        if (activeEditor instanceof SQLBuilder) {
-            SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
+        if (activeEditor instanceof SQLBuilderEditor) {
+            SQLBuilderEditor sqlBuilder = (SQLBuilderEditor) activeEditor;
             sqlBuilder.setActionBarContributor( this );
             
-            SQLSourceViewer sourceViewer = sqlBuilder.getSQLBuilderUI().getSourceViewer();
-            if (sourceViewer != null) {
-                IAction contentAssistAction = sourceViewer.getAction(CONTENT_ASSIST_ACTION_ID);
-                fEditMenuContentAssistAction.setAction(contentAssistAction);
-                
-                IAction contentTipAction = sourceViewer.getAction(CONTENT_TIP_ACTION_ID);
-                fEditMenuContentTipAction.setAction(contentTipAction);
-            }
-            
-            fRunSQLAction.setActiveEditor( sqlBuilder );
-            fRevertToPreviousAction.setActiveEditor( activeEditor );
-            fRevertToDefaultAction.setActiveEditor( activeEditor );
-            fOmitCurrentSchemaAction.setActiveEditor( activeEditor );
-            
-            SQLDomainModel domainModel = sqlBuilder.getSQLBuilderUI().getDomainModel();
-            if (domainModel != null) {
-                boolean enableRevert = !domainModel.isProper();
-                fRevertToPreviousAction.setEnabled(enableRevert);
-                fRevertToDefaultAction.setEnabled(enableRevert);
-                
-                boolean enableOmitCurrentSchema;
-                if (domainModel.getDatabaseDefinition() != null){
-                	enableOmitCurrentSchema = domainModel.getDatabaseDefinition().supportsSchema();
-                }
-                else {
-                	enableOmitCurrentSchema = false;
-                }
-                fOmitCurrentSchemaAction.setEnabled(enableOmitCurrentSchema);
-           }
+            setActiveSQLBuilder(sqlBuilder.getSQLBuilder());
             
             IActionBars bars = getActionBars();
             if (bars != null) {
@@ -351,4 +324,36 @@ public class SQLBuilderActionBarContributor extends TextEditorActionContributor 
             }
         }
     }
+
+	public void setActiveSQLBuilder(SQLBuilder sqlBuilder) {
+		SQLSourceViewer sourceViewer = sqlBuilder.getSourceViewer();
+		if (sourceViewer != null) {
+		    IAction contentAssistAction = sourceViewer.getAction(CONTENT_ASSIST_ACTION_ID);
+		    fEditMenuContentAssistAction.setAction(contentAssistAction);
+		    
+		    IAction contentTipAction = sourceViewer.getAction(CONTENT_TIP_ACTION_ID);
+		    fEditMenuContentTipAction.setAction(contentTipAction);
+		}
+		
+		fRunSQLAction.setSQLBuilder( sqlBuilder);
+		fRevertToPreviousAction.setSQLBuilder( sqlBuilder);
+		fRevertToDefaultAction.setSQLBuilder( sqlBuilder);
+		fOmitCurrentSchemaAction.setSQLBuilder( sqlBuilder );
+		
+		SQLDomainModel domainModel = sqlBuilder.getDomainModel();
+		if (domainModel != null) {
+		    boolean enableRevert = !domainModel.isProper();
+		    fRevertToPreviousAction.setEnabled(enableRevert);
+		    fRevertToDefaultAction.setEnabled(enableRevert);
+		    
+		    boolean enableOmitCurrentSchema;
+		    if (domainModel.getDatabaseDefinition() != null){
+		    	enableOmitCurrentSchema = domainModel.getDatabaseDefinition().supportsSchema();
+		    }
+		    else {
+		    	enableOmitCurrentSchema = false;
+		    }
+		    fOmitCurrentSchemaAction.setEnabled(enableOmitCurrentSchema);
+         }
+	}
 } // end class

@@ -47,7 +47,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 public class WorkbenchUtility {
 
-    public static final String SQL_BUILDER_ID = "org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder"; // $NON-NLS-1$
+    public static final String SQL_BUILDER_ID = "org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor"; // $NON-NLS-1$
  //   public static final String SQL_EDITOR_ID = "org.eclipse.wst.rdb.sqleditor.SQLEditor"; // $NON-NLS-1$
     public static final String SQL_EDITOR_ID = "org.eclipse.datatools.sqltools.sqleditor"; // $NON-NLS-1$
     public static final String QUERY_EXTENSION = "sql"; //$NON-NLS-1$

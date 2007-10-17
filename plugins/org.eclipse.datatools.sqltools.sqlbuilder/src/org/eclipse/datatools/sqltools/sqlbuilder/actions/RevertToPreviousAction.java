@@ -11,19 +11,17 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.SQLBuilderRevertActionDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 
 
 /**
  * This class implements an action which prompts the user whether or not to revert 
  * to last known good (parsable) version of the statement. 
  */
-public class RevertToPreviousAction extends EditorAction {
+public class RevertToPreviousAction extends SQLBuilderAction {
 
     /** A dialog to prompt the user whether or not to revert to the previous
      * known parsable version of the statement. */
@@ -58,10 +56,8 @@ public class RevertToPreviousAction extends EditorAction {
                         Messages._UI_REVERT_TO_LAST_CORRECT_SOURCE, null, null, MessageDialog.NONE, buttons, 0);   
             }
             
-            IEditorPart activeEditor = getActiveEditor();
-            if (activeEditor instanceof SQLBuilder) {
-                SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-                SQLSourceViewer sourceViewer = sqlBuilder.getSQLBuilderUI().getSourceViewer();
+            if (getSQLBuilder() != null) {
+                SQLSourceViewer sourceViewer = getSQLBuilder().getSourceViewer();
                 if (sourceViewer != null) {
                     fRevertDialog.setProperSourceString(sourceViewer.getLastKnownProperSource());
                     fRevertDialog.create();

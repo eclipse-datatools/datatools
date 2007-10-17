@@ -28,9 +28,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -98,7 +97,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     private boolean isParseRequired = false;
     protected QueryEventListener qListener = null;
     private ITextListener textChangeListener;
-    protected SQLBuilderUI sqlbuilder;
+    protected SQLBuilder sqlbuilder;
 
     private String lastKnownProperSource;
     private boolean handleImproper;
@@ -309,7 +308,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
         target.addDropListener(new org.eclipse.datatools.sqltools.sqlbuilder.views.RDBTableDropListener(this, sqlDomainModel));
     }
 
-    public void setSQLBuilder(SQLBuilderUI sqlbuilder) {
+    public void setSQLBuilder(SQLBuilder sqlbuilder) {
         this.sqlbuilder = sqlbuilder;
     }
 
@@ -802,7 +801,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
             lastKnownProperSource = stmt.getSQL();
         }
         else {
-            lastKnownProperSource = ""; // SQLBuilder.getDefaultStatement(stmt); //$NON-NLS-1$
+            lastKnownProperSource = ""; // SQLBuilderEditor.getDefaultStatement(stmt); //$NON-NLS-1$
         }
 
     }

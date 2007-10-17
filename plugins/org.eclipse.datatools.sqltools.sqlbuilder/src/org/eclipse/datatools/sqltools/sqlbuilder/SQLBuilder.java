@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2005, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -10,349 +10,641 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.EventObject;
+import java.util.Observable;
+import java.util.Observer;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryValues;
+import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.WindowUtility;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.DesignViewer;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.SQLTreeViewer;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.GraphControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener;
-import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.IChangeNotifier;
-import org.eclipse.emf.edit.provider.INotifyChangedListener;
-import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
+import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IActionBars;
-import org.eclipse.ui.IEditorInput;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
- * SQL Query Builder content editor
+ * UI Component of SQL Query Builder content editor.
+ * This can be hosted in an editor (e.g. SQLBuilderEditor) or a dialog.
  */
-public class SQLBuilder extends EditorPart implements
-		ISelectionProvider, QueryEventListener {
 
-	SQLBuilderUI _ui;
+public class SQLBuilder implements IEditingDomainProvider, Observer,
+		QueryEventListener, IMenuListener {
 
-	// flag to allow for delayed initialization of the connection and Database
-	// object
-	protected boolean _firstFocus = true;
+	protected SashForm _sashForm = null;
+	protected SQLTreeViewer _contentOutlinePage;
 
-	// keep track of the selection of the editor
-	protected Collection _selectionChangedListeners = new ArrayList();
-	protected ISelection _editorSelection;
+	protected DesignViewer _designViewer;
+	protected SQLSourceViewer _sourceViewer;
+	protected GraphControl _graphControl;
 
-	// flag to detect if resource is removed to prevent model operations
-	protected boolean _resourceRemoved = false;
+	ISQLBuilderEditorInput _sqlBuilderEditorInput = null;
+	protected IFile _iFile;
 
-	class ConnectRunnable implements Runnable {
-		SQLBuilder _editor;
+	// If this is created from an IEditorPart, this is passed in as a parameter
+	// to the constructor.
+	protected IEditorPart _editor = null;
+	
+	protected AdapterFactoryEditingDomain _editingDomain;
 
-		public ConnectRunnable(SQLBuilder editor) {
-			_editor = editor;
-		}
+	protected SQLDomainModel _sqlDomainModel;
 
-		public void run() {
-			_editor.connectIfNeeded();
-		};
-	};
+	protected SQLBuilderActionBarContributor _actionBarContributor;
+
+	protected Object _currentSelection;
+
+	protected boolean _created;
 
 	public SQLBuilder() {
-		super();
-
-		_ui = new SQLBuilderUI(this);
-
+		this(null);
 	}
 
-	public void dispose() {
-		super.dispose();
+	public SQLBuilder(IEditorPart ed) {
+		_editor = ed;
+
+		_sqlDomainModel = new SQLDomainModel();
+
+		BasicCommandStack commandStack = new BasicCommandStack();
+		commandStack.addCommandStackListener(new CommandStackListener() {
+
+			public void commandStackChanged(EventObject event) {
+			}
+		});
+
+		// Create the editing domain with a special command stack.
+		_editingDomain = new AdapterFactoryEditingDomain(SQLBuilderPlugin
+				.getAdapterFactory(), commandStack);
+
+		_sqlDomainModel.setEditingDomain(_editingDomain);
 	}
 
-	/**
-	 * Create the UI
-	 */
-	public void createPartControl(Composite composite) {
+	public void createClient(Composite composite) {
+		_sashForm = new SashForm(composite, SWT.VERTICAL);
 
-		_ui.createClient(composite);
+		// composite for source & label to go on sash
+		Composite outsideSrcComp = ViewUtility.createNestedComposite(_sashForm,
+				SWT.NONE);
+		// ratio 0.30
+		outsideSrcComp.setData(
+				"layout ratio", new Long((((long) 30 << 16) + 99) / 100)); //$NON-NLS-1$
 
-		((IChangeNotifier) _ui.getDomainModel().getAdapterFactory())
-				.addListener(new INotifyChangedListener() {
+		// composite for source viewer to add border
+		Composite srcComposite = ViewUtility.createNestedComposite(
+				outsideSrcComp, SWT.BORDER);
+		createSourceViewer(srcComposite);
 
-					// public void notifyChanged(Object object, int eventType,
-					// Object
-					// feature, Object oldValue, Object newValue, int index)
-					public void notifyChanged(Notification msg) {
-						if (Display.getCurrent() != null) {
-							Display.getCurrent().asyncExec(new Runnable() {
-
-								public void run() {
-									updateDirtyStatus();
-								}
-							});
-						}
-					}
-				});
-
-	}
-
-	/**
-	 * This is called during startup.
-	 */
-	public void init(IEditorSite site, IEditorInput editorInput)
-			throws PartInitException {
-
-		ISQLBuilderEditorInput sqlBuilderEditorInput = null;
-		if (editorInput instanceof ISQLBuilderEditorInput) {
-			sqlBuilderEditorInput = (ISQLBuilderEditorInput) editorInput;
-		} else if (editorInput instanceof IFileEditorInput) {
-			sqlBuilderEditorInput = new SQLBuilderFileEditorInput(
-					((IFileEditorInput) editorInput).getFile());
+		
+		// If it's not in an editor, put the SQLTreeView in a SashForm with the GraphViewer
+		SashForm graphSash = null;
+		if (_editor == null){
+			graphSash = new SashForm(_sashForm, SWT.HORIZONTAL);
+			graphSash.setLayoutData(ViewUtility.createFill());
+			
+			createGraphViewer(graphSash);
+			
+		}
+		else {
+			createGraphViewer(_sashForm);
 		}
 
-		setSite(site);
-		setInput(editorInput);
-		_ui.setInput(sqlBuilderEditorInput);
-		site.setSelectionProvider(this);
+		createDesignViewer(_sashForm);
 
-		// Show the connection status in the status area at the bottom of
-		// the workbench window.
-		refreshConnectionStatus();
+		_sashForm.setLayoutData(ViewUtility.createFill());
 
-		if (editorInput != null) {
+		getContentOutlinePage(graphSash); // make sure everything is initialized
 
-			// Get the name from the editorInput
-			String title = editorInput.getName();
-			setPartName(title);
+		// If it's not in an editor, set the weights of the graphical view's SashForm
+		if (_editor == null){
+			graphSash.setWeights(new int[] {2, 1});
 		}
-	}
+		
+		 // The client should make this call, not the SQLBuilder
+//		((IChangeNotifier) ui.getDomainModel().getAdapterFactory())
+//		.addListener(new INotifyChangedListener() {
+//
+//			// public void notifyChanged(Object object, int eventType,
+//			// Object
+//			// feature, Object oldValue, Object newValue, int index)
+//			public void notifyChanged(Notification msg) {
+//				if (Display.getCurrent() != null) {
+//					Display.getCurrent().asyncExec(new Runnable() {
+//
+//						public void run() {
+//							updateDirtyStatus();
+//						}
+//					});
+//				}
+//			}
+//		});
+		 
+		boolean isProper = _sqlDomainModel.isProper();
+		updateProperStatement(isProper);
+		_graphControl.refresh();
+		_graphControl.setSQLBuilder(this);
 
-	/**
-	 * Saves the contents of this editor.
-	 * <p>
-	 * 
-	 * @param monitor
-	 *            the progress monitor to use
-	 * @see org.eclipse.ui#dosave(IProgressMonitor progressMonitor)
-	 */
-	public void doSave(IProgressMonitor progressMonitor) {
-		_ui.doSave(progressMonitor);
-	}
-
-	public void doSaveAs() {
-	}
-
-	public boolean isSaveAsAllowed() {
-		return false;
-	}
-	
-	public void notifyContentChange() {
-		updateDirtyStatus();
-	}
-
-	public void updateDirtyStatus() {
-		firePropertyChange(IEditorPart.PROP_DIRTY);
-	}
-
-	public boolean isDirty() {
-		return _ui.getDomainModel().isDirty();
-	}
-
-	public void setResourceRemoved(boolean value) {
-		_resourceRemoved = value;
-	}
-
-	// implement ISelectionProvider
-	public void addSelectionChangedListener(ISelectionChangedListener listener) {
-		_selectionChangedListeners.add(listener);
-	}
-
-	public ISelection getSelection() {
-		return _editorSelection;
-	}
-
-	public void removeSelectionChangedListener(
-			ISelectionChangedListener listener) {
-		_selectionChangedListeners.remove(listener);
-	}
-
-	public void setSelection(ISelection selection) {
-		_editorSelection = selection;
-		for (Iterator listeners = _selectionChangedListeners.iterator(); listeners
-				.hasNext();) {
-			ISelectionChangedListener listener = (ISelectionChangedListener) listeners
-					.next();
-			listener
-					.selectionChanged(new SelectionChangedEvent(this, selection));
-		}
-	}
-
-	public void setFocus() {
-		if (_ui.getSourceViewer() != null) {
-			_ui.getSourceViewer().getControl().setFocus();
-		}
-
-		/*
-		 * Try to make sure that we have a database connection so that the SQL
-		 * model will be populated when we need it. We delay connecting so that
-		 * the user won't get prompted when the Workbench is coming up.
-		 */
-		if (_firstFocus == true) {
-			connectIfNeeded();
-			_firstFocus = false;
-		}
-
-		/*
-		 * Make sure the connection status message is up to date. It doesn't
-		 * automatically get updated if the user switches editor instances.
-		 */
-		refreshConnectionStatus();
-	}
-
-	public SQLBuilderUI getSQLBuilderUI() {
-		return _ui;
-	}
-	
-	public Object getAdapter(Class key) {
-		if (key.equals(IContentOutlinePage.class)) {
-			if (_ui != null) {
-				return _ui.getContentOutlinePage();
+		if (!_created) {
+			// String strSQL = WorkbenchUtility.readFileContentsToString(ifile,
+			// true );
+			String strSQL = _sqlDomainModel.getInitialSource();
+			if (strSQL.trim().length() > 0) {
+				_sourceViewer.setFileSQLStr(strSQL);
 			}
 		}
 
-		// return EcoreUtil.getAdapter(super.eAdapters(),key);
-		return super.getAdapter(key);
+	}
+
+	public void setInput(ISQLBuilderEditorInput sqlBuilderEditorInput)
+			throws PartInitException {
+
+		_sqlBuilderEditorInput = sqlBuilderEditorInput;
+		
+		if (sqlBuilderEditorInput != null) {
+
+			// Get the connection, database and omitSchemaInfo
+			OmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput
+					.getOmitSchemaInfo();
+			_sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
+			omitSchemaInfo.addObserver(this);
+
+			ISQLEditorConnectionInfo connInfo = sqlBuilderEditorInput
+					.getConnectionInfo();
+			_sqlDomainModel.setConnectionInfo(connInfo);
+
+			// After setting omitSchemaInfo and connectionInfo, call
+			// setCurrentSchema
+			_sqlDomainModel.setCurrentSchema();
+
+			// Calling connInfo.getDatabase() tries to connect to the database
+			Database db = connInfo.getDatabase();
+
+			if (db == null && connInfo != null) {
+				throw new PartInitException(NLS.bind(
+						Messages._EXC_OPEN_SQL_FILE_NOT_CONNECTED, connInfo
+								.getConnectionProfileName()));
+			}
+			_sqlDomainModel.setDatabase(db);
+
+			// Load the initial SQL from the editor input. Note that persistance
+			// is handled differently if the input is a FileEditorInput vs. a
+			// StorageEditorInput. Handle the file case first.
+			if (sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput) {
+				SQLBuilderFileEditorInput sqlBuilderFileEditorInput = (SQLBuilderFileEditorInput) sqlBuilderEditorInput;
+				try {
+					IFile fileResource = sqlBuilderFileEditorInput.getFile();
+					if (fileResource != null) {
+						_created = _sqlDomainModel.openFileResource(fileResource);
+						if (_created == false) {
+							// throw new
+							// PartInitException(Messages._EXC_OPEN_SQL_FILE_RESOURCE"));
+							// //$NON-NLS-1$
+
+						}
+					} else {
+						throw new PartInitException(
+								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+					}
+				} catch (Exception ex) {
+					// SQLBuilderPlugin.getPlugin().getLogger().writeLog("Cannot
+					// load resource.." + ex);
+					throw new PartInitException(
+							Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+				}
+			}
+
+			// Handle the case where the input is based on an IStorage object.
+			else if (sqlBuilderEditorInput instanceof SQLEditorStorageEditorInput) {
+				SQLEditorStorageEditorInput storageEditorInput = (SQLEditorStorageEditorInput) sqlBuilderEditorInput;
+				IStorage storageResource = storageEditorInput.getStorage();
+				try {
+					_created = _sqlDomainModel
+							.openStorageResource(storageResource);
+					if (_created == false) {
+						// throw new
+						// PartInitException(Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE"));
+						// //$NON-NLS-1$
+					}
+				} catch (Exception ex) {
+					throw new PartInitException(
+							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+				}
+			}
+
+			// Otherwise we can't tell what we have.
+			else {
+				throw new PartInitException(
+						Messages._ERROR_INPUT_NOT_RECOGNIZED);
+			}
+
+		}
+	}
+
+	/**
+	 * Source Viewer
+	 */
+	protected void createSourceViewer(Composite client) {
+		_sourceViewer = new SQLSourceViewer(_sqlDomainModel, client, _iFile, true);
+		_sourceViewer.setQueryEventListener(this);
+		_sourceViewer.initDBContext();
+		_sourceViewer.setContentProvider(_sqlDomainModel.createContentProvider());
+		_sourceViewer.setSQLBuilder(this);
+
+		GridData data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		data.grabExcessHorizontalSpace = true;
+		data.grabExcessVerticalSpace = true;
+		_sourceViewer.getControl().getParent().setLayoutData(data);
+	}
+
+	/**
+	 * Graph Viewer
+	 */
+	protected void createGraphViewer(Composite client) {
+		_graphControl = new GraphControl(_sqlDomainModel);
+		_graphControl.createControl(client);
+
+		GridData data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		data.grabExcessHorizontalSpace = true;
+		data.grabExcessVerticalSpace = true;
+		_graphControl.getControl().setLayoutData(data);
+
+		// ratio 0.25
+		_graphControl.getControl().setData(
+				"layout ratio", new Long((((long) 25 << 16) + 99) / 100)); //$NON-NLS-1$
+	}
+
+	/**
+	 * Design Viewer
+	 */
+	protected void createDesignViewer(Composite client) {
+		_designViewer = new DesignViewer(_sqlDomainModel, client);
+		// ratio 0.45
+		_designViewer.setData(
+				"layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
+	}
+
+	public SQLSourceViewer getSourceViewer() {
+		return _sourceViewer;
+	}
+
+	public GraphControl getGraphViewer() {
+		return _graphControl;
+	}
+
+	public DesignViewer getDesignViewer() {
+		return _designViewer;
+	}
+
+	/**
+	 * Returns the content outline.
+	 */
+	protected IContentOutlinePage getContentOutlinePage(Composite composite) {
+		if (_contentOutlinePage == null) {
+			QueryStatement sqlStatement = _sqlDomainModel.getSQLStatement();
+			_contentOutlinePage = new SQLTreeViewer(this, _sqlDomainModel
+					.createContentProvider(), _sqlDomainModel
+					.createLabelProvider(), sqlStatement);
+
+			// Composite is non-null if SQLTreeViewer is not being created for
+			// and editor, i.e. it's a component within the SQLBuilder rather
+			// than being hosted in the Outline View.
+			if (composite != null){
+				_contentOutlinePage.createControl(composite);
+				GridData data = new GridData();
+				data.verticalAlignment = GridData.FILL;
+				data.horizontalAlignment = GridData.FILL;
+				data.grabExcessHorizontalSpace = true;
+				data.grabExcessVerticalSpace = true;
+				_contentOutlinePage.getControl().setLayoutData(data);
+			}
+			
+			_contentOutlinePage
+					.addSelectionChangedListener(new ISelectionChangedListener() {
+
+						public void selectionChanged(SelectionChangedEvent event) {
+							handleContentOutlineSelection(event.getSelection(),
+									true);
+						}
+					});
+
+			// Make sure the views are initalized even if the content outline is
+			// not there
+			handleContentOutlineSelection(
+					new StructuredSelection(sqlStatement), false);
+		}
+
+		return _contentOutlinePage;
+	}
+
+	/**
+	 * This deals with how we want selection in the outliner to affect the other
+	 * views.
+	 */
+	public void handleContentOutlineSelection(ISelection selection,
+			boolean fromEvent) {
+		_currentSelection = WindowUtility.getSelection(selection);
+		if (_currentSelection != null) {
+			_graphControl.setInput(_currentSelection);
+			_designViewer.inputChanged(_currentSelection);
+			// [wsdbu00061547] bgp 29Dec2005 - ignore the "fromEvent" parm,
+			// since
+			// this was preventing the SQL source viewer from getting
+			// initialized
+			// when the outline view is not visible.
+			// if (fromEvent) {
+			_sourceViewer.setInput(_currentSelection);
+			// }
+			if (_currentSelection instanceof WithTableSpecification
+					|| _currentSelection instanceof QueryCombined
+					|| _currentSelection instanceof QueryValues) {
+				_graphControl.getControl().setVisible(false);
+				_sashForm.layout(true);
+			} else if (_currentSelection instanceof QuerySelect) {
+				_graphControl.getControl().setVisible(true);
+				_sashForm.layout(true);
+			} else if (_currentSelection instanceof QuerySelectStatement
+					|| _currentSelection instanceof QueryExpressionRoot) {
+				QueryExpressionBody queryBody = null;
+				if (_currentSelection instanceof QuerySelectStatement) {
+					queryBody = SelectHelper
+							.getQueryExpressionBody((QuerySelectStatement) _currentSelection);
+				} else if (_currentSelection instanceof QueryExpressionRoot) {
+					QueryExpressionRoot qRoot = (QueryExpressionRoot) _currentSelection;
+					queryBody = SelectHelper.getQueryExpressionBody(qRoot
+							.getSelectStatement());
+				}
+				if (queryBody instanceof QuerySelect) {
+					_graphControl.getControl().setVisible(true);
+					_sashForm.layout(true);
+				} else if (queryBody instanceof QueryCombined) {
+					_graphControl.getControl().setVisible(false);
+					_sashForm.layout(true);
+				} else if (queryBody instanceof QueryValues) {
+					_graphControl.getControl().setVisible(false);
+					_sashForm.layout(true);
+				} else {
+					_graphControl.getControl().setVisible(true);
+					_sashForm.layout(true);
+				}
+			}
+		}
+	}
+
+	public boolean isContentOutlineRootSelected() {
+		return _contentOutlinePage.isOnlyRootSelected();
+	}
+
+	public void updateProperStatement(boolean isValid) {
+		// Disable sqlbuilder stuff (design, graph, and context menu for
+		// outline)
+		// ....and bring up options to revert to
+		// previous or to default
+		changeGraphControlEnableState(isValid);
+		_designViewer.setEnabled(isValid);
+
+		if (isValid) {
+			if (_contentOutlinePage.getControl() != null) {
+				_contentOutlinePage.getControl().setEnabled(true);
+				_contentOutlinePage.refreshTree();
+			}
+		}
+	}
+
+	public static boolean isStatementProper(SQLDomainModel domainModel) {
+		return domainModel.isProper();
+	}
+
+	protected void changeGraphControlEnableState(boolean enable) {
+		_graphControl.setEnabled(enable);
+
+		if (!enable) {
+			MessageDialog.openWarning(Display.getCurrent().getActiveShell(),
+					Messages._UI_VALIDATE_FAILED_TITLE,
+					Messages._UI_GRAPH_PARSE_FAILED);
+		}
+	}
+
+	public void reparseIfRequired() {
+		if (_sourceViewer.isTextChanged()) {
+			_sourceViewer.reparse();
+		}
+	}
+
+	public void reloadFromModel() {
+		_sourceViewer.refreshSource();
+	}
+
+	public EditingDomain getEditingDomain() {
+		return _editingDomain;
+	}
+
+	protected IDocumentProvider getDocumentProvider() {
+		return getSourceViewer().getDocumentProvider();
+	}
+
+	/**
+	 * Implementation of Observer interface. This method is called when user
+	 * changes the omit schema settings
+	 * 
+	 * @param ob
+	 *            the object calling this method
+	 * @param arg
+	 *            the argument passed to the notifyObservers method
+	 */
+	public void update(Observable ob, Object arg) {
+		if (ob instanceof OmitSchemaInfo) {
+			_sqlDomainModel.setCurrentSchema();
+			_sourceViewer.refreshSource(_sqlDomainModel.getSQLStatement()
+					.getSQL());
+		}
+	}
+
+	public SQLDomainModel getDomainModel() {
+		return _sqlDomainModel;
+	}
+
+	public ISQLBuilderEditorInput getSQLBuilderEditorInput() {
+		return _sqlBuilderEditorInput;
+	}
+
+	public IFile getFile() {
+		return _iFile;
+	}
+
+	public boolean inValidateEditCall() {
+		// return propertyResourceChangeListener.inValidateEditCall();
+		return false;
 	}
 
 	public SQLBuilderActionBarContributor getActionBarContributor() {
-		return _ui._actionBarContributor;
+		if (_actionBarContributor == null){
+			_actionBarContributor = new SQLBuilderActionBarContributor();
+			_actionBarContributor.setActiveSQLBuilder(this);
+		}
+		return _actionBarContributor;
 	}
 
-	/**
-	 * Sets the action contributor associated with this editor. This is called
-	 * by the contributor itself.
-	 */
 	public void setActionBarContributor(
 			SQLBuilderActionBarContributor contributor) {
-		_ui.setActionBarContributor(contributor);
+		_actionBarContributor = contributor;
+
 	}
+	public void doSave(IProgressMonitor progressMonitor) {
+		// Bug 3022 : No need to reparse, since the statement is already parsed
+		// once.
+		// sourceViewer.forceReparse();
+		// RATLC01136221 bgp 10Jan2007 - begin
+		// Might not have a progressMonitor at all
+		if (progressMonitor == null || !progressMonitor.isCanceled()) {
+			boolean result = true;
+			if (progressMonitor != null)
+				progressMonitor.setTaskName(Messages._UI_SAVING_STATEMENT);
 
-	/**
-	 * Try to make sure that we have a database connection so that the SQL model
-	 * will be populated when we need it. We delay connecting so that the user
-	 * won't get prompted when the Workbench is coming up.
-	 */
-	public void connectIfNeeded() {
-		SQLDomainModel domainModel = _ui.getDomainModel();
-		Database db = domainModel.getDatabase();
-		if (db == null) {
-			boolean keepTrying = true;
+			// Sets the text to be used for saving
+			_sqlDomainModel.setEditorText(_sourceViewer.getText());
+			result = _sqlDomainModel.save();
 
-			/* Find out if we're visible yet. */
-			IWorkbench workbench = PlatformUI.getWorkbench();
-			IWorkbenchWindow activeWindow = workbench
-					.getActiveWorkbenchWindow();
-			if (activeWindow != null) {
-				IWorkbenchPage activePage = activeWindow.getActivePage();
-				if (activePage != null) {
-					if (activePage.isPartVisible(this)) {
-						/*
-						 * Once we're visible, try re-establishing the
-						 * connection.
-						 */
-						ISQLEditorConnectionInfo connInfo = domainModel
-								.getConnectionInfo();
-						if (connInfo != null) {
-							boolean connectedOK = true; // SQLDBUtils.reestablishConnection(
-							// connInfo );
-							if (connectedOK == true) {
-								db = connInfo.getDatabase();
-								domainModel.setDatabase(db);
-								domainModel.resetVendor(db);
-							} else {
-								keepTrying = false;
-							}
+			if (result == false) {
+				if (progressMonitor != null)
+					progressMonitor.setCanceled(true);
+				notifyContentChange();
+			} else {
+				if (_sqlBuilderEditorInput != null
+						&& _sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput
+						&& _sqlDomainModel.getIFile() != null) {
+					SQLBuilderFileEditorInput sQLBuilderFileEditorInput = (SQLBuilderFileEditorInput) _sqlBuilderEditorInput;
+					SQLFileUtil.setEncodedOmitSchemaInfo(
+							sQLBuilderFileEditorInput.getFile(),
+							sQLBuilderFileEditorInput.getOmitSchemaInfo()
+									.encode());
+				}
 
-							/*
-							 * Force a reparse to rebuild the display with the
-							 * new Database info.
-							 */
-							_ui.getSourceViewer().forceReparse();
-						}
-					}
+				_sqlDomainModel.setDirty(false);
+				if (_sourceViewer != null) {
+					_sourceViewer.setTextChanged(false);
 				}
 			}
 
-			/*
-			 * If we still don't have a connection and we didn't cancel the
-			 * connection attempt, try it again later.
-			 */
-			if (db == null && keepTrying == true) {
-				ConnectRunnable connectRunnable = new ConnectRunnable(this);
-				Display display = workbench.getDisplay();
-				int delayTime = 1000; // one second
-				display.timerExec(delayTime, connectRunnable);
+			// TODO: Why is this code here?
+			// The following code doesn't seem to ever do anything, since I
+			// can't find anywhere were ifile is set to a non-null value
+			if (progressMonitor != null && !progressMonitor.isCanceled()) {
+				WorkbenchUtility.refreshLocalWorkspaceFile(getFile(),
+						progressMonitor);
 			}
+			notifyContentChange();
+		}
+		// RATLC01136221 bgp 10Jan2007 - end
+	}
+
+	protected boolean validateBeforeSave() {
+		return SQLBuilderPlugin.getPlugin().getPreferenceStore().getBoolean(
+				SQLBuilderConstants.P_VALIDATE_BEFORE_SAVE);
+	}
+	
+	public void notifyContentChange() {
+		if (_editor != null && _editor instanceof QueryEventListener){
+			((QueryEventListener)_editor).notifyContentChange();
 		}
 	}
 
-	/**
-	 * Refreshes the status area indicating the connection state.
-	 */
-	public void refreshConnectionStatus() {
-		IEditorSite editorSite = getEditorSite();
-		if (editorSite != null) {
-			SQLDomainModel domainModel = _ui.getDomainModel();
-			ISQLEditorConnectionInfo connInfo = domainModel.getConnectionInfo();
-			IActionBars actionBars = editorSite.getActionBars();
-			// IEditorActionBarContributor editorContributor =
-			// editorSite.getActionBarContributor();
-			if (actionBars != null) {
-				IStatusLineManager statusLineMgr = actionBars
-						.getStatusLineManager();
-				if (connInfo != null) {
-					statusLineMgr.setErrorMessage(null);
-					String connStatus = connInfo.getName();
-					statusLineMgr.setMessage(connStatus);
+	public void menuAboutToShow(IMenuManager menuManager) {
+		menuManager.add(new Separator("additions")); //$NON-NLS-1$
+		menuManager.add(new Separator("edit")); //$NON-NLS-1$
 
+		_contentOutlinePage.fillContextMenu();
+
+		if (getActionBarContributor() != null) {
+			boolean enableRevert = !SQLBuilder
+					.isStatementProper(getDomainModel());
+			IAction revertToDefaultAction = _actionBarContributor
+					.getAction(SQLBuilderActionBarContributor.REVERT_TO_DEFAULT_ACTION_ID);
+			if (revertToDefaultAction != null) {
+				revertToDefaultAction.setEnabled(enableRevert);
+			}
+
+			IAction revertToPreviousAction = _actionBarContributor
+					.getAction(SQLBuilderActionBarContributor.REVERT_TO_PREVIOUS_ACTION_ID);
+			if (revertToPreviousAction != null) {
+				revertToPreviousAction.setEnabled(enableRevert);
+			}
+			IAction omitCurrentSchemaAction = _actionBarContributor
+					.getAction(SQLBuilderActionBarContributor.OMIT_CURRENT_SCHEMA_ACTION_ID);
+			if (omitCurrentSchemaAction != null) {
+				boolean enableOmitCurrentSchema = false;
+				if (getDomainModel() != null
+						&& getDomainModel().getDatabaseDefinition() != null) {
+					enableOmitCurrentSchema = getDomainModel()
+							.getDatabaseDefinition().supportsSchema();
 				} else {
-					String connStatus = SQLEditorResources.SQLEditor_connection_status_noConnection;
-					statusLineMgr.setErrorMessage(connStatus);
+					enableOmitCurrentSchema = false;
 				}
-				actionBars.updateActionBars();
+				omitCurrentSchemaAction.setEnabled(enableOmitCurrentSchema);
 			}
-
-			/*
-			 * Enable the Run SQL action. This is a work-around for a problem
-			 * where the Run action is getting disabled when the focus shifts
-			 * off the SQL source area.
-			 */
-			// SQLSourceViewer srcViewer = getSourceViewer();
-			// if (srcViewer != null) {
-			// IAction runSQLAction = srcViewer.getAction( "RunSQLAction" );
-			// if (runSQLAction != null) {
-			// // boolean enabled = (connInfo != null ? true : false);
-			// runSQLAction.setEnabled( true );
-			// }
-			// }
 		}
 	}
+	
+	public MenuManager createContextMenuFor(Viewer viewer) {
+		MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
+		contextMenu.add(new Separator("additions")); //$NON-NLS-1$
+		contextMenu.setRemoveAllWhenShown(true);
+		contextMenu.addMenuListener(this);
 
-} // end class
+		Menu menu = contextMenu.createContextMenu(viewer.getControl());
+		viewer.getControl().setMenu(menu);
+		if (_editor != null){
+			_editor.getEditorSite().registerContextMenu(contextMenu, viewer);
+		}
+		
+		return contextMenu;
+	}
+
+}

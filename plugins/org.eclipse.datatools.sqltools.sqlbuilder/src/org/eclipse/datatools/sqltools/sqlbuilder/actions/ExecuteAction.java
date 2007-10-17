@@ -14,6 +14,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.BaseExecuteAction;
@@ -31,18 +32,16 @@ public class ExecuteAction extends BaseExecuteAction {
     	this.setText(Messages._UI_MENU_EXECUTE);
     }
 
-    public void setActiveEditor(SQLBuilder sqlBuilder){
+    public void setSQLBuilder(SQLBuilder sqlBuilder){
     	_sqlBuilder = sqlBuilder;
     }
  
 
 	public DatabaseIdentifier getDatabaseIdentifier() {
-    	IEditorPart activeEditor =  PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 
-        if (activeEditor instanceof SQLBuilder) {
-            SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-    		String profileName = sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo().getConnectionProfileName();
-    		String dbName = sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo().getDatabaseName();
+        if (_sqlBuilder != null) {
+    		String profileName = _sqlBuilder.getDomainModel().getConnectionInfo().getConnectionProfileName();
+    		String dbName = _sqlBuilder.getDomainModel().getConnectionInfo().getDatabaseName();
     		return new DatabaseIdentifier(profileName, dbName);
     	}
         return null;
@@ -54,7 +53,12 @@ public class ExecuteAction extends BaseExecuteAction {
         {
             public void run()
             {
-            	PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(_sqlBuilder);
+            	IEditorPart activeEditor =  PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+            	if (activeEditor instanceof SQLBuilderEditor){
+            		if (((SQLBuilderEditor)activeEditor).getSQLBuilder() == _sqlBuilder){
+            			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(activeEditor);
+            		}
+            	}
             }
         }
         ;
@@ -64,15 +68,15 @@ public class ExecuteAction extends BaseExecuteAction {
 
 	public String getSQLStatements() {
         //Begin - to enforce parse before Execute
-        boolean currentTextModified = _sqlBuilder.getSQLBuilderUI().getSourceViewer().isTextChanged();
-        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setTextChanged(true);
-        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setParseRequired(true); // QVO RATLC01112036 (2006-09-20)
-        _sqlBuilder.getSQLBuilderUI().reparseIfRequired(); //Don't delete
-        _sqlBuilder.getSQLBuilderUI().getSourceViewer().setTextChanged(currentTextModified);
+        boolean currentTextModified = _sqlBuilder.getSourceViewer().isTextChanged();
+        _sqlBuilder.getSourceViewer().setTextChanged(true);
+        _sqlBuilder.getSourceViewer().setParseRequired(true); // QVO RATLC01112036 (2006-09-20)
+        _sqlBuilder.reparseIfRequired(); //Don't delete
+        _sqlBuilder.getSourceViewer().setTextChanged(currentTextModified);
         //End - to enforce parse before Execute
 
         // execute the query and send results to the Output View
-        SQLDomainModel domainModel = _sqlBuilder.getSQLBuilderUI().getDomainModel();
+        SQLDomainModel domainModel = _sqlBuilder.getDomainModel();
         if (domainModel != null) {
             QueryStatement stmt = domainModel.getSQLStatement();
             return stmt.getSQL();
@@ -84,7 +88,7 @@ public class ExecuteAction extends BaseExecuteAction {
 
 
 	public void update() {
-		ISQLEditorConnectionInfo connectionInfo = _sqlBuilder.getSQLBuilderUI().getDomainModel().getConnectionInfo();
+		ISQLEditorConnectionInfo connectionInfo = _sqlBuilder.getDomainModel().getConnectionInfo();
 		setEnabled(_sqlBuilder != null && connectionInfo.isConnected());
 	}
 

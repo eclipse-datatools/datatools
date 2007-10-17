@@ -12,6 +12,28 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views;
 
 import java.util.Collections;
 
+import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
+import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
+import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryValues;
+import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubFullSelectAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubSelectAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValueRowAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValuesAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateWithTableAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.DeleteStatementAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.emf.edit.provider.ItemProvider;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -25,30 +47,6 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
-
-import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
-import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
-import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryValues;
-import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
-import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubFullSelectAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubSelectAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValueRowAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValuesAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateWithTableAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.actions.DeleteStatementAction;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 
 /**
  * The Statements tree view
@@ -77,14 +75,14 @@ public class SQLTreeViewer extends ContentOutlinePage {
     //ExecuteAction executeStatementAction;
 
     MenuManager menu;
-    SQLBuilderUI sqlBuilder;
+    SQLBuilder sqlBuilder;
     SQLDomainModel domainModel;
 
     IContentProvider contentProvider;
     ILabelProvider labelProvider;
     Object input;
 
-    public SQLTreeViewer(SQLBuilderUI sqlBuilder, IContentProvider contentProvider, ILabelProvider labelProvider, Object input)
+    public SQLTreeViewer(SQLBuilder sqlBuilder, IContentProvider contentProvider, ILabelProvider labelProvider, Object input)
 
     {
         this.sqlBuilder = sqlBuilder;
@@ -286,7 +284,7 @@ public class SQLTreeViewer extends ContentOutlinePage {
     }
 
     private void enableMenus() {
-        boolean proper = SQLBuilderUI.isStatementProper(domainModel);
+        boolean proper = SQLBuilder.isStatementProper(domainModel);
 
         addSubFullSelectAction.setEnabled(proper);
         addSubSelectAction.setEnabled(proper);

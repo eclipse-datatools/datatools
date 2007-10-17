@@ -6,7 +6,7 @@
          point="org.eclipse.ui.editors">
       <editor
             id="org.eclipse.datatools.sqltools.sqlbuilder"
-            class="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder"
+            class="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor"
             icon="images/qrydoc.gif"
             default="true"
             extensions="sql"
@@ -31,5 +31,4 @@
             id="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage">
       </page>
     </extension>
-      
 </plugin>

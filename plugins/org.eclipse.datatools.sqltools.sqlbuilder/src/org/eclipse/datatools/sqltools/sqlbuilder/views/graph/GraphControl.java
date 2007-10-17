@@ -13,6 +13,29 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.graph;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
+import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
+import org.eclipse.datatools.modelbase.sql.query.TableExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableJoined;
+import org.eclipse.datatools.modelbase.sql.query.helper.JoinHelper;
+import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
+import org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectImpl;
+import org.eclipse.datatools.modelbase.sql.query.impl.QueryStatementImpl;
+import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.ColumnEditPart;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.SQLRootEditPart;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.TableEditPart;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FocusBorder;
 import org.eclipse.draw2d.Graphics;
@@ -51,38 +74,13 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.navigator.LocalSelectionTransfer;
 
-import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
-import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
-import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
-import org.eclipse.datatools.modelbase.sql.query.TableExpression;
-import org.eclipse.datatools.modelbase.sql.query.TableJoined;
-import org.eclipse.datatools.modelbase.sql.query.helper.JoinHelper;
-import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
-import org.eclipse.datatools.modelbase.sql.query.impl.QuerySelectImpl;
-import org.eclipse.datatools.modelbase.sql.query.impl.QueryStatementImpl;
-import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUI;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.DeleteHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.InsertHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.UpdateHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.ColumnEditPart;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.SQLRootEditPart;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.TableEditPart;
-
 public class GraphControl extends ContentViewer {
 
     protected SQLDomainModel domainModel;
     protected EditDomain editDomain;
     protected Control control;
     protected ScrollingGraphicalViewer graphView;
-    private SQLBuilderUI sqlBuilder;
+    private SQLBuilder sqlBuilder;
 
     public GraphControl(SQLDomainModel domainModel) {
         this.domainModel = domainModel;
@@ -210,6 +208,7 @@ public class GraphControl extends ContentViewer {
 
         control = graphView.createControl(labelComp);
         //GridData canvasData = new GridData();
+        data = new GridData();
         data.verticalAlignment = GridData.FILL;
         data.horizontalAlignment = GridData.FILL;
         data.grabExcessHorizontalSpace = true;
@@ -444,14 +443,14 @@ public class GraphControl extends ContentViewer {
 
     }
 
-    public void setSQLBuilder(SQLBuilderUI sb) {
+    public void setSQLBuilder(SQLBuilder sb) {
         sqlBuilder = sb;
     }
 
     public void setEnabled(boolean enable) {
         control.setEnabled(enable);
         //The label is replaced by a message dialog, which is shown from 
-        //changeGraphControlEnableState() in SQLBuilder
+        //changeGraphControlEnableState() in SQLBuilderEditor
         if (enable) {
             currentPart.getFigure().setBackgroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
             refresh();

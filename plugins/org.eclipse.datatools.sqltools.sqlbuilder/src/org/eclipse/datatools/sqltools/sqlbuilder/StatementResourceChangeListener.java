@@ -75,8 +75,8 @@ public class StatementResourceChangeListener implements IResourceChangeListener,
                     IEditorInput editorInput = editor.getEditorInput();
 
                     if (editorInput instanceof IFileEditorInput) {
-                        if (((IFileEditorInput) editorInput).getFile().equals(deletedResource) && (editor instanceof SQLBuilder)) {
-                            ((SQLBuilder) editor).setResourceRemoved(true);
+                        if (((IFileEditorInput) editorInput).getFile().equals(deletedResource) && (editor instanceof SQLBuilderEditor)) {
+                            ((SQLBuilderEditor) editor).setResourceRemoved(true);
                         }
                     }
                 }

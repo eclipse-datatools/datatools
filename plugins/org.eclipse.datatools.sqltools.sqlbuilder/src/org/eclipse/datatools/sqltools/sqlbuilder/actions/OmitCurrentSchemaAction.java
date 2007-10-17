@@ -11,38 +11,23 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.OmitCurrentSchemaDialog;
 import org.eclipse.jface.window.Window;
-import org.eclipse.ui.IEditorPart;
 
-public class OmitCurrentSchemaAction extends EditorAction {
+public class OmitCurrentSchemaAction extends SQLBuilderAction  {
 
     /**
      * Constructs an instance of this class.  This is the default constructor.
      */
     public OmitCurrentSchemaAction() {
-        this(Messages._UI_OMIT_CURRENT_SCHEMA);
+        super(Messages._UI_ACTION_OMIT_CURRENT_SCHEMA);
     }
-
-    /**
-     * Constructs an instance of this class with the given action label.
-     * 
-     * @param label the action label to use
-     */
-    public OmitCurrentSchemaAction(String label) {
-        super(label);
-    }
-    
+   
     public void run() {
-
-        IEditorPart activeEditor = getActiveEditor();
-        if (activeEditor instanceof SQLBuilder) {
-            SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-            OmitSchemaInfo omitSchemaInfo = sqlBuilder.getSQLBuilderUI().getDomainModel().getOmitSchemaInfo();
-            String userName = sqlBuilder.getSQLBuilderUI().getDomainModel().getUserName();
-            
+    	if (getSQLBuilder() != null){
+    		OmitSchemaInfo omitSchemaInfo = getSQLBuilder().getDomainModel().getOmitSchemaInfo();
+    		String userName = getSQLBuilder().getDomainModel().getUserName();
             OmitSchemaInfo tmpOmitSchemaInfo = new OmitSchemaInfo();
             tmpOmitSchemaInfo.copyOmitSchemaInfo(omitSchemaInfo);
             OmitCurrentSchemaDialog dialog = new OmitCurrentSchemaDialog(getShell(), tmpOmitSchemaInfo, userName);
@@ -57,6 +42,6 @@ public class OmitCurrentSchemaAction extends EditorAction {
             else {
             	omitSchemaInfo.copyOmitSchemaInfo(tmpOmitSchemaInfo);
             }
-        }
+    	}
     }
 }

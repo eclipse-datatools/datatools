@@ -16,15 +16,16 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.DatabaseHelper;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposal;
 import org.eclipse.datatools.sqltools.sqleditor.internal.sql.SQLDBProposalsService;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * This class extends SQLDBProposalsService in the SQLEditor package in order

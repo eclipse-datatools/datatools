@@ -279,9 +279,9 @@ public class NewSQLStatementComposite extends Composite implements ModifyListene
     }
 
     /**
-     * Gets the SQLBuilder Button Widget
+     * Gets the SQLBuilderEditor Button Widget
      * 
-     * @return the SQLBuilder Button Widget
+     * @return the SQLBuilderEditor Button Widget
      */
     public Button getQueryBuilderButton() {
         return fQueryBuilderButton;

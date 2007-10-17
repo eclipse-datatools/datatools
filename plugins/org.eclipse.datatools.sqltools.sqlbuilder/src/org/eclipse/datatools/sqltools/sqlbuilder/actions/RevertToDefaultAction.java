@@ -11,16 +11,14 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
-import org.eclipse.ui.IEditorPart;
 
 
 /**
  * This class implements an action which reverts the current statement to its
  * template form.
  */
-public class RevertToDefaultAction extends EditorAction {
+public class RevertToDefaultAction extends SQLBuilderAction {
 
     /**
      * Constructs an instance of this class.  This is the default constructor.
@@ -42,10 +40,8 @@ public class RevertToDefaultAction extends EditorAction {
      * Runs the action.
      */
 	public void run() {
-        IEditorPart activeEditor = getActiveEditor();
-        if (activeEditor instanceof SQLBuilder) {
-            SQLBuilder sqlBuilder = (SQLBuilder) activeEditor;
-            SQLSourceViewer sourceViewer = sqlBuilder.getSQLBuilderUI().getSourceViewer();
+        if (getSQLBuilder() != null){
+            SQLSourceViewer sourceViewer = getSQLBuilder().getSourceViewer();
             if (sourceViewer != null) {
                 sourceViewer.revertToDefaultSource();
             }
