@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SQL Query Builder Examples Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlbuilder.examples;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.sqltools.sqlbuilder.examples.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.datatools.sqltools.sqlbuilder
+Eclipse-LazyStart: true
