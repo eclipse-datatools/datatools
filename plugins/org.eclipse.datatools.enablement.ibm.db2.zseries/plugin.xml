@@ -77,6 +77,13 @@
                   visible="true"/>
             <property
                   generated="false"
+                  id="org.eclipse.datatools.enablement.ibm.db2.zseries.filterOnTBCreator"
+                  name="%filterOnTBCreator"
+                  value="true"
+                  required="false"
+                  visible="true"/>
+            <property
+                  generated="false"
                   id="org.eclipse.datatools.connectivity.db.username"
                   name="%driverUID"
                   value=""
@@ -133,6 +140,13 @@
                   name="%driverConnectionURL"
                   value=""
                   required="true"
+                  visible="true"/>
+            <property
+                  generated="false"
+                  id="org.eclipse.datatools.enablement.ibm.db2.zseries.filterOnTBCreator"
+                  name="%filterOnTBCreator"
+                  value="true"
+                  required="false"
                   visible="true"/>
             <property
                   generated="false"
