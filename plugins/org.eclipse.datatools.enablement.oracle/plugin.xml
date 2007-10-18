@@ -80,6 +80,13 @@
                 value="jdbc:oracle:thin:@server:1521:db" 
                 required="true" 
                 visible="true"/> 
+           <property 
+                generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
+                visible="true"/>     
           <property 
                 generated="false" 
                 id="org.eclipse.datatools.connectivity.db.username" 
@@ -141,6 +148,13 @@
                 name="%driverConnectionURL" 
                 value="jdbc:oracle:thin:@server:1521:db" 
                 required="true" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
                 visible="true"/> 
           <property 
                 generated="false" 
@@ -206,6 +220,13 @@
                 visible="true"/> 
           <property 
                 generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
+                visible="true"/> 
+          <property 
+                generated="false" 
                 id="org.eclipse.datatools.connectivity.db.username" 
                 name="%driverUID" 
                 value="" 
@@ -265,6 +286,13 @@
                 name="%driverConnectionURL" 
                 value="" 
                 required="true" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
                 visible="true"/> 
           <property 
                 generated="false" 
@@ -330,6 +358,13 @@
                 visible="true"/> 
           <property 
                 generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
+                visible="true"/> 
+          <property 
+                generated="false" 
                 id="org.eclipse.datatools.connectivity.db.username" 
                 name="%driverUID" 
                 value="" 
@@ -389,6 +424,13 @@
                 name="%driverConnectionURL" 
                 value="" 
                 required="true" 
+                visible="true"/> 
+          <property 
+                generated="false" 
+                id="org.eclipse.datatools.enablement.oracle.catalogType" 
+                name="%catalogType" 
+                value="USER" 
+                required="false" 
                 visible="true"/> 
           <property 
                 generated="false" 
