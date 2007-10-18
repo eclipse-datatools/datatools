@@ -193,7 +193,7 @@ public class SQLBuilderDialog extends Dialog {
 					 *  Create an XMLMemento and save the SQLStatement, ConnectionInfo and OmitSchemaInfo to it
 					 */
 					XMLMemento memento = XMLMemento
-							.createWriteRoot(SQLBuilderInputFactory.ID_STORAGE_EDITOR_ROOT_ELEMENT);
+							.createWriteRoot(SQLBuilderInputFactory.ID_XML_MEMENTO_ROOT_ELEMENT);
 					// Create a SQLEditorStorage passing a name and the SQL Statement as parameters
 					SQLEditorStorage storage = new SQLEditorStorage(
 							_editorInput.getName(), _sqlBuilder

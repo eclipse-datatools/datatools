@@ -71,7 +71,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * UI Component of SQL Query Builder content editor.
- * This can be hosted in an editor (e.g. SQLBuilderEditor) or a dialog.
+ * This can be hosted in an editor (e.g. <code>SQLBuilderEditor</code>) or a dialog.
  */
 
 public class SQLBuilder implements IEditingDomainProvider, Observer,
@@ -87,8 +87,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	ISQLBuilderEditorInput _sqlBuilderEditorInput = null;
 	protected IFile _iFile;
 
-	// If this is created from an IEditorPart, this is passed in as a parameter
-	// to the constructor.
+	/**
+	 *  If this is created from an IEditorPart, this is passed in as a parameter
+	 *  to the constructor.
+	 */
 	protected IEditorPart _editor = null;
 	
 	protected AdapterFactoryEditingDomain _editingDomain;
@@ -101,10 +103,20 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 	protected boolean _created;
 
+	/**
+	 * Constructor for <code>SQLBuilder</code>.  This constructor should be called when
+	 * a component other than an editor is being created.
+	 */
 	public SQLBuilder() {
 		this(null);
 	}
 
+	/**
+	 * Constructor for <code>SQLBuilder</code>. This constructor should be called when
+	 * an Editor is being created.
+	 * 
+	 * @param ed the editor that is creating this <code>SQLBuilder</code>.
+	 */
 	public SQLBuilder(IEditorPart ed) {
 		_editor = ed;
 
@@ -112,20 +124,25 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 		BasicCommandStack commandStack = new BasicCommandStack();
 		commandStack.addCommandStackListener(new CommandStackListener() {
-
 			public void commandStackChanged(EventObject event) {
 			}
 		});
 
-		// Create the editing domain with a special command stack.
+		// Create the editing domain with the command stack.
 		_editingDomain = new AdapterFactoryEditingDomain(SQLBuilderPlugin
 				.getAdapterFactory(), commandStack);
 
 		_sqlDomainModel.setEditingDomain(_editingDomain);
 	}
 
-	public void createClient(Composite composite) {
-		_sashForm = new SashForm(composite, SWT.VERTICAL);
+	/**
+	 * Creates the UI component for the <code>SQLBuilder</code>.
+	 * This method should be called after <code>setInput(ISQLBuilderEditorInput)</code>.
+	 *  
+	 * @param parent the parent composite.
+	 */
+	public void createClient(Composite parent) {
+		_sashForm = new SashForm(parent, SWT.VERTICAL);
 
 		// composite for source & label to go on sash
 		Composite outsideSrcComp = ViewUtility.createNestedComposite(_sashForm,
@@ -199,6 +216,13 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 	}
 
+	/**
+	 * Sets the input for the <code>SQLBuilder</code>.
+	 * This method should be called before <code>createClient(Composite)</code>.
+	 * 
+	 * @param sqlBuilderEditorInput
+	 * @throws PartInitException
+	 */
 	public void setInput(ISQLBuilderEditorInput sqlBuilderEditorInput)
 			throws PartInitException {
 
@@ -285,7 +309,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
-	 * Source Viewer
+	 * Creates the Source Viewer
 	 */
 	protected void createSourceViewer(Composite client) {
 		_sourceViewer = new SQLSourceViewer(_sqlDomainModel, client, _iFile, true);
@@ -303,7 +327,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
-	 * Graph Viewer
+	 * Creates the Graph Viewer
 	 */
 	protected void createGraphViewer(Composite client) {
 		_graphControl = new GraphControl(_sqlDomainModel);
@@ -322,7 +346,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
-	 * Design Viewer
+	 * Creates the Design Viewer
 	 */
 	protected void createDesignViewer(Composite client) {
 		_designViewer = new DesignViewer(_sqlDomainModel, client);
@@ -331,22 +355,39 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				"layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
 	}
 
+	/**
+	 * Returns the SourceViewer.
+	 * 
+	 * @return SQLSourceViewer the SourceViewer.
+	 */
 	public SQLSourceViewer getSourceViewer() {
 		return _sourceViewer;
 	}
 
+	/**
+	 * Returns the GraphViewer.
+	 * 
+	 * @return GraphControl the GraphViewer.
+	 */
 	public GraphControl getGraphViewer() {
 		return _graphControl;
 	}
 
+	/**
+	 * Returns the DesignViewer.
+	 * 
+	 * @return DesignViewer the DesignViewer.
+	 */
 	public DesignViewer getDesignViewer() {
 		return _designViewer;
 	}
 
 	/**
-	 * Returns the content outline.
+	 * Returns the content outline page.
+	 * 
+	 * @return IContentOutlinePage the content outline page.
 	 */
-	protected IContentOutlinePage getContentOutlinePage(Composite composite) {
+	public IContentOutlinePage getContentOutlinePage(Composite composite) {
 		if (_contentOutlinePage == null) {
 			QueryStatement sqlStatement = _sqlDomainModel.getSQLStatement();
 			_contentOutlinePage = new SQLTreeViewer(this, _sqlDomainModel
@@ -387,6 +428,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	/**
 	 * This deals with how we want selection in the outliner to affect the other
 	 * views.
+	 * 
+	 * @param selection selection passed to <code>handleContentOutlineSelection</code>.
+	 * @param fromEvent not used.
 	 */
 	public void handleContentOutlineSelection(ISelection selection,
 			boolean fromEvent) {
@@ -438,10 +482,21 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 
+	/**
+	 * Returns whether the root of the content outline view is selected.
+	 * 
+	 * @return boolean true if the root is selected, otherwise false.
+	 */
 	public boolean isContentOutlineRootSelected() {
 		return _contentOutlinePage.isOnlyRootSelected();
 	}
 
+	/**
+	 * Enables / disables SQLBuilder controls and actions depending on whether
+	 * the current SQL is valid or not.
+	 * 
+	 * @param isValid whether the current SQL is valid.
+	 */
 	public void updateProperStatement(boolean isValid) {
 		// Disable sqlbuilder stuff (design, graph, and context menu for
 		// outline)
@@ -458,10 +513,19 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 
+	/**
+	 * Tests whether the current SQL is valid.
+	 * 
+	 * @param domainModel the domain model for the SQL.
+	 * @return boolean true if the SQL is valid, otherwise false.
+	 */
 	public static boolean isStatementProper(SQLDomainModel domainModel) {
 		return domainModel.isProper();
 	}
 
+	/*
+	 * Enables / disables the GraphControl.
+	 */
 	protected void changeGraphControlEnableState(boolean enable) {
 		_graphControl.setEnabled(enable);
 
@@ -472,32 +536,43 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 
+	/**
+	 * Reparses the SQL in the SourceViewer if it has changed.
+	 * 
+	 */
 	public void reparseIfRequired() {
 		if (_sourceViewer.isTextChanged()) {
 			_sourceViewer.reparse();
 		}
 	}
 
+	/**
+	 * Reloads the SourceViewer from the SQL Model.
+	 */
 	public void reloadFromModel() {
 		_sourceViewer.refreshSource();
 	}
 
+	/**
+	 * Returns the <code>EditingDomain</code> belonging to this <code>SQLBuilder</code>
+	 */
 	public EditingDomain getEditingDomain() {
 		return _editingDomain;
 	}
 
+	/*
+	 * Returns the <code>IDocumentProvider</code> belonging to this <code>SQLBuilder</code>.
+	 */
 	protected IDocumentProvider getDocumentProvider() {
 		return getSourceViewer().getDocumentProvider();
 	}
 
 	/**
 	 * Implementation of Observer interface. This method is called when user
-	 * changes the omit schema settings
+	 * changes the omit schema settings.
 	 * 
-	 * @param ob
-	 *            the object calling this method
-	 * @param arg
-	 *            the argument passed to the notifyObservers method
+	 * @param ob the object calling this method
+	 * @param arg the argument passed to the notifyObservers method
 	 */
 	public void update(Observable ob, Object arg) {
 		if (ob instanceof OmitSchemaInfo) {
@@ -507,23 +582,39 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 
+	/**
+	 * Returns the <code>SQLDomainModel</code> belonging to this <code>SQLBuilder</code>.
+	 */
 	public SQLDomainModel getDomainModel() {
 		return _sqlDomainModel;
 	}
 
+	/**
+	 * Returns the <code>ISQLBuilderEditorInput</code> belonging to this <code>SQLBuilder</code>.
+	 */
 	public ISQLBuilderEditorInput getSQLBuilderEditorInput() {
 		return _sqlBuilderEditorInput;
 	}
 
+	/**
+	 * Returns the <code>IFile</code> belonging to this <code>SQLBuilder</code>, which
+	 * may be null.
+	 */
 	public IFile getFile() {
 		return _iFile;
 	}
 
+	/**
+	 * Returns whether the <code>SQLBuilder</code> is currently validating the SQL.
+	 */
 	public boolean inValidateEditCall() {
 		// return propertyResourceChangeListener.inValidateEditCall();
 		return false;
 	}
 
+	/**
+	 * Returns the <code>SQLBuilderActionBarContributor</code> belonging to this <code>SQLBuilder</code>.
+	 */
 	public SQLBuilderActionBarContributor getActionBarContributor() {
 		if (_actionBarContributor == null){
 			_actionBarContributor = new SQLBuilderActionBarContributor();
@@ -532,11 +623,23 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		return _actionBarContributor;
 	}
 
+	/**
+	 * Sets the <code>SQLBuilderActionBarContributor</code> for this <code>SQLBuilder</code>.
+	 */
 	public void setActionBarContributor(
 			SQLBuilderActionBarContributor contributor) {
 		_actionBarContributor = contributor;
 
 	}
+	
+	/**
+     * Saves the current statement in the file resource associated with this <code>SQLBuilder</code>.
+     * This method should be called by editors which consume the  <code>SQLBuilder</code>.
+     * If the SQLBuilder has an input which is not file based, the SQL is not saved. In this case, it is the
+     * responsibility of the consumer of the <code>SQLBuilder</code> to save the SQL.
+	 * 
+	 * @param progressMonitor progressMonitor used during save.
+	 */
 	public void doSave(IProgressMonitor progressMonitor) {
 		// Bug 3022 : No need to reparse, since the statement is already parsed
 		// once.
@@ -585,17 +688,26 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		// RATLC01136221 bgp 10Jan2007 - end
 	}
 
+	/*
+	 * @
+	 */
 	protected boolean validateBeforeSave() {
 		return SQLBuilderPlugin.getPlugin().getPreferenceStore().getBoolean(
 				SQLBuilderConstants.P_VALIDATE_BEFORE_SAVE);
 	}
 	
+	/**
+	 * @see org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener#notifyContentChange()
+	 */
 	public void notifyContentChange() {
 		if (_editor != null && _editor instanceof QueryEventListener){
 			((QueryEventListener)_editor).notifyContentChange();
 		}
 	}
 
+	/**
+	 * @see org.eclipse.jface.action.IMenuListener#menuAboutToShow(IMenuManager)
+	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
 		menuManager.add(new Separator("additions")); //$NON-NLS-1$
 		menuManager.add(new Separator("edit")); //$NON-NLS-1$
@@ -632,6 +744,12 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 	
+	/**
+	 * Creates context menu for a viewer.
+	 * 
+	 * @param viewer the viewer.
+	 * @return MenuManager the context menu created.
+	 */
 	public MenuManager createContextMenuFor(Viewer viewer) {
 		MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
 		contextMenu.add(new Separator("additions")); //$NON-NLS-1$

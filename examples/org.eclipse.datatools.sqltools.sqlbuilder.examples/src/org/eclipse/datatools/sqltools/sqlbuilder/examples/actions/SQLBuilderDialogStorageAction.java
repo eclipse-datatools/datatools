@@ -13,7 +13,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.actions;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs.SQLBuilderDialog;
-import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.SQLBuilderEditorInputUtil;
+import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.EditorInputUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -58,7 +58,7 @@ public class SQLBuilderDialogStorageAction implements IObjectActionDelegate {
 		 * directly from a file. Rather it would be created from data held by the calling
 		 * application in e.g. a string. 
 		 */
-		SQLBuilderStorageEditorInput storageEditorInput = SQLBuilderEditorInputUtil.createSQLBuilderEditorInputFromStringViaFile(_selectedFile);
+		SQLBuilderStorageEditorInput storageEditorInput = EditorInputUtil.createSQLBuilderEditorInputFromStringViaFile(_selectedFile);
 		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), storageEditorInput);
 		sqlBuilderDialog.create();
 		sqlBuilderDialog.setBlockOnOpen(true);

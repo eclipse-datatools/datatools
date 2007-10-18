@@ -45,12 +45,15 @@ import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
- * SQL Query Builder content editor
+ * SQL Query Builder content editor.
  */
 public class SQLBuilderEditor extends EditorPart implements
 		ISelectionProvider, QueryEventListener {
 
-	SQLBuilder _sqlBuilder;
+	/**
+	 * The SQLBuilder for this editor.
+	 */
+	protected SQLBuilder _sqlBuilder;
 
 	// flag to allow for delayed initialization of the connection and Database
 	// object
@@ -75,6 +78,9 @@ public class SQLBuilderEditor extends EditorPart implements
 		};
 	};
 
+	/**
+	 * Constructor for <code>SQLBuilderEditor</code>
+	 */
 	public SQLBuilderEditor() {
 		super();
 
@@ -82,23 +88,30 @@ public class SQLBuilderEditor extends EditorPart implements
 
 	}
 
+	/**
+	 * Overrides {@link org.eclipse.ui.part.WorkbenchPart#dispose()}
+	 */
 	public void dispose() {
 		super.dispose();
 	}
 
 	/**
-	 * Create the UI
+	 * Create the UI for this <code>SQLBuilderEditor</code>.
+	 * Implements {@link org.eclipse.ui.part.WorkbenchPart#createPartControl(Composite)}
 	 */
 	public void createPartControl(Composite composite) {
 
+		/*
+		 * Create the UI component.
+		 */
 		_sqlBuilder.createClient(composite);
 
+		/*
+		 * Add a listener for changes to the SQLBuilderEditor's domain model.
+		 */
 		((IChangeNotifier) _sqlBuilder.getDomainModel().getAdapterFactory())
 				.addListener(new INotifyChangedListener() {
 
-					// public void notifyChanged(Object object, int eventType,
-					// Object
-					// feature, Object oldValue, Object newValue, int index)
 					public void notifyChanged(Notification msg) {
 						if (Display.getCurrent() != null) {
 							Display.getCurrent().asyncExec(new Runnable() {
@@ -114,7 +127,9 @@ public class SQLBuilderEditor extends EditorPart implements
 	}
 
 	/**
-	 * This is called during startup.
+	 * Called during startup.
+	 * 
+	 * Implements {@link org.eclipse.ui.part.EditorPart#init(IEditorSite, IEditorInput)}
 	 */
 	public void init(IEditorSite site, IEditorInput editorInput)
 			throws PartInitException {
@@ -145,24 +160,30 @@ public class SQLBuilderEditor extends EditorPart implements
 	}
 
 	/**
-	 * Saves the contents of this editor.
-	 * <p>
+	 * Implements {@link org.eclipse.ui.part.EditorPart#doSave(IProgressMonitor)}
 	 * 
-	 * @param monitor
-	 *            the progress monitor to use
-	 * @see org.eclipse.ui#dosave(IProgressMonitor progressMonitor)
+	 * @param monitor the progress monitor to use.
 	 */
 	public void doSave(IProgressMonitor progressMonitor) {
 		_sqlBuilder.doSave(progressMonitor);
 	}
 
+	/**
+	 * Implements {@link org.eclipse.ui.part.EditorPart#doSaveAs()}
+	 */
 	public void doSaveAs() {
 	}
 
+	/**
+	 * Implements {@link org.eclipse.ui.part.EditorPart#isSaveAsAllowed()}
+	 */
 	public boolean isSaveAsAllowed() {
 		return false;
 	}
 	
+	/**
+	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener#notifyContentChange()}
+	 */
 	public void notifyContentChange() {
 		updateDirtyStatus();
 	}
