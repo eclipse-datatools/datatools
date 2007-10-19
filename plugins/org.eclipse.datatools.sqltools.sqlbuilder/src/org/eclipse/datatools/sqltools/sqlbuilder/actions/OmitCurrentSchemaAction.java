@@ -12,6 +12,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.OmitCurrentSchemaDialog;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.jface.window.Window;
 
@@ -26,10 +27,10 @@ public class OmitCurrentSchemaAction extends SQLBuilderAction  {
    
     public void run() {
     	if (getSQLBuilder() != null){
-    		OmitSchemaInfo omitSchemaInfo = getSQLBuilder().getDomainModel().getOmitSchemaInfo();
+    		IOmitSchemaInfo omitSchemaInfo = getSQLBuilder().getDomainModel().getOmitSchemaInfo();
     		String userName = getSQLBuilder().getDomainModel().getUserName();
-            OmitSchemaInfo tmpOmitSchemaInfo = new OmitSchemaInfo();
-            tmpOmitSchemaInfo.copyOmitSchemaInfo(omitSchemaInfo);
+            IOmitSchemaInfo tmpOmitSchemaInfo = new OmitSchemaInfo();
+            tmpOmitSchemaInfo.copy(omitSchemaInfo);
             OmitCurrentSchemaDialog dialog = new OmitCurrentSchemaDialog(getShell(), tmpOmitSchemaInfo, userName);
 
             dialog.create();
@@ -43,10 +44,10 @@ public class OmitCurrentSchemaAction extends SQLBuilderAction  {
             	// Test if omitSchemaInfo has changed
             	boolean hasChanged = ! omitSchemaInfo.equals(tmpOmitSchemaInfo);
             	// Copy tmpOmitSchemaInfo back to omitSchemaInfo
-            	omitSchemaInfo.copyOmitSchemaInfo(tmpOmitSchemaInfo);
+            	omitSchemaInfo.copy(tmpOmitSchemaInfo);
             	// Notify observers
             	if (hasChanged){
-            		omitSchemaInfo.omitSchemaInfoChanged();
+            		omitSchemaInfo.setChanged();
             	}
             }
     	}

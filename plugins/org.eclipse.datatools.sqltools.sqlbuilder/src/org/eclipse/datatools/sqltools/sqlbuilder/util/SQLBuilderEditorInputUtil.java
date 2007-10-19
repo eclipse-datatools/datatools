@@ -20,7 +20,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
@@ -83,7 +83,7 @@ public class SQLBuilderEditorInputUtil {
 		SQLBuilderFileEditorInput fileEditorInput = new SQLBuilderFileEditorInput(file);
 		String sSQL = fileEditorInput.getSQLStatement();
 		ISQLEditorConnectionInfo connectionInfo = fileEditorInput.getConnectionInfo();
-		OmitSchemaInfo omitSchemaInfo = fileEditorInput.getOmitSchemaInfo();
+		IOmitSchemaInfo omitSchemaInfo = fileEditorInput.getOmitSchemaInfo();
 		
 		/*
 		 * Create SQLBuilderStorageEditorInput and put the SQL, ConnectionInfo and OmitSchemaInfo in it

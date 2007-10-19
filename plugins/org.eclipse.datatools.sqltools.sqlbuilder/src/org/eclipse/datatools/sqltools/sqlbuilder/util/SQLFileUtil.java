@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 
@@ -71,10 +72,10 @@ public class SQLFileUtil {
 		}
 	}
 	
-	public static OmitSchemaInfo getOmitSchemaInfo(IFile file) {
+	public static IOmitSchemaInfo getOmitSchemaInfo(IFile file) {
 		String encodedOmitSchemaInfo = null;
 		encodedOmitSchemaInfo = getEncodedOmitSchemaInfo(file);
-		OmitSchemaInfo omitSchemaInfo;
+		IOmitSchemaInfo omitSchemaInfo;
 		if ((encodedOmitSchemaInfo != null)
 				&& (!encodedOmitSchemaInfo.trim().equals(""))) {
 			omitSchemaInfo = OmitSchemaInfo.decode(encodedOmitSchemaInfo);

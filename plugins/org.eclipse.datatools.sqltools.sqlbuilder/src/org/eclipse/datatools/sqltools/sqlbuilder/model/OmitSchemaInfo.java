@@ -41,7 +41,7 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
     {
     	if (omitCurrentSchema != _omitCurrentSchema){
         	_omitCurrentSchema = omitCurrentSchema;
-        	omitSchemaInfoChanged();
+        	setChanged();
     	}
     }
 	
@@ -59,7 +59,7 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
     {
     	if (useAUIDAsCurrentSchema != _useAUIDAsCurrentSchema){
     		_useAUIDAsCurrentSchema = useAUIDAsCurrentSchema;
-    		omitSchemaInfoChanged();
+    		setChanged();
     	}
     }
 	
@@ -77,7 +77,7 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
     {
     	if (!_currentSchema.equals(currentSchema)){
     		_currentSchema = (currentSchema == null ? "" : currentSchema);
-    		omitSchemaInfoChanged();
+    		setChanged();
     	}
     }
 	
@@ -136,15 +136,16 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
 	
 	/**
 	 * Function to be called when this <code>OmitSchemaInfo</code> has changed.
+	 * Overrides {@link java.util.Observable#setChanged}
+	 * 
 	 */
-	public void omitSchemaInfoChanged(){
-		this.setChanged();
+	public void setChanged(){
+		super.setChanged();
     	this.notifyObservers(null);
 	}
 
 	/**
-	 * Returns true if the IOmitSchemaInfo passed has the same values as this OmitSchemaInfo
-	 * @param iOmitSchemaInfo
+	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo#equals(IOmitSchemaInfo)}
 	 */
 	public boolean equals(IOmitSchemaInfo iOmitSchemaInfo){
 		boolean equals = true;
@@ -167,11 +168,9 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
 	}
 	
 	/**
-	 * Copy the OmitSchemaInfo passed as a parameter to this OmitSchemaInfo.
-	 * 
-	 * @param iOmitSchemaInfo <code>IOmitSchemaInfo</code> object to be copied.
+	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo#copy(IOmitSchemaInfo)}
 	 */
-	public void copyOmitSchemaInfo(IOmitSchemaInfo iOmitSchemaInfo){
+	public void copy(IOmitSchemaInfo iOmitSchemaInfo){
     	
     	// Reset values of this
     	_omitCurrentSchema = iOmitSchemaInfo.getOmitCurrentSchema();
@@ -187,7 +186,7 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
 	
 	
 	/**
-	 * Initialises the <code>OmitSchemaInfo</code> from Eclipse preference store.
+	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo#initFromPreferences()}
 	 */
 	public void initFromPreferences(){
 		IPreferenceStore store = getPreferenceStore();

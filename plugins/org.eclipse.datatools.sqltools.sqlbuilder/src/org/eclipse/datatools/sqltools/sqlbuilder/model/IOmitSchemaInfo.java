@@ -60,12 +60,35 @@ public interface IOmitSchemaInfo  {
      * @return the current schema as input by the user.
      */
     public void setCurrentSchema(String currentSchema);
-      
+
+	/**
+	 * Returns true if the IOmitSchemaInfo passed has the same values as this OmitSchemaInfo
+	 * @param iOmitSchemaInfo
+	 */
+	public boolean equals(IOmitSchemaInfo iOmitSchemaInfo);
+
+	/**
+	 * Copy the IOmitSchemaInfo passed as a parameter to this OmitSchemaInfo.
+	 * 
+	 * @param iOmitSchemaInfo <code>IOmitSchemaInfo</code> object to be copied.
+	 */
+	public void copy(IOmitSchemaInfo iOmitSchemaInfo);
+
+	/**
+	 * Initialises the <code>OmitSchemaInfo</code> from Eclipse preference store.
+	 */
+	public void initFromPreferences();
+
+	/**
+     * Marks this object as having been changed.
+     */
+	public void setChanged();
+	
 	/**
 	 * Encodes the given <code>IOmitSchemaInfo</code> object for persistence.
 	 * @see org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo#decode(String)
 	 * @return encoded String
 	 */
 	public String encode();
-    	
+
 }

@@ -12,7 +12,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.dialogs;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
-import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -39,7 +39,7 @@ import org.eclipse.ui.help.WorkbenchHelp;
  */
 public class OmitCurrentSchemaDialog extends Dialog {
 
-    OmitSchemaInfo _omitSchemaInfo;
+    IOmitSchemaInfo _omitSchemaInfo;
     String _userName;
 
     Button _btnUseAUIDAsCurrentSchema;
@@ -51,7 +51,7 @@ public class OmitCurrentSchemaDialog extends Dialog {
      * Creates a dialog for OmitCurrentSchema settings with an OK and Cancel button.
      */
 
-    public OmitCurrentSchemaDialog(Shell parentShell, OmitSchemaInfo omitSchemaInfo, String userName) {
+    public OmitCurrentSchemaDialog(Shell parentShell, IOmitSchemaInfo omitSchemaInfo, String userName) {
         super(parentShell);
         _omitSchemaInfo = omitSchemaInfo;
         _userName = userName;

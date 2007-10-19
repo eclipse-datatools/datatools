@@ -29,6 +29,7 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
@@ -250,10 +251,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		if (sqlBuilderEditorInput != null) {
 
 			// Get the connection, database and omitSchemaInfo
-			OmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput
+			IOmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput
 					.getOmitSchemaInfo();
 			_sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
-			omitSchemaInfo.addObserver(this);
+			((OmitSchemaInfo)omitSchemaInfo).addObserver(this);
 
 			ISQLEditorConnectionInfo connInfo = sqlBuilderEditorInput
 					.getConnectionInfo();
@@ -594,7 +595,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * @param arg the argument passed to the notifyObservers method
 	 */
 	public void update(Observable ob, Object arg) {
-		if (ob instanceof OmitSchemaInfo) {
+		if (ob instanceof IOmitSchemaInfo) {
 			_sqlDomainModel.setCurrentSchema();
 			setDirty(true);
 			_sourceViewer.refreshSource(_sqlDomainModel.getSQLStatement()
@@ -830,7 +831,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
      *  
      * @return OmitSchemaInfo the SQLBuilder's OmitSchemaInfo object.
      */
-	public OmitSchemaInfo getOmitSchemaInfo() {
+	public IOmitSchemaInfo getOmitSchemaInfo() {
 		return _sqlDomainModel.getOmitSchemaInfo();
 	}
 }

@@ -81,7 +81,7 @@ public class SQLDomainModel {
     private IFile sqlFileResource;
     private IProject project;
     private ISQLEditorConnectionInfo connectionInfo;
-    private OmitSchemaInfo _omitSchemaInfo;
+    private IOmitSchemaInfo _omitSchemaInfo;
     private String currentSchema; // current schema name
     private String initialSource; // content of IFile, may be invalid statement
     private boolean unmatchedSource; // whether or not the source matches the Model
@@ -612,7 +612,7 @@ public class SQLDomainModel {
      *  
      * @param info the OmitSchemaInfo object to set
      */
-    public void setOmitSchemaInfo(OmitSchemaInfo info) {
+    public void setOmitSchemaInfo(IOmitSchemaInfo info) {
         _omitSchemaInfo = info;
     }
 
@@ -621,7 +621,7 @@ public class SQLDomainModel {
      *  
      * @return OmitSchemaInfo the model's OmitSchemaInfo object
      */
-    public OmitSchemaInfo getOmitSchemaInfo() {
+    public IOmitSchemaInfo getOmitSchemaInfo() {
         return _omitSchemaInfo;
     }
 
