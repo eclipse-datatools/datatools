@@ -15,8 +15,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
-import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 
 /**

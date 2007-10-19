@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
@@ -46,7 +47,7 @@ import org.eclipse.ui.XMLMemento;
  * 
  * @author Jeremy Lindop
  */
-public class SQLBuilderDialog extends Dialog {
+public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 
 	public static final int I_SAVE_ID = IDialogConstants.CLIENT_ID;
 	public static final String I_SAVE_LABEL = "Save";
@@ -121,25 +122,9 @@ public class SQLBuilderDialog extends Dialog {
 			 * It is important to make the next 3 calls in this order. 
 			 */
 			_sqlBuilder = new SQLBuilder();
+			_sqlBuilder.addContentChangeListener(this);
 			_sqlBuilder.setInput(_editorInput);
 			_sqlBuilder.createClient(editComposite);
-
-			/*
-			 * Add an INotifyChangedListener to the SQLBuilder's domain model.
-			 * This will notify the dialog when the underlying SQL Query Model is changed.
-			 */
-			((IChangeNotifier) _sqlBuilder.getDomainModel().getAdapterFactory())
-					.addListener(new INotifyChangedListener() {
-						public void notifyChanged(Notification msg) {
-							if (Display.getCurrent() != null) {
-								Display.getCurrent().asyncExec(new Runnable() {
-									public void run() {
-										updateDirtyStatus();
-									}
-								});
-							}
-						}
-					});
 
 		} catch (PartInitException e) {
 			System.out.println(e.getLocalizedMessage());
@@ -196,18 +181,14 @@ public class SQLBuilderDialog extends Dialog {
 							.createWriteRoot(SQLBuilderInputFactory.ID_XML_MEMENTO_ROOT_ELEMENT);
 					// Create a SQLEditorStorage passing a name and the SQL Statement as parameters
 					SQLEditorStorage storage = new SQLEditorStorage(
-							_editorInput.getName(), _sqlBuilder
-									.getDomainModel().getSQLStatement()
-									.getSQL());
+							_editorInput.getName(), _sqlBuilder.getSQL());
 					// Create a SQLBuilderStorageEditorInput based on the SQLEditorStorage just created
 					SQLBuilderStorageEditorInput storageEditorInput = new SQLBuilderStorageEditorInput(
 							storage);
 					// Set the SQLBuilderStorageEditorInput's connectionInfo
-					storageEditorInput.setConnectionInfo(_sqlBuilder
-							.getDomainModel().getConnectionInfo());
+					storageEditorInput.setConnectionInfo(_sqlBuilder.getConnectionInfo());
 					// Set the SQLBuilderStorageEditorInput's OmitSchemaInfo
-					storageEditorInput.setOmitSchemaInfo(_sqlBuilder
-							.getDomainModel().getOmitSchemaInfo());
+					storageEditorInput.setOmitSchemaInfo(_sqlBuilder.getOmitSchemaInfo());
 
 					// Save the state of the SQLBuilderStorageEditorInput to the XMLMemento
 					SQLBuilderInputFactory.saveState(memento,
@@ -226,6 +207,11 @@ public class SQLBuilderDialog extends Dialog {
 					mb.setText("SQL Query Builder XMLMemento");
 					mb.setMessage(writer.toString());
 					mb.open();
+					
+					/*
+					 * Set _sqlBuilder's dirty flag to false
+					 */
+					_sqlBuilder.setDirty(false);
 				}
 				
 				/*
@@ -315,13 +301,17 @@ public class SQLBuilderDialog extends Dialog {
 	}
 
 	/**
-	 * Tests whether the dialog is dirty by asking the SQLBuilder's domain model whether it
+	 * Tests whether the dialog is dirty by asking the SQLBuilder's whether it
 	 * is dirty
 	 * 
 	 * @return boolean flag indicating the dirty state
 	 */
 	protected boolean isDirty() {
-		return _sqlBuilder.getDomainModel().isDirty();
+		return _sqlBuilder.isDirty();
+	}
+
+	public void notifyContentChange() {
+		updateDirtyStatus();
 	}
 
 }

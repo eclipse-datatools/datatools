@@ -27,6 +27,7 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParseErrorInfo;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
+import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
@@ -95,7 +96,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     SourceViewerAction contentTipAction;
     protected boolean textChanged = false;
     private boolean isParseRequired = false;
-    protected QueryEventListener qListener = null;
+    protected IContentChangeListener qListener = null;
     private ITextListener textChangeListener;
     protected SQLBuilder sqlbuilder;
 
@@ -320,7 +321,7 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
 
     // pass in the editor using the source viewer
     // detect changes in source
-    public void setQueryEventListener(QueryEventListener qListener) {
+    public void setContentChangeListener(IContentChangeListener qListener) {
         this.qListener = qListener;
     }
 

@@ -19,11 +19,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.IChangeNotifier;
-import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -48,7 +44,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  * SQL Query Builder content editor.
  */
 public class SQLBuilderEditor extends EditorPart implements
-		ISelectionProvider, QueryEventListener {
+		ISelectionProvider, IContentChangeListener {
 
 	/**
 	 * The SQLBuilder for this editor.
@@ -85,6 +81,7 @@ public class SQLBuilderEditor extends EditorPart implements
 		super();
 
 		_sqlBuilder = new SQLBuilder(this);
+		_sqlBuilder.addContentChangeListener(this);
 
 	}
 
@@ -105,24 +102,6 @@ public class SQLBuilderEditor extends EditorPart implements
 		 * Create the UI component.
 		 */
 		_sqlBuilder.createClient(composite);
-
-		/*
-		 * Add a listener for changes to the SQLBuilderEditor's domain model.
-		 */
-		((IChangeNotifier) _sqlBuilder.getDomainModel().getAdapterFactory())
-				.addListener(new INotifyChangedListener() {
-
-					public void notifyChanged(Notification msg) {
-						if (Display.getCurrent() != null) {
-							Display.getCurrent().asyncExec(new Runnable() {
-
-								public void run() {
-									updateDirtyStatus();
-								}
-							});
-						}
-					}
-				});
 
 	}
 
@@ -182,7 +161,7 @@ public class SQLBuilderEditor extends EditorPart implements
 	}
 	
 	/**
-	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener#notifyContentChange()}
+	 * Implements {@link org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener#notifyContentChange()}
 	 */
 	public void notifyContentChange() {
 		updateDirtyStatus();
@@ -193,7 +172,7 @@ public class SQLBuilderEditor extends EditorPart implements
 	}
 
 	public boolean isDirty() {
-		return _sqlBuilder.getDomainModel().isDirty();
+		return _sqlBuilder.isDirty();
 	}
 
 	public void setResourceRemoved(boolean value) {

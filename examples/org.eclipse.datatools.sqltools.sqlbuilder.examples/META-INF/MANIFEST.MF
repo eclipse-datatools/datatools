@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: SQL Query Builder Examples Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlbuilder.examples;singleton:=true
-Bundle-Version: 1.0.0.200710181
+Bundle-Version: 1.0.0.200710191
 Bundle-Activator: org.eclipse.datatools.sqltools.sqlbuilder.examples.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,

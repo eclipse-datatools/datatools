@@ -17,6 +17,7 @@ import java.util.Observer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
@@ -28,6 +29,7 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
@@ -38,14 +40,16 @@ import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.DesignViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.SQLTreeViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.GraphControl;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.IChangeNotifier;
+import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -75,7 +79,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
  */
 
 public class SQLBuilder implements IEditingDomainProvider, Observer,
-		QueryEventListener, IMenuListener {
+		IContentChangeListener, IMenuListener {
 
 	protected SashForm _sashForm = null;
 	protected SQLTreeViewer _contentOutlinePage;
@@ -87,6 +91,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	ISQLBuilderEditorInput _sqlBuilderEditorInput = null;
 	protected IFile _iFile;
 
+	protected ListenerList _contentChangeListeners = null;
 	/**
 	 *  If this is created from an IEditorPart, this is passed in as a parameter
 	 *  to the constructor.
@@ -133,8 +138,22 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				.getAdapterFactory(), commandStack);
 
 		_sqlDomainModel.setEditingDomain(_editingDomain);
+		
+		_contentChangeListeners = new ListenerList();
 	}
 
+	public void addContentChangeListener(IContentChangeListener listener){
+		if (_contentChangeListeners != null){
+			_contentChangeListeners.add(listener);
+		}
+	}
+	
+	public void removeContentChangeListener(IContentChangeListener listener){
+		if (_contentChangeListeners != null){
+			_contentChangeListeners.remove(listener);
+		}
+	}
+	
 	/**
 	 * Creates the UI component for the <code>SQLBuilder</code>.
 	 * This method should be called after <code>setInput(ISQLBuilderEditorInput)</code>.
@@ -182,23 +201,23 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 		
 		 // The client should make this call, not the SQLBuilder
-//		((IChangeNotifier) ui.getDomainModel().getAdapterFactory())
-//		.addListener(new INotifyChangedListener() {
-//
-//			// public void notifyChanged(Object object, int eventType,
-//			// Object
-//			// feature, Object oldValue, Object newValue, int index)
-//			public void notifyChanged(Notification msg) {
-//				if (Display.getCurrent() != null) {
-//					Display.getCurrent().asyncExec(new Runnable() {
-//
-//						public void run() {
-//							updateDirtyStatus();
-//						}
-//					});
-//				}
-//			}
-//		});
+		((IChangeNotifier) getDomainModel().getAdapterFactory())
+		.addListener(new INotifyChangedListener() {
+
+			// public void notifyChanged(Object object, int eventType,
+			// Object
+			// feature, Object oldValue, Object newValue, int index)
+			public void notifyChanged(Notification msg) {
+				if (Display.getCurrent() != null) {
+					Display.getCurrent().asyncExec(new Runnable() {
+
+						public void run() {
+							notifyContentChange();
+						}
+					});
+				}
+			}
+		});
 		 
 		boolean isProper = _sqlDomainModel.isProper();
 		updateProperStatement(isProper);
@@ -313,7 +332,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 */
 	protected void createSourceViewer(Composite client) {
 		_sourceViewer = new SQLSourceViewer(_sqlDomainModel, client, _iFile, true);
-		_sourceViewer.setQueryEventListener(this);
+		_sourceViewer.setContentChangeListener(this);
 		_sourceViewer.initDBContext();
 		_sourceViewer.setContentProvider(_sqlDomainModel.createContentProvider());
 		_sourceViewer.setSQLBuilder(this);
@@ -577,8 +596,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	public void update(Observable ob, Object arg) {
 		if (ob instanceof OmitSchemaInfo) {
 			_sqlDomainModel.setCurrentSchema();
+			setDirty(true);
 			_sourceViewer.refreshSource(_sqlDomainModel.getSQLStatement()
 					.getSQL());
+			notifyContentChange();
 		}
 	}
 
@@ -670,7 +691,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 									.encode());
 				}
 
-				_sqlDomainModel.setDirty(false);
+				setDirty(false);
 				if (_sourceViewer != null) {
 					_sourceViewer.setTextChanged(false);
 				}
@@ -688,8 +709,29 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		// RATLC01136221 bgp 10Jan2007 - end
 	}
 
+    /**
+     * Returns whether the contents of this <code>SQLBuilder</code> have changed since
+     * the last save operation.
+     *
+     * @return <code>true</code> if the contents have been modified and need
+     *   saving, and <code>false</code> if they have not changed since the last
+     *   save
+     */
+  	public boolean isDirty() {
+		return _sqlDomainModel.isDirty(); 
+	}
+	
+    /**
+     * Marks this SQLBuilder's statement as "dirty" (has unsaved changes).
+     * 
+     * @param dirty true when there are unsaved changes, otherwise false
+     */
+  	public void setDirty(boolean dirty){
+  		_sqlDomainModel.setDirty(dirty);
+  	}
+  	
 	/*
-	 * @
+	 * 
 	 */
 	protected boolean validateBeforeSave() {
 		return SQLBuilderPlugin.getPlugin().getPreferenceStore().getBoolean(
@@ -697,12 +739,16 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 	
 	/**
-	 * @see org.eclipse.datatools.sqltools.sqlbuilder.views.source.QueryEventListener#notifyContentChange()
+	 * Called when content has changed. This can be a change to the SQL or the
+	 * OmitSchemaInfo.
+	 * 
+	 * @see org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener#notifyContentChange()
 	 */
 	public void notifyContentChange() {
-		if (_editor != null && _editor instanceof QueryEventListener){
-			((QueryEventListener)_editor).notifyContentChange();
-		}
+		 Object[] listeners = _contentChangeListeners.getListeners();
+		 for (int i = 0; i < listeners.length; ++i) {
+		 	((IContentChangeListener) listeners[i]).notifyContentChange();
+		 }
 	}
 
 	/**
@@ -765,4 +811,26 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		return contextMenu;
 	}
 
+	public String getSQL() {
+		return _sqlDomainModel.getSQLStatement().getSQL();
+	}
+
+    /**
+     * Gets the <code>ISQLEditorConnectionInfo</code> object associated with this
+     * SQLBuilder's statement.
+     * 
+     * @return ISQLEditorConnectionInfo the SQLBuilder's SQLEditorConnectionInfo object.
+     */
+	public ISQLEditorConnectionInfo getConnectionInfo() {
+		return _sqlDomainModel.getConnectionInfo();
+	}
+
+    /**
+     * Gets the <code>OmitSchemaInfo</code> object associated with this statement
+     *  
+     * @return OmitSchemaInfo the SQLBuilder's OmitSchemaInfo object.
+     */
+	public OmitSchemaInfo getOmitSchemaInfo() {
+		return _sqlDomainModel.getOmitSchemaInfo();
+	}
 }

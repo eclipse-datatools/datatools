@@ -11,8 +11,8 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.dialogs.OmitCurrentSchemaDialog;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.jface.window.Window;
 
 public class OmitCurrentSchemaAction extends SQLBuilderAction  {
@@ -40,7 +40,14 @@ public class OmitCurrentSchemaAction extends SQLBuilderAction  {
             	return;
             }
             else {
+            	// Test if omitSchemaInfo has changed
+            	boolean hasChanged = ! omitSchemaInfo.equals(tmpOmitSchemaInfo);
+            	// Copy tmpOmitSchemaInfo back to omitSchemaInfo
             	omitSchemaInfo.copyOmitSchemaInfo(tmpOmitSchemaInfo);
+            	// Notify observers
+            	if (hasChanged){
+            		omitSchemaInfo.omitSchemaInfoChanged();
+            	}
             }
     	}
     }

@@ -11,8 +11,8 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.dialogs;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;

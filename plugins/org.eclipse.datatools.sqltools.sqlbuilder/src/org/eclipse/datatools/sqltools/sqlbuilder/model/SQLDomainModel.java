@@ -52,7 +52,6 @@ import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManagerPro
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.DataTypeResolver;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.RSCCoreUIUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLDBUtil;
@@ -591,7 +590,7 @@ public class SQLDomainModel {
     /**
      * Gets the <code>ISQLEditorConnectionInfo</code> object associated with this statement.
      * 
-     * @return the current connection info object
+     * @return ISQLEditorConnectionInfo the model's connection info object
      */
     public ISQLEditorConnectionInfo getConnectionInfo() {
         return connectionInfo;
@@ -620,7 +619,7 @@ public class SQLDomainModel {
     /**
      * Gets the <code>OmitSchemaInfo</code> object associated with this statement
      *  
-     * @param info the OmitSchemaInfo object to get
+     * @return OmitSchemaInfo the model's OmitSchemaInfo object
      */
     public OmitSchemaInfo getOmitSchemaInfo() {
         return _omitSchemaInfo;
