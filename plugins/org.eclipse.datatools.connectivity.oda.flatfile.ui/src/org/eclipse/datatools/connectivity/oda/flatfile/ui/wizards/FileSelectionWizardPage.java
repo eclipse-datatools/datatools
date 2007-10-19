@@ -869,8 +869,16 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void loadProperties( )
 	{
-		Properties dataSourceProps = getInitializationDesign( ).getDataSourceDesign( )
-				.getPublicProperties( );
+		java.util.Properties dataSourceProps = null;
+		try
+		{
+			dataSourceProps = DesignSessionUtil.getEffectiveDataSourceProperties( getInitializationDesign( ).getDataSourceDesign( ) );
+		}
+		catch ( OdaException e )
+		{
+			this.setMessage( e.getLocalizedMessage( ), ERROR );
+			return;
+		}
 
 		odaHome = dataSourceProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
 		charSet = dataSourceProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
@@ -889,7 +897,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			if ( odaHome == null )
 			{
-				setMessage( "" ); //$NON-NLS-1$
 				disableAll( );
 				return;
 			}
@@ -1372,25 +1379,28 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		resetInitialized( );
 		fileFilter.setSelection( new StructuredSelection( MATCH_ALL_FILES ) );
 		File[] files = (File[]) fileViewer.getInput( );
-		for ( int n = 0; n < files.length; n++ )
+		if ( files != null )
 		{
-			if ( files[n].getName( ).equalsIgnoreCase( tableName ) )
+			for ( int n = 0; n < files.length; n++ )
 			{
-				resetInitialized( );
-				if ( tableName.toLowerCase( ).endsWith( CSV_EXTENSION ) )
-					fileFilter.setSelection( new StructuredSelection( ALL_CSV_EXTENSION ) );
-				else if ( tableName.toLowerCase( ).endsWith( TXT_EXTENSION ) )
-					fileFilter.setSelection( new StructuredSelection( ALL_TXT_EXTENSION ) );
-				else if ( tableName.toLowerCase( ).endsWith( SSV_EXTENSION ) )
-					fileFilter.setSelection( new StructuredSelection( ALL_SSV_EXTENSION ) );
-				else if ( tableName.toLowerCase( ).endsWith( TSV_EXTENSION ) )
-					fileFilter.setSelection( new StructuredSelection( ALL_TSV_EXTENSION ) );
-				else if ( tableName.toLowerCase( ).endsWith( PSV_EXTENSION ) )
-					fileFilter.setSelection( new StructuredSelection( ALL_PSV_EXTENSION ) );
+				if ( files[n].getName( ).equalsIgnoreCase( tableName ) )
+				{
+					resetInitialized( );
+					if ( tableName.toLowerCase( ).endsWith( CSV_EXTENSION ) )
+						fileFilter.setSelection( new StructuredSelection( ALL_CSV_EXTENSION ) );
+					else if ( tableName.toLowerCase( ).endsWith( TXT_EXTENSION ) )
+						fileFilter.setSelection( new StructuredSelection( ALL_TXT_EXTENSION ) );
+					else if ( tableName.toLowerCase( ).endsWith( SSV_EXTENSION ) )
+						fileFilter.setSelection( new StructuredSelection( ALL_SSV_EXTENSION ) );
+					else if ( tableName.toLowerCase( ).endsWith( TSV_EXTENSION ) )
+						fileFilter.setSelection( new StructuredSelection( ALL_TSV_EXTENSION ) );
+					else if ( tableName.toLowerCase( ).endsWith( PSV_EXTENSION ) )
+						fileFilter.setSelection( new StructuredSelection( ALL_PSV_EXTENSION ) );
 
-				fileViewer.setSelection( new StructuredSelection( files[n] ) );
+					fileViewer.setSelection( new StructuredSelection( files[n] ) );
 
-				return files[n];
+					return files[n];
+				}
 			}
 		}
 		return null;
@@ -1410,22 +1420,22 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		{
 			if ( fileFilter.getCombo( ).getSelectionIndex( ) == -1 )
 			{
-				if ( flatfileDelimiterType.equalsIgnoreCase( CommonConstants.DELIMITER_COMMA ) )
+				if ( CommonConstants.DELIMITER_COMMA.equalsIgnoreCase( flatfileDelimiterType ) )
 				{
 					fileFilter.add( ALL_CSV_EXTENSION );
 					this.selectedFileFilter = ALL_CSV_EXTENSION;
 				}
-				else if ( flatfileDelimiterType.equalsIgnoreCase( CommonConstants.DELIMITER_SEMICOLON ) )
+				else if ( CommonConstants.DELIMITER_SEMICOLON.equalsIgnoreCase( flatfileDelimiterType ) )
 				{
 					fileFilter.add( ALL_SSV_EXTENSION );
 					this.selectedFileFilter = ALL_SSV_EXTENSION;
 				}
-				else if ( flatfileDelimiterType.equalsIgnoreCase( CommonConstants.DELIMITER_TAB ) )
+				else if ( CommonConstants.DELIMITER_TAB.equalsIgnoreCase( flatfileDelimiterType ) )
 				{
 					fileFilter.add( ALL_TSV_EXTENSION );
 					this.selectedFileFilter = ALL_TSV_EXTENSION;
 				}
-				else if ( flatfileDelimiterType.equalsIgnoreCase( CommonConstants.DELIMITER_PIPE ) )
+				else if ( CommonConstants.DELIMITER_PIPE.equalsIgnoreCase( flatfileDelimiterType ) )
 				{
 					fileFilter.add( ALL_PSV_EXTENSION );
 					this.selectedFileFilter = ALL_PSV_EXTENSION;
