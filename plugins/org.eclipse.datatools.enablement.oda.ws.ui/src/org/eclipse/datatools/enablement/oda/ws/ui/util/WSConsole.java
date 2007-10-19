@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
@@ -146,64 +147,62 @@ public class WSConsole
 		}
 		if ( dataSetDesign.getPublicProperties( ) != null )
 		{
-			Property xmlFileURI = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XML_FILE_URI );
+			String xmlFileURI = dataSetDesign.getPublicProperties( )
+					.getProperty( Constants.XML_FILE_URI );
 			setPropertyValue( Constants.XML_FILE_URI, xmlFileURI == null
-					? WSUIUtil.EMPTY_STRING : xmlFileURI.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : xmlFileURI );
 
-			Property xsdFileURI = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XSD_FILE_URI );
+			String xsdFileURI = dataSetDesign.getPublicProperties( )
+					.getProperty( Constants.XSD_FILE_URI );
 			setPropertyValue( Constants.XSD_FILE_URI, xmlFileURI == null
-					? WSUIUtil.EMPTY_STRING : xsdFileURI.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : xsdFileURI );
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
-			Property operationTrace = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.OPERATION_TRACE );
+			String operationTrace = dataSetDesign.getPrivateProperties( )
+					.getProperty( Constants.OPERATION_TRACE );
 			setPropertyValue( Constants.OPERATION_TRACE, operationTrace == null
-					? WSUIUtil.EMPTY_STRING : operationTrace.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : operationTrace );
 
-			Property xmlQueryText = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.XML_QUERYTEXT );
+			String xmlQueryText = dataSetDesign.getPrivateProperties( )
+					.getProperty( Constants.XML_QUERYTEXT );
 			setPropertyValue( Constants.XML_QUERYTEXT, xmlQueryText == null
-					? WSUIUtil.EMPTY_STRING : xmlQueryText.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : xmlQueryText );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{
 			DataSourceDesign dataSourceDesign = dataSetDesign.getDataSourceDesign( );
-
-			if ( dataSourceDesign.getPublicProperties( ) != null )
+			java.util.Properties props = null;
+			try
 			{
-				Property soapEndPoint = dataSourceDesign.getPublicProperties( )
-						.findProperty( Constants.SOAP_ENDPOINT );
-				setPropertyValue( Constants.SOAP_ENDPOINT, soapEndPoint == null
-						? WSUIUtil.EMPTY_STRING : soapEndPoint.getValue( ) );
-
-				Property customConnectionClass = dataSourceDesign.getPublicProperties( )
-						.findProperty( Constants.CUSTOM_CONNECTION_CLASS );
-				setPropertyValue( Constants.CUSTOM_CONNECTION_CLASS,
-						customConnectionClass == null ? WSUIUtil.EMPTY_STRING
-								: customConnectionClass.getValue( ) );
-				
-				Property customDriverPath = dataSourceDesign.getPublicProperties( )
-				.findProperty( Constants.CUSTOM_DRIVER_CLASS_PATH );
-				setPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH,
-						customDriverPath == null ? WSUIUtil.EMPTY_STRING
-						: customDriverPath.getValue( ) );
-				
-				Property connectionTimeOut = dataSourceDesign.getPublicProperties( )
-						.findProperty( Constants.CONNECTION_TIMEOUT );
-				setPropertyValue( Constants.CONNECTION_TIMEOUT,
-						connectionTimeOut == null ? "0" //$NON-NLS-1$
-								: connectionTimeOut.getValue( ) );
+				props = DesignSessionUtil.getEffectiveDataSourceProperties( dataSourceDesign );
 			}
-			if ( dataSourceDesign.getPrivateProperties( ) != null )
+			catch ( OdaException e )
 			{
-				Property wsdlURI = dataSourceDesign.getPrivateProperties( )
-						.findProperty( Constants.WSDL_URI );
-				setPropertyValue( Constants.WSDL_URI, wsdlURI == null
-						? WSUIUtil.EMPTY_STRING : wsdlURI.getValue( ) );
+				props = new java.util.Properties( );
 			}
+
+			String soapEndPoint = props.getProperty( Constants.SOAP_ENDPOINT,
+					WSUIUtil.EMPTY_STRING );
+			setPropertyValue( Constants.SOAP_ENDPOINT, soapEndPoint );
+
+			String customConnectionClass = props.getProperty( Constants.CUSTOM_CONNECTION_CLASS,
+					WSUIUtil.EMPTY_STRING );
+			setPropertyValue( Constants.CUSTOM_CONNECTION_CLASS,
+					customConnectionClass );
+
+			String customDriverPath = props.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH,
+					WSUIUtil.EMPTY_STRING );
+			setPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH,
+					customDriverPath );
+
+			String connectionTimeOut = props.getProperty( Constants.CONNECTION_TIMEOUT,
+					"0" );
+			setPropertyValue( Constants.CONNECTION_TIMEOUT, connectionTimeOut );
+			
+			String wsdlURI = props.getProperty( Constants.WSDL_URI,
+					WSUIUtil.EMPTY_STRING );
+			setPropertyValue( Constants.WSDL_URI, wsdlURI );
 		}
 	}
 
@@ -229,15 +228,15 @@ public class WSConsole
 		}
 		if ( dataSetDesign.getPublicProperties( ) != null )
 		{
-			Property xmlFile = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XML_FILE_URI );
+			String xmlFile = dataSetDesign.getPublicProperties( )
+					.getProperty( Constants.XML_FILE_URI );
 			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null
-					? WSUIUtil.EMPTY_STRING : xmlFile.getValue( ) );
+					? WSUIUtil.EMPTY_STRING : xmlFile );
 
-			Property schema = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.XSD_FILE_URI );
+			String schema = dataSetDesign.getPublicProperties( )
+					.getProperty( Constants.XSD_FILE_URI );
 			setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-					schema == null ? WSUIUtil.EMPTY_STRING : schema.getValue( ) );
+					schema == null ? WSUIUtil.EMPTY_STRING : schema );
 		}
 
 		setXMLPropertyValue( Constants.CONST_PROP_MAX_ROW, "-1" ); //$NON-NLS-1$
