@@ -70,7 +70,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
@@ -82,7 +87,8 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 public class SQLBuilder implements IEditingDomainProvider, Observer,
 		IContentChangeListener, IMenuListener {
 
-	protected SashForm _sashForm = null;
+	protected SashForm _mainSash = null;
+	protected SashForm _graphSash = null;
 	protected SQLTreeViewer _contentOutlinePage;
 
 	protected DesignViewer _designViewer;
@@ -107,8 +113,31 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 	protected Object _currentSelection;
 
-	protected boolean _created;
+	protected boolean _loadOnConnection = false;
+	
+	protected boolean _inputLoaded = false;
+	
+	protected boolean _clientCreated = false;
 
+	
+	/*
+	 * Class for trying to establish a database connection
+	 */
+	class ConnectRunnable implements Runnable {
+		SQLBuilder _sqlBuilder;
+		IWorkbenchPart _part;
+
+		public ConnectRunnable(IWorkbenchPart part, SQLBuilder sqlBuilder) {
+			_part = part;
+			_sqlBuilder = sqlBuilder;
+		}
+
+		public void run() {
+			_sqlBuilder.connectIfNeeded(_part);
+		};
+	};
+
+	
 	/**
 	 * Constructor for <code>SQLBuilder</code>.  This constructor should be called when
 	 * a component other than an editor is being created.
@@ -162,10 +191,20 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * @param parent the parent composite.
 	 */
 	public void createClient(Composite parent) {
-		_sashForm = new SashForm(parent, SWT.VERTICAL);
+		_mainSash = new SashForm(parent, SWT.VERTICAL);
 
+		if (_inputLoaded){
+			doCreateClient();
+		}
+		
+	}
+
+	/*
+	 * The part of CreateClient that depends on the input having been loaded
+	 */
+	private void doCreateClient(){
 		// composite for source & label to go on sash
-		Composite outsideSrcComp = ViewUtility.createNestedComposite(_sashForm,
+		Composite outsideSrcComp = ViewUtility.createNestedComposite(_mainSash,
 				SWT.NONE);
 		// ratio 0.30
 		outsideSrcComp.setData(
@@ -178,30 +217,31 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 		
 		// If it's not in an editor, put the SQLTreeView in a SashForm with the GraphViewer
-		SashForm graphSash = null;
+		_graphSash = null;
 		if (_editor == null){
-			graphSash = new SashForm(_sashForm, SWT.HORIZONTAL);
-			graphSash.setLayoutData(ViewUtility.createFill());
+			_graphSash = new SashForm(_mainSash, SWT.HORIZONTAL);
+			_graphSash.setLayoutData(ViewUtility.createFill());
 			
-			createGraphViewer(graphSash);
+			createGraphViewer(_graphSash);
 			
 		}
 		else {
-			createGraphViewer(_sashForm);
+			createGraphViewer(_mainSash);
 		}
 
-		createDesignViewer(_sashForm);
+		createDesignViewer(_mainSash);
 
-		_sashForm.setLayoutData(ViewUtility.createFill());
+		_mainSash.setLayoutData(ViewUtility.createFill());
 
-		getContentOutlinePage(graphSash); // make sure everything is initialized
+		// set _clientCreated before getting the ContentOutlinePage
+		_clientCreated = true;
+		getContentOutlinePage(_graphSash); // make sure everything is initialized
 
 		// If it's not in an editor, set the weights of the graphical view's SashForm
 		if (_editor == null){
-			graphSash.setWeights(new int[] {2, 1});
+			_graphSash.setWeights(new int[] {2, 1});
 		}
 		
-		 // The client should make this call, not the SQLBuilder
 		((IChangeNotifier) getDomainModel().getAdapterFactory())
 		.addListener(new INotifyChangedListener() {
 
@@ -225,7 +265,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		_graphControl.refresh();
 		_graphControl.setSQLBuilder(this);
 
-		if (!_created) {
+		if (!_inputLoaded) {
 			// String strSQL = WorkbenchUtility.readFileContentsToString(ifile,
 			// true );
 			String strSQL = _sqlDomainModel.getInitialSource();
@@ -233,14 +273,25 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				_sourceViewer.setFileSQLStr(strSQL);
 			}
 		}
-
+		
 	}
-
+	
+	
+	/**
+	 * Tells the SQLBuilder to load the input SQL only after a database
+	 * connection has been obtained.
+	 */
+	public void setLoadOnConnection(boolean loadOnConnection){
+		_loadOnConnection = loadOnConnection;;
+	}
 	/**
 	 * Sets the input for the <code>SQLBuilder</code>.
 	 * This method should be called before <code>createClient(Composite)</code>.
+	 * The <code>waitForConnection</code> parameter indicates that the SQLBuilder should
+	 * delay opening the input until a connection to the database has been obtained.
 	 * 
 	 * @param sqlBuilderEditorInput
+	 * @param bWaitForConnection
 	 * @throws PartInitException
 	 */
 	public void setInput(ISQLBuilderEditorInput sqlBuilderEditorInput)
@@ -248,15 +299,15 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 		_sqlBuilderEditorInput = sqlBuilderEditorInput;
 		
-		if (sqlBuilderEditorInput != null) {
+		if (_sqlBuilderEditorInput != null) {
 
 			// Get the connection, database and omitSchemaInfo
-			IOmitSchemaInfo omitSchemaInfo = sqlBuilderEditorInput
+			IOmitSchemaInfo omitSchemaInfo = _sqlBuilderEditorInput
 					.getOmitSchemaInfo();
 			_sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
 			((OmitSchemaInfo)omitSchemaInfo).addObserver(this);
 
-			ISQLEditorConnectionInfo connInfo = sqlBuilderEditorInput
+			ISQLEditorConnectionInfo connInfo = _sqlBuilderEditorInput
 					.getConnectionInfo();
 			_sqlDomainModel.setConnectionInfo(connInfo);
 
@@ -267,67 +318,83 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			// Calling connInfo.getDatabase() tries to connect to the database
 			Database db = connInfo.getDatabase();
 
-			if (db == null && connInfo != null) {
-				throw new PartInitException(NLS.bind(
-						Messages._EXC_OPEN_SQL_FILE_NOT_CONNECTED, connInfo
-								.getConnectionProfileName()));
+			// If there's no database and we were asked only to load when there's a
+			// connection, do nothing. The client should call connectIfNeeded.
+			if (db == null &&  _loadOnConnection){
+				;
 			}
-			_sqlDomainModel.setDatabase(db);
-
-			// Load the initial SQL from the editor input. Note that persistance
-			// is handled differently if the input is a FileEditorInput vs. a
-			// StorageEditorInput. Handle the file case first.
-			if (sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput) {
-				SQLBuilderFileEditorInput sqlBuilderFileEditorInput = (SQLBuilderFileEditorInput) sqlBuilderEditorInput;
-				try {
-					IFile fileResource = sqlBuilderFileEditorInput.getFile();
-					if (fileResource != null) {
-						_created = _sqlDomainModel.openFileResource(fileResource);
-						if (_created == false) {
-							// throw new
-							// PartInitException(Messages._EXC_OPEN_SQL_FILE_RESOURCE"));
-							// //$NON-NLS-1$
-
-						}
-					} else {
-						throw new PartInitException(
-								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
-					}
-				} catch (Exception ex) {
-					// SQLBuilderPlugin.getPlugin().getLogger().writeLog("Cannot
-					// load resource.." + ex);
-					throw new PartInitException(
-							Messages._EXC_OPEN_SQL_FILE_RESOURCE);
-				}
-			}
-
-			// Handle the case where the input is based on an IStorage object.
-			else if (sqlBuilderEditorInput instanceof SQLEditorStorageEditorInput) {
-				SQLEditorStorageEditorInput storageEditorInput = (SQLEditorStorageEditorInput) sqlBuilderEditorInput;
-				IStorage storageResource = storageEditorInput.getStorage();
-				try {
-					_created = _sqlDomainModel
-							.openStorageResource(storageResource);
-					if (_created == false) {
-						// throw new
-						// PartInitException(Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE"));
-						// //$NON-NLS-1$
-					}
-				} catch (Exception ex) {
-					throw new PartInitException(
-							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
-				}
-			}
-
-			// Otherwise we can't tell what we have.
 			else {
-				throw new PartInitException(
-						Messages._ERROR_INPUT_NOT_RECOGNIZED);
+				loadInput();
 			}
-
 		}
 	}
 
+	/*
+	 * Loads the SQL statement from the SQLBuilder's SQLBuilderEditorInput
+	 * 
+	 */
+	protected void loadInput() throws PartInitException {
+		ISQLEditorConnectionInfo connInfo = _sqlDomainModel.getConnectionInfo();
+		Database db = null;
+		if (connInfo != null){
+			db = connInfo.getDatabase();
+		}
+		if (db == null && connInfo != null) {
+			throw new PartInitException(NLS.bind(
+					Messages._EXC_OPEN_SQL_FILE_NOT_CONNECTED, connInfo
+							.getConnectionProfileName()));
+		}
+		_sqlDomainModel.setDatabase(db);
+
+		// Load the initial SQL from the editor input. Note that persistance
+		// is handled differently if the input is a FileEditorInput vs. a
+		// StorageEditorInput. Handle the file case first.
+		if (_sqlBuilderEditorInput instanceof SQLBuilderFileEditorInput) {
+			SQLBuilderFileEditorInput sqlBuilderFileEditorInput = (SQLBuilderFileEditorInput) _sqlBuilderEditorInput;
+			try {
+				IFile fileResource = sqlBuilderFileEditorInput.getFile();
+				if (fileResource != null) {
+					_inputLoaded = _sqlDomainModel.openFileResource(fileResource);
+					if (_inputLoaded == false) {
+						throw new PartInitException(
+								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+					}
+				} else {
+					throw new PartInitException(
+							Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+				}
+			} catch (Exception ex) {
+				// SQLBuilderPlugin.getPlugin().getLogger().writeLog("Cannot
+				// load resource.." + ex);
+				throw new PartInitException(
+						Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+			}
+		}
+
+		// Handle the case where the input is based on an IStorage object.
+		else if (_sqlBuilderEditorInput instanceof SQLEditorStorageEditorInput) {
+			SQLEditorStorageEditorInput storageEditorInput = (SQLEditorStorageEditorInput) _sqlBuilderEditorInput;
+			IStorage storageResource = storageEditorInput.getStorage();
+			try {
+				_inputLoaded = _sqlDomainModel
+						.openStorageResource(storageResource);
+				if (_inputLoaded == false) {
+					throw new PartInitException(
+							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+				}
+			} catch (Exception ex) {
+				throw new PartInitException(
+						Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+			}
+		}
+
+		// Otherwise we can't tell what we have.
+		else {
+			throw new PartInitException(
+					Messages._ERROR_INPUT_NOT_RECOGNIZED);
+		}
+	}
+	
 	/**
 	 * Creates the Source Viewer
 	 */
@@ -408,7 +475,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * @return IContentOutlinePage the content outline page.
 	 */
 	public IContentOutlinePage getContentOutlinePage(Composite composite) {
-		if (_contentOutlinePage == null) {
+		if (_clientCreated && _contentOutlinePage == null) {
 			QueryStatement sqlStatement = _sqlDomainModel.getSQLStatement();
 			_contentOutlinePage = new SQLTreeViewer(this, _sqlDomainModel
 					.createContentProvider(), _sqlDomainModel
@@ -470,10 +537,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 					|| _currentSelection instanceof QueryCombined
 					|| _currentSelection instanceof QueryValues) {
 				_graphControl.getControl().setVisible(false);
-				_sashForm.layout(true);
+				_mainSash.layout(true);
 			} else if (_currentSelection instanceof QuerySelect) {
 				_graphControl.getControl().setVisible(true);
-				_sashForm.layout(true);
+				_mainSash.layout(true);
 			} else if (_currentSelection instanceof QuerySelectStatement
 					|| _currentSelection instanceof QueryExpressionRoot) {
 				QueryExpressionBody queryBody = null;
@@ -487,16 +554,16 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				}
 				if (queryBody instanceof QuerySelect) {
 					_graphControl.getControl().setVisible(true);
-					_sashForm.layout(true);
+					_mainSash.layout(true);
 				} else if (queryBody instanceof QueryCombined) {
 					_graphControl.getControl().setVisible(false);
-					_sashForm.layout(true);
+					_mainSash.layout(true);
 				} else if (queryBody instanceof QueryValues) {
 					_graphControl.getControl().setVisible(false);
-					_sashForm.layout(true);
+					_mainSash.layout(true);
 				} else {
 					_graphControl.getControl().setVisible(true);
-					_sashForm.layout(true);
+					_mainSash.layout(true);
 				}
 			}
 		}
@@ -833,5 +900,68 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
      */
 	public IOmitSchemaInfo getOmitSchemaInfo() {
 		return _sqlDomainModel.getOmitSchemaInfo();
+	}
+	
+	/**
+	 * Tries to make sure that we have a database connection so that the SQL model
+	 * will be populated when we need it. This allows us to delay connecting so that the user
+	 * won't get prompted when the Workbench is coming up.
+	 * 
+	 * This function should be called by editors based on SQLBuilder when the Workbench opens
+	 * with the editor having been open when the workbench last closed. 
+	 */
+	public void connectIfNeeded(IWorkbenchPart part ) {
+		Database db = _sqlDomainModel.getDatabase();
+		if (db == null) {
+			boolean keepTrying = true;
+
+			/* Find out if we're visible yet. */
+			IWorkbench workbench = PlatformUI.getWorkbench();
+			IWorkbenchWindow activeWindow = workbench
+					.getActiveWorkbenchWindow();
+			if (activeWindow != null) {
+				IWorkbenchPage activePage = activeWindow.getActivePage();
+				if (activePage != null) {
+					if (activePage.isPartVisible(part)) {
+						/*
+						 * Once we're visible, try re-establishing the
+						 * connection.
+						 */
+						keepTrying = false;
+						
+						ISQLEditorConnectionInfo connInfo = _sqlDomainModel
+								.getConnectionInfo();
+						if (connInfo != null) {
+							// SQLDBUtils.reestablishConnection(
+							// connInfo );
+							// The call to connInfo.getDatabase() tries to connect to the database 
+							db = connInfo.getDatabase();
+							if (db != null){
+								try {
+									// Now we have a connection, load the input and finish
+									// creating the client
+									loadInput();
+									doCreateClient();
+								} catch (PartInitException e) {
+									System.out.println(e.getLocalizedMessage());
+									e.printStackTrace();
+								}
+							}
+						}
+					}
+				}
+			}
+
+			/*
+			 * If we still don't have a connection and we didn't cancel the
+			 * connection attempt, try it again later.
+			 */
+			if (db == null && keepTrying == true) {
+				ConnectRunnable connectRunnable = new ConnectRunnable(part, this);
+				Display display = workbench.getDisplay();
+				int delayTime = 500; // one half second
+				display.timerExec(delayTime, connectRunnable);
+			}
+		}
 	}
 }
