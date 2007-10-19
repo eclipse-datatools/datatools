@@ -12,9 +12,10 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.Property;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 
 /**
@@ -26,6 +27,7 @@ public class XMLInformationHolder
 {
 
 	private static Properties prop;
+	private static String EMPTY_STRING = ""; // //$NON-NLS-1$
 
 	/**
 	 * 
@@ -97,73 +99,53 @@ public class XMLInformationHolder
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
-			Property xmlFile = dataSetDesign.getPrivateProperties( )
-				.findProperty( Constants.CONST_PROP_XML_FILE );
-			
-			setPropertyValue( Constants.CONST_PROP_XML_FILE,
-					xmlFile == null?"":xmlFile.getValue( ));
-			
-			Property xmlEncoding = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.CONST_PROP_XML_ENCODING );
-			setPropertyValue( Constants.CONST_PROP_XML_ENCODING,
-			xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
-			
-			Property maxRow = dataSetDesign.getPrivateProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW );
-					
-			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow.getValue( ) : "-1" );
+			String xmlFile = dataSetDesign.getPrivateProperties( )
+					.getProperty( Constants.CONST_PROP_XML_FILE );
 
-		}
-		// backward compatibility. should be removed when Model has done the
-		// backward.
-		else if ( dataSetDesign.getPublicProperties( ) != null )
-		{
-			Property xmlFile = dataSetDesign.getPublicProperties( )
-				.findProperty( Constants.CONST_PROP_XML_FILE );
-			setPropertyValue( Constants.CONST_PROP_XML_FILE,
-					xmlFile == null?"":xmlFile.getValue( ) );
-			
-			Property xmlEncoding = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_XML_ENCODING );
+			setPropertyValue( Constants.CONST_PROP_XML_FILE, xmlFile == null
+					? EMPTY_STRING : xmlFile );
+
+			String xmlEncoding = dataSetDesign.getPrivateProperties( )
+					.getProperty( Constants.CONST_PROP_XML_ENCODING );
 			setPropertyValue( Constants.CONST_PROP_XML_ENCODING,
-					xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
-			
-			Property maxRow = dataSetDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_MAX_ROW );
-			
+					xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
+
+			String maxRow = dataSetDesign.getPrivateProperties( )
+					.getProperty( Constants.CONST_PROP_MAX_ROW );
+
 			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow.getValue( ) : "-1" );
-			
-			dataSetDesign.getPublicProperties( )
-					.unsetProperty( Constants.CONST_PROP_MAX_ROW );
-			dataSetDesign.getPublicProperties( )
-					.unsetProperty( Constants.CONST_PROP_XML_FILE );
+					? maxRow : "-1" );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{
 			DataSourceDesign dataSourceDesign = dataSetDesign.getDataSourceDesign( );
-			
-			Property schema = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_SCHEMA_FILELIST );
-			setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-						schema == null ? "" : schema.getValue( ) );
-			
-			Property xmlFile  = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_FILELIST );					
-			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null ? ""
-					: xmlFile.getValue( ) );
-			
-			Property xmlEncoding = dataSourceDesign.getPublicProperties( )
-					.findProperty( Constants.CONST_PROP_ENCODINGLIST );
-			setPropertyValue( Constants.CONST_PROP_ENCODINGLIST,
-					xmlEncoding == null ? "" : xmlEncoding.getValue( ) );
+			java.util.Properties dataSourceProp = null;
+			try
+			{
+				dataSourceProp = DesignSessionUtil.getEffectiveDataSourceProperties( dataSourceDesign );
+			}
+			catch ( OdaException e )
+			{
+				dataSourceProp = new java.util.Properties( );
+			}
+
+			String schema = dataSourceProp.getProperty( Constants.CONST_PROP_SCHEMA_FILELIST,
+					EMPTY_STRING );
+			setPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST, schema );
+
+			String xmlFile = dataSourceProp.getProperty( Constants.CONST_PROP_FILELIST,
+					EMPTY_STRING );
+			setPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile );
+
+			String xmlEncoding = dataSourceProp.getProperty( Constants.CONST_PROP_ENCODINGLIST,
+					EMPTY_STRING );
+			setPropertyValue( Constants.CONST_PROP_ENCODINGLIST, xmlEncoding );
 		}
 	}
 
 	/**
-	 * destory the holder class
-	 *
+	 * destroy the holder class
+	 * 
 	 */
 	public static void destory( )
 	{
