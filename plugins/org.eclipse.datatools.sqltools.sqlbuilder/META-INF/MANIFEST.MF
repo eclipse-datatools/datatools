@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %_UI_PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sqlbuilder; singleton:=true
 Bundle-ClassPath: .
-Bundle-Version: 1.0.0.200710192
+Bundle-Version: 1.0.0.200710221
 Bundle-Activator: org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin
 Bundle-Vendor: %_UI_PLUGIN_PROVIDER
 Bundle-Localization: plugin

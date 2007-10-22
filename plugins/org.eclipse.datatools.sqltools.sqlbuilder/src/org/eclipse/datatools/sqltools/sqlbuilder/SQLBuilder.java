@@ -266,12 +266,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		_graphControl.setSQLBuilder(this);
 
 		if (!_inputLoaded) {
-			// String strSQL = WorkbenchUtility.readFileContentsToString(ifile,
-			// true );
-			String strSQL = _sqlDomainModel.getInitialSource();
-			if (strSQL.trim().length() > 0) {
-				_sourceViewer.setFileSQLStr(strSQL);
-			}
+			_sourceViewer.revertToDefaultSource();
 		}
 		
 	}
@@ -959,7 +954,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			if (db == null && keepTrying == true) {
 				ConnectRunnable connectRunnable = new ConnectRunnable(part, this);
 				Display display = workbench.getDisplay();
-				int delayTime = 500; // one half second
+				int delayTime = 1000; // one second
 				display.timerExec(delayTime, connectRunnable);
 			}
 		}

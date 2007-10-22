@@ -362,6 +362,7 @@ public class SQLDomainModel {
         String statementName = fileResource.getName();
         String strSQL = readContentsToString(fileResource);  // [RATLC01124214] bgp 11Aug2006
         strSQL = strSQL.trim();
+        initialSource = strSQL;
         try {
             sqlStatement = parse(strSQL);
         }
@@ -371,7 +372,6 @@ public class SQLDomainModel {
                 initTemplateSQLTable();                
             }
             retval = false;
-            initialSource = strSQL;
             unmatchedSource = true;
             strSQL = strSQL.replaceAll("\r", "");
             if (!templateSQLTable.containsValue(strSQL)) {
@@ -403,6 +403,7 @@ public class SQLDomainModel {
         boolean retval = true;
              
         strSQL = strSQL.trim();
+        initialSource = strSQL;
         try {
             sqlStatement = parse(strSQL);
         }
@@ -412,7 +413,6 @@ public class SQLDomainModel {
                 initTemplateSQLTable();                
             }
             retval = false;
-            initialSource = strSQL;
             unmatchedSource = true;
             strSQL = strSQL.replaceAll("\r", "");
             if (!templateSQLTable.containsValue(strSQL)) {
@@ -467,6 +467,8 @@ public class SQLDomainModel {
         strSQL = oStream.toString();
         iStream.close();
         oStream.close();
+
+        initialSource = strSQL;
 
         try {
             sqlStatement = parse(strSQL);

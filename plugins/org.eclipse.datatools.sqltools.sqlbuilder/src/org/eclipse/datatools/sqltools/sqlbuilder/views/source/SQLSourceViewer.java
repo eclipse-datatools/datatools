@@ -474,6 +474,14 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
         forceReparse();
     }
 
+    public void revertToInitialSource() {
+        sourceViewer.removeTextListener(textChangeListener);
+        document.set(sqlDomainModel.getInitialSource());
+        sqlDomainModel.setImproperStatement(null);
+        forceReparse();
+        sourceViewer.addTextListener(textChangeListener);
+    }
+
     public String getText() {
         return document.get();
     }

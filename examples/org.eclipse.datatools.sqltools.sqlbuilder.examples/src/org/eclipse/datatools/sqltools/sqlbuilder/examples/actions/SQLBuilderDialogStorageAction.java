@@ -58,7 +58,8 @@ public class SQLBuilderDialogStorageAction implements IObjectActionDelegate {
 		 * directly from a file. Rather it would be created from data held by the calling
 		 * application in e.g. a string. 
 		 */
-		SQLBuilderStorageEditorInput storageEditorInput = EditorInputUtil.createSQLBuilderEditorInputFromStringViaFile(_selectedFile);
+		SQLBuilderStorageEditorInput storageEditorInput = 
+			EditorInputUtil.createSQLBuilderEditorInputFromStringViaFile(_selectedFile);
 		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), storageEditorInput);
 		sqlBuilderDialog.create();
 		sqlBuilderDialog.setBlockOnOpen(true);

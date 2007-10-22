@@ -30,16 +30,6 @@ import org.eclipse.ui.XMLMemento;
  */
 
 public class SQLBuilderEditorInputUtil {
-	/**
-	 * Creates a SQLBuilderFileEditorInput from a file
-	 * 
-	 * @param file
-	 * @return SQLBuilderFileEditorInput the <code>SQLBuilderFileEditorInput</code> created from the input file.
-	 */
-	public static SQLBuilderFileEditorInput createSQLBuilderFileEditorInput(IFile file){
-		return new SQLBuilderFileEditorInput(file);
-	}
-
 	
 	/**
 	 * Creates a SQLBuilderStorageEditorInput from a string. The string should be

@@ -15,14 +15,11 @@ import java.io.StringWriter;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.ISQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.IChangeNotifier;
-import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -119,7 +116,6 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		try {
 			/*
 			 * Create the SQLBuilder part of the dialog.
-			 * It is important to make the next 3 calls in this order. 
 			 */
 			_sqlBuilder = new SQLBuilder();
 			_sqlBuilder.addContentChangeListener(this);

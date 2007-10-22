@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.actions;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs.SQLBuilderDialog;
-import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLBuilderEditorInputUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -54,7 +53,7 @@ public class SQLBuilderDialogFileAction implements IObjectActionDelegate {
 		 * Create a SQLBuilderFileEditorInput based on the selected file and pass it to the
 		 * new SQLBuilderDialog.
 		 */
-		SQLBuilderFileEditorInput input = SQLBuilderEditorInputUtil.createSQLBuilderFileEditorInput(_selectedFile);
+		SQLBuilderFileEditorInput input = new SQLBuilderFileEditorInput(_selectedFile); 
 		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), input);
 		sqlBuilderDialog.create();
 		sqlBuilderDialog.setBlockOnOpen(true);
