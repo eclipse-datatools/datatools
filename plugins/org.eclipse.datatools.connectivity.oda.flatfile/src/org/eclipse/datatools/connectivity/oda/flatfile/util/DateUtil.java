@@ -12,13 +12,16 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.oda.flatfile.util;
 
+import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
-import java.text.DateFormat;
 import com.ibm.icu.util.ULocale;
 
 /**
@@ -47,11 +50,11 @@ public final class DateUtil
 	 * @return
 	 * @throws OdaException
 	 */
-	public static synchronized Date toDate( Object source ) throws OdaException
+	public static Date toDate( Object source ) throws OdaException
 	{
 		if ( source == null )
 			return null;
-
+		
 		if ( source instanceof Date )
 		{
 			return new Date( ( (Date) source ).getTime( ) );
@@ -62,8 +65,134 @@ public final class DateUtil
 		}
 		else
 		{
-			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
+			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
 		}
+	}
+    
+    /**
+     * Date -> Time
+     * String -> Time
+     * @param source
+     * @return
+     * @throws OdaException
+     */
+    public static Time toSqlTime( Object source ) throws OdaException
+    {
+        if ( source == null )
+            return null;
+
+        if ( source instanceof Date )
+        {
+       		return toSqlTime( (Date)source);
+        }
+        else if ( source instanceof String )
+        {
+            try
+            {
+                return toSqlTime( toDate((String ) source) );
+            }
+            catch( Exception e )
+            {
+                try
+                {
+                	return Time.valueOf( (String)source );
+                }
+                catch ( Exception e1 )
+                {
+                	
+                }
+            }
+        }
+
+        throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
+    }
+
+    /**
+     * 
+     * @param date
+     * @return
+     */
+    private static java.sql.Time toSqlTime( Date date )
+    {
+    	Calendar calendar = Calendar.getInstance( );
+		calendar.clear( );
+		calendar.setTimeInMillis( date.getTime( ) );
+		calendar.set( Calendar.YEAR, 1970 );
+		calendar.set( Calendar.MONTH, 0 );
+		calendar.set( Calendar.DAY_OF_MONTH, 1 );
+		calendar.set( Calendar.MILLISECOND, 0 );
+		return new java.sql.Time( calendar.getTimeInMillis( ) );
+    }
+    
+    /**
+     * Date -> Time
+     * String -> Time
+     * @param source
+     * @return
+     * @throws OdaException
+     */
+    public static java.sql.Date toSqlDate( Object source ) throws OdaException
+    {
+        if ( source == null )
+            return null;
+
+        if ( source instanceof Date )
+        {
+    		return toSqlDate( (Date)source );
+        }
+        else if ( source instanceof String )
+        {
+            try
+            {
+                return toSqlDate( toDate((String ) source) );
+            }
+            catch( Exception e )
+            {
+                try
+                {
+                	return java.sql.Date.valueOf( (String)source );
+                }
+                catch ( Exception e1 )
+                {
+                	
+                }
+            }
+        }
+
+        throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$ 
+    }
+    
+    /**
+     * 
+     * @param date
+     * @return
+     */
+    private static java.sql.Date toSqlDate( Date date )
+    {
+    	Calendar calendar = Calendar.getInstance( );
+		calendar.clear( );
+		calendar.setTimeInMillis( date.getTime( ) );
+		calendar.set( Calendar.HOUR_OF_DAY, 0 );
+		calendar.set( Calendar.MINUTE, 0 );
+		calendar.set( Calendar.SECOND, 0 );
+		calendar.set( Calendar.MILLISECOND, 0 );		
+		return new java.sql.Date( calendar.getTimeInMillis( ) );
+    }
+    
+    /**
+	 * A temp solution to the adoption of ICU4J to BIRT. Simply delegate
+	 * toDate( String, Locale) method.
+	 * 
+	 * @param source
+	 *            the String to be convert
+	 * @param locate
+	 * 			  the locate of the string
+	 * @return result Date
+	 */
+	public static Date toDate( String source, Locale locale )
+			throws OdaException
+	{
+		return toDate( source, ULocale.forLocale( locale ) );
 	}
 
 	/**
@@ -75,7 +204,7 @@ public final class DateUtil
 	 * 			  the locate of the string
 	 * @return result Date
 	 */
-	public synchronized static Date toDate( String source, ULocale locale )
+	public static Date toDate( String source, ULocale locale )
 			throws OdaException
 	{
 		if ( source == null )
@@ -120,7 +249,7 @@ public final class DateUtil
 		// for the String can not be parsed, throws a OdaException
 		if ( resultDate == null )
 		{
-			throw new OdaException( Messages.getString("dateUtil.ConvertFails")+source.toString( )); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
 		}
 
 		// never access here
@@ -157,14 +286,14 @@ public final class DateUtil
 			}
 		}
 	}
-	
+
 	/**
 	 * convert String with ISO8601 date format to java.util.Date
 	 * 
 	 * @param source
 	 *            the String to be convert
 	 * @param locate
-	 *            the locate of the string
+	 * 			  the locate of the string
 	 * @return result Date
 	 */
 	private static Date toDateISO8601( String source ) throws OdaException
@@ -178,7 +307,7 @@ public final class DateUtil
 		}
 		catch ( ParseException e1 )
 		{
-			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$
+			throw new OdaException( Messages.getString( "dateUtil.ConvertFails" ) + source.toString( ) ); //$NON-NLS-1$ 
 		}
 	}
 }
