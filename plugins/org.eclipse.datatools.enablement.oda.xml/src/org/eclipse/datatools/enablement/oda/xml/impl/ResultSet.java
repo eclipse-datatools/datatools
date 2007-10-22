@@ -353,8 +353,7 @@ public class ResultSet implements IResultSet
 		{
 			try
 			{
-				java.util.Date date = DateUtil.toDate( stringValue );
-				return new Date( date.getTime( ) );
+				return DateUtil.toSqlDate( stringValue );
 			}
 			catch ( OdaException oe )
 			{
@@ -396,8 +395,7 @@ public class ResultSet implements IResultSet
 		{
 			try
 			{
-				java.util.Date date = DateUtil.toDate( stringValue );
-				return new Time( date.getTime( ) );
+				return DateUtil.toSqlTime( stringValue );
 			}
 			catch ( OdaException oe )
 			{
