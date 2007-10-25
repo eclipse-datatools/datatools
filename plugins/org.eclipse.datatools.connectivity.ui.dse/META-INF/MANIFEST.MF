@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse; singleton:=true
-Bundle-Version: 1.0.1.200709271
+Bundle-Version: 1.0.1.200710251
 Bundle-Activator: org.eclipse.datatools.connectivity.ui.dse.DSEPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -14,7 +14,6 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)";visibility:=reexport,
  org.eclipse.ui.views.properties.tabbed;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.navigator.resources;bundle-version="[3.2.0,4.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.ltk.core.refactoring;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.help;bundle-version="[3.2.0,4.0.0)",

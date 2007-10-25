@@ -131,17 +131,64 @@
       </actionProvider>
    </extension>
       <extension
-            point="org.eclipse.ui.navigator.viewer">
-         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
-            <includes>
-               <contentExtension pattern="org.eclipse.datatools.connectivity.repositoryContent"/>
-            </includes>
-         </viewerContentBinding>
-         <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
-            <includes>
-               <actionExtension pattern="org.eclipse.datatools.connectivity.internal.ui.actions.WorkOfflineActionProvider"/>
-            </includes>
-         </viewerActionBinding>
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <navigatorContent
+               contentProvider="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileContentProvider"
+               icon="icons/full/cview16/enterprise_explorer.gif"
+               id="org.eclipse.datatools.connectivity.dsexplorer.content"
+               labelProvider="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileLabelProvider"
+               name="%DSE.content"
+               priority="high">
+            <actionProvider
+                  class="org.eclipse.datatools.connectivity.ui.navigator.actions.ProfileActionsActionProvider"
+                  id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
+               <enablement>
+                  <or>
+                     <instanceof
+                           value="org.eclipse.datatools.connectivity.ICategory">
+                     </instanceof>
+                     <instanceof
+                           value="org.eclipse.datatools.connectivity.IConnectionProfile">
+                     </instanceof>
+                     <instanceof
+                           value="org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode">
+                     </instanceof>
+                  </or>
+               </enablement>
+            </actionProvider>
+            <commonSorter
+                  class="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileSorter"
+                  id="org.eclipse.datatools.connectivity.ui.dse.commonSorter">
+            </commonSorter>
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.datatools.connectivity.ICategory">
+                  </adapt>
+                  <adapt
+                        type="org.eclipse.datatools.connectivity.IConnectionProfile">
+                  </adapt>
+                  <adapt
+                        type="org.eclipse.datatools.connectivity.ProfileManager">
+                  </adapt>
+                  <instanceof
+                        value="org.eclipse.core.resources.IWorkspaceRoot">
+                  </instanceof>
+               </or>
+            </enablement>
+         </navigatorContent>
+      </extension>
+      <extension
+            point="org.eclipse.ui.navigator.navigatorContent">
+         <actionProvider
+               class="org.eclipse.datatools.connectivity.ui.navigator.actions.RefreshActionProvider"
+               id="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+            <enablement>
+               <instanceof
+                     value="java.lang.Object">
+               </instanceof>
+            </enablement>
+         </actionProvider>
       </extension>
 
 </plugin>

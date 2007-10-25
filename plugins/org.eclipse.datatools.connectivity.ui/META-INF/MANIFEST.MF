@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui; singleton:=true
-Bundle-Version: 1.0.1.200710121
+Bundle-Version: 1.0.1.200710251
 Bundle-Activator: org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin
 Bundle-Vendor: %Plugin.ProviderName
 Bundle-Localization: plugin
@@ -17,14 +17,16 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.ltk.core.refactoring;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.help;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.help;bundle-version="[3.2.0,4.0.0)";visibility:=reexport,
- org.eclipse.help.base;bundle-version="[3.2.0,4.0.0)"
+ org.eclipse.help;bundle-version="[3.2.0,4.0.0)";visibility:=reexport
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.connectivity.internal.ui,
  org.eclipse.datatools.connectivity.internal.ui.dialogs,
+ org.eclipse.datatools.connectivity.internal.ui.drivers,
  org.eclipse.datatools.connectivity.internal.ui.preferences,
  org.eclipse.datatools.connectivity.internal.ui.refactoring,
  org.eclipse.datatools.connectivity.internal.ui.wizards,
  org.eclipse.datatools.connectivity.ui,
  org.eclipse.datatools.connectivity.ui.actions,
+ org.eclipse.datatools.connectivity.ui.navigator,
+ org.eclipse.datatools.connectivity.ui.navigator.actions,
  org.eclipse.datatools.connectivity.ui.wizards

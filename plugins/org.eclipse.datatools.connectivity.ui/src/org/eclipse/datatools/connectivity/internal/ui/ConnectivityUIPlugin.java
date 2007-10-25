@@ -36,6 +36,12 @@ public class ConnectivityUIPlugin extends AbstractUIPlugin {
 
 	public static final String FILTER_PROPERTY_CONTEN_EXTENSION_STATE = "org.eclipse.datatools.connectivity.contentextension.state"; //$NON-NLS-1$
 
+	public static final String SERVERS_VIEW_CONTENT_EXTENSION_ID = "org.eclipse.datatools.connectivity.dsexplorer.content"; //$NON-NLS-1$
+	
+	public static final String PROP_SHOW_CATEGORIES = "showCategories"; //$NON-NLS-1$
+
+	public static final String SERVERS_VIEW_VIEWER_ID = "org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"; //$NON-NLS-1$
+
 	// The shared instance.
 	private static ConnectivityUIPlugin plugin;
 	// Resource bundle.

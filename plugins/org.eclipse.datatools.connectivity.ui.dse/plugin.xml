@@ -202,9 +202,7 @@
                 overrideActionId="org.eclipse.ui.edit.rename">
 	         </action>
 	         <visibility>
-			    	<or>
-				      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
-			      	</or>
+		      	<objectClass name = "org.eclipse.datatools.connectivity.IConnectionProfile"/>
 	         </visibility>
 		 </objectContribution>
 <!--         <objectContribution
@@ -226,7 +224,7 @@
             </action>
          </objectContribution> -->
    </extension>
-   <extension
+<!--   <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="org.eclipse.datatools.connectivity.ui.dse.views.ConnectionProfileContentProvider"
@@ -269,7 +267,7 @@
             </or>
          </enablement>
       </navigatorContent>
-   </extension>
+   </extension> -->
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
@@ -303,7 +301,10 @@
          <includes>
             <contentExtension
                   isRoot="true"
-                  pattern="org.eclipse.datatools.connectivity.dsexplorer.content"/>
+                  pattern="org.eclipse.datatools.connectivity.dsexplorer.content.extended"/>
+            <contentExtension
+                  pattern="org.eclipse.datatools.connectivity.repositoryContent">
+            </contentExtension>
          </includes>
       </viewerContentBinding>
       <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
@@ -312,7 +313,7 @@
          </includes>
       </viewerActionBinding>
    </extension>
-   <extension
+<!--   <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <actionProvider
             class="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider"
@@ -321,7 +322,7 @@
             <instanceof value="java.lang.Object"/>
          </enablement>
       </actionProvider>
-   </extension>
+   </extension>-->
     <extension
           point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
        <propertyContributor
@@ -352,5 +353,75 @@
              <input type="java.lang.Object"/>
           </propertySection>
        </propertySections>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.navigatorContent">
+       <navigatorContent
+             activeByDefault="true"
+             contentProvider="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileContentProvider"
+             icon="icons/full/cview16/enterprise_explorer.gif"
+             id="org.eclipse.datatools.connectivity.dsexplorer.content.extended"
+             labelProvider="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileLabelProvider"
+             name="%DSE.content.extended"
+             priority="higher">
+          <actionProvider
+                class="org.eclipse.datatools.connectivity.ui.navigator.actions.ProfileActionsActionProvider"
+                id="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider">
+             <enablement>
+                <or>
+                   <instanceof
+                         value="org.eclipse.datatools.connectivity.ICategory">
+                   </instanceof>
+                   <instanceof
+                         value="org.eclipse.datatools.connectivity.IConnectionProfile">
+                   </instanceof>
+                   <instanceof
+                         value="org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode">
+                   </instanceof>
+                </or>
+             </enablement>
+          </actionProvider>
+          <dropAssistant
+                class="org.eclipse.datatools.connectivity.ui.dse.dnd.ConnectionProfileDropAssistant"
+                id="org.eclipse.datatools.connectivity.ui.dse.dnd.connectionProfileDropAssistant">
+             <possibleDropTargets>
+                <or>
+                   <adapt
+                         type="org.eclipse.datatools.connectivity.ICategory">
+                   </adapt>
+                   <instanceof
+                         value="org.eclipse.datatools.connectivity.IConnectionProfile">
+                   </instanceof>
+                   <instanceof
+                         value="org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode">
+                   </instanceof>
+                </or>
+             </possibleDropTargets>
+          </dropAssistant>
+          <commonSorter
+                class="org.eclipse.datatools.connectivity.ui.navigator.ConnectionProfileSorter"
+                id="org.eclipse.datatools.connectivity.ui.dse.commonSorter">
+          </commonSorter>
+          <enablement>
+             <or>
+                <adapt
+                      type="org.eclipse.datatools.connectivity.ICategory">
+                </adapt>
+                <adapt
+                      type="org.eclipse.datatools.connectivity.IConnectionProfile">
+                </adapt>
+                <adapt
+                      type="org.eclipse.datatools.connectivity.ProfileManager">
+                </adapt>
+                <instanceof
+                      value="org.eclipse.core.resources.IWorkspaceRoot">
+                </instanceof>
+             </or>
+          </enablement>
+          <override
+                policy="InvokeAlwaysRegardlessOfSuppressedExt"
+                suppressedExtensionId="org.eclipse.datatools.connectivity.dsexplorer.content">
+          </override>
+       </navigatorContent>
     </extension>
 </plugin>
