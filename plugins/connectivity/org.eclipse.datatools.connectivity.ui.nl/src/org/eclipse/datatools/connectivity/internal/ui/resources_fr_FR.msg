@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = Travail hors ligne
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = &Travailler hors ligne
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = &Enregistrer hors ligne
+
+DriverPropertyEditorDescriptor.InvalidID = ID valide manquant pour le descripteur de l'éditeur de propriété du pilote
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = ID de modèle cible valide manquant pour le descripteur de l'éditeur de propriété du pilote
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = ID de propriété cible valide manquant pour le descripteur de l'éditeur de propriété du pilote
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Editeur de propriété personnalisé valide manquant pour le descripteur de l'éditeur de propriété du pilote

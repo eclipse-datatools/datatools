@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = Trabajo sin conexión
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = &Trabajar sin conexión
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = &Guardar sin conexión
+
+DriverPropertyEditorDescriptor.InvalidID = Falta un ID válido para el descriptor del editor de propiedades del controlador
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = Falta un ID de plantilla de destino válido para el descriptor del editor de propiedades del controlador
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = Falta un ID de propiedades de destino válido para el descriptor del editor de propiedades del controlador
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Falta un editor de propiedades de personalización válido para el descriptor del editor de propiedades del controlador

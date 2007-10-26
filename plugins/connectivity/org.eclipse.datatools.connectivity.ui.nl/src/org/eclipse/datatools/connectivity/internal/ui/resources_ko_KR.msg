@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = 오프라인 작업
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = 오프라인으로 작업(&W)
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = 오프라인으로 저장(&S)
+
+DriverPropertyEditorDescriptor.InvalidID = 드라이버 속성 편집기 설명자에 올바른 ID가 없습니다.
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = 드라이버 속성 편집기 설명자에 올바른 대상 템플릿 ID가 없습니다.
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = 드라이버 속성 편집기 설명자에 올바른 대상 속성 ID가 없습니다.
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = 드라이버 속성 편집기 설명자에 올바른 사용자 지정 속성 ID가 없습니다.

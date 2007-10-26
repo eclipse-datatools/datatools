@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = 脱机工作
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = 脱机工作(&W)
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = 脱机保存(&S)
+
+DriverPropertyEditorDescriptor.InvalidID = 驱动程序属性编辑器描述符缺少有效的 ID
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = 驱动程序属性编辑器描述符缺少有效的目标模板 ID
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = 驱动程序属性编辑器描述符缺少有效的目标属性 ID
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = 驱动程序属性编辑器描述符缺少有效的自定义属性编辑器

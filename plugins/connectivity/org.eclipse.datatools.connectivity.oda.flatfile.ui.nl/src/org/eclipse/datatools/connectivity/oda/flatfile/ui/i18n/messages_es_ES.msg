@@ -37,6 +37,7 @@ tooltip.typeline=Asegúrese de que la línea de tipo de datos aparece\n en la segu
 error.selectFolder=Seleccione una carpeta válida.
 error.selectColumns=Seleccione una columna como mínimo para este conjunto de datos.
 error.emptyPath=Especifique una vía de acceso.
+error.invalidFlatFilePath=Ruta de fuente de datos de archivo sin formato no válida. Corrija el perfil de conexión.
 error.errorExist=Hay un error en la página actual.  ¿Desea guardarla igualmente?
 error.noCSVFiles=La carpeta "{0}" no tiene archivos especificados en ella.
 error.invalidFilePath=La vía de acceso del archivo no es válida.  ¿Desea continuar?

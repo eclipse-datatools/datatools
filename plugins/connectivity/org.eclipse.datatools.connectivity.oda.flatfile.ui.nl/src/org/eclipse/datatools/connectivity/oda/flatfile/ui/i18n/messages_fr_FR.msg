@@ -37,6 +37,7 @@ tooltip.typeline=Vérifiez l'existence de la ligne de type de données\n dans la d
 error.selectFolder=Sélectionnez un dossier correct.
 error.selectColumns=Sélectionnez au moins une colonne pour ce fichier.
 error.emptyPath=Entrez un chemin d'accès.
+error.invalidFlatFilePath=Chemin de la source de données sous forme de fichier plat invalide. Veuillez corriger le profil de connexion.
 error.errorExist=Une erreur s'est produite dans la page en cours.  Voulez-vous quand même l'enregistrer ?
 error.noCSVFiles=Le dossier "{0}" ne comporte aucun des fichiers spécifiés.
 error.invalidFilePath=Le chemin du fichier est incorrect.  Souhaitez-vous poursuivre ?

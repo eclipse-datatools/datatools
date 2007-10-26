@@ -37,6 +37,7 @@ tooltip.typeline=선택된 파일의 두 번째 행에서 \n데이터 형식 줄이 있는지 확인하십
 error.selectFolder=올바른 폴더를 선택하십시오.
 error.selectColumns=이 데이터 세트에 대해 최소 하나의 열을 선택하십시오.
 error.emptyPath=경로를 입력하십시오.
+error.invalidFlatFilePath=잘못된 플랫 파일 데이터 원본 경로입니다. 연결 프로필을 수정하십시오.
 error.errorExist=현재 페이지에 오류가 있습니다. 저장하시겠습니까?
 error.noCSVFiles="{0}" 폴더에 지정된 파일이 없습니다.
 error.invalidFilePath=파일 경로가 올바르지 않습니다. 계속하시겠습니까?

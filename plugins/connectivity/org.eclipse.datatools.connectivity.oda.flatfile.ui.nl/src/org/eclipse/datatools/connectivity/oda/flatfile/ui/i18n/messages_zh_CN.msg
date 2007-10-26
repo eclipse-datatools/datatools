@@ -37,6 +37,7 @@ tooltip.typeline=请确保选择的文件第二行中存在数据类型行\n
 error.selectFolder=请选择有效文件夹。
 error.selectColumns=请至少为此数据集选择一列。
 error.emptyPath=请输入路径。
+error.invalidFlatFilePath=平面文件数据源路径无效。请改正连接配置文件。
 error.errorExist=当前页面存在错误。一定要保存它吗？
 error.noCSVFiles=文件夹“{0}”中没有指定任何文件。
 error.invalidFilePath=文件路径无效。要继续吗？

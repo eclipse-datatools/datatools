@@ -38,6 +38,7 @@ tooltip.typeline=Vergewissern Sie sich, dass in der zweiten Zeile der \nausgewäh
 error.selectFolder=Bitte wählen Sie einen gültigen Ordner.
 error.selectColumns=Bitte wählen Sie für diesen Datensatz mindestens eine Spalte aus.
 error.emptyPath=Geben Sie einen Pfad ein.
+error.invalidFlatFilePath=Ungültiger Pfad für unstrukturierte Datenquelle. Aktualisieren Sie das Verbindungsprofil.
 error.errorExist=Die Fehlerktuelle Seite enthält Fehler.  Soll sie trotzdem gespeichert werden?
 error.noCSVFiles=Der Ordner "{0}" enthält keine der angegebenen Dateien.
 error.invalidFilePath=Der Dateipfad ist ungültig.  Wollen Sie fortfahren?

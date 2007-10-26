@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = Offline arbeiten
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = Offline &arbeiten
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = Offline &speichern
+
+DriverPropertyEditorDescriptor.InvalidID = Eigenschaftseditor-Deskriptor verfügt über keine gültige ID
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = Eigenschaftseditor-Deskriptor verfügt über keine gültige Zielvorlagen-ID
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = Eigenschaftseditor-Deskriptor verfügt über keine gültige Zieleigenschafts-ID
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Eigenschaftseditor-Deskriptor verfügt über keinen gültigen benutzerdefinierten Eigenschaftseditor

@@ -131,3 +131,8 @@ StatusBar.WorkingOffline = オフラインで作業中
 
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = オフラインで作業(&W)
 DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = オフラインで保存(&S)
+
+DriverPropertyEditorDescriptor.InvalidID = ドライバプロパティエディタの記述子に、有効な ID が含まれていません。
+DriverPropertyEditorDescriptor.InvalidTargetTemplateID = ドライバプロパティエディタの記述子に、有効なターゲットテンプレート ID が含まれていません。
+DriverPropertyEditorDescriptor.InvalidTargetPropertyId = ドライバプロパティエディタの記述子に、有効なターゲットプロパティ ID が含まれていません。
+DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = ドライバプロパティエディタの記述子に、有効なカスタムプロパティエディタが含まれていません。

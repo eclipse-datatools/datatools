@@ -37,6 +37,7 @@ tooltip.typeline=選択したファイルの 2 行目がデータ型であることを\n確認してくださ
 error.selectFolder=有効なフォルダーを選択してください。
 error.selectColumns=このデータ・セットに対して、1 つ以上の列を選択してください。
 error.emptyPath=パスを入力してください。
+error.invalidFlatFilePath=フラットファイルのデータソースパスが無効です。接続プロファイルを修正してください。
 error.errorExist=現行ページにエラーがあります。  保存しますか?
 error.noCSVFiles=フォルダー "{0}" には指定されたファイルがありません。
 error.invalidFilePath=ファイル・パスが無効です。  続行しますか?
