@@ -351,8 +351,12 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				if (fileResource != null) {
 					_inputLoaded = _sqlDomainModel.openFileResource(fileResource);
 					if (_inputLoaded == false) {
-						throw new PartInitException(
-								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
+						// Don't throw exception because openFileResource
+						// returns false if default statement was created
+						// TODO: sort out the use of _inputLoaded
+						_inputLoaded = true;
+//						throw new PartInitException(
+//								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
 					}
 				} else {
 					throw new PartInitException(
@@ -374,8 +378,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				_inputLoaded = _sqlDomainModel
 						.openStorageResource(storageResource);
 				if (_inputLoaded == false) {
-					throw new PartInitException(
-							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+					// TODO: sort out the use of _inputLoaded
+					_inputLoaded = true;
+//					throw new PartInitException(
+//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
 				}
 			} catch (Exception ex) {
 				throw new PartInitException(
