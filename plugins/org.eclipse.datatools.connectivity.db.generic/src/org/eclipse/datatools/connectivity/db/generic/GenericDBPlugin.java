@@ -14,15 +14,14 @@ import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  * NON-API
  */
-public class GenericDBPlugin extends AbstractUIPlugin {
+public class GenericDBPlugin extends Plugin {
 
 	// The shared instance.
 	private static GenericDBPlugin plugin;
@@ -56,18 +55,6 @@ public class GenericDBPlugin extends AbstractUIPlugin {
 	 */
 	public static GenericDBPlugin getDefault() {
 		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path.
-	 * 
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin(
-				"org.eclipse.datatools.connectivity.db.generic", path); //$NON-NLS-1$
 	}
 
 	/**
