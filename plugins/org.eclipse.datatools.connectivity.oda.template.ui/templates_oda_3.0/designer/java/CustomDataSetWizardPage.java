@@ -353,8 +353,11 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
                     DesignSessionUtil.toParameterModeDesign( IParameterMetaData.parameterModeIn ) );
         
         // no exception in conversion; go ahead and assign to specified dataSetDesign
+        dataSetDesign.setParameters( paramDesign );        
+        if( paramDesign == null )
+            return;     // no parameter definitions; done with update
+        
         paramDesign.setDerivedMetaData( true );
-        dataSetDesign.setParameters( paramDesign );
 
         // TODO replace below with data source specific implementation;
         // hard-coded parameter's default value for demo purpose
