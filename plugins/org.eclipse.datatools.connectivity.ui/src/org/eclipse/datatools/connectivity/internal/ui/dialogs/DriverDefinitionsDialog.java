@@ -46,10 +46,13 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -145,7 +148,11 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 		content.setLayout(layout);
 		GridData data = new GridData(GridData.FILL_BOTH);
 		content.setLayoutData(data);
-		content.setFont(font);
+		content.setFont(font);	
+		content.addDisposeListener(new DisposeListener(){
+			public void widgetDisposed(DisposeEvent e) {
+				saveState();			
+			}});
 
 		this.mErrorLabel = new Label(content, SWT.LEFT | SWT.WRAP);
 		data = new GridData(GridData.VERTICAL_ALIGN_FILL
@@ -348,7 +355,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 		else {
 			mTreeViewer.expandToLevel(3);
 		}
-
+		
 		return content;
 
 	}
@@ -400,6 +407,9 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 	 */
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
+		int width = 500;
+		int height = 400;
+		
 		newShell.setText(DriverMgmtMessages
 				.getString("DriverDefinitionsDialog.windowTitle")); //$NON-NLS-1$
 
@@ -411,13 +421,28 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 				if (dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT) != null
 						&& dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT).trim()
 								.length() > 0) {
-					int height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
-					int width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
-					Point newsize = new Point(height, width);
-					newShell.setSize(newsize);
+					height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
+					width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
 				}
 			}
 		}
+		newShell.setSize(width, height);
+		centerDialog(newShell);
+	}
+	
+	/*
+	 * Center the dialog relative to its parent
+	 */
+	private void centerDialog(Shell newShell){
+		Composite parent = newShell.getParent();
+		Rectangle parentSize = parent.getBounds();
+		Rectangle newShellSize = newShell.getBounds();
+
+		int x, y;
+		x = (parentSize.width - newShellSize.width)/2 + parentSize.x;
+		y = (parentSize.height - newShellSize.height)/2 + parentSize.y;
+
+		newShell.setLocation(new Point(x, y));		
 	}
 
 	/*
@@ -432,8 +457,8 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 				dSection = dset.addNewSection(MEMENTO_ROOT);
 			if (dSection != null) {
 				Point size = getShell().getSize();
-				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
-				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.x);
 			}
 		}
 	}
@@ -447,7 +472,6 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 		if (this.mDirty) {
 			saveChanges();
 		}
-		saveState();
 		super.okPressed();
 	}
 

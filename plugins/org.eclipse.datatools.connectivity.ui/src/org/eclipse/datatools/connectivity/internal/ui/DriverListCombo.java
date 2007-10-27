@@ -40,6 +40,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
@@ -650,7 +651,7 @@ public class DriverListCombo {
 		}
 
 		public void widgetSelected(SelectionEvent e) {
-			Shell newShell = new Shell();
+			Shell newShell = parent.getCombo().getShell();
 			DriverDefinitionsDialog dlg;
 			if (DriverListCombo.this.mCategoryId != null) {
 				dlg = new DriverDefinitionsDialog(newShell,
@@ -710,8 +711,6 @@ public class DriverListCombo {
 			}
 			else
 				DriverListCombo.this.mComboList.setText(tempStore);
-
-			newShell.dispose();
 
 			if (fireEvent)
 				fireChangedEvent(this.parent);

@@ -40,12 +40,15 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -143,6 +146,10 @@ public class NewDriverDialog extends TitleAreaDialog {
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
+		contents.addDisposeListener(new DisposeListener(){
+			public void widgetDisposed(DisposeEvent e) {
+				saveState();			
+			}});
 
 		Label label = new Label(contents, SWT.LEFT);
 		label.setText(DriverMgmtMessages
@@ -314,6 +321,10 @@ public class NewDriverDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		this.shell = newShell;
+		
+		int width = 400;
+		int height = 500;
+			
 		newShell.setText(DriverMgmtMessages
 				.getString("NewDriverDialog.windowTitle")); //$NON-NLS-1$
 
@@ -325,13 +336,28 @@ public class NewDriverDialog extends TitleAreaDialog {
 				if (dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT) != null
 						&& dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT).trim()
 								.length() > 0) {
-					int height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
-					int width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
-					Point newsize = new Point(height, width);
-					this.shell.setSize(newsize);
+					height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
+					width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
 				}
 			}
 		}
+		this.shell.setSize(width, height);
+		centerDialog(newShell);
+	}
+	
+	/*
+	 * Center the dialog relative to its parent
+	 */
+	private void centerDialog(Shell newShell){
+		Composite parent = newShell.getParent();
+		Rectangle parentSize = parent.getBounds();
+		Rectangle newShellSize = newShell.getBounds();
+
+		int x, y;
+		x = (parentSize.width - newShellSize.width)/2 + parentSize.x;
+		y = (parentSize.height - newShellSize.height)/2 + parentSize.y;
+
+		newShell.setLocation(new Point(x, y));		
 	}
 
 	/**
@@ -409,8 +435,6 @@ public class NewDriverDialog extends TitleAreaDialog {
 			this.mPropertySet.setBaseProperties(props);
 		}
 
-		saveState();
-
 		// after saveState, user's choice of "edit immediately" has been saved,
 		// we reset this flag to the current selection's corresponding state, so
 		// getEditImmediately() will return correct value.
@@ -446,8 +470,8 @@ public class NewDriverDialog extends TitleAreaDialog {
 				dSection = dset.addNewSection(MEMENTO_ROOT);
 			if (dSection != null) {
 				Point size = getShell().getSize();
-				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
-				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.x);
 
 				dSection.put(MEMENTO_DIALOG_EDIT_IMMEDIATELY,
 						this.mEditImmediately);

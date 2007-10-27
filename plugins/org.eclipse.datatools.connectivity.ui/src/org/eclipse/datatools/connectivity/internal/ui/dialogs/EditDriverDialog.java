@@ -42,12 +42,15 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.SWTException;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -177,6 +180,10 @@ public class EditDriverDialog extends TitleAreaDialog
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
+		contents.addDisposeListener(new DisposeListener(){
+			public void widgetDisposed(DisposeEvent e) {
+				saveState();			
+			}});
 		{
 			final Composite composite = new Composite(contents, SWT.NONE);
 			composite.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -338,7 +345,7 @@ public class EditDriverDialog extends TitleAreaDialog
 					gridLayout_2.numColumns = 1;
 					composite_2.setLayout(gridLayout_2);
 					{
-						book = new PageBook(composite_2, SWT.NONE);
+						book = new PageBook(composite_2, SWT.BORDER);
 						book.setLayoutData(new GridData(GridData.FILL_BOTH));
 				        PropertySheetPage page = new PropertySheetPage();
 				        page.createControl(book);
@@ -444,6 +451,8 @@ public class EditDriverDialog extends TitleAreaDialog
 	 */
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
+		int width = 500;
+		int height = 700;
 		newShell.setText(DriverMgmtMessages
 				.getString("EditDriverDialog.windowTitle")); //$NON-NLS-1$
 
@@ -455,13 +464,28 @@ public class EditDriverDialog extends TitleAreaDialog
 				if (dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT) != null
 						&& dSection.get(MEMENTO_DIALOG_SIZE_HEIGHT).trim()
 								.length() > 0) {
-					int height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
-					int width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);
-					Point newsize = new Point(height, width);
-					newShell.setSize(newsize);
+					height = dSection.getInt(MEMENTO_DIALOG_SIZE_HEIGHT);
+					width = dSection.getInt(MEMENTO_DIALOG_SIZE_WIDTH);					
 				}
 			}
 		}
+		newShell.setSize(width, height);
+		centerDialog(newShell);
+	}
+	
+	/*
+	 * Center the dialog relative to its parent
+	 */
+	private void centerDialog(Shell newShell){
+		Composite parent = newShell.getParent();
+		Rectangle parentSize = parent.getBounds();
+		Rectangle newShellSize = newShell.getBounds();
+
+		int x, y;
+		x = (parentSize.width - newShellSize.width)/2 + parentSize.x;
+		y = (parentSize.height - newShellSize.height)/2 + parentSize.y;
+
+		newShell.setLocation(new Point(x, y));		
 	}
 
 	/*
@@ -607,9 +631,7 @@ public class EditDriverDialog extends TitleAreaDialog
 		props.setProperty(IDriverMgmtConstants.PROP_DEFN_TYPE, this.descriptor
 				.getId());
 		this.mPropertySet.setBaseProperties(props);
-		
-		saveState();
-		
+
 		this.psetChangedListener = null;
 
 		super.okPressed();
@@ -837,8 +859,8 @@ public class EditDriverDialog extends TitleAreaDialog
 				dSection = dset.addNewSection(MEMENTO_ROOT);
 			if (dSection != null) {
 				Point size = getShell().getSize();
-				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.x);
-				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_HEIGHT, size.y);
+				dSection.put(MEMENTO_DIALOG_SIZE_WIDTH, size.x);
 			}
 		}
 	}
