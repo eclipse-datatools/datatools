@@ -156,7 +156,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 		this.mErrorLabel = new Label(content, SWT.LEFT | SWT.WRAP);
 		data = new GridData(GridData.VERTICAL_ALIGN_FILL
-				| GridData.HORIZONTAL_ALIGN_FILL);
+				| GridData.FILL_HORIZONTAL);
 		data.horizontalSpan = 2;
 		data.heightHint = 35;
 		this.mErrorLabel.setLayoutData(data);
@@ -164,6 +164,13 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 				.getDisplay()));
 		this.mErrorLabel.setFont(font);
 
+		Label label = new Label(content, SWT.NONE);
+		label.setText(DriverMgmtMessages
+				.getString("DriverDefinitionsDialog.label.properties")); //$NON-NLS-1$
+		GridData gridData = new GridData();
+		gridData.horizontalSpan = 2;
+		label.setLayoutData(gridData);
+		
 		this.mTreeViewer = new TreeViewer(content, SWT.BORDER);
 		data = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
 		this.mTreeViewer.getTree().setLayoutData(data);
@@ -234,7 +241,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 		this.mAddButton = new Button(groupComponent, SWT.PUSH);
 		this.mAddButton.setText(DriverMgmtMessages
-				.getString("DriverPreferences.button.addDriver")); //$NON-NLS-1$
+				.getString("DriverDefinitionsDialog.button.addDriver")); //$NON-NLS-1$
 		this.mAddButton.setLayoutData(new GridData());
 		this.mAddButton.setFont(font);
 		setButtonLayoutData(this.mAddButton);
@@ -256,7 +263,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 		this.mEditButton = new Button(groupComponent, SWT.PUSH);
 		this.mEditButton.setText(DriverMgmtMessages
-				.getString("DriverPreferences.button.editDriver")); //$NON-NLS-1$
+				.getString("DriverDefinitionsDialog.button.editDriver")); //$NON-NLS-1$
 		this.mEditButton.setLayoutData(new GridData());
 		this.mEditButton.setFont(font);
 		setButtonLayoutData(this.mEditButton);
@@ -278,7 +285,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 		this.mRemoveButton = new Button(groupComponent, SWT.PUSH);
 		this.mRemoveButton.setText(DriverMgmtMessages
-				.getString("DriverPreferences.button.removeDriver")); //$NON-NLS-1$
+				.getString("DriverDefinitionsDialog.button.removeDriver")); //$NON-NLS-1$
 		this.mRemoveButton.setLayoutData(new GridData());
 		this.mRemoveButton.setFont(font);
 		setButtonLayoutData(this.mRemoveButton);
@@ -300,7 +307,7 @@ public class DriverDefinitionsDialog extends TitleAreaDialog
 
 		this.mCopyButton = new Button(groupComponent, SWT.PUSH);
 		this.mCopyButton.setText(DriverMgmtMessages
-				.getString("DriverPreferences.button.copyDriver")); //$NON-NLS-1$
+				.getString("DriverDefinitionsDialog.button.copyDriver")); //$NON-NLS-1$
 		this.mCopyButton.setLayoutData(new GridData());
 		this.mCopyButton.setFont(font);
 		setButtonLayoutData(this.mCopyButton);

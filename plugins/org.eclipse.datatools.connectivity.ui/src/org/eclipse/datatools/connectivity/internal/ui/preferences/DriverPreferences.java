@@ -139,15 +139,6 @@ public class DriverPreferences extends PreferencePage implements
 		content.setLayoutData(data);
 		content.setFont(font);
 
-		Label label = new Label(content, SWT.LEFT);
-		label.setText(DriverMgmtMessages
-				.getString("DriverPreferences.label.availableDrivers")); //$NON-NLS-1$
-		data = new GridData();
-		data.horizontalAlignment = GridData.FILL;
-		data.horizontalSpan = 2;
-		label.setLayoutData(data);
-		label.setFont(font);
-
 		this.mErrorLabel = new Label(content, SWT.LEFT | SWT.WRAP);
 		data = new GridData(GridData.VERTICAL_ALIGN_FILL
 				| GridData.HORIZONTAL_ALIGN_FILL);
@@ -158,6 +149,15 @@ public class DriverPreferences extends PreferencePage implements
 				.getDisplay()));
 		this.mErrorLabel.setFont(font);
 
+		Label label = new Label(content, SWT.LEFT);
+		label.setText(DriverMgmtMessages
+				.getString("DriverPreferences.label.availableDrivers")); //$NON-NLS-1$
+		data = new GridData();
+		data.horizontalAlignment = GridData.FILL;
+		data.horizontalSpan = 2;
+		label.setLayoutData(data);
+		label.setFont(font);
+		
 		this.mTreeViewer = new TreeViewer(content, SWT.BORDER | SWT.H_SCROLL
 				| SWT.V_SCROLL);
 		data = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);

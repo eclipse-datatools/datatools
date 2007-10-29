@@ -175,7 +175,6 @@ public class EditDriverDialog extends TitleAreaDialog
         		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG, 
         				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 		Composite area = (Composite) super.createDialogArea(parent);
-		area.setLayout(new GridLayout());
 
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
@@ -213,19 +212,13 @@ public class EditDriverDialog extends TitleAreaDialog
 						.getString("EditDriverDialog.label.driverTypeText")); //$NON-NLS-1$
 			}
 			{
-				this.mDriverTypeText = new Text(composite, SWT.BORDER);
+				this.mDriverTypeText = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
 				this.mDriverTypeText.setLayoutData(new GridData(
 						GridData.FILL_HORIZONTAL));
-				this.mDriverTypeText.setEnabled(false);
-			}
-			{
-				final Label label = new Label(composite, SWT.NONE);
-				label.setText(DriverMgmtMessages
-						.getString("EditDriverDialog.label.driverFileList")); //$NON-NLS-1$
 			}
 			{
 				final Composite composite_1 = new Composite(composite, SWT.NONE);
-				final GridData gridData = new GridData(GridData.FILL_BOTH
+				GridData gridData = new GridData(GridData.FILL_BOTH
 						| GridData.GRAB_VERTICAL);
 				gridData.horizontalIndent = -5;
 				gridData.horizontalSpan = 2;
@@ -233,6 +226,16 @@ public class EditDriverDialog extends TitleAreaDialog
 				final GridLayout gridLayout_1 = new GridLayout();
 				gridLayout_1.numColumns = 3;
 				composite_1.setLayout(gridLayout_1);
+				
+				{
+					final Label label = new Label(composite_1, SWT.NONE);
+					label.setText(DriverMgmtMessages
+							.getString("EditDriverDialog.label.driverFileList")); //$NON-NLS-1$
+					gridData = new GridData();
+					gridData.horizontalSpan = 2;
+					label.setLayoutData(gridData);
+				}
+				
 				{
 					this.list = new List(composite_1, SWT.BORDER | SWT.H_SCROLL
 							| SWT.V_SCROLL);
@@ -331,19 +334,24 @@ public class EditDriverDialog extends TitleAreaDialog
 			}
 			{
 				if (hasVisibleProperties()) {
-					final Label label = new Label(composite, SWT.NONE);
-					label.setText(DriverMgmtMessages
-							.getString("EditDriverDialog.label.properties")); //$NON-NLS-1$
-
+					
 					final Composite composite_2 = new Composite(composite,
 							SWT.NONE);
-					final GridData gridData = new GridData(GridData.FILL_BOTH);
+					GridData gridData = new GridData(GridData.FILL_BOTH);
 					gridData.horizontalIndent = -5;
 					gridData.horizontalSpan = 2;
 					composite_2.setLayoutData(gridData);
 					final GridLayout gridLayout_2 = new GridLayout();
 					gridLayout_2.numColumns = 1;
 					composite_2.setLayout(gridLayout_2);
+					
+					final Label label = new Label(composite_2, SWT.NONE);
+					label.setText(DriverMgmtMessages
+							.getString("EditDriverDialog.label.properties")); //$NON-NLS-1$
+					gridData = new GridData();
+					gridData.horizontalSpan = 2;
+					label.setLayoutData(gridData);
+					
 					{
 						book = new PageBook(composite_2, SWT.BORDER);
 						book.setLayoutData(new GridData(GridData.FILL_BOTH));
