@@ -142,7 +142,6 @@ public class NewDriverDialog extends TitleAreaDialog {
         Font font = parent.getFont();
 
 		Composite area = (Composite) super.createDialogArea(parent);
-		area.setLayout(new GridLayout());
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
 		contents.setLayoutData(new GridData(GridData.FILL_BOTH));
