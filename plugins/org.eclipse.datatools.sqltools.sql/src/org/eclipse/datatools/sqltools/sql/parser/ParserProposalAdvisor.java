@@ -84,6 +84,7 @@ public class ParserProposalAdvisor {
         } else {
             List list = new ArrayList();
             // provide only the deepest lookahead tokens
+            // 205684: contributed by Charles Eutsler
             int lookaheadDepth = 1;
 
             for (int i = 0; i < result.getExceptions().size(); i++) {
