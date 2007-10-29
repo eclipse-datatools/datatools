@@ -21,6 +21,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.sybase.asa.NewConnectionProfileWizard"
             name="%profile.asa.wizard.title"
+            description = "%profile.asa.wizard.description"
             profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
    </extension>
    <extension
