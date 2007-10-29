@@ -8,6 +8,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
             name="%wizard.name"
+            description = "%wizard.description"
             profile="org.eclipse.datatools.connectivity.db.generic.connectionProfile"/>
    </extension>
    <extension

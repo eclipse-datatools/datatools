@@ -100,6 +100,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.derby.embedded.NewConnectionProfileWizard"
             name="%DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_NAME"
+            description = "%DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_DESCRIPTION"
             profile="org.eclipse.datatools.connectivity.db.derby.embedded.connectionProfile"/>
    </extension>
    <extension
