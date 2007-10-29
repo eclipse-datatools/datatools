@@ -8,6 +8,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.oracle.NewOracleConnectionProfileWizard"
             name="%profile.oracle.wizard.title"
+            description = "%profile.oracle.wizard.description"
             profile="org.eclipse.datatools.enablement.oracle.connectionProfile"/>
    </extension>
    <extension
