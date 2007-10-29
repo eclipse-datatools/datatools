@@ -10,6 +10,7 @@
             icon="icons/new_postgresql_cp_element.gif"
             id="org.eclipse.datatools.enablement.postgresql.profile.NewConnectionProfileWizard"
             name="%WIZARD_NAME"
+            description = "%WIZARD_DESCRIPTION"
             profile="org.eclipse.datatools.enablement.postgresql.connectionProfile"/>
    </extension>
    <!-- Property page for this connection profile -->
