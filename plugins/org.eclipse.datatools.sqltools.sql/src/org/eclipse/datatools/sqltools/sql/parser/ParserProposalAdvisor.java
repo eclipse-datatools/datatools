@@ -78,33 +78,44 @@ public class ParserProposalAdvisor {
 	}
 
 	public String[] getParserProposals(ParsingResult result) {
-		if (result.getExceptions() == null
-				|| result.getExceptions().size() == 0) {
-			return EMPTY;
-		} else {
-			List list = new ArrayList();
-			//Exceptions may be more than one, so should get all exceptions.
-			for (int i = 0; i < result.getExceptions().size(); i ++)
-			{
-				if (result.getExceptions().get(i) instanceof ParseException) {
-					ParseException pe = (ParseException) result.getExceptions()
-							.get(i);
-					if (pe.expectedTokenSequences == null) {
-						return EMPTY;
-					}
-					String[] proposals = new String[pe.expectedTokenSequences.length];
-					for (int j = 0; j < pe.expectedTokenSequences.length; j++) {
-						StringBuffer sb = new StringBuffer();
-						sb.append(pe.tokenImage[pe.expectedTokenSequences[j][0]]);
-						String expected = removeQuotes(sb.toString());
-						if (!list.contains(expected))
-						{
-							list.add(expected);
-						}
-					}
-				}
-			}
-			return (String[]) list.toArray(new String[list.size()]);
+        if (result.getExceptions() == null
+                || result.getExceptions().size() == 0) {
+            return EMPTY;
+        } else {
+            List list = new ArrayList();
+            // provide only the deepest lookahead tokens
+            int lookaheadDepth = 1;
+
+            for (int i = 0; i < result.getExceptions().size(); i++) {
+                if (result.getExceptions().get(i) instanceof ParseException) {
+                    ParseException pe = (ParseException) result.getExceptions()
+                            .get(i);
+                    if (pe.expectedTokenSequences == null) {
+                        continue;
+                    }
+                    for (int j = 0; j < pe.expectedTokenSequences.length; j++)
+{
+                        String image;
+                        int[] sequence = pe.expectedTokenSequences[j];
+                        if (sequence.length < lookaheadDepth) {
+                            // this is for another lookahead path
+                            continue;
+                        }
+                        if (sequence.length > lookaheadDepth) {
+                            // what we've found so far are not applicable
+                            list = new ArrayList();
+                            lookaheadDepth = sequence.length;
+                        }
+                        // get the last token in the array
+                        image = pe.tokenImage[sequence[sequence.length - 1]];
+                        String expected = removeQuotes(image);
+                        if (!list.contains(expected)) {
+                            list.add(expected);
+                        }
+                    }
+                }
+            }
+            return (String[]) list.toArray(new String[list.size()]);
 
 		}
 	}
