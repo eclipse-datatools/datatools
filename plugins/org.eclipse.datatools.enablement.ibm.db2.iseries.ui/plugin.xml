@@ -9,6 +9,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.ibm.db2.iseries.NewISeriesConnectionProfileWizard"
             name="%profile.db2.iseries.wizard.title"
+            description = "%profile.db2.iseries.wizard.description"
             profile="org.eclipse.datatools.enablement.ibm.db2.iseries.connectionProfile"/>
    </extension>
    <extension

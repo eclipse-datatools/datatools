@@ -8,6 +8,7 @@
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.ibm.informix.NewInformixConnectionProfileWizard"
             name="%profile.informix.wizard.title"
+            description = "%profile.informix.wizard.description"
             profile="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
    </extension>
    
