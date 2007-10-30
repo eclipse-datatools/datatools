@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,8 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IForeign
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
+import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
+import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EAnnotation;
 
 /**
@@ -41,4 +43,21 @@ public class ForeignKeyHelper implements IForeignKeyHelperService
 	{
 		return !isIdentifyingConstraint(constraint);
 	}
+
+	public Table getTarget (ForeignKey fk)
+    {
+        UniqueConstraint constraint = fk.getUniqueConstraint();
+        if (constraint != null)
+        {
+            return constraint.getBaseTable();
+        }
+        else if (fk.getUniqueIndex() != null)
+        {
+            return fk.getUniqueIndex().getTable();
+        }
+        else
+        {
+            return fk.getReferencedTable();
+        }
+    }
 }
