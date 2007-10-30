@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.db.generic; singleton:=true
-Bundle-Version: 1.0.0.200710291
+Bundle-Version: 1.0.0.200710292
 Bundle-Activator: org.eclipse.datatools.connectivity.db.generic.GenericDBPlugin
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin

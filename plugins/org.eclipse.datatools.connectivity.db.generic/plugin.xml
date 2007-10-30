@@ -30,7 +30,7 @@
    
       <category
             parentCategory="org.eclipse.datatools.connectivity.db.driverCategory"
-            name="%org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            name="%org.eclipse.datatools.connectivity.db.generic.genericDriverCategory"
             id="org.eclipse.datatools.connectivity.db.genericDriverCategory"/>
 
       <driverTemplate
