@@ -22,7 +22,7 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
 
 /**
  * This class is used to build an XML data source connection. 
@@ -30,7 +30,7 @@ import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
 public class Connection implements IConnection
 {
 	//The file which server as data source.
-	private XMLDataInputStreamCreator dataInputStreamCreator;
+	private XMLCreatorContent xmlContent;
 
 	//The boolean indicate whether the connection is open.
 	private boolean isOpen;
@@ -50,13 +50,13 @@ public class Connection implements IConnection
 		if ( appContext != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
-			dataInputStreamCreator = XMLDataInputStreamCreator.getCreator( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
+			xmlContent = new XMLCreatorContent( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
 		else if ( file != null )
-			dataInputStreamCreator = XMLDataInputStreamCreator.getCreator( file );
+			xmlContent = new XMLCreatorContent( file );
 		else
 			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
 		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-		dataInputStreamCreator.setEncoding(encoding);
+		xmlContent.setEncoding(encoding);
 //		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
 		/*try
 		{
@@ -181,7 +181,7 @@ public class Connection implements IConnection
 	public IQuery newQuery( String dataSetType ) throws OdaException
 	{
 		
-		return new Query( this.dataInputStreamCreator );
+		return new Query( this.xmlContent );
 	}
 
 	/*

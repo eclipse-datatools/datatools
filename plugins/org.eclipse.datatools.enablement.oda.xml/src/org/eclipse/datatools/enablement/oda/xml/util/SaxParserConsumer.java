@@ -70,6 +70,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	private List cachedRootRows;
 	private Map cachedTempRows;
 	private List cachedOrderedTempRowRoots;
+	private XMLCreatorContent xmlContent;
+	
 	/**
 	 * 
 	 * @param rs
@@ -78,7 +80,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	 * @param tName
 	 * @throws OdaException
 	 */
-	public SaxParserConsumer( RelationInformation rinfo, XMLDataInputStream is, String tName) throws OdaException
+	public SaxParserConsumer( RelationInformation rinfo, XMLCreatorContent content, String tName) throws OdaException
 	{
 		//must start from 0
 		cachedResultSetRowNo = 0;
@@ -103,11 +105,13 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		this.namesOfCachedSimpleNestedColumns = relationInfo.getTableSimpleNestedXMLColumnNames( tableName );
 		
 		this.namesOfColumns = relationInfo.getTableRealColumnNames( tableName );
+		this.xmlContent = content;
 		
-		XMLDataInputStream xdis = is;
+		XMLDataInputStream xdis = null;
 		
 		if( namesOfCachedComplexNestedColumns.length > 0)
 		{
+			xdis =  XMLDataInputStreamCreator.getCreator( content, true ).createXMLDataInputStream( );
 			spNestedQueryHelper = new SaxParserComplexNestedQueryHelper(this,rinfo, xdis, tName);
 			try
 			{
@@ -133,6 +137,10 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			{
 				throw new OdaException( e.getLocalizedMessage( ) );
 			}
+		}
+		if( xdis== null )
+		{
+			xdis = XMLDataInputStreamCreator.getCreator( content, false ).createXMLDataInputStream( );
 		}
 		sp = new SaxParser( xdis, this, relationInfo.getTableFilterColumns( tableName ) );
 		spThread = new Thread( sp );
@@ -526,6 +534,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		//TODO add comments.
 		if( this.sp != null )
 			this.sp.stopParsing();
+		XMLDataInputStreamCreator.close( xmlContent.getKey( ) );
 	}
 
 	/**

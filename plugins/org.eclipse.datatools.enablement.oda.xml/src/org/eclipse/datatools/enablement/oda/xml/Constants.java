@@ -26,6 +26,8 @@ public final class Constants
 	public static final int CACHED_RESULT_SET_LENGTH = 10000;
 	public static final String APPCONTEXT_INPUTSTREAM = "org.eclipse.datatools.enablement.oda.xml.inputStream";
 	public static final String APPCONTEXT_CLOSEINPUTSTREAM = "org.eclipse.datatools.enablement.oda.xml.closeInputStream";
+	public static final String APPCONTEXT_MEMORY_CACHE_SIZE = "org.eclipse.datatools.enablement.oda.xml.memoryCacheSize";
+
 	//The connection proporty that is used to give the relation information string
 	//to the driver.
 	public static final String CONST_PROP_RELATIONINFORMATION = "RELATIONINFORMATION";

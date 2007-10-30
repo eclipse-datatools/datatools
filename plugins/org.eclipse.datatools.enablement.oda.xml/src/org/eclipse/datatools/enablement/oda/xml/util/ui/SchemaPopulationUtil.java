@@ -214,7 +214,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 			e1.printStackTrace( );
 		}
 		
-		if ( sp.exceptionOccurred( ) )
+		if ( sp== null || sp.exceptionOccurred( ) )
 			return null;
 		
 		return root;

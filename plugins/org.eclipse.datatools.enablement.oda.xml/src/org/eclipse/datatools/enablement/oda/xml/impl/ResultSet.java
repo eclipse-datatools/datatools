@@ -15,16 +15,16 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
-import org.eclipse.datatools.enablement.oda.xml.util.SaxParserConsumer;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStream;
-import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
+import org.eclipse.datatools.enablement.oda.xml.util.SaxParserConsumer;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
+import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
 
 /**
  * This class implement IResultSet class 
@@ -53,7 +53,7 @@ public class ResultSet implements IResultSet
 	 * @param tableName
 	 * @throws OdaException
 	 */
-	public ResultSet( XMLDataInputStream is, RelationInformation ri, String tableName, int maxRows )
+	public ResultSet( XMLCreatorContent content, RelationInformation ri, String tableName, int maxRows )
 			throws OdaException
 	{
 		this.rsMetaData = new ResultSetMetaData( ri, tableName );
@@ -62,7 +62,7 @@ public class ResultSet implements IResultSet
 		
 		isClosed = false;
 		
-		spConsumer = new SaxParserConsumer( ri, is, tableName );
+		spConsumer = new SaxParserConsumer( ri, content, tableName );
 	}
 
 	/*
