@@ -11,7 +11,7 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.examples.actions;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs.SQLBuilderDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.EditorInputUtil;
 import org.eclipse.jface.action.IAction;
@@ -24,20 +24,20 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * This class demonstrates how to launch the SQLBuilderDialog with
- * a storage input. This allows the SQLBuilderDialog to be given an
- * input which is not a file.
+ * a SQLBuilderEditorInput. This allows the SQLBuilderDialog to be given an
+ * input which is a string.
  *  
  * @author Jeremy Lindop
  */
 
-public class SQLBuilderDialogStorageAction implements IObjectActionDelegate {
+public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate {
 
 	private IFile _selectedFile;
 	
 	/**
 	 * Constructor for SQLBuilderDialogFileAction.
 	 */
-	public SQLBuilderDialogStorageAction() {
+	public SQLBuilderDialogEditorInputAction() {
 		super();
 	}
 
@@ -52,15 +52,15 @@ public class SQLBuilderDialogStorageAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		/*
-		 * Create a SQLBuilderStorageEditorInput based on the file then pass it to the
+		 * Create a SQLBuilderEditorInput based on the file then pass it to the
 		 * new SQLBuilderDialog.
-		 * In a real application, the SQLBuilderStorageEditorInput would not be created
+		 * In a real application, the SQLBuilderEditorInput would not be created
 		 * directly from a file. Rather it would be created from data held by the calling
 		 * application in e.g. a string. 
 		 */
-		SQLBuilderStorageEditorInput storageEditorInput = 
-			EditorInputUtil.createSQLBuilderStorageEditorInputFromStringViaFile(_selectedFile);
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), storageEditorInput);
+		SQLBuilderEditorInput editorInput = 
+			EditorInputUtil.createSQLBuilderEditorInputFromFile(_selectedFile);
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput);
 		sqlBuilderDialog.create();
 		sqlBuilderDialog.setBlockOnOpen(true);
 		sqlBuilderDialog.open();

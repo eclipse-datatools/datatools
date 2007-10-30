@@ -16,6 +16,7 @@ import java.io.StringWriter;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
@@ -56,6 +57,8 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	private SQLBuilder _sqlBuilder = null;
 	private ISQLBuilderEditorInput _editorInput = null;
 
+//	ResultsViewControl _resultsViewControl;
+	
 	/**
 	 * Constructor for SQLBuilderDialog
 	 * 
@@ -135,9 +138,26 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		tabResults.setControl(resultsComposite);
 
 		/*
-		 * TODO: add the results view
+		 * Add the results view
 		 */
+		//ResultSection _resultSection = ResultSectionFactory.createResultSection(resultsComposite, null);
+		//gd = new GridData(GridData.FILL, GridData.FILL, true, true);
+		//_resultSection.getControl().setLayoutData(gd);
+/*
+		_resultsViewControl = new ResultsViewControl(null);
+		try {
+			_resultsViewControl.init(null, null);
+		} catch (PartInitException e) {
+			System.out.println(e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		_resultsViewControl.createPartControl(resultsComposite);	
+		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
+		_resultsViewControl.getControl().setLayoutData(gd);
 		
+		// TODO
+		_resultsViewControl.clearHistory();
+*/		
 		return topComposite;
 	}
 
@@ -208,6 +228,22 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 					 * Set _sqlBuilder's dirty flag to false
 					 */
 					_sqlBuilder.setDirty(false);
+				}
+				else if (_editorInput instanceof SQLBuilderEditorInput) {
+					String sEncodedConnectionInfo = _sqlBuilder.getConnectionInfo().encode();
+					String sEncodedOmitSchemaInfo = _sqlBuilder.getOmitSchemaInfo().encode();
+					String sSQL = _sqlBuilder.getSQL();
+					
+					String sMsg = "Encoded ConnectionInfo: <"+ sEncodedConnectionInfo + ">\n" +
+								  "Encoded OmitSchemaInfo: <"+ sEncodedOmitSchemaInfo + ">\n" +
+								  "SQL:\n" + sSQL.trim() + "";
+					
+					MessageBox mb = new MessageBox(Display.getCurrent()
+							.getActiveShell(), SWT.ICON_INFORMATION);
+					mb.setText("SQL Query Builder Data");
+					mb.setMessage(sMsg);
+					mb.open();
+					
 				}
 				
 				/*
