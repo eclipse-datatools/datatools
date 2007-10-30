@@ -110,26 +110,25 @@ public class OmitSchemaInfo extends Observable implements IOmitSchemaInfo{
 
         if (code == null || !code.matches(".*:.*:.*"))
 		{
-			SQLBuilderPlugin.getPlugin().getLogger().writeTrace( "Cannot decode <" + code + ">");
+			SQLBuilderPlugin.getPlugin().getLogger().writeTrace( "Cannot decode OmitSchemaInfo <" + code + ">");
 			omitSchemaInfo.initFromPreferences();
 		}
         else {
-        	
+    		int i = 0;
+    		int j = code.indexOf(':');
+    		String sOmitCurrentSchema = code.substring(i, j);
+    		omitSchemaInfo._omitCurrentSchema = 
+    			Boolean.valueOf(sOmitCurrentSchema).booleanValue();
+    		
+    		i = j + 1;
+    		j = code.indexOf(':', i);
+    		String sUseAUIDAsCurrentSchema = code.substring(i, j);
+    		omitSchemaInfo._useAUIDAsCurrentSchema = 
+    			Boolean.valueOf(sUseAUIDAsCurrentSchema).booleanValue();
+    		
+    		i = j + 1;
+    		omitSchemaInfo._currentSchema = code.substring(i);
         }
-		int i = 0;
-		int j = code.indexOf(':');
-		String sOmitCurrentSchema = code.substring(i, j);
-		omitSchemaInfo._omitCurrentSchema = 
-			Boolean.valueOf(sOmitCurrentSchema).booleanValue();
-		
-		i = j + 1;
-		j = code.indexOf(':', i);
-		String sUseAUIDAsCurrentSchema = code.substring(i, j);
-		omitSchemaInfo._useAUIDAsCurrentSchema = 
-			Boolean.valueOf(sUseAUIDAsCurrentSchema).booleanValue();
-		
-		i = j + 1;
-		omitSchemaInfo._currentSchema = code.substring(i);
 
 	    return (OmitSchemaInfo) SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(omitSchemaInfo);
 	}

@@ -42,6 +42,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
@@ -423,6 +424,30 @@ public class SQLDomainModel {
         return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
     }
 
+    /**
+     * Initializes the SQL statement in the SQL Builder from the statement type.
+     * 
+     * @param statement type Statement type is used for creating new statements. The value must be
+     * one of  {@link org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper}'s
+	 * STATEMENT_TYPE constants.
+ 
+     * @return true
+     */
+    public boolean initializeFromType(int statementType) {
+        if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { statementType });
+        }
+        
+        boolean retval = true;
+             
+        if (templateSQLTable == null || templateSQLTable.size() < 6) {
+            initTemplateSQLTable();                
+        }
+        sqlStatement = getDefaultStatementFromStatementType(statementType, null);
+    
+        return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
+    }
+
     // [RATLC01124214] bgp 11Aug2006 - new method
     /**
      * Gets the contents of the given file resource as a string.
@@ -557,9 +582,8 @@ public class SQLDomainModel {
         // If we don't have a database definition, try to get one from the ISQLEditorConnectionInfo.
         // If we don't have a ISQLEditorConnectionInfo, try getting it from the Database.
         if (dbDefinition == null) {
-        	ISQLEditorConnectionInfo connInfo = getConnectionInfo();
-            if (connInfo != null) {
-            	dbDefinition = SQLDBUtil.getDatabaseDefinition(connInfo);
+            if (connectionInfo != null) {
+            	dbDefinition = SQLDBUtil.getDatabaseDefinition(connectionInfo);
             }
             if (dbDefinition == null) {
                 Database db = getDatabase();
@@ -591,7 +615,7 @@ public class SQLDomainModel {
 
     /**
      * Gets the <code>ISQLEditorConnectionInfo</code> object associated with this statement.
-     * 
+    * 
      * @return ISQLEditorConnectionInfo the model's connection info object
      */
     public ISQLEditorConnectionInfo getConnectionInfo() {
@@ -895,6 +919,50 @@ public class SQLDomainModel {
     }
 
     /**
+     * Gets a default SQL statement object based on the given statement type. 
+     * 
+     * @param statementType the statement type
+     * @param statementName a name for the new statement. The value should be
+     * one of  {@link org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper}'s
+	 * STATEMENT_TYPE constants.
+     * @return the default SQL statement object
+     */
+    public QueryStatement getDefaultStatementFromStatementType(int statementType, String statementName) {
+        if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { statementType, statementName });
+        }
+
+        QueryStatement statement = null;
+
+        if (statementType == StatementHelper.STATEMENT_TYPE_INSERT) {
+            statement = StatementHelper.createInsertStatement(statementName);
+        }
+        else if (statementType == StatementHelper.STATEMENT_TYPE_UPDATE) {
+            statement = StatementHelper.createUpdateStatement(statementName);
+        }
+        else if (statementType == StatementHelper.STATEMENT_TYPE_DELETE) {
+            statement = StatementHelper.createDeleteStatement(statementName);
+        }
+        else if (statementType == StatementHelper.STATEMENT_TYPE_FULLSELECT){
+            statement = StatementHelper.createQueryCombinedStatement(statementName);
+        }
+        else if (statementType == StatementHelper.STATEMENT_TYPE_SELECT) {
+            statement = StatementHelper.createQuerySelectStatement(statementName);
+        }
+        else if (statementType == StatementHelper.STATEMENT_TYPE_WITH) {
+            statement = StatementHelper.createWithStatement(statementName);
+        }
+        // Default - create SELECT statement
+        else {
+            statement = StatementHelper.createQuerySelectStatement(statementName);
+        }
+        
+        statement.getSourceInfo().setSqlFormat(getSqlSourceFormat());
+
+        return (QueryStatement) SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(statement);
+    }
+
+    /**
      * Gets an instance of the parser manager to use with this statement.
      * @return the parser manager object
      */
@@ -1007,6 +1075,7 @@ public class SQLDomainModel {
         return (QueryStatement) SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(parsedStatement);
     }
 
+       
     /**
      * Gets the current SQLQuerySourceFormat object.  The SQLQuerySourceFormat object contains
      * parameters that indicate how the SQL for the query model should be generated and parsed.  
@@ -1214,4 +1283,17 @@ public class SQLDomainModel {
         }
     }
 
+	public DatabaseIdentifier getDatabaseIdentifier() {
+    	String profileName = connectionInfo.getConnectionProfileName();
+    	String dbName = connectionInfo.getDatabaseName();
+   		return new DatabaseIdentifier(profileName, dbName);
+	}
+    
+	public boolean isConnected(){
+		return connectionInfo.isConnected();
+	}
+
+	public void setInitialSource(String strSQL) {
+		this.initialSource = strSQL;
+	}
 }

@@ -35,6 +35,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLParserUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WindowUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
@@ -302,10 +303,11 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			_sqlDomainModel.setOmitSchemaInfo(omitSchemaInfo);
 			((OmitSchemaInfo)omitSchemaInfo).addObserver(this);
 
-			ISQLEditorConnectionInfo connInfo = _sqlBuilderEditorInput
-					.getConnectionInfo();
+			ISQLEditorConnectionInfo connInfo = _sqlBuilderEditorInput.getConnectionInfo();
 			_sqlDomainModel.setConnectionInfo(connInfo);
 
+			
+			
 			// After setting omitSchemaInfo and connectionInfo, call
 			// setCurrentSchema
 			_sqlDomainModel.setCurrentSchema();
@@ -325,10 +327,11 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/*
-	 * Loads the SQL statement from the SQLBuilder's SQLBuilderEditorInput
+	 * Loads the SQL statement from the SQLBuilder's ISQLBuilderEditorInput
 	 * 
 	 */
 	protected void loadInput() throws PartInitException {
+		
 		ISQLEditorConnectionInfo connInfo = _sqlDomainModel.getConnectionInfo();
 		Database db = null;
 		if (connInfo != null){
@@ -339,6 +342,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 					Messages._EXC_OPEN_SQL_FILE_NOT_CONNECTED, connInfo
 							.getConnectionProfileName()));
 		}
+		
 		_sqlDomainModel.setDatabase(db);
 
 		// Load the initial SQL from the editor input. Note that persistance
@@ -386,6 +390,79 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			} catch (Exception ex) {
 				throw new PartInitException(
 						Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+			}
+		}
+
+		// Handle the case where the input is based on a String object.
+		else if (_sqlBuilderEditorInput instanceof SQLBuilderEditorInput) {
+			SQLBuilderEditorInput editorInput = (SQLBuilderEditorInput) _sqlBuilderEditorInput;
+			String strSQL = editorInput.getSQLStatement();
+			if (strSQL == null || strSQL.length() == 0){
+				int statementType = editorInput.getStatementType();
+				try {
+					_inputLoaded = _sqlDomainModel
+							.initializeFromType(statementType);
+					if (_inputLoaded == false) {
+						// TODO: sort out the use of _inputLoaded
+						_inputLoaded = true;
+	//					throw new PartInitException(
+	//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+					}
+				} catch (Exception ex) {
+					throw new PartInitException(
+							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+				}
+			}
+			else {
+				// If there's no dialect info, load the input's string
+				if (editorInput.getSQLStatementInfo().getSQLDialectInfo() == null){
+					try {
+						_inputLoaded = _sqlDomainModel
+								.initializeFromString(strSQL);
+						if (_inputLoaded == false) {
+							// TODO: sort out the use of _inputLoaded
+							_inputLoaded = true;
+		//					throw new PartInitException(
+		//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+						}
+					} catch (Exception ex) {
+						throw new PartInitException(
+								Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+					}
+				}
+				// If there's a dialect, parse according to the dialect
+				// then edit the statement for the current connectionInfo
+				else { 
+					try {
+						// Parse according to the dialect then
+						// generate according to the 
+						// editorInput's connectionInfo.
+						// This is done in a utility class rather than the DomainModel
+						// so that the member variables in the SQLDomainModel
+						// don't get messed up.
+						// 
+						// NB. This functionality has only been tested in a very
+						// rudimentary way and needs more work and testing.
+						QueryStatement sqlStatement = SQLParserUtil.parseForDifferentDialect(editorInput, _sqlDomainModel);
+						String initialSQL = SQLParserUtil.generateSQL( sqlStatement, editorInput);
+						_sqlDomainModel.setSQLStatement(sqlStatement);
+						_sqlDomainModel.setInitialSource(initialSQL);
+						_sqlDomainModel.getSqlSourceFormat();
+						
+						String newSQL = initialSQL;
+						_inputLoaded = _sqlDomainModel
+								.initializeFromString(newSQL);
+						if (_inputLoaded == false) {
+							// TODO: sort out the use of _inputLoaded
+							_inputLoaded = true;
+		//					throw new PartInitException(
+		//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+						}
+					} catch (Exception ex) {
+						throw new PartInitException(
+								Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+					}
+				}
 			}
 		}
 

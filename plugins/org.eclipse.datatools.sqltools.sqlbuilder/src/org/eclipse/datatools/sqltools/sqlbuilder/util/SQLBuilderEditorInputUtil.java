@@ -17,18 +17,22 @@ import java.io.StringWriter;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.ISQLStatementInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStatementInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
 
 /**
  * This class provides static methods for SQLBuilder EditorInputs.
+ * 
+ * @author Jeremy Lindop
  */
-
 public class SQLBuilderEditorInputUtil {
 	
 	/**
@@ -84,6 +88,36 @@ public class SQLBuilderEditorInputUtil {
 		storageEditorInput.setOmitSchemaInfo(omitSchemaInfo);
 		
 		return storageEditorInput;
+	}
+	
+	/**
+	 * Creates a SQLBuilderEditorInput from a file.
+	 * It consumes .sql files created in the DTP SQLEditor and possibly edited subsequently in
+	 * the SQLBuilder.
+	 * 
+	 * @param file
+	 * @return SQLBuilderEditorInput the <code>SQLBuilderEditorInput</code> created from the input file.
+	 */
+	public static SQLBuilderEditorInput createSQLBuilderEditorInput(IFile file){
+		/*
+		 * Get SQLStatement, ConnectionInfo and OmitSchemaInfo from file.
+		 */
+		SQLBuilderFileEditorInput fileEditorInput = new SQLBuilderFileEditorInput(file);
+		String sSQL = fileEditorInput.getSQLStatement();
+		ISQLEditorConnectionInfo connectionInfo = fileEditorInput.getConnectionInfo();
+		IOmitSchemaInfo omitSchemaInfo = fileEditorInput.getOmitSchemaInfo();
+		
+		/*
+		 * Create a new SQLStatementInfo
+		 */
+		ISQLStatementInfo sqlStatementInfo = new SQLStatementInfo(sSQL);
+		
+		/*
+		 * Create SQLBuilderEditorInput with the SQL, ConnectionProfile and OmitSchemaInfo in it
+		 */
+		SQLBuilderEditorInput editorInput = new SQLBuilderEditorInput(connectionInfo, sqlStatementInfo, omitSchemaInfo);
+		
+		return editorInput;
 	}
 	
 	/**

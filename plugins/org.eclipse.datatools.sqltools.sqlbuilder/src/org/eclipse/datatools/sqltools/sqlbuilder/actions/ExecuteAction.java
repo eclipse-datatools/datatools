@@ -12,10 +12,9 @@ package org.eclipse.datatools.sqltools.sqlbuilder.actions;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.BaseExecuteAction;
 import org.eclipse.ui.IEditorPart;
@@ -40,9 +39,7 @@ public class ExecuteAction extends BaseExecuteAction {
 	public DatabaseIdentifier getDatabaseIdentifier() {
 
         if (_sqlBuilder != null) {
-    		String profileName = _sqlBuilder.getDomainModel().getConnectionInfo().getConnectionProfileName();
-    		String dbName = _sqlBuilder.getDomainModel().getConnectionInfo().getDatabaseName();
-    		return new DatabaseIdentifier(profileName, dbName);
+    		return _sqlBuilder.getDomainModel().getDatabaseIdentifier();
     	}
         return null;
 	}
@@ -88,8 +85,7 @@ public class ExecuteAction extends BaseExecuteAction {
 
 
 	public void update() {
-		ISQLEditorConnectionInfo connectionInfo = _sqlBuilder.getDomainModel().getConnectionInfo();
-		setEnabled(_sqlBuilder != null && connectionInfo.isConnected());
+		setEnabled(_sqlBuilder.getDomainModel().isConnected());
 	}
 
 }
