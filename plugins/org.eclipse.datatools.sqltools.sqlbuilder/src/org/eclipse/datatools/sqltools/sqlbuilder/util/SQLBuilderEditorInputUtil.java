@@ -113,7 +113,7 @@ public class SQLBuilderEditorInputUtil {
 		ISQLStatementInfo sqlStatementInfo = new SQLStatementInfo(sSQL);
 		
 		/*
-		 * Create SQLBuilderEditorInput with the SQL, ConnectionProfile and OmitSchemaInfo in it
+		 * Create SQLBuilderEditorInput with the SQL, ConnectionInfo and OmitSchemaInfo in it
 		 */
 		SQLBuilderEditorInput editorInput = new SQLBuilderEditorInput(connectionInfo, sqlStatementInfo, omitSchemaInfo);
 		
