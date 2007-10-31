@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.mysql; singleton:=true
-Bundle-Version: 1.0.0.200710171
+Bundle-Version: 1.0.0.200710311
 Bundle-Activator: org.eclipse.datatools.enablement.mysql.MysqlPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

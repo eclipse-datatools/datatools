@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
+import org.eclipse.datatools.connectivity.sqm.core.rte.IEngineeringCallBack;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGenerationOptions;
@@ -55,8 +56,27 @@ import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
      private EngineeringOptionCategory[] categories = null;
      private MySqlDdlBuilder builder = null;
 
+ 	public MySqlDdlGenerator() {
+		this.builder = new MySqlDdlBuilder();
+	}
+
+ 	public String[] generateDDL(SQLObject[] elements, IProgressMonitor progressMonitor){
+		return this.generateDDL(elements, progressMonitor, null);
+	}
+
+    public String[] createSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor){
+    	return this.createSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor,null);
+    }
+    
+    public String[] dropSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor){
+    	return this.dropSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor,null);
+    }
+
+     
      public String[] generateDDL(SQLObject[] elements,
-                                 IProgressMonitor progressMonitor) {
+    		 				     IProgressMonitor progressMonitor,
+    		 				     IEngineeringCallBack callback) {
+     	this.builder.setEngineeringCallBack(callback);
         String[] statements = new String[0];
      	EngineeringOption[] options = this.getSelectedOptions(elements);
      	
@@ -77,9 +97,11 @@ import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
         return statements;
      }
 
-     public String[] createSQLObjects(SQLObject[] elements,
-                                      boolean quoteIdentifiers, boolean qualifyNames,
-                                      IProgressMonitor progressMonitor) {
+     public String[] createSQLObjects(SQLObject[] elements, 
+    		 						  boolean quoteIdentifiers, boolean qualifyNames,
+    		 						  IProgressMonitor progressMonitor,
+    		 						  IEngineeringCallBack callback) {
+    	 this.builder.setEngineeringCallBack(callback);
          String[] statements = this.createStatements(elements, quoteIdentifiers,
                  qualifyNames, progressMonitor, 100);
          return statements;
@@ -87,7 +109,9 @@ import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 
      public String[] dropSQLObjects(SQLObject[] elements,
                                     boolean quoteIdentifiers, boolean qualifyNames,
-                                    IProgressMonitor progressMonitor) {
+                                    IProgressMonitor progressMonitor,
+                                    IEngineeringCallBack callback) {
+    	 this.builder.setEngineeringCallBack(callback);
          String[] statements = this.dropStatements(elements, quoteIdentifiers,
                  qualifyNames, progressMonitor, 100);
          return statements;

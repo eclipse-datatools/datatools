@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.rte.IEngineeringCallBack;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
 import org.eclipse.datatools.enablement.mysql.catalog.MySqlCatalogTable;
@@ -134,6 +135,20 @@ public class MySqlDdlBuilder {
 
     private HashMap createMap = new HashMap();
     private HashMap dropMap = new HashMap();
+    private IEngineeringCallBack callback = null;
+    private IEngineeringCallBack dummyCallback = null;
+
+    public void setEngineeringCallBack(IEngineeringCallBack callback) {
+    	this.callback = callback;
+    }
+
+    public IEngineeringCallBack getEngineeringCallBack() {
+    	if (this.callback != null) {
+    		return this.callback;
+    	} else{
+    		return this.getDummyEngineeringCallBack();
+    	}
+    }
 
     public void clearDrop() {
         dropMap.clear();
@@ -899,4 +914,19 @@ public class MySqlDdlBuilder {
 		}
 		return QUOTE + result + QUOTE;
 	}
+	
+    private IEngineeringCallBack getDummyEngineeringCallBack(){
+    	if (this.dummyCallback == null) this.dummyCallback = new dummyEngineeringCallBack();
+    	return dummyCallback;
+    }
+
+    private class dummyEngineeringCallBack implements IEngineeringCallBack {
+    	public String[] getMessages(){
+    		return new String[]{};
+    	}
+    	
+    	public void writeMessage(String message) {
+    	}
+    }
+
 }
