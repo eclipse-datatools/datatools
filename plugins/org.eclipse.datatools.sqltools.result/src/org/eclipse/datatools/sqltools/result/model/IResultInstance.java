@@ -229,4 +229,17 @@ public interface IResultInstance extends Serializable
      * @return the status of this result instance
      */
     public int calculateStatus();
+    
+    
+    /**
+     * Return the current flag value which indicates that this IResultInstance object may have sub results.
+     * @return the current flag value
+     */
+    public boolean isMayHaveSubResults();
+    
+    /**
+     * Set new value to the flag which indicates that this IResultInstance object may have sub results.
+     * @param flag the new flag value
+     */
+    public void setMayHaveSubResults(boolean flag);
 }

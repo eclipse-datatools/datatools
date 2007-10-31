@@ -169,6 +169,8 @@ public class GroupSQLResultRunnable extends SimpleSQLResultRunnable
             if (_groups.length > 1)
             {
                 resultsViewAPI.createNewInstance(getOperationCommand(), null);
+                // set true to the flag which indicates that this IResultInstance object may have sub results.
+                resultsViewAPI.getResultInstance(getOperationCommand()).setMayHaveSubResults(true);
             }
             HashMap addInfo = null;
             if (_varDefs != null && _promptVar)

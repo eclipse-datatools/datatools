@@ -74,23 +74,45 @@ public class StatusTextProvider
     }
     
     /**
-     * Returns the history header for saving purpose
+     * Returns the full history header for saving purpose
      * @param instance the given result instance
-     * @return the history header for saving purpose
+     * @return the full history header for saving purpose
      */
     public static String getHistoryHeader(IResultInstance instance)
     {
         StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
         buff.append(instance.getOperationCommand().getDisplayString()).append(_LINESEPARATOR);
-        buff
-                .append(Messages.StatusTextProvider_action_type).append(OperationCommand.getActionString(instance.getOperationCommand().getActionType())) 
+        buff.append(Messages.StatusTextProvider_action_type).append(
+                OperationCommand.getActionString(instance.getOperationCommand().getActionType()))
                 .append(_LINESEPARATOR);
-        buff
-                .append(Messages.StatusTextProvider_profile_name).append(instance.getOperationCommand().getProfileName()).append(_LINESEPARATOR); 
-        buff
-                .append(Messages.StatusTextProvider_database).append(instance.getOperationCommand().getDatabaseName()).append(_LINESEPARATOR); 
-        buff
-                .append(Messages.StatusTextProvider_time).append(instance.getExecuteTime()).append(_LINESEPARATOR); 
+        buff.append(Messages.StatusTextProvider_profile_name).append(instance.getOperationCommand().getProfileName())
+                .append(_LINESEPARATOR);
+        buff.append(Messages.StatusTextProvider_database).append(instance.getOperationCommand().getDatabaseName())
+                .append(_LINESEPARATOR);
+        buff.append(Messages.StatusTextProvider_time).append(instance.getExecuteTime()).append(_LINESEPARATOR);
+        buff.append(_LINESEPARATOR);
+        int count = instance.getItemCount();
+        for (int i = 0; i < count; i++)
+        {
+            ResultItem item = instance.getItem(i);
+            if (item.getResultType() == ResultItem.STATUS_TEXT)
+            {
+                buff.append((String) item.getResultObject());
+            }
+        }
+        return buff.toString();
+    }
+    
+    /**
+     * Returns the simple history header for saving purpose
+     * @param instance the given result instance
+     * @return the simple history header for saving purpose
+     */
+    public static String getSimpleHeader(IResultInstance instance)
+    {
+        StringBuffer buff = new StringBuffer(""); //$NON-NLS-1$
+        buff.append(instance.getOperationCommand().getDisplayString()).append(_LINESEPARATOR);
+        buff.append(_LINESEPARATOR);
         int count = instance.getItemCount();
         for (int i = 0; i < count; i++)
         {

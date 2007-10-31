@@ -587,6 +587,16 @@ public class ResultsViewAPI
         instance = _manager.createNewResultInstance(cmd, terminateHandler);
         return instance == null ? false : true;
     }
+    
+    /**
+     * Return the IResultInstance object correlative with the OperationCommand object.
+     * @param cmd the operation request, can not be null
+     * @return the correlative IResultInstance object
+     */
+    public IResultInstance getResultInstance(OperationCommand cmd)
+    {
+        return _manager.getInstance(cmd);
+    }
 
     /**
      * Shows the parameters on SQL Results View. If there are already parameters displayed, the old parameters will be

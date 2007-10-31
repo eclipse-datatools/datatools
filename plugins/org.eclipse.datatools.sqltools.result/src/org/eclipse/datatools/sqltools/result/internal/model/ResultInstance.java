@@ -61,6 +61,8 @@ public class ResultInstance implements IResultInstance
     private List               _subResults; 
     
     private IResultInstance    _parentResult;
+    // This flag is used to indicate that this ResultInstance object may have sub results.
+    private boolean            _mayHaveSubResults = false;
     
     public ResultInstance(IResultManager resultmanager, OperationCommand command, Runnable terminateHandler)
     {
@@ -367,5 +369,15 @@ public class ResultInstance implements IResultInstance
         {
         	_resultList = new ArrayList(5);
         }
+    }
+
+    public boolean isMayHaveSubResults()
+    {
+        return _mayHaveSubResults;
+    }
+
+    public void setMayHaveSubResults(boolean mayHaveSubResults)
+    {
+        _mayHaveSubResults = mayHaveSubResults;
     }
 }
