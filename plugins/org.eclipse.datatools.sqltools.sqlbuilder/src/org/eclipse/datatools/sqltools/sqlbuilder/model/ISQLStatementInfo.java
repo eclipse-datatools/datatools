@@ -13,7 +13,10 @@ package org.eclipse.datatools.sqltools.sqlbuilder.model;
 
 /**
  * This interface defines the set of properties which define a SQL
- * statement in a string.
+ * statement in a string. The DialectInfo is
+ * optional within a SQLStatementInfo and should only be used if the dialect
+ * in which the statement was created is different from that of the current
+ * connection.
  *
  * @author Jeremy Lindop
  */
@@ -33,14 +36,20 @@ public interface ISQLStatementInfo  {
     public void setSQL(String sql);
       
     /**
-     * Gets the ISQLDialectInfo for this ISQLStatementInfo.
+     * Gets the ISQLDialectInfo for this ISQLStatementInfo. The DialectInfo is
+     * optional within a SQLStatementInfo and should only be used if the dialect
+     * in which the statement was created is different from that of the current
+     * connection.
      * 
      * @return  the ISQLDialectInfo
      */
     public ISQLDialectInfo getSQLDialectInfo();
       
     /**
-     * Sets the ISQLDialectInfo for this ISQLStatementInfo.
+     * Sets the ISQLDialectInfo for this ISQLStatementInfo. The DialectInfo is
+     * optional within a SQLStatementInfo and should only be used if the dialect
+     * in which the statement was created is different from that of the current
+     * connection.
      * 
      */
     public void setSQLDialectInfo(ISQLDialectInfo sqlDialectInfo);

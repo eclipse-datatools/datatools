@@ -396,7 +396,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		// Handle the case where the input is based on a String object.
 		else if (_sqlBuilderEditorInput instanceof SQLBuilderEditorInput) {
 			SQLBuilderEditorInput editorInput = (SQLBuilderEditorInput) _sqlBuilderEditorInput;
-			String strSQL = editorInput.getSQLStatement();
+			String strSQL = editorInput.getSQL();
 			if (strSQL == null || strSQL.length() == 0){
 				int statementType = editorInput.getStatementType();
 				try {

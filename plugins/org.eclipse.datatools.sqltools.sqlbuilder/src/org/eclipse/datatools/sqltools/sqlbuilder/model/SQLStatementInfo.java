@@ -15,7 +15,9 @@ import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 
 /**
  * This class defines the set of properties which define a SQL
- * statement in a string.
+ * statement in a string.  The DialectInfo object is optional and should only
+ * be used if the dialect in which the statement was created is
+ * different from that of the current connection.
  * 
  * @author Jeremy Lindop
  */

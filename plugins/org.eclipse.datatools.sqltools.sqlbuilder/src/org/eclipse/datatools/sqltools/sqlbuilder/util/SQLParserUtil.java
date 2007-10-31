@@ -43,7 +43,7 @@ public class SQLParserUtil {
 	public static QueryStatement parseForDifferentDialect(
 			SQLBuilderEditorInput editorInput, SQLDomainModel domainModel) {
 		QueryStatement sqlStatement = null;
-		String strSQL = editorInput.getSQLStatement();
+		String strSQL = editorInput.getSQL();
         strSQL = strSQL.trim();
         
         try {

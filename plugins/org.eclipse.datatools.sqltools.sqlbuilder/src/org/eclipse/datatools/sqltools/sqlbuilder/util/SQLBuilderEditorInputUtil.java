@@ -75,7 +75,7 @@ public class SQLBuilderEditorInputUtil {
 		 * Get SQLStatement, ConnectionInfo and OmitSchemaInfo from file.
 		 */
 		SQLBuilderFileEditorInput fileEditorInput = new SQLBuilderFileEditorInput(file);
-		String sSQL = fileEditorInput.getSQLStatement();
+		String sSQL = fileEditorInput.getSQL();
 		ISQLEditorConnectionInfo connectionInfo = fileEditorInput.getConnectionInfo();
 		IOmitSchemaInfo omitSchemaInfo = fileEditorInput.getOmitSchemaInfo();
 		
@@ -103,7 +103,7 @@ public class SQLBuilderEditorInputUtil {
 		 * Get SQLStatement, ConnectionInfo and OmitSchemaInfo from file.
 		 */
 		SQLBuilderFileEditorInput fileEditorInput = new SQLBuilderFileEditorInput(file);
-		String sSQL = fileEditorInput.getSQLStatement();
+		String sSQL = fileEditorInput.getSQL();
 		ISQLEditorConnectionInfo connectionInfo = fileEditorInput.getConnectionInfo();
 		IOmitSchemaInfo omitSchemaInfo = fileEditorInput.getOmitSchemaInfo();
 		
