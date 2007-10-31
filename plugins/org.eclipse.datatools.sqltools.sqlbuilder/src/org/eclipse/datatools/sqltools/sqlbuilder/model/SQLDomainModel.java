@@ -435,7 +435,7 @@ public class SQLDomainModel {
      */
     public boolean initializeFromType(int statementType) {
         if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { statementType });
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { Integer.toString(statementType)} );
         }
         
         boolean retval = true;
@@ -929,7 +929,7 @@ public class SQLDomainModel {
      */
     public QueryStatement getDefaultStatementFromStatementType(int statementType, String statementName) {
         if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { statementType, statementName });
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { Integer.toString(statementType), statementName });
         }
 
         QueryStatement statement = null;
