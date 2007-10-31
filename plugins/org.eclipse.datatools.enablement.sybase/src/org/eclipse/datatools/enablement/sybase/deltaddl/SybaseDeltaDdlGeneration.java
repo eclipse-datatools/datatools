@@ -14,6 +14,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlGenerator;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlGenerator;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
@@ -43,6 +44,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
     protected EChangeSummary      changeSummary = null;
     protected Collection          redoChanges   = null;
     protected EngineeringOption[] options       = null;
+	private EngineeringOptionCategory[] categories = null;
 
     public String[] generateDeltaDDL(EChangeSummary changeSummary, IProgressMonitor monitor)
     {
@@ -226,7 +228,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         public Object             newValue;
     }
 
-    protected EngineeringOption[] getOptions()
+    public EngineeringOption[] getOptions()
     {
         if (this.options == null)
         {
@@ -237,6 +239,15 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         return this.options;
     }
 
+    public EngineeringOptionCategory[] getOptionCategories(){
+        if(this.categories == null) {
+            // return global generation options
+        	this.categories =  ((SybaseDdlGenerator) getDDLGenerator()).getOptionCategories();
+        }
+        return this.categories;
+    }
+
+    
     final protected boolean generateQuotedIdentifiers()
     {
         return ((SybaseDdlGenerator) getDDLGenerator()).generateQuotedIdentifiers(getOptions());
