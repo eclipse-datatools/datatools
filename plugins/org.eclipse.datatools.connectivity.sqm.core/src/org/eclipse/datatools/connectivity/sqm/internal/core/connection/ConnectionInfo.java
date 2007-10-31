@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -165,4 +165,12 @@ public interface ConnectionInfo extends org.eclipse.datatools.connectivity.sqm.c
 	 * @return
 	 */
 	public boolean removeFilterListener(ConnectionFilterListener listener);
+
+
+	/**
+	 * Get database product version
+	 * @return
+	 */
+    public String getDatabaseProductVersion();
+
 }

@@ -63,6 +63,13 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="priority" type="string">
+            <annotation>
+               <documentation>
+                  priority is from 0 .. 10. default is 0.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -86,6 +93,13 @@
             <annotation>
                <documentation>
                   
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string">
+            <annotation>
+               <documentation>
+                  priority is from 0 .. 10. default is 0.
                </documentation>
             </annotation>
          </attribute>

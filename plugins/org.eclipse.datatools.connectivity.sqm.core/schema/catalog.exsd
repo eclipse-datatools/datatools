@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="Catalog" name="Catalog"/>
       </appInfo>
       <documentation>
-         Provides a catalog loader and/or override catalog loader. 
+         Provides a catalog loader and/or override catalog loader.
       </documentation>
    </annotation>
 
@@ -60,6 +60,13 @@
             <annotation>
                <documentation>
                   
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string">
+            <annotation>
+               <documentation>
+                  priority is from 0 .. 10. default is 0.
                </documentation>
             </annotation>
          </attribute>

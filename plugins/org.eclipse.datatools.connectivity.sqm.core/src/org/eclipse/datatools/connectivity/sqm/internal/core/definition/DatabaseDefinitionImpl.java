@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -158,6 +158,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "catalog"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
+			int prePriority = -1;
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
 				for(int j=0; j<configElements.length; ++j) {
@@ -166,6 +167,16 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if(!product.equals(this.product)) continue;
 						String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
 						if(!version.equals(this.version)) continue;
+						String priority = configElements[j].getAttribute("priority"); //$NON-NLS-1$
+						int currentPriority = 0;
+						if (priority != null) {
+							try {
+								currentPriority = Integer.parseInt(priority);
+							}catch (NumberFormatException formatEx){
+							}
+						} 
+						if (currentPriority <= prePriority) continue;
+						prePriority = currentPriority;
 						try {
 							this.catalogProvider = (ICatalogProvider) configElements[j].createExecutableExtension("provider"); //$NON-NLS-1$
 						}
@@ -192,6 +203,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlParser"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
+			int prePriority = -1;
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
 				for(int j=0; j<configElements.length; ++j) {
@@ -200,6 +212,16 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if(!product.equals(this.product)) continue;
 						String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
 						if(!version.equals(this.version)) continue;
+						String priority = configElements[j].getAttribute("priority"); //$NON-NLS-1$
+						int currentPriority = 0;
+						if (priority != null) {
+							try {
+								currentPriority = Integer.parseInt(priority);
+							}catch (NumberFormatException formatEx){
+							}
+						} 
+						if (currentPriority <= prePriority) continue;
+						prePriority = currentPriority;
 						try {
 							this.parser = (DDLParser) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
@@ -221,6 +243,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
+			int prePriority = -1;
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
 				for(int j=0; j<configElements.length; ++j) {
@@ -229,6 +252,18 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if(!product.equals(this.product)) continue;
 						String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
 						if(!version.equals(this.version)) continue;
+						String priority = configElements[j].getAttribute("priority"); //$NON-NLS-1$
+						int currentPriority = 0;
+						if (priority != null) {
+							try {
+								currentPriority = Integer.parseInt(priority);
+							}catch (NumberFormatException formatEx){
+							}
+						} 
+						
+						if (currentPriority <= prePriority) continue;
+						
+						prePriority = currentPriority;
 						try {
 							this.ddlGenerator = (DDLGenerator) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}
@@ -256,6 +291,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "ddlGeneration"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
+			int prePriority = -1;
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
 				for(int j=0; j<configElements.length; ++j) {
@@ -264,6 +300,16 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if(!product.equals(this.product)) continue;
 						String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
 						if(!version.equals(this.version)) continue;
+						String priority = configElements[j].getAttribute("priority"); //$NON-NLS-1$
+						int currentPriority = 0;
+						if (priority != null) {
+							try {
+								currentPriority = Integer.parseInt(priority);
+							}catch (NumberFormatException formatEx){
+							}
+						} 
+						if (currentPriority <= prePriority) continue;
+						prePriority = currentPriority;
 						try {
 							this.deltaDdlGenerator = (DeltaDDLGenerator) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						}

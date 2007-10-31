@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.rte.fe;
 
 
@@ -6,7 +16,9 @@ import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.rte.IEngineeringCallBack;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.GenericCatalogMessages;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.constraints.Assertion;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
@@ -50,6 +62,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.EObject;
 
+import com.ibm.icu.text.MessageFormat;
 import com.ibm.icu.util.StringTokenizer;
 
 public class GenericDdlBuilder {
@@ -154,7 +167,21 @@ public class GenericDdlBuilder {
     protected static final String REFERENCES_ARE_NOT_CHECKED = "REFERENCES ARE NOT CHECKED"; //$NON-NLS-1$
 	protected static final String ASSERTION            = "ASSERTION"; //$NON-NLS-1$
 
-    
+    private IEngineeringCallBack callback = null;
+    private IEngineeringCallBack dummyCallback = null;
+
+    public void setEngineeringCallBack(IEngineeringCallBack callback) {
+    	this.callback = callback;
+    }
+
+    public IEngineeringCallBack getEngineeringCallBack() {
+    	if (this.callback != null) {
+    		return this.callback;
+    	} else{
+    		return this.getDummyEngineeringCallBack();
+    	}
+    }
+
     public String dropTrigger(Trigger trigger, boolean quoteIdentifiers, boolean qualifyNames) {
         return DROP + SPACE + TRIGGER + SPACE + getName(trigger, quoteIdentifiers, qualifyNames);
     }
@@ -347,11 +374,20 @@ public class GenericDdlBuilder {
             statement += FOR + SPACE + EACH + SPACE + STATEMENT + NEWLINE;
     	}
 
+        String triggerBody = "";
         Iterator it = trigger.getActionStatement().iterator();
         while(it.hasNext()) {
             SQLStatement s = (SQLStatement) it.next();
-            statement += s.getSQL();
+            triggerBody += s.getSQL();
         }
+
+        if (triggerBody.equals("")) {
+	    	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+	    			GenericCatalogMessages.FE_TRIGGER_ACTION_EMPTY, new Object[] { getName(trigger, false, true)}));
+	    	return null;
+        }
+
+    	statement += triggerBody;
 
         return statement;
     }
@@ -835,8 +871,9 @@ public class GenericDdlBuilder {
             parentKey = this.getParentKeyColumns(index, quoteIdentifiers);
         }
         if(parentTable == null) {
-            // TODO report error
-            return null;
+        	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+					GenericCatalogMessages.FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST, new Object[] { foreignKey.getName()}));
+        	return null;
         }
 
         String statement = ALTER + SPACE + TABLE + SPACE + getName(foreignKey.getBaseTable(), quoteIdentifiers, qualifyNames)
@@ -1027,7 +1064,8 @@ public class GenericDdlBuilder {
             columns = columnName;
         }
         else {
-            // TODO report error
+	    	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+					GenericCatalogMessages.FE_REFERENCE_CONSTAINT_HAS_NO_KEY, new Object[] { constraint.getName()}));
             return null;
         }
         
@@ -1059,7 +1097,8 @@ public class GenericDdlBuilder {
             columns = columnName + SPACE + m.getIncrementType().getName();
         }
         else {
-            // TODO report error
+	    	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+					GenericCatalogMessages.FE_INDEX_HAS_NO_MEMBER, new Object[] { getName(index,false,true)}));
             return null;
         }
         
@@ -1087,7 +1126,8 @@ public class GenericDdlBuilder {
             columns = columnName;
         }
         else {
-            // TODO report error
+	    	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+					GenericCatalogMessages.FE_INDEX_HAS_NO_MEMBER, new Object[] { getName(index,false,true)}));
             return null;
         }
         
@@ -1123,6 +1163,8 @@ public class GenericDdlBuilder {
                 }
             }
         }
+    	this.getEngineeringCallBack().writeMessage(MessageFormat.format(
+				GenericCatalogMessages.FE_ELEMENT_HAS_NO_TYPE, new Object[] { typedElement.getName()}));
         return null;
     }
 
@@ -1356,6 +1398,24 @@ public class GenericDdlBuilder {
             }
         }
         return DOUBLE_QUOTE + result + DOUBLE_QUOTE;
+    }
+
+    public boolean isImplicitConstraint(TableConstraint constraint) {
+    	return !constraint.isEnforced();
+    }
+
+    private IEngineeringCallBack getDummyEngineeringCallBack(){
+    	if (this.dummyCallback == null) this.dummyCallback = new dummyEngineeringCallBack();
+    	return dummyCallback;
+    }
+
+    private class dummyEngineeringCallBack implements IEngineeringCallBack {
+    	public String[] getMessages(){
+    		return new String[]{};
+    	}
+    	
+    	public void writeMessage(String message) {
+    	}
     }
 
 }

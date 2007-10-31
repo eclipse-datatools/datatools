@@ -1,4 +1,13 @@
-package org.eclipse.datatools.connectivity.sqm.core.rte.fe;
+/*******************************************************************************
+ * Copyright (c) 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/package org.eclipse.datatools.connectivity.sqm.core.rte.fe;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +22,7 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
+import org.eclipse.datatools.connectivity.sqm.core.rte.IEngineeringCallBack;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGenerationOptions;
@@ -34,7 +44,24 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 
 public class GenericDdlGenerator implements DDLGenerator {
-    public String[] generateDDL(SQLObject[] elements, IProgressMonitor progressMonitor) {
+	public GenericDdlGenerator() {
+		this.builder = new GenericDdlBuilder();
+	}
+
+	public String[] generateDDL(SQLObject[] elements, IProgressMonitor progressMonitor){
+		return this.generateDDL(elements, progressMonitor, null);
+	}
+
+    public String[] createSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor){
+    	return this.createSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor,null);
+    }
+    
+    public String[] dropSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor){
+    	return this.dropSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor,null);
+    }
+
+    public String[] generateDDL(SQLObject[] elements, IProgressMonitor progressMonitor,IEngineeringCallBack callback) {
+    	this.builder.setEngineeringCallBack(callback);
     	String[] statements = new String[0];
 
     	EngineeringOption[] options = this.getSelectedOptions(elements);
@@ -59,13 +86,17 @@ public class GenericDdlGenerator implements DDLGenerator {
         return statements;
     }
 
-    public String[] createSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor) {
+    public String[] createSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor ,IEngineeringCallBack callback)
+	{
+    	this.builder.setEngineeringCallBack(callback);
         String[] statements = this.createStatements(elements, quoteIdentifiers,
         		qualifyNames, progressMonitor, 100);
         return statements;
     }
 
-    public String[] dropSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor) {
+    public String[] dropSQLObjects(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor ,IEngineeringCallBack callback)
+    {
+    	this.builder.setEngineeringCallBack(callback);
         String[] statements = this.dropStatements(elements, quoteIdentifiers,
         		qualifyNames, progressMonitor, 100);
         return statements;
@@ -73,10 +104,6 @@ public class GenericDdlGenerator implements DDLGenerator {
     
     protected String[] createStatements(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor, int task) {
         GenericDdlScript script = new GenericDdlScript();
-        if(this.builder == null) {
-            this.builder = new GenericDdlBuilder();
-        }
-
         EngineeringOption[] options = this.getSelectedOptions(elements);        
 
         Iterator it = this.getAllContainedDisplayableElementSet(elements).iterator();
@@ -103,12 +130,12 @@ public class GenericDdlGenerator implements DDLGenerator {
                 if(statement != null) script.addAlterTableAddConstraintStatement(statement);
             }
             else if(o instanceof UniqueConstraint) {
-            	if (!this.generatePKConstraints(options)) continue;
+            	if (!this.generatePKConstraints(options) || builder.isImplicitConstraint((UniqueConstraint)o)) continue;
                 String statement = builder.addUniqueConstraint((UniqueConstraint) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addAlterTableAddConstraintStatement(statement);
             }
             else if(o instanceof ForeignKey) {
-            	if (!this.generateFKConstraints(options)) continue;
+            	if (!this.generateFKConstraints(options) || builder.isImplicitConstraint((ForeignKey)o)) continue;
                 String statement = builder.addForeignKey((ForeignKey) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addAlterTableAddForeignKeyStatement(statement);
             }
@@ -148,9 +175,6 @@ public class GenericDdlGenerator implements DDLGenerator {
     
     protected String[] dropStatements(SQLObject[] elements, boolean quoteIdentifiers, boolean qualifyNames, IProgressMonitor progressMonitor, int task) {
         GenericDdlScript script = new GenericDdlScript();
-        if(this.builder == null) {
-            this.builder = new GenericDdlBuilder();
-        }
         
         EngineeringOption[] options = this.getSelectedOptions(elements);        
 
@@ -178,12 +202,12 @@ public class GenericDdlGenerator implements DDLGenerator {
                 if(statement != null) script.addAlterTableDropConstraintStatement(statement);
             }
             else if(o instanceof UniqueConstraint) {
-            	if (!this.generatePKConstraints(options)) continue;
+            	if (!this.generatePKConstraints(options) || builder.isImplicitConstraint((UniqueConstraint)o)) continue;
                 String statement = builder.dropTableConstraint((UniqueConstraint) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addAlterTableDropConstraintStatement(statement);
             }
             else if(o instanceof ForeignKey) {
-            	if (!this.generateFKConstraints(options)) continue;
+            	if (!this.generateFKConstraints(options) || builder.isImplicitConstraint((ForeignKey)o)) continue;
                 String statement = builder.dropTableConstraint((ForeignKey) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addAlterTableDropForeignKeyStatement(statement);
             }

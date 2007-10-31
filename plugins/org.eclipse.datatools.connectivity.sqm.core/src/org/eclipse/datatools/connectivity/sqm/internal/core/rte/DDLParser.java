@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,5 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 public interface DDLParser {
-	public Database[] parse(String fileName, IProgressMonitor progressMonitor);
+	public Database[] parse(String fileName, Database[] existingDBs, IProgressMonitor progressMonitor);
+	public String[] getParserMessages();
+	public boolean isIncrementalSupported();
 }

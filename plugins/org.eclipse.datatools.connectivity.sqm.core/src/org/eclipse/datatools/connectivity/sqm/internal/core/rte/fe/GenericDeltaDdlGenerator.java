@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 
 import java.util.Collection;
@@ -6,14 +16,22 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
+import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
+import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
@@ -26,6 +44,7 @@ import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -46,7 +65,14 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	
 	protected EChangeSummary changeSummary = null;
 	protected Collection redoChanges = null;
+	private EngineeringOption[] options = null;
+	private EngineeringOptionCategory[] categories = null;
 	
+	public String[] generateDeltaDDL(EChangeSummary changeSummary, SQLObject[] impacts, IProgressMonitor monitor) 
+	{
+		return generateDeltaDDL (changeSummary, monitor);
+	}
+
 	public final String[] generateDeltaDDL(EChangeSummary changeSummary, IProgressMonitor monitor) {
 		this.changeSummary = changeSummary;
 		this.changeSummary.summarize();
@@ -57,6 +83,51 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
         this.redoChanges = null;
         return statements;
 	}
+	
+	public EngineeringOption[] getOptions(){
+        if(this.options == null) {
+            ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
+
+            EngineeringOptionCategory general_options =null;
+            for (int i = 0; i < this.getOptionCategories().length; i++) {
+            	if (categories[i].getId().equals(EngineeringOptionCategoryID.GENERATE_OPTIONS)){
+            		general_options = categories[i];
+            	}
+            }
+            
+            Vector optionVec = new Vector();
+            optionVec.add(new EngineeringOption(EngineeringOptionID.GENERATE_FULLY_QUALIFIED_NAME,resource.getString("GENERATE_FULLY_QUALIFIED_NAME"), resource.getString("GENERATE_FULLY_QUALIFIED_NAME_DES"), true,general_options)); //$NON-NLS-1$ //$NON-NLS-2$
+            optionVec.add(new EngineeringOption(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER,resource.getString("GENERATE_QUOTED_IDENTIFIER"), resource.getString("GENERATE_QUOTED_IDENTIFIER_DES"),true,general_options)); //$NON-NLS-1$ //$NON-NLS-2$
+            
+            EngineeringOption[] options = new EngineeringOption[optionVec.size()];
+            optionVec.copyInto(options);
+            this.options =  options;
+        }
+        
+        return this.options;
+	}
+	
+    public EngineeringOptionCategory[] getOptionCategories(){
+        if(this.categories == null) {
+            ResourceBundle resource = ResourceBundle.getBundle("org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe.GenericDdlGeneration"); //$NON-NLS-1$
+
+            Vector categoryVec = new Vector();
+            categoryVec.add(new EngineeringOptionCategory(EngineeringOptionCategoryID.GENERATE_OPTIONS,resource.getString("GENERATION_OPTIONS"), resource.getString("GENERATION_OPTIONS_DES"))); //$NON-NLS-1$ //$NON-NLS-2$
+        
+            EngineeringOptionCategory[] categories = new EngineeringOptionCategory[categoryVec.size()];
+            categoryVec.copyInto(categories);
+            this.categories =  categories;
+        }
+        return this.categories;
+    }
+
+    protected EngineeringOption[] getEngineeringOption(){
+    	return this.options;
+    }
+    
+    protected void setEngineeringOption(EngineeringOption[] options){
+    	this.options = options ;
+    }
 	
 	protected int getChangeFlag(EObject element, EObject changed, EStructuralFeature feature, Setting setting) {
 		if(element != changed) return MODIFIED; 
@@ -276,7 +347,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		if(elements.size() > 0) {
 			SQLObject[] d = new SQLObject[elements.size()];
 			elements.copyInto(d);
-			return gen.dropSQLObjects(d, true, true, monitor);
+			return gen.dropSQLObjects(d, this.generateQuotedIdentifiers(this.getOptions()), this.generateFullyQualifiedNames(this.getOptions()),  monitor);
 		}
 		else {
 			return new String[0];
@@ -296,7 +367,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		if(elements.size() > 0) {
 			SQLObject[] d = new SQLObject[elements.size()];
 			elements.copyInto(d);
-			return gen.createSQLObjects(d, true, true, monitor);
+			return gen.createSQLObjects(d, this.generateQuotedIdentifiers(this.getOptions()), this.generateFullyQualifiedNames(this.getOptions()), monitor);
 		}
 		else {
 			return new String[0];
@@ -377,8 +448,39 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 					if(!changeSetting.isSet() && !changed.eIsSet(f)) continue;
 					Object currentValue = changed.eGet(f);
 					Object previousValue = changeSetting.getValue();
-					if(currentValue == null) currentValue = ""; //$NON-NLS-1$
 					if(previousValue == null) previousValue = ""; //$NON-NLS-1$
+					if(currentValue == null) {
+						if (this.underContainer(f,changed,previousValue)) {
+							flag = DROP;
+							break;
+						} else {
+							currentValue = ""; //$NON-NLS-1$
+						}
+					}
+					// Since we are adding the authorization ids in SDOUtilities (at initialize time),
+					//   we can detect all new and revoked privileges through the auth id received 
+					//   privileges reference.  I think...  Didn't work for new authId to add privilege
+					if (f == SQLSchemaPackage.eINSTANCE.getSQLObject_Privileges()) {
+						buildPrivilegeGrantChangeMapEntries(changeMap,currentValue,previousValue);
+						continue;
+					}
+					if (f == SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedPrivilege()) {
+						buildPrivilegeGrantChangeMapEntries(changeMap,currentValue,previousValue);
+						continue;
+					}
+					if (f.getEContainingClass() == SQLAccessControlPackage.eINSTANCE.getPrivilege()) {
+						buildPrivilegeChangeMapEntries(changeMap,(Privilege)changedObject,f,currentValue,previousValue);
+						continue;
+					}
+					if (f == SQLAccessControlPackage.eINSTANCE.getAuthorizationIdentifier_ReceivedRoleAuthorization()) {
+						buildRoleAuthGrantChangeMapEntries(changeMap,currentValue,previousValue);
+						continue;
+					}
+					if (f.getEContainingClass() == SQLAccessControlPackage.eINSTANCE.getRoleAuthorization()) {
+						buildRoleAuthChangeMapEntries(changeMap,(RoleAuthorization)changedObject,f,currentValue,previousValue);
+						continue;
+					}
+					
 					if(currentValue.equals(previousValue)) continue;
 					flag = flag | this.getChangeFlag(element, changed, f, changeSetting);
 				}		
@@ -389,6 +491,170 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	      	}
 		}      	
 		return changeMap;
+	}
+
+	// START Privilege Specific
+	private void buildPrivilegeGrantChangeMapEntries(Map changeMap,Object currentValue,Object previousValue) {
+		// We need to compare new elements to old elements in the ELists, since
+		// we allow the user to remove privileges from the privileges list.
+		Iterator cVIter;
+		Iterator pVIter;
+		if (currentValue instanceof EList) {
+			cVIter = ((EList)currentValue).iterator();
+			if (previousValue instanceof EList) {
+				// There are previous values to compare against
+				while (cVIter.hasNext()) {
+					Privilege cPrivilege = (Privilege)(cVIter.next());
+					pVIter = ((EList)previousValue).iterator();
+					boolean match = false;
+					while (pVIter.hasNext()) {
+						Privilege pPrivilege = (Privilege)(pVIter.next());
+						if (cPrivilege == pPrivilege) {
+							// We have a match
+							match = true;
+							break;
+						}
+					}
+					if (!match) changeMap.put(cPrivilege,new Integer(CREATE));
+				}
+			}
+			else {
+				// All current values represent new privileges
+				while (cVIter.hasNext()) {
+					Privilege privilege = (Privilege)(cVIter.next());
+					changeMap.put(privilege,new Integer(CREATE));
+				}
+			}
+		}
+		if (previousValue instanceof EList) {
+			pVIter = ((EList)previousValue).iterator();
+			if (currentValue instanceof EList) {
+				// There are previous values to compare against
+				while (pVIter.hasNext()) {
+					Privilege pPrivilege = (Privilege)(pVIter.next());
+					cVIter = ((EList)currentValue).iterator();
+					boolean match = false;
+					while (cVIter.hasNext()) {
+						Privilege cPrivilege = (Privilege)(cVIter.next());
+						if (cPrivilege == pPrivilege) {
+							// We have a match
+							match = true;
+							break;
+						}
+					}
+					if (!match) changeMap.put(pPrivilege,new Integer(DROP));
+				}
+			}
+			else {
+				// All current values represent new privileges
+				while (pVIter.hasNext()) {
+					Privilege privilege = (Privilege)(pVIter.next());
+					changeMap.put(privilege,new Integer(DROP));
+				}
+			}
+		}
+	}
+	
+	private void buildPrivilegeChangeMapEntries(Map changeMap,Privilege changedObject,EStructuralFeature f,Object currentValue,Object previousValue) {
+		if (f.getName().equals("grantable")) { //$NON-NLS-1$
+			// Revoke and re-grant the previous privilege with or without the grant option
+			changeMap.put(changedObject,new Integer(DROP | CREATE));
+		}
+	}
+// END Privilege Specific
+	
+// START RoleAuthorization Specific
+	private void buildRoleAuthGrantChangeMapEntries(Map changeMap,Object currentValue,Object previousValue) {
+		Iterator cVIter;
+		Iterator pVIter;
+		if (currentValue instanceof EList) {
+			cVIter = ((EList)currentValue).iterator();
+			if (previousValue instanceof EList) {
+				// There are previous values to compare against
+				while (cVIter.hasNext()) {
+					RoleAuthorization cRoleAuth = (RoleAuthorization)(cVIter.next());
+					pVIter = ((EList)previousValue).iterator();
+					boolean match = false;
+					while (pVIter.hasNext()) {
+						RoleAuthorization pRoleAuth = (RoleAuthorization)(pVIter.next());
+						if (cRoleAuth == pRoleAuth) {
+							// We have a match
+							match = true;
+							break;
+						}
+					}
+					if (!match) {
+						changeMap.put(cRoleAuth,new Integer(CREATE));
+					}
+				}
+			}
+			else {
+				// All current values represent new role authorizations
+				while (cVIter.hasNext()) {
+					RoleAuthorization roleAuth = (RoleAuthorization)(cVIter.next());
+					changeMap.put(roleAuth,new Integer(CREATE));
+				}
+			}
+		}
+		if (previousValue instanceof EList) {
+			pVIter = ((EList)previousValue).iterator();
+			if (currentValue instanceof EList) {
+				// There are previous values to compare against
+				while (pVIter.hasNext()) {
+					RoleAuthorization pRoleAuth = (RoleAuthorization)(pVIter.next());
+					cVIter = ((EList)currentValue).iterator();
+					boolean match = false;
+					while (cVIter.hasNext()) {
+						RoleAuthorization cRoleAuth = (RoleAuthorization)(cVIter.next());
+						if (cRoleAuth == pRoleAuth) {
+							// We have a match
+							match = true;
+							break;
+						}
+					}
+					if (!match) {
+						changeMap.put(pRoleAuth,new Integer(DROP));
+					}
+				}
+			}
+			else {
+				// All current values represent new role authorizations
+				while (pVIter.hasNext()) {
+					RoleAuthorization roleAuth = (RoleAuthorization)(pVIter.next());
+					changeMap.put(roleAuth,new Integer(DROP));
+				}
+			}
+		}
+	}
+
+	private void buildRoleAuthChangeMapEntries(Map changeMap,RoleAuthorization changedObject,EStructuralFeature f,Object currentValue,Object previousValue) {
+		if (f.getName().equals("grantable")) { //$NON-NLS-1$
+			// Revoke and re-grant the previous privilege with or without the grant option
+			changeMap.put(changedObject,new Integer(DROP | CREATE));
+		}
+	}
+// END RoleAuthorization Specific
+	
+	private  boolean underContainer(EStructuralFeature f,Object obj, Object container) {
+		if (!(obj instanceof EObject) || !(container instanceof EObject)) return false;
+		EStructuralFeature feature  = ((EObject)obj).eContainingFeature();
+		if (feature != null) {
+			return feature.getEContainingClass().isInstance(container);
+		}
+		
+		Iterator it = ((EObject)container).eClass().getEAllReferences().iterator();
+		while(it.hasNext()) {
+			EReference reference = (EReference) it.next();
+			if(reference.isMany()) {
+				EReference opposite = reference.getEOpposite();
+				if (opposite != null && opposite.getContainerClass().isAssignableFrom(obj.getClass())){
+					return true;
+				}
+			}
+		}
+
+		return false;
+
 	}
 
 	private void executeChangeRecords(Collection changeRecords) {
@@ -411,6 +677,18 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		}
 	}
 	
+    private boolean generateQuotedIdentifiers(EngineeringOption[] options) {
+        return getOptionValueByID(EngineeringOptionID.GENERATE_QUOTED_IDENTIFIER, options);
+    }
+
+    private boolean generateFullyQualifiedNames(EngineeringOption[] options) {
+        return getOptionValueByID(EngineeringOptionID.GENERATE_FULLY_QUALIFIED_NAME, options);
+    }
+
+    private boolean getOptionValueByID(String optionID, EngineeringOption[] options){
+    	return EngineeringOptionID.getOptionValueByID(optionID, options);
+    }
+    
 	private static class ChangeRecord {
 		public EObject element;
 		public EStructuralFeature feature;
