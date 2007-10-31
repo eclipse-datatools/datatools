@@ -29,14 +29,14 @@ import org.eclipse.osgi.util.NLS;
 public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
 	public static ISQLEditorConnectionInfo DEFAULT_SQLEDITOR_CONNECTION_INFO = new SQLEditorConnectionInfo(SQLToolsFacade.getNonSpecificDatabaseVendorDefinitionId()); 
-	private DatabaseVendorDefinitionId _dbVendorId = null;
-	private DatabaseVendorDefinition _dbVendor = null;
-	private String _profileName = null;
-	private String _databaseName = null;
-	private Database _database = null;
-	private String _defaultSchemaName = null;
-	private Connection _sharedConn = null;
-    private int _profileStatus = EditorConstants.CP_STATUS_OTHER;
+	protected DatabaseVendorDefinitionId _dbVendorId = null;
+	protected DatabaseVendorDefinition _dbVendor = null;
+	protected String _profileName = null;
+	protected String _databaseName = null;
+	protected Database _database = null;
+	protected String _defaultSchemaName = null;
+	protected Connection _sharedConn = null;
+	protected int _profileStatus = EditorConstants.CP_STATUS_OTHER;
 
 	/**
 	 * Constructs a <code>SQLEditorConnectionInfo</code> by
@@ -121,6 +121,10 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 
 	public String getDatabaseName() {
 		return _databaseName;
+	}
+
+	public void setDatabaseName(String dbName) {
+		_databaseName = dbName;
 	}
 
 	public String getDefaultSchemaName() {
