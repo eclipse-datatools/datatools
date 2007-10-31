@@ -132,7 +132,7 @@ public class SQLBuilderDialogDialectTestEditorInputAction implements IObjectActi
 		// editorInput2 now has its own connectionInfo and omitSchemaInfo, but
 		// a sqlStatementInfo based on the contents of editorInput1
 		ISQLStatementInfo sqlStatementInfo2 = editorInput2.getSQLStatementInfo();
-		sqlStatementInfo2.setSQL(editorInput1.getSQLStatement());
+		sqlStatementInfo2.setSQL(editorInput1.getSQL());
 		sqlStatementInfo2.setSQLDialectInfo(dialectInfo1);
 		
 		// Open a new SQLBuilderDialog.

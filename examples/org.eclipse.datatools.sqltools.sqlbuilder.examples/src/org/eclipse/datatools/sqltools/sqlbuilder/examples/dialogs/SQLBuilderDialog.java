@@ -13,6 +13,8 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs;
 import java.io.IOException;
 import java.io.StringWriter;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+//import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
@@ -20,6 +22,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.ResultsHistoryFilter;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -140,26 +143,27 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		/*
 		 * Add the results view
 		 */
-		//ResultSection _resultSection = ResultSectionFactory.createResultSection(resultsComposite, null);
-		//gd = new GridData(GridData.FILL, GridData.FILL, true, true);
-		//_resultSection.getControl().setLayoutData(gd);
-/*
-		_resultsViewControl = new ResultsViewControl(null);
-		try {
-			_resultsViewControl.init(null, null);
-		} catch (PartInitException e) {
-			System.out.println(e.getLocalizedMessage());
-			e.printStackTrace();
-		}
-		_resultsViewControl.createPartControl(resultsComposite);	
-		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
-		_resultsViewControl.getControl().setLayoutData(gd);
+//		_resultsViewControl = new ResultsViewControl(null);
+//		try {
+//			_resultsViewControl.init(null, null);
+//		} catch (PartInitException e) {
+//			System.out.println(e.getLocalizedMessage());
+//			e.printStackTrace();
+//		}
+//		_resultsViewControl.createPartControl(resultsComposite);	
+//		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
+//		_resultsViewControl.getControl().setLayoutData(gd);
+//		
+//		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
 		
-		// TODO
-		_resultsViewControl.clearHistory();
-*/		
 		return topComposite;
 	}
+
+//	private void filterResultsView(IConnectionProfile connectionProfile) {
+//        _resultsViewControl.getResultHistorySection().getResultTable().
+//    			addFilter(new ResultsHistoryFilter(connectionProfile.getName()));
+//
+//	}
 
 	/**
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
@@ -345,5 +349,14 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	public void notifyContentChange() {
 		updateDirtyStatus();
 	}
-
+	
+	/**
+	 * @see org.eclipse.jface.window.Window#close()
+	 */
+	public boolean close() {
+//		_resultsViewControl.dispose();
+		
+		return super.close();
+	}
+	
 }

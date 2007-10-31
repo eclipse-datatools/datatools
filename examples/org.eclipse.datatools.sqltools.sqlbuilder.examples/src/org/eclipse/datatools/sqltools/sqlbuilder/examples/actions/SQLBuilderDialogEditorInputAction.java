@@ -58,9 +58,20 @@ public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate 
 		 * directly from a file. Rather it would be created from data held by the calling
 		 * application in e.g. a string. 
 		 */
-		SQLBuilderEditorInput editorInput = 
+		SQLBuilderEditorInput editorInput1 = 
 			EditorInputUtil.createSQLBuilderEditorInputFromFile(_selectedFile);
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput);
+		
+		/*
+		 * For testing, now create a SQLBuilderEditorInput using a ConnectionProfile
+		 * rather than a ConnectionInfo
+		 */
+		SQLBuilderEditorInput editorInput2 = new SQLBuilderEditorInput(
+				editorInput1.getConnectionInfo().getConnectionProfile(),
+				editorInput1.getSQLStatementInfo(),
+				editorInput1.getOmitSchemaInfo());
+		
+		// editorInput1 or editorInput2 could be passed to the dialog
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput2);
 		sqlBuilderDialog.create();
 		sqlBuilderDialog.setBlockOnOpen(true);
 		sqlBuilderDialog.open();
