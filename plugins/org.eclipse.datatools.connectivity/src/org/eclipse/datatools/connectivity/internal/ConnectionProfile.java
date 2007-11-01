@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Vector;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -26,6 +27,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.PlatformObject;
@@ -41,7 +43,6 @@ import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConfigurationType;
 import org.eclipse.datatools.connectivity.IConnectListener;
 import org.eclipse.datatools.connectivity.IConnection;
-import org.eclipse.datatools.connectivity.IConnectionFactoryProvider;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IConnectionProfileMigrator;
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
@@ -436,6 +437,88 @@ public class ConnectionProfile extends PlatformObject implements
 		return mConnectionState;
 	}
 
+	public IStatus connectWithoutJob() {
+		IStatus returnStatus = null;
+		if (getConnectionState() == CONNECTED_STATE) {
+			return Status.OK_STATUS;
+		}
+
+		// Create shared connections
+		Vector connectionStatuses = new Vector();
+		List connectionJobs = new ArrayList(mFactoryIDToManagedConnection.size());
+		for (Iterator it = mFactoryIDToManagedConnection.values().iterator(); it
+				.hasNext();) {
+			CreateConnectionJob connectionJob = new CreateConnectionJob(
+					(ManagedConnection) it.next(), this);
+			IStatus status = connectionJob.run(new NullProgressMonitor());
+			connectionJobs.add(connectionJob);	
+			connectionStatuses.add(status);
+		}
+
+		// Notify any connect listeners
+		ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
+		Object[] listeners = mConnectListeners.getListeners();
+		for (int index = 0, count = listeners.length; index < count; ++index) {
+			// TODO: Notify listeners
+			OpenConnectionEventJob connectionEventJob = new OpenConnectionEventJob(
+					(IConnectListener) listeners[index], event, this);
+			connectionEventJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
+			connectionEventJob.run(new NullProgressMonitor());
+		}
+
+		
+		boolean someOK = false;
+		int severity = 0;
+		List statuses = new ArrayList(connectionStatuses.size());
+		for (Iterator it = connectionStatuses.iterator(); it.hasNext();) {
+			IStatus status = (IStatus) it
+					.next();
+			if (status.getSeverity() == IStatus.ERROR) {
+			}
+			else {
+				someOK = someOK || (status.getSeverity() == IStatus.OK)
+						|| (status.getSeverity() == IStatus.INFO);
+			}
+			severity |= status.getSeverity();
+			statuses.add(status);
+		}
+
+		if (someOK) {
+			// Notify any property listeners of a state change
+			int oldConnectionState = mConnectionState;
+			mConnectionState = CONNECTED_STATE;
+			Properties oldProperties = new Properties();
+			Properties newProperties = new Properties();
+			oldProperties.setProperty(CONNECTED_PROPERTY_ID, Boolean.FALSE
+					.toString());
+			newProperties.setProperty(CONNECTED_PROPERTY_ID, Boolean.TRUE
+					.toString());
+			oldProperties.setProperty(CONNECTION_STATE_PROPERTY_ID, Integer
+					.toString(oldConnectionState));
+			newProperties.setProperty(CONNECTION_STATE_PROPERTY_ID, Integer
+					.toString(CONNECTED_STATE));
+			firePropertySetChangeEvent(new PropertySetChangeEvent(
+					ConnectionProfile.this,
+					CONNECTION_PROFILE_PROPERTY_SET, oldProperties,
+					newProperties));
+		}
+
+		if (severity == IStatus.OK) { // all OK
+			returnStatus = Status.OK_STATUS;
+		}
+		else {
+			returnStatus = new ConnectMultiStatus(IStatus.ERROR,
+					(IStatus[]) statuses.toArray(new IStatus[statuses
+							.size()]), ConnectivityPlugin.getDefault()
+							.getResourceString(
+									"ConnectJob.status.error", //$NON-NLS-1$
+									new Object[] { ConnectionProfile.this
+											.getName()}));
+		}
+
+		return returnStatus;
+	}
+	
 	public IStatus connect() {
 		/*
 		 * Cancel any jobs currently associated with this profile. Specifically,

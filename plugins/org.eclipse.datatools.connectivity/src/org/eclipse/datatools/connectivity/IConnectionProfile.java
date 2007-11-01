@@ -225,6 +225,16 @@ public interface IConnectionProfile {
 	 *        the state of the job spawned to open the connections. Can be null.
 	 */
 	void connect(IJobChangeListener listener);
+	
+	/**
+	 * This method blocks until all registered connect listeners have been
+	 * notified to open connections.  Unlike connect(), this method will not 
+	 * spawn a job or display connection errors.
+	 * 
+	 * @return the status of the connect operation. Status.OK_STATUS if all went
+	 *         well.
+	 */
+	IStatus connectWithoutJob();
 
 	/**
 	 * This method blocks until all registered connect listeners have been
