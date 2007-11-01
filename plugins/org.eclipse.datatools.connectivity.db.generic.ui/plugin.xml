@@ -27,5 +27,13 @@
          </enabledWhen>
       </page>
    </extension>
-
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.DriverClassBrowsePropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.driverClass"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.db.generic.genericDriver.ui.propertyEditor.driverClass">
+      </propertyEditor>
+   </extension>
 </plugin>
