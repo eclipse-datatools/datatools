@@ -459,7 +459,6 @@ public class ConnectionProfile extends PlatformObject implements
 		ConnectEvent event = new ConnectEvent(ConnectionProfile.this);
 		Object[] listeners = mConnectListeners.getListeners();
 		for (int index = 0, count = listeners.length; index < count; ++index) {
-			// TODO: Notify listeners
 			OpenConnectionEventJob connectionEventJob = new OpenConnectionEventJob(
 					(IConnectListener) listeners[index], event, this);
 			connectionEventJob.setProperty(ConnectionProfile.NO_IMMEDIATE_ERROR_PROMPT_PROPERTY,Boolean.TRUE);
