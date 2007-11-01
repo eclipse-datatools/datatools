@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ViewDefinitionImpl.java,v 1.1 2006/03/09 23:48:17 dpchou Exp $
+ * $Id: ViewDefinitionImpl.java,v 1.2 2006/10/11 20:34:54 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.dbdefinition.impl;
 
@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#getMaximumIdentifierLength <em>Maximum Identifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.ViewDefinitionImpl#isIndexSupported <em>Index Supported</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,6 +51,26 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * @ordered
 	 */
 	protected int maximumIdentifierLength = MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIndexSupported() <em>Index Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndexSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INDEX_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIndexSupported() <em>Index Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIndexSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean indexSupported = INDEX_SUPPORTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,10 +116,33 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIndexSupported() {
+		return indexSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIndexSupported(boolean newIndexSupported) {
+		boolean oldIndexSupported = indexSupported;
+		indexSupported = newIndexSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED, oldIndexSupported, indexSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return new Integer(getMaximumIdentifierLength());
+			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
+				return isIndexSupported() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,6 +156,9 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				setMaximumIdentifierLength(((Integer)newValue).intValue());
+				return;
+			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
+				setIndexSupported(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,6 +174,9 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				setMaximumIdentifierLength(MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
+				setIndexSupported(INDEX_SUPPORTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +190,8 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH:
 				return maximumIdentifierLength != MAXIMUM_IDENTIFIER_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.VIEW_DEFINITION__INDEX_SUPPORTED:
+				return indexSupported != INDEX_SUPPORTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -155,6 +207,8 @@ public class ViewDefinitionImpl extends EObjectImpl implements ViewDefinition {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (maximumIdentifierLength: "); //$NON-NLS-1$
 		result.append(maximumIdentifierLength);
+		result.append(", indexSupported: "); //$NON-NLS-1$
+		result.append(indexSupported);
 		result.append(')');
 		return result.toString();
 	}

@@ -2134,13 +2134,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = 0;
 
 	/**
+	 * The feature id for the '<em><b>Index Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_DEFINITION__INDEX_SUPPORTED = 1;
+
+	/**
 	 * The number of structural features of the '<em>View Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_DEFINITION_FEATURE_COUNT = 1;
+	int VIEW_DEFINITION_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl <em>Field Qualifier Definition</em>}' class.
@@ -4732,6 +4741,17 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getViewDefinition_MaximumIdentifierLength();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition#isIndexSupported <em>Index Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Index Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition#isIndexSupported()
+	 * @see #getViewDefinition()
+	 * @generated
+	 */
+	EAttribute getViewDefinition_IndexSupported();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition <em>Field Qualifier Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6766,6 +6786,14 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH = eINSTANCE.getViewDefinition_MaximumIdentifierLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Index Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VIEW_DEFINITION__INDEX_SUPPORTED = eINSTANCE.getViewDefinition_IndexSupported();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.FieldQualifierDefinitionImpl <em>Field Qualifier Definition</em>}' class.

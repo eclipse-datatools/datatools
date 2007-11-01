@@ -1398,7 +1398,10 @@
 			class_attributes 	(list class_attribute_list
 			    (object ClassAttribute "maximumIdentifierLength"
 				quid       	"437A233F02C4"
-				type       	"int")))
+				type       	"int")
+			    (object ClassAttribute "indexSupported"
+				quid       	"472A21830330"
+				type       	"boolean")))
 		    (object Class "FieldQualifierDefinition"
 			quid       	"4383D6E300C7"
 			class_attributes 	(list class_attribute_list
@@ -2831,7 +2834,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@32
-			    location   	(1236, 3861)
+			    location   	(1236, 3835)
 			    fill_color 	13434879
 			    nlines     	1
 			    max_width  	732
@@ -2843,7 +2846,7 @@
 			quidu      	"437A2328010D"
 			compartment 	(object Compartment
 			    Parent_View 	@32
-			    location   	(1236, 3985)
+			    location   	(1236, 3959)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2856,10 +2859,10 @@
 			    icon_style 	"Icon"
 			    fill_color 	13434879
 			    anchor     	2
-			    nlines     	2
+			    nlines     	3
 			    max_width  	620)
 			width      	750
-			height     	260
+			height     	312
 			annotation 	8
 			autoResize 	TRUE)
 		    (object ClassView "Class" "Logical View::DatabaseModel::PredefinedDataTypeDefinition" @33
@@ -5117,11 +5120,11 @@
 				supplier   	@79
 				vertices   	(list Points
 				    (2743, 4978)
-				    (2743, 4300)
-				    (3638, 4300))
+				    (2743, 4299)
+				    (3638, 4299))
 				line_style 	3
 				origin_attachment 	(2743, 4978)
-				terminal_attachment 	(3638, 4300)
+				terminal_attachment 	(3638, 4299)
 				label      	(object SegLabel @140
 				    Parent_View 	@139
 				    location   	(3481, 4354)
@@ -5992,54 +5995,7 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	0))))
-		    (object ClassView "Class" "Logical View::DatabaseModel::PrivilegeDefinition" @183
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(502, 6055)
-			font       	(object Font
-			    size       	12
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@183
-			    location   	(247, 5939)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	510
-			    justify    	0
-			    label      	"PrivilegeDefinition")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"46315AAA018E"
-			compartment 	(object Compartment
-			    Parent_View 	@183
-			    location   	(247, 6063)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	2
-			    max_width  	317)
-			width      	528
-			height     	260
-			annotation 	8
-			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::DatabaseModel::PrivilegedElementDefinition" @184
+		    (object ClassView "Class" "Logical View::DatabaseModel::PrivilegedElementDefinition" @183
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -6054,7 +6010,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@184
+			    Parent_View 	@183
 			    location   	(1588, 5930)
 			    fill_color 	13434879
 			    nlines     	1
@@ -6066,7 +6022,7 @@
 			fill_color 	13434879
 			quidu      	"46315A970300"
 			compartment 	(object Compartment
-			    Parent_View 	@184
+			    Parent_View 	@183
 			    location   	(1588, 6054)
 			    font       	(object Font
 				size       	10
@@ -6086,7 +6042,7 @@
 			height     	260
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$50" @185
+		    (object AssociationViewNew "$UNNAMED$50" @184
 			location   	(3038, 5346)
 			font       	(object Font
 			    size       	12
@@ -6101,8 +6057,8 @@
 			line_color 	3342489
 			quidu      	"46315ABB01AE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "privilegedElementDefinitions" @186
-				Parent_View 	@185
+			    (object RoleView "privilegedElementDefinitions" @185
+				Parent_View 	@184
 				location   	(-1248, 1634)
 				font       	(object Font
 				    size       	12
@@ -6113,8 +6069,8 @@
 				    strike     	FALSE
 				    color      	0
 				    default_color 	TRUE)
-				label      	(object SegLabel @187
-				    Parent_View 	@186
+				label      	(object SegLabel @186
+				    Parent_View 	@185
 				    location   	(2703, 5992)
 				    font       	(object Font
 					size       	12
@@ -6137,8 +6093,8 @@
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"46315ABC029D"
-				client     	@185
-				supplier   	@184
+				client     	@184
+				supplier   	@183
 				vertices   	(list Points
 				    (3038, 5346)
 				    (3038, 6038)
@@ -6146,8 +6102,8 @@
 				line_style 	3
 				origin_attachment 	(3038, 5346)
 				terminal_attachment 	(2347, 6038)
-				label      	(object SegLabel @188
-				    Parent_View 	@186
+				label      	(object SegLabel @187
+				    Parent_View 	@185
 				    location   	(2485, 6092)
 				    font       	(object Font
 					size       	10
@@ -6167,8 +6123,8 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	0))
-			    (object RoleView "$UNNAMED$51" @189
-				Parent_View 	@185
+			    (object RoleView "$UNNAMED$51" @188
+				Parent_View 	@184
 				location   	(-1248, 1634)
 				font       	(object Font
 				    size       	12
@@ -6182,7 +6138,7 @@
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"46315ABC02A7"
-				client     	@185
+				client     	@184
 				supplier   	@79
 				vertices   	(list Points
 				    (3038, 5346)
@@ -6191,8 +6147,8 @@
 				line_style 	3
 				origin_attachment 	(3038, 5346)
 				terminal_attachment 	(3638, 4563)
-				label      	(object SegLabel @190
-				    Parent_View 	@189
+				label      	(object SegLabel @189
+				    Parent_View 	@188
 				    location   	(3499, 4617)
 				    font       	(object Font
 					size       	10
@@ -6212,6 +6168,53 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	1))))
+		    (object ClassView "Class" "Logical View::DatabaseModel::PrivilegeDefinition" @190
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(502, 6055)
+			font       	(object Font
+			    size       	12
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@190
+			    location   	(247, 5939)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	510
+			    justify    	0
+			    label      	"PrivilegeDefinition")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"46315AAA018E"
+			compartment 	(object Compartment
+			    Parent_View 	@190
+			    location   	(247, 6063)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	2
+			    max_width  	317)
+			width      	528
+			height     	260
+			annotation 	8
+			autoResize 	TRUE)
 		    (object AssociationViewNew "$UNNAMED$52" @191
 			location   	(1172, 6057)
 			font       	(object Font
@@ -6264,7 +6267,7 @@
 				line_color 	3342489
 				quidu      	"46315ABF02D5"
 				client     	@191
-				supplier   	@183
+				supplier   	@190
 				line_style 	3
 				origin_attachment 	(1172, 6057)
 				terminal_attachment 	(766, 6057)
@@ -6305,7 +6308,7 @@
 				line_color 	3342489
 				quidu      	"46315ABF02DF"
 				client     	@191
-				supplier   	@184
+				supplier   	@183
 				line_style 	3
 				origin_attachment 	(1172, 6057)
 				terminal_attachment 	(1579, 6057)
@@ -6382,7 +6385,7 @@
 				line_color 	3342489
 				quidu      	"46315B510191"
 				client     	@197
-				supplier   	@184
+				supplier   	@183
 				vertices   	(list Points
 				    (1217, 6436)
 				    (1908, 6436)
@@ -6418,7 +6421,7 @@
 				line_color 	3342489
 				quidu      	"46315B51019B"
 				client     	@197
-				supplier   	@183
+				supplier   	@190
 				vertices   	(list Points
 				    (1217, 6436)
 				    (518, 6436)

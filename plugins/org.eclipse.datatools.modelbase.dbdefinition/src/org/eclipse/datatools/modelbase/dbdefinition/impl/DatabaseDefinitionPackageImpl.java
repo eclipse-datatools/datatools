@@ -2277,6 +2277,15 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getViewDefinition_IndexSupported() {
+		return (EAttribute)viewDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFieldQualifierDefinition() {
 		return fieldQualifierDefinitionEClass;
 	}
@@ -2771,6 +2780,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 
 		viewDefinitionEClass = createEClass(VIEW_DEFINITION);
 		createEAttribute(viewDefinitionEClass, VIEW_DEFINITION__MAXIMUM_IDENTIFIER_LENGTH);
+		createEAttribute(viewDefinitionEClass, VIEW_DEFINITION__INDEX_SUPPORTED);
 
 		fieldQualifierDefinitionEClass = createEClass(FIELD_QUALIFIER_DEFINITION);
 		createEReference(fieldQualifierDefinitionEClass, FIELD_QUALIFIER_DEFINITION__VALID_TRAILING_FIELD_QUALIFIER_DEFINITIONS);
@@ -3062,6 +3072,7 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 
 		initEClass(viewDefinitionEClass, ViewDefinition.class, "ViewDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getViewDefinition_MaximumIdentifierLength(), ecorePackage.getEInt(), "maximumIdentifierLength", null, 0, 1, ViewDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getViewDefinition_IndexSupported(), ecorePackage.getEBoolean(), "indexSupported", null, 0, 1, ViewDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(fieldQualifierDefinitionEClass, FieldQualifierDefinition.class, "FieldQualifierDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getFieldQualifierDefinition_ValidTrailingFieldQualifierDefinitions(), this.getFieldQualifierDefinition(), null, "validTrailingFieldQualifierDefinitions", null, 0, -1, FieldQualifierDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
