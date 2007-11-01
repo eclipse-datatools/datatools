@@ -58,6 +58,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.UserDefinedTypeDefinition;
 import org.eclipse.datatools.modelbase.dbdefinition.ViewDefinition;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
@@ -375,7 +376,11 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	
 	public PredefinedDataTypeDefinition getPredefinedDataTypeDefinition(String dataTypeName) {
 		this.loadDatabaseDefinition();
-		return (PredefinedDataTypeDefinition)this.nameToPrimitiveDataTypeDefinitionMap.get(dataTypeName.toUpperCase());
+		PredefinedDataTypeDefinition predefinedDataTypeDefinition = (PredefinedDataTypeDefinition)this.nameToPrimitiveDataTypeDefinitionMap.get(dataTypeName.toUpperCase());
+		if (predefinedDataTypeDefinition == null) {
+			predefinedDataTypeDefinition = (PredefinedDataTypeDefinition)this.nameToPrimitiveDataTypeDefinitionMap.get(dataTypeName);
+		}
+		return predefinedDataTypeDefinition;
 	}
 	
 	public PredefinedDataType getPredefinedDataType(String dataTypeName) {
@@ -699,19 +704,9 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.CHARACTER: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition != null) {
-					if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
-						String temp = predefinedDataTypeDefinition.getDisplayName();
-						if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
-							predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
-						}
-					}
-					else {
-						if (predefinedDataTypeDefinition.isLengthSupported() &&
-								(((CharacterStringDataType)predefinedDataType).getLength() > 0) ) {
-							predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
-						}
-					}
+				if (predefinedDataTypeDefinition.isLengthSupported() &&
+						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
+					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			break;
@@ -983,6 +978,28 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	public boolean supportsUserDefinedType() {
 		this.loadDatabaseDefinition();
 		return this.databaseVendorDefinition.isUserDefinedTypeSupported();
+	}
+	
+	public boolean supportsStructuredUserDefinedType() {
+		this.loadDatabaseDefinition();
+		UserDefinedTypeDefinition udtDefinition = this.databaseVendorDefinition.getUdtDefinition();
+		if ( (udtDefinition != null) && this.supportsUserDefinedType() ) {
+			return udtDefinition.isStructuredTypeSupported();
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean supportsDistinctUserDefinedType() {
+		this.loadDatabaseDefinition();
+		UserDefinedTypeDefinition udtDefinition = this.databaseVendorDefinition.getUdtDefinition();
+		if ( (udtDefinition != null) && this.supportsUserDefinedType() ) {
+			return udtDefinition.isDistinctTypeSupported();
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public boolean supportsIdentityColumns() {
@@ -1391,6 +1408,17 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		return this.databaseVendorDefinition.isViewTriggerSupported();	
 	}
 	
+	public boolean supportsViewIndex() {
+		this.loadDatabaseDefinition();
+		ViewDefinition viewDefinition = this.databaseVendorDefinition.getViewDefinition();
+		if (viewDefinition != null) {
+			return viewDefinition.isIndexSupported();
+		}
+		else {
+			return false;
+		}	
+	}
+	
 	public boolean supportsQuotedDML() {
 		this.loadDatabaseDefinition();
 		return this.databaseVendorDefinition.isQuotedDMLSupported();	
@@ -1610,6 +1638,17 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				maximumLength = storedProcedureDefinition.getMaximumIdentifierLength();
 			}
 		}
+		else if (sqlObject instanceof Index) {
+			IndexDefinition indexDefinition = this.databaseVendorDefinition.getIndexDefinition();
+			if (indexDefinition != null) {
+				maximumLength = indexDefinition.getMaximumIdentifierLength();
+			}
+		}
+		else {
+			if (this.getMetaDataExtension() != null) {
+				maximumLength = this.getMetaDataExtension().getMaximumIdentifierLength(sqlObject);
+			}
+		}
 		
 		return maximumLength;
 	}
@@ -1709,6 +1748,18 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		}
 		if (eClass == null) {
 			eClass = (EClass)SQLSchemaPackage.eINSTANCE.getEClassifier(metaClassName);
+		}
+		if (eClass == null) {
+			if (this.getMetaDataExtension() != null) {
+				AbstractMetaDataExtension mde = this.getMetaDataExtension();
+				try {
+					if ( (mde != null) && (mde.getClass().getMethod("getMetaClass", new Class[] {String.class}) != null)) { //$NON-NLS-1$
+						eClass = this.getMetaDataExtension().getMetaClass(metaClassName);
+					}
+				}
+				catch(NoSuchMethodException e) {				
+				}
+			}
 		}
 		
 		return eClass;
@@ -1855,6 +1906,36 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		}
 	}
 	
+	private AbstractMetaDataExtension getMetaDataExtension() {
+		if(this.metaDataExtension == null) {
+			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "metaDataExtension"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtension[] extensions = extensionPoint.getExtensions();
+			for(int i=0; i<extensions.length; ++i) {
+				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
+				for(int j=0; j<configElements.length; ++j) {
+					if(configElements[j].getName().equals("metaDataExtension")) { //$NON-NLS-1$
+						String product = configElements[j].getAttribute("product"); //$NON-NLS-1$
+						if(!product.equals(this.product)) continue;
+						String version = configElements[j].getAttribute("version"); //$NON-NLS-1$
+						if(!version.equals(this.version)) continue;
+						try {
+							this.metaDataExtension = (AbstractMetaDataExtension) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
+						}
+						catch(CoreException e) {
+						    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+						            "The error was detected when creating the meta data extension for " + product + " " + version, e); //$NON-NLS-1$ //$NON-NLS-2$
+							RDBCorePlugin.getDefault().getLog().log(status);
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		return this.metaDataExtension;
+	}
+	
 	private DatabaseVendorDefinition loadDatabaseDefinition() {
 		if(this.databaseVendorDefinition == null) {	 
 			// Load specified databaseType on demand
@@ -1921,4 +2002,5 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	private DDLGenerator ddlGenerator = null;
 	private DeltaDDLGenerator deltaDdlGenerator = null;
 	private ICatalogProvider catalogProvider = null;
+	private AbstractMetaDataExtension metaDataExtension = null;
 }

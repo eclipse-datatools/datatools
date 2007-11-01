@@ -75,10 +75,13 @@ public interface DatabaseDefinition {
 	public boolean supportTriggerWhenClause();
 	public boolean supportsTriggerGranularity();
 	public boolean supportsUserDefinedType();
+	public boolean supportsStructuredUserDefinedType();
+	public boolean supportsDistinctUserDefinedType();
 	
 	public boolean supportsSnapshotViews();
 	public boolean supportsViewTriggers();
-
+	public boolean supportsViewIndex();
+	
 	public boolean isKeyConstraintSupported(DataType dataType);
 	
 	public String getIdentifierQuoteString();
