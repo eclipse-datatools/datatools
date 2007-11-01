@@ -57,4 +57,6 @@
    </extension>
 
     <extension-point id="externalTableDataEditor" name="External Table Data Editors" schema="schema/externalTableDataEditor.exsd"/>
+    <extension-point id="externalTableDataExtract" name="External support for Table Data Extract" schema="schema/externalTableDataExtract.exsd"/>
+    <extension-point id="externalTableDataLoad" name="External support for Table Data Load" schema="schema/externalTableDataLoad.exsd"/>
 </plugin>
