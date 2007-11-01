@@ -12,8 +12,9 @@ package org.eclipse.datatools.connectivity.sample.wizards;
 
 import java.sql.Connection;
 
-import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -52,7 +53,6 @@ public class SampleConnectionWizard extends Wizard {
 							.getName()
 							+ " : Keywords : "
 							+ connection.getMetaData().getSQLKeywords()).run();
-					connection.close();
 				} else {
 					return false;
 				}
@@ -65,25 +65,23 @@ public class SampleConnectionWizard extends Wizard {
 	}
 
 	private Connection getActiveConnection(IConnectionProfile connectionProfile) {
-		// This method currently uses a non-managed connection because the
-		// behavior of the existing API for managed connections is not suitable
-		// for a wizard. A defect
-		// has been opened and when the new API is available, this sample will
-		// be updated to use it. See
-		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=205250
-
-		Connection activeConnection = null;
-		IConnection connection = connectionProfile
-				.createConnection("java.sql.Connection");
-		if (connection.getRawConnection() != null) {
-			activeConnection = (Connection) connection.getRawConnection();
+		Connection activeConnection = null;			
+		IManagedConnection connection = null;
+		IStatus connectionStatus = null;
+		
+		if (connectionProfile.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
+			activeConnection = (Connection) connectionProfile.getManagedConnection("java.sql.Connection").getConnection().getRawConnection();
 		} else {
-			// Prompt to fix properties
-			while (connection.getRawConnection() == null) {
+			connectionStatus = connectionProfile.connectWithoutJob();
+			if (connectionProfile.getConnectionState() == IConnectionProfile.CONNECTED_STATE) {
+				return (Connection) connectionProfile.getManagedConnection("java.sql.Connection").getConnection().getRawConnection();
+			}
+			while (connectionProfile.getConnectionState() != IConnectionProfile.CONNECTED_STATE) {		
 				// display error message
-				new DisplayMessage(WIZARD_TITLE, connection
-						.getConnectException().getLocalizedMessage()).run();
+				new DisplayMessage(WIZARD_TITLE, connectionStatus
+						.getChildren()[0].getException().getLocalizedMessage()).run();
 
+				// Prompt to fix properties
 				PropertyDialogAction propertyDialogAction = new PropertyDialogAction(
 						new SameShellProvider(this.getShell()),
 						new SampleWizardSelectionProvider(connectionProfile));
@@ -105,10 +103,10 @@ public class SampleConnectionWizard extends Wizard {
 						return activeConnection;
 					}
 				}
-				connection = connectionProfile
-						.createConnection("java.sql.Connection");
+				connectionStatus = connectionProfile.connectWithoutJob();
+				connection = connectionProfile.getManagedConnection("java.sql.Connection");
 			}
-			activeConnection = (Connection) connection.getRawConnection();
+			activeConnection = (Connection) connection.getConnection().getRawConnection();
 		}
 
 		return activeConnection;
