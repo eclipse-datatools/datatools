@@ -24,7 +24,7 @@ DSE.ShowCategory.tooltip=カテゴリーの表示
 DSE.Name=データ・ソース・エクスプローラー
 DSE.ContentExtension.Decorator=接続プロファイル・デコレーター
 DSE.ContentExtension.Decorator.Description=サーバーへの接続に失敗した場合に、コンテンツ拡張ノードを装飾します。
-DSE.content=データ・ソース・エクスプローラー拡張子
+DSE.content.extended = データソースエクスプローラの拡張 (ドラッグ＆ドロップ可能)
 category.name.dataTools=SQL 開発
 category.name.connectivity=接続
 

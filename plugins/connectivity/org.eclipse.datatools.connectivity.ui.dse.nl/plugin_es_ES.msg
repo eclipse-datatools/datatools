@@ -24,7 +24,7 @@ DSE.ShowCategory.tooltip=Mostrar categoría
 DSE.Name=Explorador de orígenes de datos
 DSE.ContentExtension.Decorator=Decorador de perfil de conexión
 DSE.ContentExtension.Decorator.Description=La decoración del nodo de extensión de contenido falla al conectar con el servidor.
-DSE.content=Extensión del Explorador de orígenes de datos
+DSE.content.extended = Extensión de explorador de fuentes de datos con soporte para supresión
 category.name.dataTools=Desarrollo SQL
 category.name.connectivity=Conectividad
 

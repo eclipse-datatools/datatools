@@ -12,3 +12,4 @@ Extension.NewRepositoryWizard.Description = 연결 프로필에 대한 새 리포지토리 생�
 datatools.preference.page.name=연결
 drivers.preference.page.name=드라이버 정의
 category.name.connectionProfiles=연결 프로파일
+DSE.content = 데이터 원본 탐색기 확장명

@@ -24,7 +24,7 @@ DSE.ShowCategory.tooltip=显示类别
 DSE.Name=数据源资源管理器
 DSE.ContentExtension.Decorator=连接概要文件修饰符
 DSE.ContentExtension.Decorator.Description=连接至服务器失败时修饰内容扩展节点。
-DSE.content=数据源资源管理器扩展
+DSE.content.extended = 带删除支持的数据源资源管理器扩展
 category.name.dataTools=SQL 开发
 category.name.connectivity=连接
 

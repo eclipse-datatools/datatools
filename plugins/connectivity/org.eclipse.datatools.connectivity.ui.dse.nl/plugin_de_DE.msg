@@ -24,7 +24,7 @@ DSE.ShowCategory.tooltip=Kategorie anzeigen
 DSE.Name=Datenquellen-Explorer
 DSE.ContentExtension.Decorator=Dekorator für Verbindungsprofil
 DSE.ContentExtension.Decorator.Description=Versieht den Inhaltserweiterungsknoten mit Dekoratoren, wenn die Verbindung zum Server fehlschlägt.
-DSE.content=Erweiterung für Datenquellen-Explorer
+DSE.content.extended = Erweiterung für Datenquellen-Explorer w/Ablage-Support
 category.name.dataTools=SQL-Entwicklung
 category.name.connectivity=Konnektivität
 

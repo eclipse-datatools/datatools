@@ -24,7 +24,7 @@ DSE.ShowCategory.tooltip=카테고리 표시
 DSE.Name=데이터 소스 탐색기
 DSE.ContentExtension.Decorator=연결 프로파일 데코레이터
 DSE.ContentExtension.Decorator.Description=서버에 연결할 때 데코레이트 컨텐츠 확장 노드가 실패합니다.
-DSE.content=데이터 소스 탐색기 확장
+DSE.content.extended = 데이터 원본 탐색기 확장명 w/삭제 지원
 category.name.dataTools=SQL 개발
 category.name.connectivity=연결
 
