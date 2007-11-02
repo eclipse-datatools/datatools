@@ -24,5 +24,20 @@
                value="org.eclipse.datatools.enablement.ibm.db2.zseries.connectionProfile"/>
       </page>
    </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate.password">
+      </propertyEditor>
+   </extension>
    
  </plugin>  

@@ -24,5 +24,56 @@
                value="org.eclipse.datatools.enablement.ibm.informix.connectionProfile"/>
       </page>
    </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverPropertyEditor">
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate.password">
+      </propertyEditor>
+   </extension>
    
  </plugin>  
