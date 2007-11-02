@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oracle.ui;singleton:=true
-Bundle-Version: 1.0.0.200710291
+Bundle-Version: 1.0.0.200711021
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.enablement.oracle.internal.ui
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0)",
