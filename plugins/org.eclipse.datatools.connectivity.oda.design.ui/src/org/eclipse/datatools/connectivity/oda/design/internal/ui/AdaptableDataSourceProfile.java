@@ -276,10 +276,26 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         if( hasLinkedProfile() )
             return getLinkedProfile().connect();
 
-        // TODO Auto-generated method stub
-        return null;
+        return createNAConnectionStatus();
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.IConnectionProfile#connectWithoutJob()
+     */
+    public IStatus connectWithoutJob()
+    {
+        if( hasLinkedProfile() )
+            return getLinkedProfile().connectWithoutJob();
+        
+        return createNAConnectionStatus();
+    }
+
+    private IStatus createNAConnectionStatus()
+    {
+        return new Status( IStatus.WARNING, getDataSourceDesign().getOdaExtensionId(),
+                        -1, "", null ); //$NON-NLS-1$
+    }
+    
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#connect(org.eclipse.core.runtime.jobs.IJobChangeListener)
      */
@@ -302,8 +318,9 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         if( hasLinkedProfile() )
             return getLinkedProfile().disconnect();
 
-        // TODO Auto-generated method stub
-        return null;
+        return ( ! isConnected() ) ?
+                    Status.OK_STATUS :
+                    createNAConnectionStatus();
     }
 
     /* (non-Javadoc)
@@ -473,7 +490,8 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return null;
     }
 
-	public boolean arePropertiesComplete() {
+	public boolean arePropertiesComplete() 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().arePropertiesComplete();
 
@@ -481,7 +499,8 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return true;
 	}
 
-	public boolean arePropertiesComplete(String type) {
+	public boolean arePropertiesComplete( String type ) 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().arePropertiesComplete(type);
 
@@ -489,54 +508,56 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         return true;
 	}
 
-	public boolean canWorkOffline() {
+	public boolean canWorkOffline() 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().canWorkOffline();
 
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public int getConnectionState() {
+	public int getConnectionState() 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().getConnectionState();
 
-		// TODO Auto-generated method stub
 		return DISCONNECTED_STATE;
 	}
 
-	public IStatus saveWorkOfflineData() {
+	public IStatus saveWorkOfflineData() 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().saveWorkOfflineData();
 
-		// TODO Auto-generated method stub
-		return Status.CANCEL_STATUS;
+        return createNAConnectionStatus();
 	}
 
-	public void saveWorkOfflineData(IJobChangeListener listener) {
+	public void saveWorkOfflineData( IJobChangeListener listener ) 
+	{
         if( hasLinkedProfile() )
             getLinkedProfile().saveWorkOfflineData(listener);
 
 		// TODO Auto-generated method stub
 	}
 
-	public boolean supportsWorkOfflineMode() {
+	public boolean supportsWorkOfflineMode() 
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().supportsWorkOfflineMode();
 
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public IStatus workOffline() {
+	public IStatus workOffline()
+	{
         if( hasLinkedProfile() )
             return getLinkedProfile().workOffline();
 
-		// TODO Auto-generated method stub
-		return Status.CANCEL_STATUS;
+		return createNAConnectionStatus();
 	}
 
-	public void workOffline(IJobChangeListener listener) {
+	public void workOffline( IJobChangeListener listener ) 
+	{
         if( hasLinkedProfile() )
             getLinkedProfile().workOffline(listener);
 
