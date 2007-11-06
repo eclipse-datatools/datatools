@@ -60,7 +60,7 @@ public class ServerExplorerLabelProvider extends LabelProvider implements ICommo
 		}
 		else 
 		{
-		    return super.getText(element);
+			return imageService.getLabelService(element).getName();
 		}
     }
 

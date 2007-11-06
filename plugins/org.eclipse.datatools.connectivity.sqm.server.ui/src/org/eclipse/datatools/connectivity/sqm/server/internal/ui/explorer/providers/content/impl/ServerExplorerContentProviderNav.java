@@ -1,12 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ * IBM Corporation - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl;
 
@@ -37,6 +37,8 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.ServerExplorerViewer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerInitializer;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.ILoadingService;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.IServerExplorerLayoutProviderNav;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.hierar.ServerExplorerHierarchicalLayoutNav;
@@ -61,13 +63,14 @@ import org.eclipse.swt.widgets.TreeItem;
  * @author ljulien
  */
 public class ServerExplorerContentProviderNav implements IServerExplorerContentService,
-        IServerExplorerLayoutService, IServerExplorerNavigationService, ICatalogObjectListener
+        IServerExplorerLayoutService, IServerExplorerNavigationService, ICatalogObjectListener, ILoadingService
 {
     private static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
     private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
 
     private static final Object[] EMPTY_ELEMENT_ARRAY = new Object[0];
     private static final String KNOWN_SERVERS = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.KNOWN_SERVERS"); //$NON-NLS-1$
+    private static final String DESCRIPTION = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.DESCRIPTION"); //$NON-NLS-1$
 
     private static final IVirtualNodeServiceFactory virtualNodeFactory = IDataToolsUIServiceManager.INSTANCE.getVirtualNodeServiceFactory();
  //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
@@ -202,53 +205,41 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     {
     	return this.viewer != null;
     }
-    
-    /**
-     * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
-     */
-    public Object[] getChildren(Object parentElement)
-    {
-//        if (isServerExplorerViewer ())
-//        {
-//            if (parentElement instanceof IWorkspaceRoot) { return new Object[] { knownServer}; }
-//	        if (!(parentElement instanceof IWorkspaceRoot))
-//	        {
-//		        if (parentElement instanceof VirtualNode && ((IVirtualNode) parentElement).hasChildren())
-//		        {
-//		            if (parentElement instanceof IConnectionNode && ((IConnectionNode) parentElement).shouldDisconnect())
-//		            {
-//		                ((IConnectionNode) parentElement).setConnected(false);
-//		                return EMPTY_ELEMENT_ARRAY;
-//		            }
-//		            return ((IVirtualNode) parentElement).getChildrenArray();
-    	if (parentElement instanceof ConnectionInfo){
+
+	public Object[] getChildren (Object parent)
+	{
+    	return new Loading ().getChildren(this.viewer, parent, this);
+	}
 	
-    			return new Object[]{((ConnectionInfo)parentElement).getSharedDatabase()};
-    
-    			} else if (parentElement instanceof VirtualNode && ((IVirtualNode) parentElement).hasChildren())
-		        {
-		            if (parentElement instanceof IConnectionNode && ((IConnectionNode) parentElement).shouldDisconnect())
-		            {
-		                ((IConnectionNode) parentElement).setConnected(false);
-		                return EMPTY_ELEMENT_ARRAY;
-		            }
-		            return ((IVirtualNode) parentElement).getChildrenArray();
-		        }
-		        else
-		        {
-		        	Object [] children = layoutProvider.getChildren(parentElement);
-//		        	Object [] children2 = layoutProvider.getChildren(children[0]);
-//		            return children2;
-		            return children;
-		        }
-//	        }
-      //  }
- //       return EMPTY_ELEMENT_ARRAY;
-    }
+	public String getLoadingDescription()
+	{
+		return DESCRIPTION;
+	}
+
+    public Object[] load(Object parentElement)
+    {
+		if (parentElement instanceof ConnectionInfo)
+		{
+			return new Object[] { ((ConnectionInfo) parentElement).getSharedDatabase() };
+		}
+		else if (parentElement instanceof VirtualNode && ((IVirtualNode) parentElement).hasChildren())
+		{
+			if (parentElement instanceof IConnectionNode && ((IConnectionNode) parentElement).shouldDisconnect())
+			{
+				((IConnectionNode) parentElement).setConnected(false);
+				return EMPTY_ELEMENT_ARRAY;
+			}
+			return ((IVirtualNode) parentElement).getChildrenArray();
+		}
+		else
+		{
+			return layoutProvider.getChildren(parentElement);
+		}
+	}
 
     /**
-     * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
-     */
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#getParent(java.lang.Object)
+	 */
     public Object getParent(Object element)
     {
         if (isServerExplorerViewer ())
@@ -276,12 +267,10 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     public boolean hasChildren(Object element)
     {
     	if (element instanceof IConnectionProfile)
+    	{
     		return ((IConnectionProfile) element).getConnectionState() != IConnectionProfile.DISCONNECTED_STATE;
-    	return getChildren(element).length > 0;
-//    	return true;
-//        return (isServerExplorerViewer ()) ? 
-//                element instanceof IConnectionNode && 
-//                ((IConnectionNode)element).getConnectionInfo().getSharedDatabase() == null ? false : true : false;
+    	}
+    	return element instanceof ConnectionInfo && ((ConnectionInfo) element).getSharedDatabase() == null ? false : element instanceof LoadingNode ? false : true;
     }
 
     /**

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -47,8 +47,10 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
 
@@ -257,7 +259,11 @@ public class LabelService implements ILabelService
     
     public Image getIcon()
     {
-        if (matchLabelService ())
+    	if (this.element instanceof ILabelProvider)
+    	{
+    		return ((ILabelProvider)this.element).getImage(this.element);
+    	}
+    	else if (matchLabelService ())
         {
             return this.labelInfo.getIcon();
         }
@@ -448,9 +454,9 @@ public class LabelService implements ILabelService
     
     private String getName (Object object)
     {
-        if (object instanceof SQLObject)
+        if (object instanceof ENamedElement)
         {
-            return getName((SQLObject)object);
+            return getName((ENamedElement)object);
         }
         else if (object instanceof IVirtualNode)
         {
@@ -459,6 +465,14 @@ public class LabelService implements ILabelService
         else if (object instanceof IAdaptable)
         {
             return getName((IAdaptable)object);
+        }
+        else if (object instanceof EObject)
+        {
+            return getName ((EObject)object);
+        }
+        else if (object instanceof ILabelProvider)
+        {
+        	return ((ILabelProvider)object).getText(object);
         }
         return BLANK;
     }
