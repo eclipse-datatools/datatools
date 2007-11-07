@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,16 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources;
 
-import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.channels.WritableByteChannel;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
@@ -43,7 +40,7 @@ public class ResourceLoader
 
 	private ResourceBundle bundle = null;
 
-	private static URL iconLocation;
+	private static String iconLocation;
    
     /**
     * @return Will return the resource loader
@@ -56,8 +53,15 @@ public class ResourceLoader
    
     private ResourceLoader()
     {
-        Bundle bundle = RDBCoreUIPlugin.getDefault().getBundle();
-        iconLocation = bundle.getEntry("/" + ICONS_DIRECTORY); //$NON-NLS-1$
+        try
+        {
+            Bundle bundle = RDBCoreUIPlugin.getDefault().getBundle();
+            iconLocation = FileLocator.resolve(bundle.getEntry("/")).getPath() + ICONS_DIRECTORY; //$NON-NLS-1$
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
         
         this.bundle = ResourceBundle.getBundle(RESOURCE_PATH + UI_RESOURCES);
     }
@@ -73,17 +77,6 @@ public class ResourceLoader
 		return image;
     }
     
-    private Image queryImage (URL imageLocation)
-    {
-		Image image = null;
-		if ((image = plugin.getImageRegistry().get(imageLocation.toString())) == null)
-		{
-			image = ImageDescriptor.createFromURL(imageLocation).createImage();
-			plugin.getImageRegistry().put(imageLocation.toString(), image);
-		}
-		return image;
-    }
-    
     /**
      * Client should use this query Image, as the registry will dispose the image
      * @param imagePath - The path should be related to the Class Loader
@@ -91,17 +84,7 @@ public class ResourceLoader
      */
     public Image queryImageFromRegistry (String imagePath)
     {
-        try {
-			return queryImage (new URL(iconLocation,imagePath));
-		}
-		catch (MalformedURLException e) {
-			return null;
-		}
-    }
-    
-    public Image queryImageFromRegistry (URL imageLocation)
-    {
-    	return queryImage(imageLocation);
+        return queryAbsolutePathImageFromRegistry (iconLocation + imagePath);
     }
  
     /**
@@ -112,6 +95,29 @@ public class ResourceLoader
     public Image queryAbsolutePathImageFromRegistry (String imagePath)
     {
         return queryImage (imagePath);
+    }
+    
+    public Image queryAbsolutePathImageFromRegistry (Bundle bundle, String imagePath)
+    {
+		Image image = null;
+		if ((image = plugin.getImageRegistry().get(imagePath)) == null)
+		{
+			try
+			{
+            	URL fullPathString = FileLocator.find(bundle, new Path(imagePath), null);
+            	fullPathString = fullPathString != null ? fullPathString : new URL(imagePath);
+            	if (fullPathString != null) 
+            	{
+            		image = ImageDescriptor.createFromURL(fullPathString).createImage();
+            		plugin.getImageRegistry().put(imagePath, image);
+            	}
+			} 
+			catch (IOException e)
+			{
+				return image;
+			}
+		}
+		return image;
     }
     
     public static byte[] getImageData (EObject eObject)
@@ -129,43 +135,20 @@ public class ResourceLoader
     
     public static byte[] getImageData(String name)
     {
-        ReadableByteChannel rbc = null;
-        WritableByteChannel wbc = null;
+        String image = iconLocation + name;
         try
         {
-            URL imageURL = new URL(iconLocation,name);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            rbc = Channels.newChannel(imageURL.openStream());
-            wbc = Channels.newChannel(baos);
-
-            ByteBuffer buf = ByteBuffer.allocate(128); // These icons shouldn't be very big
-
-            while (rbc.read(buf)>0) {
-            	wbc.write(buf);
-            }
-
-            return baos.toByteArray();
+            FileInputStream fis = new FileInputStream(image);
+            int size;
+            size = fis.available();
+            byte[] imageBytes = new byte[size];
+            fis.read(imageBytes);
+            fis.close();
+            return imageBytes;
         }
         catch (Exception e)
         {
             e.printStackTrace();
-        }
-        finally {
-        	if (rbc != null) {
-        		try {
-        			rbc.close();
-				}
-				catch (IOException e) {
-				}
-        	}
-        	if (wbc != null) {
-        		try {
-        			wbc.close();
-				}
-				catch (IOException e) {
-				}
-        	}
         }
         return null;
     }
@@ -184,7 +167,7 @@ public class ResourceLoader
         }
         catch (Throwable e)
         {
-        	return stringID;
+        	return NO_RESOURCE_FOUND;
         }
     }
 }

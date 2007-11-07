@@ -11,7 +11,7 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.services;
 
 import java.io.File;
-import java.net.URL;
+import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Vector;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -32,20 +31,12 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
-import org.eclipse.datatools.modelbase.sql.constraints.Index;
-import org.eclipse.datatools.modelbase.sql.routines.Routine;
-import org.eclipse.datatools.modelbase.sql.schema.Catalog;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -53,6 +44,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.graphics.Image;
+import org.osgi.framework.Bundle;
 
 /**
  * @author ljulien
@@ -61,16 +53,12 @@ public class LabelService implements ILabelService
 {
     private static final ResourceLoader resourceLoader = ResourceLoader.getResourceLoader();
     
- //   private static final ConnectionManager connectionManager = RDBCorePlugin.getDefault().getConnectionManager();
-    
     private static final String ELEMENT_SELECTED = resourceLoader.queryString("DATATOOLS.CORE.UI.EXPLORER.MULTI_SELECTION"); //$NON-NLS-1$
     private static final String CONNECTION_NAME = resourceLoader.queryString("DATATOOLS.CORE.UI.STATUS.CONNECTION"); //$NON-NLS-1$
     private static final String PROJECT_NAME = resourceLoader.queryString("DATATOOLS.CORE.UI.STATUS.PROJECT"); //$NON-NLS-1$
     private static final String BLANK = ""; //$NON-NLS-1$
     
     private Map typeProvider = new HashMap ();
-    private Map cache = new HashMap ();
-    private Map packages = new HashMap ();
     
     private Object element;
     private LabelInfo labelInfo;
@@ -92,10 +80,22 @@ public class LabelService implements ILabelService
 			{
 				if(configElements[j].getName().equals("contributor"))//$NON-NLS-1$
 				{
-					LabelInfo li = new LabelInfo(configElements[j]);
-					String type = li.getType();			
-                    if( !typeProvider.containsKey( type ) ) typeProvider.put( type, new ArrayList() ); 
-                       ( ( List )typeProvider.get( type ) ).add( li );
+					String displayType = configElements[j].getAttribute("displayType");//$NON-NLS-1$
+					String iconLocation = configElements[j].getAttribute("iconLocation");//$NON-NLS-1$
+					String type = configElements[j].getAttribute("type"); //$NON-NLS-1$
+					
+				    try
+                    {
+                        Bundle bundle = Platform.getBundle(configElements[j].getDeclaringExtension().getNamespace());
+                        LabelSelector selector = ( configElements[j].getAttribute("selector") != null ) ?  //$NON-NLS-1$
+                            ( LabelSelector )configElements[j].createExecutableExtension( "selector" ) : null; //$NON-NLS-1$
+                        if( !typeProvider.containsKey( type ) ) typeProvider.put( type, new ArrayList() ); 
+                        ( ( List )typeProvider.get( type ) ).add( new LabelInfo (bundle, iconLocation, displayType, selector ) );
+                    }
+                    catch (CoreException e)
+                    {
+                        e.printStackTrace();
+                    }
 				}
 			}
 		}
@@ -181,17 +181,12 @@ public class LabelService implements ILabelService
             if (this.typeProvider.containsKey(name))
             {
                 Iterator labelInfoListIterator = ( ( List )typeProvider.get( name ) ).iterator();
-                LabelInfo returnLocalLabelInfo = null;
                 while( labelInfoListIterator.hasNext() )
                 {
                     LabelInfo localLabelInfo = ( LabelInfo )labelInfoListIterator.next();
-                    if( localLabelInfo.getSelector() == null ){
-                    	returnLocalLabelInfo = localLabelInfo;
-                    	continue;
-                    }
+                    if( localLabelInfo.getSelector() == null ) return localLabelInfo;
                     else if( localLabelInfo.getSelector().select( element ) ) return localLabelInfo;
                 }
-                return returnLocalLabelInfo;
             }
         }
         return null;
@@ -207,18 +202,12 @@ public class LabelService implements ILabelService
             if (this.typeProvider.containsKey(name))
             {
                 Iterator labelInfoListIterator = ( ( List )typeProvider.get( name ) ).iterator();
-                LabelInfo returnLabelInfo = null;
                 while( labelInfoListIterator.hasNext() )
                 {
                     LabelInfo localLabelInfo = ( LabelInfo )labelInfoListIterator.next();
-                    if( localLabelInfo.getSelector() == null ){
-                    	returnLabelInfo = localLabelInfo;
-                    	continue;
-//                    	return localLabelInfo;
-                    }
+                    if( localLabelInfo.getSelector() == null ) return localLabelInfo;
                     else if( localLabelInfo.getSelector().select( element ) ) return localLabelInfo;
                 }
-                return returnLabelInfo;
             }
         }
         return null;
@@ -231,7 +220,11 @@ public class LabelService implements ILabelService
         {
             return getLabelInfo (((EObject)element).eClass());
         }
-        else
+        else if (element instanceof Class)
+        {
+            return getLabelInfo ((Class)element);
+        }
+        else    
         {
             return getLabelInfo ((Class)element.getClass());
         }
@@ -269,7 +262,7 @@ public class LabelService implements ILabelService
         }
         return null;
     }
-    
+
     public String getDisplayType()
     {
         if (matchLabelService())
@@ -284,63 +277,13 @@ public class LabelService implements ILabelService
     
     private String buildConnectionName (Object object, String name)
     {
-   //     String connectionName = connectionManager.getConnectionInfo(((ICatalogObject)object).getCatalogDatabase()).getName();
-    //    return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName});
-    	String connectionName = "NO_NAME_FOUND";
-    	Database db = null;
-    	if (object instanceof ICatalogObject) {
-    		ICatalogObject catObject = (ICatalogObject) object;
-    		db = catObject.getCatalogDatabase();
-    	}
-    	else {
-    		db = getDatabase(object);
-    	}
-    	if (db != null) {
-    		ConnectionInfo cinfo =
-    			DatabaseConnectionRegistry.getConnectionForDatabase(db);
-    		if (cinfo != null && cinfo.getConnectionProfile() != null)
-    			connectionName = cinfo.getConnectionProfile().getName();
-    	}
-    	return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName}); //$NON-NLS-1$
+        String connectionName = ConnectionUtil.getConnectionForEObject(((ICatalogObject)object).getCatalogDatabase()).getName();
+        return MessageFormat.format(CONNECTION_NAME, new String [] {name, connectionName});
     }
     
-    private Database getDatabase (Object object) {
-    	Database db = null;
-    	if (object instanceof Database) {
-    		db = (Database) object;
-    	}
-    	else if (object instanceof Catalog) {
-    		db = ((Catalog) object).getDatabase();
-    	}
-    	else if (object instanceof Schema) {
-    		db = ((Schema) object).getCatalog().getDatabase();
-    	}
-    	else if (object instanceof Routine) {
-    		Object container = ((Routine) object).getSchema();
-    		return getDatabase(container);
-    	}
-    	else if (object instanceof Table) {
-    		Object container = ((Table) object).getSchema();
-    		return getDatabase(container);
-    	}
-    	else if (object instanceof Column) {
-    		Object container = ((Column)object).getContainer();
-    		return getDatabase(container);
-    	}
-    	else if (object instanceof Index) {
-    		Object container = ((Index) object).getTable();
-    		return getDatabase(container);
-    	}
-    	else if (object instanceof SQLObject) {
-    		Object container = ((SQLObject) object).getContainer();
-    		return getDatabase(container);
-    	}
-    	return db;
-    }
-    
-    private String buildProjectName (IProject project, String name)
+    private String buildResourceName (String resourcePath, String name)
     {
-        return MessageFormat.format(PROJECT_NAME, new String [] {name, project.getName()});
+        return MessageFormat.format(PROJECT_NAME, new String [] {name, resourcePath});
     }
     
 	public static String getResourcePath (Resource resource)
@@ -368,16 +311,18 @@ public class LabelService implements ILabelService
 		return null;
     }
     
-    private IProject getProject (Object object)
+    private String getIResourcePath (Object object)
     {
-        if (object == null || !(object instanceof SQLObject))
+        if (object == null || !(object instanceof EObject))
         {
             return null;
         }
-        SQLObject parent = (SQLObject) object;
-        Resource resource = parent.eResource();
-        IFile file = getIFile(resource);
-        return file == null ? null : file.getProject(); 
+        return getIResourcePath (getIFile(((EObject)object).eResource()));
+    }
+    
+    private String getIResourcePath (IFile file)
+    {
+        return file == null ? null : file.getFullPath().toOSString(); 
     }
     
     private Object getParent (IVirtualNode object)
@@ -397,7 +342,7 @@ public class LabelService implements ILabelService
         return parent;
     }
     
-    private String getFullName (SQLObject object)
+    private String getFullName (ENamedElement object)
     {
 		return "<" + IDataToolsUIServiceManager.INSTANCE.getLabelService(object).getDisplayType() + "> " + object.getName();  //$NON-NLS-1$//$NON-NLS-2$
     }
@@ -406,8 +351,13 @@ public class LabelService implements ILabelService
     {
 		return "<" + IDataToolsUIServiceManager.INSTANCE.getLabelService(object).getDisplayType() + "> " + object.getDisplayName();  //$NON-NLS-1$//$NON-NLS-2$
     }
-    
-    private String getName (SQLObject object)
+
+    private String getFullName (EObject object, String name)
+    {
+		return "<" + IDataToolsUIServiceManager.INSTANCE.getLabelService(object).getDisplayType() + "> " + name;  //$NON-NLS-1$//$NON-NLS-2$
+    }
+
+    private String getName (ENamedElement object)
     {
         if (object instanceof ICatalogObject)
         {
@@ -415,13 +365,44 @@ public class LabelService implements ILabelService
         }
         else
         {
-            IProject project = getProject (object);
-            if (project == null)
+            String projectPath = getIResourcePath (object);
+            if (projectPath == null)
             {
                 return getFullName(object);
             }
-            return buildProjectName (project, getFullName(object));
+            return buildResourceName (projectPath, getFullName(object));
         }
+    }
+    
+    private String getName (EObject object)
+    {
+        try
+        {
+            Method method = object.getClass().getMethod("getName", new Class [] {});
+            try
+            {
+                String name = (String) method.invoke(object, new Object [] {});
+                if (getIFile(object.eResource()) != null)
+                {
+                    return buildResourceName (getResourcePath(object.eResource()), getFullName(object, name));
+                }
+                else if (object.eContainer() != null && object.eContainer() instanceof ICatalogObject)
+                {
+                    return buildConnectionName(object.eContainer(), getFullName(object, name));
+                }
+                else
+                {
+                    return getFullName(object, name);
+                }
+            }
+            catch (Exception e1)
+            {
+            }
+        }
+        catch (Exception e)
+        {
+        }
+        return BLANK;
     }
     
     private String getName (IAdaptable object)
@@ -429,7 +410,7 @@ public class LabelService implements ILabelService
         Object file = ((IAdaptable)object).getAdapter(IFile.class);
         if (file != null)
         {
-            return buildProjectName (((IFile)file).getProject(), ((IFile)file).getName());
+            return getIResourcePath ((IFile)file);
         }
         return BLANK;
     }
@@ -441,14 +422,18 @@ public class LabelService implements ILabelService
         {
             return buildConnectionName (parent, getFullName (object));
         }
-        else 
+        else if (object instanceof IAdaptable && ((IAdaptable)object).getAdapter(IFile.class) != null)
         {
-            IProject project = getProject (parent);
+            return buildResourceName (getIResourcePath ((IFile)((IAdaptable)object).getAdapter(IFile.class)), getFullName (object));
+        }
+        else
+        {
+            String project = getIResourcePath (parent);
             if (project == null)
             {
                 return getFullName (object);
             }
-            return buildProjectName (project, getFullName (object));
+            return buildResourceName (project, getFullName (object));
         }
     }
     
@@ -488,68 +473,33 @@ public class LabelService implements ILabelService
 	        }
 	        else if (selection.size() > 1) 
 	        {
-	            return MessageFormat.format(ELEMENT_SELECTED, new String [] {BLANK + selection.size()});
+	            return MessageFormat.format(ELEMENT_SELECTED, new Object [] {BLANK + selection.size()});
 	        }
         }
         return getName (element);
     }
     
-    /**
-     * Wrapper class for labelService extension
-     */
-    private static class LabelInfo
+    private class LabelInfo
     {
-    	public static final String ATTR_TYPE = "type";
-    	public static final String ATTR_ICON_LOCATION = "iconLocation";
-    	public static final String ATTR_DISPLAY_TYPE = "displayType";
-    	public static final String ATTR_SELECTOR = "selector";
-
-    	private IConfigurationElement configElement;
-    	private URL iconLocation;
-    	private LabelSelector selector;
-    	private boolean selectorInitialized;
-
-    	public LabelInfo (IConfigurationElement configElement)
+        private Bundle iconBundle;
+        private String iconLocation;
+        private String displayType;
+        private LabelSelector selector;
+        public LabelInfo (Bundle iconBundle, String iconLocation, String displayType, LabelSelector selector )
         {
-            this.configElement = configElement;
+            this.iconBundle = iconBundle;
+            this.iconLocation = iconLocation;
+            this.displayType = displayType;
+            this.selector = selector;
         }
-    	public String getType()
-    	{
-    		return configElement.getAttribute(ATTR_TYPE);
-    	}
         public Image getIcon()
         {
-        	if (iconLocation == null) {
-	        	String location = configElement.getAttribute(ATTR_ICON_LOCATION);
-	        	if (location == null) {
-	        		return null;
-	        	}
-	        	iconLocation = Platform.getBundle(configElement.getContributor().getName()).getEntry(location);
-        	}
-            return resourceLoader.queryImageFromRegistry(iconLocation);
+            return resourceLoader.queryAbsolutePathImageFromRegistry(this.iconBundle, this.iconLocation);
         }
         public String getDisplayType ()
         {
-            return configElement.getAttribute(ATTR_DISPLAY_TYPE);
+            return this.displayType;
         }
-        public LabelSelector getSelector()
-        {
-        	if (!selectorInitialized) {
-				selectorInitialized = true;
-
-				String selectorClassName = configElement
-						.getAttribute(ATTR_SELECTOR);
-				if (selectorClassName != null && selectorClassName.length() > 0) {
-					try {
-						selector = (LabelSelector) configElement
-								.createExecutableExtension(ATTR_SELECTOR);
-					}
-					catch (CoreException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-        	return selector; 
-        }
+        public LabelSelector getSelector() { return selector; }
     }
 }
