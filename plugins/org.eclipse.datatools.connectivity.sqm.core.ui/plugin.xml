@@ -5,6 +5,7 @@
    <extension-point id="labelService" name="%LABEL_SERVICE_EXTENSION_POINT_NAME" schema="schema/labelService.exsd"/>
    <extension-point id="elementID" name="%ELEMENT_ID_EXTENSION_POINT_NAME" schema="schema/elementID.exsd"/>
    <extension-point id="markerNavigationProvider" name="%MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME" schema="schema/markerNavigationProvider.exsd"/>
+   <extension-point id="sorterValidatorProvider" name="%DATA_SOURCE_EXPLORER_SORTER" schema="schema/sorterValidatorProvider.exsd"/>
 
    <extension
          point="org.eclipse.ui.preferencePages">
