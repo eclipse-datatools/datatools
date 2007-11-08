@@ -16,7 +16,10 @@ package org.eclipse.datatools.connectivity.oda.util.manifest;
 
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +46,7 @@ public class ManifestExplorer
     // trace logging variables
 	private static Logger sm_logger = null;
 
-	private Hashtable m_manifestsById;  // cached copy of manifests by odaDataSourceId
+	private Map m_manifestsById;  // cached copy of manifests by odaDataSourceId
 
 	private static final String DTP_ODA_EXT_POINT = 
 	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
@@ -108,24 +111,21 @@ public class ManifestExplorer
      */
     public void refresh()
     {
-        if( m_manifestsById == null )
+        if( m_manifestsById == null || m_manifestsById.isEmpty() )
             return;     // done; nothing to reset
 
         // reset the cached collection of ODA extension manifest instances
-        synchronized( this )
-        {
-            m_manifestsById = null;
-        }
+        m_manifestsById.clear();
     }
 
-    private Hashtable getCachedManifests()
+    private Map getCachedManifests()
     {
     	if( m_manifestsById == null )
     	{
             synchronized( this )
             {
                 if( m_manifestsById == null )
-                    m_manifestsById = new Hashtable();
+                    m_manifestsById = Collections.synchronizedMap( new HashMap() );
             }
     	}
     	return m_manifestsById;
@@ -259,20 +259,47 @@ public class ManifestExplorer
 
         // first check if specified extension's dataSourceId manifest
         // is already in cache, and use it
-        ExtensionManifest aManifest =
+        ExtensionManifest aManifest = 
             (ExtensionManifest) getCachedManifests().get( dataSourceId );
-        if( aManifest != null )
-            return aManifest;
+        if( aManifest == null )
+        {                   
+            // validate and create its extension manifest first before locking the cached collection
+            ExtensionManifest newManifest = new ExtensionManifest( dataSourceExtn );
             
-        // validate and create its extension manifest
-        aManifest = new ExtensionManifest( dataSourceExtn );
-        
-        // keep it in cached collection
-        getCachedManifests().put( dataSourceId, aManifest );
+            // save it in the cached collection in a synchronized manner
+            aManifest = addToCachedManifests( dataSourceId, newManifest );
+        }
         
         return aManifest;
     }
 
+    /**
+     * Adds specified extension manifest to the synchronized collection in cache.
+     * This method expects a new manifest is first created, to minimize the locking on 
+     * the cached collection.
+     * @param dataSourceId  the oda data source id that serves as the mapping key
+     * @param manifest		new manifest to add to collection iff data source id mapping does not exist yet
+     * @return  the cached extension manifest kept in the cached collection
+     */
+    private ExtensionManifest addToCachedManifests( String dataSourceId, ExtensionManifest manifest )
+    {
+        Map manifestMap = getCachedManifests();
+        ExtensionManifest cachedManifest;
+        synchronized( manifestMap )
+        {
+            // in case another thread has added to the same key in between this checking, use
+            // the currently cached value
+            cachedManifest = (ExtensionManifest) manifestMap.get( dataSourceId );
+            if( cachedManifest == null )
+            {                                   
+                // save the specified default manifest in cached collection
+                cachedManifest = manifest;
+                manifestMap.put( dataSourceId, cachedManifest );
+            }
+        }
+        return cachedManifest;
+    }
+    
 	/**
 	 * Returns an array of DTP ODA dataSource extension configuration information  
 	 * found in corresponding plugin manifest file.
