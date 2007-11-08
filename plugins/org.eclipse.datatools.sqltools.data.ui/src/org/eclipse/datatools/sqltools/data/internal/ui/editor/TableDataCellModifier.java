@@ -30,6 +30,7 @@ public class TableDataCellModifier implements ICellModifier {
     protected TableViewer viewer;
     
     protected boolean canModify = false;
+    protected boolean isModifying = false;
     
     public TableDataCellModifier(TableDataEditor editor, TableViewer viewer)
     {
@@ -107,24 +108,33 @@ public class TableDataCellModifier implements ICellModifier {
         
         if (element instanceof Item)
             element = ((Item) element).getData();
-        
-        IRowData row = editor.getOrCreateRow();
-        
-        Object oldObject = row.getValue(column);
-        String oldString = row.getTable().getColumnDataAccessor(column).serialize(oldObject, row.getTable().getColumnType(column));
-        if (value.equals(oldString))
-            return;               
+
+    	if (isModifying)
+    	    return; // Protect against infinite recursion, bug 
         
         try {
-            editor.setDirty(true);
-            Object o = row.getTable().getColumnDataAccessor(column).deserialize((String)value, row.getTable().getColumnType(column));
-            row.updateValue(column, o);
-        }  catch (Exception ex) {            
-            IStatus warning = new Status(IStatus.ERROR, DataUIPlugin.PLUGIN_ID, 1, Messages.getString("TableDataCellModifier.dataFormatError"), ex); //$NON-NLS-1$
-            ErrorDialog.openError(viewer.getControl().getShell(), Messages.getString("TableDataCellModifier.ErrorUpdatingData"), null, warning); //$NON-NLS-1$
+        	isModifying = true;
+        
+	        IRowData row = editor.getOrCreateRow();
+	        
+	        Object oldObject = row.getValue(column);
+	        String oldString = row.getTable().getColumnDataAccessor(column).serialize(oldObject, row.getTable().getColumnType(column));
+	        if (value.equals(oldString))
+	            return;               
+	        
+	        try {
+	            editor.setDirty(true);
+	            Object o = row.getTable().getColumnDataAccessor(column).deserialize((String)value, row.getTable().getColumnType(column));
+	            row.updateValue(column, o);
+	        }  catch (Exception ex) {            
+	            IStatus warning = new Status(IStatus.ERROR, DataUIPlugin.PLUGIN_ID, 1, Messages.getString("TableDataCellModifier.dataFormatError"), ex); //$NON-NLS-1$
+	            ErrorDialog.openError(viewer.getControl().getShell(), Messages.getString("TableDataCellModifier.ErrorUpdatingData"), null, warning); //$NON-NLS-1$
+	        }
+	    
+	        viewer.refresh(row);
+        } finally {
+        	isModifying = false;
         }
-    
-        viewer.refresh(row);
     }
     
     protected int getColumnIndex(String property) {
