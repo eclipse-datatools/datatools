@@ -12,7 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources
 
 import java.util.ResourceBundle;
 
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.ServerUIDebugOptions;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.logging.Logger;
 import org.eclipse.swt.graphics.Image;
@@ -23,9 +23,9 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ResourceLoader
 {
-	private static final ServerUIPlugin plugin = ServerUIPlugin.getDefault();
 	private static final String RESOURCE_PATH = "org/eclipse/datatools/connectivity/sqm/server/internal/ui/l10n/"; //$NON-NLS-1$
 	private static final String UI_RESOURCES = "datatoolsServerUI"; //$NON-NLS-1$
+	private static final String ICONS_DIRECTORY = "icons/"; //$NON-NLS-1$
 	private static final String NO_RESOURCE_FOUND = "NO_RESOURCE_FOUND"; //$NON-NLS-1$
 
 	private ResourceBundle bundle;
@@ -42,10 +42,12 @@ public class ResourceLoader
      * @param imagePath
      * @return the image
      */
-    public Image queryImageFromRegistry (String imagePath)
+    public Image queryImageFromRegistry (String imageFileName)
     {
-        return org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader.getResourceLoader().queryImageFromRegistry(imagePath);
-    }
+		return org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader
+				.getResourceLoader().queryAbsolutePathImageFromRegistry(
+						RDBCoreUIPlugin.getDefault().getBundle(), ICONS_DIRECTORY + imageFileName);
+	}
 
     /**
      * @param stringID - the key to look for
