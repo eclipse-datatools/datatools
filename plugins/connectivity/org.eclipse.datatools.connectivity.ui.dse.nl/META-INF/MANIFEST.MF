@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Nl Fragment
+Bundle-Name: DTP Data Source Explorer Nl Fragment
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.ui.dse.nl
 Bundle-Version: 1.0.1.qualifier
 Fragment-Host: org.eclipse.datatools.connectivity.ui.dse;bundle-version="[1.0.0,2.0.0)"

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Nl Fragment
+Bundle-Name: DTP ODA Design Session Model Nl Fragment
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.nl1
-Bundle-Version: 3.0.2.qualifier
+Bundle-Version: 3.0.5.qualifier
 Fragment-Host: org.eclipse.datatools.connectivity.oda.design;bundle-version="[3.0.2,4.0.0)"
 Bundle-Localization: nl_fragment
