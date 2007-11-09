@@ -26,7 +26,6 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
-import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
@@ -36,6 +35,8 @@ import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -74,8 +75,6 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
-import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
 
 /**
  * Extends the ODA design ui framework to provide a driver-specific custom
@@ -197,21 +196,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	private void createColumnTypeMap( )
 	{
-		dataTypeDisplayNameMap.put( "INT", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(4), 
 				Messages.getString( "datatypes.integer" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "DOUBLE", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(8), 
 				Messages.getString( "datatypes.float" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "STRING", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(12),
 				Messages.getString( "datatypes.string" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "DATE", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(91),
 				Messages.getString( "datatypes.date" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "TIME", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(92),
 				Messages.getString( "datatypes.time" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "TIMESTAMP", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(93),
 				Messages.getString( "datatypes.dateTime" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "BIGDECIMAL", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(2), 
 				Messages.getString( "datatypes.decimal" ) ); //$NON-NLS-1$
-		dataTypeDisplayNameMap.put( "BOOLEAN", //$NON-NLS-1$
+		dataTypeDisplayNameMap.put( new Integer(16), 
 				Messages.getString( "datatypes.boolean" ) ); //$NON-NLS-1$
 
 		dataTypeValueMape.put( Messages.getString( "datatypes.integer" ), "INT" ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -1007,7 +1006,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 						savedSelectedColumnsInfoString,
 						metadata );
 
-				result[2] = getDataTypeDisplayName( metadata.getColumnTypeName( i + 1 ) );
+				result[2] = getDataTypeDisplayName( new Integer ( metadata.getColumnType( i + 1 ) ) );
 				columnList.add( result );
 			}
 			return columnList;
@@ -1051,10 +1050,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 * @param type
 	 * @return
 	 */
-	private String getDataTypeDisplayName( String type )
+	private String getDataTypeDisplayName( Integer type )
 	{
-		if ( dataTypeDisplayNameMap.get( type.toUpperCase( ) ) != null )
-			return (String) dataTypeDisplayNameMap.get( type.toUpperCase( ) );
+		if ( dataTypeDisplayNameMap.get( type ) != null )
+			return (String) dataTypeDisplayNameMap.get( type );
 		else
 			return Messages.getString( "datatypes.string" ); //$NON-NLS-1$
 	}
