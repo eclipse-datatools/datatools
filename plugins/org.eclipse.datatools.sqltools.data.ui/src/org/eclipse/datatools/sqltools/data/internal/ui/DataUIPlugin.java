@@ -47,6 +47,9 @@ import org.eclipse.datatools.sqltools.data.internal.ui.editor.TableDataEditorAct
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.FileLocator;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -54,6 +57,7 @@ public class DataUIPlugin extends AbstractUIPlugin
 {
     //The shared instance.
     private static DataUIPlugin plugin;
+    private static final IPath ICONS_PATH= new Path("icons"); //$NON-NLS-1$
     
     public static final String PLUGIN_ID = "org.eclipse.datatools.sqltools.data.ui"; //$NON-NLS-1$
 
@@ -279,10 +283,9 @@ public class DataUIPlugin extends AbstractUIPlugin
 	 */
 	public ImageDescriptor getImageDescriptor(String key) {
 		try {			
-			return ImageDescriptor.createFromURL(					
-					new URL(
-							getBundle().getEntry("/"),						   //$NON-NLS-1$
-							"icons" + java.io.File.separator + key + ".gif")); //$NON-NLS-1$ //$NON-NLS-2$
+			IPath path = ICONS_PATH.append(key + ".gif"); //$NON-NLS-1$
+			URL imageURL = FileLocator.find(getBundle(), path, null);
+		    return ImageDescriptor.createFromURL(imageURL);
 		}
 		catch (Exception e) {
 			writeLog(IStatus.ERROR, 0, e.getMessage(), e);
@@ -294,11 +297,10 @@ public class DataUIPlugin extends AbstractUIPlugin
 	 * This gets a .png from the icons folder.
 	 */
 	public ImageDescriptor getPngImageDescriptor(String key) {
-		try {			
-			return ImageDescriptor.createFromURL(					
-					new URL(
-							getBundle().getEntry("/"),						   //$NON-NLS-1$
-							"icons" + java.io.File.separator + key + ".png")); //$NON-NLS-1$ //$NON-NLS-2$
+		try {	
+			IPath path = ICONS_PATH.append(key + ".png"); //$NON-NLS-1$
+			URL imageURL = FileLocator.find(getBundle(), path, null);
+		    return ImageDescriptor.createFromURL(imageURL);
 		}
 		catch (Exception e) {
 			writeLog(IStatus.ERROR, 0, e.getMessage(), e);
