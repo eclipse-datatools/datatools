@@ -37,6 +37,7 @@ import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.IHelpConstants;
 import org.eclipse.datatools.connectivity.oda.flatfile.ui.util.Utility;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -879,6 +880,17 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			return;
 		}
 
+		String sourcePath = dataSourceProps.getProperty( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
+		if ( sourcePath != null )
+		{
+			File cpFile = new File( sourcePath );
+			if ( !cpFile.exists( ) )
+			{
+				setMessage( Messages.getFormattedString( "error.invalidConnectionFilePath", new Object[]{ cpFile.getPath( ) } ), ERROR ); //$NON-NLS-1$
+				return;
+			}
+		}
+		
 		odaHome = dataSourceProps.getProperty( CommonConstants.CONN_HOME_DIR_PROP );
 		charSet = dataSourceProps.getProperty( CommonConstants.CONN_CHARSET_PROP );
 		flatfileDelimiterType = dataSourceProps.getProperty( CommonConstants.CONN_DELIMITER_TYPE );
@@ -1019,7 +1031,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		}
 		finally
 		{
-				closeConnection( conn );
+			closeConnection( conn );
 		}
 
 	}
@@ -1150,11 +1162,29 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		java.util.Properties prop = new java.util.Properties( );
 		if ( file != null )
+		{
+			if( file.getParent( ) == null )
+			{
+				throw new OdaException( Messages.getString( "error.unexpectedError" ) ); //$NON-NLS-1$
+			}
 			prop.put( CommonConstants.CONN_HOME_DIR_PROP, file.getParent( ) );
-		prop.put( CommonConstants.CONN_DELIMITER_TYPE, flatfileDelimiterType );
-		prop.put( CommonConstants.CONN_CHARSET_PROP, charSet );
-		prop.put( CommonConstants.CONN_INCLCOLUMNNAME_PROP, inclColumnNameLine );
-		prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, inclTypeLine );
+		}
+		if( flatfileDelimiterType != null )		
+		{
+			prop.put( CommonConstants.CONN_DELIMITER_TYPE, flatfileDelimiterType );
+		}
+		if( charSet != null )		
+		{
+			prop.put( CommonConstants.CONN_CHARSET_PROP, charSet );
+		}
+		if( inclColumnNameLine != null )		
+		{
+			prop.put( CommonConstants.CONN_INCLCOLUMNNAME_PROP, inclColumnNameLine );
+		}
+		if( inclTypeLine != null )		
+		{
+			prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, inclTypeLine );
+		}
 
 		savedSelectedColumnsInfoString = QueryTextUtil.getColumnsInfo( queryText );
 
