@@ -51,7 +51,7 @@
 				<property generated="false"
 					id="org.eclipse.datatools.connectivity.db.username"
 					name="%USER_ID_PROPERTY_NAME" 
-					value="" 
+					value="pg" 
 					required="true" 
 					visible="true"/>
 				<property
