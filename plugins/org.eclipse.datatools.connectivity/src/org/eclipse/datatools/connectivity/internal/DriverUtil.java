@@ -132,7 +132,7 @@ public class DriverUtil {
 				String reason = err.toString();
 				Exception ce = new Exception(reason);
 				ce.setStackTrace(err.getStackTrace());
-				throw ce;
+				ConnectivityPlugin.getDefault().log(ce);
 			}
 		} catch (Exception e) {
 			String reason = e.toString();
