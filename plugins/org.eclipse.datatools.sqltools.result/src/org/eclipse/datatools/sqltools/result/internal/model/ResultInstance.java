@@ -53,6 +53,7 @@ public class ResultInstance implements IResultInstance
     transient private Runnable _terminateHandler;
     private List               _parameters;
     private String             _date;
+    private Date               _ddate;
 
     private int                _execFrequency;
     
@@ -70,7 +71,8 @@ public class ResultInstance implements IResultInstance
         this._operationCommand = command;
         _resultList = new ArrayList(5);
         this._terminateHandler = terminateHandler;
-        _date = ResultsConstants.FORMATTER.format(new Date());
+        _ddate = new Date();
+        _date = ResultsConstants.FORMATTER.format(_ddate);
         _execFrequency = 1;
         _subResults = new ArrayList(5);
     }
@@ -219,6 +221,11 @@ public class ResultInstance implements IResultInstance
     public String getExecuteTime()
     {
         return _date;
+    }
+
+    public Date getExecuteDate()
+    {
+        return _ddate;
     }
 
     public void updateStatus(int status)

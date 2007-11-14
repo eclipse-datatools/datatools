@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.result.model;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.IResultSetObject;
@@ -157,6 +158,13 @@ public interface IResultInstance extends Serializable
      * @return the execution time
      */
     public String getExecuteTime();  
+    
+    /**
+     * Returns the date-time this result instance was created
+     *  
+     * @return the execution date-time
+     */
+    public Date getExecuteDate();  
     
     /**
      * Clears all the result items and parameters
