@@ -13,6 +13,12 @@ package org.eclipse.datatools.sqltools.tabledataeditor.actions;
 import java.sql.Connection;
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
@@ -30,6 +36,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute.QueryOutputHelper;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.util.ResourceLoader;
+import org.eclipse.datatools.sqltools.internal.tabledataeditor.IExternalRunQuery;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -44,6 +51,10 @@ public class SampleContentAction extends AbstractAction
     private final String DQ = "\""; //$NON-NLS-1$ //$NON-NLS-2$
     private final String SPACE = " "; //$NON-NLS-1$ //$NON-NLS-2$
     private String quote = ""; //$NON-NLS-1$ //$NON-NLS-2$
+    private static final String EXTERNAL_RUN_QUERY = 
+    	"org.eclipse.datatools.sqltools.tabledataeditor.externalRunQuery"; //$NON-NLS-1$ //$NON-NLS-2$
+    private static final String EXTERNAL_RUN_QUERY_VENDOR = "vendor"; //$NON-NLS-1$ //$NON-NLS-2$
+    private static final String EXTERNAL_RUN_QUERY_CLASS = "class"; //$NON-NLS-1$ //$NON-NLS-2$
 
     private String wrapName(String name)
     {
@@ -180,12 +191,65 @@ public class SampleContentAction extends AbstractAction
                     selectString += " FROM " + this.getFullyQualifiedName(column.getTable()); //$NON-NLS-1$
                 }
             }
-
+            
             String profileName = DatabaseConnectionRegistry.getConnectionForDatabase(database).getName();
-            QueryOutputHelper queryHelper = new QueryOutputHelper(selectString, connection, profileName, database.getName());
-            queryHelper.setObjectName(ResourceLoader.INSTANCE.queryString("_UI_SAMPLE_CONTENTS_OUTPUTVIEW_TITLE")); //$NON-NLS-1$
-            queryHelper.runQuery();
+            // check for extensions, if none do the old way
+            final IExternalRunQuery externalRun = (IExternalRunQuery)getExternalRunQuery(database);
+            if (externalRun != null)
+            {
+            	externalRun.init(selectString, connection, profileName, database, 
+            			ResourceLoader.INSTANCE.queryString("_UI_SAMPLE_CONTENTS_OUTPUTVIEW_TITLE"));
+            	externalRun.runQuery();
+            }
+            else
+            {
+            	QueryOutputHelper queryHelper = new QueryOutputHelper(selectString, connection, profileName, database.getName());
+                queryHelper.setObjectName(ResourceLoader.INSTANCE.queryString("_UI_SAMPLE_CONTENTS_OUTPUTVIEW_TITLE")); //$NON-NLS-1$
+                queryHelper.runQuery();
+            }            
         }
+    }
+    
+    /**
+     * Gets the extension which provides the external run query
+     * @param database the Database associated with the query
+     * @return the object created from the extension, or null if none exists
+     */
+    private Object getExternalRunQuery(Database database)
+    {
+    	Object externalExecutable = null;
+    	if (database != null)
+    	{
+    		String thisVendor = database.getVendor();
+    		try
+    		{
+    			IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+    			IExtensionPoint extensionPoint = 
+		        	extensionRegistry.getExtensionPoint(SampleContentAction.EXTERNAL_RUN_QUERY);
+    			IExtension [] extensions = extensionPoint.getExtensions();
+    			for (int numExt=0;numExt<extensions.length;numExt++)
+		        {
+		        	IExtension ext = extensions[numExt];
+		        	IConfigurationElement [] configElements = ext.getConfigurationElements();
+		        	for (int config=0;config<configElements.length;config++)
+		        	{
+		        		String extensionVendor = 
+		        			configElements[config].getAttribute(SampleContentAction.EXTERNAL_RUN_QUERY_VENDOR);
+		        		if (thisVendor.equalsIgnoreCase(extensionVendor))
+		        		{
+		        			externalExecutable = 
+		        				configElements[config].createExecutableExtension(SampleContentAction.EXTERNAL_RUN_QUERY_CLASS);
+		        			break;
+		        		}
+		        	}
+		        }
+    		}
+    		catch (CoreException ex)
+			{
+				// problem with creating executable, return null
+			}
+    	}
+    	return externalExecutable;
     }
 
     public static String doubleStringDelim(String s, String delim)

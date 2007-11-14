@@ -10,12 +10,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.tabledataeditor;
 
+import java.text.MessageFormat;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class TableDataEditorPlugin extends AbstractUIPlugin
 {
     // The shared instance.
     private static TableDataEditorPlugin plugin;
+    
+    private static final String BUNDLE_NAME = 
+    	"org.eclipse.datatools.sqltools.internal.tabledataeditor.l10n.tableDataEditor";//$NON-NLS-1$
+
+    private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle
+            .getBundle(BUNDLE_NAME);
 
     /**
      * The constructor.
@@ -32,5 +42,31 @@ public class TableDataEditorPlugin extends AbstractUIPlugin
     public static TableDataEditorPlugin getDefault()
     {
         return plugin;
+    }
+    
+    public static String getString(String key) {
+        try {
+            return RESOURCE_BUNDLE.getString(key);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
+        }
+    }
+    
+    /**
+     * Gets a String resource, given its index,
+     * and uses java.text.MessageFormat to do argument substitution.
+     * Arguments place holders in the resource string must have 
+     * the form {0}, {1}, ...
+     * @param key The index of the resource.
+     * @param arguments Objects for substitution.
+     * @return A resource String
+     */
+    public static String getString(String key, Object[] arguments) {
+        try {
+            String pattern = RESOURCE_BUNDLE.getString(key);
+            return MessageFormat.format(pattern, arguments);
+        } catch (MissingResourceException e) {
+            return '!' + key + '!';
+        }
     }
 }
