@@ -10,17 +10,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.examples.util;
 
-//import org.eclipse.datatools.sqltools.result.internal.model.ResultInstance;
+import java.util.Date;
+
+import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 
 /**
- * Filters the result history based on current SQL statement
+ * Filters the result history based on current SQL statement.
+ * It shows only those statements executed for the current connection profile.
+ * 
  * @author Jeremy Lindop
  */
 public class ResultsHistoryFilter extends ViewerFilter
 {
     String _profileName;
+    Date _creationDate;
     
     /**
      * Constructor
@@ -35,6 +40,7 @@ public class ResultsHistoryFilter extends ViewerFilter
         else {
         	_profileName = profile;
         }
+        _creationDate = new Date();
     }
 
     /*
@@ -43,17 +49,15 @@ public class ResultsHistoryFilter extends ViewerFilter
      */
     public boolean select(Viewer viewer, Object parentElement, Object element)
     {
-//        if(element instanceof ResultInstance)
-//        {
-//        	ResultInstance instance = (ResultInstance)element;
-//            if (_profileName.equals(instance.getOperationCommand().getProfileName())){
+        if(element instanceof IResultInstance)
+        {
+        	IResultInstance instance = (IResultInstance)element;
+            if (_profileName.equals(instance.getOperationCommand().getProfileName())){
+            	if (_creationDate.before(instance.getExecuteDate()))
             	return true;
-//            }
-//            else {
-//            	return false;
-//            }
-//         }
-//
-//        return false;
+            }
+         }
+
+        return false;
     }
 }

@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-//import org.eclipse.datatools.sqltools.result.internal.ui.view.ResultsViewControl;
+import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
@@ -60,7 +60,7 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	private SQLBuilder _sqlBuilder = null;
 	private ISQLBuilderEditorInput _editorInput = null;
 
-//	ResultsViewControl _resultsViewControl;
+	ResultsViewControl _resultsViewControl;
 	
 	/**
 	 * Constructor for SQLBuilderDialog
@@ -143,27 +143,27 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		/*
 		 * Add the results view
 		 */
-//		_resultsViewControl = new ResultsViewControl(null);
-//		try {
-//			_resultsViewControl.init(null, null);
-//		} catch (PartInitException e) {
-//			System.out.println(e.getLocalizedMessage());
-//			e.printStackTrace();
-//		}
-//		_resultsViewControl.createPartControl(resultsComposite);	
-//		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
-//		_resultsViewControl.getControl().setLayoutData(gd);
-//		
-//		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
+		_resultsViewControl = new ResultsViewControl(null);
+		try {
+			_resultsViewControl.init(null, null);
+		} catch (PartInitException e) {
+			System.out.println(e.getLocalizedMessage());
+			e.printStackTrace();
+		}
+		_resultsViewControl.createPartControl(resultsComposite);	
+		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
+		_resultsViewControl.getControl().setLayoutData(gd);
+		
+		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
 		
 		return topComposite;
 	}
 
-//	private void filterResultsView(IConnectionProfile connectionProfile) {
-//        _resultsViewControl.getResultHistorySection().getResultTable().
-//    			addFilter(new ResultsHistoryFilter(connectionProfile.getName()));
-//
-//	}
+	private void filterResultsView(IConnectionProfile connectionProfile) {
+        _resultsViewControl.addResultHistoryFilter(
+    			new ResultsHistoryFilter(connectionProfile.getName()));
+
+	}
 
 	/**
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
@@ -354,7 +354,7 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
-//		_resultsViewControl.dispose();
+		_resultsViewControl.dispose();
 		
 		return super.close();
 	}
