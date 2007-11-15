@@ -135,11 +135,12 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.PreferencesUtil;
+import org.eclipse.ui.editors.text.FileDocumentProvider;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.internal.texteditor.NLSUtility;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
+import org.eclipse.ui.texteditor.AbstractTextEditor;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.ITextEditor;
@@ -851,13 +852,20 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             _fSQLUpdater.removeMarkers();
             getSourceViewer().getDocument().removeDocumentListener(_fSQLUpdater);
         }
+        
+        IDocumentProvider docProvider = this.getDocumentProvider();
+        //209486: Changes in SQL Editor are not saved
+        if (input instanceof FileEditorInput && (docProvider == null || !(docProvider instanceof FileDocumentProvider))){
+        	docProvider = new FileDocumentProvider();
+            setDocumentProvider(docProvider);
+        }
+        
         super.doSetInput( input );
 
         /* Make sure the document partitioner is set up. The document setup
          * participant sets up document partitioning, which is used for text
          * colorizing and other text features.
          */
-        IDocumentProvider docProvider = this.getDocumentProvider();
         if (docProvider != null) {
             IDocument doc = docProvider.getDocument( input );
             if (doc != null) {
