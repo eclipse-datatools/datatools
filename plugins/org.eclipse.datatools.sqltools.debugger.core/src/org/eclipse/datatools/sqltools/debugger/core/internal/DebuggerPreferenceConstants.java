@@ -29,6 +29,11 @@ public class DebuggerPreferenceConstants
     //SQL debug preference constants
     public static final String PROMPT_SETTING_BRAKEPOINT_DISABLE                = "debug.prompt.settingBreakPointDisable"; 
 
-    //preference constants for SQL Results View options
+    // Table view
+    public static final String TABLE_VIEW_SHOW_ROW_NUMBER              = "PreferenceConstants.tableview.show_row_number";
+    public static final String TABLE_VIEW_MAX_ROW_TO_DISPLAY           = "PreferenceConstants.tableview.max_row";
+    public static final String TABLE_VIEW_DISPLAY_NULL                 = "PreferenceConstants.tableview.display_null";
+    public static final String TABLE_VIEW_AUTO_REFRESH                 = "PreferenceConstants.tableview.auto_refresh";
 
+    public static final String EXTERNAL_CLIENT_REFRESH_INTERVAL = "EXTERNAL_CLIENT_REFRESH_INTERVAL";
 }

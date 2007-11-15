@@ -3,6 +3,13 @@
 <plugin>
    <extension-point id="sourceLocatorProvider" name="Routine Source Locator Provider" schema="schema/sourceLocatorProvider.exsd"/>
 
+	<extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.datatools.sqltools.debugger.core.internal.DebuggerPreferenceInitializer">
+      </initializer>
+    </extension>
+
    <extension
          id="org.eclipse.datatools.sqltools.deugger.editorext.SQLDebuggerDocumentProvider"
          name="SQL Debugger document provider"
