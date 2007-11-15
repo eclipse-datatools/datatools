@@ -167,7 +167,7 @@ public class SQLScrapbookEditor extends SQLEditor {
 			}
 			super.doSetInput(newInput);			
 		}
-
+		
 	}
 
 	protected void createActions() {
@@ -192,7 +192,7 @@ public class SQLScrapbookEditor extends SQLEditor {
     }
     
 	public void setConnectionInfo(ISQLEditorConnectionInfo connInfo) {
-		this.doSetConnectionInfo(connInfo);
+	    this.doSetConnectionInfo(connInfo);
         //updates the internal toolbar when user changes the connection info
         getSite().getShell().getDisplay().asyncExec(new Runnable(){
             public void run()
@@ -205,11 +205,18 @@ public class SQLScrapbookEditor extends SQLEditor {
 	}	
 
 	protected void doSetConnectionInfo(ISQLEditorConnectionInfo connInfo) {
-	    super.setConnectionInfo(connInfo);
-	    if (getEditorInput() instanceof IFileEditorInput)
-	    {
-	        SQLFileUtil.setEncodedConnectionInfo(((IFileEditorInput)getEditorInput()).getFile(), connInfo.encode());
-	    }
+        ISQLEditorConnectionInfo preConnInfo = getConnectionInfo();
+        if (connInfo.encode().equals(preConnInfo.encode()))
+        {
+            super.setConnectionInfo(connInfo);
+        }
+        else
+        {
+            String content = getSV().getDocument().get();
+            super.setConnectionInfo(connInfo);
+            getSV().getDocument().set(content);
+        }
+	    
 	    // refresh title tooltip
 	    getSite().getShell().getDisplay().asyncExec(new Runnable(){
             public void run()
@@ -217,7 +224,6 @@ public class SQLScrapbookEditor extends SQLEditor {
                 setTitleToolTip(getTitleToolTip());
             }
         });
-	    
 	}	
 	
 	public void dispose() {
