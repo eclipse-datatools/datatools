@@ -144,6 +144,10 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		 * Add the results view
 		 */
 		_resultsViewControl = new ResultsViewControl(null);
+		/*
+		 * Tell the results view not to use preferences
+		 */
+		_resultsViewControl.setUsePreferences(false);
 		try {
 			_resultsViewControl.init(null, null);
 		} catch (PartInitException e) {
