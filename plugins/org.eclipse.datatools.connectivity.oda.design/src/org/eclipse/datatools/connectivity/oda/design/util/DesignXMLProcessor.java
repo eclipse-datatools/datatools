@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: DesignXMLProcessor.java,v 1.1 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -19,8 +19,12 @@ import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 
 /**
@@ -67,4 +71,26 @@ public class DesignXMLProcessor extends XMLProcessor
         return registrations;
     }
 
+    /**
+     * Creates and returns a new resource for saving or loading an ODA Design object.
+     * @param uri   the URI of the resource to create
+     * @return      a new resource
+     * @since DTP 1.6
+     * @generated NOT
+     */
+    public Resource createResource( URI uri )
+    {
+        ResourceSet resourceSet = createResourceSet();
+        // Register the Design package to ensure it is available during loading.
+        resourceSet.getPackageRegistry().put( DesignPackage.eNS_URI, DesignPackage.eINSTANCE );
+
+        XMLResource resource = (XMLResource) resourceSet.createResource( uri );
+ 
+        // Use the OPTION_SCHEMA_LOCATION_IMPLEMENTATION option to avoid pre-registration 
+        // of the generated packages 
+        resource.getDefaultSaveOptions().put( XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, 
+                Boolean.TRUE); 
+        return resource;
+    }
+    
 } //DesignXMLProcessor

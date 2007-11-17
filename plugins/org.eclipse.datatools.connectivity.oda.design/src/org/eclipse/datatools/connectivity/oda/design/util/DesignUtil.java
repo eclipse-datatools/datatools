@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.12 2007/08/23 03:53:48 lchan Exp $
+ * $Id: DesignUtil.java,v 1.13 2007/08/24 09:02:07 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -30,18 +30,21 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
+import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
+import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.nls.Messages;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
 /**
- * [<b>Provisional</b>] An utility class to handle the 
- * ODA Design API objects.
+ * An utility class to handle the ODA Design API objects.
  * @generated NOT
  */
 public class DesignUtil
@@ -131,13 +134,19 @@ public class DesignUtil
     {
         if( sm_diagnostician == null )
         {
-            EValidator.Registry eValidatorRegistry = EValidator.Registry.INSTANCE;
+            synchronized( DesignUtil.class )
+            {
+                if( sm_diagnostician == null )
+                {
+                    EValidator.Registry eValidatorRegistry = EValidator.Registry.INSTANCE;
             
-            // add specialized design validator(s) to registry
-            // for use by Diagnostician
-            eValidatorRegistry.put( DesignPackage.Literals.DATA_SET_QUERY.eContainer(),
-                                    new DesignValidator() );
-            sm_diagnostician = new Diagnostician( eValidatorRegistry );
+                    // add specialized design validator(s) to registry
+                    // for use by Diagnostician
+                    eValidatorRegistry.put( DesignPackage.Literals.DATA_SET_QUERY.eContainer(),
+                                            new DesignValidator() );
+                    sm_diagnostician = new Diagnostician( eValidatorRegistry );
+                }
+            }
         }
         
         return sm_diagnostician;
@@ -350,13 +359,11 @@ public class DesignUtil
         }
         catch( MalformedURLException e )
         {
-            // TODO log warning
-            e.printStackTrace();
+            getLogger().warning( e.toString() );
         }
         catch( IOException e )
         {
-            // TODO log warning
-            e.printStackTrace();
+            getLogger().warning( e.toString() );
         }
         return null;
     }
@@ -377,12 +384,136 @@ public class DesignUtil
         return aFile.getPath();
     }
     
+    /**
+     * An utility method to save the specified OdaDesignSession instance
+     * in the specified output file.
+     * @param outputFile    an output file; any existing content would get overwritten
+     * @param odaDesignSession  the design session instance to save
+     * @throws IOException
+     * @throws IllegalArgumentException
+     * @since DTP 1.6
+     */
+    public static void saveOdaDesignSession( OdaDesignSession odaDesignSession, File outputFile )
+        throws IOException, IllegalArgumentException
+    {
+        if( outputFile == null )
+            throw new IllegalArgumentException();
+        
+        URI fileURI = URI.createFileURI( outputFile.getAbsolutePath() );
+        saveOdaDesignSession( odaDesignSession, fileURI );
+    }
+    
+    /**
+     * An utility method to save the specified OdaDesignSession instance in the specified URI.
+     * @param uri   the URI of the saved resource
+     * @param odaDesignSession  the design session instance to save
+     * @throws IOException
+     * @since DTP 1.6
+     */
+    public static void saveOdaDesignSession( OdaDesignSession odaDesignSession, URI uri )
+        throws IOException
+    {
+        DocumentRoot documentRoot = DesignFactory.eINSTANCE.createDocumentRoot();
+        documentRoot.setOdaDesignSession( odaDesignSession );
+
+        DesignXMLProcessor xmlProcessor = new DesignXMLProcessor();
+        Resource resource = xmlProcessor.createResource( uri );    
+        resource.getContents().add( documentRoot );
+    
+        // Save the contents of the resource to the URI
+        try
+        {
+            resource.save( null );
+        }
+        catch( IOException ex )
+        {
+            // log and re-throw exception
+            getLogger().logp( Level.INFO, sm_className, "saveOdaDesignSession( OdaDesignSession, URI )", //$NON-NLS-1$
+                    "Not able to serialize the ODA design session to specified URI.", ex );  //$NON-NLS-1$
+            throw ex;
+        }
+    }
+
+    /**
+     * An utility method to load the specified resource file, and returns the 
+     * OdaDesignSession instance found in the file.
+     * @param resourceFile  a resource file to load from
+     * @return  the design session instance found in the specified file
+     * @throws IOException
+     * @throws IllegalArgumentException
+     * @since DTP 1.6
+     */
+    public static OdaDesignSession loadOdaDesignSession( File resourceFile )
+        throws IOException, IllegalArgumentException
+    {
+        if( resourceFile == null )
+            throw new IllegalArgumentException();
+        
+        URI fileURI = URI.createFileURI( resourceFile.getAbsolutePath() );
+        return loadOdaDesignSession( fileURI );
+    }
+
+    /**
+     * An utility method to load the specified resource URI, and returns the 
+     * OdaDesignSession instance found in the resource.
+     * @param uri   the URI of the resource to load from
+     * @return the design session instance found in the specified URI
+     * @throws IOException
+     * @since DTP 1.6
+     */
+    public static OdaDesignSession loadOdaDesignSession( URI uri )
+        throws IOException
+    {
+        DesignXMLProcessor xmlProcessor = new DesignXMLProcessor();
+        Resource resource = xmlProcessor.createResource( uri );    
+        
+        try 
+        {
+            resource.load( null );
+        }
+        catch( IOException ex ) 
+        {
+            // log and re-throw exception
+            getLogger().logp( Level.INFO, sm_className, "loadOdaDesignSession( URI )", //$NON-NLS-1$
+                    "Not able to load the specified URI.", ex );  //$NON-NLS-1$
+            throw ex;
+        }
+        
+        if( resource.getContents().isEmpty() )
+        {
+            getLogger().logp( Level.WARNING, sm_className, "loadOdaDesignSession( URI )", //$NON-NLS-1$
+                    "The specified resource URI (" + uri.toString() + ") is empty." );  //$NON-NLS-1$ //$NON-NLS-2$
+            return null;
+        }
+        
+        Object content = resource.getContents().get( 0 );
+        if( content instanceof DocumentRoot )
+        {
+            DocumentRoot documentRoot = (DocumentRoot) content;
+            OdaDesignSession odaDesignSession = documentRoot.getOdaDesignSession();
+            if( odaDesignSession != null )
+                return odaDesignSession;
+        }
+        
+        // the resource content does not contain an ODA design session
+        getLogger().logp( Level.WARNING, sm_className, "loadOdaDesignSession( URI )", //$NON-NLS-1$
+                "The resource URI (" + uri.toString()  //$NON-NLS-1$
+                + ") does not contain an ODA Design Session." ); //$NON-NLS-1$
+        return null;
+    }
+
     private static Logger getLogger()
     {
         if( sm_logger == null )
         {
-            sm_className = DesignUtil.class.getName();
-            sm_logger = Logger.getLogger( sm_loggerName );
+            synchronized( DesignUtil.class )
+            {
+                if( sm_logger == null )
+                {
+                    sm_className = DesignUtil.class.getName();
+                    sm_logger = Logger.getLogger( sm_loggerName );
+                }
+            }
         }
         return sm_logger;
     }
