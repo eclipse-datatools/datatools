@@ -312,6 +312,22 @@ public class ManifestExplorer
 	{
         return getExtensionManifests( DTP_ODA_EXT_POINT );
     }
+    
+    /**
+     * Returns an array of DTP ODA dataSource extension configuration information
+     * of those extensions that implement the DTP ODA extension point and
+     * meet the filter criteria.  
+     * @param collectionFilter  specifies the types of extensions to exclude in
+     *                          the returned collection; 
+     *                          may be null if no filtering is needed
+     * @return  an <code>ExtensionManifest</code> array containing 
+     *          the definition of all matching ODA data source extensions.
+     * @since DTP 1.6
+     */
+    public ExtensionManifest[] getExtensionManifests( Filter collectionFilter )
+    {
+        return getExtensionManifests( DTP_ODA_EXT_POINT, collectionFilter );
+    }
 
     /**
      * Returns an array of ODA dataSource extension configuration information
