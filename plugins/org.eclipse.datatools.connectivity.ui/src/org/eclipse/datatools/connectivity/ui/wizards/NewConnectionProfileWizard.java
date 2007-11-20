@@ -52,6 +52,10 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	protected SummaryWizardPage mSummaryPage;
 	protected String mProviderID;
 	protected IConnectionProfile mParentProfile;
+	
+    private boolean mSkipProfileNamePage = false;
+    private String mProfileName;
+	private IFinishTask mFinishTask;
 
 	public NewConnectionProfileWizard() {
 		setWindowTitle(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -66,6 +70,12 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 * @see Wizard#performFinish
 	 */
 	public boolean performFinish() {
+	    // if the finish task is delegated, use it to perform finish
+	    if( mFinishTask != null ) {
+	        return mFinishTask.performFinish( this );
+	    }
+	    
+	    // no delegation is specified, perform default finish task
 		try {
 			doFinish();
 //			ProfileManager.getInstance().createProfile(
@@ -171,6 +181,14 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 		return mProfilePage.getProfileName();
 	}
 
+	public void setProfileName( String name )
+	{
+        // cache the value, in case the page is not yet added
+	    mProfileName = name;
+	    if( mProfilePage != null )
+	        mProfilePage.setProfileName( mProfileName );
+	}
+	
 	public String getProfileDescription() {
 		return mProfilePage.getProfileDescription();
 	}
@@ -209,6 +227,10 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 
 		mProfilePage = new NewConnectionProfileWizardPage();
 		addPage(mProfilePage);
+        if( mProfileName != null )
+            mProfilePage.setProfileName( mProfileName );
+        if( mSkipProfileNamePage )
+            doSkipProfileNamePage( true );
 
 		addCustomPages();
 
@@ -238,4 +260,40 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
 	}
+	
+	public void setSkipProfileNamePage( boolean skippable )
+	{
+	    // cache the latest setting, in case the page is not yet added
+	    mSkipProfileNamePage = skippable;	    
+	    doSkipProfileNamePage( skippable );
+	}
+	
+	protected void doSkipProfileNamePage( boolean skippable )
+	{
+        if( mProfilePage == null )
+            return;     // page does not exist yet to skip
+
+		mProfilePage.setSkippable( skippable );
+	}
+	
+	public boolean isProfileNamePageSkippable()
+	{
+	    if( mProfilePage != null )
+	        return mProfilePage.getSkippable();
+	    return mSkipProfileNamePage;
+	}
+	
+	public void delegatesTask( IFinishTask task )
+	{
+	    mFinishTask = task;
+	}
+	
+	/**
+	 * Delegation of the wizard's performFinish task.
+	 */
+	public interface IFinishTask
+	{
+	    public boolean performFinish( NewConnectionProfileWizard delegatingWizard );	    
+	}
+	
 }

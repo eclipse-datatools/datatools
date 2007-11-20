@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -25,6 +25,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * Base property page implementation for connection profiles.
@@ -90,12 +91,29 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 		});
 	}
 
-	protected void setPingButtonEnabled(boolean enabled)
+	public void setPingButtonEnabled(boolean enabled)
     {
         if (btnPing != null && !btnPing.isDisposed())
         {
             btnPing.setEnabled(enabled);
+            if( enabled )
+                enableParent( btnPing );
         }
+    }
+    
+    /**
+     * Enables the specified control's composite.
+     */
+    private void enableParent( Control control )
+    {
+        Composite parent = control.getParent( );
+        if( parent == null || parent instanceof Shell )
+            return;
+
+        if( ! parent.isEnabled() )
+            parent.setEnabled( true );
+
+        enableParent( parent );
     }
 
 	protected void setPingButtonVisible(boolean visible)
