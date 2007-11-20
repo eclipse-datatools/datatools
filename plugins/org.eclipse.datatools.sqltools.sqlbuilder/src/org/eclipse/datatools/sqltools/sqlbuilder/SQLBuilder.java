@@ -207,9 +207,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		// composite for source & label to go on sash
 		Composite outsideSrcComp = ViewUtility.createNestedComposite(_mainSash,
 				SWT.NONE);
-		// ratio 0.30
-		outsideSrcComp.setData(
-				"layout ratio", new Long((((long) 30 << 16) + 99) / 100)); //$NON-NLS-1$
 
 		// composite for source viewer to add border
 		Composite srcComposite = ViewUtility.createNestedComposite(
@@ -505,9 +502,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		data.grabExcessVerticalSpace = true;
 		_graphControl.getControl().setLayoutData(data);
 
-		// ratio 0.25
-		_graphControl.getControl().setData(
-				"layout ratio", new Long((((long) 25 << 16) + 99) / 100)); //$NON-NLS-1$
 	}
 
 	/**
@@ -515,9 +509,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 */
 	protected void createDesignViewer(Composite client) {
 		_designViewer = new DesignViewer(_sqlDomainModel, client);
-		// ratio 0.45
-		_designViewer.setData(
-				"layout ratio", new Long((((long) 45 << 16) + 99) / 100)); //$NON-NLS-1$
 	}
 
 	/**
