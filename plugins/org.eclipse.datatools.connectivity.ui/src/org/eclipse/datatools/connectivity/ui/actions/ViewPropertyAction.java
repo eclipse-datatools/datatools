@@ -10,14 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
-import java.util.Collection;
-
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.ProfileUIManager;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.jface.action.Action;
@@ -25,6 +23,7 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.IPageChangedListener;
 import org.eclipse.jface.dialogs.PageChangedEvent;
+import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -43,9 +42,6 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.ui.dialogs.PropertyPage;
-import org.eclipse.ui.internal.dialogs.PropertyDialog;
-import org.eclipse.ui.internal.dialogs.PropertyPageContributorManager;
-import org.eclipse.ui.internal.dialogs.PropertyPageManager;
 
 /**
  * @author shongxum
@@ -77,38 +73,19 @@ public class ViewPropertyAction extends Action {
 	 * is kept to a minimum
 	 */
 	public static boolean hasContributors(Object selected) {
-		if (selected == null || !(selected instanceof IAdaptable))
-			return false;
-		Collection contributors = PropertyPageContributorManager.getManager()
-				.getApplicableContributors(selected);
-		return contributors != null && contributors.size() > 0;
+		return ProfileUIManager.hasContributors( selected );
 	}
 
 	/*
-	 * TODO: This should be fixed in the future, shouldn't call into internal
-	 * packages, and LabelRetargetAction seems not applicable in here too. Has
-	 * to figure out a way to retarget this action to "Properties" action.
-	 * 
 	 * @see org.eclipse.ui.IAction#run()
 	 */
 	public void run() {
 		Object selected = getSelectedObject();
-		if (selected == null || !(selected instanceof IAdaptable))
-			return;
-
-		IAdaptable adaptable = (IAdaptable) selected;
-		PropertyPageManager pageManager = new PropertyPageManager();
-		String title = ConnectivityUIPlugin.getDefault().getResourceString(
-				"properties.dialog"); //$NON-NLS-1$
-
-		// load pages for the selection
-		// fill the manager with contributions from the matching contributors
-		PropertyPageContributorManager.getManager().contribute(pageManager,
-				adaptable);
-
-		PropertyDialog propertyDialog = new PropertyDialog(mViewer.getControl()
-				.getShell(), pageManager, mViewer.getSelection());
-		propertyDialog.create();
+		PreferenceDialog propertyDialog = 
+		    ProfileUIManager.createPreferenceDialog( mViewer.getControl().getShell(), 
+		            mViewer.getSelection(), selected );
+		if( propertyDialog == null )
+		    return;
 
 		// check for size settings
 		IDialogSettings dset = ConnectivityUIPlugin.getDefault()
@@ -137,6 +114,8 @@ public class ViewPropertyAction extends Action {
 		}
 		
 		this.mShell = propertyDialog.getShell();
+        String title = ConnectivityUIPlugin.getDefault().getResourceString(
+                        "properties.dialog"); //$NON-NLS-1$
 		propertyDialog.getShell().setText(title);
 		
 		// add a listener to make sure we get any resizes of the dialog
