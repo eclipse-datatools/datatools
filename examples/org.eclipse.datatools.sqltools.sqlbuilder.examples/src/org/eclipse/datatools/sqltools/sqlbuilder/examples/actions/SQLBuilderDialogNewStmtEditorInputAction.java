@@ -12,9 +12,9 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs.SQLBuilderDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.EditorInputUtil;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;

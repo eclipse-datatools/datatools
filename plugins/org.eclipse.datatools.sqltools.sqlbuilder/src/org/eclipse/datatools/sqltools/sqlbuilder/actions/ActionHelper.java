@@ -16,7 +16,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderFileEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;

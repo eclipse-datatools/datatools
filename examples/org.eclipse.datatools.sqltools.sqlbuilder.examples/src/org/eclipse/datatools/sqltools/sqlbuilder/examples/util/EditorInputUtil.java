@@ -1,8 +1,8 @@
 package org.eclipse.datatools.sqltools.sqlbuilder.examples.util;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderStorageEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLBuilderEditorInputUtil;
 import org.eclipse.ui.XMLMemento;
 

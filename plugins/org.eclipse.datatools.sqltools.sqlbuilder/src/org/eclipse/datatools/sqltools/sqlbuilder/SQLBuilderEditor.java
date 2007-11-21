@@ -17,6 +17,8 @@ import java.util.Iterator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.viewers.ISelection;

@@ -11,8 +11,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessorCo
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParseResult;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManager;
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserManagerProvider;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ISQLDialectInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 
