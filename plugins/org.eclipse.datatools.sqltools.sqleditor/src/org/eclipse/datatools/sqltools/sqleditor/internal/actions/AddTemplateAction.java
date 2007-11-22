@@ -8,6 +8,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 import java.io.IOException;
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.core.services.SQLService;
@@ -48,7 +49,7 @@ public class AddTemplateAction extends TextEditorAction implements IPageUpdate
         _sqlEditor = targetEditor;
         update();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.SAVE_AS_TEMPLATE_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.SAVE_AS_TEMPLATE_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void update()

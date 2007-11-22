@@ -9,9 +9,11 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.ITextEditor;
 import org.eclipse.ui.texteditor.TextEditorAction;
@@ -36,7 +38,7 @@ public class SQLConnectionAction extends TextEditorAction
         super(bundle, prefix, editor);
         _sqlEditor = (SQLEditor) editor;
         setActionDefinitionId(ISQLEditorActionConstants.ATTACHE_PROFILE_ACTION_ID);
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.ATTACH_CONNECTION_PROFILE_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.ATTACH_CONNECTION_PROFILE_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void run()

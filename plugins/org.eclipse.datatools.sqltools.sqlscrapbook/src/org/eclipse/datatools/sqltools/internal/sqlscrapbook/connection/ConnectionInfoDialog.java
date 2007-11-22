@@ -13,11 +13,13 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ui.actions.ConnectAction;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.resource.JFaceColors;
@@ -163,7 +165,7 @@ public class ConnectionInfoDialog extends Dialog implements Listener {
     protected Composite createOuterArea(Composite parent)
     {
         PlatformUI.getWorkbench().getHelpSystem().setHelp(parent.getShell(),
-				IHelpContextIds.ATTACHING_PROFILE);
+				HelpUtil.getContextId(IHelpContextIds.ATTACHING_PROFILE, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
 
 		Composite composite = (Composite) super.createDialogArea(parent);
         return composite;

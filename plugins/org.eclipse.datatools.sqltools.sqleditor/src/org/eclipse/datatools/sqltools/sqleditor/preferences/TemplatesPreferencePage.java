@@ -5,6 +5,7 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.swt.widgets.Composite;
@@ -42,7 +43,7 @@ public class TemplatesPreferencePage extends TemplatePreferencePage implements I
     public void createControl(Composite parent)
     {
         super.createControl(parent);
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IHelpContextIds.PREFERENCES_TEMPLATES);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), HelpUtil.getContextId(IHelpContextIds.PREFERENCES_TEMPLATES, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public boolean performOk() 

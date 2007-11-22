@@ -12,11 +12,13 @@ package org.eclipse.datatools.sqltools.sqleditor.plan;
 
 import java.util.HashMap;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -49,7 +51,7 @@ public class ExplainSQLActionDelegate extends BaseExplainAction implements ISele
         targetEditor.getSelectionProvider().addSelectionChangedListener(this);
         update();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.GET_EXECUTION_PLAN_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.GET_EXECUTION_PLAN_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void setActiveEditor(SQLEditor targetEditor)

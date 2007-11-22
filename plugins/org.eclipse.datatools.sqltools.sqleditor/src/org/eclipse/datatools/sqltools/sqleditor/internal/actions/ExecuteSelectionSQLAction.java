@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
 import java.util.HashMap;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.ParsingResult;
@@ -20,6 +21,7 @@ import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextSelection;
@@ -51,7 +53,7 @@ public class ExecuteSelectionSQLAction extends BaseExecuteAction  implements ISe
         targetEditor.getSelectionProvider().addSelectionChangedListener(this);
         update();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.EXECUTE_SELECTED_TEXT_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.EXECUTE_SELECTED_TEXT_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void setActiveEditor(SQLEditor targetEditor)

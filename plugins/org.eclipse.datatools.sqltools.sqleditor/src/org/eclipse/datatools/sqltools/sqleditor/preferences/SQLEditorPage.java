@@ -9,6 +9,7 @@ package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
 import java.util.Collection;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.common.ui.util.TableLayoutComposite;
 import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
@@ -124,7 +125,7 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
         _preferencePage = this;
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IHelpContextIds.PREFERENCES_SQL_EDITOR);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), HelpUtil.getContextId(IHelpContextIds.PREFERENCES_SQL_EDITOR, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
 
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout compositeLayout = new GridLayout(1, true);

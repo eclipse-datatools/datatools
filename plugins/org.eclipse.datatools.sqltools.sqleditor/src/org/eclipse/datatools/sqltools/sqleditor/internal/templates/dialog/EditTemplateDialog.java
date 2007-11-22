@@ -226,7 +226,7 @@ public class EditTemplateDialog extends StatusDialog implements IContextProvider
     protected Control createDialogArea(Composite ancestor)
     {
         getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp(ancestor, IHelpContextIds.EDIT_TEMPLATE_DIALOG);
+        HelpUtil.setHelp(ancestor.getShell(), HelpUtil.getContextId(IHelpContextIds.EDIT_TEMPLATE_DIALOG, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
         
         Composite parent = new Composite(ancestor, SWT.NONE);
         GridLayout layout = new GridLayout();

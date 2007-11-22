@@ -23,6 +23,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
@@ -83,7 +84,7 @@ public class SavePlanAction extends Action
         this.setImageDescriptor(Images.DESC_EXPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_EXPORT_PLAN_DISABLE);
         
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.SAVE_PLAN_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpConstants.SAVE_PLAN_ACTION, PlanViewPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /**

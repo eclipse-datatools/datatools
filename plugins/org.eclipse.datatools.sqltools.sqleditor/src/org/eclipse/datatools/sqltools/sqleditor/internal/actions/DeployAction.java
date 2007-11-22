@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
@@ -47,7 +48,7 @@ public class DeployAction extends SelectionDispatchAction
 
         update(getSelection());
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.SAVE_TO_DATABASE_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.SAVE_TO_DATABASE_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /*

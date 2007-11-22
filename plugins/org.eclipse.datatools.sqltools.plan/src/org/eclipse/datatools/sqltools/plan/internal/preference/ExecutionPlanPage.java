@@ -69,7 +69,7 @@ public class ExecutionPlanPage extends AbstractDBPreferenceFieldPage implements 
     protected Control createContents(Composite parent)
     {
         getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
-        HelpUtil.setHelp(parent.getShell(), IHelpConstants.EXECUTION_PLAN_PREFERENCE);
+        HelpUtil.setHelp(parent.getShell(), HelpUtil.getContextId(IHelpConstants.EXECUTION_PLAN_PREFERENCE, PlanViewPlugin.getDefault().getBundle().getSymbolicName()));
         
         Composite comp = new Composite(parent, SWT.NONE);
         comp.setLayoutData(new GridData(GridData.FILL_BOTH));

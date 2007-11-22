@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.resource.WizardNewFileCreationPage;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
@@ -22,6 +23,7 @@ import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookE
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.ExceptionHandler;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -135,7 +137,7 @@ public class NewSQLScrapbookFileWizardPage extends WizardNewFileCreationPage {
         ISQLEditorConnectionInfo connInfo = SQLFileUtil.getConnectionInfoFromPreference();
         _group = new ConnectionInfoGroup(parent, this, connInfo, false, false);
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, IHelpContextIds.NEW_SQL_FILE);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, HelpUtil.getContextId(IHelpContextIds.NEW_SQL_FILE, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
 }

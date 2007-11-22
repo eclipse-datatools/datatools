@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.plan.internal.ui.view;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanDrawer;
 import org.eclipse.datatools.sqltools.plan.IPlanParser;
@@ -97,7 +98,7 @@ public class PlanView extends ViewPart
      */
     public void createPartControl(Composite parent)
     {
-    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, IHelpConstants.PLAN_VIEW);
+    	PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, HelpUtil.getContextId(IHelpConstants.PLAN_VIEW, PlanViewPlugin.getDefault().getBundle().getSymbolicName()));
         _fPagebook = new PageBook(parent, SWT.NONE);
 
         // Page 1 of page book (no plan label)

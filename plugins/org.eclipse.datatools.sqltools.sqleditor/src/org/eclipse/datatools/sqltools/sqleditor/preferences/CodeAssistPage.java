@@ -5,6 +5,7 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.preferences.AbstractDBPreferenceFieldPage;
 import org.eclipse.datatools.sqltools.common.ui.util.SWTUtils;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -195,7 +196,7 @@ public class CodeAssistPage extends AbstractDBPreferenceFieldPage
      */
     protected Control createContents(Composite parent)
     {
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IHelpContextIds.PREFERENCES_CODE_ASSIST);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), HelpUtil.getContextId(IHelpContextIds.PREFERENCES_CODE_ASSIST, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
 
         Composite page = createGeneralPage(parent);
 

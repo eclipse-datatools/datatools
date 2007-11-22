@@ -15,10 +15,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.sqleditor.IPageUpdate;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -73,7 +75,7 @@ public class ToggleCommentAction extends TextEditorAction implements IPageUpdate
         setActionDefinitionId(ISQLEditorActionConstants.TOGGLE_COMMENT);
         update();
         
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.TOGGLE_COMMENT_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.TOGGLE_COMMENT_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /**

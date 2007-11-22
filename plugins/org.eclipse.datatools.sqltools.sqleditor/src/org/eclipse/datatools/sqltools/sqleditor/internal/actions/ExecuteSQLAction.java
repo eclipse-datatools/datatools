@@ -11,12 +11,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.ui.PlatformUI;
 
@@ -43,7 +45,7 @@ public class ExecuteSQLAction extends BaseExecuteAction
         setActiveEditor(targetEditor);
         update();
 
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.EXECUTE_ALL_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.EXECUTE_ALL_ACTION, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void setActiveEditor(SQLEditor targetEditor)

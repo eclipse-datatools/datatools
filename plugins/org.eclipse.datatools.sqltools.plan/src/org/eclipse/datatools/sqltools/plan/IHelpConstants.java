@@ -21,41 +21,39 @@ package org.eclipse.datatools.sqltools.plan;
 public interface IHelpConstants
 {
 
-    public static final String PREFIX                    = "org.eclipse.datatools.sqltools.plan.";
-
     /**
      * Used for plan view.
      */
-    public static final String PLAN_VIEW                 = PREFIX + "plan_view";
+    public static final String PLAN_VIEW                 = "plan_view";
 
     /**
      * Used for execution plan preference page
      */
-    public static final String EXECUTION_PLAN_PREFERENCE = PREFIX + "execution_plan_preference";
+    public static final String EXECUTION_PLAN_PREFERENCE = "execution_plan_preference";
 
     /**
      * Used for remove plan action
      */
-    public static final String REMOVE_PLAN_ACTION        = PREFIX + "remove_plan_action";
+    public static final String REMOVE_PLAN_ACTION        = "remove_plan_action";
 
     /**
      * Used for remove all plan action
      */
-    public static final String REMOVE_ALL_PLAN_ACTION    = PREFIX + "remove_all_plan_action";
+    public static final String REMOVE_ALL_PLAN_ACTION    = "remove_all_plan_action";
 
     /**
      * Used for plan drop down action
      */
-    public static final String PLAN_DROP_DOWN_ACTION     = PREFIX + "plan_drop_down_action";
+    public static final String PLAN_DROP_DOWN_ACTION     = "plan_drop_down_action";
 
     /**
      * Used for save plan action
      */
-    public static final String SAVE_PLAN_ACTION          = PREFIX + "save_plan_action";
+    public static final String SAVE_PLAN_ACTION          = "save_plan_action";
 
     /**
      * Used for load plan action
      */
-    public static final String LOAD_PLAN_ACTION          = PREFIX + "load_plan_action";
+    public static final String LOAD_PLAN_ACTION          = "load_plan_action";
 
 }

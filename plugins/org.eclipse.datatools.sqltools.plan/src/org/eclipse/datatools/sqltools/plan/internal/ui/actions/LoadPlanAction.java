@@ -17,6 +17,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.plan.IHelpConstants;
 import org.eclipse.datatools.sqltools.plan.IPlanService;
 import org.eclipse.datatools.sqltools.plan.PlanRequest;
@@ -71,7 +72,7 @@ public class LoadPlanAction extends Action
         this.setImageDescriptor(Images.DESC_IMPORT_PLAN);
         this.setDisabledImageDescriptor(Images.DESC_IMPORT_PLAN_DISABLE);
         
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpConstants.LOAD_PLAN_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpConstants.LOAD_PLAN_ACTION, PlanViewPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     public void run()

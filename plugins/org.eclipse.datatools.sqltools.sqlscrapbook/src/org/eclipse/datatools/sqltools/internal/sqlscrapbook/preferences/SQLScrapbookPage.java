@@ -11,12 +11,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.AbstractConnectionInfoComposite;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite2;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
@@ -44,7 +46,7 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
     
     protected Control createContents(Composite parent)
     {
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IHelpContextIds.PREFERENCES_SQL_FILES);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), HelpUtil.getContextId(IHelpContextIds.PREFERENCES_SQL_FILES, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
 
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout compositeLayout = new GridLayout(1, true);

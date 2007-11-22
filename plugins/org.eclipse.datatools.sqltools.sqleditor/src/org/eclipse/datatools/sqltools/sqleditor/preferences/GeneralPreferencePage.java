@@ -5,6 +5,7 @@
  */
 package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
@@ -66,7 +67,7 @@ public class GeneralPreferencePage extends FieldEditorPreferencePage implements 
     public void createControl(Composite parent)
     {
         super.createControl(parent);
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), IHelpContextIds.PREFERENCES_DATABASE_DEVELOPMENT);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(getControl(), HelpUtil.getContextId(IHelpContextIds.PREFERENCES_DATABASE_DEVELOPMENT, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
     }
 
     /*
