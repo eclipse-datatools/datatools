@@ -13,7 +13,9 @@ package org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions;
 
 import java.util.ResourceBundle;
 
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SQLScrapbookImages;
+import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoDialog;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
@@ -40,7 +42,7 @@ public class SetConnectionInfoAction extends TextEditorAction
     {
         super(bundle, prefix, editor);
         _sqlEditor = (SQLScrapbookEditor) editor;
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.ATTACH_CONNECTION_PROFILE_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, HelpUtil.getContextId(IHelpContextIds.ATTACH_CONNECTION_PROFILE_ACTION, SqlscrapbookPlugin.getDefault().getBundle().getSymbolicName()));
         setImageDescriptor(SQLScrapbookImages.DESC_ATTACH_PROFILE);
     }
 

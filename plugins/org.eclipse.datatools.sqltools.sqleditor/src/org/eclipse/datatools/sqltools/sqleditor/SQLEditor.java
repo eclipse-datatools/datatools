@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.common.ui.dialog.SaveAsDialog;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
@@ -1303,7 +1304,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         setRulerContextMenuId("#SQLEditorRulerContext"); //$NON-NLS-1$
         setRangeIndicator(new DefaultRangeIndicator());
 		// Sets the SQL editor's help context id.
-        setHelpContextId(IHelpContextIds.SQLEDITOR);
+        setHelpContextId(HelpUtil.getContextId(IHelpContextIds.SQLEDITOR, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));
         
     }
     
