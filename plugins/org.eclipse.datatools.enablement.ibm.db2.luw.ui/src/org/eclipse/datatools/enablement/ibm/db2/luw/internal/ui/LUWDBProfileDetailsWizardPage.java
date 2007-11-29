@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfileDetailsWizardPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsWizardPage;
 import org.eclipse.datatools.enablement.ibm.db2.internal.luw.ILUWConnectionProfileConstants;
 
-public class LUWDBProfileDetailsWizardPage 
-	extends GenericDBProfileDetailsWizardPage{
+public class LUWDBProfileDetailsWizardPage extends
+		ExtensibleProfileDetailsWizardPage {
 
 	public LUWDBProfileDetailsWizardPage(String pageName) {
-		super(pageName);
-		setDriverCategory(ILUWConnectionProfileConstants.DB2_LUW_CATEGORY_ID);	
+		super(pageName, ILUWConnectionProfileConstants.DB2_LUW_CATEGORY_ID);
 	}
 }

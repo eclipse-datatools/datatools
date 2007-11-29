@@ -39,4 +39,19 @@
       </propertyEditor>
    </extension>
  
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers.DB2LUWOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
  </plugin>  
