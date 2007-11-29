@@ -182,6 +182,7 @@ public class DelimitedStringList extends Composite {
 
 				public void widgetSelected(SelectionEvent e) {
 					DelimitedStringList.this.mPropsList.removeAll();
+					DelimitedStringList.this.mHiddenText.setText(DelimitedStringList.this.getSelection().trim());
 					updatePropertyButtons();
 				}
 			});
