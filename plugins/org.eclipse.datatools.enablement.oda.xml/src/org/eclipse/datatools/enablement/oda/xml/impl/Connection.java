@@ -23,6 +23,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
 
 /**
  * This class is used to build an XML data source connection. 
@@ -89,6 +90,7 @@ public class Connection implements IConnection
 			throws org.eclipse.datatools.connectivity.oda.OdaException
 	{
 		isOpen = false;
+		XMLDataInputStreamCreator.close( xmlContent );
 		try
 		{
 			if(appContext != null && appContext.get(Constants.APPCONTEXT_INPUTSTREAM)!= null)
