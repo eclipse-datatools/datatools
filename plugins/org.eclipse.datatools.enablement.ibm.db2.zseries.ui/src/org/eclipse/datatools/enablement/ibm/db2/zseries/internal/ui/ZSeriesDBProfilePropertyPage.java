@@ -10,15 +10,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfilePropertyPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsPropertyPage;
 import org.eclipse.datatools.enablement.ibm.db2.internal.zseries.IZSeriesConnectionProfileConstants;
 
-public class ZSeriesDBProfilePropertyPage extends GenericDBProfilePropertyPage {
+public class ZSeriesDBProfilePropertyPage extends ExtensibleProfileDetailsPropertyPage {
 
 	public ZSeriesDBProfilePropertyPage() {
-		super();
-		noDefaultAndApplyButton();
-		setDriverCategory(IZSeriesConnectionProfileConstants.DB2_ZSERIES_CATEGORY_ID);	
+		super(IZSeriesConnectionProfileConstants.DB2_ZSERIES_CATEGORY_ID);
 	}
-
 }

@@ -65,14 +65,14 @@
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.databaseName"
                   name="%driverDBName"
-                  value="location"
+                  value=""
                   required="true"
                   visible="true"/>                             
             <property
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.URL"
                   name="%driverConnectionURL"
-                  value="jdbc:db2://host:446/location:retrieveMessagesFromServerOnGetMessage=true;"
+                  value=""
                   required="true"
                   visible="true"/>
             <property

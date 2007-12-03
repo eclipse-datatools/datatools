@@ -6,7 +6,7 @@
  * 
  * Contributors: IBM Corporation - initial API and implementation
  ******************************************************************************/
-package org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers;
+package org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,8 @@ import org.eclipse.datatools.enablement.ibm.internal.ui.drivers.IIBMJDBCDriverPr
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -36,7 +33,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.ibm.icu.text.MessageFormat;
 
-public class DB2LUWDriverUIContributor implements IDriverUIContributor,
+public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 		IIBMJDBCDriverProvider, Listener {
 
 	protected String CUI_NEWCW_DATABASE_LBL_UI_ = Messages
@@ -50,9 +47,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 
 	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_"); //$NON-NLS-1$
-
-	private static final String CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_ = Messages
-			.getString("CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_USERNAME_LBL_UI_"); //$NON-NLS-1$
@@ -75,22 +69,11 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
-
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
-
-	private static final String CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
-
-	private static final String CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
-
-	private static final String CLIENT_AUTHETICATION_TEXT = "securityMechanism=4;"; //$NON-NLS-1$
 
 	private IBMJDBCDriverTracingOptionsPane tracingOptionsComposite;
 
@@ -117,8 +100,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 	private Label urlLabel;
 
 	private Text urlText;
-
-	private Button clientAuthenticationCheckbox;
 
 	private DialogPage parentPage;
 
@@ -200,31 +181,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 2;
 			portText.setLayoutData(gd);
 
-			clientAuthenticationCheckbox = new Button(driverOptionsComposite,
-					SWT.CHECK);
-			clientAuthenticationCheckbox
-					.setText(CUI_NEWCW_CLIENTAUTHENTICATION_BTN_UI_);
-			gd = new GridData();
-			gd.horizontalAlignment = GridData.FILL;
-			gd.verticalAlignment = GridData.BEGINNING;
-			gd.horizontalSpan = 3;
-			gd.grabExcessHorizontalSpace = true;
-			clientAuthenticationCheckbox.setLayoutData(gd);
-			clientAuthenticationCheckbox
-					.addSelectionListener(new SelectionListener() {
-						public void widgetDefaultSelected(SelectionEvent e) {
-
-						}
-
-						public void widgetSelected(SelectionEvent e) {
-							if (((Button) e.widget).getSelection()) {
-								enableAuthenticationControls(false);
-							} else {
-								enableAuthenticationControls(true);
-							}
-						}
-					});
-
 			usernameLabel = new Label(driverOptionsComposite, SWT.NONE);
 			usernameLabel.setText(CUI_NEWCW_USERNAME_LBL_UI_);
 			gd = new GridData();
@@ -281,13 +237,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		return parentComposite;
 	}
 
-	private void enableAuthenticationControls(boolean enabled) {
-		usernameLabel.setEnabled(enabled);
-		usernameText.setEnabled(enabled);
-		passwordLabel.setEnabled(enabled);
-		passwordText.setEnabled(enabled);
-	}
-
 	public void setConnectionInformation() {
 		properties.setProperty(
 				IDriverDefinitionConstants.DATABASE_NAME_PROP_ID,
@@ -309,7 +258,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 				+ portText.getText().trim()
 				+ "/" + databaseText.getText().trim() //$NON-NLS-1$
 				+ ":retrieveMessagesFromServerOnGetMessage=true;"; //$NON-NLS-1$
-		url += !this.clientAuthenticationCheckbox.getSelection() ? "" : CLIENT_AUTHETICATION_TEXT; //$NON-NLS-1$ //$NON-NLS-2$
 		url += tracingOptionsComposite.getTracingURLProperties();
 		urlText.setText(url);
 	}
@@ -320,7 +268,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		portText.removeListener(SWT.Modify, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
-		clientAuthenticationCheckbox.removeListener(SWT.Selection, this);
 	}
 
 	private void addListeners() {
@@ -329,7 +276,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		portText.addListener(SWT.Modify, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
-		clientAuthenticationCheckbox.addListener(SWT.Selection, this);
 	}
 
 	private void initialize() {
@@ -358,17 +304,14 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_PORT_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (!clientAuthenticationCheckbox.getSelection()
-				&& usernameText.getText().trim().length() < 1) {
+		} else if (usernameText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (!clientAuthenticationCheckbox.getSelection()
-				&& passwordText.getText().trim().length() < 1) {
+		} else if (passwordText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-
 		} else if (!tracingOptionsComposite.validateControl(parentPage)) {
 			isComplete = false;
 		}
@@ -396,9 +339,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		hostText.setText(url.getNode());
 		portText.setText(url.getPort());
 		databaseText.setText(url.getDatabaseName());
-		if (url.getProperties().indexOf(CLIENT_AUTHETICATION_TEXT) > -1) {
-			clientAuthenticationCheckbox.setSelection(true);
-		}
 		String username = this.properties
 				.getProperty(IDriverDefinitionConstants.USERNAME_PROP_ID);
 		if (username != null) {
@@ -424,11 +364,6 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 				this.hostText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_,
 				this.portText.getText().trim() });
-		summaryData
-				.add(new String[] {
-						CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_,
-						clientAuthenticationCheckbox.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
-								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
 		summaryData.add(new String[] { CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
 				this.usernameText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,

@@ -40,4 +40,19 @@
       </propertyEditor>
    </extension>
    
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers.DB2ZSeriesOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers.DB2ZSeriesOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers.DB2ZSeriesDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers.DB2ZSeriesDriverUIContributor">
+      </driverUIContributor>
+   </extension>
  </plugin>  

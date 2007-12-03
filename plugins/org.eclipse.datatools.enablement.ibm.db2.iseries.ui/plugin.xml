@@ -45,4 +45,28 @@
             id="org.eclipse.datatools.enablement.ibm.db2.iseries.toolbox.driverTemplate.password">
       </propertyEditor>
    </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.iseries.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.iseries.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesToolboxDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.ibm.db2.iseries.toolbox.driverTemplate"
+            id="org.eclipse.datatools.enablement.ibm.db2.iseries.internal.ui.drivers.DB2ISeriesToolboxDriverUIContributor">
+      </driverUIContributor>
+   </extension>
  </plugin>  

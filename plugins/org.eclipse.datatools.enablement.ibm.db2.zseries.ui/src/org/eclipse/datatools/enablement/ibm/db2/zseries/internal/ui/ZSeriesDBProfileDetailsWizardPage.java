@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfileDetailsWizardPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsWizardPage;
 import org.eclipse.datatools.enablement.ibm.db2.internal.zseries.IZSeriesConnectionProfileConstants;
 
 public class ZSeriesDBProfileDetailsWizardPage 
-	extends GenericDBProfileDetailsWizardPage{
+	extends ExtensibleProfileDetailsWizardPage{
 
 	public ZSeriesDBProfileDetailsWizardPage(String pageName) {
-		super(pageName);
-		setDriverCategory(IZSeriesConnectionProfileConstants.DB2_ZSERIES_CATEGORY_ID);	
+		super(pageName, IZSeriesConnectionProfileConstants.DB2_ZSERIES_CATEGORY_ID);
 	}
 }
