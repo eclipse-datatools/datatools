@@ -8,9 +8,7 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.datatools.enablement.ibm.db2.zseries;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.ibm.ui;bundle-version="[1.0.0,2.0.0)"
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
