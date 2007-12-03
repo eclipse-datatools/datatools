@@ -233,7 +233,18 @@ public class ModelUtil {
 			catalogName = database.getName();
 		}
 		EList schemas = database.getSchemas();
-		if (schemas == null || schemas.size() == 0) {
+		boolean isAllInvalid = true;
+		if(schemas != null && schemas.size() > 0){
+			for(Iterator iter = schemas.iterator();iter.hasNext();){
+				Schema schema = (Schema)iter.next();
+				if(!"".equals(schema.getName())){
+					isAllInvalid = false;
+					break;
+				}
+			}			
+		}
+
+		if (schemas == null || schemas.size() == 0 || isAllInvalid) {
 			EList catalogs = database.getCatalogs();
 			if (catalogs != null) {
 				for (Iterator iter = catalogs.iterator(); iter
