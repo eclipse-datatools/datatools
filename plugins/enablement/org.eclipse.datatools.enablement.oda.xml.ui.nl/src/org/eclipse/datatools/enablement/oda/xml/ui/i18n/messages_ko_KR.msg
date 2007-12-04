@@ -73,9 +73,9 @@ error.columnMapping.sameColumnName=열 이름 [{0}]이(가) 이미 있습니다. 다른 이름�
 error.invalidXpath=XPath 식"{0}"이(가) 잘못되었습니다.
 
 #data types for column mapping
-datatypes.dateTime=타임스탬프
-datatypes.decimal=큰 십진수
-datatypes.float=이중 실선
+datatypes.dateTime=날짜 시간
+datatypes.decimal=십진수
+datatypes.float=실수
 datatypes.integer=정수
 datatypes.string=문자열
 datatypes.date=날짜

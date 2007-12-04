@@ -73,9 +73,9 @@ error.columnMapping.sameColumnName=Der Spaltenname [{0}] ist bereits vorhanden. 
 error.invalidXpath=Der XPath-Ausdruck "{0}" ist ungültig.
 
 #data types for column mapping
-datatypes.dateTime=Timestamp
-datatypes.decimal=Große Dezimalzahl
-datatypes.float=Double
+datatypes.dateTime=Datum/Uhrzeit
+datatypes.decimal=Dezimal
+datatypes.float=Gleitkomma
 datatypes.integer=Ganzzahl
 datatypes.string=String
 datatypes.date=Date

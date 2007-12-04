@@ -73,9 +73,9 @@ error.columnMapping.sameColumnName=Le nom de colonne [{0}] existe déjà. Utilisez
 error.invalidXpath=L'expression XPath "{0}" n'est pas valide.
 
 #data types for column mapping
-datatypes.dateTime=Horodateur
-datatypes.decimal=Grande décimale
-datatypes.float=Double
+datatypes.dateTime=Date Heure
+datatypes.decimal=Décimales
+datatypes.float=Flottant
 datatypes.integer=Entier
 datatypes.string=Chaîne
 datatypes.date=Date

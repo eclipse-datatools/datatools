@@ -73,9 +73,9 @@ error.columnMapping.sameColumnName=列名称 [{0}] 已经存在。请使用另一个名称。
 error.invalidXpath=XPath 表达式“{0}”无效。
 
 #data types for column mapping
-datatypes.dateTime=时间戳
-datatypes.decimal=大十进制
-datatypes.float=双精度
+datatypes.dateTime=日期时间
+datatypes.decimal=小数
+datatypes.float=浮点
 datatypes.integer=整数
 datatypes.string=字符串
 datatypes.date=日期

@@ -73,9 +73,9 @@ error.columnMapping.sameColumnName=列名 [{0}] はすでに使用されています。別の名前
 error.invalidXpath=XPath 式 "{0}" が無効です。
 
 #data types for column mapping
-datatypes.dateTime=Timestamp
-datatypes.decimal=BigDecimal
-datatypes.float=Double
+datatypes.dateTime=Date Time
+datatypes.decimal=Decimal
+datatypes.float=Float
 datatypes.integer=Integer
 datatypes.string=String
 datatypes.date=Date
