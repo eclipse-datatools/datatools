@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.informix.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfileDetailsWizardPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsWizardPage;
 import org.eclipse.datatools.enablement.ibm.internal.informix.IInformixConnectionProfileConstants;
 
 public class InformixDBProfileDetailsWizardPage 
-	extends GenericDBProfileDetailsWizardPage{
+	extends ExtensibleProfileDetailsWizardPage{
 
 	public InformixDBProfileDetailsWizardPage(String pageName) {
-		super(pageName);
-		setDriverCategory(IInformixConnectionProfileConstants.INFORMIX_CATEGORY_ID);	
+		super(pageName, IInformixConnectionProfileConstants.INFORMIX_CATEGORY_ID);	
 	}
 }
