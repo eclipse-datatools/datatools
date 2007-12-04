@@ -41,7 +41,7 @@ public class ConnectionUtil
 	
 	public static ConnectionInfo getConnectionForEObject (EObject sqlObject)
 	{
-		while (sqlObject != null && !SQLSchemaPackage.eINSTANCE.getDatabase().eClass().isSuperTypeOf(sqlObject.eClass()))
+		while (sqlObject != null && !SQLSchemaPackage.eINSTANCE.getDatabase().isSuperTypeOf(sqlObject.eClass()))
 		{
 			sqlObject = containmentService.getContainer(sqlObject);
 		}
