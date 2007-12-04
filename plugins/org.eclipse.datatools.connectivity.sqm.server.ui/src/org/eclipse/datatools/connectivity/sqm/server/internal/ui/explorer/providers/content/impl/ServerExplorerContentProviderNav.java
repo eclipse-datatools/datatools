@@ -182,7 +182,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     	}
     }
     
-    public void notifyChanged(final ICatalogObject dmElement, int eventType) {
+    public void notifyChanged(final ICatalogObject dmElement, int eventType, boolean isUIRefreshNeeded) {
         if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH && viewer != null)
         {
             //this may occur in rare cases where dispose() is not called.
@@ -192,11 +192,13 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
             }
             else
             {
-                viewer.getControl().getDisplay().syncExec(new Runnable() {
-                    public void run() {
-                        viewer.refresh(dmElement, true);
-                    }
-                });
+            	if(isUIRefreshNeeded){
+                    viewer.getControl().getDisplay().syncExec(new Runnable() {
+                        public void run() {
+                            viewer.refresh(dmElement, true);
+                        }
+                    });	
+            	}
             }
         }
 	}
@@ -208,7 +210,17 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
 	public Object[] getChildren (Object parent)
 	{
-    	return new Loading ().getChildren(this.viewer, parent, this);
+		/*
+		 *	Job machenism doesn't fit the situation that some other 
+		 *	content providers override this one. 
+		 *	With the current CNF implementation, this content provider
+		 *	won't be overrided effectively. Children of both will be 
+		 *	appended to parent.
+		 *
+		 *  Bugzilla 210530 (walk around) 
+		 */
+//    	return new Loading ().getChildren(this.viewer, parent, this);
+		return load(parent);
 	}
 	
 	public String getLoadingDescription()
