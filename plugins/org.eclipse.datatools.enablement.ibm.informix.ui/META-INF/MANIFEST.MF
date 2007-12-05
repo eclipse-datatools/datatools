@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.informix.ui;singleton:=true
-Bundle-Version: 1.0.0.200712041
+Bundle-Version: 1.0.0.200712042
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.informix.internal.ui,
