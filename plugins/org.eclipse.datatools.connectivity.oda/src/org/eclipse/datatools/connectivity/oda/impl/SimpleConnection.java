@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2007 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,7 @@ public class SimpleConnection implements IConnection
 	 */
 	public void open( Properties connProperties ) throws OdaException
 	{
-	    m_isOpen = true;
+	    setIsOpen( true );
 		// TODO data source dependent
 		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
@@ -51,7 +51,7 @@ public class SimpleConnection implements IConnection
 	 */
 	public void close() throws OdaException
 	{
-	    m_isOpen = false;
+	    setIsOpen( false );
 		// TODO data source dependent
 		throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
 	}
@@ -64,7 +64,16 @@ public class SimpleConnection implements IConnection
 		return m_isOpen;
 	}
 
-	/*
+	/**
+	 * Set the open state of this connection.
+     * @param isOpen Indicates whether this connection is open.
+     */
+    protected void setIsOpen( boolean isOpen )
+    {
+        m_isOpen = isOpen;
+    }
+
+    /*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang.String)
 	 */
 	public IDataSetMetaData getMetaData( String dataSetType ) throws OdaException
@@ -107,4 +116,5 @@ public class SimpleConnection implements IConnection
 	{
 	    throw new UnsupportedOperationException();
 	}
+	
 }
