@@ -12,6 +12,7 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
+import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
@@ -21,6 +22,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
+import org.eclipse.datatools.sqltools.core.DataTypeProvider;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.emf.ecore.EObject;
@@ -124,14 +127,39 @@ public class SQLDBProposal {
             }
         }
         else if (dbObject instanceof Column) {
+            DataTypeProvider provider = SQLToolsFacade.getConfigurationByVendorIdentifier(
+                    ModelUtil.getDatabaseVendorDefinitionId(((Column) dbObject).getTable().getSchema()))
+                    .getSQLDataService().getDataTypeProvider();
+            String datatypeStr = provider.getDataTypeString(((Column) dbObject).getDataType(), false);
+            if (((Column) dbObject).getDataType() instanceof PredefinedDataType && datatypeStr != null)
+            {
+                datatypeStr = datatypeStr.toLowerCase();
+            }
+
             fType = TABLECOLUMN_OBJTYPE;
-            fName = ((Column) dbObject).getName();
+            fName = ((Column) dbObject).getName() + " - " + datatypeStr; //$NON-NLS-1$;
             fParentName = ((Column) dbObject).getTable().getSchema().getName()
                     + "." + ((Column) dbObject).getTable().getName();
             fParentObject = ((Column) dbObject).getTable();
             fGrandParentName = ((Table) fParentObject).getSchema().getName();
             fGrandGrandParentName = ModelUtil.getDatabaseName(((Table) fParentObject).getSchema());
-            setImage( SQLEditorResources.getImage( "column" )); //$NON-NLS-1$
+            
+            if (((Column) dbObject).isPartOfPrimaryKey())
+            {
+                setImage(SQLEditorResources.getImage("column_pkey")); //$NON-NLS-1$
+            }
+            else if (((Column) dbObject).isPartOfForeignKey())
+            {
+                setImage(SQLEditorResources.getImage("column_fkey")); //$NON-NLS-1$
+            }
+            else if (((Column) dbObject).isNullable())
+            {
+                setImage(SQLEditorResources.getImage("column_null")); //$NON-NLS-1$
+            }
+            else
+            {
+                setImage(SQLEditorResources.getImage("column")); //$NON-NLS-1$
+            }
         }
         else if (dbObject instanceof Function) {
         	fType = FUNCTION_OBJTYPE;
