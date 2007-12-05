@@ -10,15 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oracle.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfilePropertyPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsPropertyPage;
 import org.eclipse.datatools.enablement.internal.oracle.IOracleConnectionProfileConstants;
 
-public class OracleDBProfilePropertyPage extends GenericDBProfilePropertyPage {
+public class OracleDBProfilePropertyPage extends ExtensibleProfileDetailsPropertyPage {
 
 	public OracleDBProfilePropertyPage() {
-		super();
-		noDefaultAndApplyButton();
-		setDriverCategory(IOracleConnectionProfileConstants.ORACLE_CATEGORY_ID);	
+		super(IOracleConnectionProfileConstants.ORACLE_CATEGORY_ID);
 	}
 
 }

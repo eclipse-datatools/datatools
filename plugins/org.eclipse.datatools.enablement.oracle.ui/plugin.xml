@@ -63,4 +63,51 @@
       </propertyEditor>
    </extension>
   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.10.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.10.OracleOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.9.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.9.OracleOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.8.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.8.OracleOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleThinDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.10.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.10.OracleThinDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleThinDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.9.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.9.OracleThinDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.OracleThinDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.oracle.8.driverTemplate"
+            id="org.eclipse.datatools.enablement.oracle.internal.ui.drivers.8.OracleThinDriverUIContributor">
+      </driverUIContributor>
+   </extension>
  </plugin>  

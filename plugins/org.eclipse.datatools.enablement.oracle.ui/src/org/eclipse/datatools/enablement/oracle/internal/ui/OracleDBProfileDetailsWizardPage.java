@@ -10,14 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oracle.internal.ui;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfileDetailsWizardPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsWizardPage;
 import org.eclipse.datatools.enablement.internal.oracle.IOracleConnectionProfileConstants;
 
 public class OracleDBProfileDetailsWizardPage 
-	extends GenericDBProfileDetailsWizardPage{
+	extends ExtensibleProfileDetailsWizardPage{
 
 	public OracleDBProfileDetailsWizardPage(String pageName) {
-		super(pageName);
-		setDriverCategory(IOracleConnectionProfileConstants.ORACLE_CATEGORY_ID);	
+		super(pageName, IOracleConnectionProfileConstants.ORACLE_CATEGORY_ID);	
 	}
 }
