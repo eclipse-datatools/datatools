@@ -51,4 +51,35 @@
       </propertyEditor>
    </extension>
    
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServerOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2005.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.2005.SQLServerOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServerOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2000.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.2000.SQLServerOtherDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+      <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2005DriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2005.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2005DriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2000DriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.msft.sqlserver.2000.driverTemplate"
+            id="org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection.drivers.SQLServer2000DriverUIContributor">
+      </driverUIContributor>
+   </extension>
  </plugin>  

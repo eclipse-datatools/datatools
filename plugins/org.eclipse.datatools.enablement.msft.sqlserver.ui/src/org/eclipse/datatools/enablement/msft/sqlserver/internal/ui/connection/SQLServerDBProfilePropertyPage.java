@@ -10,15 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.msft.sqlserver.internal.ui.connection;
 
-import org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfilePropertyPage;
+import org.eclipse.datatools.connectivity.ui.wizards.ExtensibleProfileDetailsPropertyPage;
 import org.eclipse.datatools.enablement.msft.internal.sqlserver.connection.ISQLServerConnectionProfileConstants;
 
-public class SQLServerDBProfilePropertyPage extends GenericDBProfilePropertyPage {
+public class SQLServerDBProfilePropertyPage extends
+		ExtensibleProfileDetailsPropertyPage {
 
 	public SQLServerDBProfilePropertyPage() {
-		super();
-		noDefaultAndApplyButton();
-		setDriverCategory(ISQLServerConnectionProfileConstants.SQLSERVER_CATEGORY_ID);	
+		super(ISQLServerConnectionProfileConstants.SQLSERVER_CATEGORY_ID);
 	}
-
 }
