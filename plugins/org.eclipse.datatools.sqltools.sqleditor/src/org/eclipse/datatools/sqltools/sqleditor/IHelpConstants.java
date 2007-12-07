@@ -29,7 +29,7 @@ public interface IHelpConstants
     /**
      * Used for SQL Editor.
      */
-    public static final String SQLEDITOR                             = "sqleditor";
+    public static final String SQLEDITOR                             = "org.eclipse.datatools.sqltools.sqleditor.sql_file_editor";//to workaround 212003
 
     /**
      * Used for SQL scrapbook's Select Profile for the Editor dialog.
