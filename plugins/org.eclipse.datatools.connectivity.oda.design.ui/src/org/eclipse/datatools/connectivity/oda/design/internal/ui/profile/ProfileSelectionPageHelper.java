@@ -14,18 +14,20 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.datatools.connectivity.ICategory;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
+import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
@@ -61,6 +63,13 @@ class ProfileSelectionPageHelper
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     private static final String CONTEXT_ID_CONNECTIONPROFILE = 
         "org.eclipse.datatools.oda.cshelp.Wizard_ConnectionProfile_ID";//$NON-NLS-1$
+
+    private static final String CONNECTIVITY_DB_CATEGORY_ID = 
+        "org.eclipse.datatools.connectivity.db.category"; //$NON-NLS-1$
+//    private static final String ODA_CONNECTIVITY_DB_DATA_SOURCE_ID = 
+//        "org.eclipse.birt.data.oda.jdbc.dbprofile"; //$NON-NLS-1$
+
+    private static final int TREE_ITEM_STYLE = SWT.NONE;
     
     private WizardPage m_wizardPage;
     private PreferencePage m_propertyPage;
@@ -384,12 +393,21 @@ class ProfileSelectionPageHelper
     private void populateTree( )
     {
         resetTreeViewer();
+//        OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         if( ! hasConnectionProfilePath() )
             return;
+        
+        // TODO replace hard-coded ids with use of wrapper extension info
+        // populate tree with all wrapped profiles under the corresponding oda data source id
+//            TreeItem dbCategoryItem = 
+//                createCategoryTreeItems( dsCategory, CONNECTIVITY_DB_CATEGORY_ID, ODA_CONNECTIVITY_DB_DATA_SOURCE_ID );
+            // TODO Does the db category have sub-categories?
+        
+        // populate tree with ODA extensions' profile instances
+        
+        generateODADataSourceIdentifiers( );
 
-        generateDataSourceIdentifiers( );
-
-        TreeItem root = new TreeItem( m_odaDataSourceTree, SWT.NONE );
+        TreeItem root = new TreeItem( m_odaDataSourceTree, TREE_ITEM_STYLE );
         root.setText( Messages.profilePage_odaTreeName );
 
         try
@@ -397,19 +415,22 @@ class ProfileSelectionPageHelper
             Iterator iterator = m_dataSourceIDProperties.keySet().iterator();
             while( iterator.hasNext() )
             {
-                Object odaDataSourceId = iterator.next();
-                String dsID = odaDataSourceId.toString( );
-                if( m_treeFilter != null && ! m_treeFilter.equals( dsID ) )
+                Object odaDataSourceIdObj = iterator.next();
+                String odaDataSourceId = odaDataSourceIdObj.toString( );
+                if( m_treeFilter != null && ! m_treeFilter.equals( odaDataSourceId ) )
                     continue;   // skip oda data source type not in filter
+
+                // don't bother create a category item if it has no profile instances
                 if( ! hasProfileInstance( odaDataSourceId ) )
                     continue;
 
-                TreeItem dsCategory = new TreeItem( root, SWT.NONE );
-                String dsDisplayName = m_dataSourceIDProperties.getProperty( dsID );
-                dsCategory.setData( dsID );
+                TreeItem dsCategory = new TreeItem( root, TREE_ITEM_STYLE );
+                String dsDisplayName = m_dataSourceIDProperties.getProperty( odaDataSourceId );
+                dsCategory.setData( odaDataSourceId );
                 dsCategory.setText( dsDisplayName );
 
-                createDSTreeItems( dsCategory );
+                createODATreeItems( dsCategory );
+                
                 m_odaDataSourceTree.showItem( dsCategory );
             }
         }
@@ -506,7 +527,7 @@ class ProfileSelectionPageHelper
     /**
      * Collect DataSourceIdentifiers from ODA extensions registry.
      */
-    private void generateDataSourceIdentifiers( )
+    private void generateODADataSourceIdentifiers( )
     {
         if( m_dataSourceIDProperties == null )
             m_dataSourceIDProperties = ManifestExplorer.getInstance()
@@ -532,7 +553,11 @@ class ProfileSelectionPageHelper
      * Retrieve a collection of the connection profile instances for the
      * given odaDataSourceId in the user-specified profile store path.
      * @param odaDataSourceId
-     * @return
+     * @return  a <code>Map</code> containing the instance Id
+     *          and display name of all existing profiles of given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are no matching connection profiles found.
      */
     private Map getProfileIdentifiers( String odaDataSourceId )
     {
@@ -548,47 +573,77 @@ class ProfileSelectionPageHelper
 
         return null;
     }
-
-    /**
-     * Create tree items for each data source category
-     * @throws OdaException
-     */
-    private void createDSTreeItems( TreeItem dsCategory ) throws OdaException
+    
+    private Map getProfileIdentifiersByCategory( String categoryId )
     {
-        Map profiles = getProfileIdentifiers( dsCategory.getData().toString() );
-        if( profiles == null )
-            return;
-        
-        ArrayList treeList = new ArrayList( );
-        Iterator iterator = profiles.keySet( ).iterator( );
-        while( iterator.hasNext() )
-        {
-            treeList.add( iterator.next() );
-        }
+//        try
+//        {
+//            return DesignSessionUtil.getProfileIdentifiersByCategory( categoryId,
+//                    new Path( getConnProfilePathControlText() ).toFile( ) );
+//        }
+//        catch ( OdaException ex )
+//        {
+//            setMessage( Messages.profilePage_error_invalidProfileStorePath, IMessageProvider.ERROR );
+//        }
 
-        createTreeItems( profiles, dsCategory, treeList, SWT.NONE );
+        return null;
     }
 
     /**
-     * Build tree item for each data source in the specified arrayList.
-     * @return
+     * Create child tree items for the given ODA data source category.
+     * @throws OdaException
      */
-    private TreeItem[] createTreeItems( Map profiles, TreeItem dsCategory,
-            ArrayList dataSource, int style )
+    private void createODATreeItems( TreeItem dsCategory ) throws OdaException
     {
-        if( dataSource == null )
-            return null;
+        Map profileIds = getProfileIdentifiers( dsCategory.getData().toString() );
+        createChildTreeItems( dsCategory, profileIds, TREE_ITEM_STYLE );
+    }
+    
+    private TreeItem createCategoryTreeItems( TreeItem parent, String categoryId, 
+            String odaDataSourceId ) 
+        throws OdaException
+    {
+        Map profileIds = getProfileIdentifiersByCategory( categoryId );
+        // if no profile instances found under given category
+        if( profileIds == null || profileIds.isEmpty() )  
+            return null;             // done; no need to create a child tree item for category
 
-        TreeItem item[] = new TreeItem[dataSource.size()];
-        for( int i = 0; i < dataSource.size( ); i++ )
+        // get the category object from the first profile
+        ICategory category = null;
+        String profileInstanceId = profileIds.keySet().iterator().next().toString();
+        IConnectionProfile profile = 
+            OdaProfileExplorer.getInstance().getProfile( profileInstanceId );
+        if( profile != null )
+            category = profile.getCategory();
+       
+        // create a tree item for the specified category
+        TreeItem categoryItem = new TreeItem( parent, TREE_ITEM_STYLE );
+            // the tree view expects a profile instance's parent item data to be an odaDataSourceId
+        categoryItem.setData( odaDataSourceId );
+        categoryItem.setText( ( category != null ) ? category.getName() : categoryId );
+        
+        createChildTreeItems( categoryItem, profileIds, TREE_ITEM_STYLE );
+        
+        return categoryItem;
+    }
+        
+    /**
+     * Build a child tree item for each connection profile identifier in the specified Map.
+     */
+    private void createChildTreeItems( TreeItem parentItem, Map profileIds, int style )
+    {
+        if( profileIds == null )
+            return;
+
+        Iterator iterator = profileIds.keySet().iterator();
+        while( iterator.hasNext() )
         {
-            item[i] = new TreeItem( dsCategory, style );
-            Object source = dataSource.get( i );
-            item[i].setData( source );
-            item[i].setText( profiles.get( source ).toString( ) );
+            Object profileInstanceId = iterator.next();
+            TreeItem item = new TreeItem( parentItem, style );
+            item.setData( profileInstanceId );
+            // profile instance display name
+            item.setText( profileIds.get( profileInstanceId ).toString( ) );   
         }
-
-        return item;
     }
 
     /**
