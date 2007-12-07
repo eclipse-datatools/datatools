@@ -21,6 +21,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -47,6 +48,9 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
+
 	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_");
 
@@ -64,6 +68,15 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
@@ -89,6 +102,8 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 	private Label passwordLabel;
 
 	private Text passwordText;
+
+	private Button savePasswordButton;
 
 	private Label urlLabel;
 
@@ -216,6 +231,15 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 2;
 			passwordText.setLayoutData(gd);
 
+			this.savePasswordButton = new Button(baseComposite, SWT.CHECK);
+			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 3;
+			gd.grabExcessHorizontalSpace = true;
+			savePasswordButton.setLayoutData(gd);
+
 			urlLabel = new Label(baseComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -254,6 +278,11 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 				this.portText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
 				this.usernameText.getText().trim() });
+		summaryData
+				.add(new String[] {
+						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
+						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
+								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 		return summaryData;
@@ -277,7 +306,12 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		if (password != null) {
 			passwordText.setText(password);
 		}
-
+		String savePassword = this.properties
+				.getProperty(IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+		if ((savePassword != null)
+				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
+			savePasswordButton.setSelection(true);
+		}
 		updateURL();
 		addListeners();
 		setConnectionInformation();
@@ -306,7 +340,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 				this.passwordText.getText());
 		properties.setProperty(
 				IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
-						.valueOf(false));
+						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
 		properties.setProperty(IDriverDefinitionConstants.URL_PROP_ID,
@@ -325,6 +359,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		portText.addListener(SWT.Modify, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
+		savePasswordButton.addListener(SWT.Selection, this);
 	}
 
 	private void removeListeners() {
@@ -333,11 +368,12 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		portText.removeListener(SWT.Modify, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
+		savePasswordButton.removeListener(SWT.Selection, this);
 	}
 
 	protected void updateURL() {
-		String url = "jdbc:sqlserver://" + this.hostText.getText() + (this.portText.getText().equalsIgnoreCase("") ?  "" : ":" + this.portText.getText()) + ";databaseName=" + this.databaseText.getText(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-	    urlText.setText(url);
+		String url = "jdbc:sqlserver://" + this.hostText.getText() + (this.portText.getText().equalsIgnoreCase("") ? "" : ":" + this.portText.getText()) + ";databaseName=" + this.databaseText.getText(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		urlText.setText(url);
 	}
 
 	private class SqlServerJDBCURL {
@@ -383,7 +419,8 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 
 			try {
 				String remainingURL = url.substring(url.indexOf(':') + 1);
-				this.subprotocol = remainingURL.substring(0, remainingURL.indexOf(':'));
+				this.subprotocol = remainingURL.substring(0, remainingURL
+						.indexOf(':'));
 				remainingURL = remainingURL
 						.substring(remainingURL.indexOf(':') + 3);
 				this.node = remainingURL
