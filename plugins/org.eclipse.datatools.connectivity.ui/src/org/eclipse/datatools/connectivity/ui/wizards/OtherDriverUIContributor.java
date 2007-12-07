@@ -21,6 +21,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -40,6 +41,8 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 	private Text usernameText;
 
 	private Text passwordText;
+
+	private Button savePasswordButton;
 
 	private DelimitedStringList optionalConnectionProperties;
 
@@ -118,12 +121,25 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			passwordText = new Text(generalComposite, SWT.BORDER | SWT.PASSWORD);
 			passwordText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-			Label optionalPropertiesLabel = new Label(optionalComposite, SWT.NULL);
+			this.savePasswordButton = new Button(generalComposite, SWT.CHECK);
+			this.savePasswordButton.setText(ConnectivityUIPlugin.getDefault()
+					.getResourceString(
+							"OtherDriverUIContributor.savePassword.label")); //$NON-NLS-1$
+			GridData gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 3;
+			gd.grabExcessHorizontalSpace = true;
+			savePasswordButton.setLayoutData(gd);
+
+			Label optionalPropertiesLabel = new Label(optionalComposite,
+					SWT.NULL);
 			GridData gdata = new GridData(GridData.FILL_HORIZONTAL);
 			gdata.horizontalSpan = 2;
 			optionalPropertiesLabel.setLayoutData(gdata);
-			optionalPropertiesLabel.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"OtherDriverUIContributor.optionalProps.label")); //$NON-NLS-1$
+			optionalPropertiesLabel.setText(ConnectivityUIPlugin.getDefault()
+					.getResourceString(
+							"OtherDriverUIContributor.optionalProps.label")); //$NON-NLS-1$
 
 			this.optionalConnectionProperties = new DelimitedStringList(
 					optionalComposite, SWT.NONE);
@@ -147,6 +163,9 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 				this.passwordText.getText());
 		properties.setProperty(IDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
+		properties.setProperty(
+				IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
+						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
 		properties.setProperty(
@@ -160,6 +179,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 		urlText.removeListener(SWT.Modify, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
+		savePasswordButton.removeListener(SWT.Selection, this);
 		optionalConnectionProperties.removeModifyListener(this);
 	}
 
@@ -168,6 +188,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 		urlText.addListener(SWT.Modify, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
+		savePasswordButton.addListener(SWT.Selection, this);
 		optionalConnectionProperties.addModifyListener(this);
 	}
 
@@ -252,6 +273,13 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			passwordText.setText(password);
 		}
 
+		String savePassword = this.properties
+				.getProperty(IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+		if ((savePassword != null)
+				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
+			savePasswordButton.setSelection(true);
+		}
+
 		String connectionProperties = this.properties
 				.getProperty(IConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID);
 		if (connectionProperties != null) {
@@ -277,6 +305,20 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 				ConnectivityUIPlugin.getDefault().getResourceString(
 						"OtherDriverUIContributor.summaryData.url"), //$NON-NLS-1$
 				this.urlText.getText().trim() });
+		summaryData
+				.add(new String[] {
+						ConnectivityUIPlugin
+								.getDefault()
+								.getResourceString(
+										"OtherDriverUIContributor.summaryData.savePassword"),
+						savePasswordButton.getSelection() ? ConnectivityUIPlugin
+								.getDefault()
+								.getResourceString(
+										"OtherDriverUIContributor.summaryData.true")
+								: ConnectivityUIPlugin
+										.getDefault()
+										.getResourceString(
+												"OtherDriverUIContributor.summaryData.false") });
 		return summaryData;
 	}
 
