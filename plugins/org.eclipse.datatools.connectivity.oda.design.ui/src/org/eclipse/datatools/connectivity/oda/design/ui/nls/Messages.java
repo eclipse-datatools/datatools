@@ -39,6 +39,7 @@ public class Messages extends NLS
     public static String extension_missingManifestElement;
     public static String extension_missingPropertyPage;
     public static String profilePage_button_browse;
+    public static String profilePage_button_new;
     public static String profilePage_checkboxLabel_maintainLink;
     public static String profilePage_checkboxLabel_useDefaultName;
     public static String profilePage_checkboxTooltip_maintainLink;
@@ -70,5 +71,7 @@ public class Messages extends NLS
     public static String ui_requiredFieldsMissingValue;
     public static String ui_errorLabel;
     public static String ui_errorCreatingCustomCtrls;
-
+    public static String profileStoreCreationDialog_title;
+    public static String profileStoreCreationDialog_grouptext;
+    public static String profileStoreCreationDialog_newbutton_tooltiptext;
 }

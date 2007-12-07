@@ -14,9 +14,12 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -185,6 +188,25 @@ public abstract class DataSourceWizardPageCore extends
             m_setPingButtonVisible = new Boolean( visible );
         else
             super.setPingButtonVisible( visible );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createTestConnectionRunnable(org.eclipse.datatools.connectivity.internal.ConnectionProfile)
+     */
+    protected Runnable createTestConnectionRunnable( final ConnectionProfile profile )
+    {
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                IConnection conn = PingJob.testCreateConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                if( conn != null )
+                    conn.close();
+                PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
+            }
+        };
     }
 
     /* (non-Javadoc)

@@ -21,6 +21,7 @@ import java.util.Properties;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
@@ -29,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -66,8 +68,6 @@ class ProfileSelectionPageHelper
 
     private static final String CONNECTIVITY_DB_CATEGORY_ID = 
         "org.eclipse.datatools.connectivity.db.category"; //$NON-NLS-1$
-//    private static final String ODA_CONNECTIVITY_DB_DATA_SOURCE_ID = 
-//        "org.eclipse.birt.data.oda.jdbc.dbprofile"; //$NON-NLS-1$
 
     private static final int TREE_ITEM_STYLE = SWT.NONE;
     
@@ -293,11 +293,15 @@ class ProfileSelectionPageHelper
             }
         } );
 
-        // add Browse... button
-        Button button = new Button( composite, SWT.PUSH );
-        button.setText( Messages.profilePage_button_browse );
-        button.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
-        button.addSelectionListener( new SelectionAdapter() 
+        // Browse... button
+        Button browseButton = new Button( composite, SWT.PUSH );
+        browseButton.setText( Messages.profilePage_button_browse );
+        {
+            GridData data = new GridData();
+            data.widthHint = 80;
+            browseButton.setLayoutData( data );
+        }
+        browseButton.addSelectionListener( new SelectionAdapter() 
         {
             public void widgetSelected( SelectionEvent e )
             {
@@ -307,6 +311,73 @@ class ProfileSelectionPageHelper
 				    setConnProfilePathControlText( text );
 			}
         } );
+        
+        // New... button
+        createNewProfileStoreButton( composite );
+    }
+
+    private Button createNewProfileStoreButton( Composite parent )
+    {
+        Button newButton = new Button( parent, SWT.PUSH );
+        newButton.setText( Messages.profilePage_button_new );
+        {
+            GridData data = new GridData();
+            data.horizontalSpan = 3;
+            data.horizontalAlignment = SWT.RIGHT;
+            data.widthHint = 80;
+            newButton.setLayoutData( data );
+        }
+        
+        newButton.addSelectionListener( new SelectionAdapter() 
+        {
+            public void widgetSelected( SelectionEvent e )
+            {
+                handleNewProfileStore();
+            }
+            
+            private void handleNewProfileStore()
+            {
+                CreateProfileStoreAction createAction = 
+                    new CreateProfileStoreAction( getShell() );
+                createAction.run();
+                if( createAction.isCompleted() )
+                {
+                    // copy the newly created profile store file path
+                    ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
+                    if( dlg != null && dlg.getFile() != null )
+                        setConnProfilePathControlText( dlg.getFile().getPath() );                            
+                }
+            }
+            
+            final class CreateProfileStoreAction extends ExportProfileViewAction
+            {
+                private ProfileStoreCreationDialog m_dialog;
+                
+                CreateProfileStoreAction( Shell dialogShell )
+                {
+                    super();
+                    init( dialogShell );
+                }
+
+                /* (non-Javadoc)
+                 * @see org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction#createExportProfilesDialog(org.eclipse.swt.widgets.Shell)
+                 * @override base method
+                 */
+                protected ExportProfilesDialog createExportProfilesDialog( Shell parentShell )
+                {
+                    m_dialog = new ProfileStoreCreationDialog( parentShell );
+                    m_dialog.setBlockOnOpen( true );
+                    return m_dialog;
+                }
+                
+                ProfileStoreCreationDialog getProfileStoreCreationDialog()
+                {
+                    return m_dialog;
+                }
+            }
+        } );
+        
+        return newButton;
     }
 
     /**
