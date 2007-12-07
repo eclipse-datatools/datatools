@@ -1,12 +1,14 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: 
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -118,18 +120,8 @@ public abstract class ConnectionProfileDetailsPage
 			
 			profile.setBaseProperties(wizard.getProfileProperties());
 
-			final Job pingJob = new PingJob(getShell(), profile);
-			pingJob.schedule();
-			BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
-
-				public void run() {
-					try {
-						pingJob.join();
-					}
-					catch (InterruptedException e) {
-					}
-				}
-			});
+			BusyIndicator.showWhile( getShell().getDisplay(), 
+			        createTestConnectionRunnable( profile ) );			
 		}
 	}
 
@@ -160,4 +152,24 @@ public abstract class ConnectionProfileDetailsPage
             btnPing.setVisible(visible);
         }
     }
+	
+	protected Runnable createTestConnectionRunnable( final ConnectionProfile profile )
+	{
+        final Job pingJob = new PingJob( getShell(), profile );
+        pingJob.schedule();
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                try 
+                {
+                    pingJob.join();
+                }
+                catch (InterruptedException e) 
+                {
+                }
+            }
+        };
+	}
+	
 }

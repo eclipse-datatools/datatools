@@ -1,13 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
- ******************************************************************************/
+ * Contributors:
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
+******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
 import java.io.File;
@@ -102,69 +104,32 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 
 	protected Control createDialogArea(Composite parent) {
         
-        Composite container = (Composite) super.createDialogArea(parent);
+        Composite container = createParentDialogArea(parent);
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 20;
 		gridLayout.numColumns = 3;
 		container.setLayout(gridLayout);
 		{
-			final Group group = new Group(container, SWT.NONE);
-			group.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"ExportProfilesDialog.group.text")); //$NON-NLS-1$
-			final GridData gridData = new GridData(GridData.FILL_BOTH);
-			gridData.horizontalSpan = 3;
-			group.setLayoutData(gridData);
+			final Group group = createGroupAndLayoutData( container );
+			
 			final GridLayout gridLayout_1 = new GridLayout();
 			gridLayout_1.makeColumnsEqualWidth = true;
 			gridLayout_1.numColumns = 3;
 			group.setLayout(gridLayout_1);
-			{
-				final CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer
-						.newCheckList(group, SWT.V_SCROLL | SWT.BORDER
-								| SWT.H_SCROLL);
-				checkboxTableViewer.setLabelProvider(new TableLabelProvider());
-				checkboxTableViewer.setContentProvider(new ContentProvider());
-				final Table table = checkboxTableViewer.getTable();
-				final GridData gridData_1 = new GridData(GridData.FILL_BOTH);
-				gridData_1.horizontalSpan = 3;
-				gridData_1.widthHint = 392;
-				table.setLayoutData(gridData_1);
-				checkboxTableViewer.setInput(new Object());
-				checkboxTableViewer.setSorter(new ProfileSorter());
-				tvViewer = checkboxTableViewer;
-				checkboxTableViewer.refresh();
-			}
-			{
-				final Button button = new Button(group, SWT.NONE);
-				button.addSelectionListener(new SelectionAdapter() {
 
-					public void widgetSelected(SelectionEvent e) {
-						tvViewer.setAllChecked(true);
-					}
-				});
-				button.setLayoutData(new GridData(
-						GridData.HORIZONTAL_ALIGN_CENTER));
-				button.setText(ConnectivityUIPlugin.getDefault()
-						.getResourceString("ExportProfilesDialog.button.text")); //$NON-NLS-1$
-			}
+			setupCheckboxTableViewer(group);
+
+			// SelectAll button
+			createSelectAllButton( group, new GridData(
+	                GridData.HORIZONTAL_ALIGN_CENTER) );
+
 			{
 				new Label(group, SWT.NONE);
 			}
-			{
-				final Button button = new Button(group, SWT.NONE);
-				button.addSelectionListener(new SelectionAdapter() {
-
-					public void widgetSelected(SelectionEvent e) {
-						tvViewer.setAllChecked(false);
-					}
-				});
-				button.setLayoutData(new GridData(
-						GridData.HORIZONTAL_ALIGN_CENTER));
-				button
-						.setText(ConnectivityUIPlugin.getDefault()
-								.getResourceString(
-										"ExportProfilesDialog.button.text1")); //$NON-NLS-1$
-			}
+			
+            // DeselectAll button
+			createDeselectAllButton( group, new GridData(
+	                GridData.HORIZONTAL_ALIGN_CENTER) );
 		}
 		{
 			final Label label = new Label(container, SWT.NONE);
@@ -174,54 +139,151 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			gridData.widthHint = 495;
 			label.setLayoutData(gridData);
 		}
+		
+		// File path label
 		{
-			final Label label = new Label(container, SWT.NONE);
 			final GridData gridData = new GridData();
 			gridData.horizontalIndent = 5;
-			label.setLayoutData(gridData);
-			label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"ExportProfilesDialog.label.text")); //$NON-NLS-1$
+            createFilePathLabel( container, gridData );
 		}
+		// File path text control
 		{
-			final Text text = new Text(container, SWT.BORDER);
 			final GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 			gridData.widthHint = 243;
-			text.setLayoutData(gridData);
-			txtFile = text;
+			setupFilePathText( container, gridData);
 		}
-		{
-			final Button button = new Button(container, SWT.NONE);
-			button.addSelectionListener(new SelectionAdapter() {
+		
+		// Browse... button
+		createFilePathBrowseButton( container, new GridData(
+                GridData.HORIZONTAL_ALIGN_CENTER) );
+		
+		// Encrypt file checkbox
+		setupEncryptContentCheckbox( container );
 
-				public void widgetSelected(SelectionEvent e) {
-					txtFile.setText(new FileDialog(getShell()).open());
-				}
-			});
-			button
-					.setLayoutData(new GridData(
-							GridData.HORIZONTAL_ALIGN_CENTER));
-			button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"ExportProfilesDialog.button.text2")); //$NON-NLS-1$
-		}
-		{
-			final Button button = new Button(container, SWT.CHECK);
-			final GridData gridData = new GridData(GridData.GRAB_HORIZONTAL);
-			gridData.horizontalIndent = 10;
-			gridData.horizontalSpan = 3;
-			button.setLayoutData(gridData);
-			button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-					"ExportProfilesDialog.btnEncryption.text")); //$NON-NLS-1$
-			button.setSelection(true);
-			btnEncryption = button;
-		}
+        setupHelp();
+		return container;
+	}
 
+    protected Composite createParentDialogArea(Composite parent)
+    {
+        return (Composite) super.createDialogArea(parent);
+    }
+
+    protected Group createGroupAndLayoutData( Composite parent )
+    {
+        final Group group = new Group(parent, SWT.NONE);
+        group.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+        		"ExportProfilesDialog.group.text")); //$NON-NLS-1$
+        final GridData gridData = new GridData(GridData.FILL_BOTH);
+        gridData.horizontalSpan = 3;
+        group.setLayoutData(gridData);
+        return group;
+    }
+
+    protected CheckboxTableViewer setupCheckboxTableViewer(Composite parent)
+    {
+        final CheckboxTableViewer checkboxTableViewer = CheckboxTableViewer
+                .newCheckList(parent, SWT.V_SCROLL | SWT.BORDER
+                        | SWT.H_SCROLL);
+        checkboxTableViewer.setLabelProvider(new TableLabelProvider());
+        checkboxTableViewer.setContentProvider(new ContentProvider());
+        final Table table = checkboxTableViewer.getTable();
+        final GridData gridData_1 = new GridData(GridData.FILL_BOTH);
+        gridData_1.horizontalSpan = 3;
+        gridData_1.widthHint = 392;
+        table.setLayoutData(gridData_1);
+        checkboxTableViewer.setInput(new Object());
+        checkboxTableViewer.setSorter(new ProfileSorter());
+        tvViewer = checkboxTableViewer;
+        tvViewer.refresh();
+        return tvViewer;
+    }
+
+    protected Button createSelectAllButton( Composite parent, Object layoutData )
+    {
+        final Button button = new Button(parent, SWT.NONE);
+        button.addSelectionListener(new SelectionAdapter() {
+
+            public void widgetSelected(SelectionEvent e) {
+                tvViewer.setAllChecked(true);
+            }
+        });
+        button.setLayoutData(layoutData);
+        button.setText(ConnectivityUIPlugin.getDefault()
+                .getResourceString("ExportProfilesDialog.button.text")); //$NON-NLS-1$
+        return button;
+    }
+    
+    protected Button createDeselectAllButton( Composite parent, Object layoutData )
+    {
+        final Button button = new Button(parent, SWT.NONE);
+        button.addSelectionListener(new SelectionAdapter() {
+
+            public void widgetSelected(SelectionEvent e) {
+                tvViewer.setAllChecked(false);
+            }
+        });
+        button.setLayoutData(layoutData);
+        button.setText(ConnectivityUIPlugin.getDefault()
+                        .getResourceString(
+                                "ExportProfilesDialog.button.text1")); //$NON-NLS-1$
+        return button;
+    }
+
+    protected Label createFilePathLabel( Composite parent, Object layoutData )
+    {
+        final Label label = new Label(parent, SWT.NONE);
+        label.setLayoutData( layoutData );
+        label.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+                "ExportProfilesDialog.label.text")); //$NON-NLS-1$
+        return label;
+    }
+
+    protected Text setupFilePathText( Composite parent, Object layoutData )
+    {
+        final Text text = new Text(parent, SWT.BORDER);
+        text.setLayoutData(layoutData);
+        txtFile = text;
+        return txtFile;
+    }
+
+    protected Button createFilePathBrowseButton( Composite parent, Object layoutData )
+    {
+		final Button button = new Button(parent, SWT.NONE);
+		button.addSelectionListener(new SelectionAdapter() {
+
+			public void widgetSelected(SelectionEvent e) {
+				txtFile.setText(new FileDialog(getShell()).open());
+			}
+		});
+		button.setLayoutData( layoutData );
+		button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+				"ExportProfilesDialog.button.text2")); //$NON-NLS-1$
+        return button;
+    }
+
+    protected Button setupEncryptContentCheckbox( Composite parent )
+    {
+        final Button button = new Button(parent, SWT.CHECK);
+		final GridData gridData = new GridData(GridData.GRAB_HORIZONTAL);
+		gridData.horizontalIndent = 10;
+		gridData.horizontalSpan = 3;
+		button.setLayoutData(gridData);
+		button.setText(ConnectivityUIPlugin.getDefault().getResourceString(
+				"ExportProfilesDialog.btnEncryption.text")); //$NON-NLS-1$
+		button.setSelection(true);
+		btnEncryption = button;
+		return btnEncryption;
+    }
+
+    protected void setupHelp()
+    {
         getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
 //      HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG);
         String contextId = HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG, 
-  				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
-      HelpUtil.setHelp( getShell(), contextId);
-		return container;
-	}
+                ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+        HelpUtil.setHelp( getShell(), contextId);
+    }
 
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL,

@@ -1,12 +1,15 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: 
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
+
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
@@ -34,6 +37,7 @@ import org.eclipse.ui.IViewPart;
 public class ExportProfileViewAction extends Action implements
 		IViewActionDelegate {
 
+    protected boolean isCompleted = false;
 	private Shell shell;
 
 	/**
@@ -53,39 +57,77 @@ public class ExportProfileViewAction extends Action implements
 		shell = view.getSite().getShell();
 	}
 
+	/**
+	 * Initialize the shell for use as the parent shell of the action's dialog. 
+	 * Use this method when the action is extended to run without being associated 
+	 * with a view.
+	 * @param parentShell
+	 */
+	protected void init( Shell parentShell )
+	{
+	    shell = parentShell;
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.jface.action.IAction#run()
 	 */
 	public void run() {
-		final ExportProfilesDialog dlg = new ExportProfilesDialog(shell);
+        isCompleted = false;    // reset state
+		final ExportProfilesDialog dlg = createExportProfilesDialog( shell );
 		int ret = dlg.open();
 		if (ret == Window.OK) {
-			BusyIndicator.showWhile(shell.getDisplay(), new Runnable() {
-
-				public void run() {
-					try {
-						ICipherProvider isp = null;
-						if (dlg.needEncryption()) {
-							isp = SecurityManager.getInstance()
-									.getDefaultCipherProvider();
-						}
-						ConnectionProfileMgmt.saveCPs(
-								dlg.getSelectedProfiles(), dlg.getFile(), isp);
-					}
-					catch (Exception e) {
-						ExceptionHandler.showException(shell, ConnectivityUIPlugin
-								.getDefault().getResourceString(
-										"dialog.title.error"), e //$NON-NLS-1$
-								.getMessage(), e);
-					}
-				}
-			});
+			BusyIndicator.showWhile(shell.getDisplay(), 
+			        createSaveExportedProfilesRunnable( shell, dlg ));
 		}
 	}
 
-	/*
+	protected ExportProfilesDialog createExportProfilesDialog( Shell parentShell )
+	{
+	    return new ExportProfilesDialog( parentShell );
+	}
+	
+	/**
+	 * Returns a new runnable that saves the profiles selected in the
+	 * specified ExportProfilesDialog.
+	 * @param parentShell  the parent shell for display of exception message
+	 * @param dlg  an instance of ExportProfilesDialog or its subclass.
+	 * @return a new runnable for saving exported profiles
+	 */
+    protected Runnable createSaveExportedProfilesRunnable( 
+            final Shell parentShell, 
+            final ExportProfilesDialog dlg )
+    {
+        return new Runnable() {
+        	public void run() {
+                isCompleted = false;    // reset state
+        		try {
+        			ICipherProvider isp = null;
+        			if (dlg.needEncryption()) {
+        				isp = SecurityManager.getInstance()
+        						.getDefaultCipherProvider();
+        			}
+        			ConnectionProfileMgmt.saveCPs(
+        					dlg.getSelectedProfiles(), dlg.getFile(), isp);
+        			isCompleted = true;
+        		}
+        		catch (Exception e) {
+        			ExceptionHandler.showException( parentShell, ConnectivityUIPlugin
+        					.getDefault().getResourceString(
+        							"dialog.title.error"), e //$NON-NLS-1$
+        					.getMessage(), e);
+        		}
+        	}
+        };
+    }
+
+    public boolean isCompleted()
+    {
+        return isCompleted;
+    }
+
+    /*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
