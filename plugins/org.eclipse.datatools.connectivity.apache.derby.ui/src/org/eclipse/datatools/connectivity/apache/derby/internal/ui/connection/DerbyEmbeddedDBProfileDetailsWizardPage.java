@@ -154,7 +154,7 @@ public class DerbyEmbeddedDBProfileDetailsWizardPage
 
 		this.mURLText = (Text) createLabelTextPair(content, Messages.getString(
 			"DerbyEmbeddedDBProfileDetailsWizardPage.url.label"), //$NON-NLS-1$
-			this.mURLText, SWT.BORDER, GridData.FILL_HORIZONTAL);
+			this.mURLText, SWT.BORDER | SWT.READ_ONLY, GridData.FILL_HORIZONTAL);
 
 		this.mCreateDBCheckbox = new Button(content, SWT.CHECK);
 		this.mCreateDBCheckbox.setText(Messages.getString("DerbyEmbeddedDBProfileDetailsWizardPage.2")); //$NON-NLS-1$
@@ -290,8 +290,6 @@ public class DerbyEmbeddedDBProfileDetailsWizardPage
 		if (this.mDriverInstance != null) {
 			this.mURLText.setText(getDriverURL());
 		}
-		this.mURLText.setEnabled(false);
-
 	}
 	
 	/**
