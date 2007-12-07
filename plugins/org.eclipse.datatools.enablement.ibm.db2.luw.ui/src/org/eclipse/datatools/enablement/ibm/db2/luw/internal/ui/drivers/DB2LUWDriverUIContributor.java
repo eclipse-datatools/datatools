@@ -60,6 +60,9 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
+
 	private static final String CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_ = org.eclipse.datatools.enablement.ibm.internal.ui.drivers.Messages
 			.getString("CUI_NEWCW_DRIVER_OPTIONS_TAB_UI_"); //$NON-NLS-1$
 
@@ -80,6 +83,9 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
@@ -113,6 +119,8 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 	private Label passwordLabel;
 
 	private Text passwordText;
+
+	private Button savePasswordButton;
 
 	private Label urlLabel;
 
@@ -255,6 +263,16 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 2;
 			passwordText.setLayoutData(gd);
 
+			this.savePasswordButton = new Button(driverOptionsComposite,
+					SWT.CHECK);
+			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 3;
+			gd.grabExcessHorizontalSpace = true;
+			savePasswordButton.setLayoutData(gd);
+
 			urlLabel = new Label(driverOptionsComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -286,6 +304,7 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		usernameText.setEnabled(enabled);
 		passwordLabel.setEnabled(enabled);
 		passwordText.setEnabled(enabled);
+		savePasswordButton.setEnabled(enabled);
 	}
 
 	public void setConnectionInformation() {
@@ -296,7 +315,7 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 				this.passwordText.getText());
 		properties.setProperty(
 				IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
-						.valueOf(false));
+						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
 		properties.setProperty(IDriverDefinitionConstants.URL_PROP_ID,
@@ -320,6 +339,7 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		portText.removeListener(SWT.Modify, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
+		savePasswordButton.removeListener(SWT.Selection, this);
 		clientAuthenticationCheckbox.removeListener(SWT.Selection, this);
 	}
 
@@ -329,6 +349,7 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		portText.addListener(SWT.Modify, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
+		savePasswordButton.addListener(SWT.Selection, this);
 		clientAuthenticationCheckbox.addListener(SWT.Selection, this);
 	}
 
@@ -409,6 +430,12 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		if (password != null) {
 			passwordText.setText(password);
 		}
+		String savePassword = this.properties
+				.getProperty(IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+		if ((savePassword != null)
+				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
+			savePasswordButton.setSelection(true);
+		}
 		tracingOptionsComposite.loadProperties(url.getProperties());
 		updateURL();
 		addListeners();
@@ -429,8 +456,16 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 						CUI_NEWCW_USE_CLIENT_AUTHENICATION_SUMMARY_DATA_TEXT_,
 						clientAuthenticationCheckbox.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
 								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
-		summaryData.add(new String[] { CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
-				this.usernameText.getText().trim() });
+		if (!clientAuthenticationCheckbox.getSelection()) {
+			summaryData.add(new String[] {
+					CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
+					this.usernameText.getText().trim() });
+			summaryData
+					.add(new String[] {
+							CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
+							savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
+									: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		}
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 		return summaryData;

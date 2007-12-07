@@ -21,6 +21,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -30,31 +31,56 @@ import org.eclipse.swt.widgets.Text;
 public class InformixDriverUIContributor implements IDriverUIContributor,
 		Listener {
 
-	private static final String CUI_NEWCW_DATABASE_LBL_UI_ = Messages.getString("CUI_NEWCW_DATABASE_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_DATABASE_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_DATABASE_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_HOST_LBL_UI_ = Messages.getString("CUI_NEWCW_HOST_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_HOST_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_HOST_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_PORT_LBL_UI_ = Messages.getString("CUI_NEWCW_PORT_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PORT_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_PORT_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_SERVER_LBL_UI_ = Messages.getString("CUI_NEWCW_SERVER_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_SERVER_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_SERVER_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages.getString("CUI_NEWCW_USERNAME_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_USERNAME_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages.getString("CUI_NEWCW_PASSWORD_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
+			.getString("CUI_NEWCW_CONNECTIONURL_LBL_UI_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_SERVER_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_SERVER_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_SERVER_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_SERVER_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+
+	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
 	private IDriverUIContributorInformation contributorInformation;
 
@@ -67,7 +93,7 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 	private Text hostText;
 
 	private Label portLabel;
-	
+
 	private Text portText;
 
 	private Label serverLabel;
@@ -82,6 +108,8 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 
 	private Text passwordText;
 
+	private Button savePasswordButton;
+
 	private Label urlLabel;
 
 	private Text urlText;
@@ -95,22 +123,28 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
 		if (databaseText.getText().trim().length() < 1) { //$NON-NLS-1$
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		} else if (hostText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_HOST_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_HOST_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		} else if (portText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_PORT_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_PORT_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		} else if (serverText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_SERVER_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_SERVER_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		} else if (usernameText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		} else if (passwordText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
+			parentPage.setErrorMessage(Messages
+					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
 		}
 
@@ -222,6 +256,15 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 2;
 			passwordText.setLayoutData(gd);
 
+			this.savePasswordButton = new Button(baseComposite, SWT.CHECK);
+			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 3;
+			gd.grabExcessHorizontalSpace = true;
+			savePasswordButton.setLayoutData(gd);
+
 			urlLabel = new Label(baseComposite, SWT.NONE);
 			urlLabel.setText(CUI_NEWCW_CONNECTIONURL_LBL_UI_);
 			gd = new GridData();
@@ -262,6 +305,11 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 				this.serverText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
 				this.usernameText.getText().trim() });
+		summaryData
+				.add(new String[] {
+						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
+						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
+								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 
@@ -287,7 +335,12 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 		if (password != null) {
 			passwordText.setText(password);
 		}
-
+		String savePassword = this.properties
+				.getProperty(IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+		if ((savePassword != null)
+				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
+			savePasswordButton.setSelection(true);
+		}
 		updateURL();
 		addListeners();
 		setConnectionInformation();
@@ -328,6 +381,7 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 		serverText.addListener(SWT.Modify, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
+		savePasswordButton.addListener(SWT.Selection, this);
 	}
 
 	private void removeListeners() {
@@ -337,6 +391,7 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 		serverText.removeListener(SWT.Modify, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
+		savePasswordButton.removeListener(SWT.Selection, this);
 	}
 
 	private void setConnectionInformation() {
@@ -347,7 +402,7 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 				this.passwordText.getText());
 		properties.setProperty(
 				IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
-						.valueOf(false));
+						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
 		properties.setProperty(IDriverDefinitionConstants.URL_PROP_ID,
