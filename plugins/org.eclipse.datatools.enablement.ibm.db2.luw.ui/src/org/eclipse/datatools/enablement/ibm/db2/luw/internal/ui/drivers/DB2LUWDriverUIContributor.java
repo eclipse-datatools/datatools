@@ -419,6 +419,7 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		databaseText.setText(url.getDatabaseName());
 		if (url.getProperties().indexOf(CLIENT_AUTHETICATION_TEXT) > -1) {
 			clientAuthenticationCheckbox.setSelection(true);
+			enableAuthenticationControls(false);
 		}
 		String username = this.properties
 				.getProperty(IDriverDefinitionConstants.USERNAME_PROP_ID);
