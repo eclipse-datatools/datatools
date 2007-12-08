@@ -56,7 +56,7 @@ public class PingJob extends Job {
 				"actions.ping.title"), //$NON-NLS-1$
 				IProgressMonitor.UNKNOWN);
 
-		IConnection con = testCreateConnection( icp );
+		IConnection con = createTestConnection( icp );
 
 		monitor.done();
 
@@ -69,7 +69,7 @@ public class PingJob extends Job {
 		return Status.OK_STATUS;
 	}
 
-	public static IConnection testCreateConnection( IConnectionProfile icp )
+	public static IConnection createTestConnection( IConnectionProfile icp )
 	{
 	    if( icp == null )
 	        return null;

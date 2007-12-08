@@ -199,7 +199,7 @@ public abstract class DataSourceWizardPageCore extends
         {
             public void run() 
             {
-                IConnection conn = PingJob.testCreateConnection( profile );
+                IConnection conn = PingJob.createTestConnection( profile );
 
                 Throwable exception = PingJob.getTestConnectionException( conn );
                 if( conn != null )
