@@ -21,15 +21,19 @@
     <name>IMAGE</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" jdbcEnumType="1" javaClassName="java.lang.String">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NCHAR</name>
   </predefinedDataTypeDefinitions>
@@ -42,24 +46,28 @@
     <name>NTEXT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARCHAR</name>
     <name>CHARACTER VARYING</name>
     <name>CHAR VARYING</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
     <name>UNIQUEIDENTIFIER</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
+    <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NVARCHAR</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DATE" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATETIME</name>
   </predefinedDataTypeDefinitions>
@@ -98,7 +106,6 @@
     <name>SMALLMONEY</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="DATE_2" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DATE" jdbcEnumType="92" javaClassName="java.sql.Time">
-    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SMALLDATETIME</name>
   </predefinedDataTypeDefinitions>
@@ -111,10 +118,12 @@
     <name>TINYINT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
+    <defaultValueTypes>NULL</defaultValueTypes>
     <name>TIMESTAMP</name>
     <name>ROWVERSION</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_2" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
     <name>SQL_VARIANT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="509" orderingSupported="false" groupingSupported="false">
@@ -131,10 +140,12 @@
   </constraintDefinition>
   <queryDefinition hostVariableMarker="@"/>
   <indexDefinition maximumIdentifierLength="128" clusteringSupported="true"/>
-  <viewDefinition maximumIdentifierLength="128"/>
+  <viewDefinition maximumIdentifierLength="128" indexSupported="true"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
-  <storedProcedureDefinition maximumIdentifierLength="128"/>
+  <storedProcedureDefinition maximumIdentifierLength="128">
+    <functionLanguageType>SQL</functionLanguageType>
+  </storedProcedureDefinition>
   <SQLSyntaxDefinition terminationCharacter="GO">
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>

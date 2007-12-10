@@ -136,10 +136,12 @@
   </constraintDefinition>
   <queryDefinition hostVariableMarker="@"/>
   <indexDefinition maximumIdentifierLength="128" clusteringSupported="true"/>
-  <viewDefinition maximumIdentifierLength="128"/>
+  <viewDefinition maximumIdentifierLength="128" indexSupported="true"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
-  <storedProcedureDefinition maximumIdentifierLength="128"/>
+  <storedProcedureDefinition maximumIdentifierLength="128">
+    <functionLanguageType>SQL</functionLanguageType>
+  </storedProcedureDefinition>
   <SQLSyntaxDefinition terminationCharacter="GO">
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
