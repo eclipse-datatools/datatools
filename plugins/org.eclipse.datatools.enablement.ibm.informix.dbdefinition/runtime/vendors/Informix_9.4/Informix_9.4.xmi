@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Informix" version="9.4" maximumIdentifierLength="128" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" userDefinedTypeSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Informix" version="9.4" maximumIdentifierLength="128" 
+viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" userDefinedTypeSupported="true" roleSupported="true" roleAuthorizationSupported="true" userSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BOOLEAN_1" primitiveType="BOOLEAN" jdbcEnumType="16" javaClassName="boolean">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BOOLEAN</name>
@@ -108,7 +109,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SMALLINT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" displayNameSupported="true" displayName="DATETIME {0} TO {1}" leadingFieldQualifierSupported="true" trailingFieldQualifierSupported="true" fieldQualifierSeparator=" TO " defaultLeadingFieldQualifierDefinition="L_YEAR" defaultTrailingFieldQualifierDefinition="T_MONTH" primitiveType="INTERVAL">
+  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" displayNameSupported="true" displayName="DATETIME {0} TO {1}" leadingFieldQualifierSupported="true" trailingFieldQualifierSupported="true" fieldQualifierSeparator=" TO " defaultLeadingFieldQualifierDefinition="L_YEAR" defaultTrailingFieldQualifierDefinition="T_MONTH" primitiveType="INTERVAL" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
     <defaultValueTypes>NULL</defaultValueTypes>
     <defaultValueTypes>CURRENT</defaultValueTypes>
     <leadingFieldQualifierDefinition xmi:id="L_YEAR" name="YEAR" validTrailingFieldQualifierDefinitions="T_YEAR T_MONTH T_DAY T_HOUR T_MINUTE T_SECOND T_FRACTION"/>
@@ -127,7 +128,7 @@
     <trailingFieldQualifierDefinition xmi:id="T_FRACTION" name="FRACTION" precisionSupported="true" maximumPrecision="5" defaultPrecision="3"/>
    <name>DATETIME</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" keyConstraintSupported="true" primitiveType="INTEGER">
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" keyConstraintSupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SERIAL</name>
   </predefinedDataTypeDefinitions>
@@ -157,15 +158,15 @@
     <languageType>PLI</languageType>
     <procedureType>PROCEDURE</procedureType>
     <procedureType>FUNCTION</procedureType>
+    <functionLanguageType>SQL</functionLanguageType>
+    <functionLanguageType>JAVA</functionLanguageType>
+    <functionLanguageType>C</functionLanguageType>
   </storedProcedureDefinition>
   <triggerDefinition maximumIdentifierLength="128" whenClauseSupported="true" granularitySupported="true" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true"/>
   <columnDefinition maximumIdentifierLength="128" identitySupported="true" computedSupported="true"/>
   <constraintDefinition  maximumPrimaryKeyIdentifierLength="128" maximumForeignKeyIdentifierLength="128" maximumCheckConstraintIdentifierLength="128" clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true">
-    <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
-    <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
     <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
-    <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
     <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
     <checkOption>NONE</checkOption>
     <checkOption>LOCAL</checkOption>
@@ -176,7 +177,7 @@
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
-  <privilegedElementDefinitions name="Database">
+    <privilegedElementDefinitions name="Database">
   	<privilegeDefinitions name="CONNECT"/>
 	<privilegeDefinitions name="RESOURCE"/>
 	<privilegeDefinitions name="DBA"/>
