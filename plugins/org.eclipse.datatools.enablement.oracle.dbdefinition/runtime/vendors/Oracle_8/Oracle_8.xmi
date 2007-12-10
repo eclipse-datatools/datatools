@@ -122,10 +122,12 @@
     <languageType>C</languageType>
     <procedureType>PROCEDURE</procedureType>
     <procedureType>FUNCTION</procedureType>
+    <functionLanguageType>SQL</functionLanguageType>
+    <functionLanguageType>JAVA</functionLanguageType>
   </storedProcedureDefinition>
   <triggerDefinition whenClauseSupported="true" granularitySupported="true" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" insteadOfTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true"/>
   <columnDefinition maximumIdentifierLength="30" computedSupported="true"/>
-  <constraintDefinition maximumPrimaryKeyIdentifierLength="30" maximumForeignKeyIdentifierLength="30" maximumCheckConstraintIdentifierLength="30" clusteredUniqueConstraintSupported="true">
+  <constraintDefinition maximumPrimaryKeyIdentifierLength="30" maximumForeignKeyIdentifierLength="30" maximumCheckConstraintIdentifierLength="30" clusteredUniqueConstraintSupported="true" deferrableConstraintSupported="true">
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
     <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
     <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
@@ -139,6 +141,7 @@
   <viewDefinition maximumIdentifierLength="30"/>
   <tableDefinition maximumIdentifierLength="30"/>
   <schemaDefinition maximumIdentifierLength="30"/>
+  <udtDefinition maximumIdentifierLength="30" structuredTypeSupported="true"/>
   <SQLSyntaxDefinition>
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
