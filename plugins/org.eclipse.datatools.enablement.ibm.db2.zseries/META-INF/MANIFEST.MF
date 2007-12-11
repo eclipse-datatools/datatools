@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.zseries;singleton:=true
-Bundle-Version: 1.0.0.200712031
+Bundle-Version: 1.0.0.200712111
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.internal.zseries

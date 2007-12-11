@@ -79,7 +79,7 @@
                   generated="false"
                   id="org.eclipse.datatools.enablement.ibm.db2.zseries.filterOnTBCreator"
                   name="%filterOnTBCreator"
-                  value="true"
+                  value="false"
                   required="false"
                   visible="true"/>
             <property
@@ -145,7 +145,7 @@
                   generated="false"
                   id="org.eclipse.datatools.enablement.ibm.db2.zseries.filterOnTBCreator"
                   name="%filterOnTBCreator"
-                  value="true"
+                  value="false"
                   required="false"
                   visible="true"/>
             <property
