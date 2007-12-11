@@ -6,7 +6,9 @@
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: 
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
@@ -39,6 +41,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
@@ -54,7 +57,8 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	private IConnectionProfile parentProfile;
 	private int returnCode;
 	private IConnectionProfile addedProfile;
-
+	private Shell shell;
+	
 	/**
 	 * 
 	 */
@@ -83,7 +87,19 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
 	 */
 	public void init(IViewPart viewpart) {
+		shell = viewpart.getSite().getShell();
 	}
+	
+	/**
+	 * Initialize the shell for use as the parent shell of the action's dialog. 
+	 * Use this method when the action is extended to run without being associated 
+	 * with a view.
+	 * @param parentShell
+	 */
+	protected void init( Shell parentShell )
+	{
+	    shell = parentShell;
+	}	
 
 	/*
 	 * (non-Javadoc)
@@ -97,9 +113,8 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		ViewerFilter viewerFilter = new NewCPWizardCategoryFilter(categoryID);
 		if (wizard == null) {
 			wizard = new NewCPWizard(viewerFilter,parentProfile);
-		}
-		wizardDialog = new WizardDialog(ConnectivityUIPlugin.getDefault()
-				.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
+		}		
+		wizardDialog = new WizardDialog(shell, wizard);		
 		wizardDialog.setBlockOnOpen(true);
 		
 		InternalProfileListener listener = new InternalProfileListener();

@@ -6,7 +6,9 @@
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: 
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -123,12 +125,14 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
     	}	
     	
         // get the view part of DSE.
-		IWorkbenchPart part = PlatformUI
-				.getWorkbench()
-				.getActiveWorkbenchWindow()
-				.getActivePage()
-				.findView(
-						"org.eclipse.datatools.connectivity.DataSourceExplorerNavigator");//$NON-NLS-1$
+    	IWorkbenchPart part = null;
+    	if( PlatformUI.getWorkbench().getActiveWorkbenchWindow() != null )
+			part = PlatformUI
+					.getWorkbench()
+					.getActiveWorkbenchWindow()
+					.getActivePage()
+					.findView(
+							"org.eclipse.datatools.connectivity.DataSourceExplorerNavigator");//$NON-NLS-1$
 		
     	// select the newly created CP in DSE.
 		if (part != null) {
