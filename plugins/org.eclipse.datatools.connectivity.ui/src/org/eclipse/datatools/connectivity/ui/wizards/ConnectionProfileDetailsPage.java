@@ -13,6 +13,7 @@
 package org.eclipse.datatools.connectivity.ui.wizards;
 
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
@@ -153,7 +154,7 @@ public abstract class ConnectionProfileDetailsPage
         }
     }
 	
-	protected Runnable createTestConnectionRunnable( final ConnectionProfile profile )
+	protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
 	{
         final Job pingJob = new PingJob( getShell(), profile );
         pingJob.schedule();

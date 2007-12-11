@@ -6,7 +6,9 @@
  * accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: shongxum - initial API and implementation
+ * Contributors: 
+ *  shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -77,18 +79,8 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
 						.getName(), false);
 		profile.setBaseProperties(collectProperties());
 
-		final Job pingJob = new PingJob(getShell(), profile);
-		pingJob.schedule();
-		BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
-
-			public void run() {
-				try {
-					pingJob.join();
-				}
-				catch (InterruptedException e) {
-				}
-			}
-		});
+        BusyIndicator.showWhile( getShell().getDisplay(), 
+                createTestConnectionRunnable( profile ) );          
 	}
 
 	public void setPingButtonEnabled(boolean enabled)
@@ -123,4 +115,24 @@ public abstract class ProfileDetailsPropertyPage extends ProfilePropertyPage {
             btnPing.setVisible(visible);
         }
     }
+    
+    protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+    {
+        final Job pingJob = new PingJob( getShell(), profile );
+        pingJob.schedule();
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                try 
+                {
+                    pingJob.join();
+                }
+                catch (InterruptedException e) 
+                {
+                }
+            }
+        };
+    }
+    
 }
