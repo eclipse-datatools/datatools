@@ -15,7 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.datatools.connectivity.IConnection;
-import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
@@ -191,9 +191,23 @@ public abstract class DataSourceWizardPageCore extends
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createTestConnectionRunnable(org.eclipse.datatools.connectivity.internal.ConnectionProfile)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createControl(org.eclipse.swt.widgets.Composite)
      */
-    protected Runnable createTestConnectionRunnable( final ConnectionProfile profile )
+    public void createControl( Composite parent )
+    {
+        super.createControl( parent );
+        
+        // now that all control contents are created, go ahead and 
+        // override visibility of the inherited Test Connection ping button
+        if( m_setPingButtonVisible != null )
+            super.setPingButtonVisible( m_setPingButtonVisible.booleanValue() );
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+     */
+    protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
     {
         return new Runnable() 
         {
@@ -207,19 +221,6 @@ public abstract class DataSourceWizardPageCore extends
                 PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
             }
         };
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createControl(org.eclipse.swt.widgets.Composite)
-     */
-    public void createControl( Composite parent )
-    {
-        super.createControl( parent );
-        
-        // now that all control contents are created, go ahead and 
-        // override visibility of the inherited Test Connection ping button
-        if( m_setPingButtonVisible != null )
-            super.setPingButtonVisible( m_setPingButtonVisible.booleanValue() );
     }
     
     /**

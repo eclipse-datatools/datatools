@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -28,6 +29,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Composite;
@@ -513,6 +515,26 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // override visibility of the inherited Test Connection ping button
         if( m_setPingButtonVisible != null )
             super.setPingButtonVisible( m_setPingButtonVisible.booleanValue() );
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+     */
+    protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+    {
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                if( conn != null )
+                    conn.close();
+                PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
+            }
+        };
     }
 
 }
