@@ -60,8 +60,12 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 		container.setLayout( gridLayout );
 		
 		// profiles selection group 
-		{			
-            final Group group = createGroupAndLayoutData( container );
+		{	
+			final GridLayout groupGridLayout = new GridLayout();
+            groupGridLayout.makeColumnsEqualWidth = false;
+            groupGridLayout.numColumns = 3;            
+            final Group group = createProfileSelectionGroup( container, groupGridLayout );
+            
             // override group text
 			group.setText( Messages.profileStoreCreationDialog_grouptext ); 
 
@@ -94,6 +98,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 		        newButtonData.verticalAlignment = SWT.TOP;
 		        newButtonData.widthHint = BUTTON_WIDTH;
 		        newButton.setLayoutData( newButtonData );
+
 		        newButton.addSelectionListener( new SelectionAdapter() 
 		        {
 		            public void widgetSelected( SelectionEvent e )
@@ -104,34 +109,32 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 					private void handleNewProfile()
 					{
 						// Create a new connection profile
-						AddProfileViewAction newAction = new AddProfileViewAction();
-						newAction.run( null );
+						NewProfileAction newProfileAction = new NewProfileAction( getShell() );
+						newProfileAction.run( null );
 						profilesViewer.refresh();						
 					}
+					
+					final class NewProfileAction extends AddProfileViewAction
+					{
+					    public NewProfileAction( Shell dialogParentShell )
+						{
+							super();
+							init( dialogParentShell );
+						}						 
+					}
 		        } );      
-			}
-			            
-            final GridLayout gridLayout_1 = new GridLayout();
-            gridLayout_1.makeColumnsEqualWidth = false;
-            gridLayout_1.numColumns = 3;
-			group.setLayout(gridLayout_1);
-		}
+			}			
+		}	
 		
-		{
-			final Label label = new Label( container, SWT.NONE );
-			final GridData gridData = new GridData(
-					GridData.HORIZONTAL_ALIGN_FILL );
-			gridData.horizontalSpan = 3;
-			gridData.widthHint = 410;
-			label.setLayoutData( gridData );
-		}		
+		Label spacingLabel = createVerticalSpacingLabel( container );
+				
         // composite for the new profile store file controls
 		Composite composite = new Composite( container, SWT.NONE );
 		{
 			GridData gridData = new GridData();
 			gridData.horizontalSpan = 3;
 			gridData.grabExcessHorizontalSpace = true;
-			gridData.minimumWidth = 392;
+			gridData.minimumWidth = 410;
 			composite.setLayoutData( gridData );
 		}
 		composite.setLayout( new FormLayout() );
@@ -141,14 +144,15 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 		Text filenameText;
 		{
 			FormData data = new FormData();
-			data.left = new FormAttachment( fileNameLabel, 10 );
-			data.width = 250;
+			data.left = new FormAttachment( fileNameLabel, 6 );
+			data.width = 290;
 			filenameText = setupFilePathText( composite, data ); 
 		}
 		// Browse... button
 		{
 			FormData data = new FormData();
-			data.left = new FormAttachment( filenameText, 10 );
+			data.left = new FormAttachment( filenameText, 12 );
+			data.top = new FormAttachment( spacingLabel, -1 );
 			data.width = BUTTON_WIDTH;
 			
 		    createFilePathBrowseButton( composite, data );
@@ -157,7 +161,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
         // Encrypt file checkbox
 	    setupEncryptContentCheckbox( container );
 	    
-        setupHelp();
+        setupHelp( getShell() );
 		return container;
 	}
 	

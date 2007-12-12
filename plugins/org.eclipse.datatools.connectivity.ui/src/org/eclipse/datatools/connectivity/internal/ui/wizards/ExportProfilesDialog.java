@@ -45,6 +45,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
@@ -109,20 +110,22 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		gridLayout.marginHeight = 20;
 		gridLayout.numColumns = 3;
 		container.setLayout(gridLayout);
+        
+        // profiles selection group 
 		{
-			final Group group = createGroupAndLayoutData( container );
-			
-			final GridLayout gridLayout_1 = new GridLayout();
-			gridLayout_1.makeColumnsEqualWidth = true;
-			gridLayout_1.numColumns = 3;
-			group.setLayout(gridLayout_1);
+			final GridLayout groupGridLayout = new GridLayout();
+			groupGridLayout.makeColumnsEqualWidth = true;
+			groupGridLayout.numColumns = 3;
+			final Group group = createProfileSelectionGroup( container, groupGridLayout );
 
+            // profiles selection viewer
 			setupCheckboxTableViewer(group);
 
 			// SelectAll button
 			createSelectAllButton( group, new GridData(
 	                GridData.HORIZONTAL_ALIGN_CENTER) );
 
+			// invisible horizontal spacing between the 2 buttons
 			{
 				new Label(group, SWT.NONE);
 			}
@@ -131,14 +134,8 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 			createDeselectAllButton( group, new GridData(
 	                GridData.HORIZONTAL_ALIGN_CENTER) );
 		}
-		{
-			final Label label = new Label(container, SWT.NONE);
-			final GridData gridData = new GridData(
-					GridData.HORIZONTAL_ALIGN_FILL);
-			gridData.horizontalSpan = 3;
-			gridData.widthHint = 495;
-			label.setLayoutData(gridData);
-		}
+
+		createVerticalSpacingLabel( container );
 		
 		// File path label
 		{
@@ -160,7 +157,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		// Encrypt file checkbox
 		setupEncryptContentCheckbox( container );
 
-        setupHelp();
+        setupHelp( getShell() );
 		return container;
 	}
 
@@ -169,7 +166,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
         return (Composite) super.createDialogArea(parent);
     }
 
-    protected Group createGroupAndLayoutData( Composite parent )
+    protected Group createProfileSelectionGroup( Composite parent, Layout layout )
     {
         final Group group = new Group(parent, SWT.NONE);
         group.setText(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -177,6 +174,7 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
         final GridData gridData = new GridData(GridData.FILL_BOTH);
         gridData.horizontalSpan = 3;
         group.setLayoutData(gridData);
+        group.setLayout(layout);
         return group;
     }
 
@@ -229,6 +227,23 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
                                 "ExportProfilesDialog.button.text1")); //$NON-NLS-1$
         return button;
     }
+    
+    /**
+     * Creates an invisible label to be used for spacing between the group control and 
+     * the file path controls.
+     * @param parent    a composite control which will be the parent of the new label instance 
+     *                  (cannot be null)
+     */
+	protected Label createVerticalSpacingLabel( Composite parent )
+	{
+		final Label label = new Label(parent, SWT.NONE);
+		final GridData gridData = new GridData(
+				GridData.HORIZONTAL_ALIGN_FILL);
+		gridData.horizontalSpan = 3;
+		gridData.widthHint = 495;
+		label.setLayoutData(gridData);
+		return label;
+	}    
 
     protected Label createFilePathLabel( Composite parent, Object layoutData )
     {
@@ -276,13 +291,13 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		return btnEncryption;
     }
 
-    protected void setupHelp()
+    protected void setupHelp( Control control )
     {
-        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        control.setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
 //      HelpUtil.setHelp( getShell(), IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG);
         String contextId = HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EXPORT_PROFILES_DIALOG, 
                 ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
-        HelpUtil.setHelp( getShell(), contextId);
+        HelpUtil.setHelp( control, contextId);
     }
 
 	protected void createButtonsForButtonBar(Composite parent) {
