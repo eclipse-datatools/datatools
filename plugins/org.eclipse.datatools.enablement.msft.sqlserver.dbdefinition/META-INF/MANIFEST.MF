@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition; singleton:=true
-Bundle-Version: 1.0.0.200706071
+Bundle-Version: 1.0.0.200712131
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Eclipse-LazyStart: true
