@@ -21,11 +21,13 @@ import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderFileEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -112,7 +114,17 @@ public class SQLBuilderEditor extends EditorPart implements
 		_sqlBuilder.setLoadOnConnection(true);
 		
 		// Set the _sqlBuilder's input
-		_sqlBuilder.setInput(sqlBuilderEditorInput);
+		try {
+			_sqlBuilder.setInput(sqlBuilderEditorInput);
+		}
+		catch (PartInitException e){
+			e.printStackTrace();
+		} catch (ParseException e) {
+			String sMessage = e.getLocalizedMessage() + Messages._QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED;
+			
+			MessageDialog.openInformation(Display.getCurrent().getActiveShell(),
+					Messages._QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED, sMessage);
+		}
 		
 		site.setSelectionProvider(this);
 

@@ -62,10 +62,15 @@ public class SQLBuilderDialogNewStmtEditorInputAction implements IObjectActionDe
 		SQLBuilderEditorInput editorInput = 
 			EditorInputUtil.createEmptySQLBuilderEditorInputFromFile(_selectedFile, StatementHelper.STATEMENT_TYPE_SELECT);
 		
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput);
-		sqlBuilderDialog.create();
-		sqlBuilderDialog.setBlockOnOpen(true);
-		sqlBuilderDialog.open();
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell());
+		if (!sqlBuilderDialog.setInput(editorInput)){
+			return;
+		}
+		else {
+			sqlBuilderDialog.create();
+			sqlBuilderDialog.setBlockOnOpen(true);
+			sqlBuilderDialog.open();
+		}
 	}
 
 	/**

@@ -50,7 +50,6 @@ public class SQLParserUtil {
             sqlStatement = SQLParserUtil.parse(strSQL, editorInput, domainModel);
         }
         catch (Exception e) {
-        	System.out.println(e.getLocalizedMessage());
         	e.printStackTrace();
         }
 		

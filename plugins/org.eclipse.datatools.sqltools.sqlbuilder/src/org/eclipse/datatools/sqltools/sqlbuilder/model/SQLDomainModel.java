@@ -362,102 +362,11 @@ public class SQLDomainModel {
 
         String statementName = fileResource.getName();
         String strSQL = readContentsToString(fileResource);  // [RATLC01124214] bgp 11Aug2006
-        strSQL = strSQL.trim();
-        initialSource = strSQL;
-        try {
-            sqlStatement = parse(strSQL);
-        }
-        catch (Exception e) {
-            // check if the error stmt is a template to begin with
-            if (templateSQLTable == null || templateSQLTable.size() < 6) {
-                initTemplateSQLTable();                
-            }
-            retval = false;
-            unmatchedSource = true;
-            strSQL = strSQL.replaceAll("\r", "");
-            if (!templateSQLTable.containsValue(strSQL)) {
-                SQLBuilderPlugin.getPlugin().getLogger().writeLog(e);
-            }
-        }
-        if (sqlStatement != null) {
-            sqlStatement.setName(statementName);
-        }
-        else {
-            sqlStatement = getDefaultStatementFromSQL(strSQL, statementName);
-        }
-
-        return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
-    }
-    
-    // RATLC01136221 bbn 10Jan2007 - new method
-    /**
-     * Initializes the SQL statement in the SQL Builder from the content of the given string.
-     * 
-     * @param strSQL the source SQL string
-     * @return true when the statement is parsable, otherwise false
-     */
-    public boolean initializeFromString(String strSQL) {
-        if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { strSQL });
-        }
         
-        boolean retval = true;
-             
-        strSQL = strSQL.trim();
-        initialSource = strSQL;
-        try {
-            sqlStatement = parse(strSQL);
-        }
-        catch (Exception e) {
-            // check if the error stmt is a template to begin with
-            if (templateSQLTable == null || templateSQLTable.size() < 6) {
-                initTemplateSQLTable();                
-            }
-            retval = false;
-            unmatchedSource = true;
-            strSQL = strSQL.replaceAll("\r", "");
-            if (!templateSQLTable.containsValue(strSQL)) {
-                SQLBuilderPlugin.getPlugin().getLogger().writeLog(e);
-            }
-        }
-    
-        return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
-    }
-
-    /**
-     * Initializes the SQL statement in the SQL Builder from the statement type.
-     * 
-     * @param statement type Statement type is used for creating new statements. The value must be
-     * one of  {@link org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper}'s
-	 * STATEMENT_TYPE constants.
- 
-     * @return true
-     */
-    public boolean initializeFromType(int statementType) {
-        if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
-            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { Integer.toString(statementType)} );
-        }
+        return initializeFromString(strSQL, statementName);
         
-        boolean retval = true;
-             
-        if (templateSQLTable == null || templateSQLTable.size() < 6) {
-            initTemplateSQLTable();                
-        }
-        sqlStatement = getDefaultStatementFromStatementType(statementType, null);
+    }
     
-        return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
-    }
-
-    // [RATLC01124214] bgp 11Aug2006 - new method
-    /**
-     * Gets the contents of the given file resource as a string.
-     * @param fileResource the file resource to use
-     * @return the file resource content string
-     */
-    protected String readContentsToString(IFile fileResource) {
-        return WorkbenchUtility.readFileContentsToString(fileResource, true);
-    }
-
     /**
      * Initializes the SQL statement in the SQL Builder from the contents of the given
      * storage (non-file) resource object.
@@ -493,18 +402,39 @@ public class SQLDomainModel {
         iStream.close();
         oStream.close();
 
+        return initializeFromString(strSQL, storageResource.getName());
+    }
+    
+    // RATLC01136221 bbn 10Jan2007 - new method
+    /**
+     * Initializes the SQL statement in the SQL Builder from the content of the given string.
+     * 
+     * @param strSQL the source SQL string
+     * @return true when the statement is parsable, otherwise false
+     */
+    public boolean initializeFromString(String strSQL, String statementName) {
+        boolean retval = true;
+        strSQL = strSQL.trim();
         initialSource = strSQL;
-
         try {
             sqlStatement = parse(strSQL);
         }
         catch (Exception e) {
-            // do nothing 
+            // check if the error stmt is a template to begin with
+            if (templateSQLTable == null || templateSQLTable.size() < 6) {
+                initTemplateSQLTable();                
+            }
+            retval = false;
+            unmatchedSource = true;
+            strSQL = strSQL.replaceAll("\r", "");
+            if (!templateSQLTable.containsValue(strSQL)) {
+                SQLBuilderPlugin.getPlugin().getLogger().writeLog(e);
+            }
         }
-
-        String statementName = storageResource.getName();
         if (sqlStatement != null) {
-            sqlStatement.setName(statementName);
+        	if (statementName != null){
+        		sqlStatement.setName(statementName);
+        	}
         }
         else {
             sqlStatement = getDefaultStatementFromSQL(strSQL, statementName);
@@ -512,6 +442,41 @@ public class SQLDomainModel {
 
         return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
     }
+    
+    /**
+     * Initializes the SQL statement in the SQL Builder from the statement type.
+     * 
+     * @param statement type Statement type is used for creating new statements. The value must be
+     * one of  {@link org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper}'s
+	 * STATEMENT_TYPE constants.
+ 
+     * @return true
+     */
+    public boolean initializeFromType(int statementType) {
+        if (SQLBuilderPlugin.getPlugin().getLogger().isTracing()) {
+            SQLBuilderPlugin.getPlugin().getLogger().writeTraceEntry(new Object[] { Integer.toString(statementType)} );
+        }
+        
+        boolean retval = true;
+             
+        if (templateSQLTable == null || templateSQLTable.size() < 6) {
+            initTemplateSQLTable();                
+        }
+        sqlStatement = getDefaultStatementFromStatementType(statementType, null);
+    
+        return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
+    }
+
+    // [RATLC01124214] bgp 11Aug2006 - new method
+    /**
+     * Gets the contents of the given file resource as a string.
+     * @param fileResource the file resource to use
+     * @return the file resource content string
+     */
+    protected String readContentsToString(IFile fileResource) {
+        return WorkbenchUtility.readFileContentsToString(fileResource, true);
+    }
+
 
     /**
      * Gets a JDBC Connection object for the connection to the database.

@@ -71,10 +71,15 @@ public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate 
 				editorInput1.getOmitSchemaInfo());
 		
 		// editorInput1 or editorInput2 could be passed to the dialog
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput2);
-		sqlBuilderDialog.create();
-		sqlBuilderDialog.setBlockOnOpen(true);
-		sqlBuilderDialog.open();
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell());
+		if (!sqlBuilderDialog.setInput(editorInput2)){
+			return;
+		}
+		else {
+			sqlBuilderDialog.create();
+			sqlBuilderDialog.setBlockOnOpen(true);
+			sqlBuilderDialog.open();
+		}
 	}
 
 	/**

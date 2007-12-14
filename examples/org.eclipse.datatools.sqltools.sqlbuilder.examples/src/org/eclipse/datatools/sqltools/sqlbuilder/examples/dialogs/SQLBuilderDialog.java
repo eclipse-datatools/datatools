@@ -16,7 +16,10 @@ import java.io.StringWriter;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
+import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
+import org.eclipse.datatools.sqltools.sqlbuilder.ParseException;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.examples.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.ResultsHistoryFilter;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
@@ -48,7 +51,8 @@ import org.eclipse.ui.XMLMemento;
  * 
  * @author Jeremy Lindop
  */
-public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
+public class SQLBuilderDialog extends Dialog 
+	implements IContentChangeListener,  IExecuteSQLListener {
 
 	public static final int I_SAVE_ID = IDialogConstants.CLIENT_ID;
 	public static final String I_SAVE_LABEL = "Save";
@@ -60,6 +64,8 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	private SQLBuilder _sqlBuilder = null;
 	private ISQLBuilderEditorInput _editorInput = null;
 
+	CTabFolder _tabFolder;
+	CTabItem _tabItemResults;
 	ResultsViewControl _resultsViewControl;
 	
 	/**
@@ -68,12 +74,16 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	 * @param parentShell
 	 * @param editorInput
 	 */
-	public SQLBuilderDialog(Shell parentShell,
-			ISQLBuilderEditorInput editorInput) {
+	public SQLBuilderDialog(Shell parentShell) {
 		super(parentShell);
-		_editorInput = editorInput;
 		setShellStyle(SWT.RESIZE | SWT.TITLE | SWT.CLOSE | SWT.BORDER
 				| SWT.APPLICATION_MODAL);
+
+	
+		/*
+		 * Create the SQLBuilder part of the dialog.
+		 */
+		_sqlBuilder = new SQLBuilder();
 	}
 
 	/**
@@ -91,6 +101,30 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell()
 						.getBounds().height * 2 / 3));
 
+	}
+	
+	/**
+	 * Sets the SQLBuilderDialog's editor input. The caller should continue  creating
+	 * the dialog only if setInput returns true.
+	 * 
+	 * @param editorInput
+	 * @return true if the input was loaded, false otherwise.
+	 */
+	public boolean setInput(ISQLBuilderEditorInput editorInput){
+		_editorInput = editorInput;
+
+		try {
+			_sqlBuilder.setInput(_editorInput);
+			return true;
+		} catch (PartInitException e) {
+			e.printStackTrace();
+			return false;
+		} catch (ParseException e) {
+			String sMessage = e.getLocalizedMessage() + " " + Messages.QueryBuilderParseFailOnOpenAskUserMessage;
+			boolean bContinue = MessageDialog.openQuestion(getParentShell(),
+					Messages.QueryBuilderParseFailOnOpenAskUserTitle, sMessage);
+			return bContinue;
+		}
 	}
 
 	/**
@@ -114,31 +148,21 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		 * Create controls to host the SQLBuilder
 		 */
 		Composite topComposite = createMainComposite(parent);
-		CTabFolder tabFolder = createTabFolder(topComposite, SWT.BOTTOM);
-		CTabItem tabEditor = createTabItem(tabFolder, SWT.NONE, 0, TAB_EDITOR);
-		Composite editComposite = createMainComposite(tabFolder);
-		tabEditor.setControl(editComposite);
+		_tabFolder = createTabFolder(topComposite, SWT.BOTTOM);
+		CTabItem tabItemEditor = createTabItem(_tabFolder, SWT.NONE, 0, TAB_EDITOR);
+		Composite editComposite = createMainComposite(_tabFolder);
+		tabItemEditor.setControl(editComposite);
 
-		try {
-			/*
-			 * Create the SQLBuilder part of the dialog.
-			 */
-			_sqlBuilder = new SQLBuilder();
-			_sqlBuilder.addContentChangeListener(this);
-			_sqlBuilder.setInput(_editorInput);
-			_sqlBuilder.createClient(editComposite);
-
-		} catch (PartInitException e) {
-			System.out.println(e.getLocalizedMessage());
-			e.printStackTrace();
-		}
+		_sqlBuilder.addContentChangeListener(this);
+		_sqlBuilder.createClient(editComposite);
+		_sqlBuilder.addExecuteSQLListener(this);
 
 		/*
 		 * Create controls to host the results view
 		 */
-		CTabItem tabResults = createTabItem(tabFolder, SWT.NONE, 1, TAB_RESULTS);
-		Composite resultsComposite = createMainComposite(tabFolder);
-		tabResults.setControl(resultsComposite);
+		_tabItemResults = createTabItem(_tabFolder, SWT.NONE, 1, TAB_RESULTS);
+		Composite resultsComposite = createMainComposite(_tabFolder);
+		_tabItemResults.setControl(resultsComposite);
 
 		/*
 		 * Add the results view
@@ -151,7 +175,6 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 		try {
 			_resultsViewControl.init(null, null);
 		} catch (PartInitException e) {
-			System.out.println(e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 		_resultsViewControl.createPartControl(resultsComposite);	
@@ -358,9 +381,17 @@ public class SQLBuilderDialog extends Dialog implements IContentChangeListener {
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
+		_sqlBuilder.removeExecuteSQLListener(this);
 		_resultsViewControl.dispose();
 		
 		return super.close();
+	}
+
+	/**
+	 * Implements <code>org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog.IExecuteSQLListener.executedSQL()</code>
+	 */
+	public void executedSQL() {
+		_tabFolder.setSelection(_tabItemResults);
 	}
 	
 }

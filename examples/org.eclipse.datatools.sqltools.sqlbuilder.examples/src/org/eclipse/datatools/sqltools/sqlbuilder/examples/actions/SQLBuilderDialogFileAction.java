@@ -54,10 +54,15 @@ public class SQLBuilderDialogFileAction implements IObjectActionDelegate {
 		 * new SQLBuilderDialog.
 		 */
 		SQLBuilderFileEditorInput input = new SQLBuilderFileEditorInput(_selectedFile); 
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), input);
-		sqlBuilderDialog.create();
-		sqlBuilderDialog.setBlockOnOpen(true);
-		sqlBuilderDialog.open();
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell());
+		if (!sqlBuilderDialog.setInput(input)){
+			return;
+		}
+		else {
+			sqlBuilderDialog.create();
+			sqlBuilderDialog.setBlockOnOpen(true);
+			sqlBuilderDialog.open();
+		}
 	}
 
 	/**

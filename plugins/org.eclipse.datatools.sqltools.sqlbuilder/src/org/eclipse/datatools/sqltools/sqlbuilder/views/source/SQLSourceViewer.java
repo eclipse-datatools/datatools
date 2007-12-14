@@ -86,7 +86,6 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     protected SQLEditorDocumentProvider documentProvider;
     protected SourceViewer sourceViewer;
     protected SQLSourceViewerConfiguration configuration;
-    protected IResource resource;
     protected IDocument document;
     protected SQLDomainModel sqlDomainModel;
     protected Object currentSelection;
@@ -106,9 +105,8 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
     private String fileSQLStr = ""; //$NON-NLS-1$
     private boolean fileSQLStrChanged = false;
     
-    public SQLSourceViewer(SQLDomainModel sqlDomainModel, Composite parent, IResource resource) {
+    public SQLSourceViewer(SQLDomainModel sqlDomainModel, Composite parent) {
         this.sqlDomainModel = sqlDomainModel;
-        this.resource = resource;
         this.sqlbuilder = null;
 
         initSourceViewer(parent);
@@ -119,8 +117,8 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
         handleImproper = false;
     }
 
-    public SQLSourceViewer(SQLDomainModel sqlDomainModel, Composite parent, IResource resource, boolean handleImproper) {
-        this(sqlDomainModel, parent, resource);
+    public SQLSourceViewer(SQLDomainModel sqlDomainModel, Composite parent, boolean handleImproper) {
+        this(sqlDomainModel, parent);
         this.handleImproper = handleImproper;
     }    
 

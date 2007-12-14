@@ -312,6 +312,10 @@ public final class Messages extends NLS {
 	public static String _ERROR_DATABASE_NOT_AVAILABLE;
 	public static String _ERROR_INPUT_NOT_RECOGNIZED;
 	public static String _ERROR_OPEN_SQL_STORAGE_RESOURCE;
+	public static String _ERROR_OPEN_SQL_STRING_RESOURCE;
+	public static String _ERROR_OPEN_INPUT_PARSE_FAILED;
+	public static String _QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED;
+	public static String _QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED;
 	public static String Editor_error_save_title;
 	public static String Editor_error_save_message;
 	public static String Editor_error_save_readonly;
@@ -391,6 +395,9 @@ public final class Messages extends NLS {
 	public static String _UI_VIEWS_FULLSELECTELEMENT_VALUES;
 	public static String _UI_VIEWS_GRAPH_SELECT_ALL_COLUMN;
 	public static String _UI_VIEWS_GRAPH_DESELECT_ALL_COLUMN;
+	public static String _UI_SQLQUERYBUILDERDIALOG_NAME;
+	public static String SQLQueryBuilderDialogParseFailOnOpenAskUserTitle;
+	public static String SQLQueryBuilderDialogParseFailOnOpenAskUserMessage;
 	public static String _UI_SQLQUERY_NAME;
 	public static String ContentAssistProposal_label;
 	public static String ContentAssistProposal_tooltip;

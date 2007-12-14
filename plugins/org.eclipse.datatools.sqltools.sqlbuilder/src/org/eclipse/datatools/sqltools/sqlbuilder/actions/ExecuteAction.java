@@ -87,5 +87,11 @@ public class ExecuteAction extends BaseExecuteAction {
 	public void update() {
 		setEnabled(_sqlBuilder.getDomainModel().isConnected());
 	}
+	
+    public void run()
+    {
+    	super.run();
+    	_sqlBuilder.notifySQLExecuted();
+    }
 
 }

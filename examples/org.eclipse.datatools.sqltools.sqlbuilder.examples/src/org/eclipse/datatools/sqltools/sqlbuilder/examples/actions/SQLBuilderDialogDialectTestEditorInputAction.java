@@ -136,10 +136,15 @@ public class SQLBuilderDialogDialectTestEditorInputAction implements IObjectActi
 		sqlStatementInfo2.setSQLDialectInfo(dialectInfo1);
 		
 		// Open a new SQLBuilderDialog.
-		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell(), editorInput2);
-		sqlBuilderDialog.create();
-		sqlBuilderDialog.setBlockOnOpen(true);
-		sqlBuilderDialog.open();
+		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell());
+		if (! sqlBuilderDialog.setInput(editorInput2)){
+			return;
+		}
+		else {
+			sqlBuilderDialog.create();
+			sqlBuilderDialog.setBlockOnOpen(true);
+			sqlBuilderDialog.open();
+		}
 	}
 
 	/**

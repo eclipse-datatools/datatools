@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+
    <!-- Register the editor and action contributor class for the SQL Query Builder. -->
    <extension
          point="org.eclipse.ui.editors">
@@ -31,4 +32,14 @@
             id="org.eclipse.datatools.sqltools.sqlbuilder.preferences.SQLBuilderPreferencePage">
       </page>
     </extension>
+    
+    <!-- This extension point should not be contributed to by any other plugins -->
+   <extension-point id="SQLBuilderUIComponentService" name="SQLBuilder UIComponentService"/>
+   <extension
+         point="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUIComponentService">
+         <service
+         	name="%SQLEditor.SQLBuilderName"
+         	class="org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog.SQLBuilderUIComponentService"/>
+    </extension>
+    
 </plugin>

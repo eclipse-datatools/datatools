@@ -103,6 +103,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	protected IFile _iFile;
 
 	protected ListenerList _contentChangeListeners = null;
+	protected ListenerList _executeSQLListeners = null;
+	
+	
 	/**
 	 *  If this is created from an IEditorPart, this is passed in as a parameter
 	 *  to the constructor.
@@ -122,6 +125,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	protected boolean _inputLoaded = false;
 	
 	protected boolean _clientCreated = false;
+	
+	protected boolean _inCreateClient = false;
 
 	
 	/*
@@ -174,6 +179,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		_sqlDomainModel.setEditingDomain(_editingDomain);
 		
 		_contentChangeListeners = new ListenerList();
+		_executeSQLListeners = new ListenerList();
 	}
 
 	public void addContentChangeListener(IContentChangeListener listener){
@@ -188,6 +194,18 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 	}
 	
+	public void addExecuteSQLListener(IExecuteSQLListener listener){
+		if (_executeSQLListeners != null){
+			_executeSQLListeners.add(listener);
+		}
+	}
+	
+	public void removeExecuteSQLListener(IExecuteSQLListener listener){
+		if (_executeSQLListeners != null){
+			_executeSQLListeners.remove(listener);
+		}
+	}
+	
 	/**
 	 * Creates the UI component for the <code>SQLBuilder</code>.
 	 * This method should be called after <code>setInput(ISQLBuilderEditorInput)</code>.
@@ -195,12 +213,13 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * @param parent the parent composite.
 	 */
 	public void createClient(Composite parent) {
+		_inCreateClient = true;
 		_mainSash = new SashForm(parent, SWT.VERTICAL);
 
 		if (_inputLoaded){
 			doCreateClient();
 		}
-		
+		_inCreateClient = false;
 	}
 
 	/*
@@ -291,7 +310,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * @throws PartInitException
 	 */
 	public void setInput(ISQLBuilderEditorInput sqlBuilderEditorInput)
-			throws PartInitException {
+			throws PartInitException, ParseException {
 
 		_sqlBuilderEditorInput = sqlBuilderEditorInput;
 		
@@ -330,7 +349,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * Loads the SQL statement from the SQLBuilder's ISQLBuilderEditorInput
 	 * 
 	 */
-	protected void loadInput() throws PartInitException {
+	protected void loadInput() throws PartInitException, ParseException {
 		
 		ISQLEditorConnectionInfo connInfo = _sqlDomainModel.getConnectionInfo();
 		Database db = null;
@@ -354,14 +373,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				IFile fileResource = sqlBuilderFileEditorInput.getFile();
 				if (fileResource != null) {
 					_inputLoaded = _sqlDomainModel.openFileResource(fileResource);
-					if (_inputLoaded == false) {
-						// Don't throw exception because openFileResource
-						// returns false if default statement was created
-						// TODO: sort out the use of _inputLoaded
-						_inputLoaded = true;
-//						throw new PartInitException(
-//								Messages._EXC_OPEN_SQL_FILE_RESOURCE);
-					}
 				} else {
 					throw new PartInitException(
 							Messages._EXC_OPEN_SQL_FILE_RESOURCE);
@@ -381,12 +392,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			try {
 				_inputLoaded = _sqlDomainModel
 						.openStorageResource(storageResource);
-				if (_inputLoaded == false) {
-					// TODO: sort out the use of _inputLoaded
-					_inputLoaded = true;
-//					throw new PartInitException(
-//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
-				}
 			} catch (Exception ex) {
 				throw new PartInitException(
 						Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
@@ -402,15 +407,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				try {
 					_inputLoaded = _sqlDomainModel
 							.initializeFromType(statementType);
-					if (_inputLoaded == false) {
-						// TODO: sort out the use of _inputLoaded
-						_inputLoaded = true;
-	//					throw new PartInitException(
-	//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
-					}
 				} catch (Exception ex) {
 					throw new PartInitException(
-							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+							Messages._ERROR_OPEN_SQL_STRING_RESOURCE);
 				}
 			}
 			else {
@@ -418,16 +417,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				if (editorInput.getSQLStatementInfo().getSQLDialectInfo() == null){
 					try {
 						_inputLoaded = _sqlDomainModel
-								.initializeFromString(strSQL);
-						if (_inputLoaded == false) {
-							// TODO: sort out the use of _inputLoaded
-							_inputLoaded = true;
-		//					throw new PartInitException(
-		//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
-						}
+								.initializeFromString(strSQL, null);
 					} catch (Exception ex) {
 						throw new PartInitException(
-								Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+								Messages._ERROR_OPEN_SQL_STRING_RESOURCE);
 					}
 				}
 				// If there's a dialect, parse according to the dialect
@@ -451,16 +444,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 						
 						String newSQL = initialSQL;
 						_inputLoaded = _sqlDomainModel
-								.initializeFromString(newSQL);
-						if (_inputLoaded == false) {
-							// TODO: sort out the use of _inputLoaded
-							_inputLoaded = true;
-		//					throw new PartInitException(
-		//							Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
-						}
+								.initializeFromString(newSQL, null);
 					} catch (Exception ex) {
 						throw new PartInitException(
-								Messages._ERROR_OPEN_SQL_STORAGE_RESOURCE);
+								Messages._ERROR_OPEN_SQL_STRING_RESOURCE);
 					}
 				}
 			}
@@ -471,13 +458,34 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			throw new PartInitException(
 					Messages._ERROR_INPUT_NOT_RECOGNIZED);
 		}
+		
+		// If _inputLoaded was set to false, reset it,
+		// find out why and throw appropriate exception
+		if (_inputLoaded == false) {
+			_inputLoaded = true;
+			// Test whether unmatchedSource flag was set in the domain model -
+			if (_sqlDomainModel.isUnmatchedSource()){
+				throw new ParseException(
+						Messages._ERROR_OPEN_INPUT_PARSE_FAILED);
+			}
+		}
+
+	}
+	
+	/**
+	 * Saves the current OmitSchemaInfo for _iFlie
+	 */
+	public void saveOmitSchemaInfo(){
+		if (_iFile != null){
+			SQLFileUtil.setEncodedOmitSchemaInfo(_iFile, this.getOmitSchemaInfo().encode());
+		}
 	}
 	
 	/**
 	 * Creates the Source Viewer
 	 */
 	protected void createSourceViewer(Composite client) {
-		_sourceViewer = new SQLSourceViewer(_sqlDomainModel, client, _iFile, true);
+		_sourceViewer = new SQLSourceViewer(_sqlDomainModel, client, true);
 		_sourceViewer.setContentChangeListener(this);
 		_sourceViewer.initDBContext();
 		_sourceViewer.setContentProvider(_sqlDomainModel.createContentProvider());
@@ -688,7 +696,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	protected void changeGraphControlEnableState(boolean enable) {
 		_graphControl.setEnabled(enable);
 
-		if (!enable) {
+		if (!enable && !_inCreateClient) {
 			MessageDialog.openWarning(Display.getCurrent().getActiveShell(),
 					Messages._UI_VALIDATE_FAILED_TITLE,
 					Messages._UI_GRAPH_PARSE_FAILED);
@@ -892,6 +900,16 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
+	 * Called when SQL statement has been executed.
+	 */
+	public void notifySQLExecuted(){
+		 Object[] listeners = _executeSQLListeners.getListeners();
+		 for (int i = 0; i < listeners.length; ++i) {
+		 	((IExecuteSQLListener) listeners[i]).executedSQL();
+		 }
+	}
+	
+	/**
 	 * @see org.eclipse.jface.action.IMenuListener#menuAboutToShow(IMenuManager)
 	 */
 	public void menuAboutToShow(IMenuManager menuManager) {
@@ -1015,7 +1033,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 									loadInput();
 									doCreateClient();
 								} catch (PartInitException e) {
-									System.out.println(e.getLocalizedMessage());
+									e.printStackTrace();
+								}
+								catch (ParseException e){
 									e.printStackTrace();
 								}
 							}
