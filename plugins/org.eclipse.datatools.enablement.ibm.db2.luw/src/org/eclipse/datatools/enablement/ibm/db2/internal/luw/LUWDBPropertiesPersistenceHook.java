@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.internal.luw;
 
-import org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
 public class LUWDBPropertiesPersistenceHook extends
-		GenericDBPropertiesPersistenceHook {
+		JDBCPasswordPropertyPersistenceHook {
 }

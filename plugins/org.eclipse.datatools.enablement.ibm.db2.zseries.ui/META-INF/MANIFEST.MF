@@ -2,12 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.db2.zseries.ui;singleton:=true
-Bundle-Version: 1.0.0.200712061
+Bundle-Version: 1.0.0.200712171
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.zseries.internal.ui.drivers
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.datatools.enablement.ibm.db2.zseries;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.ibm.ui;bundle-version="[1.0.0,2.0.0)"

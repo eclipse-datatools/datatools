@@ -11,7 +11,7 @@
 package org.eclipse.datatools.enablement.ibm.internal.informix;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.db.generic.JDBCConnection;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
 
 public class JDBCInformixJDBCConnection extends JDBCConnection {
 

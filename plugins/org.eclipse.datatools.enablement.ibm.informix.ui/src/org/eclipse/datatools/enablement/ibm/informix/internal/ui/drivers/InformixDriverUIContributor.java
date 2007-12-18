@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.ui.wizards.IConnectionProfileConstants;
-import org.eclipse.datatools.connectivity.ui.wizards.IDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -319,24 +319,24 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 	public void loadProperties() {
 		removeListeners();
 		InformixJDBCURL url = new InformixJDBCURL(this.properties
-				.getProperty(IDriverDefinitionConstants.URL_PROP_ID));
+				.getProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID));
 		hostText.setText(url.getNode());
 		portText.setText(url.getPort());
 		serverText.setText(url.getServer());
 		databaseText.setText(url.getDatabaseName());
 
 		String username = this.properties
-				.getProperty(IDriverDefinitionConstants.USERNAME_PROP_ID);
+				.getProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID);
 		if (username != null) {
 			usernameText.setText(username);
 		}
 		String password = this.properties
-				.getProperty(IDriverDefinitionConstants.PASSWORD_PROP_ID);
+				.getProperty(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID);
 		if (password != null) {
 			passwordText.setText(password);
 		}
 		String savePassword = this.properties
-				.getProperty(IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
+				.getProperty(IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID);
 		if ((savePassword != null)
 				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
 			savePasswordButton.setSelection(true);
@@ -396,16 +396,16 @@ public class InformixDriverUIContributor implements IDriverUIContributor,
 
 	private void setConnectionInformation() {
 		properties.setProperty(
-				IDriverDefinitionConstants.DATABASE_NAME_PROP_ID,
+				IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID,
 				this.databaseText.getText().trim());
-		properties.setProperty(IDriverDefinitionConstants.PASSWORD_PROP_ID,
+		properties.setProperty(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID,
 				this.passwordText.getText());
 		properties.setProperty(
-				IConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
+				IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
 						.valueOf(savePasswordButton.getSelection()));
-		properties.setProperty(IDriverDefinitionConstants.USERNAME_PROP_ID,
+		properties.setProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
 				this.usernameText.getText());
-		properties.setProperty(IDriverDefinitionConstants.URL_PROP_ID,
+		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
 		this.contributorInformation.setProperties(properties);
 	}

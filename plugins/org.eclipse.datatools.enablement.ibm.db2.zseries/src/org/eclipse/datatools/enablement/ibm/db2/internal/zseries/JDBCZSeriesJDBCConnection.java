@@ -17,8 +17,8 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
-import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
-import org.eclipse.datatools.connectivity.db.generic.JDBCConnection;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -51,8 +51,8 @@ public class JDBCZSeriesJDBCConnection extends JDBCConnection {
 					.getMetaData();
 			try {
 				Properties props = getConnectionProfile().getBaseProperties();
-				String vendor = (String)props.get(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-				String version = (String)props.get(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+				String vendor = (String)props.get(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+				String version = (String)props.get(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
 				DatabaseDefinitionRegistry dbDefRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
 				DatabaseDefinition dbDef = dbDefRegistry.getDefinition(vendor, version);
 				serverName = dbDef.getProductDisplayString() + " " + dbDef.getVersionDisplayString();

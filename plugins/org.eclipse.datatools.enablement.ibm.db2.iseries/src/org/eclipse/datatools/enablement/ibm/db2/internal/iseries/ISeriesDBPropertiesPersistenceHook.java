@@ -10,8 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.internal.iseries;
 
-import org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
+
 
 public class ISeriesDBPropertiesPersistenceHook extends
-		GenericDBPropertiesPersistenceHook {
+		JDBCPasswordPropertyPersistenceHook {
 }
