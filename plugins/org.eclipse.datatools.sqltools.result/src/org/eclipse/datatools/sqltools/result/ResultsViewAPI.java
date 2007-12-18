@@ -19,6 +19,7 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.eclipse.datatools.sqltools.result.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
@@ -751,5 +752,26 @@ public class ResultsViewAPI
             return result.calculateStatus();
         }
         return OperationCommand.STATUS_FAILED;
+    }
+    
+    /**
+     * Gets the max row preference
+     * @return the maximum row count from the Results View preferences
+     */
+    public int getMaxRowPreference()
+    {
+    	return ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
+                PreferenceConstants.SQL_RESULTS_VIEW_MAX_ROW_COUNT);        
+    }
+    
+    /**
+     * Gets the maximum rows displayed preference
+     * @return the maximum number of rows being displayed from the Results
+     * View preferences
+     */
+    public int getMaxRowDisplayPreference()
+    {
+    	return ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
+                PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT);
     }
 }

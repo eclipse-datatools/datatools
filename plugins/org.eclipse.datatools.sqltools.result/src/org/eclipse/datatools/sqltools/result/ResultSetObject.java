@@ -72,8 +72,9 @@ public class ResultSetObject implements IResultSetObject
      */
     private static final long serialVersionUID = 1L;
     private String[]          _columnNames;
+    private String[]		  _columnTypeNames;
     private List              _rows;
-    private int[]             _columnTypes;
+    private int[]             _columnTypes;   
     private int[]             _columnDisplaySizes;
     // total row count loaded into memory
     private int               _rowCountLoaded;
@@ -102,12 +103,14 @@ public class ResultSetObject implements IResultSetObject
             _columnNames = new String[columnCount];
             _columnDisplaySizes = new int[columnCount];
             _columnTypes = new int[columnCount];
+            _columnTypeNames = new String[columnCount];
             
             for (int i = 0; i < columnCount; i++)
             {
                 _columnNames[i] = meta.getColumnLabel(i + 1);
                 _columnDisplaySizes[i] = meta.getColumnDisplaySize(i + 1);
                 _columnTypes[i] = meta.getColumnType(i + 1);
+                _columnTypeNames[i] = meta.getColumnTypeName(i + 1);
             }
 
             IResultSetRow row = null;
@@ -229,6 +232,92 @@ public class ResultSetObject implements IResultSetObject
         _rowCountLoaded = _rows.size();
         _totalRowCount = _rowCountLoaded;
     }
+    
+    /**
+     * Constructs a ResultSetObject instance using a list of ResultSetRow instances. Notice that we will perform
+     * restrict validation during the construction: 
+     * <ul>
+     * <li>All the parameters should not be null 
+     * <li>The length of each array should be the same 
+     * <li>The row object should not be null and must be an instance of IResultSetRow
+     * </ul>
+     * @param rows a list of IResultSetRow objects
+     * @param columnNames column name array
+     * @param columnTypes column type array (refer java.sql.Types)
+     * @param columnDisplaySizes column display size array
+     * @param typeNames the column type names array
+     * @param maxDisplayRows the maximum number of rows to display, 0 means 
+     * display all rows in the list
+     */
+    public ResultSetObject(List rows, String[] columnNames, int[] columnTypes, 
+    		int[] columnDisplaySizes, String[] typeNames, int maxDisplayRows)
+    {
+    	this(rows, columnNames, columnTypes, columnDisplaySizes);
+    	List temp = new ArrayList();
+    	_columnTypeNames = typeNames;
+    	_totalRowCount = rows.size();
+    	//modify rows according to maxDisplayRows
+    	if (maxDisplayRows != 0 && maxDisplayRows < _rows.size())
+    	{
+    		for (int i=0;i<maxDisplayRows;i++)
+    		{
+    			temp.add(rows.get(i));    			
+    		}
+    		_rows = temp;
+    		_rowCountLoaded = maxDisplayRows;    		
+    	}
+    	
+    	ObjectOutputStream oos = null;
+    	if (_totalRowCount > maxDisplayRows)
+    	{
+    		// save data to backup file for later retrieval
+    		try
+    		{
+    			if (_backupFile == null)
+    			{
+    				File dir = new File(ResultsViewPlugin.getDefault().getTempDir());
+    				if (!dir.exists())
+    				{
+    					dir.mkdir();
+    				}
+    				_backupFile = File.createTempFile(String.valueOf(rows.hashCode()), ".result", dir); //$NON-NLS-1$
+                
+    				// The file will be deleted when the result instance is removed by the user
+    				if (_backupFile.exists())
+    				{
+    					oos = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(_backupFile)));
+    				}
+    			}
+    			for (Iterator iter = rows.iterator();iter.hasNext();)
+    			{
+    				SQLUtil.saveResultToStream(oos, iter.next());
+    			}
+    		}    		
+            catch (IOException e)
+            {
+                if (_backupFile != null && _backupFile.exists())
+                {
+                    _backupFile.delete();
+                }
+            }
+            finally
+            {
+                try
+                {
+                    if (oos != null)
+                    {
+                        oos.close();
+                        oos = null;
+                    }
+                }
+                catch (IOException e)
+                {
+                    // ignore
+                }
+
+            }
+    	}
+    }
 
     public int getColumnCount()
     {
@@ -238,6 +327,11 @@ public class ResultSetObject implements IResultSetObject
     public String[] getColumnNames()
     {
         return _columnNames;
+    }
+    
+    public String[] getColumnTypeNames()
+    {
+    	return _columnTypeNames;
     }
 
     public String getColumnName(int index)

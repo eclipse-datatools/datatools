@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="reExecuteScript" name="Re-execute History Result Entry" schema="schema/reExecuteScript.exsd"/>
    <extension-point id="resultSetOutputter" name="resultSetOutputter" schema="schema/resultSetOutputter.exsd"/>
+   <extension-point id="resultSetViewer" name="Additional Viewers for ResultSets" schema="schema/resultSetViewer.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -28,6 +29,11 @@
             class="org.eclipse.datatools.sqltools.result.internal.preference.ResultHistoryPage"
             id="org.eclipse.datatools.sqltools.result.resultHistory"
             name="%SQLResultsView.history.page"
+            category="org.eclipse.datatools.sqltools.result.displayOption"/>
+      <page
+            class="org.eclipse.datatools.sqltools.result.internal.preference.ResultSetViewerPreferencePage"
+            id="org.eclipse.datatools.sqltools.result.resultSetViewerPreference"
+            name="%SQLResultsView.resultsetviewer.page"
             category="org.eclipse.datatools.sqltools.result.displayOption"/>
    </extension>
    <extension

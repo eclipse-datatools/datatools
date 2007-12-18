@@ -294,6 +294,11 @@ public final class Messages extends NLS {
 	public static String SingleWindowGridSection_inout_params;
 	public static String ResultExportWizard_export_error;
 	public static String ResultViewLabelProvider_unknown;
+	public static String ResultSetViewerPage_title;
+	public static String ResultSetViewerPage_group;
+	public static String ResultSetViewerPage_select_viewer;
+	public static String ResultSetViewerPage_viewer_tooltip;
+	public static String ResultSetViewerPage_defaultViewer;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
