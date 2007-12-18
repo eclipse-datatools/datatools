@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.internal.oracle;
 
-import org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
 public class OracleDBPropertiesPersistenceHook extends
-		GenericDBPropertiesPersistenceHook {
+		JDBCPasswordPropertyPersistenceHook {
 }
