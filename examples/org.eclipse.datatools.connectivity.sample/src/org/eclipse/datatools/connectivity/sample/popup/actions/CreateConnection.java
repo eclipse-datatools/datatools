@@ -18,7 +18,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
-import org.eclipse.datatools.connectivity.ui.wizards.IDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IObjectActionDelegate;
@@ -54,15 +54,15 @@ public class CreateConnection implements IObjectActionDelegate {
 				ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
 				driverInstance.getId());
 		connectionProfileProperties.setProperty(
-				IDriverDefinitionConstants.DATABASE_NAME_PROP_ID, databaseName);
+				IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID, databaseName);
 		connectionProfileProperties.setProperty(
-				IDriverDefinitionConstants.USERNAME_PROP_ID, "");
+				IJDBCDriverDefinitionConstants.USERNAME_PROP_ID, "");
 		connectionProfileProperties.setProperty(
-				IDriverDefinitionConstants.PASSWORD_PROP_ID, "");
+				IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID, "");
 		String databaseLocation = System.getProperty("user.home")
 				+ File.separator + "DerbyDB" + File.separator;
 		connectionProfileProperties.setProperty(
-				IDriverDefinitionConstants.URL_PROP_ID, "jdbc:derby:"
+				IJDBCDriverDefinitionConstants.URL_PROP_ID, "jdbc:derby:"
 						+ databaseLocation + databaseName + ";create=true");
 		try {
 			ProfileManager

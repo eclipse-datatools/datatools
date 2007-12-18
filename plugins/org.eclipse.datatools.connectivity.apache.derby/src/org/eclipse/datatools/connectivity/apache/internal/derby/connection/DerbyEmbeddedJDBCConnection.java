@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006, 2007 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ *      IBM Corporation - migrated to new wizard framework
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.internal.derby.connection;
 
@@ -18,8 +19,8 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
-import org.eclipse.datatools.connectivity.db.generic.JDBCConnection;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
 
 /**
  * This class is used to represent Derby embedded connections. There are a
@@ -72,7 +73,7 @@ public class DerbyEmbeddedJDBCConnection extends JDBCConnection {
 				try {
 					/* The particulars of closing the connection. */
 					String driverClass = getDriverDefinition().getProperty(
-							IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);
+							IJDBCDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);
 					Driver driver = (Driver) connection.getClass()
 							.getClassLoader().loadClass(driverClass)
 							.newInstance();
@@ -151,7 +152,7 @@ public class DerbyEmbeddedJDBCConnection extends JDBCConnection {
 	private String getBaseDBURL() {
 		String baseURL;
 		String connectURL = getConnectionProfile().getBaseProperties()
-				.getProperty(IDBDriverDefinitionConstants.URL_PROP_ID);
+				.getProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID);
 		int propertyStart = connectURL.indexOf(';');
 		if (propertyStart < 0) {
 			baseURL = connectURL;

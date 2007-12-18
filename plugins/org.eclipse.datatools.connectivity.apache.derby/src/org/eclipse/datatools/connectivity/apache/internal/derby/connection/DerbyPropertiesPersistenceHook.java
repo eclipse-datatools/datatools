@@ -1,19 +1,17 @@
 /*******************************************************************************
- * Copyright (c) 2006,2007 Sybase, Inc.
- *
+ * Copyright (c) 2007 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *    rcernich - initial API and implementation
- *    IBM Corporation - migrated to new wizard framework
- *******************************************************************************/ 
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.internal.derby.connection;
 
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
-public interface IDerbyConnectionProfileConstants {
-
-	public static final String DERBY_CATEGORY_ID = "org.eclipse.datatools.connectivity.db.derby.driverCategory"; //$NON-NLS-1$	
+public class DerbyPropertiesPersistenceHook extends
+		JDBCPasswordPropertyPersistenceHook {
 }

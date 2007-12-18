@@ -18,9 +18,9 @@ import java.util.Vector;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
-import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.ConnectionDisplayProperty;
 import org.eclipse.datatools.connectivity.ui.dse.dialogs.ExistingConnectionProfilesDialogPage;
 import org.eclipse.swt.widgets.Event;
@@ -47,20 +47,20 @@ public class SelectExistingConnectionProfileDialogPage extends
 				.add(new ConnectionDisplayProperty(
 						"Database",
 						(String) baseProperties
-								.get(IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID)));
+								.get(IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID)));
 		propertiesCollection
 				.add(new ConnectionDisplayProperty(
 						"JDBC Driver Class",
 						(String) baseProperties
-								.get(IDBDriverDefinitionConstants.DRIVER_CLASS_PROP_ID)));
+								.get(IJDBCDriverDefinitionConstants.DRIVER_CLASS_PROP_ID)));
 		propertiesCollection.add(new ConnectionDisplayProperty(
 				"Class Location", getJarList(connectionProfile)));
 		propertiesCollection.add(new ConnectionDisplayProperty(
 				"Connection URL", (String) baseProperties
-						.get(IDBDriverDefinitionConstants.URL_PROP_ID)));
+						.get(IJDBCDriverDefinitionConstants.URL_PROP_ID)));
 		propertiesCollection.add(new ConnectionDisplayProperty("User ID",
 				(String) baseProperties
-						.get(IDBDriverDefinitionConstants.USERNAME_PROP_ID)));
+						.get(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID)));
 		properties = new ConnectionDisplayProperty[propertiesCollection.size()];
 		propertiesCollection.toArray(properties);
 

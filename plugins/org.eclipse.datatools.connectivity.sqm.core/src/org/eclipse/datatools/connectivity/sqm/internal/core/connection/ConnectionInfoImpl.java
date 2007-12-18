@@ -49,7 +49,7 @@ import org.eclipse.datatools.connectivity.IServerVersionProvider;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.VersionProviderConnection;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent.IChangedProperty;
-import org.eclipse.datatools.connectivity.db.generic.IDBDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
@@ -613,11 +613,11 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
         String databaseName = null;
         try{
             vendor = profile.getBaseProperties().getProperty(
-                IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+                IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
             version = profile.getBaseProperties().getProperty(
-                IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+                IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
             databaseName = profile.getBaseProperties().getProperty(
-                    IDBDriverDefinitionConstants.DATABASE_NAME_PROP_ID);
+                    IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID);
             if (databaseName == null || databaseName.trim().length() == 0) {
             	databaseName = profile.getName();
            	}
@@ -663,8 +663,8 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 			if(detectedDBDefinition != null) {
 				this.setDatabaseDefinition(detectedDBDefinition);
 				Properties props = profile.getBaseProperties();
-				props.setProperty(IDBDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID, detectedDBDefinition.getProduct());
-				props.setProperty(IDBDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, detectedDBDefinition.getVersion());
+				props.setProperty(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID, detectedDBDefinition.getProduct());
+				props.setProperty(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, detectedDBDefinition.getVersion());
 				profile.setBaseProperties(props);
 			}
 			this.setSharedConnection(connection);

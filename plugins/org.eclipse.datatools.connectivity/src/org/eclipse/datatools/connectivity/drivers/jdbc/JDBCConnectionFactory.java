@@ -9,8 +9,11 @@
  * Contributors: rcernich - initial API and implementation
  *      IBM Corporation - migrated to new wizard framework
  ******************************************************************************/
-package org.eclipse.datatools.connectivity.db.generic;
+package org.eclipse.datatools.connectivity.drivers.jdbc;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionFactory;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 
 /**
  * <code>org.eclipse.datatools.connectivity.IConnectionFactory</code> for
@@ -31,6 +34,35 @@ package org.eclipse.datatools.connectivity.db.generic;
  * 
  * Created on Oct 17, 2005
  */
-public class JDBCConnectionFactory extends org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnectionFactory {
+public class JDBCConnectionFactory implements IConnectionFactory {
+
+	/**
+	 * 
+	 */
+	public JDBCConnectionFactory() {
+		super();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.IConnectionFactory#createConnection(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	public IConnection createConnection(IConnectionProfile profile) {
+		JDBCConnection connection = new JDBCConnection(profile, getClass());
+		connection.open();
+		return connection;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.IConnectionFactory#createConnection(org.eclipse.datatools.connectivity.IConnectionProfile,
+	 *      java.lang.String, java.lang.String)
+	 */
+	public IConnection createConnection(IConnectionProfile profile, String uid,
+			String pwd) {
+		return createConnection(profile);
+	}
 
 }
