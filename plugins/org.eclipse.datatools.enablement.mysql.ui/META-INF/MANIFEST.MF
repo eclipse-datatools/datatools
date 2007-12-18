@@ -2,14 +2,17 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.mysql.ui;singleton:=true
-Bundle-Version: 1.0.0.200711021
+Bundle-Version: 1.0.0.200712171
 Bundle-Activator: org.eclipse.datatools.enablement.mysql.ui.Activator
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.datatools.enablement.mysql;bundle-version="[1.0.0,2.0.0)"
 Eclipse-LazyStart: true
-Export-Package: org.eclipse.datatools.enablement.mysql.ui
+Export-Package: org.eclipse.datatools.enablement.mysql.ui,
+ org.eclipse.datatools.enablement.mysql.internal.ui.connection,
+ org.eclipse.datatools.enablement.mysql.internal.ui.connection.drivers
 Bundle-RequiredExecutionEnvironment: J2SE-1.4

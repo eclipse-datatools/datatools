@@ -69,7 +69,24 @@
             class="org.eclipse.datatools.enablement.mysql.ddl.MySqlDdlGenerator">
         </generator>
     </extension>
-    
+       
+	<extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.mysql.connectionProfile"
+            name="%profile.mysql.title"
+            pingFactory="org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.internal.mysql.connection.MySQLPasswordPropertiesPersistenceHook"/>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.internal.mysql.connection.JDBCMySQLConnectionFactory"
+            id="java.sql.Connection"
+            name="%jdbc.connection.name"
+            profile="org.eclipse.datatools.enablement.mysql.connectionProfile"/>
+    </extension>
+   
     <extension
          point="org.eclipse.datatools.connectivity.driverExtension">    
          <category
