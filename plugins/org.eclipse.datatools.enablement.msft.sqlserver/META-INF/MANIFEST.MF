@@ -2,14 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name:  %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.msft.sqlserver;singleton:=true
-Bundle-Version: 1.0.1.200710051
+Bundle-Version: 1.0.1.200712171
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0)",
  org.eclipse.datatools.modelbase.sql;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)",
- org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,2.0.0)"
+ org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.enablement.msft.internal.sqlserver.connection,
  org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders

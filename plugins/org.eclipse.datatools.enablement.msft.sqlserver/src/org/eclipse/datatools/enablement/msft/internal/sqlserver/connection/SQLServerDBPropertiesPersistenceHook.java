@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.msft.internal.sqlserver.connection;
 
-import org.eclipse.datatools.connectivity.db.generic.GenericDBPropertiesPersistenceHook;
+import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
 public class SQLServerDBPropertiesPersistenceHook extends
-		GenericDBPropertiesPersistenceHook {
+		JDBCPasswordPropertyPersistenceHook {
 }

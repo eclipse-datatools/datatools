@@ -14,7 +14,7 @@
       <connectionFactory
             class="org.eclipse.datatools.enablement.msft.internal.sqlserver.connection.JDBCSQLServerConnectionFactory"
             id="java.sql.Connection"
-            name="jdbc.connection.name"
+            name="%jdbc.connection.name"
             profile="org.eclipse.datatools.enablement.msft.sqlserver.connectionProfile"/>
    </extension>
    
