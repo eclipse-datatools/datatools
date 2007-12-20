@@ -13,12 +13,11 @@ package org.eclipse.datatools.sqltools.data.internal.core.common.data;
 
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.sql.Date;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.NumberFormat;
-
-
-
-
+import java.text.ParseException;
 
 public class DataDeserializer {
 
@@ -68,17 +67,44 @@ public class DataDeserializer {
             else if (type==Types.LONGVARBINARY)
                 return deserializeBytes(val);
             else if (type==Types.DATE) {
-                java.sql.Date d = new java.sql.Date(0);
-                d.setTime( DateFormat.getDateInstance(DateFormat.SHORT).parse(val).getTime());
-                return d;
+            	Date d = getDateForDate(val);
+            	if (d == null)
+            	{
+            		return val;
+            	}
+            	else
+            	{
+            		return d;
+            	}
+                //java.sql.Date d = new java.sql.Date(0);
+                //d.setTime( DateFormat.getDateInstance(DateFormat.SHORT).parse(val).getTime());
+                //return d;
             } else if (type==Types.TIME) {
-                java.sql.Time t = new java.sql.Time(0);
-                t.setTime( DateFormat.getTimeInstance(DateFormat.MEDIUM).parse(val).getTime());
-                return t;
+                //java.sql.Time t = new java.sql.Time(0);
+                //t.setTime( DateFormat.getTimeInstance(DateFormat.MEDIUM).parse(val).getTime());
+                //eturn t;
+            	Time time = getDateForTime(val);
+            	if (time == null)
+            	{
+            		return val;
+            	}
+            	else
+            	{
+            		return time;
+            	}
             } else if (type==Types.TIMESTAMP) {
-                Timestamp t = new Timestamp(0);
-                t.setTime( DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).parse(val).getTime());
-                return t;
+                //Timestamp t = new Timestamp(0);
+                //t.setTime( DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).parse(val).getTime());
+                //return t;
+            	Timestamp timeStamp = getDateForDateTime(val);
+            	if (timeStamp == null)
+            	{
+            		return val;
+            	}
+            	else
+            	{
+            		return timeStamp;
+            	}
             } else if (type==Types.CLOB)
                 return val;
             else if (type==Types.BLOB)
@@ -106,6 +132,69 @@ public class DataDeserializer {
             bytes[i] = (byte)Integer.parseInt(s.substring(2*i, 2*i+2), 16);
             
         return bytes;
+    }
+    
+    /**
+     * Parses the provided date value and return the Date object
+     * @param val the input date value
+     * @return the java.sql.Date object created or null if parse is unsuccessful
+     */
+    private static Date getDateForDate(String val)
+    {
+    	Date sqlDate = null;
+    	DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
+    	try
+    	{
+    		java.util.Date date = format.parse(val);    		
+    		sqlDate = new Date(date.getTime());    		
+    	}
+    	catch(ParseException ex)
+    	{
+    		// ignore
+    	}
+    	return sqlDate;
+    }
+    
+    /**
+     * Parses the provided time value and return the Time object
+     * @param val the input time value
+     * @return the java.sql.Time object created or null if parse is unsuccessful
+     */
+    private static Time getDateForTime(String val)
+    {
+    	Time sqlTime = null;
+    	DateFormat format = DateFormat.getTimeInstance(DateFormat.MEDIUM);
+    	try
+    	{
+    		java.util.Date date = format.parse(val);    		
+    		sqlTime = new Time(date.getTime());    		
+    	}
+    	catch(ParseException ex)
+    	{
+    		// ignore
+    	}
+    	return sqlTime;
+    }
+    
+    /**
+     * Parses the provided date/time value and return the Timestamp object
+     * @param val the input date value
+     * @return the java.sql.Timestamp object created or null if parse is unsuccessful
+     */
+    private static Timestamp getDateForDateTime(String val)
+    {
+    	Timestamp sqlTimestamp = null;
+    	DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
+    	try
+    	{
+    		java.util.Date date = format.parse(val);    		
+    		sqlTimestamp = new Timestamp(date.getTime());    		
+    	}
+    	catch(ParseException ex)
+    	{
+    		// ignore
+    	}
+    	return sqlTimestamp;
     }
     
 }

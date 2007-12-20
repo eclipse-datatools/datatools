@@ -14,6 +14,9 @@ package org.eclipse.datatools.sqltools.data.internal.core.common.data;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Types;
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.NumberFormat;
@@ -77,12 +80,12 @@ public class DataSerializer {
             return serializeBytes((byte[])val);
         else if (type==Types.LONGVARBINARY)
             return serializeBytes((byte[])val);
-        else if (type==Types.DATE)
-            return DateFormat.getDateInstance(DateFormat.SHORT).format(val);
-        else if (type==Types.TIME)
-            return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(val);
-        else if (type==Types.TIMESTAMP)
-            return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(val);
+        else if (type==Types.DATE)            
+        	return formatDate(val);
+        else if (type==Types.TIME)            
+        	return formatTime(val);
+        else if (type==Types.TIMESTAMP)            
+        	return formatTimestamp(val);
         else if (type==Types.CLOB)
             return val.toString();
         else if (type==Types.BLOB)
@@ -139,6 +142,60 @@ public class DataSerializer {
             if (NEEDS_QUOTE[i]==type)
                 return true;
         return false;
+    }
+    
+    /**
+     * Formats the supplied Date object to the proper date format
+     * @param val the supplied value
+     * @return the formated Date value, or echo the value if it is invalid
+     */
+    private static String formatDate(Object val)
+    {
+    	if (val == null)
+    	{
+    		return null;
+    	}
+    	if (val instanceof Date)
+    	{
+    		return DateFormat.getDateInstance(DateFormat.SHORT).format(val);
+    	}
+    	return val.toString();
+    }
+    
+    /**
+     * Formats the supplied Time object to the proper time format
+     * @param val the supplied value
+     * @return the formated Time value, or echo the value if it is invalid
+     */
+    private static String formatTime(Object val)
+    {
+    	if (val == null)
+    	{
+    		return null;
+    	}
+    	if (val instanceof Time)
+    	{
+    		return DateFormat.getTimeInstance(DateFormat.MEDIUM).format(val);    		
+    	}
+    	return val.toString();
+    }
+    
+    /**
+     * Formats the supplied Date object to the proper time format
+     * @param val the supplied value
+     * @return the formated Date value, or echo the value if it is invalid
+     */
+    private static String formatTimestamp(Object val)
+    {
+    	if (val == null)
+    	{
+    		return null;
+    	}
+    	if (val instanceof Timestamp)
+    	{
+    		return DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM).format(val);
+    	}
+    	return val.toString();
     }
     
 }
