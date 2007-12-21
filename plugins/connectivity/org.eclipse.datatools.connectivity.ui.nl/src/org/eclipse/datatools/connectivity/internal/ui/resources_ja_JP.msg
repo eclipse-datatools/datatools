@@ -136,3 +136,30 @@ DriverPropertyEditorDescriptor.InvalidID = ƒhƒ‰ƒCƒoƒvƒƒpƒeƒBƒGƒfƒBƒ^‚Ì‹Lqq‚É
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = ƒhƒ‰ƒCƒoƒvƒƒpƒeƒBƒGƒfƒBƒ^‚Ì‹Lqq‚ÉA—LŒø‚Èƒ^[ƒQƒbƒgƒeƒ“ƒvƒŒ[ƒg ID ‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = ƒhƒ‰ƒCƒoƒvƒƒpƒeƒBƒGƒfƒBƒ^‚Ì‹Lqq‚ÉA—LŒø‚Èƒ^[ƒQƒbƒgƒvƒƒpƒeƒB ID ‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = ƒhƒ‰ƒCƒoƒvƒƒpƒeƒBƒGƒfƒBƒ^‚Ì‹Lqq‚ÉA—LŒø‚ÈƒJƒXƒ^ƒ€ƒvƒƒpƒeƒBƒGƒfƒBƒ^‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB
+
+ExtensibleProfileDetailsWizardPage.title = ƒhƒ‰ƒCƒo‚ÆÚ‘±‚ÌÚ×‚ğw’è
+ExtensibleProfileDetailsWizardPage.description = ƒhƒƒbƒvƒ_ƒEƒ“ƒŠƒXƒg‚©‚çƒhƒ‰ƒCƒo‚ğ‘I‘ğ‚µAÚ‘±—p‚ÌƒƒOƒCƒ“î•ñ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+ExtensibleProfileDetailsWizardPage.driverCombo.label = ƒhƒ‰ƒCƒo(&D) :
+ExtensibleNewConnectionProfileWizard.title = V‚µ‚¢Ú‘±ƒvƒƒtƒ@ƒCƒ‹
+
+DriverUIContributorComposite.group = ƒvƒƒpƒeƒB(&P)
+
+OtherDriverUIContributor.generaltab = ‘S”Ê
+OtherDriverUIContributor.optionaltab = ƒIƒvƒVƒ‡ƒ“
+OtherDriverUIContributor.databaseName.label = ƒf[ƒ^ƒx[ƒX(&A) :
+OtherDriverUIContributor.url.label = URL(&U) :
+OtherDriverUIContributor.userName.label = ƒ†[ƒU–¼‘O(&U) :
+OtherDriverUIContributor.password.label = ƒpƒXƒ[ƒh(&P) :
+OtherDriverUIContributor.savePassword.label = ƒpƒXƒ[ƒh‚Ì•Û‘¶(&V)
+OtherDriverUIContributor.optionalProps.label = ‚»‚Ì‘¼‚ÌƒvƒƒpƒeƒB
+OtherDriverUIContributor.summaryData.database = ƒf[ƒ^ƒx[ƒX
+OtherDriverUIContributor.summaryData.username = ƒ†[ƒU–¼
+OtherDriverUIContributor.summaryData.savePassword = ƒpƒXƒ[ƒh‚Ì•Û‘¶
+OtherDriverUIContributor.summaryData.true = true
+OtherDriverUIContributor.summaryData.false = false
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = ƒf[ƒ^ƒx[ƒX–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
+OtherDriverUIContributor.errormessage.requiresurl = URL ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
+OtherDriverUIContributor.errormessage.requiresusername = ƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
+

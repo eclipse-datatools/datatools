@@ -136,3 +136,30 @@ DriverPropertyEditorDescriptor.InvalidID = 드라이버 속성 편집기 설명자에 올바른 
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = 드라이버 속성 편집기 설명자에 올바른 대상 템플릿 ID가 없습니다.
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = 드라이버 속성 편집기 설명자에 올바른 대상 속성 ID가 없습니다.
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = 드라이버 속성 편집기 설명자에 올바른 사용자 지정 속성 ID가 없습니다.
+
+ExtensibleProfileDetailsWizardPage.title = 드라이버 및 연결 상세 정보 지정
+ExtensibleProfileDetailsWizardPage.description = 드롭다운에서 드라이버를 선택하고 연결을 위한 로그인 상세 정보를 입력합니다.
+ExtensibleProfileDetailsWizardPage.driverCombo.label = 드라이버(&D):
+ExtensibleNewConnectionProfileWizard.title = 새 연결 프로필
+
+DriverUIContributorComposite.group = 속성(&P)
+
+OtherDriverUIContributor.generaltab = 일반
+OtherDriverUIContributor.optionaltab = 옵션
+OtherDriverUIContributor.databaseName.label = 데이터베이스(&A):
+OtherDriverUIContributor.url.label = URL(&U):
+OtherDriverUIContributor.userName.label = 사용자 이름(&S):
+OtherDriverUIContributor.password.label = 암호(&P):
+OtherDriverUIContributor.savePassword.label = 암호 저장(&V)
+OtherDriverUIContributor.optionalProps.label = 추가 속성:
+OtherDriverUIContributor.summaryData.database = 데이터베이스
+OtherDriverUIContributor.summaryData.username = 사용자 이름
+OtherDriverUIContributor.summaryData.savePassword = 암호 저장
+OtherDriverUIContributor.summaryData.true = 참
+OtherDriverUIContributor.summaryData.false = 거짓
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = 데이터베이스 이름을 입력하십시오.
+OtherDriverUIContributor.errormessage.requiresurl = URL을 입력하십시오.
+OtherDriverUIContributor.errormessage.requiresusername = 사용자 이름을 입력하십시오.
+

@@ -136,3 +136,31 @@ DriverPropertyEditorDescriptor.InvalidID = Eigenschaftseditor-Deskriptor verfügt
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = Eigenschaftseditor-Deskriptor verfügt über keine gültige Zielvorlagen-ID
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = Eigenschaftseditor-Deskriptor verfügt über keine gültige Zieleigenschafts-ID
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Eigenschaftseditor-Deskriptor verfügt über keinen gültigen benutzerdefinierten Eigenschaftseditor
+
+ExtensibleProfileDetailsWizardPage.title = Treiber- und Verbindungsdetails angeben
+ExtensibleProfileDetailsWizardPage.description = Wählen Sie einen Treiber aus der Dropdown-Liste, und geben Sie Anmeldedetails für die Verbindung an.
+ExtensibleProfileDetailsWizardPage.driverCombo.label = &Treiber:
+ExtensibleNewConnectionProfileWizard.title = Neues Verbindungsprofil
+
+DriverUIContributorComposite.group = &Eigenschaften
+
+OtherDriverUIContributor.generaltab = Allgemein
+OtherDriverUIContributor.optionaltab = Optional
+OtherDriverUIContributor.databaseName.label = &Datenbank:
+OtherDriverUIContributor.url.label = &URL:
+OtherDriverUIContributor.userName.label = &Benutzername:
+OtherDriverUIContributor.password.label = &Kennwort:
+OtherDriverUIContributor.persistpassword.label = &Kennwort speichern
+OtherDriverUIContributor.savePassword.label = &Kennwort speichern
+OtherDriverUIContributor.optionalProps.label = Zusätzliche Eigenschaften:
+OtherDriverUIContributor.summaryData.database = Datenbank
+OtherDriverUIContributor.summaryData.username = Benutzername
+OtherDriverUIContributor.summaryData.savePassword = Kennwort speichern
+OtherDriverUIContributor.summaryData.true = Wahr
+OtherDriverUIContributor.summaryData.false = Falsch
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = Enter a database name.
+OtherDriverUIContributor.errormessage.requiresurl = Enter a URL.
+OtherDriverUIContributor.errormessage.requiresusername = Enter a user name.
+

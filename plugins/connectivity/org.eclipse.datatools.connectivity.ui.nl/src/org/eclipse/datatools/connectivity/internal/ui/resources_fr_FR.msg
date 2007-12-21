@@ -136,3 +136,30 @@ DriverPropertyEditorDescriptor.InvalidID = ID valide manquant pour le descripteu
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = ID de modèle cible valide manquant pour le descripteur de l'éditeur de propriété du pilote
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = ID de propriété cible valide manquant pour le descripteur de l'éditeur de propriété du pilote
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Editeur de propriété personnalisé valide manquant pour le descripteur de l'éditeur de propriété du pilote
+
+ExtensibleProfileDetailsWizardPage.title = Spécifiez un lecteur et les informations de connexion
+ExtensibleProfileDetailsWizardPage.description = Dans le menu déroulant, sélectionnez un lecteur et fournissez les informations de connexion.
+ExtensibleProfileDetailsWizardPage.driverCombo.label = &Lecteurs :
+ExtensibleNewConnectionProfileWizard.title = Nouveau profil de connexion
+
+DriverUIContributorComposite.group = &Propriétés
+
+OtherDriverUIContributor.generaltab = Général
+OtherDriverUIContributor.optionaltab = Facultatif
+OtherDriverUIContributor.databaseName.label = B&ase de données :
+OtherDriverUIContributor.url.label = &URL :
+OtherDriverUIContributor.userName.label = Nom d'utili&sateur :
+OtherDriverUIContributor.password.label = &Mot de passe :
+OtherDriverUIContributor.savePassword.label = Enregistre&r mot de passe
+OtherDriverUIContributor.optionalProps.label = Propriétés supplémentaires :
+OtherDriverUIContributor.summaryData.database = Base de données
+OtherDriverUIContributor.summaryData.username = Nom d'utilisateur
+OtherDriverUIContributor.summaryData.savePassword = Enregistrer mot de passe
+OtherDriverUIContributor.summaryData.true = vrai
+OtherDriverUIContributor.summaryData.false = faux
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = Entrez un nom pour la base de données.
+OtherDriverUIContributor.errormessage.requiresurl = Entrez une URL.
+OtherDriverUIContributor.errormessage.requiresusername = Entrez un nom d'utilisateur.
+

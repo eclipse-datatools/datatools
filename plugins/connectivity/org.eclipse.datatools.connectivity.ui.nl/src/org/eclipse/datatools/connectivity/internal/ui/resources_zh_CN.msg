@@ -136,3 +136,30 @@ DriverPropertyEditorDescriptor.InvalidID = 驱动程序属性编辑器描述符缺少有效的 ID
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = 驱动程序属性编辑器描述符缺少有效的目标模板 ID
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = 驱动程序属性编辑器描述符缺少有效的目标属性 ID
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = 驱动程序属性编辑器描述符缺少有效的自定义属性编辑器
+
+ExtensibleProfileDetailsWizardPage.title = 指定驱动程序和连接详细信息
+ExtensibleProfileDetailsWizardPage.description = 从下拉列表中选择驱动程序并提供连接的登录详细信息。
+ExtensibleProfileDetailsWizardPage.driverCombo.label = 驱动程序(&D):
+ExtensibleNewConnectionProfileWizard.title = 新连接配置文件
+
+DriverUIContributorComposite.group = 属性(&P)
+
+OtherDriverUIContributor.generaltab = 常规
+OtherDriverUIContributor.optionaltab = 可选
+OtherDriverUIContributor.databaseName.label = 数据库(&A):
+OtherDriverUIContributor.url.label = URL(&U):
+OtherDriverUIContributor.userName.label = 用户名(&S):
+OtherDriverUIContributor.password.label = 密码(&P):
+OtherDriverUIContributor.savePassword.label = 保存密码(&V)
+OtherDriverUIContributor.optionalProps.label = 其它属性:
+OtherDriverUIContributor.summaryData.database = 数据库
+OtherDriverUIContributor.summaryData.username = 用户名
+OtherDriverUIContributor.summaryData.savePassword = 保存密码
+OtherDriverUIContributor.summaryData.true = true
+OtherDriverUIContributor.summaryData.false = false
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = 输入显示名称。
+OtherDriverUIContributor.errormessage.requiresurl = 输入 URL。
+OtherDriverUIContributor.errormessage.requiresusername = 输入用户名。
+

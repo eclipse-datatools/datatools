@@ -136,3 +136,30 @@ DriverPropertyEditorDescriptor.InvalidID = Falta un ID válido para el descriptor
 DriverPropertyEditorDescriptor.InvalidTargetTemplateID = Falta un ID de plantilla de destino válido para el descriptor del editor de propiedades del controlador
 DriverPropertyEditorDescriptor.InvalidTargetPropertyId = Falta un ID de propiedades de destino válido para el descriptor del editor de propiedades del controlador
 DriverPropertyEditorDescriptor.InvalidCustomPropertyEditorClass = Falta un editor de propiedades de personalización válido para el descriptor del editor de propiedades del controlador
+
+ExtensibleProfileDetailsWizardPage.title = Especifique un controlador y los detalles de conexión
+ExtensibleProfileDetailsWizardPage.description = Seleccione un controlador del menú desplegable y proporcione los detalles de conexión.
+ExtensibleProfileDetailsWizardPage.driverCombo.label = Controla&dores:
+ExtensibleNewConnectionProfileWizard.title = Nuevo perfil de conexión
+
+DriverUIContributorComposite.group = &Propiedades
+
+OtherDriverUIContributor.generaltab = General
+OtherDriverUIContributor.optionaltab = Opcional
+OtherDriverUIContributor.databaseName.label = B&ase de datos:
+OtherDriverUIContributor.url.label = &URL:
+OtherDriverUIContributor.userName.label = Nombre de &usuario:
+OtherDriverUIContributor.password.label = &Contraseña:
+OtherDriverUIContributor.savePassword.label = Guar&dar contraseña
+OtherDriverUIContributor.optionalProps.label = Propiedades adicionales:
+OtherDriverUIContributor.summaryData.database = Base de datos
+OtherDriverUIContributor.summaryData.username = Nombre de usuario
+OtherDriverUIContributor.summaryData.savePassword = Guardar contraseña
+OtherDriverUIContributor.summaryData.true = true
+OtherDriverUIContributor.summaryData.false = false
+OtherDriverUIContributor.summaryData.url = URL
+
+OtherDriverUIContributor.errormessage.requiresdatabase = Introduzca un nombre de base de datos.
+OtherDriverUIContributor.errormessage.requiresurl = Introduzca una URL.
+OtherDriverUIContributor.errormessage.requiresusername = Introduzca un nombre de usuario.
+
