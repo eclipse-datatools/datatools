@@ -18,9 +18,9 @@ editor.title.originalName=Originalname
 editor.title.type=Typ
 
 
-datatypes.dateTime=Timestamp
-datatypes.decimal=Groﬂe Dezimalzahl
-datatypes.float=Double
+datatypes.dateTime=Datum/Uhrzeit
+datatypes.decimal=Dezimal
+datatypes.float=Gleitkomma
 datatypes.integer=Ganzzahl
 datatypes.string=Zeichenfolge
 datatypes.date=Datum

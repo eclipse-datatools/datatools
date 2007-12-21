@@ -18,9 +18,9 @@ editor.title.originalName=Œ³‚Ì–¼‘O
 editor.title.type=Œ^
 
 
-datatypes.dateTime=Timestamp
-datatypes.decimal=BigDecimal
-datatypes.float=Double
+datatypes.dateTime=“ú
+datatypes.decimal=¬”’l
+datatypes.float=•‚“®¬”’l
 datatypes.integer=Integer
 datatypes.string=String
 datatypes.date=Date

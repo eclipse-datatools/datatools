@@ -55,3 +55,6 @@ ManagedConnection_save_not_connected_error = ƒIƒtƒ‰ƒCƒ“ƒf[ƒ^‚ğ•Û‘¶‚·‚é‚É‚ÍAƒT
 ManagedConnection_offline_not_supported_error = {0} ‚Å‚ÍƒIƒtƒ‰ƒCƒ“‚Åì‹Æ‚Å‚«‚Ü‚¹‚ñB
 
 drivers.error.finding.property.no.template = ƒhƒ‰ƒCƒo‚Ìƒeƒ“ƒvƒŒ[ƒg‚©‚ç {0} ‚ğæ“¾‚µ‚æ‚¤‚Æ‚µ‚½‚Æ‚«‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+
+JDBCConnection.technologyName = JDBC
+

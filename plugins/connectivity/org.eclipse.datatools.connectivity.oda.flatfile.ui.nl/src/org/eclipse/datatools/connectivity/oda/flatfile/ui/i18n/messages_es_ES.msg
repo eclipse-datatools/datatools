@@ -18,9 +18,9 @@ editor.title.originalName=Nombre original
 editor.title.type=Tipo
 
 
-datatypes.dateTime=Fecha/hora
-datatypes.decimal=Decimal largo
-datatypes.float=Doble
+datatypes.dateTime=Fecha Hora
+datatypes.decimal=Decimal
+datatypes.float=Flotante
 datatypes.integer=Entero
 datatypes.string=String
 datatypes.date=Fecha

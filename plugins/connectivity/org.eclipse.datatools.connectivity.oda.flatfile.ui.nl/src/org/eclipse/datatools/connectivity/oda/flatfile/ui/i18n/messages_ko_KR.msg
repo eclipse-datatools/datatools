@@ -18,9 +18,9 @@ editor.title.originalName=원본 이름
 editor.title.type=형식
 
 
-datatypes.dateTime=Timestamp
-datatypes.decimal=큰 십진수
-datatypes.float=이중 실선
+datatypes.dateTime=날짜 시간
+datatypes.decimal=십진수
+datatypes.float=실수
 datatypes.integer=정수
 datatypes.string=문자열
 datatypes.date=날짜

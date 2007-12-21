@@ -17,9 +17,9 @@ editor.title.name=名称
 editor.title.originalName=原始名称
 editor.title.type=类型
 
-datatypes.dateTime=时间戳
-datatypes.decimal=大十进制
-datatypes.float=双精度
+datatypes.dateTime=日期时间
+datatypes.decimal=小数
+datatypes.float=浮点
 datatypes.integer=整数
 datatypes.string=字符串
 datatypes.date=日期

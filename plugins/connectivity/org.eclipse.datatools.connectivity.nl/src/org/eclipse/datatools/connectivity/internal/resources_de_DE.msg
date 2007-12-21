@@ -56,3 +56,6 @@ ManagedConnection_offline_not_supported_error = {0} unterstützt Offline-Arbeiten
 
 drivers.error.finding.property.no.template = Beim Versuch, {0} aus der Treibervorlage abzurufen, ist ein Problem aufgetreten.
 
+JDBCConnection.technologyName = JDBC
+
+

@@ -18,9 +18,9 @@ editor.title.originalName=Nom d'origine
 editor.title.type=Type
 
 
-datatypes.dateTime=Horodateur
-datatypes.decimal=Grande décimale
-datatypes.float=Double
+datatypes.dateTime=Date Heure
+datatypes.decimal=Décimales
+datatypes.float=Flottant
 datatypes.integer=Entier
 datatypes.string=Chaîne
 datatypes.date=Date

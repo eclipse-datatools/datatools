@@ -55,3 +55,6 @@ ManagedConnection_save_not_connected_error = 오프라인 데이터를 저장하려면 서버에
 ManagedConnection_offline_not_supported_error = {0}이(가) 오프라인 작업을 지원하지 않습니다.
 
 drivers.error.finding.property.no.template = 드라이버 템플릿에서 {0}을(를) 검색하는 동안 문제가 발생했습니다.
+
+JDBCConnection.technologyName = JDBC
+

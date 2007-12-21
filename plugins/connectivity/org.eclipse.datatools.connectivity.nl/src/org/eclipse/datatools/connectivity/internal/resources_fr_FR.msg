@@ -55,3 +55,6 @@ ManagedConnection_save_not_connected_error = Connexion indispensable au serveur 
 ManagedConnection_offline_not_supported_error = {0} ne prend pas en charge le travail hors ligne.
 
 drivers.error.finding.property.no.template = Un problème a été rencontré lors de la tentative de récupération de {0} à partir d'un modèle de pilote.
+
+JDBCConnection.technologyName = JDBC
+

@@ -55,3 +55,6 @@ ManagedConnection_save_not_connected_error = Debe estar conectado al servidor pa
 ManagedConnection_offline_not_supported_error = {0} no es compatible con el trabajo sin conexión.
 
 drivers.error.finding.property.no.template = Se ha producido un problema al intentar recuperar {0} de la plantilla de controlador.
+
+JDBCConnection.technologyName = JDBC
+
