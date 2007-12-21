@@ -206,7 +206,7 @@ public abstract class SQLParserManager {
         // postParseProcessors == null really means
         // postParseProcessors == getInternalDefaultPostParseProcessorList()
         // but we want to hide that from the public
-        if (postParseProcessors == null) {
+        if (postParseProcessors == null || postParseProcessors.size() == 0) {
             postParseProcessors = getInternalDefaultPostParseProcessorList();
         }
         this.postParseProcessors = postParseProcessors;

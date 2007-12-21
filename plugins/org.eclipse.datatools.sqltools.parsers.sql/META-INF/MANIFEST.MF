@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.parsers.sql
-Bundle-Version: 1.0.0.200710171
+Bundle-Version: 1.0.0.200712201
 Bundle-Activator: org.eclipse.datatools.sqltools.parsers.sql.SQLParserPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
