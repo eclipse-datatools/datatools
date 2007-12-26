@@ -90,7 +90,7 @@ public class Connection implements IConnection
 			throws org.eclipse.datatools.connectivity.oda.OdaException
 	{
 		isOpen = false;
-		XMLDataInputStreamCreator.close( xmlContent );
+		XMLDataInputStreamCreator.close( xmlContent.getKey( ) );
 		try
 		{
 			if(appContext != null && appContext.get(Constants.APPCONTEXT_INPUTSTREAM)!= null)
