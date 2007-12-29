@@ -13,6 +13,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -43,7 +44,24 @@ final class TreePopulationUtil
 		    	treeItem = new TreeItem( (TreeItem)tree, 0 );
 			else
 				treeItem = new TreeItem((Tree)tree,0);
-			TreeNodeData treeNode = new TreeNodeData((ATreeNode) node[i]);
+			ATreeNode aTreeNode = (ATreeNode) node[i];
+			TreeNodeData treeNode = new TreeNodeData( aTreeNode );
+			if( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE )
+			{
+				if ( aTreeNode.getParent( ).getValue( ).equals( "ROOT" ) )
+				{
+					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
+				}
+				else if ( aTreeNode.getChildren( ).length == 0 )
+				{
+					treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
+				}
+				else
+				{
+					treeItem.setImage( TreeNodeDataUtil.getXmlElementImage( ) );
+				}
+					
+			}
 
 			treeItem.setData( treeNode );
 			int type = treeNode.getTreeNode().getType( );

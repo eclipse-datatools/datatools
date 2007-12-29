@@ -27,7 +27,6 @@ import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
-import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -38,17 +37,18 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Root xpath choose page. It expands the xml tree list to choose the prefered
@@ -58,11 +58,14 @@ import org.eclipse.ui.PlatformUI;
 public class XPathChoosePage extends DataSetWizardPage
 {
 	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );
+	private static final String PATH_SEPERATOR = "/";
 	
 	private transient Tree availableXmlTree;
-	private transient Button btnAdd;
-	private transient Composite btnComposite;
-	private transient Text xmlPathText;
+	private transient Composite centerComposite;
+	private Button absolutePathButton;
+	private Button anyLocationButton;
+	private Button customButton;
+	private Combo xmlPathField;
 	private transient Group treeGroup;
 	private transient Group rightGroup;
 	
@@ -74,6 +77,12 @@ public class XPathChoosePage extends DataSetWizardPage
 
 	private String rootPath;
 	private String initRootPath;
+
+	private Label absolutePathLabel;
+	private Label anyLocationLabel;
+	private Label customPathLabel;
+	
+	private List xpathList;
 
 	/**
 	 * @param string
@@ -133,7 +142,8 @@ public class XPathChoosePage extends DataSetWizardPage
 
 		backupRootPath( );
 		if ( rootPath != null && rootPath.length( ) > 0 )
-			xmlPathText.setText( rootPath );
+			xmlPathField.setText( rootPath );
+		xpathList = XPathPopulationUtil.getPathList( rootPath );
 	}
 	
 	private void backupRootPath( )
@@ -148,7 +158,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
-		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.rowMapping" );
+		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.elementSelection.label" );
 		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( dataSetDesign );
 		
@@ -184,43 +194,12 @@ public class XPathChoosePage extends DataSetWizardPage
 		FormData data = new FormData( );
 		data.left = new FormAttachment( treeGroup, 5 );
 		data.bottom = new FormAttachment( 50 );
+		data.width = 20;
 
-		btnComposite = new Composite( composite, SWT.NONE );
-		btnComposite.setLayoutData( data );
-		FillLayout btnLayout = new FillLayout( SWT.VERTICAL );
-		btnLayout.spacing = 3;
-		btnComposite.setLayout( btnLayout );
-
-		btnAdd = new Button( btnComposite, SWT.NONE );
-		btnAdd.setText( ">" ); //$NON-NLS-1$
-		btnAdd.setEnabled( false );
-
-		//TODO To externalize into messages
-		btnAdd.setToolTipText( "Use the selected node as XPath expression" );
-		btnAdd.addSelectionListener( new SelectionAdapter( ) {
-
-			/* (non-Javadoc)
-			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
-			 */
-			public void widgetSelected( SelectionEvent e )
-			{
-
-				List xpathList = getSelectedXPath( );
-				if ( xpathList != null )
-				{
-					RowMappingDialog dialog = new RowMappingDialog( PlatformUI.getWorkbench( )
-							.getDisplay( )
-							.getActiveShell( ),
-							Messages.getString( "RowMappingDialog.title" ),
-							xpathList ); //$NON-NLS-1$
-					if ( dialog.open( ) == Window.OK )
-					{
-						rootPath = dialog.getSelectedPath( );
-						xmlPathText.setText( rootPath );
-					}
-				}
-			}
-		} );
+		centerComposite = new Composite( composite, SWT.NONE );
+		centerComposite.setLayoutData( data );
+		FillLayout centerLayout = new FillLayout( );
+		centerComposite.setLayout( centerLayout );
 
 		createRightGroup( composite );
 		return composite;
@@ -261,10 +240,18 @@ public class XPathChoosePage extends DataSetWizardPage
 					}
 				}
 				if ( selectedItem != null )
-					btnAdd.setEnabled( true );
+				{
+					xpathList = getSelectedXPathList( );
+					if( customButton.getSelection( ) )
+					{
+						resetCustomXMLPathField( );
+					}
+					resetButtonsAndLabels( true );
+				}
 				else
-					btnAdd.setEnabled( false );
-
+				{
+					resetButtonsAndLabels( false);
+				}
 			}
 
 		} );
@@ -280,39 +267,202 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		FormData data = new FormData( );
 		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( btnComposite, 5 );
+		data.left = new FormAttachment( centerComposite, 5 );
 		data.right = new FormAttachment( 100, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
+		
 		rightGroup = new Group( composite2, SWT.NONE );
-
-		rightGroup.setLayout( new FormLayout( ) );
-		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.rowMapping" ) );
+		GridLayout layout = new GridLayout( );
+		layout.numColumns = 2;
+		rightGroup.setLayout( layout );
+		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.label" ) );
 		rightGroup.setLayoutData( data );
+		
+		GridData buttonGd = new GridData( );
+		buttonGd.verticalAlignment = SWT.BEGINNING;
+		buttonGd.verticalIndent = 10;
+		
+		GridData labelGd = new GridData( GridData.FILL_HORIZONTAL );
+		labelGd.verticalIndent = 10;
 
-		data = new FormData( );
-		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 100, -5 );
+		absolutePathButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
+		absolutePathButton.setLayoutData( buttonGd );
+		absolutePathLabel = new Label( rightGroup, SWT.WRAP );
+		absolutePathLabel.setLayoutData( labelGd );
+		anyLocationButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
+		anyLocationButton.setLayoutData( buttonGd );
+		anyLocationLabel = new Label( rightGroup, SWT.WRAP );
+		anyLocationLabel.setLayoutData( labelGd );
+		customButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
+		customButton.setLayoutData( buttonGd );
+		customButton.setSelection( true );
+		customPathLabel = new Label( rightGroup, SWT.WRAP );
+		customPathLabel.setLayoutData( labelGd );
+		customPathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) );
+		
+		setLabelValuesAndListeners( rightGroup );
+		
+		Label blankLabel = new Label( rightGroup, SWT.NONE );
+		GridData txtGridData = new GridData();
+		txtGridData.widthHint = 200;
+		xmlPathField = new Combo( rightGroup, SWT.DROP_DOWN );
+		xmlPathField.setLayoutData( txtGridData );
+		xmlPathField.setVisible( true );
+		xmlPathField.addSelectionListener( new SelectionAdapter( ) {
 
-		final Label label = new Label( rightGroup, SWT.NONE );
-		label.setText( Messages.getString( "xPathChoosePage.messages.xPathExpression" ) );
-		label.setLayoutData( data );
-
-		data = new FormData( );
-		data.top = new FormAttachment( 0, 25 );
-		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 100, -5 );
-		xmlPathText = new Text( rightGroup, SWT.BORDER );
-		xmlPathText.setLayoutData( data );
-
-		xmlPathText.addModifyListener( new ModifyListener( ) {
+			public void widgetSelected( SelectionEvent e )
+			{
+			}
+		} );
+		xmlPathField.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )
 			{
-				rootPath = xmlPathText.getText( );
+				rootPath = xmlPathField.getText( );
+				resetXPathPropInHandle( rootPath );
 				setPageStatus( );
 			}
 		} );
+	}
+
+	/**
+	 * reset the custom xpath expression field
+	 * 
+	 */
+	private void resetCustomXMLPathField( )
+	{
+		xmlPathField.removeAll( );
+		if ( xpathList != null )
+		{
+			if ( xpathList.size( ) < 2 )
+			{
+				
+			}
+			xmlPathField.setText( xpathList.get( 0 ).toString( ) );
+			xmlPathField.add( xpathList.get( 0 ).toString( ) );
+			xmlPathField.add( xpathList.get( 1 ).toString( ) );
+		}
+		rootPath = xmlPathField.getText( );
+		resetXPathPropInHandle( rootPath );
+		setPageStatus( );
+	}
+	
+	/**
+	 * 
+	 */
+	private void setLabelValuesAndListeners( Composite composite )
+	{
+		if ( this.selectedItem != null )
+		{
+			xpathList = getSelectedXPathList( );
+			if ( xpathList.size( ) < 2 )
+			{
+				setMessage( Messages.getString( "error.xpath.getPathList" ), ERROR );
+			}
+			resetButtonsAndLabels( true );
+		}
+		else
+		{
+			resetButtonsAndLabels( false );
+		}		
+		absolutePathLabel.addListener( SWT.MouseDown, new Listener(){
+
+			public void handleEvent( Event event )
+			{
+				absolutePathButton.setSelection( true );	
+				anyLocationButton.setSelection( false );
+				customButton.setSelection( false );
+				xmlPathField.setVisible( false );
+			}			
+		});
+		anyLocationLabel.addListener( SWT.MouseDown, new Listener(){
+
+			public void handleEvent( Event event )
+			{
+				anyLocationButton.setSelection( true );
+				absolutePathButton.setSelection( false );	
+				customButton.setSelection( false );
+				xmlPathField.setVisible( false );
+			}			
+		});
+		customPathLabel.addListener( SWT.MouseDown, new Listener(){
+
+			public void handleEvent( Event event )
+			{
+				customButton.setSelection( true );
+				xmlPathField.setVisible( true );
+				absolutePathButton.setSelection( false );
+				anyLocationButton.setSelection( false );
+				xpathList = getSelectedXPathList( );
+				resetCustomXMLPathField( );
+				setPageStatus( );
+			}			
+		});
+		absolutePathButton.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				if ( absolutePathButton.getSelection( ) )
+				{
+					rootPath = xpathList.get( 0 ).toString( );
+					xmlPathField.setVisible( false );
+				}
+			}
+		} );
+		anyLocationButton.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				if ( anyLocationButton.getSelection( ) )
+				{
+					rootPath = xpathList.get( 1 ).toString( );
+					xmlPathField.setVisible( false );
+				}
+			}
+		} );
+		customButton.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				if ( customButton.getSelection( ) )
+				{
+					xmlPathField.setVisible( true );
+					xpathList = getSelectedXPathList( );
+					resetCustomXMLPathField( );
+				}
+				setPageStatus( );
+			}
+		} );
+		composite.layout( );
+	}
+
+	/**
+	 * 
+	 */
+	private void resetButtonsAndLabels( boolean visible )
+	{
+		if ( visible )
+		{
+			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",
+					new String[]{
+							selectedItem.getText( ),
+							(String) xpathList.get( 0 )
+					} ) );
+			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation",
+					new String[]{
+							selectedItem.getText( ),
+							(String) xpathList.get( 1 )
+					} ) );
+		}
+		else
+		{
+			absolutePathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );
+			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );
+		}
+		absolutePathButton.setEnabled( visible );
+		absolutePathLabel.setEnabled( visible );
+		anyLocationButton.setEnabled( visible );
+		anyLocationLabel.setEnabled( visible );
 	}
 
 	/**
@@ -320,20 +470,37 @@ public class XPathChoosePage extends DataSetWizardPage
 	 * 
 	 * @return
 	 */
-	protected List getSelectedXPath( )
+	protected List getSelectedXPathList( )
+	{
+		String path;
+		if ( this.selectedItem == null )
+		{
+			path = PATH_SEPERATOR + initRootPath;
+		}
+		else
+		{
+			path = getRootPath( );
+		}
+		return XPathPopulationUtil.getPathList( path );
+	}
+
+	/**
+	 * @return root path string
+	 */
+	private String getRootPath( )
 	{
 		TreeItem selected = this.selectedItem;
-		
+
 		if ( selected.getData( ) instanceof TreeNodeData )
 		{
-			ATreeNode node = ((TreeNodeData) selected.getData( )).getTreeNode();
+			ATreeNode node = ( (TreeNodeData) selected.getData( ) ).getTreeNode( );
 			if ( node.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
 			{
 				return null;
 			}
 			else
 			{
-				rootPath = "/" + selected.getText( );
+				rootPath = PATH_SEPERATOR + selected.getText( );
 			}
 		}
 
@@ -342,14 +509,14 @@ public class XPathChoosePage extends DataSetWizardPage
 			selected = selected.getParentItem( );
 			if ( selected.getData( ) instanceof TreeNodeData )
 			{
-				ATreeNode node = ((TreeNodeData) selected.getData( )).getTreeNode();
+				ATreeNode node = ( (TreeNodeData) selected.getData( ) ).getTreeNode( );
 				if ( node.getType( ) == ATreeNode.ELEMENT_TYPE )
 				{
-					rootPath = "/" + selected.getText( ) + rootPath;
+					rootPath = PATH_SEPERATOR + selected.getText( ) + rootPath;
 				}
 			}
 		}
-		return XPathPopulationUtil.populateRootPath( rootPath );
+		return rootPath;
 	}
 
 	/**
@@ -387,9 +554,16 @@ public class XPathChoosePage extends DataSetWizardPage
 				// ).findResource( fileName,IResourceLocator.LIBRARY );
 				//				
 				// if( url != null )
-				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName,xmlEncoding, numberOfElement );
+				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
+						xmlFileName,
+						xmlEncoding,
+						numberOfElement );
 				if ( treeNode == null || treeNode.getChildren( ).length == 0 )
 				{
+					if( treeNode.getValue( ).equals( "ROOT" ) )
+					{
+						initRootPath = (String)( (ATreeNode)treeNode.getChildren( )[0] ).getValue( );
+					}
 					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );
 					ExceptionHandler.showException( getShell( ),
 							Messages.getString( "error.label" ),
@@ -399,31 +573,42 @@ public class XPathChoosePage extends DataSetWizardPage
 				else
 				{
 					Object[] childs = treeNode.getChildren( );
-					availableXmlTree.addListener(SWT.Expand, new Listener(){
+					initRootPath = (String)( (ATreeNode)childs[0] ).getValue( );
+					availableXmlTree.addListener( SWT.Expand, new Listener( ) {
 
-						public void handleEvent(Event event) {
-							TreeItem currentItem = (TreeItem)event.item;
-							
-							if ( ((TreeNodeData)currentItem.getData()).hasBeenExpandedOnce())
+						public void handleEvent( Event event )
+						{
+							TreeItem currentItem = (TreeItem) event.item;
+
+							if ( ( (TreeNodeData) currentItem.getData( ) ).hasBeenExpandedOnce( ) )
 								return;
-							
-							((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
-							currentItem.removeAll();
+
+							( (TreeNodeData) currentItem.getData( ) ).setHasBeenExpandedOnce( );
+							currentItem.removeAll( );
 							try
 							{
-								if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
-										&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
-									TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ), false );
+								if ( ( ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( ) ).getChildren( ) != null
+										&& ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
+												.getChildren( ).length > 0 )
+									TreePopulationUtil.populateTreeItems( currentItem,
+											( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
+													.getChildren( ),
+											false );
 							}
 							catch ( OdaException e )
 							{
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								ExceptionHandler.showException( getShell( ),
+										Messages.getString( "error.label" ),
+										e.getMessage( ),
+										e );
 							}
 
-						}});
-					
-					TreePopulationUtil.populateTreeItems( availableXmlTree, childs, false );
+						}
+					} );
+
+					TreePopulationUtil.populateTreeItems( availableXmlTree,
+							childs,
+							false );
 				}
 			}
 		}
@@ -435,10 +620,10 @@ public class XPathChoosePage extends DataSetWizardPage
 					e );
 		}
 	}
-	
+
 	/**
 	 * set page status based on row number
-	 *
+	 * 
 	 */
 	private void setPageStatus( )
 	{
@@ -446,7 +631,9 @@ public class XPathChoosePage extends DataSetWizardPage
 		{
 			setPageComplete( false );
 			this.setMessage( Messages.getFormattedString( "error.invalidXpath",
-					new Object[]{rootPath == null ? "" : rootPath} ), IMessageProvider.ERROR );
+					new Object[]{
+						rootPath == null ? "" : rootPath
+					} ), IMessageProvider.ERROR );
 		}
 		else
 		{
@@ -479,7 +666,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	 * when XPath text has changed, reset the dataSetHandle.CONST_PROP_XPATH
 	 * 
 	 */
-	private void resetXPathText( String pathStr )
+	private void resetXPathPropInHandle( String pathStr )
 	{
 		if ( pathStr != null && pathStr.trim( ).length( ) > 0 )
 		{
@@ -547,16 +734,18 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private boolean isValid( )
 	{
-		rootPath = xmlPathText.getText( );
+		rootPath = xmlPathField.getText( );
 		if ( !isRootPathValid( ) )
 		{
 			this.setMessage( Messages.getFormattedString( "error.invalidXpath",
-					new Object[]{rootPath == null ? "" : rootPath} ), IMessageProvider.ERROR );
+					new Object[]{
+						rootPath == null ? "" : rootPath
+					} ), IMessageProvider.ERROR );
 			return false;
 		}
 		else
 		{
-			resetXPathText( rootPath );
+			resetXPathPropInHandle( rootPath );
 			return true;
 		}
 	}
@@ -570,7 +759,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		try
 		{
-			resetXPathText( rootPath );
+			resetXPathPropInHandle( rootPath );
 			savePage( design );
 		}
 		catch ( OdaException e )

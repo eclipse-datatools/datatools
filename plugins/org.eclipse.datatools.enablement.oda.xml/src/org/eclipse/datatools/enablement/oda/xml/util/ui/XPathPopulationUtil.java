@@ -52,6 +52,35 @@ final public class XPathPopulationUtil
 	}
 
 	/**
+	 * This method is used to populate the possible root path expressions List
+	 * 
+	 * @param absolutePath
+	 *            must be the absolute path of root path
+	 * @return List
+	 */
+	public static List getPathList( String absolutePath )
+	{
+		if ( absolutePath == null )
+			return null;
+
+		List result = new ArrayList( );
+		result.add( absolutePath );
+		if ( absolutePath.startsWith( UtilConstants.XPATH_SLASH ) )
+			absolutePath = absolutePath.replaceFirst( UtilConstants.XPATH_SLASH,
+					"" );
+		String[] xPathFrags = absolutePath.split( UtilConstants.XPATH_SLASH );
+		if ( xPathFrags.length > 0 )
+		{
+			String temp = UtilConstants.XPATH_DOUBLE_SLASH;
+			temp = addXPathFragsToAString( xPathFrags,
+					xPathFrags.length - 1,
+					temp );
+			result.add( temp );
+		}
+		return result;
+	}
+
+	/**
 	 * This method appends the items starting from certain index 
 	 * in an array to a String to build an XPath expression
 	 * 

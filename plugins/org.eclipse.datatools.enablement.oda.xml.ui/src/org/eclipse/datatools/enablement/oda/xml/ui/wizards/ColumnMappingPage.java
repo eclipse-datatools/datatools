@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -33,10 +35,12 @@ import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -73,22 +77,21 @@ import org.eclipse.swt.widgets.TreeItem;
  * Column mapping page to define the colum mapping with xml data set
  */
 
-public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelProvider
+public class ColumnMappingPage extends DataSetWizardPage
+		implements
+			ITableLabelProvider
 {
 
-	private final int DEFAULT_WIDTH = 300;
-	private final int DEFAULT_HEIGHT = 200;
 	private Tree availableXmlTree;
-	private Button btnAdd;
+	private Button btnAddOne;
+	private Button btnAddAll;
+	private Button btnPreview;
 	private Composite btnComposite;
 
 	private ColumnMappingTableViewer columnMappingTable;
 	private Group treeGroup;
-	private Group rightGroup;
+	private Group tableViewerGroup;
 	private ATreeNode treeNode;
-	private TreeItem selectedItem;
-
-	private ResultSetTableViewer previewViewer;
 
 	private String tableName;
 	private String xsdFileName;
@@ -96,7 +99,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	private String xmlEncoding;
 	private Map columnMap;
 	private List columnMappingList = new ArrayList( );
-	private ColumnMappingElement newColumn;
 
 	private String selectedTreeItemText;
 
@@ -105,6 +107,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	private static String TYPE_NAME = Messages.getString( "dataset.editor.datatype" );
 	private static String DEFAULT_PAGE_NAME = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );
 	private static String DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );
+	private static String PATH_SEPERATOR = "/";
 	
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
@@ -116,6 +119,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			Messages.getString( "datatypes.string" ),
 			Messages.getString( "datatypes.boolean" )
 	};
+	
+	private static Logger logger = Logger.getLogger( ColumnMappingPage.class.getName( ) );
 	
 	/**
 	 * @param string
@@ -148,7 +153,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	public void createPageCustomControl( Composite parent )
 	{
 		setControl( createPageControl( parent ) );
-		if( XMLInformationHolder.hasDestroyed() )
+		if( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( this.getInitializationDesign( ) );
 		initializeControl( );
 		if ( selectedTreeItemText != null )
@@ -181,8 +186,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			}
 			catch ( OdaException e )
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace( );
+				setMessage( Messages.getString( "error.columnMapping.createPage" ),
+						ERROR );
+				logger.log( Level.INFO, e.getMessage( ), e );
 			}
 
 			this.columnMap = new HashMap( );
@@ -214,7 +220,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			xsdFileName = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_FILELIST );*/
 		if ( selectedTreeItemText != null )
 		{
-			selectedItem = null;
 			populateXMLTree( );
 		}
 		setPageProperties( );
@@ -245,23 +250,19 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		Composite composite = new Composite( parent, SWT.NONE );
 
 		GridLayout layout = new GridLayout( );
-		layout.numColumns = 1;
 		composite.setLayout( layout );
 
-		createTopComposite( composite );
-		createBottomComposite( composite );
-
-		setPageProperties( );		
+		createPageComposite( composite );
+		setPageProperties( );
 		return composite;
-
 	}
 
 	/**
-	 * create the top composite
+	 * create the column mapping page composite
 	 * 
 	 * @param parent
 	 */
-	private void createTopComposite( Composite parent )
+	private void createPageComposite( Composite parent )
 	{
 		Composite composite = new Composite( parent, SWT.NONE );
 
@@ -280,11 +281,12 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		btnLayout.spacing = 5;
 		btnComposite.setLayout( btnLayout );
 
-		btnAdd = new Button( btnComposite, SWT.NONE );
-		btnAdd.setText( ">" ); //$NON-NLS-1$
-		//TODO to externalize into message file
-		btnAdd.setToolTipText( "Use the selected node as column mapping" );
-		btnAdd.addSelectionListener( new SelectionAdapter( ) {
+		btnAddOne = new Button( btnComposite, SWT.NONE );
+		btnAddOne.setText( ">" ); //$NON-NLS-1$
+		// TODO to externalize into message file
+		btnAddOne.setToolTipText( Messages.getString( "ColumnMappingPage.AddSingleButton.tooltip" ) );
+		btnAddOne.setEnabled( false );
+		btnAddOne.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -293,6 +295,16 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
+				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				if ( selectedMultiItems == null
+						|| selectedMultiItems.length != 1 )
+				{
+					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ),
+							ERROR );
+					btnAddOne.setEnabled( false );
+					return;
+				}
+				TreeItem selectedItem = selectedMultiItems[0];
 				String pathStr = createXPath( selectedItem );
 				String name = selectedItem.getText( );
 				int type = -1;
@@ -305,7 +317,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 						name = (String) node.getTreeNode( ).getValue( );
 					try
 					{
-						type = DataTypes.getType( node.getTreeNode( ).getDataType( ) );
+						type = DataTypes.getType( node.getTreeNode( )
+								.getDataType( ) );
 					}
 					catch ( OdaException e1 )
 					{
@@ -315,67 +328,119 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
 						DEFAULT_PAGE_NAME,
 						name,
-						pathStr, type );
-				String relationInfo;
+						pathStr,
+						type,
+						false );
 				if ( columnDialog.open( ) == Window.OK )
 				{
 					ColumnMappingElement columnElement = columnDialog.getColumnMapping( );
-					if ( isUniqueName( columnElement.getColumnName( ),
-							columnElement ) )
-					{
-						columnMap.put( columnElement.getColumnName( ),
-								columnElement );
-						columnMappingList.add( columnElement );
-
-						refreshColumnMappingViewer( );
-
-						relationInfo = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
-						if ( relationInfo != null
-								&& relationInfo.trim( ).length( ) > 0 )
-						{
-							String tableInfo = XMLRelationInfoUtil.getTableRelationInfo( relationInfo,
-									tableName );
-							if ( tableInfo != null
-									&& tableInfo.trim( ).length( ) > 0 )
-								XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-										XMLRelationInfoUtil.replaceInfo( tableName,
-												saveQueryString( ),
-												relationInfo ) );
-							else
-								XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-										XMLRelationInfoUtil.concatRelationInfo( relationInfo,
-												saveQueryString( ) ) );
-						}
-						else
-							XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-									saveQueryString( ) );
-					}
-					setPageProperties( );
+					updateColumnMappingElement( columnElement );
+					selectedItem = null;
+					btnAddOne.setEnabled( false );
+					btnAddAll.setEnabled( false );
 				}
 			}
 		} );
-		
+		btnAddAll = new Button( btnComposite, SWT.NONE );
+		btnAddAll.setText( ">>" ); //$NON-NLS-1$
+		// TODO to externalize into message file
+		btnAddAll.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) );
+		btnAddAll.setEnabled( false );
+		btnAddAll.addSelectionListener( new SelectionAdapter( ) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				if ( selectedMultiItems == null
+						|| selectedMultiItems.length == 0 )
+				{
+					btnAddAll.setEnabled( false );
+					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ),
+							ERROR );
+				}
+				if ( selectedMultiItems.length == 1 )
+				{
+					/* Only one node is selected at a time */
+					if ( !handleSelectedItem( selectedMultiItems[0] ) )
+					{
+						setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),
+								ERROR );
+					}
+				}
+				else
+				{
+					/* Multiple nodes are selected at the same time */
+					for ( int i = 0; i < selectedMultiItems.length; i++ )
+					{
+						TreeItem selectedItem = selectedMultiItems[i];
+						if ( !handleSelectedItem( selectedItem ) )
+						{
+							setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),
+									ERROR );
+							break;
+						}
+					}
+				}
+				selectedMultiItems = null;
+				btnAddOne.setEnabled( false );
+				btnAddAll.setEnabled( false );
+			}
+		} );
+		// create the right table viewer group
 		createRightGroup( composite );
 	}
 
 	/**
-	 * create bottom composite
+	 * create preview button
 	 * 
 	 * @param parent
 	 */
-	private void createBottomComposite( Composite parent )
+	private void createPreviewButton( Composite parent )
 	{
-		Group previewGroup = new Group( parent, SWT.VERTICAL );
-		GridData data = new GridData( GridData.FILL_BOTH );
-		data.heightHint = 80;
-		previewGroup.setLayoutData( data );
-		previewGroup.setText( Messages.getString( "ColumnMappingDialog.info.dataPreview" ) );
-		previewGroup.setLayout( new FillLayout( ) );
-		previewViewer = new ResultSetTableViewer( previewGroup,
-				true,
-				true,
-				true );
-		previewViewer.getViewer( ).setHeaderVisible( true );
+		btnPreview = new Button( parent, SWT.PUSH );
+		btnPreview.setText( Messages.getString( "menu.button.preview" ) );
+		btnPreview.setToolTipText( Messages.getString( "ColumnMappingTable.previewButton.tooltip" ) );
+		btnPreview.addSelectionListener( new SelectionAdapter( ) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ) );
+				if ( previewDialog.open( ) == IDialogConstants.CLOSE_ID )
+				{
+					previewDialog.close( );
+				}
+			}
+		} );
+
+		GridData gd = new GridData( );
+		gd.horizontalAlignment = SWT.END;
+		btnPreview.setLayoutData( gd );
+	}
+
+	private void createRightGroup( Composite composite )
+	{
+		Composite rightComposite = new Composite( composite, SWT.NONE );
+		FormData data = new FormData( );
+		data.top = new FormAttachment( 0, 5 );
+		data.left = new FormAttachment( btnComposite, 5 );
+		data.right = new FormAttachment( 100, -5 );
+		data.bottom = new FormAttachment( 100, -5 );
+		rightComposite.setLayoutData( data );
+
+		rightComposite.setLayout( new GridLayout( ) );
+		rightComposite.setEnabled( true );
+		createTableViewerGroup( rightComposite );
+		createPreviewButton( rightComposite );
 	}
 
 	/**
@@ -383,25 +448,20 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 * 
 	 * @param composite2
 	 */
-	private void createRightGroup( Composite composite2 )
+	private void createTableViewerGroup( Composite composite2 )
 	{
-		FormData data = new FormData( );
-		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( btnComposite, 5 );
-		data.right = new FormAttachment( 100, -5 );
-		data.bottom = new FormAttachment( 100, -5 );
-		data.width = DEFAULT_WIDTH;
-		rightGroup = new Group( composite2, SWT.NONE );
+		tableViewerGroup = new Group( composite2, SWT.NONE
+				| SWT.H_SCROLL | SWT.V_SCROLL );
+		tableViewerGroup.setLayout( new GridLayout( ) );
+		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) );
+		tableViewerGroup.setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
-		rightGroup.setLayout( new FillLayout( ) );
-		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) );
-		rightGroup.setLayoutData( data );
-
-		rightGroup.setEnabled( true );
-		columnMappingTable = new ColumnMappingTableViewer( rightGroup,
+		tableViewerGroup.setEnabled( true );
+		columnMappingTable = new ColumnMappingTableViewer( tableViewerGroup,
 				true,
 				true,
 				true );
+		columnMappingTable.getControl( ).setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
 		columnMappingTable.getViewer( ).getTable( ).setHeaderVisible( true );
 		columnMappingTable.getViewer( ).getTable( ).setLinesVisible( true );
@@ -428,16 +488,8 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 						{
 							ArrayList inputList = new ArrayList( 10 );
 							inputList.addAll( columnMappingList );
-
-							if ( newColumn == null )
-							{
-								newColumn = new ColumnMappingElement( );
-							}
-
-							inputList.add( newColumn );
 							return inputList.toArray( );
 						}
-
 						return new Object[0];
 					}
 
@@ -460,9 +512,44 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	}
 	
 	/**
+	 * Map all the children elements of the specific TreeItem to be the columns
+	 * If the TreeItem has no child, it itself is mapped to be a column
+	 * 
+	 * @param aTreeNode
+	 * @param treeItem
+	 */
+	private void addChildrenElements( ATreeNode aTreeNode, TreeItem treeItem )
+	{
+		try
+		{
+			if ( aTreeNode.getType( ) == ATreeNode.ATTRIBUTE_TYPE
+					|| ( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE && aTreeNode.getChildren( ).length == 0 ) )
+			{
+				String pathStr = createXPath( treeItem );
+				updateColumnMappingElement( createSingleElement( aTreeNode,
+						pathStr ) );
+			}
+			else
+			{
+				Object[] children = aTreeNode.getChildren( );
+				for ( int i = 0; i < children.length; i++ )
+				{
+					addChildrenElements( (ATreeNode)children[i], treeItem.getItems( )[i] );
+				}
+			}
+		}
+		catch ( OdaException e )
+		{
+			logger.log( Level.INFO, e.getMessage( ), e );
+			setMessage( Messages.getString( "error.columnMapping.ATreeNode.getChildren" ),
+					ERROR );
+		}
+	}
+	
+	/**
 	 * check whether the column is duplicated
 	 * 
-	 * @param newColumn1
+	 * @param columnName
 	 * @return
 	 */
 	private boolean isUniqueName( String columnName, ColumnMappingElement actualElement )
@@ -470,14 +557,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		boolean success = true;
 		if ( columnMap != null )
 		{
-			if ( columnMap.get( columnName ) != actualElement
+			if ( columnMap.containsKey( columnName )
 					&& columnMap.get( columnName ) != null )
-			{
-				setDetailsMessage( Messages.getFormattedString( "error.columnMapping.sameColumnName",
-						new Object[]{
-							columnName
-						} ),
-						IMessageProvider.ERROR );
+			{				
 				success = false;
 			}
 			else
@@ -532,17 +614,19 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		{
 			treeItem = treeItem.getParentItem( );
 
-			if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( ).getType( ) == ATreeNode.ELEMENT_TYPE
+			if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
+					.getType( ) == ATreeNode.ELEMENT_TYPE
 					&& columnPath.trim( ).length( ) > 0 )
-				columnPath = treeItem.getText( ) + "/" + columnPath;
-			else if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( ).getType( ) == ATreeNode.ATTRIBUTE_TYPE )
-				columnPath = columnPath + "/" + treeItem.getText( );
+				columnPath = treeItem.getText( ) + PATH_SEPERATOR + columnPath;
+			else if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
+					.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
+				columnPath = columnPath + PATH_SEPERATOR + treeItem.getText( );
 		}
-		if ( !columnPath.startsWith( "/" ) )
-			columnPath = "/" + columnPath;
+		if ( !columnPath.startsWith( PATH_SEPERATOR ) )
+			columnPath = PATH_SEPERATOR + columnPath;
 		return columnPath;
 	}
-
+	
 	/**
 	 * create the left group composite
 	 * 
@@ -556,8 +640,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		data.left = new FormAttachment( 0, 5 );
 		data.right = new FormAttachment( 40, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
-		data.height = DEFAULT_HEIGHT;
-		treeGroup = new Group( composite2, SWT.NONE );
+		treeGroup = new Group( composite2, SWT.VERTICAL );
 		treeGroup.setLayout( new FillLayout( ) );
 		treeGroup.setLayoutData( data );
 		availableXmlTree = new Tree( treeGroup, SWT.MULTI
@@ -566,23 +649,46 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				TreeItem items[] = availableXmlTree.getSelection( );
-				for ( int i = 0; i < items.length; i++ )
+				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				if ( selectedMultiItems.length > 1 )
 				{
-					selectedItem = items[0];
-					if ( items[i].getGrayed( ) )
+					for ( int i = 0; i < selectedMultiItems.length; i++ )
+					{
+						if ( selectedMultiItems[i].getGrayed( ) )
+						{
+							availableXmlTree.setRedraw( false );
+							availableXmlTree.deselectAll( );
+							availableXmlTree.setRedraw( true );
+							availableXmlTree.redraw( );
+						}
+					}
+					setMessage( DEFAULT_PAGE_Message );
+					btnAddAll.setEnabled( true );
+					btnAddOne.setEnabled( false );
+				}
+				else if ( selectedMultiItems.length == 1 )
+				{
+					TreeItem selectedItem = selectedMultiItems[0];
+					selectedMultiItems = null;
+					if ( selectedItem.getGrayed( ) )
 					{
 						availableXmlTree.setRedraw( false );
 						availableXmlTree.deselectAll( );
 						availableXmlTree.setRedraw( true );
 						availableXmlTree.redraw( );
 					}
+					if ( selectedItem != null )
+					{
+						setMessage( DEFAULT_PAGE_Message );
+						btnAddOne.setEnabled( true );
+						btnAddAll.setEnabled( true );
+					}
+					else
+					{
+						btnAddOne.setEnabled( false );
+						btnAddAll.setEnabled( false );
+					}
 				}
-				if ( selectedItem != null )
-					btnAdd.setEnabled( true );
-				else
-					btnAdd.setEnabled( false );
-
 			}
 
 		} );
@@ -607,19 +713,54 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					{
 						if ( e.keyCode == SWT.DEL )
 						{
-							removeSelectedItem( );
+							removeSelectedItems( );
 							setPageProperties( ); 
 						}
 					}
 
 				} );
 
+		columnMappingTable.getViewer( ).getTable( ).addListener( SWT.MouseDown,
+				new Listener( ) {
+
+					public void handleEvent( Event event )
+					{
+						if ( columnMappingTable.getViewer( )
+								.getTable( )
+								.getSelectionIndices( ).length > 1 )
+						{
+							columnMappingTable.getEditButton( )
+									.setEnabled( false );
+							columnMappingTable.getUpButton( )
+									.setEnabled( false );
+							columnMappingTable.getDownButton( )
+									.setEnabled( false );
+						}
+					}
+				} );
+
+		columnMappingTable.getEditButton( )
+				.addSelectionListener( new SelectionListener( ) {
+
+					public void widgetSelected( SelectionEvent e )
+					{
+						doEdit( );
+					}
+
+					public void widgetDefaultSelected( SelectionEvent e )
+					{
+					}
+
+				} );
+		columnMappingTable.getEditButton( )
+				.setToolTipText( Messages.getString( "ColumnMappingTable.editButton.tooltip" ) );
+
 		columnMappingTable.getRemoveButton( )
 				.addSelectionListener( new SelectionListener( ) {
 
 					public void widgetSelected( SelectionEvent e )
 					{
-						removeSelectedItem( );
+						removeSelectedItems( );
 						setPageProperties( );
 					}
 
@@ -628,16 +769,16 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					}
 
 				} );
-    	//TODO to externalize into message file
+		// TODO to externalize into message file
 		columnMappingTable.getRemoveButton( )
-				.setToolTipText( "Remove column mapping" );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.removeButton.tooltip" ) );
 
 		columnMappingTable.getRemoveMenuItem( )
 				.addSelectionListener( new SelectionListener( ) {
 
 					public void widgetSelected( SelectionEvent e )
 					{
-						removeSelectedItem( );
+						removeSelectedItems( );
 						setPageProperties( );
 					}
 
@@ -675,9 +816,9 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					}
 
 				} );
-		//TODO to externalize into message file
+		// TODO to externalize into message file
 		columnMappingTable.getUpButton( )
-				.setToolTipText( "Move column mappping Up" );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.upButton.tooltip" ) );
 
 		columnMappingTable.getDownButton( )
 				.addSelectionListener( new SelectionListener( ) {
@@ -692,83 +833,135 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 					}
 
 				} );
-		//TODO to externalize into message file
+		// TODO to externalize into message file
 		columnMappingTable.getDownButton( )
-				.setToolTipText("Move column mapping Down" );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) );
 	}
-
+	
 	/**
-	 * remove the selected item in the table
+	 * Edit the single table viewer element
 	 * 
 	 */
-	private void removeSelectedItem( )
+	private void doEdit( )
 	{
 		int index = columnMappingTable.getViewer( )
 				.getTable( )
 				.getSelectionIndex( );
-		int count = columnMappingTable.getViewer( ).getTable( ).getItemCount( );
+		if ( index == -1 )
+			return;
 
-		if ( index > -1 && index < count )
+		ColumnMappingElement columnMappingElement = (ColumnMappingElement) columnMappingTable.getViewer( )
+				.getTable( )
+				.getItem( index )
+				.getData( );
+		String originColumnName = columnMappingElement.getColumnName( );
+		try
 		{
-			TableItem item = columnMappingTable.getViewer( )
-					.getTable( )
-					.getItem( index );
-			Object element = item.getData( );
-			String elementName = "";
-			if ( element instanceof ColumnMappingElement
-					&& element != newColumn )
+			ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
+					DEFAULT_PAGE_NAME,
+					columnMappingElement.getColumnName( ),
+					columnMappingElement.getXPath( ),
+					DataTypes.getType( columnMappingElement.getTypeStandardString( ) ),
+					true );
+			if ( columnDialog.open( ) == Window.OK )
 			{
-				ColumnMappingElement entry = (ColumnMappingElement) element;
-				elementName = (String) entry.getColumnName( );
-
-				columnMappingTable.getViewer( ).getTable( ).select( index );
-
-				this.columnMap.remove( elementName );
-				this.columnMappingList.remove( index );
-
-				String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
-						saveQueryString( ),
-						XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
-				XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-						str );
+				columnMap.remove( columnMappingElement.getColumnName( ) );
+				ColumnMappingElement columnElement = columnDialog.getColumnMapping( );
+				String editedColumnName = columnElement.getColumnName( );
+				if( !originColumnName.equalsIgnoreCase( editedColumnName ) )
+				{
+					int appendix = 0;
+					while ( !isUniqueName( editedColumnName, columnElement ) )
+					{
+						appendix++;
+						break;
+					}
+					if ( appendix > 0 )
+					{
+						editedColumnName = editedColumnName + "_" + appendix;
+					}
+					columnElement.setColumnName( editedColumnName );
+				}
+				columnMappingElement.setColumnName( editedColumnName );
+				columnMappingElement.setType( columnElement.getType( ) );
+				columnMappingElement.setXPath( columnElement.getXPath( ) );
+				columnMap.put( editedColumnName, columnMappingElement );
+				if( columnMappingList.size( ) > index )
+				{
+					columnMappingList.set( index, columnMappingElement );
+				}
+				setXMLInformationHolderProps( );
+				refreshColumnMappingViewer( );
+				setPageProperties( );
+				refreshXMLConnection( );
 			}
 		}
-		if ( columnMappingList.size( ) <= 0 )
+		catch ( OdaException e1 )
 		{
-			String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
-					"",
-					XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
-			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
-					str );
+			logger.log( Level.INFO, e1.getMessage( ), e1 );
+			setMessage( Messages.getString( "error.columnMapping.columnElement.edit" ),
+					ERROR );
+		}
+	}
+
+	/**
+	 * To remove all the selected column mapping items from table
+	 * 
+	 */
+	private void removeSelectedItems( )
+	{
+		int[] indices = columnMappingTable.getViewer( )
+				.getTable( )
+				.getSelectionIndices( );
+		for( int i = 0; i < indices.length; i ++ )
+		{
+			removeSingleColumnItem( indices[i] - i );
 		}
 		refreshColumnMappingViewer( );
 	}
 
 	/**
-	 * remove all items of the table
+	 * Remove single table item by the specific item index
+	 * 
+	 * @param items
+	 * @param index
+	 */
+	private void removeSingleColumnItem( int index )
+	{
+		Object element = columnMappingTable.getViewer( )
+				.getTable( )
+				.getItem( index )
+				.getData( );
+		String elementName = "";
+		if ( element instanceof ColumnMappingElement )
+		{
+			ColumnMappingElement entry = (ColumnMappingElement) element;
+			elementName = (String) entry.getColumnName( );
+
+			columnMappingTable.getViewer( ).getTable( ).remove( index );
+
+			this.columnMap.remove( elementName );
+			this.columnMappingList.remove( index );
+
+			String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
+					saveQueryString( ),
+					XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
+			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+					str );
+		}
+	}
+
+	/**
+	 * Remove all of the column mapping items from the table
 	 * 
 	 */
 	private void removeAllItem( )
 	{
 		int count = columnMappingTable.getViewer( ).getTable( ).getItemCount( );
-		for ( int index = 0; index < count - 1; index++ )
+		for ( int index = 0; index < count ; index++ )
 		{
-			TableItem item = columnMappingTable.getViewer( )
-					.getTable( )
-					.getItem( 0 );
-
-			Object element = item.getData( );
-			String elementName = "";
-			if ( element instanceof ColumnMappingElement )
-			{
-				ColumnMappingElement entry = (ColumnMappingElement) element;
-				elementName = (String) entry.getColumnName( );
-			}
-			columnMappingTable.getViewer( ).getTable( ).remove( 0 );
-			this.columnMap.remove( elementName );
-			this.columnMappingList.remove( 0 );
+			removeSingleColumnItem( 0 );
 		}
-
 		String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
 				"",
 				XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
@@ -865,43 +1058,55 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			populateTreeItems( availableXmlTree, childs, 0 );
 			availableXmlTree.addListener(SWT.Expand, new Listener(){
 
-				public void handleEvent(Event event) {
-					TreeItem currentItem = (TreeItem)event.item;
-					
-					if ( ((TreeNodeData)currentItem.getData()).hasBeenExpandedOnce())
+				public void handleEvent( Event event )
+				{
+					TreeItem currentItem = (TreeItem) event.item;
+
+					if ( ( (TreeNodeData) currentItem.getData( ) ).hasBeenExpandedOnce( ) )
 						return;
-					
-					((TreeNodeData)currentItem.getData()).setHasBeenExpandedOnce();
-					currentItem.removeAll();
+
+					( (TreeNodeData) currentItem.getData( ) ).setHasBeenExpandedOnce( );
+					currentItem.removeAll( );
 					try
 					{
-						if ( (((TreeNodeData)currentItem.getData()).getTreeNode()).getChildren( ) != null
-								&& ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ).length > 0 )
-							TreePopulationUtil.populateTreeItems( currentItem, ((TreeNodeData)currentItem.getData()).getTreeNode().getChildren( ), true );
+						if ( ( ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( ) ).getChildren( ) != null
+								&& ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
+										.getChildren( ).length > 0 )
+							TreePopulationUtil.populateTreeItems( currentItem,
+									( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
+											.getChildren( ),
+									true );
 					}
 					catch ( OdaException e )
 					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						setMessage( Messages.getString( "error.columnMapping.createPage" ),
+								ERROR );
 					}
 
-				}});
-			
-			if ( selectedItem == null )
+				}
+			} );
+
+			TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+			if ( selectedMultiItems == null ||
+					selectedMultiItems.length == 0 )
 			{
-				btnAdd.setEnabled( false );
+				btnAddOne.setEnabled( false );
+				btnAddAll.setEnabled( false );
 				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),
 						ERROR );
 			}
 			else
 			{
-				btnAdd.setEnabled( true );
+				btnAddOne.setEnabled( true );
+				btnAddAll.setEnabled( true );
 				this.setMessage( DEFAULT_PAGE_Message );
 			}
 		}
 		catch ( Exception e )
 		{
-			e.printStackTrace( );
+			logger.log( Level.INFO, e.getMessage( ), e );
+			setMessage( Messages.getString( "error.columnMapping.createPage" ),
+					ERROR );
 		}
 	}
 
@@ -909,9 +1114,10 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 	 * 
 	 * @param tree
 	 * @param node
-	 * @throws OdaException 
+	 * @throws OdaException
 	 */
-	private void populateTreeItems( Object tree, Object[] node, int level ) throws OdaException
+	private void populateTreeItems( Object tree, Object[] node, int level )
+			throws OdaException
 	{
 		level ++;
 		
@@ -930,11 +1136,30 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			treeItem.setData( data );
 			int type = treeNode.getType( );
 			if ( type == ATreeNode.ATTRIBUTE_TYPE )
+			{
+				treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
 				treeItem.setText( "@" + treeNode.getValue( ).toString( ) );
-			else
+			}
+			else if ( type == ATreeNode.ELEMENT_TYPE )
+			{
+				if ( treeNode.getParent( ).getValue( ).equals( "ROOT" ) )
+				{
+					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
+				}
+				else if ( treeNode.getChildren( ).length == 0 )
+				{
+					treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
+				}
+				else
+				{
+					treeItem.setImage( TreeNodeDataUtil.getXmlElementImage( ) );
+				}
 				treeItem.setText( treeNode.getValue( ).toString( ) );
-			
-
+			}
+			else
+			{
+				treeItem.setText( treeNode.getValue( ).toString( ) );
+			}
 			String populateString = XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
 					generateXpathFromTreeItem( treeItem ) );
 			if ( populateString != null )
@@ -948,7 +1173,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 						treeItem
 					} );
 					availableXmlTree.setFocus();
-					selectedItem = treeItem;
+					availableXmlTree.setSelection( treeItem );
 				}
 				
 				setExpanded( treeItem );
@@ -1006,124 +1231,16 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 				XPATH_NAME, //$NON-NLS-1$
 				TYPE_NAME, //$NON-NLS-1$
 		} );
+		
+		columnMappingTable.getViewer( )
+				.addDoubleClickListener( new IDoubleClickListener( ) {
 
-		columnMappingTable.getViewer( ).setCellModifier( new ICellModifier( ) {
-
-			public boolean canModify( Object element, String property )
-			{
-
-				if ( element == newColumn && !property.equals( COLUMN_NAME ) )
-					return false;
-				else
-					return true;
-			}
-
-			public Object getValue( Object element, String property )
-			{
-				Object value = null;
-				try
-				{
-					if ( property.equals( COLUMN_NAME ) )
-						value = ( (ColumnMappingElement) element ).getColumnName( );
-					else if ( property.equals( XPATH_NAME ) )
-						value = ( (ColumnMappingElement) element ).getXPath( );
-					else if ( property.equals( TYPE_NAME ) )
+					public void doubleClick( DoubleClickEvent e )
 					{
-						String temp =  ( (ColumnMappingElement) element ).getType();
-						if ( temp == null )
-						{
-							value = new Integer( 0 );
-						}
-						else
-						{
-							for ( int i = 0; i < dataTypeDisplayNames.length; i++ )
-							{
-								if ( temp.equals( dataTypeDisplayNames[i] ) )
-								{
-									value = new Integer( i );
-									break;
-								}
-							}
-						}
+						doEdit( );
 					}
-					
-				}
-				catch ( Exception ex )
-				{
-					ExceptionHandler.showException( getShell( ),
-							Messages.getString( "error.label" ),
-							ex.getMessage( ),
-							ex );
-				}
-				if ( value == null )
-				{
-					value = ""; //$NON-NLS-1$
-				}
-				return value;
-			}
+				} );
 
-			public void modify( Object element, String property, Object value )
-			{
-				Object actualElement = ( (TableItem) element ).getData( );
-				if ( value != null )
-				{
-					if ( property.equals( COLUMN_NAME ) )
-					{
-						if ( isUniqueName( (String) value,
-								(ColumnMappingElement) actualElement ) )
-						{
-							if ( columnMap.get( ( (ColumnMappingElement) actualElement ).getColumnName( ) ) != null )
-							{
-								columnMap.remove( ( (ColumnMappingElement) actualElement ).getColumnName( ) );
-								( (ColumnMappingElement) actualElement ).setColumnName( (String) value );
-								columnMap.put( (String) value, actualElement );
-							}
-							else
-								( (ColumnMappingElement) actualElement ).setColumnName( (String) value );
-						}
-						else
-							return;
-					}
-					else if ( property.equals( XPATH_NAME ) )
-					{
-						if( !isXpathValid(((String)value)) )
-						{
-							setDetailsMessage( Messages.getFormattedString( "error.invalidXpath",
-									new Object[]{
-									value
-									} ),
-									IMessageProvider.ERROR );
-							return;
-						}
-						else
-							( (ColumnMappingElement) actualElement ).setXPath( (String) value );
-					}
-					else if ( property.equals( TYPE_NAME ) )
-					{
-	                    int selectedType = ((Integer)value).intValue();
-	                   
-	            		( (ColumnMappingElement) actualElement ).setType( dataTypeDisplayNames[selectedType] );
-					}
-					columnMappingTable.getViewer( )
-							.update( ( (TableItem) element ).getData( ), null );
-					if ( actualElement instanceof ColumnMappingElement )
-					{
-						if ( newColumn != null
-								&& newColumn.getColumnName( ) != null
-								&& newColumn.getColumnName( ).trim( ).length( ) > 0 )
-						{
-							columnMap.put( newColumn.getColumnName( ), newColumn );
-							columnMappingList.add( newColumn );
-							clearNewColumnMapping( );
-							columnMappingTable.getViewer( ).refresh( );
-							setPageProperties( );
-						}
-
-						refreshXMLConnection( );
-					}
-				}
-			}
-		} );
 	}
 
 	/**
@@ -1155,12 +1272,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
 					str );
 	}
-
-	private void clearNewColumnMapping( )
-	{
-		newColumn = null;
-	}
-
 
 	/**
 	 * 
@@ -1272,7 +1383,6 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 			ti.setText( 1, c2 );
 			ti.setText( 2, c3 );
 		}
-		clearNewColumnMapping( );
 		columnMappingTable.getViewer( ).refresh( );
 	}
 
@@ -1308,34 +1418,28 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		String value = null;
 		try
 		{
-			if ( element != newColumn )
+			switch ( columnIndex )
 			{
-				switch ( columnIndex )
+				case 0 :
 				{
-					case 0 :
-					{
-						value = (String) ( (ColumnMappingElement) element ).getColumnName( ); //$NON-NLS-1$
-						break;
-					}
-					case 1 :
-					{
-						value = (String) ( (ColumnMappingElement) element ).getXPath( );
-						break;
-					}
-					case 2 :
-					{
-						value = (String) ( (ColumnMappingElement) element ).getType( ); //$NON-NLS-1$
-						break;
-					}
+					value = (String) ( (ColumnMappingElement) element ).getColumnName( ); //$NON-NLS-1$
+					break;
 				}
-			}
-			else if ( columnIndex == 0 )
-			{
-				value = Messages.getString( "ColumnMappingDialog.prompt.new" );
+				case 1 :
+				{
+					value = (String) ( (ColumnMappingElement) element ).getXPath( );
+					break;
+				}
+				case 2 :
+				{
+					value = (String) ( (ColumnMappingElement) element ).getType( ); //$NON-NLS-1$
+					break;
+				}
 			}
 		}
 		catch ( Exception ex )
 		{
+			logger.log( Level.INFO, ex.getMessage( ), ex );
 			ExceptionHandler.showException( getShell( ),
 					Messages.getString( "error.label" ),
 					ex.getMessage( ),
@@ -1364,17 +1468,15 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		
 		if( (!dataFileExist)&&(dataSourceXmlDataFile != null && dataSourceXmlDataFile.toString( ).trim( ).length( ) > 0) )
 			dataFileExist = true;
-		
+
 		columnMappingExist = ( columnMappingList != null && columnMappingList.size( ) > 0 );
-		boolean active = columnMappingExist && dataFileExist;
+		columnMappingTable.getEditButton( ).setEnabled( columnMappingExist );
 		columnMappingTable.getDownButton( ).setEnabled( columnMappingExist );
 		columnMappingTable.getUpButton( ).setEnabled( columnMappingExist );
 		columnMappingTable.getRemoveButton( ).setEnabled( columnMappingExist );
 		columnMappingTable.getRemoveMenuItem( ).setEnabled( columnMappingExist );
 		columnMappingTable.getRemoveAllMenuItem( )
 				.setEnabled( columnMappingExist );
-		previewViewer.getRefreshButton( ).setEnabled( active );
-		previewViewer.getRefreshMenu( ).setEnabled( active );
 		setPageComplete( columnMappingExist );
 	}
 
@@ -1390,6 +1492,7 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
 		}
 		catch ( OdaException e )
 		{
+			logger.log( Level.INFO, e.getMessage( ), e );
 		}
 		return design;
 	}
@@ -1476,4 +1579,114 @@ public class ColumnMappingPage extends DataSetWizardPage implements ITableLabelP
     {
     	XMLInformationHolder.destory( );
     }	
+	
+	/**
+	 * Create a single column mapping element by the specific ATreeNode object and its path
+	 * 
+	 * @param node
+	 * @param path
+	 * @return
+	 */
+    private ColumnMappingElement createSingleElement( ATreeNode node, String path )
+	{
+		ColumnMappingElement columnElement =  new ColumnMappingElement( );
+		columnElement.setColumnName( node.getValue( ).toString( ) );
+		columnElement.setXPath( path );
+		String type = null;
+		try
+		{
+			type = node.getDataType( );
+			if( type == null )
+			{
+				type = dataTypeDisplayNames[6];
+			}
+		}
+		catch ( OdaException e )
+		{
+			type = dataTypeDisplayNames[6];
+		}
+		columnElement.setType( type );
+		return columnElement;
+	}
+
+	/**
+	 * @param columnElement
+	 */
+	private void updateColumnMappingElement( ColumnMappingElement columnElement )
+	{
+		addNewColumnElement( columnElement );
+		refreshColumnMappingViewer( );
+		setPageProperties( );
+	}
+
+	/**
+	 * @param columnElement
+	 */
+	private void addNewColumnElement( ColumnMappingElement columnElement )
+	{
+		int index = 0;
+		String columnName = columnElement.getColumnName( );
+		while ( !isUniqueName( columnName, columnElement ) )
+		{
+			index++;
+			String alias = columnName + "_" + index;
+			if ( isUniqueName( alias, columnElement ) )
+			{
+				columnElement.setColumnName( alias );
+				columnMap.put( alias, columnElement );
+				break;
+			}
+		}
+		if ( index == 0 )
+		{
+			columnMap.put( columnName, columnElement );
+		}
+		columnMappingList.add( columnElement );
+		setXMLInformationHolderProps( );
+	}
+
+	/**
+	 * Set the XMLInformationHolder properties
+	 * 
+	 */
+	private void setXMLInformationHolderProps( )
+	{
+		String relationInfo = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION );
+		if ( relationInfo != null && relationInfo.trim( ).length( ) > 0 )
+		{
+			String tableInfo = XMLRelationInfoUtil.getTableRelationInfo( relationInfo,
+					tableName );
+			if ( tableInfo != null && tableInfo.trim( ).length( ) > 0 )
+				XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+						XMLRelationInfoUtil.replaceInfo( tableName,
+								saveQueryString( ),
+								relationInfo ) );
+			else
+				XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+						XMLRelationInfoUtil.concatRelationInfo( relationInfo,
+								saveQueryString( ) ) );
+		}
+		else
+		{
+			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
+					saveQueryString( ) );
+		}
+	}
+
+	/**
+	 * Handler for selecting a tree item
+	 * 
+	 */
+	private boolean handleSelectedItem( TreeItem selectedItem )
+	{
+		if ( selectedItem.getData( ) != null
+				&& selectedItem.getData( ) instanceof TreeNodeData )
+		{
+			ATreeNode aTreeNode = ( (TreeNodeData) selectedItem.getData( ) ).getTreeNode( );
+			addChildrenElements( aTreeNode, selectedItem );
+			return true;
+		}
+		return false;
+	}
+	
 }

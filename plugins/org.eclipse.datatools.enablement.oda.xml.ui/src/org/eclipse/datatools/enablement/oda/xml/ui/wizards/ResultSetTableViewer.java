@@ -26,35 +26,25 @@ import org.eclipse.datatools.enablement.oda.xml.ui.utils.ExceptionHandler;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
-import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.2 $ $Date: 2007/07/13 02:50:52 $
+ * @version $Revision: 1.7 $ $Date: 2007/09/12 18:49:43 $
  */
 public final class ResultSetTableViewer
 {
 	private Table viewer;
 	private Composite mainControl;
-	private Button btnRefresh;
-	private MenuItem itmRefresh;
 	private String[][] resultSet;
 	private TableColumn column;
 	private final int MAX_ROW = 500;
@@ -72,82 +62,14 @@ public final class ResultSetTableViewer
 	
 		GridData data = null;
 		viewer = new Table( mainControl, SWT.FULL_SELECTION );
-		data = new GridData( GridData.FILL_BOTH );
+		data = new GridData( );
+		data.widthHint = 600;
+		data.heightHint = 400;
 		viewer.setLayoutData( data );
 
 		viewer.setHeaderVisible( true );
 		viewer.setLinesVisible( true );
-
-		if ( showButtons )
-		{
-			Composite btnComposite = new Composite( mainControl, SWT.NONE );
-			data = new GridData( );
-			data.verticalAlignment = SWT.CENTER;
-			btnComposite.setLayoutData( data );
-			GridLayout btnLayout = new GridLayout( );
-			layout.verticalSpacing = 20;
-			btnComposite.setLayout( btnLayout );
-
-			GridData btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 20;
-			btnData.heightHint = 20;
-			btnRefresh = new Button( btnComposite, SWT.PUSH );
-			//TODO to externalize into message file
-			btnRefresh.setToolTipText( "Preview the result set" );
-			btnRefresh.setImage( PlatformUI.getWorkbench( )
-					.getSharedImages( )
-					.getImage( ISharedImages.IMG_DEF_VIEW ) );
-			btnRefresh.setLayoutData( btnData );
-			btnRefresh.addSelectionListener( new SelectionListener( ) {
-
-				public void widgetSelected( SelectionEvent e )
-				{
-					btnRefresh.setEnabled( false );
-					retrieveResult();
-					btnRefresh.setEnabled( true );
-				}
-
-				public void widgetDefaultSelected( SelectionEvent e )
-				{
-				}
-
-			} );
-		}
-
-		if ( showMenus )
-		{
-			Menu menu = new Menu( viewer );
-
-			itmRefresh = new MenuItem( menu, SWT.NONE );
-			itmRefresh.setText( Messages.getString( "button.refresh" ) ); //$NON-NLS-1$
-			itmRefresh.addSelectionListener( new SelectionAdapter( ) {
-
-				public void widgetSelected( SelectionEvent e )
-				{
-					retrieveResult( );
-				}
-
-			} );
-			viewer.setMenu( menu );
-		}
-		if ( enableKeyStrokes )
-		{
-			viewer.addKeyListener( new KeyListener( ) {
-
-				public void keyPressed( KeyEvent e )
-				{
-				}
-
-				public void keyReleased( KeyEvent e )
-				{
-					if ( e.keyCode == SWT.ALT )
-					{
-						retrieveResult( );
-					}
-				}
-
-			} );
-		}
+		retrieveResult( );
 	}
 	
 	private void retrieveResult( )
@@ -465,23 +387,5 @@ public final class ResultSetTableViewer
 	public Composite getControl( )
 	{
 		return mainControl;
-	}
-
-	/**
-	 * get refresh button
-	 * @return
-	 */
-	public Button getRefreshButton( )
-	{
-		return btnRefresh;
-	}
-
-	/**
-	 * get refresh menuItem
-	 * @return
-	 */
-	public MenuItem getRefreshMenu( )
-	{
-		return itmRefresh;
 	}
   }

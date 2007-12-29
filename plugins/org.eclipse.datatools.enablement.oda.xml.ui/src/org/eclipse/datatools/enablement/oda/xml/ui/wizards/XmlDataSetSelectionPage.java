@@ -54,8 +54,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	private static final int ERROR_EMPTY_PATH = 2;
 
 	private transient Text folderLocation;
-	private transient Button previewNumCheckBox;
-	private transient Button useDataSourceXMLDataCheckBox;
+	private transient Button useXMLDataSourceButton;
+	private transient Button enterXMLSourceButton;
 	private transient Text numberText;
 	private transient Button browseFolderButton;
 	private boolean selected = false;
@@ -109,25 +109,13 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	public Control createPageControl( Composite parent )
 	{
 		initializeDialogUnits( parent );
-		
+
 		Composite composite = new Composite( parent, SWT.NONE );
-		GridLayout layout = new GridLayout( 3, false );
+		GridLayout layout = new GridLayout( );
 		composite.setLayout( layout );
 
-		GridData data = new GridData( GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.VERTICAL_ALIGN_FILL );
-		data.horizontalSpan = 3;
-		final Label label1 = new Label( composite, SWT.NONE );
-		label1.setText( Messages.getString( "lable.selectXmlFile" ) ); //$NON-NLS-1$
-		label1.setLayoutData( data );
-		
-		//GridData data;
-		setupXMLFolderLocation( composite );
-		
-		setUseDataSourceXMLDataSelection( composite );
-		
-		setRowSelection( composite );
-		
+		createRadioButtons( composite );
+		createNumOfLinesGroup( composite );
 		
 		return composite;
 	}
@@ -158,7 +146,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			this.folderLocation.setText( xmlFile );
 			enableFolderLocation( true );
 		}
-		useDataSourceXMLDataCheckBox.setSelection( this.useDataSourceXMLDataSelected );
+		useXMLDataSourceButton.setSelection( this.useDataSourceXMLDataSelected );
 		
 		String rowNumber = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW );
 		try
@@ -171,7 +159,6 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			else
 			{
 				selected = true;
-				previewNumCheckBox.setSelection( selected );
 				numberText.setEnabled( selected );
 				numberText.setText( rowNumber );
 			}
@@ -187,38 +174,48 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	}
 
 	/**
-	 * create row selection group
+	 * Create radio button group
+	 * 
 	 * @param composite
 	 */
-	private void setRowSelection( Composite composite )
+	private void createRadioButtons( Composite composite )
 	{
-		Composite rowSelectionGroup = new Composite( composite, SWT.NONE );
+		Composite radioGroup = new Composite( composite, SWT.NONE );
+		GridLayout gridLayout = new GridLayout( );
+		gridLayout.numColumns = 3;
+		radioGroup.setLayout( gridLayout );
+		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
+		radioGroup.setLayoutData( gridData );
+		setupSourceSelectionButtons( radioGroup );
+		setupXMLFolderLocation( radioGroup );
+	}
 
+	/**
+	 * Create number of lines' group
+	 * 
+	 * @param composite
+	 */
+	private void createNumOfLinesGroup( Composite composite )
+	{
+		Composite numOfLinesGroup = new Composite( composite, SWT.NONE );
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 3;
-		layout.marginWidth = 0;
-		layout.marginHeight = 3;
-		layout.horizontalSpacing = 3;
-		layout.verticalSpacing = 0;
+		numOfLinesGroup.setLayout( layout );
+		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
+		gridData.verticalIndent = 8;
+		numOfLinesGroup.setLayoutData( gridData );
 
-		rowSelectionGroup.setLayout( layout );
-		rowSelectionGroup.setLayoutData( new GridData( GridData.HORIZONTAL_ALIGN_FILL
-				| GridData.VERTICAL_ALIGN_FILL ) );
-
-		previewNumCheckBox = new Button( rowSelectionGroup, SWT.CHECK );
 		GridData data = new GridData( );
-		data.horizontalSpan = 1;
-		previewNumCheckBox.setLayoutData( data );
-		previewNumCheckBox.setText( Messages.getString( "label.preview" ) );
-		
-		numberText = new Text( rowSelectionGroup, SWT.BORDER );
-		numberText.setEnabled( false );
+		Label previewLabel = new Label( numOfLinesGroup, SWT.NONE );
+		previewLabel.setText( Messages.getString( "label.preview" ) );
+		previewLabel.setData( data );
+
+		numberText = new Text( numOfLinesGroup, SWT.BORDER );
+		numberText.setEnabled( true );
 		data = new GridData( );
-		data.horizontalSpan = 1;
 		Point minSize = numberText.computeSize( SWT.DEFAULT, SWT.DEFAULT, true );
-		data.widthHint = Math.max( 50, minSize.x );
+		data.widthHint = Math.max( 60, minSize.x );
 		numberText.setLayoutData( data );
-	
 		numberText.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )
@@ -230,37 +227,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				}
 			}
 		} );
-		final Label label = new Label( rowSelectionGroup, SWT.BEGINNING );
+		final Label label = new Label( numOfLinesGroup, SWT.BEGINNING );
 		label.setText( Messages.getString( "xmlDataSetSelectionPage.messages.lineofdata" ) );
-
-		previewNumCheckBox.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				selected = !selected;
-				numberText.setEnabled( selected );
-				if ( !selected )
-				{
-					maxRow = UNUSED_ROW_CACHE;
-					setPageComplete( true );
-					XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_MAX_ROW,
-							Integer.toString( maxRow ) );
-					setPageStatus( );
-				}
-				else
-				{
-					if ( numberText.getText( ) != null
-							&& numberText.getText( ).trim( ).length( ) > 0 )
-					{
-						setPageStatus( );
-					}
-				}
-			}
-
-			public void widgetDefaultSelected( SelectionEvent e )
-			{
-			}
-		} );
 	}
 
 	/**
@@ -269,27 +237,20 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 * 
 	 * @param composite
 	 */
-	private void setUseDataSourceXMLDataSelection( Composite composite )
+	private void setupSourceSelectionButtons( Composite composite )
 	{
-		Composite rowSelectionGroup = new Composite( composite, SWT.NONE );
-
-		GridLayout layout = new GridLayout( );
-		layout.numColumns = 3;
-		layout.marginWidth = 0;
-		layout.marginHeight = 1;
-		layout.horizontalSpacing = 0;
-		layout.verticalSpacing = 0;
-		GridData data = new GridData( GridData.HORIZONTAL_ALIGN_FILL
+		GridData data = new GridData( GridData.FILL_HORIZONTAL
 				| GridData.VERTICAL_ALIGN_FILL );
 		data.horizontalSpan = 3;
-		rowSelectionGroup.setLayout( layout );
-		rowSelectionGroup.setLayoutData( data );
-
-		useDataSourceXMLDataCheckBox = new Button( rowSelectionGroup, SWT.CHECK );
-
-		useDataSourceXMLDataCheckBox.setLayoutData( data );
-		useDataSourceXMLDataCheckBox.setText( Messages.getString( "label.useXMLFileFromDataSource" ) );
-		useDataSourceXMLDataCheckBox.addSelectionListener( new SelectionAdapter( ) {
+		
+		useXMLDataSourceButton = new Button( composite, SWT.RADIO );
+		
+		useXMLDataSourceButton.setSelection( true );
+		useXMLDataSourceButton.setText( Messages.getString( "label.useXMLFileFromDataSource" ) );
+		
+		useXMLDataSourceButton.setLayoutData( data );
+		
+		useXMLDataSourceButton.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
@@ -313,6 +274,14 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			{
 			}
 		} );
+		
+		GridData sourceData = new GridData( GridData.FILL_HORIZONTAL
+				| GridData.VERTICAL_ALIGN_FILL );
+		sourceData.horizontalSpan = 3;
+		sourceData.verticalIndent = 8;		
+		enterXMLSourceButton = new Button( composite, SWT.RADIO );
+		enterXMLSourceButton.setLayoutData( sourceData );
+		enterXMLSourceButton.setText( Messages.getString( "lable.selectXmlFile" ) ); 
 	}
 
 	/**
@@ -330,7 +299,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void setPageStatus( )
 	{
-		if ( numberText == null || !this.previewNumCheckBox.getSelection( ) )
+		if ( numberText == null )
 		{
 			setMessage( DEFAULT_MESSAGE );
 			return;
@@ -361,6 +330,9 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private int validateRowNumber( String maxRow )
 	{
+		if( maxRow.trim( ).length( ) == 0 )
+			return UNUSED_ROW_CACHE;
+		
 		int rowNumber = 0;
 		try
 		{
@@ -386,12 +358,21 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void setupXMLFolderLocation( Composite composite )
 	{
+		GridData gridData = new GridData( );
+		composite.setLayoutData( gridData );
 
-		GridData data = new GridData( GridData.FILL_HORIZONTAL
-				| GridData.VERTICAL_ALIGN_FILL );
-		data.horizontalSpan = 2;
-		folderLocation = new Text( composite, SWT.BORDER | SWT.SINGLE );
-		folderLocation.setLayoutData( data );
+		Button blankButton = new Button( composite, SWT.RADIO );
+		GridData blankBtnData = new GridData( );
+		blankBtnData.horizontalSpan = 1;
+		blankBtnData.horizontalAlignment = SWT.BEGINNING;
+		blankButton.setLayoutData( blankBtnData );
+		blankButton.setVisible( false );
+
+		GridData txtGridData = new GridData( );
+		txtGridData.horizontalSpan = 1;
+		txtGridData.widthHint = 450;
+		folderLocation = new Text( composite, SWT.BORDER );
+		folderLocation.setLayoutData( txtGridData );
 		setPageComplete( false );
 		folderLocation.addModifyListener( new ModifyListener( ) {
 
@@ -401,8 +382,11 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			}
 
 		} );
+
+		GridData browseBtnData = new GridData( );
+		browseBtnData.horizontalSpan = 1;
 		browseFolderButton = new Button( composite, SWT.NONE );
-	   	browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
+		browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
 		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -648,6 +632,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
     protected boolean canLeave( )
 	{
+    	setPageStatus( );
 		return isValid( );
 	}
 	

@@ -31,20 +31,20 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.1 $ $Date: 2007/06/25 16:33:23 $
+ * @version $Revision: 1.5 $ $Date: 2007/09/12 18:49:43 $
  */
 public final class ColumnMappingTableViewer
 {
 	private TableViewer viewer;
 	private Composite mainControl;
+	private Button btnEdit;
 	private Button btnRemove;
 	private Button btnUp;
 	private Button btnDown;
@@ -52,7 +52,7 @@ public final class ColumnMappingTableViewer
 	private MenuItem itmRemoveAll;
     
 	/**
-	 * column mapping table viewer. it supplys the button of remove, up , down
+	 * column mapping table viewer. it supplies the button of remove, up , down
 	 * and the menu of remove,removeAll....
 	 */
 	public ColumnMappingTableViewer( Composite parent, boolean showMenus,
@@ -64,7 +64,8 @@ public final class ColumnMappingTableViewer
 		mainControl.setLayout( layout );
 
 		GridData data = null;
-		viewer = new TableViewer( mainControl, SWT.FULL_SELECTION );
+		viewer = new TableViewer( mainControl, SWT.MULTI
+				| SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER );
 		data = new GridData( GridData.FILL_BOTH );
 		viewer.getControl( ).setLayoutData( data );
 
@@ -81,19 +82,30 @@ public final class ColumnMappingTableViewer
 			layout.verticalSpacing = 20;
 			btnComposite.setLayout( btnLayout );
 
-			GridData btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 20;
+			GridData btnData = new GridData( );
+			btnData.widthHint = 50;
 			btnData.heightHint = 20;
-			btnUp = new Button( btnComposite, SWT.ARROW | SWT.UP );
-			btnUp.setLayoutData( btnData );
+			btnEdit = new Button( btnComposite, SWT.WRAP );
+			btnEdit.setText( Messages.getString( "menu.button.edit" ) );
+			btnEdit.setLayoutData( btnData );
+			btnEdit.setEnabled( false );
+			btnEdit.addSelectionListener( new SelectionListener( ) {
+
+				public void widgetSelected( SelectionEvent e )
+				{
+				}
+
+				public void widgetDefaultSelected( SelectionEvent e )
+				{
+				}
+
+			} );
 
 			btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 20;
+			btnData.widthHint = 50;
 			btnData.heightHint = 20;
-			btnRemove = new Button( btnComposite, SWT.PUSH );
-			btnRemove.setImage( PlatformUI.getWorkbench( )
-					.getSharedImages( )
-					.getImage( ISharedImages.IMG_TOOL_DELETE ) );
+			btnRemove = new Button( btnComposite, SWT.WRAP );
+			btnRemove.setText( Messages.getString( "menu.button.remove" ) );
 			btnRemove.setLayoutData( btnData );
 			btnRemove.addSelectionListener( new SelectionListener( ) {
 
@@ -107,16 +119,20 @@ public final class ColumnMappingTableViewer
 
 			} );
 
-			btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 20;
-			btnData.heightHint = 20;
-			btnDown = new Button( btnComposite, SWT.ARROW | SWT.DOWN );
+			Label blankLabel = new Label( btnComposite, SWT.WRAP );
+			blankLabel.setLayoutData( btnData );
+
+			btnUp = new Button( btnComposite, SWT.WRAP );
+			btnUp.setText( Messages.getString( "menu.button.up" ) );
+			btnUp.setLayoutData( btnData );
+
+			btnDown = new Button( btnComposite, SWT.WRAP );
+			btnDown.setText( Messages.getString( "menu.button.down" ) );
 			btnDown.setLayoutData( btnData );
 			btnDown.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetSelected( SelectionEvent e )
 				{
-
 				}
 
 				public void widgetDefaultSelected( SelectionEvent e )
@@ -215,6 +231,16 @@ public final class ColumnMappingTableViewer
 	}
 
 	/**
+	 * get the edit button
+	 * 
+	 * @return
+	 */
+	public Button getEditButton( )
+	{
+		return btnEdit;
+	}
+	
+	/**
 	 * get the remove menu item
 	 * 
 	 * @return
@@ -235,7 +261,7 @@ public final class ColumnMappingTableViewer
 	}
 
 	/**
-	 * Accoring to the relation infomation of the query, refresh the table items
+	 * According to the relation information of the query, refresh the table items
 	 * 
 	 * @param info
 	 * @param tableName
