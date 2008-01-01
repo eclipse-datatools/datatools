@@ -35,7 +35,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditor
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
-import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizardPage;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.ui.dialogs.PropertyPage;
@@ -98,10 +98,13 @@ public class DataSourceDesignSessionBase
                                 ProfileReferenceBase profileRef )
         throws OdaException
     {
-        // restarting with a different oda data source type,
-        // reset the session's context and wizard 
-        if( m_odaDataSourceId == null ||
-            ! m_odaDataSourceId.equals( odaDataSourceId ) )
+        // if restarting with a different oda data source type that is not applicable to 
+        // the existing wizard, reset the session's context and wizard 
+        OdaConnectionProfile odaProfile = ( profileRef == null ) ? null :
+                                        profileRef.getOdaProfileInstance();
+        if( m_odaDataSourceId == null || 
+            ( m_dataSourceWizard != null && 
+              ! m_dataSourceWizard.isValid( odaDataSourceId, odaProfile ) ))
         {
             m_odaDataSourceId = odaDataSourceId;
             if( m_dataSourceWizard != null )
@@ -423,31 +426,19 @@ public class DataSourceDesignSessionBase
                              ProfileReferenceBase newProfileRef )
         throws OdaException
     {
-        wizard.setInOdaDesignSession( true );
+        wizard.initOdaDesignSession( newProfileRef );
         
         wizard.addPages();
         
-        NewConnectionProfileWizardPage profileNamePage = 
-            getNewProfileNamePage( wizard );
-        if( profileNamePage != null )
+        if( wizard.hasProfileNamePage() )
         {
             if( aDataSourceName == null || aDataSourceName.length() == 0 )
                 throw new OdaException( Messages.designSession_invalidArgument );
                 
             // process the given wizard's profile name page,
-            // with automatically assigned attributes.            
-            profileNamePage.setProfileName( aDataSourceName );
-            profileNamePage.setProfileDescription( aDataSourceDesc );
-            profileNamePage.setPageComplete( true );
-            profileNamePage.setSkippable( true );
+            // with automatically assigned attributes.     
+            wizard.setProfilePageProperties( aDataSourceName, aDataSourceDesc, null, Boolean.TRUE );
         }
-        
-        // reset any previously linked profile
-        wizard.unsetLinkedProfile();
-        
-        if( newProfileRef != null && newProfileRef.maintainExternalLink() )
-            wizard.setLinkedProfile( newProfileRef.getName(), 
-                                     newProfileRef.getStorageFile() );
         
         // pass given properties to wizard for initialization;
         // if none is specified, keep wizard's existing properties
@@ -536,9 +527,9 @@ public class DataSourceDesignSessionBase
         try
         {
             IConnectionProfile profile = profileRef.getProfileInstance();
-            if( ! m_odaDataSourceId.equalsIgnoreCase( 
-                    profile.getProviderId() ))
-                throw new IllegalArgumentException();
+//            if( ! m_odaDataSourceId.equalsIgnoreCase( 
+//                    profile.getProviderId() ))
+//                throw new IllegalArgumentException();
             
             profileProps = profile.getBaseProperties();
         }
@@ -712,18 +703,6 @@ public class DataSourceDesignSessionBase
     {
         return( m_odaDataSourceId != null && m_odaDataSourceId.length() > 0 );
     }
-    
-    private NewConnectionProfileWizardPage getNewProfileNamePage( 
-            NewDataSourceWizard wizard )
-    {
-        // TODO - use class.getSimpleName() when build w/ JDK 1.5
-        IWizardPage page =
-            wizard.getPage( "NewConnectionProfileWizardPage" ); //$NON-NLS-1$
-        if( page != null && page instanceof NewConnectionProfileWizardPage )
-            return (NewConnectionProfileWizardPage) page;
-        else
-            return null;
-    }
 
     /**
      * Represents the reference information of an external
@@ -736,7 +715,7 @@ public class DataSourceDesignSessionBase
         private File m_storageFile; 
         private boolean m_maintainLink;
         
-        private IConnectionProfile m_profileInstance;
+        private OdaConnectionProfile m_profileInstance;
         
         /**
          * Constructor.
@@ -833,6 +812,11 @@ public class DataSourceDesignSessionBase
         
         public IConnectionProfile getProfileInstance()
         {
+            return getOdaProfileInstance();
+        }
+        
+        private OdaConnectionProfile getOdaProfileInstance()
+        {
             if( m_profileInstance != null )
                 return m_profileInstance;
             
@@ -847,19 +831,19 @@ public class DataSourceDesignSessionBase
             return m_profileInstance;
         }
         
-        private IConnectionProfile getInstanceById()
+        private OdaConnectionProfile getInstanceById()
         {
-            return OdaProfileExplorer.getInstance().
+            return (OdaConnectionProfile) OdaProfileExplorer.getInstance().
                         getProfile( m_instanceId );
         }
         
-        private IConnectionProfile getInstanceByName()
+        private OdaConnectionProfile getInstanceByName()
         {
-            IConnectionProfile profileInstance = null;
+            OdaConnectionProfile profileInstance = null;
             try
             {
                 profileInstance =
-                    OdaProfileExplorer.getInstance().getProfileByName( 
+                    (OdaConnectionProfile) OdaProfileExplorer.getInstance().getProfileByName( 
                         m_instanceName, m_storageFile );    // use default store if null is specified
             }
             catch( OdaException ex )

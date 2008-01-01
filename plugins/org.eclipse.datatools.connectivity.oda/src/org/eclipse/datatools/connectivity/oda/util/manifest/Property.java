@@ -216,12 +216,23 @@ public class Property
     /**
      * Returns a flag that indicates whether an empty value of this property 
      * can be treated as a null value.
-     * @return  'true' or 'false' value that indicates whether
-     *          this property value can be treated as a null value.
+     * @return  v
      */
     public boolean allowsEmptyValueAsNull()
     {
         return m_allowsEmptyValueAsNull;
+    }
+
+    /**
+     * Overrides the default setting of whether an empty value of this property 
+     * can be treated as a null value.
+     * @param allowsEmptyValueAsNull    a boolean flag to indicate
+     *              whether an empty value of this property 
+     *              can be treated as a null value.
+     */
+    void setAllowsEmptyValueAsNull( boolean allowsEmptyValueAsNull )
+    {
+        m_allowsEmptyValueAsNull = allowsEmptyValueAsNull;
     }
 
     /**

@@ -16,26 +16,32 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import java.io.File;
 import java.util.Properties;
+import java.util.logging.Level;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvider;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSourceWizardInfo;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ConnectionProfileProperty;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
+import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizardPage;
 import org.eclipse.jface.wizard.IWizardPage;
 
 /**
@@ -59,6 +65,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     private UIExtensionManifest m_manifest;
 
     private boolean m_isInDesignSession = false;
+    private boolean m_hasPerformedFinish = false;
     private DataSourceDesign m_dataSourceDesign;
     private DesignerState m_responseDesignerState;
     private LinkedProfile m_linkedProfile;
@@ -248,6 +255,43 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     }
     
     /**
+     * For internal use only; not an API method.
+     */
+    public void setProfilePageProperties( String profileName, String profileDesc, 
+            Boolean autoConnect, Boolean skipProfilePage )
+    {
+        NewConnectionProfileWizardPage profileNamePage = getProfileNamePage();
+        if( profileNamePage == null )
+            return;     // page not available to set values
+        
+        // override page properties only if a non-null value is specified
+        if( profileName != null )
+            profileNamePage.setProfileName( profileName );
+        if( profileDesc != null )
+            profileNamePage.setProfileDescription( profileDesc );
+        if( autoConnect != null )
+            profileNamePage.setAutoConnect( autoConnect.booleanValue() );
+        
+        if( skipProfilePage != null )
+        {
+            profileNamePage.setSkippable( skipProfilePage.booleanValue() );
+        }
+    }
+    
+    /**
+     * For internal use only; not a public API method.
+     */
+    public boolean hasProfileNamePage()
+    {
+        return getProfileNamePage() != null; 
+    }
+    
+    protected NewConnectionProfileWizardPage getProfileNamePage()
+    {
+        return this.mProfilePage;
+    }
+    
+    /**
      * Refresh the wizard and its custom page with given properties, 
      * if it has any entries.
      * Otherwise, keep wizard's existing properties.
@@ -262,7 +306,8 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             setInitialProperties( dataSourceProps );
         } 
         
-        getCustomWizardPage().refresh();
+        if( getCustomWizardPage() != null )
+            getCustomWizardPage().refresh();
     }
     
     /**
@@ -273,7 +318,8 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     private void setInitialProperties( Properties props )
     {
         m_profileProps = props;
-        getCustomWizardPage().setInitialProperties( m_profileProps );
+        if( getCustomWizardPage() != null )
+            getCustomWizardPage().setInitialProperties( m_profileProps );
     }
 
     public void setLinkedProfile( String profileName, File storageFile )
@@ -287,10 +333,15 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         m_linkedProfile = null;        
     }
  
-    private boolean hasLinkToProfile()
+    protected boolean hasLinkToProfile()
     {
         return ( m_linkedProfile != null && 
                  m_linkedProfile.hasLinkAttributes() );
+    }
+    
+    protected IConnectionProfile getLinkedProfile()
+    {
+        return hasLinkToProfile() ? m_linkedProfile.getProfileInstance() : null;
     }
     
     /* (non-Javadoc)
@@ -344,6 +395,24 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     }
 
     /**
+     * Indicates whether this wizard is valid and can use its pages to create a new
+     * data source design of the specified oda data source type and in reference to 
+     * an existing ODA connection profile instance.
+     * @param odaDataSourceId   oda data source extension id
+     * @param odaProfile        the profile instance from which to create a new data source design;
+     *                          optional, may be null
+     * @since 3.0.6
+     */
+    public boolean isValid( String odaDataSourceId, OdaConnectionProfile odaProfile )
+    {
+        // base class assumes that a wizard can handle only one type of oda data source,
+        // and any of its existing profiles; subclass may override
+        if( odaProfile != null && ! odaProfile.getProviderId().equalsIgnoreCase( odaDataSourceId ))
+            throw new IllegalArgumentException();
+        return getOdaDataSourceId().equals( odaDataSourceId );
+    }
+    
+    /**
      * Indicates whether the wizard is in the midst of a 
      * ODA design session to create a new data source definition.
      * @return true if in an ODA design session; 
@@ -357,9 +426,25 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     /**
      * For internal use only.
      */
-    public void setInOdaDesignSession( boolean value )
+    void setInOdaDesignSession( boolean value )
     {
         m_isInDesignSession = value;
+    }
+
+    /**
+     * For internal use only.
+     */
+    public void initOdaDesignSession( ProfileReferenceBase newProfileRef )
+    {
+        m_hasPerformedFinish = false;
+        setInOdaDesignSession( true );
+        
+        // reset any previously linked profile
+        unsetLinkedProfile();
+        
+        if( newProfileRef != null && newProfileRef.maintainExternalLink() )
+            setLinkedProfile( newProfileRef.getName(), 
+                              newProfileRef.getStorageFile() );        
     }
     
     /**
@@ -389,10 +474,17 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
      */
     public boolean performFinish()
     {
-        // creates a new connection profile 
-        // only if wizard was started by DSE        
+        if( m_hasPerformedFinish )
+            return true;    // has already completed the finish task
+        
+        // creates a new connection profile instance in DSE
+        // only if wizard was started by DSE, and not by an ODA design session       
         if( ! isInOdaDesignSession() )
-            return super.performFinish();    // done
+        {
+            boolean state = super.performFinish();
+            m_hasPerformedFinish = true;
+            return state;    // done
+        }
         
         // is in an ODA design session, create new ODA design instead
         try
@@ -425,9 +517,9 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         if( ! isInOdaDesignSession() )
             throw new OdaException( Messages.common_notInDesignSession );
 
-        m_dataSourceDesign = createDataSourceDesign();
-        
-        setInOdaDesignSession( false );    // done with design session
+        m_dataSourceDesign = saveNewDataSourceDesign();        
+        m_hasPerformedFinish = true;
+
         return m_dataSourceDesign;
     }
     
@@ -439,7 +531,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
      */
     public DataSourceDesign getDataSourceDesign()
     {
-        if( ! isInOdaDesignSession() )  // performFinish is done with design session
+        if( m_hasPerformedFinish )      // performFinish is done
             return m_dataSourceDesign;  // ok to return created design
         return null;
     }
@@ -450,7 +542,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
      * new Data Source Design object.
      * @return the new Data Source Design object
      */
-    private DataSourceDesign createDataSourceDesign()
+    private DataSourceDesign saveNewDataSourceDesign()
         throws OdaException
     {
         DataSourceDesign newDesign = DesignFactory.eINSTANCE.createDataSourceDesign();
@@ -469,7 +561,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             // ignore in case wizard profile page is not available
             // log warning about exception
             DesignerLogger logger = DesignerLogger.getInstance();
-            logger.warning( sm_className, "createDataSourceDesign",  //$NON-NLS-1$
+            logger.warning( sm_className, "saveNewDataSourceDesign",  //$NON-NLS-1$
                     "Caught exception while copying profile attributes from wizard profile page.", ex ); //$NON-NLS-1$
 
             newDesign.setName( getOdaDataSourceId() );
@@ -477,14 +569,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         
         // assign those properties that have values collected in wizard page
         Properties customPropertyValues = getProfileProperties();
-        newDesign.setPublicProperties(
-                DesignSessionUtil.createDataSourcePublicProperties( 
-                            getOdaDataSourceId(),
-                            customPropertyValues ));
-        newDesign.setPrivateProperties( 
-                DesignSessionUtil.createDataSourceNonPublicProperties( 
-                            getOdaDataSourceId(),
-                            customPropertyValues ));
+        setDataSourceDesignProperties( newDesign, customPropertyValues );
     
         /* adds linked profile properties to the design, 
          * iff a profile is specified/initialized in this wizard
@@ -498,8 +583,34 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
             newDesign.setLinkedProfileStoreFile( m_linkedProfile.getStorageFile() );
         }
         
-        // let subclass implementation further specifies the data source design
+        if( getCustomWizardPage() == null )
+            return newDesign;
+        
+        // let custom wizard page implementation further specifies the data source design
         return getCustomWizardPage().finishDataSourceDesign( newDesign );
+    }
+
+    /**
+     * Assigns the specified custom data source properties to the
+     * specified data source design, based on the ODA data source extension's
+     * property definition declared in its manifest.
+     * @param newDesign a data source design definition
+     * @param customPropertyValues  custom property name-value pairs collected
+     *                              from a custom page
+     * @throws OdaException
+     */
+    protected void setDataSourceDesignProperties( DataSourceDesign newDesign,
+            Properties customPropertyValues ) 
+        throws OdaException
+    {
+        newDesign.setPublicProperties(
+                DesignSessionUtil.createDataSourcePublicProperties( 
+                            getOdaDataSourceId(),
+                            customPropertyValues ));
+        newDesign.setPrivateProperties( 
+                DesignSessionUtil.createDataSourceNonPublicProperties( 
+                            getOdaDataSourceId(),
+                            customPropertyValues ));
     }
     
     /**
@@ -568,6 +679,39 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         {
             return m_storageFile;
         }                
+        
+        private IConnectionProfile getProfileInstance()
+        {
+            if( ! hasLinkAttributes() )
+                return null;
+            
+            final String methodName = "getProfileInstance";  //$NON-NLS-1$
+            
+            IConnectionProfile profile = null;
+            try
+            {
+                // if null profile store file is specified, the default profile store path is used
+                profile = OdaProfileExplorer.getInstance()
+                            .getProfileByName( getProfileName(), getStorageFile() );
+            }
+            catch( OdaException ex )
+            {
+                // log warning about exception
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, methodName,
+                        "Caught exception while looking up connection profile instance by name.", ex ); //$NON-NLS-1$
+            }
+            
+            if( profile == null )
+            {
+                // log warning that no profile is found
+                DesignerLogger logger = DesignerLogger.getInstance( DesignerLogger.PLUGIN_LOGGER_NAME );
+                logger.logp( Level.WARNING, sm_className, methodName,
+                        "Unable to find referenced connection profile instance." ); //$NON-NLS-1$
+            }
+            return profile;
+        }
+        
     }
     
 }

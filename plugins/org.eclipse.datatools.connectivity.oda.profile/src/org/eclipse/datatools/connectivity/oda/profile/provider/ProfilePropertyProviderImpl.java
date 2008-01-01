@@ -55,13 +55,10 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             return candidateProperties;
         
         // merges the 2 sets of properties; 
-        // remove the entries of the linked profile instance, and
         // override candidate properties with those in profile instance
         
         Properties mergedProps = new Properties();
         mergedProps.putAll( candidateProperties );
-        mergedProps.remove( ConnectionProfileProperty.PROFILE_NAME_PROP_KEY );
-        mergedProps.remove( ConnectionProfileProperty.PROFILE_STORE_FILE_PATH_PROP_KEY );
                 
         Properties profileProps = connProfile.getBaseProperties();
         if( profileProps != null )
@@ -81,7 +78,7 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     }
 
     /**
-     * Find and return the connection profile store file of the profile
+     * Finds and returns the connection profile
      * instance whose name is specified in the candidate connection properties.
      * The profile store file object may be provided in the connection property context,
      * or its file path is specified in the connection properties.
@@ -89,10 +86,10 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
      * @param connPropContext       connection property context object mapped to 
      *                        the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
      *                        in an application context passed thru to a connection
-     * @return
+     * @return  the connection profile instance if found; may be null 
      * @throws OdaException
      */
-    protected IConnectionProfile getConnectionProfile( Properties candidateProperties,
+    public IConnectionProfile getConnectionProfile( Properties candidateProperties,
             Object connPropContext ) 
     {
         if( candidateProperties == null || candidateProperties.isEmpty() )
@@ -107,7 +104,16 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         // takes precedence over the file path specified in the properties.
         File profileStore = getProfileStoreFile( connPropContext );
         if( profileStore == null )
+        {
             profileStore = getProfileStoreFile( candidateProperties );
+            
+            if( profileStore != null )
+            {
+                // using a new profile storage File object, good opportunity
+                // to free up the cached profiles of previously used File objects
+                OdaProfileExplorer.getInstance().refresh();
+            }
+        }
         
         IConnectionProfile profile = null;
         try

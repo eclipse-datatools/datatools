@@ -17,10 +17,11 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.ICategory;
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.IDesignNameValidatorBase;
@@ -29,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
 import org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -66,9 +68,6 @@ class ProfileSelectionPageHelper
     private static final String CONTEXT_ID_CONNECTIONPROFILE = 
         "org.eclipse.datatools.oda.cshelp.Wizard_ConnectionProfile_ID";//$NON-NLS-1$
 
-    private static final String CONNECTIVITY_DB_CATEGORY_ID = 
-        "org.eclipse.datatools.connectivity.db.category"; //$NON-NLS-1$
-
     private static final int TREE_ITEM_STYLE = SWT.NONE;
     
     private WizardPage m_wizardPage;
@@ -83,7 +82,7 @@ class ProfileSelectionPageHelper
     private transient Button m_useDefaultDSNameCheckBox = null;
     private transient Tree m_odaDataSourceTree = null;
     private transient String m_treeFilter;
-    private transient Properties m_dataSourceIDProperties = null;
+    private transient SortedSet m_dataSourceIDs = null;
     private transient IDesignNameValidatorBase m_designNameValidator;
     
     private String m_dataSourceDesignName = EMPTY_STRING;
@@ -464,54 +463,40 @@ class ProfileSelectionPageHelper
     private void populateTree( )
     {
         resetTreeViewer();
-//        OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         if( ! hasConnectionProfilePath() )
             return;
-        
-        // TODO replace hard-coded ids with use of wrapper extension info
-        // populate tree with all wrapped profiles under the corresponding oda data source id
-//            TreeItem dbCategoryItem = 
-//                createCategoryTreeItems( dsCategory, CONNECTIVITY_DB_CATEGORY_ID, ODA_CONNECTIVITY_DB_DATA_SOURCE_ID );
-            // TODO Does the db category have sub-categories?
-        
+
         // populate tree with ODA extensions' profile instances
+        OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         
-        generateODADataSourceIdentifiers( );
+        if( m_dataSourceIDs == null )
+            m_dataSourceIDs = createODACategoryIdentifiers();
 
-        TreeItem root = new TreeItem( m_odaDataSourceTree, TREE_ITEM_STYLE );
-        root.setText( Messages.profilePage_odaTreeName );
-
-        try
+        // iterate thru each type of applicable ODA data source categories
+        TreeItem odaRoot = null;
+        Iterator iterator = m_dataSourceIDs.iterator();
+        while( iterator.hasNext() )
         {
-            Iterator iterator = m_dataSourceIDProperties.keySet().iterator();
-            while( iterator.hasNext() )
+            OdaProfileCategoryInfo categoryInfo = (OdaProfileCategoryInfo) iterator.next();
+
+            TreeItem dbCategoryItem = 
+                createCategoryTreeItems( m_odaDataSourceTree, odaRoot, categoryInfo  );
+            
+            if( dbCategoryItem != null )
             {
-                Object odaDataSourceIdObj = iterator.next();
-                String odaDataSourceId = odaDataSourceIdObj.toString( );
-                if( m_treeFilter != null && ! m_treeFilter.equals( odaDataSourceId ) )
-                    continue;   // skip oda data source type not in filter
-
-                // don't bother create a category item if it has no profile instances
-                if( ! hasProfileInstance( odaDataSourceId ) )
-                    continue;
-
-                TreeItem dsCategory = new TreeItem( root, TREE_ITEM_STYLE );
-                String dsDisplayName = m_dataSourceIDProperties.getProperty( odaDataSourceId );
-                dsCategory.setData( odaDataSourceId );
-                dsCategory.setText( dsDisplayName );
-
-                createODATreeItems( dsCategory );
-                
-                m_odaDataSourceTree.showItem( dsCategory );
+                if( odaRoot == null && categoryInfo.hasOdaParentCategory() )
+                    odaRoot = dbCategoryItem.getParentItem();   // reuse same parent item for next ODA category
+                dbCategoryItem.setExpanded( true );
+                m_odaDataSourceTree.showItem( dbCategoryItem ); // scroll to the latest category
             }
         }
-        catch ( OdaException e )
-        {
-            // unexpected exception
-            e.printStackTrace( );
-        }
+        
+        // if the specified profile store file has no profile instances at all,
+        // create an empty ODA root item in the tree for UI visibility
+        if( m_odaDataSourceTree.getItemCount() == 0 )
+            createOdaRootItem( m_odaDataSourceTree );
     }
-
+    
     /**
      * Reset TreeViwewer layout
      */
@@ -535,7 +520,7 @@ class ProfileSelectionPageHelper
         
         TreeItem item = items[0];
         if( item.getParentItem( ) == null || 
-            m_dataSourceIDProperties.containsKey( item.getData() ) )
+            item.getItemCount() > 0 )
             return null;    // selected item is not a profile instance
         
         return item;
@@ -580,61 +565,72 @@ class ProfileSelectionPageHelper
         if( m_odaDataSourceTree == null || odaDataSourceId == null )
             return null;
         
-        TreeItem[] root = m_odaDataSourceTree.getItems();
-        if( root.length == 0 )
+        TreeItem[] topItems = m_odaDataSourceTree.getItems();
+        if( topItems.length == 0 )
             return null;
         
-        TreeItem[] dsCategories = root[0].getItems();
-        for( int i = 0; i < dsCategories.length; i++ )
+        // assumes an oda category is at one of the top 2 levels in tree
+        for( int i = 0; i < topItems.length; i++ )
         {
-            TreeItem dsCategory = dsCategories[i];
-            if( dsCategory.getData().toString().equals( odaDataSourceId ) )
-                return dsCategory;
+            TreeItem topLevelItem = topItems[i];
+            if( isOdaCategoryItem( topLevelItem, odaDataSourceId ) )
+                return topLevelItem;
+            
+            TreeItem[] subCategories = topLevelItem.getItems();
+            for( int j = 0; j < subCategories.length; j++ )
+            {
+                TreeItem subCategory = subCategories[j];
+                if( isOdaCategoryItem( subCategory, odaDataSourceId ) )
+                    return subCategory;
+            }
         }
         
         return null;        
     }
 
-    /**
-     * Collect DataSourceIdentifiers from ODA extensions registry.
-     */
-    private void generateODADataSourceIdentifiers( )
+    private boolean isOdaCategoryItem( TreeItem item, String odaDataSourceId )
     {
-        if( m_dataSourceIDProperties == null )
-            m_dataSourceIDProperties = ManifestExplorer.getInstance()
-                    .getDataSourceIdentifiers( );
+        if( item.getItemCount() == 0 )
+            return false;   // not a category folder item
+        
+        if( item.getData() != null &&
+            item.getData().toString().equals( odaDataSourceId ) )
+            return true;
+        return false;
     }
-
+    
     /**
-     * Check if the specified type of ODA data source has at least
-     * one connection profile instance.
-     * @return
-     * @throws OdaException
+     * Creates and returns a filtered collection of OdaProfileCategoryInfo
+     * on ODA data source extensions found in the extensions registry,
+     * sorted by their category display names.
      */
-    private boolean hasProfileInstance( Object odaDataSourceId ) throws OdaException
+    private SortedSet createODACategoryIdentifiers()
     {
-        Map profiles = getProfileIdentifiers( odaDataSourceId.toString() );
-        if( profiles == null )
-            return false;
+        Properties dsIdentifiers = ManifestExplorer.getInstance()
+                .getDataSourceIdentifiers( );
+        
+        TreeSet sortedSet = new TreeSet();
+        Iterator keyIter = dsIdentifiers.keySet().iterator();
+        while( keyIter.hasNext() )
+        {
+            String odaDataSourceId = keyIter.next().toString();
+            if( m_treeFilter != null && ! m_treeFilter.equals( odaDataSourceId ) )
+                continue;   // skip oda data source type not in filter
+                    
+            // sort the identifiers by their category display name
+           sortedSet.add( 
+                    new OdaProfileCategoryInfo( odaDataSourceId,
+                            dsIdentifiers.getProperty( odaDataSourceId ) ));
+        }
 
-        return ( profiles.keySet().size() > 0 );
+        return sortedSet;
     }
-
-    /**
-     * Retrieve a collection of the connection profile instances for the
-     * given odaDataSourceId in the user-specified profile store path.
-     * @param odaDataSourceId
-     * @return  a <code>Map</code> containing the instance Id
-     *          and display name of all existing profiles of given odaDataSourceId.
-     *          The connection profiles' instance Id and display name
-     *          are stored as the key and value strings in the returned <code>Map</code> instance.
-     *          Returns an empty collection if there are no matching connection profiles found.
-     */
-    private Map getProfileIdentifiers( String odaDataSourceId )
+    
+    private Map getProfileIdentifiersByCategory( String categoryId )
     {
         try
         {
-            return DesignSessionUtil.getProfileIdentifiers( odaDataSourceId,
+            return DesignSessionUtil.getProfileIdentifiersByCategory( categoryId,
                     new Path( getConnProfilePathControlText() ).toFile( ) );
         }
         catch ( OdaException ex )
@@ -644,55 +640,51 @@ class ProfileSelectionPageHelper
 
         return null;
     }
-    
-    private Map getProfileIdentifiersByCategory( String categoryId )
+
+    private TreeItem createOdaRootItem( Tree parent )
     {
-//        try
-//        {
-//            return DesignSessionUtil.getProfileIdentifiersByCategory( categoryId,
-//                    new Path( getConnProfilePathControlText() ).toFile( ) );
-//        }
-//        catch ( OdaException ex )
-//        {
-//            setMessage( Messages.profilePage_error_invalidProfileStorePath, IMessageProvider.ERROR );
-//        }
-
-        return null;
+        TreeItem odaRoot = new TreeItem( parent, TREE_ITEM_STYLE );
+        odaRoot.setText( Messages.profilePage_odaTreeName );
+        return odaRoot;
     }
-
+    
     /**
      * Create child tree items for the given ODA data source category.
-     * @throws OdaException
-     */
-    private void createODATreeItems( TreeItem dsCategory ) throws OdaException
+     */    
+    private TreeItem createCategoryTreeItems( Tree parent, TreeItem parentItem,
+            OdaProfileCategoryInfo categoryInfo ) 
     {
-        Map profileIds = getProfileIdentifiers( dsCategory.getData().toString() );
-        createChildTreeItems( dsCategory, profileIds, TREE_ITEM_STYLE );
-    }
-    
-    private TreeItem createCategoryTreeItems( TreeItem parent, String categoryId, 
-            String odaDataSourceId ) 
-        throws OdaException
-    {
+        String categoryId = categoryInfo.getEffectiveCategoryId();       
         Map profileIds = getProfileIdentifiersByCategory( categoryId );
         // if no profile instances found under given category
         if( profileIds == null || profileIds.isEmpty() )  
             return null;             // done; no need to create a child tree item for category
-
-        // get the category object from the first profile
-        ICategory category = null;
-        String profileInstanceId = profileIds.keySet().iterator().next().toString();
-        IConnectionProfile profile = 
-            OdaProfileExplorer.getInstance().getProfile( profileInstanceId );
-        if( profile != null )
-            category = profile.getCategory();
-       
-        // create a tree item for the specified category
-        TreeItem categoryItem = new TreeItem( parent, TREE_ITEM_STYLE );
-            // the tree view expects a profile instance's parent item data to be an odaDataSourceId
-        categoryItem.setData( odaDataSourceId );
-        categoryItem.setText( ( category != null ) ? category.getName() : categoryId );
         
+        // create a tree item for the specified category
+        
+        // first determine which parent item to use
+        if( categoryInfo.hasOdaParentCategory() )
+        {
+            // if this is under the ODA parent category, put it under an ODA parent item
+            if( parentItem == null )
+                parentItem = createOdaRootItem( parent );
+        }
+        else    // not under an ODA parent category
+        {
+            // create category item directly in tree as a top level item
+            // TODO - handle sub-categories
+            parentItem = null;
+        }
+        
+        TreeItem categoryItem = ( parentItem != null ) ?
+                new TreeItem( parentItem, TREE_ITEM_STYLE ) :
+                new TreeItem( parent, TREE_ITEM_STYLE );
+            
+        // the tree view expects a profile instance's parent item to contain an odaDataSourceId in data
+        categoryItem.setData( categoryInfo.getOdaDataSourceId() );
+        categoryItem.setText( categoryInfo.getDisplayName() );
+        
+        // create children items for each of its profile instances
         createChildTreeItems( categoryItem, profileIds, TREE_ITEM_STYLE );
         
         return categoryItem;
@@ -891,5 +883,132 @@ class ProfileSelectionPageHelper
         String localizedText = m_connectionProfilePath.getText();
         return TextProcessorWrapper.deprocess( localizedText );
     }
+            
+    /**
+     * Internal class that encapsulates related identifier information on 
+     * an ODA connection profile category.  
+     * It provides info for a category item in the connection profile tree viewer,
+     * and can be used for Comparable sorting in a collection.
+     * @since 3.0.6
+     */
+    private class OdaProfileCategoryInfo implements Comparable
+    {
+        private String m_odaDataSourceId;
+        private boolean m_hasOdaParentCategory;
+        private String m_categoryDisplayName;
+        private String m_effectiveCategoryId;
+        
+        OdaProfileCategoryInfo( String id, String profileDisplayName )
+        {
+            m_odaDataSourceId = id;
+
+            ICategory profileCategory = ProfileCategoryUtil.getCategory( m_odaDataSourceId );
+            m_hasOdaParentCategory = ProfileCategoryUtil.hasODAParentCategory( profileCategory );
+
+            // if parent category is not ODA type, use the parent category info
+            boolean useParentCategory = ! m_hasOdaParentCategory;
+            m_categoryDisplayName = 
+                getEffectiveDisplayName( profileCategory, useParentCategory,
+                        profileDisplayName );  
+            m_effectiveCategoryId = 
+                getEffectiveCategoryId( profileCategory, useParentCategory );
+        }
+
+        private String getEffectiveDisplayName( ICategory profileCategory,
+                    boolean useParentCategory, String defaultDisplayName )
+        {
+            if( profileCategory == null )
+                return defaultDisplayName;
+            
+            if( useParentCategory && profileCategory.getParent() != null )
+                profileCategory = profileCategory.getParent();                       
+
+            String displayName = profileCategory.getName();
+                    
+            if( displayName == null || displayName.length() == 0 ||
+                ProfileCategoryUtil.isUnknownCategory( profileCategory ) )
+                displayName = defaultDisplayName;
+
+            return displayName;
+        }
+        
+        private String getEffectiveCategoryId( ICategory profileCategory,
+                    boolean useParentCategory )
+        {
+            String categoryId = null;
+            if( profileCategory != null )
+            {
+                if( useParentCategory && profileCategory.getParent() != null )
+                    profileCategory = profileCategory.getParent();                       
+                categoryId = profileCategory.getId();
+            }
+
+            if( ProfileCategoryUtil.isUnknownCategory( categoryId ) )
+                categoryId = m_odaDataSourceId;      // default is the same as oda data source id  
+                               
+            return categoryId;
+        }
+        
+        String getOdaDataSourceId()
+        {
+            return m_odaDataSourceId;
+        }
+
+        boolean hasOdaParentCategory()
+        {
+            return m_hasOdaParentCategory;
+        }
+
+        String getDisplayName()
+        {
+            return m_categoryDisplayName;
+        }
+
+        String getEffectiveCategoryId()
+        {
+            return m_effectiveCategoryId;
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Comparable#compareTo(java.lang.Object)
+         */
+        public int compareTo( Object obj )
+        {
+            if( !(obj instanceof OdaProfileCategoryInfo) )
+                return -1;
+            return compareTo( (OdaProfileCategoryInfo) obj );
+        }
+        
+        public int compareTo( OdaProfileCategoryInfo anotherId )
+        {
+            // first compare the parent category type
+            if( m_hasOdaParentCategory != anotherId.m_hasOdaParentCategory )
+            {
+                // non ODA parent category is lower in ascending order
+                return ! m_hasOdaParentCategory ? -1 : 1;
+            }
+            
+            // same parent category type, compare its own category name
+            int result = m_categoryDisplayName.compareTo( anotherId.m_categoryDisplayName );
+            if( result != 0 )   // not the same display name
+                return result;
+            // next compare its id
+            return m_odaDataSourceId.compareTo( anotherId.m_odaDataSourceId );    
+        }
+
+        /* (non-Javadoc)
+         * @see java.lang.Object#equals(java.lang.Object)
+         */
+        public boolean equals( Object obj )
+        {
+            if( !(obj instanceof OdaProfileCategoryInfo) )
+                return false;
+            OdaProfileCategoryInfo anotherId = (OdaProfileCategoryInfo) obj;
+            return m_categoryDisplayName.equals( anotherId.m_categoryDisplayName ) &&
+                   m_odaDataSourceId.equals( anotherId.m_odaDataSourceId ) &&
+                   m_hasOdaParentCategory == anotherId.m_hasOdaParentCategory &&
+                   m_effectiveCategoryId.equals( anotherId.m_effectiveCategoryId );
+        }
+    };
 
 }

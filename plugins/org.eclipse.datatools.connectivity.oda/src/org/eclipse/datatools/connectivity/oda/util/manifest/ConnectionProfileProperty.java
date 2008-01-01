@@ -52,8 +52,12 @@ public class ConnectionProfileProperty
         String propDisplayName = getPropertyDisplayName( propertyName );
         String groupDisplayName = getPropertyDisplayName( PROPERTY_GROUP_NAME );
              
-        return new Property( propertyName, propDisplayName, 
+        Property newProp = new Property( propertyName, propDisplayName, 
                              PROPERTY_GROUP_NAME, groupDisplayName );
+        // profile_name value should be handled as a literal string
+        if( propertyName == PROFILE_NAME_PROP_KEY )
+            newProp.setAllowsEmptyValueAsNull( false ); 
+        return newProp;
     }
     
     static private String getPropertyDisplayName( String propertyName )

@@ -325,8 +325,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     }
     
     /**
-     * Returns a collection of identifiers of 
-     * all connection profile instances for
+     * Returns a collection of identifiers of all connection profile instances for
      * the given ODA data source extension type.
      * The profile instances are searched in the given profile storage file.
      * It also caches the matching profiles for subsequent use.
@@ -343,15 +342,37 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * @throws OdaException if error in reading from given storageFile,
      *                      or in processing the found profiles
      */
-    public static Map getProfileIdentifiers( String odaDataSourceId, 
-                                            File storageFile ) 
+    public static Map getProfileIdentifiers( String odaDataSourceId, File storageFile ) 
         throws OdaException
     {
-        if( storageFile == null )
-            return OdaProfileExplorer.getInstance().getProfiles( 
-                    odaDataSourceId );
-        return OdaProfileExplorer.getInstance().getProfiles( 
+        return OdaProfileExplorer.getInstance().getProfileIdentifiersByOdaProviderId( 
                 odaDataSourceId, storageFile );
+    }
+    
+    /**
+     * Returns a collection of identifiers of all connection profile instances under
+     * the specified profile category id.
+     * The profile instances are searched in the given profile storage file.
+     * It also caches the matching profiles for subsequent use.
+     * @param categoryId    the unique id of a connection profile category
+     * @param storageFile   a file that stores profile instances;
+     *                      may be null, which means to use the
+     *                      default DTP profiles storage file
+     * @return  a <code>Map</code> containing the instance Id
+     *          and display name of all existing profiles of the given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are 
+     *          no matching connection profiles found in given storageFile.
+     * @throws OdaException if error in reading from given storageFile,
+     *                      or in processing the found profiles
+     * @since 3.0.6
+     */
+    public static Map getProfileIdentifiersByCategory( String categoryId, File storageFile ) 
+        throws OdaException
+    {
+        return OdaProfileExplorer.getInstance().getProfileIdentifiersByCategory( 
+                categoryId, storageFile );
     }
     
     /**

@@ -34,6 +34,9 @@ public class Messages extends NLS
     public static String common_nullArgument;
     public static String common_missingDataSourceDesign;
     public static String common_createClassFailed;
+    public static String dbProfilePage_defaultPageMessage;
+    public static String dbProfilePage_noCustomPage;
+    public static String dbProfilePage_notInDesignSession;
     public static String extension_mustInheritFromODAPage;
     public static String extension_mustInheritFromODAWizard;
     public static String extension_missingManifestElement;

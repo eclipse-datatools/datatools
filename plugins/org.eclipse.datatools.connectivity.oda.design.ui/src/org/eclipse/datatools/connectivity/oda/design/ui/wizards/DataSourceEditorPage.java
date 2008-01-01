@@ -56,9 +56,9 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
      */
     protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
-        // default implementation does nothing;
+        // adopts default implementation;
         // sub-class may override to update the given data source design
-        return design;
+        return super.collectDataSourceDesign( design );
     }
     
     /* (non-Javadoc)
@@ -125,6 +125,7 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
      */
     protected void enableAllControls( Control parent, boolean enabled )
     {
+        // TODO - Bugzilla 213266, replace with call for page to disable own relevant controls  
         DesignerUtil.enableAllControls( parent, enabled, this.btnPing );
     }
     

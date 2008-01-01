@@ -14,42 +14,34 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
-import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.IJobChangeListener;
 import org.eclipse.datatools.connectivity.ICategory;
-import org.eclipse.datatools.connectivity.IConfigurationType;
-import org.eclipse.datatools.connectivity.IConnectListener;
-import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.IManagedConnection;
-import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.internal.UUID;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
 
 /**
- * Implementation of connection profile for 
- * an ODA data source design.
+ * Implementation of connection profile for an ODA data source design.
  * This is intended for use as a contributing property node to
  * a property dialog, whose node can be adapted 
  * to create a custom ODA Data Source Editor Page.
+ * It might not be associated with a connection profile instance, and would then based its
+ * behavior on its associated data source design.
  */
-public class AdaptableDataSourceProfile extends PlatformObject implements
+public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
         IConnectionProfile
 {
-    /* TODO - complete partial implementation */
     
     private DataSourceDesign m_dataSourceDesign;
-    private IConnectionProfile m_linkedProfile;
     private String m_instanceID;
         
     /**
@@ -63,8 +55,15 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     {
         super();
         m_dataSourceDesign = design;
-        m_linkedProfile = 
+        IConnectionProfile linkedProfile = 
             DesignSessionUtil.getLinkedProfile( design );
+        if( linkedProfile != null )
+            setWrappedProfile( linkedProfile ); // cache the profile referenced in the design
+    }
+    
+    protected AdaptableDataSourceProfile( IConnectionProfile wrappedProfile )
+    {
+        super( wrappedProfile );
     }
     
     protected AdaptableDataSourceProfile()
@@ -89,7 +88,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
      */
     public boolean hasLinkedProfile()
     {
-        return ( m_linkedProfile != null );
+        return ( getWrappedProfile() != null );
     }
     
     /**
@@ -100,7 +99,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
      */
     public IConnectionProfile getLinkedProfile()
     {
-        return m_linkedProfile;
+        return getWrappedProfile();
     }
 
     /* (non-Javadoc)
@@ -109,7 +108,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public String getName()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getName();
+            return super.getName();
         
         return getDataSourceDesign().getName();
     }
@@ -120,7 +119,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public String getDescription()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getDescription();
+            return super.getDescription();
         
         return getDataSourceDesign().getDisplayName();
     }
@@ -131,7 +130,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public boolean isAutoConnect()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().isAutoConnect();
+            return super.isAutoConnect();
         
         return false;
     }
@@ -142,7 +141,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public String getInstanceID()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getInstanceID();
+            return super.getInstanceID();
         
         if( m_instanceID == null ) 
         {
@@ -157,7 +156,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public IConnectionProfile getParentProfile()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getParentProfile();
+            return super.getParentProfile();
         
         return null;
     }
@@ -175,7 +174,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
         if( hasLinkedProfile() )    // maintaining external reference
         {
             // override with linked profile's current properties and values
-            Properties linkedProfileProps = getLinkedProfile().getBaseProperties();
+            Properties linkedProfileProps = super.getBaseProperties();
             if( linkedProfileProps != null )
                 designProps.putAll( linkedProfileProps );
         }
@@ -189,7 +188,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     {
         if( hasLinkedProfile() )
         {
-            getLinkedProfile().setBaseProperties( props );
+            super.setBaseProperties( props );
             return;
         }
 
@@ -219,7 +218,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public Properties getProperties( String type )
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getProperties( type );
+            return super.getProperties( type );
         
         // only this data source type is supported
         return getBaseProperties();
@@ -232,7 +231,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     {
         if( hasLinkedProfile() )
         {
-            getLinkedProfile().setProperties( type, props );
+            super.setProperties( type, props );
             return;
         }
 
@@ -241,40 +240,12 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#setConnected(boolean)
-     */
-    public void setConnected( boolean connected )
-    {
-        if( hasLinkedProfile() )
-        {
-            if( connected ) 
-                getLinkedProfile().connect();
-            else
-                getLinkedProfile().disconnect();
-            return;
-        }
-
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#isConnected()
-     */
-    public boolean isConnected()
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().isConnected();
-        
-        return false;
-    }
-
-    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#connect()
      */
     public IStatus connect()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().connect();
+            return super.connect();
 
         return createNAConnectionStatus();
     }
@@ -285,7 +256,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public IStatus connectWithoutJob()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().connectWithoutJob();
+            return super.connectWithoutJob();
         
         return createNAConnectionStatus();
     }
@@ -297,72 +268,16 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     }
     
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#connect(org.eclipse.core.runtime.jobs.IJobChangeListener)
-     */
-    public void connect( IJobChangeListener listener )
-    {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().connect( listener );
-            return;
-        }
-
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#disconnect()
      */
     public IStatus disconnect()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().disconnect();
+            return super.disconnect();
 
         return ( ! isConnected() ) ?
                     Status.OK_STATUS :
                     createNAConnectionStatus();
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#disconnect(org.eclipse.core.runtime.jobs.IJobChangeListener)
-     */
-    public void disconnect( IJobChangeListener listener )
-    {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().disconnect( listener );
-            return;
-        }
-
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#addConnectListener(org.eclipse.datatools.connectivity.IConnectListener)
-     */
-    public void addConnectListener( IConnectListener listener )
-    {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().addConnectListener( listener );
-            return;
-        }
-
-        // TODO Auto-generated method stub
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#removeConnectListener(org.eclipse.datatools.connectivity.IConnectListener)
-     */
-    public void removeConnectListener( IConnectListener listener )
-    {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().removeConnectListener( listener );
-            return;
-        }
-
-        // TODO Auto-generated method stub
     }
 
     /* (non-Javadoc)
@@ -371,27 +286,10 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public IManagedConnection getManagedConnection( String type )
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getManagedConnection( type );
+            return super.getManagedConnection( type );
 
-        // TODO Auto-generated method stub
         return null;
     }
-
-    public void addPropertySetListener(IPropertySetListener listener) {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().addPropertySetListener( listener );
-            return;
-        }
-	}
-
-	public void removePropertySetListener(IPropertySetListener listener) {
-        if( hasLinkedProfile() )
-        {
-            getLinkedProfile().removePropertySetListener( listener );
-            return;
-        }
-	}
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.IConnectionProfile#getProviderName()
@@ -399,7 +297,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public String getProviderName()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getProviderName();
+            return super.getProviderName();
 
         // same as provider id
         return getDataSourceDesign().getOdaExtensionDataSourceId();
@@ -411,7 +309,7 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public String getProviderId()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getProviderId();
+            return super.getProviderId();
 
         return getDataSourceDesign().getOdaExtensionDataSourceId();
     }
@@ -422,146 +320,11 @@ public class AdaptableDataSourceProfile extends PlatformObject implements
     public ICategory getCategory()
     {
         if( hasLinkedProfile() )
-            return getLinkedProfile().getCategory();
+            return super.getCategory();
 
         // TODO - get IConfigurationElement for oda extension's
         // connection profile category
         return null;
     }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#getConfigurationType()
-     */
-    public IConfigurationType getConfigurationType()
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().getConfigurationType();
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#getProfileExtensions()
-     */
-    public Map getProfileExtensions()
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().getProfileExtensions();
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#createConnection(java.lang.String)
-     */
-    public IConnection createConnection( String factory )
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().createConnection( factory );
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#createConnection(java.lang.String, java.lang.String, java.lang.String)
-     */
-    public IConnection createConnection( String factoryId, String uid,
-            String pwd )
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().createConnection( factoryId, uid, pwd );
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.IConnectionProfile#getProvider()
-     */
-    public IConnectionProfileProvider getProvider()
-    {
-        if( hasLinkedProfile() )
-            return getLinkedProfile().getProvider();
-
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-	public boolean arePropertiesComplete() 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().arePropertiesComplete();
-
-        // TODO Auto-generated method stub
-        return true;
-	}
-
-	public boolean arePropertiesComplete( String type ) 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().arePropertiesComplete(type);
-
-        // TODO Auto-generated method stub
-        return true;
-	}
-
-	public boolean canWorkOffline() 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().canWorkOffline();
-
-		return false;
-	}
-
-	public int getConnectionState() 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().getConnectionState();
-
-		return DISCONNECTED_STATE;
-	}
-
-	public IStatus saveWorkOfflineData() 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().saveWorkOfflineData();
-
-        return createNAConnectionStatus();
-	}
-
-	public void saveWorkOfflineData( IJobChangeListener listener ) 
-	{
-        if( hasLinkedProfile() )
-            getLinkedProfile().saveWorkOfflineData(listener);
-
-		// TODO Auto-generated method stub
-	}
-
-	public boolean supportsWorkOfflineMode() 
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().supportsWorkOfflineMode();
-
-		return false;
-	}
-
-	public IStatus workOffline()
-	{
-        if( hasLinkedProfile() )
-            return getLinkedProfile().workOffline();
-
-		return createNAConnectionStatus();
-	}
-
-	public void workOffline( IJobChangeListener listener ) 
-	{
-        if( hasLinkedProfile() )
-            getLinkedProfile().workOffline(listener);
-
-		// TODO Auto-generated method stub
-	}
 
 }

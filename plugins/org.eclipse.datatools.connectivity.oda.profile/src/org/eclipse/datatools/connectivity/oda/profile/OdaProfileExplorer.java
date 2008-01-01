@@ -15,6 +15,8 @@
 package org.eclipse.datatools.connectivity.oda.profile;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -24,6 +26,9 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
+import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.profile.provider.ProfilePropertyProviderImpl;
 
 /**
  * The ODA Profile Explorer is a singleton class that provides
@@ -35,11 +40,14 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 public class OdaProfileExplorer
 {
     private static OdaProfileExplorer sm_instance = null;
-    
+
     // logging variables
     private static final String sm_className = OdaProfileExplorer.class.getName();
     private static Logger sm_logger;
 
+    private Map m_loadedProfilesByFile;
+    private File m_defaultProfileStoreFile;
+    
     /**
      * Static method to return the singleton instance.
      * @return
@@ -88,6 +96,48 @@ public class OdaProfileExplorer
     protected OdaProfileExplorer()
     {
     }
+    
+    /**
+     * Refresh the profile explorer, which allows it to get
+     * the latest profile instances in a profile storage file.
+     * @since DTP 1.6
+     */
+    public void refresh()
+    {
+        if( m_loadedProfilesByFile == null || m_loadedProfilesByFile.isEmpty() )
+            return;     // done; nothing to reset
+
+        // reset the cached collection of loaded profile instances
+        m_loadedProfilesByFile.clear();
+    }
+
+    private Map getLoadedProfilesMap()
+    {
+        if( m_loadedProfilesByFile == null )
+        {
+            synchronized( this )
+            {
+                if( m_loadedProfilesByFile == null )
+                    m_loadedProfilesByFile = Collections.synchronizedMap( new HashMap() );
+            }
+        }
+        return m_loadedProfilesByFile;
+    }
+    
+    private File defaultProfileStoreFile()
+    {
+        if( m_defaultProfileStoreFile == null )
+        {
+            synchronized( this )
+            {
+                if( m_defaultProfileStoreFile == null )
+                    m_defaultProfileStoreFile = 
+                        ConnectionProfileMgmt.getStorageLocation().append( 
+                            ConnectionProfileMgmt.FILENAME ).toFile();
+            }
+        }
+        return m_defaultProfileStoreFile;
+    }
 
     /**
      * Returns a collection of identifiers of all connection profile 
@@ -96,25 +146,28 @@ public class OdaProfileExplorer
      * profile storage location with default file name.
      * It also caches the matching profiles and saves in the
      * current profile storage file for subsequent use.
-     * @param odaDataSourceId   the unique id of the data source element
-     *                      in an ODA data source extension.
-     * @return  a <code>Map</code> containing the instance Id
-     *          and display name of all existing profiles of given odaDataSourceId.
-     *          The connection profiles' instance Id and display name
-     *          are stored as the key and value strings in the returned <code>Map</code> instance.
-     *          Returns an empty collection if there are 
-     *          no matching connection profiles found in default store.
-     * @throws OdaException if unable to read from default storageFile, 
-     *                      or to cache the found profiles
+     * @deprecated  As of DTP 1.6, replaced by {@link #getProfileIdentifiersByOdaProviderId(String, File)}
      */
     public Map getProfiles( String odaDataSourceId )
         throws OdaException
     {
-        // use the default storage location and default store filename
-        File profileStore = defaultProfileStoreFile();
-        return getProfiles( odaDataSourceId, profileStore );
+        return getProfileIdentifiersByOdaProviderId( odaDataSourceId, null );
     }
 
+    /**
+     * Returns a collection of identifiers of all connection profile 
+     * instances of a given ODA data source extension type.
+     * The profile instances are searched in the given profile storage file.
+     * It also caches the matching profiles and saves in the
+     * current profile storage file for subsequent use.
+     * @deprecated  As of DTP 1.6, replaced by {@link #getProfileIdentifiersByOdaProviderId(String, File)}
+     */
+    public Map getProfiles( String odaDataSourceId, File storageFile ) 
+        throws OdaException
+    {
+        return getProfileIdentifiersByOdaProviderId( odaDataSourceId, storageFile );
+    }
+    
     /**
      * Returns a collection of identifiers of all connection profile 
      * instances of a given ODA data source extension type.
@@ -133,35 +186,77 @@ public class OdaProfileExplorer
      *          no matching connection profiles found in specified store.
      * @throws OdaException if unable to read from given storageFile,
      *                      or to cache the found profiles
+     * @since DTP 1.6
      */
-    public Map getProfiles( String odaDataSourceId, File storageFile ) 
+    public Map getProfileIdentifiersByOdaProviderId( String odaDataSourceId, File storageFile ) 
         throws OdaException
     {
-        // first load all profiles found in given storage file
-        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
+        return getProfileIdentifiersByCategoryOrProviderid( null, odaDataSourceId, storageFile );
+    }
+
+    /**
+     * Returns a collection of identifiers of all connection profile 
+     * instances under the specified profile category id.
+     * The profile instances are searched in the given profile storage file.
+     * It also caches the matching profiles and saves in the
+     * current profile storage file for subsequent use.
+     * @param categoryId    the unique id of a connection profile category
+     * @param storageFile   a file that stores profile instances; may be null, which 
+     *                      will use the default store of the Connectivity plugin
+     * @return  a <code>Map</code> containing the instance Id
+     *          and display name of all existing profiles of given odaDataSourceId.
+     *          The connection profiles' instance Id and display name
+     *          are stored as the key and value strings in the returned <code>Map</code> instance.
+     *          Returns an empty collection if there are 
+     *          no matching connection profiles found in specified store.
+     * @throws OdaException if unable to read from given storageFile,
+     *                      or to cache the found profiles
+     * @since DTP 1.6
+     */
+    public Map getProfileIdentifiersByCategory( String categoryId, File storageFile ) 
+        throws OdaException
+    {
+        return getProfileIdentifiersByCategoryOrProviderid( categoryId, null, storageFile );
+    }
+    
+    private Map getProfileIdentifiersByCategoryOrProviderid( String categoryId, String odaDataSourceId, 
+                    File storageFile ) 
+        throws OdaException
+    {
+        // first get all profiles found in given storage file, load the file if necessary
+        IConnectionProfile[] profilesInFile = getLoadedProfiles( storageFile );
+        final boolean isNotCached = ( profilesInFile == null );
+        if( isNotCached )
+            profilesInFile = loadProfiles( storageFile );
 
         // return those profile ids that match given oda data source type,
         // and add them in the ProfileManager's profiles cache
         Properties profileIds = new Properties();
         for( int i = 0; i < profilesInFile.length; i++ ) 
         {
-            // ODA profiles use the odaDataSourceId as its profile identifier
-            if( ! profilesInFile[i].getProviderId().equals( odaDataSourceId ) )
-                continue;   // not a match
-            
-            // found a profile for the given type of odaDataSourceId
+            IConnectionProfile aProfile = profilesInFile[i];            
 
-            IConnectionProfile matchedProfile = profilesInFile[i];
+            // check that the profile is under the specified category
+            if( categoryId != null )
+            {
+                if( ! aProfile.getCategory().getId().equals( categoryId ) )
+                    continue;   // not a match
+            }
+            else if( odaDataSourceId != null )  // find a match by odaDataSourceId instead
+            {
+                // ODA profiles use the odaDataSourceId as its profile identifier
+                if( ! aProfile.getProviderId().equals( odaDataSourceId ) )
+                    continue;   // not a match
+            }
+            else
+                continue;
             
-            String profileDisplayName = matchedProfile.getDescription();
-            if( profileDisplayName == null || profileDisplayName.length() == 0 )
-                profileDisplayName = matchedProfile.getName();
-            
-            profileIds.setProperty( matchedProfile.getInstanceID(), 
-                                    profileDisplayName );
-            
-            // adds matched profile to ProfileManager's profiles cache
-            addProfileToCache( matchedProfile );
+            // found a profile for the specified category or odaDataSourceId,
+            // adds matched profile to the identifiers Map and to ProfileManager's profiles cache
+
+            addProfileIdentifier( aProfile, profileIds );
+            if( isNotCached )
+                addToProfileManagerCache( aProfile );
         }
         
         return profileIds;
@@ -183,7 +278,12 @@ public class OdaProfileExplorer
             storageFile = defaultProfileStoreFile();
         }
         
-        IConnectionProfile[] profilesInFile;
+        // first check if specified storage file is already loaded and cached in collection
+        IConnectionProfile[] profilesInFile = getLoadedProfiles( storageFile );
+        if( profilesInFile != null )
+            return profilesInFile;
+        
+        // no cached profiles for storage file; load the storage file
         try
         {
             profilesInFile = ConnectionProfileMgmt.loadCPs( storageFile );
@@ -192,13 +292,63 @@ public class OdaProfileExplorer
         {
             throw new OdaException( ex );
         }
-        return profilesInFile;
+        
+        // save it in the cached collection in a synchronized manner
+        return addToCacheByFile( storageFile, profilesInFile );
+    }
+    
+    /**
+     * Add the specified profile instances loaded from the specified storage file,
+     * to the synchronized collection in cache.
+     * This call expects the profiles are first loaded, to minimize the locking on 
+     * the cached collection.
+     * @param storageFile   the storage file object that serves as the mapping key
+     * @param profilesInFile
+     * @return  the cached profile instances in the specified file
+     */
+    private IConnectionProfile[] addToCacheByFile( File storageFile, IConnectionProfile[] profilesInFile )
+    {
+        IConnectionProfile[] cachedProfiles;
+        Map loadedProfilesMap = getLoadedProfilesMap();
+        synchronized( loadedProfilesMap )
+        {
+            // in case another thread has added to the same key in between this checking, use
+            // the currently cached value
+            cachedProfiles = (IConnectionProfile[]) loadedProfilesMap.get( storageFile );
+            if( cachedProfiles == null )
+            {                                   
+                // save the specified profiles in cached collection
+                cachedProfiles = profilesInFile;
+                loadedProfilesMap.put( storageFile, cachedProfiles );
+            }
+        }
+        return cachedProfiles;
+    }
+
+    private IConnectionProfile[] getLoadedProfiles( File storageFile ) 
+    {
+        return (IConnectionProfile[]) getLoadedProfilesMap().get( storageFile );
+    }
+
+    /*
+     * Adds given profile instance's identifier to the given collection.
+     */
+    private void addProfileIdentifier( IConnectionProfile profile, Properties profileIds )
+    {
+        assert( profile != null && profileIds != null );
+        String profileDisplayName = profile.getDescription();
+        if( profileDisplayName == null || profileDisplayName.length() == 0 )
+            profileDisplayName = profile.getName();
+        
+        profileIds.setProperty( profile.getInstanceID(), 
+                                profileDisplayName );
     }
     
     /*
-     * Adds given profile to ProfileManager's profiles cache
+     * Adds given profile to ProfileManager's profiles cache, so that it can find
+     * the profile by its instance id.
      */
-    private void addProfileToCache( IConnectionProfile profile )
+    private void addToProfileManagerCache( IConnectionProfile profile )
         throws OdaException
     {
         try
@@ -239,7 +389,7 @@ public class OdaProfileExplorer
             ProfileManager.getInstance().getProfileByInstanceID( profileInstanceId );
         if( profile == null )
             throw new IllegalArgumentException( profileInstanceId );
-        return profile;
+        return createOdaWrapper( profile );
     }
     
     /**
@@ -253,21 +403,53 @@ public class OdaProfileExplorer
                                                 File storageFile )
         throws OdaException
     {
-        // first load all profiles found in given storage file
+        // first load all profiles found in given storage file, if necessary
         IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
 
         for( int i = 0; i < profilesInFile.length; i++ ) 
         {
-            if( profilesInFile[i].getName().equals( profileName ) )
-                return profilesInFile[i];   // a match
+            if( matchesProfileName( profilesInFile[i].getName(), profileName ) )
+                return createOdaWrapper( profilesInFile[i] );   // a match
         }
         return null;    // no match is found
     }
 
-    File defaultProfileStoreFile()
+    private boolean matchesProfileName( String profileName, String nameToMatch )
     {
-        return ConnectionProfileMgmt.getStorageLocation().append( 
-                    ConnectionProfileMgmt.FILENAME ).toFile();
+        return profileName.equals( nameToMatch );
+    }
+    
+    /**
+     * Find and returns the connection profile instance whose name is specified 
+     * in the specified connection properties.
+     * The profile store file object may be provided in the given context,
+     * or its file path is specified in the connection properties.
+     * @param dataSourceDesignProps connection properties specified in a data source design
+     * @param appContext      an application context Map passed thru to a connection,
+     *                        and which contains 
+     *                        the IPropertyProvider.ODA_CONN_PROP_CONTEXT key
+     *                        and a corresponding connection property context object as value.
+     *                        Optional; may be null.
+     * @return  the matching profile instance, or null if not found
+     * @since DTP 1.6
+     */
+    public IConnectionProfile getProfileByName( 
+            Properties dataSourceDesignProps, Object appContext )
+    {
+        Object connPropContext = null;
+        if( appContext != null && appContext instanceof Map )
+        {
+            connPropContext = ( (Map) appContext ).get( IPropertyProvider.ODA_CONN_PROP_CONTEXT );
+        }
+        
+        ProfilePropertyProviderImpl profileProvider = new ProfilePropertyProviderImpl();
+        return createOdaWrapper( 
+                profileProvider.getConnectionProfile( dataSourceDesignProps, connPropContext ));       
     }
 
+    private OdaConnectionProfile createOdaWrapper( IConnectionProfile wrappedProfile )
+    {
+        return new OdaConnectionProfile( wrappedProfile ) ;
+    }
+    
 }

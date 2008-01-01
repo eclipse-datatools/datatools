@@ -53,20 +53,48 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private static final String sm_className = DataSourceEditorPageCore.class.getName();
 
     /**
-     * Sub-class may override this method to further update
+     * Sub-class may override or extend this method to further update
      * the given data source design, as needed.
+     * The default behavior saves the page's edited properties 
+     * in the specified design, based on the data source property 
+     * definitions specified in the ODA extension's manifest.
      * <br>Examples of custom data source design updates include 
      * setting its private properties, and
      * dynamically define a property's design attributes  
      * per design instance.
      * <br>This method is called when performing finish on a
      * data source editing session.
-     * @param design    a data source design instance for further updates
+     * @param design    a data source design instance being updated
      * @return  the updated data source design instance
      */
-    protected abstract DataSourceDesign collectDataSourceDesign( 
-                                    DataSourceDesign design );
+    protected DataSourceDesign collectDataSourceDesign( 
+                                    DataSourceDesign design )
+    {
+        Properties propertyValuePairs = collectProperties();
 
+        // save the page's properties in the design
+        try
+        {
+            design.setPublicProperties(
+                    DesignSessionUtil.createDataSourcePublicProperties( 
+                            design.getOdaExtensionDataSourceId(),
+                            propertyValuePairs ));
+            design.setPrivateProperties( 
+                    DesignSessionUtil.createDataSourceNonPublicProperties( 
+                            design.getOdaExtensionDataSourceId(),
+                            propertyValuePairs ));
+        }
+        catch( OdaException ex )
+        {
+            // log warning about exception
+            DesignerLogger logger = DesignerLogger.getInstance();
+            logger.warning( sm_className, "collectDataSourceDesign( DataSourceDesign )",  //$NON-NLS-1$
+                    "Caught exception while converting property name-value pairs to data source design properties.", ex ); //$NON-NLS-1$
+        }
+        
+        return design;
+    }
+    
     /**
      * Cleans up before the page is disposed.
      * Default implementation does nothing.  Sub-class
@@ -208,6 +236,11 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         m_designSession = requestSession;   
     }
 
+    protected OdaDesignSession getDesignSession()
+    {
+        return m_designSession;
+    }
+    
     /**
      * Indicates whether the editor page is in the midst
      * of a design session to edit a data source definition.
@@ -415,21 +448,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // gets a copy of the data source design, and updates
         // with the property values collected by
         // this editor page
-        DataSourceDesign editedDesign = getEditingDataSource();
-        Properties propertyValuePairs = collectProperties();
-        
-        editedDesign.setPublicProperties(
-                DesignSessionUtil.createDataSourcePublicProperties( 
-                        editedDesign.getOdaExtensionDataSourceId(),
-                        propertyValuePairs ));
-        editedDesign.setPrivateProperties( 
-                DesignSessionUtil.createDataSourceNonPublicProperties( 
-                        editedDesign.getOdaExtensionDataSourceId(),
-                        propertyValuePairs ));
-
-        // calls abstract method provided by custom extension
-        // to further specify its data source design
-        return collectDataSourceDesign( editedDesign );
+        return collectDataSourceDesign( getEditingDataSource() );
     }
     
     /**

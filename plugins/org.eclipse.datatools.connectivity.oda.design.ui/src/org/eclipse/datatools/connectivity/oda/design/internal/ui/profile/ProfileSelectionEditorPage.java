@@ -146,6 +146,8 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
      */
     protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
+        super.collectDataSourceDesign( design );
+        
         // adds attributes of linked profile, if specified,
         // to the data source design; 
         // ignores any data source design name change
