@@ -16,6 +16,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.execute.ParameterMarkers;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.BaseExecuteAction;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -23,6 +24,7 @@ import org.eclipse.ui.PlatformUI;
 public class ExecuteAction extends BaseExecuteAction {
 
 	SQLBuilder _sqlBuilder;
+	String _sSQL;
 	
     /**
      * Creates an instance of this class.  This is the default constructor.
@@ -64,6 +66,24 @@ public class ExecuteAction extends BaseExecuteAction {
 
 
 	public String getSQLStatements() {
+        return _sSQL;
+	}
+
+	private boolean substituteParameters(QueryStatement stmt) {
+        ParameterMarkers pm = new ParameterMarkers(stmt);
+        _sSQL = pm.substituteParameters();
+        return pm.getContinueExecution();
+	}
+
+	public void update() {
+		setEnabled(_sqlBuilder.getDomainModel().isConnected());
+	}
+	
+    public void run()
+    {
+    	// Reset _sSQL before we start
+    	_sSQL = null;
+    	
         //Begin - to enforce parse before Execute
         boolean currentTextModified = _sqlBuilder.getSourceViewer().isTextChanged();
         _sqlBuilder.getSourceViewer().setTextChanged(true);
@@ -72,26 +92,16 @@ public class ExecuteAction extends BaseExecuteAction {
         _sqlBuilder.getSourceViewer().setTextChanged(currentTextModified);
         //End - to enforce parse before Execute
 
-        // execute the query and send results to the Output View
         SQLDomainModel domainModel = _sqlBuilder.getDomainModel();
-        if (domainModel != null) {
-            QueryStatement stmt = domainModel.getSQLStatement();
-            return stmt.getSQL();
+        QueryStatement stmt = domainModel.getSQLStatement();
+        
+        // Substitute parameter markers if there are any
+        boolean continueExecution = substituteParameters(stmt);
+        if (continueExecution) {
+        	super.run();
+        	_sqlBuilder.notifySQLExecuted();
         }
-        else {
-        	return null;
-        }
-	}
-
-
-	public void update() {
-		setEnabled(_sqlBuilder.getDomainModel().isConnected());
-	}
-	
-    public void run()
-    {
-    	super.run();
-    	_sqlBuilder.notifySQLExecuted();
     }
 
 }
+
