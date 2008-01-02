@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.Path;
 public class SaveDDLUtility
 {
     
-    private static final String DDL_FILE_EXTENSION = "ddl"; //$NON-NLS-1$
+    private static final String DDL_FILE_EXTENSION = "sql"; //$NON-NLS-1$
     
 	/** @modelguid {29599313-A7BB-48EC-B7A3-1E87ED6ABD2E} */
 	private final static SaveDDLUtility save = new SaveDDLUtility ();

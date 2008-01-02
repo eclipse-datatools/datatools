@@ -233,7 +233,7 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		return ProfileManager.getInstance().getProfiles(false);
 	}
 
-	private void initializeValues() {
+	protected void initializeValues() {
 		existingConnectionsList.getTree().removeAll();
 		IConnectionProfile[] connectionProfiles = getConnectionsToDisplay();
 		if (connectionProfiles != null) {
