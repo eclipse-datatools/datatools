@@ -4,7 +4,6 @@
 
    <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>
    <extension-point id="actionExtensions" name="SQL Editor Action Extensions" schema="schema/actionExtensions.exsd"/>
-
     
     <extension
          point="org.eclipse.core.runtime.preferences">
@@ -21,7 +20,7 @@
             name="%sqlEditorName"
             icon="icons/sql_editor.gif"
             class="org.eclipse.datatools.sqltools.sqleditor.SQLEditor"
-			contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor">
+            contributorClass="org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorActionContributor">
       </editor>
    </extension>
 
@@ -131,6 +130,10 @@
             name="%DatabaseManagement.command.execute.select"
             id="org.eclipse.datatools.sqltools.sqleditor.ExecuteSelectionAction"/>
       <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.dmldialog.select"
+            id="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"/>
+      <command
             categoryId="org.eclipse.ui.category.edit"
             name="%DatabaseManagement.ToggleComment"
             id="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"/>
@@ -157,6 +160,11 @@
       <key
             commandId="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"
             sequence="M1+/"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"
+            sequence="M3+Q"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>

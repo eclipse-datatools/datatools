@@ -83,6 +83,11 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
 	public static final String EXECUTE_SELECTION_SQL_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".ExecuteSelectionAction";
 
     /**
+     * Context menu id for selected sql edit in DMLDIALOG action.
+     */
+	public static final String DMLDIALOG_SELECTION_SQL_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".DMLDialogSelectionAction";
+
+    /**
      * Context menu id for show information action.
      */
 	public static final String SHOW_INFORMATION_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".show.sql.info"; //$NON-NLS-1$

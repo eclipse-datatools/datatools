@@ -49,6 +49,7 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SymbolInserter;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.AddTemplateAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DMLDialogSelectionSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ToggleCommentAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContentOutlinePage;
@@ -586,6 +587,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         markAsSelectionDependentAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
 
+        setAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, new DMLDialogSelectionSQLAction(this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, true);
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, getAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID));
+
         setAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, new AddTemplateAction(getResourceBundle(),
 				"AddTemplateAction.", this)); //$NON-NLS-1$
         markAsSelectionDependentAction(ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID, true);
@@ -978,6 +983,9 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         }
 
         addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
+
+        // Edit SQL in DMLdialog
+       	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID);
 
         Collection extensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
         if (extensions != null)

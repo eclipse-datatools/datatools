@@ -34,9 +34,8 @@
     </extension>
     
     <!-- This extension point should not be contributed to by any other plugins -->
-   <extension-point id="SQLBuilderUIComponentService" name="SQLBuilder UIComponentService"/>
    <extension
-         point="org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderUIComponentService">
+         point="org.eclipse.datatools.sqltools.editor.core.SQLBuilderUIComponentService">
          <service
          	name="%SQLEditor.SQLBuilderName"
          	class="org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog.SQLBuilderUIComponentService"/>
