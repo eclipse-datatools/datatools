@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog;
 
+import java.util.HashMap;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
@@ -26,6 +29,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStatementInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -62,9 +66,10 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	ResultsViewControl _resultsViewControl;
 	
 	
-    public SQLBuilderDialog(Shell parentShell, String statementType, String statement, String profileName, String database, String parametersType, String parameter)
+    public SQLBuilderDialog(Shell parentShell, String statementType, String statement, String profileName, String database,
+    		String parametersType, String parameter, String table, HashMap info)
     {
-        super(parentShell, statementType, statement, profileName, database, parametersType, parameter, null, null);
+        super(parentShell, statementType, statement, profileName, database, parametersType, parameter, table, info);
         setShellStyle(SWT.RESIZE | SWT.TITLE | SWT.CLOSE | SWT.BORDER
 				| SWT.APPLICATION_MODAL);
 
@@ -86,9 +91,24 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		}
 		
 		try {
-			// TODO Get omitSchemaInfo from file
-			IOmitSchemaInfo omitSchemaInfo = new OmitSchemaInfo(); //SQLFileUtil.getOmitSchemaInfo(file);
-			omitSchemaInfo.initFromPreferences();
+			// Get file from info param 
+			_file = null;
+			if (_info != null && (!_info.isEmpty())){
+				Object value = _info.get(UIComponentService.KEY_FILE);
+				if (value instanceof IFile){
+					_file = (IFile) value;
+				}
+			}
+			// Get omitSchemaInfo from file if available
+			IOmitSchemaInfo omitSchemaInfo;
+			if (_file != null){
+				omitSchemaInfo = SQLFileUtil.getOmitSchemaInfo(_file);
+			}
+			else
+			{
+				omitSchemaInfo = new OmitSchemaInfo();
+				omitSchemaInfo.initFromPreferences();
+			}
 			
 			SQLBuilderEditorInput input = new SQLBuilderEditorInput(_connectionInfo, new SQLStatementInfo(_statement), omitSchemaInfo);
 			_sqlBuilder.setInput(input);
@@ -218,7 +238,9 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 */
 	protected void buttonPressed(int buttonId) {
 		if (buttonId == IDialogConstants.OK_ID) {
-			_sqlBuilder.saveOmitSchemaInfo();
+			if (_file != null){
+				_sqlBuilder.saveOmitSchemaInfo(_file);
+			}
 			setReturnCode(Dialog.OK);
 			close();
 		} else if (buttonId == IDialogConstants.CANCEL_ID) {

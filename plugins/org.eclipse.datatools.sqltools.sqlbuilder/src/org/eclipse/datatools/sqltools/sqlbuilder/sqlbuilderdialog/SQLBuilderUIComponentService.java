@@ -13,7 +13,7 @@ public class SQLBuilderUIComponentService extends UIComponentService {
 			String parametersType, String parameter, String table, HashMap info)
 	{
 		return new SQLBuilderDialog(parentShell, statementType, statement, profileName,
-				database, parametersType, parameter);
+				database, parametersType, parameter, table, info);
 	}
 	
 	public boolean supportsDMLDialog()

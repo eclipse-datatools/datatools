@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.internal.actions;
 
+import java.util.HashMap;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
@@ -70,12 +72,16 @@ public class DMLDialogSelectionSQLAction extends Action  implements ISelectionCh
     	UIComponentService componentService = conf.getUIComponentService();
 		if (componentService.supportsDMLDialog())
     	{
+			HashMap map = new HashMap();
+			if (getFile() != null){
+				map.put(UIComponentService.KEY_FILE, getFile());
+			}
 			SQLPainterDlg dlg = componentService.getDMLDialog(
 					_sqlEditor.getSite().getShell(),
 					null, 
 					getSQLStatements(),
 					_sqlEditor.getConnectionInfo().getConnectionProfileName(),
-					null, null, null, null, null);
+					null, null, null, null, map);
     	
 			String sql = dlg.load();
 			if (sql != null){

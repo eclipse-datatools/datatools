@@ -482,6 +482,15 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 	
 	/**
+	 * Saves the current OmitSchemaInfo for _iFlie
+	 */
+	public void saveOmitSchemaInfo(IFile file){
+		if (file != null){
+			SQLFileUtil.setEncodedOmitSchemaInfo(file, this.getOmitSchemaInfo().encode());
+		}
+	}
+	
+	/**
 	 * Creates the Source Viewer
 	 */
 	protected void createSourceViewer(Composite client) {
