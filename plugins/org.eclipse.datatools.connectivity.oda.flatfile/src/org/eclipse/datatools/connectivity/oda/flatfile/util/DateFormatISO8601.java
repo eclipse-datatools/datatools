@@ -55,16 +55,9 @@ public class DateFormatISO8601
 			{
 			}
 		}
-		// for the String can not be parsed, throws an Exception
-		if ( resultDate == null )
-		{
-			throw new ParseException( 
-			        NLS.bind( Messages.getString( "dateFormatISO_cannotConvert" ), source ), //$NON-NLS-1$
-					0 );
-		}
-
-		// never access here
-		return resultDate;
+		throw new ParseException( 
+		        NLS.bind( Messages.getString( "dateFormatISO_cannotConvert" ), source ), //$NON-NLS-1$
+				0 );		
 	}
 	
 	/**
