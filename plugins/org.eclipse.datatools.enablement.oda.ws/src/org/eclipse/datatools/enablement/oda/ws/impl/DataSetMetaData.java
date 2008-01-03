@@ -20,14 +20,8 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 
 /**
- * Implementation class of IDataSetMetaData for an ODA runtime driver.
- * <br>
- * For demo purpose, the auto-generated method stubs have
- * hard-coded implementation that assume this custom ODA data set
- * is capable of handling a query that returns a single result set and 
- * accepts scalar input parameters by index.
- * A custom ODA driver is expected to implement own data set specific
- * behavior in its place. 
+ * This class implements the org.eclipse.datatools.connectivity.oda.IDataSetMetaData
+ * interface.
  */
 public class DataSetMetaData implements IDataSetMetaData
 {
