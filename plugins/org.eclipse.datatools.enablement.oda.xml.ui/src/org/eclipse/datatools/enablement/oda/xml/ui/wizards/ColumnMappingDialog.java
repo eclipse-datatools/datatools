@@ -429,7 +429,9 @@ public class ColumnMappingDialog extends TrayDialog
 	private void setButtonsEnabled( boolean enabled )
 	{
 		absolutePathButton.setEnabled( enabled );
+		absoluteLabel.setEnabled( enabled );
 		anyLocationButton.setEnabled( enabled );
+		anyLocationLabel.setEnabled( enabled );
 	}
 
 	/**

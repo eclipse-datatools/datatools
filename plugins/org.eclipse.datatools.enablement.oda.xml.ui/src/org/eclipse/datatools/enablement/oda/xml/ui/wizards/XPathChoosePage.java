@@ -734,7 +734,6 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private boolean isValid( )
 	{
-		rootPath = xmlPathField.getText( );
 		if ( !isRootPathValid( ) )
 		{
 			this.setMessage( Messages.getFormattedString( "error.invalidXpath",
