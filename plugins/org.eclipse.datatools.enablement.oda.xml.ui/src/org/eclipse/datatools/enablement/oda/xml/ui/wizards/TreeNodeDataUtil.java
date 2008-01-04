@@ -1,6 +1,8 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
+import java.net.URL;
+
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -25,14 +27,14 @@ public class TreeNodeDataUtil
 		{
 			ImageRegistry reg = JFaceResources.getImageRegistry( );
 			reg.put( SOURCE_FILE_ICON,
-					ImageDescriptor.createFromFile( UiPlugin.class,
-							"icons/XML_file.gif" ) );//$NON-NLS-1$
+					ImageDescriptor.createFromURL( new URL(UiPlugin.getDefault().getBundle().getEntry("/"),
+							"icons/XML_file.gif" )) );//$NON-NLS-1$
 			reg.put( XML_ELEMENT_ICON,
-					ImageDescriptor.createFromFile( UiPlugin.class,
-							"icons/XML_element.gif" ) );//$NON-NLS-1$
+					ImageDescriptor.createFromURL( new URL(UiPlugin.getDefault().getBundle().getEntry("/"),
+							"icons/XML_element.gif" )) );//$NON-NLS-1$
 			reg.put( COLUMN_ICON,
-					ImageDescriptor.createFromFile( UiPlugin.class,
-							"icons/XML_column.gif" ) );//$NON-NLS-1$
+					ImageDescriptor.createFromURL( new URL(UiPlugin.getDefault().getBundle().getEntry("/"),
+							"icons/XML_column.gif" )) );//$NON-NLS-1$
 			sourceFileImage = JFaceResources.getImage( SOURCE_FILE_ICON );
 			xmlElementImage = JFaceResources.getImage( XML_ELEMENT_ICON );
 			columnImage = JFaceResources.getImage( COLUMN_ICON );

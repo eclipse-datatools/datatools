@@ -48,11 +48,11 @@ final class TreePopulationUtil
 			TreeNodeData treeNode = new TreeNodeData( aTreeNode );
 			if( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE )
 			{
-				if ( aTreeNode.getParent( ).getValue( ).equals( "ROOT" ) )
+				if ( aTreeNode.getParent() != null && "ROOT".equals( aTreeNode.getParent( ).getValue( )) )
 				{
 					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
 				}
-				else if ( aTreeNode.getChildren( ).length == 0 )
+				else if ( aTreeNode.getChildren() == null || aTreeNode.getChildren( ).length == 0 )
 				{
 					treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
 				}
