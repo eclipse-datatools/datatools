@@ -43,7 +43,8 @@ public class FileBasedRepository extends ConnectionProfileRepositoryBase {
 
 	public void save() {
 		try {
-			ConnectionProfileMgmt.saveCPs(getProfiles(),getRepositoryFile(),null);
+			if (getRepositoryFile().canWrite())
+				ConnectionProfileMgmt.saveCPs(getProfiles(),getRepositoryFile(),null);
 		}
 		catch (CoreException e) {
 			ConnectivityPlugin.getDefault().log(e.getStatus());

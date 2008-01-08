@@ -187,6 +187,9 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 
 	public void addProfileExtension(IConfigurationElement element) {
 		ProfileExtensionProvider pe = new ProfileExtensionProvider(element);
+		if ( mProfileExtensions == Collections.EMPTY_MAP ) {
+	        mProfileExtensions = new HashMap();
+		}
 		Assert.isTrue(!mProfileExtensions.containsKey(pe.getId()),
 				ConnectivityPlugin.getDefault().getResourceString(
 						"assert.invalid.profile", new Object[] { element //$NON-NLS-1$
@@ -199,14 +202,31 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	}
 
 	public void addConnectionFactory(IConnectionFactoryProvider icfap) {
-	    if( ! mConnectionFactories.containsKey(icfap.getId()) )
+		if (mConnectionFactories == Collections.EMPTY_MAP) {
+            mConnectionFactories = new HashMap();
+		}
+	    if( icfap != null && icfap.getId() != null && 
+	    		! mConnectionFactories.containsKey(icfap.getId()) )
 	        mConnectionFactories.put(icfap.getId(), icfap);
-	    else   // connection factory id already added
-            // log and ignore repeated use of same factory
-            ConnectivityPlugin.getDefault().log( 
-				ConnectivityPlugin.getDefault().getResourceString(
-						"assert.invalid.profile.duplicateFactory", //$NON-NLS-1$
-						new Object[] { icfap.getId() } ));
+	    else {  
+	    	
+	    	// for some reason, incoming factory ID is null
+	    	if (icfap == null || icfap.getId() == null) {
+	    		// log and ignore null factory
+	    		ConnectivityPlugin.getDefault().log( 
+	    				ConnectivityPlugin.getDefault().getResourceString(
+	    						"assert.invalid.profile.nullFactory", //$NON-NLS-1$
+	    						new Object[] { icfap.getName(), icfap.getId() } ));
+	    	}
+	    	// connection factory id already added
+	    	else if (mConnectionFactories.containsKey(icfap.getId())) {
+	    		// log and ignore repeated use of same factory
+	    		ConnectivityPlugin.getDefault().log( 
+	    				ConnectivityPlugin.getDefault().getResourceString(
+	    						"assert.invalid.profile.duplicateFactory", //$NON-NLS-1$
+	    						new Object[] { icfap.getId() } ));
+	    	}
+	    }
 	}
 
 	public IPropertiesPersistenceHook getPropertiesPersistenceHook() {

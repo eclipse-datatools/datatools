@@ -346,12 +346,14 @@ public class ConnectionProfileMgmt {
 			if (hasDriverReference && driverID != null ) {
 				Element driverElem = document.createElement(DRIVERREFTAG);
 				DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
-				String driverName = di.getName();
-				if (di.getTemplate() != null) {
-					String driverType = di.getTemplate().getId();
-					appendPropertyToElement ( document, driverElem, DRIVERNAMEATTR, driverName );
-					appendPropertyToElement ( document, driverElem, DRIVERTYPEIDATTR, driverType );
-					child.appendChild(driverElem);
+				if (di != null) {
+					String driverName = di.getName();
+					if (di.getTemplate() != null) {
+						String driverType = di.getTemplate().getId();
+						appendPropertyToElement ( document, driverElem, DRIVERNAMEATTR, driverName );
+						appendPropertyToElement ( document, driverElem, DRIVERTYPEIDATTR, driverType );
+						child.appendChild(driverElem);
+					}
 				}
 			}
 			rootElement.appendChild(child);
@@ -593,10 +595,23 @@ public class ConnectionProfileMgmt {
 					}
 					else {
 						DriverInstance di = DriverManager.getInstance().createNewDriverInstance(driverTypeID, driverName, new String());
-						String driverID = di.getId();
-						
-						cp.getBaseProperties().setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, driverID);
-						updatedIDs = true;
+						if (di != null) {
+							String driverID = di.getId();
+							cp.getBaseProperties().setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, driverID);
+							updatedIDs = true;
+						}
+						else {
+							if (ConnectionProfileManager.DEBUG_CONNECTION_PROFILE_EXTENSION) {
+								String message = ConnectivityPlugin
+									.getDefault()
+									.getResourceString(
+										"trace.error.drivermigration", //$NON-NLS-1$
+										new Object[] {
+												cp.getName(), driverTypeID});
+								System.err.println(message);
+								ConnectivityPlugin.getDefault().log(message);
+							}
+						}
 					}
 					continue;
 				}
