@@ -402,7 +402,9 @@ public class XPathChoosePage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				if ( absolutePathButton.getSelection( ) )
+				if ( absolutePathButton.getSelection( )
+						&& ( xpathList != null && xpathList.size( ) > 0 ) )
+
 				{
 					rootPath = xpathList.get( 0 ).toString( );
 					xmlPathField.setVisible( false );
@@ -413,7 +415,8 @@ public class XPathChoosePage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				if ( anyLocationButton.getSelection( ) )
+				if ( anyLocationButton.getSelection( )
+						&& ( xpathList != null && xpathList.size( ) > 1 ) )
 				{
 					rootPath = xpathList.get( 1 ).toString( );
 					xmlPathField.setVisible( false );
@@ -558,12 +561,10 @@ public class XPathChoosePage extends DataSetWizardPage
 						xmlFileName,
 						xmlEncoding,
 						numberOfElement );
-				if ( treeNode == null || treeNode.getChildren( ).length == 0 )
+				if ( treeNode == null
+						|| treeNode.getChildren( ) == null
+						|| treeNode.getChildren( ).length == 0 )
 				{
-					if( treeNode.getValue( ).equals( "ROOT" ) )
-					{
-						initRootPath = (String)( (ATreeNode)treeNode.getChildren( )[0] ).getValue( );
-					}
 					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );
 					ExceptionHandler.showException( getShell( ),
 							Messages.getString( "error.label" ),

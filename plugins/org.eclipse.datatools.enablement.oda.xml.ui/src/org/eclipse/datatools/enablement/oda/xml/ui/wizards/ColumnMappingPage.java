@@ -523,7 +523,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		try
 		{
 			if ( aTreeNode.getType( ) == ATreeNode.ATTRIBUTE_TYPE
-					|| ( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE && aTreeNode.getChildren( ).length == 0 ) )
+					|| ( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE && ( aTreeNode.getChildren( ) == null || aTreeNode.getChildren( ).length == 0 ) ) )
 			{
 				String pathStr = createXPath( treeItem );
 				updateColumnMappingElement( createSingleElement( aTreeNode,
@@ -532,9 +532,13 @@ public class ColumnMappingPage extends DataSetWizardPage
 			else
 			{
 				Object[] children = aTreeNode.getChildren( );
-				for ( int i = 0; i < children.length; i++ )
+				if ( children != null )
 				{
-					addChildrenElements( (ATreeNode)children[i], treeItem.getItems( )[i] );
+					for ( int i = 0; i < children.length; i++ )
+					{
+						addChildrenElements( (ATreeNode) children[i],
+								treeItem.getItems( )[i] );
+					}
 				}
 			}
 		}
@@ -616,7 +620,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 			if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
 					.getType( ) == ATreeNode.ELEMENT_TYPE
-					&& columnPath.trim( ).length( ) > 0 )
+					&& ( columnPath != null && columnPath.trim( ).length( ) > 0 ) )
 				columnPath = treeItem.getText( ) + PATH_SEPERATOR + columnPath;
 			else if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
 					.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
@@ -1142,11 +1146,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 			}
 			else if ( type == ATreeNode.ELEMENT_TYPE )
 			{
-				if ( treeNode.getParent( ).getValue( ).equals( "ROOT" ) )
+				if ( treeNode.getParent( )!= null && "ROOT".equals( treeNode.getParent( ).getValue( )) )
 				{
 					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
 				}
-				else if ( treeNode.getChildren( ).length == 0 )
+				else if ( treeNode.getChildren( ) == null || treeNode.getChildren( ).length == 0 )
 				{
 					treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
 				}
