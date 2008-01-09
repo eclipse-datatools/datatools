@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.input;
 
+import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 
@@ -41,5 +42,20 @@ public interface ISQLBuilderEditorInput extends ISQLEditorInput {
      * @param IOmitSchemaInfo the <code>IOmitSchemaInfo</code> to be set.
      */
     public void setOmitSchemaInfo(IOmitSchemaInfo omitSchemaInfo);
-       
+
+	/**
+	 * Gets the <code>ISQLEditorConnectionInfo</code> associated with this input.
+	 * 
+	 * @return the current <code>ISQLEditorConnectionInfo</code> object
+	 */
+	public ISQLEditorConnectionInfo getConnectionInfo();
+
+	/**
+	 * Sets the <code>ISQLEditorConnectionInfo</code> associated with this input to the given 
+	 * object.
+	 * 
+	 * @param connInfo the <code>ISQLEditorConnectionInfo</code> object to set
+	 */
+	public void setConnectionInfo( ISQLEditorConnectionInfo connInfo );
+	
 }
