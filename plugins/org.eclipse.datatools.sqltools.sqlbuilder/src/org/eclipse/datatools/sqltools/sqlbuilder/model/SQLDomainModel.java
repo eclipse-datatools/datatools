@@ -438,6 +438,10 @@ public class SQLDomainModel {
         }
         else {
             sqlStatement = getDefaultStatementFromSQL(strSQL, statementName);
+            // If the SQL is just select, insert, update or delete, set unmatchedSource to false
+            if (isSQLStatementTypeKeyword(strSQL)){
+            	unmatchedSource = false;
+            }
         }
 
         return SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(retval);
@@ -852,7 +856,8 @@ public class SQLDomainModel {
         }
 
         QueryStatement statement = null;
-
+        sql = sql.toUpperCase();
+        
         if (sql.startsWith("INSERT")) {
             statement = StatementHelper.createInsertStatement(statementName);
         }
@@ -925,6 +930,30 @@ public class SQLDomainModel {
         statement.getSourceInfo().setSqlFormat(getSqlSourceFormat());
 
         return (QueryStatement) SQLBuilderPlugin.getPlugin().getLogger().writeTraceExit(statement);
+    }
+    
+    /**
+     * Tests whether the SQL statement contains just the statement keyword, i.e.
+     * SELECT, INSERT, UPDATE or DELETE.
+     * 
+     * @param sql the SQL string to test
+     * @return whether the sql is just the statement type keyword
+     */
+    protected boolean isSQLStatementTypeKeyword(String sql){
+    	sql = sql.toUpperCase();
+    	
+    	if (sql.equals("SELECT") 
+        		|| sql.equals("INSERT")
+        		|| sql.equals("UPDATE")
+        		|| sql.equals("DELETE")
+    		)
+    	{
+    		return true;
+    	}
+    	else 
+    	{
+    		return false;
+    	}
     }
 
     /**
