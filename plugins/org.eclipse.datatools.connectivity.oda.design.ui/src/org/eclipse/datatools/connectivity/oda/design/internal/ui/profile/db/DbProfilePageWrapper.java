@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -50,6 +50,7 @@ public class DbProfilePageWrapper
     {
         assert( page != null && wrappedPage != null );
 //        m_propertyPage = page;
+        wrappedPage.setContainer( page.getContainer() );
         m_wrappedPage = wrappedPage;
         init();
     }
