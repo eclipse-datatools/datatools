@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2007, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,9 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ *    IBM Corporation - bug fix
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
@@ -286,8 +288,16 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 		String iconAttr = mElement == null ? null : mElement
 				.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
-			mIconURL = Platform.getBundle(mElement.getContributor().getName())
-					.getEntry(iconAttr);
+			if (iconAttr.startsWith("platform:/")){
+				try {
+					mIconURL = new URL(iconAttr);
+				} catch (MalformedURLException e) {
+					// Do nothing
+				}
+			} else {
+				mIconURL = Platform.getBundle(mElement.getContributor().getName())
+						.getEntry(iconAttr);
+			}
 		}
 	}
 

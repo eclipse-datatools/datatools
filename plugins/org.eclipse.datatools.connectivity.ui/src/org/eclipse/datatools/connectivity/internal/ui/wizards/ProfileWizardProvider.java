@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,9 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *    IBM Corporation - bug fix
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.core.runtime.Assert;
@@ -84,9 +86,18 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 	private void processIconAttr() {
 		String iconAttr = mElement.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
-			URL url = Platform.getBundle(
-					mElement.getContributor().getName()).getEntry(
-					iconAttr);
+			URL url = null;
+			if (iconAttr.startsWith("platform:/")){
+				try {
+					url = new URL(iconAttr);
+				} catch (MalformedURLException e) {
+					// Do nothing
+				}
+			} else {
+				url = Platform.getBundle(
+						mElement.getContributor().getName()).getEntry(
+						iconAttr);
+			}
 			mIcon = ImageDescriptor.createFromURL(url);
 		}
 		else {
