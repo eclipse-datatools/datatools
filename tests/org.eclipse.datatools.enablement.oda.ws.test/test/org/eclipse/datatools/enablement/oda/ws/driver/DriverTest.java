@@ -79,7 +79,8 @@ public class DriverTest extends BaseTest
 		IQuery query = connection.newQuery( null );
 		query.setProperty( "operationTrace", operationTrace );
 		query.setProperty( "xmlQueryText", xmlQueryText );
-		query.prepare( WSDLAdvisor.getSOAPRequestTemplate( wsdlURI,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		query.prepare( wsdlAdvisor.getSOAPRequestTemplate( wsdlURI,
 				operationTrace ) );
 
 		return query;

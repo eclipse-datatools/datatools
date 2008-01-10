@@ -42,6 +42,8 @@ public class TestConstants
 			+ "test/org/eclipse/datatools/enablement/oda/ws/input/tempconvert.wsdl";
 	public static final String WSDL_FILE_XGLOBALHISTORICAL = home
 			+ "test/org/eclipse/datatools/enablement/oda/ws/input/xGlobalHistorical.wsdl";
+	public static final String WSDL_FILE_AWSECOMMERCESERVICE = home
+	+ "test/org/eclipse/datatools/enablement/oda/ws/input/AWSECommerceService.wsdl";
 
 	// operationTraces
 	public static final String OPERATION_TRACE_ADDRESS = "AddressServiceService$-$Address$-$updateAddress";
@@ -51,7 +53,8 @@ public class TestConstants
 	public static final String OPERATION_TRACE_STOCKQUOTES = "StockQuotes$-$StockQuotesSoap$-$GetStockQuotes";
 	public static final String OPERATION_TRACE_TEMPCONVERT = "TempConvert$-$TempConvertSoap$-$CelsiusToFahrenheit";
 	public static final String OPERATION_TRACE_XGLOBALHISTORICAL = "XigniteGlobalHistorical$-$XigniteGlobalHistoricalSoap$-$GetGlobalLastClosingPrice";
-
+	public static final String OPERATION_TRACE_AWSECOMMERCESERVICE = "AWSECommerceService$-$AWSECommerceServicePort$-$ItemSearch";
+	
 	// goldenFiles
 	public static final String GOLDEN_FILE_TESTTEMPLATE1 = home
 			+ "test/org/eclipse/datatools/enablement/oda/ws/golden/WSDLAdvisorTest.testTemplate1.txt";
@@ -71,6 +74,8 @@ public class TestConstants
 			+ "test/org/eclipse/datatools/enablement/oda/ws/golden/WSDLAdvisorTest.testTemplate8.txt";
 	public static final String GOLDEN_FILE_TESTTEMPLATE9 = home
 			+ "test/org/eclipse/datatools/enablement/oda/ws/golden/WSDLAdvisorTest.testTemplate9.txt";
+	public static final String GOLDEN_FILE_TESTLOCAlSOAPRESPONSETEMPLATE = home
+	+ "test/org/eclipse/datatools/enablement/oda/ws/golden/WSDLAdvisorTest.testLocalSoapResponseTemplate.txt";
 
 	// outputFiles
 	public static final String OUTPUT_FILE_TESTTEMPLATE1 = home
@@ -91,6 +96,8 @@ public class TestConstants
 			+ "test/org/eclipse/datatools/enablement/oda/ws/output/WSDLAdvisorTest.testTemplate8.txt";
 	public static final String OUTPUT_FILE_TESTTEMPLATE9 = home
 			+ "test/org/eclipse/datatools/enablement/oda/ws/output/WSDLAdvisorTest.testTemplate9.txt";
+	public static final String OUTPUT_FILE_TESTLOCAlSOAPRESPONSETEMPLATE = home
+	+ "test/org/eclipse/datatools/enablement/oda/ws/output/WSDLAdvisorTest.testLocalSoapResponseTemplate.txt";
 
 	// miscellaneous
 

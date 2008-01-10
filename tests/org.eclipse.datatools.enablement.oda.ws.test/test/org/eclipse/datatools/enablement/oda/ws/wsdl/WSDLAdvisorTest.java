@@ -82,7 +82,8 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate1( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_CALCULATOR,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_CALCULATOR,
 				TestConstants.OPERATION_TRACE_CALCULATOR );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE1, template );
 
@@ -97,7 +98,8 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate2( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_ADDRESS,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_ADDRESS,
 				TestConstants.OPERATION_TRACE_ADDRESS );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE2, template );
 
@@ -121,7 +123,8 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate4( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_STOCKQUOTES,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_STOCKQUOTES,
 				TestConstants.OPERATION_TRACE_STOCKQUOTES );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE4, template );
 
@@ -136,7 +139,8 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate5( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_DNBPATRIOTACT,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_DNBPATRIOTACT,
 				TestConstants.OPERATION_TRACE_DNBPATRIOTACT );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE5, template );
 
@@ -151,7 +155,8 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate6( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_XGLOBALHISTORICAL,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_XGLOBALHISTORICAL,
 				TestConstants.OPERATION_TRACE_XGLOBALHISTORICAL );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE6, template );
 
@@ -166,12 +171,29 @@ public class WSDLAdvisorTest extends BaseTest
 	 */
 	public void testTemplate7( ) throws IOException
 	{
-		String template = WSDLAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_FOREIGNEXCHANGERATE,
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getSOAPRequestTemplate( TestConstants.WSDL_FILE_FOREIGNEXCHANGERATE,
 				TestConstants.OPERATION_TRACE_FOREIGNEXCHANGERATE );
 		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTTEMPLATE7, template );
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.GOLDEN_FILE_TESTTEMPLATE7 ),
 				new File( TestConstants.OUTPUT_FILE_TESTTEMPLATE7 ) ) );
+	}
+	
+	/**
+	 * with|complex|reference
+	 * 
+	 * @throws IOException
+	 */
+	public void testGetLocalSOAPResponseTemplate( ) throws IOException
+	{
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		String template = wsdlAdvisor.getLocalSOAPResponseTemplate( TestConstants.WSDL_FILE_AWSECOMMERCESERVICE,
+				TestConstants.OPERATION_TRACE_AWSECOMMERCESERVICE );
+		TestUtil.writeToFile( TestConstants.OUTPUT_FILE_TESTLOCAlSOAPRESPONSETEMPLATE, template );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.GOLDEN_FILE_TESTLOCAlSOAPRESPONSETEMPLATE ),
+				new File( TestConstants.OUTPUT_FILE_TESTLOCAlSOAPRESPONSETEMPLATE ) ) );
 	}
 
 }

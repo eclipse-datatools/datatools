@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <SOAP-ENV:Envelope
-xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
 	<SOAP-ENV:Header>
 		<m:Header xmlns:m="http://www.xignite.com/services/">
 			<m:Username xsi:type="xsd:string">&?Username?&</m:Username>
@@ -14,8 +14,8 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<SOAP-ENV:Body>
 		<m:GetGlobalLastClosingPrice xmlns:m="http://www.xignite.com/services/">
 			<m:Identifier xsi:type="xsd:string">&?Identifier?&</m:Identifier>
-			<m:IdentifierType>&?IdentifierType?&</m:IdentifierType>
-			<m:AdjustmentMethod>&?AdjustmentMethod?&</m:AdjustmentMethod>
+			<m:IdentifierType xsi:type="xsd:IdentifierTypes">&?IdentifierType?&</m:IdentifierType>
+			<m:AdjustmentMethod xsi:type="xsd:AdjustmentMethods">&?AdjustmentMethod?&</m:AdjustmentMethod>
 		</m:GetGlobalLastClosingPrice>
 	</SOAP-ENV:Body>
 </SOAP-ENV:Envelope>

@@ -47,7 +47,8 @@ public class RawMessageSenderTest extends BaseTest
 		{
 			String spec = WSDLAdvisor.getLocationURI( wsdlURIs[i],
 					operationTraces[i] );
-			String query = WSDLAdvisor.getSOAPRequestTemplate( wsdlURIs[i],
+			WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+			String query = wsdlAdvisor.getSOAPRequestTemplate( wsdlURIs[i],
 					operationTraces[i] );
 			String soapAction = WSDLAdvisor.getSOAPActionURI( wsdlURIs[i],
 					operationTraces[i] );
