@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - bug fix
+ * 
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -61,6 +63,7 @@ public class DriverUIContributorComposite {
 				.getDriverUIContributor(driverTemplateID);
 		Composite contributedComposite = uiContributor
 				.getContributedDriverUI(group);
+		contributedComposite.setParent(group);
 		uiContributor.setDialogPage(wizardPage);
 		uiContributor.setDriverUIContributorInformation(contributorInformation);
 		uiContributor.determineContributorCompletion();
