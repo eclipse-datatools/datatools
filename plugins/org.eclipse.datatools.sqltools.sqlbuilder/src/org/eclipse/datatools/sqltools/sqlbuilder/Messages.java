@@ -30,6 +30,7 @@ public final class Messages extends NLS {
 	public static String _UI_ACTION_ADD_TABLE_REPLACE;
 	public static String _UI_ACTION_ADD_FULLSELECT;
 	public static String _UI_ACTION_REMOVE_TABLE;
+	public static String _UI_ACTION_CHANGE_STATEMENT_TYPE;
 	public static String _UI_ACTION_OMIT_CURRENT_SCHEMA;
 	public static String _UI_ACTION_ADD_VALUE_ROW;
 	public static String _UI_ACTION_ADD_VALUES;
@@ -162,6 +163,9 @@ public final class Messages extends NLS {
 	public static String _UI_RADIO_SCRATCH_SELECT;
 	public static String _UI_LABEL_EXISTING_SELECT;
 	public static String _UI_LABEL_NEW_SELECT_INFO;
+	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE;
+	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE;
+	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_DESC;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_IN_SQL;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE;
@@ -346,6 +350,7 @@ public final class Messages extends NLS {
 	public static String _UI_CLEAR_TO_TEMPLATE;
 	public static String _UI_REVERT_TO_LAST_CORRECT_SOURCE;
 	public static String _UI_LAST_CORRECT_SOURCE;
+	public static String _UI_CHANGE_STATEMENT_TYPE;
 	public static String _UI_OMIT_CURRENT_SCHEMA;
 	public static String _UI_DIALOG_EXECUTE_SQL_TITLE;
 	public static String _UI_BUTTON_EXECUTE_CLOSE;
@@ -419,6 +424,10 @@ public final class Messages extends NLS {
 	public static String datatools_sqlbuilder_RevertToDefaultAction_tooltip;
 	public static String datatools_sqlbuilder_RevertToDefaultAction_image;
 	public static String datatools_sqlbuilder_RevertToDefaultAction_description;
+	public static String datatools_sqlbuilder_ChangeStatementTypeAction_label;
+	public static String datatools_sqlbuilder_ChangeStatementTypeAction_tooltip;
+	public static String datatools_sqlbuilder_ChangeStatementTypeAction_image;
+	public static String datatools_sqlbuilder_ChangeStatementTypeAction_description;
 	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_label;
 	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_tooltip;
 	public static String datatools_sqlbuilder_OmitCurrentSchemaAction_image;

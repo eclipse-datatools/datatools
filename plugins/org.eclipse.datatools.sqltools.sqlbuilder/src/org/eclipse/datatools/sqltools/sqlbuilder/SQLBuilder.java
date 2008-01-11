@@ -26,6 +26,7 @@ import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValues;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
+import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
@@ -559,6 +560,15 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
+	 * Returns the SQLTreeViewer.
+	 * 
+	 * @return SQLTreeViewer the SQLTreeViewer.
+	 */
+	public SQLTreeViewer getSQLTreeViewer() {
+		return _contentOutlinePage;
+	}
+	
+	/**
 	 * Returns the content outline page.
 	 * 
 	 * @return IContentOutlinePage the content outline page.
@@ -625,10 +635,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			if (_currentSelection instanceof WithTableSpecification
 					|| _currentSelection instanceof QueryCombined
 					|| _currentSelection instanceof QueryValues) {
-				_graphControl.getControl().setVisible(false);
+				setGraphControlState(false);
 				_mainSash.layout(true);
 			} else if (_currentSelection instanceof QuerySelect) {
-				_graphControl.getControl().setVisible(true);
+				setGraphControlState(true);
 				_mainSash.layout(true);
 			} else if (_currentSelection instanceof QuerySelectStatement
 					|| _currentSelection instanceof QueryExpressionRoot) {
@@ -642,20 +652,34 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 							.getSelectStatement());
 				}
 				if (queryBody instanceof QuerySelect) {
-					_graphControl.getControl().setVisible(true);
+					setGraphControlState(true);
 					_mainSash.layout(true);
 				} else if (queryBody instanceof QueryCombined) {
-					_graphControl.getControl().setVisible(false);
+					setGraphControlState(false);
 					_mainSash.layout(true);
 				} else if (queryBody instanceof QueryValues) {
-					_graphControl.getControl().setVisible(false);
+					setGraphControlState(false);
 					_mainSash.layout(true);
 				} else {
-					_graphControl.getControl().setVisible(true);
+					setGraphControlState(true);
 					_mainSash.layout(true);
 				}
 			}
 		}
+	}
+
+	/*
+	 * Helper function for setting the visible or enabled state of the GraphControl. If the SQLBuilder
+	 * is in an editor, set its visibility; if it's not in an editior, set its enabled state.
+	 */
+	private void setGraphControlState(boolean state) {
+		if (_editor != null){
+			_graphControl.getControl().setVisible(state);
+		}
+		else {
+			_graphControl.getControl().setEnabled(state);
+		}
+		
 	}
 
 	/**
@@ -667,6 +691,40 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		return _contentOutlinePage.isOnlyRootSelected();
 	}
 
+	/**
+	 * Changes the statement type in the SQLBuilder by using the statement template for the
+	 * specified type.
+	 * Statement type must be a constant from the StatementHelper class
+	 * 
+	 * @param statementType
+	 */
+	public void changeStatementType(int statementType){
+		// Check that statement type is changing
+		if (statementType != StatementHelper.getStatementType(_sqlDomainModel.getSQLStatement())){
+			// Make sure graphControl is visible and enabled first
+			if (!_graphControl.getControl().isVisible()){
+				_graphControl.getControl().setVisible(true);
+				_mainSash.layout(true);
+			}
+			if (!_graphControl.getControl().isEnabled()){
+				_graphControl.getControl().setEnabled(true);
+				_mainSash.layout(true);
+			}
+			
+			
+			// Reset the statement type in the domainModel
+			_sqlDomainModel.initializeFromType(statementType);
+			_sqlDomainModel.clearStatementToTemplate();
+			
+			// Reset the SQLTreeViewer/OutlineView input
+			getSQLTreeViewer().resetInput(_sqlDomainModel.getSQLStatement());
+
+			// Calling handleContentOutlineSelection resets the graph, design and source viewers
+			handleContentOutlineSelection(
+					new StructuredSelection(_sqlDomainModel.getSQLStatement()), false);
+		}
+	}
+	
 	/**
 	 * Enables / disables SQLBuilder controls and actions depending on whether
 	 * the current SQL is valid or not.
@@ -941,6 +999,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			if (revertToPreviousAction != null) {
 				revertToPreviousAction.setEnabled(enableRevert);
 			}
+			IAction changeStatementTypeAction = _actionBarContributor
+					.getAction(SQLBuilderActionBarContributor.CHANGE_STATEMENT_TYPE_ACTION_ID);
+			changeStatementTypeAction.setEnabled(true);
+			
 			IAction omitCurrentSchemaAction = _actionBarContributor
 					.getAction(SQLBuilderActionBarContributor.OMIT_CURRENT_SCHEMA_ACTION_ID);
 			if (omitCurrentSchemaAction != null) {

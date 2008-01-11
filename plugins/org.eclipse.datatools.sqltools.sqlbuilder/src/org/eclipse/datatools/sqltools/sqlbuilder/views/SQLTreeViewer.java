@@ -29,6 +29,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValueRowAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValuesAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.ChangeStatementTypeAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateWithTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.DeleteStatementAction;
@@ -73,6 +74,7 @@ public class SQLTreeViewer extends ContentOutlinePage {
     // General actions
     DeleteStatementAction deleteStatementAction;
     //ExecuteAction executeStatementAction;
+    ChangeStatementTypeAction changeStatementTypeAction;
 
     MenuManager menu;
     SQLBuilder sqlBuilder;
@@ -164,6 +166,10 @@ public class SQLTreeViewer extends ContentOutlinePage {
         createWithTableAction = new CreateWithTableAction(createActionDomainModel);
         convertToFullSelectAction = new ConvertToFullSelectAction(createActionDomainModel);
         deleteStatementAction = new DeleteStatementAction(createActionDomainModel, this);
+        // Change statement type
+        changeStatementTypeAction = new ChangeStatementTypeAction();
+        changeStatementTypeAction.setSQLBuilder(sqlBuilder);
+        changeStatementTypeAction.setShell( Display.getCurrent().getActiveShell() );
         // Fullselect specific actions
         addValuesAction = new AddValuesAction(createActionDomainModel);
         addValueRowAction = new AddValueRowAction(createActionDomainModel);
@@ -280,6 +286,9 @@ public class SQLTreeViewer extends ContentOutlinePage {
             }
         }
 
+        menu.add(new Separator());
+        menu.add(changeStatementTypeAction);
+        
         enableMenus();
     }
 
