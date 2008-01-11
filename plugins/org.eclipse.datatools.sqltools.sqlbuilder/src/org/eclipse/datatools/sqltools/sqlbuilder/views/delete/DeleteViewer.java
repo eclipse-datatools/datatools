@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.delete;
 
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.StatementNameViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.criteria.CriteriaGridViewer;
 import org.eclipse.jface.viewers.ContentViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -26,7 +25,6 @@ import org.eclipse.swt.widgets.Control;
 public class DeleteViewer extends ContentViewer {
 
     private SQLDomainModel sqlDomainModel;
-    StatementNameViewer statementNameViewer;
     CriteriaGridViewer criteriaView;
 
     public DeleteViewer(SQLDomainModel model) {
@@ -34,7 +32,6 @@ public class DeleteViewer extends ContentViewer {
     }
 
     public void setInput(Object input) {
-        statementNameViewer.setInput(input);
         criteriaView.setInput(input);
     }
 
@@ -47,10 +44,6 @@ public class DeleteViewer extends ContentViewer {
     public Control createControl(Composite parent) {
         canvas = new Composite(parent, SWT.NULL);
 
-        statementNameViewer = new StatementNameViewer(sqlDomainModel);
-        statementNameViewer.createControl(canvas);
-
-        statementNameViewer.setContentProvider(sqlDomainModel.createContentProvider());
         criteriaView = new CriteriaGridViewer(SWT.FULL_SELECTION | SWT.HIDE_SELECTION, sqlDomainModel, canvas, false);
         criteriaView.getTable().setLayoutData(ViewUtility.createFill());
         

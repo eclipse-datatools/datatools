@@ -13,7 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.insert;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.DesignViewer;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.StatementNameViewer;
 import org.eclipse.jface.viewers.ContentViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
@@ -25,7 +24,6 @@ import org.eclipse.swt.widgets.Control;
 public class InsertViewer extends ContentViewer {
 
     private SQLDomainModel sqlDomainModel;
-    StatementNameViewer statementNameViewer;
     InsertTypeViewer insertTypeViewer;
     DesignViewer designViewer;
 
@@ -35,7 +33,6 @@ public class InsertViewer extends ContentViewer {
     }
 
     public void setInput(Object input) {
-        statementNameViewer.setInput(input);
         insertTypeViewer.setInput(input);
         super.setInput(input);
     }
@@ -66,10 +63,6 @@ public class InsertViewer extends ContentViewer {
 
     public Control createControl(Composite parent) {
         canvas = new Composite(parent, SWT.NULL);
-
-        statementNameViewer = new StatementNameViewer(sqlDomainModel);
-        statementNameViewer.createControl(canvas);
-        statementNameViewer.setContentProvider(sqlDomainModel.createContentProvider());
 
         insertTypeViewer = new InsertTypeViewer(sqlDomainModel);
         insertTypeViewer.createControl(canvas);

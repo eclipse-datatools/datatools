@@ -14,7 +14,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.update;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
-import org.eclipse.datatools.sqltools.sqlbuilder.views.StatementNameViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.Workbook;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.criteria.CriteriaGridViewer;
 import org.eclipse.jface.viewers.ContentViewer;
@@ -28,7 +27,6 @@ import org.eclipse.swt.widgets.Control;
 public class UpdateViewer extends ContentViewer {
 
     private SQLDomainModel sqlDomainModel;
-    StatementNameViewer statementNameViewer;
     UpdateDesignViewer updateDesignViewer;
     CriteriaGridViewer criteriaView;
 
@@ -38,7 +36,6 @@ public class UpdateViewer extends ContentViewer {
     }
 
     public void setInput(Object input) {
-        statementNameViewer.setInput(input);
         updateDesignViewer.setInput(input);
         criteriaView.setInput(input);
         super.setInput(input);
@@ -55,10 +52,6 @@ public class UpdateViewer extends ContentViewer {
 
     public Control createControl(Composite parent) {
         canvas = new Composite(parent, SWT.NULL);
-
-        statementNameViewer = new StatementNameViewer(sqlDomainModel);
-        statementNameViewer.createControl(canvas);
-        statementNameViewer.setContentProvider(sqlDomainModel.createContentProvider());
 
         Workbook workbook = new Workbook(canvas);
 

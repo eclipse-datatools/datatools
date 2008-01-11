@@ -29,7 +29,7 @@ import org.eclipse.ui.help.WorkbenchHelp;
 public class SelectViewer extends ContentViewer {
 
     SQLDomainModel sqlDomainModel;
-    SelectStatementNameViewer selectStatementNameViewer;
+    SelectStatementDistinctViewer selectStatementDistinctViewer;
     SelectGridViewer selectGridViewer;
     CriteriaGridViewer criteriaView;
     CriteriaGridViewer havingView;
@@ -41,7 +41,7 @@ public class SelectViewer extends ContentViewer {
     }
 
     public void setInput(Object input) {
-        selectStatementNameViewer.setInput(input);
+        selectStatementDistinctViewer.setInput(input);
         selectGridViewer.setInput(input);
         criteriaView.setInput(input);
         havingView.setInput(input);
@@ -55,8 +55,8 @@ public class SelectViewer extends ContentViewer {
     public Control createControl(Composite parent) {
         canvas = new Composite(parent, SWT.NULL);
 
-        selectStatementNameViewer = new SelectStatementNameViewer(sqlDomainModel);
-        selectStatementNameViewer.createControl(canvas);
+        selectStatementDistinctViewer = new SelectStatementDistinctViewer(sqlDomainModel);
+        selectStatementDistinctViewer.createControl(canvas);
 
         WorkbenchHelp.setHelp(canvas, SQLBuilderContextIds.SQLB_SELECT_VIEW);
         Workbook workbook = new Workbook(canvas);
@@ -101,7 +101,7 @@ public class SelectViewer extends ContentViewer {
     }
 
     public void setEnabled(boolean enable) {
-        selectStatementNameViewer.setEnabled(enable);
+        selectStatementDistinctViewer.setEnabled(enable);
         selectGridViewer.setEnabled(enable);
         criteriaView.setEnabled(enable);
         havingView.setEnabled(enable);

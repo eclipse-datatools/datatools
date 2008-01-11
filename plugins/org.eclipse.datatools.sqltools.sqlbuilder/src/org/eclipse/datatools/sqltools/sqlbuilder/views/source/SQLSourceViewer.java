@@ -582,7 +582,11 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
                 revertToPreviousAction.setEnabled(!proper);
                 revertToDefaultAction.setEnabled(!proper);
             }
- 
+
+            IAction changeStatementTypeAction = contributor.getAction( SQLBuilderActionBarContributor.CHANGE_STATEMENT_TYPE_ACTION_ID );
+            menu.add(changeStatementTypeAction);
+            changeStatementTypeAction.setEnabled(true);
+            
             menu.add( new Separator("Omit Current Schema")); //$NON-NLS-1$
             IAction omitCurrentSchemaAction = contributor.getAction( SQLBuilderActionBarContributor.OMIT_CURRENT_SCHEMA_ACTION_ID );
             menu.add(omitCurrentSchemaAction);
