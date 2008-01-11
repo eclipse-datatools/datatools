@@ -14,6 +14,7 @@ import java.util.HashMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
@@ -110,7 +111,14 @@ public class SQLBuilderDialog extends SQLPainterDlg
 				omitSchemaInfo.initFromPreferences();
 			}
 			
-			SQLBuilderEditorInput input = new SQLBuilderEditorInput(_connectionInfo, new SQLStatementInfo(_statement), omitSchemaInfo);
+			SQLBuilderEditorInput input;
+			if (_statement != null && _statement.length() > 0){
+				input = new SQLBuilderEditorInput(_connectionInfo, new SQLStatementInfo(_statement), omitSchemaInfo);
+			}
+			else {
+				input = new SQLBuilderEditorInput(_connectionInfo, StatementHelper.STATEMENT_TYPE_SELECT);
+				input.setOmitSchemaInfo(omitSchemaInfo);
+			}
 			_sqlBuilder.setInput(input);
 			
 		} catch (PartInitException e) {
@@ -155,13 +163,6 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	public Control createDialogArea(Composite parent) {
-		// TODO
-		if (_statement == null) {
-			Shell shell = new Shell();
-			MessageDialog.openInformation(shell, Messages._UI_SQLQUERYBUILDERDIALOG_NAME,
-					Messages._UI_SQLQUERYBUILDERDIALOG_NAME + " Dialog was not passed an input to open.");
-			return null;
-		}
 
 		/*
 		 * Set dialog title

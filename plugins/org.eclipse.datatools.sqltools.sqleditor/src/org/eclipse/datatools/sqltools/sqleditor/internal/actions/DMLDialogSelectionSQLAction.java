@@ -96,7 +96,7 @@ public class DMLDialogSelectionSQLAction extends Action  implements ISelectionCh
     
     public void update()
     {
-        setEnabled(_isSourcePage && _sqlEditor != null && _sqlEditor.isConnected() && _sqlEditor.getSelectedText() != null);
+        setEnabled(_isSourcePage && _sqlEditor != null && _sqlEditor.isConnected());
     }
 
     /*
