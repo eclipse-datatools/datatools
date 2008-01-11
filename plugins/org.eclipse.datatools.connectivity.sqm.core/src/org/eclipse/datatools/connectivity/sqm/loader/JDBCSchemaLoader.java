@@ -229,19 +229,18 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
 			Catalog catalog = getCatalog();
 			String catalogName = rs.getString(COLUMN_TABLE_CATALOG);
-			return catalog.getName().equals(catalogName)
-					|| (catalogName == null && catalog.getName().length() == 0);
+			if (catalogName != null) {
+				return catalog.getName().equals(catalogName);
+			}
 		}
-		else {
-			// work around. some databases only return the schema column
-			// check to see if the current catalog matches this catalog or
-			// if the current catalog does not exist and this is the catalog
-			// for objects without a catalog.
-			return getCatalog().getName().equals(
-					getCatalogObject().getConnection().getCatalog())
-					|| (getCatalog().getName().length() == 0 && getCatalogObject()
-							.getConnection().getCatalog() == null);
-		}
+		// NULL/No catalog found. Some databases only return the schema column.
+		// check to see if the current catalog matches this catalog or
+		// if the current catalog does not exist and this is the catalog
+		// for objects without a catalog.
+		return getCatalog().getName().equals(
+				getCatalogObject().getConnection().getCatalog())
+				|| (getCatalog().getName().length() == 0 && getCatalogObject()
+						.getConnection().getCatalog() == null);
 	}
 
 	/**
