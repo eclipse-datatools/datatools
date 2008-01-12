@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,8 +14,11 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
+import java.io.File;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectionProfileManagerUI;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
@@ -58,6 +61,7 @@ public class OdaProfileUIExplorer
      * @return  the ODA custom wizard, or null if no wizard is provided
      * @throws OdaException if the profile provider has not implemented 
      *                      the expected Oda wizard type
+     * @deprecated  As of DTP 1.6, replaced by {@link #getNewDataSourceWizard(String, File)}
      */
     public NewDataSourceWizard getNewDataSourceWizard( String profileInstanceId )
         throws OdaException
@@ -65,6 +69,34 @@ public class OdaProfileUIExplorer
         // ODA profiles use the odaDataSourceId as its profile identifier
         String odaDataSourceId = 
             OdaProfileExplorer.getInstance().getProfile( profileInstanceId ).getProviderId();
+        return getNewDataSourceWizardByType( odaDataSourceId );
+    }
+    
+    /**
+     * Returns the ODA custom wizard provided by an
+     * ODA data source designer that implements the 
+     * connection profile extension point.
+     * @param profileInstanceId the instance id of a connection profile
+     * @param storageFile   a file that stores profile instances; 
+     *                      may be null, which would use the default store 
+     *                      of the Connectivity plugin
+     * @return  the ODA custom wizard, or null if no wizard is provided
+     * @throws OdaException if the specified profile is not found, or
+     *                      if the profile provider has not implemented 
+     *                      the expected ODA wizard
+     * @since DTP 1.6
+     */
+    public NewDataSourceWizard getNewDataSourceWizard( String profileInstanceId,
+                                                        File storageFile )
+        throws OdaException
+    {
+        IConnectionProfile profile =
+            OdaProfileExplorer.getInstance().getProfileById( profileInstanceId, storageFile );
+        if( profile == null )
+            throw new OdaException( new IllegalArgumentException( profileInstanceId ) );
+        
+        // ODA profiles use the odaDataSourceId as its profile identifier
+        String odaDataSourceId = profile.getProviderId();
         return getNewDataSourceWizardByType( odaDataSourceId );
     }
     

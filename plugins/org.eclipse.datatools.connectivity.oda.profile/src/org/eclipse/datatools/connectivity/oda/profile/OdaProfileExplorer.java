@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -169,23 +169,20 @@ public class OdaProfileExplorer
     }
     
     /**
-     * Returns a collection of identifiers of all connection profile 
-     * instances of a given ODA data source extension type.
-     * The profile instances are searched in the given profile storage file.
-     * It also caches the matching profiles and saves in the
-     * current profile storage file for subsequent use.
+     * Returns a collection of identifiers of all connection profile instances 
+     * of the given ODA data source extension type.
+     * The profile instances are searched from the specified profile storage file.
      * @param odaDataSourceId   the unique id of the data source element
      *                      in an ODA data source extension.
      * @param storageFile   a file that stores profile instances; may be null, which 
-     *                      will use the default store of the Connectivity plugin
+     *                      will use the default store path of the Connectivity plugin
      * @return  a <code>Map</code> containing the instance Id
      *          and display name of all existing profiles of given odaDataSourceId.
      *          The connection profiles' instance Id and display name
      *          are stored as the key and value strings in the returned <code>Map</code> instance.
      *          Returns an empty collection if there are 
      *          no matching connection profiles found in specified store.
-     * @throws OdaException if unable to read from given storageFile,
-     *                      or to cache the found profiles
+     * @throws OdaException if unable to read from the given storageFile
      * @since DTP 1.6
      */
     public Map getProfileIdentifiersByOdaProviderId( String odaDataSourceId, File storageFile ) 
@@ -195,22 +192,19 @@ public class OdaProfileExplorer
     }
 
     /**
-     * Returns a collection of identifiers of all connection profile 
-     * instances under the specified profile category id.
-     * The profile instances are searched in the given profile storage file.
-     * It also caches the matching profiles and saves in the
-     * current profile storage file for subsequent use.
+     * Returns a collection of identifiers of all connection profile instances 
+     * under the specified profile category id.
+     * The profile instances are searched from the specified profile storage file.
      * @param categoryId    the unique id of a connection profile category
      * @param storageFile   a file that stores profile instances; may be null, which 
-     *                      will use the default store of the Connectivity plugin
+     *                      will use the default store path of the Connectivity plugin
      * @return  a <code>Map</code> containing the instance Id
      *          and display name of all existing profiles of given odaDataSourceId.
      *          The connection profiles' instance Id and display name
      *          are stored as the key and value strings in the returned <code>Map</code> instance.
      *          Returns an empty collection if there are 
      *          no matching connection profiles found in specified store.
-     * @throws OdaException if unable to read from given storageFile,
-     *                      or to cache the found profiles
+     * @throws OdaException if unable to read from the given storageFile
      * @since DTP 1.6
      */
     public Map getProfileIdentifiersByCategory( String categoryId, File storageFile ) 
@@ -224,10 +218,7 @@ public class OdaProfileExplorer
         throws OdaException
     {
         // first get all profiles found in given storage file, load the file if necessary
-        IConnectionProfile[] profilesInFile = getLoadedProfiles( storageFile );
-        final boolean isNotCached = ( profilesInFile == null );
-        if( isNotCached )
-            profilesInFile = loadProfiles( storageFile );
+        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
 
         // return those profile ids that match given oda data source type,
         // and add them in the ProfileManager's profiles cache
@@ -252,11 +243,9 @@ public class OdaProfileExplorer
                 continue;
             
             // found a profile for the specified category or odaDataSourceId,
-            // adds matched profile to the identifiers Map and to ProfileManager's profiles cache
+            // adds matched profile found in storageFile to the identifiers Map
 
             addProfileIdentifier( aProfile, profileIds );
-            if( isNotCached )
-                addToProfileManagerCache( aProfile );
         }
         
         return profileIds;
@@ -346,7 +335,9 @@ public class OdaProfileExplorer
     
     /*
      * Adds given profile to ProfileManager's profiles cache, so that it can find
-     * the profile by its instance id.
+     * the profile by its instance id.  
+     * This has the side effect in which the added profile instance shows up 
+     * in DSE automatically.
      */
     private void addToProfileManagerCache( IConnectionProfile profile )
         throws OdaException
@@ -368,6 +359,7 @@ public class OdaProfileExplorer
      * @param profileInstanceId the instance id of a connection profile
      * @return  the properties of a connection profile instance
      * @throws IllegalArgumentException if instance is not found.
+     * @deprecated  As of DTP 1.6, replaced by {@link #getProfileProperties(String, File)}
      */
     public Properties getProfileProperties( String profileInstanceId )
     {
@@ -376,12 +368,43 @@ public class OdaProfileExplorer
     }
 
     /**
-     * Returns the profile in cache with given instance id.
+     * Returns the profile properties with values collected
+     * in the specified connection profile instance in the storageFile.
+     * @param profileInstanceId     the unique static id of 
+     *                              a connection profile instance
+     * @param storageFile   a file that stores profile instances; 
+     *                      may be null, which would use the default store 
+     *                      of the Connectivity plugin
+     * @return  the properties of a connection profile instance
+     * @throws IllegalArgumentException if connection profile instance is not found.
+     * @since DTP 1.6
+     */
+    public Properties getProfileProperties( String profileInstanceId,
+                                            File storageFile )
+    {
+        IConnectionProfile profile = null;
+        try
+        {
+            profile = getProfileById( profileInstanceId, storageFile );
+        }
+        catch( OdaException ex )
+        {
+            throw new IllegalArgumentException( ex.toString() );
+        } 
+        if( profile == null )
+            throw new IllegalArgumentException( profileInstanceId );
+        
+        return profile.getBaseProperties();
+    }
+    
+    /**
+     * Returns the profile with given instance id found in ProfileManager cache.
      * @param profileInstanceId     the unique instance id of a profile
      *                              in cache, as found in the collection
      *                              returned by the getProfiles methods
      * @return  the instance of matching profile
      * @throws IllegalArgumentException if instance is not found.
+     * @deprecated  As of DTP 1.6, replaced by {@link #getProfileById(String, File)}
      */
     public IConnectionProfile getProfile( String profileInstanceId )
     {
@@ -394,9 +417,37 @@ public class OdaProfileExplorer
     
     /**
      * Finds and returns the profile instance in given storage file
+     * that matches the given profile's static instance id.
+     * @param profileInstanceId     the unique static id of 
+     *                              a connection profile instance
+     * @param storageFile   a file that stores profile instances; 
+     *                      may be null, which would use the default store 
+     *                      of the Connectivity plugin
+     * @return  the matching profile instance, or null if not found
+     * @since DTP 1.6
+     */
+    public IConnectionProfile getProfileById( String profileInstanceId,
+                                              File storageFile )
+        throws OdaException
+    {
+        // first load all profiles found in given storage file, if necessary
+        IConnectionProfile[] profilesInFile = loadProfiles( storageFile );
+
+        for( int i = 0; i < profilesInFile.length; i++ ) 
+        {
+            if( profilesInFile[i].getInstanceID().equals( profileInstanceId ) )
+                return createOdaWrapper( profilesInFile[i] );   // a match
+        }
+        return null;    // no match is found
+    }
+    
+    /**
+     * Finds and returns the profile instance in given storage file
      * that matches the given profile instance name.
      * @param profileName   The unique name of a connection profile instance.
-     * @param storageFile   a file that stores profile instances
+     * @param storageFile   a file that stores profile instances; 
+     *                      may be null, which would use the default store 
+     *                      of the Connectivity plugin
      * @return  the matching profile instance, or null if not found
      */
     public IConnectionProfile getProfileByName( String profileName,

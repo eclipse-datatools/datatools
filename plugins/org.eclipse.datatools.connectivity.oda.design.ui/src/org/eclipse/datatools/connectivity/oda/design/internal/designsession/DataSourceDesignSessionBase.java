@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -671,7 +671,7 @@ public class DataSourceDesignSessionBase
         DataSourceEditorPage editorPage = null;
         try
         {
-            editorPage = getExtendedEditorPage();
+            editorPage = getAdaptableEditorPage();
         }
         catch( OdaException ex )
         {
@@ -833,8 +833,23 @@ public class DataSourceDesignSessionBase
         
         private OdaConnectionProfile getInstanceById()
         {
-            return (OdaConnectionProfile) OdaProfileExplorer.getInstance().
-                        getProfile( m_instanceId );
+            OdaConnectionProfile profileInstance = null;
+            try
+            {
+                profileInstance =
+                    (OdaConnectionProfile) OdaProfileExplorer.getInstance()
+                            .getProfileById( m_instanceId, m_storageFile );
+            }
+            catch( OdaException ex )
+            {
+                // log as warning
+                ex.printStackTrace();
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, "ProfileReferenceBase.getInstanceById",  //$NON-NLS-1$
+                        "Caught exception while getting an instance of connection profile by id (" +  //$NON-NLS-1$
+                        m_instanceId + ") from " + m_storageFile + " .", ex ); //$NON-NLS-1$ //$NON-NLS-2$
+            }
+            return profileInstance;
         }
         
         private OdaConnectionProfile getInstanceByName()
@@ -843,15 +858,15 @@ public class DataSourceDesignSessionBase
             try
             {
                 profileInstance =
-                    (OdaConnectionProfile) OdaProfileExplorer.getInstance().getProfileByName( 
-                        m_instanceName, m_storageFile );    // use default store if null is specified
+                    (OdaConnectionProfile) OdaProfileExplorer.getInstance()
+                            .getProfileByName( m_instanceName, m_storageFile );    // use default store if null is specified
             }
             catch( OdaException ex )
             {
                 // log as warning
                 ex.printStackTrace();
                 DesignerLogger logger = DesignerLogger.getInstance();
-                logger.warning( sm_className, "getInstanceByName",  //$NON-NLS-1$
+                logger.warning( sm_className, "ProfileReferenceBase.getInstanceByName",  //$NON-NLS-1$
                         "Caught exception while getting an instance of connection profile by name (" +  //$NON-NLS-1$
                         m_instanceName + ") from " + m_storageFile + " .", ex ); //$NON-NLS-1$ //$NON-NLS-2$
             } 

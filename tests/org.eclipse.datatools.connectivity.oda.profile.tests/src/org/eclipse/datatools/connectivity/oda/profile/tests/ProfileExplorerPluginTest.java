@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
@@ -52,7 +53,9 @@ public class ProfileExplorerPluginTest extends TestCase
 
         if( m_testStoreLocation == null )
             m_testStoreLocation = new Path( TestUtil.getPluginTestDirectory() );
-        ConnectionProfileMgmt.setStorageLocation( m_testStoreLocation );
+        
+        if ( getName().equals( "testGetProfiles" ) )
+            ConnectionProfileMgmt.setStorageLocation( m_testStoreLocation );
 
         if ( getName().equals( "testGetProfilesFromFile" ) )
             m_testFileStore = TestUtil.copyTestStoreFileFromTemplate( 
@@ -80,7 +83,9 @@ public class ProfileExplorerPluginTest extends TestCase
         Map profiles = null;
         try
         {
-            profiles = m_profileExplorer.getProfiles( OdaFlatFileId );
+            // use profile store in path specified in setup by ConnectionProfileMgmt.setStorageLocation
+            profiles = m_profileExplorer.getProfileIdentifiersByOdaProviderId( 
+                    OdaFlatFileId, null );  
         }
         catch( OdaException e )
         {
@@ -100,7 +105,8 @@ public class ProfileExplorerPluginTest extends TestCase
         Map profiles;
         try
         {
-            profiles = m_profileExplorer.getProfiles( OdaFlatFileId, storeFilePath );
+            profiles = m_profileExplorer.getProfileIdentifiersByOdaProviderId( 
+                    OdaFlatFileId, storeFilePath );
         }
         catch( OdaException e )
         {
@@ -116,7 +122,8 @@ public class ProfileExplorerPluginTest extends TestCase
     public void testGetProfileProperties() throws Exception
     {       
         String profileInstId = getFlatFileProfileInstanceId();
-        Properties connProps = m_profileExplorer.getProfileProperties( profileInstId );
+        Properties connProps = m_profileExplorer.getProfileProperties( 
+                profileInstId, m_testFileStore );
         assertNotNull( connProps );
         // FlatFile has 5 custom properties
         assertEquals( 5, connProps.size() );
@@ -129,13 +136,16 @@ public class ProfileExplorerPluginTest extends TestCase
     {
         // test that either approach finds the same profile instance
         String profileInstId = getFlatFileProfileInstanceId( FlatFileProfileName );
-        String profileInstName = m_profileExplorer.getProfile( profileInstId ).getName();
-        assertEquals( m_profileExplorer.getProfile( profileInstId ),
-                      m_profileExplorer.getProfileByName( profileInstName, m_testFileStore ) );
+        IConnectionProfile profile = 
+            m_profileExplorer.getProfileById( profileInstId, m_testFileStore );
+        String profileInstName = profile.getName();
+        IConnectionProfile namedProfile = 
+            m_profileExplorer.getProfileByName( profileInstName, m_testFileStore );
+        assertEquals( profile.getInstanceID(), namedProfile.getInstanceID() );
     }
     
     /*
-     * TODO - move to oda.design.ui.profile.wizards
+     * TODO - move to oda.design.ui.profile.wizards tests
      */
 /*    public void testGetCustomWizard() throws Exception
     {
@@ -152,7 +162,8 @@ public class ProfileExplorerPluginTest extends TestCase
     
     private String getFlatFileProfileInstanceId( String profileName ) throws OdaException
     {
-        Map profiles = m_profileExplorer.getProfiles( OdaFlatFileId );
+        Map profiles = m_profileExplorer.getProfileIdentifiersByOdaProviderId( 
+                OdaFlatFileId, m_testFileStore );
         Collection profileInstanceIds = profiles.keySet();
         assertNotNull( profileInstanceIds );
         assertTrue( profileInstanceIds.size() > 0 );
@@ -161,7 +172,8 @@ public class ProfileExplorerPluginTest extends TestCase
         while( iter.hasNext() )
         {
             String instanceId = (String) iter.next();
-            if( OdaFlatFileId.equals( m_profileExplorer.getProfile( instanceId ).getProviderId() ))
+            if( OdaFlatFileId.equals( m_profileExplorer.getProfileById( 
+                    instanceId, m_testFileStore ).getProviderId() ))
             {     
                 assertEquals( profileName, (String) profiles.get( instanceId ) );
                 return instanceId;
