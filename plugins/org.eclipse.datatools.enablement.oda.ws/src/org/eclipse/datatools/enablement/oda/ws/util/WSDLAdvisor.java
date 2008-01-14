@@ -69,7 +69,12 @@ public class WSDLAdvisor
 	public static final String NS_KEY_DEFAULT = "m";//$NON-NLS-1$
 	public static final String NS_DEFAULT = NS_KEY_DEFAULT + ":"; //$NON-NLS-1$
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-
+	public static final String NAME = "name"; //$NON-NLS-1$
+	public static final String TYPE = "type"; //$NON-NLS-1$
+	public static final String REF = "ref"; //$NON-NLS-1$
+	public static final String BASE = "base"; //$NON-NLS-1$
+	public static final String SIMPLE_TYPE = "simpleType"; //$NON-NLS-1$
+	public static final String COMPLEX_TYPE = "complexType"; //$NON-NLS-1$
 	private static Map definitionMap = new HashMap( );
 	private static List primitiveDataTypeList;
 
@@ -251,7 +256,32 @@ public class WSDLAdvisor
 	 * @param operationTrace
 	 * @return
 	 */
-	public static String getSOAPRequestTemplate( String wsdlURI,
+	public String getSOAPRequestTemplate( String wsdlURI, String operationTrace )
+	{
+		String template = EMPTY_STRING;
+		if ( !checkOperationTrace( operationTrace ) )
+			return template;
+
+		Definition definition = getDefinition( wsdlURI );
+		if ( WSUtil.isNull( definition ) )
+			return template;
+		String inOrOutput = "in"; //$NON-NLS-1$
+		template = buildStart( )
+				+ buildHeader( wsdlURI, operationTrace, inOrOutput )
+				+ buildBody( wsdlURI, operationTrace, inOrOutput ) + buildEnd( );
+
+		return template;
+	}
+
+	/**
+	 * Generates the Response template when the system can not get the response from
+	 * the target wsdlURI,will use the sample data to generate the template    
+	 * 
+	 * @param wsdlURI
+	 * @param operationTrace
+	 * @return
+	 */
+	public String getLocalSOAPResponseTemplate( String wsdlURI,
 			String operationTrace )
 	{
 		String template = EMPTY_STRING;
@@ -261,10 +291,10 @@ public class WSDLAdvisor
 		Definition definition = getDefinition( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
 			return template;
-
+		String inOrOutput = "out"; //$NON-NLS-1$
 		template = buildStart( )
-				+ buildHeader( wsdlURI, operationTrace )
-				+ buildBody( wsdlURI, operationTrace ) + buildEnd( );
+				+ buildHeader( wsdlURI, operationTrace, inOrOutput )
+				+ buildBody( wsdlURI, operationTrace, inOrOutput ) + buildEnd( );
 
 		return template;
 	}
@@ -336,7 +366,8 @@ public class WSDLAdvisor
 		}
 	}
 
-	private static String buildHeader( String wsdlURI, String operationTrace )
+	private String buildHeader( String wsdlURI, String operationTrace,
+			String inOrOutput )
 	{
 		String result = EMPTY_STRING;
 		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
@@ -358,6 +389,7 @@ public class WSDLAdvisor
 					String localPart = soapHeader.getPart( );
 					if ( !WSUtil.isNull( localPart ) )
 					{
+
 						List paramNameList = new ArrayList( );
 						List paramTypeList = new ArrayList( );
 						addParamComplexType( wsdlURI,
@@ -366,23 +398,909 @@ public class WSDLAdvisor
 								paramTypeList );
 
 						result += enter( ) + tab( 1 ) + SOAP_HEADER_START;
-						result += enter( )
-								+ tab( 2 ) + "<" + NS_DEFAULT + localPart + " " //$NON-NLS-1$//$NON-NLS-2$
-								+ getQNameSpace( nameSpace ) + ">"; //$NON-NLS-1$
-						result += buildInputParameters( wsdlURI,
+						if ( inOrOutput == "in" )//$NON-NLS-1$
+						{
+							result += enter( )
+									+ tab( 2 )
+									+ "<" + NS_DEFAULT + localPart + " " //$NON-NLS-1$//$NON-NLS-2$
+									+ getQNameSpace( nameSpace ) + ">"; //$NON-NLS-1$
+
+						}
+						else
+						{
+							result += enter( )
+									+ tab( 2 ) + "<" + localPart + " " //$NON-NLS-1$//$NON-NLS-2$
+									+ getQNameSpace( nameSpace ) + ">"; //$NON-NLS-1$
+						}
+
+						result += buildParametersByList( wsdlURI,
 								NS_DEFAULT,
 								paramNameList,
 								paramTypeList,
-								3 );
-						result += enter( )
-								+ tab( 2 )
-								+ "</" + NS_DEFAULT + localPart + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+								3,
+								inOrOutput );
+
+						if ( inOrOutput == "in" )//$NON-NLS-1$
+						{
+							result += enter( )
+									+ tab( 2 )
+									+ "</" + NS_DEFAULT + localPart + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+						else
+						{
+							result += enter( )
+									+ tab( 2 ) + "</" + localPart + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+
+						}
 						result += enter( ) + tab( 1 ) + SOAP_HEADER_END;
+
 					}
 					break;
 				}
 			}
 		}
+		return result;
+	}
+
+	private WSNonLeafNode generateTargetNode( String wsdlURI, String localPart )
+	{
+		Definition definition = getDefinition( wsdlURI );
+		Types types = definition.getTypes( );
+
+		if ( types != null && types.getExtensibilityElements( ) != null )
+		{
+			List extElements = types.getExtensibilityElements( );
+
+			for ( int i = 0; i < extElements.size( ); i++ )
+			{
+				if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
+				{
+					Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
+					String[] parentNode = {
+						EMPTY_STRING
+					};
+					WSNonLeafNode node = new WSNonLeafNode( );
+					node = generateNode( localPart, element, parentNode, null );
+					if ( node.getNodeList( ).size( ) == 0 )
+						continue;
+					return node;
+				}
+			}
+		}
+		WSNonLeafNode newNode = new WSNonLeafNode( );
+		newNode.setName( localPart );
+		List lowerLeverList = new ArrayList( );
+		newNode.setNodeList( lowerLeverList );
+		return newNode;
+	}
+
+	/**
+	 * Handle the anonymous complex type such as 
+	 * <xs:element name="BinParameter" minOccurs="0" maxOccurs="unbounded">
+	 *  	<xs:complexType>
+	 *  		<xs:sequence>
+	 *  			<xs:element name="Name" type="xs:string" /> 
+	 * 				<xs:element name="Value" type="xs:string" /> 
+	 * 			</xs:sequence>
+	 * 		</xs:complexType>
+	 * </xs:element>
+
+	 * @param node
+	 * @param element
+	 * @param parentNode
+	 * @param anonymousComplexParentNode
+	 * @return
+	 */
+
+	private WSNonLeafNode handleAnonymousComplexNode( Node node,
+			Element element, String[] parentNode,
+			String[] anonymousComplexParentNode )
+	{
+		WSNonLeafNode newNode = new WSNonLeafNode( );
+		List lowerLeverList = new ArrayList( );
+		String nodeName = node.getAttributes( )
+				.getNamedItem( NAME )
+				.getNodeValue( );
+		newNode.setName( nodeName );
+
+		for ( int k = 0; k < anonymousComplexParentNode.length; k++ )
+		{
+			if ( nodeName.equals( anonymousComplexParentNode[k].toString( ) ) )
+			{
+				newNode.setNodeList( lowerLeverList );
+				return newNode;
+			}
+		}
+
+		String[] subNodeParents = generateSubNodeParents( nodeName, parentNode );
+		String[] subAnonymousNodeParents = generateSubNodeParents( nodeName,
+				anonymousComplexParentNode );
+
+		Node middleNode = getSignificantNode( node );
+
+		if ( middleNode != null )
+		{
+			NodeList subs = middleNode.getChildNodes( );
+			for ( int i = 0; i < subs.getLength( ); i++ )
+			{
+				Node sub = subs.item( i );
+				if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
+					continue;
+				NamedNodeMap nodeMap = sub.getAttributes( );
+
+				// handle the lower level node
+
+				if ( !WSUtil.isNull( nodeMap.getNamedItem( NAME ) ) )
+				{
+
+					handleNodes( element,
+							lowerLeverList,
+							subNodeParents,
+							subAnonymousNodeParents,
+							sub );
+
+				}
+				else
+				{
+					if ( !WSUtil.isNull( nodeMap.getNamedItem( REF ) ) )
+					{
+						addRef( lowerLeverList, sub, element, subNodeParents );
+					}
+					else
+					{
+						handleAnonymousComplexNode( sub,
+								element,
+								subNodeParents,
+								subAnonymousNodeParents );
+					}
+
+				}
+
+			}
+		}
+
+		newNode.setNodeList( lowerLeverList );
+		return newNode;
+	}
+
+	private boolean isComplexType( Node node, Element element )
+	{
+		NodeList nodes = element.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node XMLNode = nodes.item( i );
+			if ( XMLNode.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap nodeMap = XMLNode.getAttributes( );
+			if ( !WSUtil.isNull( nodeMap ) )
+			{
+				if ( !WSUtil.isNull( nodeMap.getNamedItem( NAME ) )
+						&& !WSUtil.isNull( node.getAttributes( )
+								.getNamedItem( TYPE ) ) )
+				{
+					if ( getParamTypeLocalPart( node.getAttributes( )
+							.getNamedItem( TYPE )
+							.getNodeValue( ) ).equalsIgnoreCase( nodeMap.getNamedItem( NAME )
+							.getNodeValue( ) ) )
+					{
+						if ( getParamTypeLocalPart( XMLNode.getNodeName( ) ).equals( COMPLEX_TYPE ) )
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean isNestedSimpleType( Node XMLNode )
+	{
+		NodeList nodes = XMLNode.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node node = nodes.item( i );
+			if ( node.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			if ( getParamTypeLocalPart( node.getNodeName( ) ).equals( SIMPLE_TYPE ) )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void addNestedSimpleType( List lowerLeverList, Node node )
+	{
+		NodeList subs = node.getChildNodes( );
+		for ( int i = 0; i < subs.getLength( ); i++ )
+		{
+			Node sub = subs.item( i );
+			if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+			if ( getParamTypeLocalPart( sub.getNodeName( ) ).equals( SIMPLE_TYPE ) )
+			{
+				NodeList subNodes = sub.getChildNodes( );
+				for ( int j = 0; j < subs.getLength( ); j++ )
+				{
+					Node subNode = subNodes.item( i );
+					if ( subNode.getNodeType( ) != Node.ELEMENT_NODE )
+						continue;
+
+					NamedNodeMap subNodeMap = subNode.getAttributes( );
+					if ( !WSUtil.isNull( subNodeMap.getNamedItem( BASE ) )
+							&& !WSUtil.isNull( subNode.getParentNode( )
+									.getParentNode( )
+									.getAttributes( )
+									.getNamedItem( NAME ) ) )
+					{
+						WSLeafNode leafNode = new WSLeafNode( );
+						leafNode.setName( subNode.getParentNode( )
+								.getParentNode( )
+								.getAttributes( )
+								.getNamedItem( NAME )
+								.getNodeValue( ) );
+
+						leafNode.setType( subNodeMap.getNamedItem( BASE )
+								.getNodeValue( ) );
+
+						lowerLeverList.add( leafNode );
+						break;
+					}
+
+				}
+
+			}
+		}
+	}
+
+	private boolean isAnonymousComplexType( Node XMLNode )
+	{
+		NodeList nodes = XMLNode.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node node = nodes.item( i );
+			if ( node.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			if ( getParamTypeLocalPart( node.getNodeName( ) ).equals( COMPLEX_TYPE )
+					&& !WSUtil.isNull( XMLNode.getAttributes( )
+							.getNamedItem( NAME ) ) )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private Node getSignificantNode( Node XMLNode )
+	{
+		NodeList nodes = XMLNode.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node node = nodes.item( i );
+			if ( node.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap nodeMap = node.getAttributes( );
+			if ( !WSUtil.isNull( nodeMap ) )
+			{
+				if ( !WSUtil.isNull( nodeMap.getNamedItem( NAME ) )
+						|| !WSUtil.isNull( nodeMap.getNamedItem( REF ) ) )
+				{
+					return node.getParentNode( );
+				}
+				else
+				{
+					return getSignificantNode( node );
+				}
+
+			}
+		}
+		return null;
+	}
+
+	private String[] generateSubNodeParents( String nodeName,
+			String[] parentNode )
+	{
+		String[] subNodeParents = new String[parentNode.length + 1];
+		System.arraycopy( parentNode, 0, subNodeParents, 0, parentNode.length );
+		subNodeParents[subNodeParents.length - 1] = nodeName;
+		return subNodeParents;
+
+	}
+
+	public WSNonLeafNode generateNode( String nodeName, Element element,
+			String[] parentNode, String complexTypeName )
+	{
+		String localPart;
+		if ( complexTypeName != null )
+		{
+			localPart = complexTypeName;
+		}
+		else
+		{
+			localPart = nodeName;
+		}
+		List lowerLeverList = new ArrayList( );
+		WSNonLeafNode newNode = new WSNonLeafNode( );
+		newNode.setName( nodeName );
+
+		for ( int k = 0; k < parentNode.length; k++ )
+		{
+			if ( nodeName.equals( parentNode[k].toString( ) ) )
+			{
+				newNode.setNodeList( lowerLeverList );
+				return newNode;
+			}
+		}
+
+		String[] subNodeParents = generateSubNodeParents( localPart, parentNode );
+		NodeList nodes = element.getChildNodes( );
+		Node XMLNode = findElementNodeByName( nodes, localPart );
+		if ( XMLNode != null )
+		{
+			// skip the middle node such as - <xs:sequence>, get
+			// the
+			// significant node
+			Node middleNode = getSignificantNode( XMLNode );
+
+			genetateLowerLeverList( element,
+					lowerLeverList,
+					subNodeParents,
+					middleNode,
+					null );
+		}
+
+		newNode.setNodeList( lowerLeverList );
+
+		return newNode;
+
+	}
+
+	private Node findElementNodeByName( NodeList nodes, String name )
+	{
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node XMLNode = nodes.item( i );
+			if ( XMLNode.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap XMLNodeNodeMap = XMLNode.getAttributes( );
+			if ( !WSUtil.isNull( XMLNodeNodeMap ) )
+			{
+				if ( !WSUtil.isNull( XMLNodeNodeMap.getNamedItem( NAME ) ) )
+				{
+					if ( name.equalsIgnoreCase( XMLNodeNodeMap.getNamedItem( NAME )
+							.getNodeValue( ) ) )
+					{
+						return XMLNode;
+					}
+
+				}
+			}
+
+		}
+		return null;
+	}
+
+	private void genetateLowerLeverList( Element element, List lowerLeverList,
+			String[] subNodeParents, Node middleNode,
+			String[] anonymousComplexParentNode )
+	{
+		if ( middleNode == null )
+		{
+			return;
+		}
+		NodeList subs = middleNode.getChildNodes( );
+		for ( int j = 0; j < subs.getLength( ); j++ )
+		{
+			Node sub = subs.item( j );
+
+			if ( sub == null )
+			{
+				return;
+			}
+
+			if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			handleNodes( element,
+					lowerLeverList,
+					subNodeParents,
+					anonymousComplexParentNode,
+					sub );
+		}
+	}
+
+	private void handleNodes( Element element, List lowerLeverList,
+			String[] subNodeParents, String[] anonymousComplexParentNode,
+			Node sub )
+	{
+		NamedNodeMap nodeMap = sub.getAttributes( );
+		// handle with simple and complex type
+		if ( !WSUtil.isNull( nodeMap.getNamedItem( TYPE ) )
+				&& nodeMap.getNamedItem( TYPE ).getNodeValue( ) != REF )
+		{
+
+			String XMLType = getParamTypeLocalPart( nodeMap.getNamedItem( TYPE )
+					.getNodeValue( ) );
+
+			// simple type with <name= ,
+			// type='isPrimitiveDataType'>
+			if ( isPrimitiveDataType( XMLType ) )
+			{
+				addSimpleType( lowerLeverList, nodeMap );
+			}
+			else
+			{
+				// complex type with <name= ,
+				// type=>
+				if ( isComplexType( sub, element ) )
+				{
+					addComplexType( lowerLeverList,
+							nodeMap,
+							element,
+							subNodeParents );
+
+				}
+				else
+				// simple type with <name= ,
+				// type='NonPrimitiveDataType'>
+				{
+					addSimpleType( lowerLeverList, nodeMap );
+				}
+			}
+		}
+		else if ( !WSUtil.isNull( nodeMap.getNamedItem( REF ) ) )
+		{
+			addRef( lowerLeverList, sub, element, subNodeParents );
+		}
+		else
+		{
+			// handle with anonymous simple
+			// type
+			// such as
+			// <name><simpletype base=>
+			if ( isNestedSimpleType( sub ) )
+			{
+				addNestedSimpleType( lowerLeverList, sub );
+			}
+
+			// handle with anonymous complex
+			// type
+			if ( isAnonymousComplexType( sub ) )
+			{
+				if ( anonymousComplexParentNode == null )
+					anonymousComplexParentNode = new String[]{
+						EMPTY_STRING
+					};
+				lowerLeverList.add( handleAnonymousComplexNode( sub,
+						element,
+						subNodeParents,
+						anonymousComplexParentNode ) );
+			}
+
+		}
+	}
+
+	private void addSimpleType( List lowerLeverList, NamedNodeMap nodeMap )
+	{
+		String XMLType = getParamTypeLocalPart( nodeMap.getNamedItem( TYPE )
+				.getNodeValue( ) );
+
+		WSLeafNode leafNode = new WSLeafNode( );
+		leafNode.setName( nodeMap.getNamedItem( NAME ).getNodeValue( ) );
+		leafNode.setType( XMLType );
+		lowerLeverList.add( leafNode );
+	}
+
+	private void addComplexType( List lowerLeverList, NamedNodeMap nodeMap,
+			Element element, String[] parentNode )
+	{
+		String nodeName = getParamTypeLocalPart( nodeMap.getNamedItem( NAME )
+				.getNodeValue( ) );
+
+		String complexTyneName = getParamTypeLocalPart( nodeMap.getNamedItem( TYPE )
+				.getNodeValue( ) );
+
+		lowerLeverList.add( generateNode( nodeName,
+				element,
+				parentNode,
+				complexTyneName ) );
+	}
+
+	private void addRef( List lowerLeverList, Node node, Element element,
+			String[] parentNode )
+	{
+		// judge whether is a simple-type kind ref 
+		NodeList nodes = element.getChildNodes( );
+		for ( int i = 0; i < nodes.getLength( ); i++ )
+		{
+			Node XMLNode = nodes.item( i );
+			if ( XMLNode.getNodeType( ) != Node.ELEMENT_NODE )
+				continue;
+
+			NamedNodeMap nodeMap = XMLNode.getAttributes( );
+			if ( !WSUtil.isNull( nodeMap )
+					&& !WSUtil.isNull( nodeMap.getNamedItem( NAME ) ) )
+			{
+				if ( getParamTypeLocalPart( node.getAttributes( )
+						.getNamedItem( REF )
+						.getNodeValue( ) ).equalsIgnoreCase( nodeMap.getNamedItem( NAME )
+						.getNodeValue( ) ) )
+				{
+					if ( isNestedSimpleType( XMLNode ) )
+					{
+						addNestedSimpleType( lowerLeverList, XMLNode );
+						return;
+					}
+				}
+			}
+		}
+
+		// otherwise it's a complex-type kind ref
+		NamedNodeMap nodeMap = node.getAttributes( );
+		String nodeName = getParamTypeLocalPart( nodeMap.getNamedItem( REF )
+				.getNodeValue( ) );
+
+		lowerLeverList.add( generateNode( nodeName, element, parentNode, null ) );
+
+	}
+
+	/**
+	 * With full knowledge of complexType(reference|value), this method builds
+	 * inputParameter block, each of which follows a pattern looking like:
+	 * either <i1 xsi:type="xsd:int">&?i1?&</i1> or <in0> <street
+	 * xsi:type="xsd:string">&?street?&</street> <postcode
+	 * xsi:type="xsd:int">&?postcode?&</postcode> </in0>
+	 * 
+	 * @param wsdlURI
+	 * @param nameSpace
+	 * @param name
+	 * @param tabCount
+	 * 
+	 * @return
+	 */
+	private String buildInputParameters( String wsdlURI, String nameSpace,
+			String name, int tabCount )
+	{
+		String result = EMPTY_STRING;
+		WSNonLeafNode newNode = new WSNonLeafNode( );
+		newNode = generateTargetNode( wsdlURI, name );
+		result = builderRequestParameters( newNode, nameSpace, tabCount );
+		return result;
+	}
+
+	private String builderRequestParameters( WSNonLeafNode newNode,
+			String nameSpace, int tabCount )
+	{
+		String result = EMPTY_STRING;
+		List nodeList = newNode.getNodeList( );
+		for ( int i = 0; i < nodeList.size( ); i++ )
+		{
+			if ( nodeList.get( i ) instanceof WSLeafNode )
+			{
+				WSLeafNode leafnode = (WSLeafNode) nodeList.get( i );
+
+				result += enter( )
+						+ tab( tabCount )
+						+ "<" + nameSpace + leafnode.getName( ) //$NON-NLS-1$
+						+ buildParamType( leafnode.getType( ) )
+						+ ">&?" + leafnode.getName( ) //$NON-NLS-1$
+						+ "?&</" + nameSpace + leafnode.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+
+			}
+			else if ( nodeList.get( i ) instanceof WSNonLeafNode )
+			{
+				WSNonLeafNode nonLeafnode = (WSNonLeafNode) nodeList.get( i );
+
+				result += enter( )
+						+ tab( tabCount )
+						+ "<" + nameSpace + nonLeafnode.getName( ) + ">"; //$NON-NLS-1$//$NON-NLS-2$
+
+				result += builderRequestParameters( nonLeafnode,
+						nameSpace,
+						tabCount + 1 );
+
+				result += enter( )
+						+ tab( tabCount )
+						+ "</" + nameSpace + nonLeafnode.getName( ) + ">"; //$NON-NLS-1$//$NON-NLS-2$
+
+			}
+		}
+		return result;
+	}
+
+	private String builderResponseParameters( WSNonLeafNode newNode )
+	{
+		String result = EMPTY_STRING;
+		List nodeList = newNode.getNodeList( );
+		for ( int i = 0; i < nodeList.size( ); i++ )
+		{
+			if ( nodeList.get( i ) instanceof WSLeafNode )
+			{
+				WSLeafNode leafnode = (WSLeafNode) nodeList.get( i );
+				result += enter( ) + "<" + leafnode.getName( ) + ">" //$NON-NLS-1$ //$NON-NLS-2$
+						+ "</" + leafnode.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$		
+			}
+			else if ( nodeList.get( i ) instanceof WSNonLeafNode )
+			{
+				WSNonLeafNode nonLeafnode = (WSNonLeafNode) nodeList.get( i );
+				result += enter( ) + "<" + nonLeafnode.getName( ) + ">";//$NON-NLS-1$ //$NON-NLS-2$
+				result += builderResponseParameters( nonLeafnode );
+				result += enter( ) + "</" + nonLeafnode.getName( ) + ">";//$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Output response parameters
+	 * 
+	 * @param wsdlURI
+	 * @param name
+	 * 
+	 * @return
+	 */
+	private String buildOutputParameters( String wsdlURI, String name )
+	{
+		String result = EMPTY_STRING;
+
+		WSNonLeafNode newNode = new WSNonLeafNode( );
+		newNode = generateTargetNode( wsdlURI, name );
+
+		result = builderResponseParameters( newNode );
+
+		return result;
+	}
+
+	private static String getParamTypeLocalPart( String paramType )
+	{
+		return paramType.substring( paramType.lastIndexOf( ":" ) + 1 ); //$NON-NLS-1$
+	}
+
+	private static String buildParamType( String paramType )
+	{
+		String result = EMPTY_STRING;
+		if ( WSUtil.isNull( paramType ) )
+			return result;
+
+		result += " " //$NON-NLS-1$
+				+ NS_KEY_XSI + ":type=\"" //$NON-NLS-1$
+				+ NS_KEY_XSD + ":" //$NON-NLS-1$
+				+ getParamTypeLocalPart( paramType ) + "\""; //$NON-NLS-1$
+
+		return result;
+	}
+
+	/**
+	 * Generate request XML body when inOrOutput is value "in", otherwise,
+	 * Generate response XML body
+	 * 
+	 * @param wsdlURI
+	 * @param operationTrace
+	 * @param inOrOutput(value
+	 *            is "in" or "out")
+	 */
+	private String buildBody( String wsdlURI, String operationTrace,
+			String inOrOutput )
+	{
+		String result = enter( ) + tab( 1 ) + SOAP_BODY_START;
+
+		if ( isRPC( wsdlURI, operationTrace ) )
+		{
+			result += buildBodyRPC( wsdlURI, operationTrace, inOrOutput );
+		}
+		else
+		{
+			result += buildBodyDoc( wsdlURI, operationTrace, inOrOutput );
+		}
+
+		return result;
+	}
+
+	private static boolean isRPC( String wsdlURI, String operationTrace )
+	{
+		boolean isRPC = false;
+
+		Definition definition = getDefinition( wsdlURI );
+		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
+		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
+				opSplit[0] ) );// service
+		Port port = service.getPort( opSplit[1] );// port
+		Binding binding = port.getBinding( );
+		List extElements = binding.getExtensibilityElements( );
+
+		if ( !WSUtil.isNull( extElements ) )
+		{
+			for ( int i = 0; i < extElements.size( ); i++ )
+			{
+				if ( extElements.get( i ) instanceof SOAPBinding )
+				{
+					isRPC = !WSUtil.isNull( ( (SOAPBinding) extElements.get( i ) ).getStyle( ) )
+							&& ( (SOAPBinding) extElements.get( i ) ).getStyle( )
+									.equalsIgnoreCase( "rpc" );//$NON-NLS-1$
+					break;
+				}
+			}
+		}
+
+		return isRPC;
+	}
+
+	private String buildBodyRPC( String wsdlURI, String operationTrace,
+			String inOrOutput )
+	{
+		String result = EMPTY_STRING;
+
+		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
+				operationTrace );
+		if ( WSUtil.isNull( bindingOperation ) )
+			return result;
+
+		Operation operation = bindingOperation.getOperation( );
+		List partOrder = operation.getParameterOrdering( );
+		List parts = operation.getInput( )
+				.getMessage( )
+				.getOrderedParts( partOrder );
+
+		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
+		{
+			List paramNameList = new ArrayList( );
+			List paramTypeList = new ArrayList( );
+			for ( int i = 0; i < parts.size( ); i++ )
+			{
+				Part part = (Part) parts.get( i );
+
+				QName typeName = part.getTypeName( );
+				paramNameList.add( part.getName( ) );
+				paramTypeList.add( WSUtil.getNonNullString( WSUtil.isNull( typeName )
+						? EMPTY_STRING : typeName.getLocalPart( ) ) );
+			}
+
+			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			{
+				result += enter( )
+						+ tab( 2 )
+						+ "<" + NS_DEFAULT + operation.getName( ) + " " //$NON-NLS-1$ //$NON-NLS-2$
+						+ getQNameSpace( getNameSpaceRPC( bindingOperation ) )
+						+ ">"; //$NON-NLS-1$
+			}
+			else
+			{
+				result += enter( )
+						+ tab( 2 ) + "<" + operation.getName( ) + " " //$NON-NLS-1$ //$NON-NLS-2$
+						+ getQNameSpace( getNameSpaceRPC( bindingOperation ) )
+						+ ">"; //$NON-NLS-1$
+			}
+
+			result += buildParametersByList( wsdlURI,
+					EMPTY_STRING,
+					paramNameList,
+					paramTypeList,
+					3,
+					inOrOutput );
+			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			{
+				result += enter( )
+						+ tab( 2 )
+						+ "</" + NS_DEFAULT + operation.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+			else
+			{
+				result += enter( )
+						+ tab( 2 ) + "</" + operation.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+
+		return result;
+	}
+
+	private static String getNameSpaceRPC( BindingOperation bindingOperation )
+	{
+		BindingInput bindingInput = bindingOperation.getBindingInput( );
+		List extElements = bindingInput.getExtensibilityElements( );
+		String nameSpace = EMPTY_STRING;
+
+		if ( !WSUtil.isNull( extElements ) )
+		{
+			for ( int i = 0; i < extElements.size( ); i++ )
+			{
+				if ( extElements.get( i ) instanceof SOAPBody )
+				{
+					nameSpace = ( (SOAPBody) extElements.get( i ) ).getNamespaceURI( );
+					break;
+				}
+			}
+		}
+
+		return nameSpace;
+	}
+
+	private static String getQNameSpace( String nameSpace )
+	{
+		if ( WSUtil.isNull( nameSpace ) )
+			return EMPTY_STRING;
+		else
+			return "xmlns:" + NS_KEY_DEFAULT + "=\"" + nameSpace + "\"";//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$//;
+	}
+
+	private String buildBodyDoc( String wsdlURI, String operationTrace,
+			String inOrOutput )
+	{
+		String result = EMPTY_STRING;
+		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
+				operationTrace );
+		if ( WSUtil.isNull( bindingOperation ) )
+			return result;
+
+		Operation operation = bindingOperation.getOperation( );
+		List partOrder = operation.getParameterOrdering( );
+		List parts;
+		if ( inOrOutput == "in" ) //$NON-NLS-1$
+		{
+			parts = operation.getInput( )
+					.getMessage( )
+					.getOrderedParts( partOrder );
+		}
+		else
+		{
+			parts = operation.getOutput( )
+					.getMessage( )
+					.getOrderedParts( partOrder );
+		}
+
+		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
+		{
+			for ( int i = 0; i < parts.size( ); i++ )
+			{
+				Part part = (Part) parts.get( i );
+				if ( WSUtil.isNull( part.getElementName( ) ) )
+					continue;
+
+				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				{
+					result = compositeInputBodyDoc( wsdlURI,
+							part.getElementName( ).getLocalPart( ),
+							result );
+				}
+				else
+				{
+					result = compositeOutputBodyDoc( wsdlURI,
+							part.getElementName( ).getLocalPart( ),
+							result );
+				}
+			}
+		}
+
+		return result;
+	}
+
+	private String compositeInputBodyDoc( String wsdlURI, String name,
+			String result )
+	{
+		result += enter( ) + tab( 2 ) + "<" + NS_DEFAULT //$NON-NLS-1$
+				+ name + " " //$NON-NLS-1$
+				+ getQNameSpace( getNameSpaceDoc( wsdlURI ) ) + ">"; //$NON-NLS-1$
+		result += buildInputParameters( wsdlURI, NS_DEFAULT, name, 3 );
+		result += enter( ) + tab( 2 ) + "</" + NS_DEFAULT //$NON-NLS-1$
+				+ name + ">"; //$NON-NLS-1$
+
+		return result;
+	}
+
+	private String compositeOutputBodyDoc( String wsdlURI, String name,
+			String result )
+	{
+		result += enter( ) + tab( 2 ) + "<" + name + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+		result += buildOutputParameters( wsdlURI, name );
+
+		result += enter( ) + tab( 2 ) + "</" //$NON-NLS-1$
+				+ name + ">"; //$NON-NLS-1$	
 
 		return result;
 	}
@@ -496,11 +1414,13 @@ public class WSDLAdvisor
 	 * @param paramNames
 	 * @param paramTypes
 	 * @param tabCount
+	 * @param inOrOutput
 	 * 
 	 * @return
 	 */
-	private static String buildInputParameters( String wsdlURI,
-			String nameSpace, List paramNames, List paramTypes, int tabCount )
+	private static String buildParametersByList( String wsdlURI,
+			String nameSpace, List paramNames, List paramTypes, int tabCount,
+			String inOrOutput )
 	{
 		String result = EMPTY_STRING;
 		for ( int i = 0; i < paramNames.size( ); i++ )
@@ -521,214 +1441,63 @@ public class WSDLAdvisor
 				// temporarily solution to handle simpleType
 				if ( paramNameList.isEmpty( ) && paramTypeList.isEmpty( ) )
 				{
+					if ( inOrOutput == "in" ) //$NON-NLS-1$
+					{
+						result += enter( )
+								+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
+								+ ">&?" + paramName //$NON-NLS-1$
+								+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+					}
+					else
+					{
+						result += enter( ) + "<" + paramName + ">" //$NON-NLS-1$  //$NON-NLS-2$						
+								+ "</" + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
+				else
+				{
+					if ( inOrOutput == "in" ) //$NON-NLS-1$
+					{
+						result += enter( )
+								+ tab( tabCount )
+								+ "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+						result += buildParametersByList( wsdlURI,
+								nameSpace,
+								paramNameList,
+								paramTypeList,
+								tabCount + 1,
+								inOrOutput );
+						result += enter( )
+								+ tab( tabCount )
+								+ "</" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					}
+					else
+					{
+						result += enter( ) + "<" + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+						result += buildParametersByList( wsdlURI,
+								nameSpace,
+								paramNameList,
+								paramTypeList,
+								tabCount,
+								inOrOutput );
+						result += enter( ) + "</" + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					}
+				}
+			}
+			else
+			{
+				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				{
 					result += enter( )
 							+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
-							+ ">&?" + paramName //$NON-NLS-1$
+							+ buildParamType( paramType ) + ">&?" + paramName //$NON-NLS-1$
 							+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				else
 				{
-					result += enter( )
-							+ tab( tabCount )
-							+ "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
-					result += buildInputParameters( wsdlURI,
-							nameSpace,
-							paramNameList,
-							paramTypeList,
-							tabCount + 1 );
-					result += enter( )
-							+ tab( tabCount )
-							+ "</" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					result += enter( ) + "<" + paramName + ">" //$NON-NLS-1$ //$NON-NLS-2$					
+							+ "</" + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
-			}
-			// complexType value
-			else
-			{
-				result += enter( )
-						+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
-						+ buildParamType( paramType ) + ">&?" + paramName //$NON-NLS-1$
-						+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
-			}
-		}
-
-		return result;
-	}
-
-	private static String getParamTypeLocalPart( String paramType )
-	{
-		return paramType.substring( paramType.lastIndexOf( ":" ) + 1 ); //$NON-NLS-1$
-	}
-
-	private static String buildParamType( String paramType )
-	{
-		String result = EMPTY_STRING;
-		if ( WSUtil.isNull( paramType ) )
-			return result;
-
-		result += " " //$NON-NLS-1$
-				+ NS_KEY_XSI + ":type=\"" //$NON-NLS-1$
-				+ NS_KEY_XSD + ":" //$NON-NLS-1$
-				+ getParamTypeLocalPart( paramType ) + "\""; //$NON-NLS-1$
-
-		return result;
-	}
-
-	private static String buildBody( String wsdlURI, String operationTrace )
-	{
-		String result = enter( ) + tab( 1 ) + SOAP_BODY_START;
-
-		if ( isRPC( wsdlURI, operationTrace ) )
-		{
-			result += buildBodyRPC( wsdlURI, operationTrace );
-		}
-		else
-		{
-			result += buildBodyDoc( wsdlURI, operationTrace );
-		}
-
-		return result;
-	}
-
-	private static boolean isRPC( String wsdlURI, String operationTrace )
-	{
-		boolean isRPC = false;
-
-		Definition definition = getDefinition( wsdlURI );
-		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
-		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
-				opSplit[0] ) );// service
-		Port port = service.getPort( opSplit[1] );// port
-		Binding binding = port.getBinding( );
-		List extElements = binding.getExtensibilityElements( );
-
-		if ( !WSUtil.isNull( extElements ) )
-		{
-			for ( int i = 0; i < extElements.size( ); i++ )
-			{
-				if ( extElements.get( i ) instanceof SOAPBinding )
-				{
-					isRPC = !WSUtil.isNull( ( (SOAPBinding) extElements.get( i ) ).getStyle( ) )
-							&& ( (SOAPBinding) extElements.get( i ) ).getStyle( )
-									.equalsIgnoreCase( "rpc" );//$NON-NLS-1$
-					break;
-				}
-			}
-		}
-
-		return isRPC;
-	}
-
-	private static String buildBodyRPC( String wsdlURI, String operationTrace )
-	{
-		String result = EMPTY_STRING;
-		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
-				operationTrace );
-		if ( WSUtil.isNull( bindingOperation ) )
-			return result;
-
-		Operation operation = bindingOperation.getOperation( );
-		List partOrder = operation.getParameterOrdering( );
-		List parts = operation.getInput( )
-				.getMessage( )
-				.getOrderedParts( partOrder );
-
-		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
-		{
-			List paramNameList = new ArrayList( );
-			List paramTypeList = new ArrayList( );
-			for ( int i = 0; i < parts.size( ); i++ )
-			{
-				Part part = (Part) parts.get( i );
-
-				QName typeName = part.getTypeName( );
-				paramNameList.add( part.getName( ) );
-				paramTypeList.add( WSUtil.getNonNullString( WSUtil.isNull( typeName )
-						? EMPTY_STRING : typeName.getLocalPart( ) ) );
-			}
-
-			result += enter( )
-					+ tab( 2 ) + "<" + NS_DEFAULT + operation.getName( ) + " " //$NON-NLS-1$ //$NON-NLS-2$
-					+ getQNameSpace( getNameSpaceRPC( bindingOperation ) )
-					+ ">"; //$NON-NLS-1$
-			result += buildInputParameters( wsdlURI,
-					EMPTY_STRING,
-					paramNameList,
-					paramTypeList,
-					3 );
-			result += enter( )
-					+ tab( 2 ) + "</" + NS_DEFAULT + operation.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
-		}
-
-		return result;
-	}
-
-	private static String getNameSpaceRPC( BindingOperation bindingOperation )
-	{
-		BindingInput bindingInput = bindingOperation.getBindingInput( );
-		List extElements = bindingInput.getExtensibilityElements( );
-		String nameSpace = EMPTY_STRING;
-
-		if ( !WSUtil.isNull( extElements ) )
-		{
-			for ( int i = 0; i < extElements.size( ); i++ )
-			{
-				if ( extElements.get( i ) instanceof SOAPBody )
-				{
-					nameSpace = ( (SOAPBody) extElements.get( i ) ).getNamespaceURI( );
-					break;
-				}
-			}
-		}
-
-		return nameSpace;
-	}
-
-	private static String getQNameSpace( String nameSpace )
-	{
-		if ( WSUtil.isNull( nameSpace ) )
-			return EMPTY_STRING;
-		else
-			return "xmlns:" + NS_KEY_DEFAULT + "=\"" + nameSpace + "\"";//$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$//;
-	}
-
-	private static String buildBodyDoc( String wsdlURI, String operationTrace )
-	{
-		String result = EMPTY_STRING;
-		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
-				operationTrace );
-		if ( WSUtil.isNull( bindingOperation ) )
-			return result;
-
-		Operation operation = bindingOperation.getOperation( );
-		List partOrder = operation.getParameterOrdering( );
-		List parts = operation.getInput( )
-				.getMessage( )
-				.getOrderedParts( partOrder );
-
-		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
-		{
-			for ( int i = 0; i < parts.size( ); i++ )
-			{
-				Part part = (Part) parts.get( i );
-				if ( WSUtil.isNull( part.getElementName( ) ) )
-					continue;
-
-				List paramNameList = new ArrayList( );
-				List paramTypeList = new ArrayList( );
-
-				addParamComplexType( wsdlURI, part.getElementName( )
-						.getLocalPart( ), paramNameList, paramTypeList );
-
-				result += enter( ) + tab( 2 ) + "<" + NS_DEFAULT //$NON-NLS-1$
-						+ part.getElementName( ).getLocalPart( ) + " " //$NON-NLS-1$
-						+ getQNameSpace( getNameSpaceDoc( wsdlURI ) ) + ">"; //$NON-NLS-1$
-				result += buildInputParameters( wsdlURI,
-						NS_DEFAULT,
-						paramNameList,
-						paramTypeList,
-						3 );
-				result += enter( ) + tab( 2 ) + "</" + NS_DEFAULT //$NON-NLS-1$
-						+ part.getElementName( ).getLocalPart( ) + ">"; //$NON-NLS-1$
 			}
 		}
 

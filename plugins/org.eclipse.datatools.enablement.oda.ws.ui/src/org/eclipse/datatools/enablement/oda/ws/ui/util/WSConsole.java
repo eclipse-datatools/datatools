@@ -26,7 +26,6 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
-import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
@@ -197,7 +196,7 @@ public class WSConsole
 					customDriverPath );
 
 			String connectionTimeOut = props.getProperty( Constants.CONNECTION_TIMEOUT,
-					"0" );
+					"0" ); //$NON-NLS-1$
 			setPropertyValue( Constants.CONNECTION_TIMEOUT, connectionTimeOut );
 			
 			String wsdlURI = props.getProperty( Constants.WSDL_URI,
@@ -294,7 +293,8 @@ public class WSConsole
 	 */
 	public String getTemplate( )
 	{
-		return WSDLAdvisor.getSOAPRequestTemplate( getPropertyValue( Constants.WSDL_URI ),
+		WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+		return wsdlAdvisor.getSOAPRequestTemplate( getPropertyValue( Constants.WSDL_URI ),
 				getPropertyValue( Constants.OPERATION_TRACE ) );
 	}
 
@@ -476,7 +476,14 @@ public class WSConsole
 				message,
 				soapAction );
 		SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( WSUIUtil.parseLong( getPropertyValue( Constants.CONNECTION_TIMEOUT ) ) );
-
+		
+		if (soapResponse==null||soapResponse.getInputStream( )==null)
+			{
+				WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
+				String temlate=wsdlAdvisor.getLocalSOAPResponseTemplate( getPropertyValue( Constants.WSDL_URI ),
+					getPropertyValue( Constants.OPERATION_TRACE ) );
+				soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( ).getBytes( ) ) );
+			}
 		return soapResponse;
 	}
 
@@ -574,7 +581,7 @@ public class WSConsole
 				wsQueryText += parameters[i].getDefaultValue( );
 		}
 		wsQueryText += template[template.length - 1];
-
+		
 		// eliminate unused parameters
 		StringBuffer buffer = new StringBuffer( wsQueryText );
 
