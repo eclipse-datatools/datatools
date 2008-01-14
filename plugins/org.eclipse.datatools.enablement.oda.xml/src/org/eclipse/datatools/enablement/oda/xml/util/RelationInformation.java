@@ -55,9 +55,7 @@ public class RelationInformation
 	 * @throws OdaException 
 	 */
 	private void initialize( String relationString ) throws OdaException
-	{
-		//TODO support filter in table mapping.
-		
+	{	
 		if( relationString == null|| relationString.length() == 0)
 			throw new OdaException( Messages.getString("RelationInformation.InputStringCannotBeNull"));
 		
@@ -90,36 +88,24 @@ public class RelationInformation
 				//columnInfos[0]: column name
 				//columnInfos[1]: column type
 				//columnInfos[2]: column XPath
-				String columnXpath = null;
+				String columnXpath = "";
+				for ( int m = 0; m < columnInfos.length; m++ )
+					columnInfos[m] = columnInfos[m].trim( );
 				if( columnInfos.length == 3 )
 				{
 					columnXpath = columnInfos[2];
-				}else
-				{
-					columnXpath = "";
 				}
-				for ( int m = 0; m < columnInfos.length; m++ )
-					columnInfos[m] = columnInfos[m].trim( );
-				String originalColumnXpath = columnXpath;
-				
 				HashMap map = null;
 				//if it is a filter expression
 				if ( columnXpath.matches( ".*\\Q[@\\E.*\\Q=\\E.*" ) )
 				{
 					map = populateFilterInfo(filterColumnInfos, tableInfo,
-							columns, columnXpath, originalColumnXpath );
-					
-					columnXpath = columnXpath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", "[*]" ).replaceAll("\\Q][*]\\E", "]");
+							columns, columnXpath);
 				}
-				else if( columnXpath.matches( ".*\\Q[@\\E.*\\Q]\\E.*" ))
-				{
-					columnXpath = columnXpath.replaceAll( "\\Q[@\\E.*\\Q]\\E", "" ).trim( );
-				}
-				
 				tableInfo.addColumn( new ColumnInfo( j + 1,
 						columnInfos[0],
 						columnInfos[1],
-						tableInfo.getRootPath( ), columnXpath, originalColumnXpath, map));
+						columnXpath, map));
 			}
 			
 			for( int j = 0; j < filterColumnInfos.size( ); j++ )
@@ -127,10 +113,9 @@ public class RelationInformation
 				tableInfo.addColumn( (ColumnInfo )filterColumnInfos.get( j ));
 			}
 			
-			//TODO support filter in table mapping.
 			if ( tableRawRoot.matches(".*\\Q[@\\E.*\\Q=\\E.*")) 
 			{
-				String tableRootWithFilter = SaxParserUtil.processParentAxis( tableRawRoot );
+				String tableRootWithFilter = SaxParserUtil.removeRedundantParentAxis( tableRawRoot );
 				
 				String value = RelationInformation.getFilterValue( tableRootWithFilter );
 
@@ -148,10 +133,10 @@ public class RelationInformation
 				tableInfo.addFilter(tempColumnName, value);
 
 				tableInfo.addColumn(new ColumnInfo( columns.length + filterColumnInfos.size( ) + 1, tempColumnName,
-						"String", filterColumnXpath, null,
-						tableFilterPart, null));
+						"String", tableFilterPart,
+						null));
 			}
-			
+			tableInfo.bulidMappingPathTree( );
 			this.tableInfos.put( temp[0].trim( ), tableInfo );
 		}
 	}
@@ -167,16 +152,20 @@ public class RelationInformation
 	 * @throws OdaException
 	 */
 	private static HashMap populateFilterInfo(List filterColumnInfos,
-			TableInfo tableInfo, String[] columns, String columnXpath,
-			String originalColumnXpath )
+			TableInfo tableInfo, String[] columns, String columnXpath)
 			throws OdaException 
 	{
 		HashMap map = null;
 		//get the filter value
 		String value = getFilterValue(columnXpath);
 		
-		String filterOriginalColumnXpath = originalColumnXpath.replaceAll( "\\Q=\\E.*","]" );
-		String filterColumnXpath = columnXpath.replaceAll( "\\Q=\\E.*","]" );
+		columnXpath = columnXpath.replaceAll( "\\Q=\\E.*","" );
+		//Replace the last "[a" with "/a"
+		int index = columnXpath.lastIndexOf( "[@" );
+		String before = columnXpath.substring( 0,  index);
+		String after = columnXpath.substring( index + 1 );
+		String relativePath = before + "/" + after;
+		
 
 		String tempColumnName = SaxParserUtil
 				.createTempColumnName(filterColumnInfos.size() + 1);
@@ -191,9 +180,8 @@ public class RelationInformation
 				+ filterColumnInfos.size( ) + 1,
 				tempColumnName,
 				"String",
-				tableInfo.getRootPath( ),
-				filterColumnXpath,
-				filterOriginalColumnXpath,null) );
+				relativePath,
+				null) );
 		return map;
 	}
 
@@ -219,22 +207,8 @@ public class RelationInformation
 		return value;
 	}
 
-	/**
-	 * Return the path of a column in certain table.
-	 * 
-	 * @param tableName
-	 * @param columnName
-	 * @return
-	 */
-	public String getTableColumnPath( String tableName, String columnName )
-	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
-		if( tableInfo!= null )
-			return ( (TableInfo) tableInfo ).getPath( columnName == null? "":columnName.trim( ) );
-		else
-			return null;
-	}
 
+	
 	/**
 	 * Return the path of a column in certain table.
 	 * 
@@ -250,37 +224,6 @@ public class RelationInformation
 		else
 			return null;
 	}
-	
-	/**
-	 * Return the back ref number of a column in certain table.
-	 * 
-	 * @param tableName
-	 * @param columnName
-	 * @return
-	 */
-	public int getTableNestedColumnBackRefNumber( String tableName, String columnName )
-	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
-		if( tableInfo!= null )
-			return ( (TableInfo)tableInfo ).getBackRefNumber( columnName == null? "":columnName.trim( ) );
-		else
-			return -1;
-	}
-	
-	/**
-	 * Return the forward ref number of a column in certain table.
-	 * 
-	 * @param tableName
-	 * @param columnName
-	 * @return
-	 */
-	public int getTableColumnForwardRefNumber( String tableName, String columnName )
-	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
-		if( tableInfo!= null )
-			return ( (TableInfo)tableInfo ).getForwardRefNumber( columnName == null? "":columnName.trim( ) );
-		else
-			return -1;	}
 	
 	/**
 	 * Return the type of a column in certain table.
@@ -314,10 +257,9 @@ public class RelationInformation
 	}
 
 	/**
-	 * Return the array of column names of certain table.
 	 *  
 	 * @param tableName
-	 * @return
+	 * @return user defined columns and system generated tmp columns 
 	 */
 	String[] getTableRealColumnNames( String tableName )
 	{
@@ -329,34 +271,35 @@ public class RelationInformation
 	}
 	
 	/**
-	 * Return the array of complex nested column names of certain table.
+	 * Return the array of nested column names of certain table.
 	 *  
 	 * @param tableName
 	 * @return
 	 */
-	public String[] getTableComplexNestedXMLColumnNames( String tableName )
+	public String[] getTableNestedXMLColumnNames( String tableName )
 	{
 		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
 		if( tableInfo!= null )
-			return ( (TableInfo)tableInfo ).getComplexNestXMLColumnNames( );
+			return ( (TableInfo)tableInfo ).getNestedXMLColumnNames( );
 		else
 			return new String[0];
 	}
 	
 	/**
-	 * Return the array of simple nested column names of certain table.
+	 * Return the mapping path element tree  of certain table.
 	 *  
 	 * @param tableName
 	 * @return
 	 */
-	public String[] getTableSimpleNestedXMLColumnNames( String tableName )
+	public MappingPathElementTree getTableMappingPathElementTree( String tableName )
 	{
 		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
 		if( tableInfo!= null )
-			return ( (TableInfo)tableInfo ).getSimpleNestXMLColumnNames( );
+			return ( (TableInfo)tableInfo ).getMappingPathTree( );
 		else
-			return new String[0];
+			return null;
 	}
+	
 	/**
 	 * Return the table root path.
 	 * 
@@ -386,7 +329,7 @@ public class RelationInformation
 		else
 			return null;
 	}
-
+	
 	/**
 	 * Return the table filter.
 	 * 
@@ -418,20 +361,14 @@ public class RelationInformation
 	 */
 	public HashMap getTableColumnFilter( String tableName, String columnName )
 	{
-		return ((TableInfo) this.tableInfos.get(tableName))
-				.getColumnFilters(columnName);
-	}
-	
-	/**
-	 * 
-	 * @param tableName
-	 * @return
-	 */
-	public List getTableFilterColumns( String tableName )
-	{
-		return ( (TableInfo) this.tableInfos.get( tableName ) ).getFilterColumns( );
+		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		if( tableInfo!= null )
+			return ( (TableInfo)tableInfo ).getColumnFilters(columnName);
+		else
+			return null;
 	}
 }
+
 
 /**
  * The instance of this class describe a table.
@@ -454,15 +391,21 @@ class TableInfo
 	//The root path of this table
 	private String rootPath;
 	
+	//includes the original columns and created temp columns 
+	private String[] realColumnNames = null;
+	
+	//the original columns
+	private String[] columnNames = null;
+	
+	private MappingPathElementTree mappingPathElementTree;
+	
+	private String[] nestedXMLColumnNames = null;
+	
 	public TableInfo( String tableName, String rootPath )
 	{
 		this.tableName = tableName;
 		this.originalRootPath = rootPath;
-		String temp = SaxParserUtil.processParentAxis( originalRootPath.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", ""));
-		if( "//".equals( temp ))
-			this.rootPath = "//*";
-		else
-			this.rootPath = temp;
+		this.rootPath = SaxParserUtil.removeRedundantParentAxis( originalRootPath.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", ""));
 		this.columnInfos = new HashMap( );
 		this.filterInfos = new HashMap( );
 	}
@@ -475,17 +418,6 @@ class TableInfo
 	public String getTableName( )
 	{
 		return this.tableName;
-	}
-
-	/**
-	 * Return the path of certain column.
-	 * 
-	 * @param columnName
-	 * @return
-	 */
-	public String getPath( String columnName )
-	{
-		return ( (ColumnInfo) this.columnInfos.get( columnName ) ).getColumnPath( );
 	}
 	
 	/**
@@ -500,26 +432,16 @@ class TableInfo
 	}
 
 	/**
-	 * Return the back reference number of the column, this only applys to nested xml columns.
+	 * Return the path of certain column.
 	 * 
 	 * @param columnName
 	 * @return
 	 */
-	public int getBackRefNumber( String columnName )
+	public String getPath( String columnName )
 	{
-		return ( (ColumnInfo) this.columnInfos.get( columnName ) ).getBackRefNumber();
+		return ( (ColumnInfo) this.columnInfos.get( columnName ) ).getColumnPath( );
 	}
-	
-	/**
-	 * Return the forward reference number of the column.
-	 * 
-	 * @param columnName
-	 * @return
-	 */
-	public int getForwardRefNumber( String columnName )
-	{
-		return ( (ColumnInfo) this.columnInfos.get( columnName ) ).getForwardRefNumber();
-	}
+
 	
 	/**
 	 * Return the defined data type of certain column.
@@ -551,29 +473,7 @@ class TableInfo
 	{
 		return ((ColumnInfo)(this.columnInfos.get( columnName ))).getFilters();
 	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	public List getFilterColumns( )
-	{
-		Object[] names = this.columnInfos.keySet( ).toArray( );
-		String[] temp = new String[names.length];
-		for ( int i = 0; i < names.length; i++ )
-		{
-			temp[( (ColumnInfo) columnInfos.get( names[i] ) ).getColumnIndex( ) - 1] = names[i].toString( );
-		}
 
-		List filterColumnList = new ArrayList( );
-		for ( int i = 0; i < temp.length; i++ )
-		{
-			if ( SaxParserUtil.isTempColumn( temp[i] ) )
-				filterColumnList.add( columnInfos.get( temp[i] ) );
-		}
-
-		return filterColumnList;
-	}
 	
 	/**
 	 * Add a column to a table.
@@ -603,23 +503,23 @@ class TableInfo
 	 */
 	public String[] getColumnNames( )
 	{
-		String[] temp = this.getRealColumnNames( );
-		
-		List l = new ArrayList();
-		for( int i = 0; i < temp.length; i ++ )
+		if (columnNames == null)
 		{
-			if( SaxParserUtil.isTempColumn(temp[i]))
-				break;
-			else
-				l.add( temp[i] );
+			String[] temp = this.getRealColumnNames( );
+			
+			List l = new ArrayList();
+			for( int i = 0; i < temp.length; i ++ )
+			{
+				if( SaxParserUtil.isTempColumn(temp[i]))
+					// all the temp columns are placed after the original columns
+					break;
+				else
+					l.add( temp[i] );
+			}
+			
+			columnNames = getStringArrayFromList(l);
 		}
-		
-		String[] result = new String[l.size( )];
-		for( int i = 0; i < result.length; i++ )
-		{
-			result[i] = l.get( i ).toString( );
-		}
-		return result;
+		return columnNames;
 	}
 
 	/**
@@ -629,121 +529,54 @@ class TableInfo
 	 */
 	public String[] getRealColumnNames( )
 	{
-		Object[] names = this.columnInfos.keySet( ).toArray( );
-		String[] temp = new String[names.length];
-		for ( int i = 0; i < names.length; i++ )
+		if (realColumnNames == null)
 		{
-			temp[( (ColumnInfo) columnInfos.get( names[i] ) ).getColumnIndex( ) - 1] = names[i].toString( );
+			Object[] names = this.columnInfos.keySet( ).toArray( );
+			realColumnNames = new String[names.length];
+			for ( int i = 0; i < names.length; i++ )
+			{
+				realColumnNames[( (ColumnInfo) columnInfos.get( names[i] ) ).getColumnIndex( ) - 1] = names[i].toString( );
+			}
 		}
-		
-		return temp;
+		return realColumnNames;
 	}
 
 	/**
-	 * The complex nested xml columnNames are the names of columns the value of which may be shared by multiple 
-	 * columns. The most significant feature of a complex nested xml column is that its xpath expression does not start with 
-	 * table root path, nor is it an attribute of parent of root path element.  
-	 * 
+	 * The complex nested xml columnNames are the names of columns which relative path start with ".."
 	 * @return
 	 */
-	public String[] getComplexNestXMLColumnNames( )
+	public String[] getNestedXMLColumnNames( )
 	{
-		ArrayList temp = new ArrayList();
-		String[] columnNames = getColumnNames();
-		String[] simpleNestXMLColumnNames = getSimpleNestXMLColumnNames( );
-		for(int i = 0; i < columnNames.length; i++)
+		if (nestedXMLColumnNames != null)
 		{
-			//First filter out all "non-nested xml columns
-			if(!((ColumnInfo)columnInfos.get(columnNames[i])).getColumnPath().startsWith(rootPath))
+			return nestedXMLColumnNames;
+		}
+		if (mappingPathElementTree != null)
+		{
+			String[] columnNames = getRealColumnNames();
+			int[] indexes = mappingPathElementTree.getNestedColumnIndexes( );
+			nestedXMLColumnNames = new String[indexes.length]; 
+			for(int i = 0; i < indexes.length; i++)
 			{
-				boolean isComplexNestXMLColumn = true;
-				//Then filter out all simple nested xml columns
-				for( int j = 0; j < simpleNestXMLColumnNames.length; j++ )
-				{
-					if( simpleNestXMLColumnNames[j].equals( columnNames[i] ))
-					{
-						isComplexNestXMLColumn = false;
-						break;
-					}
-				}
-				if( isComplexNestXMLColumn )
-					temp.add( columnNames[i]);
+				nestedXMLColumnNames[i] = columnNames[indexes[i]];
 			}
 		}
-		return getStringArrayFromList( temp );
+		else
+		{
+			nestedXMLColumnNames = new String[0];
+		}
+		return nestedXMLColumnNames;
 	}
 
 	/**
 	 * @param temp
 	 * @return
 	 */
-	private String[] getStringArrayFromList( ArrayList temp )
+	private String[] getStringArrayFromList( List temp )
 	{
 		String[] result = new String[temp.size()];
-		for(int i = 0; i < result.length; i ++)
-		{
-			result[i] = temp.get(i).toString();
-		}
+		temp.toArray( result );
 		return result;
-	}
-	
-	/**
-	 * The simple nested xml columnNames are the names of columns the value of which may be shared by multiple 
-	 * columns. The most significant feature of a simple nested xml column is that its xpath expression does not start with 
-	 * table root path, and it is an attribute of parent of root path element.  
-	 * 
-	 * @return
-	 */
-	public String[] getSimpleNestXMLColumnNames( )
-	{
-		ArrayList temp = new ArrayList();
-		String[] columnNames = getRealColumnNames();
-		for( int i = 0; i < columnNames.length; i++)
-		{
-			String nestedXMLColumnPathPrefix = ((ColumnInfo)columnInfos.get(columnNames[i])).getColumnPath();
-			//All simple nested xml column must be xml attributes rather than xml elements.
-			if( !nestedXMLColumnPathPrefix.matches( ".*\\Q@\\E.*" ))
-				continue;
-			//Remove the attribute so that only 
-			nestedXMLColumnPathPrefix = nestedXMLColumnPathPrefix.replaceAll( "\\Q[@\\E.*", "" );
-				
-			if( isSimpleNestedColumn( rootPath, nestedXMLColumnPathPrefix))
-				temp.add( columnNames[i] );
-		}
-		return getStringArrayFromList( temp );
-	}
-	
-	/**
-	 * Test if given treated column path refer to a Simple Nested Column
-	 * 
-	 * @param rootPath
-	 * @param treatedColumPath
-	 * @return
-	 */
-	private boolean isSimpleNestedColumn( String rootPath, String treatedColumPath )
-	{
-		String[] tempString1 = treatedColumPath.split( "/" );
-		String[] tempString2 = rootPath.split( "/" );
-		if( tempString2.length <= tempString1.length )
-			return false;
-		for( int j = 0; j < tempString1.length; j++ )
-		{
-			if ( !(( ( tempString1[j] == null  || tempString2[j] == null ) )
-					|| ( tempString1[j].equals( tempString2[j] )
-							|| "*".equals( tempString1[j] ) || "*".equals( tempString2[j] ) ) ))
-				return false;
-		}
-		return true;
-	}
-	
-	/**
-	 * Return the root path of that table.
-	 * 
-	 * @return
-	 */
-	public String getRootPath( )
-	{
-		return this.rootPath;
 	}
 	
 	/**
@@ -757,59 +590,35 @@ class TableInfo
 	}
 	
 	/**
-	 * Return the table's ancestor path. A table's ancestor path is the common prefix that all table columns'
-	 * pathes shared. Table's rootpath should only equal to, or prefixed with a table's ancestor path.
+	 * Return the root path of that table.
+	 * 
 	 * @return
 	 */
-	public String getAncestor( )
+	public String getRootPath( )
 	{
-		String[] columnNames = this.getColumnNames( );
-		
-		// If the table only contains one column. Then the root path of that
-		// table is the path of
-		// the column without the tailing attribute path(if exists)
-		if ( columnNames.length == 1 )
-			return getPath( columnNames[0] );// .replaceFirst("@.*","");
-		String[] paths = new String[columnNames.length];
-		for ( int i = 0; i < paths.length; i++ )
+		return this.rootPath;
+	}
+	
+	void bulidMappingPathTree()
+	{
+		if (!MappingPathElementTree.isValidTableMappingPath( this.getRootPath( ) ))
 		{
-			paths[i] = getPath( columnNames[i] ).replaceFirst("\\Q\\[@\\E.*\\Q\\]\\E","");
+			//table mapping path invalid, needless to construct MappingPathElementTree
+			mappingPathElementTree = null;
+			return;
 		}
-
-		String theLongestPath = "";
-		for ( int i = 0; i < paths.length; i++ )
+		String[] columnNames = this.getRealColumnNames( );
+		String[] columnPaths = new String[columnNames.length];
+		for (int i = 0; i < columnPaths.length; i++)
 		{
-			if ( paths[i].split( "\\Q/\\E" ).length > theLongestPath.split( "\\Q/\\E" ).length )
-				theLongestPath = paths[i];
+			columnPaths[i] = ((ColumnInfo)columnInfos.get( columnNames[i] )).getColumnPath( );
 		}
-		boolean isAbsolutePath = false;
-
-		if ( theLongestPath.startsWith( "//" ) )
-		{
-			isAbsolutePath = false;
-			theLongestPath = theLongestPath.replaceFirst( "\\Q//\\E", "" );
-		}
-		else
-		{
-			isAbsolutePath = true;
-			theLongestPath = theLongestPath.replaceFirst( "\\Q/\\E", "" );
-		}
-
-		String[] temp = theLongestPath.split( "\\Q/\\E" );
-		String prefix = isAbsolutePath ? "/" : "//";
-		for ( int j = 0; j < temp.length; j++ )
-		{
-			String attempedPrefix = j == 0 ? prefix + temp[j] : prefix + "/" + temp[j];
-			for ( int i = 0; i < paths.length; i++ )
-			{
-				if ( !paths[i].startsWith( attempedPrefix ) )
-					return prefix;
-
-			}
-			prefix = attempedPrefix;
-		}
-		
-		return prefix;
+		mappingPathElementTree = new MappingPathElementTree(this.getRootPath( ), columnPaths);
+	}
+	
+	protected MappingPathElementTree getMappingPathTree( )
+	{
+		return mappingPathElementTree;
 	}
 }
 
@@ -825,167 +634,34 @@ class ColumnInfo
 	private String type;
 	private String path;
 	private String originalPath;
-	
-	//The backRefNumber is the number of parent element should a nested xml column
-	//retrieve back from its root XPath to find itself.This is only used in nest xml column
-	//mapping.
-	private int backRefNumber;
-	
-	//The forwardRefNumber is the number of element of the corrent column substract the number of
-	//elements contains in the common part of current root path. In case of not nested column path,
-	//the common part of current root path is the root path itself.
-	private int forwardRefNumber;
+
 	private HashMap filters;
+	
 	/**
 	 * 
 	 * @param index
 	 * @param name
 	 * @param type
-	 * @param path
-	 * @param originalPath
+	 * @param originalPath: originally provided mapping path
+	 * @param filters: <tempColumnName, userProvidedStardantValue> map if attribution filter exists for this column
 	 * @throws OdaException
 	 */
-	public ColumnInfo( int index, String name, String type, String rootPath, String relativePath,
-			String originalPath, HashMap filters ) throws OdaException
+	public ColumnInfo( int index, String name, String type, String originalPath, HashMap filters ) throws OdaException
 	{
 		this.index = index;
 		this.name = name;
 		this.type = type;
 		if ( !DataTypes.isValidType( type ) )
 			throw new OdaException( Messages.getString( "RelationInformation.InvalidDataTypeName" ) );
-		this.path = fixTrailingAttr( SaxParserUtil.processParentAxis( combineColumnPath( rootPath, relativePath ) ) );
 		this.originalPath = originalPath;
-		this.initBackAndForwardRefNumbers( );
+		
+		//the result of removing attribution filters
+		String purePath = originalPath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", "" )
+								   .replaceAll( "\\Q[@\\E.*\\Q]\\E", "" ).trim( );
+		
+		this.path = SaxParserUtil.removeRedundantParentAxis(  purePath );
 		this.filters = filters;
 	}
-
-	/**
-	 * Combine column root path and the relative column path.
-	 * 
-	 * @param rootPath
-	 * @param declaredPath
-	 * @return
-	 */
-	private String combineColumnPath( String rootPath, String declaredPath)
-	{
-		if (declaredPath == null || declaredPath.length() == 0)
-			return rootPath;
-		else if( declaredPath.startsWith("[")||declaredPath.startsWith("/"))
-			return rootPath+declaredPath;
-		return rootPath + "/" + declaredPath;
-		
-	}
-	
-	/**
-	 * 
-	 *
-	 */
-	private void initBackAndForwardRefNumbers( )
-	{
-		this.generateBackRefNumber( this.originalPath );
-		this.generateForwardRefNumber( this.originalPath );
-	}
-	
-	/**
-	 * @param originalPath
-	 */
-	private void generateBackRefNumber( String originalPath )
-	{
-		if ( this.originalPath.matches( ".*\\Q..\\E.*" ) )
-		{
-			String[] originalPathFrags = originalPath.split( UtilConstants.XPATH_SLASH );
-			int lastTwoDotAbbrevationPosition = 0;
-			int numberOfConcretePathFragsBefore2DotAbb = 0;
-
-			for ( int i = 0; i < originalPathFrags.length; i++ )
-			{
-				if ( originalPathFrags[i].equals( ".." ) )
-					lastTwoDotAbbrevationPosition = i;
-			}
-			for ( int i = 0; i < lastTwoDotAbbrevationPosition; i++ )
-			{
-				if ( !originalPathFrags[i].equals( ".." ) )
-					numberOfConcretePathFragsBefore2DotAbb++;
-			}
-
-			int numberOf2DotAbb = lastTwoDotAbbrevationPosition
-					- numberOfConcretePathFragsBefore2DotAbb + 1;
-			backRefNumber = numberOf2DotAbb
-					- numberOfConcretePathFragsBefore2DotAbb;
-			if ( backRefNumber < 0 )
-			{
-				backRefNumber = 0;
-				return;
-			}
-			
-			//The back reference number cannot larger than the number of elements
-			//of root path.
-/*			String[] temp = rootPath.split( "\\Q/\\E" );
-			int count = 0;
-			for( int i = 0; i < temp.length; i ++)
-			{
-				if( temp[i].trim( ).length( )> 0 )
-					count++;
-			}
-			backRefNumber = backRefNumber>count?count:backRefNumber;*/
-		}
-		else
-		{
-			backRefNumber = 0;
-		}
-	}
-	
-	/**
-	 * 
-	 * @param originalPath
-	 */
-	private void generateForwardRefNumber( String originalPath )
-	{
-		if ( originalPath.indexOf( UtilConstants.XPATH_DOUBLE_SLASH ) != -1 )
-		{
-			// forwardRefNumber won't make sense in relativeLocation
-			forwardRefNumber = UtilConstants.COLUMN_REFNUMBER_RELATIVE;
-			return;
-		}
-		
-		String path = originalPath;
-		String[] split = path.split( "/" );
-		int elementCount = 0;
-		int _2dotAbbCount = 0;
-		for( int j = 0; j < split.length; j++ )
-		{
-			if( split[j].equals( ".." ))
-			{
-				_2dotAbbCount++;
-			}
-			else if ( ( !( split[j].trim( ).length( ) == 0 || split[j].trim( ).matches( "\\Q[@\\E.*" ) || split[j].trim( )
-							.matches( "\\Q@\\E.*" ) ))) 
-			{
-				elementCount++;
-			}
-		}
-		
-		this.forwardRefNumber = elementCount + this.backRefNumber - _2dotAbbCount;
-	}
-	
-	/**
-	 * If the path is refer to an attribute, use syntax /elementName/@attributeName
-	 * then we change it to /elementName[@attributeName] to compliment the standard xpath syntax.
-	 * 
-	 */ 
-	private String fixTrailingAttr( String path )
-	{
-		if ( path.matches(".*//@.*"))
-			path = path.replaceFirst("//@","//[@")+"]";
-		else if ( path.matches(".*/@.*"))
-			path = path.replaceFirst("/@","[@")+"]";
-		/*if ( path.startsWith( "//[" ))
-			path = path.replaceFirst( "\\Q//[\\E", "//*[" );
-		if ( path.startsWith( "/[" ))
-			path = path.replaceFirst( "\\Q/[\\E", "//*[" );*/
-		return path;
-	}
-	
 
 
 	/**
@@ -1009,26 +685,6 @@ class ColumnInfo
 	}
 
 	/**
-	 * Return the column xPath.
-	 * 
-	 * @return
-	 */
-	public String getColumnPath( )
-	{
-		return this.path;
-	}
-
-	/**
-	 * Return the colum index.
-	 * 
-	 * @return
-	 */
-	public int getColumnIndex( )
-	{
-		return this.index;
-	}
-	
-	/**
 	 * Return the original path of the column. The original path of a column is the path
 	 * directly get from relation information String without building it to an absolute path.
 	 * This method is mainly used by UI.
@@ -1041,24 +697,25 @@ class ColumnInfo
 	}
 	
 	/**
-	 * Return the back ref number.
+	 * Return the column relative xPath.
 	 * 
 	 * @return
 	 */
-	public int getBackRefNumber( )
+	public String getColumnPath( )
 	{
-		return this.backRefNumber;
+		return this.path;
+	}
+
+	/**
+	 * Return the column index.
+	 * 
+	 * @return
+	 */
+	public int getColumnIndex( )
+	{
+		return this.index;
 	}
 	
-	/**
-	 * Return the forward ref number.
-	 * 
-	 * @return
-	 */
-	public int getForwardRefNumber( )
-	{
-		return this.forwardRefNumber;
-	}
 	
 	/**
 	 * 

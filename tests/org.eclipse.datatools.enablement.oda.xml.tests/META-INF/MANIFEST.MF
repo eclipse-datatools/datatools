@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA XML Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.tests;singleton:=true
-Bundle-Version: 1.0.1.2007010301
+Bundle-Version: 1.0.1.200801141
 Bundle-ClassPath: .
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin

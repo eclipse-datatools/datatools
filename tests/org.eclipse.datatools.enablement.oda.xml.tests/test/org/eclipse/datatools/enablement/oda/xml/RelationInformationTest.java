@@ -42,22 +42,6 @@ public class RelationInformationTest extends BaseTest
 		super.tearDown( );
 	}
 
-	/*
-	 * Test method for 'org.eclipse.datatools.enablement.oda.xml.RelationInformation.getTableColumnPath(String, String)'
-	 */
-	public void testGetTableColumnPath( )
-	{
-		assertEquals(ri1.getTableColumnPath("person","name.family"), "/personnel/person/name/family");
-		assertEquals(ri1.getTableColumnPath("person","name.given"),"/personnel/person/name/given");
-		assertEquals(ri1.getTableColumnPath("person","email"),"/personnel/person/email");
-		assertEquals(ri1.getTableColumnPath("person","link.subordinates"),"/personnel/person/link[@subordinates]");
-		assertEquals(ri1.getTableColumnPath("name","family"), "//name/family");
-		assertEquals(ri1.getTableColumnPath("name","given"),"//name/given");
-		assertEquals(ri1.getTableColumnPath( "table1", "name" ),"/root/country/city[*][@name]");
-		assertEquals(ri1.getTableColumnPath( "table2", "name" ),"/root/country/city[2][@name]");
-		assertEquals(ri1.getTableColumnPath( "table3", "name" ),"/root/country/city[2][@name]");
-		assertEquals(ri1.getTableColumnPath( "table4", "name" ),"/root/country/city[*][@name]");
-	}
 	
 	/*
 	 * Test method for 'org.eclipse.datatools.enablement.oda.xml.RelationInformation.getTableColumnType(String, String)'
@@ -84,42 +68,5 @@ public class RelationInformationTest extends BaseTest
 		assertEquals(ri1.getTableRootPath("table2"),"/root/country");
 		assertEquals(ri1.getTableRootPath("table3"),"/root/country");
 		assertEquals(ri1.getTableRootPath("table4"),"/root/country/city");
-	}
-
-	public void testGetNestedColumnBackRefNumber()
-	{
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("abc","column1"),2);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("abc","column2"),2);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("abc","column3"),0);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("abc","column4"),5);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("def","col1"),3);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("def","col2"),2);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("table1","name"),0);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("table2","name"),0);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("table3","name"),0);
-		assertEquals(ri1.getTableNestedColumnBackRefNumber("table4","name"),0);
-	}
-	
-	public void testGetComplexNestColumnNames()
-	{
-		String[] names = ri1.getTableComplexNestedXMLColumnNames( "nested" );
-		assertEquals(names.length, 2);
-		assertEquals(names[0],"column2");
-		assertEquals(names[1],"column4");
-	}
-	
-	public void testGetSimpleNestColumnNames1()
-	{
-		String[] names = ri1.getTableSimpleNestedXMLColumnNames( "nested" );
-		assertEquals(names.length, 2);
-		assertEquals(names[0],"column3");
-		assertEquals(names[1],"column5");
-	}
-	
-	public void testGetSimpleNestColumnNames2()
-	{
-		String[] names = ri1.getTableSimpleNestedXMLColumnNames( "nested2" );
-		assertEquals(names.length, 1);
-		assertEquals(names[0],"column2");
 	}
 }

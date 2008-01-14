@@ -72,7 +72,8 @@ public class TestConstants
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_OUTPUT_XML_BOOKSTORE = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SchemaPopulationUtilTest_getSchemaTree_XML_BOOKSTORE.txt";
 	public static final String SCHEMA_POPULATION_UTIL_TEST_GET_SCHEMA_TREE_GOLDEN_XML_BOOKSTORE = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SchemaPopulationUtilTest_getSchemaTree_XML_BOOKSTORE.txt";
 	
-	
+	public static final String SAX_PARSER_TEST0_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test0.txt";
+	public static final String SAX_PARSER_TEST0_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test0.txt";
 	public static final String SAX_PARSER_TEST1_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test1.txt";
 	public static final String SAX_PARSER_TEST1_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test1.txt";
 	public static final String SAX_PARSER_TEST2_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test2.txt";
@@ -113,9 +114,12 @@ public class TestConstants
 	public static final String SAX_PARSER_TEST19_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test19.txt";
 	public static final String SAX_PARSER_TEST20_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test20.txt";
 	public static final String SAX_PARSER_TEST20_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test20.txt";
-
+	public static final String SAX_PARSER_TEST21_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test21.txt";
+	public static final String SAX_PARSER_TEST21_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test21.txt";
+	
 	//public static final String SAX_PARSER_TESTLARGE_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.testLarge.txt";
 
 	public static final String LARGE_XML_FILE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/large";
 
+	public static final String HUGE_XML_FOR_PERFORMANCE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/hugeForPerformance.xml";
 }

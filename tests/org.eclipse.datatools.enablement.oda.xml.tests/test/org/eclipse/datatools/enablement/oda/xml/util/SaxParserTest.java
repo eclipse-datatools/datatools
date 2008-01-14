@@ -38,7 +38,7 @@ public class SaxParserTest extends BaseTest
 
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
-	private String testString = "book#-TNAME-#book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
+	private String testString = "book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
 			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat;String;../@category}"
 			+ "#-# aut  hor  #:#[//book/author]#:#{title;String;../title},{lang;String;../title/@lang},{author;String;/@name},{country;String;/@country},{date;String;../date},{isn;String;../isn},{category;String;../@category}"
 			+ "#-# title#:#[/library/*/ad/../title]#:#{title;String;},{lang;String;/@lang},{author;String;../*/@name}"
@@ -55,7 +55,9 @@ public class SaxParserTest extends BaseTest
 			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}"
 			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}"
 			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}"
-			+ "#-# tableFilter#:#[/BookStore/Book[@id=\"A\"]/Author]#:#{book.author;String;}";
+			+ "#-# tableFilter#:#[/BookStore/Book[@id=\"A\"]/Author]#:#{book.author;String;}"
+			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
+			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}";
 
 	private RelationInformation ri;
 
@@ -69,34 +71,44 @@ public class SaxParserTest extends BaseTest
 		super.tearDown( );
 	}
 
-	/*
-	 * public void testLarge() throws IOException, OdaException { File file =
-	 * new File( TestConstants.LARGE_XML_FILE);
-	 * 
-	 * if( file.exists() ) file.delete(); File path = new File( file.getParent() );
-	 * if( !path.exists()) path.mkdir(); file.createNewFile(); FileOutputStream
-	 * fos = new FileOutputStream( file ); fos.write( ( "<?xml
-	 * version=\"1.0\"?>\n" + "<library>\n" ).getBytes( ) ); for ( int i = 0; i <
-	 * 10000; i++ ) { String tb = "<book category=\"COOKING\">" + "<title
-	 * lang=\"en\">Everyday Italian</title>" + "<author name=\"Giada De
-	 * Laurentiis\" country=\"it\" id=\"" + i + "\"/>" + "<date>2005-02-02</date>" + "<price>25.99</price>" + "<isn>12325423</isn>" + "<timestamp>2000-02-02
-	 * 00:00:00.000000001</timestamp>" + "</book>"; fos.write( tb.getBytes( ) );
-	 * fos.write( lineSeparator.getBytes( ) ); } fos.write( "</library>".getBytes( ) );
-	 * fos.close();
-	 * 
-	 * 
-	 * ri = new RelationInformation( testString ); ResultSet rs = new ResultSet(
-	 * TestConstants.LARGE_XML_FILE+"238.xml", ri, "author1" ); rs.setMaxRows(
-	 * 200000 );
-	 * 
-	 * long time1 = System.currentTimeMillis( );
-	 * 
-	 * while ( rs.next( ) ) {
-	 *  } System.out.println(System.currentTimeMillis( )-time1); assertFalse(
-	 * rs.next( ) );
-	 * 
-	 *  }
-	 */
+	public void test0( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST0_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		System.out.println(file.getAbsolutePath());
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
+		ResultSet rs = new ResultSet( content,
+				ri,
+				"simple",
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+		
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST0_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST0_GOLDEN_XML ) ) );
+	}
+
 	public void test1( ) throws OdaException, IOException
 	{
 		File file = new File( TestConstants.SAX_PARSER_TEST1_OUTPUT_XML );
@@ -134,6 +146,7 @@ public class SaxParserTest extends BaseTest
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST1_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST1_GOLDEN_XML ) ) );
 	}
+	
 
 	public void test2( ) throws OdaException, IOException
 	{
@@ -235,8 +248,7 @@ public class SaxParserTest extends BaseTest
 		conn.setAppContext( map );
 		conn.open( prop );
 		IQuery query = conn.newQuery( null );
-		query.prepare( "stat#-TNAME-#"
-				+ this.testString.replaceFirst( ".*\\Q#-TNAME-#\\E", "" ) );
+		query.prepare( "stat#-TNAME-#" + this.testString);
 
 		ResultSet rs = (ResultSet) query.executeQuery( );
 
@@ -915,5 +927,40 @@ public class SaxParserTest extends BaseTest
 				new File( TestConstants.SAX_PARSER_TEST20_GOLDEN_XML ) ) );
 	}
 
+	public void test21( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST21_OUTPUT_XML );
 
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		XMLCreatorContent content = new XMLCreatorContent( TestConstants.BOOKSTORE_XML_FILE );
+		ResultSet rs = new ResultSet( content,
+				ri,
+				"attributeFilter",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST21_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST21_GOLDEN_XML ) ) );
+	}
 }

@@ -16,10 +16,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -71,8 +69,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private boolean stopCurrentThread;
 	
 	private Map cachedValues;
-	
-	private List filterColumns;
+
 	private List exceptions;
 	/**
 	 * 
@@ -90,14 +87,6 @@ public class SaxParser extends DefaultHandler implements Runnable
 		stopCurrentThread = false;
 		cachedValues = new HashMap( );
 		exceptions = new ArrayList( );
-	}
-
-	public SaxParser( XMLDataInputStream xdis,
-			SaxParserConsumer saxParserConsumer,
-			List filterColumns )
-	{
-		this( xdis, saxParserConsumer );
-		this.filterColumns = filterColumns;
 	}
 
 	/*
@@ -130,18 +119,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 			
 			
 			this.inputStream.init( );
-			try
-			{
-				parse( xmlReader );
-			}
-			catch ( ThreadStopException tsE )
-			{
-				//This exception is thrown out to stop the execution of current
-				//thread.
-				tsE.printStackTrace();
-			}
-
-		//	this.inputStream.reStart();
+			
+			parse( xmlReader );
 		}
 		catch ( Exception e )
 		{
@@ -316,7 +295,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		if( this.stopCurrentThread )
 			throw new ThreadStopException();
 		
-		String elementName = getElementName( uri, qName, name );
+		String elementName = qName;
 		String parentPath = pathHolder.getPath();
 		//Record the occurance of elements
 		if(this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)==null)
@@ -329,62 +308,11 @@ public class SaxParser extends DefaultHandler implements Runnable
 		pathHolder.push( elementName+"["+((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+"]" );
 		spConsumer.detectNewRow( pathHolder.getPath( ), true );
 		
-		int[] attrOrder = generateAttrOrder( atts );
-		for ( int i = 0; i < attrOrder.length; i++ )
-		{
-			spConsumer.manipulateData( getAttributePath( atts, attrOrder[i] ),
-					atts.getValue( attrOrder[i] ) );
-			spConsumer.detectNewRow( getAttributePath( atts, attrOrder[i] ), true );
-		}
-	}
-	
-	/**
-	 * Generates an attributeOrder according to the predicates being used. Note
-	 * it can't handle the case-secenario where there exists a dependence cycle
-	 * e.g. [@type='sub']/@id, [@id='2']/@type
-	 * 
-	 * @param atts
-	 * @return
-	 */
-	private int[] generateAttrOrder( Attributes atts )
-	{
-		int[] orders = new int[atts.getLength( )];
-		if ( orders.length == 0 )
-			return orders;
-		
-		List orderList = new ArrayList( );
-		List temp = new ArrayList( );
-
 		for ( int i = 0; i < atts.getLength( ); i++ )
 		{
-			if ( isFilter( getAttributePath( atts, i ) ) )
-				orderList.add( new Integer( i ) );
-			else
-				temp.add( new Integer( i ) );
+			spConsumer.manipulateData( getAttributePath( atts, i ),
+					atts.getValue( i ) );
 		}
-		
-		orderList.addAll( temp );
-		for ( int i = 0; i < orderList.size( ); i++ )
-		{
-			orders[i] = ( (Integer) orderList.get( i ) ).intValue( );
-		}
-
-		return orders;
-	}
-	
-	private boolean isFilter( String path )
-	{
-		if ( filterColumns == null )
-			return false;
-		
-		for ( int i = 0; i < filterColumns.size( ); i++ )
-		{
-			if ( XPathParserUtil.match( path,
-					( (ColumnInfo) filterColumns.get( i ) ).getColumnPath( ) ) )
-				return true;
-		}
-
-		return false;
 	}
 
 	/**
@@ -397,10 +325,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private String getAttributePath( Attributes atts, int i )
 	{
 		return pathHolder.getPath( )
-				+ "[@"
-				+ getElementName( atts.getURI( i ),
-						atts.getQName( i ),
-						atts.getLocalName( i ) )+"]";
+				+ "/@"
+				+ atts.getQName( i );
 	}
 
 	/*
@@ -419,32 +345,22 @@ public class SaxParser extends DefaultHandler implements Runnable
 		//	this.currentElementRecoder.clear();
 		
 		String path = pathHolder.getPath();
+	
 		Object[] keys = this.currentElementRecoder.keySet().toArray();
-		for(int i= 0; i < keys.length&&path!=""; i++)
+		if (!path.equals( "" ))
 		{
-			if (keys[i].toString().startsWith(path)&&(!keys[i].toString().equals(path)))
+			for(int i= 0; i < keys.length; i++)
 			{
-				this.currentElementRecoder.remove(keys[i]);
+				if (keys[i].toString().startsWith(path)&&(!keys[i].toString().equals(path)))
+				{
+					this.currentElementRecoder.remove(keys[i]);
+				}
 			}
 		}
 		pathHolder.pop( );
 	}
 
-	/**
-	 * Get the elementName
-	 * 
-	 * @param uri
-	 * @param qName
-	 * @param name
-	 * @return
-	 */
-	private String getElementName( String uri, String qName, String name )
-	{
-		//if ( "".equals( uri ) )
-			return qName;
-		//else
-		//	return "["+ uri.replaceAll("\\Q\\\\E","/")+ "]" + name;
-	}
+
 
 	/*
 	 *  (non-Javadoc)
@@ -563,11 +479,13 @@ public class SaxParser extends DefaultHandler implements Runnable
  */
 class XPathHolder
 {
-	private Vector holder;
+	private List holder;
+	private StringBuffer pathBuffer;
 
 	public XPathHolder( )
 	{
-		holder = new Vector( );
+		holder = new ArrayList( );
+		pathBuffer = new StringBuffer();
 	}
 
 	/**
@@ -576,13 +494,7 @@ class XPathHolder
 	 */
 	public String getPath( )
 	{
-		String result = "";
-		Iterator it = holder.iterator( );
-		while ( it.hasNext( ) )
-		{
-			result = result	+ "/" + (String) it.next( );
-		}
-		return result;
+		return pathBuffer.toString( );
 	}
 
 	/**
@@ -591,7 +503,13 @@ class XPathHolder
 	 */
 	public void pop( )
 	{
-		holder.remove( holder.size( ) - 1 );
+		if (holder.size( ) > 1) 
+		{
+			String lastPath = (String)holder.get( holder.size( ) - 1 );
+			holder.remove( holder.size( ) - 1 );
+			//remove "/lastPath"
+			this.pathBuffer.delete( pathBuffer.length( ) - 1 - lastPath.length( ), pathBuffer.length( ));
+		}
 	}
 
 	/**
@@ -601,6 +519,8 @@ class XPathHolder
 	 */
 	public void push( String path )
 	{
+		assert path != null;
 		holder.add( path );
+		this.pathBuffer.append("/").append( path );
 	}
 }

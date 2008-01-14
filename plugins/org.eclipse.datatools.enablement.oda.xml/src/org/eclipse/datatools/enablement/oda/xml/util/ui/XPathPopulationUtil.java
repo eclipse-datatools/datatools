@@ -113,7 +113,7 @@ final public class XPathPopulationUtil
 		assert rootPath != null;
 		assert columnPath != null;
 	
-		rootPath = SaxParserUtil.processParentAxis( rootPath );
+		rootPath = SaxParserUtil.removeRedundantParentAxis( rootPath );
 		if( rootPath.equals( "//" )||rootPath.equals( "//*" ))
 		{
 			String[] temp = columnPath.split( "\\Q/\\E" );

@@ -1,0 +1,5 @@
+book.category					book.title					book.author_1					book.author_2					
+COOKING					Everyday Italian					Giada De Laurentiis					null					
+null					Harry Potter					J K. Rowling					null					
+WEB					XQuery Kick Start					James McGovern					Per Bothner					
+WEB					Learning XML					Erik T. Ray					R.C.Martin					

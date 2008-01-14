@@ -176,12 +176,7 @@ public class ResultSet implements IResultSet
 	 */
 	private int getColumnIndex( String columnName ) throws OdaException
 	{
-		for ( int i = 1; i <= rsMetaData.getColumnCount( ); i++ )
-		{
-			if ( rsMetaData.getColumnName( i ).equals( columnName ) )
-				return i;
-		}
-		throw new OdaException( );
+		return rsMetaData.getColumnIndex( columnName );
 	}
 
 	/*

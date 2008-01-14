@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
@@ -21,6 +24,9 @@ public class ResultSetMetaData implements IResultSetMetaData
 {
 	//Column Names
 	private String[] columnNames;
+	
+	//To accelerate find index from column name
+	private Map nameIndexMap;
 	
 	private RelationInformation ri;
 	
@@ -37,6 +43,11 @@ public class ResultSetMetaData implements IResultSetMetaData
 		this.ri = ri;
 		this.tableName = tableName;
 		this.columnNames = ri.getTableColumnNames(tableName);
+		nameIndexMap = new HashMap();
+		for (int i = 0; i < columnNames.length; i++)
+		{
+			nameIndexMap.put( columnNames[i], new Integer(i + 1) );
+		}
 	}
 	
 	/*
@@ -120,15 +131,17 @@ public class ResultSetMetaData implements IResultSetMetaData
 		return columnNullableUnknown;
 	}
 	
-	/**
-	 * Return the column's Xpath expression.
-	 * 
-	 * @param index
-	 * @return
-	 * @throws OdaException
-	 */
-	public String getColumnPath( int index ) throws OdaException
+	
+	int getColumnIndex( String columnName ) throws OdaException
 	{
-		return ri.getTableColumnPath(tableName,getColumnName(index));
+		Object index = nameIndexMap.get( columnName );
+		if (index == null)
+		{
+			throw new OdaException();
+		}
+		else 
+		{
+			return ((Integer)index).intValue( );
+		}
 	}
 }

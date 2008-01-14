@@ -8,14 +8,14 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
                 <xsi:ISBN>1-56592-235-2</xsi:ISBN>
                 <xsi:Publisher>McMillin Publishing</xsi:Publisher>
         </xsi:Book>
-        <Book>
+        <Book b = "1" a = "2">
                 <Title>Illusions The Adventures of a Reluctant Messiah</Title>
                 <Author>Richard Bach</Author>
                 <Date>1977</Date>
                 <ISBN>0-440-34319-4</ISBN>
                 <Publisher>Dell Publishing Co.</Publisher>
         </Book>
-        <Book>
+        <Book b = "11" a = "22">
                 <Title>The First and Last Freedom</Title>
                 <Author>J. Krishnamurti</Author>
                 <Date>1954</Date>

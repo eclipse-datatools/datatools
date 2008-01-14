@@ -19,136 +19,32 @@ import junit.framework.TestCase;
 
 public class XPathParserTest extends TestCase
 {
-
-	private void assertEquals( boolean[] booleans, String[] strings,
-			String regex )
+	public void testStringSplit()
 	{
-		assert strings.length == booleans.length;
-
-		if ( regex != null )
+		String[] tests = new String[]{
+			"",
+			"/",
+			"//",
+			"///",
+			"/A",
+			"/A/B",
+			"/A/"
+		};
+		
+		for (int i = 0; i < tests.length; i++)
 		{
-			for ( int i = 0; i < strings.length; i++ )
-				assertEquals( booleans[i], XPathParserUtil.match( strings[i],
-						regex ) );
+			printSplits(tests[i].split( "/" ));
 		}
 	}
-
-	public void testDoubleSlash( )
+	
+	private void printSplits(String[] splits)
 	{
-		String[] strings = {
-				"/",
-				"//",
-				"/Book[1]//Title[1]/",
-				"/Book[1]/",
-				"/Book[1]/Title[1]"
-		};
-		boolean[] booleans = {
-				true, false, true, true, false,
-		};
-
-		for ( int i = 0; i < strings.length; i++ )
-			assertEquals( booleans[i],
-					strings[i].matches( XPathParserUtil.REPL_DOUBLE_SLASH ) );
+		System.out.println( );
+		System.out.print("Splits count: " + splits.length + "; Content: ");
+		for (int i = 0; i < splits.length; i++)
+		{
+			System.out.print("[" + splits[i] + "]");
+		}
+		System.out.println( );
 	}
-
-	public void testAbsoluateLocation( )
-	{
-		String regex = "/Book/Title";
-		String[] strings = {
-				"/Book[1]/Title[1]",
-				"/Book[1]/Title[2]",
-				"/Books[1]/Book[1]/Title[1][@subtitle]",
-				"/Book[1]/Title[1]/Author[2]",
-				"/Book[1]/Title[1][@subtitle]",
-				"/Books[1]/Fiction[1][@count]"
-		};
-		boolean[] booleans = {
-				true, true, false, false, false, false
-		};
-
-		assertEquals( booleans, strings, regex );
-	}
-
-	public void testRelativeLocation( )
-	{
-		String regex = "//Book//Title";
-		String[] strings = {
-				"/Book[1]/Title[1]",
-				"/Books[1]/Book[1]/Author[1]",
-				"/Books[1]/Fiction[1]/Book[1]/Titles[1]/Title[1]",
-				"/Books[1]/Fiction[1]/Book[1]/Titles[1]/Title[1][@sub]"
-		};
-		boolean[] booleans = {
-				true, false, true, false
-		};
-
-		assertEquals( booleans, strings, regex );
-	}
-
-	public void testPredicates( )
-	{
-		String regex = "//Book//Title[1]";
-		String[] strings = {
-				"/Book[2]/Title[1]",
-				"/Books[2]/Book[1]/Title[1]",
-				"/Book[2]/Fiction[2]/Title[2]",
-				"/Book[2]/Fiction[2]/Titles[2]/Title[1]"
-		};
-		boolean[] booleans = {
-				true, true, false, true
-		};
-
-		assertEquals( booleans, strings, regex );
-	}
-
-	public void testMisc( )
-	{
-		String regex = "//Book/Fiction//Title[1]";
-		String[] strings = {
-				"/Book[2]/Title[1]",
-				"/Books[2]/Book[1]/Title[1]",
-				"/Book[2]/Fiction[2]/Title[2]",
-				"/Book[2]/Fiction[2]/Titles[2]/Title[1]"
-		};
-		boolean[] booleans = {
-				false, false, false, true
-		};
-
-		assertEquals( booleans, strings, regex );
-	}
-
-	public void testWildCardXPath( )
-	{
-		String regex = "//Book/*//Title";
-		String[] strings = {
-				"/Book[2]/Title[1]",
-				"/Books[2]/Book[1]/Title[1]",
-				"/Book[2]/Fiction[2]/Title[2]",
-				"/Book[2]/Fiction[2]/Titles[2]/Title[1]"
-		};
-		boolean[] booleans = {
-				false, false, true, true
-		};
-
-		assertEquals( booleans, strings, regex );
-	}
-
-	public void testRegression( )
-	{
-		String[] strings = {
-				"/root[1]/entries[1]/entry[1]/field[1][@a]",
-				"/library[1]/book[1][@category]",
-				"/library[1]/book[1]/author[1][@name]"
-		};
-		String[] regexs = {
-				"//entry/field[*]", "//[@category]", "/library/*/*[@name]"
-		};
-		boolean[] booleans = {
-				false, true, true
-		};
-		for ( int i = 0; i < strings.length; i++ )
-			assertEquals( booleans[i], XPathParserUtil.match( strings[i],
-					regexs[i] ) );
-	}
-
 }
