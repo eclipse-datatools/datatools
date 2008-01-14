@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 
 /**
@@ -84,10 +85,12 @@ public class RawMessageSender
 	 * 
 	 * @param timeout
 	 * @return
+	 * @throws OdaException 
 	 */
-	public SOAPResponse getSOAPResponse( long timeout )
+	public SOAPResponse getSOAPResponse( long timeout ) throws OdaException
 	{
-		Thread t = new Thread( new SOAPResponseCollector( ) );
+		SOAPResponseCollector collector = new SOAPResponseCollector( );
+		Thread t = new Thread( collector );
 		t.start( );
 		try
 		{
@@ -97,17 +100,33 @@ public class RawMessageSender
 		catch ( InterruptedException e )
 		{
 		}
+		if( collector.getException( ) != null )
+		{
+			throw new OdaException( collector.getException( ).getMessage( ) );
+		}
 
 		return soapResponse;
 	}
 
 	class SOAPResponseCollector implements Runnable
 	{
-
+		private Exception e = null;
+		
+		/**
+		 * 
+		 * @return
+		 */
+		Exception getException( )
+		{
+			return e;
+		}
+		
 		public void run( )
 		{
 			try
 			{
+				e = null;
+				
 				URL url = new URL( spec );
 
 				connection = (HttpURLConnection) url.openConnection( );
@@ -133,6 +152,7 @@ public class RawMessageSender
 					soapResponse = new SOAPResponse( connection.getErrorStream( ),
 							SOAPResponse.ERROR_STREAM,
 							e.getMessage( ) );
+				this.e = e;
 
 			}
 			catch ( IOException e )
@@ -141,6 +161,7 @@ public class RawMessageSender
 					soapResponse = new SOAPResponse( connection.getErrorStream( ),
 							SOAPResponse.ERROR_STREAM,
 							e.getMessage( ) );
+				this.e = e;
 			}
 		}
 	}

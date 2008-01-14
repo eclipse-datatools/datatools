@@ -11,6 +11,7 @@
 
 package org.eclipse.datatools.enablement.oda.ws.misc;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.ws.BaseTest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.util.TestConstants;
@@ -24,7 +25,7 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
 public class RawMessageSenderTest extends BaseTest
 {
 
-	public void testThread( )
+	public void testThread( ) throws OdaException
 	{
 		String[] wsdlURIs = {
 				TestConstants.WSDL_FILE_TEMPCONVERT,

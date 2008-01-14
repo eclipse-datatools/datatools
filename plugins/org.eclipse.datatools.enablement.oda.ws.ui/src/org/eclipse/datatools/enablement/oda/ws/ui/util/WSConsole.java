@@ -453,7 +453,7 @@ public class WSConsole
 		return p;
 	}
 
-	private SOAPResponse connectNow( )
+	private SOAPResponse connectNow( ) throws OdaException
 	{
 		String spec = getPropertyValue( Constants.SOAP_ENDPOINT );
 		// if soapEndPoint is not explicitly specified by the user, try locate

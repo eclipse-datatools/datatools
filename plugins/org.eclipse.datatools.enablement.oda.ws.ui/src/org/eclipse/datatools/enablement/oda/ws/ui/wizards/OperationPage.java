@@ -29,6 +29,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
@@ -389,6 +390,7 @@ public class OperationPage extends DataSetWizardPage
 				}
 				catch ( OdaException e )
 				{
+					setMessage( e.getMessage( ), IMessageProvider.ERROR );
 				}
 			}
 	}
