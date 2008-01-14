@@ -73,7 +73,7 @@ public class MappingPathElementTree
 			
 			if (!isValidColumnMappingPath(relativePath))
 			{
-				break;
+				continue;
 			}
 			
 			if ( relativePath.equals( "" ) ) // column path is the same with table path
