@@ -24,6 +24,7 @@ import java.io.Writer;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
@@ -40,6 +41,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Status;
@@ -47,6 +51,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.w3c.dom.DOMException;
@@ -257,6 +262,7 @@ public class ConnectionProfileMgmt {
 			child.setAttribute(PROFILEID, cp.getInstanceID());
 			
 			boolean hasDriverReference = false;
+			boolean hasJarList = false;
 			String driverID = null;
 			Properties props = cp.getBaseProperties();
 			try {
@@ -286,6 +292,9 @@ public class ConnectionProfileMgmt {
 				if (key.equals(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID)) {
 					driverID = value;
 					hasDriverReference = true;
+				}
+				if (key.equals(IDriverMgmtConstants.PROP_DEFN_JARLIST)) {
+					hasJarList = true;
 				}
 				appendPropertyToElement ( document, baseProps, key, value );
 			}
@@ -342,6 +351,18 @@ public class ConnectionProfileMgmt {
 					appendPropertyToElement ( document, extraChild, key, value );
 				}
 				child.appendChild(extraChild);
+			}
+			if (!hasJarList && hasDriverReference && driverID != null) {
+				DriverInstance di = DriverManager.getInstance().getDriverInstanceByID(driverID);
+				if (di != null) {
+					Properties diprops = di.getPropertySet().getBaseProperties();
+					String jarList = diprops.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
+					if (jarList != null) {
+						appendPropertyToElement ( document, baseProps, 
+							IDriverMgmtConstants.PROP_DEFN_JARLIST, 
+							jarList );
+					}
+				}
 			}
 			if (hasDriverReference && driverID != null ) {
 				Element driverElem = document.createElement(DRIVERREFTAG);
@@ -598,6 +619,39 @@ public class ConnectionProfileMgmt {
 						if (di != null) {
 							String driverID = di.getId();
 							cp.getBaseProperties().setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, driverID);
+							
+							// This section is to fix BZ 213258 -- brianf
+							String jarList = 
+								cp.getBaseProperties().getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
+							if (jarList != null && jarList.trim().length() > 0) {
+								Properties diprops = di.getPropertySet().getBaseProperties();
+								diprops.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
+								di.getPropertySet().setBaseProperties(diprops);
+
+								DriverManager.getInstance().removeDriverInstance(di.getId());
+							
+								/*
+								 * This call to garbage collect is to try and reclaim
+								 * the classloader held by the last instance of the 
+								 * DriverInstance that is being dropped and re-added.
+								 * Note that if the class is in use (i.e. any profile
+								 * is connected that uses the referenced driver), it 
+								 * won't be unloaded and subsequent connections will 
+								 * fail.
+								 */
+								System.gc();
+								
+								DriverManager.getInstance().addDriverInstance(di);
+							}
+							else {
+								String message = ConnectivityPlugin.getDefault().getResourceString(
+										"drivermarker.import.error", new String[] { cp.getName()}); //$NON-NLS-1$
+								ConnectivityPlugin.getDefault().log(message);
+								removeOldDriverProblemMarkers(di.getName());
+								addDriverProblemMarker(di.getName(), message);
+							}
+							// end fix for BZ 213258 -- brianf
+
 							updatedIDs = true;
 						}
 						else {
@@ -862,5 +916,40 @@ public class ConnectionProfileMgmt {
             }
 		}
 		return transformer;
+	}
+
+	private static void addDriverProblemMarker(String name, String message) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		Map map = new HashMap(3);
+		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
+				"drivermarker.error", new String[] { name, message})); //$NON-NLS-1$
+		map.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
+		map.put(IMarker.LOCATION, name);
+		map.put(IMarker.TRANSIENT, Boolean.FALSE.toString());
+
+		try {
+			IMarker marker = resource
+					.createMarker("org.eclipse.datatools.connectivity.ui.driverProblem"); //$NON-NLS-1$
+			marker.setAttributes(map);
+		}
+		catch (CoreException e) {
+		}
+	}
+
+	private static void removeOldDriverProblemMarkers(String name) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		try {
+			IMarker[] markers = resource.findMarkers(
+					"org.eclipse.datatools.connectivity.ui.driverProblem", true, //$NON-NLS-1$
+					IResource.DEPTH_INFINITE);
+			for (int i = 0; i < markers.length; i++) {
+				if (markers[i].getAttribute(IMarker.LOCATION, new String())
+						.equals(name)) {
+					markers[i].delete();
+				}
+			}
+		}
+		catch (CoreException e) {
+		}
 	}
 }

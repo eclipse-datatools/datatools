@@ -11,11 +11,18 @@
 package org.eclipse.datatools.connectivity.drivers;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -69,11 +76,15 @@ public class DriverValidator {
 	 * @return boolean true if valid, false otherwise
 	 */
 	public boolean isValid() {
+		DriverInstance instance = new DriverInstance(this.mInstance);
+		removeOldProblemMarkers(instance.getName());
 		this.mMessage = null;
 		boolean flag = true;
 		flag = validateJarListFiles();
 		if (flag)
 			flag = validateProperties();
+		if (!flag)
+			addProblemMarker(instance.getName(), getMessage());
 		return flag;
 	}
 
@@ -194,5 +205,40 @@ public class DriverValidator {
 		while (tk.hasMoreTokens())
 			pieces[index++] = tk.nextToken();
 		return pieces;
+	}
+
+	private static void addProblemMarker(String name, String message) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		Map map = new HashMap(3);
+		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
+				"drivermarker.error", new String[] { name, message})); //$NON-NLS-1$
+		map.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
+		map.put(IMarker.LOCATION, name);
+		map.put(IMarker.TRANSIENT, Boolean.FALSE.toString());
+
+		try {
+			IMarker marker = resource
+					.createMarker("org.eclipse.datatools.connectivity.ui.driverProblem"); //$NON-NLS-1$
+			marker.setAttributes(map);
+		}
+		catch (CoreException e) {
+		}
+	}
+
+	private static void removeOldProblemMarkers(String name) {
+		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
+		try {
+			IMarker[] markers = resource.findMarkers(
+					"org.eclipse.datatools.connectivity.ui.driverProblem", true, //$NON-NLS-1$
+					IResource.DEPTH_INFINITE);
+			for (int i = 0; i < markers.length; i++) {
+				if (markers[i].getAttribute(IMarker.LOCATION, new String())
+						.equals(name)) {
+					markers[i].delete();
+				}
+			}
+		}
+		catch (CoreException e) {
+		}
 	}
 }
