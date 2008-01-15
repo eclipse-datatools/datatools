@@ -167,13 +167,13 @@ public class SQLBuilderDialog extends Dialog
 		/*
 		 * Add the results view
 		 */
-		_resultsViewControl = new ResultsViewControl(null);
+		_resultsViewControl = new ResultsViewControl();
 		/*
 		 * Tell the results view not to use preferences
 		 */
 		_resultsViewControl.setUsePreferences(false);
 		try {
-			_resultsViewControl.init(null, null);
+			_resultsViewControl.init();
 		} catch (PartInitException e) {
 			e.printStackTrace();
 		}
