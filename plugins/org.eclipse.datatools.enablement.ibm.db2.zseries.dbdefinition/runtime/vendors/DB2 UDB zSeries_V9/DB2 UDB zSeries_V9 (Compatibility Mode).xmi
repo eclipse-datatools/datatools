@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/wst/rdb/models/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB zSeries" version="9 (Compatibility Mode)" maximumIdentifierLength="8" maximumCommentLength="64" aliasSupported="true" sequenceSupported="true" mQTSupported="true" synonymSupported="true" authorizationIdentifierSupported="true" userDefinedTypeSupported="true" packageSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB zSeries" version="9 (Compatibility Mode)" maximumIdentifierLength="8" maximumCommentLength="64" aliasSupported="true" sequenceSupported="true" mQTSupported="true" synonymSupported="true" authorizationIdentifierSupported="true" userDefinedTypeSupported="true" packageSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" lengthSupported="true" lengthUnit="BYTE" defaultLength="1024" maximumLength="2147483647" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
