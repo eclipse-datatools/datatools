@@ -207,7 +207,7 @@ public class DriverValidator {
 		return pieces;
 	}
 
-	private static void addProblemMarker(String name, String message) {
+	public static void addProblemMarker(String name, String message) {
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		Map map = new HashMap(3);
 		map.put(IMarker.MESSAGE, ConnectivityPlugin.getDefault().getResourceString(
@@ -225,7 +225,7 @@ public class DriverValidator {
 		}
 	}
 
-	private static void removeOldProblemMarkers(String name) {
+	public static void removeOldProblemMarkers(String name) {
 		IResource resource = ResourcesPlugin.getWorkspace().getRoot();
 		try {
 			IMarker[] markers = resource.findMarkers(

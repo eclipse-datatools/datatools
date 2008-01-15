@@ -43,9 +43,9 @@ public class DriverManager {
 	
 	private static boolean refreshDriverMap = false;
 	
-	private static boolean driversResetOnce = false;
-	
 	private static boolean mDebug = false;
+	
+	private static String DRIVER_MARKER_FILE_NAME = "DEFAULT_DRIVERS_CREATED.txt"; //$NON-NLS-1$
 	
 	/**
 	 * Retrieve an instance of the DriverManager
@@ -63,7 +63,7 @@ public class DriverManager {
 	}
 	
 	private synchronized void loadAllInstances(boolean migrate) {
-		debug ("loadAllInstances: migrate = " + migrate);
+		debug ("loadAllInstances: migrate = " + migrate); //$NON-NLS-1$
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
 			IPropertySet[] psets = XMLFileManager.loadPropertySets();
@@ -77,7 +77,7 @@ public class DriverManager {
 					}
 					if (changed) {
 						IPropertySet migratedPset = ndi.getPropertySet();
-						debug ("loadAllInstances: migrated di = " + migratedPset.getID() );
+						debug ("loadAllInstances: migrated di = " + migratedPset.getID() ); //$NON-NLS-1$
 						psets[i] = migratedPset;
 						DriverInstance mndi = new DriverInstance(migratedPset);
 						mDriverInstanceMap.put(mndi.getId(), mndi);
@@ -97,7 +97,7 @@ public class DriverManager {
 	}
 
 	private void saveChanges(IPropertySet[] psets) {
-		debug("saveChanges");
+		debug("saveChanges"); //$NON-NLS-1$
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
 		try {
 			XMLFileManager.saveNamedPropertySet(psets);
@@ -370,6 +370,7 @@ public class DriverManager {
 						IPropertySet pset = psets[i];
 						if (pset.getID().equals(id)) {
 							rtnFlag = true;
+							DriverValidator.removeOldProblemMarkers(pset.getName());
 						}
 						else {
 							newPsets[counter] = pset;
@@ -430,16 +431,47 @@ public class DriverManager {
 	}
 
 	/**
+	 * Checks to see if the default drivers marker exists, which
+	 * indicates that default driver definitions were created already.
+	 * @return
+	 */
+	private boolean wereDefaultDriversCreated() {
+		IPath metadataPath = 
+			ConnectivityPlugin.getDefault().getStateLocation();
+		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+		File file = metadataPath.toFile();
+		if (file.exists()){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Creates the default drivers marker if it didn't already exist
+	 * @return
+	 */
+	private boolean createDefaultDriversMarker() {
+		IPath metadataPath = 
+			ConnectivityPlugin.getDefault().getStateLocation();
+		metadataPath = metadataPath.append(DRIVER_MARKER_FILE_NAME);
+		File file = metadataPath.toFile();
+		if (!file.exists()){
+			try {
+				file.createNewFile();
+				return true;
+			} catch (IOException e) {
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Creates any default driver template instances that need to be created.
 	 * This is when the plug-in is loaded.
 	 */
 	public void resetDefaultInstances() {
 
-		if (!driversResetOnce) 
-			driversResetOnce = true;
-		else
-			return;
-		debug ("resetDefaultInstances");
+		debug ("resetDefaultInstances"); //$NON-NLS-1$
 		
 		// Start building a list
 		ArrayList psets_list = new ArrayList();
@@ -453,12 +485,17 @@ public class DriverManager {
 
 		// load the hash map from the file to in memory
 		if (mDriverInstanceMap == null || refreshDriverMap) {
-			debug ("resetDefaultInstances: loading hash map");
+			debug ("resetDefaultInstances: loading hash map"); //$NON-NLS-1$
 			mDriverInstanceMap = new HashMap();
 			loadAllInstances(true);
 			if (refreshDriverMap) 
 				refreshDriverMap = false;
 		}
+
+		if (wereDefaultDriversCreated()) 
+			return;
+
+		debug ("resetDefaultInstances: checking for drivers to create by default"); //$NON-NLS-1$
 
 		// Now grab all the driver instances from the file
 		IPropertySet[] psets = getPropertySetsFromMap();
@@ -492,6 +529,8 @@ public class DriverManager {
 				addDriverInstance(newPset);
 			}
 		}
+		boolean markerCreated = createDefaultDriversMarker();
+		debug("Marker created: " + markerCreated); //$NON-NLS-1$
 	}
 
 	/**
@@ -678,7 +717,7 @@ public class DriverManager {
 	
 	private void debug ( String msg ) {
 		if (mDebug)
-			System.out.println("Debug: " + msg);
+			System.out.println("Debug: " + msg); //$NON-NLS-1$
 	}
 
 }

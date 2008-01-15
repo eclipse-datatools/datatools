@@ -56,7 +56,9 @@ public class CreateConnectionJob extends Job {
 			mManagedConnection.createConnection(monitor);
 			IConnection connection = mManagedConnection.getConnection();
 			if (connection.getConnectException() != null) {
-				status = new Status(IStatus.ERROR, ConnectivityPlugin
+				// when setting the status as warning the user gets an
+				// error message dialog that is more "user friendly"
+				status = new Status(IStatus.WARNING, ConnectivityPlugin
 						.getDefault().getBundle().getSymbolicName(), -1,
 						ConnectivityPlugin.getDefault().getResourceString(
 								"CreateConnectionJob.error", //$NON-NLS-1$
