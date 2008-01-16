@@ -120,10 +120,13 @@ public class SQLBuilderEditor extends EditorPart implements
 		catch (PartInitException e){
 			e.printStackTrace();
 		} catch (ParseException e) {
-			String sMessage = e.getLocalizedMessage() + Messages._QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED;
+			String sSQL = sqlBuilderEditorInput.getSQL();
+			if (sSQL != null && sSQL.trim().length() > 0){
+				String sMessage = e.getLocalizedMessage() + Messages._QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED;
 			
-			MessageDialog.openInformation(Display.getCurrent().getActiveShell(),
-					Messages._QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED, sMessage);
+				MessageDialog.openInformation(Display.getCurrent().getActiveShell(),
+						Messages._QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED, sMessage);
+			}
 		}
 		
 		site.setSelectionProvider(this);
