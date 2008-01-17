@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.sqltools.ddlgen.ui; singleton:=true
+Bundle-Version: 1.0.0.200801161
+Bundle-Activator: org.eclipse.datatools.sqltools.ddlgen.internal.ui.FEUiPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.datatools.sqltools.ddlgen.internal.ui;x-internal:=true,
+ org.eclipse.datatools.sqltools.ddlgen.internal.ui.actions.popup;x-internal:=true,
+ org.eclipse.datatools.sqltools.ddlgen.internal.ui.util;x-internal:=true,
+ org.eclipse.datatools.sqltools.ddlgen.internal.ui.wizards;x-internal:=true
+Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.ide;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[1.0.0,1.5.0)",
+ org.eclipse.help.base;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity.ui.dse;bundle-version="[1.0.1,2.0.0)",
+ org.eclipse.datatools.sqltools.editor.core;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.sqltools.sqleditor;bundle-version="[1.0.0,2.0.0)"
+Eclipse-AutoStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
