@@ -99,41 +99,45 @@
                   visibility="hide">
             </propertyVisibility>
          </properties>
-         <dataTypeMapping
-               nativeDataTypeCode="1"
-               odaScalarDataType="String"
-               nativeDataType="String">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="4"
-               odaScalarDataType="Integer"
-               nativeDataType="Integer">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="8"
-               odaScalarDataType="Double"
-               nativeDataType="Double">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="3"
-               odaScalarDataType="Decimal"
-               nativeDataType="BigDecimal">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="91"
-               odaScalarDataType="Date"
-               nativeDataType="Date">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="92"
-               odaScalarDataType="Time"
-               nativeDataType="Time">
-         </dataTypeMapping>
-         <dataTypeMapping
-               nativeDataTypeCode="93"
-               odaScalarDataType="Timestamp"
-               nativeDataType="Timestamp">
-         </dataTypeMapping>
+           <dataTypeMapping
+                  nativeDataType="INT"
+                  nativeDataTypeCode="4"
+                  odaScalarDataType="Integer"/>
+            <dataTypeMapping
+                  nativeDataType="DOUBLE"
+                  nativeDataTypeCode="8"
+                  odaScalarDataType="Double"/>
+            <dataTypeMapping
+                  nativeDataType="STRING"
+                  nativeDataTypeCode="12"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="DATE"
+                  nativeDataTypeCode="91"
+                  odaScalarDataType="Date"/>
+            <dataTypeMapping
+                  nativeDataType="TIME"
+                  nativeDataTypeCode="92"
+                  odaScalarDataType="Time"/>
+            <dataTypeMapping
+                  nativeDataType="TIMESTAMP"
+                  nativeDataTypeCode="93"
+                  odaScalarDataType="Timestamp"/>
+            <dataTypeMapping
+                  nativeDataType="BLOB"
+                  nativeDataTypeCode="2004"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="CLOB"
+                  nativeDataTypeCode="2005"
+                  odaScalarDataType="String"/>
+            <dataTypeMapping
+                  nativeDataType="BIGDECIMAL"
+                  nativeDataTypeCode="2"
+                  odaScalarDataType="Decimal"/>
+           <dataTypeMapping nativeDataType="BOOLEAN"
+                  nativeDataTypeCode="16"
+                  odaScalarDataType="Boolean"/>
       </dataSet>
    </extension>
 
