@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: HSQLDB Dbdefinition Plug-in
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.hsqldb.dbdefinition; singleton:=true
-Bundle-Version: 1.0.0.200801041
-Bundle-Vendor: Eclipse.org
+Bundle-Version: 1.0.0.200801181
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Eclipse-AutoStart: true
 Bundle-RequiredExecutionEnvironment: J2SE-1.4

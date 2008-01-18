@@ -2,28 +2,18 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.hsqldb;singleton:=true
-Bundle-Version: 1.0.0.200710293
-Bundle-Activator: org.eclipse.datatools.enablement.hsqldb.HSQLDBActivator
+Bundle-Version: 1.0.0.200801181
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.connectivity;bundle-version="[1.0.0,1.5.0)",
+Require-Bundle: org.eclipse.datatools.connectivity;bundle-version="[1.0.0,1.5.0)",
  org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.0,1.5.0)",
  org.eclipse.datatools.modelbase.sql;bundle-version="[1.0.0,1.5.0)",
  org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.connectivity.sqm.server.ui;bundle-version="[1.0.0,1.5.0)",
- org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[1.0.0,1.5.0)"
+ org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,1.5.0)"
 Eclipse-LazyStart: true
-Export-Package: org.eclipse.datatools.enablement.hsqldb,
- org.eclipse.datatools.enablement.hsqldb.catalog,
+Export-Package: org.eclipse.datatools.enablement.hsqldb.catalog,
  org.eclipse.datatools.enablement.hsqldb.connection,
  org.eclipse.datatools.enablement.hsqldb.internal,
- org.eclipse.datatools.enablement.hsqldb.ui,
- org.eclipse.datatools.enablement.hsqldb.ui.properties,
- org.eclipse.datatools.enablement.hsqldb.ui.wizard
+ org.eclipse.datatools.enablement.hsqldb.ui
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            description="%product.display.description"
+            file="runtime/vendors/HSQLDB_1.8/HSQLDB_1.8.xmi"
+            product="HSQLDB"
+            productDisplayString="%product.display.string"
+            version="1.8"
+            versionDisplayString="%product.display.version.string"/>
+   </extension>
+</plugin>
