@@ -11,8 +11,11 @@
 
 package org.eclipse.datatools.enablement.oda.xml.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
@@ -58,6 +61,18 @@ public class Connection implements IConnection
 			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
 		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
 		xmlContent.setEncoding(encoding);
+		File xmlFile = new File( file );
+		if ( !xmlFile.exists( ) )
+		{
+			try
+			{
+				URL url = new URL( file );
+			}
+			catch ( MalformedURLException e )
+			{
+				throw new OdaException( e );
+			}
+		}
 //		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
 		/*try
 		{
