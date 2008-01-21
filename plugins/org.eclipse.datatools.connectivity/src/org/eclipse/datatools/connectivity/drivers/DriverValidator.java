@@ -76,6 +76,15 @@ public class DriverValidator {
 	 * @return boolean true if valid, false otherwise
 	 */
 	public boolean isValid() {
+		return isValid(true);
+	}
+	
+	/**
+	 * Checks for validity and adds markers if flag is set
+	 * @param registerMarkers
+	 * @return
+	 */
+	public boolean isValid ( boolean registerMarkers ) {
 		DriverInstance instance = new DriverInstance(this.mInstance);
 		removeOldProblemMarkers(instance.getName());
 		this.mMessage = null;
@@ -83,7 +92,7 @@ public class DriverValidator {
 		flag = validateJarListFiles();
 		if (flag)
 			flag = validateProperties();
-		if (!flag)
+		if (!flag && registerMarkers)
 			addProblemMarker(instance.getName(), getMessage());
 		return flag;
 	}

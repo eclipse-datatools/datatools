@@ -608,14 +608,21 @@ public class DriverManager {
 					String propvalue = prop.getAttribute("value"); //$NON-NLS-1$
 					OverrideTemplateDescriptor[] otds = 
 						OverrideTemplateDescriptor.getByDriverTemplate(template.getId());
+					boolean removeIt = false;
 					if (otds != null && otds.length > 0) {
 						String temp =
 							otds[0].getPropertyValueFromId(propid);
 						if (temp != null && temp.length() > 0)
 							propvalue = temp;
+						if (otds[0].getPropertyRemoveFlagFromID(propid)) {
+							removeIt = true;
+						}
 					}
-					props.setProperty(propid, propvalue == null ? new String()
-						: propvalue);
+					if (!removeIt) 
+						props.setProperty(propid, propvalue == null ? new String()
+							: propvalue);
+					else
+						props.remove(propid);
 				}
 			}
 

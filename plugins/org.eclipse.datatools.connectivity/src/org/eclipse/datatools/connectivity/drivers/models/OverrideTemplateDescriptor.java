@@ -82,13 +82,6 @@ public class OverrideTemplateDescriptor implements Comparable {
 		 */
 		Assert.isNotNull(getTargetId(), DriverMgmtMessages
 				.getString("TemplateDescriptor.msg.id_missing"));//$NON-NLS-1$
-		/*
-		 * "An extension for extension-point
-		 * org.eclipse.datatools.connectivity.driverExtension not provide a
-		 * valid name");
-		 */
-		Assert.isNotNull(getName(), DriverMgmtMessages
-				.getString("TemplateDescriptor.msg.name_missing")); //$NON-NLS-1$
 	}
 
 	public static OverrideTemplateDescriptor[] getByDriverTemplate(String driverTemplateId) {

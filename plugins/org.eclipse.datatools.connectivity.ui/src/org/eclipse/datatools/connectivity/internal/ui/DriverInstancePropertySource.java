@@ -97,16 +97,18 @@ public class DriverInstancePropertySource implements IPropertySource {
 			for (int i = 0; i < props.length; i++) {
 				String id = props[i].getAttribute(P_ID);
 				String visible = props[i].getAttribute(P_VISIBLE);
+				boolean remove = false;
 				if (otds != null && otds.length > 0) {
 					String temp =
 						otds[0].getPropertyVisibleFromId(id);
 					if (temp != null && temp.length() > 0)
 						visible = temp;
+					remove = otds[0].getPropertyRemoveFlagFromID(id);
 				}
 				boolean propvisible = true;
 				if (visible != null && visible.equalsIgnoreCase(Boolean.toString(false)))
 					propvisible = false;
-				if (propvisible)
+				if (propvisible && !remove)
 					list.add(props[i]);
 			}
 			if (list.size() > 0) {
