@@ -286,13 +286,28 @@
             eclass="org.eclipse.datatools.modelbase.sql.schema.Schema"
             product="SQL Server"
             version="2005"/>
+      <overrideLoader
+            provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005SchemaLoader"
+            eclass="org.eclipse.datatools.modelbase.sql.schema.Schema"
+            product="SQL Server"
+            version="2000"/>            
+      <overrideLoader
+            provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005ColumnLoader"
+            eclass="org.eclipse.datatools.modelbase.sql.tables.Column"
+            product="SQL Server"
+            version="2000"/>
+      <overrideLoader
+            provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005ColumnLoader"
+            eclass="org.eclipse.datatools.modelbase.sql.tables.Column"
+            product="SQL Server"
+            version="2005"/>
      <overrideLoader
-           eclass=" org.eclipse.datatools.modelbase.sql.routines.Routine"
+           eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
            product="SQL Server"
            provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005RoutineLoader"
            version="2005"/>
      <overrideLoader
-           eclass=" org.eclipse.datatools.modelbase.sql.routines.Routine"
+           eclass="org.eclipse.datatools.modelbase.sql.routines.Routine"
            product="SQL Server"
            provider="org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders.SQL2005RoutineLoader"
            version="2000"/>
