@@ -110,7 +110,9 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
         selectGridLabelProvider = new SelectGridLabelProvider();
         setLabelProvider(selectGridLabelProvider);
 
-        hookControl(table);
+        // BZ 202596 remove call to hookControl as it's called from
+        // the base class constructor TableViewer(Table table)
+        //hookControl(table);
     }
     
     public QueryStatement getCurrentStatement() {
@@ -299,7 +301,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
         }
 
         public void activate() {
-            super.activate();
+        	super.activate();
             deactivate();
             Display.getCurrent().getFocusControl().redraw();
         }
