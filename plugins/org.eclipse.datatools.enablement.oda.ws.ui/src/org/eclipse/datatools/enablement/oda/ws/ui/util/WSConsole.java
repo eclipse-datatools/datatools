@@ -32,7 +32,6 @@ import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
-import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLInformationHolder;
@@ -472,18 +471,12 @@ public class WSConsole
 		populateSOAPParameterValues( soapRequest, parameters );
 		String message = soapRequest.toXML( );
 
-		RawMessageSender rawMessageSender = new RawMessageSender( spec,
-				message,
-				soapAction );
-		SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( WSUIUtil.parseLong( getPropertyValue( Constants.CONNECTION_TIMEOUT ) ) );
+		WSDLAdvisor wsdlAdvisor = new WSDLAdvisor( );
+		String temlate = wsdlAdvisor.getLocalSOAPResponseTemplate( getPropertyValue( Constants.WSDL_URI ),
+				getPropertyValue( Constants.OPERATION_TRACE ) );
+		SOAPResponse soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( )
+				.getBytes( ) ) );
 		
-		if (soapResponse==null||soapResponse.getInputStream( )==null)
-			{
-				WSDLAdvisor wsdlAdvisor=new WSDLAdvisor();
-				String temlate=wsdlAdvisor.getLocalSOAPResponseTemplate( getPropertyValue( Constants.WSDL_URI ),
-					getPropertyValue( Constants.OPERATION_TRACE ) );
-				soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( ).getBytes( ) ) );
-			}
 		return soapResponse;
 	}
 

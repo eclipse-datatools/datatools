@@ -50,8 +50,10 @@ public class Query implements IQuery
 	private SOAPRequest soapRequest;
 	private RawMessageSender rawMessageSender;
 	private Java2SOAPManager java2SOAPManager;
-	private IQuery xmlQuery;
-
+	private IQuery dataQuery;
+	//This IQuery instance is for performance usage only.
+	private IQuery metadataQuery;
+	
 	private int m_maxRows;
 	private boolean isCustom = false;
 	private String xmlQueryText = WSUtil.EMPTY_STRING;
@@ -59,7 +61,6 @@ public class Query implements IQuery
 	private String operationTrace = WSUtil.EMPTY_STRING;
 	private String wsdlURI = WSUtil.EMPTY_STRING;
 	private long connectionTimeout;
-
 	public Query( RawMessageSender rawMessageSender, Properties connProperties )
 	{
 		this.rawMessageSender = rawMessageSender;
@@ -109,10 +110,10 @@ public class Query implements IQuery
 	 */
 	public IResultSetMetaData getMetaData( ) throws OdaException
 	{
-		if ( xmlQuery == null )
-			xmlQuery = initXMLQuery( );
-
-		return xmlQuery.getMetaData( );
+		if ( metadataQuery == null )
+			metadataQuery = initXMLQuery( true );
+		
+		return metadataQuery.getMetaData( );
 	}
 
 	/*
@@ -120,15 +121,17 @@ public class Query implements IQuery
 	 */
 	public IResultSet executeQuery( ) throws OdaException
 	{
-		if ( xmlQuery == null )
-			xmlQuery = initXMLQuery( );
+		if ( dataQuery == null )
+		{
+			dataQuery = initXMLQuery( false );
+		}
 
-		return xmlQuery.executeQuery( );
+		return dataQuery.executeQuery( );
 	}
 
-	private IQuery initXMLQuery( ) throws OdaException
+	private IQuery initXMLQuery( boolean fromWsdl ) throws OdaException
 	{
-		InputStream inputStream = getInputStream( );
+		InputStream inputStream = getInputStream( fromWsdl );
 		if ( WSUtil.isNull( inputStream ) )
 			throw new OdaException( );
 
@@ -148,7 +151,7 @@ public class Query implements IQuery
 		return query;
 	}
 
-	private InputStream getInputStream( ) throws OdaException
+	private InputStream getInputStream( boolean fromWsdl ) throws OdaException
 	{
 		if ( isCustom )
 		{
@@ -163,8 +166,22 @@ public class Query implements IQuery
 			rawMessageSender.setSpec( WSUtil.getNonNullString( soapEndPoint ) );
 			rawMessageSender.setSoapAction( WSUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( wsdlURI,
 					operationTrace ) ) );
-			SOAPResponse soapResponse = rawMessageSender.getSOAPResponse( connectionTimeout );
-
+			
+			SOAPResponse soapResponse = null;
+			
+			if ( fromWsdl )
+			{
+				WSDLAdvisor wsdlAdvisor = new WSDLAdvisor( );
+				String temlate = wsdlAdvisor.getLocalSOAPResponseTemplate( this.wsdlURI,
+						operationTrace );
+				soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( )
+						.getBytes( ) ) );
+			}
+			else 
+			{
+				soapResponse = rawMessageSender.getSOAPResponse( connectionTimeout );	
+			}
+			
 			if ( WSUtil.isNull( soapResponse ) )
 				return null;
 
