@@ -55,6 +55,8 @@ public class DriverUIContributorComposite {
 				"DriverUIContributorComposite.group")); //$NON-NLS-1$
 		group.setLayoutData(new GridData(GridData.FILL_BOTH));
 		stackLayout = new StackLayout();
+		stackLayout.marginHeight = 3;
+		stackLayout.marginWidth = 3;
 		group.setLayout(stackLayout);
 	}
 
