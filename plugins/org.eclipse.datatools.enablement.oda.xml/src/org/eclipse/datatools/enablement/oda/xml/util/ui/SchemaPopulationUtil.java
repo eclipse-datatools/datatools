@@ -121,6 +121,16 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 */
 	public void manipulateData( String path, String value )
 	{
+		if ( isAttribute( path ) )
+		try
+		{
+			this.insertNode( path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", "" ).trim( ) );
+		}
+		catch ( OdaException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace( );
+		}
 	}
 
 	/*
@@ -131,6 +141,8 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 */
 	public void detectNewRow( String path, boolean start )
 	{
+		if( isAttribute( path ) )
+			return;
 		String treamedPath = path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", "" ).trim( );
 		try
 		{
@@ -142,7 +154,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 			e.printStackTrace( );
 		}
 		// If not attribute
-		if ( !isAttribute( path ) && start )
+		if ( start )
 		{
 			rowCount++;
 		}
@@ -165,7 +177,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 */
 	private boolean isAttribute( String path )
 	{
-		return path.matches( ".*\\Q[@\\E.+\\Q]\\E.*" );
+		return path.matches( ".*\\Q@\\E.*" );
 	}
 
 	/*
@@ -249,18 +261,11 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		// its attribute to two array items.
 		if ( isAttribute )
 		{
-			String[] temp = path[path.length - 1].split( "\\Q[@\\E" );
+			String[] temp = path[path.length - 1].split( "\\Q@\\E" );
 
 			assert temp.length == 2;
+			path[path.length-1] = temp[1];
 
-			String[] temp1 = new String[path.length + 1];
-			for ( int i = 0; i < path.length - 1; i++ )
-			{
-				temp1[i] = path[i];
-			}
-			temp1[temp1.length - 2] = temp[0];
-			temp1[temp1.length - 1] = temp[1].replaceAll( "\\Q]\\E", "" );
-			path = temp1;
 		}
 
 		// The parentNode
