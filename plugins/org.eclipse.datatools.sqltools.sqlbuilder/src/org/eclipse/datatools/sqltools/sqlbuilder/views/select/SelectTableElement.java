@@ -492,4 +492,13 @@ public class SelectTableElement {
         }
         return sortOrder;
     }
+    
+    public boolean hasColumn(){
+        if (resultColumn != null || orderColumn != null || resultColExpr != null){
+        	return true;
+        }
+        else {
+        	return false;
+        }
+    }
 }

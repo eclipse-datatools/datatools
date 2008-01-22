@@ -13,22 +13,6 @@ package org.eclipse.datatools.sqltools.sqlbuilder.views.select;
 
 import java.util.List;
 
-import org.eclipse.jface.action.IMenuListener;
-import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.CheckboxCellEditor;
-import org.eclipse.jface.viewers.ColumnPixelData;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.jface.viewers.TableLayout;
-import org.eclipse.jface.viewers.TextCellEditor;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.help.WorkbenchHelp;
-
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
@@ -46,6 +30,28 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.DynamicComboBoxCellEditor
 import org.eclipse.datatools.sqltools.sqlbuilder.views.EditComboBoxCellEditor;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.GridViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.Modifier;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.CheckboxCellEditor;
+import org.eclipse.jface.viewers.ColumnPixelData;
+import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.ViewerCell;
+import org.eclipse.jface.viewers.ViewerRow;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.help.WorkbenchHelp;
 
 /**
  * Grid viewer for select statement
@@ -162,6 +168,62 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
 
     }
 
+	/**
+	 * Hook up the editing support. This overrides base class ColumnViewer's implementation
+	 * which responds to mouseDown events. This implementation responds to mouseUp events
+	 * so that there is no duplication of responses with TableNavigator, which also
+	 * responds to mouseUp.
+	 *
+	 * @param control
+	 *            the control you want to hook on
+	 */
+	protected void hookEditingSupport(Control control) {
+
+		if (getColumnViewerEditor() != null) {
+			control.addMouseListener(new MouseAdapter() {
+				public void mouseUp(MouseEvent e) {
+					// Workaround for bug 185817
+					if( e.count != 2 ) {
+						handleMouseUp(e);
+					}
+				}
+
+				public void mouseDoubleClick(MouseEvent e) {
+					handleMouseUp(e);
+				}
+			});
+		}
+	}
+    
+    /*
+     * Copied from ColumnViewer.handleMouseDown - required so it can be called
+     * from hookEditingSupport's mouseListener
+     * @param e
+     */
+	private void handleMouseUp(MouseEvent e) {
+		ViewerCell cell = getCell(new Point(e.x, e.y));
+
+		if (cell != null) {
+			triggerEditorActivationEvent(new ColumnViewerEditorActivationEvent(
+					cell, e));
+		}
+	}
+
+    /*
+     * Copied from ColumnViewer.getCell - required so it can be called
+     * from handleMouseDown
+     * @param point
+     */
+	ViewerCell getCell(Point point) {
+		ViewerRow row = getViewerRow(point);
+		if (row != null) {
+			return row.getCell(point);
+		}
+
+		return null;
+	}
+	
+	
     class SelectGridLabelProvider extends LabelProvider implements ITableLabelProvider {
 
         public String getColumnText(Object object, int columnIndex) {
@@ -178,11 +240,14 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
             {
                 if (object instanceof SelectTableElement) {
                     SelectTableElement selectElement = (SelectTableElement) object;
-                    String result = selectElement.getColumnText(columnIndex);
-                    if (result.equals("true")) { //$NON-NLS-1$
-                        return SQLBuilderPlugin.getPlugin().getImage(SQLResource.SQL_OUTPUT_YES);
+                    // BZ 202596 - don't show image if it's the empty row at the end
+                    if (selectElement.hasColumn()){
+                    	String result = selectElement.getColumnText(columnIndex);
+                    	if (result.equals("true")) { //$NON-NLS-1$
+                    		return SQLBuilderPlugin.getPlugin().getImage(SQLResource.SQL_OUTPUT_YES);
+                    	}
+                    	return SQLBuilderPlugin.getPlugin().getImage(SQLResource.SQL_OUTPUT_NO);
                     }
-                    return SQLBuilderPlugin.getPlugin().getImage(SQLResource.SQL_OUTPUT_NO);
                 }
             }
             return null;
@@ -290,7 +355,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
         public OutputCheckboxCellEditor(Composite parent) {
             super(parent);
         }
-
+        
         protected void doSetValue(Object value) {
             if (value instanceof SelectTableElement) {
                 SelectTableElement ste = (SelectTableElement) value;
