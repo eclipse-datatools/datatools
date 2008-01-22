@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,6 +14,7 @@ import java.net.URL;
 
 import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.ProfileImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -35,12 +36,25 @@ public class ProfileImageRegistry {
 	public Image getProfileImage(IConnectionProfileProvider provider) {
 		Image image = mImageRegistry.get(provider.getId());
 		if (image == null) {
-			URL iconURL = provider.getIconURL();
-			if (iconURL != null) {
-				ImageDescriptor imageDesc = ImageDescriptor
-						.createFromURL(iconURL);
-				mImageRegistry.put(provider.getId(), imageDesc);
-				image = mImageRegistry.get(provider.getId());
+			ProfileImageDescriptor pids[] =
+				ProfileImageDescriptor.getProfileImageDescriptorsForProfileID(provider.getId());
+			if (pids != null && pids.length > 0) {
+				URL iconURL = pids[0].getIconURL();
+				if (iconURL != null) {
+					ImageDescriptor imageDesc = ImageDescriptor
+							.createFromURL(iconURL);
+					mImageRegistry.put(provider.getId(), imageDesc);
+					image = mImageRegistry.get(provider.getId());
+				}
+			}
+			else {
+				URL iconURL = provider.getIconURL();
+				if (iconURL != null) {
+					ImageDescriptor imageDesc = ImageDescriptor
+							.createFromURL(iconURL);
+					mImageRegistry.put(provider.getId(), imageDesc);
+					image = mImageRegistry.get(provider.getId());
+				}
 			}
 			if (image == null) {
 				image = mImageRegistry.get(IMG_OBJ_SERVER_DEFAULT);
