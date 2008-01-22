@@ -61,16 +61,20 @@ public class Connection implements IConnection
 			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
 		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
 		xmlContent.setEncoding(encoding);
-		File xmlFile = new File( file );
-		if ( !xmlFile.exists( ) )
+		
+		if ( file != null )
 		{
-			try
+			File xmlFile = new File( file );
+			if ( !xmlFile.exists( ) )
 			{
-				URL url = new URL( file );
-			}
-			catch ( MalformedURLException e )
-			{
-				throw new OdaException( e );
+				try
+				{
+					new URL( file );
+				}
+				catch ( MalformedURLException e )
+				{
+					throw new OdaException( e );
+				}
 			}
 		}
 //		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
