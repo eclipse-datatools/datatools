@@ -64,13 +64,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TriggerImpl extends SQLObjectImpl implements Trigger {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getSchema() <em>Schema</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class GroupImpl extends AuthorizationIdentifierImpl implements Group {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getUser() <em>User</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

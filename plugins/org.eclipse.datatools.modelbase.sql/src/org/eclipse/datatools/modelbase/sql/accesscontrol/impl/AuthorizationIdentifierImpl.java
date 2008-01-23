@@ -53,13 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class AuthorizationIdentifierImpl extends SQLObjectImpl implements AuthorizationIdentifier {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getOwnedSchema() <em>Owned Schema</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

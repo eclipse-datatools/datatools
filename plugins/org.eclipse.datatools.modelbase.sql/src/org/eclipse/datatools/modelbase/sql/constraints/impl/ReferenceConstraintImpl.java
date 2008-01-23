@@ -40,13 +40,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ReferenceConstraintImpl extends TableConstraintImpl implements ReferenceConstraint {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getMembers() <em>Members</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -44,13 +44,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CharacterStringDataTypeImpl extends PredefinedDataTypeImpl implements CharacterStringDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

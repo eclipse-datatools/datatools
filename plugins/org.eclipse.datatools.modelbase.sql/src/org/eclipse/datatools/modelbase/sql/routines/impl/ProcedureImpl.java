@@ -47,13 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ProcedureImpl extends RoutineImpl implements Procedure {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getMaxResultSets() <em>Max Result Sets</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

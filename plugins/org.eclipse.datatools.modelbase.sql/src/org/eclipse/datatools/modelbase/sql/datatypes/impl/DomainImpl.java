@@ -45,13 +45,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DomainImpl extends DistinctUserDefinedTypeImpl implements Domain {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

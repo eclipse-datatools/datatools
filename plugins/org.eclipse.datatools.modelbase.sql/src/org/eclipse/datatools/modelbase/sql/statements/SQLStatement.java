@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.statements;
 
-import org.eclipse.emf.ecore.sdo.EDataObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,10 +24,9 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *
  * @see org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage#getSQLStatement()
  * @model interface="true" abstract="true"
- * @extends EDataObject
  * @generated
  */
-public interface SQLStatement extends EDataObject {
+public interface SQLStatement extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DependencyImpl extends SQLObjectImpl implements Dependency {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getTargetEnd() <em>Target End</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

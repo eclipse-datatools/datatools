@@ -58,13 +58,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ColumnImpl extends TypedElementImpl implements Column {
 /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-/**
 	 * The cached value of the '{@link #getIdentitySpecifier() <em>Identity Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -434,7 +427,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 			eNotify(new ENotificationImpl(this, Notification.SET, SQLTablesPackage.COLUMN__SCOPE_CHECKED, oldScopeChecked, scopeChecked));
 	}
 
-			/**
+				/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */

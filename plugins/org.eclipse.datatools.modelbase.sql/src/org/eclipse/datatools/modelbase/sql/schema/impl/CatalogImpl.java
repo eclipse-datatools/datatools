@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: CatalogImpl.java,v 1.1 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -41,13 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class CatalogImpl extends SQLObjectImpl implements Catalog {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * The cached value of the '{@link #getDatabase() <em>Database</em>}' reference.
 	 * <!-- begin-user-doc -->

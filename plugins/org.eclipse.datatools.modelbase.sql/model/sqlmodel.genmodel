@@ -6,17 +6,12 @@
     modelPluginID="org.eclipse.datatools.modelbase.sql" runtimeJar="true" modelName="Sqlmodel"
     editPluginClass="org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin"
     editorPluginClass="org.eclipse.datatools.modelbase.sql.schema.presentation.SqlmodelEditorPlugin"
-    nonNLSMarkers="true" rootExtendsInterface="org.eclipse.emf.ecore.sdo.EDataObject"
-    rootExtendsClass="org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl" rootImplementsInterface="org.eclipse.emf.ecore.sdo.InternalEDataObject"
-    featureMapWrapperInterface="commonj.sdo.Sequence" featureMapWrapperInternalInterface="org.eclipse.emf.ecore.sdo.util.ESequence"
-    featureMapWrapperClass="org.eclipse.emf.ecore.sdo.util.BasicESequence" importerID="org.eclipse.emf.importer.rose"
+    nonNLSMarkers="true" rootImplementsInterface="" featureMapWrapperInterface=""
+    featureMapWrapperInternalInterface="" featureMapWrapperClass="" importerID="org.eclipse.emf.importer.rose"
     usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>SQLModel.mdl</foreignModel>
   <foreignModel>CDM_EXTRACT_PATH</foreignModel>
   <foreignModel>../..</foreignModel>
-  <staticPackages>http://www.eclipse.org/emf/2003/SDO</staticPackages>
-  <modelPluginVariables>EMF_COMMONJ_SDO=org.eclipse.emf.commonj.sdo</modelPluginVariables>
-  <modelPluginVariables>EMF_ECORE_SDO=org.eclipse.emf.ecore.sdo</modelPluginVariables>
   <genPackages prefix="SQLModel" ecorePackage="sqlmodel.ecore#/">
     <nestedGenPackages prefix="SQLSchema" basePackage="org.eclipse.datatools.modelbase.sql"
         ecorePackage="sqlmodel.ecore#//schema">

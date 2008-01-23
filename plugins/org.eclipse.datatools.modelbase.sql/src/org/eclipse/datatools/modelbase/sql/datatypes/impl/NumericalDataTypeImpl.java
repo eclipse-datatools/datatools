@@ -38,13 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class NumericalDataTypeImpl extends PredefinedDataTypeImpl implements NumericalDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getPrecision() <em>Precision</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

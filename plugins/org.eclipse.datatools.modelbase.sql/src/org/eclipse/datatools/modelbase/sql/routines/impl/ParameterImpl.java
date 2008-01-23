@@ -47,13 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ParameterImpl extends TypedElementImpl implements Parameter {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

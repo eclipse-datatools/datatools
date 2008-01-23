@@ -38,13 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RowDataTypeImpl extends ConstructedDataTypeImpl implements RowDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

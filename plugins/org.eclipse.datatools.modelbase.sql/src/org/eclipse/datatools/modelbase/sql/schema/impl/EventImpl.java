@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventImpl.java,v 1.1 2006/03/03 21:46:27 dpchou Exp $
+ * $Id: EventImpl.java,v 1.2 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -41,13 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class EventImpl extends SQLObjectImpl implements Event {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
 	/**
 	 * The default value of the '{@link #getFor() <em>For</em>}' attribute.
 	 * <!-- begin-user-doc -->

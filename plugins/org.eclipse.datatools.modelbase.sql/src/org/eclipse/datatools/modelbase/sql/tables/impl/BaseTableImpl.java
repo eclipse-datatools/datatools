@@ -53,13 +53,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class BaseTableImpl extends TableImpl implements BaseTable {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -50,13 +50,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StructuredUserDefinedTypeImpl extends UserDefinedTypeImpl implements StructuredUserDefinedType {
 /**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-/**
 	 * The default value of the '{@link #isInstantiable() <em>Instantiable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

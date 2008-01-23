@@ -52,13 +52,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ForeignKeyImpl extends ReferenceConstraintImpl implements ForeignKey {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getMatch() <em>Match</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -41,13 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class TypedElementImpl extends SQLObjectImpl implements TypedElement {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getContainedType() <em>Contained Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

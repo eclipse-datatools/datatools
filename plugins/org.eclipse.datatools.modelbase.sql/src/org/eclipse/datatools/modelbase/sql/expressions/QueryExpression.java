@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.expressions;
 
-import org.eclipse.emf.ecore.sdo.EDataObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,10 +25,9 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getQueryExpression()
  * @model interface="true" abstract="true"
- * @extends EDataObject
  * @generated
  */
-public interface QueryExpression extends EDataObject {
+public interface QueryExpression extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

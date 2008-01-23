@@ -14,8 +14,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.ENamedElement;
 
-import org.eclipse.emf.ecore.sdo.EDataObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>SQL Object</b></em>'.
@@ -41,10 +39,9 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getSQLObject()
  * @model abstract="true"
- * @extends EDataObject
  * @generated
  */
-public interface SQLObject extends EDataObject, ENamedElement {
+public interface SQLObject extends ENamedElement {
 	/**
 	 * Returns the value of the '<em><b>Dependencies</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.schema.Dependency}.

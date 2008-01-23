@@ -28,8 +28,7 @@
 	    tool       	"Ecore"
 	    name       	"prefix"
 	    value      	(value Text "SQLModel")))
-    quid       	"3E9B1F8201C1"
-    documentation 	
+    quid       	"3E9B1F8201C1"	
     
     exportControl 	"Public"
     logical_models 	(list unit_reference_list

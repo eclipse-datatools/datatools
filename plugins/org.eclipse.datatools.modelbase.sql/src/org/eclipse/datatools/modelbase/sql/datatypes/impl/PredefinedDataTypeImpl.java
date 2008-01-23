@@ -38,13 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class PredefinedDataTypeImpl extends SQLDataTypeImpl implements PredefinedDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getPrimitiveType() <em>Primitive Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

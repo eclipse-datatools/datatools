@@ -41,13 +41,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IndexMemberImpl extends SQLObjectImpl implements IndexMember {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getIncrementType() <em>Increment Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

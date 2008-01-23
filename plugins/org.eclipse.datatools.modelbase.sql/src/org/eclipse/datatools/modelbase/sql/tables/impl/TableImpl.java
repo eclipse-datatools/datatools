@@ -58,13 +58,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class TableImpl extends SQLObjectImpl implements Table {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The cached value of the '{@link #getColumns() <em>Columns</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -43,13 +43,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CharacterSetImpl extends SQLObjectImpl implements CharacterSet {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getRepertoire() <em>Repertoire</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

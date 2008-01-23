@@ -2,11 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: Comment.java,v 1.1 2006/09/07 00:19:47 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema;
 
-import org.eclipse.emf.ecore.sdo.EDataObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,10 +23,9 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *
  * @see org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage#getComment()
  * @model
- * @extends EDataObject
  * @generated
  */
-public interface Comment extends EDataObject {
+public interface Comment extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->

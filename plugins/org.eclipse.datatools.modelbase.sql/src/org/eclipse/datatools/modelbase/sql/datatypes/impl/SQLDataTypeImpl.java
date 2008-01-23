@@ -35,13 +35,6 @@ public abstract class SQLDataTypeImpl extends DataTypeImpl implements SQLDataTyp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected SQLDataTypeImpl() {
 		super();
 	}

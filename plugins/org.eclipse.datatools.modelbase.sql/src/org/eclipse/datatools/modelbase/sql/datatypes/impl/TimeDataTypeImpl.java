@@ -39,13 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TimeDataTypeImpl extends PredefinedDataTypeImpl implements TimeDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getFractionalSecondsPrecision() <em>Fractional Seconds Precision</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

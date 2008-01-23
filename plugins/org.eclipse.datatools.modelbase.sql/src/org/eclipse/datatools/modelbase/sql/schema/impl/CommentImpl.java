@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id$
+ * $Id: CommentImpl.java,v 1.1 2006/09/07 00:19:49 dpchou Exp $
  */
 package org.eclipse.datatools.modelbase.sql.schema.impl;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,14 +34,7 @@ import org.eclipse.emf.ecore.sdo.impl.EDataObjectImpl;
  *
  * @generated
  */
-public class CommentImpl extends EDataObjectImpl implements Comment {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class CommentImpl extends EObjectImpl implements Comment {
 	/**
 	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->

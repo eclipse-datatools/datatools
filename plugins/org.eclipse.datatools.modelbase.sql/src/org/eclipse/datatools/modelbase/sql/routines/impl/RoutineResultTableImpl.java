@@ -42,13 +42,6 @@ public class RoutineResultTableImpl extends TableImpl implements RoutineResultTa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected RoutineResultTableImpl() {
 		super();
 	}

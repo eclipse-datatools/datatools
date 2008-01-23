@@ -44,13 +44,6 @@ public abstract class TableConstraintImpl extends ConstraintImpl implements Tabl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	protected TableConstraintImpl() {
 		super();
 	}

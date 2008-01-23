@@ -38,13 +38,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ExactNumericDataTypeImpl extends NumericalDataTypeImpl implements ExactNumericDataType {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static final long serialVersionUID = 1L;
-
-	/**
 	 * The default value of the '{@link #getScale() <em>Scale</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

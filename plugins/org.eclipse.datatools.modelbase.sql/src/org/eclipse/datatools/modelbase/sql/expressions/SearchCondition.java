@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.expressions;
 
-import org.eclipse.emf.ecore.sdo.EDataObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,10 +24,9 @@ import org.eclipse.emf.ecore.sdo.EDataObject;
  *
  * @see org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage#getSearchCondition()
  * @model interface="true" abstract="true"
- * @extends EDataObject
  * @generated
  */
-public interface SearchCondition extends EDataObject {
+public interface SearchCondition extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

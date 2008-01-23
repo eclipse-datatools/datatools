@@ -72,7 +72,7 @@ public class SQLSchemaFactoryImpl extends EFactoryImpl implements SQLSchemaFacto
 			case SQLSchemaPackage.SEQUENCE: return createSequence();
 			case SQLSchemaPackage.DATABASE: return createDatabase();
 			case SQLSchemaPackage.EVENT: return createEvent();
-			case SQLSchemaPackage.COMMENT: return (EObject)createComment();
+			case SQLSchemaPackage.COMMENT: return createComment();
 			case SQLSchemaPackage.CATALOG: return createCatalog();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
