@@ -1599,15 +1599,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 		String type = null;
 		try
 		{
-			type = node.getDataType( );
-			if( type == null )
-			{
-				type = dataTypeDisplayNames[6];
-			}
+			type = DataTypeUtil.getDataTypeDisplayName( DataTypes.getType( node.getDataType( ) ) );
 		}
 		catch ( OdaException e )
 		{
-			type = dataTypeDisplayNames[6];
+			type = DataTypeUtil.getDataTypeDisplayName( DataTypes.STRING );
 		}
 		columnElement.setType( type );
 		return columnElement;
