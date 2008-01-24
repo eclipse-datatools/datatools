@@ -15,7 +15,6 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 
 /**
@@ -38,18 +37,7 @@ public class ViewNode extends VirtualNode implements IViewNode, IFilterNode
     }
 
     public String getFilterName() {
-		Schema schema = (Schema) getParent();
-		if (schema.getCatalog() == null) {
-			// we use the TABLE_FILTER now because that's the filter page used for the moment
-			return schema.getName() + IFilterNode.SEPARATOR
-//					+ ConnectionFilter.VIEW_FILTER;
-					+ ConnectionFilter.TABLE_FILTER;
-		}
-		// we use the TABLE_FILTER now because that's the filter page used for the moment
-		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
-				+ schema.getName() + IFilterNode.SEPARATOR
-//				+ ConnectionFilter.VIEW_FILTER;
-				+ ConnectionFilter.TABLE_FILTER;
+    	return getFilterName(ConnectionFilter.TABLE_FILTER);
 	}
 
 }

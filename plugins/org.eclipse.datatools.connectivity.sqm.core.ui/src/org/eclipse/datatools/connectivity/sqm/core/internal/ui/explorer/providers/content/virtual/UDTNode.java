@@ -15,7 +15,6 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 /**
  * @author ljulien
@@ -37,13 +36,6 @@ public class UDTNode extends VirtualNode implements IUDTNode, IFilterNode
     }
 
     public String getFilterName() {
-		Schema schema = (Schema) getParent();
-		if (schema.getCatalog() == null) {
-			return schema.getName() + IFilterNode.SEPARATOR
-					+ ConnectionFilter.USER_DEFINED_TYPE_FILTER;
-		}
-		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
-				+ schema.getName() + IFilterNode.SEPARATOR
-				+ ConnectionFilter.USER_DEFINED_TYPE_FILTER;
+		return getFilterName(ConnectionFilter.USER_DEFINED_TYPE_FILTER);
 	}
 }

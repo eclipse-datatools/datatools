@@ -17,12 +17,16 @@ import java.util.List;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.ecore.EClass;
 
 
@@ -174,4 +178,23 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
 		return Platform.getAdapterManager().getAdapter(this,adapter);
 	}
 	
+	public String getFilterName(String virtualNodeType){
+		if(getParent() instanceof Schema){
+    		Schema schema = (Schema) getParent();
+    		if (schema.getCatalog() == null) {
+    			return schema.getName() + IFilterNode.SEPARATOR
+    					+ virtualNodeType;
+    		}
+
+    		return schema.getCatalog().getName() + IFilterNode.SEPARATOR
+    				+ schema.getName() + IFilterNode.SEPARATOR
+    				+ virtualNodeType;    		
+    	}
+    	else if(getParent() instanceof ICatalogObject){
+    		Catalog catalog = (Catalog)((ICatalogObject)getParent()).getCatalogDatabase().getCatalogs().get(0);
+    		return catalog.getName() + IFilterNode.SEPARATOR
+    				+ virtualNodeType;
+    	}
+    	return null;		
+	}
 }
