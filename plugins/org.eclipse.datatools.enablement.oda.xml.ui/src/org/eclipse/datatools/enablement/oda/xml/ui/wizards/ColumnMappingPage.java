@@ -268,7 +268,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 		FormLayout layout = new FormLayout( );
 		composite.setLayout( layout );
-		composite.setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		GridData gridData = new GridData( GridData.FILL_BOTH );
+		int height = parent.getShell( ).getDisplay( ).getBounds( ).height;
+		gridData.heightHint = height * 4 / 10;
+		composite.setLayoutData( gridData );
 		createLeftGroup( composite );
 
 		FormData data = new FormData( );

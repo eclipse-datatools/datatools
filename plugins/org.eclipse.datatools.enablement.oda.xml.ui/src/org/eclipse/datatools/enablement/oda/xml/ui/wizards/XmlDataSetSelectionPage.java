@@ -358,7 +358,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void setupXMLFolderLocation( Composite composite )
 	{
-		GridData gridData = new GridData( );
+		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
 		composite.setLayoutData( gridData );
 
 		Button blankButton = new Button( composite, SWT.RADIO );
@@ -368,9 +368,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		blankButton.setLayoutData( blankBtnData );
 		blankButton.setVisible( false );
 
-		GridData txtGridData = new GridData( );
+		GridData txtGridData = new GridData( GridData.FILL_HORIZONTAL );
 		txtGridData.horizontalSpan = 1;
-		txtGridData.widthHint = 450;
 		folderLocation = new Text( composite, SWT.BORDER );
 		folderLocation.setLayoutData( txtGridData );
 		setPageComplete( false );
@@ -385,8 +384,10 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 
 		GridData browseBtnData = new GridData( );
 		browseBtnData.horizontalSpan = 1;
+		browseBtnData.horizontalIndent = 10;
 		browseFolderButton = new Button( composite, SWT.NONE );
 		browseFolderButton.setText( Messages.getString( "file.choose" ) ); //$NON-NLS-1$
+		browseFolderButton.setLayoutData( browseBtnData );
 		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
