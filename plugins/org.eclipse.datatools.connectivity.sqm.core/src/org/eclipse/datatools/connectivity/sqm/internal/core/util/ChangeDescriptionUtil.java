@@ -1,6 +1,6 @@
 package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -69,7 +69,7 @@ public class ChangeDescriptionUtil {
 		List settings = (List) ((EMap) changeDescription.getObjectChanges())
 				.get(dataObject);
 		if (settings == null) {
-			settings = Collections.emptyList();
+			settings = new ArrayList();
 		} else {
 			for (int i = 0; i < settings.size(); i++) {
 				FeatureChange change = (FeatureChange) settings.get(i);
