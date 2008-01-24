@@ -11,12 +11,15 @@
 package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -29,6 +32,7 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseD
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategory;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.EngineeringOptionCategoryID;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.ChangeDescriptionUtil;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.RoleAuthorization;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
@@ -44,16 +48,21 @@ import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.sdo.EChangeSummary;
-import org.eclipse.emf.ecore.sdo.EDataObject;
-import org.eclipse.emf.ecore.sdo.EProperty;
-
-import commonj.sdo.ChangeSummary.Setting;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.change.ChangeDescription;
+import org.eclipse.emf.ecore.change.FeatureChange;
+import org.eclipse.emf.ecore.util.DelegatingFeatureMap;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	protected static final int CREATE       = 1;
@@ -63,23 +72,26 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	protected static final int COMMENT      = 16;
 	protected static final int LABEL        = 32;
 	
-	protected EChangeSummary changeSummary = null;
+	protected EObject rootObject = null;
+	protected ChangeDescription changeDescription = null;
 	protected Collection redoChanges = null;
 	private EngineeringOption[] options = null;
 	private EngineeringOptionCategory[] categories = null;
+	private ChangeDescriptionUtil changeDescriptionUtil;
 	
-	public String[] generateDeltaDDL(EChangeSummary changeSummary, SQLObject[] impacts, IProgressMonitor monitor) 
+	public String[] generateDeltaDDL(EObject rootObject, ChangeDescription changeDescription, SQLObject[] impacts, IProgressMonitor monitor) 
 	{
-		return generateDeltaDDL (changeSummary, monitor);
+		return generateDeltaDDL (rootObject, changeDescription, monitor);
 	}
 
-	public final String[] generateDeltaDDL(EChangeSummary changeSummary, IProgressMonitor monitor) {
-		this.changeSummary = changeSummary;
-		this.changeSummary.summarize();
+	public final String[] generateDeltaDDL(EObject rootObject, ChangeDescription changeDescription, IProgressMonitor monitor) {
+		this.rootObject = rootObject;
+		this.changeDescription = changeDescription;
+		changeDescriptionUtil = new ChangeDescriptionUtil(this.changeDescription);
         Map changeMap = buildChangeMap(monitor);
         analyze(changeMap);
         String[] statements = processChangeMap(changeMap, monitor);
-        this.changeSummary = null;
+        this.changeDescription = null;
         this.redoChanges = null;
         return statements;
 	}
@@ -129,7 +141,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
     	this.options = options ;
     }
 	
-	protected int getChangeFlag(EObject element, EObject changed, EStructuralFeature feature, Setting setting) {
+	protected int getChangeFlag(EObject element, EObject changed, EStructuralFeature feature, FeatureChange setting) {
 		if(element != changed) return MODIFIED; 
 		if(feature == EcorePackage.eINSTANCE.getENamedElement_Name()) return RENAME;
 		if(feature == SQLSchemaPackage.eINSTANCE.getSQLObject_Description()) return COMMENT;
@@ -187,7 +199,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
         String[] drops = getDropStatements(ddlGenerator, changeMap, monitor);
         this.redo();
         String[] creates = getCreateStatements(ddlGenerator, changeMap, monitor);
-        this.changeSummary = null;
+        this.changeDescription = null;
         return merge(drops, creates);		
 	}
 	
@@ -270,18 +282,16 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	protected final void undo() {
 		List undoStack = new LinkedList();
 		List redoStack = new LinkedList();
-		Iterator it = changeSummary.getChangedDataObjects().iterator();
+		Iterator it = changeDescriptionUtil.getChangedDataObjectsGen().iterator();
 		while(it.hasNext()) {
 			Object changedObject = it.next();
-			if(!(changedObject instanceof EDataObject)) continue;
-	      	EDataObject changed = (EDataObject) changedObject;
-			List oldValues = changeSummary.getOldValues(changed);
+	      	EObject changed = (EObject)changedObject;
+			List oldValues = (List)changeDescriptionUtil.getOldValues(changed);
 			if(oldValues == null) continue;
 			Iterator vi = oldValues.iterator();
 			while(vi.hasNext()) {
-				Setting changeSetting = (Setting) vi.next();
-				EProperty p = (EProperty) changeSetting.getProperty();
-				EStructuralFeature f= p.getEStructuralFeature();
+				FeatureChange changeSetting = (FeatureChange) vi.next();
+				EStructuralFeature f= changeSetting.getFeature();
 				changeSetting.getValue();
 				ChangeRecord c1 = new ChangeRecord();
 				c1.element = changed;
@@ -382,18 +392,18 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	}
 	
 	protected final DDLGenerator getDDLGenerator() {
-		EObject x = (EObject) this.changeSummary.getDataGraph().getRootObject();
-		Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(x);
+		Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(rootObject);
 		DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(database);
 		return def.getDDLGenerator();
 	}
 	
-	protected final Object getOldValue(EStructuralFeature feature, EDataObject changed) {
-		Iterator it = changeSummary.getOldValues(changed).iterator();
+
+	
+	protected final Object getOldValue(EStructuralFeature feature, EObject changed) {
+		Iterator it = changeDescriptionUtil.getOldValues(changed).iterator();
 		while(it.hasNext()) {
-			Setting changeSetting = (Setting) it.next();
-			EProperty p = (EProperty) changeSetting.getProperty();
-			if(p.getEStructuralFeature() == feature) {
+			FeatureChange changeSetting = (FeatureChange) it.next();
+			if(changeSetting.getFeature() == feature) {
 				return changeSetting.getValue();
 			}
 		}
@@ -412,14 +422,14 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		return false;
 	}
 
+
 	private Map buildChangeMap(IProgressMonitor monitor) {
         Map changeMap = new HashMap();
-		Iterator it = changeSummary.getChangedDataObjects().iterator();
+		Iterator it = changeDescriptionUtil.getChangedDataObjectsGen().iterator();
 		while(it.hasNext()) {
 			Object changedObject = it.next();
-			if(!(changedObject instanceof EDataObject)) continue;
-	      	EDataObject changed = (EDataObject) changedObject;
-	      	EDataObject element = (EDataObject) getDisplayableElement(changed);
+			EObject changed = (EObject)changedObject;
+	      	EObject element = getDisplayableElement(changed);
 
 	      	// ignore all disconnected nondisplayable elements
 	      	if(element == null) continue;
@@ -428,23 +438,22 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	      	if(changeMap.containsKey(element)) flag = ((Integer) changeMap.get(element)).intValue();
 	      	if(flag == DROP || flag == CREATE) continue;
 
-      		if(changeSummary.isCreated(element)) {
-      			if(changeSummary.isDeleted(element)) continue;
+      		if(changeDescriptionUtil.isCreated(element)) {
+      			if (changeDescriptionUtil.isDeleted(element)) continue;
       			flag = CREATE;
       		}
-      		else if(changeSummary.isDeleted(element)) {
+      		else if (changeDescriptionUtil.isDeleted(element)) {
       			flag = DROP;	      			
       		}
 	      	else {
-	      		if(changeSummary.isCreated(changed)) continue;
-	      		if(changeSummary.isDeleted(changed)) continue;
-      			List oldValues = changeSummary.getOldValues(changed);
+	      		if(changeDescriptionUtil.isCreated(changed)) continue;
+	      		if (changeDescriptionUtil.isDeleted(changed)) continue;
+	      		List oldValues = changeDescriptionUtil.getOldValues(changed);
 				if(oldValues == null) continue;
 				Iterator vi = oldValues.iterator();
 				while(vi.hasNext()) {
-					Setting changeSetting = (Setting) vi.next();
-					EProperty p = (EProperty) changeSetting.getProperty();
-					EStructuralFeature f= p.getEStructuralFeature();
+					FeatureChange changeSetting = (FeatureChange) vi.next();
+					EStructuralFeature f= changeSetting.getFeature();
 					if(!changeSetting.isSet() && !changed.eIsSet(f)) continue;
 					Object currentValue = changed.eGet(f);
 					Object previousValue = changeSetting.getValue();

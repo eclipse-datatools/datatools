@@ -12,11 +12,12 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.rte;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
-import org.eclipse.emf.ecore.sdo.EChangeSummary;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.change.ChangeDescription;
 
 
 public interface DeltaDDLGenerator {
-	public String[] generateDeltaDDL(EChangeSummary changeSummary, IProgressMonitor monitor);
+	public String[] generateDeltaDDL(EObject rootObject, ChangeDescription changeDescription, IProgressMonitor monitor);
 	public EngineeringOption[] getOptions();
     public EngineeringOptionCategory[] getOptionCategories();
 
