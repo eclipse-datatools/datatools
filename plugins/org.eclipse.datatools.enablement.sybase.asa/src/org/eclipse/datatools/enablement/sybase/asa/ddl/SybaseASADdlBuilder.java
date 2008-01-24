@@ -302,11 +302,11 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
         {
             sb.append(DISABLE).append(NEWLINE);
         }
-        
-        if (fullSyntax || evt.isSet(SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__LOCATION))
-        {
-            sb.append(AT).append(SPACE).append(evt.getLocation().getLiteral()).append(NEWLINE);
-        }
+//TODO: [BZ216485] fix this      
+//        if (fullSyntax || evt.isSet(SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__LOCATION))
+//        {
+//            sb.append(AT).append(SPACE).append(evt.getLocation().getLiteral()).append(NEWLINE);
+//        }
         
         sb.append(HANDLER).append(NEWLINE);
         String body = event.getAction();//including begin end
@@ -745,11 +745,12 @@ public class SybaseASADdlBuilder extends SybaseDdlBuilder implements ISybaseASAD
     public String getTriggerOrder(boolean fullSyntax, SybaseASABaseTrigger trig)
     {
         StringBuffer sb = new StringBuffer();
-        if (fullSyntax || trig.isSet(SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER)) //default is 1
-        {
-            int order = trig.getOrder();
-            sb.append(ORDER).append(SPACE).append(order).append(SPACE);
-        }
+//TODO: [BZ216485] fix this 
+//        if (fullSyntax || trig.isSet(SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER)) //default is 1
+//        {
+//            int order = trig.getOrder();
+//            sb.append(ORDER).append(SPACE).append(order).append(SPACE);
+//        }
         return sb.toString();
         
     }
