@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2007 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ * 			IBM Corporation = bug fix #203829
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -159,18 +160,24 @@ public class CPVersionPropertyPage extends PropertyPage implements
 			serverVersionContainer.setLayout(layout);
 			GridData data = new GridData(GridData.FILL_HORIZONTAL);
 			serverVersionContainer.setLayoutData(data);
-
+		
+			String serverName = props
+				.getProperty(ConnectionProfileConstants.PROP_SERVER_NAME);
+			String serverVersion = props
+				.getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION);
 			Label label = new Label(serverVersionContainer, SWT.NULL);
-			label
-					.setText(props
-							.getProperty(ConnectionProfileConstants.PROP_SERVER_NAME) + ':');
+			if (serverVersion == null){
+				label.setText( serverName);
+			} else {
+				label.setText( serverName + ':');
+			}
 			data = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 			label.setLayoutData(data);
 
 			label = new Label(serverVersionContainer, SWT.NULL);
-			label
-					.setText(props
-							.getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION));
+			if (serverVersion != null){
+				label.setText(serverVersion);
+			}
 			data = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 			label.setLayoutData(data);
 

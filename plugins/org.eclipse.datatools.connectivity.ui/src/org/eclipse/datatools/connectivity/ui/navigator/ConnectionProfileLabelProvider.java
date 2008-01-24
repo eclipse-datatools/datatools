@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ * 			IBM Corporation = bug fix #203829
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.navigator;
 
@@ -138,9 +139,15 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 				Version serverVersion = Version
 						.valueOf(props
 								.getProperty(ConnectionProfileConstants.PROP_SERVER_VERSION));
-				if ((serverName != null && serverName.length() > 0)
-						|| serverVersion != Version.NULL_VERSION) {
-					String versionStr = MessageFormat
+				if ((serverName != null && serverName.length() > 0)) {
+					String versionStr = null;
+					if(serverVersion.compareTo(Version.NULL_VERSION) == 0) {
+						versionStr = MessageFormat.format(
+								ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version.versionless"), 
+								new String[] {sb.toString(),
+									serverName});
+					} else {
+					versionStr = MessageFormat
 							.format(
 									ConnectivityUIPlugin
 											.getDefault()
@@ -149,7 +156,7 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 									new String[] { profile.getName(),
 											serverName,
 											serverVersion.toString()});
-
+					}
 					sb = new StringBuffer(versionStr);
 				}
 			}
