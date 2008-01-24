@@ -22,6 +22,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.sdo.EChangeSummary;
 import org.eclipse.emf.ecore.sdo.EDataObject;
 import org.eclipse.emf.ecore.sdo.EProperty;
@@ -463,4 +464,10 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         public Object             value;
         public boolean            isSet;
     }
+
+	public String[] generateDeltaDDL(EObject rootObject,
+			ChangeDescription changeDescription, IProgressMonitor monitor) {
+		// TODO Auto-generated method stub
+		return new String[] { };
+	}
 }
