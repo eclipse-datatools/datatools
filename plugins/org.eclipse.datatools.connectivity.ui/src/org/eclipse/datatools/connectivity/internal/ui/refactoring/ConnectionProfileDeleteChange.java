@@ -70,9 +70,15 @@ public class ConnectionProfileDeleteChange extends Change {
 		RefactoringStatus result = new RefactoringStatus();
 
 		// Make sure the element exists
-		if (mProfileToDelete == null || ProfileManager.getInstance().getProfileByName(mProfileToDelete.getName()) == null)
+		if (mProfileToDelete == null) // || ProfileManager.getInstance().getProfileByName(mProfileToDelete.getName()) == null)
 		{
 			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist"));
+		}
+		else {
+			String path = ProfileManager.getInstance().getProfilePath(mProfileToDelete);
+			if (ProfileManager.getInstance().getProfileByFullPath(path) == null) {
+				result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist"));
+			}
 		}
 
 		return result;

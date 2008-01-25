@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -110,9 +111,16 @@ public class ConnectionProfileCreateChange extends Change {
 		{
 			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveName"));
 		}
-		else if ( ProfileManager.getInstance().getProfileByName(mNewProfileName) != null)
-		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileAlreadyExists"));
+		if ( mNewProfileParentProfile != null ) {
+			IConnectionProfile repo =
+				ProfileManager.getInstance().getProfileByInstanceID(mNewProfileParentProfile);
+			if (repo != null) {
+				String path = repo.getName() + 
+					InternalProfileManager.PROFILE_PATH_SEPARATOR +
+					mNewProfileName;
+				if (ProfileManager.getInstance().getProfileByFullPath(path) != null)
+					result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileAlreadyExists"));
+			}
 		}
 		
 		if (mNewProfileProviderID == null || mNewProfileProviderID.trim().length() == 0)

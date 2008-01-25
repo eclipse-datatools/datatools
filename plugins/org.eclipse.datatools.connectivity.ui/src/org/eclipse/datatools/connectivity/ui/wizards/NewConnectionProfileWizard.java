@@ -18,7 +18,9 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
@@ -136,9 +138,26 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 		
     	// select the newly created CP in DSE.
 		if (part != null) {
+			IConnectionProfile profile = null;
+			if (repo != null ) {
+				IManagedConnection imc = ((IConnectionProfile) repo)
+					.getManagedConnection(IConnectionProfileRepository.class
+						.getName());				
+				if (imc != null) {
+					IConnectionProfileRepository repository = 
+						(IConnectionProfileRepository) imc.getConnection().getRawConnection();
+					profile = repository.getProfileByName(getProfileName());
+				}
+			}
+			else {
+				profile = ProfileManager.getInstance().getProfileByName(
+						getProfileName());
+			}
+			if (profile == null)
+				return;
+			
 			final ISelection targetSelection = new StructuredSelection(
-					ProfileManager.getInstance().getProfileByName(
-							getProfileName()));
+					profile);
 			ISetSelectionTarget target = null;
 			if (part instanceof ISetSelectionTarget) {
 				target = (ISetSelectionTarget) part;

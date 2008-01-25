@@ -14,12 +14,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.ProfileRule;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
@@ -128,7 +129,7 @@ public class CPPropetyPage extends PropertyPage
 				 * may be executed prior to those changes being committed.
 				 */
 				profileRule = getProfileRule(profile);
-				Platform.getJobManager().beginRule(profileRule,
+				Job.getJobManager().beginRule(profileRule,
 						null);
 			}
 			try {
@@ -185,13 +186,22 @@ public class CPPropetyPage extends PropertyPage
 		}
 		else {
 			if (!getConnectionProfile().getName().equals(
-					txtProfileName.getText()))
-				if (ProfileManager.getInstance().getProfileByName(
-						txtProfileName.getText()) != null)
+					txtProfileName.getText())) {
+				IConnectionProfile foundProfile = null;
+				String path = ProfileManager.getInstance().getProfilePath(getConnectionProfile());
+				if ( path != null) {
+					String[] parsedPath = ProfileManager.getInstance().tokenize(path, InternalProfileManager.PROFILE_PATH_SEPARATOR);
+					parsedPath[parsedPath.length - 1] = txtProfileName.getText();
+					String updatedPath = ProfileManager.getInstance().unTokenize(parsedPath);
+					foundProfile = ProfileManager.getInstance().getProfileByFullPath(updatedPath);
+				}
+				if (foundProfile != null) {
 					errorMessage = ConnectivityUIPlugin
 							.getDefault()
 							.getResourceString(
-									"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$		
+									"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$
+				}
+			}
 		}
 
 		setErrorMessage(errorMessage);
@@ -212,7 +222,7 @@ public class CPPropetyPage extends PropertyPage
 
 	public void dispose() {
 		if (profileRule != null) {
-			Platform.getJobManager().endRule(profileRule);
+			Job.getJobManager().endRule(profileRule);
 			profileRule = null;
 		}
 		super.dispose();

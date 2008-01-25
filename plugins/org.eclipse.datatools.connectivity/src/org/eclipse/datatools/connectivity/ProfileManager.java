@@ -118,6 +118,23 @@ public class ProfileManager implements IAdaptable {
 	}
 
 	/**
+	 * Return the path for a given profile (typically REPOSITORY::PROFILE or PROFILE)
+	 * @param profile
+	 * @return
+	 */
+	public String getProfilePath(IConnectionProfile profile) {
+		return InternalProfileManager.getInstance().getProfileFullPath(profile);
+	}
+	
+	/**
+	 * Return the profile for a given path (typically REPOSITORY::PROFILE or PROFILE)
+	 * @param path
+	 * @return
+	 */
+	public IConnectionProfile getProfileByFullPath(String path ) {
+		return InternalProfileManager.getInstance().getProfileByFullPath(path);
+	}
+	/**
 	 * Create connection profile
 	 * 
 	 * @param name
@@ -294,4 +311,10 @@ public class ProfileManager implements IAdaptable {
 		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
+	public String[] tokenize ( String input, String delim ) {
+		return InternalProfileManager.getInstance().tokenize(input, delim);
+	}
+	public String unTokenize(String[] tokens) {
+		return InternalProfileManager.getInstance().unTokenize(tokens);
+	}
 }

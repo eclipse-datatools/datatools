@@ -15,11 +15,11 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ImportProfilesDialog;
-import org.eclipse.datatools.connectivity.ui.RefreshProfileJob;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -28,10 +28,9 @@ import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.navigator.CommonNavigator;
 
 /**
- * Ideally, this class should be splitted into two, one is for Action, the other
+ * Ideally, this class should be split into two, one is for Action, the other
  * is for View Action.
  * 
  * @author shongxum
@@ -40,7 +39,6 @@ public class ImportProfileViewAction extends Action implements
 		IViewActionDelegate {
 
 	private Shell shell;
-	private CommonNavigator commonNav;
 
 	/**
 	 * 
@@ -56,9 +54,6 @@ public class ImportProfileViewAction extends Action implements
 	 * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
 	 */
 	public void init(IViewPart view) {
-		if (view instanceof CommonNavigator) {
-			this.commonNav = (CommonNavigator) view;
-		}
 		this.shell = view.getSite().getShell();
 	}
 
@@ -87,14 +82,16 @@ public class ImportProfileViewAction extends Action implements
 						ProfileManager manager = ProfileManager.getInstance();
 						try {
 							for (int i = 0; i < profiles.length; i++) {
-								if (manager.getProfileByName(profiles[i]
-										.getName()) == null) {
+								String path = ProfileManager.getInstance().getProfilePath(profiles[i]);
+								IConnectionProfile foundProfile = ProfileManager.getInstance().getProfileByFullPath(path);
+								if (foundProfile != null) {
+									if (dlg.isOverwritten()) {
+										((ConnectionProfile) profiles[i]).migrate();
+										manager.modifyProfile(profiles[i]);
+									}								}
+								else {
 									((ConnectionProfile) profiles[i]).migrate();
 									manager.addProfile(profiles[i]);
-								}
-								else if (dlg.isOverwritten()) {
-									((ConnectionProfile) profiles[i]).migrate();
-									manager.modifyProfile(profiles[i]);
 								}
 							}
 						}
@@ -128,8 +125,10 @@ public class ImportProfileViewAction extends Action implements
 												.compatibleWithRepository(repoProfile)) {
 									continue;
 								}
-								if (repo
-										.getProfileByName(profiles[i].getName()) == null) {
+								String path = ProfileManager.getInstance().getProfilePath(profiles[i]);
+								path = repo.getRepositoryProfile().getName() + InternalProfileManager.PROFILE_PATH_SEPARATOR + path;
+								IConnectionProfile foundProfile = ProfileManager.getInstance().getProfileByFullPath(path);
+								if (foundProfile == null) {
 									((ConnectionProfile) profiles[i]).migrate();
 									repo.addProfile(profiles[i]);
 								}

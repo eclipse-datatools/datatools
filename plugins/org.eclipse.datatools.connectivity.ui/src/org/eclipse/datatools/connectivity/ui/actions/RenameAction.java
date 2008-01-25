@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
@@ -122,18 +123,16 @@ public class RenameAction extends Action implements IActionDelegate {
 		run();
 	}
 
-	/**
-	 * @param newName
-	 * @return
-	 */
 	private boolean nameExisting(String newName) {
-		IConnectionProfile[] profiles = ProfileManager.getInstance()
-				.getProfiles();
-		for (int i = 0; i < profiles.length; i++) {
-			if (profiles[i].getName().equals(newName))
-				return true;
+		IConnectionProfile foundProfile = null;
+		String path = ProfileManager.getInstance().getProfilePath(mProfile);
+		if ( path != null) {
+			String[] parsedPath = ProfileManager.getInstance().tokenize(path, InternalProfileManager.PROFILE_PATH_SEPARATOR);
+			parsedPath[parsedPath.length - 1] = newName;
+			String updatedPath = ProfileManager.getInstance().unTokenize(parsedPath);
+			foundProfile = ProfileManager.getInstance().getProfileByFullPath(updatedPath);
 		}
-		return false;
+		return foundProfile != null;
 	}
 
 	/*

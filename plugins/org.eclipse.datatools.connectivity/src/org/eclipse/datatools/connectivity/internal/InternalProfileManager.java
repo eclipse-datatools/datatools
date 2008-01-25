@@ -224,6 +224,130 @@ public class InternalProfileManager {
 				+ PROFILE_PATH_SEPARATOR.length()));
 	}
 
+	/**
+	 * Find a connection profile by the full path. Typically this path is 
+	 * 	REPOSITORY::PROFILE
+	 * @param path
+	 * @return
+	 */
+	public IConnectionProfile getProfileByFullPath ( String path ) {
+		if (path != null) {
+			String[] tokens = tokenize(path, PROFILE_PATH_SEPARATOR);
+			if (tokens != null && tokens.length > 0) {
+				String testForProfile = tokens[0];
+				boolean hasRepository = false;
+				IConnectionProfile testRepo = this.getProfileByName(testForProfile, false);
+				if (testRepo != null && mRepositories.contains(getRepositoryByProfile(testRepo))) {
+					hasRepository = true;
+				}
+				if (testRepo != null && mRepositories.contains(testRepo)) {
+					hasRepository = true;
+				}
+				String shortPath = tokens[tokens.length - 1];
+				if (hasRepository) {
+					shortPath = this.getProfileByName(testForProfile, false).getName() +
+						PROFILE_PATH_SEPARATOR + shortPath;
+				}
+				IConnectionProfile foundProfile = getProfileByPath(shortPath);
+				if (foundProfile != null) 
+					return foundProfile;
+			}
+		}
+		return null;
+	}
+	
+	private IConnectionProfileRepository getRepositoryByProfile(IConnectionProfile profile) {
+		if (profile != null) {
+			IManagedConnection imc = profile.getManagedConnection(IConnectionProfileRepository.class.getName());
+			if (imc != null && imc.getConnection() != null) {
+				return (IConnectionProfileRepository)imc.getConnection().getRawConnection();
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Retokenize by putting an array back together with the path separator between items
+	 * @param tokens
+	 * @return
+	 */
+	public String unTokenize(String[] tokens) {
+		StringBuffer buffer = new StringBuffer();
+		if (tokens != null && tokens.length > 0) {
+			for (int i = 0; i < tokens.length; i++) {
+				buffer.append(tokens[i]);
+				if (i < (tokens.length - 1)) {
+					buffer.append(InternalProfileManager.PROFILE_PATH_SEPARATOR);
+				}
+			}
+		}
+		return buffer.toString();
+	}
+	
+	/**
+	 * Break a delimited string into an array
+	 * @param input
+	 * @param delim
+	 * @return
+	 */
+	public String[] tokenize (String input, String delim) {
+		char[] chars = input.toCharArray();
+		ArrayList list = new ArrayList();
+		String temp = "";
+		boolean skip = false;
+		for (int i = 0; i < chars.length; i++) {
+			char test = chars[i];
+			char test2 = ' ';
+			if (i < (chars.length - 1)) {
+				test2 = chars[i+1];
+			}
+			String testStr = "" + test + test2;
+			if (testStr.equals(delim)) {
+				list.add(temp.trim());
+				temp = "";
+				skip = true;
+			}
+			else if (!skip) {
+				temp = temp + test;
+			}
+			else {
+				skip = false;
+			}
+			if (i == (chars.length - 1))
+				list.add(temp.trim());
+		}
+		return (String[]) list.toArray(new String[list.size()]);
+	}
+	
+	/**
+	 * Return the delimited path for a profile (REPO::PROFILE)
+	 * @param profile
+	 * @return
+	 */
+	public String getProfileFullPath ( IConnectionProfile profile ) {
+		String path = null;
+		
+		if (profile != null) {
+			path = profile.getName();
+			
+			if (profile.getCategory() != null) {
+				ICategory category = profile.getCategory();
+				while (category != null) {
+					path = category.getId() + PROFILE_PATH_SEPARATOR + path;
+					category = category.getParent();
+				}
+				
+				IConnectionProfileRepository repository =
+					getRepositoryForProfile(profile);
+				if (repository != null) {
+					path = repository.getRepositoryProfile().getName() + 
+						PROFILE_PATH_SEPARATOR + path;
+				}
+			}
+		}
+		return path;
+	}
+	
 	private IConnectionProfile getProfileByPath(IConnectionProfile parent,
 			String path) {
 		if (parent == null
@@ -1008,7 +1132,12 @@ public class InternalProfileManager {
 		mRepositories.remove(repository);
 	}
 	
-	private IConnectionProfileRepository getRepositoryForProfile(IConnectionProfile profile) {
+	/**
+	 * Return the repository for a given profile
+	 * @param profile
+	 * @return
+	 */
+	public IConnectionProfileRepository getRepositoryForProfile(IConnectionProfile profile) {
 		IConnectionProfile parentProfile = profile.getParentProfile();
 		if (parentProfile != null) {
 			IManagedConnection imc = parentProfile.getManagedConnection(IConnectionProfileRepository.class.getName());

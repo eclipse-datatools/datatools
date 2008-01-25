@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
@@ -261,11 +262,19 @@ public class NewConnectionProfileWizardPage
 	private void validate() {
 		String errorMessage = null;
 		String cpName = mCPName.getText();
+		IConnectionProfile foundProfile = null;
+		String updatedPath = cpName;
+		if (!mLocalRepository.getSelection()
+				&& !mRepositories.getSelection().isEmpty()) {
+			updatedPath = mRepositories.getCombo().getText() + InternalProfileManager.PROFILE_PATH_SEPARATOR + cpName;
+		}
+		foundProfile = ProfileManager.getInstance().getProfileByFullPath(updatedPath);
+
 		if (cpName == null || cpName.trim().length() == 0) {
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
 		}
-		else if (ProfileManager.getInstance().getProfileByName(cpName) != null) {
+		else if (foundProfile != null) { 
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.DuplicateName"); //$NON-NLS-1$
 		}
