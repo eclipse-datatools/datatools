@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.ui.PingJob;
@@ -53,6 +54,8 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     private static final String sm_className = DataSourceEditorPageCore.class.getName();
 
     /**
+     * Updates the specified data source design with design properties
+     * collected in this page.
      * Sub-class may override or extend this method to further update
      * the given data source design, as needed.
      * The default behavior saves the page's edited properties 
@@ -75,24 +78,43 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // save the page's properties in the design
         try
         {
-            design.setPublicProperties(
-                    DesignSessionUtil.createDataSourcePublicProperties( 
-                            design.getOdaExtensionDataSourceId(),
-                            propertyValuePairs ));
-            design.setPrivateProperties( 
-                    DesignSessionUtil.createDataSourceNonPublicProperties( 
-                            design.getOdaExtensionDataSourceId(),
-                            propertyValuePairs ));
+            setDataSourceDesignProperties( design, propertyValuePairs );
         }
         catch( OdaException ex )
         {
             // log warning about exception
             DesignerLogger logger = DesignerLogger.getInstance();
             logger.warning( sm_className, "collectDataSourceDesign( DataSourceDesign )",  //$NON-NLS-1$
-                    "Caught exception while converting property name-value pairs to data source design properties.", ex ); //$NON-NLS-1$
+                    "Caught exception while assigning property name-value pairs to data source design properties.", ex ); //$NON-NLS-1$
         }
         
         return design;
+    }
+
+    /**
+     * Assigns the relevant data source properties to the
+     * specified data source design instance.
+     * Sub-class may override or extend this method as needed.
+     * The default behavior saves the specified properties, 
+     * based on the data source property definitions specified in 
+     * an ODA extension's manifest.
+     * @param design    the data source design definition to update
+     * @param propertyValuePairs  data source property name-value pairs
+     * @throws OdaException
+     * @since DTP 1.6
+     */
+    protected void setDataSourceDesignProperties( DataSourceDesign design,
+                                                  Properties propertyValuePairs ) 
+        throws OdaException
+    {
+        design.setPublicProperties(
+                DesignSessionUtil.createDataSourcePublicProperties( 
+                        design.getOdaExtensionDataSourceId(),
+                        propertyValuePairs ));
+        design.setPrivateProperties( 
+                DesignSessionUtil.createDataSourceNonPublicProperties( 
+                        design.getOdaExtensionDataSourceId(),
+                        propertyValuePairs ));
     }
     
     /**
@@ -234,6 +256,18 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     
         // hold on design session info till finish editing
         m_designSession = requestSession;   
+    }
+
+    /**
+     * Initializes the specified ProfileSelectionEditorPage for this design edit session.
+     * An optional method for a subclass to control the behavior of the profile selection page
+     * in an edit session.
+     * @param profileSelectionPage
+     * @since DTP 1.6
+     */
+    public void initProfileSelectionEditSession( ProfileSelectionEditorPage profileSelectionPage )
+    {
+        // no-op by default; subclass may override
     }
 
     protected OdaDesignSession getDesignSession()

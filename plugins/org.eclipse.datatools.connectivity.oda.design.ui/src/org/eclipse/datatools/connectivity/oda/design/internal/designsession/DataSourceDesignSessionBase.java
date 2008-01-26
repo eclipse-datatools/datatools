@@ -184,6 +184,8 @@ public class DataSourceDesignSessionBase
         // initialize profile selection editor page, just in case it gets used;
         // getter expects m_designSession is already initialized
         getProfileSelectionEditorPage().initEditSession( m_designSession );
+        
+        m_editorPage.initProfileSelectionEditSession( getProfileSelectionEditorPage() );
     }
 
     /**

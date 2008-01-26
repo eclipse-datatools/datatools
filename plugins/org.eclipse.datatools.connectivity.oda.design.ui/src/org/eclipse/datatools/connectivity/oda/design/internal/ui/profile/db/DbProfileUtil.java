@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -51,8 +51,8 @@ public class DbProfileUtil
     static void setDbProviderIdInProperties( Properties dbProfileProps,
             String dbProviderId )
     {
-        dbProfileProps.setProperty( DB_PROFILE_PROVIDER_ID, 
-                                    dbProviderId );        
+        if( dbProviderId != null )
+            dbProfileProps.setProperty( DB_PROFILE_PROVIDER_ID, dbProviderId );        
     }
     
     /**

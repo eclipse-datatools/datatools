@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,8 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourcePropertyPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
@@ -33,6 +35,7 @@ import org.eclipse.swt.widgets.Composite;
 public class DbProfilePropertyPage extends DataSourceEditorPage
 {
     private DbProfilePageWrapper m_pageHelper = null;
+    private IUpdateDesignTask m_profileUpdateDesignTask;
 
     public DbProfilePropertyPage()
     {
@@ -186,30 +189,87 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
     
     /*
      * (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
-     * 
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#setDataSourceDesignProperties(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign, java.util.Properties)
+     *
      * Overrides base class behavior to assign relevant custom profile properties
      * as private properties in the specified data source design.  
-     * This is intended for use by an ODA extension that serves as a wrapper of 
+     * This is for use by an ODA extension that serves as a wrapper of 
      * other connection profiles, and has no pre-defined property definition 
      * in its manifest.
      */
-    protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
+    protected void setDataSourceDesignProperties( DataSourceDesign design,
+            Properties propertyValuePairs ) 
+        throws OdaException
     {
-        Properties dbPropertyValues = collectProperties();
-        
-        // saves relevant updated db properties in the design
-        try
-        {
-            DbProfileUtil.updateDataSourceDesignManifestProperties( design, dbPropertyValues );
-        }
-        catch( OdaException ex )
-        {
-            // TODO error handling
-            ex.printStackTrace();
-        }
-        
-        return design;
+        DbProfileUtil.updateDataSourceDesignManifestProperties( design, propertyValuePairs );
     }
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#initProfileSelectionEditSession(org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage)
+     */
+    public void initProfileSelectionEditSession( ProfileSelectionEditorPage profileSelectionPage )
+    {
+        if( profileSelectionPage == null )
+            return;     // nothing to initialize
+        
+        // TODO - perhaps the profile selection event should trigger 
+        // setting the external link checkbox in profileSelectionPage to read-only,
+        // since importing of a db profile's properties is not supported due to security concern
+        
+        // override the profile page update design task
+        profileSelectionPage.delegatesTask( getProfileSelectionUpdateDesignTask() );
+    }
+    
+    private ProfileSelectionEditorPage.IUpdateDesignTask getProfileSelectionUpdateDesignTask()
+    {
+        if( m_profileUpdateDesignTask == null )
+        {
+            m_profileUpdateDesignTask = 
+                new ProfileSelectionEditorPage.IUpdateDesignTask()
+                {
+                    /* (non-Javadoc)
+                     * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage.IUpdateDesignTask#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign, org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage, org.eclipse.datatools.connectivity.IConnectionProfile)
+                     */
+                    public DataSourceDesign collectDataSourceDesign( DataSourceDesign design, 
+                                                final ProfileSelectionEditorPage delegator,
+                                                final IConnectionProfile selectedConnProfile )
+                        throws OdaException
+                    {
+                        if( selectedConnProfile == null )
+                            return design;  // no info to collect for update
+                        
+                        Properties customProps = collectCustomProperties( selectedConnProfile );
+                        
+                        setDataSourceDesignProperties( design, customProps );
+  
+                        return design;
+                    }
+                    
+                    private Properties collectCustomProperties( 
+                                            IConnectionProfile selectedConnProfile )
+                    {
+                        // first get a copy of the selected profile's properties
+                        Properties customProps = selectedConnProfile.getBaseProperties();
 
+                        // add the db profile provider id to the base properties 
+                        // collected from the selected connection profile instance
+                        String dbProfileProviderId = getDbProfileProviderId( selectedConnProfile );
+                        DbProfileUtil.setDbProviderIdInProperties( customProps, dbProfileProviderId );
+
+                        return customProps;
+                    }
+                    
+                    private String getDbProfileProviderId( IConnectionProfile connProfile )
+                    {
+                        if( connProfile instanceof OdaConnectionProfile )
+                            return ((OdaConnectionProfile) connProfile ).getDirectProviderId();
+                        return null;
+                    }
+
+                };
+        }
+        return m_profileUpdateDesignTask;
+    }
+    
 }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,10 +16,12 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
@@ -38,6 +40,10 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
 {
     private ProfileSelection m_initProfileSelection;
     private ProfileSelectionPageHelper m_pageHelper;
+    private IUpdateDesignTask m_updateDesignTask;
+
+    // logging variable
+    private static final String sm_className = ProfileSelectionEditorPage.class.getName();
 
     public ProfileSelectionEditorPage()
     {
@@ -113,12 +119,59 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         OdaDesignSession responseSession = super.getEditSessionResponse();
         assert( responseSession.getResponse() != null );
         
-        // update response's dataSourceDesign with linked profile definition
+        // super might not haved called collectDataSourceDesign if a session response 
+        // already exists from another editor page; force the call to
+        // update response's dataSourceDesign with the latest linked profile definition
         if( responseSession.getResponse().getSessionStatus() == SessionStatus.OK_LITERAL )
             collectDataSourceDesign( 
                 responseSession.getResponseDataSourceDesign() ); 
 
         return responseSession;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
+     */
+    protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
+    {
+        // no delegation is specified, perform default update task
+        if( m_updateDesignTask == null ) 
+        {
+            super.collectDataSourceDesign( design );
+        }
+        else    // the update task is delegated, use it to perform collectDataSourceDesign
+        {
+            try
+            {
+                ProfileReferenceBase profileRef = collectEditedProfileRef();
+                if( profileRef != null )
+                    design = m_updateDesignTask.collectDataSourceDesign( design, this, 
+                                    profileRef.getProfileInstance() );
+            }
+            catch( OdaException ex )
+            {
+                // log warning about exception
+                DesignerLogger logger = DesignerLogger.getInstance();
+                logger.warning( sm_className, "collectDataSourceDesign( DataSourceDesign )",  //$NON-NLS-1$
+                        "Caught exception thrown by delegated collectDataSourceDesign task.", ex ); //$NON-NLS-1$
+            }
+        }
+        
+        // adds attributes of linked profile, if specified, to the data source design; 
+        // ignores any data source design name change
+        ProfileReferenceBase profileRef = collectEditedProfileRef();
+        
+        if( profileRef != null && profileRef.maintainExternalLink() )
+        {
+            design.setLinkedProfileName( profileRef.getName() );
+            design.setLinkedProfileStoreFile( profileRef.getStorageFile() );
+        }
+        else
+        {
+            design.setLinkedProfileName( null );
+            design.setLinkedProfileStoreFile( null );
+        }
+        return design; 
     }
 
     /* (non-Javadoc)
@@ -140,32 +193,7 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
             candidateProps.putAll( selectedProfileProps );
         return candidateProps;
     }
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage#collectDataSourceDesign(org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
-     */
-    protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
-    {
-        super.collectDataSourceDesign( design );
-        
-        // adds attributes of linked profile, if specified,
-        // to the data source design; 
-        // ignores any data source design name change
-        ProfileReferenceBase profileRef = collectEditedProfileRef();
-        
-        if( profileRef != null && profileRef.maintainExternalLink() )
-        {
-            design.setLinkedProfileName( profileRef.getName() );
-            design.setLinkedProfileStoreFile( profileRef.getStorageFile() );
-        }
-        else
-        {
-            design.setLinkedProfileName( null );
-            design.setLinkedProfileStoreFile( null );
-        }
-        return design; 
-    }
-
+    
     /**
      * Edits only accept changes in the selection of a profile instance.
      * This is thus only interested in collecting the profile reference info.
@@ -179,6 +207,38 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         if( selectedProfile == null )
             return null;        
         return selectedProfile.getProfileRef();        
+    }
+    
+    /**
+     * Assigns the delegated task to perform collectDataSourceDesign and update the data source design.
+     * @param task	the delegated task; may be null to unset the delegation
+     * @since DTP 1.6
+     */
+    public void delegatesTask( IUpdateDesignTask task )
+    {
+        m_updateDesignTask = task;
+    }
+    
+    /**
+     * Delegation of the page's task to update a data source design.
+     * @since DTP 1.6
+     */
+    public interface IUpdateDesignTask
+    {
+        /**
+         * The delegated operation to update the specified data source design with 
+         * the selected connection profile's design properties.
+         * @param design                the data source design to update from
+         * @param delegator             this ProfileSelectionEditorPage that delegates the task
+         * @param selectedConnProfile   the currently selected connection profile instance
+         * @return  the updated data source design
+         * @throws OdaException
+         */
+        public DataSourceDesign collectDataSourceDesign( DataSourceDesign design, 
+                                        final ProfileSelectionEditorPage delegator,
+                                        final IConnectionProfile selectedConnProfile )
+            throws OdaException;
+
     }
     
 }
