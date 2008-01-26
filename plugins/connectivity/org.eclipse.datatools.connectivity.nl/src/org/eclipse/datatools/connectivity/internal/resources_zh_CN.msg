@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error=关闭与 {1} 的 {0} 连接时出错。
 CloseConnectionEventJob.name=正在处理 {0} 的关闭连接事件。
 assert.invalid.profile=解析错误：属性（{0}）无效。
 assert.invalid.profile.duplicateFactory=解析错误：工厂标识（{0}）重复
+assert.invalid.profile.nullFactory = 分析错误\: 工厂或工厂 id 为空 ({0}/{1})
 dialog.title.error.loadwizard=在“{0}”中装入新向导时出错！
 operation.new.connectionprofile=正在创建概要文件“{0}”。
 error.connect=连接到概要文件“{0}”时发生了问题。请参阅日志文件以了解更多详细信息。
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=无法装入 propertiesPersistenceHook，使用缺
 trace.error.propertiesPersistenceHookSaveError=调用属性持久挂钩时出错；保存所有属性（概要文件为 {0}，扩展名为 {1}）
 trace.error.propertiesPersistenceHookLoadError=调用属性持久挂钩时出错；未设置瞬态属性（概要文件为 {0}，扩展名为 {1}）
 trace.error.migration = 为连接配置文件提供程序加载迁移元素时出错(id={0}，迁移类={1})
+trace.error.drivermigration = 创建配置文件(id={0}，驱动程序 id={1})的驱动程序实例时出错
 
 migration.error.providerDoesNotExist = 加载迁移元素时出错: 指定的 newProviderID 无效(newProviderID={0})
 migration.error.invalidPropertyMigrationElement = 加载迁移元素时出错: propertyMigration 必须指定 newPropertyKey、oldPropertyKey 或二者

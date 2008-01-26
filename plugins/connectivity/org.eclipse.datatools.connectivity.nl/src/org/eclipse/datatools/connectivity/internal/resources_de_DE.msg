@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error=Beim Schließen der Verbindung {0} zu {1} trat ei
 CloseConnectionEventJob.name=Das Ereignis zum Schließen der Verbindung für {0} wird verarbeitet.
 assert.invalid.profile=Parsing-Fehler\: Ungültiges Attribut ({0})
 assert.invalid.profile.duplicateFactory=Parsing-Fehler\: Doppelte Factory-ID ({0})
+assert.invalid.profile.nullFactory = Analysefehler\: Factory oder Factory-ID ({0}/{1}) ist gleich null.
 dialog.title.error.loadwizard=Beim Laden des Assistenten für neue Objekte in "{0}" ist ein Fehler aufgetreten\!
 operation.new.connectionprofile=Profil wird erstellt\: "{0}"
 error.connect=Beim Herstellen der Verbindung zum Profil "{0}" ist ein Fehler aufgetreten. Weitere Details enthält die Protokolldatei.
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=''propertiesPersistenceHook'' konnte nicht
 trace.error.propertiesPersistenceHookSaveError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Alle Eigenschaften bleiben permanent bestehen (Profil\={0}, Erweiterung\={1})
 trace.error.propertiesPersistenceHookLoadError=Beim Aufrufen des permanenten Hooks für die Eigenschaften trat ein Fehler auf. Temporäre Eigenschaften werden nicht festgelegt (Profil\={0}, Erweiterung\={1})
 trace.error.migration = Fehler beim Laden des Migrationselements für Verbindungsprofil-Anbieter (id={0}, migration class={1})
+trace.error.drivermigration = Fehler beim Erstellen der Treiberinstanz des Profils (ID={0}, Treiber-ID={1})
 
 migration.error.providerDoesNotExist = Fehler beim Laden des Migrationselements: Angegebene neue Anbieter-ID ist ungültig (newProviderID={0})
 migration.error.invalidPropertyMigrationElement = Fehler beim Laden des Migrationselements: Eigenschaftsmigration muss neuen oder alten Eigenschaftsschlüssel oder beides enthalten

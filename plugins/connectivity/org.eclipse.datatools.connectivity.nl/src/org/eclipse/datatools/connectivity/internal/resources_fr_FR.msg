@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error=Erreur lors de la fermeture de la connexion de {
 CloseConnectionEventJob.name=Traitement de l''événement de fermeture de connexion pour {0}.
 assert.invalid.profile=Erreur d''analyse syntaxique \: attribut non valide ({0})
 assert.invalid.profile.duplicateFactory=Erreur d''analyse syntaxique \: id de fabrique en double ({0})
+assert.invalid.profile.nullFactory = Erreur d''analyse\ : aucune usine ou id de l''usine ({0}/{1})
 dialog.title.error.loadwizard=Erreur lors du chargement du nouvel assistant dans "{0}"\!
 operation.new.connectionprofile=Création du profil \: "{0}"
 error.connect=Erreur lors de la connexion au profil "{0}."  Pour plus de détails, consultez le fichier de consignation.
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=Impossible de charger propertiesPersistenc
 trace.error.propertiesPersistenceHookSaveError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; conservation de toutes les propriétés (profil\={0}, extension\={1})
 trace.error.propertiesPersistenceHookLoadError=Erreur lors de l''appel du point d''ancrage persistant des propriétés; propriétés transitoires non définies (profil\={0}, extension\={1})
 trace.error.migration = Erreur lors du chargement de l'élément de migration pour le fournisseur de profil de connexion (id={0}, classe de migration={1})
+trace.error.drivermigration = Erreur de création d''une instance de pilote du profil (id={0}, driver id={1})
 
 migration.error.providerDoesNotExist = Erreur lors du chargement de l'élément de migration : l'ID newProviderID spécifié est incorrect (newProviderID={0})
 migration.error.invalidPropertyMigrationElement = Erreur lors du chargement de l'élément de migration : propertyMigration doit spécifier une clé newPropertyKey, une clé oldPropertyKey ou les deux

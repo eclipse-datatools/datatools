@@ -42,3 +42,6 @@ profilePage_error_invalidProfileStorePath=Ungültiger Pfad für Verbindungsprofils
 profileStoreCreationDialog_title=Speicher für Verbindungsprofile erstellen
 profileStoreCreationDialog_grouptext=Wählen Sie die Verbindungsprofile, die der Speicher enthalten soll:
 profileStoreCreationDialog_newbutton_tooltiptext=Neues Verbindungsprofil erstellen
+dbProfilePage_defaultPageMessage=Geben Sie einen JDBC-Treiber sowie die Verbindungsdetails an.
+dbProfilePage_notInDesignSession=Eigenschaftenseite kann außerhalb einer ODA-Designsitzung nicht geöffnet werden.
+dbProfilePage_noCustomPage=Die für die Datenbanktreiber spezifische Eigenschaftenseite kann nicht gefunden und geöffnet werden.

@@ -16,21 +16,29 @@ wizard.title.newDataSet=Nuevo conjunto de datos
 wizard.title.selectXmlFile=Seleccionar datos XML para la vista previa
 wizard.defaultMessage.selectFile=Seleccione una fuente de XML de muestra para activar la vista previa de datos en esta sección.
 wizard.title.xPathChoose=Definir asignación de tablas
-wizard.defaultMessage.selectXPath=Defina el elemento que se va a utilizar como tabla seleccionando el elemento en la estructura XML y añadiéndolo a la asignación de tablas. Sólo puede haber una asignación de tablas por cada conjunto de datos XML.
+wizard.defaultMessage.selectXPath=Definir asignación de filas de conjunto de datos seleccionando un elemento de la estructura XML.\nCada aparición del elemento XML seleccionado en el documento XML se asigna a una fila de conjunto de datos.
 wizard.title.selectColumn=Definir asignación de columnas
-wizard.title.defineColumnMapping=Defina la asignación de columnas seleccionando un elemento o un atributo en la estructura XML y añadiéndolo a la asignación de columnas. 
+wizard.title.defineColumnMapping=Crear columnas de conjunto de datos seleccionando y añadiendo elementos de la estructura XML.\nCada atributo o elemento XML añadido se asigna a una columna de conjunto de datos. 
 
 #preference
 designer.preview.preference.numberOfElementPassedToGetSchema=Número de elementos con acceso en el análisis de árbol de esquema XML.
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Introduzca un número entre 0 y {0}.
 designer.preview.preference.columnMappingPage.group.title=Página de asignación de columnas
 
-#table mapping page messages
-xPathChoosePage.messages.rowMapping=Asignación de tablas
+#row mapping page messages
+xPathChoosePage.messages.elementSelection.label=Selección de elemento XML
+xPathChoosePage.messages.elementSelection.item.absolutePath=Elementos XML con nombre "{0}" en una ruta absoluta fija\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=Elementos XML con nombre "{0}" en cualquier ubicación\n( {1} )\n
+xPathChoosePage.messages.elementSelection.disable.absolutePath=Elementos XML en una ruta absoluta fija\n 
+xPathChoosePage.messages.elementSelection.disable.anyLocation=Elementos XML en cualquier ubicación\n 
+xPathChoosePage.messages.elementSelection.item.custom=Expresión XPath p&ersonalizada
 xPathChoosePage.messages.xPathExpression=Expresión &XPath
 xPathChoosePage.messages.xmlStructure=Estructura XML
 xPathChoosePage.messages.xmlColumnMapping=Asignación de columnas
 xPathChoosePage.messages.xpathChange=Asegúrese de que la asignación de tabla modificada es compatible con la asignación de columnas, cuando sea aplicable   
+xPathChoosePage.FileNameIcon=Icono de nombre de archivo
+xPathChoosePage.XMLElementIcon=Icono de elemento XML
+xPathChoosePage.ColumnIcon=Icono de columna
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=líneas de datos fuente
@@ -40,20 +48,30 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=Error al leer los datos XML del
 button.refresh=Actualizar
 menu.menuItem.removeAll=Quitar todos
 menu.menuItem.remove=Quitar
+menu.button.edit=&Editar...
+menu.button.remove=Quita&r
+menu.button.up=&Arriba
+menu.button.down=Abaj&o
+menu.button.preview=Mo&strar datos de muestra
 lable.selectXmlFile=Introduzca la URL de la fuente &XML o busque el archivo que contiene los datos:
 label.selectEncoding=Seleccionar &codificación para la fuente XML y el esquema especificado anteriormente:
 lable.selectXmlSchmaFile=Introduzca la URL del esquema X&ML o busque el archivo que contiene el\n esquema. Déjelo vacío si no hay ningún esquema disponible:
 label.preview=&Previsualizar las primeras
-label.useXMLFileFromDataSource=Utilizar el archivo XML definido en la fuente de datos
+label.useXMLFileFromDataSource=&Utilizar archivo XML definido en fuente de datos
 RowMappingDialog.title=Seleccione o edite la expresión XPath.
 RowMappingDialog.info=Seleccione una de las expresiones XPath predefinidas para el nodo que ha seleccionado o\n introduzca otra expresión:
-ColumnMappingDialog.info.columnName=Nombre de columna:
-ColumnMappingDialog.info.xPath=Expresión XPath:
-ColumnMappingDialog.info.dataType=Tipo de datos:
-ColumnMappingDialog.info.dataPreview=Vista previa de tablas
-ColumnMappingDialog.prompt.new=Nueva asignación aquí...
+ColumnMappingPage.AddSingleButton.tooltip=Utilizar el nodo seleccionado como asignación de columna
+ColumnMappingPage.AddAllButton.tooltip=Utilizar todas las columnas secundarias del nodo seleccionado como asignación de columna
+ColumnMappingTable.upButton.tooltip=Mover asignación de columna hacia arriba
+ColumnMappingTable.downButton.tooltip=Mover asignación de columna hacia abajo
+ColumnMappingTable.removeButton.tooltip=Quitar asignación de columna
+ColumnMappingTable.editButton.tooltip=Editar asignación de columna
+ColumnMappingTable.previewButton.tooltip=Vista previa de datos XML de muestra 
+ColumnMappingDialog.info.columnName=Nombre de &columna:
+ColumnMappingDialog.info.xPath=E&xpresión XPath:
+ColumnMappingDialog.info.dataType=Tipo de &datos:
 ColumnMappingDialog.prompt.maxRow=Los datos fuente tienen más de 500 líneas. La vista previa sólo mostrará las primeras 500 líneas en esta página.
-ColumnMappingDialog.prompt.dialog.title=Vista previa de resultados
+XMLDataPreviewDialog.title=Datos XML de muestra
 
 dataset.editor.columnName=Nombre
 dataset.editor.xpathexpression=XPath
@@ -65,7 +83,13 @@ error.label=Error
 error.selectFolder=La URL de archivo seleccionada no es válida o el archivo no existe.
 error.emptyPath=La URL del archivo está vacía.
 error.xpath.canNotContainAttribute=No se puede asignar la expresión XPath a un atributo XML.
+error.xpath.getPathList=Se ha producido un error al obtener la lista de XPath por el elemento del árbol XML seleccionado.
 error.dataset.maxRowNumberError=La fila máxima debe ser un número.
+error.columnMapping.createPage=Se ha producido un error en la página de asignación de columna. 
+error.columnMapping.columnElement.create=Se ha producido un error al asignar un elemento de asignación de columna.
+error.columnMapping.columnElement.edit=Se ha producido un error al editar el elemento de asignación de columna.
+error.columnMapping.ATreeNode.getChildren=Se ha producido un error al recuperar los nodos secundarios del elemento XML seleccionado.
+error.columnMapping.SelectedTreeItem.notNull=No se ha seleccionado ningún elemento del árbol para crear un elemento de asignación de columna. Seleccione uno o más elementos.
 error.columnMapping.noMappingColumn=Asigne al menos una columna.
 error.columnMapping.tableMappingXPathNotExist=La asignación de tablas XPath no existe.
 error.file.null=Todas las URL están vacías, lo que significa que no ha seleccionado ninguna fuente de datos. ¿Seguro que desea conservarlo?

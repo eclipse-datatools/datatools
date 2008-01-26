@@ -42,3 +42,6 @@ profilePage_error_invalidProfileStorePath=연결 프로필 저장소에 대한 잘못된 경로
 profileStoreCreationDialog_title=연결 프로필 저장소 생성
 profileStoreCreationDialog_grouptext=저장소에 포함할 연결 프로필을 선택합니다.
 profileStoreCreationDialog_newbutton_tooltiptext=새 연결 프로필을 생성합니다.
+dbProfilePage_defaultPageMessage=JDBC 드라이버 및 연결 상세 정보 지정
+dbProfilePage_notInDesignSession=ODA 디자인 세션 외부에서 속성 페이지를 열 수 없습니다.
+dbProfilePage_noCustomPage=데이터베이스 드라이버별 속성 페이지를 찾아 열 수 없습니다.

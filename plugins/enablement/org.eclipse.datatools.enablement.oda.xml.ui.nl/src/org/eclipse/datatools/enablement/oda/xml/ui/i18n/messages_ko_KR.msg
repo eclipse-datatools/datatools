@@ -16,21 +16,29 @@ wizard.title.newDataSet=새 데이터 집합
 wizard.title.selectXmlFile=미리 볼 XML 데이터 선택
 wizard.defaultMessage.selectFile=이 세션에서 데이터 미리 보기에 사용할 예제 XML 소스를 선택합니다.
 wizard.title.xPathChoose=테이블 매핑 정의
-wizard.defaultMessage.selectXPath=XML 구조에서 요소를 선택하고 행 매핑에 이를 추가하여 테이블로 사용할 요소를 정의합니다. XML 데이터 집합당 하나의 테이블 매핑만 수행할 수 있습니다.
+wizard.defaultMessage.selectXPath=XML 구조에서 요소를 선택하여 데이터 집합 행 매핑을 정의합니다.\nXML 문서에서 선택한 XML 요소의 각 항목이 데이터 집합 행에 매핑됩니다.
 wizard.title.selectColumn=열 매핑 정의
-wizard.title.defineColumnMapping=XML 구조에서 요소 또는 특성을 선택하고 열 매핑에 이를 추가하여 열 매핑을 정의합니다. 
+wizard.title.defineColumnMapping=XML 구조에서 항목을 선택하고 추가하여 데이터 집합 열을 생성합니다.\n추가한 각 XML 요소 또는 특성이 데이터 집합 열에 매핑됩니다. 
 
 #preference
 designer.preview.preference.numberOfElementPassedToGetSchema=XML 스키마 트리 구문 분석 시 액세스하는 요소 수
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0과 {0} 사이에 있는 숫자를 입력하십시오.
 designer.preview.preference.columnMappingPage.group.title=열 매핑 페이지
 
-#table mapping page messages
-xPathChoosePage.messages.rowMapping=테이블 매핑
+#row mapping page messages
+xPathChoosePage.messages.elementSelection.label=XML 요소 선택
+xPathChoosePage.messages.elementSelection.item.absolutePath=고정된 절대 경로에서 이름이 "{0}"인 XML 요소\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=모든 위치에서 이름이 "{0}"인 XML 요소\n( {1} )\n
+xPathChoosePage.messages.elementSelection.disable.absolutePath=고정된 절대 경로의 XML 요소\n 
+xPathChoosePage.messages.elementSelection.disable.anyLocation=모든 위치의 XML 요소\n 
+xPathChoosePage.messages.elementSelection.item.custom=사용자 지정 XPath 식(&U)
 xPathChoosePage.messages.xPathExpression=XPath 식(&X)
 xPathChoosePage.messages.xmlStructure=XML 구조
 xPathChoosePage.messages.xmlColumnMapping=열 매핑
 xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되는지 확인하십시오.   
+xPathChoosePage.FileNameIcon=파일 이름 아이콘
+xPathChoosePage.XMLElementIcon=XML 요소 아이콘
+xPathChoosePage.ColumnIcon=열 아이콘
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=줄 미리보기(&P)
@@ -40,20 +48,30 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=파일[{0}]에서 XML 데이터를 읽는
 button.refresh=새로 고침
 menu.menuItem.removeAll=모두 제거
 menu.menuItem.remove=제거
+menu.button.edit=편집(&E)...
+menu.button.remove=제거(&R)
+menu.button.up=위로(&U)
+menu.button.down=아래로(&D)
+menu.button.preview=샘플 데이터 표시(&S)
 lable.selectXmlFile=XML 소스의 URL을 입력하거나 소스 데이터가 포함된 파일을 찾습니다(&X).
 label.selectEncoding=위에 지정된 XML 원본 및 스키마의 인코딩 선택(&E):
 lable.selectXmlSchmaFile=XML 스키마의 URL을 입력하거나 스키마가 포함된 파일을\n 찾습니다. 사용 가능한 스키마가 없는 경우 아무 것도 입력하지 않습니다(&M).
 label.preview=소스 데이터 처음
-label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용
+label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용(&U)
 RowMappingDialog.title=XPath 식을 선택하거나 편집합니다.
 RowMappingDialog.info=선택한 노드에 대해 미리 정의된 XPath 식 중 하나를 선택하거나\n 다른 식을 입력합니다.
-ColumnMappingDialog.info.columnName=열 이름:
-ColumnMappingDialog.info.xPath=XPath 식:
-ColumnMappingDialog.info.dataType=데이터 형식:
-ColumnMappingDialog.info.dataPreview=테이블 미리 보기
-ColumnMappingDialog.prompt.new=여기에 매핑 새로 만들기...
+ColumnMappingPage.AddSingleButton.tooltip=선택한 노드를 열 매핑으로 사용
+ColumnMappingPage.AddAllButton.tooltip=선택한 노드의 모든 하위 열을 열 매핑으로 사용
+ColumnMappingTable.upButton.tooltip=열 매핑을 위로 이동
+ColumnMappingTable.downButton.tooltip=열 매핑을 아래로 이동
+ColumnMappingTable.removeButton.tooltip=열 매핑 제거
+ColumnMappingTable.editButton.tooltip=열 매핑 편집
+ColumnMappingTable.previewButton.tooltip=샘플 XML 데이터 미리 보기 
+ColumnMappingDialog.info.columnName=열 이름(&C):
+ColumnMappingDialog.info.xPath=XPath 식(&X):
+ColumnMappingDialog.info.dataType=데이터 형식(&D):
 ColumnMappingDialog.prompt.maxRow=원본 데이터가 500줄 이상입니다. 이 페이지에는 처음 500줄만 표시됩니다.
-ColumnMappingDialog.prompt.dialog.title=결과 미리 보기
+XMLDataPreviewDialog.title=샘플 XML 데이터
 
 dataset.editor.columnName=이름
 dataset.editor.xpathexpression=XPath
@@ -65,7 +83,13 @@ error.label=오류
 error.selectFolder=선택한 파일 URL이 잘못되었거나 파일이 없습니다.
 error.emptyPath=파일 URL이 비어 있습니다.
 error.xpath.canNotContainAttribute=XPath 식이 XML 특성으로 매핑할 수 없습니다.
+error.xpath.getPathList=선택한 XML 트리 항목별 XPath 목록을 가져오는 도중 오류가 발생했습니다.
 error.dataset.maxRowNumberError=최대 행은 숫자여야 합니다.
+error.columnMapping.createPage=열 매핑 페이지에 오류가 발생했습니다. 
+error.columnMapping.columnElement.create=열 매핑 요소를 매핑하는 도중 오류가 발생했습니다.
+error.columnMapping.columnElement.edit=매핑 열 요소를 편집하는 도중 오류가 발생했습니다.
+error.columnMapping.ATreeNode.getChildren=선택한 XML 요소의 하위 노드를 가져오는 도중 오류가 발생했습니다.
+error.columnMapping.SelectedTreeItem.notNull=열 매핑 요소를 만들기 위해 선택한 트리 항목이 없습니다. 하나 이상의 항목을 선택하십시오.
 error.columnMapping.noMappingColumn=적어도 하나의 열을 매핑하십시오.
 error.columnMapping.tableMappingXPathNotExist=테이블 매핑 XPath가 없습니다.
 error.file.null=URL이 모두 비어 있습니다. 데이터 원본을 선택하지 않은 것입니다. 계속하시겠습니까?

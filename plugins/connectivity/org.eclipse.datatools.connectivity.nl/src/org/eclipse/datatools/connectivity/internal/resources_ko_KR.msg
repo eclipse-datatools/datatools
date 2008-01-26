@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error={1}에 대한 {0} 연결을 닫는 중 오류 발생.
 CloseConnectionEventJob.name={0}에 대한 연결 닫기 이벤트 처리 중.
 assert.invalid.profile=구문 분석 오류\: 올바르지 않은 속성({0})
 assert.invalid.profile.duplicateFactory=구문 분석 오류\: 팩토리 ID 중복({0})
+assert.invalid.profile.nullFactory = 구문 분석 오류\: 널(Null) 팩토리 또는 팩토리 ID({0}/{1})
 dialog.title.error.loadwizard="{0}"에서 새로 작성 마법사 로드 중 오류 발생.
 operation.new.connectionprofile=프로파일 작성 중\: "{0}"
 error.connect="{0}" 프로파일에 연결하는 중에 문제가 발생했습니다. 세부사항은 로그 파일을 참조하십시오.
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=기본값(프로파일 유형\={0}, 확장\={1})을 사
 trace.error.propertiesPersistenceHookSaveError=특성 지속 후크 호출 중에 오류 발생; 모든 특성 지속(프로파일\={0}, 확장\={1})
 trace.error.propertiesPersistenceHookLoadError=특성 지속 후크 호출 중에 오류 발생; 임시 특성이 설정되지 않음(프로파일\={0}, 확장\={1})
 trace.error.migration = 연결 프로필 공급자에 대한 마이그레이션 요소를 로딩하는 중 오류 발생(ID={0}, 마이그레이션 클래스={1})
+trace.error.drivermigration = 프로필의 드라이버 인스턴스 생성 도중 오류가 발생했습니다(ID={0}, 드라이버 ID={1}).
 
 migration.error.providerDoesNotExist = 마이그레이션 요소를 로딩하는 중 오류 발생: 지정된 newProviderID가 잘못됨(newProviderID={0})
 migration.error.invalidPropertyMigrationElement = 마이그레이션 요소를 로딩하는 중 오류 발생: propertyMigration은 newPropertyKey 또는 oldPropertyKey 중 하나 또는 모두를 지정해야 합니다.

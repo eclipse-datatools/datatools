@@ -16,21 +16,29 @@ wizard.title.newDataSet=V‹Kƒf[ƒ^ƒZƒbƒg
 wizard.title.selectXmlFile=ƒvƒŒƒrƒ…[‚·‚é XML ƒf[ƒ^‚Ì‘I‘ğ
 wizard.defaultMessage.selectFile=‚±‚ÌƒZƒbƒVƒ‡ƒ“‚Åƒf[ƒ^‚ğƒvƒŒƒrƒ…[‚·‚é‚É‚ÍAƒTƒ“ƒvƒ‹‚Ì XML ƒ\[ƒX‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B
 wizard.title.xPathChoose=ƒe[ƒuƒ‹ƒ}ƒbƒsƒ“ƒO‚Ì’è‹`
-wizard.defaultMessage.selectXPath=ƒe[ƒuƒ‹‚Æ‚µ‚Äg—p‚³‚ê‚é—v‘f‚ğ’è‹`‚·‚é‚É‚ÍAXML \‘¢‚©‚ç—v‘f‚ğ‘I‘ğ‚µ‚Ä [sƒ}ƒbƒsƒ“ƒO] ‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢Bƒe[ƒuƒ‹‚Ìƒ}ƒbƒsƒ“ƒO‚ÍAXML ƒf[ƒ^ƒZƒbƒg‚ ‚½‚è 1 ŒÂ‚¾‚¯ŠÜ‚ß‚é‚±‚Æ‚ª‚Å‚«‚Ü‚·B
+wizard.defaultMessage.selectXPath=XML \‘¢‚©‚ç—v‘f‚ğ‘I‘ğ‚µ‚ÄAƒf[ƒ^ƒZƒbƒgs‚Ìƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚µ‚Ü‚·B\n‘I‘ğ‚µ‚½ XML —v‘f‚ÍAXML •¶‘“à‚Åg—p‚³‚ê‚é‚½‚Ñ‚Éƒf[ƒ^ƒZƒbƒgs‚ÉŠ„‚è“–‚Ä‚ç‚ê‚Ü‚·B
 wizard.title.selectColumn=—ñƒ}ƒbƒsƒ“ƒO‚Ì’è‹`
-wizard.title.defineColumnMapping=—ñƒ}ƒbƒsƒ“ƒO‚ğ’è‹`‚·‚é‚É‚ÍAXML \‘¢‚©‚ç—v‘f‚Ü‚½‚Í‘®«‚ğ‘I‘ğ‚µ‚Ä [—ñƒ}ƒbƒsƒ“ƒO] ‚É’Ç‰Á‚µ‚Ä‚­‚¾‚³‚¢B 
+wizard.title.defineColumnMapping=XML \‘¢‚©‚ç€–Ú‚ğ‘I‘ğE’Ç‰Á‚µ‚ÄAƒf[ƒ^ƒZƒbƒg‚Ì—ñ‚ğì¬‚µ‚Ü‚·B\n’Ç‰Á‚µ‚½ XML —v‘f‚Ü‚½‚Í‘®«‚ÍAƒf[ƒ^ƒZƒbƒg—ñ‚ÉŠ„‚è“–‚Ä‚ç‚ê‚Ü‚·B 
 
 #preference
 designer.preview.preference.numberOfElementPassedToGetSchema=XML ƒXƒL[ƒ}ƒcƒŠ[‚Ì‰ğÍ’†‚ÉƒAƒNƒZƒX‚µ‚½—v‘f‚Ì”
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0`{0} ‚Ü‚Å‚Ì”’l‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 designer.preview.preference.columnMappingPage.group.title=ƒJƒ‰ƒ€ƒ}ƒbƒsƒ“ƒOƒy[ƒW
 
-#table mapping page messages
-xPathChoosePage.messages.rowMapping=ƒe[ƒuƒ‹‚Ìƒ}ƒbƒsƒ“ƒO
+#row mapping page messages
+xPathChoosePage.messages.elementSelection.label=XML —v‘f‚Ì‘I‘ğ
+xPathChoosePage.messages.elementSelection.item.absolutePath=ŒÅ’è‚³‚ê‚½â‘ÎƒpƒX‚É‚ ‚é XML —v‘f "{0}"\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=”CˆÓ‚ÌêŠ‚É‚ ‚éXML —v‘f "{0}"\n( {1} )\n
+xPathChoosePage.messages.elementSelection.disable.absolutePath=ŒÅ’è‚³‚ê‚½â‘ÎƒpƒX‚É‚ ‚é XML —v‘f\n 
+xPathChoosePage.messages.elementSelection.disable.anyLocation=”CˆÓ‚ÌêŠ‚É‚ ‚é XML —v‘f\n 
+xPathChoosePage.messages.elementSelection.item.custom=ƒJƒXƒ^ƒ€ XPath ®(&U)
 xPathChoosePage.messages.xPathExpression=XPath ®(&X)
 xPathChoosePage.messages.xmlStructure=XML \‘¢
 xPathChoosePage.messages.xmlColumnMapping=—ñƒ}ƒbƒsƒ“ƒO
 xPathChoosePage.messages.xpathChange=•ÏXŒã‚Ìƒe[ƒuƒ‹ƒ}ƒbƒsƒ“ƒO‚ª—ñƒ}ƒbƒsƒ“ƒO‚ÆŒİŠ·«‚ª‚ ‚é‚±‚Æ‚ğŠm”F‚µ‚Ä‚­‚¾‚³‚¢ (ŠY“–‚·‚éê‡)B   
+xPathChoosePage.FileNameIcon=ƒtƒ@ƒCƒ‹–¼ƒAƒCƒRƒ“
+xPathChoosePage.XMLElementIcon=XML —v‘fƒAƒCƒRƒ“
+xPathChoosePage.ColumnIcon=—ñƒAƒCƒRƒ“
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=s‚ğƒvƒŒƒrƒ…[(&P)
@@ -40,20 +48,30 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=ƒtƒ@ƒCƒ‹ [{0}] {1} ‚©‚ç XML ƒf
 button.refresh=XV
 menu.menuItem.removeAll=‚·‚×‚Äíœ
 menu.menuItem.remove=íœ
+menu.button.edit=•ÒW(&E)...
+menu.button.remove=íœ(&R)
+menu.button.up=ã‚Ö(&U)
+menu.button.down=‰º‚Ö(&D)
+menu.button.preview=ƒTƒ“ƒvƒ‹ƒf[ƒ^‚Ì•\¦(&S)
 lable.selectXmlFile=XML ƒ\[ƒX‚Ì URL ‚ğ“ü—Í‚·‚é‚©Aƒf[ƒ^‚ª“ü‚Á‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢(&X) :
 label.selectEncoding=ã‚Åw’è‚µ‚½ XML ƒ\[ƒX‚ÆƒXƒL[ƒ}‚ÌƒGƒ“ƒR[ƒh(&E) :
 lable.selectXmlSchmaFile=XML ƒXƒL[ƒ}‚Ì URL ‚ğ“ü—Í‚·‚é‚©AƒXƒL[ƒ}‚ª“ü‚Á‚Ä‚¢‚é\nƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢BƒXƒL[ƒ}‚ª‚È‚¢ê‡‚ÍA‚±‚ÌƒtƒB[ƒ‹ƒh‚ğ‹ó”’‚Ì‚Ü‚Ü‚É‚µ‚Ä‚¨‚¢‚Ä‚­‚¾‚³‚¢(&M) :
 label.preview=ƒ\[ƒXƒf[ƒ^‚ÌÅ‰‚Ì
-label.useXMLFileFromDataSource=ƒf[ƒ^ƒ\[ƒX‚É’è‹`‚³‚ê‚Ä‚¢‚é XML ƒtƒ@ƒCƒ‹‚ğg—p‚·‚é
+label.useXMLFileFromDataSource=ƒf[ƒ^ƒ\[ƒX‚É’è‹`‚³‚ê‚Ä‚¢‚é XML ƒtƒ@ƒCƒ‹‚ğg—p‚·‚é(&U)
 RowMappingDialog.title=XPath ®‚Ì‘I‘ğE•ÒW
 RowMappingDialog.info=‘I‘ğ‚µ‚½ƒm[ƒh‚É“K—p‚·‚é’è‹`Ï‚İ‚Ì XPath ®‚ğ\n‘I‘ğ‚·‚é‚©A•Ê‚Ì®‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢ :
-ColumnMappingDialog.info.columnName=—ñ–¼ :
-ColumnMappingDialog.info.xPath=XPath ® :
-ColumnMappingDialog.info.dataType=ƒf[ƒ^Œ^ :
-ColumnMappingDialog.info.dataPreview=ƒe[ƒuƒ‹‚ÌƒvƒŒƒrƒ…[
-ColumnMappingDialog.prompt.new=‚±‚±‚ÉV‚µ‚¢ƒ}ƒbƒsƒ“ƒO‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢...
+ColumnMappingPage.AddSingleButton.tooltip=‘I‘ğ‚µ‚½ƒm[ƒh‚ğ—ñƒ}ƒbƒsƒ“ƒO‚Ég—p‚·‚é
+ColumnMappingPage.AddAllButton.tooltip=‘I‘ğ‚µ‚½ƒm[ƒh‚Ìq‚Ì—ñ‚ğ‚·‚×‚Ä—ñƒ}ƒbƒsƒ“ƒO‚Ég—p‚·‚é
+ColumnMappingTable.upButton.tooltip=—ñƒ}ƒbƒsƒ“ƒO‚ğã‚ÉˆÚ“®
+ColumnMappingTable.downButton.tooltip=—ñƒ}ƒbƒsƒ“ƒO‚ğ‰º‚ÉˆÚ“®
+ColumnMappingTable.removeButton.tooltip=—ñƒ}ƒbƒsƒ“ƒO‚ğíœ
+ColumnMappingTable.editButton.tooltip=—ñƒ}ƒbƒsƒ“ƒO‚ğ•ÒW
+ColumnMappingTable.previewButton.tooltip=ƒTƒ“ƒvƒ‹ XML ƒf[ƒ^‚ÌƒvƒŒƒrƒ…[ 
+ColumnMappingDialog.info.columnName=—ñ–¼(&C) :
+ColumnMappingDialog.info.xPath=XPath ®(&X) :
+ColumnMappingDialog.info.dataType=ƒf[ƒ^Œ^(&D) :
 ColumnMappingDialog.prompt.maxRow=500 sˆÈã‚Ìƒ\[ƒXƒf[ƒ^‚ª‚ ‚è‚Ü‚·B‚±‚Ìƒy[ƒW‚É‚ÍÅ‰‚Ì 500 s‚¾‚¯‚ª•\¦‚³‚ê‚Ü‚·B
-ColumnMappingDialog.prompt.dialog.title=Œ‹‰Ê‚ÌƒvƒŒƒrƒ…[
+XMLDataPreviewDialog.title=ƒTƒ“ƒvƒ‹ XML ƒf[ƒ^
 
 dataset.editor.columnName=–¼‘O
 dataset.editor.xpathexpression=XPath
@@ -65,7 +83,13 @@ error.label=ƒGƒ‰[
 error.selectFolder=‘I‘ğ‚µ‚½ƒtƒ@ƒCƒ‹‚Ì URL ‚Í–³Œø‚©Aƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚¹‚ñB
 error.emptyPath=ƒtƒ@ƒCƒ‹‚Ì URL ‚ª‹ó”’‚Å‚·B
 error.xpath.canNotContainAttribute=XPath ®‚Í XML ‘®«‚Éƒ}ƒbƒsƒ“ƒO‚Å‚«‚Ü‚¹‚ñB
+error.xpath.getPathList=‘I‘ğ‚µ‚½ XML ƒcƒŠ[€–Ú‚Å XPath ƒŠƒXƒg‚ğæ“¾’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
 error.dataset.maxRowNumberError=Å‘ås”‚É‚ÍA”’l‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
+error.columnMapping.createPage=—ñƒ}ƒbƒsƒ“ƒOƒy[ƒW‚ÅƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B 
+error.columnMapping.columnElement.create=—ñƒ}ƒbƒsƒ“ƒO—v‘f‚ğŠ„‚è“–‚Ä’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+error.columnMapping.columnElement.edit=—ñƒ}ƒbƒsƒ“ƒO—v‘f‚Ì•ÒW’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+error.columnMapping.ATreeNode.getChildren=‘I‘ğ‚µ‚½ XML —v‘f‚Ìqƒm[ƒh‚ğƒtƒFƒbƒ`‚Å‚«‚Ü‚¹‚ñB
+error.columnMapping.SelectedTreeItem.notNull=—ñƒ}ƒbƒsƒ“ƒO—v‘f‚ğì¬‚·‚éƒcƒŠ[€–Ú‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB1 ‚Â‚Ü‚½‚Í•¡”‚ÌƒcƒŠ[€–Ú‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B
 error.columnMapping.noMappingColumn=­‚È‚­‚Æ‚à 1 ‚Â‚Ì—ñ‚ğƒ}ƒbƒsƒ“ƒO‚µ‚Ä‚­‚¾‚³‚¢B
 error.columnMapping.tableMappingXPathNotExist=ƒe[ƒuƒ‹‚ğƒ}ƒbƒsƒ“ƒO‚·‚é‚½‚ß‚Ì XPath ‚ª‘¶İ‚µ‚Ü‚¹‚ñB
 error.file.null=ƒf[ƒ^ƒ\[ƒX‚ª‘I‘ğ‚³‚ê‚Ä‚¢‚È‚¢‚½‚ßAURL ‚ª‚·‚×‚Ä‹ó”’‚É‚È‚Á‚Ä‚¢‚Ü‚·B‚±‚Ì‚Ü‚Ü‘±s‚µ‚Ü‚·‚© ?

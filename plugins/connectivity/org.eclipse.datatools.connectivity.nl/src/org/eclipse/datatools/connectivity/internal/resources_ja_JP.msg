@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error={1} ‚Ö‚Ì {0} Ú‘±‚ÌI—¹’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½
 CloseConnectionEventJob.name={0} ‚ÌÚ‘±I—¹ƒCƒxƒ“ƒg‚ğˆ—’†‚Å‚·B
 assert.invalid.profile=\•¶‰ğÍƒGƒ‰[\: –³Œø‚È‘®«‚Å‚· ({0})
 assert.invalid.profile.duplicateFactory=\•¶‰ğÍƒGƒ‰[\: ƒtƒ@ƒNƒgƒŠ[ ID ({0}) ‚ªd•¡‚µ‚Ä‚¢‚Ü‚·
+assert.invalid.profile.nullFactory = ‰ğÍƒGƒ‰[ \: ƒtƒ@ƒNƒgƒŠ‚Ü‚½‚Íƒtƒ@ƒNƒgƒŠ ID ‚ª NULL ({0}/{1}) ‚Å‚·B
 dialog.title.error.loadwizard="{0}" ‚Å‚ÌV‹KƒEƒBƒU[ƒh‚Ìƒ[ƒh’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
 operation.new.connectionprofile=ƒvƒƒtƒ@ƒCƒ‹‚Ìì¬’†‚Å‚·\: "{0}"
 error.connect=ƒvƒƒtƒ@ƒCƒ‹ "{0}" ‚ÌÚ‘±’†‚É–â‘è‚ª”­¶‚µ‚Ü‚µ‚½BÚ×‚É‚Â‚¢‚Ä‚ÍƒƒOEƒtƒ@ƒCƒ‹‚ğQÆ‚µ‚Ä‚­‚¾‚³‚¢B
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=propertiesPersistenceHook ‚ğƒ[ƒh‚Å‚«‚Ü‚¹
 trace.error.propertiesPersistenceHookSaveError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½; ‚·‚×‚Ä‚ÌƒvƒƒpƒeƒB[‚ğ•Û‚µ‚Ü‚· (ƒvƒƒtƒ@ƒCƒ‹\={0}AŠg’£q\={1})
 trace.error.propertiesPersistenceHookLoadError=ƒvƒƒpƒeƒB[‰i‘±ƒtƒbƒN‚Ì‹N“®’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½; ˆêƒvƒƒpƒeƒB[‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ (ƒvƒƒtƒ@ƒCƒ‹\={0}AŠg’£q\={1})
 trace.error.migration = Ú‘±ƒvƒƒtƒ@ƒCƒ‹‚ÌƒvƒƒoƒCƒ_ (ID={0}AˆÚsƒNƒ‰ƒX={1}) ‚ÌˆÚs—v‘f‚ğ“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+trace.error.drivermigration = ƒvƒƒtƒ@ƒCƒ‹‚Ìƒhƒ‰ƒCƒoƒCƒ“ƒXƒ^ƒ“ƒX‚Ìì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½ (id={0}, driver id={1})B
 
 migration.error.providerDoesNotExist = ˆÚs—v‘f‚Ì“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½Bw’è‚µ‚½ newProviderID ‚ª–³Œø‚Å‚· (newProviderID={0})B
 migration.error.invalidPropertyMigrationElement = ˆÚs—v‘f‚Ì“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½BpropertyMigration ‚É‚ÍAnewPropertyKey ‚© oldPropertyKeyA‚Ü‚½‚Í‚»‚Ì—¼•û‚ğw’è‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B

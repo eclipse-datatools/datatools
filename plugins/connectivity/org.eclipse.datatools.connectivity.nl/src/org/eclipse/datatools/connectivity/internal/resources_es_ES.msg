@@ -16,6 +16,7 @@ CloseManagedConnectionJob.error=Error al cerrar la conexión {0} a {1}.
 CloseConnectionEventJob.name=Procesando evento de cierre de conexión para {0}.
 assert.invalid.profile=Error de análisis\: atributo no válido ({0})
 assert.invalid.profile.duplicateFactory=Error de análisis\: ID de fábrica duplicado ({0})
+assert.invalid.profile.nullFactory = Error al analizar\: fábrica o id de fábrica nulos ({0}/{1})
 dialog.title.error.loadwizard=Error al cargar el asistente nuevo en "{0}"\!
 operation.new.connectionprofile=Creando perfil\: "{0}"
 error.connect=Se ha producido un problema al conectar al perfil "{0}." Consulte el archivo de anotaciones para conocer más detalles.
@@ -34,6 +35,7 @@ trace.error.propertiesPersistenceHook=No se ha podido cargar propertiesPersisten
 trace.error.propertiesPersistenceHookSaveError=Error al invocar el gancho persistente de propiedades; se persisten todas las propiedades (perfil\={0}, extensión\={1})
 trace.error.propertiesPersistenceHookLoadError=Error al invocar el gancho persistente de propiedades; no se establecen las propiedades transitorias (perfil\={0}, extensión\={1})
 trace.error.migration = Error al cargar el elemento de migración para el proveedor de perfil de conexión (id={0}, clase de migración={1})
+trace.error.drivermigration = Error al crear la instancia de perfil de controlador (id={0}, id de controlador={1})
 
 migration.error.providerDoesNotExist = Error al cargar el elemento de migración: el newProviderID especificado no es válido (newProviderID={0})
 migration.error.invalidPropertyMigrationElement = Error al cargar el elemento de migración: propertyMigration debe especificar una newPropertyKey, una oldPropertyKey o ambas

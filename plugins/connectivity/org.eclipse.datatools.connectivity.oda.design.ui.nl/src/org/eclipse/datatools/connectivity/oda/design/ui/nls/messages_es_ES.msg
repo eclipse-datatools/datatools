@@ -42,3 +42,6 @@ profilePage_error_invalidProfileStorePath=Ruta no válida para almacenamiento de 
 profileStoreCreationDialog_title=Crear almacenamiento de perfil de conexión
 profileStoreCreationDialog_grouptext=Seleccione los perfiles de conexión que se incluirán en el almacenamiento:
 profileStoreCreationDialog_newbutton_tooltiptext=Crear un nuevo perfil de conexión
+dbProfilePage_defaultPageMessage=Especifique un controlador JDBC y los detalles de conexión
+dbProfilePage_notInDesignSession=No es posible abrir la página de propiedades fuera de una sesión de diseño ODA.
+dbProfilePage_noCustomPage=No es posible encontrar y abrir la página de propiedades específica del controlador de la base de datos.
