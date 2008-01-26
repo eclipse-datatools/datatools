@@ -439,15 +439,10 @@ class ProfileSelectionPageHelper
      */
     private void setExternalLinkOption( String odaDataSourceId )
     {         
-        /* a category without an ODA parent category requires maintaining an external link 
-         * to a connection profile,
-         * cuz importing a profile's properties to a data source design private properties
-         * (which are not encyrpted) is not supported due to security concern;
-         * by default, if no category is specified, it is optional to maintain an external link 
-         */
+        //by default, if no category is specified, it is optional to maintain an external link 
         OdaProfileCategoryInfo categoryInfo = getOdaProfileCategoryInfo( odaDataSourceId );
         boolean isExternalLinkOptional = ( categoryInfo != null ) ?
-                                            categoryInfo.hasOdaParentCategory() : true;
+                                            categoryInfo.isExternalLinkOptional() : true;
                                             
         // set the external link control accordingly
         setExternalLinkOptionControl( isExternalLinkOptional );
@@ -1027,6 +1022,16 @@ class ProfileSelectionPageHelper
             return m_effectiveCategoryId;
         }
 
+        boolean isExternalLinkOptional()
+        {
+            /* a profile category without an ODA parent category requires maintaining an external link 
+             * to a connection profile, cuz importing a profile's properties to a 
+             * data source design private properties (which are not encyrpted) is not supported 
+             * due to security concern
+             */
+            return hasOdaParentCategory();
+        }
+        
         /* (non-Javadoc)
          * @see java.lang.Comparable#compareTo(java.lang.Object)
          */
