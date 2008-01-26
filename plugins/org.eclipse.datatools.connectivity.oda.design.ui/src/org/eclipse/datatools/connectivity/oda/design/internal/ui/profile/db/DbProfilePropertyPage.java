@@ -212,11 +212,7 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
     {
         if( profileSelectionPage == null )
             return;     // nothing to initialize
-        
-        // TODO - perhaps the profile selection event should trigger 
-        // setting the external link checkbox in profileSelectionPage to read-only,
-        // since importing of a db profile's properties is not supported due to security concern
-        
+
         // override the profile page update design task
         profileSelectionPage.delegatesTask( getProfileSelectionUpdateDesignTask() );
     }

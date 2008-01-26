@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -146,6 +146,7 @@ class ProfileSelectionPageHelper
                                 selectedProfile.getDataSourceDesignName() ) );
                     m_profileID = profileItem.getData().toString();
                     m_odaDataSourceID = profileItem.getParentItem().getData().toString();
+                    setExternalLinkOption( m_odaDataSourceID );
                     setPageComplete( true );
                 }
             }
@@ -406,6 +407,7 @@ class ProfileSelectionPageHelper
                 {
                     clearSelectedProfile();
                     setSelectedDataSourceName( EMPTY_STRING );
+                    setExternalLinkOption( null );
                     setDefaultMessageAsError( true );
                 }
                 else
@@ -413,6 +415,7 @@ class ProfileSelectionPageHelper
                     m_profileID = item.getData().toString();
                     m_odaDataSourceID = item.getParentItem().getData().toString();
                     setSelectedDataSourceName( item.getText() );
+                    setExternalLinkOption( m_odaDataSourceID );
                 }
             }
         } );
@@ -430,6 +433,26 @@ class ProfileSelectionPageHelper
         // setText triggers its modifyListener to update data source design name if appropriate
     }
 
+    /**
+     * For use by the tree viewer selection listener to trigger setting 
+     * the external link checkbox, based on the selected profile's oda category
+     */
+    private void setExternalLinkOption( String odaDataSourceId )
+    {         
+        /* a category without an ODA parent category requires maintaining an external link 
+         * to a connection profile,
+         * cuz importing a profile's properties to a data source design private properties
+         * (which are not encyrpted) is not supported due to security concern;
+         * by default, if no category is specified, it is optional to maintain an external link 
+         */
+        OdaProfileCategoryInfo categoryInfo = getOdaProfileCategoryInfo( odaDataSourceId );
+        boolean isExternalLinkOptional = ( categoryInfo != null ) ?
+                                            categoryInfo.hasOdaParentCategory() : true;
+                                            
+        // set the external link control accordingly
+        setExternalLinkOptionControl( isExternalLinkOptional );
+    }
+    
     private boolean hasSelectedProfile()
     {
         return ( m_profileID != null && m_odaDataSourceID != null );
@@ -469,25 +492,24 @@ class ProfileSelectionPageHelper
         // populate tree with ODA extensions' profile instances
         OdaProfileExplorer.getInstance().refresh(); // reset cached profiles in instance
         
-        if( m_dataSourceIDs == null )
-            m_dataSourceIDs = createODACategoryIdentifiers();
+        SortedSet odaCategoryInfoSet = getOdaCategoryInfoSet();
 
         // iterate thru each type of applicable ODA data source categories
         TreeItem odaRoot = null;
-        Iterator iterator = m_dataSourceIDs.iterator();
+        Iterator iterator = odaCategoryInfoSet.iterator();
         while( iterator.hasNext() )
         {
             OdaProfileCategoryInfo categoryInfo = (OdaProfileCategoryInfo) iterator.next();
 
-            TreeItem dbCategoryItem = 
+            TreeItem categoryItem = 
                 createCategoryTreeItems( m_odaDataSourceTree, odaRoot, categoryInfo  );
             
-            if( dbCategoryItem != null )
+            if( categoryItem != null )
             {
                 if( odaRoot == null && categoryInfo.hasOdaParentCategory() )
-                    odaRoot = dbCategoryItem.getParentItem();   // reuse same parent item for next ODA category
-                dbCategoryItem.setExpanded( true );
-                m_odaDataSourceTree.showItem( dbCategoryItem ); // scroll to the latest category
+                    odaRoot = categoryItem.getParentItem();   // reuse same parent item for next ODA category
+                categoryItem.setExpanded( true );
+                m_odaDataSourceTree.showItem( categoryItem ); // scroll to the latest category
             }
         }
         
@@ -598,13 +620,20 @@ class ProfileSelectionPageHelper
             return true;
         return false;
     }
+
+    private SortedSet getOdaCategoryInfoSet()
+    {
+        if( m_dataSourceIDs == null )
+            m_dataSourceIDs = createOdaProfileCategoryInfoSet();
+        return m_dataSourceIDs;
+    }
     
     /**
      * Creates and returns a filtered collection of OdaProfileCategoryInfo
      * on ODA data source extensions found in the extensions registry,
      * sorted by their category display names.
      */
-    private SortedSet createODACategoryIdentifiers()
+    private SortedSet createOdaProfileCategoryInfoSet()
     {
         Properties dsIdentifiers = ManifestExplorer.getInstance()
                 .getDataSourceIdentifiers( );
@@ -624,6 +653,22 @@ class ProfileSelectionPageHelper
         }
 
         return sortedSet;
+    }
+    
+    private OdaProfileCategoryInfo getOdaProfileCategoryInfo( String odaDataSourceId )
+    {
+        if( odaDataSourceId == null )
+            return null;
+        
+        Iterator iterator = getOdaCategoryInfoSet().iterator();
+        while( iterator.hasNext() )
+        {
+            OdaProfileCategoryInfo categoryInfo = (OdaProfileCategoryInfo) iterator.next();
+            if( odaDataSourceId.equals( categoryInfo.getOdaDataSourceId() ))
+                return categoryInfo;
+        }
+        
+        return null;    // no match found
     }
     
     private Map getProfileIdentifiersByCategory( String categoryId )
@@ -680,7 +725,7 @@ class ProfileSelectionPageHelper
                 new TreeItem( parentItem, TREE_ITEM_STYLE ) :
                 new TreeItem( parent, TREE_ITEM_STYLE );
             
-        // the tree view expects a profile instance's parent item to contain an odaDataSourceId in data
+        // the tree view expects a profile instance's parent item to contain an odaDataSourceId in item data
         categoryItem.setData( categoryInfo.getOdaDataSourceId() );
         categoryItem.setText( categoryInfo.getDisplayName() );
         
@@ -839,10 +884,10 @@ class ProfileSelectionPageHelper
     /**
      * Enable DataSourceNameEditor
      */
-    private void enableDataSourceNameEditor( boolean bool )
+    private void enableDataSourceNameEditor( boolean enabled )
     {
-        m_dataSourceNameLabel.setEnabled( bool );
-        m_dataSourceDesignNameControl.setEnabled( bool );
+        m_dataSourceNameLabel.setEnabled( enabled );
+        m_dataSourceDesignNameControl.setEnabled( enabled );
     }
     
     private void setDataSourceNameEditorVisible( boolean visible )
@@ -850,6 +895,19 @@ class ProfileSelectionPageHelper
         m_useDefaultDSNameCheckBox.setVisible( visible );
         m_dataSourceNameLabel.setVisible( visible );
         m_dataSourceDesignNameControl.setVisible( visible );
+    }
+
+    /**
+     * Set the checkbox state for maintaining a link to the selected connection profile
+     * according to the specified state.
+     * @param isExternalLinkOptional   true indicates whether an user is allowed to set/unset
+     *              the external link option; false means that an external link is required
+     */
+    private void setExternalLinkOptionControl( boolean isExternalLinkOptional )
+    {
+        m_linkRefCheckBox.setEnabled( isExternalLinkOptional );
+        if( ! isExternalLinkOptional )  // requires to maintain an external link
+            m_linkRefCheckBox.setSelection( true );
     }
     
     private boolean inEditMode()

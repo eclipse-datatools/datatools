@@ -401,14 +401,14 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
      * @param odaDataSourceId   oda data source extension id
      * @param odaProfile        the profile instance from which to create a new data source design;
      *                          optional, may be null
-     * @since 3.0.6
+     * @since DTP 1.6
      */
     public boolean isValid( String odaDataSourceId, OdaConnectionProfile odaProfile )
     {
         // base class assumes that a wizard can handle only one type of oda data source,
         // and any of its existing profiles; subclass may override
         if( odaProfile != null && ! odaProfile.getProviderId().equalsIgnoreCase( odaDataSourceId ))
-            throw new IllegalArgumentException();
+            return false;
         return getOdaDataSourceId().equals( odaDataSourceId );
     }
     
