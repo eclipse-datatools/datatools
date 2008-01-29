@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sap.maxdb; singleton:=true
+Bundle-Version: 1.0.0.200801291
+Eclipse-LazyStart: true
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.sqltools.db.generic,
+ org.eclipse.datatools.sqltools.editor.core
+Bundle-ClassPath: .,
+ bin/
+Bundle-Activator: org.eclipse.datatools.enablement.sap.maxdb.MaxDBEnablementPlugin
+Export-Package: org.eclipse.datatools.enablement.sap.maxdb
+Bundle-Vendor: %providerName
