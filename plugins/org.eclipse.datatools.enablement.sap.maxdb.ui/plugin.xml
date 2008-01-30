@@ -12,5 +12,41 @@
 <!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
 <!-- *******************************************************************************--> 
 
-<plugin>   
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <newWizard
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
+            description="Create a MaxDB connection profile."
+            icon="icons/new_db_element.gif"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
+            name="MaxDB"
+            profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+      </newWizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.MaxDBProfilePropertyPage"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.profileProperties"
+            name="MaxDB Driver Properties"
+            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+         </filter>
+      </page>
+   </extension>  
+    <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.MaxDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.76.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.76.MaxDBDriverUIContributor">
+      </driverUIContributor>
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.MaxDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.sap.maxdb.77.driverTemplate"
+            id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.drivers.77.MaxDBDriverUIContributor">
+      </driverUIContributor>
+   </extension> 
 </plugin>

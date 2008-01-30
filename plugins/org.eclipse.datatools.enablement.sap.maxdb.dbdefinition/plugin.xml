@@ -10,6 +10,7 @@
 <!-- *-->
 <!-- * Contributors:-->
 <!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
+<!-- *    Wolfgang Auer - extend db definition for MaxDB 7.7 -->
 <!-- *******************************************************************************--> 
 
 <plugin>   
@@ -21,6 +22,13 @@
             productDisplayString="MaxDB"
             versionDisplayString="7.6"
             file="runtime/vendors/MaxDB_7.6/MaxDB_7.6.xmi">
+      </definition>
+       <definition
+            version="7.7"
+            product="MaxDB"
+            productDisplayString="MaxDB"
+            versionDisplayString="7.7"
+            file="runtime/vendors/MaxDB_7.7/MaxDB_7.7.xmi">
       </definition>
    </extension>
 </plugin>

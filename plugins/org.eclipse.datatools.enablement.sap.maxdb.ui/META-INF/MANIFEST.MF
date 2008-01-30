@@ -2,11 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sap.maxdb.ui;singleton:=true
-Bundle-Version: 1.0.0.200801291
+Bundle-Version: 1.0.0.200801301
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.enablement.sap.maxdb
 Bundle-ClassPath: .,
  bin/
 Bundle-Activator: org.eclipse.datatools.enablement.sap.maxdb.ui.MaxDBUIPlugin
