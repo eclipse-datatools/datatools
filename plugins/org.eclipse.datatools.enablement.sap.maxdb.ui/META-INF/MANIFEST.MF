@@ -14,3 +14,4 @@ Bundle-ClassPath: .,
  bin/
 Bundle-Activator: org.eclipse.datatools.enablement.sap.maxdb.ui.MaxDBUIPlugin
 Bundle-Vendor: %providerName 
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

@@ -5,6 +5,5 @@ Bundle-SymbolicName: org.eclipse.datatools.enablement.sap.maxdb.dbdefinition;sin
 Bundle-Version: 1.0.0.200801311
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Bundle-ClassPath: .,
- bin/
 Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

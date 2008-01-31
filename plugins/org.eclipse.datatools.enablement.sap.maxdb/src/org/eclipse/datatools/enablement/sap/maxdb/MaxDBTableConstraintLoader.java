@@ -78,7 +78,9 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 						pkName = rs.getString("TABLE_NAME")+"_PK";
 					}
 					if (existingPK != null
-							&& pkName.equals(existingPK.getName())) {
+							&& 
+						pkName.equals(existingPK.getName())) 
+					{
 						pk = existingPK;
 						pk.getMembers().clear();
 						if (existingPK instanceof ICatalogObject) {
@@ -91,7 +93,7 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 					}
 				}
 				columns.put(new Integer(rs.getShort(COLUMN_KEY_SEQ)),
-						findColumn(rs.getString(COLUMN_COLUMN_NAME)));
+						    findColumn(rs.getString(COLUMN_COLUMN_NAME)));
 			}
 			for (Iterator it = columns.values().iterator(); it.hasNext();) {
 				pk.getMembers().add(it.next());
