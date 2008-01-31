@@ -181,19 +181,22 @@ $Rules
 <constant> ::=
 			_STRING
 				/. $BeginAction setSym1(m_factory.createSimpleExpression(getTokenName(1))); $EndAction ./
+-- TODO Following two rules(G _STRING and N _STRING  )need Lexer change, so as to not interpret G, N as <identifier>
+-- Follow the HEX_STRING_LITERAL as example
+
 		|	G _STRING
 				/. $BeginAction setSym1(m_factory.createSimpleExpression( "G".concat(getTokenName(2)) ));  //$NON-NLS-1$
 				   $EndAction ./
 		|	N _STRING
 				/. $BeginAction setSym1(m_factory.createSimpleExpression( "N".concat(getTokenName(2)) ));  //$NON-NLS-1$
 				   $EndAction ./
-		|	X _STRING
-				/. $BeginAction setSym1(m_factory.createSimpleExpression( "X".concat(getTokenName(2)) ));  //$NON-NLS-1$
-				   $EndAction ./
+        |   HEX_STRING_LITERAL
+                /. $BeginAction setSym1(m_factory.createSimpleExpression( getTokenName(1) ));  //$NON-NLS-1$
+                   $EndAction ./                   
 		|	_INTNUMBER
 				/. $BeginAction setSym1(m_factory.createSimpleExpression(getTokenName(1))); $EndAction ./
---        |   _BIGINTEGER
---				/. $BeginAction setSym1(m_factory.createSimpleExpression(getTokenName(1))); $EndAction ./
+        |   _BIGINTEGER
+				/. $BeginAction setSym1(m_factory.createSimpleExpression(getTokenName(1))); $EndAction ./
 		|	_DECIMALNUMBER
 				/. $BeginAction setSym1(m_factory.createSimpleExpression(getTokenName(1))); $EndAction ./
 		|	_REALNUMBER
@@ -301,15 +304,21 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_INTEGER, 0) ); $EndAction ./
 		|	SMALLINT
 				/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_SMALLINT, 0) ); $EndAction ./
---ToDo: check for support of BigInt
---		|	BIGINT _LPAREN _INTNUMBER _RPAREN
---    			/. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_BIGINT, Integer.parseInt(getTokenName(3))) ); $EndAction ./
+        |   BIGINT
+                /. $BeginAction setSym1(m_factory.createDataTypeNumericInteger( $parser_factory.PRIMITIVE_TYPE_BIGINT, 0) ); $EndAction ./
 
 
+-- BINARY_LARGE_OBJECT (BLOB)
 <datatype_binary> ::=
-			BLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
-				/. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
-
+            BLOB
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null )); $EndAction ./         
+        |   BLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+        |   BINARY LARGE OBJECT
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, 0, null )); $EndAction ./         
+        |   BINARY LARGE OBJECT _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
+                /. $BeginAction setSym1(m_factory.createDataTypeBinaryString( $parser_factory.PRIMITIVE_TYPE_BINARY_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
+                
 
 -- CHARACTER, CHARACTER_VARYING, CHARACTER_LARGE_OBJECT
 <datatype_character> ::=
@@ -351,6 +360,8 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
 		|	VARGRAPHIC _LPAREN _INTNUMBER _RPAREN
 				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_VARYING, Integer.parseInt(getTokenName(3)), null )); $EndAction ./
+        |   DBCLOB
+                /. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, 0, null )); $EndAction ./
 		|	DBCLOB _LPAREN _INTNUMBER <datatype_opt_size_unit> _RPAREN
 				/. $BeginAction setSym1(m_factory.createDataTypeCharacterString( $parser_factory.PRIMITIVE_TYPE_NATIONAL_CHARACTER_LARGE_OBJECT, Integer.parseInt(getTokenName(3)), getString(4) )); $EndAction ./
 
@@ -990,7 +1001,7 @@ $Rules
     		<query_select>
 		|	<query_values>
         |   _LPAREN <query_exp> _RPAREN
-				/. $BeginAction setSym1( getSym(2) );  $EndAction ./
+                /. $BeginAction setSym1( m_factory.createQueryNested(($RT_query_exp)getSym(2)) );  $EndAction ./
                 
 			--  this nested combined query rule causes extra parser conflicts
 			--  with nested expression, where the <expression> -> <subquery> ->
@@ -1110,7 +1121,7 @@ $Rules
         |   CURRENT_ROLE
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_ROLE)); $EndAction ./
         |   CURRENT_TRANSFORM_GROUP_FOR_TYPE <path-resolved user-defined type name>
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_TRANSFORM_GROUP_FOR_TYPE)); $EndAction ./
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_TRANSFORM_GROUP_FOR_TYPE,getString(2))); $EndAction ./
         |   CURRENT_USER
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_USER)); $EndAction ./
         |   SESSION_USER

@@ -27,6 +27,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableFunction;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn;
@@ -45,9 +46,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParserException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserLogger;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessor;
 import org.eclipse.datatools.sqltools.parsers.sql.postparse.PostParseProcessorConfiguration;
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.datatools.sqltools.parsers.sql.query.SQLQueryParserMessages;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * The <code>TableReferenceResolver</code> resolves references between columns
@@ -504,20 +504,20 @@ public class TableReferenceResolver implements PostParseProcessor
                     }
                 }
             }
-        }
 
-        // If we didn't find any schemas anywhere, create a parse error.
-        // Make it the most important, first error as most further resolving depends on it.
-        if (!foundSchemas){
-            errorList.add(0, 
-                new SQLParseErrorInfo( 0, 0, 0, 0, null, null,
-                    SQLQueryParserMessages.getString( 
-                        ERROR_MESSAGE_KEY_DATABASE_SCHEMAS_NOTLOADED,
-                        new String[] {database.getName()}
-                    ), 
-                    ERROR_CODE_DATABASE_SCHEMAS_NOTLOADED 
-                )
-            );
+            // If we didn't find any schemas anywhere, create a parse error.
+            // Make it the most important, first error as most further resolving depends on it.
+            if (!foundSchemas){
+        	errorList.add(0, 
+        		new SQLParseErrorInfo( 0, 0, 0, 0, null, null,
+        			SQLQueryParserMessages.getString( 
+        				ERROR_MESSAGE_KEY_DATABASE_SCHEMAS_NOTLOADED,
+        				new String[] {database.getName()}
+        			), 
+        			ERROR_CODE_DATABASE_SCHEMAS_NOTLOADED 
+        		)
+        	);
+            }
         }
 
         return errorList;
@@ -652,13 +652,13 @@ public class TableReferenceResolver implements PostParseProcessor
 	        }
 	        else
 	        {	
-	            logError("resolveTableReference(TableInDatabase)", //$NON-NLS-1$
-			            " could not be executed because " //$NON-NLS-1$
-			            + Database.class.getName() + " was not provided." //$NON-NLS-1$
-			            + " Init the "+TableReferenceResolver.class.getName() //$NON-NLS-1$
-			            + " with the database connected!"); //$NON-NLS-1$
-                
-	        }
+                // do not log errors when there is no database conenction
+/*              logError("resolveTableReference(TableInDatabase)", //$NON-NLS-1$
+                         " could not be executed because " //$NON-NLS-1$
+                         + Database.class.getName() + " was not provided." //$NON-NLS-1$
+                         + " Init the "+TableReferenceResolver.class.getName() //$NON-NLS-1$
+                         + " with the database connected!"); //$NON-NLS-1$
+*/	        }
         }
         return errorList;
     }
@@ -986,15 +986,18 @@ public class TableReferenceResolver implements PostParseProcessor
         boolean isFromTable = tableExpr.getQuerySelect() != null;
         boolean hasColumns = (tableExpr.getColumnList() != null
                 && !tableExpr.getColumnList().isEmpty());
+        boolean isTableFunction = tableExpr instanceof TableFunction;
 
         // if we had a database only, otherwise we might not have any column
         // information even for non-TableInDatabase TableExpressions,
         // but if we had a database, we must have the columnList compiled and
         // exposed for all types of TableExpressions
         // check for not populated database is done separately
+// TODO remove the check for Tablefunction, once semantic resolution of table functions is implemented
         if (this.database != null && !database.getSchemas().isEmpty()
                 && (!isQuery || isFromTable)  // don't check the columns of QuerySelects or QueryCombined, as that is resolved differently, except the query is used as nested query table
-                && !hasColumns)
+                && !hasColumns
+                && !isTableFunction) //do not try to resolve table functions. This is temporary 
         {
             SQLQuerySourceInfo sourceInfo = tableExpr.getSourceInfo();
             String errorMsg =
@@ -1164,24 +1167,22 @@ public class TableReferenceResolver implements PostParseProcessor
      * @param colExpr
      * @return
      */
-    private boolean isColumnInTable(TableExpression tableExpr, ValueExpressionColumn colExpr)
-    {
+    private boolean isColumnInTable(TableExpression tableExpr, ValueExpressionColumn colExpr) {
         boolean hasTableColumn = false;
         
-        if (tableExpr != null && tableExpr.getColumnList() != null && colExpr != null)
-        {
-            for (Iterator it = tableExpr.getColumnList().iterator(); it.hasNext();)
-            {
-                ValueExpressionColumn tableCol = (ValueExpressionColumn) it.next();
-                
-                if (colExpr.getName() != null
-                        && colExpr.getName().equals(tableCol.getName()))
-                {
-                    hasTableColumn = true;
-                    break;
+        if (tableExpr != null && colExpr != null) {
+            List tableColList = tableExpr.getColumnList();
+            String colExprName = colExpr.getName();
+            if (tableColList != null && colExprName != null) {
+                Iterator tableColListIter = tableColList.iterator();
+                while (tableColListIter.hasNext() && hasTableColumn == false) {
+                    ValueExpressionColumn tableCol = (ValueExpressionColumn) tableColListIter.next();
+                    String tableColName = tableCol.getName();
+                    if (StatementHelper.equalSQLIdentifiers(colExprName, tableColName)) {
+                        hasTableColumn = true;
+                    }
                 }
             }
-            
         }
         
         return hasTableColumn;

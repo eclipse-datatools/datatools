@@ -22,20 +22,18 @@ import lpg.lpgjavaruntime.Token;
 
 public abstract class AbstractSQLLexer extends LpgLexStream {
     
-            protected ParseTable prs;
-        protected LexParser lexParser;
-
+    protected ParseTable prs;
+    protected LexParser lexParser;
     
- protected static boolean printTokens = false;
-protected final static int ECLIPSE_TAB_VALUE = 4;
+    protected static boolean printTokens = false;
+    protected final static int ECLIPSE_TAB_VALUE = 4;
 
     /** 
      * The default Character kind map to be used, if no modified Character kind mapping
      * is required. In that case initialize {@link #charKindMap} with the
      * modified {@link SQLCharacterKindMap} 
      * @see #SQLQueryLexer(char[], boolean, SQLCharacterKindMap) */
-    protected static final SQLCharacterKindMap DEFAULT_CHAR_KIND_MAP = 
-        new SQLCharacterKindMap();
+    protected static final SQLCharacterKindMap DEFAULT_CHAR_KIND_MAP = new SQLCharacterKindMap();
     
     /** The Character kind map this Lexer will be using. 
      * @see #SQLQueryLexer(char[], boolean, SQLCharacterKindMap) */
@@ -56,62 +54,48 @@ protected final static int ECLIPSE_TAB_VALUE = 4;
      */
 	public abstract void lexer(PrsStream prsStream);
 	
-    protected final void makeComment(int kind)
-{
-    int startOffset = lexParser.getToken(1),
-        endOffset = lexParser.getLastToken();
-    commentTokens.add(new Token(startOffset, endOffset, kind));
-    if (printTokens) printValue(startOffset, endOffset);
-}
+    protected final void makeComment(int kind) {
+        int startOffset = lexParser.getToken(1),
+            endOffset = lexParser.getLastToken();
+        commentTokens.add(new Token(getPrsStream(), startOffset, endOffset, kind));
+        if (printTokens) printValue(startOffset, endOffset);
+    }
 
-protected final void makeToken(int kind)
-{
-    int startOffset = lexParser.getToken(1),
-        endOffset = lexParser.getLastToken();
-    getPrsStream().makeToken(startOffset, endOffset, kind);
-    if (printTokens) printValue(startOffset, endOffset);
-}
+    protected final void makeToken(int kind) {
+        int startOffset = lexParser.getToken(1),
+            endOffset = lexParser.getLastToken();
+        getPrsStream().makeToken(startOffset, endOffset, kind);
+        if (printTokens) printValue(startOffset, endOffset);
+    }
 
-protected final int getCurrentTokenLength()
-{
-    int startOffset = lexParser.getToken(1),
-        endOffset = lexParser.getLastToken();
-    return endOffset - startOffset;
-}
+    protected final int getCurrentTokenLength() {
+        int startOffset = lexParser.getToken(1),
+            endOffset = lexParser.getLastToken();
+        return endOffset - startOffset;
+    }
 
-protected final void skipToken()
-{
-    if (printTokens) printValue(lexParser.getToken(1), lexParser.getLastToken());
-}
+    protected final void skipToken() {
+        if (printTokens) printValue(lexParser.getToken(1), lexParser.getLastToken());
+    }
 
-    
-        public List getCommentTokens()
-    {
+    public List getCommentTokens() {
         return this.commentTokens;
     }
     
-    
-    protected final void printValue(int startOffset, int endOffset)
-    {
+    protected final void printValue(int startOffset, int endOffset) {
         String s = new String(getInputChars(), startOffset, endOffset - startOffset + 1);
         System.out.print(s);
     }
 
-    
-    
-    public void reportError(int left_loc, int right_loc)
-    {
+    public void reportError(int left_loc, int right_loc) {
         // make up an error token in the parse stream -> syntactical parse error
         makeToken(left_loc, right_loc, 0);
     }
-
 
     public int getKind(int arg0) {
         // TODO Auto-generated method stub
         return 0;
     }
-
-
 
     /**
      * 

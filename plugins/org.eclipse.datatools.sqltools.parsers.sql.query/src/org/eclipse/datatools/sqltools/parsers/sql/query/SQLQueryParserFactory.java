@@ -65,6 +65,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -1174,7 +1175,7 @@ public IntegerDataType createDataTypeNumericInteger(int primitiveType, int preci
 	    } else if (primitiveType == PRIMITIVE_TYPE_INTEGER) {
 	        precision = 10;
     	} else if (primitiveType == PRIMITIVE_TYPE_BIGINT) {
-    	    precision = 10;
+    	    precision = 19;
 	    }
     }
     dataType.setPrecision(precision);
@@ -1797,6 +1798,14 @@ public QueryCombined createQueryCombined(QueryExpressionBody aLeftQuery,
     return queryCombined;
 }
 
+public QueryNested createQueryNested(QueryExpressionBody queryExprBody){
+    QueryNested queryNested = sqlQueryModelFactory.createQueryNested();
+    
+    queryNested.setNestedQuery(queryExprBody);
+    queryExprBody.setQueryNest(queryNested);
+    return queryNested;
+}
+
 //This method is called in the end, when all the clauses of the query
 //have been processed.  This method also relinks the pointers to the
 //table ref for the columns from Select clause and Where clause, to the
@@ -2084,6 +2093,24 @@ public ValueExpressionFunction createSpecialRegisterExpression( String aSpecialR
   ValueExpressionFunction func = sqlQueryModelFactory.createValueExpressionFunction();
   func.setName( aSpecialReg );
   func.setSpecialRegister( true );
+  return func;
+}
+
+/**
+ * Creates a <code>ValueExpressionFunction</code> with name <code>aSpecialReg</code>
+ * and field <code>{@link ValueExpressionFunction#isSpecialRegister()}==true</code>
+ * @param aSpecialReg the register name, e.g. {@link #SPECIAL_REGISTER_CURRENT_DATE}.
+ * @return a <code>ValueExpressionFunction</code>
+ */
+public ValueExpressionFunction createSpecialRegisterExpression( String aSpecialReg, String value ) {
+  ValueExpressionFunction func = sqlQueryModelFactory.createValueExpressionFunction();
+  func.setName( aSpecialReg );
+  func.setSpecialRegister( true );
+  if(value != null){
+      ValueExpressionSimple valueExprSimple = sqlQueryModelFactory.createValueExpressionSimple();
+      valueExprSimple.setValue(value);
+      func.getParameterList().add(valueExprSimple);
+  }
   return func;
 }
 

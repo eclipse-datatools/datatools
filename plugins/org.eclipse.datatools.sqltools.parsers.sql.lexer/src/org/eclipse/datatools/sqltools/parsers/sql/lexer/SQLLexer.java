@@ -94,31 +94,23 @@ public int getKind(int i)
         {
  
             //
-            // Rule 16:  ID ::= Ident
+            // Rule 17:  ID ::= Ident
             //
-            case 16: { 
+            case 17: { 
 		checkForKeyWord();
 	            break;
             }
 	 
             //
-            // Rule 18:  WhiteSpace ::= WS
+            // Rule 19:  WhiteSpace ::= WS
             //
-            case 18: { 
+            case 19: { 
 	    skipToken();
 	            break;
             }
 	 
             //
-            // Rule 24:  StringLiteral ::= ' SLBody '
-            //
-            case 24: { 
-	    makeToken(TK_CHAR_STRING_LITERAL); // TK_StringLiteral
-	            break;
-            }
-	 
-            //
-            // Rule 25:  StringLiteral ::= ' '
+            // Rule 25:  StringLiteral ::= ' SLBody '
             //
             case 25: { 
 	    makeToken(TK_CHAR_STRING_LITERAL); // TK_StringLiteral
@@ -126,47 +118,47 @@ public int getKind(int i)
             }
 	 
             //
-            // Rule 28:  DelimitedIdent ::= DelimIdQt DIBody DelimIdQt
+            // Rule 26:  StringLiteral ::= ' '
             //
-            case 28: { 
+            case 26: { 
+	    makeToken(TK_CHAR_STRING_LITERAL); // TK_StringLiteral
+	            break;
+            }
+	 
+            //
+            // Rule 29:  DelimitedIdent ::= DelimIdQt DIBody DelimIdQt
+            //
+            case 29: { 
 	    makeToken(TK_DELIMITED_IDENTIFIER); // TK_StringLiteral
 	            break;
             }
 	 
             //
-            // Rule 29:  DelimitedIdent ::= DelimIdQt DelimIdQt
+            // Rule 30:  DelimitedIdent ::= DelimIdQt DelimIdQt
             //
-            case 29: { 
+            case 30: { 
 	    makeToken(TK_DELIMITED_TYPE_IDENTIFIER); // TK_StringLiteral
 	            break;
             }
 	 
             //
-            // Rule 34:  IntLiteral ::= Integer
+            // Rule 35:  IntLiteral ::= Integer
             //
-            case 34: { 
+            case 35: { 
 	    makeToken(TK_UNSIGNED_INTEGER); //TK_IntegerLiteral
 	            break;
             }
 	 
             //
-            // Rule 37:  HexLiteral ::= 0 X HexDigits
+            // Rule 38:  HexLiteral ::= 0 X HexDigits
             //
-            case 37: { 
+            case 38: { 
 	    makeToken(TK_UNSIGNED_INTEGER);
 	            break;
             }
 	 
             //
-            // Rule 40:  FloatingPointLiteral ::= Decimal Exponent
-            //
-            case 40: { 
-	    makeToken(TK_APPROXIMATE_NUMERIC_LITERAL);
-	            break;
-            }
-	 
-            //
-            // Rule 41:  FloatingPointLiteral ::= Integer Exponent
+            // Rule 41:  FloatingPointLiteral ::= Decimal Exponent
             //
             case 41: { 
 	    makeToken(TK_APPROXIMATE_NUMERIC_LITERAL);
@@ -174,237 +166,245 @@ public int getKind(int i)
             }
 	 
             //
-            // Rule 42:  FloatingPointLiteral ::= Decimal
+            // Rule 42:  FloatingPointLiteral ::= Integer Exponent
             //
             case 42: { 
+	    makeToken(TK_APPROXIMATE_NUMERIC_LITERAL);
+	            break;
+            }
+	 
+            //
+            // Rule 43:  FloatingPointLiteral ::= Decimal
+            //
+            case 43: { 
 	    makeToken(TK_EXACT_NUMERIC_LITERAL);
 	            break;
             }
 	 
             //
-            // Rule 49:  MLComment ::= / * Inside Stars /
+            // Rule 50:  MLComment ::= / * Inside Stars / opt_Comment_Whitespace
             //
-            case 49: { 
-	    skipToken();
-	            break;
+            case 50: { 
+        makeComment(TK_MULTILINE_COMMENT);
+                break;
             }
-	 
+     
             //
-            // Rule 56:  SLComment ::= - - SkipCommentToEol
+            // Rule 59:  SLComment ::= - - SkipCommentToEol
             //
-            case 56: { 
+            case 59: { 
 	    makeComment(TK_LINE_COMMENT);
 	            break;
             }
 	 
             //
-            // Rule 57:  SkipCommentToEol ::= SkipCommentToEol NotCommentEol
+            // Rule 60:  SkipCommentToEol ::= SkipCommentToEol NotCommentEol
             //
-            case 57:
+            case 60:
                 break;  
  
             //
-            // Rule 58:  SkipCommentToEol ::= $Empty
+            // Rule 61:  SkipCommentToEol ::= $Empty
             //
-            case 58:
+            case 61:
                 break;  
  
             //
-            // Rule 113:  SSOperator ::= +
+            // Rule 116:  SSOperator ::= +
             //
-            case 113: { 
+            case 116: { 
                     makeToken(TK_PLUS_SIGN);
 	            break;
             }
 	 
             //
-            // Rule 114:  SSOperator ::= -
+            // Rule 117:  SSOperator ::= -
             //
-            case 114: { 
+            case 117: { 
                     makeToken(TK_MINUS_SIGN);
 	            break;
             }
 	 
             //
-            // Rule 115:  SSOperator ::= *
+            // Rule 118:  SSOperator ::= *
             //
-            case 115: { 
+            case 118: { 
                     makeToken(TK_ASTERISK);
 	            break;
             }
 	 
             //
-            // Rule 116:  SSOperator ::= /
+            // Rule 119:  SSOperator ::= /
             //
-            case 116: { 
+            case 119: { 
                     makeToken(TK_SOLIDUS);
 	            break;
             }
 	 
             //
-            // Rule 117:  SSOperator ::= (
+            // Rule 120:  SSOperator ::= (
             //
-            case 117: { 
+            case 120: { 
                     makeToken(TK_LEFT_PAREN);
 	            break;
             }
 	 
             //
-            // Rule 118:  SSOperator ::= )
+            // Rule 121:  SSOperator ::= )
             //
-            case 118: { 
+            case 121: { 
                     makeToken(TK_RIGHT_PAREN);
 	            break;
             }
 	 
             //
-            // Rule 119:  SSOperator ::= =
+            // Rule 122:  SSOperator ::= =
             //
-            case 119: { 
+            case 122: { 
                     makeToken(TK_EQUALS_OPERATOR);
 	            break;
             }
 	 
             //
-            // Rule 120:  SSOperator ::= ,
+            // Rule 123:  SSOperator ::= ,
             //
-            case 120: { 
+            case 123: { 
                     makeToken(TK_COMMA);
 	            break;
             }
 	 
             //
-            // Rule 121:  SSOperator ::= :
+            // Rule 124:  SSOperator ::= :
             //
-            case 121: { 
+            case 124: { 
                     makeToken(TK_COLON);
 	            break;
             }
 	 
             //
-            // Rule 122:  SSOperator ::= ;
+            // Rule 125:  SSOperator ::= ;
             //
-            case 122: { 
+            case 125: { 
                     makeToken(TK_SEMICOLON);
 	            break;
             }
 	 
             //
-            // Rule 123:  SSOperator ::= ?
+            // Rule 126:  SSOperator ::= ?
             //
-            case 123: { 
+            case 126: { 
                     makeToken(TK_QUESTION_MARK);
 	            break;
             }
 	 
             //
-            // Rule 124:  SSOperator ::= <
+            // Rule 127:  SSOperator ::= <
             //
-            case 124: { 
+            case 127: { 
                     makeToken(TK_LESS_THAN_OPERATOR);
 	            break;
             }
 	 
             //
-            // Rule 125:  SSOperator ::= >
+            // Rule 128:  SSOperator ::= >
             //
-            case 125: { 
+            case 128: { 
                     makeToken(TK_GREATER_THAN_OPERATOR);
 	            break;
             }
 	 
             //
-            // Rule 127:  SSOperator ::= < =
+            // Rule 130:  SSOperator ::= < =
             //
-            case 127: { 
+            case 130: { 
                      makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
                         break;
             }
 	 
             //
-            // Rule 128:  SSOperator ::= > =
+            // Rule 131:  SSOperator ::= > =
             //
-            case 128: { 
+            case 131: { 
                      makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
                         break;
             }
 	 
             //
-            // Rule 129:  SSOperator ::= < >
+            // Rule 132:  SSOperator ::= < >
             //
-            case 129: { 
+            case 132: { 
                      makeToken(TK_NOT_EQUALS_OPERATOR);
                         break;
             }
 	 
             //
-            // Rule 130:  SSOperator ::= | |
+            // Rule 133:  SSOperator ::= | |
             //
-            case 130: { 
+            case 133: { 
 			makeToken(TK_CONCAT_OPERATOR);
 		          break;
             }
 	 
             //
-            // Rule 131:  Period ::= .
+            // Rule 134:  Period ::= .
             //
-            case 131: { 
+            case 134: { 
 		makeToken(TK_PERIOD);
 	            break;
             }
 	 
             //
-            // Rule 288:  BracketOrTrigraph ::= [
+            // Rule 291:  BracketOrTrigraph ::= [
             //
-            case 288: { 
+            case 291: { 
 			makeToken(TK_LEFT_BRACKET);
 		          break;
             }
 	 
             //
-            // Rule 289:  BracketOrTrigraph ::= ]
+            // Rule 292:  BracketOrTrigraph ::= ]
             //
-            case 289: { 
+            case 292: { 
 			makeToken(TK_RIGHT_BRACKET);
 		          break;
             }
 	 
             //
-            // Rule 290:  BracketOrTrigraph ::= ? ? (
+            // Rule 293:  BracketOrTrigraph ::= ? ? (
             //
-            case 290: { 
+            case 293: { 
 			makeToken(TK_LEFT_BRACKET_TRIGRAPH);
 		          break;
             }
 	 
             //
-            // Rule 291:  BracketOrTrigraph ::= ? ? )
+            // Rule 294:  BracketOrTrigraph ::= ? ? )
             //
-            case 291: { 
+            case 294: { 
 			makeToken(TK_LEFT_BRACKET_TRIGRAPH);
 		          break;
             }
 	 
             //
-            // Rule 292:  StatementTerminator ::= StmtTerm
+            // Rule 295:  StatementTerminator ::= StmtTerm
             //
-            case 292: { 
+            case 295: { 
 		makeToken(TK_STATEMENT_TERMINATOR);
 		          break;
             }
 	 
             //
-            // Rule 293:  HostVariable ::= HostVarPrfx Ident
+            // Rule 296:  HostVariable ::= HostVarPrfx Ident
             //
-            case 293: { 
+            case 296: { 
 		makeToken(TK_HOSTVARIABLE);
 		          break;
             }
 	 
             //
-            // Rule 294:  ParameterMarker ::= ParamMark
+            // Rule 297:  ParameterMarker ::= ParamMark
             //
-            case 294: { 
+            case 297: { 
 		makeToken(TK_PARAMETER_MARKER);
 		          break;
             }

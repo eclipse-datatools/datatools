@@ -102,10 +102,10 @@
   CHECKED
 --   CLASS_ORIGIN
   CLIENT                                                         -- @d124889gus
-  CLIENT_ACCTNG                                                  -- @db293418mko
-  CLIENT_APPLNAME
-  CLIENT_USERID
-  CLIENT_WRKSTNNAME                                              -- @de293418mko
+--  CLIENT_ACCTNG                                                  -- @db293418mko
+--  CLIENT_APPLNAME
+--  CLIENT_USERID
+--  CLIENT_WRKSTNNAME                                              -- @de293418mko
   CLOB
   CLOSE                                                          -- @d124889gus
   CLR                                                             -- @d299789mko
@@ -176,11 +176,11 @@
   CURRENT_DEFAULT_TRANSFORM_GROUP                                  -- @051705ck
   CURRENT_PATH
   CURRENT_ROLE                                                     -- @051705ck
-  CURRENT_SCHEMA
-  CURRENT_SERVER
+--  CURRENT_SCHEMA
+--  CURRENT_SERVER
   CURRENT_TIME
   CURRENT_TIMESTAMP
-  CURRENT_TIMEZONE                                              -- @de084015mas
+--  CURRENT_TIMEZONE                                              -- @de084015mas
   CURRENT_TRANSFORM_GROUP_FOR_TYPE                                 -- @051705ck
   CURRENT_USER                                                    --@d246765PMB
   CURRVAL                                                         --@d155731spr
@@ -427,7 +427,7 @@
   LOW                                                              --@d268815bda
 --   LOWER
   M
-  MAINTAINED                                                        -- @umst_sv
+--  MAINTAINED                                                        -- @umst_sv
   MAIN_PROG                                                       -- @d98203see
   MANAGED
   MANUALSTART

@@ -32,7 +32,6 @@ $Define
     --
     -- Definition of macros used in the lexer template
     --
---    $package_declaration /.package $package;./
     $import_classes
     /.
         import java.util.*;

@@ -5,8 +5,7 @@
 -- It must not export the EOF (end-of-file) token or have a $EOF section
 --
 -- Macros that must be provided for an instance of this template
---
---   $package 
+-- 
 --   $import_classes
 --   $parser_base_class   -- class that will be extended by the parser
 --

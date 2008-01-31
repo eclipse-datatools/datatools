@@ -110,6 +110,7 @@ $Export
 ------------------------
 
   LINE_COMMENT 												 -- ckadner 20050415
+  MULTILINE_COMMENT
 
 $End
 
@@ -196,6 +197,8 @@ Token	::=	Identifier
 	| 	MLComment
 
 	|	SLComment
+	
+	|   opt_Comment_Whitespace
 
 	|	Operator
 
@@ -209,7 +212,7 @@ Token	::=	Identifier
 
 	|	ParameterMarker
 
-
+    |   HexStringLiteral
 Operator	::=	SSOperator
 
 --Identifier	::=	SimpleIdentifier
@@ -257,6 +260,11 @@ Ident		::=	Letter
 
 		|	Ident Digit
 
+HexStringLiteral ::=  X "'" SLBody "'"
+        /.$BeginAction
+            makeToken(TK_HEX_STRING_LITERAL); 
+          $EndAction
+        ./
 
 StringLiteral	::=	"'" SLBody "'"
 		/.$BeginAction
@@ -347,11 +355,20 @@ Exponent	::=	'E' Integer
 
 		|	'E' '+' Integer
 
-MLComment	::=	'/' '*' Inside Stars '/'
-		/.$BeginAction
-		    skipToken();
-		  $EndAction
-		./
+MLComment   ::= '/' '*' Inside Stars '/'  opt_Comment_Whitespace
+--      /.$BeginAction
+--          skipToken();
+--        $EndAction
+--      ./
+        /.$BeginAction
+            makeComment(TK_MULTILINE_COMMENT);
+          $EndAction
+        ./
+
+-- Whitespace that precedes or follows a multi-line comment
+opt_Comment_Whitespace ::= WS
+        
+        |   $empty
 
 Inside		::=	Inside Stars NotSlashOrStar
 
@@ -545,6 +562,53 @@ SSOperator	::=	'+'
 			$EndAction
 		./
 
+        
+--TODO The following are DB2 specific operators which need to be seprated into a DB2 Lexer
+        |   '!' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '!' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '!' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '~' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '='
+        /.$BeginAction
+                         makeToken(TK_NOT_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '>'
+        /.$BeginAction
+                         makeToken(TK_LESS_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
+        |   '^' '<'
+        /.$BeginAction
+                         makeToken(TK_GREATER_THAN_OR_EQUALS_OPERATOR);
+                  $EndAction
+        ./
 
 Period ::= '.'
 		/.$BeginAction
@@ -620,6 +684,10 @@ NotSQ		::=	Letter
 		|	Eol
 		|	EscapeSequence
         |   CtlCharNotWS            -- TODO: figure out if that is correct, for SQL2003 and/or DB2, put in for Hsin-Liang: SELECT '' FROM tab1;
+        |   "'" "'"                 --  double single quotes to represent a single quote
+        |   HT 
+        |   FF
+        
 --		|	'\' U HexDigits4
 --		|	'\' OctalDigits3
 

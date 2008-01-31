@@ -796,7 +796,8 @@ public interface SQLParsersym {
       TK_HOSTVARIABLE = 785,
       TK_PARAMETER_MARKER = 786,
       TK_LINE_COMMENT = 787,
-      TK_EOF = 788;
+      TK_MULTILINE_COMMENT = 788,
+      TK_EOF = 789;
 
       public final static String orderedTerminalSymbols[] = {
                  "",
@@ -1587,6 +1588,7 @@ public interface SQLParsersym {
                  "HOSTVARIABLE",
                  "PARAMETER_MARKER",
                  "LINE_COMMENT",
+                 "MULTILINE_COMMENT",
                  "EOF"
              };
 

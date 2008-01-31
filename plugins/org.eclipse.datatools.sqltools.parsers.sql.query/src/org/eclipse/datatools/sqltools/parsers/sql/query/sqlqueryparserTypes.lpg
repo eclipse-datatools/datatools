@@ -102,7 +102,7 @@ $Define
 	$RT_opt_asc_desc 					/.String./
 	$RT_opt_case_else					/.ValueExpressionCaseElse./
 	$RT_opt_column_name_list 			/.List./
-	$RT_opt_escape 						/.ValueExpressionSimple./
+	$RT_opt_escape 						/.QueryValueExpression./
 	$RT_opt_group_by_clause 			/.List./
 	$RT_opt_having_clause 				/.QuerySearchCondition./
 	$RT_opt_join_type 					/.Integer./

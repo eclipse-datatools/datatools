@@ -16,11 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
-import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLLexer;
-
 import lpg.lpgjavaruntime.BacktrackingParser;
 import lpg.lpgjavaruntime.BadParseException;
 import lpg.lpgjavaruntime.BadParseSymFileException;
@@ -36,6 +31,11 @@ import lpg.lpgjavaruntime.RuleAction;
 import lpg.lpgjavaruntime.Token;
 import lpg.lpgjavaruntime.UndefinedEofSymbolException;
 import lpg.lpgjavaruntime.UnimplementedTerminalsException;
+
+import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
+import org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.sqltools.parsers.sql.lexer.AbstractSQLLexer;
 
 //DOCME
 public abstract class AbstractSQLParser extends PrsStream implements RuleAction
@@ -207,16 +207,21 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
 	//protected Object getSym(int p_sym) { return btParser.getSym(p_sym); }
 
 
-	protected List getList(int p_sym) {
-	    Object sym = null;
-	    try {
-			sym = btParser.getSym(p_sym);
-		    return (List)sym;
-		} catch (ClassCastException e) {
-			throw new ClassCastException("Expected " + List.class //$NON-NLS-1$
-				+ " but got " + sym.getClass() + " on token " + p_sym); //$NON-NLS-1$  //$NON-NLS-2$
-		}
-	}
+	   protected List getList(int p_sym) {
+	        Object sym = null;
+	        sym = btParser.getSym(p_sym);
+	        if (sym instanceof List) {
+	            return (List) sym;
+	        }
+	        else if (sym == null) {
+	            return (List) null;
+	        }
+	        else {
+	            SQLParserLogger.getLogger().writeInfo("Error in getList.  Expected " + List.class //$NON-NLS-1$
+	                   + " but got " + sym.getClass() + " on token " + p_sym); //$NON-NLS-1$  //$NON-NLS-2$
+	            return (List) null;
+	        }
+	    }
 
 	protected String getString(int p_sym) {
 	    Object sym = btParser.getSym(p_sym);
@@ -384,7 +389,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
 			// work in comments
 		    if (hasComments())
 		    {
-		        List commentTokens = ((SQLLexer) getLexStream()).getCommentTokens();
+		        List commentTokens = ((AbstractSQLLexer) getLexStream()).getCommentTokens();
 		        if (commentTokens != null && !checkStmtOnly
                         && (sourceFormat == null || sourceFormat.isPreserveComments()))
 		        {
@@ -514,8 +519,8 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
      */
     protected boolean hasComments()
     {
-        if (!checkStmtOnly && getLexStream() instanceof SQLLexer) {
-            List commentTokens = ((SQLLexer) getLexStream()).getCommentTokens();
+        if (!checkStmtOnly && getLexStream() instanceof AbstractSQLLexer) {
+            List commentTokens = ((AbstractSQLLexer) getLexStream()).getCommentTokens();
             if (commentTokens != null && commentTokens.size() > 0) {
                 return true;
             }
@@ -682,7 +687,7 @@ public abstract class AbstractSQLParser extends PrsStream implements RuleAction
     
     public void makeToken(int startLoc, int endLoc, int kind)
     {
-        Token t = new Token(startLoc, endLoc, (kindMap == null ? kind : kindMap[kind]));
+        Token t = new Token(this, startLoc, endLoc, (kindMap == null ? kind : kindMap[kind]));
         getTokens().add(t);
     }
 

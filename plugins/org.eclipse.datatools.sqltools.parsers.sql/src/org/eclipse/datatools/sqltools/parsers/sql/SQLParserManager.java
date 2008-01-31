@@ -384,11 +384,11 @@ public abstract class SQLParserManager {
 	protected synchronized List makeAST(String input, boolean syntaxCheckOnly) 
 		throws SQLParserException, SQLParserInternalException 
 	{
-	    List resultList = null; // either of ParseResults (if p_postParseProcessors != null)
+	    List resultList = new ArrayList(); // either of ParseResults (if p_postParseProcessors != null)
 	                            // or of QueryStatements (if p_postParseProcessors == null)
 	    
 	    if (input == null || input.trim().length() == 0) {
-	        return null;
+	        return resultList;
 	    }
 	    
         
@@ -791,8 +791,13 @@ public abstract class SQLParserManager {
         resultList = makeAST(stmt, false);
         
         // as we parsed a single statement we get back a one-element SQLQueryParseResult list
-        return (SQLParseResult) resultList.get(0);
-	}
+        if (resultList.isEmpty()){
+	        return null;
+	    }
+	    else {
+	        return (SQLParseResult) resultList.get(0);
+	    }
+    }
 
 	
 	
@@ -888,7 +893,13 @@ public abstract class SQLParserManager {
 	public QueryStatement checkSyntax(String stmt) 
 			throws SQLParserException, SQLParserInternalException 
 	{
-	    return (QueryStatement) makeAST(stmt, true).get(0);
+	    List resultsList = makeAST(stmt, true);
+        if(resultsList.isEmpty()){
+            return null;
+        }
+        else{
+            return (QueryStatement)resultsList.get(0);
+        }
 	}
 	
 	

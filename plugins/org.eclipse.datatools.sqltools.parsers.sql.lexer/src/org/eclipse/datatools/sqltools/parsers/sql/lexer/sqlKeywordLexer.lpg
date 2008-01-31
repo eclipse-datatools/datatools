@@ -17,7 +17,6 @@ $Define
 --
 -- Definition of macros used in the lexer template
 --
-    $package_declaration /.package $package;./
     $import_classes /../
     $action_class /.$file_prefix./
     $eof_char /.Char_EOF./

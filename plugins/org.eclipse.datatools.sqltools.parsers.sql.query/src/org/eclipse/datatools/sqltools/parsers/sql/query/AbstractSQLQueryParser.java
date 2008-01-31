@@ -20,6 +20,10 @@ import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import lpg.lpgjavaruntime.IToken;
+import lpg.lpgjavaruntime.LexStream;
+import lpg.lpgjavaruntime.ParseTable;
+
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.util.SQLComment;
@@ -29,10 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParser;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.SQLParserLogger;
-
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.LexStream;
-import lpg.lpgjavaruntime.ParseTable;
+import org.eclipse.datatools.sqltools.parsers.sql.lexer.SQLParsersym;
 
 /**
  * @author ckadner
@@ -474,7 +475,9 @@ select col1 as c1 -- com_ln1
 	        for (Iterator iter = commentTokens.iterator(); iter.hasNext();)
             {
                 IToken cmntTok = (IToken) iter.next();
-                resultCommentList.add(createCommentObject(cmntTok));
+                int tokenKind = cmntTok.getKind();
+                SQLComment commentObj = createCommentObject(cmntTok);
+                resultCommentList.add(commentObj);
                 
                 toBeSorted |= cmntTok.getStartOffset() < lastCommentStartIndex;
                 lastCommentStartIndex = cmntTok.getStartOffset();
@@ -531,8 +534,10 @@ select col1 as c1 -- com_ln1
         
         comment.setText(sourceInfo.getSourceSnippet());
         
-        // TODO Gerry: figure out the comment Token kind TK_LINE_COMMENT, Gerry how to import that token
-        comment.setMultiLineComment(false);
+        int tokenKind = cmntTok.getKind();
+        if (tokenKind == SQLParsersym.TK_MULTILINE_COMMENT) {
+            comment.setMultiLineComment(true);
+        }
         
         return comment;
     }
