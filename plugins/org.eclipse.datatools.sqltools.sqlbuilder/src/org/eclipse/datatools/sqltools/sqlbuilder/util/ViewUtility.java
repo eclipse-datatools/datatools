@@ -118,8 +118,8 @@ public class ViewUtility
   public static Composite createNestedComposite(Composite parent, int style) {
 		Composite comp = new Composite(parent, style);
 		GridLayout compLayout = new GridLayout();
-		compLayout.marginHeight = 2;
-		compLayout.marginWidth = 2;
+		compLayout.marginHeight = 0;
+		compLayout.marginWidth = 0;
 		comp.setLayout(compLayout);
 
 		GridData data = new GridData(GridData.FILL, GridData.FILL, true, true);

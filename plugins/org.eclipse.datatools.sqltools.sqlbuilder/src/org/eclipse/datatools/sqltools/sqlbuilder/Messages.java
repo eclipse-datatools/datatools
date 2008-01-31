@@ -163,6 +163,8 @@ public final class Messages extends NLS {
 	public static String _UI_RADIO_SCRATCH_SELECT;
 	public static String _UI_LABEL_EXISTING_SELECT;
 	public static String _UI_LABEL_NEW_SELECT_INFO;
+    public static String _UI_TOOLTIP_RESTORE_PANE;
+    public static String _UI_TOOLTIP_HIDE_PANE;
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE;
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE;
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2005, 2007 IBM Corporation and others.
+ * Copyright © 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,11 +7,14 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - enhancement to maintain SQB UI control state
  *******************************************************************************/
+
 package org.eclipse.datatools.sqltools.sqlbuilder.input;
 
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 
 /**
@@ -57,5 +60,31 @@ public interface ISQLBuilderEditorInput extends ISQLEditorInput {
 	 * @param connInfo the <code>ISQLEditorConnectionInfo</code> object to set
 	 */
 	public void setConnectionInfo( ISQLEditorConnectionInfo connInfo );
-	
+		
+    /**
+     * Gets the window state information which stores the control states of
+     * the SQL Query Builder.
+     */
+    public IWindowStateInfo getWindowStateInfo();
+    
+	/**
+     * Sets the window state information.
+     * 
+     * @param IOmitSchemaInfo the <code>IOmitSchemaInfo</code> to be set.
+     */
+    public void setWindowStateInfo( IWindowStateInfo windowStateInfo );
+       
+    /**
+     * Gets the usage options of the editor input. 
+     * The options may be configured independent of the existence of specific input info.
+     */
+    public ISQLBuilderEditorInputUsageOptions getInputUsageOptions( );
+
+    /**
+     * Sets the usage options of the editor input.
+     * 
+     * @param ISQLBuilderEditorInputUsageOptions the <code>ISQLBuilderEditorInputUsageOptions</code> to be set.
+     */
+    public void setInputUsageOptions( ISQLBuilderEditorInputUsageOptions options );
+
 }

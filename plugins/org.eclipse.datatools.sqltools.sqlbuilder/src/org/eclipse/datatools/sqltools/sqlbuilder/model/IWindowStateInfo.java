@@ -1,0 +1,97 @@
+/**************************************************************************
+ * Copyright (c) 2008 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ **************************************************************************/
+
+package org.eclipse.datatools.sqltools.sqlbuilder.model;
+
+/**
+ * Defines the UI state of a SQL Query Builder window's controls.
+ */
+public interface IWindowStateInfo {
+	
+	/**
+	 * Gets the control state information of the specified control type.
+	 * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
+	 *                     one of the section controls. 
+	 * @return IControlStateInfo instance that represents the state
+     *                 of the specified control type; may be null if none is available.
+     * @see {@link SQLBuilderConstants}
+     * @see {@link IControlStateInfo}
+	 */
+	public IControlStateInfo get( int controlType );
+
+    /**
+     * Stores the control state information for the specified control type.
+     * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
+     *                     one of the section controls. 
+     * @param controlStateInfo an IControlStateInfo instance that represents the state
+     *                 of the specified control type.
+     * @see {@link SQLBuilderConstants}
+     * @see {@link IControlStateInfo}
+     */
+    public void put( int controlType, IControlStateInfo controlStateInfo );
+
+    /**
+     * Revoves the control state information for the specified control type.
+     * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
+     *                     one of the section controls. 
+     * @see {@link SQLBuilderConstants}
+     * @see {@link IControlStateInfo}
+     */
+	public void remove(int controlType);
+
+	/**
+	 * Gets array of all the <code>IControlStateInfo</code>s contained in this
+	 * <code>IWindowStateInfo</code>
+	 * @return IControlStateInfo[]
+	 */
+	public IControlStateInfo[] getcontrolStateInfos();
+	
+	/**
+     * Returns the version of this window state information.
+     * @return  version   version defined by an IWindowStateInfo implementation
+     */
+    public String getVersion();
+    
+    /**
+     * Sets the version of this window state information.
+     * @param version   version defined by an IWindowStateInfo implementation
+     */
+    public void setVersion( String version );
+    
+    /**
+     * Returns the overall height of the SQL Query Builder main control.
+     * @return  the overall height; 
+     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
+     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     */
+    public int getHeight();
+
+    /**
+     * Sets the overall height of the SQL Query Builder main control.
+     * @param height
+     */
+    public void setHeight( int height );
+
+    /**
+     * Returns the overall width of the SQL Query Builder main control.
+     * @return  the overall width;
+     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
+     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     */
+    public int getWidth();
+
+    /**
+     * Sets the overall width of the SQL Query Builder main control.
+     * @param width
+     */
+    public void setWidth( int width );
+
+}

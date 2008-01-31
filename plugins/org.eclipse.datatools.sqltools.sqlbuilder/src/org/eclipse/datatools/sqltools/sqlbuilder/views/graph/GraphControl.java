@@ -195,8 +195,8 @@ public class GraphControl extends ContentViewer {
     public void createControl(Composite comp) {
         labelComp = new Composite(comp, SWT.NONE);
         GridLayout compLayout = new GridLayout();
-        compLayout.marginHeight = 2;
-        compLayout.marginWidth = 2;
+        compLayout.marginHeight = 0;
+        compLayout.marginWidth = 0;
         labelComp.setLayout(compLayout);
 
         GridData data = new GridData();

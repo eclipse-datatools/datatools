@@ -10,9 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.dialogs;
 
-import java.util.List;
-import java.util.Vector;
-
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderContextIds;
@@ -22,7 +19,6 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -60,9 +56,7 @@ public class ChangeStatementTypeDialog extends Dialog {
 	    	new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_SELECT, "SELECT"),
 			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_INSERT, "INSERT"),
 			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_UPDATE, "UPDATE"),
-			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_DELETE, "DELETE"),
-			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_FULLSELECT, "FULLSELECT"),
-			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_WITH, "WITH") };
+			new StatementTypeInfo(StatementHelper.STATEMENT_TYPE_DELETE, "DELETE") };
     
     /**
      * Creates a dialog for selecting statement type settings with an OK and Cancel button.

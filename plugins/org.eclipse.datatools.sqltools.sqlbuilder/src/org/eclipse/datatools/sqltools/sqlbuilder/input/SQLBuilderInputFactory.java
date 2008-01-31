@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 Sybase, Inc. and others.
+ * Copyright © 2000, 2008 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,14 +7,18 @@
  * 
  * Contributors:
  *     Sybase, Inc. - initial API and implementation
+ *     Actuate Corporation - enhancement to maintain SQB UI control state
  *******************************************************************************/
+
 package org.eclipse.datatools.sqltools.sqlbuilder.input;
 
 import org.eclipse.core.resources.IStorage;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.ui.IElementFactory;
@@ -32,7 +36,7 @@ public class SQLBuilderInputFactory implements IElementFactory {
 	/**
 	 * The Factory ID.
 	 */
-    public final static String ID_SQL_BUILDER_STORAGE_EDITOR_INPUT_FACTORY =  "org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderInputFactory"; //$NON-NLS-1$
+    public final static String ID_SQL_BUILDER_STORAGE_EDITOR_INPUT_FACTORY =  "org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderInputFactory"; //$NON-NLS-1$
     /**
      * The InputType
      */
@@ -69,13 +73,22 @@ public class SQLBuilderInputFactory implements IElementFactory {
     public final static String KEY_OMIT_SCHEMA_INFO_CODE = "omitSchemaInfo"; //$NON-NLS-1$
 
     /**
+     * Key used for EditorUsageInputUsageOptions element.
+     */
+    public final static String KEY_EDITOR_INPUT_OPTIONS_CODE = "editorInputUsageOptions"; //$NON-NLS-1$
+
+    /**
      * Re-creates and returns an object from the state captured within the given 
      * memento. Returns a SQLBuilderStorageEditorInput.
      *  
      * @see org.eclipse.ui.IElementFactory#createElement(org.eclipse.ui.IMemento)
      */
     public IAdaptable createElement( IMemento memento ) {
-        IAdaptable input = null;
+		if ( memento == null ){
+			return null;
+		}
+
+		IAdaptable input = null;
         
         // Get the editor input type from the memento.
         String editorInputType = memento.getString( KEY_EDITOR_INPUT_TYPE );
@@ -85,10 +98,12 @@ public class SQLBuilderInputFactory implements IElementFactory {
             // Create a Storage object from the memento.
             String contentName = memento.getString( KEY_STORAGE_NAME );
             IMemento sqlStmtChild = memento.getChild(KEY_STORAGE_SQLCONTENT);
-            String contentSQLStatement = "";
+            String contentSQLStatement = SQLBuilderConstants.EMPTY_STRING;
             if (sqlStmtChild != null){
             	contentSQLStatement = sqlStmtChild.getTextData();
-            }
+                if (contentSQLStatement == null)
+                    contentSQLStatement = SQLBuilderConstants.EMPTY_STRING;
+			}				
             SQLEditorStorage storage = new SQLEditorStorage( contentName, contentSQLStatement );
             
             // Create a SQLBuilderStorageEditorInput from the storage we just created.
@@ -117,7 +132,16 @@ public class SQLBuilderInputFactory implements IElementFactory {
             		sqlStorageInput.setOmitSchemaInfo(omitSchemaInfo);
             	}
             }
-
+            
+            // delegates to the window state factory to restore from the memento
+		    SQLBuilderWindowStateFactory winStateFactory = new SQLBuilderWindowStateFactory();
+			SQLBuilderWindowStateInput windowStateInput = 
+			    (SQLBuilderWindowStateInput) winStateFactory.createElement( memento );
+			if (windowStateInput != null)
+			{
+			    sqlStorageInput.setWindowStateInfo( windowStateInput.getWindowStateInfo() );
+			}
+           
             input = sqlStorageInput;
         }
 
@@ -131,6 +155,9 @@ public class SQLBuilderInputFactory implements IElementFactory {
      * @param input the storage editor input object that needs to be saved
      */
     public static void saveState(IMemento memento, SQLBuilderStorageEditorInput input) {
+        if ( memento == null || input == null )
+        	return;
+
         // Save the editor input type.
         memento.putString( KEY_EDITOR_INPUT_TYPE, ID_SQL_BUILDER_STORAGE_EDITOR_INPUT_TYPE );
         
@@ -171,5 +198,23 @@ public class SQLBuilderInputFactory implements IElementFactory {
             omitSchemaInfoChild.putTextData(omitSchemaInfoCode);
         }
         
+        // Save the InputUsageOptions in the memento
+        ISQLBuilderEditorInputUsageOptions inputUsageOptions = input.getInputUsageOptions();
+        if (inputUsageOptions != null){
+        	String inputUsageOptionsCode = inputUsageOptions.encode();
+            IMemento inputUsageOptionsChild = memento.createChild(KEY_EDITOR_INPUT_OPTIONS_CODE);
+            inputUsageOptionsChild.putTextData(inputUsageOptionsCode);
+        }
+        
+        // Save the window state info, if applicable, in the memento
+        IWindowStateInfo winStateInfo = input.getWindowStateInfo();
+        if (winStateInfo != null &&
+            ( input.getInputUsageOptions() == null || input.getInputUsageOptions().useWindowState() ))
+		{
+			SQLBuilderWindowStateInput windowStateInput = 
+			    new SQLBuilderWindowStateInput( winStateInfo );
+			SQLBuilderWindowStateFactory.saveState( memento, windowStateInput );
+		}
     }
+    
 }

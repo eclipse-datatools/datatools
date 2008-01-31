@@ -48,6 +48,8 @@ public class GroupByViewer extends ContentViewer {
         groupByContentViewer.getControl().setLayoutData(ViewUtility.createFill());
 
         GridLayout layout = new GridLayout();
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
         canvas.setLayout(layout);
         return getControl();
     }

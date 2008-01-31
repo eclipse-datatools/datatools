@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Sybase Inc.
+ *     Actuate Corporation - enhancement to maintain SQB UI control state
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder;
 
@@ -31,18 +33,25 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInputUsageOptions;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInputUsageOptions;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderFileEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.ControlStateInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IControlStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConstants;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.WindowStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLParserUtil;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WindowUtility;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.WorkbenchUtility;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.CustomSashForm;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.DesignViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.SQLTreeViewer;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.GraphControl;
@@ -70,8 +79,13 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.ControlEvent;
+import org.eclipse.swt.events.ControlListener;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IEditorPart;
@@ -92,15 +106,27 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 public class SQLBuilder implements IEditingDomainProvider, Observer,
 		IContentChangeListener, IMenuListener {
 
-	protected SashForm _mainSash = null;
-	protected SashForm _graphSash = null;
-	protected SQLTreeViewer _contentOutlinePage;
+	protected Composite _parentControl = null;
 
+    protected CustomSashForm _sashMain = null;
+	protected CustomSashForm _sashSourceGraph = null;
+	protected CustomSashForm _sashGraphOutline = null;
+	
+	protected static final int DEFAULT_SASHMAIN_WEIGHT1 = 200;
+	protected static final int DEFAULT_SASHMAIN_WEIGHT2 = 100;
+	protected static final int DEFAULT_SASHSOURCEGRAPH_WEIGHT1 = 100;
+	protected static final int DEFAULT_SASHSOURCEGRAPH_WEIGHT2 = 100;
+	protected static final int DEFAULT_SASHGRAPHOUTLINE_WEIGHT1 = 200;
+	protected static final int DEFAULT_SASHGRAPHOUTLINE_WEIGHT2 = 100;
+	
+	protected SQLTreeViewer _contentOutlinePage;
 	protected DesignViewer _designViewer;
 	protected SQLSourceViewer _sourceViewer;
 	protected GraphControl _graphControl;
 
-	ISQLBuilderEditorInput _sqlBuilderEditorInput = null;
+	protected ISQLBuilderEditorInput _sqlBuilderEditorInput = null;
+	protected IWindowStateInfo _windowStateInfo = null;
+	protected ISQLBuilderEditorInputUsageOptions _editorInputUsageOptions = null;
 	protected IFile _iFile;
 
 	protected ListenerList _contentChangeListeners = null;
@@ -215,7 +241,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 */
 	public void createClient(Composite parent) {
 		_inCreateClient = true;
-		_mainSash = new SashForm(parent, SWT.VERTICAL);
+        _parentControl = parent;
+		_sashMain = new CustomSashForm(parent, SWT.VERTICAL, CustomSashForm.NO_HIDE_UP);
 
 		if (_inputLoaded){
 			doCreateClient();
@@ -227,8 +254,12 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 * The part of CreateClient that depends on the input having been loaded
 	 */
 	private void doCreateClient(){
+		
+		_sashSourceGraph = new CustomSashForm(_sashMain, SWT.VERTICAL);
+		_sashSourceGraph.setLayoutData(ViewUtility.createFill());
+
 		// composite for source & label to go on sash
-		Composite outsideSrcComp = ViewUtility.createNestedComposite(_mainSash,
+		Composite outsideSrcComp = ViewUtility.createNestedComposite(_sashSourceGraph,
 				SWT.NONE);
 
 		// composite for source viewer to add border
@@ -236,31 +267,57 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				outsideSrcComp, SWT.BORDER);
 		createSourceViewer(srcComposite);
 
-		
 		// If it's not in an editor, put the SQLTreeView in a SashForm with the GraphViewer
-		_graphSash = null;
+		_sashGraphOutline = null;
 		if (_editor == null){
-			_graphSash = new SashForm(_mainSash, SWT.HORIZONTAL);
-			_graphSash.setLayoutData(ViewUtility.createFill());
+			_sashGraphOutline = new CustomSashForm(_sashSourceGraph, SWT.HORIZONTAL, CustomSashForm.NO_HIDE_UP);
+			_sashGraphOutline.setLayoutData(ViewUtility.createFill());
 			
-			createGraphViewer(_graphSash);
+			Composite graphComposite = ViewUtility.createNestedComposite(
+					_sashGraphOutline, SWT.BORDER);
+			createGraphViewer(graphComposite);
 			
 		}
 		else {
-			createGraphViewer(_mainSash);
+			Composite graphComposite = ViewUtility.createNestedComposite(
+					_sashSourceGraph, SWT.NONE);
+			createGraphViewer(graphComposite);
 		}
 
-		createDesignViewer(_mainSash);
+		Composite designComposite = ViewUtility.createNestedComposite(
+				_sashMain, SWT.BORDER);
+		createDesignViewer(designComposite);
 
-		_mainSash.setLayoutData(ViewUtility.createFill());
+		_sashMain.setLayoutData(ViewUtility.createFill());
 
 		// set _clientCreated before getting the ContentOutlinePage
 		_clientCreated = true;
-		getContentOutlinePage(_graphSash); // make sure everything is initialized
+		
+		if (_sashGraphOutline != null){
+			Composite contentOutlineComposite = ViewUtility.createNestedComposite(
+					_sashGraphOutline, SWT.BORDER);
+			getContentOutlinePage(contentOutlineComposite); // make sure everything is initialized
+		}
+		else {
+			getContentOutlinePage(_sashGraphOutline); // make sure everything is initialized
+		}
 
-		// If it's not in an editor, set the weights of the graphical view's SashForm
-		if (_editor == null){
-			_graphSash.setWeights(new int[] {2, 1});
+		if ( useWindowState() ) {
+		    restoreWindowState();
+		}
+		else {
+			// Set default weights of sashes
+			
+			// set weights of _sashMain
+			_sashMain.setWeights(new int[] {DEFAULT_SASHMAIN_WEIGHT1, DEFAULT_SASHMAIN_WEIGHT2});
+
+			// set weights of _sashSourceGraph
+			_sashSourceGraph.setWeights(new int[] {DEFAULT_SASHSOURCEGRAPH_WEIGHT1, DEFAULT_SASHSOURCEGRAPH_WEIGHT2});
+
+			//  set weights of _sashGraphOutline
+			if (_sashGraphOutline != null){
+				_sashGraphOutline.setWeights(new int[] {DEFAULT_SASHGRAPHOUTLINE_WEIGHT1, DEFAULT_SASHGRAPHOUTLINE_WEIGHT2});
+			}
 		}
 		
 		((IChangeNotifier) getDomainModel().getAdapterFactory())
@@ -289,9 +346,14 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		if (!_inputLoaded) {
 			_sourceViewer.revertToDefaultSource();
 		}
-		
 	}
 	
+	private boolean useWindowState()
+	{
+		return (_editorInputUsageOptions != null && _windowStateInfo != null
+				&& _editorInputUsageOptions.useWindowState() == true);
+	}
+
 	
 	/**
 	 * Tells the SQLBuilder to load the input SQL only after a database
@@ -326,8 +388,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			ISQLEditorConnectionInfo connInfo = _sqlBuilderEditorInput.getConnectionInfo();
 			_sqlDomainModel.setConnectionInfo(connInfo);
 
-			
-			
+
 			// After setting omitSchemaInfo and connectionInfo, call
 			// setCurrentSchema
 			_sqlDomainModel.setCurrentSchema();
@@ -452,6 +513,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 					}
 				}
 			}
+			_windowStateInfo = editorInput.getWindowStateInfo();
+			_editorInputUsageOptions = editorInput.getInputUsageOptions();
 		}
 
 		// Otherwise we can't tell what we have.
@@ -474,16 +537,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 	
 	/**
-	 * Saves the current OmitSchemaInfo for _iFlie
-	 */
-	public void saveOmitSchemaInfo(){
-		if (_iFile != null){
-			SQLFileUtil.setEncodedOmitSchemaInfo(_iFile, this.getOmitSchemaInfo().encode());
-		}
-	}
-	
-	/**
-	 * Saves the current OmitSchemaInfo for _iFlie
+	 * Saves the current OmitSchemaInfo for IFile parameter
 	 */
 	public void saveOmitSchemaInfo(IFile file){
 		if (file != null){
@@ -530,6 +584,14 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	 */
 	protected void createDesignViewer(Composite client) {
 		_designViewer = new DesignViewer(_sqlDomainModel, client);
+
+		GridData data = new GridData();
+		data.verticalAlignment = GridData.FILL;
+		data.horizontalAlignment = GridData.FILL;
+		data.grabExcessHorizontalSpace = true;
+		data.grabExcessVerticalSpace = true;
+		_designViewer.setLayoutData(data);
+
 	}
 
 	/**
@@ -602,8 +664,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 						}
 					});
 
-			// Make sure the views are initalized even if the content outline is
-			// not there
+			// Calling handleContentOutlineSelection makes sure the views are initialized
+			// even if the content outline is not there
 			handleContentOutlineSelection(
 					new StructuredSelection(sqlStatement), false);
 		}
@@ -636,10 +698,10 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 					|| _currentSelection instanceof QueryCombined
 					|| _currentSelection instanceof QueryValues) {
 				setGraphControlState(false);
-				_mainSash.layout(true);
+				_sashSourceGraph.layout(true);
 			} else if (_currentSelection instanceof QuerySelect) {
 				setGraphControlState(true);
-				_mainSash.layout(true);
+				_sashSourceGraph.layout(true);
 			} else if (_currentSelection instanceof QuerySelectStatement
 					|| _currentSelection instanceof QueryExpressionRoot) {
 				QueryExpressionBody queryBody = null;
@@ -653,16 +715,16 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 				}
 				if (queryBody instanceof QuerySelect) {
 					setGraphControlState(true);
-					_mainSash.layout(true);
+					_sashSourceGraph.layout(true);
 				} else if (queryBody instanceof QueryCombined) {
 					setGraphControlState(false);
-					_mainSash.layout(true);
+					_sashSourceGraph.layout(true);
 				} else if (queryBody instanceof QueryValues) {
 					setGraphControlState(false);
-					_mainSash.layout(true);
+					_sashSourceGraph.layout(true);
 				} else {
 					setGraphControlState(true);
-					_mainSash.layout(true);
+					_sashSourceGraph.layout(true);
 				}
 			}
 		}
@@ -670,7 +732,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 
 	/*
 	 * Helper function for setting the visible or enabled state of the GraphControl. If the SQLBuilder
-	 * is in an editor, set its visibility; if it's not in an editior, set its enabled state.
+	 * is in an editor, set its visibility; if it's not in an editor, set its enabled state.
 	 */
 	private void setGraphControlState(boolean state) {
 		if (_editor != null){
@@ -704,11 +766,11 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			// Make sure graphControl is visible and enabled first
 			if (!_graphControl.getControl().isVisible()){
 				_graphControl.getControl().setVisible(true);
-				_mainSash.layout(true);
+				_sashGraphOutline.layout(true);
 			}
 			if (!_graphControl.getControl().isEnabled()){
 				_graphControl.getControl().setEnabled(true);
-				_mainSash.layout(true);
+				_sashGraphOutline.layout(true);
 			}
 			
 			
@@ -833,6 +895,17 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	}
 
 	/**
+	 * Returns the current editorInputusageOptions of the <code>SQLBuilder</code>. 
+	 * @return
+	 */
+	public ISQLBuilderEditorInputUsageOptions getEditorInputUsageOptions(){
+		if (_editorInputUsageOptions == null){
+			_editorInputUsageOptions = new SQLBuilderEditorInputUsageOptions(true);
+		}
+		return _editorInputUsageOptions;
+	}
+	
+	/**
 	 * Returns the <code>IFile</code> belonging to this <code>SQLBuilder</code>, which
 	 * may be null.
 	 */
@@ -904,6 +977,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 							sQLBuilderFileEditorInput.getFile(),
 							sQLBuilderFileEditorInput.getOmitSchemaInfo()
 									.encode());
+					// TODO - is this sufficient for handling window state?
+					sQLBuilderFileEditorInput.setWindowStateInfo( getWindowStateInfo() );
 				}
 
 				setDirty(false);
@@ -944,7 +1019,157 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
   	public void setDirty(boolean dirty){
   		_sqlDomainModel.setDirty(dirty);
   	}
+
+  	private void restoreWindowState()
+  	{
+        final int UNKNOWN_VALUE = IControlStateInfo.CONTROL_STATE_UNKNOWN_VALUE;
+        
+        int sourceViewerHeight = UNKNOWN_VALUE;
+        int graphControlWidth = UNKNOWN_VALUE;
+        int graphControlHeight = UNKNOWN_VALUE;
+        int outlineViewerWidth = UNKNOWN_VALUE;       
+        int designViewerHeight = UNKNOWN_VALUE;
+
+        IWindowStateInfo windowStateInfo = _sqlBuilderEditorInput.getWindowStateInfo();
+        if ( windowStateInfo == null ){
+            return;     // no state info to restore from
+        }
+        
+        // Get height for SourceViewer
+        IControlStateInfo sourceViewerState = windowStateInfo.get( 
+        		IControlStateInfo.SOURCE_CONTROL );
+        if ( sourceViewerState != null )
+            sourceViewerHeight = sourceViewerState.getHeight();
+        
+        // Get width and height for GraphicalViewer
+        IControlStateInfo graphState = windowStateInfo.get( 
+        		IControlStateInfo.GRAPHICAL_CONTROL );
+        if ( graphState != null )
+        {
+           	graphControlWidth = graphState.getWidth();
+            graphControlHeight = graphState.getHeight();
+        }
+        
+        // Get width for OutlineViewer
+        IControlStateInfo outlineViewerState = windowStateInfo.get( 
+        		IControlStateInfo.OUTLINE_CONTROL );
+        if ( outlineViewerState != null )
+        {
+           	outlineViewerWidth = outlineViewerState.getWidth();
+        }
+        
+        // Get height for DesingViewer
+        IControlStateInfo designViewerState = windowStateInfo.get( 
+    		   IControlStateInfo.DESIGN_CONTROL );
+        if ( designViewerState != null )
+        {
+            designViewerHeight = designViewerState.getHeight();
+        }
+        
+        // If the height states exist in memento, restore the sash weights
+        // Set weights for _sashMain
+        if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE
+        		&&  designViewerHeight != UNKNOWN_VALUE){
+        	_sashMain.setWeights(new int[]{sourceViewerHeight + graphControlHeight, designViewerHeight});
+        }
+        else {
+        	_sashMain.setWeights(new int[]{DEFAULT_SASHMAIN_WEIGHT1, DEFAULT_SASHMAIN_WEIGHT2});
+        }
+        	
+        // Set weights for _sashSourceGraph
+        if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE){
+        	_sashSourceGraph.setWeights(new int[]{sourceViewerHeight, graphControlHeight});
+        }
+        else {
+        	_sashSourceGraph.setWeights(new int[]{DEFAULT_SASHSOURCEGRAPH_WEIGHT1, DEFAULT_SASHSOURCEGRAPH_WEIGHT2});
+        }
+        
+        
+        // Set weights for _sashGraphOutline
+        if (_sashGraphOutline != null){
+        	if (graphControlWidth != UNKNOWN_VALUE && outlineViewerWidth != UNKNOWN_VALUE){
+        		_sashGraphOutline.setWeights(new int[]{graphControlWidth, outlineViewerWidth});
+        	}
+        	else {
+        		_sashGraphOutline.setWeights(new int[]{DEFAULT_SASHGRAPHOUTLINE_WEIGHT1, DEFAULT_SASHGRAPHOUTLINE_WEIGHT2});
+        	}
+        }
+  	}
   	
+	/**
+	 * Returns the current window state of the <code>SQLBuilder</code>.
+	 * @return
+	 */
+	public IWindowStateInfo getWindowStateInfo()
+	{
+		// Get the current window state for the SQLBuilder and return it
+		if (_windowStateInfo == null){
+			_windowStateInfo = new WindowStateInfo();
+		}
+
+		saveWindowStateInfo();
+
+		return _windowStateInfo;
+	}
+
+	/*
+	 * Saves the current WindowStateInfo
+	 */
+	private void saveWindowStateInfo() {
+		_windowStateInfo.setHeight( _parentControl.getSize().y );
+		_windowStateInfo.setWidth( _parentControl.getSize().x );
+		
+		
+		// Source control
+		IControlStateInfo sourceState = getControlState(_windowStateInfo, IControlStateInfo.SOURCE_CONTROL);
+		setControlStateSize(sourceState, getSourceViewer().getControl().getSize());
+		sourceState.setIsHideable(!_sashSourceGraph.isNoHideUp());
+		sourceState.setIsVisible(_sashSourceGraph.getWeights()[0] != 0);
+		
+		// Graphical control
+		IControlStateInfo graphicalState = getControlState(_windowStateInfo, IControlStateInfo.GRAPHICAL_CONTROL);
+		setControlStateSize(graphicalState, getGraphViewer().getControl().getSize());
+		graphicalState.setIsHideable(!_sashSourceGraph.isNoHideDown());
+		graphicalState.setIsVisible(_sashSourceGraph.getWeights()[1] != 0);
+		
+		// Outline control - if SQB is in an editor, there isn't one
+		if (_editor != null){
+			_windowStateInfo.remove(IControlStateInfo.OUTLINE_CONTROL);
+		}
+		else {
+			IControlStateInfo outlineState = getControlState(_windowStateInfo, IControlStateInfo.OUTLINE_CONTROL);
+			setControlStateSize(outlineState, getSQLTreeViewer().getControl().getSize());
+			outlineState.setIsHideable(!_sashGraphOutline.isNoHideRight());
+			outlineState.setIsVisible(_sashGraphOutline.getWeights()[1] != 0);
+		}
+		
+		// Design control
+		IControlStateInfo designState = getControlState(_windowStateInfo, IControlStateInfo.DESIGN_CONTROL);
+		setControlStateSize(designState, getDesignViewer().getSize());
+		designState.setIsHideable(!_sashMain.isNoHideDown());
+		designState.setIsVisible(_sashMain.getWeights()[1] != 0);
+	}
+
+	/*
+	 * Helper method for getWindowStateInfo()
+	 */
+	private IControlStateInfo getControlState(IWindowStateInfo windowStateInfo, int controlType){
+		IControlStateInfo state = windowStateInfo.get(controlType);
+		if (state == null){
+			state = new ControlStateInfo();
+			_windowStateInfo.put(controlType, state);
+		}
+		return state;
+	}
+	
+	/*
+	 * Helper method for getWindowStateInfo()
+	 */
+	private void setControlStateSize(IControlStateInfo stateInfo, Point size){
+		stateInfo.setWidth(size.x);
+		stateInfo.setHeight(size.y);
+	}
+	
 	/*
 	 * 
 	 */
@@ -1127,4 +1352,5 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			}
 		}
 	}
+	
 }

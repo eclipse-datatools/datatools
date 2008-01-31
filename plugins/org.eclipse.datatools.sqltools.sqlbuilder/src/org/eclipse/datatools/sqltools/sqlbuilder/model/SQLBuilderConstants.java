@@ -68,10 +68,11 @@ public interface SQLBuilderConstants {
     public static final String MAX_ROWS_IN_QUERY_OUTPUT_PREFERENCE = "Maximum rows returned from SQL statement execution"; //$NON-NLS-1$
     public static final String SET_QUERY_OUTPUT_LIMIT_PREFERENCE = "Limit rows returned from SQL statement execution"; //$NON-NLS-1$
 
+   
     //file extension that the editor works with  
     public static final String SQL_FILE_EXTENSION = ".sql"; //$NON-NLS-1$
  
     public static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    
+
 }
 

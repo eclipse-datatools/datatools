@@ -236,6 +236,10 @@ public class SQLBuilderDialog extends Dialog
 					storageEditorInput.setConnectionInfo(_sqlBuilder.getConnectionInfo());
 					// Set the SQLBuilderStorageEditorInput's OmitSchemaInfo
 					storageEditorInput.setOmitSchemaInfo(_sqlBuilder.getOmitSchemaInfo());
+					// Set the SQLBuilderStorageEditorInput's UsageOptions
+					storageEditorInput.setInputUsageOptions(_sqlBuilder.getEditorInputUsageOptions());
+					// Set the SQLBuilderStorageEditorInput's UsageOption
+					storageEditorInput.setWindowStateInfo(_sqlBuilder.getWindowStateInfo());
 
 					// Save the state of the SQLBuilderStorageEditorInput to the XMLMemento
 					SQLBuilderInputFactory.saveState(memento,
@@ -261,13 +265,17 @@ public class SQLBuilderDialog extends Dialog
 					_sqlBuilder.setDirty(false);
 				}
 				else if (_editorInput instanceof SQLBuilderEditorInput) {
+					String sSQL = _sqlBuilder.getSQL();
 					String sEncodedConnectionInfo = _sqlBuilder.getConnectionInfo().encode();
 					String sEncodedOmitSchemaInfo = _sqlBuilder.getOmitSchemaInfo().encode();
-					String sSQL = _sqlBuilder.getSQL();
+					String sEditorInputOptions = _sqlBuilder.getEditorInputUsageOptions().encode();
+
 					
-					String sMsg = "Encoded ConnectionInfo: <"+ sEncodedConnectionInfo + ">\n" +
-								  "Encoded OmitSchemaInfo: <"+ sEncodedOmitSchemaInfo + ">\n" +
-								  "SQL:\n" + sSQL.trim() + "";
+					String sMsg = 
+						"SQL:\n" + sSQL.trim() + ">\n" +
+						"Encoded ConnectionInfo: <"+ sEncodedConnectionInfo + ">\n" +
+						"Encoded OmitSchemaInfo: <"+ sEncodedOmitSchemaInfo + ">\n" +
+						"Encoded EditorInputOptions: <"+ sEditorInputOptions + ">\n";
 					
 					MessageBox mb = new MessageBox(Display.getCurrent()
 							.getActiveShell(), SWT.ICON_INFORMATION);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2005, 2007 IBM Corporation and others.
+ * Copyright © 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,7 +7,9 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - enhancement to maintain SQB UI control state
  *******************************************************************************/
+
 package org.eclipse.datatools.sqltools.sqlbuilder.input;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -15,6 +17,7 @@ import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ISQLStatementInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLBuilderConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
@@ -47,6 +50,9 @@ public class SQLBuilderEditorInput implements ISQLBuilderEditorInput {
 	
     /** Contains OmitSchemaInfo associated with this object. */
     private IOmitSchemaInfo _omitSchemaInfo;
+
+	private IWindowStateInfo _windowStateInfo;
+	private ISQLBuilderEditorInputUsageOptions _inputUsageOptions;
 
     /*
      * Statement type is used for creating new statements. The value must be
@@ -354,4 +360,20 @@ public class SQLBuilderEditorInput implements ISQLBuilderEditorInput {
 		return null;
 	}
 
+    public IWindowStateInfo getWindowStateInfo() {
+    	return _windowStateInfo;
+    }
+    
+    public void setWindowStateInfo( IWindowStateInfo windowStateInfo ) {
+    	_windowStateInfo = windowStateInfo;
+    }
+    
+    public ISQLBuilderEditorInputUsageOptions getInputUsageOptions() {
+        return _inputUsageOptions;
+    }
+    
+    public void setInputUsageOptions( ISQLBuilderEditorInputUsageOptions options ) {
+		_inputUsageOptions = options;
+	}
+	
 }
