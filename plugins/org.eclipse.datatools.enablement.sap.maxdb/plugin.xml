@@ -128,7 +128,7 @@
                   id="org.eclipse.datatools.connectivity.db.version"
                   name="Version"
                   required="false"
-                  value="7.6"
+                  value="7.7"
                   visible="false"/>
                   
          </properties>
