@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantifiedRowSelectItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: PredicateQuantifiedRowSelectItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class PredicateQuantifiedRowSelectItemProvider
      */
   protected void addQuantifiedTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateQuantifiedRowSelect_quantifiedType_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateQuantifiedRowSelect_quantifiedType_feature", "_UI_PredicateQuantifiedRowSelect_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedRowSelect_QuantifiedType(),
+                 SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_ROW_SELECT__QUANTIFIED_TYPE,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,8 +97,8 @@ public class PredicateQuantifiedRowSelectItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedRowSelect_QueryExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedRowSelect_ValueExprList());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_ROW_SELECT__QUERY_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_ROW_SELECT__VALUE_EXPR_LIST);
         }
         return childrenFeatures;
     }

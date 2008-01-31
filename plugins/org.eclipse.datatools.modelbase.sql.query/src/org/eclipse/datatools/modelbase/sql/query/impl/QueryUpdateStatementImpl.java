@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryUpdateStatementImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: QueryUpdateStatementImpl.java,v 1.4 2007/02/08 17:00:26 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -43,453 +43,453 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class QueryUpdateStatementImpl extends QueryChangeStatementImpl implements QueryUpdateStatement {
 	/**
-	 * The cached value of the '{@link #getAssignmentClause() <em>Assignment Clause</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAssignmentClause() <em>Assignment Clause</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getAssignmentClause()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList assignmentClause = null;
+     * @see #getAssignmentClause()
+     * @generated
+     * @ordered
+     */
+    protected EList assignmentClause;
 
 	/**
-	 * The cached value of the '{@link #getWhereCurrentOfClause() <em>Where Current Of Clause</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getWhereCurrentOfClause() <em>Where Current Of Clause</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getWhereCurrentOfClause()
-	 * @generated
-	 * @ordered
-	 */
-    protected CursorReference whereCurrentOfClause = null;
+     * @see #getWhereCurrentOfClause()
+     * @generated
+     * @ordered
+     */
+    protected CursorReference whereCurrentOfClause;
 
 	/**
-	 * The cached value of the '{@link #getWhereClause() <em>Where Clause</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getWhereClause() <em>Where Clause</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getWhereClause()
-	 * @generated
-	 * @ordered
-	 */
-    protected QuerySearchCondition whereClause = null;
+     * @see #getWhereClause()
+     * @generated
+     * @ordered
+     */
+    protected QuerySearchCondition whereClause;
 
 	/**
-	 * This is true if the Where Clause containment reference has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Where Clause containment reference has been set.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-    protected boolean whereClauseESet = false;
+     * @generated
+     * @ordered
+     */
+    protected boolean whereClauseESet;
 
 	/**
-	 * The cached value of the '{@link #getTargetTable() <em>Target Table</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTargetTable() <em>Target Table</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getTargetTable()
-	 * @generated
-	 * @ordered
-	 */
-    protected TableInDatabase targetTable = null;
+     * @see #getTargetTable()
+     * @generated
+     * @ordered
+     */
+    protected TableInDatabase targetTable;
 
 	/**
-	 * This is true if the Target Table containment reference has been set.
-	 * <!-- begin-user-doc -->
+     * This is true if the Target Table containment reference has been set.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-    protected boolean targetTableESet = false;
+     * @generated
+     * @ordered
+     */
+    protected boolean targetTableESet;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected QueryUpdateStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.QUERY_UPDATE_STATEMENT;
-	}
+        return SQLQueryModelPackage.Literals.QUERY_UPDATE_STATEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getAssignmentClause() {
-		if (assignmentClause == null) {
-			assignmentClause = new EObjectContainmentWithInverseEList(UpdateAssignmentExpression.class, this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT);
-		}
-		return assignmentClause;
-	}
+        if (assignmentClause == null) {
+            assignmentClause = new EObjectContainmentWithInverseEList(UpdateAssignmentExpression.class, this, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_STATEMENT);
+        }
+        return assignmentClause;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public CursorReference getWhereCurrentOfClause() {
-		return whereCurrentOfClause;
-	}
+        return whereCurrentOfClause;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetWhereCurrentOfClause(CursorReference newWhereCurrentOfClause, NotificationChain msgs) {
-		CursorReference oldWhereCurrentOfClause = whereCurrentOfClause;
-		whereCurrentOfClause = newWhereCurrentOfClause;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, oldWhereCurrentOfClause, newWhereCurrentOfClause);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        CursorReference oldWhereCurrentOfClause = whereCurrentOfClause;
+        whereCurrentOfClause = newWhereCurrentOfClause;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, oldWhereCurrentOfClause, newWhereCurrentOfClause);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setWhereCurrentOfClause(CursorReference newWhereCurrentOfClause) {
-		if (newWhereCurrentOfClause != whereCurrentOfClause) {
-			NotificationChain msgs = null;
-			if (whereCurrentOfClause != null)
-				msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, CursorReference.class, msgs);
-			if (newWhereCurrentOfClause != null)
-				msgs = ((InternalEObject)newWhereCurrentOfClause).eInverseAdd(this, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, CursorReference.class, msgs);
-			msgs = basicSetWhereCurrentOfClause(newWhereCurrentOfClause, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, newWhereCurrentOfClause, newWhereCurrentOfClause));
-	}
+        if (newWhereCurrentOfClause != whereCurrentOfClause) {
+            NotificationChain msgs = null;
+            if (whereCurrentOfClause != null)
+                msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, CursorReference.class, msgs);
+            if (newWhereCurrentOfClause != null)
+                msgs = ((InternalEObject)newWhereCurrentOfClause).eInverseAdd(this, SQLQueryModelPackage.CURSOR_REFERENCE__UPDATE_STATEMENT, CursorReference.class, msgs);
+            msgs = basicSetWhereCurrentOfClause(newWhereCurrentOfClause, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, newWhereCurrentOfClause, newWhereCurrentOfClause));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QuerySearchCondition getWhereClause() {
-		return whereClause;
-	}
+        return whereClause;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetWhereClause(QuerySearchCondition newWhereClause, NotificationChain msgs) {
-		QuerySearchCondition oldWhereClause = whereClause;
-		whereClause = newWhereClause;
-		boolean oldWhereClauseESet = whereClauseESet;
-		whereClauseESet = true;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, oldWhereClause, newWhereClause, !oldWhereClauseESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QuerySearchCondition oldWhereClause = whereClause;
+        whereClause = newWhereClause;
+        boolean oldWhereClauseESet = whereClauseESet;
+        whereClauseESet = true;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, oldWhereClause, newWhereClause, !oldWhereClauseESet);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setWhereClause(QuerySearchCondition newWhereClause) {
-		if (newWhereClause != whereClause) {
-			NotificationChain msgs = null;
-			if (whereClause != null)
-				msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
-			if (newWhereClause != null)
-				msgs = ((InternalEObject)newWhereClause).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
-			msgs = basicSetWhereClause(newWhereClause, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldWhereClauseESet = whereClauseESet;
-			whereClauseESet = true;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, newWhereClause, newWhereClause, !oldWhereClauseESet));
-    	}
-	}
+        if (newWhereClause != whereClause) {
+            NotificationChain msgs = null;
+            if (whereClause != null)
+                msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
+            if (newWhereClause != null)
+                msgs = ((InternalEObject)newWhereClause).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
+            msgs = basicSetWhereClause(newWhereClause, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else {
+            boolean oldWhereClauseESet = whereClauseESet;
+            whereClauseESet = true;
+            if (eNotificationRequired())
+                eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, newWhereClause, newWhereClause, !oldWhereClauseESet));
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicUnsetWhereClause(NotificationChain msgs) {
-		QuerySearchCondition oldWhereClause = whereClause;
-		whereClause = null;
-		boolean oldWhereClauseESet = whereClauseESet;
-		whereClauseESet = false;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, oldWhereClause, null, oldWhereClauseESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QuerySearchCondition oldWhereClause = whereClause;
+        whereClause = null;
+        boolean oldWhereClauseESet = whereClauseESet;
+        whereClauseESet = false;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, oldWhereClause, null, oldWhereClauseESet);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void unsetWhereClause() {
-		if (whereClause != null) {
-			NotificationChain msgs = null;
-			msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
-			msgs = basicUnsetWhereClause(msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldWhereClauseESet = whereClauseESet;
-			whereClauseESet = false;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, null, oldWhereClauseESet));
-    	}
-	}
+        if (whereClause != null) {
+            NotificationChain msgs = null;
+            msgs = ((InternalEObject)whereClause).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__UPDATE_STATEMENT, QuerySearchCondition.class, msgs);
+            msgs = basicUnsetWhereClause(msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else {
+            boolean oldWhereClauseESet = whereClauseESet;
+            whereClauseESet = false;
+            if (eNotificationRequired())
+                eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, null, oldWhereClauseESet));
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public boolean isSetWhereClause() {
-		return whereClauseESet;
-	}
+        return whereClauseESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public TableInDatabase getTargetTable() {
-		return targetTable;
-	}
+        return targetTable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public NotificationChain basicSetTargetTable(TableInDatabase newTargetTable, NotificationChain msgs) {
-		TableInDatabase oldTargetTable = targetTable;
-		targetTable = newTargetTable;
-		boolean oldTargetTableESet = targetTableESet;
-		targetTableESet = true;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, oldTargetTable, newTargetTable, !oldTargetTableESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        TableInDatabase oldTargetTable = targetTable;
+        targetTable = newTargetTable;
+        boolean oldTargetTableESet = targetTableESet;
+        targetTableESet = true;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, oldTargetTable, newTargetTable, !oldTargetTableESet);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public void setTargetTable(TableInDatabase newTargetTable) {
-		if (newTargetTable != targetTable) {
-			NotificationChain msgs = null;
-			if (targetTable != null)
-				msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
-			if (newTargetTable != null)
-				msgs = ((InternalEObject)newTargetTable).eInverseAdd(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
-			msgs = basicSetTargetTable(newTargetTable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldTargetTableESet = targetTableESet;
-			targetTableESet = true;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, newTargetTable, newTargetTable, !oldTargetTableESet));
-    	}
-	}
+        if (newTargetTable != targetTable) {
+            NotificationChain msgs = null;
+            if (targetTable != null)
+                msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
+            if (newTargetTable != null)
+                msgs = ((InternalEObject)newTargetTable).eInverseAdd(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
+            msgs = basicSetTargetTable(newTargetTable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else {
+            boolean oldTargetTableESet = targetTableESet;
+            targetTableESet = true;
+            if (eNotificationRequired())
+                eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, newTargetTable, newTargetTable, !oldTargetTableESet));
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicUnsetTargetTable(NotificationChain msgs) {
-		TableInDatabase oldTargetTable = targetTable;
-		targetTable = null;
-		boolean oldTargetTableESet = targetTableESet;
-		targetTableESet = false;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, oldTargetTable, null, oldTargetTableESet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        TableInDatabase oldTargetTable = targetTable;
+        targetTable = null;
+        boolean oldTargetTableESet = targetTableESet;
+        targetTableESet = false;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, oldTargetTable, null, oldTargetTableESet);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void unsetTargetTable() {
-		if (targetTable != null) {
-			NotificationChain msgs = null;
-			msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
-			msgs = basicUnsetTargetTable(msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else {
-			boolean oldTargetTableESet = targetTableESet;
-			targetTableESet = false;
-			if (eNotificationRequired())
-				eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, null, oldTargetTableESet));
-    	}
-	}
+        if (targetTable != null) {
+            NotificationChain msgs = null;
+            msgs = ((InternalEObject)targetTable).eInverseRemove(this, SQLQueryModelPackage.TABLE_IN_DATABASE__UPDATE_STATEMENT, TableInDatabase.class, msgs);
+            msgs = basicUnsetTargetTable(msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else {
+            boolean oldTargetTableESet = targetTableESet;
+            targetTableESet = false;
+            if (eNotificationRequired())
+                eNotify(new ENotificationImpl(this, Notification.UNSET, SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, null, oldTargetTableESet));
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public boolean isSetTargetTable() {
-		return targetTableESet;
-	}
+        return targetTableESet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				return ((InternalEList)getAssignmentClause()).basicAdd(otherEnd, msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				if (whereCurrentOfClause != null)
-					msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
-				return basicSetWhereCurrentOfClause((CursorReference)otherEnd, msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				if (whereClause != null)
-					msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, msgs);
-				return basicSetWhereClause((QuerySearchCondition)otherEnd, msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				if (targetTable != null)
-					msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, msgs);
-				return basicSetTargetTable((TableInDatabase)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                return ((InternalEList)getAssignmentClause()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                if (whereCurrentOfClause != null)
+                    msgs = ((InternalEObject)whereCurrentOfClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE, null, msgs);
+                return basicSetWhereCurrentOfClause((CursorReference)otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                if (whereClause != null)
+                    msgs = ((InternalEObject)whereClause).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE, null, msgs);
+                return basicSetWhereClause((QuerySearchCondition)otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                if (targetTable != null)
+                    msgs = ((InternalEObject)targetTable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE, null, msgs);
+                return basicSetTargetTable((TableInDatabase)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				return ((InternalEList)getAssignmentClause()).basicRemove(otherEnd, msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				return basicSetWhereCurrentOfClause(null, msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				return basicUnsetWhereClause(msgs);
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				return basicUnsetTargetTable(msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                return ((InternalEList)getAssignmentClause()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                return basicSetWhereCurrentOfClause(null, msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                return basicUnsetWhereClause(msgs);
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                return basicUnsetTargetTable(msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				return getAssignmentClause();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				return getWhereCurrentOfClause();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				return getWhereClause();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				return getTargetTable();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                return getAssignmentClause();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                return getWhereCurrentOfClause();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                return getWhereClause();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                return getTargetTable();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				getAssignmentClause().clear();
-				getAssignmentClause().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				setWhereCurrentOfClause((CursorReference)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				setWhereClause((QuerySearchCondition)newValue);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				setTargetTable((TableInDatabase)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                getAssignmentClause().clear();
+                getAssignmentClause().addAll((Collection)newValue);
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                setWhereCurrentOfClause((CursorReference)newValue);
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                setWhereClause((QuerySearchCondition)newValue);
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                setTargetTable((TableInDatabase)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				getAssignmentClause().clear();
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				setWhereCurrentOfClause((CursorReference)null);
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				unsetWhereClause();
-				return;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				unsetTargetTable();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                getAssignmentClause().clear();
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                setWhereCurrentOfClause((CursorReference)null);
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                unsetWhereClause();
+                return;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                unsetTargetTable();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
-				return assignmentClause != null && !assignmentClause.isEmpty();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
-				return whereCurrentOfClause != null;
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
-				return isSetWhereClause();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
-				return isSetTargetTable();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__ASSIGNMENT_CLAUSE:
+                return assignmentClause != null && !assignmentClause.isEmpty();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CURRENT_OF_CLAUSE:
+                return whereCurrentOfClause != null;
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__WHERE_CLAUSE:
+                return isSetWhereClause();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT__TARGET_TABLE:
+                return isSetTargetTable();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLUpdateStatementImpl

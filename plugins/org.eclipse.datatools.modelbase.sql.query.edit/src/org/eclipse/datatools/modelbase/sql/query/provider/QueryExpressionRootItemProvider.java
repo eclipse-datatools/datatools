@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryExpressionRootItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: QueryExpressionRootItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,13 +72,18 @@ public class QueryExpressionRootItemProvider
      */
     protected void addValueExprScalarSelectsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_QueryExpressionRoot_valueExprScalarSelects_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_QueryExpressionRoot_valueExprScalarSelects_feature", "_UI_QueryExpressionRoot_type"),
-                 SQLQueryModelPackage.eINSTANCE.getQueryExpressionRoot_ValueExprScalarSelects(),
-                 true));
+                 SQLQueryModelPackage.Literals.QUERY_EXPRESSION_ROOT__VALUE_EXPR_SCALAR_SELECTS,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -92,8 +97,8 @@ public class QueryExpressionRootItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getQueryExpressionRoot_WithClause());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getQueryExpressionRoot_Query());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.QUERY_EXPRESSION_ROOT__WITH_CLAUSE);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.QUERY_EXPRESSION_ROOT__QUERY);
         }
         return childrenFeatures;
     }

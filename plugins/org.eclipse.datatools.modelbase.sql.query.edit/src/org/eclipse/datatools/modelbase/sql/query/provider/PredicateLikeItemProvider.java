@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateLikeItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: PredicateLikeItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class PredicateLikeItemProvider
      */
   protected void addNotLikePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateLike_notLike_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateLike_notLike_feature", "_UI_PredicateLike_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateLike_NotLike(),
+                 SQLQueryModelPackage.Literals.PREDICATE_LIKE__NOT_LIKE,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,9 +97,9 @@ public class PredicateLikeItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateLike_PatternValueExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateLike_MatchingValueExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateLike_EscapeValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_LIKE__PATTERN_VALUE_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_LIKE__MATCHING_VALUE_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_LIKE__ESCAPE_VALUE_EXPR);
         }
         return childrenFeatures;
     }

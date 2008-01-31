@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactoryImpl.java,v 1.1 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: SQLQueryModelFactoryImpl.java,v 1.2 2007/02/08 17:00:26 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -26,1044 +26,1055 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryModelFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static SQLQueryModelFactory init() {
-		try {
-			SQLQueryModelFactory theSQLQueryModelFactory = (SQLQueryModelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"); 
-			if (theSQLQueryModelFactory != null) {
-				return theSQLQueryModelFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new SQLQueryModelFactoryImpl();
-	}
+        try {
+            SQLQueryModelFactory theSQLQueryModelFactory = (SQLQueryModelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/modelbase/sql/query/SQLQueryModel.ecore"); 
+            if (theSQLQueryModelFactory != null) {
+                return theSQLQueryModelFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new SQLQueryModelFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SQLQueryModelFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case SQLQueryModelPackage.QUERY_DELETE_STATEMENT: return createQueryDeleteStatement();
-			case SQLQueryModelPackage.QUERY_INSERT_STATEMENT: return createQueryInsertStatement();
-			case SQLQueryModelPackage.QUERY_SELECT_STATEMENT: return createQuerySelectStatement();
-			case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT: return createQueryUpdateStatement();
-			case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION: return createUpdateAssignmentExpression();
-			case SQLQueryModelPackage.CURSOR_REFERENCE: return createCursorReference();
-			case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT: return createQueryExpressionRoot();
-			case SQLQueryModelPackage.VALUES_ROW: return createValuesRow();
-			case SQLQueryModelPackage.QUERY_VALUES: return createQueryValues();
-			case SQLQueryModelPackage.TABLE_JOINED: return createTableJoined();
-			case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION: return createWithTableSpecification();
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED: return createSearchConditionCombined();
-			case SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION: return createOrderByValueExpression();
-			case SQLQueryModelPackage.QUERY_COMBINED: return createQueryCombined();
-			case SQLQueryModelPackage.QUERY_SELECT: return createQuerySelect();
-			case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS: return createResultTableAllColumns();
-			case SQLQueryModelPackage.RESULT_COLUMN: return createResultColumn();
-			case SQLQueryModelPackage.PREDICATE_BASIC: return createPredicateBasic();
-			case SQLQueryModelPackage.PREDICATE_BETWEEN: return createPredicateBetween();
-			case SQLQueryModelPackage.PREDICATE_EXISTS: return createPredicateExists();
-			case SQLQueryModelPackage.PREDICATE_LIKE: return createPredicateLike();
-			case SQLQueryModelPackage.PREDICATE_IS_NULL: return createPredicateIsNull();
-			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT: return createPredicateQuantifiedValueSelect();
-			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT: return createPredicateQuantifiedRowSelect();
-			case SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT: return createPredicateInValueSelect();
-			case SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST: return createPredicateInValueList();
-			case SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT: return createPredicateInValueRowSelect();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_SIMPLE: return createValueExpressionSimple();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN: return createValueExpressionColumn();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE: return createValueExpressionVariable();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT: return createValueExpressionScalarSelect();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION: return createValueExpressionLabeledDuration();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CAST: return createValueExpressionCast();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_NULL_VALUE: return createValueExpressionNullValue();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_DEFAULT_VALUE: return createValueExpressionDefaultValue();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION: return createValueExpressionFunction();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED: return createValueExpressionCombined();
-			case SQLQueryModelPackage.GROUPING_SETS: return createGroupingSets();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST: return createGroupingSetsElementSublist();
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION: return createGroupingSetsElementExpression();
-			case SQLQueryModelPackage.SUPER_GROUP: return createSuperGroup();
-			case SQLQueryModelPackage.GROUPING_EXPRESSION: return createGroupingExpression();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_SUBLIST: return createSuperGroupElementSublist();
-			case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION: return createSuperGroupElementExpression();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH: return createValueExpressionCaseSearch();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE: return createValueExpressionCaseSimple();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE: return createValueExpressionCaseElse();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT: return createValueExpressionCaseSearchContent();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT: return createValueExpressionCaseSimpleContent();
-			case SQLQueryModelPackage.TABLE_IN_DATABASE: return createTableInDatabase();
-			case SQLQueryModelPackage.TABLE_FUNCTION: return createTableFunction();
-			case SQLQueryModelPackage.COLUMN_NAME: return createColumnName();
-			case SQLQueryModelPackage.TABLE_NESTED: return createTableNested();
-			case SQLQueryModelPackage.QUERY_MERGE_STATEMENT: return createQueryMergeStatement();
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED: return createSearchConditionNested();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED: return createValueExpressionNested();
-			case SQLQueryModelPackage.ORDER_BY_ORDINAL: return createOrderByOrdinal();
-			case SQLQueryModelPackage.TABLE_CORRELATION: return createTableCorrelation();
-			case SQLQueryModelPackage.UPDATE_SOURCE: return createUpdateSource();
-			case SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST: return createUpdateSourceExprList();
-			case SQLQueryModelPackage.UPDATE_SOURCE_QUERY: return createUpdateSourceQuery();
-			case SQLQueryModelPackage.ORDER_BY_RESULT_COLUMN: return createOrderByResultColumn();
-			case SQLQueryModelPackage.WITH_TABLE_REFERENCE: return createWithTableReference();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case SQLQueryModelPackage.QUERY_DELETE_STATEMENT: return createQueryDeleteStatement();
+            case SQLQueryModelPackage.QUERY_INSERT_STATEMENT: return createQueryInsertStatement();
+            case SQLQueryModelPackage.QUERY_SELECT_STATEMENT: return createQuerySelectStatement();
+            case SQLQueryModelPackage.QUERY_UPDATE_STATEMENT: return createQueryUpdateStatement();
+            case SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION: return createUpdateAssignmentExpression();
+            case SQLQueryModelPackage.CURSOR_REFERENCE: return createCursorReference();
+            case SQLQueryModelPackage.QUERY_EXPRESSION_ROOT: return createQueryExpressionRoot();
+            case SQLQueryModelPackage.VALUES_ROW: return createValuesRow();
+            case SQLQueryModelPackage.QUERY_VALUES: return createQueryValues();
+            case SQLQueryModelPackage.TABLE_JOINED: return createTableJoined();
+            case SQLQueryModelPackage.WITH_TABLE_SPECIFICATION: return createWithTableSpecification();
+            case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED: return createSearchConditionCombined();
+            case SQLQueryModelPackage.ORDER_BY_VALUE_EXPRESSION: return createOrderByValueExpression();
+            case SQLQueryModelPackage.QUERY_COMBINED: return createQueryCombined();
+            case SQLQueryModelPackage.QUERY_SELECT: return createQuerySelect();
+            case SQLQueryModelPackage.RESULT_TABLE_ALL_COLUMNS: return createResultTableAllColumns();
+            case SQLQueryModelPackage.RESULT_COLUMN: return createResultColumn();
+            case SQLQueryModelPackage.PREDICATE_BASIC: return createPredicateBasic();
+            case SQLQueryModelPackage.PREDICATE_BETWEEN: return createPredicateBetween();
+            case SQLQueryModelPackage.PREDICATE_EXISTS: return createPredicateExists();
+            case SQLQueryModelPackage.PREDICATE_LIKE: return createPredicateLike();
+            case SQLQueryModelPackage.PREDICATE_IS_NULL: return createPredicateIsNull();
+            case SQLQueryModelPackage.PREDICATE_QUANTIFIED_VALUE_SELECT: return createPredicateQuantifiedValueSelect();
+            case SQLQueryModelPackage.PREDICATE_QUANTIFIED_ROW_SELECT: return createPredicateQuantifiedRowSelect();
+            case SQLQueryModelPackage.PREDICATE_IN_VALUE_SELECT: return createPredicateInValueSelect();
+            case SQLQueryModelPackage.PREDICATE_IN_VALUE_LIST: return createPredicateInValueList();
+            case SQLQueryModelPackage.PREDICATE_IN_VALUE_ROW_SELECT: return createPredicateInValueRowSelect();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_SIMPLE: return createValueExpressionSimple();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COLUMN: return createValueExpressionColumn();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_VARIABLE: return createValueExpressionVariable();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_SCALAR_SELECT: return createValueExpressionScalarSelect();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION: return createValueExpressionLabeledDuration();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CAST: return createValueExpressionCast();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_NULL_VALUE: return createValueExpressionNullValue();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_DEFAULT_VALUE: return createValueExpressionDefaultValue();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_FUNCTION: return createValueExpressionFunction();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED: return createValueExpressionCombined();
+            case SQLQueryModelPackage.GROUPING_SETS: return createGroupingSets();
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_SUBLIST: return createGroupingSetsElementSublist();
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT_EXPRESSION: return createGroupingSetsElementExpression();
+            case SQLQueryModelPackage.SUPER_GROUP: return createSuperGroup();
+            case SQLQueryModelPackage.GROUPING_EXPRESSION: return createGroupingExpression();
+            case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_SUBLIST: return createSuperGroupElementSublist();
+            case SQLQueryModelPackage.SUPER_GROUP_ELEMENT_EXPRESSION: return createSuperGroupElementExpression();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH: return createValueExpressionCaseSearch();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE: return createValueExpressionCaseSimple();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE: return createValueExpressionCaseElse();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SEARCH_CONTENT: return createValueExpressionCaseSearchContent();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT: return createValueExpressionCaseSimpleContent();
+            case SQLQueryModelPackage.TABLE_IN_DATABASE: return createTableInDatabase();
+            case SQLQueryModelPackage.TABLE_FUNCTION: return createTableFunction();
+            case SQLQueryModelPackage.COLUMN_NAME: return createColumnName();
+            case SQLQueryModelPackage.TABLE_NESTED: return createTableNested();
+            case SQLQueryModelPackage.QUERY_MERGE_STATEMENT: return createQueryMergeStatement();
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED: return createSearchConditionNested();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_NESTED: return createValueExpressionNested();
+            case SQLQueryModelPackage.ORDER_BY_ORDINAL: return createOrderByOrdinal();
+            case SQLQueryModelPackage.TABLE_CORRELATION: return createTableCorrelation();
+            case SQLQueryModelPackage.UPDATE_SOURCE: return createUpdateSource();
+            case SQLQueryModelPackage.UPDATE_SOURCE_EXPR_LIST: return createUpdateSourceExprList();
+            case SQLQueryModelPackage.UPDATE_SOURCE_QUERY: return createUpdateSourceQuery();
+            case SQLQueryModelPackage.ORDER_BY_RESULT_COLUMN: return createOrderByResultColumn();
+            case SQLQueryModelPackage.WITH_TABLE_REFERENCE: return createWithTableReference();
+            case SQLQueryModelPackage.QUERY_NESTED: return createQueryNested();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case SQLQueryModelPackage.SUPER_GROUP_TYPE:
-				return createSuperGroupTypeFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
-				return createPredicateQuantifiedTypeFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
-				return createPredicateComparisonOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
-				return createSearchConditionCombinedOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
-				return createTableJoinedOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
-				return createQueryCombinedOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
-				return createValueExpressionUnaryOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
-				return createValueExpressionCombinedOperatorFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
-				return createValueExpressionLabeledDurationTypeFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.NULL_ORDERING_TYPE:
-				return createNullOrderingTypeFromString(eDataType, initialValue);
-			case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
-				return createOrderingSpecTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case SQLQueryModelPackage.SUPER_GROUP_TYPE:
+                return createSuperGroupTypeFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
+                return createPredicateQuantifiedTypeFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
+                return createPredicateComparisonOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
+                return createSearchConditionCombinedOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
+                return createTableJoinedOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
+                return createQueryCombinedOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
+                return createValueExpressionUnaryOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
+                return createValueExpressionCombinedOperatorFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
+                return createValueExpressionLabeledDurationTypeFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.NULL_ORDERING_TYPE:
+                return createNullOrderingTypeFromString(eDataType, initialValue);
+            case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
+                return createOrderingSpecTypeFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case SQLQueryModelPackage.SUPER_GROUP_TYPE:
-				return convertSuperGroupTypeToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
-				return convertPredicateQuantifiedTypeToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
-				return convertPredicateComparisonOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
-				return convertSearchConditionCombinedOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
-				return convertTableJoinedOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
-				return convertQueryCombinedOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
-				return convertValueExpressionUnaryOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
-				return convertValueExpressionCombinedOperatorToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
-				return convertValueExpressionLabeledDurationTypeToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.NULL_ORDERING_TYPE:
-				return convertNullOrderingTypeToString(eDataType, instanceValue);
-			case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
-				return convertOrderingSpecTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case SQLQueryModelPackage.SUPER_GROUP_TYPE:
+                return convertSuperGroupTypeToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.PREDICATE_QUANTIFIED_TYPE:
+                return convertPredicateQuantifiedTypeToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.PREDICATE_COMPARISON_OPERATOR:
+                return convertPredicateComparisonOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.SEARCH_CONDITION_COMBINED_OPERATOR:
+                return convertSearchConditionCombinedOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.TABLE_JOINED_OPERATOR:
+                return convertTableJoinedOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.QUERY_COMBINED_OPERATOR:
+                return convertQueryCombinedOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_UNARY_OPERATOR:
+                return convertValueExpressionUnaryOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_COMBINED_OPERATOR:
+                return convertValueExpressionCombinedOperatorToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_LABELED_DURATION_TYPE:
+                return convertValueExpressionLabeledDurationTypeToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.NULL_ORDERING_TYPE:
+                return convertNullOrderingTypeToString(eDataType, instanceValue);
+            case SQLQueryModelPackage.ORDERING_SPEC_TYPE:
+                return convertOrderingSpecTypeToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryDeleteStatement createQueryDeleteStatement() {
-		QueryDeleteStatementImpl queryDeleteStatement = new QueryDeleteStatementImpl();
-		return queryDeleteStatement;
-	}
+        QueryDeleteStatementImpl queryDeleteStatement = new QueryDeleteStatementImpl();
+        return queryDeleteStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryInsertStatement createQueryInsertStatement() {
-		QueryInsertStatementImpl queryInsertStatement = new QueryInsertStatementImpl();
-		return queryInsertStatement;
-	}
+        QueryInsertStatementImpl queryInsertStatement = new QueryInsertStatementImpl();
+        return queryInsertStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QuerySelectStatement createQuerySelectStatement() {
-		QuerySelectStatementImpl querySelectStatement = new QuerySelectStatementImpl();
-		return querySelectStatement;
-	}
+        QuerySelectStatementImpl querySelectStatement = new QuerySelectStatementImpl();
+        return querySelectStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryUpdateStatement createQueryUpdateStatement() {
-		QueryUpdateStatementImpl queryUpdateStatement = new QueryUpdateStatementImpl();
-		return queryUpdateStatement;
-	}
+        QueryUpdateStatementImpl queryUpdateStatement = new QueryUpdateStatementImpl();
+        return queryUpdateStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UpdateAssignmentExpression createUpdateAssignmentExpression() {
-		UpdateAssignmentExpressionImpl updateAssignmentExpression = new UpdateAssignmentExpressionImpl();
-		return updateAssignmentExpression;
-	}
+        UpdateAssignmentExpressionImpl updateAssignmentExpression = new UpdateAssignmentExpressionImpl();
+        return updateAssignmentExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CursorReference createCursorReference() {
-		CursorReferenceImpl cursorReference = new CursorReferenceImpl();
-		return cursorReference;
-	}
+        CursorReferenceImpl cursorReference = new CursorReferenceImpl();
+        return cursorReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryExpressionRoot createQueryExpressionRoot() {
-		QueryExpressionRootImpl queryExpressionRoot = new QueryExpressionRootImpl();
-		return queryExpressionRoot;
-	}
+        QueryExpressionRootImpl queryExpressionRoot = new QueryExpressionRootImpl();
+        return queryExpressionRoot;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValuesRow createValuesRow() {
-		ValuesRowImpl valuesRow = new ValuesRowImpl();
-		return valuesRow;
-	}
+        ValuesRowImpl valuesRow = new ValuesRowImpl();
+        return valuesRow;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryValues createQueryValues() {
-		QueryValuesImpl queryValues = new QueryValuesImpl();
-		return queryValues;
-	}
+        QueryValuesImpl queryValues = new QueryValuesImpl();
+        return queryValues;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableJoined createTableJoined() {
-		TableJoinedImpl tableJoined = new TableJoinedImpl();
-		return tableJoined;
-	}
+        TableJoinedImpl tableJoined = new TableJoinedImpl();
+        return tableJoined;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WithTableSpecification createWithTableSpecification() {
-		WithTableSpecificationImpl withTableSpecification = new WithTableSpecificationImpl();
-		return withTableSpecification;
-	}
+        WithTableSpecificationImpl withTableSpecification = new WithTableSpecificationImpl();
+        return withTableSpecification;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SearchConditionCombined createSearchConditionCombined() {
-		SearchConditionCombinedImpl searchConditionCombined = new SearchConditionCombinedImpl();
-		return searchConditionCombined;
-	}
+        SearchConditionCombinedImpl searchConditionCombined = new SearchConditionCombinedImpl();
+        return searchConditionCombined;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OrderByValueExpression createOrderByValueExpression() {
-		OrderByValueExpressionImpl orderByValueExpression = new OrderByValueExpressionImpl();
-		return orderByValueExpression;
-	}
+        OrderByValueExpressionImpl orderByValueExpression = new OrderByValueExpressionImpl();
+        return orderByValueExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryCombined createQueryCombined() {
-		QueryCombinedImpl queryCombined = new QueryCombinedImpl();
-		return queryCombined;
-	}
+        QueryCombinedImpl queryCombined = new QueryCombinedImpl();
+        return queryCombined;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QuerySelect createQuerySelect() {
-		QuerySelectImpl querySelect = new QuerySelectImpl();
-		return querySelect;
-	}
+        QuerySelectImpl querySelect = new QuerySelectImpl();
+        return querySelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResultTableAllColumns createResultTableAllColumns() {
-		ResultTableAllColumnsImpl resultTableAllColumns = new ResultTableAllColumnsImpl();
-		return resultTableAllColumns;
-	}
+        ResultTableAllColumnsImpl resultTableAllColumns = new ResultTableAllColumnsImpl();
+        return resultTableAllColumns;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ResultColumn createResultColumn() {
-		ResultColumnImpl resultColumn = new ResultColumnImpl();
-		return resultColumn;
-	}
+        ResultColumnImpl resultColumn = new ResultColumnImpl();
+        return resultColumn;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateBasic createPredicateBasic() {
-		PredicateBasicImpl predicateBasic = new PredicateBasicImpl();
-		return predicateBasic;
-	}
+        PredicateBasicImpl predicateBasic = new PredicateBasicImpl();
+        return predicateBasic;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateBetween createPredicateBetween() {
-		PredicateBetweenImpl predicateBetween = new PredicateBetweenImpl();
-		return predicateBetween;
-	}
+        PredicateBetweenImpl predicateBetween = new PredicateBetweenImpl();
+        return predicateBetween;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateExists createPredicateExists() {
-		PredicateExistsImpl predicateExists = new PredicateExistsImpl();
-		return predicateExists;
-	}
+        PredicateExistsImpl predicateExists = new PredicateExistsImpl();
+        return predicateExists;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateLike createPredicateLike() {
-		PredicateLikeImpl predicateLike = new PredicateLikeImpl();
-		return predicateLike;
-	}
+        PredicateLikeImpl predicateLike = new PredicateLikeImpl();
+        return predicateLike;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateIsNull createPredicateIsNull() {
-		PredicateIsNullImpl predicateIsNull = new PredicateIsNullImpl();
-		return predicateIsNull;
-	}
+        PredicateIsNullImpl predicateIsNull = new PredicateIsNullImpl();
+        return predicateIsNull;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateQuantifiedValueSelect createPredicateQuantifiedValueSelect() {
-		PredicateQuantifiedValueSelectImpl predicateQuantifiedValueSelect = new PredicateQuantifiedValueSelectImpl();
-		return predicateQuantifiedValueSelect;
-	}
+        PredicateQuantifiedValueSelectImpl predicateQuantifiedValueSelect = new PredicateQuantifiedValueSelectImpl();
+        return predicateQuantifiedValueSelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateQuantifiedRowSelect createPredicateQuantifiedRowSelect() {
-		PredicateQuantifiedRowSelectImpl predicateQuantifiedRowSelect = new PredicateQuantifiedRowSelectImpl();
-		return predicateQuantifiedRowSelect;
-	}
+        PredicateQuantifiedRowSelectImpl predicateQuantifiedRowSelect = new PredicateQuantifiedRowSelectImpl();
+        return predicateQuantifiedRowSelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateInValueSelect createPredicateInValueSelect() {
-		PredicateInValueSelectImpl predicateInValueSelect = new PredicateInValueSelectImpl();
-		return predicateInValueSelect;
-	}
+        PredicateInValueSelectImpl predicateInValueSelect = new PredicateInValueSelectImpl();
+        return predicateInValueSelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateInValueList createPredicateInValueList() {
-		PredicateInValueListImpl predicateInValueList = new PredicateInValueListImpl();
-		return predicateInValueList;
-	}
+        PredicateInValueListImpl predicateInValueList = new PredicateInValueListImpl();
+        return predicateInValueList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateInValueRowSelect createPredicateInValueRowSelect() {
-		PredicateInValueRowSelectImpl predicateInValueRowSelect = new PredicateInValueRowSelectImpl();
-		return predicateInValueRowSelect;
-	}
+        PredicateInValueRowSelectImpl predicateInValueRowSelect = new PredicateInValueRowSelectImpl();
+        return predicateInValueRowSelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionSimple createValueExpressionSimple() {
-		ValueExpressionSimpleImpl valueExpressionSimple = new ValueExpressionSimpleImpl();
-		return valueExpressionSimple;
-	}
+        ValueExpressionSimpleImpl valueExpressionSimple = new ValueExpressionSimpleImpl();
+        return valueExpressionSimple;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionColumn createValueExpressionColumn() {
-		ValueExpressionColumnImpl valueExpressionColumn = new ValueExpressionColumnImpl();
-		return valueExpressionColumn;
-	}
+        ValueExpressionColumnImpl valueExpressionColumn = new ValueExpressionColumnImpl();
+        return valueExpressionColumn;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionVariable createValueExpressionVariable() {
-		ValueExpressionVariableImpl valueExpressionVariable = new ValueExpressionVariableImpl();
-		return valueExpressionVariable;
-	}
+        ValueExpressionVariableImpl valueExpressionVariable = new ValueExpressionVariableImpl();
+        return valueExpressionVariable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionScalarSelect createValueExpressionScalarSelect() {
-		ValueExpressionScalarSelectImpl valueExpressionScalarSelect = new ValueExpressionScalarSelectImpl();
-		return valueExpressionScalarSelect;
-	}
+        ValueExpressionScalarSelectImpl valueExpressionScalarSelect = new ValueExpressionScalarSelectImpl();
+        return valueExpressionScalarSelect;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionLabeledDuration createValueExpressionLabeledDuration() {
-		ValueExpressionLabeledDurationImpl valueExpressionLabeledDuration = new ValueExpressionLabeledDurationImpl();
-		return valueExpressionLabeledDuration;
-	}
+        ValueExpressionLabeledDurationImpl valueExpressionLabeledDuration = new ValueExpressionLabeledDurationImpl();
+        return valueExpressionLabeledDuration;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCast createValueExpressionCast() {
-		ValueExpressionCastImpl valueExpressionCast = new ValueExpressionCastImpl();
-		return valueExpressionCast;
-	}
+        ValueExpressionCastImpl valueExpressionCast = new ValueExpressionCastImpl();
+        return valueExpressionCast;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionNullValue createValueExpressionNullValue() {
-		ValueExpressionNullValueImpl valueExpressionNullValue = new ValueExpressionNullValueImpl();
-		return valueExpressionNullValue;
-	}
+        ValueExpressionNullValueImpl valueExpressionNullValue = new ValueExpressionNullValueImpl();
+        return valueExpressionNullValue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionDefaultValue createValueExpressionDefaultValue() {
-		ValueExpressionDefaultValueImpl valueExpressionDefaultValue = new ValueExpressionDefaultValueImpl();
-		return valueExpressionDefaultValue;
-	}
+        ValueExpressionDefaultValueImpl valueExpressionDefaultValue = new ValueExpressionDefaultValueImpl();
+        return valueExpressionDefaultValue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionFunction createValueExpressionFunction() {
-		ValueExpressionFunctionImpl valueExpressionFunction = new ValueExpressionFunctionImpl();
-		return valueExpressionFunction;
-	}
+        ValueExpressionFunctionImpl valueExpressionFunction = new ValueExpressionFunctionImpl();
+        return valueExpressionFunction;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCombined createValueExpressionCombined() {
-		ValueExpressionCombinedImpl valueExpressionCombined = new ValueExpressionCombinedImpl();
-		return valueExpressionCombined;
-	}
+        ValueExpressionCombinedImpl valueExpressionCombined = new ValueExpressionCombinedImpl();
+        return valueExpressionCombined;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GroupingSets createGroupingSets() {
-		GroupingSetsImpl groupingSets = new GroupingSetsImpl();
-		return groupingSets;
-	}
+        GroupingSetsImpl groupingSets = new GroupingSetsImpl();
+        return groupingSets;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GroupingSetsElementSublist createGroupingSetsElementSublist() {
-		GroupingSetsElementSublistImpl groupingSetsElementSublist = new GroupingSetsElementSublistImpl();
-		return groupingSetsElementSublist;
-	}
+        GroupingSetsElementSublistImpl groupingSetsElementSublist = new GroupingSetsElementSublistImpl();
+        return groupingSetsElementSublist;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GroupingSetsElementExpression createGroupingSetsElementExpression() {
-		GroupingSetsElementExpressionImpl groupingSetsElementExpression = new GroupingSetsElementExpressionImpl();
-		return groupingSetsElementExpression;
-	}
+        GroupingSetsElementExpressionImpl groupingSetsElementExpression = new GroupingSetsElementExpressionImpl();
+        return groupingSetsElementExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SuperGroup createSuperGroup() {
-		SuperGroupImpl superGroup = new SuperGroupImpl();
-		return superGroup;
-	}
+        SuperGroupImpl superGroup = new SuperGroupImpl();
+        return superGroup;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GroupingExpression createGroupingExpression() {
-		GroupingExpressionImpl groupingExpression = new GroupingExpressionImpl();
-		return groupingExpression;
-	}
+        GroupingExpressionImpl groupingExpression = new GroupingExpressionImpl();
+        return groupingExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SuperGroupElementSublist createSuperGroupElementSublist() {
-		SuperGroupElementSublistImpl superGroupElementSublist = new SuperGroupElementSublistImpl();
-		return superGroupElementSublist;
-	}
+        SuperGroupElementSublistImpl superGroupElementSublist = new SuperGroupElementSublistImpl();
+        return superGroupElementSublist;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SuperGroupElementExpression createSuperGroupElementExpression() {
-		SuperGroupElementExpressionImpl superGroupElementExpression = new SuperGroupElementExpressionImpl();
-		return superGroupElementExpression;
-	}
+        SuperGroupElementExpressionImpl superGroupElementExpression = new SuperGroupElementExpressionImpl();
+        return superGroupElementExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCaseSearch createValueExpressionCaseSearch() {
-		ValueExpressionCaseSearchImpl valueExpressionCaseSearch = new ValueExpressionCaseSearchImpl();
-		return valueExpressionCaseSearch;
-	}
+        ValueExpressionCaseSearchImpl valueExpressionCaseSearch = new ValueExpressionCaseSearchImpl();
+        return valueExpressionCaseSearch;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCaseSimple createValueExpressionCaseSimple() {
-		ValueExpressionCaseSimpleImpl valueExpressionCaseSimple = new ValueExpressionCaseSimpleImpl();
-		return valueExpressionCaseSimple;
-	}
+        ValueExpressionCaseSimpleImpl valueExpressionCaseSimple = new ValueExpressionCaseSimpleImpl();
+        return valueExpressionCaseSimple;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCaseElse createValueExpressionCaseElse() {
-		ValueExpressionCaseElseImpl valueExpressionCaseElse = new ValueExpressionCaseElseImpl();
-		return valueExpressionCaseElse;
-	}
+        ValueExpressionCaseElseImpl valueExpressionCaseElse = new ValueExpressionCaseElseImpl();
+        return valueExpressionCaseElse;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCaseSearchContent createValueExpressionCaseSearchContent() {
-		ValueExpressionCaseSearchContentImpl valueExpressionCaseSearchContent = new ValueExpressionCaseSearchContentImpl();
-		return valueExpressionCaseSearchContent;
-	}
+        ValueExpressionCaseSearchContentImpl valueExpressionCaseSearchContent = new ValueExpressionCaseSearchContentImpl();
+        return valueExpressionCaseSearchContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCaseSimpleContent createValueExpressionCaseSimpleContent() {
-		ValueExpressionCaseSimpleContentImpl valueExpressionCaseSimpleContent = new ValueExpressionCaseSimpleContentImpl();
-		return valueExpressionCaseSimpleContent;
-	}
+        ValueExpressionCaseSimpleContentImpl valueExpressionCaseSimpleContent = new ValueExpressionCaseSimpleContentImpl();
+        return valueExpressionCaseSimpleContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableInDatabase createTableInDatabase() {
-		TableInDatabaseImpl tableInDatabase = new TableInDatabaseImpl();
-		return tableInDatabase;
-	}
+        TableInDatabaseImpl tableInDatabase = new TableInDatabaseImpl();
+        return tableInDatabase;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableFunction createTableFunction() {
-		TableFunctionImpl tableFunction = new TableFunctionImpl();
-		return tableFunction;
-	}
+        TableFunctionImpl tableFunction = new TableFunctionImpl();
+        return tableFunction;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ColumnName createColumnName() {
-		ColumnNameImpl columnName = new ColumnNameImpl();
-		return columnName;
-	}
+        ColumnNameImpl columnName = new ColumnNameImpl();
+        return columnName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableNested createTableNested() {
-		TableNestedImpl tableNested = new TableNestedImpl();
-		return tableNested;
-	}
+        TableNestedImpl tableNested = new TableNestedImpl();
+        return tableNested;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryMergeStatement createQueryMergeStatement() {
-		QueryMergeStatementImpl queryMergeStatement = new QueryMergeStatementImpl();
-		return queryMergeStatement;
-	}
+        QueryMergeStatementImpl queryMergeStatement = new QueryMergeStatementImpl();
+        return queryMergeStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SearchConditionNested createSearchConditionNested() {
-		SearchConditionNestedImpl searchConditionNested = new SearchConditionNestedImpl();
-		return searchConditionNested;
-	}
+        SearchConditionNestedImpl searchConditionNested = new SearchConditionNestedImpl();
+        return searchConditionNested;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionNested createValueExpressionNested() {
-		ValueExpressionNestedImpl valueExpressionNested = new ValueExpressionNestedImpl();
-		return valueExpressionNested;
-	}
+        ValueExpressionNestedImpl valueExpressionNested = new ValueExpressionNestedImpl();
+        return valueExpressionNested;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OrderByOrdinal createOrderByOrdinal() {
-		OrderByOrdinalImpl orderByOrdinal = new OrderByOrdinalImpl();
-		return orderByOrdinal;
-	}
+        OrderByOrdinalImpl orderByOrdinal = new OrderByOrdinalImpl();
+        return orderByOrdinal;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableCorrelation createTableCorrelation() {
-		TableCorrelationImpl tableCorrelation = new TableCorrelationImpl();
-		return tableCorrelation;
-	}
+        TableCorrelationImpl tableCorrelation = new TableCorrelationImpl();
+        return tableCorrelation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UpdateSource createUpdateSource() {
-		UpdateSourceImpl updateSource = new UpdateSourceImpl();
-		return updateSource;
-	}
+        UpdateSourceImpl updateSource = new UpdateSourceImpl();
+        return updateSource;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UpdateSourceExprList createUpdateSourceExprList() {
-		UpdateSourceExprListImpl updateSourceExprList = new UpdateSourceExprListImpl();
-		return updateSourceExprList;
-	}
+        UpdateSourceExprListImpl updateSourceExprList = new UpdateSourceExprListImpl();
+        return updateSourceExprList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public UpdateSourceQuery createUpdateSourceQuery() {
-		UpdateSourceQueryImpl updateSourceQuery = new UpdateSourceQueryImpl();
-		return updateSourceQuery;
-	}
+        UpdateSourceQueryImpl updateSourceQuery = new UpdateSourceQueryImpl();
+        return updateSourceQuery;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OrderByResultColumn createOrderByResultColumn() {
-		OrderByResultColumnImpl orderByResultColumn = new OrderByResultColumnImpl();
-		return orderByResultColumn;
-	}
+        OrderByResultColumnImpl orderByResultColumn = new OrderByResultColumnImpl();
+        return orderByResultColumn;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WithTableReference createWithTableReference() {
-		WithTableReferenceImpl withTableReference = new WithTableReferenceImpl();
-		return withTableReference;
-	}
+        WithTableReferenceImpl withTableReference = new WithTableReferenceImpl();
+        return withTableReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public QueryNested createQueryNested() {
+        QueryNestedImpl queryNested = new QueryNestedImpl();
+        return queryNested;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SuperGroupType createSuperGroupTypeFromString(EDataType eDataType, String initialValue) {
-		SuperGroupType result = SuperGroupType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        SuperGroupType result = SuperGroupType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertSuperGroupTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateQuantifiedType createPredicateQuantifiedTypeFromString(EDataType eDataType, String initialValue) {
-		PredicateQuantifiedType result = PredicateQuantifiedType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        PredicateQuantifiedType result = PredicateQuantifiedType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertPredicateQuantifiedTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PredicateComparisonOperator createPredicateComparisonOperatorFromString(EDataType eDataType, String initialValue) {
-		PredicateComparisonOperator result = PredicateComparisonOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        PredicateComparisonOperator result = PredicateComparisonOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertPredicateComparisonOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SearchConditionCombinedOperator createSearchConditionCombinedOperatorFromString(EDataType eDataType, String initialValue) {
-		SearchConditionCombinedOperator result = SearchConditionCombinedOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        SearchConditionCombinedOperator result = SearchConditionCombinedOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertSearchConditionCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TableJoinedOperator createTableJoinedOperatorFromString(EDataType eDataType, String initialValue) {
-		TableJoinedOperator result = TableJoinedOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        TableJoinedOperator result = TableJoinedOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertTableJoinedOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryCombinedOperator createQueryCombinedOperatorFromString(EDataType eDataType, String initialValue) {
-		QueryCombinedOperator result = QueryCombinedOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        QueryCombinedOperator result = QueryCombinedOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertQueryCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionUnaryOperator createValueExpressionUnaryOperatorFromString(EDataType eDataType, String initialValue) {
-		ValueExpressionUnaryOperator result = ValueExpressionUnaryOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        ValueExpressionUnaryOperator result = ValueExpressionUnaryOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertValueExpressionUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionCombinedOperator createValueExpressionCombinedOperatorFromString(EDataType eDataType, String initialValue) {
-		ValueExpressionCombinedOperator result = ValueExpressionCombinedOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        ValueExpressionCombinedOperator result = ValueExpressionCombinedOperator.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertValueExpressionCombinedOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueExpressionLabeledDurationType createValueExpressionLabeledDurationTypeFromString(EDataType eDataType, String initialValue) {
-		ValueExpressionLabeledDurationType result = ValueExpressionLabeledDurationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        ValueExpressionLabeledDurationType result = ValueExpressionLabeledDurationType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertValueExpressionLabeledDurationTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NullOrderingType createNullOrderingTypeFromString(EDataType eDataType, String initialValue) {
-		NullOrderingType result = NullOrderingType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        NullOrderingType result = NullOrderingType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertNullOrderingTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OrderingSpecType createOrderingSpecTypeFromString(EDataType eDataType, String initialValue) {
-		OrderingSpecType result = OrderingSpecType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        OrderingSpecType result = OrderingSpecType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertOrderingSpecTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SQLQueryModelPackage getSQLQueryModelPackage() {
-		return (SQLQueryModelPackage)getEPackage();
-	}
+        return (SQLQueryModelPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	public static SQLQueryModelPackage getPackage() {
-		return SQLQueryModelPackage.eINSTANCE;
-	}
+        return SQLQueryModelPackage.eINSTANCE;
+    }
 
 } //SQLQueryModelFactoryImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryMergeStatementImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: QueryMergeStatementImpl.java,v 1.5 2007/02/08 17:00:27 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -30,21 +30,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class QueryMergeStatementImpl extends QueryChangeStatementImpl implements QueryMergeStatement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected QueryMergeStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.QUERY_MERGE_STATEMENT;
-	}
+        return SQLQueryModelPackage.Literals.QUERY_MERGE_STATEMENT;
+    }
 
 } //SQLMergeStatementImpl

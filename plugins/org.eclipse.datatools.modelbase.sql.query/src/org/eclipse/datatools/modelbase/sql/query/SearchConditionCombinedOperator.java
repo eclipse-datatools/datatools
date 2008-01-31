@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionCombinedOperator.java,v 1.3 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: SearchConditionCombinedOperator.java,v 1.4 2007/02/08 17:00:24 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -23,129 +23,129 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  */
 public final class SearchConditionCombinedOperator extends AbstractEnumerator {
 	/**
-	 * The '<em><b>AND</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>AND</b></em>' literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #AND_LITERAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
+     * @see #AND_LITERAL
+     * @model
+     * @generated
+     * @ordered
+     */
     public static final int AND = 0;
 
 	/**
-	 * The '<em><b>OR</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>OR</b></em>' literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #OR_LITERAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
+     * @see #OR_LITERAL
+     * @model
+     * @generated
+     * @ordered
+     */
     public static final int OR = 1;
 
 	/**
-	 * The '<em><b>AND</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>AND</b></em>' literal object.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>AND</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @see #AND
-	 * @generated
-	 * @ordered
-	 */
+     * @see #AND
+     * @generated
+     * @ordered
+     */
     public static final SearchConditionCombinedOperator AND_LITERAL = new SearchConditionCombinedOperator(AND, "AND", "AND");
 
 	/**
-	 * The '<em><b>OR</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>OR</b></em>' literal object.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>OR</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @see #OR
-	 * @generated
-	 * @ordered
-	 */
+     * @see #OR
+     * @generated
+     * @ordered
+     */
     public static final SearchConditionCombinedOperator OR_LITERAL = new SearchConditionCombinedOperator(OR, "OR", "OR");
 
 	/**
-	 * An array of all the '<em><b>Search Condition Combined Operator</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>Search Condition Combined Operator</b></em>' enumerators.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     private static final SearchConditionCombinedOperator[] VALUES_ARRAY =
 		new SearchConditionCombinedOperator[] {
-			AND_LITERAL,
-			OR_LITERAL,
-		};
+            AND_LITERAL,
+            OR_LITERAL,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>Search Condition Combined Operator</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>Search Condition Combined Operator</b></em>' enumerators.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static SearchConditionCombinedOperator get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SearchConditionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            SearchConditionCombinedOperator result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static SearchConditionCombinedOperator getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			SearchConditionCombinedOperator result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            SearchConditionCombinedOperator result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>Search Condition Combined Operator</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static SearchConditionCombinedOperator get(int value) {
-		switch (value) {
-			case AND: return AND_LITERAL;
-			case OR: return OR_LITERAL;
-		}
-		return null;	
-	}
+        switch (value) {
+            case AND: return AND_LITERAL;
+            case OR: return OR_LITERAL;
+        }
+        return null;
+    }
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private SearchConditionCombinedOperator(int value, String name, String literal) {
-		super(value, name, literal);
-	}
+        super(value, name, literal);
+    }
 
 } //SQLSearchConditionCombinedOperator

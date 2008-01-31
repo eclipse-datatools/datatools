@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionNestedItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: ValueExpressionNestedItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -15,6 +15,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -23,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -71,9 +72,21 @@ public class ValueExpressionNestedItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getValueExpressionNested_NestedValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NESTED__NESTED_VALUE_EXPR);
         }
         return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**

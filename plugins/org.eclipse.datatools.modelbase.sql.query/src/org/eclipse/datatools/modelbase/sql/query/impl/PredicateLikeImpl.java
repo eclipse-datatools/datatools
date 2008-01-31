@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateLikeImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: PredicateLikeImpl.java,v 1.5 2007/02/08 17:00:26 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -45,360 +45,360 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class PredicateLikeImpl extends PredicateImpl implements PredicateLike {
 	/**
-	 * The default value of the '{@link #isNotLike() <em>Not Like</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isNotLike() <em>Not Like</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isNotLike()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isNotLike()
+     * @generated
+     * @ordered
+     */
     protected static final boolean NOT_LIKE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isNotLike() <em>Not Like</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isNotLike() <em>Not Like</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isNotLike()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isNotLike()
+     * @generated
+     * @ordered
+     */
     protected boolean notLike = NOT_LIKE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPatternValueExpr() <em>Pattern Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPatternValueExpr() <em>Pattern Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getPatternValueExpr()
-	 * @generated
-	 * @ordered
-	 */
-    protected QueryValueExpression patternValueExpr = null;
+     * @see #getPatternValueExpr()
+     * @generated
+     * @ordered
+     */
+    protected QueryValueExpression patternValueExpr;
 
 	/**
-	 * The cached value of the '{@link #getMatchingValueExpr() <em>Matching Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMatchingValueExpr() <em>Matching Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getMatchingValueExpr()
-	 * @generated
-	 * @ordered
-	 */
-    protected QueryValueExpression matchingValueExpr = null;
+     * @see #getMatchingValueExpr()
+     * @generated
+     * @ordered
+     */
+    protected QueryValueExpression matchingValueExpr;
 
 	/**
-	 * The cached value of the '{@link #getEscapeValueExpr() <em>Escape Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEscapeValueExpr() <em>Escape Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getEscapeValueExpr()
-	 * @generated
-	 * @ordered
-	 */
-    protected QueryValueExpression escapeValueExpr = null;
+     * @see #getEscapeValueExpr()
+     * @generated
+     * @ordered
+     */
+    protected QueryValueExpression escapeValueExpr;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected PredicateLikeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.PREDICATE_LIKE;
-	}
+        return SQLQueryModelPackage.Literals.PREDICATE_LIKE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public boolean isNotLike() {
-		return notLike;
-	}
+        return notLike;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setNotLike(boolean newNotLike) {
-		boolean oldNotLike = notLike;
-		notLike = newNotLike;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE, oldNotLike, notLike));
-	}
+        boolean oldNotLike = notLike;
+        notLike = newNotLike;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE, oldNotLike, notLike));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValueExpression getPatternValueExpr() {
-		return patternValueExpr;
-	}
+        return patternValueExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetPatternValueExpr(QueryValueExpression newPatternValueExpr, NotificationChain msgs) {
-		QueryValueExpression oldPatternValueExpr = patternValueExpr;
-		patternValueExpr = newPatternValueExpr;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, oldPatternValueExpr, newPatternValueExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QueryValueExpression oldPatternValueExpr = patternValueExpr;
+        patternValueExpr = newPatternValueExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, oldPatternValueExpr, newPatternValueExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setPatternValueExpr(QueryValueExpression newPatternValueExpr) {
-		if (newPatternValueExpr != patternValueExpr) {
-			NotificationChain msgs = null;
-			if (patternValueExpr != null)
-				msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, QueryValueExpression.class, msgs);
-			if (newPatternValueExpr != null)
-				msgs = ((InternalEObject)newPatternValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, QueryValueExpression.class, msgs);
-			msgs = basicSetPatternValueExpr(newPatternValueExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, newPatternValueExpr, newPatternValueExpr));
-	}
+        if (newPatternValueExpr != patternValueExpr) {
+            NotificationChain msgs = null;
+            if (patternValueExpr != null)
+                msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, QueryValueExpression.class, msgs);
+            if (newPatternValueExpr != null)
+                msgs = ((InternalEObject)newPatternValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_PATTERN, QueryValueExpression.class, msgs);
+            msgs = basicSetPatternValueExpr(newPatternValueExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, newPatternValueExpr, newPatternValueExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValueExpression getMatchingValueExpr() {
-		return matchingValueExpr;
-	}
+        return matchingValueExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetMatchingValueExpr(QueryValueExpression newMatchingValueExpr, NotificationChain msgs) {
-		QueryValueExpression oldMatchingValueExpr = matchingValueExpr;
-		matchingValueExpr = newMatchingValueExpr;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, oldMatchingValueExpr, newMatchingValueExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QueryValueExpression oldMatchingValueExpr = matchingValueExpr;
+        matchingValueExpr = newMatchingValueExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, oldMatchingValueExpr, newMatchingValueExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setMatchingValueExpr(QueryValueExpression newMatchingValueExpr) {
-		if (newMatchingValueExpr != matchingValueExpr) {
-			NotificationChain msgs = null;
-			if (matchingValueExpr != null)
-				msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, QueryValueExpression.class, msgs);
-			if (newMatchingValueExpr != null)
-				msgs = ((InternalEObject)newMatchingValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, QueryValueExpression.class, msgs);
-			msgs = basicSetMatchingValueExpr(newMatchingValueExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, newMatchingValueExpr, newMatchingValueExpr));
-	}
+        if (newMatchingValueExpr != matchingValueExpr) {
+            NotificationChain msgs = null;
+            if (matchingValueExpr != null)
+                msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, QueryValueExpression.class, msgs);
+            if (newMatchingValueExpr != null)
+                msgs = ((InternalEObject)newMatchingValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_MATCHING, QueryValueExpression.class, msgs);
+            msgs = basicSetMatchingValueExpr(newMatchingValueExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, newMatchingValueExpr, newMatchingValueExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValueExpression getEscapeValueExpr() {
-		return escapeValueExpr;
-	}
+        return escapeValueExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetEscapeValueExpr(QueryValueExpression newEscapeValueExpr, NotificationChain msgs) {
-		QueryValueExpression oldEscapeValueExpr = escapeValueExpr;
-		escapeValueExpr = newEscapeValueExpr;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, oldEscapeValueExpr, newEscapeValueExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QueryValueExpression oldEscapeValueExpr = escapeValueExpr;
+        escapeValueExpr = newEscapeValueExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, oldEscapeValueExpr, newEscapeValueExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setEscapeValueExpr(QueryValueExpression newEscapeValueExpr) {
-		if (newEscapeValueExpr != escapeValueExpr) {
-			NotificationChain msgs = null;
-			if (escapeValueExpr != null)
-				msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, QueryValueExpression.class, msgs);
-			if (newEscapeValueExpr != null)
-				msgs = ((InternalEObject)newEscapeValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, QueryValueExpression.class, msgs);
-			msgs = basicSetEscapeValueExpr(newEscapeValueExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, newEscapeValueExpr, newEscapeValueExpr));
-	}
+        if (newEscapeValueExpr != escapeValueExpr) {
+            NotificationChain msgs = null;
+            if (escapeValueExpr != null)
+                msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, QueryValueExpression.class, msgs);
+            if (newEscapeValueExpr != null)
+                msgs = ((InternalEObject)newEscapeValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__LIKE_ESCAPE, QueryValueExpression.class, msgs);
+            msgs = basicSetEscapeValueExpr(newEscapeValueExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, newEscapeValueExpr, newEscapeValueExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				if (patternValueExpr != null)
-					msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, null, msgs);
-				return basicSetPatternValueExpr((QueryValueExpression)otherEnd, msgs);
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				if (matchingValueExpr != null)
-					msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, null, msgs);
-				return basicSetMatchingValueExpr((QueryValueExpression)otherEnd, msgs);
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				if (escapeValueExpr != null)
-					msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, null, msgs);
-				return basicSetEscapeValueExpr((QueryValueExpression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                if (patternValueExpr != null)
+                    msgs = ((InternalEObject)patternValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR, null, msgs);
+                return basicSetPatternValueExpr((QueryValueExpression)otherEnd, msgs);
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                if (matchingValueExpr != null)
+                    msgs = ((InternalEObject)matchingValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR, null, msgs);
+                return basicSetMatchingValueExpr((QueryValueExpression)otherEnd, msgs);
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                if (escapeValueExpr != null)
+                    msgs = ((InternalEObject)escapeValueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR, null, msgs);
+                return basicSetEscapeValueExpr((QueryValueExpression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				return basicSetPatternValueExpr(null, msgs);
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				return basicSetMatchingValueExpr(null, msgs);
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				return basicSetEscapeValueExpr(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                return basicSetPatternValueExpr(null, msgs);
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                return basicSetMatchingValueExpr(null, msgs);
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                return basicSetEscapeValueExpr(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
-				return isNotLike() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				return getPatternValueExpr();
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				return getMatchingValueExpr();
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				return getEscapeValueExpr();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
+                return isNotLike() ? Boolean.TRUE : Boolean.FALSE;
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                return getPatternValueExpr();
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                return getMatchingValueExpr();
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                return getEscapeValueExpr();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
-				setNotLike(((Boolean)newValue).booleanValue());
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				setPatternValueExpr((QueryValueExpression)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				setMatchingValueExpr((QueryValueExpression)newValue);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				setEscapeValueExpr((QueryValueExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
+                setNotLike(((Boolean)newValue).booleanValue());
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                setPatternValueExpr((QueryValueExpression)newValue);
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                setMatchingValueExpr((QueryValueExpression)newValue);
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                setEscapeValueExpr((QueryValueExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
-				setNotLike(NOT_LIKE_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				setPatternValueExpr((QueryValueExpression)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				setMatchingValueExpr((QueryValueExpression)null);
-				return;
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				setEscapeValueExpr((QueryValueExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
+                setNotLike(NOT_LIKE_EDEFAULT);
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                setPatternValueExpr((QueryValueExpression)null);
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                setMatchingValueExpr((QueryValueExpression)null);
+                return;
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                setEscapeValueExpr((QueryValueExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
-				return notLike != NOT_LIKE_EDEFAULT;
-			case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
-				return patternValueExpr != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
-				return matchingValueExpr != null;
-			case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
-				return escapeValueExpr != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.PREDICATE_LIKE__NOT_LIKE:
+                return notLike != NOT_LIKE_EDEFAULT;
+            case SQLQueryModelPackage.PREDICATE_LIKE__PATTERN_VALUE_EXPR:
+                return patternValueExpr != null;
+            case SQLQueryModelPackage.PREDICATE_LIKE__MATCHING_VALUE_EXPR:
+                return matchingValueExpr != null;
+            case SQLQueryModelPackage.PREDICATE_LIKE__ESCAPE_VALUE_EXPR:
+                return escapeValueExpr != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (notLike: ");
-		result.append(notLike);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (notLike: ");
+        result.append(notLike);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SQLPredicateLikeImpl

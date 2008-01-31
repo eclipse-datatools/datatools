@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: UpdateSourceImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: UpdateSourceImpl.java,v 1.4 2007/02/08 17:00:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -36,157 +36,157 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class UpdateSourceImpl extends SQLQueryObjectImpl implements UpdateSource {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   protected UpdateSourceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.UPDATE_SOURCE;
-	}
+        return SQLQueryModelPackage.Literals.UPDATE_SOURCE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public UpdateAssignmentExpression getUpdateAssignmentExpr() {
-		if (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR) return null;
-		return (UpdateAssignmentExpression)eContainer();
-	}
+        if (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR) return null;
+        return (UpdateAssignmentExpression)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetUpdateAssignmentExpr(UpdateAssignmentExpression newUpdateAssignmentExpr, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newUpdateAssignmentExpr, SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newUpdateAssignmentExpr, SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public void setUpdateAssignmentExpr(UpdateAssignmentExpression newUpdateAssignmentExpr) {
-		if (newUpdateAssignmentExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR && newUpdateAssignmentExpr != null)) {
-			if (EcoreUtil.isAncestor(this, newUpdateAssignmentExpr))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newUpdateAssignmentExpr != null)
-				msgs = ((InternalEObject)newUpdateAssignmentExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
-			msgs = basicSetUpdateAssignmentExpr(newUpdateAssignmentExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR, newUpdateAssignmentExpr, newUpdateAssignmentExpr));
-	}
+        if (newUpdateAssignmentExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR && newUpdateAssignmentExpr != null)) {
+            if (EcoreUtil.isAncestor(this, newUpdateAssignmentExpr))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newUpdateAssignmentExpr != null)
+                msgs = ((InternalEObject)newUpdateAssignmentExpr).eInverseAdd(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
+            msgs = basicSetUpdateAssignmentExpr(newUpdateAssignmentExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR, newUpdateAssignmentExpr, newUpdateAssignmentExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetUpdateAssignmentExpr((UpdateAssignmentExpression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetUpdateAssignmentExpr((UpdateAssignmentExpression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				return basicSetUpdateAssignmentExpr(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                return basicSetUpdateAssignmentExpr(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.UPDATE_ASSIGNMENT_EXPRESSION__UPDATE_SOURCE, UpdateAssignmentExpression.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				return getUpdateAssignmentExpr();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                return getUpdateAssignmentExpr();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				setUpdateAssignmentExpr((UpdateAssignmentExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                setUpdateAssignmentExpr((UpdateAssignmentExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				setUpdateAssignmentExpr((UpdateAssignmentExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                setUpdateAssignmentExpr((UpdateAssignmentExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
-				return getUpdateAssignmentExpr() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.UPDATE_SOURCE__UPDATE_ASSIGNMENT_EXPR:
+                return getUpdateAssignmentExpr() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //UpdateSourceImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionFunctionItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: ValueExpressionFunctionItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -15,6 +15,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -74,14 +75,18 @@ public class ValueExpressionFunctionItemProvider
      */
   protected void addSpecialRegisterPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionFunction_specialRegister_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionFunction_specialRegister_feature", "_UI_ValueExpressionFunction_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionFunction_SpecialRegister(),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION__SPECIAL_REGISTER,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -92,14 +97,18 @@ public class ValueExpressionFunctionItemProvider
      */
   protected void addDistinctPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionFunction_distinct_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionFunction_distinct_feature", "_UI_ValueExpressionFunction_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionFunction_Distinct(),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION__DISTINCT,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -110,14 +119,18 @@ public class ValueExpressionFunctionItemProvider
      */
   protected void addColumnFunctionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionFunction_columnFunction_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionFunction_columnFunction_feature", "_UI_ValueExpressionFunction_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionFunction_ColumnFunction(),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION__COLUMN_FUNCTION,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -128,13 +141,18 @@ public class ValueExpressionFunctionItemProvider
      */
 	protected void addFunctionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionFunction_function_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionFunction_function_feature", "_UI_ValueExpressionFunction_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionFunction_Function(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION__FUNCTION,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -148,9 +166,21 @@ public class ValueExpressionFunctionItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getValueExpressionFunction_ParameterList());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.VALUE_EXPRESSION_FUNCTION__PARAMETER_LIST);
         }
         return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**

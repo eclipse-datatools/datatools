@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelItemProviderAdapterFactory.java,v 1.1 2007/03/22 17:10:12 bpayton Exp $
+ * $Id: SQLQueryModelItemProviderAdapterFactory.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -65,15 +65,15 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
      * @generated
      */
   public SQLQueryModelItemProviderAdapterFactory() {
+        supportedTypes.add(IEditingDomainItemProvider.class);
         supportedTypes.add(IStructuredItemContentProvider.class);
         supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-        supportedTypes.add(IEditingDomainItemProvider.class);
         supportedTypes.add(IItemLabelProvider.class);
+        supportedTypes.add(IItemPropertySource.class);
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryDeleteStatement} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -81,7 +81,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryDeleteStatementItemProvider queryDeleteStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryDeleteStatement}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -95,7 +95,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryInsertStatement} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -103,7 +103,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryInsertStatementItemProvider queryInsertStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryInsertStatement}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -117,7 +117,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QuerySelectStatement} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -125,7 +125,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QuerySelectStatementItemProvider querySelectStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QuerySelectStatement}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -139,7 +139,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryUpdateStatement} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -147,7 +147,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryUpdateStatementItemProvider queryUpdateStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryUpdateStatement}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -161,7 +161,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.UpdateAssignmentExpression} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -169,7 +169,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected UpdateAssignmentExpressionItemProvider updateAssignmentExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.UpdateAssignmentExpression}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateAssignmentExpression}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -183,7 +183,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.CursorReference} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.CursorReference} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -191,7 +191,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected CursorReferenceItemProvider cursorReferenceItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.CursorReference}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.CursorReference}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -205,7 +205,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryExpressionRoot} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -213,7 +213,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryExpressionRootItemProvider queryExpressionRootItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryExpressionRoot}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -227,7 +227,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValuesRow} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -235,7 +235,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValuesRowItemProvider valuesRowItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValuesRow}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValuesRow}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -249,7 +249,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryValues} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryValues} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -257,7 +257,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryValuesItemProvider queryValuesItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryValues}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryValues}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -271,7 +271,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.TableJoined} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableJoined} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -279,7 +279,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected TableJoinedItemProvider tableJoinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.TableJoined}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableJoined}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -293,7 +293,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.WithTableSpecification} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification} instances.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -301,7 +301,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
 	protected WithTableSpecificationItemProvider withTableSpecificationItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.WithTableSpecification}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableSpecification}.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -315,7 +315,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.SearchConditionCombined} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -323,7 +323,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected SearchConditionCombinedItemProvider searchConditionCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.SearchConditionCombined}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -337,7 +337,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.OrderByValueExpression} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -345,7 +345,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected OrderByValueExpressionItemProvider orderByValueExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.OrderByValueExpression}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -359,7 +359,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryCombined} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -367,7 +367,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryCombinedItemProvider queryCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryCombined}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -381,7 +381,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QuerySelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -389,7 +389,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QuerySelectItemProvider querySelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QuerySelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -403,7 +403,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ResultTableAllColumns} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -411,7 +411,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ResultTableAllColumnsItemProvider resultTableAllColumnsItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ResultTableAllColumns}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -425,7 +425,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ResultColumn} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -433,7 +433,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ResultColumnItemProvider resultColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ResultColumn}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ResultColumn}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -447,7 +447,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateBasic} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -455,7 +455,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateBasicItemProvider predicateBasicItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateBasic}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -469,7 +469,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateBetween} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -477,7 +477,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateBetweenItemProvider predicateBetweenItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateBetween}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -491,7 +491,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateExists} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -499,7 +499,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateExistsItemProvider predicateExistsItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateExists}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateExists}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -513,7 +513,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateLike} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -521,7 +521,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateLikeItemProvider predicateLikeItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateLike}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateLike}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -535,7 +535,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateIsNull} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -543,7 +543,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateIsNullItemProvider predicateIsNullItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateIsNull}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateIsNull}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -557,7 +557,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateQuantifiedValueSelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -565,7 +565,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateQuantifiedValueSelectItemProvider predicateQuantifiedValueSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateQuantifiedValueSelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -579,7 +579,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateQuantifiedRowSelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -587,7 +587,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateQuantifiedRowSelectItemProvider predicateQuantifiedRowSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateQuantifiedRowSelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedRowSelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -601,7 +601,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateInValueSelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -609,7 +609,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateInValueSelectItemProvider predicateInValueSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateInValueSelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueSelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -623,7 +623,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateInValueList} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -631,7 +631,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateInValueListItemProvider predicateInValueListItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateInValueList}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -645,7 +645,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.PredicateInValueRowSelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -653,7 +653,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected PredicateInValueRowSelectItemProvider predicateInValueRowSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.PredicateInValueRowSelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -667,7 +667,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionSimple} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -675,7 +675,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionSimpleItemProvider valueExpressionSimpleItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionSimple}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -689,7 +689,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionColumn} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -697,7 +697,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionColumnItemProvider valueExpressionColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionColumn}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -711,7 +711,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionVariable} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -719,7 +719,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionVariableItemProvider valueExpressionVariableItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionVariable}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -733,7 +733,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionScalarSelect} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -741,7 +741,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionScalarSelectItemProvider valueExpressionScalarSelectItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionScalarSelect}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -755,7 +755,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionLabeledDuration} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -763,7 +763,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionLabeledDurationItemProvider valueExpressionLabeledDurationItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionLabeledDuration}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -777,7 +777,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCast} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -785,7 +785,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCastItemProvider valueExpressionCastItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCast}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCast}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -799,7 +799,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionNullValue} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -807,7 +807,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionNullValueItemProvider valueExpressionNullValueItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionNullValue}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -821,7 +821,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionDefaultValue} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -829,7 +829,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionDefaultValueItemProvider valueExpressionDefaultValueItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionDefaultValue}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionDefaultValue}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -843,7 +843,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionFunction} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -851,7 +851,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionFunctionItemProvider valueExpressionFunctionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionFunction}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionFunction}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -865,7 +865,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCombined} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -873,7 +873,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCombinedItemProvider valueExpressionCombinedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCombined}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombined}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -887,7 +887,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.GroupingSets} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -895,7 +895,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected GroupingSetsItemProvider groupingSetsItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.GroupingSets}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSets}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -909,7 +909,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.GroupingSetsElementSublist} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -917,7 +917,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected GroupingSetsElementSublistItemProvider groupingSetsElementSublistItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.GroupingSetsElementSublist}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementSublist}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -931,7 +931,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.GroupingSetsElementExpression} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -939,7 +939,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected GroupingSetsElementExpressionItemProvider groupingSetsElementExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.GroupingSetsElementExpression}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElementExpression}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -953,7 +953,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.SuperGroup} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -961,7 +961,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected SuperGroupItemProvider superGroupItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.SuperGroup}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroup}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -975,7 +975,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.GroupingExpression} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -983,7 +983,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected GroupingExpressionItemProvider groupingExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.GroupingExpression}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingExpression}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -997,7 +997,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.SuperGroupElementSublist} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1005,7 +1005,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected SuperGroupElementSublistItemProvider superGroupElementSublistItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.SuperGroupElementSublist}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1019,7 +1019,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.SuperGroupElementExpression} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1027,7 +1027,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected SuperGroupElementExpressionItemProvider superGroupElementExpressionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.SuperGroupElementExpression}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElementExpression}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1041,7 +1041,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCaseSearch} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1049,7 +1049,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCaseSearchItemProvider valueExpressionCaseSearchItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCaseSearch}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearch}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1063,7 +1063,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCaseSimple} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1071,7 +1071,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCaseSimpleItemProvider valueExpressionCaseSimpleItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCaseSimple}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimple}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1085,7 +1085,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCaseElse} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1093,7 +1093,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCaseElseItemProvider valueExpressionCaseElseItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCaseElse}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1107,7 +1107,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCaseSearchContent} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1115,7 +1115,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCaseSearchContentItemProvider valueExpressionCaseSearchContentItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCaseSearchContent}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSearchContent}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1129,7 +1129,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionCaseSimpleContent} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1137,7 +1137,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionCaseSimpleContentItemProvider valueExpressionCaseSimpleContentItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionCaseSimpleContent}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1151,7 +1151,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.TableInDatabase} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1159,7 +1159,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected TableInDatabaseItemProvider tableInDatabaseItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.TableInDatabase}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1173,7 +1173,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.TableFunction} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableFunction} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1181,7 +1181,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected TableFunctionItemProvider tableFunctionItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.TableFunction}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableFunction}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1195,7 +1195,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ColumnName} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ColumnName} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1203,7 +1203,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ColumnNameItemProvider columnNameItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ColumnName}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ColumnName}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1217,7 +1217,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.TableNested} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableNested} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1225,7 +1225,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected TableNestedItemProvider tableNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.TableNested}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableNested}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1239,7 +1239,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.QueryMergeStatement} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1247,7 +1247,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected QueryMergeStatementItemProvider queryMergeStatementItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.QueryMergeStatement}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryMergeStatement}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1261,7 +1261,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.SearchConditionNested} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1269,7 +1269,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected SearchConditionNestedItemProvider searchConditionNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.SearchConditionNested}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionNested}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1283,7 +1283,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.ValueExpressionNested} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1291,7 +1291,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected ValueExpressionNestedItemProvider valueExpressionNestedItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.ValueExpressionNested}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1305,7 +1305,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.OrderByOrdinal} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1313,7 +1313,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected OrderByOrdinalItemProvider orderByOrdinalItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.OrderByOrdinal}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1327,7 +1327,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.TableCorrelation} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1335,7 +1335,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected TableCorrelationItemProvider tableCorrelationItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.TableCorrelation}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1349,7 +1349,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.UpdateSource} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1357,7 +1357,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected UpdateSourceItemProvider updateSourceItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.UpdateSource}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSource}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1371,7 +1371,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.UpdateSourceExprList} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1379,7 +1379,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected UpdateSourceExprListItemProvider updateSourceExprListItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.UpdateSourceExprList}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceExprList}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1393,7 +1393,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.UpdateSourceQuery} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1401,7 +1401,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected UpdateSourceQueryItemProvider updateSourceQueryItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.UpdateSourceQuery}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.UpdateSourceQuery}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1415,7 +1415,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.OrderByResultColumn} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn} instances.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1423,7 +1423,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
   protected OrderByResultColumnItemProvider orderByResultColumnItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.OrderByResultColumn}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn}.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
@@ -1437,7 +1437,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link com.ibm.db.models.sql.query.WithTableReference} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference} instances.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1445,7 +1445,7 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
 	protected WithTableReferenceItemProvider withTableReferenceItemProvider;
 
     /**
-     * This creates an adapter for a {@link com.ibm.db.models.sql.query.WithTableReference}.
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference}.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -1456,6 +1456,28 @@ public class SQLQueryModelItemProviderAdapterFactory extends SQLQueryModelAdapte
         }
 
         return withTableReferenceItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.datatools.modelbase.sql.query.QueryNested} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected QueryNestedItemProvider queryNestedItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryNested}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Adapter createQueryNestedAdapter() {
+        if (queryNestedItemProvider == null) {
+            queryNestedItemProvider = new QueryNestedItemProvider(this);
+        }
+
+        return queryNestedItemProvider;
     }
 
     /**

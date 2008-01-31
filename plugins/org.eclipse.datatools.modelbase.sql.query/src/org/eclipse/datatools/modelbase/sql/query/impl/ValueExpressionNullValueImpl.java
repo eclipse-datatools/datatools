@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionNullValueImpl.java,v 1.4 2005/12/22 22:18:47 bpayton Exp $
+ * $Id: ValueExpressionNullValueImpl.java,v 1.5 2007/02/08 17:00:25 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -58,21 +58,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ValueExpressionNullValueImpl extends ValueExpressionAtomicImpl implements ValueExpressionNullValue {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ValueExpressionNullValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NULL_VALUE;
-	}
+        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_NULL_VALUE;
+    }
 
 } //SQLValueExpressionNullImpl

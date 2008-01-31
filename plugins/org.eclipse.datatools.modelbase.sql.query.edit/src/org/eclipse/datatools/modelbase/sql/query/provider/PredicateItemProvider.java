@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: PredicateItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.Predicate} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.Predicate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class PredicateItemProvider
      */
   protected void addNegatedPredicatePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_Predicate_negatedPredicate_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Predicate_negatedPredicate_feature", "_UI_Predicate_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicate_NegatedPredicate(),
+                 SQLQueryModelPackage.Literals.PREDICATE__NEGATED_PREDICATE,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -90,14 +94,18 @@ public class PredicateItemProvider
      */
   protected void addHasSelectivityPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_Predicate_hasSelectivity_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Predicate_hasSelectivity_feature", "_UI_Predicate_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicate_HasSelectivity(),
+                 SQLQueryModelPackage.Literals.PREDICATE__HAS_SELECTIVITY,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -108,14 +116,18 @@ public class PredicateItemProvider
      */
   protected void addSelectivityValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_Predicate_selectivityValue_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Predicate_selectivityValue_feature", "_UI_Predicate_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicate_SelectivityValue(),
+                 SQLQueryModelPackage.Literals.PREDICATE__SELECTIVITY_VALUE,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**

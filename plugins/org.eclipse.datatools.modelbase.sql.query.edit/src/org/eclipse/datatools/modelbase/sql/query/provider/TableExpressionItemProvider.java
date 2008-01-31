@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpressionItemProvider.java,v 1.1 2007/03/22 17:10:12 bpayton Exp $
+ * $Id: TableExpressionItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.TableExpression} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableExpression} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -59,28 +59,10 @@ public class TableExpressionItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addColumnListPropertyDescriptor(object);
             addResultTableAllColumnsPropertyDescriptor(object);
             addValueExprColumnsPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Column List feature.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  protected void addColumnListPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_TableExpression_columnList_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_TableExpression_columnList_feature", "_UI_TableExpression_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableExpression_ColumnList(),
-                 true));
     }
 
     /**
@@ -91,13 +73,18 @@ public class TableExpressionItemProvider
      */
   protected void addResultTableAllColumnsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_TableExpression_resultTableAllColumns_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TableExpression_resultTableAllColumns_feature", "_UI_TableExpression_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableExpression_ResultTableAllColumns(),
-                 true));
+                 SQLQueryModelPackage.Literals.TABLE_EXPRESSION__RESULT_TABLE_ALL_COLUMNS,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -108,13 +95,18 @@ public class TableExpressionItemProvider
      */
     protected void addValueExprColumnsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_TableExpression_valueExprColumns_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TableExpression_valueExprColumns_feature", "_UI_TableExpression_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableExpression_ValueExprColumns(),
-                 true));
+                 SQLQueryModelPackage.Literals.TABLE_EXPRESSION__VALUE_EXPR_COLUMNS,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -170,6 +162,7 @@ public class TableExpressionItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(TableExpression.class)) {
+            case SQLQueryModelPackage.TABLE_EXPRESSION__COLUMN_LIST:
             case SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;

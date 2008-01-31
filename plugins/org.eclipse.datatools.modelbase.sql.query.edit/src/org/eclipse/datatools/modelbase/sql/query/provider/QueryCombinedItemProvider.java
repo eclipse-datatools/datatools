@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombinedItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: QueryCombinedItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -73,14 +73,18 @@ public class QueryCombinedItemProvider
      */
   protected void addCombinedOperatorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_QueryCombined_combinedOperator_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_QueryCombined_combinedOperator_feature", "_UI_QueryCombined_type"),
-                 SQLQueryModelPackage.eINSTANCE.getQueryCombined_CombinedOperator(),
+                 SQLQueryModelPackage.Literals.QUERY_COMBINED__COMBINED_OPERATOR,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -94,8 +98,8 @@ public class QueryCombinedItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getQueryCombined_LeftQuery());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getQueryCombined_RightQuery());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.QUERY_COMBINED__LEFT_QUERY);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.QUERY_COMBINED__RIGHT_QUERY);
         }
         return childrenFeatures;
     }

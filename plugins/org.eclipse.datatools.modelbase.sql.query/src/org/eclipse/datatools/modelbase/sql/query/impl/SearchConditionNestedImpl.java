@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionNestedImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: SearchConditionNestedImpl.java,v 1.5 2007/02/08 17:00:32 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -41,156 +41,156 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SearchConditionNestedImpl extends QuerySearchConditionImpl implements SearchConditionNested {
 	/**
-	 * The cached value of the '{@link #getNestedCondition() <em>Nested Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNestedCondition() <em>Nested Condition</em>}' containment reference.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #getNestedCondition()
-	 * @generated
-	 * @ordered
-	 */
-  protected QuerySearchCondition nestedCondition = null;
+     * @see #getNestedCondition()
+     * @generated
+     * @ordered
+     */
+  protected QuerySearchCondition nestedCondition;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected SearchConditionNestedImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.SEARCH_CONDITION_NESTED;
-	}
+        return SQLQueryModelPackage.Literals.SEARCH_CONDITION_NESTED;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public QuerySearchCondition getNestedCondition() {
-		return nestedCondition;
-	}
+        return nestedCondition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public NotificationChain basicSetNestedCondition(QuerySearchCondition newNestedCondition, NotificationChain msgs) {
-		QuerySearchCondition oldNestedCondition = nestedCondition;
-		nestedCondition = newNestedCondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, oldNestedCondition, newNestedCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QuerySearchCondition oldNestedCondition = nestedCondition;
+        nestedCondition = newNestedCondition;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, oldNestedCondition, newNestedCondition);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public void setNestedCondition(QuerySearchCondition newNestedCondition) {
-		if (newNestedCondition != nestedCondition) {
-			NotificationChain msgs = null;
-			if (nestedCondition != null)
-				msgs = ((InternalEObject)nestedCondition).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, QuerySearchCondition.class, msgs);
-			if (newNestedCondition != null)
-				msgs = ((InternalEObject)newNestedCondition).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, QuerySearchCondition.class, msgs);
-			msgs = basicSetNestedCondition(newNestedCondition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, newNestedCondition, newNestedCondition));
-	}
+        if (newNestedCondition != nestedCondition) {
+            NotificationChain msgs = null;
+            if (nestedCondition != null)
+                msgs = ((InternalEObject)nestedCondition).eInverseRemove(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, QuerySearchCondition.class, msgs);
+            if (newNestedCondition != null)
+                msgs = ((InternalEObject)newNestedCondition).eInverseAdd(this, SQLQueryModelPackage.QUERY_SEARCH_CONDITION__NEST, QuerySearchCondition.class, msgs);
+            msgs = basicSetNestedCondition(newNestedCondition, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, newNestedCondition, newNestedCondition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				if (nestedCondition != null)
-					msgs = ((InternalEObject)nestedCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, null, msgs);
-				return basicSetNestedCondition((QuerySearchCondition)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                if (nestedCondition != null)
+                    msgs = ((InternalEObject)nestedCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION, null, msgs);
+                return basicSetNestedCondition((QuerySearchCondition)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				return basicSetNestedCondition(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                return basicSetNestedCondition(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				return getNestedCondition();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                return getNestedCondition();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				setNestedCondition((QuerySearchCondition)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                setNestedCondition((QuerySearchCondition)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				setNestedCondition((QuerySearchCondition)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                setNestedCondition((QuerySearchCondition)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
-				return nestedCondition != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SEARCH_CONDITION_NESTED__NESTED_CONDITION:
+                return nestedCondition != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLSearchConditionNestedImpl

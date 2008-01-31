@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimpleImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: ValueExpressionCaseSimpleImpl.java,v 1.5 2007/02/08 17:00:30 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -62,193 +62,193 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ValueExpressionCaseSimpleImpl extends ValueExpressionCaseImpl implements ValueExpressionCaseSimple {
 	/**
-	 * The cached value of the '{@link #getContentList() <em>Content List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContentList() <em>Content List</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContentList()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList contentList = null;
+     * @see #getContentList()
+     * @generated
+     * @ordered
+     */
+    protected EList contentList;
 
 	/**
-	 * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getValueExpr()
-	 * @generated
-	 * @ordered
-	 */
-    protected QueryValueExpression valueExpr = null;
+     * @see #getValueExpr()
+     * @generated
+     * @ordered
+     */
+    protected QueryValueExpression valueExpr;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ValueExpressionCaseSimpleImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE_SIMPLE;
-	}
+        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE_SIMPLE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getContentList() {
-		if (contentList == null) {
-			contentList = new EObjectContainmentWithInverseEList(ValueExpressionCaseSimpleContent.class, this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE);
-		}
-		return contentList;
-	}
+        if (contentList == null) {
+            contentList = new EObjectContainmentWithInverseEList(ValueExpressionCaseSimpleContent.class, this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__VALUE_EXPR_CASE_SIMPLE);
+        }
+        return contentList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValueExpression getValueExpr() {
-		return valueExpr;
-	}
+        return valueExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetValueExpr(QueryValueExpression newValueExpr, NotificationChain msgs) {
-		QueryValueExpression oldValueExpr = valueExpr;
-		valueExpr = newValueExpr;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, oldValueExpr, newValueExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QueryValueExpression oldValueExpr = valueExpr;
+        valueExpr = newValueExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, oldValueExpr, newValueExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setValueExpr(QueryValueExpression newValueExpr) {
-		if (newValueExpr != valueExpr) {
-			NotificationChain msgs = null;
-			if (valueExpr != null)
-				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, QueryValueExpression.class, msgs);
-			if (newValueExpr != null)
-				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, QueryValueExpression.class, msgs);
-			msgs = basicSetValueExpr(newValueExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, newValueExpr, newValueExpr));
-	}
+        if (newValueExpr != valueExpr) {
+            NotificationChain msgs = null;
+            if (valueExpr != null)
+                msgs = ((InternalEObject)valueExpr).eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, QueryValueExpression.class, msgs);
+            if (newValueExpr != null)
+                msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE, QueryValueExpression.class, msgs);
+            msgs = basicSetValueExpr(newValueExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, newValueExpr, newValueExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				return ((InternalEList)getContentList()).basicAdd(otherEnd, msgs);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				if (valueExpr != null)
-					msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, null, msgs);
-				return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                return ((InternalEList)getContentList()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                if (valueExpr != null)
+                    msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR, null, msgs);
+                return basicSetValueExpr((QueryValueExpression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				return ((InternalEList)getContentList()).basicRemove(otherEnd, msgs);
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				return basicSetValueExpr(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                return ((InternalEList)getContentList()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                return basicSetValueExpr(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				return getContentList();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				return getValueExpr();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                return getContentList();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                return getValueExpr();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				getContentList().clear();
-				getContentList().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				setValueExpr((QueryValueExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                getContentList().clear();
+                getContentList().addAll((Collection)newValue);
+                return;
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                setValueExpr((QueryValueExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				getContentList().clear();
-				return;
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				setValueExpr((QueryValueExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                getContentList().clear();
+                return;
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                setValueExpr((QueryValueExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
-				return contentList != null && !contentList.isEmpty();
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
-				return valueExpr != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__CONTENT_LIST:
+                return contentList != null && !contentList.isEmpty();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR:
+                return valueExpr != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLValueExpressionCaseSimpleImpl

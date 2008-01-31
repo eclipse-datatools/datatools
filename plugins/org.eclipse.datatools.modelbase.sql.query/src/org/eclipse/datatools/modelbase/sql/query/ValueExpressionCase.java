@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCase.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
+ * $Id: ValueExpressionCase.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -25,31 +25,31 @@ package org.eclipse.datatools.modelbase.sql.query;
  */
 public interface ValueExpressionCase extends ValueExpressionAtomic{
 	/**
-	 * Returns the value of the '<em><b>Case Else</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getValueExprCase <em>Value Expr Case</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Case Else</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getValueExprCase <em>Value Expr Case</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Case Else</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Case Else</em>' containment reference.
-	 * @see #setCaseElse(ValueExpressionCaseElse)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCase_CaseElse()
-	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getValueExprCase
-	 * @model opposite="valueExprCase" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Case Else</em>' containment reference.
+     * @see #setCaseElse(ValueExpressionCaseElse)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getValueExpressionCase_CaseElse()
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseElse#getValueExprCase
+     * @model opposite="valueExprCase" containment="true"
+     * @generated
+     */
     ValueExpressionCaseElse getCaseElse();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCase#getCaseElse <em>Case Else</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCase#getCaseElse <em>Case Else</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Case Else</em>' containment reference.
-	 * @see #getCaseElse()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Case Else</em>' containment reference.
+     * @see #getCaseElse()
+     * @generated
+     */
     void setCaseElse(ValueExpressionCaseElse value);
 
 } // SQLValueExpressionCase

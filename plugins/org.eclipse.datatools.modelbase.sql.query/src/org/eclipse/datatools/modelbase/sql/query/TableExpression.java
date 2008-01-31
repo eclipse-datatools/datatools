@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableExpression.java,v 1.1 2005/12/16 13:11:14 bpayton Exp $
+ * $Id: TableExpression.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -29,85 +29,85 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TableExpression extends TableReference{
 	/**
-	 * Returns the value of the '<em><b>Column List</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getParentTableExpr <em>Parent Table Expr</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Column List</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getParentTableExpr <em>Parent Table Expr</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Column List</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Column List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ColumnList()
-	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getParentTableExpr
-	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="parentTableExpr" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Column List</em>' containment reference list.
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ColumnList()
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getParentTableExpr
+     * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="parentTableExpr" containment="true"
+     * @generated
+     */
     EList getColumnList();
 
 	/**
-	 * Returns the value of the '<em><b>Table Correlation</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getTableExpr <em>Table Expr</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Table Correlation</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getTableExpr <em>Table Expr</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Table Correlation</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Table Correlation</em>' containment reference.
-	 * @see #setTableCorrelation(TableCorrelation)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_TableCorrelation()
-	 * @see org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getTableExpr
-	 * @model opposite="tableExpr" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Table Correlation</em>' containment reference.
+     * @see #setTableCorrelation(TableCorrelation)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_TableCorrelation()
+     * @see org.eclipse.datatools.modelbase.sql.query.TableCorrelation#getTableExpr
+     * @model opposite="tableExpr" containment="true"
+     * @generated
+     */
     TableCorrelation getTableCorrelation();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getTableCorrelation <em>Table Correlation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.TableExpression#getTableCorrelation <em>Table Correlation</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Table Correlation</em>' containment reference.
-	 * @see #getTableCorrelation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Table Correlation</em>' containment reference.
+     * @see #getTableCorrelation()
+     * @generated
+     */
     void setTableCorrelation(TableCorrelation value);
 
 	/**
-	 * Returns the value of the '<em><b>Result Table All Columns</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns#getTableExpr <em>Table Expr</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Result Table All Columns</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns#getTableExpr <em>Table Expr</em>}'.
+     * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Result Table All Columns</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-	 * @return the value of the '<em>Result Table All Columns</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ResultTableAllColumns()
-	 * @see org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns#getTableExpr
-	 * @model type="org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns" opposite="tableExpr"
-	 * @generated
-	 */
+     * @return the value of the '<em>Result Table All Columns</em>' reference list.
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ResultTableAllColumns()
+     * @see org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns#getTableExpr
+     * @model type="org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns" opposite="tableExpr"
+     * @generated
+     */
   EList getResultTableAllColumns();
 
 	/**
-	 * Returns the value of the '<em><b>Value Expr Columns</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr <em>Table Expr</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Value Expr Columns</b></em>' reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr <em>Table Expr</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Value Expr Columns</em>' reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Expr Columns</em>' reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ValueExprColumns()
-	 * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr
-	 * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="tableExpr"
-	 * @generated
-	 */
+     * @return the value of the '<em>Value Expr Columns</em>' reference list.
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getTableExpression_ValueExprColumns()
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn#getTableExpr
+     * @model type="org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn" opposite="tableExpr"
+     * @generated
+     */
     EList getValueExprColumns();
 
 } // SQLTableExpression

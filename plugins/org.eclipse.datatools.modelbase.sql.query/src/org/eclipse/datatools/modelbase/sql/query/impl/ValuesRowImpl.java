@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValuesRowImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: ValuesRowImpl.java,v 1.4 2007/02/08 17:00:27 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -42,253 +42,253 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ValuesRowImpl extends SQLQueryObjectImpl implements ValuesRow {
 	/**
-	 * The cached value of the '{@link #getExprList() <em>Expr List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExprList() <em>Expr List</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getExprList()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList exprList = null;
+     * @see #getExprList()
+     * @generated
+     * @ordered
+     */
+    protected EList exprList;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ValuesRowImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.VALUES_ROW;
-	}
+        return SQLQueryModelPackage.Literals.VALUES_ROW;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryInsertStatement getInsertStatement() {
-		if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT) return null;
-		return (QueryInsertStatement)eContainer();
-	}
+        if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT) return null;
+        return (QueryInsertStatement)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInsertStatement(QueryInsertStatement newInsertStatement, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newInsertStatement, SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newInsertStatement, SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setInsertStatement(QueryInsertStatement newInsertStatement) {
-		if (newInsertStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT && newInsertStatement != null)) {
-			if (EcoreUtil.isAncestor(this, newInsertStatement))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newInsertStatement != null)
-				msgs = ((InternalEObject)newInsertStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST, QueryInsertStatement.class, msgs);
-			msgs = basicSetInsertStatement(newInsertStatement, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT, newInsertStatement, newInsertStatement));
-	}
+        if (newInsertStatement != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT && newInsertStatement != null)) {
+            if (EcoreUtil.isAncestor(this, newInsertStatement))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newInsertStatement != null)
+                msgs = ((InternalEObject)newInsertStatement).eInverseAdd(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST, QueryInsertStatement.class, msgs);
+            msgs = basicSetInsertStatement(newInsertStatement, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT, newInsertStatement, newInsertStatement));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getExprList() {
-		if (exprList == null) {
-			exprList = new EObjectContainmentWithInverseEList(QueryValueExpression.class, this, SQLQueryModelPackage.VALUES_ROW__EXPR_LIST, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW);
-		}
-		return exprList;
-	}
+        if (exprList == null) {
+            exprList = new EObjectContainmentWithInverseEList(QueryValueExpression.class, this, SQLQueryModelPackage.VALUES_ROW__EXPR_LIST, SQLQueryModelPackage.QUERY_VALUE_EXPRESSION__VALUES_ROW);
+        }
+        return exprList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValues getQueryValues() {
-		if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES) return null;
-		return (QueryValues)eContainer();
-	}
+        if (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES) return null;
+        return (QueryValues)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetQueryValues(QueryValues newQueryValues, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newQueryValues, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newQueryValues, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setQueryValues(QueryValues newQueryValues) {
-		if (newQueryValues != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES && newQueryValues != null)) {
-			if (EcoreUtil.isAncestor(this, newQueryValues))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newQueryValues != null)
-				msgs = ((InternalEObject)newQueryValues).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, QueryValues.class, msgs);
-			msgs = basicSetQueryValues(newQueryValues, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES, newQueryValues, newQueryValues));
-	}
+        if (newQueryValues != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES && newQueryValues != null)) {
+            if (EcoreUtil.isAncestor(this, newQueryValues))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newQueryValues != null)
+                msgs = ((InternalEObject)newQueryValues).eInverseAdd(this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, QueryValues.class, msgs);
+            msgs = basicSetQueryValues(newQueryValues, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES, newQueryValues, newQueryValues));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetInsertStatement((QueryInsertStatement)otherEnd, msgs);
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				return ((InternalEList)getExprList()).basicAdd(otherEnd, msgs);
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetQueryValues((QueryValues)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetInsertStatement((QueryInsertStatement)otherEnd, msgs);
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                return ((InternalEList)getExprList()).basicAdd(otherEnd, msgs);
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetQueryValues((QueryValues)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				return basicSetInsertStatement(null, msgs);
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				return ((InternalEList)getExprList()).basicRemove(otherEnd, msgs);
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				return basicSetQueryValues(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                return basicSetInsertStatement(null, msgs);
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                return ((InternalEList)getExprList()).basicRemove(otherEnd, msgs);
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                return basicSetQueryValues(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST, QueryInsertStatement.class, msgs);
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, QueryValues.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_INSERT_STATEMENT__SOURCE_VALUES_ROW_LIST, QueryInsertStatement.class, msgs);
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.QUERY_VALUES__VALUES_ROW_LIST, QueryValues.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				return getInsertStatement();
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				return getExprList();
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				return getQueryValues();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                return getInsertStatement();
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                return getExprList();
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                return getQueryValues();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				setInsertStatement((QueryInsertStatement)newValue);
-				return;
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				getExprList().clear();
-				getExprList().addAll((Collection)newValue);
-				return;
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				setQueryValues((QueryValues)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                setInsertStatement((QueryInsertStatement)newValue);
+                return;
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                getExprList().clear();
+                getExprList().addAll((Collection)newValue);
+                return;
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                setQueryValues((QueryValues)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				setInsertStatement((QueryInsertStatement)null);
-				return;
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				getExprList().clear();
-				return;
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				setQueryValues((QueryValues)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                setInsertStatement((QueryInsertStatement)null);
+                return;
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                getExprList().clear();
+                return;
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                setQueryValues((QueryValues)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
-				return getInsertStatement() != null;
-			case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
-				return exprList != null && !exprList.isEmpty();
-			case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
-				return getQueryValues() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUES_ROW__INSERT_STATEMENT:
+                return getInsertStatement() != null;
+            case SQLQueryModelPackage.VALUES_ROW__EXPR_LIST:
+                return exprList != null && !exprList.isEmpty();
+            case SQLQueryModelPackage.VALUES_ROW__QUERY_VALUES:
+                return getQueryValues() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLValuesRowImpl

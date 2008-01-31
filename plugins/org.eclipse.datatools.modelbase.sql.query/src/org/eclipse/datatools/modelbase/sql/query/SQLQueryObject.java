@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryObject.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
+ * $Id: SQLQueryObject.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -21,19 +21,19 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
  */
 public interface SQLQueryObject extends SQLObject{
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @model kind="operation"
-	 * @generated
-	 */
+     * @model kind="operation"
+     * @generated
+     */
     String getSQL();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
+     * @model
+     * @generated
+     */
   void setSQL(String sqlText);
 
     /** Returns the associated {@link SQLQuerySourceInfo} */

@@ -322,74 +322,6 @@ public class JoinHelper {
 
         return areCompatible;
     }
-
-    /**
-     * Check if the given columns are referenced in the given search condition
-     * (join ON clause condition).  One of the following return code
-     * strings is returned:
-     * <dl>
-     * <dt>NONE
-     * <dd>neither of the columns appears in the condition
-     * <dt>LEFT
-     * <dd>the left (source) column appears in the condition
-     * <dt>RIGHT
-     * <dd>the right (target) column appears in the condition
-     * <dt>BOTH
-     * <dd>both the columns appear in the condition
-     * </dl>
-     * See the class static variables for the return code declarations.
-     * 
-     * @param cond the Search Condition object to check
-     * @param sourceColumn the source (left side) column of a join condition
-     * @param targetColumn the target (right side) column of a join condition
-     * @return
-     */
-    /*
-     public static String columnsUsedInCondition( SQLSearchCondition cond, RDBColumn sourceColumn, RDBColumn targetColumn )
-     {
-     String resultCode = NONE;
-     
-     if (cond instanceof SQLSearchConditionGroup)
-     {
-     SQLSearchCondition condLeft = ((SQLSearchConditionGroup)cond).getLeft();
-     resultCode =  columnsUsedInCondition( condLeft, sourceColumn, targetColumn );
-     if (resultCode.equals(NONE))
-     {
-     SQLSearchCondition condRight = ((SQLSearchConditionGroup)cond).getRight();
-     resultCode =  columnsUsedInCondition( condRight, sourceColumn, targetColumn );
-     }
-     }
-     else if (cond instanceof SQLPredicate) 
-     {
-     SQLPredicate sqlPredicate = (SQLPredicate) cond;
-     
-     SQLColumnExpression leftExpr = (SQLColumnExpression) sqlPredicate.getLeft();
-     SQLColumnExpression rightExpr = (SQLColumnExpression) sqlPredicate.getRight();
-     
-     RDBColumn leftCondCol = leftExpr.getReferencedColumn();
-     RDBColumn rightCondCol = rightExpr.getReferencedColumn();
-     
-     if (leftCondCol == sourceColumn) 
-     { 
-     if (rightCondCol == targetColumn)
-     {
-     resultCode = BOTH;
-     }            
-     else 
-     {
-     resultCode = LEFT;
-     }
-     }
-     else if (rightCondCol == targetColumn)
-     {
-     resultCode = RIGHT;
-     }
-     }
-     
-     return resultCode;
-     }
-
-     */
     
     /** 
      * Checks to see if the given SQLSearchCondition (ON clause) contains 
@@ -567,35 +499,6 @@ public class JoinHelper {
         }
 
         return foundTableRef;
-    }
-
-    /**
-     * Returns the ComparisonOperator literal from the given symbol.
-     * 
-     * @param compKind the String symbol for which Comparison Literal is needed 
-     * @return string literal name
-     */
-    private static String getComparisonLiteralFromSymbol(String compKind) {
-        String retVal = "";
-        if (compKind.equalsIgnoreCase("=")) {
-            retVal = "EQUAL";
-        }
-        else if (compKind.equalsIgnoreCase("<")) {
-            retVal = "LESS_THAN";
-        }
-        else if (compKind.equalsIgnoreCase("<=")) {
-            retVal = "LESS_THAN_OR_EQUAL";
-        }
-        else if (compKind.equalsIgnoreCase(">")) {
-            retVal = "GREATER_THAN";
-        }
-        else if (compKind.equalsIgnoreCase(">=")) {
-            retVal = "GREATER_THAN_OR_EQUAL";
-        }
-        else if (compKind.equalsIgnoreCase("<>")) {
-            retVal = "NOT_EQUAL";
-        }
-        return retVal;
     }
 
     /**
@@ -1181,6 +1084,35 @@ public class JoinHelper {
             }
         }
         return searchCon;
+    }
+
+    /**
+     * Returns the ComparisonOperator literal from the given symbol.
+     * 
+     * @param compKind the String symbol for which Comparison Literal is needed 
+     * @return string literal name
+     */
+    private static String getComparisonLiteralFromSymbol(String compKind) {
+        String retVal = "";
+        if (compKind.equalsIgnoreCase("=")) {
+            retVal = "EQUAL";
+        }
+        else if (compKind.equalsIgnoreCase("<")) {
+            retVal = "LESS_THAN";
+        }
+        else if (compKind.equalsIgnoreCase("<=")) {
+            retVal = "LESS_THAN_OR_EQUAL";
+        }
+        else if (compKind.equalsIgnoreCase(">")) {
+            retVal = "GREATER_THAN";
+        }
+        else if (compKind.equalsIgnoreCase(">=")) {
+            retVal = "GREATER_THAN_OR_EQUAL";
+        }
+        else if (compKind.equalsIgnoreCase("<>")) {
+            retVal = "NOT_EQUAL";
+        }
+        return retVal;
     }
 
 } // end class

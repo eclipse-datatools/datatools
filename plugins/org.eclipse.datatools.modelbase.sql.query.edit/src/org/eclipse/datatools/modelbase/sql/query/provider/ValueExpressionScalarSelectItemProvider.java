@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionScalarSelectItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: ValueExpressionScalarSelectItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -69,13 +69,18 @@ public class ValueExpressionScalarSelectItemProvider
      */
   protected void addQueryExprPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionScalarSelect_queryExpr_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionScalarSelect_queryExpr_feature", "_UI_ValueExpressionScalarSelect_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionScalarSelect_QueryExpr(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_SCALAR_SELECT__QUERY_EXPR,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**

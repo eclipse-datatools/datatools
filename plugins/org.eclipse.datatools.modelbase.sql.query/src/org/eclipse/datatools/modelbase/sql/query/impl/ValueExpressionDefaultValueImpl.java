@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionDefaultValueImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: ValueExpressionDefaultValueImpl.java,v 1.5 2007/02/08 17:00:26 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -58,21 +58,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ValueExpressionDefaultValueImpl extends ValueExpressionAtomicImpl implements ValueExpressionDefaultValue {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ValueExpressionDefaultValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_DEFAULT_VALUE;
-	}
+        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_DEFAULT_VALUE;
+    }
 
 } //SQLValueExpressionDefaultImpl

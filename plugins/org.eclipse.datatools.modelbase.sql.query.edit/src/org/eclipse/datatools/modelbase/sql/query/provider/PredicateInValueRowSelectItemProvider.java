@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateInValueRowSelectItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: PredicateInValueRowSelectItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueRowSelect} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,8 +72,8 @@ public class PredicateInValueRowSelectItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateInValueRowSelect_ValueExprList());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateInValueRowSelect_QueryExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_IN_VALUE_ROW_SELECT__VALUE_EXPR_LIST);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_IN_VALUE_ROW_SELECT__QUERY_EXPR);
         }
         return childrenFeatures;
     }

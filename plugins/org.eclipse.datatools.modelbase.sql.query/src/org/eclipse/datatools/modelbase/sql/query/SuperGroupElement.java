@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupElement.java,v 1.1 2005/12/16 13:11:13 bpayton Exp $
+ * $Id: SuperGroupElement.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -25,31 +25,31 @@ package org.eclipse.datatools.modelbase.sql.query;
  */
 public interface SuperGroupElement extends SQLQueryObject{
 	/**
-	 * Returns the value of the '<em><b>Super Group</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSuperGroupElementList <em>Super Group Element List</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Super Group</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSuperGroupElementList <em>Super Group Element List</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Super Group</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Super Group</em>' container reference.
-	 * @see #setSuperGroup(SuperGroup)
-	 * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElement_SuperGroup()
-	 * @see org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSuperGroupElementList
-	 * @model opposite="superGroupElementList"
-	 * @generated
-	 */
+     * @return the value of the '<em>Super Group</em>' container reference.
+     * @see #setSuperGroup(SuperGroup)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getSuperGroupElement_SuperGroup()
+     * @see org.eclipse.datatools.modelbase.sql.query.SuperGroup#getSuperGroupElementList
+     * @model opposite="superGroupElementList"
+     * @generated
+     */
     SuperGroup getSuperGroup();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElement#getSuperGroup <em>Super Group</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupElement#getSuperGroup <em>Super Group</em>}' container reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Super Group</em>' container reference.
-	 * @see #getSuperGroup()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Super Group</em>' container reference.
+     * @see #getSuperGroup()
+     * @generated
+     */
     void setSuperGroup(SuperGroup value);
 
 } // SQLSuperGroupElement

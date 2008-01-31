@@ -18,6 +18,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
+import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
 import org.eclipse.datatools.modelbase.sql.query.PredicateBetween;
 import org.eclipse.datatools.modelbase.sql.query.PredicateInValueList;
@@ -52,22 +64,9 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable;
 import org.eclipse.datatools.modelbase.sql.query.ValuesRow;
+import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
-import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesFactory;
-import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
 
 
 
@@ -78,6 +77,24 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 public class ValueExpressionHelper {
 
     
+protected static HashMap FunctionReturnType = createFunctionReturnTypeMap();
+
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Determines whether a given value expression is already a column expression
+ * and if so, adds it to the passed in list.  Otherwise, get the columns
+ * and addAll to the list
+ * @param List list of columns
+ * @param aValueExpr QueryValueExpression whose columns will be added to the list
+ */
+public static void addExpressionsToList(List columnList,
+                                        QueryValueExpression aValueExpr) {
+  if ( aValueExpr instanceof ValueExpressionColumn ) {
+       columnList.add( aValueExpr );
+  } else {
+       columnList.addAll(getColumnsFromValueExpression(aValueExpr));
+  }
+}
+
 /**
  * Returns a copy of the given <code>valueExpr</code> using
  * {@link EcoreUtil#copy(org.eclipse.emf.ecore.EObject)}.
@@ -109,21 +126,8 @@ public static QueryValueExpression cloneQueryValueExpression ( QueryValueExpress
     return clone;
 }
 
-/**
- * Attempts to copy the datatype from one given value expression to another
- * using {@link EcoreUtil#copy(org.eclipse.emf.ecore.EObject)}.
- * The type is not copied if the source expression does not exist or
- * its datatype is not set.
- * @param aSourceExpr the value expression whose datatype we want to copy
- * @param aTargetExpr the value expression whose datatype we want to set
- */
-public static void copyDataType( QueryValueExpression aSourceExpr, QueryValueExpression aTargetExpr ) {
-  if (aSourceExpr != null && aSourceExpr.getDataType() != null) {
-      DataType dataType = aSourceExpr.getDataType();
-      DataType dataTypeCopy = copyDataType(dataType);
-      aTargetExpr.setDataType( dataTypeCopy );
-  }
-}
+
+
 
 /**
  * Returns a copy of the given <code>datatype</code> using
@@ -143,52 +147,20 @@ public static DataType copyDataType(DataType dataType)
     return copy;
 }
 
-
-
-
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Method to obtain the string table name/s from a ValueExpression
+/**
+ * Attempts to copy the datatype from one given value expression to another
+ * using {@link EcoreUtil#copy(org.eclipse.emf.ecore.EObject)}.
+ * The type is not copied if the source expression does not exist or
+ * its datatype is not set.
+ * @param aSourceExpr the value expression whose datatype we want to copy
+ * @param aTargetExpr the value expression whose datatype we want to set
  */
-public static List getTableNamesFromExpression (QueryValueExpression valueExpr) {
-
-  List tableNames = new ArrayList();
-
-  List columnExpr = getColumnsFromValueExpression( valueExpr );
-  if ( !columnExpr.isEmpty() ) {
-     // now get the table names for each column expression
-     Iterator cIter = columnExpr.iterator();
-     while ( cIter.hasNext() ) {
-        ValueExpressionColumn aColumn =
-          (ValueExpressionColumn)cIter.next();
-        String aTableName = ((TableInDatabase)aColumn.getTableExpr()).getName();
-        if ( !tableNames.contains(aTableName) || tableNames.isEmpty() )
-           tableNames.add(aTableName);
-     }
+public static void copyDataType( QueryValueExpression aSourceExpr, QueryValueExpression aTargetExpr ) {
+  if (aSourceExpr != null && aSourceExpr.getDataType() != null) {
+      DataType dataType = aSourceExpr.getDataType();
+      DataType dataTypeCopy = copyDataType(dataType);
+      aTargetExpr.setDataType( dataTypeCopy );
   }
-  return tableNames;
-}
-
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Method to obtain the table references from a ValueExpression
- */
-public static List getTableRefsFromExpression (QueryValueExpression valueExpr) {
-
-  List tableRefs = new ArrayList();
-
-  List columnExpr = getColumnsFromValueExpression( valueExpr );
-  if ( !columnExpr.isEmpty() ) {
-     // now get the table references for each column expression
-     Iterator cIter = columnExpr.iterator();
-     while ( cIter.hasNext() ) {
-        ValueExpressionColumn aColumn =
-          (ValueExpressionColumn)cIter.next();
-        TableReference aTableRef = aColumn.getTableExpr();
-        if (aTableRef != null) {
-           tableRefs.add(aTableRef);
-        }
-     }
-  }
-  return tableRefs;
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
@@ -198,7 +170,7 @@ public static List getTableRefsFromExpression (QueryValueExpression valueExpr) {
  */
 public static List getColumnsFromSearchCondition( QuerySearchCondition aSearchCond) {
 
-	List columns = new ArrayList();
+    List columns = new ArrayList();
     QuerySearchCondition sc = aSearchCond;
     // Check if we have a "combined" condition (that is, two conditions combined 
     // by AND or OR).  If so, process each side of the condition separately.
@@ -268,22 +240,6 @@ public static List getColumnsFromSearchCondition( QuerySearchCondition aSearchCo
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Determines whether a given value expression is already a column expression
- * and if so, adds it to the passed in list.  Otherwise, get the columns
- * and addAll to the list
- * @param List list of columns
- * @param aValueExpr QueryValueExpression whose columns will be added to the list
- */
-public static void addExpressionsToList(List columnList,
-                                        QueryValueExpression aValueExpr) {
-  if ( aValueExpr instanceof ValueExpressionColumn ) {
-       columnList.add( aValueExpr );
-  } else {
-       columnList.addAll(getColumnsFromValueExpression(aValueExpr));
-  }
-}
-
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Method to obtain the column expressions from a generic ValueExpression
  * Note that only the value expressions listed below can contain columns
  * within them.  All other value expressions should return an empty list.
@@ -313,66 +269,49 @@ public static List getColumnsFromValueExpression( QueryValueExpression valueExpr
   }
   return columns;
 }
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Method to obtain the column expressions from a ValueExpressionFunction
- */
-public static List getVEFunctionColumns(ValueExpressionFunction funcExpr) {
 
-   List valueExprCols = new ArrayList();
-   List parms = funcExpr.getParameterList();
-      Iterator pIter = parms.iterator();
-      while ( pIter.hasNext() ) {
-         Object parmx = pIter.next();
-         QueryValueExpression parmExpr = (QueryValueExpression)parmx;
-         if (parmx instanceof ValueExpressionColumn) {
-            ValueExpressionColumn colExpr = (ValueExpressionColumn)parmx;
-            valueExprCols.add(colExpr);
-         }
-         else {
-            valueExprCols.addAll(getColumnsFromValueExpression(parmExpr) );
-         }
-      } // end while
-   return valueExprCols;
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Method to obtain the string table name/s from a ValueExpression
+ */
+public static List getTableNamesFromExpression (QueryValueExpression valueExpr) {
+
+  List tableNames = new ArrayList();
+
+  List columnExpr = getColumnsFromValueExpression( valueExpr );
+  if ( !columnExpr.isEmpty() ) {
+     // now get the table names for each column expression
+     Iterator cIter = columnExpr.iterator();
+     while ( cIter.hasNext() ) {
+        ValueExpressionColumn aColumn =
+          (ValueExpressionColumn)cIter.next();
+        String aTableName = ((TableInDatabase)aColumn.getTableExpr()).getName();
+        if ( !tableNames.contains(aTableName) || tableNames.isEmpty() )
+           tableNames.add(aTableName);
+     }
+  }
+  return tableNames;
 }
-
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Method to obtain the column expressions from a ValueExpressionCombined
+ * Method to obtain the table references from a ValueExpression
  */
-public static List getVECombinedColumns (ValueExpressionCombined combined) {
+public static List getTableRefsFromExpression (QueryValueExpression valueExpr) {
 
-  List columnList = new ArrayList();
-  // Handle the left side of the VECombined.  We may have to recurse.
-  QueryValueExpression leftVE = combined.getLeftValueExpr();
-  if ( leftVE instanceof ValueExpressionColumn ) {
-     columnList.add( leftVE );
-  } else {
-     columnList.addAll(getColumnsFromValueExpression(leftVE) );
+  List tableRefs = new ArrayList();
+
+  List columnExpr = getColumnsFromValueExpression( valueExpr );
+  if ( !columnExpr.isEmpty() ) {
+     // now get the table references for each column expression
+     Iterator cIter = columnExpr.iterator();
+     while ( cIter.hasNext() ) {
+        ValueExpressionColumn aColumn =
+          (ValueExpressionColumn)cIter.next();
+        TableReference aTableRef = aColumn.getTableExpr();
+        if (aTableRef != null) {
+           tableRefs.add(aTableRef);
+        }
+     }
   }
-
-  // Now handle the right side of the VECombined.  We may have to recurse.
-  QueryValueExpression rightVE = combined.getRightValueExpr();
-  if ( rightVE instanceof ValueExpressionColumn ) {
-     columnList.add( rightVE );
-  } else {
-     columnList.addAll(getColumnsFromValueExpression(rightVE) );
-  }
-
-  return columnList;
-}
-
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Method to obtain the column expressions from a ValueExpressionCast
- */
-public static List getVECastColumns( ValueExpressionCast aValExpr ) {
-
-  List columnList = new ArrayList();
-  QueryValueExpression castValExpr = aValExpr.getValueExpr();
-  if ( aValExpr instanceof ValueExpressionColumn ) {
-     columnList.add( castValExpr );
-  } else {
-     columnList.addAll(getColumnsFromValueExpression(castValExpr) );
-  }
-  return columnList;
+  return tableRefs;
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
@@ -500,6 +439,68 @@ public static List getVECaseColumns( ValueExpressionCase aValExpr ) {
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Method to obtain the column expressions from a ValueExpressionCast
+ */
+public static List getVECastColumns( ValueExpressionCast aValExpr ) {
+
+  List columnList = new ArrayList();
+  QueryValueExpression castValExpr = aValExpr.getValueExpr();
+  if ( aValExpr instanceof ValueExpressionColumn ) {
+     columnList.add( castValExpr );
+  } else {
+     columnList.addAll(getColumnsFromValueExpression(castValExpr) );
+  }
+  return columnList;
+}
+
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Method to obtain the column expressions from a ValueExpressionCombined
+ */
+public static List getVECombinedColumns (ValueExpressionCombined combined) {
+
+  List columnList = new ArrayList();
+  // Handle the left side of the VECombined.  We may have to recurse.
+  QueryValueExpression leftVE = combined.getLeftValueExpr();
+  if ( leftVE instanceof ValueExpressionColumn ) {
+     columnList.add( leftVE );
+  } else {
+     columnList.addAll(getColumnsFromValueExpression(leftVE) );
+  }
+
+  // Now handle the right side of the VECombined.  We may have to recurse.
+  QueryValueExpression rightVE = combined.getRightValueExpr();
+  if ( rightVE instanceof ValueExpressionColumn ) {
+     columnList.add( rightVE );
+  } else {
+     columnList.addAll(getColumnsFromValueExpression(rightVE) );
+  }
+
+  return columnList;
+}
+
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Method to obtain the column expressions from a ValueExpressionFunction
+ */
+public static List getVEFunctionColumns(ValueExpressionFunction funcExpr) {
+
+   List valueExprCols = new ArrayList();
+   List parms = funcExpr.getParameterList();
+      Iterator pIter = parms.iterator();
+      while ( pIter.hasNext() ) {
+         Object parmx = pIter.next();
+         QueryValueExpression parmExpr = (QueryValueExpression)parmx;
+         if (parmx instanceof ValueExpressionColumn) {
+            ValueExpressionColumn colExpr = (ValueExpressionColumn)parmx;
+            valueExprCols.add(colExpr);
+         }
+         else {
+            valueExprCols.addAll(getColumnsFromValueExpression(parmExpr) );
+         }
+      } // end while
+   return valueExprCols;
+}
+
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Method to obtain the column expressions from a ValueExpressionLabeledDuration
  */
 public static List getVELabeledDurationColumns(ValueExpressionLabeledDuration labeledDurExpr) {
@@ -512,6 +513,29 @@ public static List getVELabeledDurationColumns(ValueExpressionLabeledDuration la
       columnList.addAll(getColumnsFromValueExpression(durExpr) );
    }
    return columnList;
+}
+
+/**
+ * Do the numeric data type promotion
+ * @param left
+ * @param right
+ * @return
+ */
+public static DataType numericDataTypePromotion(DataType left, DataType right)
+{
+    DataType retType = doNumericDataTypePromotion(left, right);
+    if(retType == null)
+        retType = doNumericDataTypePromotion(right, left);
+    
+    if(retType == null)
+    {
+        if(left != null)
+            retType = copyDataType(left);
+        else
+            retType = copyDataType(right);
+    }
+    
+    return retType;
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
@@ -528,13 +552,38 @@ public static Column resolveColumnFromValueExpression( ValueExpressionColumn aVa
      Iterator iter = columns.iterator();
      while (iter.hasNext()) {
        Column aColumn = (Column)iter.next();
-       if ( aColumn.getName().equals( colName )) {
+       String aColumnName = aColumn.getName();
+       if (StatementHelper.equalSQLIdentifiers(aColumnName, colName )) {
           theColumn = aColumn;
           break;
        }
      }
   }
   return theColumn;
+}
+
+/** CHANGE IMPLEMENTATION! CODE INCORRECT! 
+ * returns the given <code>aDataType</code>, if not <code>null</code>, or
+ * the given <code>anotherDataType</code>. 
+ * <p>
+ * Tries to determine the datatype that can contain values of both given 
+ * <code>DataType</code>s <code>aDataType</code> and
+ * <code>anotherDataType</code>, useful for example for the result columns
+ * of a {@link com.ibm.db.models.sql.query.QueryCombined}
+ * @param aDataType one <code>DataType</code>
+ * @param anotherDataType another <code>DataType</code>
+ * @return the inclusive <code>DataType</code>
+ */
+public static DataType resolveCombinedDataType( DataType aDataType,
+                                            DataType anotherDataType) {
+    if (aDataType != null)
+    {
+        return aDataType;
+    }
+    else 
+    {
+        return anotherDataType;
+    }
 }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
@@ -571,12 +620,14 @@ public static void resolveTablesInValueExpression(QueryValueExpression valExpr,
            TableExpression fcTable = (TableExpression)tIter.next();
            if (useCorrName) {
               String fcCorrName = fcTable.getTableCorrelation().getName();
-              if ( (fcCorrName != null) && fcCorrName.equals(searchTableName) ) {
+              if ( fcCorrName != null
+                && StatementHelper.equalSQLIdentifiers(fcCorrName, searchTableName)) {
                  foundTable = fcTable;
               }
            } else {
               String fcTableName = fcTable.getName();
-              if ( (fcTableName != null) && fcTableName.equals(searchTableName) ) {
+              if ( fcTableName != null 
+                && StatementHelper.equalSQLIdentifiers(fcTableName, searchTableName)) {
                  foundTable = fcTable;
               }
            }
@@ -585,6 +636,56 @@ public static void resolveTablesInValueExpression(QueryValueExpression valExpr,
            colExpr.setTableExpr(foundTable);
         }
      } // end while for columns
+  }
+}
+
+/** CHECK IMPLEMENTATION! CODE UNTESTED!
+ * Tries to determine and set the datatype of the given Case value
+ * expression.
+ * @param aValExpr a value expression to resolve
+ * @param aTableRefList the current list of From clause table references
+ * @param aDB a RDBDatabase object containing datatype information
+ * @param aDBVersion an object containing database version information
+ */
+public static void resolveValueExpressionCaseDatatype( ValueExpressionCase aValExpr) {
+  // We'll set the datatype for this value expression to the datatype
+  // of the first "result expression" that isn't NULL and that has a
+  // datatype.  The model structure of the "searched case" and
+  // "simple case" are slightly different, so we handle them separately.
+  List contentList = null;
+  Iterator contentListIter = null;
+  DataType contentDatatype = null;
+
+  if (aValExpr instanceof ValueExpressionCaseSearch) {
+    contentList = ((ValueExpressionCaseSearch) aValExpr).getSearchContentList();
+    contentListIter = contentList.iterator();
+    ValueExpressionCaseSearchContent content;
+    QueryValueExpression contentValExpr;
+    while (contentListIter.hasNext() && contentDatatype == null) {
+      content = (ValueExpressionCaseSearchContent) contentListIter.next();
+      contentValExpr = content.getValueExpr();
+      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+        contentDatatype = contentValExpr.getDataType();
+      }
+    }
+  }
+  // otherwise must be ValueExpressionCaseSimple
+  else {
+    contentList = ((ValueExpressionCaseSimple) aValExpr).getContentList();
+    contentListIter = contentList.iterator();
+    ValueExpressionCaseSimpleContent content;
+    QueryValueExpression contentValExpr;
+    while (contentListIter.hasNext() && contentDatatype == null) {
+      content = (ValueExpressionCaseSimpleContent) contentListIter.next();
+      contentValExpr = content.getResultValueExpr();
+      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
+        contentDatatype = contentValExpr.getDataType();
+      }
+    }
+  }
+
+  if (contentDatatype != null) {
+    aValExpr.setDataType( contentDatatype );
   }
 }
 
@@ -639,106 +740,6 @@ public static void resolveValueExpressionColumnDatatype( ValueExpressionColumn a
  }
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
- * Tries to determine and set the datatype of the given Case value
- * expression.
- * @param aValExpr a value expression to resolve
- * @param aTableRefList the current list of From clause table references
- * @param aDB a RDBDatabase object containing datatype information
- * @param aDBVersion an object containing database version information
- */
-public static void resolveValueExpressionCaseDatatype( ValueExpressionCase aValExpr) {
-  // We'll set the datatype for this value expression to the datatype
-  // of the first "result expression" that isn't NULL and that has a
-  // datatype.  The model structure of the "searched case" and
-  // "simple case" are slightly different, so we handle them separately.
-  List contentList = null;
-  Iterator contentListIter = null;
-  DataType contentDatatype = null;
-
-  if (aValExpr instanceof ValueExpressionCaseSearch) {
-    contentList = ((ValueExpressionCaseSearch) aValExpr).getSearchContentList();
-    contentListIter = contentList.iterator();
-    ValueExpressionCaseSearchContent content;
-    QueryValueExpression contentValExpr;
-    while (contentListIter.hasNext() && contentDatatype == null) {
-      content = (ValueExpressionCaseSearchContent) contentListIter.next();
-      contentValExpr = content.getValueExpr();
-      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
-        contentDatatype = contentValExpr.getDataType();
-      }
-    }
-  }
-  // otherwise must be ValueExpressionCaseSimple
-  else {
-    contentList = ((ValueExpressionCaseSimple) aValExpr).getContentList();
-    contentListIter = contentList.iterator();
-    ValueExpressionCaseSimpleContent content;
-    QueryValueExpression contentValExpr;
-    while (contentListIter.hasNext() && contentDatatype == null) {
-      content = (ValueExpressionCaseSimpleContent) contentListIter.next();
-      contentValExpr = content.getResultValueExpr();
-      if (!(contentValExpr instanceof ValueExpressionNullValue)) {
-        contentDatatype = contentValExpr.getDataType();
-      }
-    }
-  }
-
-  if (contentDatatype != null) {
-    aValExpr.setDataType( contentDatatype );
-  }
-}
-
-/** DON'T USE, the cast data type is the datatype of the ValueExpressionCast itself.
- * 
- * CHECK IMPLEMENTATION! CODE UNTESTED!
- * Tries to determine and set the datatype of the given Cast value
- * expression.
- * @param aCastValueExpr a value expression to resolve
- * @param aTableRefList the current list of From clause table references
- * @param aDB a RDBDatabase object containing datatype information
- * @param aDBVersion an object containing database version information
- * @deprecated redundant method
- */
-public static void resolveValueExpressionCastDatatype( ValueExpressionCast aCastValueExpr) {
-
-    //throw new UnsupportedOperationException(
-    StatementHelper.logError(
-                    ValueExpressionHelper.class.getName()+
-                    "#resolveValueExpressionCastDatatype() useless and should not be invoked");
-
-    //TODO: get the DataType we cast the Value to! Model ???
-    
-/*    
-  // @d301485 bgp 06Feb2004 - begin
-  // If this object was generated by the parser, it should have set the
-  // typename and (optionally) the precision and scale.  We can use
-  // these to determine the DataType.
-  String typeName = aCastValueExpr.getCastTypeName();
-  String typePrecision = aCastValueExpr.getCastTypePrecision();
-  String typeScale = aCastValueExpr.getCastTypeScale();
-  // If no type name, pick a default type.
-  if (typeName == null) {
-    typeName = "CHAR";
-    typePrecision = "1";
-    typeScale = "0";
-  }
-  int jdbcType = getJDBCTypeForNamedType( typeName );
-  DataType memberType = DatabaseHelper.getDataType( jdbcType, typeName, typePrecision, typeScale, aDB);
-  aCastValueExpr.setDataType( memberType );
-  // @d301485 bgp 06Feb2004 - end
-
-  // If the cast operand is a variable, we can set the variable's datatype
-  // to this expression's datatype as well.
-  QueryValueExpression castValExpr = aCastValueExpr.getValueExpr();
-  if (castValExpr instanceof ValueExpressionVariable) {
-    DataType datatype = aCastValueExpr.getDataType();
-    if (datatype != null) {
-      castValExpr.setDataType( datatype );
-    }
-  }
-*/}
-
-/** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given "Combined" value
  * expression.
  * @param aValExpr a value expression to resolve
@@ -760,235 +761,8 @@ public static void resolveValueExpressionCombined( ValueExpressionCombined aValE
     DataType leftExprDatatype = leftExpr.getDataType();
     DataType rightExprDatatype = rightExpr.getDataType();
     aValExpr.setDataType(numericDataTypePromotion(leftExprDatatype, rightExprDatatype));
-//    if (leftExprDatatype != null) {
-//        copyDataType(leftExpr, aValExpr);
-//    }
-//    else {
-//      DataType rightExprDatatype = rightExpr.getDataType();
-//      if (rightExprDatatype != null) {
-//          copyDataType(rightExpr, aValExpr);
-//      }
-//    }
   }
 }
-
-
-/**
- * Get the data type of result of the string binary operation of "left" and
- * "right" 
- * ASSUMPTION: the DataType of "left" should be greater than or equal to the 
- * "right". And both of them are not null. Otherwise, null value will be returned.
- * @param left
- * @param right
- * @return
- */
-private static DataType concatCharStringDataTypePromotion(DataType left, DataType right)
-{
-    DataType retType = null;
-    
-    if(left != null && right != null)
-    {
-        PrimitiveType leftPrim = ((PredefinedDataType)left).getPrimitiveType();
-        PrimitiveType rightPrim = ((PredefinedDataType)right).getPrimitiveType();
-        
-        if(left instanceof CharacterStringDataType && right instanceof CharacterStringDataType)
-        {
-            retType = copyDataType(left);
-            int len = ((CharacterStringDataType)left).getLength();
-            len += ((CharacterStringDataType)right).getLength();
-            ((CharacterStringDataType)retType).setLength(len);
-            if(leftPrim == PrimitiveType.CHARACTER_LITERAL && rightPrim == PrimitiveType.CHARACTER_LITERAL && len < 255)
-                ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);            
-            else
-                ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);            
-        }
-    }
-    if(retType == null)
-    {
-        retType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-        ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-        ((CharacterStringDataType)retType).setLength(100);
-    }
-
-    return retType;
-}
-
-/**
- * Do the numeric data type promotion
- * @param left
- * @param right
- * @return
- */
-public static DataType numericDataTypePromotion(DataType left, DataType right)
-{
-    DataType retType = doNumericDataTypePromotion(left, right);
-    if(retType == null)
-        retType = doNumericDataTypePromotion(right, left);
-    
-    if(retType == null)
-    {
-        if(left != null)
-            retType = copyDataType(left);
-        else
-            retType = copyDataType(right);
-    }
-    
-    return retType;
-}
-
-/**
- * Get the data type of result of the numeric binary operation of "left" and
- * "right" 
- * ASSUMPTION: the DataType of "left" should be greater than or equal to the 
- * "right". And both of them are not null. Otherwise, null value will be returned.
- * 
- * @param left a type that is "greater than or equal to" the right
- * @param right a type that is "less than or equal to" the left
- * @return
- */
-private static DataType doNumericDataTypePromotion(DataType left, DataType right)
-{
-    DataType retType = null;
-    
-    if(left != null && right != null)
-    {
-        PrimitiveType leftPrim = ((PredefinedDataType)left).getPrimitiveType();
-        PrimitiveType rightPrim = ((PredefinedDataType)right).getPrimitiveType();
-        
-        if(leftPrim == PrimitiveType.SMALLINT_LITERAL)
-        {
-            if(rightPrim == PrimitiveType.SMALLINT_LITERAL)
-                retType = copyDataType(left);
-        }
-        else if(leftPrim == PrimitiveType.INTEGER_LITERAL)
-        {
-            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
-                    || rightPrim  == PrimitiveType.INTEGER_LITERAL)
-                retType = copyDataType(left);
-        }
-        else if(leftPrim == PrimitiveType.BIGINT_LITERAL)
-        {
-            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
-                    || rightPrim  == PrimitiveType.INTEGER_LITERAL
-                    || rightPrim  == PrimitiveType.BIGINT_LITERAL)
-                retType = copyDataType(left);
-        }
-        else if(leftPrim == PrimitiveType.DECIMAL_LITERAL)
-        {
-            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL)
-            {
-                retType = copyDataType(left);
-                int precision = ((FixedPrecisionDataType)left).getPrecision();
-                int scale = ((FixedPrecisionDataType)left).getScale();
-                
-                precision = scale + ((precision - scale) > 5 ? (precision - scale) : 5);
-                precision = (precision > 31 ? 31 : precision);
-                ((FixedPrecisionDataType)retType).setPrecision(precision);
-            }
-            else if(rightPrim  == PrimitiveType.INTEGER_LITERAL)
-            {
-                retType = copyDataType(left);
-                int precision = ((FixedPrecisionDataType)left).getPrecision();
-                int scale = ((FixedPrecisionDataType)left).getScale();
-                
-                precision = scale + ((precision - scale) > 11 ? (precision - scale) : 11);
-                precision = (precision > 31 ? 31 : precision);
-                ((FixedPrecisionDataType)retType).setPrecision(precision);
-            }
-            else if(rightPrim  == PrimitiveType.BIGINT_LITERAL)
-            {
-                retType = copyDataType(left);
-                int precision = ((FixedPrecisionDataType)left).getPrecision();
-                int scale = ((FixedPrecisionDataType)left).getScale();
-                
-                precision = scale + ((precision - scale) > 19 ? (precision - scale) : 19);
-                precision = (precision > 31 ? 31 : precision);
-                ((FixedPrecisionDataType)retType).setPrecision(precision);
-                
-            }
-            else if(rightPrim  == PrimitiveType.DECIMAL_LITERAL)
-            {
-                retType = copyDataType(left);
-                int pleft = ((FixedPrecisionDataType)left).getPrecision();
-                int sleft = ((FixedPrecisionDataType)left).getScale();
-
-                int pright = ((FixedPrecisionDataType)right).getPrecision();
-                int sright = ((FixedPrecisionDataType)right).getScale();
-
-                int s = (sleft > sright ? sleft : sright);
-                int p = s + ((pleft - sleft) > (pright - sright) ? (pleft - sleft) : (pright - sright));
-
-                ((FixedPrecisionDataType)retType).setPrecision(p);
-                ((FixedPrecisionDataType)retType).setScale(s);
-            }
-        }
-        else if(leftPrim == PrimitiveType.REAL_LITERAL)
-        {
-            if(rightPrim  == PrimitiveType.REAL_LITERAL)
-            {
-                retType = copyDataType(left);
-            } 
-            else if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
-                    || rightPrim  == PrimitiveType.INTEGER_LITERAL
-                    || rightPrim  == PrimitiveType.BIGINT_LITERAL
-                    || rightPrim  == PrimitiveType.DECIMAL_LITERAL)
-            {
-                retType = copyDataType(left);
-                ((ApproximateNumericDataType)retType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
-            }
-        }
-        else if(leftPrim == PrimitiveType.DOUBLE_PRECISION_LITERAL)
-        {
-            retType = copyDataType(left);
-        }
-        
-    }
-    return retType;
-}
-
-/** CHANGE IMPLEMENTATION! CODE INCORRECT! 
- * returns the given <code>aDataType</code>, if not <code>null</code>, or
- * the given <code>anotherDataType</code>. 
- * <p>
- * Tries to determine the datatype that can contain values of both given 
- * <code>DataType</code>s <code>aDataType</code> and
- * <code>anotherDataType</code>, useful for example for the result columns
- * of a {@link org.eclipse.datatools.modelbase.sql.query.QueryCombined}
- * @param aDataType one <code>DataType</code>
- * @param anotherDataType another <code>DataType</code>
- * @return the inclusive <code>DataType</code>
- */
-public static DataType resolveCombinedDataType( DataType aDataType,
-                                            DataType anotherDataType) {
-    if (aDataType != null)
-    {
-        return aDataType;
-    }
-    else 
-    {
-        return anotherDataType;
-    }
-}
-
-
-/** DON'T USE THIS METHOD ANYMORE! <br><br>
- * 
- * Tries to determine and set the datatype (DataType) of the given
- * "concatenated" value expression.  This may either be a CONCAT function or a
- * "combined" value expression with a CONCAT operator.
- * @param aValueExpr a value expression to resolve
- * @param aLeftValueExpr the LHS value expression involved in the CONCAT
- * @param aRightValueExpr the RHS value expression involved in the CONCAT
- * @param aTableRefList the current list of From clause table references
- * @param aDB a RDBDatabase object containing datatype information
- * @param aDBVersion an object containing database version information
- * 
- * @deprecated use {@link #resolveValueExpressionConcatDatatype(QueryValueExpression, QueryValueExpression, QueryValueExpression)} instead
- */
-public static void resolveValueExpressionConcatDatatype( QueryValueExpression aValExpr, QueryValueExpression aLeftValExpr, QueryValueExpression aRightValExpr, List aTableRefList, Database aDB) {
-    resolveValueExpressionConcatDatatype(aValExpr, aLeftValExpr, aRightValExpr);
-}
-
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype (DataType) of the given
@@ -1236,8 +1010,6 @@ public static void resolveValueExpressionDatatypeRecursively( QueryValueExpressi
     
 }
 
-
-
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given "default" value
  * expression.  Note: this value expression type comes from the DEFAULT
@@ -1254,6 +1026,8 @@ public static void resolveValueExpressionDefaultValueDatatype( ValueExpressionDe
   // so we won't try to set the datatype.  DEFAULT is used in Insert and
   // Update statements.
 }
+
+
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given function value
@@ -1306,7 +1080,12 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
     
         if (param1DataType != null)
         {
-            param1PrimType = ((PredefinedDataType) param1DataType).getPrimitiveType();
+            if(param1DataType instanceof PredefinedDataType ){
+                param1PrimType = ((PredefinedDataType) param1DataType).getPrimitiveType();    
+            }
+            else{
+                //it is a user defined type. Can't resolve
+            }
             param1DataType = copyDataType(param1DataType);
         }
     
@@ -1319,7 +1098,12 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
         if (param2DataType != null)
         {
             param2DataType = copyDataType(param2DataType);
-            param2PrimType = ((PredefinedDataType) param2DataType).getPrimitiveType();
+            if(param2DataType instanceof PredefinedDataType ){
+                param2PrimType = ((PredefinedDataType) param2DataType).getPrimitiveType();
+             }
+             else{
+                //it is a user defined type. Can't resolve
+            }
         }
     
         if (dataType == null)
@@ -1521,298 +1305,6 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
     }
 }
 
-/**
- * CHECK IMPLEMENTATION! CODE UNTESTED! TODO: implement this Proxy method.
- * Throws UnsupportedOperationException now.
- * 
- * @param funcName
- * @param returnDatatypeName
- * @param param1DatatypeName
- * @param param1DatatypeLen
- * @return
- */
-private static int getReturnDatatypeLength(String funcName, String returnDatatypeName, String param1DatatypeName, int param1DatatypeLen)
-{
-    // FIXME implement another method taking a ValueExpressionFunction object
-    // that has a return type
-    throw new UnsupportedOperationException(
-    //System.err.println(
-                    ValueExpressionHelper.class.getName()+"#getReturnDatatypeLength(String funcName, String returnDatatypeName, String param1DatatypeName, int param1DatatypeLen) not implemented!");
-    //return FunctionHelper.getReturnDatatypeLength( funcName,
-    // returnDatatypeName, param1DatatypeName, param1DatatypeLen );
-}
-
-
-/**
- * CHECK IMPLEMENTATION! CODE UNTESTED! TODO: implement this Proxy method.
- * Throws UnsupportedOperationException now.
- * 
- * @param funcName
- * @return
- */
-private static Object[][] getParameterFormats(String funcName)
-{
-    // FIXME implement another method taking a ValueExpressionFunction object that has a return type
-    throw new UnsupportedOperationException(
-                    ValueExpressionHelper.class.getName()+
-                    "#getParameterFormats(String funcName) not implemented!");
-    //return FunctionHelper.getParameterFormats( funcName );
-}
-
-
-/**
- * For fixed return type
- * @param funcName
- * @return
- */
-private static DataType getFuncReturnType(String funcName)
-{
-    DataType dt = (DataType)FunctionReturnType.get(funcName);
-    if(dt != null)
-        return (DataType)EcoreUtil.copy(dt);
-    else
-        return null;
-}
-
-protected static HashMap FunctionReturnType = createFunctionReturnTypeMap();
-
-
-/**
- * Returns a mapping of <code>DataType</code> s (value) for SQL built-in
- * function names (key)
- * 
- * @return <code>HashMap</code> keys: <code>String</code> function name in
- *         upper case, values: {@link DataType}
- */
-protected static HashMap createFunctionReturnTypeMap()
-{
-    HashMap functionReturnTypes = new HashMap();
-    ApproximateNumericDataType doubleType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
-    doubleType.setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
-
-    ApproximateNumericDataType realType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
-    realType.setPrimitiveType(PrimitiveType.REAL_LITERAL);
-
-    IntegerDataType bigIntType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    bigIntType.setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
-
-    IntegerDataType intType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    intType.setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
-
-    IntegerDataType smallIntType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
-    smallIntType.setPrimitiveType(PrimitiveType.SMALLINT_LITERAL);
-
-    BinaryStringDataType blobType = SQLDataTypesFactory.eINSTANCE.createBinaryStringDataType();
-    blobType.setPrimitiveType(PrimitiveType.BINARY_LARGE_OBJECT_LITERAL);
-
-    CharacterStringDataType clobType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    clobType.setPrimitiveType(PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL);
-
-    DateDataType dateType = SQLDataTypesFactory.eINSTANCE.createDateDataType();
-    dateType.setPrimitiveType(PrimitiveType.DATE_LITERAL);
-
-    TimeDataType timeType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
-    timeType.setPrimitiveType(PrimitiveType.TIME_LITERAL);
-
-    TimeDataType timeStampType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
-    timeStampType.setPrimitiveType(PrimitiveType.TIMESTAMP_LITERAL);
-
-    /*
-     * aggregate functions
-     */
-    functionReturnTypes.put("CORRELATION", doubleType);
-    functionReturnTypes.put("CORR", doubleType);
-
-    functionReturnTypes.put("COUNT", bigIntType);
-    functionReturnTypes.put("COUNT_BIG", bigIntType);
-
-    functionReturnTypes.put("COVARIANCE", doubleType);
-    functionReturnTypes.put("COVAR", doubleType);
-
-    // if and only if the return data type is the same as the argument
-    // set value of the map to null
-    functionReturnTypes.put("MAX", null);
-    functionReturnTypes.put("MIN", null);
-
-    functionReturnTypes.put("STDDEV", doubleType);
-    functionReturnTypes.put("VARIANCE", doubleType);
-    functionReturnTypes.put("VAR", doubleType);
-
-    /*
-     * scalar functions
-     */
-    functionReturnTypes.put("ABS", null);
-    functionReturnTypes.put("ABSVAL", null);
-    functionReturnTypes.put("ACOS", doubleType);
-
-    CharacterStringDataType varchar128 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar128.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar128.setLength(128);
-
-    functionReturnTypes.put("APPLICATION_ID", varchar128);
-    functionReturnTypes.put("ASCII", intType);
-    functionReturnTypes.put("ASIN", doubleType);
-    functionReturnTypes.put("ATAN", doubleType);
-    functionReturnTypes.put("ATAN2", doubleType);
-    functionReturnTypes.put("BIGINT", bigIntType);
-    functionReturnTypes.put("BLOB", blobType);
-
-    CharacterStringDataType char1 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    char1.setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);
-    char1.setLength(1);
-
-    functionReturnTypes.put("CHR", char1);
-    functionReturnTypes.put("CLOB", clobType);
-    functionReturnTypes.put("COALESCE", char1);
-    functionReturnTypes.put("COS", doubleType);
-    functionReturnTypes.put("COSH", doubleType);
-    functionReturnTypes.put("COT", doubleType);
-    functionReturnTypes.put("DATE", dateType);
-    functionReturnTypes.put("DAY", bigIntType);
-
-    CharacterStringDataType varchar100 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar100.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar100.setLength(100);
-
-    functionReturnTypes.put("DAYNAME", varchar100);
-    functionReturnTypes.put("DAYOFWEEK", intType);
-    functionReturnTypes.put("DAYOFWEEK_ISO", intType);
-    functionReturnTypes.put("DAYOFYEAR", intType);
-    functionReturnTypes.put("DAYS", intType);
-    functionReturnTypes.put("DBCLOB", clobType);
-    functionReturnTypes.put("DBPARTITIONNUM", intType);
-    functionReturnTypes.put("DEGREES", doubleType);
-    functionReturnTypes.put("DIFFERENCE", intType);
-
-    CharacterStringDataType varchar254 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar254.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar254.setLength(254);
-
-    CharacterStringDataType varchar4 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar4.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar4.setLength(4);
-
-    CharacterStringDataType varchar200 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar200.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar200.setLength(200);
-
-    CharacterStringDataType varchar20 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar20.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar20.setLength(20);
-
-    functionReturnTypes.put("DLCOMMENT", varchar254);
-    functionReturnTypes.put("DLLINKTYPE", varchar4);
-    functionReturnTypes.put("DLNEWCOPY", varchar200);
-    functionReturnTypes.put("DLPREVIOUSCOPY", varchar200);
-    functionReturnTypes.put("DLURLCOMPLETE", varchar4);
-    functionReturnTypes.put("DLURLCOMPLETEONLY", varchar4);
-    functionReturnTypes.put("DLURLCOMPLETEWRITE", varchar254);
-    functionReturnTypes.put("DLURLPATH", varchar4);
-    functionReturnTypes.put("DLURLPATHONLY", varchar4);
-    functionReturnTypes.put("DLURLPATHWRITE", varchar4);
-    functionReturnTypes.put("DLURLSCHEME", varchar20);
-    functionReturnTypes.put("DLURLSERVER", varchar254);
-
-    functionReturnTypes.put("DOUBLE", doubleType);
-    functionReturnTypes.put("EVENT_MON_STATE", intType);
-    functionReturnTypes.put("EXP", doubleType);
-    functionReturnTypes.put("FLOAT", doubleType);
-
-    CharacterStringDataType varchar32 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar32.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar32.setLength(32);
-    functionReturnTypes.put("GETHINT", varchar32);
-
-    CharacterStringDataType varchar1024 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar1024.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar1024.setLength(1024);
-    functionReturnTypes.put("GET_ROUTINE_OPTS", varchar1024);
-
-    functionReturnTypes.put("HASHEDVALUE", intType);
-    functionReturnTypes.put("HOUR", bigIntType);
-
-    FixedPrecisionDataType decimalType_31_0 = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
-    decimalType_31_0.setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
-    decimalType_31_0.setPrecision(31);
-    decimalType_31_0.setScale(0);
-    functionReturnTypes.put("IDENTITY_VAL_LOCAL", varchar1024);
-
-    functionReturnTypes.put("INTEGER", bigIntType);
-    functionReturnTypes.put("INT", bigIntType);             // fix wsdbu00045539
-    functionReturnTypes.put("JULIAN_DAY", intType);
-
-    functionReturnTypes.put("LCASE", null);
-    functionReturnTypes.put("LOWER", null);
-
-    functionReturnTypes.put("LENGTH", bigIntType);
-    functionReturnTypes.put("LN", doubleType);
-    functionReturnTypes.put("LOCATE", intType);
-    functionReturnTypes.put("LOG", doubleType);
-    functionReturnTypes.put("LOG10", doubleType);
-    functionReturnTypes.put("LTRIM", null);
-    functionReturnTypes.put("MICROSECOND", bigIntType);
-    functionReturnTypes.put("MIDNIGHT_SECONDS", intType);
-    functionReturnTypes.put("MINUTE", bigIntType);
-    functionReturnTypes.put("MONTH", bigIntType);
-    functionReturnTypes.put("MONTHNAME", varchar100);
-    functionReturnTypes.put("NULLIF", null);
-    functionReturnTypes.put("POSSTR", bigIntType);
-    functionReturnTypes.put("QUARTER", intType);
-    functionReturnTypes.put("RADIANS", doubleType);
-    functionReturnTypes.put("RAND", doubleType);
-    functionReturnTypes.put("REAL", realType);
-    functionReturnTypes.put("RTRIM", null);
-    functionReturnTypes.put("SECOND", bigIntType);
-    functionReturnTypes.put("SIN", doubleType);
-    functionReturnTypes.put("SINH", doubleType);
-    functionReturnTypes.put("SMALLINT", smallIntType);
-
-    CharacterStringDataType char4 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    char4.setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);
-    char4.setLength(4);
-    functionReturnTypes.put("SOUNDEX", char4);
-
-    CharacterStringDataType varchar4000 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar4000.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar4000.setLength(4000);
-    functionReturnTypes.put("SPACE", varchar4000);
-
-    functionReturnTypes.put("SQRT", doubleType);
-    functionReturnTypes.put("SOUNDEX", char4);
-    functionReturnTypes.put("TABLE_NAME", varchar128);
-    functionReturnTypes.put("TABLE_SCHEMA", varchar128);
-    functionReturnTypes.put("TAN", doubleType);
-    functionReturnTypes.put("TANH", doubleType);
-    functionReturnTypes.put("TIME", timeType);
-    functionReturnTypes.put("TIMESTAMP", timeStampType);
-    functionReturnTypes.put("TIMESTAMP_FORMAT", timeStampType);
-    functionReturnTypes.put("TIMESTAMP_ISO", timeStampType);
-    functionReturnTypes.put("TIMESTAMPDIFF", intType);
-    functionReturnTypes.put("TO_DATE", timeStampType);
-    functionReturnTypes.put("TRUNCATE", null);
-    functionReturnTypes.put("TRUNC", null);
-    functionReturnTypes.put("TYPE_ID", intType);
-
-    CharacterStringDataType varchar18 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
-    varchar18.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
-    varchar18.setLength(18);
-    functionReturnTypes.put("TYPE_NAME", varchar18);
-
-    functionReturnTypes.put("TYPE_SCHEMA", varchar128);
-    functionReturnTypes.put("UCASE", null);
-    functionReturnTypes.put("UPPER", varchar18);
-    functionReturnTypes.put("VALUE", null);
-
-    functionReturnTypes.put("WEEK", intType);
-    functionReturnTypes.put("WEEK_ISO", intType);
-    functionReturnTypes.put("YEAR", bigIntType);
-    
-    return functionReturnTypes;
-}
-
-
-
-
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given labeled duration value
  * expression.
@@ -1893,6 +1385,7 @@ public static void resolveValueExpressionListDatatypes( List aValExprList) {
   // @d301485 bgp 06Feb2004 - end
 }
 
+
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given "null" value
  * expression.  Note: this value expression type comes from the NULL
@@ -1907,6 +1400,7 @@ public static void resolveValueExpressionNullValueDatatype( ValueExpressionNullV
   // A NULL insert/update value has no datatype.  A result column can't
   // be a value expression of type NULL.
 }
+
 
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Tries to determine and set the datatype of the given simple value
@@ -2194,6 +1688,423 @@ public static void resolveValueExpressionVariableDatatype( ValueExpressionVariab
   }
 }
 
+
+/**
+ * Returns a mapping of <code>DataType</code> s (value) for SQL built-in
+ * function names (key)
+ * 
+ * @return <code>HashMap</code> keys: <code>String</code> function name in
+ *         upper case, values: {@link DataType}
+ */
+protected static HashMap createFunctionReturnTypeMap()
+{
+    HashMap functionReturnTypes = new HashMap();
+    ApproximateNumericDataType doubleType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+    doubleType.setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+
+    ApproximateNumericDataType realType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+    realType.setPrimitiveType(PrimitiveType.REAL_LITERAL);
+
+    IntegerDataType bigIntType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+    bigIntType.setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
+
+    IntegerDataType intType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+    intType.setPrimitiveType(PrimitiveType.INTEGER_LITERAL);
+
+    IntegerDataType smallIntType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+    smallIntType.setPrimitiveType(PrimitiveType.SMALLINT_LITERAL);
+
+    BinaryStringDataType blobType = SQLDataTypesFactory.eINSTANCE.createBinaryStringDataType();
+    blobType.setPrimitiveType(PrimitiveType.BINARY_LARGE_OBJECT_LITERAL);
+
+    CharacterStringDataType clobType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    clobType.setPrimitiveType(PrimitiveType.CHARACTER_LARGE_OBJECT_LITERAL);
+
+    DateDataType dateType = SQLDataTypesFactory.eINSTANCE.createDateDataType();
+    dateType.setPrimitiveType(PrimitiveType.DATE_LITERAL);
+
+    TimeDataType timeType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
+    timeType.setPrimitiveType(PrimitiveType.TIME_LITERAL);
+
+    TimeDataType timeStampType = SQLDataTypesFactory.eINSTANCE.createTimeDataType();
+    timeStampType.setPrimitiveType(PrimitiveType.TIMESTAMP_LITERAL);
+
+    /*
+     * aggregate functions
+     */
+    functionReturnTypes.put("CORRELATION", doubleType);
+    functionReturnTypes.put("CORR", doubleType);
+
+    functionReturnTypes.put("COUNT", bigIntType);
+    functionReturnTypes.put("COUNT_BIG", bigIntType);
+
+    functionReturnTypes.put("COVARIANCE", doubleType);
+    functionReturnTypes.put("COVAR", doubleType);
+
+    // if and only if the return data type is the same as the argument
+    // set value of the map to null
+    functionReturnTypes.put("MAX", null);
+    functionReturnTypes.put("MIN", null);
+
+    functionReturnTypes.put("STDDEV", doubleType);
+    functionReturnTypes.put("VARIANCE", doubleType);
+    functionReturnTypes.put("VAR", doubleType);
+
+    /*
+     * scalar functions
+     */
+    functionReturnTypes.put("ABS", null);
+    functionReturnTypes.put("ABSVAL", null);
+    functionReturnTypes.put("ACOS", doubleType);
+
+    CharacterStringDataType varchar128 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar128.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar128.setLength(128);
+
+    functionReturnTypes.put("APPLICATION_ID", varchar128);
+    functionReturnTypes.put("ASCII", intType);
+    functionReturnTypes.put("ASIN", doubleType);
+    functionReturnTypes.put("ATAN", doubleType);
+    functionReturnTypes.put("ATAN2", doubleType);
+    functionReturnTypes.put("BIGINT", bigIntType);
+    functionReturnTypes.put("BLOB", blobType);
+
+    CharacterStringDataType char1 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    char1.setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);
+    char1.setLength(1);
+
+    functionReturnTypes.put("CHR", char1);
+    functionReturnTypes.put("CLOB", clobType);
+    functionReturnTypes.put("COALESCE", char1);
+    functionReturnTypes.put("COS", doubleType);
+    functionReturnTypes.put("COSH", doubleType);
+    functionReturnTypes.put("COT", doubleType);
+    functionReturnTypes.put("DATE", dateType);
+    functionReturnTypes.put("DAY", bigIntType);
+
+    CharacterStringDataType varchar100 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar100.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar100.setLength(100);
+
+    functionReturnTypes.put("DAYNAME", varchar100);
+    functionReturnTypes.put("DAYOFWEEK", intType);
+    functionReturnTypes.put("DAYOFWEEK_ISO", intType);
+    functionReturnTypes.put("DAYOFYEAR", intType);
+    functionReturnTypes.put("DAYS", intType);
+    functionReturnTypes.put("DBCLOB", clobType);
+    functionReturnTypes.put("DBPARTITIONNUM", intType);
+    functionReturnTypes.put("DEGREES", doubleType);
+    functionReturnTypes.put("DIFFERENCE", intType);
+
+    CharacterStringDataType varchar254 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar254.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar254.setLength(254);
+
+    CharacterStringDataType varchar4 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar4.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar4.setLength(4);
+
+    CharacterStringDataType varchar200 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar200.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar200.setLength(200);
+
+    CharacterStringDataType varchar20 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar20.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar20.setLength(20);
+
+    functionReturnTypes.put("DLCOMMENT", varchar254);
+    functionReturnTypes.put("DLLINKTYPE", varchar4);
+    functionReturnTypes.put("DLNEWCOPY", varchar200);
+    functionReturnTypes.put("DLPREVIOUSCOPY", varchar200);
+    functionReturnTypes.put("DLURLCOMPLETE", varchar4);
+    functionReturnTypes.put("DLURLCOMPLETEONLY", varchar4);
+    functionReturnTypes.put("DLURLCOMPLETEWRITE", varchar254);
+    functionReturnTypes.put("DLURLPATH", varchar4);
+    functionReturnTypes.put("DLURLPATHONLY", varchar4);
+    functionReturnTypes.put("DLURLPATHWRITE", varchar4);
+    functionReturnTypes.put("DLURLSCHEME", varchar20);
+    functionReturnTypes.put("DLURLSERVER", varchar254);
+
+    functionReturnTypes.put("DOUBLE", doubleType);
+    functionReturnTypes.put("EVENT_MON_STATE", intType);
+    functionReturnTypes.put("EXP", doubleType);
+    functionReturnTypes.put("FLOAT", doubleType);
+
+    CharacterStringDataType varchar32 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar32.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar32.setLength(32);
+    functionReturnTypes.put("GETHINT", varchar32);
+
+    CharacterStringDataType varchar1024 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar1024.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar1024.setLength(1024);
+    functionReturnTypes.put("GET_ROUTINE_OPTS", varchar1024);
+
+    functionReturnTypes.put("HASHEDVALUE", intType);
+    functionReturnTypes.put("HOUR", bigIntType);
+
+    FixedPrecisionDataType decimalType_31_0 = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
+    decimalType_31_0.setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
+    decimalType_31_0.setPrecision(31);
+    decimalType_31_0.setScale(0);
+    functionReturnTypes.put("IDENTITY_VAL_LOCAL", varchar1024);
+
+    functionReturnTypes.put("INTEGER", bigIntType);
+    functionReturnTypes.put("INT", bigIntType);             // fix wsdbu00045539
+    functionReturnTypes.put("JULIAN_DAY", intType);
+
+    functionReturnTypes.put("LCASE", null);
+    functionReturnTypes.put("LOWER", null);
+
+    functionReturnTypes.put("LENGTH", bigIntType);
+    functionReturnTypes.put("LN", doubleType);
+    functionReturnTypes.put("LOCATE", intType);
+    functionReturnTypes.put("LOG", doubleType);
+    functionReturnTypes.put("LOG10", doubleType);
+    functionReturnTypes.put("LTRIM", null);
+    functionReturnTypes.put("MICROSECOND", bigIntType);
+    functionReturnTypes.put("MIDNIGHT_SECONDS", intType);
+    functionReturnTypes.put("MINUTE", bigIntType);
+    functionReturnTypes.put("MONTH", bigIntType);
+    functionReturnTypes.put("MONTHNAME", varchar100);
+    functionReturnTypes.put("NULLIF", null);
+    functionReturnTypes.put("POSSTR", bigIntType);
+    functionReturnTypes.put("QUARTER", intType);
+    functionReturnTypes.put("RADIANS", doubleType);
+    functionReturnTypes.put("RAND", doubleType);
+    functionReturnTypes.put("REAL", realType);
+    functionReturnTypes.put("RTRIM", null);
+    functionReturnTypes.put("SECOND", bigIntType);
+    functionReturnTypes.put("SIN", doubleType);
+    functionReturnTypes.put("SINH", doubleType);
+    functionReturnTypes.put("SMALLINT", smallIntType);
+
+    CharacterStringDataType char4 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    char4.setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);
+    char4.setLength(4);
+    functionReturnTypes.put("SOUNDEX", char4);
+
+    CharacterStringDataType varchar4000 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar4000.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar4000.setLength(4000);
+    functionReturnTypes.put("SPACE", varchar4000);
+
+    functionReturnTypes.put("SQRT", doubleType);
+    functionReturnTypes.put("SOUNDEX", char4);
+    functionReturnTypes.put("TABLE_NAME", varchar128);
+    functionReturnTypes.put("TABLE_SCHEMA", varchar128);
+    functionReturnTypes.put("TAN", doubleType);
+    functionReturnTypes.put("TANH", doubleType);
+    functionReturnTypes.put("TIME", timeType);
+    functionReturnTypes.put("TIMESTAMP", timeStampType);
+    functionReturnTypes.put("TIMESTAMP_FORMAT", timeStampType);
+    functionReturnTypes.put("TIMESTAMP_ISO", timeStampType);
+    functionReturnTypes.put("TIMESTAMPDIFF", intType);
+    functionReturnTypes.put("TO_DATE", timeStampType);
+    functionReturnTypes.put("TRUNCATE", null);
+    functionReturnTypes.put("TRUNC", null);
+    functionReturnTypes.put("TYPE_ID", intType);
+
+    CharacterStringDataType varchar18 = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+    varchar18.setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+    varchar18.setLength(18);
+    functionReturnTypes.put("TYPE_NAME", varchar18);
+
+    functionReturnTypes.put("TYPE_SCHEMA", varchar128);
+    functionReturnTypes.put("UCASE", null);
+    functionReturnTypes.put("UPPER", varchar18);
+    functionReturnTypes.put("VALUE", null);
+
+    functionReturnTypes.put("WEEK", intType);
+    functionReturnTypes.put("WEEK_ISO", intType);
+    functionReturnTypes.put("YEAR", bigIntType);
+    
+    return functionReturnTypes;
+}
+
+
+
+
+/**
+ * Get the data type of result of the string binary operation of "left" and
+ * "right" 
+ * ASSUMPTION: the DataType of "left" should be greater than or equal to the 
+ * "right". And both of them are not null. Otherwise, null value will be returned.
+ * @param left
+ * @param right
+ * @return
+ */
+private static DataType concatCharStringDataTypePromotion(DataType left, DataType right)
+{
+    DataType retType = null;
+    
+    if(left != null && right != null)
+    {
+        PrimitiveType leftPrim = ((PredefinedDataType)left).getPrimitiveType();
+        PrimitiveType rightPrim = ((PredefinedDataType)right).getPrimitiveType();
+        
+        if(left instanceof CharacterStringDataType && right instanceof CharacterStringDataType)
+        {
+            retType = copyDataType(left);
+            int len = ((CharacterStringDataType)left).getLength();
+            len += ((CharacterStringDataType)right).getLength();
+            ((CharacterStringDataType)retType).setLength(len);
+            if(leftPrim == PrimitiveType.CHARACTER_LITERAL && rightPrim == PrimitiveType.CHARACTER_LITERAL && len < 255)
+                ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_LITERAL);            
+            else
+                ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);            
+        }
+    }
+    if(retType == null)
+    {
+        retType = SQLDataTypesFactory.eINSTANCE.createCharacterStringDataType();
+        ((CharacterStringDataType)retType).setPrimitiveType(PrimitiveType.CHARACTER_VARYING_LITERAL);
+        ((CharacterStringDataType)retType).setLength(100);
+    }
+
+    return retType;
+}
+
+/**
+ * Get the data type of result of the numeric binary operation of "left" and
+ * "right" 
+ * ASSUMPTION: the DataType of "left" should be greater than or equal to the 
+ * "right". And both of them are not null. Otherwise, null value will be returned.
+ * 
+ * @param left a type that is "greater than or equal to" the right
+ * @param right a type that is "less than or equal to" the left
+ * @return
+ */
+private static DataType doNumericDataTypePromotion(DataType left, DataType right)
+{
+    DataType retType = null;
+    
+    if(left != null && right != null)
+    {
+        PrimitiveType leftPrim = ((PredefinedDataType)left).getPrimitiveType();
+        PrimitiveType rightPrim = ((PredefinedDataType)right).getPrimitiveType();
+        
+        if(leftPrim == PrimitiveType.SMALLINT_LITERAL)
+        {
+            if(rightPrim == PrimitiveType.SMALLINT_LITERAL)
+                retType = copyDataType(left);
+        }
+        else if(leftPrim == PrimitiveType.INTEGER_LITERAL)
+        {
+            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
+                    || rightPrim  == PrimitiveType.INTEGER_LITERAL)
+                retType = copyDataType(left);
+        }
+        else if(leftPrim == PrimitiveType.BIGINT_LITERAL)
+        {
+            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
+                    || rightPrim  == PrimitiveType.INTEGER_LITERAL
+                    || rightPrim  == PrimitiveType.BIGINT_LITERAL)
+                retType = copyDataType(left);
+        }
+        else if(leftPrim == PrimitiveType.DECIMAL_LITERAL)
+        {
+            if(rightPrim  == PrimitiveType.SMALLINT_LITERAL)
+            {
+                retType = copyDataType(left);
+                int precision = ((FixedPrecisionDataType)left).getPrecision();
+                int scale = ((FixedPrecisionDataType)left).getScale();
+                
+                precision = scale + ((precision - scale) > 5 ? (precision - scale) : 5);
+                precision = (precision > 31 ? 31 : precision);
+                ((FixedPrecisionDataType)retType).setPrecision(precision);
+            }
+            else if(rightPrim  == PrimitiveType.INTEGER_LITERAL)
+            {
+                retType = copyDataType(left);
+                int precision = ((FixedPrecisionDataType)left).getPrecision();
+                int scale = ((FixedPrecisionDataType)left).getScale();
+                
+                precision = scale + ((precision - scale) > 11 ? (precision - scale) : 11);
+                precision = (precision > 31 ? 31 : precision);
+                ((FixedPrecisionDataType)retType).setPrecision(precision);
+            }
+            else if(rightPrim  == PrimitiveType.BIGINT_LITERAL)
+            {
+                retType = copyDataType(left);
+                int precision = ((FixedPrecisionDataType)left).getPrecision();
+                int scale = ((FixedPrecisionDataType)left).getScale();
+                
+                precision = scale + ((precision - scale) > 19 ? (precision - scale) : 19);
+                precision = (precision > 31 ? 31 : precision);
+                ((FixedPrecisionDataType)retType).setPrecision(precision);
+                
+            }
+            else if(rightPrim  == PrimitiveType.DECIMAL_LITERAL)
+            {
+                retType = copyDataType(left);
+                int pleft = ((FixedPrecisionDataType)left).getPrecision();
+                int sleft = ((FixedPrecisionDataType)left).getScale();
+
+                int pright = ((FixedPrecisionDataType)right).getPrecision();
+                int sright = ((FixedPrecisionDataType)right).getScale();
+
+                int s = (sleft > sright ? sleft : sright);
+                int p = s + ((pleft - sleft) > (pright - sright) ? (pleft - sleft) : (pright - sright));
+
+                ((FixedPrecisionDataType)retType).setPrecision(p);
+                ((FixedPrecisionDataType)retType).setScale(s);
+            }
+        }
+        else if(leftPrim == PrimitiveType.REAL_LITERAL)
+        {
+            if(rightPrim  == PrimitiveType.REAL_LITERAL)
+            {
+                retType = copyDataType(left);
+            } 
+            else if(rightPrim  == PrimitiveType.SMALLINT_LITERAL
+                    || rightPrim  == PrimitiveType.INTEGER_LITERAL
+                    || rightPrim  == PrimitiveType.BIGINT_LITERAL
+                    || rightPrim  == PrimitiveType.DECIMAL_LITERAL)
+            {
+                retType = copyDataType(left);
+                ((ApproximateNumericDataType)retType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+            }
+        }
+        else if(leftPrim == PrimitiveType.DOUBLE_PRECISION_LITERAL)
+        {
+            retType = copyDataType(left);
+        }
+        
+    }
+    return retType;
+}
+
+/**
+ * For fixed return type
+ * @param funcName
+ * @return
+ */
+private static DataType getFuncReturnType(String funcName)
+{
+    DataType dt = (DataType)FunctionReturnType.get(funcName);
+    if(dt != null)
+        return (DataType)EcoreUtil.copy(dt);
+    else
+        return null;
+}
+
+/**
+ * CHECK IMPLEMENTATION! CODE UNTESTED! TODO: implement this Proxy method.
+ * Throws UnsupportedOperationException now.
+ * 
+ * @param funcName
+ * @return
+ */
+private static Object[][] getParameterFormats(String funcName)
+{
+    // FIXME implement another method taking a ValueExpressionFunction object that has a return type
+    throw new UnsupportedOperationException(
+                    ValueExpressionHelper.class.getName()+
+                    "#getParameterFormats(String funcName) not implemented!");
+    //return FunctionHelper.getParameterFormats( funcName );
+}
+
 // TODO: to be refactored somewhere properly
 /** CHECK IMPLEMENTATION! CODE UNTESTED!
  * Guesses the DataType of the given value of a ValueExpression.
@@ -2306,6 +2217,7 @@ private static PredefinedDataType getPredefinedDataTypeForSimpleValue(String val
                 {
                     try
                     {
+                        Long bigInt = new Long(ucValue);
                         int precision = 19;
 
                         // If we reached here we know we have a big integer.
@@ -2421,6 +2333,27 @@ private static PredefinedDataType getPredefinedDataTypeForSimpleValue(String val
 
     return datatype;
 
+}
+
+/**
+ * CHECK IMPLEMENTATION! CODE UNTESTED! TODO: implement this Proxy method.
+ * Throws UnsupportedOperationException now.
+ * 
+ * @param funcName
+ * @param returnDatatypeName
+ * @param param1DatatypeName
+ * @param param1DatatypeLen
+ * @return
+ */
+private static int getReturnDatatypeLength(String funcName, String returnDatatypeName, String param1DatatypeName, int param1DatatypeLen)
+{
+    // FIXME implement another method taking a ValueExpressionFunction object
+    // that has a return type
+    throw new UnsupportedOperationException(
+    //System.err.println(
+                    ValueExpressionHelper.class.getName()+"#getReturnDatatypeLength(String funcName, String returnDatatypeName, String param1DatatypeName, int param1DatatypeLen) not implemented!");
+    //return FunctionHelper.getReturnDatatypeLength( funcName,
+    // returnDatatypeName, param1DatatypeName, param1DatatypeLen );
 }
 
 

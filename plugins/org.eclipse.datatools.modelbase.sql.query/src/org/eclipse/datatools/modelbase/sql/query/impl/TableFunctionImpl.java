@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableFunctionImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: TableFunctionImpl.java,v 1.5 2007/02/08 17:00:30 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -36,21 +36,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TableFunctionImpl extends TableExpressionImpl implements TableFunction {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected TableFunctionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.TABLE_FUNCTION;
-	}
+        return SQLQueryModelPackage.Literals.TABLE_FUNCTION;
+    }
 
 } //SQLTableFunctionImpl

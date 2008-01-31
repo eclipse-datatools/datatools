@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionLabeledDurationItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: ValueExpressionLabeledDurationItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -15,6 +15,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -71,14 +72,18 @@ public class ValueExpressionLabeledDurationItemProvider
      */
 	protected void addLabeledDurationTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionLabeledDuration_labeledDurationType_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionLabeledDuration_labeledDurationType_feature", "_UI_ValueExpressionLabeledDuration_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionLabeledDuration_LabeledDurationType(),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_LABELED_DURATION__LABELED_DURATION_TYPE,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -92,9 +97,21 @@ public class ValueExpressionLabeledDurationItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getValueExpressionLabeledDuration_ValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR);
         }
         return childrenFeatures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
     }
 
     /**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelectStatementItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: QuerySelectStatementItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -128,7 +128,7 @@ public class QuerySelectStatementItemProvider
      * @generated
      */
   public Object getImage(Object object) {
-        return getResourceLocator().getImage("full/obj16/QuerySelectStatement");
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/QuerySelectStatement"));
     }
 
     /**

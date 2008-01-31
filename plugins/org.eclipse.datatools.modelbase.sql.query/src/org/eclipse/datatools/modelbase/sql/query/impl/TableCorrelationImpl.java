@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableCorrelationImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: TableCorrelationImpl.java,v 1.4 2007/02/08 17:00:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -40,194 +40,194 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class TableCorrelationImpl extends SQLQueryObjectImpl implements TableCorrelation {
 	/**
-	 * The cached value of the '{@link #getColumnNameList() <em>Column Name List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getColumnNameList() <em>Column Name List</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getColumnNameList()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList columnNameList = null;
+     * @see #getColumnNameList()
+     * @generated
+     * @ordered
+     */
+    protected EList columnNameList;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected TableCorrelationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.TABLE_CORRELATION;
-	}
+        return SQLQueryModelPackage.Literals.TABLE_CORRELATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public TableExpression getTableExpr() {
-		if (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR) return null;
-		return (TableExpression)eContainer();
-	}
+        if (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR) return null;
+        return (TableExpression)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTableExpr(TableExpression newTableExpr, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newTableExpr, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newTableExpr, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setTableExpr(TableExpression newTableExpr) {
-		if (newTableExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
-			if (EcoreUtil.isAncestor(this, newTableExpr))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTableExpr != null)
-				msgs = ((InternalEObject)newTableExpr).eInverseAdd(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
-			msgs = basicSetTableExpr(newTableExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, newTableExpr, newTableExpr));
-	}
+        if (newTableExpr != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR && newTableExpr != null)) {
+            if (EcoreUtil.isAncestor(this, newTableExpr))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newTableExpr != null)
+                msgs = ((InternalEObject)newTableExpr).eInverseAdd(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
+            msgs = basicSetTableExpr(newTableExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR, newTableExpr, newTableExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getColumnNameList() {
-		if (columnNameList == null) {
-			columnNameList = new EObjectContainmentWithInverseEList(ColumnName.class, this, SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST, SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION);
-		}
-		return columnNameList;
-	}
+        if (columnNameList == null) {
+            columnNameList = new EObjectContainmentWithInverseEList(ColumnName.class, this, SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST, SQLQueryModelPackage.COLUMN_NAME__TABLE_CORRELATION);
+        }
+        return columnNameList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTableExpr((TableExpression)otherEnd, msgs);
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetTableExpr((TableExpression)otherEnd, msgs);
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                return ((InternalEList)getColumnNameList()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				return basicSetTableExpr(null, msgs);
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                return basicSetTableExpr(null, msgs);
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                return ((InternalEList)getColumnNameList()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.TABLE_EXPRESSION__TABLE_CORRELATION, TableExpression.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				return getTableExpr();
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				return getColumnNameList();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                return getTableExpr();
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                return getColumnNameList();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				setTableExpr((TableExpression)newValue);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				getColumnNameList().clear();
-				getColumnNameList().addAll((Collection)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                setTableExpr((TableExpression)newValue);
+                return;
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                getColumnNameList().clear();
+                getColumnNameList().addAll((Collection)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				setTableExpr((TableExpression)null);
-				return;
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				getColumnNameList().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                setTableExpr((TableExpression)null);
+                return;
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                getColumnNameList().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
-				return getTableExpr() != null;
-			case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
-				return columnNameList != null && !columnNameList.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.TABLE_CORRELATION__TABLE_EXPR:
+                return getTableExpr() != null;
+            case SQLQueryModelPackage.TABLE_CORRELATION__COLUMN_NAME_LIST:
+                return columnNameList != null && !columnNameList.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLTableCorrelationImpl

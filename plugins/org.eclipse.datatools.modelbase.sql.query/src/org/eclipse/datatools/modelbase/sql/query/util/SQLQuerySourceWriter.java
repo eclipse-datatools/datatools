@@ -17,6 +17,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
+import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
 import org.eclipse.datatools.modelbase.sql.query.GroupingSets;
@@ -47,6 +58,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
@@ -100,20 +112,9 @@ import org.eclipse.datatools.modelbase.sql.query.WithTableReference;
 import org.eclipse.datatools.modelbase.sql.query.WithTableSpecification;
 import org.eclipse.datatools.modelbase.sql.query.helper.DataTypeHelper;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.datatools.modelbase.sql.datatypes.ApproximateNumericDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.ArrayDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.FixedPrecisionDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.IntegerDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.MultisetDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PrimitiveType;
-import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -1182,11 +1183,16 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         if (comment.isMultiLineComment())
         {
             String text = comment.getText();
+            String trimText = text.trim();
             StringBuffer sbComment = new StringBuffer();
-            sbComment.append(COMMENT_PREFIX_MULTI_LINE);
+            if (trimText.startsWith(COMMENT_PREFIX_MULTI_LINE) == false) {
+                sbComment.append(COMMENT_PREFIX_MULTI_LINE);
+            }
             sbComment.append(text);
-            sbComment.append(COMMENT_SUFFIX_MULTI_LINE);
-            indentSQLToLastLineLengthOfContainer(sbComment, sb);
+            if (trimText.endsWith(COMMENT_SUFFIX_MULTI_LINE) == false) {
+                sbComment.append(COMMENT_SUFFIX_MULTI_LINE);
+            }
+            // indentSQLToLastLineLengthOfContainer(sbComment, sb);
             sb.append(sbComment);
             
             // multiline comment is delimited, doesn't need a line break
@@ -1751,8 +1757,10 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         if (name == null || name.indexOf('_') >= 0) // some datatypes have name like CHAR_VARYING, but we don't want the underscore
         {
             appendSpecificSQL(dataType.getPrimitiveType(), sb);
-            sb.append(SPACE);
-            sb.append(length);
+            if (length.length() > 0) {
+                sb.append(SPACE);
+                sb.append(length);
+            }
         }
         else {
             name = name.replaceFirst("\\(.*\\)", length); //$NON-NLS-1$
@@ -1847,14 +1855,6 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     protected void appendSpecificSQL(IntegerDataType dataType, StringBuffer sb)
     {
         appendSpecificSQL(dataType.getPrimitiveType(),sb);
-
-        if (PrimitiveType.BIGINT_LITERAL == dataType.getPrimitiveType()
-                        && dataType.getPrecision() != 0) {
-            sb.append(SPACE);
-            sb.append(PAREN_LEFT);
-            sb.append(dataType.getPrecision());
-            sb.append(PAREN_RIGHT);
-        }
     }
 
     /**
@@ -2254,6 +2254,17 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             sb.append(PAREN_RIGHT);
         }
 
+    }
+
+    /**
+     * @see com.ibm.db.models.sql.query.QueryNested#getSQL()
+     */
+    protected void appendSpecificSQL(QueryNested qryNest, StringBuffer sb)
+    {
+        sb.append(PAREN_LEFT);
+        appendSQL(qryNest.getNestedQuery(),sb);
+        sb.append(PAREN_RIGHT);
+        
     }
 
     /**
@@ -2989,8 +3000,8 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     protected void appendSpecificSQL(TableInDatabase tableInDB, StringBuffer sb)
     {
         appendSQLForTableInDatabase(tableInDB, sb);
-        
-        if (tableInDB.getTableCorrelation() != null)
+
+        if (tableInDB.getTableCorrelation() != null )
         {
             sb.append(SPACE);
             sb.append(AS);
@@ -4021,6 +4032,16 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         if (function.isSpecialRegister())
         {
             sbExpr.append(function.getName());
+            List paramList = function.getParameterList();
+            // only ValueExpressionSimple is created as params now
+            if(!paramList.isEmpty()){
+                ValueExpressionSimple simpleExpr = (ValueExpressionSimple)paramList.get(0);
+                String value = simpleExpr.getValue();
+                if(value != null){
+                    sbExpr.append(SPACE);
+                    sbExpr.append(value);
+                }
+            }
         }
         else
         {

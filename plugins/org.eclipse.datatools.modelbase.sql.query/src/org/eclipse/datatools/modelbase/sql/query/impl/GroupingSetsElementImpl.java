@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementImpl.java,v 1.3 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: GroupingSetsElementImpl.java,v 1.4 2007/02/08 17:00:31 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -36,157 +36,157 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class GroupingSetsElementImpl extends SQLQueryObjectImpl implements GroupingSetsElement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected GroupingSetsElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.GROUPING_SETS_ELEMENT;
-	}
+        return SQLQueryModelPackage.Literals.GROUPING_SETS_ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public GroupingSets getGroupingSets() {
-		if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS) return null;
-		return (GroupingSets)eContainer();
-	}
+        if (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS) return null;
+        return (GroupingSets)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetGroupingSets(GroupingSets newGroupingSets, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newGroupingSets, SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newGroupingSets, SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setGroupingSets(GroupingSets newGroupingSets) {
-		if (newGroupingSets != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS && newGroupingSets != null)) {
-			if (EcoreUtil.isAncestor(this, newGroupingSets))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newGroupingSets != null)
-				msgs = ((InternalEObject)newGroupingSets).eInverseAdd(this, SQLQueryModelPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
-			msgs = basicSetGroupingSets(newGroupingSets, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS, newGroupingSets, newGroupingSets));
-	}
+        if (newGroupingSets != eInternalContainer() || (eContainerFeatureID != SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS && newGroupingSets != null)) {
+            if (EcoreUtil.isAncestor(this, newGroupingSets))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newGroupingSets != null)
+                msgs = ((InternalEObject)newGroupingSets).eInverseAdd(this, SQLQueryModelPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
+            msgs = basicSetGroupingSets(newGroupingSets, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS, newGroupingSets, newGroupingSets));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetGroupingSets((GroupingSets)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetGroupingSets((GroupingSets)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				return basicSetGroupingSets(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                return basicSetGroupingSets(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                return eInternalContainer().eInverseRemove(this, SQLQueryModelPackage.GROUPING_SETS__GROUPING_SETS_ELEMENT_LIST, GroupingSets.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				return getGroupingSets();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                return getGroupingSets();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				setGroupingSets((GroupingSets)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                setGroupingSets((GroupingSets)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				setGroupingSets((GroupingSets)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                setGroupingSets((GroupingSets)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
-				return getGroupingSets() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.GROUPING_SETS_ELEMENT__GROUPING_SETS:
+                return getGroupingSets() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLGroupingSetsElementImpl

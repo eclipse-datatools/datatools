@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByOrdinalItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: OrderByOrdinalItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link com.ibm.db.models.sql.query.OrderByOrdinal} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByOrdinal} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -70,14 +70,18 @@ public class OrderByOrdinalItemProvider
      */
   protected void addOrdinalValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_OrderByOrdinal_ordinalValue_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_OrderByOrdinal_ordinalValue_feature", "_UI_OrderByOrdinal_type"),
-                 SQLQueryModelPackage.eINSTANCE.getOrderByOrdinal_OrdinalValue(),
+                 SQLQueryModelPackage.Literals.ORDER_BY_ORDINAL__ORDINAL_VALUE,
                  true,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**

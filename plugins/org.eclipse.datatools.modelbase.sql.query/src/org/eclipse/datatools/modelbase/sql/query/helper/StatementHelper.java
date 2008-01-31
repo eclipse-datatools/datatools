@@ -19,6 +19,9 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.datatools.modelbase.sql.query.ColumnName;
 import org.eclipse.datatools.modelbase.sql.query.GroupingExpression;
@@ -34,6 +37,7 @@ import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryNested;
 import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -84,7 +88,7 @@ public class StatementHelper {
      * modified to or be compared equal to COL1 or col1, value: "\"", the
      * character "
      */
-    public static final char DELIMITED_IDENTIFIER_QUOTE = '"';
+    public static char DELIMITED_IDENTIFIER_QUOTE = '"';
 
     public static final int STATEMENT_TYPE_DELETE = 3;
     public static final int STATEMENT_TYPE_FULLSELECT = 4;
@@ -104,6 +108,26 @@ public class StatementHelper {
     public StatementHelper(Database database) {
         nameList = new Hashtable();
         this.database = database;
+    }
+
+    /**
+     * Gets the DELIMITED_IDENTIFIER_QUOTE char.
+     */
+    public static char getDELIMITED_IDENTIFIER_QUOTE()
+    {
+       return DELIMITED_IDENTIFIER_QUOTE;
+    }
+
+    /**
+     * Sets the DELIMITED_IDENTIFIER_QUOTE char to make this class flexible with Database
+     * info String constant for the quote that are used for delimited
+     * identifiers like "Col1" where this delimited identifier should not be
+     * modified to or be compared equal to COL1 or col1, value: "\"", the
+     * character "
+     */
+    public static void setDELIMITED_IDENTIFIER_QUOTE(char delimited_identifier_quote)
+    {
+       DELIMITED_IDENTIFIER_QUOTE = delimited_identifier_quote;
     }
 
     /**
@@ -194,7 +218,21 @@ public class StatementHelper {
             boolean containsSpace = catalogIdentifier.indexOf(' ') > -1;
             boolean containsDot = catalogIdentifier.indexOf('.') > -1;
             boolean isLowerOrMixedCase = !catalogIdentifier.toUpperCase().equals(catalogIdentifier);
-
+            // QVO wsdbu00119542 
+            // We need to check for cases when the identifier contains all digits (0-9)
+            boolean allDigits = false;
+            try
+            {
+                Integer.parseInt(catalogIdentifier);
+                // if no exception, then it contains all digits
+                allDigits = true;
+            }
+            catch (NumberFormatException ex)
+            {
+                // ignore;
+            }
+            // end wsdbu00119542
+            
             // boolean startsWithNum = catalogIdentifier.length() > 0 &&
             // catalogIdentifier.charAt(0) < 'A';
             // ISO/IEC 9075-2:2003 (E) 5.2 <token> and <separator>
@@ -202,14 +240,28 @@ public class StatementHelper {
             // Lm, Lo, and Nl
             // are assigned upper-case letters, lower-case letters, title-case
             // letters, modifier letters, other letters, and letter numbers.
-            boolean startsWithNonAlpha = catalogIdentifier.length() > 0
-                    && !catalogIdentifier.substring(0, 1).matches("\\p{Lu}|\\p{Ll}|\\p{Lt}|\\p{Lm}|\\p{Lo}|\\p{Nl}"); //$NON-NLS-1$
+            // All identifiers that have a nonword character (i.e not any of a-z A-Z _ 0-9 ) needs to be delimited
+            boolean containsNonAlpha = false;
+            String nonAlphaRegex = "\\W";
+            Pattern patern = Pattern.compile(nonAlphaRegex);
+            Matcher matcher = patern.matcher(catalogIdentifier);
+            while(!containsNonAlpha &&  matcher.find()){
+                containsNonAlpha = true;
+            }
 
-            if (containsDelimiters || containsSpace || containsDot || startsWithNonAlpha || isLowerOrMixedCase) {
+            if (containsDelimiters || containsSpace || containsDot || containsNonAlpha || isLowerOrMixedCase
+                    || allDigits) {
                 String delimiter = String.valueOf(idDelimiterQuote);
 
                 if (containsDelimiters) {
                     StringBuffer sqlIdentSB = new StringBuffer(sqlIdentifier);
+                    // RATLC00395405  QVO
+                    // if delimiters at each end then ignore 
+                    if (sqlIdentSB.charAt(0) == idDelimiterQuote &&
+                            sqlIdentSB.charAt(sqlIdentSB.length() - 1) == idDelimiterQuote)
+                    {
+                        return sqlIdentSB.toString();
+                    }
                     for (int i = 0; i < sqlIdentSB.length(); i++) {
                         if (sqlIdentSB.charAt(i) == idDelimiterQuote) {
                             sqlIdentSB.insert(i, idDelimiterQuote);
@@ -428,8 +480,8 @@ public class StatementHelper {
      */
 
     /*
-     * public SQLInsertStatement createInsertStatement() { SQLQueryFactory
-     * factory = SQLQueryFactoryImpl.instance();
+     * public SQLInsertStatement createInsertStatement() { SQLQueryModelFactory
+     * factory = SQLQueryModelFactoryImpl.instance();
      * 
      * SQLInsertStatement sqlInsertStatement =
      * factory.createSQLInsertStatement();
@@ -502,6 +554,17 @@ public class StatementHelper {
         return null;
     }
 
+    /**
+     * Creates a QueryNested object.
+     * 
+     * @return
+     */
+    public static QueryNested createQueryNested() {
+        SQLQueryModelFactory factory = SQLQueryModelFactory.eINSTANCE;
+        QueryNested qryNested = factory.createQueryNested();
+        return qryNested;        
+    }
+    
     /**
      * Creates a QuerySelect Object
      * 
@@ -594,8 +657,8 @@ public class StatementHelper {
     }
 
     /*
-     * public QueryUpdateStatement createUpdateStatement() { SQLQueryFactory
-     * factory = SQLQueryFactoryImpl.eInstance;
+     * public QueryUpdateStatement createUpdateStatement() { SQLQueryModelFactory
+     * factory = SQLQueryModelFactoryImpl.eInstance;
      * 
      * QueryUpdateStatement sqlUpdateStatement =
      * factory.createSQLUpdateStatement();
@@ -662,43 +725,70 @@ public class StatementHelper {
     }
 
     /**
-     * Compares two SQL identifier in SQL format, regarding delimited
-     * identifiers using the given <code>identDelimiterQuote</code> as
-     * delimiter. If the given SQL identifiers start and end with the
-     * <code>identDelimiterQuote</code> they will be compared using
-     * {@link String#compareTo(java.lang.String)}, otherwise they will be
-     * compared using {@link String#compareToIgnoreCase(java.lang.String)}. If
-     * <code>identDelimiterQuote</code> is not given,
-     * {@link #DELIMITED_IDENTIFIER_QUOTE} will be used. If both
-     * <code>sqlIdent1</code> and <code>sqlIdent2</code> are
-     * <code>null</code> the result of this method is <code>false</code>.
+     * Determines whether two SQL identifiers are equal, respecting delimited
+     * identifiers using the default delimited identifier quote character.
+     * (If the given SQL identifiers are delimited, they must match exactly.  
+     * Otherwise equal identifiers can differ by case.) 
+     * If one of the identifiers is null, they are considered not equal. If both 
+     * are null, they are considered equal.
      * 
-     * @param sqlIdent1 one SQL identifier
-     * @param sqlIdent2 another SQL identifier to be compared to
-     *        <code>sqlIdent1</code>
-     * @param identDelimiterQuote the char that, if present as a pre- and suffix
-     *        in the given SQL identifiers forces the comparison to regard the
-     *        case (upper/lower case), default is
-     *        {@link #DELIMITED_IDENTIFIER_QUOTE}
-     * @return <code>true</code> if both SQL identifiers are equal, or, even
-     *         equal regardless of their case, if both identifiers are not
-     *         delimited, <code>false</code> if both SQL identifiers are
-     *         <code>null</code>
+     * @param ident1 a SQL identifier
+     * @param ident2 another SQL identifier
+     * @return true when the identifiers are equal, otherwise false
      */
-    public static boolean equalSQLIdentifiers(String sqlIdent1, String sqlIdent2, char identDelimiterQuote) {
-        boolean equalIdentifiers = false;
+    public static boolean equalSQLIdentifiers(String ident1, String ident2) {
+        return equalSQLIdentifiers(ident1, ident2, DELIMITED_IDENTIFIER_QUOTE);
+    }
+    
+    /**
+     * Determines whether two SQL identifiers are equal, respecting delimited
+     * identifiers using the given quote character as delimiter.
+     * (If the given SQL identifiers are delimited, they must match exactly.  
+     * Otherwise equal identifiers can differ by case.)  
+     * If one of the identifiers is null, they are considered not equal.  If both 
+     * are null, they are considered equal.
+     * 
+     * @param ident1 a SQL identifier
+     * @param ident2 another SQL identifier
+     * @param identDelimiterQuote the delimiter char
+     * @return true when the identifiers are equal, otherwise false
+     */
+    public static boolean equalSQLIdentifiers(String ident1, String ident2, char delimiterChar) {
+        String delimStr = String.valueOf(delimiterChar);
 
-        String delimiterQuote = String.valueOf(identDelimiterQuote);
-
-        if (sqlIdent1 != null) {
-            if (sqlIdent1.startsWith(delimiterQuote) && sqlIdent1.endsWith(delimiterQuote)) {
-                equalIdentifiers = sqlIdent1.equals(sqlIdent2);
+        boolean isEqualIdentifiers = false;
+        
+        /* Equal when both are null. */
+        if (ident1 == null && ident2 == null) {
+            isEqualIdentifiers = true;
+        }
+        /* Not equal when one is null. */
+        else if (ident1 == null || ident2 == null) {
+            isEqualIdentifiers = false;
+        }
+        /* When one or both identifiers are delimited, must have exact match. */
+        else if (ident1.startsWith(delimStr)
+              || ident2.startsWith(delimStr)) {
+            String tempIdent1 = ident1;
+            String tempIdent2 = ident2;
+            if (ident1.startsWith(delimStr)
+             && ident1.endsWith(delimStr)) {
+                tempIdent1 = ident1.substring(1, ident1.length()-1);
             }
-            else {
-                equalIdentifiers = sqlIdent1.equalsIgnoreCase(sqlIdent2);
+            if (ident2.startsWith(delimStr)
+             && ident2.endsWith(delimStr)) {
+                tempIdent2 = ident2.substring(1, ident2.length()-1);
+            }
+            if (tempIdent1.equals(tempIdent2)) {
+                isEqualIdentifiers = true;
             }
         }
-        return equalIdentifiers;
+        /* Otherwise compare ignoring case. */
+        else if (ident1.equalsIgnoreCase(ident2)) {
+            isEqualIdentifiers = true;
+        }
+        
+        return isEqualIdentifiers;
     }
 
     /**
@@ -756,8 +846,11 @@ public class StatementHelper {
                             // T1.COL1 or T2.COL1 but with COL1 while T1 could
                             // be an alias of the table that COL1 is associated
                             // to
-                            if (colName.equals(resultColExprName)
-                                    && (colTableName.equals(resultColExprTableName) || colTableName.equals(resultColExprTableAlias))) {
+                            if ( equalSQLIdentifiers(colName, resultColExprName)
+                              && ( equalSQLIdentifiers(colTableName, resultColExprTableName) 
+                                || equalSQLIdentifiers(colTableName, resultColExprTableAlias)
+                                 )
+                               ) {
                                 resultColumnFound = resultColumn;
                                 break;
                             }
@@ -798,7 +891,7 @@ public class StatementHelper {
 
                     // if (equalSQLIdentifiers(resultColumnAlias,
                     // columnNameOrAlias))
-                    if (resultColumnAlias.equals(columnNameOrAlias)) {
+                    if (equalSQLIdentifiers(resultColumnAlias, columnNameOrAlias)) {
                         resultColumnFound = resultColumn;
                         break;
                     }
@@ -810,7 +903,7 @@ public class StatementHelper {
                     // we can't match SELECT T1.COL1, T2.COL1 FROM ... w/ COL1
                     // only match SELECT COL1 FROM ... w/ COL1
                     if (resultColExpr.getTableExpr() == null || !isColumnNameAmbiguous(resultColExpr)) {
-                        if (resultColumnName.equals(columnNameOrAlias)) {
+                        if (equalSQLIdentifiers(resultColumnName, columnNameOrAlias)) {
                             resultColumnFound = resultColumn;
                             break;
                         }
@@ -828,9 +921,7 @@ public class StatementHelper {
      */
     private static Set getAllDirectReferences(EObject eObject) {
         return getDirectReferences(eObject, null);
-    }
-
-    /**
+    }/**
      * Returns all <code>ValueExpressionVariables</code> contained in the
      * given <code>QueryStatement</code>.
      * 
@@ -838,35 +929,144 @@ public class StatementHelper {
      * @return List of the {@link ValueExpressionVariable}
      */
     public static List getAllVariablesInQueryStatement(QueryStatement queryStmt) {
+       List vars = getAllVariablesInQueryStatement(queryStmt, true, "VAR0");
+       // No sense sorting them unless parameter markers are named.
+       List sortedVariables = new ArrayList(vars);
+       Collections.sort(sortedVariables, new ValueExpressionComparator());
+       return sortedVariables;
+    }
+    
+    /**
+     * Returns all <code>ValueExpressionVariables</code> contained in the
+     * given <code>QueryStatement</code>.
+     * 
+     * @param queryStmt A SQL statement that might have host variables or parameter markers
+     * @param varStem The stem for naming variables from parameter markers 
+     * @return List of the {@link ValueExpressionVariable}
+     */
+    public static List getAllVariablesInQueryStatement(QueryStatement queryStmt, String varStem) {
+       List vars = getAllVariablesInQueryStatement(queryStmt, true, varStem);
+       // No sense sorting them unless parameter markers are named.
+       List sortedVariables = new ArrayList(vars);
+       Collections.sort(sortedVariables, new ValueExpressionComparator());
+       return sortedVariables;
+    }
+    
+    /**
+     * Returns all <code>ValueExpressionVariables</code> contained in the
+     * given <code>QueryStatement</code>.
+     * 
+     * @param queryStmt A SQL statement that might have host variables or parameter markers
+     * @param nameParameterMarkers True if you wish to generate names for parameter markers
+     * @return List of the {@link ValueExpressionVariable}
+     */
+    public static List getAllVariablesInQueryStatement(QueryStatement queryStmt, boolean nameParameterMarkers) {
+       List vars = getAllVariablesInQueryStatement(queryStmt, nameParameterMarkers, "VAR0");
+       // No sense sorting them unless parameter markers are named.
+       List sortedVariables = new ArrayList(vars);
+       Collections.sort(sortedVariables, new ValueExpressionComparator());
+       return sortedVariables;
+    }
+
+    /**
+     * Returns all <code>ValueExpressionVariables</code> contained in the
+     * given <code>QueryStatement</code>.
+     * 
+     * @param queryStmt A SQL statement that might have host variables or parameter markers
+     * @param nameParameterMarkers True if you wish to generate names for parameter markers
+     * @param varStem The stem for naming variables from parameter markers 
+     * @return List of the {@link ValueExpressionVariable}
+     */
+    public static List getAllVariablesInQueryStatement(QueryStatement queryStmt, boolean nameParameterMarkers, String varStem) {
         Class typeFilter = ValueExpressionVariable.class;
         Set hostVariableSet = getReferencesRecursively(queryStmt, typeFilter);
+        ValueExpressionVariable var;
+        String name, varname;
+        Vector vHostVars = new Vector();
+        Iterator hi = hostVariableSet.iterator();
+        while (hi.hasNext())
+        {
+           var = (ValueExpressionVariable)hi.next();
+           name = var.getName();
+           if (name != null)
+              vHostVars.add(name);
+        }
+        if (nameParameterMarkers)
+        {
+           // Give default names to any with null names (derived from ? markers)
+           hi = hostVariableSet.iterator();
+           while (hi.hasNext())
+           {
+              var = (ValueExpressionVariable)hi.next();
+              name = var.getName();
+              if (name == null)
+              {
+                 varname = getUniqueVarName(vHostVars, varStem);
+                 vHostVars.add(varname);
+                 var.setName(varname);
+              }
+           }
+        }
+        return new ArrayList(hostVariableSet);
+    }
+    
 
-        List sortedVariables = new ArrayList(hostVariableSet);
-
-        Comparator sqlSrcOccurenceComp = new Comparator() {
-
-            public int compare(Object o1, Object o2) {
-                int result = 0;
-                ValueExpressionVariable h1 = (ValueExpressionVariable) o1;
-                ValueExpressionVariable h2 = (ValueExpressionVariable) o2;
-                SQLQuerySourceInfo h1si = h1.getSourceInfo();
-                SQLQuerySourceInfo h2si = h2.getSourceInfo();
-                if (h1si != null && h2si != null) {
-                    int h1Loc = h1si.getSpanStartOffset();
-                    int h2Loc = h2si.getSpanStartOffset();
-                    result = h1Loc - h2Loc;
-                }
-                else {
-                    StatementHelper.logError(StatementHelper.class.getName() + "could not compare the location of host variables or parameter markers as no "
-                            + SQLQuerySourceInfo.class.getName() + " was associated with them. For host variables or parameter markers: " + h1 + " and " + h2);
-                }
-                return result;
-            }
-        };
-
-        Collections.sort(sortedVariables, sqlSrcOccurenceComp);
-
-        return sortedVariables;
+    
+    /** Return a unique name for adding an attribute by appending a count to the
+     * passed string and also checking for the existence of the name in the vector.
+     *
+     * @param attrNames All attribute names in the type including the
+     *        inherited attribute names.
+     * @param name Name that we append count to.
+     *
+     * @return unique name of the attribute to be added.
+     */
+    public static String getUniqueVarName(Vector varNames, String name) {
+       String uniqueName = name;
+       int count = 0;
+       boolean found = true;
+       if (varNames != null && varNames.size() > 0) {
+          while (found) {
+             uniqueName = concatName(name, ++count);
+             found = !isNameUnique(varNames, uniqueName);
+          }
+       } else {
+          uniqueName = concatName(name, ++count);
+       }
+       return uniqueName;
+    }
+    
+    /** 
+     * Checks the passed uniqueName is in the passed array names and returns
+     * false if found, true otherwise.
+     *
+     * @param names Array of names
+     * @param uniqueName The name to be checked.
+     *
+     * @return true if found  false otherwise.
+     */
+    public static boolean isNameUnique(Vector names, String uniqueName)  {
+       int nameslength = names.size();
+       for (int i = 0; i < nameslength; i++) {
+          if (equalSQLIdentifiers((String) names.get(i), uniqueName, DELIMITED_IDENTIFIER_QUOTE))
+             return false;
+       }
+       return true;
+    }
+    
+    /**
+     *  Return a new name concatonating the int (inside delimiters if need be)
+     *  Assumes that the name is well formed, ending with a delimiter if it
+     *  begins with one.
+     */
+    public static String concatName(String name, int count)   {
+       String nname = name.trim();
+       int epos = name.length() - 1;
+       if (nname.charAt(epos) == '"') {
+          return name.substring(0, epos) + count + '"';
+       } else {
+          return name + count;
+       }
     }
 
     /**
@@ -1096,8 +1296,8 @@ public class StatementHelper {
      * @deprecated Use createDeleteStatement(String name) instead.
      */
     /*
-     * public SQLDeleteStatement createDeleteStatement() { SQLQueryFactory
-     * factory = SQLQueryFactoryImpl.instance();
+     * public SQLDeleteStatement createDeleteStatement() { SQLQueryModelFactory
+     * factory = SQLQueryModelFactoryImpl.instance();
      * 
      * SQLDeleteStatement sqlDeleteStatement =
      * factory.createSQLDeleteStatement();
@@ -1106,8 +1306,8 @@ public class StatementHelper {
      * database.getStatement().add(sqlDeleteStatement);
      * 
      * return sqlDeleteStatement; } public SQLDeleteStatement
-     * createDeleteStatement(String name) { SQLQueryFactory factory =
-     * SQLQueryFactoryImpl.instance();
+     * createDeleteStatement(String name) { SQLQueryModelFactory factory =
+     * SQLQueryModelFactoryImpl.instance();
      * 
      * SQLDeleteStatement sqlDeleteStatement =
      * factory.createSQLDeleteStatement(); sqlDeleteStatement.setName(name);
@@ -1117,7 +1317,7 @@ public class StatementHelper {
      * return sqlDeleteStatement; }
      * 
      * public SQLDeleteStatement createDeleteStatement(String name, boolean
-     * addToDb) { SQLQueryFactory factory = SQLQueryFactoryImpl.instance();
+     * addToDb) { SQLQueryModelFactory factory = SQLQueryModelFactoryImpl.instance();
      * 
      * SQLDeleteStatement sqlDeleteStatement =
      * factory.createSQLDeleteStatement(); sqlDeleteStatement.setName(name);
@@ -1715,28 +1915,28 @@ public class StatementHelper {
     public static int getStatementType(QueryStatement statement) {
         int type = -1;
         if (statement instanceof QuerySelectStatement) {
-            type = 0;
+            type = STATEMENT_TYPE_SELECT;
             QueryExpressionRoot root = ((QuerySelectStatement) statement).getQueryExpr();
             if (root != null) {
                 QueryExpressionBody qBody = root.getQuery();
                 if (qBody instanceof QueryCombined) {
-                    type = 4;
+                    type = STATEMENT_TYPE_FULLSELECT;
                 }
                 List withList = root.getWithClause();
                 if (!withList.isEmpty()) {
-                    type = 5;
+                    type = STATEMENT_TYPE_WITH;
                 }
             }
 
         }
         else if (statement instanceof QueryInsertStatement) {
-            type = 1;
+            type = STATEMENT_TYPE_INSERT;
         }
         else if (statement instanceof QueryUpdateStatement) {
-            type = 2;
+            type = STATEMENT_TYPE_UPDATE;
         }
         else if (statement instanceof QueryDeleteStatement) {
-            type = 3;
+            type = STATEMENT_TYPE_DELETE;
         }
         return type;
     }
@@ -1794,6 +1994,11 @@ public class StatementHelper {
 
         if (query != null) {
 
+            if (query instanceof QueryNested) {
+                QueryNested queryNest = (QueryNested) query;
+                QueryExpressionBody nestedQuery = queryNest.getNestedQuery();
+                tableExprList.addAll(getTableExpressionsInQueryExpressionBody(nestedQuery));
+            }
             if (query instanceof QuerySelect) {
                 tableExprList.addAll(getTableExpressionsInQuerySelect((QuerySelect) query));
             }
@@ -1990,7 +2195,7 @@ public class StatementHelper {
 
                 String tempWithTableName = tempWithTable.getName();
 
-                if (withTableName.equals(tempWithTableName)) {
+                if (equalSQLIdentifiers(withTableName, tempWithTableName)) {
                     withTableFound = tempWithTable;
                     break;
                 }
@@ -2294,7 +2499,7 @@ public class StatementHelper {
 
                 // only if table has no alias we might have ambiguity
                 if (otherTable != tableExpr && otherTable.getTableCorrelation() == null && tableExpr.getName() != null
-                        && tableExpr.getName().equals(otherTable.getName())) {
+                        && equalSQLIdentifiers(tableExpr.getName(), otherTable.getName())) {
                     isAmbiguous = true;
                     break;
                 }
@@ -2359,7 +2564,7 @@ public class StatementHelper {
      * <code>QueryStatement</code>
      * <li> that <code>QueryStatement</code> has reference to its
      * <code>SQLQuerySourceInfo</code> and that way indirectly a reference to
-     * a <code>SQLQuerySourceFormat</code> ({@link org.eclipse.datatools.modelbase.sql.query.util.SQLQuerySourceFormat#getOmitSchema()})
+     * a <code>SQLQuerySourceFormat</code> ({@link com.ibm.db.models.sql.query.util.SQLQuerySourceFormat#getOmitSchema()})
      * </ul>
      * 
      * @param tableInDB
@@ -2401,7 +2606,8 @@ public class StatementHelper {
             if (schema != null) {
                 String schemaName = schema.getName();
 
-                if (schemaName != null && schemaName.length() > 0 && schemaName.equals(omitSchemaName)) {
+                if (schemaName != null && schemaName.length() > 0 
+                 && equalSQLIdentifiers(schemaName, omitSchemaName)) {
                     omitSchema = true;
                 }
             }
@@ -2878,6 +3084,11 @@ public class StatementHelper {
             removedColumns.addAll(resolveOrderByColumns(combined.getLeftQuery(), orderByList));
             removedColumns.addAll(resolveOrderByColumns(combined.getRightQuery(), orderByList));
         }
+        else if (queryExpr instanceof QueryNested) {
+            QueryNested qryNested = (QueryNested) queryExpr;
+            QueryExpressionBody nestedQuery = qryNested.getNestedQuery();
+            removedColumns.addAll(resolveOrderByColumns(nestedQuery, orderByList));
+        }
         else if (queryExpr instanceof QueryValues) {
             // nothing to resolve! no column references in VALUES clause
             // possible
@@ -2960,6 +3171,9 @@ public class StatementHelper {
                         OrderByResultColumn newOrderByRC = SQLQueryModelFactory.eINSTANCE.createOrderByResultColumn();
                         newOrderByRC.setResultCol(resultCol);
                         newOrderByRC.setOrderingSpecOption(orderByVE.getOrderingSpecOption());
+                        // descending is replaced by the orderingspecOption.  User should use the
+                        // orderingspecOption instead of descending to determine orderby type. 
+                        newOrderByRC.setDescending(orderByVE.isDescending());
                         newOrderByRC.setNullOrderingOption(orderByVE.getNullOrderingOption());
 
                         newOrderByResultColumnList.add(newOrderByRC);
@@ -3185,7 +3399,7 @@ public class StatementHelper {
      * @return the given <code>sql</code> in upper case, without comments and
      *         with minimal whitespace
      */
-    private static String stripWhiteSpace(String sql, char delimitedIdentifierQt) {
+    public static String stripWhiteSpace(String sql, char delimitedIdentifierQt) {
         String stmtTerm = ";"; //$NON-NLS-1$
 
         if (sql != null) {
@@ -3405,6 +3619,8 @@ public class StatementHelper {
         boolean done = false;
         String token = selectedTable.getName();
         Integer value = new Integer(0);
+        if (nameList == null)
+           nameList = new Hashtable();
         Integer number = (Integer) nameList.get(token);
 
         if (number == null) {
@@ -3457,7 +3673,7 @@ public class StatementHelper {
         QueryUpdateStatement sqlUpdateStatement = factory.createQueryUpdateStatement();
         sqlUpdateStatement.setName(name);
         if (addToDb) {
-            // TODO QMP - resolve and uncomment
+            // QMP - resolve and uncomment
             // database.getStatement().add(sqlUpdateStatement);
         }
 
@@ -3530,19 +3746,46 @@ public class StatementHelper {
      * Generate a name
      */
     private String nameGenerator(String token) {
-        Integer number = (Integer) nameList.get(token);
-        int value = 1;
-        if (number == null) {
-            nameList.put(token, new Integer(value));
-        }
-        else {
-            value = number.intValue();
-            value++;
-            nameList.remove(token);
-            nameList.put(token, new Integer(value));
-        }
+       if (nameList == null)
+          nameList = new Hashtable();
+       Integer number = (Integer) nameList.get(token);
+       int value = 1;
+       if (number == null) {
+          nameList.put(token, new Integer(value));
+       }
+       else {
+          value = number.intValue();
+          value++;
+          nameList.remove(token);
+          nameList.put(token, new Integer(value));
+       }
 
-        return token + value;
+       return token + value;
+    }
+
+    /**
+     * Comparator for sorting ValueExpressionVariables.
+     */
+    public static class ValueExpressionComparator implements Comparator
+    {
+       public int compare(Object o1, Object o2) {
+           int result = 0;
+           ValueExpressionVariable h1 = (ValueExpressionVariable) o1;
+           ValueExpressionVariable h2 = (ValueExpressionVariable) o2;
+           SQLQuerySourceInfo h1si = h1.getSourceInfo();
+           SQLQuerySourceInfo h2si = h2.getSourceInfo();
+           if (h1si != null && h2si != null) {
+               int h1Loc = h1si.getSpanStartOffset();
+               int h2Loc = h2si.getSpanStartOffset();
+               result = h1Loc - h2Loc;
+           }
+           else {
+              // TODO: Move this message to a properties file for translation
+               StatementHelper.logError(StatementHelper.class.getName() + "could not compare the location of host variables or parameter markers as no "
+                       + SQLQuerySourceInfo.class.getName() + " was associated with them. For host variables or parameter markers: " + h1 + " and " + h2);
+           }
+           return result;
+       }
     }
 
 }

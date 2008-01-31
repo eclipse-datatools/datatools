@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableJoinedItemProvider.java,v 1.1 2007/03/22 17:10:12 bpayton Exp $
+ * $Id: TableJoinedItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.TableJoined} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableJoined} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class TableJoinedItemProvider
      */
   protected void addJoinOperatorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_TableJoined_joinOperator_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TableJoined_joinOperator_feature", "_UI_TableJoined_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableJoined_JoinOperator(),
+                 SQLQueryModelPackage.Literals.TABLE_JOINED__JOIN_OPERATOR,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,9 +97,9 @@ public class TableJoinedItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getTableJoined_JoinCondition());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getTableJoined_TableRefRight());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getTableJoined_TableRefLeft());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.TABLE_JOINED__JOIN_CONDITION);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.TABLE_JOINED__TABLE_REF_RIGHT);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.TABLE_JOINED__TABLE_REF_LEFT);
         }
         return childrenFeatures;
     }

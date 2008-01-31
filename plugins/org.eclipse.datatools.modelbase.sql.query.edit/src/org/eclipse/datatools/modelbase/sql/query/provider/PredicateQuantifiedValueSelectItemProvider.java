@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateQuantifiedValueSelectItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: PredicateQuantifiedValueSelectItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedValueSelect} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -73,14 +73,18 @@ public class PredicateQuantifiedValueSelectItemProvider
      */
   protected void addQuantifiedTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateQuantifiedValueSelect_quantifiedType_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateQuantifiedValueSelect_quantifiedType_feature", "_UI_PredicateQuantifiedValueSelect_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedValueSelect_QuantifiedType(),
+                 SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_VALUE_SELECT__QUANTIFIED_TYPE,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -91,14 +95,18 @@ public class PredicateQuantifiedValueSelectItemProvider
      */
   protected void addComparisonOperatorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateQuantifiedValueSelect_comparisonOperator_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateQuantifiedValueSelect_comparisonOperator_feature", "_UI_PredicateQuantifiedValueSelect_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedValueSelect_ComparisonOperator(),
+                 SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_VALUE_SELECT__COMPARISON_OPERATOR,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -112,8 +120,8 @@ public class PredicateQuantifiedValueSelectItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedValueSelect_QueryExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateQuantifiedValueSelect_ValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_VALUE_SELECT__QUERY_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_QUANTIFIED_VALUE_SELECT__VALUE_EXPR);
         }
         return childrenFeatures;
     }

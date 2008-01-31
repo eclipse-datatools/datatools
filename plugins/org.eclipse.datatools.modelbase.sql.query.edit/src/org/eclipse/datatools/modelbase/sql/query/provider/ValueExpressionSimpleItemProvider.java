@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionSimpleItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: ValueExpressionSimpleItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -70,14 +70,18 @@ public class ValueExpressionSimpleItemProvider
      */
   protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionSimple_value_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionSimple_value_feature", "_UI_ValueExpressionSimple_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionSimple_Value(),
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_SIMPLE__VALUE,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**

@@ -57,9 +57,9 @@ public class DataTypeHelper
 	//!TODO: who is going to maintain this DatatypeHelper hack? should be close
 	// to EMF stuff and not in a separate class in different PlugIn 
 	
-    public static final String TYPENAME_CHARACTER_LARGE_OBJECT = TYPENAME_CLOB;
-    public static final String TYPENAME_NATIONAL_CHARACTER = TYPENAME_GRAPHIC;
-    public static final String TYPENAME_NATIONAL_CHARACTER_VARYING = TYPENAME_VARGRAPHIC;
+    public static final String TYPENAME_CHARACTER_LARGE_OBJECT = TYPENAME_CLOB;    
+    public static final String TYPENAME_NATIONAL_CHARACTER = "NATIONAL CHARACTER";
+    public static final String TYPENAME_NATIONAL_CHARACTER_VARYING = "NATIONAL CHARACTER VARYING";
     public static final String TYPENAME_NATIONAL_CHARACTER_LARGE_OBJECT = TYPENAME_DBCLOB;
     public static final String TYPENAME_BINARY = "BINARY";
     public static final String TYPENAME_BINARY_VARYING = "BINARY VARYING";
@@ -282,7 +282,11 @@ public class DataTypeHelper
 	    primitive = PrimitiveType.NATIONAL_CHARACTER_LITERAL;
 	    dataType = dataTypesFactory.createCharacterStringDataType();
 	  }
-	  else if (aTypeName.equalsIgnoreCase(TYPENAME_INTEGER)) {
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_NATIONAL_CHARACTER)) {
+          primitive = PrimitiveType.NATIONAL_CHARACTER_LITERAL;
+          dataType = dataTypesFactory.createCharacterStringDataType();
+      }
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_INTEGER)) {
 	    primitive = PrimitiveType.INTEGER_LITERAL;
 	    dataType = dataTypesFactory.createIntegerDataType();
 	  }
@@ -322,7 +326,23 @@ public class DataTypeHelper
 	    primitive = PrimitiveType.NATIONAL_CHARACTER_VARYING_LITERAL;
 	    dataType = dataTypesFactory.createCharacterStringDataType();
 	  }
-
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_NATIONAL_CHARACTER_VARYING)) {
+        primitive = PrimitiveType.NATIONAL_CHARACTER_VARYING_LITERAL;
+        dataType = dataTypesFactory.createCharacterStringDataType();
+      }
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_NUMERIC)) {
+        primitive = PrimitiveType.NUMERIC_LITERAL;
+        dataType = dataTypesFactory.createFixedPrecisionDataType();
+      }
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_FLOAT)) {
+        primitive = PrimitiveType.FLOAT_LITERAL;
+        dataType = dataTypesFactory.createApproximateNumericDataType();
+      }
+      else if (aTypeName.equalsIgnoreCase(TYPENAME_DATALINK)) {
+        primitive = PrimitiveType.DATALINK_LITERAL;
+        dataType = dataTypesFactory.createDataLinkDataType();       
+      }
+	  
 	  if (dataType != null) {
 	      dataType.setPrimitiveType(primitive);
 	  }

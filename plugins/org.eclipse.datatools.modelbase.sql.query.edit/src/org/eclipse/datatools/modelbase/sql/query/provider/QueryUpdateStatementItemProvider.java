@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryUpdateStatementItemProvider.java,v 1.1 2007/03/22 17:10:12 bpayton Exp $
+ * $Id: QueryUpdateStatementItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -132,7 +132,7 @@ public class QueryUpdateStatementItemProvider
      * @generated
      */
   public Object getImage(Object object) {
-        return getResourceLocator().getImage("full/obj16/QueryUpdateStatement");
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryUpdateStatement"));
     }
 
     /**

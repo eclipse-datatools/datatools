@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionColumnItemProvider.java,v 1.1 2007/03/22 17:10:08 bpayton Exp $
+ * $Id: ValueExpressionColumnItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionColumn} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,13 +72,18 @@ public class ValueExpressionColumnItemProvider
      */
   protected void addAssignmentExprTargetPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionColumn_assignmentExprTarget_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionColumn_assignmentExprTarget_feature", "_UI_ValueExpressionColumn_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionColumn_AssignmentExprTarget(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_COLUMN__ASSIGNMENT_EXPR_TARGET,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -89,13 +94,18 @@ public class ValueExpressionColumnItemProvider
      */
   protected void addTableExprPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionColumn_tableExpr_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionColumn_tableExpr_feature", "_UI_ValueExpressionColumn_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionColumn_TableExpr(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_COLUMN__TABLE_EXPR,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -106,13 +116,18 @@ public class ValueExpressionColumnItemProvider
      */
     protected void addTableInDatabasePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionColumn_tableInDatabase_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionColumn_tableInDatabase_feature", "_UI_ValueExpressionColumn_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionColumn_TableInDatabase(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_COLUMN__TABLE_IN_DATABASE,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -123,13 +138,18 @@ public class ValueExpressionColumnItemProvider
      */
   protected void addInsertStatementPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_ValueExpressionColumn_insertStatement_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_ValueExpressionColumn_insertStatement_feature", "_UI_ValueExpressionColumn_type"),
-                 SQLQueryModelPackage.eINSTANCE.getValueExpressionColumn_InsertStatement(),
-                 true));
+                 SQLQueryModelPackage.Literals.VALUE_EXPRESSION_COLUMN__INSERT_STATEMENT,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**

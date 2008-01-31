@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateBasicItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: PredicateBasicItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBasic} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class PredicateBasicItemProvider
      */
   protected void addComparisonOperatorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateBasic_comparisonOperator_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateBasic_comparisonOperator_feature", "_UI_PredicateBasic_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateBasic_ComparisonOperator(),
+                 SQLQueryModelPackage.Literals.PREDICATE_BASIC__COMPARISON_OPERATOR,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,8 +97,8 @@ public class PredicateBasicItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateBasic_RightValueExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateBasic_LeftValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_BASIC__RIGHT_VALUE_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_BASIC__LEFT_VALUE_EXPR);
         }
         return childrenFeatures;
     }

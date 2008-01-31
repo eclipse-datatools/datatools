@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateBetweenItemProvider.java,v 1.1 2007/03/22 17:10:11 bpayton Exp $
+ * $Id: PredicateBetweenItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateBetween} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class PredicateBetweenItemProvider
      */
   protected void addNotBetweenPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_PredicateBetween_notBetween_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_PredicateBetween_notBetween_feature", "_UI_PredicateBetween_type"),
-                 SQLQueryModelPackage.eINSTANCE.getPredicateBetween_NotBetween(),
+                 SQLQueryModelPackage.Literals.PREDICATE_BETWEEN__NOT_BETWEEN,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,9 +97,9 @@ public class PredicateBetweenItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateBetween_LeftValueExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateBetween_RightValueExpr1());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateBetween_RightValueExpr2());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_BETWEEN__LEFT_VALUE_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR1);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_BETWEEN__RIGHT_VALUE_EXPR2);
         }
         return childrenFeatures;
     }

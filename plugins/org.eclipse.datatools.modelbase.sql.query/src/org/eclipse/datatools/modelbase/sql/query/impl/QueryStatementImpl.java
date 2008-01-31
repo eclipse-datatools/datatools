@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryStatementImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: QueryStatementImpl.java,v 1.5 2007/02/08 17:00:27 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -31,22 +31,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class QueryStatementImpl extends SQLQueryObjectImpl implements QueryStatement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected QueryStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.QUERY_STATEMENT;
-	}
+        return SQLQueryModelPackage.Literals.QUERY_STATEMENT;
+    }
 
     /**
      * <!-- begin-user-doc -->

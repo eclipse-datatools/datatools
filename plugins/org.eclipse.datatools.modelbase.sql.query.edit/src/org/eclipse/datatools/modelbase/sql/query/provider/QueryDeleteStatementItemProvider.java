@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryDeleteStatementItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: QueryDeleteStatementItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -98,7 +98,7 @@ public class QueryDeleteStatementItemProvider
      * @generated
      */
   public Object getImage(Object object) {
-        return getResourceLocator().getImage("full/obj16/QueryDeleteStatement");
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryDeleteStatement"));
     }
 
     /**

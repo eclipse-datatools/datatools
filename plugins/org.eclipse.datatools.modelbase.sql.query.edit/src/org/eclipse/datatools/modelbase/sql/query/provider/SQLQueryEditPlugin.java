@@ -7,7 +7,7 @@
  *   Use, duplication or disclosure restricted 
  *   by GSA ADP Schedule Contract with IBM Corp.
  *
- * $Id: SQLQueryEditPlugin.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: SQLQueryEditPlugin.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 
 /**
- * This is the central singleton for the SQLQuery edit plugin.
+ * This is the central singleton for the SQLQueryModel edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

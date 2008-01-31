@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TableInDatabaseItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: TableInDatabaseItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.TableInDatabase} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -70,13 +70,18 @@ public class TableInDatabaseItemProvider
      */
   protected void addDatabaseTablePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_TableInDatabase_databaseTable_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TableInDatabase_databaseTable_feature", "_UI_TableInDatabase_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableInDatabase_DatabaseTable(),
-                 true));
+                 SQLQueryModelPackage.Literals.TABLE_IN_DATABASE__DATABASE_TABLE,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -87,13 +92,18 @@ public class TableInDatabaseItemProvider
      */
     protected void addDerivedColumnListPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_TableInDatabase_derivedColumnList_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_TableInDatabase_derivedColumnList_feature", "_UI_TableInDatabase_type"),
-                 SQLQueryModelPackage.eINSTANCE.getTableInDatabase_DerivedColumnList(),
-                 true));
+                 SQLQueryModelPackage.Literals.TABLE_IN_DATABASE__DERIVED_COLUMN_LIST,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**

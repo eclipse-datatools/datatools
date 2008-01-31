@@ -93,6 +93,8 @@
         eType="#//UpdateSourceQuery" transient="true" eOpposite="#//UpdateSourceQuery/queryExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="withTableSpecification"
         lowerBound="1" eType="#//WithTableSpecification" transient="true" eOpposite="#//WithTableSpecification/withTableQueryExpr"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queryNest" eType="#//QueryNested"
+        transient="true" eOpposite="#//QueryNested/nestedQuery"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryValueExpression" abstract="true"
       eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/ValueExpression">
@@ -667,5 +669,9 @@
     <eLiterals name="NONE"/>
     <eLiterals name="ASC" value="1"/>
     <eLiterals name="DESC" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryNested" eSuperTypes="#//QueryExpressionBody">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedQuery" lowerBound="1"
+        eType="#//QueryExpressionBody" containment="true" eOpposite="#//QueryExpressionBody/queryNest"/>
   </eClassifiers>
 </ecore:EPackage>

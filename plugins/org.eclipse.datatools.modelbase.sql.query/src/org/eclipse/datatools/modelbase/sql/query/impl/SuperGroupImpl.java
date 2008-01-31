@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SuperGroupImpl.java,v 1.4 2005/12/22 22:18:47 bpayton Exp $
+ * $Id: SuperGroupImpl.java,v 1.5 2007/02/08 17:00:24 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -41,190 +41,190 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SuperGroupImpl extends GroupingImpl implements SuperGroup {
 	/**
-	 * The default value of the '{@link #getSuperGroupType() <em>Super Group Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getSuperGroupType() <em>Super Group Type</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSuperGroupType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSuperGroupType()
+     * @generated
+     * @ordered
+     */
     protected static final SuperGroupType SUPER_GROUP_TYPE_EDEFAULT = SuperGroupType.CUBE_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getSuperGroupType() <em>Super Group Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSuperGroupType() <em>Super Group Type</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSuperGroupType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSuperGroupType()
+     * @generated
+     * @ordered
+     */
     protected SuperGroupType superGroupType = SUPER_GROUP_TYPE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSuperGroupElementList() <em>Super Group Element List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSuperGroupElementList() <em>Super Group Element List</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSuperGroupElementList()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList superGroupElementList = null;
+     * @see #getSuperGroupElementList()
+     * @generated
+     * @ordered
+     */
+    protected EList superGroupElementList;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected SuperGroupImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.SUPER_GROUP;
-	}
+        return SQLQueryModelPackage.Literals.SUPER_GROUP;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public SuperGroupType getSuperGroupType() {
-		return superGroupType;
-	}
+        return superGroupType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setSuperGroupType(SuperGroupType newSuperGroupType) {
-		SuperGroupType oldSuperGroupType = superGroupType;
-		superGroupType = newSuperGroupType == null ? SUPER_GROUP_TYPE_EDEFAULT : newSuperGroupType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE, oldSuperGroupType, superGroupType));
-	}
+        SuperGroupType oldSuperGroupType = superGroupType;
+        superGroupType = newSuperGroupType == null ? SUPER_GROUP_TYPE_EDEFAULT : newSuperGroupType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE, oldSuperGroupType, superGroupType));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getSuperGroupElementList() {
-		if (superGroupElementList == null) {
-			superGroupElementList = new EObjectContainmentWithInverseEList(SuperGroupElement.class, this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP);
-		}
-		return superGroupElementList;
-	}
+        if (superGroupElementList == null) {
+            superGroupElementList = new EObjectContainmentWithInverseEList(SuperGroupElement.class, this, SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST, SQLQueryModelPackage.SUPER_GROUP_ELEMENT__SUPER_GROUP);
+        }
+        return superGroupElementList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				return ((InternalEList)getSuperGroupElementList()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                return ((InternalEList)getSuperGroupElementList()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				return ((InternalEList)getSuperGroupElementList()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                return ((InternalEList)getSuperGroupElementList()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
-				return getSuperGroupType();
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				return getSuperGroupElementList();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
+                return getSuperGroupType();
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                return getSuperGroupElementList();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
-				setSuperGroupType((SuperGroupType)newValue);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				getSuperGroupElementList().clear();
-				getSuperGroupElementList().addAll((Collection)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
+                setSuperGroupType((SuperGroupType)newValue);
+                return;
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                getSuperGroupElementList().clear();
+                getSuperGroupElementList().addAll((Collection)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
-				setSuperGroupType(SUPER_GROUP_TYPE_EDEFAULT);
-				return;
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				getSuperGroupElementList().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
+                setSuperGroupType(SUPER_GROUP_TYPE_EDEFAULT);
+                return;
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                getSuperGroupElementList().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
-				return superGroupType != SUPER_GROUP_TYPE_EDEFAULT;
-			case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
-				return superGroupElementList != null && !superGroupElementList.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_TYPE:
+                return superGroupType != SUPER_GROUP_TYPE_EDEFAULT;
+            case SQLQueryModelPackage.SUPER_GROUP__SUPER_GROUP_ELEMENT_LIST:
+                return superGroupElementList != null && !superGroupElementList.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (superGroupType: ");
-		result.append(superGroupType);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (superGroupType: ");
+        result.append(superGroupType);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SQLSuperGroupImpl

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderByResultColumnItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: OrderByResultColumnItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderByResultColumn} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -69,13 +69,18 @@ public class OrderByResultColumnItemProvider
      */
   protected void addResultColPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_OrderByResultColumn_resultCol_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_OrderByResultColumn_resultCol_feature", "_UI_OrderByResultColumn_type"),
-                 SQLQueryModelPackage.eINSTANCE.getOrderByResultColumn_ResultCol(),
-                 true));
+                 SQLQueryModelPackage.Literals.ORDER_BY_RESULT_COLUMN__RESULT_COL,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**

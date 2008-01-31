@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PredicateInValueListItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: PredicateInValueListItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.PredicateInValueList} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,8 +72,8 @@ public class PredicateInValueListItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateInValueList_ValueExprList());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getPredicateInValueList_ValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_IN_VALUE_LIST__VALUE_EXPR_LIST);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.PREDICATE_IN_VALUE_LIST__VALUE_EXPR);
         }
         return childrenFeatures;
     }

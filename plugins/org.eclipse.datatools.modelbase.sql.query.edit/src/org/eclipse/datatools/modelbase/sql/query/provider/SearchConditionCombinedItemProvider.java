@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SearchConditionCombinedItemProvider.java,v 1.1 2007/03/22 17:10:12 bpayton Exp $
+ * $Id: SearchConditionCombinedItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombined} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class SearchConditionCombinedItemProvider
      */
   protected void addCombinedOperatorPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_SearchConditionCombined_combinedOperator_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_SearchConditionCombined_combinedOperator_feature", "_UI_SearchConditionCombined_type"),
-                 SQLQueryModelPackage.eINSTANCE.getSearchConditionCombined_CombinedOperator(),
+                 SQLQueryModelPackage.Literals.SEARCH_CONDITION_COMBINED__COMBINED_OPERATOR,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,8 +97,8 @@ public class SearchConditionCombinedItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getSearchConditionCombined_LeftCondition());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getSearchConditionCombined_RightCondition());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.SEARCH_CONDITION_COMBINED__LEFT_CONDITION);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.SEARCH_CONDITION_COMBINED__RIGHT_CONDITION);
         }
         return childrenFeatures;
     }

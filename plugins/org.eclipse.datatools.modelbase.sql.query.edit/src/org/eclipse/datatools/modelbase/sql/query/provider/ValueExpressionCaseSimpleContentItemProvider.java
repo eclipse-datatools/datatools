@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseSimpleContentItemProvider.java,v 1.1 2007/03/22 17:10:10 bpayton Exp $
+ * $Id: ValueExpressionCaseSimpleContentItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCaseSimpleContent} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,8 +72,8 @@ public class ValueExpressionCaseSimpleContentItemProvider
   public Collection getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getValueExpressionCaseSimpleContent_WhenValueExpr());
-            childrenFeatures.add(SQLQueryModelPackage.eINSTANCE.getValueExpressionCaseSimpleContent_ResultValueExpr());
+            childrenFeatures.add(SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__WHEN_VALUE_EXPR);
+            childrenFeatures.add(SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE_SIMPLE_CONTENT__RESULT_VALUE_EXPR);
         }
         return childrenFeatures;
     }

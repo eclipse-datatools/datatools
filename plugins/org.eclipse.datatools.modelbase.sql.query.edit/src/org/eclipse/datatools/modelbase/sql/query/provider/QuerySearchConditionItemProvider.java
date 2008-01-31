@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySearchConditionItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: QuerySearchConditionItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -70,14 +70,18 @@ public class QuerySearchConditionItemProvider
      */
   protected void addNegatedConditionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_QuerySearchCondition_negatedCondition_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_QuerySearchCondition_negatedCondition_feature", "_UI_QuerySearchCondition_type"),
-                 SQLQueryModelPackage.eINSTANCE.getQuerySearchCondition_NegatedCondition(),
+                 SQLQueryModelPackage.Literals.QUERY_SEARCH_CONDITION__NEGATED_CONDITION,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**

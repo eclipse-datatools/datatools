@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QuerySelectItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: QuerySelectItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QuerySelect} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -72,14 +72,18 @@ public class QuerySelectItemProvider
      */
   protected void addDistinctPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_QuerySelect_distinct_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_QuerySelect_distinct_feature", "_UI_QuerySelect_type"),
-                 SQLQueryModelPackage.eINSTANCE.getQuerySelect_Distinct(),
+                 SQLQueryModelPackage.Literals.QUERY_SELECT__DISTINCT,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -122,7 +126,7 @@ public class QuerySelectItemProvider
      * @generated
      */
   public Object getImage(Object object) {
-        return getResourceLocator().getImage("full/obj16/QuerySelect");
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/QuerySelect"));
     }
 
     /**

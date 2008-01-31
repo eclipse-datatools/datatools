@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryObjectImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: SQLQueryObjectImpl.java,v 1.5 2007/02/08 17:00:30 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -34,22 +34,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public abstract class SQLQueryObjectImpl extends SQLObjectImpl implements SQLQueryObject {
     private SQLQuerySourceInfo sourceInfo = null;
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected SQLQueryObjectImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.SQL_QUERY_OBJECT;
-	}
+        return SQLQueryModelPackage.Literals.SQL_QUERY_OBJECT;
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -62,15 +62,15 @@ public abstract class SQLQueryObjectImpl extends SQLObjectImpl implements SQLQue
     }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public void setSQL(String sqlText) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
+        // TODO: implement this method
+        // Ensure that you remove @generated or mark it @generated NOT
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * @inheritDoc org.eclipse.datatools.modelbase.sql.query.SQLQueryObject#getSourceInfo()

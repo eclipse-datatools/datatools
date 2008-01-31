@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrderBySpecificationItemProvider.java,v 1.1 2007/03/22 17:10:11 bpayton Exp $
+ * $Id: OrderBySpecificationItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.OrderBySpecification} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -58,6 +58,8 @@ public class OrderBySpecificationItemProvider
             super.getPropertyDescriptors(object);
 
             addDescendingPropertyDescriptor(object);
+            addOrderingSpecOptionPropertyDescriptor(object);
+            addNullOrderingOptionPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -70,14 +72,62 @@ public class OrderBySpecificationItemProvider
      */
   protected void addDescendingPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_OrderBySpecification_descending_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_OrderBySpecification_descending_feature", "_UI_OrderBySpecification_type"),
-                 SQLQueryModelPackage.eINSTANCE.getOrderBySpecification_Descending(),
+                 SQLQueryModelPackage.Literals.ORDER_BY_SPECIFICATION__DESCENDING,
                  true,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE));
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Ordering Spec Option feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addOrderingSpecOptionPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_OrderBySpecification_OrderingSpecOption_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_OrderBySpecification_OrderingSpecOption_feature", "_UI_OrderBySpecification_type"),
+                 SQLQueryModelPackage.Literals.ORDER_BY_SPECIFICATION__ORDERING_SPEC_OPTION,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Null Ordering Option feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNullOrderingOptionPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_OrderBySpecification_NullOrderingOption_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_OrderBySpecification_NullOrderingOption_feature", "_UI_OrderBySpecification_type"),
+                 SQLQueryModelPackage.Literals.ORDER_BY_SPECIFICATION__NULL_ORDERING_OPTION,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -105,6 +155,8 @@ public class OrderBySpecificationItemProvider
 
         switch (notification.getFeatureID(OrderBySpecification.class)) {
             case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__DESCENDING:
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__ORDERING_SPEC_OPTION:
+            case SQLQueryModelPackage.ORDER_BY_SPECIFICATION__NULL_ORDERING_OPTION:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

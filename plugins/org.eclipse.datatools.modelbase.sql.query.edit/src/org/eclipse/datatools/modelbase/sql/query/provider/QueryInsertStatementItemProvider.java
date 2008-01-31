@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryInsertStatementItemProvider.java,v 1.1 2007/03/22 17:10:09 bpayton Exp $
+ * $Id: QueryInsertStatementItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -74,13 +74,18 @@ public class QueryInsertStatementItemProvider
      */
   protected void addTargetColumnListPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_QueryInsertStatement_targetColumnList_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_QueryInsertStatement_targetColumnList_feature", "_UI_QueryInsertStatement_type"),
-                 SQLQueryModelPackage.eINSTANCE.getQueryInsertStatement_TargetColumnList(),
-                 true));
+                 SQLQueryModelPackage.Literals.QUERY_INSERT_STATEMENT__TARGET_COLUMN_LIST,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -142,7 +147,7 @@ public class QueryInsertStatementItemProvider
      * @generated
      */
   public Object getImage(Object object) {
-        return getResourceLocator().getImage("full/obj16/QueryInsertStatement");
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/QueryInsertStatement"));
     }
 
     /**

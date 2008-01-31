@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueExpressionCaseImpl.java,v 1.4 2005/12/22 22:18:48 bpayton Exp $
+ * $Id: ValueExpressionCaseImpl.java,v 1.5 2007/02/08 17:00:32 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -59,156 +59,156 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class ValueExpressionCaseImpl extends ValueExpressionAtomicImpl implements ValueExpressionCase {
 	/**
-	 * The cached value of the '{@link #getCaseElse() <em>Case Else</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCaseElse() <em>Case Else</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getCaseElse()
-	 * @generated
-	 * @ordered
-	 */
-    protected ValueExpressionCaseElse caseElse = null;
+     * @see #getCaseElse()
+     * @generated
+     * @ordered
+     */
+    protected ValueExpressionCaseElse caseElse;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected ValueExpressionCaseImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE;
-	}
+        return SQLQueryModelPackage.Literals.VALUE_EXPRESSION_CASE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public ValueExpressionCaseElse getCaseElse() {
-		return caseElse;
-	}
+        return caseElse;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetCaseElse(ValueExpressionCaseElse newCaseElse, NotificationChain msgs) {
-		ValueExpressionCaseElse oldCaseElse = caseElse;
-		caseElse = newCaseElse;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, oldCaseElse, newCaseElse);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        ValueExpressionCaseElse oldCaseElse = caseElse;
+        caseElse = newCaseElse;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, oldCaseElse, newCaseElse);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setCaseElse(ValueExpressionCaseElse newCaseElse) {
-		if (newCaseElse != caseElse) {
-			NotificationChain msgs = null;
-			if (caseElse != null)
-				msgs = ((InternalEObject)caseElse).eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE, ValueExpressionCaseElse.class, msgs);
-			if (newCaseElse != null)
-				msgs = ((InternalEObject)newCaseElse).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE, ValueExpressionCaseElse.class, msgs);
-			msgs = basicSetCaseElse(newCaseElse, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, newCaseElse, newCaseElse));
-	}
+        if (newCaseElse != caseElse) {
+            NotificationChain msgs = null;
+            if (caseElse != null)
+                msgs = ((InternalEObject)caseElse).eInverseRemove(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE, ValueExpressionCaseElse.class, msgs);
+            if (newCaseElse != null)
+                msgs = ((InternalEObject)newCaseElse).eInverseAdd(this, SQLQueryModelPackage.VALUE_EXPRESSION_CASE_ELSE__VALUE_EXPR_CASE, ValueExpressionCaseElse.class, msgs);
+            msgs = basicSetCaseElse(newCaseElse, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, newCaseElse, newCaseElse));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				if (caseElse != null)
-					msgs = ((InternalEObject)caseElse).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, null, msgs);
-				return basicSetCaseElse((ValueExpressionCaseElse)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                if (caseElse != null)
+                    msgs = ((InternalEObject)caseElse).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE, null, msgs);
+                return basicSetCaseElse((ValueExpressionCaseElse)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				return basicSetCaseElse(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                return basicSetCaseElse(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				return getCaseElse();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                return getCaseElse();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				setCaseElse((ValueExpressionCaseElse)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                setCaseElse((ValueExpressionCaseElse)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				setCaseElse((ValueExpressionCaseElse)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                setCaseElse((ValueExpressionCaseElse)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
-				return caseElse != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLQueryModelPackage.VALUE_EXPRESSION_CASE__CASE_ELSE:
+                return caseElse != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SQLValueExpressionCaseImpl

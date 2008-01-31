@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WithTableReferenceItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: WithTableReferenceItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adpater for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.WithTableReference} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -69,13 +69,18 @@ public class WithTableReferenceItemProvider
      */
 	protected void addWithTableSpecificationPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (new ItemPropertyDescriptor
+            (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
                  getString("_UI_WithTableReference_withTableSpecification_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_WithTableReference_withTableSpecification_feature", "_UI_WithTableReference_type"),
-                 SQLQueryModelPackage.eINSTANCE.getWithTableReference_WithTableSpecification(),
-                 true));
+                 SQLQueryModelPackage.Literals.WITH_TABLE_REFERENCE__WITH_TABLE_SPECIFICATION,
+                 true,
+                 false,
+                 false,
+                 null,
+                 null,
+                 null));
     }
 
     /**

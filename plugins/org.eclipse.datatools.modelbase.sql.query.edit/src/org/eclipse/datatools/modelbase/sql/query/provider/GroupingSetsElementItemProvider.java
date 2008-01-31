@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: GroupingSetsElementItemProvider.java,v 1.1 2007/03/22 17:10:13 bpayton Exp $
+ * $Id: GroupingSetsElementItemProvider.java,v 1.1 2007/09/25 23:18:03 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adpater for a {@link com.ibm.db.models.sql.query.GroupingSetsElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.datatools.modelbase.sql.query.GroupingSetsElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
