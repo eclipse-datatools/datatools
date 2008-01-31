@@ -33,8 +33,6 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 	public MaxDBTableConstraintLoader() {
 		super(null);
 	}
-
-
 	/**
 	 * This constructs the loader using no filter.
 	 *
@@ -49,11 +47,10 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 	 * @param connectionFilterProvider the filter provider used for filtering
 	 *        the "constraint" objects being loaded
 	 */
-	public MaxDBTableConstraintLoader(
-										ICatalogObject catalogObject,
-										IConnectionFilterProvider connectionFilterProvider) {
+	public MaxDBTableConstraintLoader(ICatalogObject catalogObject,
+									  IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		assert (catalogObject instanceof Table);
+		assert(catalogObject instanceof Table);
 	}
 
 	/**
@@ -66,7 +63,9 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 	 *
 	 * @throws SQLException if an error occurred during loading.
 	 */
-	// FIXME: this method is a workaround for the DTP bug 189079 -> to be removed	
+	// This method is a workaround for the DTP bug 189079
+	// To be removed when "all" MaxDB releases support PK Name
+	// http://www.sapdb.org/webpts?wptsdetail=yes&ErrorType=1&ErrorID=1149312
 	public PrimaryKey loadPrimaryKey(PrimaryKey existingPK) throws SQLException {
 		ResultSet rs = null;
 		try {

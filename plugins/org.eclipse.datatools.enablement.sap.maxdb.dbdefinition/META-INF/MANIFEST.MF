@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.datatools.enablement.sap.maxdb.definition;singleton:=true
-Bundle-Version: 1.0.0.200801301
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sap.maxdb.dbdefinition;singleton:=true
+Bundle-Version: 1.0.0.200801311
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
 Bundle-ClassPath: .,
