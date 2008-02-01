@@ -32,25 +32,22 @@ public interface IControlStateInfo {
 	
 	/**
      * Returns the type of section control for this state information.
-     * @return  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
-     *          one of the section controls
-     * @see {@link SQLBuilderConstants}
+     * @return  An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
      */
     public int getControlType();
 
     /**
      * Sets the type of section control for this state information.
-     * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
-     *                     one of the section controls. 
-     * @see {@link SQLBuilderConstants}
+     * @param controlType An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
      */
     public void setControlType( int controlType );
 
     /**
      * Returns the height of the control.
      * @return  the control height; 
-     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
-     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     *          or {@link IControlStateInfo#CONTROL_STATE_UNKNOWN_VALUE} if value is not known.
      */
     public int getHeight();
 
@@ -63,8 +60,7 @@ public interface IControlStateInfo {
     /**
      * Returns the width of the control.
      * @return  the control width; 
-     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
-     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     *          or {@link IControlStateInfo#CONTROL_STATE_UNKNOWN_VALUE} if value is not known.
      */
     public int getWidth();
 

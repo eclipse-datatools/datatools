@@ -18,32 +18,29 @@ public interface IWindowStateInfo {
 	
 	/**
 	 * Gets the control state information of the specified control type.
-	 * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
-	 *                     one of the section controls. 
+     * @param controlType  An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
 	 * @return IControlStateInfo instance that represents the state
      *                 of the specified control type; may be null if none is available.
-     * @see {@link SQLBuilderConstants}
-     * @see {@link IControlStateInfo}
+     * @see IControlStateInfo
 	 */
 	public IControlStateInfo get( int controlType );
 
     /**
      * Stores the control state information for the specified control type.
-     * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
-     *                     one of the section controls. 
+     * @param controlType An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
      * @param controlStateInfo an IControlStateInfo instance that represents the state
      *                 of the specified control type.
-     * @see {@link SQLBuilderConstants}
-     * @see {@link IControlStateInfo}
+     * @see IControlStateInfo
      */
     public void put( int controlType, IControlStateInfo controlStateInfo );
 
     /**
      * Revoves the control state information for the specified control type.
-     * @param controlType  A SQLBuilderConstants.CONTROL_TYPE_* constant defined for 
-     *                     one of the section controls. 
-     * @see {@link SQLBuilderConstants}
-     * @see {@link IControlStateInfo}
+     * @param  controlType An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
+	 * @see IControlStateInfo
      */
 	public void remove(int controlType);
 
@@ -51,6 +48,7 @@ public interface IWindowStateInfo {
 	 * Gets array of all the <code>IControlStateInfo</code>s contained in this
 	 * <code>IWindowStateInfo</code>
 	 * @return IControlStateInfo[]
+	 * @see IControlStateInfo
 	 */
 	public IControlStateInfo[] getcontrolStateInfos();
 	
@@ -69,8 +67,7 @@ public interface IWindowStateInfo {
     /**
      * Returns the overall height of the SQL Query Builder main control.
      * @return  the overall height; 
-     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
-     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     *          or {@link IControlStateInfo#CONTROL_STATE_UNKNOWN_VALUE} if value is not known.
      */
     public int getHeight();
 
@@ -83,8 +80,7 @@ public interface IWindowStateInfo {
     /**
      * Returns the overall width of the SQL Query Builder main control.
      * @return  the overall width;
-     *          or SQLBuilderConstants.CONTROL_STATE_UNKNOWN_VALUE if value is not known.
-     * @see {@link SQLBuilderConstants#CONTROL_STATE_UNKNOWN_VALUE}
+     *          or {@link IControlStateInfo#CONTROL_STATE_UNKNOWN_VALUE} if value is not known.
      */
     public int getWidth();
 

@@ -28,10 +28,17 @@ public class ControlStateInfo implements IControlStateInfo
 	public ControlStateInfo(){
 	}
 
-    /**
+	/**
      * Constructor for ControlStateInfo with parameters for
      * all member fields.
-     */
+	 * 
+	 * @param controlType An IControlStateInfo.*_CONTROL constant defined for 
+     * 		one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
+	 * @param visible
+	 * @param hideable
+	 * @param width
+	 * @param height
+	 */
 	public ControlStateInfo(int controlType, boolean visible, boolean hideable, int width, int height){
 		_controlType = controlType;
 		_isVisible = visible;
@@ -43,6 +50,8 @@ public class ControlStateInfo implements IControlStateInfo
     /**
      * Constructor for ControlStateInfo with parameter for
      * controlType member field.
+	 * @param controlType An IControlStateInfo.*_CONTROL constant defined for 
+     * one of the section controls, for example, {@link IControlStateInfo#SOURCE_CONTROL}.
      */
 	public ControlStateInfo(int controlType){
 		_controlType = controlType;
