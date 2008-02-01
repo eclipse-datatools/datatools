@@ -531,7 +531,7 @@ public class DriverManager {
 				String value = 
 					type.getValuesProviderClass().createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
 				if (value != null) {
-					createDefaultValue = Boolean.parseBoolean(value);
+					createDefaultValue = Boolean.valueOf(value).booleanValue();
 				}
 			}
 			IDriverValuesProvider overrideDriverValsProvider = null;
@@ -544,7 +544,7 @@ public class DriverManager {
 					String value = 
 						overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
 					if (value != null) {
-						createDefaultValue = Boolean.parseBoolean(value);
+						createDefaultValue = Boolean.valueOf(value).booleanValue();
 					}
 				}
 			}
@@ -625,14 +625,14 @@ public class DriverManager {
 		if (driverValsProvider != null) {
 			String valsCreateDefault = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
 			if (valsCreateDefault != null) {
-				createDefault = Boolean.parseBoolean(valsCreateDefault);
+				createDefault = Boolean.valueOf(valsCreateDefault).booleanValue();
 				debug("Create Default was reset to " + valsCreateDefault + " by the driver values provider");
 			}
 		}
 		if (overrideDriverValsProvider != null) {
 			String overrideValsCreateDefault = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
 			if (overrideValsCreateDefault != null) {
-				createDefault = Boolean.parseBoolean(overrideValsCreateDefault);
+				createDefault = Boolean.valueOf(overrideValsCreateDefault).booleanValue();
 				debug("Create Default was reset to " + overrideValsCreateDefault + " by the override driver values provider");
 			}
 		}
