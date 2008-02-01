@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -572,8 +572,11 @@ public class EditDriverDialog extends TitleAreaDialog
 						for (int i = 0; i < items.length; i++) {
 							String directory = items[i];
 							if (!directory.equals(selectedDirectory)) {
+								String sep2 = "\\";//$NON-NLS-1$
+								if (directory.indexOf("/") > -1)//$NON-NLS-1$
+									sep2 = "/";//$NON-NLS-1$
 								int location2 = directory
-										.lastIndexOf(separator);
+										.lastIndexOf(sep2);
 								String filename = directory;
 								if (location2 > -1
 										&& location2 < directory.length() - 1) {
@@ -789,8 +792,14 @@ public class EditDriverDialog extends TitleAreaDialog
 	 * Parse a string into an array
 	 */
 	private String[] parseString(String str_list) {
+		String token = IDriverMgmtConstants.PATH_DELIMITER;
+		if (str_list.indexOf(token) == -1) {
+			if (str_list.indexOf(',') > -1) {//$NON-NLS-1$
+				token = ",";//$NON-NLS-1$
+			}
+		}
 		StringTokenizer tk = new StringTokenizer(str_list,
-				IDriverMgmtConstants.PATH_DELIMITER);
+				token);
 		String[] pieces = new String[tk.countTokens()];
 		int index = 0;
 		while (tk.hasMoreTokens())
