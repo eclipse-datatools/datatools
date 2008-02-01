@@ -232,25 +232,19 @@ public class AvailableTablesTreeProvider extends LabelProvider implements ITreeC
     public Image getImage(Object object) {
         Image image = null;
         // used TableCorrelation for With Tables Node
-        if (object instanceof Schema || object instanceof TableCorrelation) 
-        {
-            image = ImageDescriptor.createFromFile(SQLBuilderPlugin.getPlugin().getClass(), 
-                    "icons/schema.gif").createImage();
+        if (object instanceof Schema || object instanceof TableCorrelation) {
+            image = SQLBuilderPlugin.getPlugin().getImage("icons/schema.gif");
         }
         else if (object instanceof BaseTable) {
-            image = ImageDescriptor.createFromFile(SQLBuilderPlugin.getPlugin().getClass(), 
-                    "icons/tables_tab.gif").createImage();
+            image = SQLBuilderPlugin.getPlugin().getImage("icons/tables_tab.gif");
         }
         else if (object instanceof DerivedTable || object instanceof WithTableSpecification) {
-            image = ImageDescriptor.createFromFile(SQLBuilderPlugin.getPlugin().getClass(), 
-                    "icons/view.gif").createImage();
+            image = SQLBuilderPlugin.getPlugin().getImage("icons/view.gif");
         }
         else {
             // alias
-            image = ImageDescriptor.createFromFile(SQLBuilderPlugin.getPlugin().getClass(), 
-                    "icons/alias.gif").createImage();
-        }
-        return image;
+            image = SQLBuilderPlugin.getPlugin().getImage("icons/alias.gif");
+        }        return image;
     }
 
 }

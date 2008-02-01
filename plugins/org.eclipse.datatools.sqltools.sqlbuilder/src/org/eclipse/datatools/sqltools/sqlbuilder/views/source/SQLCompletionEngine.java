@@ -107,11 +107,13 @@ public class SQLCompletionEngine {
                 Database db = domainModel.getDatabase();
         		Schema defaultSchema = DatabaseHelper.findSchema(db, defaultSchemaName);
                 // TODO: what about mixed-case names?
-        		Table table = SchemaHelper.findTable(defaultSchema, upperEntry);
-        		if (table != null){
-        			improvedTokenList.clear();
-        			improvedTokenList.add(defaultSchemaName);
-        			improvedTokenList.add(upperEntry);
+        		if (defaultSchema != null) { // bug 217356
+        		    Table table = SchemaHelper.findTable(defaultSchema, upperEntry);
+        		    if (table != null){
+        		        improvedTokenList.clear();
+        		        improvedTokenList.add(defaultSchemaName);
+        		        improvedTokenList.add(upperEntry);
+        		    }
         		}
         	}
             // RATLC01136221 bgp 15Jan2007 - end
