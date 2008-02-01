@@ -20,7 +20,7 @@ import org.eclipse.datatools.sqltools.data.internal.ui.DataUIPlugin;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.swt.widgets.Item;
+import org.eclipse.swt.widgets.TableItem;
 
 public class TableDataCellModifier implements ICellModifier {
 
@@ -104,10 +104,7 @@ public class TableDataCellModifier implements ICellModifier {
     }
 
     public void modify(Object element, String property, Object value) {
-        int column = getColumnIndex(property);        
-        
-        if (element instanceof Item)
-            element = ((Item) element).getData();
+        int column = getColumnIndex(property);      
 
     	if (isModifying)
     	    return; // Protect against infinite recursion, bug 
@@ -126,6 +123,13 @@ public class TableDataCellModifier implements ICellModifier {
 	            editor.setDirty(true);
 	            Object o = row.getTable().getColumnDataAccessor(column).deserialize((String)value, row.getTable().getColumnType(column));
 	            row.updateValue(column, o);
+	            
+	            // change background color to indicate cell is dirty
+	            if (element instanceof TableItem)
+	            {
+	            	editor.setDirtyBackground(column, (TableItem)element);
+	            }
+	            	
 	        }  catch (Exception ex) {            
 	            IStatus warning = new Status(IStatus.ERROR, DataUIPlugin.PLUGIN_ID, 1, Messages.getString("TableDataCellModifier.dataFormatError"), ex); //$NON-NLS-1$
 	            ErrorDialog.openError(viewer.getControl().getShell(), Messages.getString("TableDataCellModifier.ErrorUpdatingData"), null, warning); //$NON-NLS-1$

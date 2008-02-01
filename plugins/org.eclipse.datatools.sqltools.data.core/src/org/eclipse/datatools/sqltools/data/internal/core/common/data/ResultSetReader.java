@@ -47,6 +47,15 @@ public class ResultSetReader {
 	    if (o==null)
 	        return null;
 	    
+	    // Some Vendor implementation of timestamp is
+	    // not a subclass of java.sql.Timestamp
+	    if (type == Types.TIMESTAMP &&
+	    		! (o instanceof java.sql.Timestamp))
+	    {
+	    	return (rs.getString(column+1));
+	    	    	
+	    }	    
+	    	    
 	    if (o instanceof Blob)
 	        return readBinaryStream( ((Blob)o).getBinaryStream(), lobLimit );
 	    else if (o instanceof Clob)

@@ -34,6 +34,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -42,11 +43,16 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * This editor allows borwsing and editing the data stored in a SQL table.
@@ -72,9 +78,11 @@ public class TableDataEditor extends EditorPart
     
     protected TableDataEditorSelectionProvider selectionProvider;
     
+    private boolean askConfirmation;    
+    private Set dirtyBackgroundSet;
     
     public TableDataEditor() {    	
-
+    	dirtyBackgroundSet = new HashSet();
     }
     
     public void init(IEditorSite site, IEditorInput input) throws PartInitException {
@@ -130,7 +138,21 @@ public class TableDataEditor extends EditorPart
     
     public void doSave(IProgressMonitor monitor)
     {        
-        OperationCommand item = initDbOutputItem();
+        // Add confirmation from user before removing rows from a table
+    	if (askConfirmation)
+    	{
+    		boolean okay = MessageDialog.openQuestion(tableViewer.getControl().getShell(),
+    				Messages.getString("TableDataEditor.RemoveRowsConfirmation.title"),
+    				Messages.getString("TableDataEditor.RemoveRowsConfirmation.message" , 
+    						new Object[] {sqlTable.getSchema().getName() + 
+    						"." + sqlTable.getName()}));
+    		if (!okay)
+    		{    			
+    			return;
+    		}
+    	}
+    	
+    	OperationCommand item = initDbOutputItem();
     	try {            
 	        //int ret = tableData.save(new OutputItemAdapter(item));
 	        ResultsViewAPI resultsView = ResultsViewAPI.getInstance();
@@ -140,6 +162,7 @@ public class TableDataEditor extends EditorPart
 	        resultsView.updateStatus(item, ret);
 	        if (ret==Output.STATUS_SUCCEEDED || ret==Output.STATUS_WARNING) {
 	            setDirty(false);
+	            revertToOriginalBackground();
 	        }
 	        else {
 	            monitor.setCanceled(true);
@@ -198,7 +221,7 @@ public class TableDataEditor extends EditorPart
         return dirty;
     }
     
-    protected void setDirty(boolean value) {
+    protected void setDirty(boolean value) {    	
         dirty = value;
         firePropertyChange(PROP_DIRTY);
     }
@@ -208,6 +231,7 @@ public class TableDataEditor extends EditorPart
         tableViewer.refresh();
         cursor.redraw();
         setDirty(false);
+        revertToOriginalBackground();
     }
     
     public void doRefresh() {
@@ -246,8 +270,8 @@ public class TableDataEditor extends EditorPart
     }
     
     public void doInsertRow() {
-        cursor.setSelection(tableViewer.getTable().getItemCount()-1, 0);
-        doUpdateValue();
+    	cursor.setSelection(tableViewer.getTable().getItemCount()-1, 0);
+        doUpdateValue();            	
     }
     
     public void doUpdateValue() {
@@ -288,6 +312,7 @@ public class TableDataEditor extends EditorPart
 	        tableData.deleteRow(row);
 	        tableViewer.remove(row);
 	        setDirty(true);
+	        askConfirmation = true;
         }
     }
     
@@ -378,5 +403,59 @@ public class TableDataEditor extends EditorPart
 
 	public TableDataEditorSelectionProvider getSelectionProvider() {
 		return selectionProvider;
+	}
+	
+	/**
+	 * Marks the background of the table item and column to indicate that it is dirty
+	 * @param columnIndex the index of column to change color
+	 * @param item the TableItem to change the background color	 
+	 */
+	public void setDirtyBackground(int columnIndex, TableItem item)
+	{
+		int itemCount = tableViewer.getTable().getItemCount();
+		if (item != null) 
+		{			
+			if (tableViewer.getTable().indexOf(item) == itemCount - 1)
+			{
+				item = tableViewer.getTable().getItem(itemCount - 2);
+			}
+			Display display = Display.getCurrent();
+			item.setBackground(columnIndex, display.getSystemColor(SWT.COLOR_YELLOW));			
+			dirtyBackgroundSet.add(item);
+		}
+	}
+	
+	/**
+	 * Reverts the dirty background items to the original color
+	 */
+	protected void revertToOriginalBackground()
+	{
+		Display display = Display.getCurrent();
+		int columns = tableViewer.getTable().getColumnCount();
+		Iterator iter = dirtyBackgroundSet.iterator();
+		while(iter.hasNext())
+		{
+			TableItem item = (TableItem)iter.next();
+			for (int i=0;i<columns;i++)
+			{
+				item.setBackground(i, display.getSystemColor(SWT.COLOR_WHITE));
+			}			
+		}		
+		dirtyBackgroundSet.clear();
+	}
+	
+	/**
+	 * Removes the dirty indicator by reseting the background color to white
+	 * @param columnIndex the index of the column to change color
+	 * @param item the TableItem to reset the background color
+	 */
+	public void removeDirtyBackground(int columnIndex, TableItem item)
+	{
+		if (item != null)
+		{
+			Display display = Display.getCurrent();
+			item.setBackground(columnIndex, display.getSystemColor(SWT.COLOR_WHITE));			
+			dirtyBackgroundSet.remove(item);
+		}
 	}
 }

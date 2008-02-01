@@ -617,6 +617,32 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
             hasNullValue = false;
         }
     }
+    
+    protected void setEditorAreaContentFromFile (String fname) {
+    	File aFile = new File(fname);
+    	if(aFile.canRead()){
+    		try{
+    			if (isBinaryFile()){
+    				FileInputStream fis = new FileInputStream(aFile);
+    				BufferedInputStream bis = new BufferedInputStream(fis);
+    				byte b[] = new byte[bis.available()];
+    				bis.read(b);
+    				bis.close();
+    				setEditorAreaContent(b);
+    			} else{                	
+    				StringBuffer input = new StringBuffer();
+    				input.append(DataUIPlugin.getFileContentWithEncoding(fname));
+    				setEditorAreaContent(input.toString());
+    			} 
+    		}catch(FileNotFoundException fnfe){
+    			DataUIPlugin.getDefault().writeLog(IStatus.ERROR, 0, fnfe.getMessage(), fnfe);
+    			setErrorMessage(Messages.getString("DefaultExternalTableDataWizardPage.Import.FileNotFound")); //$NON-NLS-1$
+    		}catch(IOException ioe){
+    			DataUIPlugin.getDefault().writeLog(IStatus.ERROR, 0, ioe.getMessage(), ioe);
+    			setErrorMessage(Messages.getString("DefaultExternalTableDataWizardPage.Import.IOError")); //$NON-NLS-1$
+    		}
+    	}    	
+    }
 
     /**
      * Returns the edit widget 
