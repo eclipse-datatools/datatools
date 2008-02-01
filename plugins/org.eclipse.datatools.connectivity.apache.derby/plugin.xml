@@ -102,11 +102,13 @@
             
       <driverTemplate
             createDefault="false"
+            defaultDefinitionName="%DERBY_EMBEDDED_DRIVER_DEFAULT_INSTANCE_NAME"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.derby.genericDriverTemplate"
             jarList="derby.jar"
             name="%DERBY_EMBEDDED_DRIVER_TEMPLATE_NAME"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_0.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_0.driverCategory"
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -160,11 +162,13 @@
       </driverTemplate>
       <driverTemplate
             createDefault="false"
+            defaultDefinitionName="%DERBY101_EMBEDDED_DRIVER_DEFAULT_INSTANCE_NAME"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.derby101.genericDriverTemplate"
             jarList="derby.jar"
             name="%DERBY101_EMBEDDED_DRIVER_TEMPLATE_NAME"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_1.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_1.driverCategory"
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -218,11 +222,13 @@
       </driverTemplate>
       <driverTemplate
             createDefault="false"
+            defaultDefinitionName="%DERBY102_EMBEDDED_DRIVER_DEFAULT_INSTANCE_NAME"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.derby102.genericDriverTemplate"
             jarList="derby.jar"
             name="%DERBY102_EMBEDDED_DRIVER_TEMPLATE_NAME"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_2.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_2.driverCategory"
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -394,11 +400,13 @@
       </driverTemplate>    
       <driverTemplate
             createDefault="false"
+            defaultDefinitionName="%DERBY101_CLIENT_DRIVER_DEFAULT_INSTANCE_NAME"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.derby101.clientDriver"
             jarList="derbyclient.jar"
             name="%DERBY101_CLIENT_DRIVER_TEMPLATE_NAME"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_1.driverCategory">
+            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_1.driverCategory"
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyClientDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -452,12 +460,14 @@
          </properties>
       </driverTemplate> 
             <driverTemplate
-            createDefault="false"
-            emptyJarListIsOK="false"
-            id="org.eclipse.datatools.connectivity.db.derby102.clientDriver"
-            jarList="derbyclient.jar"
-            name="%DERBY102_CLIENT_DRIVER_TEMPLATE_NAME"
-            parentCategory="org.eclipse.datatools.connectivity.db.derby.10_2.driverCategory">
+                  createDefault="false"
+                  defaultDefinitionName="%DERBY102_CLIENT_DRIVER_DEFAULT_INSTANCE_NAME"
+                  emptyJarListIsOK="false"
+                  id="org.eclipse.datatools.connectivity.db.derby102.clientDriver"
+                  jarList="derbyclient.jar"
+                  name="%DERBY102_CLIENT_DRIVER_TEMPLATE_NAME"
+                  parentCategory="org.eclipse.datatools.connectivity.db.derby.10_2.driverCategory"
+                  valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyClientDriverValuesProvider">
          <properties>
             <property
                   generated="false"

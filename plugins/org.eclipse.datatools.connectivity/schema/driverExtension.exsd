@@ -147,6 +147,23 @@ In addition, using the driverTemplateOverride functionality, adopters can take e
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="valuesProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDefinitionName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -316,6 +333,30 @@ Also note that there is a new interface that your Property Descriptor can extend
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="valuesProvider" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The value for priority should be a value of 1 to 5, with 1 being low and 5 being high, indicating the priority for this override. If there are other overrides for the particular target driver template, the priority will be used to indicate which override should take precedence. If no priority is specified, the priority will default to &quot;1&quot;. If multiple overrides have the same priority, the one with the lowest plug-in ID alphabetically (IDs will be sorted in ascending alphabetical order) will take precedence.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="defaultDefinitionName" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -429,7 +470,7 @@ Also note that there is a new interface that your Property Descriptor can extend
    <element name="migration">
       <annotation>
          <documentation>
-            Use this element to add migration support for a deprecated driver type (e.g. ID changes, property changes, etc.). Make sure if you are migrating driver definitions of one template to another and the first driver template was set to &quot;createDefault = true&quot;, that you set the old driver template to createDefault = false or the driver manager will attempt to recreate the older template and then migrate it. 
+            Use this element to add migration support for a deprecated driver type (e.g. ID changes, property changes, etc.). Make sure if you are migrating driver definitions of one template to another and the first driver template was set to &quot;createDefault = true&quot;, that you set the old driver template to createDefault = false or the driver manager will attempt to recreate the older template and then migrate it.
          </documentation>
       </annotation>
       <complexType>

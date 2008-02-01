@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.apache.derby;singleton:=true
-Bundle-Version: 1.0.0.200712171
+Bundle-Version: 1.0.1.200801311
 Bundle-Activator: org.eclipse.datatools.connectivity.apache.internal.derby.DerbyPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -10,7 +10,8 @@ Export-Package: org.eclipse.datatools.connectivity.apache.internal.derby,
  org.eclipse.datatools.connectivity.apache.internal.derby.catalog,
  org.eclipse.datatools.connectivity.apache.internal.derby.connection,
  org.eclipse.datatools.connectivity.apache.internal.derby.containment,
- org.eclipse.datatools.connectivity.apache.internal.derby.ddl
+ org.eclipse.datatools.connectivity.apache.internal.derby.ddl,
+ org.eclipse.datatools.connectivity.apache.internal.derby.driver
 Require-Bundle: org.eclipse.emf.ecore;bundle-version="[2.2.0,3.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.resources;bundle-version="[3.2.0,4.0.0)",

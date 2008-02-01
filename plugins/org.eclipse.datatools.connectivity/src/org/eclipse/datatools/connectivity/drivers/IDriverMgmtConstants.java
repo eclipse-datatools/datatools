@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
+import java.io.File;
+
 /**
  * This file contains some constants used by the driver management code.
  * 
@@ -24,7 +26,8 @@ public interface IDriverMgmtConstants {
 	public static final String PROP_PREFIX = "org.eclipse.datatools.connectivity.drivers.";//$NON-NLS-1$
 
 	// standard jar list delimiter
-	public static final String PATH_DELIMITER = ","; //$NON-NLS-1$
+//	public static final String PATH_DELIMITER = ","; //$NON-NLS-1$
+	public static final String PATH_DELIMITER = "" + File.pathSeparatorChar;
 
 	// jar list, class, and template type
 	public static final String PROP_DEFN_JARLIST = "jarList"; //$NON-NLS-1$

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -43,7 +43,7 @@ public class DriverManager {
 	
 	private static boolean refreshDriverMap = false;
 	
-	private static boolean mDebug = false;
+	private static boolean mDebug = ConnectivityPlugin.getDefault().isDebugging();
 	
 	private static String DRIVER_MARKER_FILE_NAME = "DEFAULT_DRIVERS_CREATED.txt"; //$NON-NLS-1$
 	
@@ -333,7 +333,7 @@ public class DriverManager {
 			String name, String jarList) {
 		if (templateID == null) return null;
 		if (name == null) return null;
-		if (jarList == null) return null;
+//		if (jarList == null) return null;
 		
 		IPropertySet pset = createDefaultInstance(templateID);
 		
@@ -341,13 +341,15 @@ public class DriverManager {
 		if (pset == null)
 			return null;
 		
-		pset.setName(name);
+		if (name != null)
+			pset.setName(name);
 		String prefix = DriverMgmtMessages
 				.getString("NewDriverDialog.text.id_prefix"); //$NON-NLS-1$
 		String id = prefix + name;
 		pset.setID(id);
 		Properties props = pset.getBaseProperties();
-		props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
+		if (jarList != null)
+			props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
 		addDriverInstance(pset);
 		return getDriverInstanceByID(pset.getID());
 	}
@@ -524,9 +526,33 @@ public class DriverManager {
 
 			// if we need to create one and it doesn't already
 			// exist, create one and add it to the list.
-			if (type.getCreateDefaultFlag() && !alreadyExists) {
+			boolean createDefaultValue = false;
+			if (type.getValuesProviderClass() != null) {
+				String value = 
+					type.getValuesProviderClass().createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
+				if (value != null) {
+					createDefaultValue = Boolean.parseBoolean(value);
+				}
+			}
+			IDriverValuesProvider overrideDriverValsProvider = null;
+			OverrideTemplateDescriptor[] otds = 
+				OverrideTemplateDescriptor.getByDriverTemplate(type.getId());
+			if (otds != null && otds.length > 0) {
+				overrideDriverValsProvider =
+					otds[0].getValuesProviderClass();
+				if (overrideDriverValsProvider != null) {
+					String value = 
+						overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
+					if (value != null) {
+						createDefaultValue = Boolean.parseBoolean(value);
+					}
+				}
+			}
+				
+			if ((createDefaultValue || type.getCreateDefaultFlag()) && !alreadyExists) {
 				IPropertySet newPset = createDefaultInstance(type);
-				addDriverInstance(newPset);
+				if (newPset != null)
+					addDriverInstance(newPset);
 			}
 		}
 		boolean markerCreated = createDefaultDriversMarker();
@@ -573,7 +599,45 @@ public class DriverManager {
 	private IPropertySet createDefaultInstance(TemplateDescriptor template,
 			boolean override) {
 
-		if (template != null && (template.getCreateDefaultFlag() || override)) {
+		IDriverValuesProvider driverValsProvider = null;
+		IDriverValuesProvider overrideDriverValsProvider = null;
+		OverrideTemplateDescriptor[] otds = null; 
+		if (template != null) {
+			
+			debug("Creating Default Instance of " + template.getId());
+			otds = OverrideTemplateDescriptor.getByDriverTemplate(template.getId());
+			if (otds != null && otds.length > 0) {
+				overrideDriverValsProvider =
+					otds[0].getValuesProviderClass();
+				if (overrideDriverValsProvider != null) {
+					debug("Have a driver values provider from the override");
+				}
+			}
+			driverValsProvider =
+				(IDriverValuesProvider) template.getValuesProviderClass();
+			if (driverValsProvider != null) {
+				debug("Have a driver values provider from the template");
+			}
+		}
+		
+		boolean createDefault = template.getCreateDefaultFlag();
+		debug("Create Default from the template is " + createDefault);
+		if (driverValsProvider != null) {
+			String valsCreateDefault = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
+			if (valsCreateDefault != null) {
+				createDefault = Boolean.parseBoolean(valsCreateDefault);
+				debug("Create Default was reset to " + valsCreateDefault + " by the driver values provider");
+			}
+		}
+		if (overrideDriverValsProvider != null) {
+			String overrideValsCreateDefault = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
+			if (overrideValsCreateDefault != null) {
+				createDefault = Boolean.parseBoolean(overrideValsCreateDefault);
+				debug("Create Default was reset to " + overrideValsCreateDefault + " by the override driver values provider");
+			}
+		}
+		
+		if (template != null && (createDefault || override)) {
 
 			// generate the id and name for the new instance
 			String prefix = DriverMgmtMessages
@@ -582,7 +646,33 @@ public class DriverManager {
 					.getString("DriverMgmtPlugin.default_instance_suffix"); //$NON-NLS-1$
 
 			String id = prefix + template.getId();
-			String name = template.getName() + " " + suffix;//$NON-NLS-1$
+			
+			String name = template.getDefaultDefinitionName() + " " + suffix;//$NON-NLS-1$
+			debug("Default driver name from the template is " + name);
+			if (driverValsProvider != null) {
+				String driverValsName = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_NAME);
+				if (driverValsName != null) {
+					name = driverValsName;
+					debug("Driver name was reset to " + driverValsName + " by the driver values provider");
+				}
+				String driverValsDefaultDefinitionName = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_DEFAULT_DEFINITION_NAME);
+				if (driverValsDefaultDefinitionName != null) {
+					name = driverValsDefaultDefinitionName;
+					debug("Driver name was reset to " + driverValsDefaultDefinitionName + " (Default Definition Name) by the driver values provider");
+				}
+			}
+			if (overrideDriverValsProvider != null) {
+				String overrideDriverValsName = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_NAME);
+				if (overrideDriverValsName != null) {
+					name = overrideDriverValsName;
+					debug("Driver name was reset to " + overrideDriverValsName + " by the override driver values provider");
+				}
+				String overrideDriverValsDefaultDefinitionName = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_DEFAULT_DEFINITION_NAME);
+				if (overrideDriverValsDefaultDefinitionName != null) {
+					name = overrideDriverValsDefaultDefinitionName;
+					debug("Driver name was reset to " + overrideDriverValsDefaultDefinitionName + " (Default Definition Name) by the override driver values provider");
+				}
+			}
 
 			// Now create the property set
 			PropertySetImpl propset = new PropertySetImpl(id, template
@@ -593,9 +683,30 @@ public class DriverManager {
 			// create the base properties
 			Properties props = new Properties();
 
-			String jarList = updatePluginJarList(template);
+			String jarList = "";
+			String valsJarList = null;
+			String overrideValsJarList = null;
+			
+			if (driverValsProvider != null) {
+				valsJarList = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_JARLIST);
+				if (valsJarList != null) {
+					jarList = valsJarList;
+					debug("Jar list was reset to " + valsJarList + " by the driver values provider");
+				}
+			}
+			if (overrideDriverValsProvider != null) {
+				overrideValsJarList = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_JARLIST);
+				if (overrideValsJarList != null) {
+					jarList = overrideValsJarList;
+					debug("Jar list was reset to " + overrideValsJarList + " by the override driver values provider");
+				}
+			}
+			if (valsJarList == null && overrideValsJarList == null) {
+				jarList = updatePluginJarList(template);
+				debug("Default jar list from the template is " + jarList);
+			}
 
-			props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
+			props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);			
 			props.setProperty(IDriverMgmtConstants.PROP_DEFN_TYPE, template
 					.getId());
 
@@ -606,16 +717,32 @@ public class DriverManager {
 					IConfigurationElement prop = templateprops[i];
 					String propid = prop.getAttribute("id"); //$NON-NLS-1$
 					String propvalue = prop.getAttribute("value"); //$NON-NLS-1$
-					OverrideTemplateDescriptor[] otds = 
-						OverrideTemplateDescriptor.getByDriverTemplate(template.getId());
+					debug("Default Value of property " + propid + " from the template is " + propvalue);
 					boolean removeIt = false;
+					if (driverValsProvider != null) {
+						String valsPropValue = driverValsProvider.createDefaultValue(propid);
+						if (valsPropValue != null) {
+							propvalue = valsPropValue;
+							debug("Value of property " + propid + " was reset to " + valsPropValue + " by the driver values provider");
+						}
+					}
 					if (otds != null && otds.length > 0) {
 						String temp =
 							otds[0].getPropertyValueFromId(propid);
-						if (temp != null && temp.length() > 0)
+						if (temp != null && temp.length() > 0) {
 							propvalue = temp;
+							debug("Value of property " + propid + " was reset to " + temp + " by a driver override");
+						}
 						if (otds[0].getPropertyRemoveFlagFromID(propid)) {
 							removeIt = true;
+							debug("Property " + propid + " was removed by a driver override");
+						}
+					}
+					if (overrideDriverValsProvider != null) {
+						String overrideValsPropValue = overrideDriverValsProvider.createDefaultValue(propid);
+						if (overrideValsPropValue != null) {
+							propvalue = overrideValsPropValue;
+							debug("Value of property " + propid + " was reset to " + overrideValsPropValue + " by the override driver values provider");
 						}
 					}
 					if (!removeIt) 
@@ -659,10 +786,10 @@ public class DriverManager {
 					pluginId = toReplace.substring(1, toReplace.length() - 1);
 				}
 				String restOfPath = null;
-				if (jarList.indexOf(",", index) > 0) { //$NON-NLS-1$
+				if (jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index) > 0) { //$NON-NLS-1$
 					restOfPath = jarList
 							.substring(
-									jarList.indexOf("]", index) + 1, jarList.indexOf(",", index)); //$NON-NLS-1$ //$NON-NLS-2$
+									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index)); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				else {
 					restOfPath = jarList.substring(
@@ -713,7 +840,7 @@ public class DriverManager {
 									"DriverMgmtPlugin.BundleMissing", strs)); //$NON-NLS-1$
 				}
 
-				index = jarList.indexOf(",", index); //$NON-NLS-1$
+				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index); //$NON-NLS-1$
 				if (index > 0)
 					index++;
 			}

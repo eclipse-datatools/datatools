@@ -12,20 +12,21 @@ package org.eclipse.datatools.connectivity.drivers.models;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-
-import com.ibm.icu.text.Collator;
 
 /**
  * Represents a driver template override which is provided by the
@@ -58,6 +59,11 @@ public class OverrideTemplateDescriptor implements Comparable {
 	private static final String REQUIRED_ATTRIBUTE = "required";//$NON-NLS-1$
 	private static final String CATEGORY_ATTRIBUTE = "category";//$NON-NLS-1$
 	private static final String CUSTOM_PROP_DESCRIPTOR_ATTRIBUTE = "customPropertyDescriptor";//$NON-NLS-1$
+	private static final String PRIORITY_ATTRIBUTE = "priority";//$NON-NLS-1$
+	private static final String VALUESPROVIDER_ATTRIBUTE = "valuesProvider"; //$NON-NLS-1$
+	private static final String DEFAULT_DEFINITION_NAME_ATTRIBUTE = "defaultDefinitionName"; //$NON-NLS-1$
+	
+	private IDriverValuesProvider driverValuesProvider = null;
 
 	private static final OverrideTemplateDescriptor[] EMPTY = {};
 
@@ -95,8 +101,13 @@ public class OverrideTemplateDescriptor implements Comparable {
 		}
 
 		List descriptors = (List)fgDriverTemplateDescriptors.get(driverTemplateId);
-		return descriptors != null ?
-				(OverrideTemplateDescriptor[]) descriptors.toArray(new OverrideTemplateDescriptor[descriptors.size()]) : EMPTY;
+		if (descriptors != null && descriptors.size() > 0) {
+			OverrideTemplateDescriptor[] array = 
+				(OverrideTemplateDescriptor[]) descriptors.toArray(new OverrideTemplateDescriptor[descriptors.size()]);
+			Arrays.sort(array);
+			return array;
+		}
+		return EMPTY;
 	}
 
 	/**
@@ -119,6 +130,21 @@ public class OverrideTemplateDescriptor implements Comparable {
 	 */
 	public String getTargetId() {
 		return this.fElement.getAttribute(TARGET_ID_ATTRIBUTE);
+	}
+
+	/**
+	 * Returns the template id.
+	 */
+	public int getPriority() {
+		String value = this.fElement.getAttribute(PRIORITY_ATTRIBUTE);
+		if (value == null)
+			return 1;
+		try {
+			int valueInt = Integer.parseInt(value);
+			return valueInt;
+		} catch (NumberFormatException nfe) {
+			return 1;
+		}
 	}
 
 	/**
@@ -158,6 +184,25 @@ public class OverrideTemplateDescriptor implements Comparable {
 	}
 
 	/**
+	 * Returns the values provider class
+	 */
+	public IDriverValuesProvider getValuesProviderClass() {
+		if (this.fElement.getAttribute(VALUESPROVIDER_ATTRIBUTE) != null &&
+				this.driverValuesProvider == null) {
+			try {
+				driverValuesProvider = (IDriverValuesProvider) fElement
+						.createExecutableExtension(VALUESPROVIDER_ATTRIBUTE);
+				driverValuesProvider.setDriverTemplate(TemplateDescriptor.getDriverTemplateDescriptor(getTargetId()));
+			}
+			catch (CoreException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		return this.driverValuesProvider;
+	}
+
+	/**
 	 * Returns the 'create default' flag value.
 	 */
 	public String getCreateDefaultFlag() {
@@ -192,6 +237,15 @@ public class OverrideTemplateDescriptor implements Comparable {
 		return name;
 	}
 
+	/**
+	 * Returns the default definition name.
+	 */
+	public String getDefaultDefinitionName() {
+		String defaultDefinitionName = this.fElement.getAttribute(DEFAULT_DEFINITION_NAME_ATTRIBUTE);
+		if (defaultDefinitionName == null && getName() != null)
+			defaultDefinitionName = getName();
+		return defaultDefinitionName;
+	}
 	/**
 	 * Returns the list of configuration elements for the template properties.
 	 */
@@ -303,9 +357,11 @@ public class OverrideTemplateDescriptor implements Comparable {
 	 * Implements a method from IComparable
 	 */
 	public int compareTo(Object o) {
-		if (o instanceof OverrideTemplateDescriptor)
-			return Collator.getInstance().compare(getName(),
-					((OverrideTemplateDescriptor) o).getName());
+		if (o instanceof OverrideTemplateDescriptor) {
+			return ((OverrideTemplateDescriptor) o).getPriority() - getPriority();
+//			return Collator.getInstance().compare(getName(),
+//					((OverrideTemplateDescriptor) o).getName());
+		}
 		return Integer.MIN_VALUE;
 	}
 

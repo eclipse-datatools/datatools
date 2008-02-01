@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -10,14 +10,12 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
-import java.util.Properties;
-
-import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
-import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
+import org.eclipse.datatools.connectivity.drivers.DriverValidator;
+import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
-import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.OverrideTemplateDescriptor;
@@ -182,8 +180,44 @@ public class NewDriverDialog extends TitleAreaDialog {
 						if (selection.getFirstElement() instanceof TemplateDescriptor) {
 							TemplateDescriptor descriptor = (TemplateDescriptor) selection
 									.getFirstElement();
+									
+							String name = descriptor.getDefaultDefinitionName();
+							IDriverValuesProvider driverValsProvider = null;
+							IDriverValuesProvider overrideDriverValsProvider = null;
+							OverrideTemplateDescriptor[] otds = null; 
+							if (descriptor != null) {
+								
+								otds = OverrideTemplateDescriptor.getByDriverTemplate(descriptor.getId());
+								if (otds != null && otds.length > 0) {
+									overrideDriverValsProvider =
+										otds[0].getValuesProviderClass();
+								}
+								driverValsProvider =
+									(IDriverValuesProvider) descriptor.getValuesProviderClass();
+							}
+
+							if (driverValsProvider != null) {
+								String driverValsName = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_NAME);
+								if (driverValsName != null) {
+									name = driverValsName;
+								}
+								String driverValsDefaultDefinitionName = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_DEFAULT_DEFINITION_NAME);
+								if (driverValsDefaultDefinitionName != null) {
+									name = driverValsDefaultDefinitionName;
+								}
+							}
+							if (overrideDriverValsProvider != null) {
+								String overrideDriverValsName = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_NAME);
+								if (overrideDriverValsName != null) {
+									name = overrideDriverValsName;
+								}
+								String overrideDriverValsDefaultDefinitionName = overrideDriverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_DEFAULT_DEFINITION_NAME);
+								if (overrideDriverValsDefaultDefinitionName != null) {
+									name = overrideDriverValsDefaultDefinitionName;
+								}
+							}
 							NewDriverDialog.this.mDriverNameText
-									.setText(descriptor.getName());
+									.setText(name);
 							NewDriverDialog.this.mDriverTemplateDescriptor = descriptor;
 							// NewDriverDialog.this.mOKButton.setEnabled(true);
 							if (!needEditImmediately(descriptor)) {
@@ -395,43 +429,14 @@ public class NewDriverDialog extends TitleAreaDialog {
 		if (this.mDriverTemplateDescriptor != null) {
 			String propId = DriverMgmtMessages
 					.getString("NewDriverDialog.text.id_prefix") + this.mDriverName; //$NON-NLS-1$
-			if (this.mPropertySet == null) {
-				this.mPropertySet = new PropertySetImpl(
-						this.mDriverName.trim(), propId);
-			}
-			this.mPropertySet.setName(this.mDriverName.trim());
-			this.mPropertySet.setID(propId);
-			Properties props = new Properties();
-			String jarList = DriverManager.getInstance().updatePluginJarList(this.mDriverTemplateDescriptor);
-			props.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST,
-					jarList);
 
-			IConfigurationElement[] templateprops = this.mDriverTemplateDescriptor
-					.getProperties();
-			if (templateprops != null && templateprops.length > 0) {
-				for (int i = 0; i < templateprops.length; i++) {
-					IConfigurationElement prop = templateprops[i];
-					String id = prop.getAttribute("id"); //$NON-NLS-1$
-					
-					String value = prop.getAttribute("value"); //$NON-NLS-1$
-					OverrideTemplateDescriptor[] otds = 
-						OverrideTemplateDescriptor.getByDriverTemplate(this.mDriverTemplateDescriptor.getId());
-					if (otds != null && otds.length > 0) {
-						boolean removetemp =
-							otds[0].getPropertyRemoveFlagFromID(id);
-						if (removetemp) continue;
-						String valuetemp =
-							otds[0].getPropertyValueFromId(id);
-						if (valuetemp != null && valuetemp.length() > 0)
-							value = valuetemp;
-					}
-					props.setProperty(id, value == null ? new String()
-							: value);
-				}
+			if (this.mPropertySet == null) {
+				DriverInstance newDriver =
+					DriverManager.getInstance().createNewDriverInstance(this.mDriverTemplateDescriptor.getId(),
+							this.mDriverName.trim(), null);
+				this.mPropertySet = newDriver.getPropertySet();
 			}
-			props.setProperty(IDriverMgmtConstants.PROP_DEFN_TYPE,
-					this.mDriverTemplateDescriptor.getId());
-			this.mPropertySet.setBaseProperties(props);
+			this.mPropertySet.setID(propId);
 		}
 
 		// after saveState, user's choice of "edit immediately" has been saved,
@@ -440,6 +445,17 @@ public class NewDriverDialog extends TitleAreaDialog {
 		mEditImmediately = mEditImmediatelyButton.getSelection();
 		
 		super.okPressed();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
+	 */
+	protected void cancelPressed() {
+		if (this.mPropertySet != null) {
+			// just make sure that the marker is removed
+			DriverValidator.removeOldProblemMarkers(this.mPropertySet.getName());
+		}
+		super.cancelPressed();
 	}
 
 	/**

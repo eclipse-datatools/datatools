@@ -21,12 +21,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 import com.ibm.icu.text.Collator;
@@ -57,6 +59,10 @@ public class TemplateDescriptor implements Comparable {
 	private static final String JARLIST_ATTRIBUTE = "jarList"; //$NON-NLS-1$	
 	private static final String VALUE_ATTRIBUTE = "value"; //$NON-NLS-1$	
 	private static final String EMPTYJARLISTOK_TAG = "emptyJarListIsOK"; //$NON-NLS-1$
+	private static final String VALUESPROVIDER_ATTRIBUTE = "valuesProvider"; //$NON-NLS-1$
+	private static final String DEFAULT_DEFINITION_NAME_ATTRIBUTE = "defaultDefinitionName"; //$NON-NLS-1$
+	
+	private IDriverValuesProvider driverValuesProvider = null;
 
 	// local list of driver templates
 	private static TemplateDescriptor[] fgDriverTemplateDescriptors;
@@ -138,6 +144,30 @@ public class TemplateDescriptor implements Comparable {
 	 */
 	public String getId() {
 		return this.fElement.getAttribute(ID_ATTRIBUTE);
+	}
+
+	/**
+	 * Returns the values provider class
+	 */
+	public IDriverValuesProvider getValuesProviderClass() {
+		// First of all check overrides:
+//		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+//		if (overrides != null && overrides.length > 0) {
+//			if (overrides[0].getParentCategory() != null)
+//				return overrides[0].getParentCategory();
+//		}
+		if (this.fElement.getAttribute(VALUESPROVIDER_ATTRIBUTE) != null &&
+				this.driverValuesProvider == null) {
+			try {
+				driverValuesProvider = (IDriverValuesProvider) fElement
+						.createExecutableExtension(VALUESPROVIDER_ATTRIBUTE);
+				driverValuesProvider.setDriverTemplate(this);
+			}
+			catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+		return this.driverValuesProvider;
 	}
 
 	/**
@@ -254,6 +284,25 @@ public class TemplateDescriptor implements Comparable {
 		return name;
 	}
 	
+	/**
+	 * Returns the default definition name.
+	 */
+	public String getDefaultDefinitionName() {
+		// First of all check overrides:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getDefaultDefinitionName() != null && overrides[0].getDefaultDefinitionName().length() > 0) {
+				String overrideDefaultDefinitionName = overrides[0].getDefaultDefinitionName();
+				if (!overrideDefaultDefinitionName.equals(getName()))
+					return overrideDefaultDefinitionName;
+			}
+		}
+		String defaultDefinitionName = this.fElement.getAttribute(DEFAULT_DEFINITION_NAME_ATTRIBUTE);
+		if (defaultDefinitionName == null && getName() != null)
+			defaultDefinitionName = getName();
+		return defaultDefinitionName;
+	}
+
 	/**
 	 * Returns the list of configuration elements for the template properties.
 	 */
