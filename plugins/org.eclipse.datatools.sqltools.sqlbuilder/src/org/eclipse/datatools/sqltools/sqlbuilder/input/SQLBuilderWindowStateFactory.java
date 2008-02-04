@@ -31,6 +31,12 @@ public class SQLBuilderWindowStateFactory implements IElementFactory
     public final static String ID_SQL_BUILDER_STORAGE_EDITOR_INPUT_FACTORY =
         "org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderWindowStateFactory"; //$NON-NLS-1$
     
+    /**
+     * The root element name used in <code>XMLMemento</code> objects representing
+     * <code>SQLBuilderStorageEditorInput</code> objects. 
+     */
+    public final static String ID_XML_MEMENTO_ROOT_ELEMENT = "SQLQueryBuilder";
+
     public final static String KEY_WINDOW_STATE_TYPE = "windowState"; //$NON-NLS-1$
 
 	public final static String KEY_WINDOW_STATE_VERSION = "version"; //$NON-NLS-1$
@@ -243,6 +249,7 @@ public class SQLBuilderWindowStateFactory implements IElementFactory
         
         IMemento controlMemento = memento.createChild( KEY_WINDOW_CONTROL_TYPE );
         controlMemento.putString( KEY_SECTION_NAME, controlName );
+        
         controlMemento.putString( KEY_SECTION_VISIBLE_STATE, 
                             Boolean.toString( controlStateInfo.isVisible() ));
         controlMemento.putString( KEY_SECTION_HIDEABLE_STATE, 

@@ -90,4 +90,10 @@ public interface IWindowStateInfo {
      */
     public void setWidth( int width );
 
+	/**
+	 * Encodes the given <code>IWindowStateInfo</code> object for persistence.
+	 * @see org.eclipse.datatools.sqltools.sqlbuilder.model.WindowStateInfo#decode(String)
+	 * @return encoded String
+	 */
+	public String encode();
 }

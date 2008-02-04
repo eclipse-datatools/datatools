@@ -60,6 +60,7 @@ public class CustomSashForm extends SashForm {
 		public boolean sashBorderRight;	// Draw sash border right/bottom		  
 		public int[][] sashLocs;	// There is one entry for each arrow, It is arrowType/arrowDrawn/x/y/height/width of the arrow area. 
 									// There may not be a second entry, in which case we have only one arrow.
+		public Point[] savedSizes = new Point[2];  // Saved sizes of controls - saved whenever a control is hidden or restored
 		public SashInfo(Sash sash) {
 			this.sash = sash;
 		}
@@ -182,6 +183,38 @@ public class CustomSashForm extends SashForm {
 	 */
 	public boolean isNoHideRight(){
 		return noHideDown;
+	}
+	
+	/**
+	 * Sets the <code>noHideUp</code> setting for vertical CustomSashForm.
+	 * @param bHide
+	 */
+	public void setNoHideUp(boolean bHide) {
+		noHideUp = bHide;
+	}
+	
+	/**
+	 * Sets the <code>noHideDown</code> setting for vertical CustomSashForm.
+	 * @param bHide
+	 */
+	public void setNoHideDown(boolean bHide) {
+		noHideDown = bHide;
+	}
+	
+	/**
+	 * Sets the <code>noHideLeft</code> setting for horizontal CustomSashForm.
+	 * @param bHide
+	 */
+	public void setNoHideLeft(boolean bHide) {
+		setNoHideUp(bHide);
+	}
+	
+	/**
+	 * Sets the <code>noHideRight</code> setting for horizontal CustomSashForm.
+	 * @param bHide
+	 */
+	public void setNoHideRight(boolean bHide) {
+		setNoHideDown(bHide);
 	}
 	
 	/**
@@ -612,9 +645,11 @@ public class CustomSashForm extends SashForm {
 		int[] weights = getWeights();
 
 		// Up hide, so save the current restoreWeight of 1 into the sash info, and move to the top.
-		if (currentSashInfo.restoreWeight == NO_WEIGHT)
+		if (currentSashInfo.restoreWeight == NO_WEIGHT){
 			currentSashInfo.restoreWeight = weights[1];	// Not currently maxed, save position.
-
+			
+			saveChildControlSizes();
+		}
 		weights[0] = 0;
 		weights[1] = 1000;
 					
@@ -643,8 +678,10 @@ public class CustomSashForm extends SashForm {
 		int[] weights = getWeights();
 
 		// Down hide, so save the current restoreWeight of 1 into the sash info, and move to the bottom.
-		if (currentSashInfo.restoreWeight == NO_WEIGHT) 
+		if (currentSashInfo.restoreWeight == NO_WEIGHT) {
 			currentSashInfo.restoreWeight = weights[1];	// Not currently maxed, save current restoreWeight.
+			saveChildControlSizes();
+		}
 		weights[0] = 1000;
 		weights[1] = 0;
 		
@@ -657,6 +694,22 @@ public class CustomSashForm extends SashForm {
 		fireDividerMoved();
 	}
 	
+	/*
+	 * Helper method for upHideClicked / downHideClicked
+	 */
+	private void saveChildControlSizes() {
+		// Save control sizes
+		Control [] children = getChildren();
+		int iChildToSave = 0;
+		for (int i = 0; i < children.length && iChildToSave < 2; i++){
+			Control child = children[i];
+			if (! (child instanceof Sash)){
+				currentSashInfo.savedSizes[iChildToSave] = child.getSize();
+				iChildToSave++;
+			}
+		}
+	}
+
 	/*
 	 * This determines if the control or one of its children
 	 * has the focus. Control.isFocusAncestor is hidden by SWT, but it is really useful.
@@ -915,7 +968,7 @@ public class CustomSashForm extends SashForm {
 	}
 
 	
-	public int getSavedWeight() {
+	public int getRestoreWeight() {
 		if (currentSashInfo!=null)
 			return currentSashInfo.restoreWeight;
 		else
@@ -932,14 +985,22 @@ public class CustomSashForm extends SashForm {
 		return null;
 	}
 	
-/*
-	public void setCurrentSavedWeight(int weight) {
+	public void setRestoreWeight(int weight) {
 		if (weight>=0 && currentSashInfo!=null) {
-			recomputeSashInfo();
+			//recomputeSashInfo();
 			currentSashInfo.restoreWeight=weight;
 		}
 	}
-*/	
+	
+	public Point[] getSavedSizes(){
+		if (currentSashInfo!=null){
+			return currentSashInfo.savedSizes;
+		}
+		else {
+			return null;
+		}
+	}
+	
 	/**
 	 * Adds a custom sashform listener. This listener will be removed when 
 	 * this control is disposed.

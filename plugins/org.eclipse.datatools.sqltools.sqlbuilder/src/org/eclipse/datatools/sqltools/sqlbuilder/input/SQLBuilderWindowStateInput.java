@@ -24,7 +24,7 @@ public class SQLBuilderWindowStateInput implements IAdaptable
 
 	private IWindowStateInfo _windowStateInfo;
 
-	SQLBuilderWindowStateInput( IWindowStateInfo windowStateInfo )
+	public SQLBuilderWindowStateInput( IWindowStateInfo windowStateInfo )
 	{
 	    setWindowStateInfo( windowStateInfo );
 	}

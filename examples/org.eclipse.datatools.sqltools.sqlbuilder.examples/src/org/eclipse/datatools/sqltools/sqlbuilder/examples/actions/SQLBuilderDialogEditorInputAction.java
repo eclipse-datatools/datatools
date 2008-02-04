@@ -13,7 +13,11 @@ package org.eclipse.datatools.sqltools.sqlbuilder.examples.actions;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.dialogs.SQLBuilderDialog;
 import org.eclipse.datatools.sqltools.sqlbuilder.examples.util.EditorInputUtil;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInputUsageOptions;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInputUsageOptions;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.IWindowStateInfo;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.WindowStateInfo;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -33,6 +37,21 @@ import org.eclipse.ui.IWorkbenchPart;
 public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate {
 
 	private IFile _selectedFile;
+	
+	private static final String sXMLWindowStateInfo =
+		"<?xml version='1.0' encoding='UTF-8'?>" + "\n" +
+		"<SQLQueryBuilder>" + "\n" +
+		"<windowState version='1.0' height='435' width='668'>" + "\n" +
+		"<control name='SQLSourceViewer' isVisible='true' isHideable='true' height='81' width='641'/>" + "\n" +
+		"<control name='DesignViewer' isVisible='true' isHideable='true' height='106' width='654'/>" + "\n" +
+		"<control name='GraphControl' isVisible='true' isHideable='true' height='210' width='426'/>" + "\n" +
+		"<control name='OutlineViewer' isVisible='true' isHideable='false' height='214' width='200'/>" + "\n" +
+		"</windowState>" + "\n" +
+		"</SQLQueryBuilder>";
+	
+
+	private static final String sEditorInputUsageOptions =
+		"useWindowState=true";
 	
 	/**
 	 * Constructor for SQLBuilderDialogFileAction.
@@ -69,6 +88,16 @@ public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate 
 				editorInput1.getConnectionInfo().getConnectionProfile(),
 				editorInput1.getSQLStatementInfo(),
 				editorInput1.getOmitSchemaInfo());
+		
+		
+		/*
+		 * Set the input's InputUsageOptions and WindowStateInfo
+		 */
+		ISQLBuilderEditorInputUsageOptions inputUsageOptions = SQLBuilderEditorInputUsageOptions.decode(sEditorInputUsageOptions);
+		editorInput2.setInputUsageOptions(inputUsageOptions);
+		
+		IWindowStateInfo windowStateInfo = WindowStateInfo.decode(sXMLWindowStateInfo);
+		editorInput2.setWindowStateInfo(windowStateInfo);
 		
 		// editorInput1 or editorInput2 could be passed to the dialog
 		SQLBuilderDialog sqlBuilderDialog = new SQLBuilderDialog(Display.getCurrent().getActiveShell());

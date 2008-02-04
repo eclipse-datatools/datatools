@@ -1042,12 +1042,12 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
             sourceViewerHeight = sourceViewerState.getHeight();
         
         // Get width and height for GraphicalViewer
-        IControlStateInfo graphState = windowStateInfo.get( 
+        IControlStateInfo graphViewerState = windowStateInfo.get( 
         		IControlStateInfo.GRAPHICAL_CONTROL );
-        if ( graphState != null )
+        if ( graphViewerState != null )
         {
-           	graphControlWidth = graphState.getWidth();
-            graphControlHeight = graphState.getHeight();
+           	graphControlWidth = graphViewerState.getWidth();
+            graphControlHeight = graphViewerState.getHeight();
         }
         
         // Get width for OutlineViewer
@@ -1058,7 +1058,7 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
            	outlineViewerWidth = outlineViewerState.getWidth();
         }
         
-        // Get height for DesingViewer
+        // Get height for DesignViewer
         IControlStateInfo designViewerState = windowStateInfo.get( 
     		   IControlStateInfo.DESIGN_CONTROL );
         if ( designViewerState != null )
@@ -1066,11 +1066,17 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
             designViewerHeight = designViewerState.getHeight();
         }
         
+        //
         // If the height states exist in memento, restore the sash weights
+        //
         // Set weights for _sashMain
         if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE
         		&&  designViewerHeight != UNKNOWN_VALUE){
         	_sashMain.setWeights(new int[]{sourceViewerHeight + graphControlHeight, designViewerHeight});
+        	
+        	if (!designViewerState.isVisible() && designViewerState.isHideable()){
+        		_sashMain.hideDown();
+        	}
         }
         else {
         	_sashMain.setWeights(new int[]{DEFAULT_SASHMAIN_WEIGHT1, DEFAULT_SASHMAIN_WEIGHT2});
@@ -1079,6 +1085,13 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
         // Set weights for _sashSourceGraph
         if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE){
         	_sashSourceGraph.setWeights(new int[]{sourceViewerHeight, graphControlHeight});
+        	
+        	if (! sourceViewerState.isVisible() && sourceViewerState.isHideable()){
+        		_sashSourceGraph.hideUp();
+        	}
+        	else if (! graphViewerState.isVisible() && graphViewerState.isHideable()){
+        		_sashSourceGraph.hideDown();
+        	}
         }
         else {
         	_sashSourceGraph.setWeights(new int[]{DEFAULT_SASHSOURCEGRAPH_WEIGHT1, DEFAULT_SASHSOURCEGRAPH_WEIGHT2});
@@ -1089,10 +1102,31 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
         if (_sashGraphOutline != null){
         	if (graphControlWidth != UNKNOWN_VALUE && outlineViewerWidth != UNKNOWN_VALUE){
         		_sashGraphOutline.setWeights(new int[]{graphControlWidth, outlineViewerWidth});
+        		
+        		if (! graphViewerState.isVisible() && graphViewerState.isHideable()){
+        			_sashGraphOutline.hideLeft();
+            	}
+        		else if (! outlineViewerState.isVisible() && outlineViewerState.isHideable()){
+        			_sashGraphOutline.hideRight();
+            	}
         	}
         	else {
         		_sashGraphOutline.setWeights(new int[]{DEFAULT_SASHGRAPHOUTLINE_WEIGHT1, DEFAULT_SASHGRAPHOUTLINE_WEIGHT2});
         	}
+        }
+        
+        // Set hide / restore arrows
+        if (designViewerState != null && !designViewerState.isHideable()){
+        	_sashMain.setNoHideDown(true);
+        }
+        if (sourceViewerState != null && !sourceViewerState.isHideable()){
+        	_sashSourceGraph.setNoHideUp(true);
+        }
+        if (graphViewerState != null && !graphViewerState.isHideable()){
+        	_sashSourceGraph.setNoHideDown(true);
+        }
+        if (outlineViewerState != null && !outlineViewerState.isHideable()){
+        	_sashGraphOutline.setNoHideRight(true);
         }
   	}
   	
@@ -1122,13 +1156,13 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		
 		// Source control
 		IControlStateInfo sourceState = getControlState(_windowStateInfo, IControlStateInfo.SOURCE_CONTROL);
-		setControlStateSize(sourceState, getSourceViewer().getControl().getSize());
+		setControlStateSize(sourceState, getSourceViewer().getControl(), _sashSourceGraph, 0);
 		sourceState.setIsHideable(!_sashSourceGraph.isNoHideUp());
 		sourceState.setIsVisible(_sashSourceGraph.getWeights()[0] != 0);
 		
 		// Graphical control
 		IControlStateInfo graphicalState = getControlState(_windowStateInfo, IControlStateInfo.GRAPHICAL_CONTROL);
-		setControlStateSize(graphicalState, getGraphViewer().getControl().getSize());
+		setControlStateSize(graphicalState, getGraphViewer().getControl(), _sashSourceGraph, 1);
 		graphicalState.setIsHideable(!_sashSourceGraph.isNoHideDown());
 		graphicalState.setIsVisible(_sashSourceGraph.getWeights()[1] != 0);
 		
@@ -1138,14 +1172,14 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		}
 		else {
 			IControlStateInfo outlineState = getControlState(_windowStateInfo, IControlStateInfo.OUTLINE_CONTROL);
-			setControlStateSize(outlineState, getSQLTreeViewer().getControl().getSize());
+			setControlStateSize(outlineState, getSQLTreeViewer().getControl(), _sashGraphOutline, 1);
 			outlineState.setIsHideable(!_sashGraphOutline.isNoHideRight());
 			outlineState.setIsVisible(_sashGraphOutline.getWeights()[1] != 0);
 		}
 		
 		// Design control
 		IControlStateInfo designState = getControlState(_windowStateInfo, IControlStateInfo.DESIGN_CONTROL);
-		setControlStateSize(designState, getDesignViewer().getSize());
+		setControlStateSize(designState, getDesignViewer(), _sashMain, 1);
 		designState.setIsHideable(!_sashMain.isNoHideDown());
 		designState.setIsVisible(_sashMain.getWeights()[1] != 0);
 	}
@@ -1165,9 +1199,32 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	/*
 	 * Helper method for getWindowStateInfo()
 	 */
-	private void setControlStateSize(IControlStateInfo stateInfo, Point size){
-		stateInfo.setWidth(size.x);
-		stateInfo.setHeight(size.y);
+	private void setControlStateSize(IControlStateInfo stateInfo, Control control, CustomSashForm sashForm, int iSashIndex){
+		Point size = control.getSize();
+		int [] weights = sashForm.getWeights();
+		if (weights[0] != 0 && weights[1] != 0 ){
+			stateInfo.setWidth(size.x);
+			stateInfo.setHeight(size.y);
+			return;
+		}
+		else if (sashForm.getOrientation() == SWT.VERTICAL){
+			stateInfo.setWidth(size.x);
+			if (sashForm.getSavedSizes() != null && sashForm.getSavedSizes().length >= iSashIndex){
+				stateInfo.setHeight(sashForm.getSavedSizes()[iSashIndex].y);
+			}
+			else {
+				stateInfo.setHeight(100);
+			}
+		}
+		else if (sashForm.getOrientation() == SWT.HORIZONTAL){
+			if (sashForm.getSavedSizes() != null && sashForm.getSavedSizes().length >= iSashIndex){
+				stateInfo.setWidth(sashForm.getSavedSizes()[iSashIndex].x);
+			}
+			else {
+				stateInfo.setWidth(200);
+			}
+			stateInfo.setHeight(size.y);
+		}
 	}
 	
 	/*

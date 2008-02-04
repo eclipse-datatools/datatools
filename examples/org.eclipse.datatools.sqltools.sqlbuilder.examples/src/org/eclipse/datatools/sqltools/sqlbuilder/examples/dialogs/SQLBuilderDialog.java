@@ -222,7 +222,8 @@ public class SQLBuilderDialog extends Dialog
 				 */
 				else if (_editorInput instanceof SQLBuilderStorageEditorInput) {
 					/*
-					 *  Create an XMLMemento and save the SQLStatement, ConnectionInfo and OmitSchemaInfo to it
+					 *  Create an XMLMemento and save the SQLStatement, ConnectionInfo OmitSchemaInfo
+					 *  InputUsageOptions and WindowStateInfo to it
 					 */
 					XMLMemento memento = XMLMemento
 							.createWriteRoot(SQLBuilderInputFactory.ID_XML_MEMENTO_ROOT_ELEMENT);
@@ -236,9 +237,9 @@ public class SQLBuilderDialog extends Dialog
 					storageEditorInput.setConnectionInfo(_sqlBuilder.getConnectionInfo());
 					// Set the SQLBuilderStorageEditorInput's OmitSchemaInfo
 					storageEditorInput.setOmitSchemaInfo(_sqlBuilder.getOmitSchemaInfo());
-					// Set the SQLBuilderStorageEditorInput's UsageOptions
+					// Set the SQLBuilderStorageEditorInput's InputUsageOptions
 					storageEditorInput.setInputUsageOptions(_sqlBuilder.getEditorInputUsageOptions());
-					// Set the SQLBuilderStorageEditorInput's UsageOption
+					// Set the SQLBuilderStorageEditorInput's WindowStateInfo
 					storageEditorInput.setWindowStateInfo(_sqlBuilder.getWindowStateInfo());
 
 					// Save the state of the SQLBuilderStorageEditorInput to the XMLMemento
@@ -269,14 +270,16 @@ public class SQLBuilderDialog extends Dialog
 					String sEncodedConnectionInfo = _sqlBuilder.getConnectionInfo().encode();
 					String sEncodedOmitSchemaInfo = _sqlBuilder.getOmitSchemaInfo().encode();
 					String sEditorInputOptions = _sqlBuilder.getEditorInputUsageOptions().encode();
-
+					String sWindowStateInfo = _sqlBuilder.getWindowStateInfo().encode();
 					
 					String sMsg = 
 						"SQL:\n" + sSQL.trim() + ">\n" +
 						"Encoded ConnectionInfo: <"+ sEncodedConnectionInfo + ">\n" +
 						"Encoded OmitSchemaInfo: <"+ sEncodedOmitSchemaInfo + ">\n" +
-						"Encoded EditorInputOptions: <"+ sEditorInputOptions + ">\n";
-					
+						"Encoded EditorInputOptions: <"+ sEditorInputOptions + ">\n" +
+						"Encoded WindowStateInfo: <\n"+ sWindowStateInfo;
+					//System.out.println(sEditorInputOptions);					
+					//System.out.println(sWindowStateInfo);					
 					MessageBox mb = new MessageBox(Display.getCurrent()
 							.getActiveShell(), SWT.ICON_INFORMATION);
 					mb.setText("SQL Query Builder Data");
