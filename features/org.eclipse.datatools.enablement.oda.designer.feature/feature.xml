@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.enablement.oda.designer.feature" image="eclipse_update_120.jpg" label="%featureName" plugin="org.eclipse.datatools.enablement.oda.xml.ui" provider-name="%providerName" version="1.6.0.200802041">
+	<description>%description</description>
+	<license url="%licenseURL">%license</license>
+	<url>
+		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+	</url>
+	<requires>
+		<import feature="org.eclipse.datatools.connectivity.oda.designer.feature" version="1.6.0"/>
+		<import feature="org.eclipse.datatools.enablement.oda.feature" version="1.6.0"/>
+	</requires>
+	<plugin download-size="62" id="org.eclipse.datatools.enablement.oda.ws.ui" install-size="62" unpack="false" version="1.0.2.200801221"/>
+	<plugin download-size="125" id="org.eclipse.datatools.enablement.oda.xml.ui" install-size="125" unpack="false" version="1.0.3.200801241"/>
+</feature>

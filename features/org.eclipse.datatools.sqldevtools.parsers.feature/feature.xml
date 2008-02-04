@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.sqldevtools.parsers.feature" image="eclipse_update_120.jpg" label="%featureName" provider-name="%providerName" version="1.6.0.200802041">
+	<description>%description</description>
+	<license url="%licenseURL">%license</license>
+	<url>
+		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+	</url>
+	<requires>
+		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
+	</requires>
+	<plugin download-size="82" id="net.sourceforge.lpg.lpgjavaruntime" install-size="82" unpack="false" version="1.1.0.v200711021030"/>
+	<plugin download-size="122" id="org.eclipse.datatools.sqltools.parsers.sql.lexer" install-size="122" unpack="false" version="1.0.1.200801291"/>
+	<plugin download-size="262" id="org.eclipse.datatools.sqltools.parsers.sql.query" install-size="262" unpack="false" version="1.0.1.200801291"/>
+	<plugin download-size="242" id="org.eclipse.datatools.sqltools.parsers.sql.xml.query" install-size="242" unpack="false" version="1.0.0.200706151"/>
+	<plugin download-size="35" id="org.eclipse.datatools.sqltools.parsers.sql" install-size="35" unpack="false" version="1.0.1.200801291"/>
+</feature>

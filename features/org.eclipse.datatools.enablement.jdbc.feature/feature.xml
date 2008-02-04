@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.enablement.jdbc.feature" image="eclipse_update_120.jpg" label="%featureName" plugin="org.eclipse.datatools.enablement.sybase" provider-name="%providerName" version="1.6.0.200802041">
+	<description>%description</description>
+	<license url="%licenseURL">%license</license>
+	<url>
+		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+	</url>
+	<requires>
+		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
+		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
+		<import feature="org.eclipse.datatools.sqldevtools.feature" version="1.6.0"/>
+	</requires>
+	<plugin download-size="6" id="org.eclipse.datatools.connectivity.db.generic" install-size="6" unpack="false" version="1.0.0.200712171"/>
+	<plugin download-size="18" id="org.eclipse.datatools.connectivity.db.generic.ui" install-size="18" unpack="false" version="1.0.1.200711011"/>
+	<plugin download-size="4" id="org.eclipse.datatools.connectivity.dbdefinition.genericJDBC" install-size="4" unpack="false" version="1.0.0.200706071"/>
+	<plugin download-size="124" id="org.eclipse.datatools.sqltools.db.generic" install-size="124" unpack="false" version="1.0.0.200706131"/>
+</feature>
