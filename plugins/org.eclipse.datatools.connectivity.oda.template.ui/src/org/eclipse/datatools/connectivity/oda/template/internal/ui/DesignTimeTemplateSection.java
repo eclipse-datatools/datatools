@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -171,11 +171,14 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         // calls inherited method to create extension
         IPluginExtension profileExtension = 
             createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_EXT_PT, true );
+        IPluginExtension profileImageExtension = 
+            createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_IMAGE_EXT_PT, true );
         IPluginExtension profilePageExtension = 
             createExtension( OdaPluginModeler.CONNECTIVITY_PROFILE_PAGE_EXT_PT, true );
 
         OdaPluginModeler modeler = new OdaPluginModeler( this );
-        modeler.updateConnProfileDesignerModel( odaModel, profileExtension, profilePageExtension );    
+        modeler.updateConnProfileDesignerModel( odaModel, 
+                profileExtension, profileImageExtension, profilePageExtension );    
         
         IPluginExtension designerExtension = 
                 createExtension( OdaPluginModeler.ODA_DESIGN_TIME_EXT_PT, true );        

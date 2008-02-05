@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,6 +46,8 @@ class OdaPluginModeler
         "org.eclipse.datatools.connectivity.oda.design.ui.dataSource"; //$NON-NLS-1$
     static final String CONNECTIVITY_PROFILE_EXT_PT =
         "org.eclipse.datatools.connectivity.connectionProfile"; //$NON-NLS-1$
+    static final String CONNECTIVITY_PROFILE_IMAGE_EXT_PT =
+        "org.eclipse.datatools.connectivity.ui.connectionProfileImage"; //$NON-NLS-1$
     static final String CONNECTIVITY_PROFILE_PAGE_EXT_PT =
         "org.eclipse.ui.propertyPages"; //$NON-NLS-1$
 
@@ -332,16 +334,20 @@ class OdaPluginModeler
      * And adds the updated extensions to the specified odaModel.
      * @param odaModel
      * @param profileExtension
+     * @param profileImageExtension
      * @param profilePageExtension
      * @throws CoreException
      */
     void updateConnProfileDesignerModel( IPluginModelBase odaModel, 
-                            IPluginExtension profileExtension, 
+                            IPluginExtension profileExtension,
+                            IPluginExtension profileImageExtension,
                             IPluginExtension profilePageExtension )
         throws CoreException
     {
         if ( ! profileExtension.isInTheModel() )
             odaModel.getPluginBase().add( profileExtension );
+        if ( ! profileImageExtension.isInTheModel() )
+            odaModel.getPluginBase().add( profileImageExtension );
         if ( ! profilePageExtension.isInTheModel() )
             odaModel.getPluginBase().add( profilePageExtension );
         
@@ -359,7 +365,15 @@ class OdaPluginModeler
                 "org.eclipse.datatools.connectivity.oda.design.ui.wizards.NewDataSourceWizard" ); //$NON-NLS-1$
         profileWizElement.setAttribute( "icon", "icons/new_oda_dswiz.ico" );  //$NON-NLS-1$ //$NON-NLS-2$
         profileExtension.add( profileWizElement );
-       
+
+        // profile icon image extension
+        // profileImage element
+        IPluginElement pageImageElement = factory.createElement( profileImageExtension );
+        pageImageElement.setName( "profileImage" ); //$NON-NLS-1$
+        pageImageElement.setAttribute( "profileID", PROP_ODA_DATA_SOURCE_ID ); //$NON-NLS-1$
+        pageImageElement.setAttribute( "icon", "icons/profile.gif" ); //$NON-NLS-1$  //$NON-NLS-2$
+        profileImageExtension.add( pageImageElement );
+        
         // profile property page extension
         // page element
         IPluginElement pageElement = factory.createElement( profilePageExtension );
