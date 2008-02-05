@@ -172,27 +172,34 @@ public class CPWizardSelectionPage
 		if (filter != null)
 			viewerFilters = new ViewerFilter[]{ filter };
 	}
-
-	protected CPWizardSelectionPage(String id, ViewerFilter filter, String cat) {
-		this(id, filter);
-		category = cat;
-	}
-
-	/**
+    
+    /**
      * Constructor with an array of ViewerFilter.
-	 * @param id   page id or name
-	 * @param categoryId   category id
+     * @param id   page id or name
      * @param filters  an array of ViewerFilter; may be an empty array, in which case
      *             the default NewCPWizardCategoryFilter will be used
      * @since DTP 1.6
-	 */
-    protected CPWizardSelectionPage(String id, String categoryId, ViewerFilter[] filters ) {
+     */
+    protected CPWizardSelectionPage(String id, ViewerFilter[] filters ) {
         this(id);
         if ( filters != null )
             viewerFilters = filters;
-        if ( categoryId != null )
-            category = categoryId;
     }
+
+	protected CPWizardSelectionPage(String id, ViewerFilter filter, String cat) {
+		this(id, filter);
+		setCategory( cat );
+	}
+
+	/**
+	 * Specifies the category of connection profiles to include in this wizard selection page. 
+     * @param categoryId   category id
+     * @since DTP 1.6
+	 */
+	protected void setCategory( String categoryId )
+	{
+        category = categoryId;
+	}
 
 	/*
 	 * (non-Javadoc)

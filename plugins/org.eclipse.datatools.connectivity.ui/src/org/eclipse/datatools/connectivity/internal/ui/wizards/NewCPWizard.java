@@ -91,7 +91,7 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 		super.addPages();
 
 		mProfilePage = new CPWizardSelectionPage(CPWizardSelectionPage.class
-				.getName(), null, mViewerFilters);
+				.getName(), mViewerFilters);
 		addPage(mProfilePage);
 	}
 
