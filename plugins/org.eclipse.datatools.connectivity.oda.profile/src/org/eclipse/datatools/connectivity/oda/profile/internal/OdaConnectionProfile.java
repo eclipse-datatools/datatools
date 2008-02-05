@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -130,9 +130,14 @@ public class OdaConnectionProfile extends PlatformObject
     {
         if( m_hideWrapperId )
             return getDirectProviderId();
-        return ( m_odaWrapperExtensionId != null ) ? 
+        return hasOdaWrapperProvider() ? 
                     m_odaWrapperExtensionId : 
                     getDirectProviderId();
+    }
+    
+    public boolean hasOdaWrapperProvider()
+    {
+        return m_odaWrapperExtensionId != null;
     }
     
     public String getDirectProviderId()
