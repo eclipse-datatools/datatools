@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2005, 2007 IBM Corporation and others.
+ * Copyright © 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -78,11 +78,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.SashForm;
-import org.eclipse.swt.events.ControlEvent;
-import org.eclipse.swt.events.ControlListener;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -513,8 +509,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 					}
 				}
 			}
-			_windowStateInfo = editorInput.getWindowStateInfo();
-			_editorInputUsageOptions = editorInput.getInputUsageOptions();
 		}
 
 		// Otherwise we can't tell what we have.
@@ -522,6 +516,9 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 			throw new PartInitException(
 					Messages._ERROR_INPUT_NOT_RECOGNIZED);
 		}
+		
+		_windowStateInfo = _sqlBuilderEditorInput.getWindowStateInfo();
+		_editorInputUsageOptions = _sqlBuilderEditorInput.getInputUsageOptions();
 		
 		// If _inputLoaded was set to false, reset it,
 		// find out why and throw appropriate exception
@@ -977,7 +974,6 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 							sQLBuilderFileEditorInput.getFile(),
 							sQLBuilderFileEditorInput.getOmitSchemaInfo()
 									.encode());
-					// TODO - is this sufficient for handling window state?
 					sQLBuilderFileEditorInput.setWindowStateInfo( getWindowStateInfo() );
 				}
 
