@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -66,13 +67,14 @@ public class CPWizardSelectionPage
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
-	private ViewerFilter viewerFilter = new ViewerFilter() {
+    private ViewerFilter[] viewerFilters = new ViewerFilter[] { 
+        new ViewerFilter() {
 
 		public boolean select(Viewer viewer, Object parentElement,
 				Object element) {
 			return true;
 		}
-	};
+	}};
 
 	class Sorter extends ViewerSorter {
 
@@ -109,18 +111,28 @@ public class CPWizardSelectionPage
 		}
 
 		public Object[] getElements(Object inputElement) {
-			Collection wizardNodes = getCatagoryItems(wizardCategory);
+			Collection wizardNodes = getCategoryItems(wizardCategory);
 			return (CPWizardNode[]) wizardNodes
 					.toArray(new CPWizardNode[wizardNodes.size()]);
 		}
 	}
 
+    /**
+     * Get wizard for specified category
+     * @param wizardCategory
+     * @return
+     * @deprecated  since DTP 1.6; replaced by {@link #getCategoryItems(String)}
+     */
+	public List getCatagoryItems(String wizardCategory) {
+	    return getCategoryItems( wizardCategory );
+	}
+	
 	/**
-	 * Get wizard for specified catagory
+	 * Get wizard for the specified category
 	 * @param wizardCategory
 	 * @return
 	 */
-	public List getCatagoryItems(String wizardCategory) {
+	public List getCategoryItems(String wizardCategory) {
 		ConnectionProfileManagerUI manager = ConnectionProfileManagerUI
 				.getInstance();
 		Collection wizards = manager.getNewWizards().values();
@@ -158,13 +170,29 @@ public class CPWizardSelectionPage
 	protected CPWizardSelectionPage(String id, ViewerFilter filter) {
 		this(id);
 		if (filter != null)
-			viewerFilter = filter;
+			viewerFilters = new ViewerFilter[]{ filter };
 	}
 
 	protected CPWizardSelectionPage(String id, ViewerFilter filter, String cat) {
 		this(id, filter);
 		category = cat;
 	}
+
+	/**
+     * Constructor with an array of ViewerFilter.
+	 * @param id   page id or name
+	 * @param categoryId   category id
+     * @param filters  an array of ViewerFilter; may be an empty array, in which case
+     *             the default NewCPWizardCategoryFilter will be used
+     * @since DTP 1.6
+	 */
+    protected CPWizardSelectionPage(String id, String categoryId, ViewerFilter[] filters ) {
+        this(id);
+        if ( filters != null )
+            viewerFilters = filters;
+        if ( categoryId != null )
+            category = categoryId;
+    }
 
 	/*
 	 * (non-Javadoc)
@@ -216,7 +244,7 @@ public class CPWizardSelectionPage
 					}
 				}
 
-				tableViewer.addFilter(viewerFilter);
+				tableViewer.setFilters( viewerFilters );
 				tableViewer.setInput(category);
 			}
 		}
@@ -295,7 +323,7 @@ public class CPWizardSelectionPage
 		}
 
 		if (wizard instanceof NewCategoryWizard) {
-			List categoryItems = getCatagoryItems(wizardProvider.getId());
+			List categoryItems = getCategoryItems(wizardProvider.getId());
 			if (categoryItems.size() == 1) {
 				// Get next wizard and the wizard provider for next page.
 				IWizardNode wizardNode = (IWizardNode) categoryItems.get(0);

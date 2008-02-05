@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2007 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -12,6 +12,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -108,13 +109,13 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 */
 	public void run() {
 		IWizard wizard = getDefaultWizard(new String(), categoryID);
-		WizardDialog wizardDialog;
 
-		ViewerFilter viewerFilter = new NewCPWizardCategoryFilter(categoryID);
 		if (wizard == null) {
-			wizard = new NewCPWizard(viewerFilter,parentProfile);
+	        ViewerFilter[] wizardSelectionFilters = getApplicableFilters( categoryID );
+			wizard = new NewCPWizard(wizardSelectionFilters,parentProfile);
 		}		
-		wizardDialog = new WizardDialog(shell, wizard);		
+
+		WizardDialog wizardDialog = new WizardDialog(shell, wizard);		
 		wizardDialog.setBlockOnOpen(true);
 		
 		InternalProfileListener listener = new InternalProfileListener();
@@ -127,7 +128,54 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		ProfileManager.getInstance().removeProfileListener(listener);
 		
 	}
+    
+    /**
+     * Gets all the applicable filters for the specified category id.
+     * The returned collection starts with the required category filter,
+     * followed by any additional wizard selection filters that may be provided 
+     * by an extended implementation.
+     * @param categoryId    category id
+     * @return an array of ViewerFilter instances
+     */
+	private ViewerFilter[] getApplicableFilters( String categoryId ) {
+        ArrayList filters = new ArrayList();
 
+        // adds required category filter
+        filters.add( getCategoryFilter( categoryId ) );
+        
+        // appends additional wizard selection filters, if any
+        ViewerFilter[] moreFilters = getWizardSelectionFilters();
+        if( moreFilters != null ) {
+            for( int i=0; i < moreFilters.length; i++ ) {
+                filters.add( moreFilters[i] );
+            }
+        }
+
+	    return (ViewerFilter[]) filters.toArray( new ViewerFilter[ filters.size() ] );
+	}
+	
+	/**
+	 * Gets the category filter for the specified category id.
+	 * @param categoryId
+	 * @return  a category ViewerFilter
+	 * @since DTP 1.6
+	 */
+	protected ViewerFilter getCategoryFilter( String categoryId ) {
+	    return new NewCPWizardCategoryFilter( categoryId );
+	}
+
+    /**
+     * Gets the viewer filters for filtering the display of the connection profile 
+     * wizard selection.
+     * @return an array of ViewerFilter instances
+	 * @since DTP 1.6
+     */
+    protected ViewerFilter[] getWizardSelectionFilters() {
+        // this base class provides a category filter only;
+        // subclass may override and provide additional filter(s)
+        return null;
+    }
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -221,21 +269,32 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	
 	private IWizard getDefaultWizard(String parentCategoryID, String categoryID) {
 		List wizardNodes = new CPWizardSelectionPage(new String())
-				.getCatagoryItems(parentCategoryID);
-		if (categoryID != null) {
-			ViewerFilter filter = new NewCPWizardCategoryFilter(categoryID);
+				.getCategoryItems(parentCategoryID);
+
+		// include category filter if categoryID is defined
+	    ViewerFilter[] wizardNodeFilters = (categoryID != null) ?
+        	                    getApplicableFilters( categoryID ) :
+        	                    getWizardSelectionFilters();
+        if ( wizardNodeFilters != null && wizardNodeFilters.length > 0 ) {
 			for (Iterator it = wizardNodes.iterator(); it.hasNext();) {
-				if (!filter.select(null, null, it.next())) {
-					it.remove();
-				}
+			    Object wizardNode = it.next();
+			    for ( int i = 0; i < wizardNodeFilters.length; i++ ) {
+		            ViewerFilter filter = wizardNodeFilters[i];
+    				if (!filter.select(null, null, wizardNode)) {
+    					it.remove();
+    					break;     // done with checking on filters
+    				}
+			    }
 			}
-		}
+        }
+
 		if (wizardNodes == null || wizardNodes.size() == 0) {
 			return null;
 		}
 		if (wizardNodes.size() > 1) {
 			return null;
 		}
+
 		IWizard wizard;
 		CPWizardNode wizardNode = (CPWizardNode) wizardNodes.get(0);
 		if (wizardNode instanceof CPCategoryWizardNode) {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: Sybase, Inc. - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.wizards;
 
@@ -32,7 +33,7 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 
 	private CPWizardSelectionPage mProfilePage;
 
-	private ViewerFilter mViewerFilter;
+    private ViewerFilter[] mViewerFilters;
 	
 	private IConnectionProfile mParentProfile;
 
@@ -45,12 +46,34 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 				"NewCPWizard.title")); //$NON-NLS-1$
 	}
 
+	/**
+	 * Constructor with a single ViewerFilter and the parent connection profile.
+	 * @param filter
+	 * @param parentProfile
+	 */
 	public NewCPWizard(ViewerFilter filter,IConnectionProfile parentProfile) {
-		this();
-		mViewerFilter = filter;
-		mParentProfile = parentProfile;
+        this(parentProfile);
+        if ( filter != null )
+            mViewerFilters = new ViewerFilter[]{ filter };
 	}
 
+	/**
+	 * Constructor with an array of ViewerFilter and the parent connection profile.
+	 * @param filters  an array of ViewerFilter; may be an empty array, in which case
+	 *             the default NewCPWizardCategoryFilter will be used
+	 * @param parentProfile
+	 * @since DTP 1.6
+	 */
+	public NewCPWizard(ViewerFilter[] filters,IConnectionProfile parentProfile) {
+        this(parentProfile);
+        mViewerFilters = filters;
+	}
+
+	private NewCPWizard(IConnectionProfile parentProfile) {
+        this();
+        mParentProfile = parentProfile;
+	}
+	
 	/**
 	 * @see Wizard#performFinish
 	 */
@@ -68,7 +91,7 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 		super.addPages();
 
 		mProfilePage = new CPWizardSelectionPage(CPWizardSelectionPage.class
-				.getName(), mViewerFilter);
+				.getName(), null, mViewerFilters);
 		addPage(mProfilePage);
 	}
 
@@ -79,8 +102,8 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		if (mViewerFilter == null) {
-			mViewerFilter = new NewCPWizardCategoryFilter(null);
+		if (mViewerFilters == null || mViewerFilters.length == 0) {
+			mViewerFilters = new ViewerFilter[]{ new NewCPWizardCategoryFilter(null) };
 		}
 	}
 

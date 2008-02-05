@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ *  Actuate Corporation - refactored to improve extensibility
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.navigator.actions;
 
@@ -195,6 +196,50 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
     	deleteAction.setActionDefinitionId("org.eclipse.ui.edit.delete"); //$NON-NLS-1$
 	}
 
+	/**
+	 * Sets the action that adds a new connection profile instance. 
+	 * This should be called after {@link #init(ICommonActionExtensionSite)} to override
+	 * the default AddProfileViewAction.
+	 * @param action   an AddProfileViewAction instance
+	 * @since DTP 1.6
+	 */
+	protected void setAddProfileViewAction( AddProfileViewAction action ) {
+	    addCPAction = action;
+	}
+
+	/**
+     * Sets the action that views a profile's properties. 
+     * This should be called after {@link #init(ICommonActionExtensionSite)} to override
+     * the default ViewPropertyAction.
+	 * @param action   a ViewPropertyAction instance
+	 * @since DTP 1.6
+	 */
+    protected void setViewPropertyAction( ViewPropertyAction action ) {
+        propAction = action;
+    }
+
+    /**
+     * Sets the action that renames a connection profile instance. 
+     * This should be called after {@link #init(ICommonActionExtensionSite)} to override
+     * the default RenameAction.
+     * @param action   a RenameAction instance
+	 * @since DTP 1.6
+     */
+    protected void setRenameAction( RenameAction action ) {
+        renameAction = action;
+    }
+
+    /**
+     * Sets the action that deletes a connection profile instance. 
+     * This should be called after {@link #init(ICommonActionExtensionSite)} to override
+     * the default DeleteAction.
+     * @param action   a DeleteAction instance
+	 * @since DTP 1.6
+     */
+    protected void setDeleteAction( DeleteAction action ) {
+        deleteAction = action;
+    }
+    
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.actions.ActionGroup#updateActionBars()
 	 */
