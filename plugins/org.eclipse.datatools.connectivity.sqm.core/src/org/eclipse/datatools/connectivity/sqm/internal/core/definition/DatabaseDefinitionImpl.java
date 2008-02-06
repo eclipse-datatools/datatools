@@ -750,7 +750,10 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
 				if ( predefinedDataTypeDefinition.isPrecisionSupported() && predefinedDataTypeDefinition.isScaleSupported() ) {
-					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					int precision = ((FixedPrecisionDataType)predefinedDataType).getPrecision();
+					if (precision > 0) {
+						predefinedDataTypeFormattedName += "(" + precision + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					}
 				}
 			}
 			break;
@@ -797,7 +800,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if (fieldQualifierDefinition != null) {
 							defaultLeadingPrecision = fieldQualifierDefinition.getDefaultPrecision();
 						}
-						if ( (leadingPrecision > 0) && (leadingPrecision != defaultLeadingPrecision) ) {
+						if ( (leadingPrecision > 0) && fieldQualifierDefinition.isPrecisionSupported() && (leadingPrecision != defaultLeadingPrecision) ) {
 							leadingQualifierString += "(" + Integer.toString(leadingPrecision) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 						}
 						parameterList.add(leadingQualifierString);
@@ -812,7 +815,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						if (fieldQualifierDefinition != null) {
 							defaultTrailingPrecision = fieldQualifierDefinition.getDefaultPrecision();
 						}
-						if ( (trailingPrecision > 0) && (trailingPrecision != defaultTrailingPrecision) )  {
+						if ( (trailingPrecision > 0) && fieldQualifierDefinition.isPrecisionSupported() && (trailingPrecision != defaultTrailingPrecision) )  {
 								trailingQualifierString += "(" + Integer.toString(trailingPrecision) + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 						}
 						parameterList.add(trailingQualifierString);
@@ -859,7 +862,10 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
 				if ( predefinedDataTypeDefinition.isPrecisionSupported() && predefinedDataTypeDefinition.isScaleSupported() ) {
-					predefinedDataTypeFormattedName += "(" + ((FixedPrecisionDataType)predefinedDataType).getPrecision() + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					int precision = ((FixedPrecisionDataType)predefinedDataType).getPrecision();
+					if (precision > 0) {
+						predefinedDataTypeFormattedName += "(" + precision + " , " + ((FixedPrecisionDataType)predefinedDataType).getScale() + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					}
 				}
 			}
 			break;
@@ -882,8 +888,11 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.TIMESTAMP: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
-				if (predefinedDataTypeDefinition.isPrecisionSupported()) {
-					predefinedDataTypeFormattedName += "(" + ((TimeDataType)predefinedDataType).getFractionalSecondsPrecision() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+				if ( (predefinedDataTypeDefinition != null) && predefinedDataTypeDefinition.isPrecisionSupported() ) {
+					int precision = ((TimeDataType)predefinedDataType).getFractionalSecondsPrecision();
+					if (precision > 0) {
+						predefinedDataTypeFormattedName += "(" + precision + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+					}
 				}
 			}
 			break;
