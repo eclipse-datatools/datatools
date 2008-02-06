@@ -65,12 +65,23 @@
             profile="%oda.data.source.id"/>
    </extension>
    <extension
+         point="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
+      <profileImage
+            profileID="%oda.data.source.id"
+            icon="icons/profile.gif">
+      </profileImage>
+   </extension>
+   <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
             name="%profile.propertypage.name"
             class="org.eclipse.datatools.enablement.oda.ws.ui.wizards.WebServicePropertyPage"
             id="%oda.data.source.id">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
          <filter
                name="org.eclipse.datatools.profile.property.id"
                value="%oda.data.source.id">
