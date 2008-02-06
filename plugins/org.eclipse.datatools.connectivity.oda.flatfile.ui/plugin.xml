@@ -3,7 +3,7 @@
 <!--
 /**
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.1 2007/06/25 16:31:04 jgraham Exp $
+ * $Id: plugin.xml,v 1.20 2007/09/12 18:49:39 lzhu Exp $
  */
 -->
 
@@ -30,14 +30,24 @@
             icon="icons/fieldlist.ico"
             profile="%oda.data.source.id"/>
    </extension>
-
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
+      <profileImage
+            profileID="%oda.data.source.id"
+            icon="icons/profile.gif">
+      </profileImage>
+   </extension>
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
             id="%oda.data.source.id"
             name="%profile.propertypage.name"
-            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderPropertyPage"
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+            class="org.eclipse.datatools.connectivity.oda.flatfile.ui.wizards.FolderPropertyPage">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
          <filter
                name="org.eclipse.datatools.profile.property.id"
                value="%oda.data.source.id"/>
