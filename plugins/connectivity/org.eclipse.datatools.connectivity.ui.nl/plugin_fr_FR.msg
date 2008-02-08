@@ -5,6 +5,7 @@ Database.category=Bases de données
 Extension.PropertyPage.General.Name=Commun
 Extension.PropertyPage.Version.Name=Version
 ProfileFailure = Echecs des profils
+driverProblem = Problèmes de pilote
 Extension.NewWizard.Name=Profil de connexion
 Extension.NewWizard.Description=Créer un profil de connexion
 Extension.NewRepositoryWizard.Name = Référentiel de profils de connexion

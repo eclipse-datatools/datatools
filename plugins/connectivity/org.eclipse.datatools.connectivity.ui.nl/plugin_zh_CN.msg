@@ -5,6 +5,7 @@ Database.category=数据库
 Extension.PropertyPage.General.Name=公共
 Extension.PropertyPage.Version.Name=版本
 ProfileFailure = 配置文件失败
+driverProblem = 驱动程序问题
 Extension.NewWizard.Name=连接概要文件
 Extension.NewWizard.Description=创建连接概要文件
 Extension.NewRepositoryWizard.Name = 连接配置文件存储库

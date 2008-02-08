@@ -5,6 +5,7 @@ Database.category=データベース
 Extension.PropertyPage.General.Name=共通
 Extension.PropertyPage.Version.Name=バージョン
 ProfileFailure = プロファイルエラー
+driverProblem = ドライバの問題
 Extension.NewWizard.Name=接続プロファイル
 Extension.NewWizard.Description=接続プロファイルの作成
 Extension.NewRepositoryWizard.Name = 接続プロファイルのリポジトリ
