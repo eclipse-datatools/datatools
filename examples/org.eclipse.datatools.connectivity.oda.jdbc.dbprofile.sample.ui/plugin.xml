@@ -16,10 +16,14 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            objectClass="org.eclipse.datatools.connectivity.IConnectionProfile"
             name="%profile.propertypage.name"
             class="org.eclipse.datatools.connectivity.oda.design.ui.profile.db.wizards.DbProfileEditorPage"
             id="%oda.data.source.id">
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
          <filter
                name="org.eclipse.datatools.profile.property.id"
                value="%oda.data.source.id">
@@ -79,10 +83,20 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <commonFilter
             activeByDefault="true"
-            class="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui.filter.DbProfileCategoryFilter"
             description="Filters out this ODA DB Profile Category in Data Source Explorer"
             id="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui.filter.commonFilter"
             name="ODA Databases Profiles Category Sample Filter">
+         <filterExpression>
+            <and>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.ICategory">
+               </instanceof>
+               <test
+                     property="org.eclipse.datatools.connectivity.category.property.categoryID"
+                     value="%oda.data.source.id">
+               </test>
+            </and>
+         </filterExpression>
       </commonFilter>
       <actionProvider
             class="org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui.filter.DbProfileActionProvider"
@@ -90,9 +104,15 @@
             overrides="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
             priority="lowest">
          <enablement>
-            <instanceof
+            <and>
+               <instanceof
                      value="org.eclipse.datatools.connectivity.ICategory">
-            </instanceof>
+               </instanceof>
+               <test
+                     property="org.eclipse.datatools.connectivity.category.property.categoryID"
+                     value="org.eclipse.datatools.connectivity.db.category">
+               </test>
+            </and>
          </enablement>
       </actionProvider>
    </extension>
