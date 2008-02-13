@@ -56,14 +56,8 @@ public class Connection implements IConnection
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
 			xmlContent = new XMLCreatorContent( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
 		else if ( file != null )
-			xmlContent = new XMLCreatorContent( file );
-		else
-			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
-		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-		xmlContent.setEncoding(encoding);
-		
-		if ( file != null )
 		{
+			xmlContent = new XMLCreatorContent( file );
 			File xmlFile = new File( file );
 			if ( !xmlFile.exists( ) )
 			{
@@ -77,6 +71,11 @@ public class Connection implements IConnection
 				}
 			}
 		}
+		else
+			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
+		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+		xmlContent.setEncoding(encoding);
+		
 //		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
 		/*try
 		{
