@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Eclipse-LazyStart: true
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.datatools.enablement.finfo; singleton:=true
+Bundle-Version: 1.5.1.200708161
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
