@@ -45,6 +45,11 @@ public interface IExternalLoad
 	public void setReplace(boolean replace);
 	
 	/**
+	 * Returns whether or not to use the external load	 
+	 */
+	public boolean isUseExternalLoad();
+	
+	/**
 	 * Performs the table load
 	 * @param output the Output object
 	 * @return the output code indicating the status

@@ -35,6 +35,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TableItem;
 
 /**
  * The default Wizard Page for external editing of the TableDataEditor.
@@ -356,6 +357,10 @@ public class DefaultExternalTableDataWizardPage extends WizardPage implements Se
                 editor.getCursor().redraw();
                 editor.setDirty(true);
             }
+            // Mark background dirty
+            TableItem item = editor.getCursor().getRow();
+            editor.setDirtyBackground(columnIndex, item);
+            
             setErrorMessage(null);
             return true;
         }catch (IllegalArgumentException iae){

@@ -80,7 +80,7 @@ public class LoadDataWizard extends Wizard
         // check for extensions, if none do the old way
         Connection conn = ((ICatalogObject)table).getConnection();
         final IExternalLoad externalLoad = (IExternalLoad)getExternalLoad(conn);
-        if (externalLoad != null)
+        if (externalLoad != null && externalLoad.isUseExternalLoad())
         {
             externalLoad.setDelimiters(colDelim, stringDelim);
         	externalLoad.setFilePath(filePath);
@@ -186,7 +186,7 @@ public class LoadDataWizard extends Wizard
 		        			{
 		        				// use the external extractor
 		        				externalExecutable = 
-		        					configElements[config].createExecutableExtension(EXTERNAL_LOAD_EXT_POINT_CLASS);
+		        					configElements[config].createExecutableExtension(EXTERNAL_LOAD_EXT_POINT_CLASS);		        				
 		        			}
 		        		}
 		        	}

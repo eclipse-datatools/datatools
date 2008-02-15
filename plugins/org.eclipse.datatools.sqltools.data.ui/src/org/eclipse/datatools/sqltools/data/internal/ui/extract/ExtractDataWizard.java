@@ -77,7 +77,7 @@ public class ExtractDataWizard extends Wizard
         // check for extensions, if none do the old way
         Connection conn = ((ICatalogObject)table).getConnection();
         final IExternalExtract externalExtract = (IExternalExtract)getExternalExtract(conn);
-        if (externalExtract != null)
+        if (externalExtract != null && externalExtract.isUseExternalExtract())
         {
         	externalExtract.setDelimiters(colDelim, stringDelim);
         	externalExtract.setFilePath(filePath);

@@ -39,6 +39,11 @@ public interface IExternalExtract
 	public void setDelimiters(String colDelim, String stDelim);
 	
 	/**
+	 * Returns whether or not to use external extract
+	 */
+	public boolean isUseExternalExtract();
+	
+	/**
 	 * Performs the table data extraction
 	 * @param output the outputItemAdapter
 	 * @return the output code indicating the status
