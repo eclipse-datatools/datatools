@@ -12,7 +12,25 @@
 <!-- *    Dimiter Dimitrov; Wolfgang Auer - initial API and implementation-->
 <!-- *******************************************************************************--> 
  
-<plugin>   
+<plugin> 
+   <extension
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.db.category"
+            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
+            icon="icons/jdbc_16.gif"
+            id="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile"
+            name="MaxDB Profile"
+            pingFactory="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.MaxDBPasswordPropertiesPersistenceHook">
+      </connectionProfile>
+      <connectionFactory
+            class="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
+            id="java.sql.Connection"
+            name="MaxDB JDBC Factory"
+            profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
+      </connectionFactory>
+   </extension>   
    <extension
          point="org.eclipse.datatools.connectivity.driverExtension">
       <driverTemplate
@@ -51,7 +69,6 @@
                   required="false"
                   visible="true"/>
             <property
-                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
@@ -110,7 +127,6 @@
                   required="false"
                   visible="true"/>
             <property
-                  customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.password"
                   name="Password"
@@ -160,23 +176,5 @@
             provider="org.eclipse.datatools.enablement.sap.maxdb.MaxDBTableConstraintLoader"
             version="7.7">
       </overrideLoader>
-   </extension> 
-   <extension
-         point="org.eclipse.datatools.connectivity.connectionProfile">
-      <connectionProfile
-            category="org.eclipse.datatools.connectivity.db.category"
-            configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
-            icon="icons/jdbc_16.gif"
-            id="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile"
-            name="MaxDB Profile"
-            pingFactory="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
-            propertiesPersistenceHook="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.MaxDBPasswordPropertiesPersistenceHook">
-      </connectionProfile>
-      <connectionFactory
-            class="org.eclipse.datatools.enablement.sap.maxdb.internal.connection.JDBCMaxDBConnectionFactory"
-            id="java.sql.Connection"
-            name="MaxDB JDBC Factory"
-            profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
-      </connectionFactory>
    </extension>   
 </plugin>
