@@ -84,6 +84,7 @@ CPVersionPropertyPage.label.versionUnavailable=La información de versión no está
 CPVersionPropertyPage.label.techVersions=Las tecnologías siguientes están disponibles en este servidor\:
 ConnectionProfileSummaryPage.button.testConnection=&Probar conexión
 CommonLabelProviderBase.label.version=v.
+CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=Repositorio de área de trabajo (Local)
 
 properties.connectionprofile.type = Tipo de perfil

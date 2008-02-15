@@ -84,6 +84,7 @@ CPVersionPropertyPage.label.versionUnavailable=‚±‚Ìƒvƒƒtƒ@ƒCƒ‹‚Ìƒo[ƒWƒ‡ƒ“î•ñ‚
 CPVersionPropertyPage.label.techVersions=‚±‚ÌƒT[ƒo[‚Å‚ÍˆÈ‰º‚ÌƒeƒNƒmƒƒW[‚ªg—p‰Â”\‚Å‚·\:
 ConnectionProfileSummaryPage.button.testConnection=Ú‘±‚ÌƒeƒXƒg(&T)
 CommonLabelProviderBase.label.version=v.
+CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=ƒ[ƒNƒXƒy[ƒXƒŠƒ|ƒWƒgƒŠ (ƒ[ƒJƒ‹)
 
 properties.connectionprofile.type = ƒvƒƒtƒ@ƒCƒ‹‚Ìí—Ş

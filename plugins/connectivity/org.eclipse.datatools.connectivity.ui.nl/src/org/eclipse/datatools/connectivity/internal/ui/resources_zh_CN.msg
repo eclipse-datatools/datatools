@@ -84,6 +84,7 @@ CPVersionPropertyPage.label.versionUnavailable=没有此概要文件的版本信息。
 CPVersionPropertyPage.label.techVersions=在此服务器上提供了下列技术：
 ConnectionProfileSummaryPage.button.testConnection=测试连接(&T)
 CommonLabelProviderBase.label.version=V.
+CommonLabelProviderBase.label.version.versionless={0} ({1}) 
 CommonLabelProviderBase.label.localRepository=工作区存储库(本地)
 
 properties.connectionprofile.type = 配置文件类型
