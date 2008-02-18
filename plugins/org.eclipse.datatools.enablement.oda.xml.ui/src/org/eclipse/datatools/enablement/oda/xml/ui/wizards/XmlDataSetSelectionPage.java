@@ -290,6 +290,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void enableFolderLocation( boolean enable )
 	{
+		enterXMLSourceButton.setSelection( enable );
 		folderLocation.setEnabled( enable );
 		browseFolderButton.setEnabled( enable );
 	}
