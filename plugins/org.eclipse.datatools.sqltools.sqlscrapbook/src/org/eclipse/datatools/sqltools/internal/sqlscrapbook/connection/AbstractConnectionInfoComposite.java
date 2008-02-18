@@ -102,7 +102,19 @@ public abstract class AbstractConnectionInfoComposite extends Composite
             Collection supportedDBDefinitionNames, int infoStyle)
     {
         super(parent, style);
-        if (connInfo != null)
+        setup(connInfo);
+
+        this._listener = listener;
+        setSupportedDBDefinitionNames(supportedDBDefinitionNames );
+        this._style = infoStyle;
+    }
+
+    /**
+     * Initializes instance fields
+     * @param connInfo
+     */
+	private void setup(ISQLEditorConnectionInfo connInfo) {
+		if (connInfo != null)
         {
             this._profileName = connInfo.getConnectionProfileName();
             this._dbName = connInfo.getDatabaseName();
@@ -115,11 +127,7 @@ public abstract class AbstractConnectionInfoComposite extends Composite
                 this._dbVendorId = connInfo.getDatabaseVendorDefinitionId();
             }
         }
-
-        this._listener = listener;
-        setSupportedDBDefinitionNames(supportedDBDefinitionNames );
-        this._style = infoStyle;
-    }
+	}
 
     protected void updateFields()
     {
@@ -225,7 +233,17 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     }
 
     /**
-     * Refreshes the connection profile name combo box
+     * Initializes the controls
+     * @param connInfo
+     */
+    public void init(ISQLEditorConnectionInfo connInfo)
+    {
+    	setup(connInfo);
+    	init();
+    }
+    
+    /**
+     * Initializes the controls
      * 
      * @param dbVendorName
      */
@@ -304,7 +322,6 @@ public abstract class AbstractConnectionInfoComposite extends Composite
     
     protected DatabaseVendorDefinitionId findDatabaseVendorDefinitionId(DatabaseVendorDefinitionId dbId)
     {
-        String dbIdName = dbId.toString();
         for (Iterator it = _supportedDBDefinitionIds.iterator(); it.hasNext();)
         {
             DatabaseVendorDefinitionId existId = (DatabaseVendorDefinitionId) it.next();

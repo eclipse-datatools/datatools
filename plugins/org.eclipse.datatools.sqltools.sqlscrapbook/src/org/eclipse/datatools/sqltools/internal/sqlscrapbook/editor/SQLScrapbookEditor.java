@@ -25,7 +25,6 @@ import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.SetConnectionInfoAction;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.AbstractConnectionInfoComposite;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.connection.ConnectionInfoComposite2;
-import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.EditorConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
@@ -60,9 +59,14 @@ public class SQLScrapbookEditor extends SQLEditor {
         private AbstractConnectionInfoComposite connBar;
         private boolean initialized = false;
         public ToolbarSourceViewer(Composite parent, IVerticalRuler verticalRuler,
-                IOverviewRuler overviewRuler, boolean showAnnotationsOverview, int styles)
+                IOverviewRuler overviewRuler, boolean showAnnotationsOverview, int styles, ISQLEditorConnectionInfo initialConnInfo)
         {
             super(parent, verticalRuler, overviewRuler, showAnnotationsOverview, styles);
+            //by now, createControl has been called
+            if (initialConnInfo != null)
+            {
+            	connBar.init(initialConnInfo);
+            }
         }
         
         protected void createControl(Composite parent, int styles)
@@ -78,8 +82,9 @@ public class SQLScrapbookEditor extends SQLEditor {
             fDefaultComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
             //since SQL Editor is always left to right, we need to tell the composite explicitly about the orientation
-            connBar = new ConnectionInfoComposite2(fDefaultComposite, Window.getDefaultOrientation(), this, SQLScrapbookEditor.this
-                    .getConnectionInfo(), null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
+            //don't call SQLScrapbookEditor.this.getConnectionInfo() because of NPE
+            connBar = new ConnectionInfoComposite2(fDefaultComposite, Window.getDefaultOrientation(), this, 
+            		null, null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME
                     | AbstractConnectionInfoComposite.STYLE_SHOW_STATUS | AbstractConnectionInfoComposite.STYLE_SINGLE_GROUP | AbstractConnectionInfoComposite.STYLE_LAZY_INIT);
             connBar.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
             ((GridLayout)connBar.getLayout()).marginWidth = 12;
@@ -251,7 +256,7 @@ public class SQLScrapbookEditor extends SQLEditor {
     protected AdaptedSourceViewer doCreateSourceViewer(Composite parent, IVerticalRuler ruler, int styles)
     {
         return new ToolbarSourceViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
-                styles);
+                styles, getConnectionInfo());
     }
     
     public void refreshConnectionStatus()

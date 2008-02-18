@@ -11,17 +11,26 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.filebuffers.FileBuffers;
+import org.eclipse.core.filebuffers.ITextFileBuffer;
+import org.eclipse.core.filebuffers.ITextFileBufferManager;
+import org.eclipse.core.filebuffers.LocationKind;
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileAnnotationModel;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLUtility;
-import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
@@ -35,6 +44,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 import org.eclipse.ui.editors.text.ILocationProvider;
+import org.eclipse.ui.editors.text.ILocationProviderExtension;
 
 public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 	
@@ -62,6 +72,61 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
     protected void doSaveDocument(IProgressMonitor monitor, Object element,
                                   IDocument document, boolean overwrite) throws CoreException {
 
+		if (element instanceof IFileEditorInput)
+		{
+			doSaveFileResource(monitor, element, document,
+				overwrite);
+		}
+		else if (element instanceof IAdaptable)
+		{
+			//reuses code from TextFileDocumentProvider to handle external files (195615)
+			//TODO consider converting the super class to TextFileDocumentProvider
+			IAdaptable adaptable= (IAdaptable) element;
+			
+			ITextFileBufferManager manager= FileBuffers.getTextFileBufferManager();
+			ITextFileBuffer fileBuffer= null;
+			LocationKind locationKind= null;
+			
+			ILocationProvider provider= (ILocationProvider) adaptable.getAdapter(ILocationProvider.class);
+			if (provider instanceof ILocationProviderExtension) {
+				URI uri= ((ILocationProviderExtension)provider).getURI(element);
+				if (ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(uri).length == 0) {
+					IFileStore fileStore= EFS.getStore(uri);
+					manager.connectFileStore(fileStore, getProgressMonitor());
+					fileBuffer= manager.getFileStoreTextFileBuffer(fileStore);
+				}
+			}
+			if (fileBuffer == null && provider != null) {
+				IPath location= provider.getPath(element);
+				if (location != null){
+					locationKind= LocationKind.NORMALIZE;
+					manager.connect(location, locationKind, getProgressMonitor());
+					fileBuffer= manager.getTextFileBuffer(location, locationKind);
+				}
+			}
+
+			if (fileBuffer != null)
+			{
+				fileBuffer.getDocument().set(document.get());
+				fileBuffer.commit(null, true);
+			}
+		}
+
+		
+        // tau 21.03.05
+		// First attempt show Message Connection through SQLScrapbookEditorInput
+        if (element instanceof SQLScrapbookEditorInput) ((SQLScrapbookEditorInput)element).showMessageConnection();
+		// Second attempt show Message Connection through sqlEditor
+        IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findEditor((IEditorInput)element);
+		if ((editor != null) && (editor instanceof SQLEditor)) {
+			((SQLEditor) editor).refreshConnectionStatus(); 
+		} 			
+        
+    }
+
+	private void doSaveFileResource(IProgressMonitor monitor,
+			Object element, IDocument document, boolean overwrite)
+			throws CoreException {
 		IDocument storageDocument = null;
         String statementSQL = document.get();
         if (statementSQL == null) statementSQL = "";
@@ -115,14 +180,7 @@ public class SQLScrapbookDocumentProvider extends FileDocumentProvider {
 		if (storageDocument == null) storageDocument = document;
 		
         super.doSaveDocument(monitor, element, storageDocument, overwrite);
-        
-        // tau 21.03.05
-		// First attempt show Message Connection through SQLScrapbookEditorInput
-        if (element instanceof SQLScrapbookEditorInput) ((SQLScrapbookEditorInput)element).showMessageConnection();
-		// Second attempt show Message Connection through sqlEditor
-		if (sqlEditor != null) sqlEditor.refreshConnectionStatus(); 		
-        
-    }
+	}
 
 	protected IAnnotationModel createAnnotationModel(Object element) throws CoreException {
         if (element instanceof ILocationProvider)
