@@ -37,7 +37,8 @@ import java.util.Set;
  */
 public class MappingPathElementTree
 {
-	private static final String DOUBLE_SLASH_REPLACEMENT = "<>";
+	static final String DOUBLE_SLASH_REPLACEMENT = "<>";
+	static final String ASTERISK = "*";
 
 	// the TreeNode corresponding with the first path element in the mapping
 	// path of the table
@@ -197,26 +198,25 @@ public class MappingPathElementTree
 				Set result = new HashSet( );
 				result.add( fromNode );
 
-				if ( fromNode instanceof AnyElementPlaceholderNode )
+				if ( fromNode instanceof AnyNumberElementPlaceholderNode )
 				{
 					// AnyElementPlaceholderNode may represent nothing
 					Set children = fromNode.getMatchedChildren( pathElements[fromIndex] );
 					result.addAll( children );
 				}
 
-				TreeNode node = fromNode.getChildByName( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER );
+				TreeNode node = fromNode.getAnyNumberElementChild( );
 				if (node != null)
 				{
 					//fromNode contains a AnyElementPlaceholderNode child
 					result.add( node );
 				}
-
 				return result;
 			}
 			else
 			// pathElements.length > 1
 			{
-				if ( fromNode instanceof AnyElementPlaceholderNode )
+				if ( fromNode instanceof AnyNumberElementPlaceholderNode )
 				{
 					Set result = new HashSet( );
 
@@ -342,7 +342,7 @@ public class MappingPathElementTree
 		if ( splits.length == 1 ) // columnAbsolutePath.equals(tableAbsolutePath )
 		{
 			columnEndNodes.add( lastTreeNodeForTablePath );
-			TreeNode node = lastTreeNodeForTablePath.getChildByName(AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER);
+			TreeNode node = lastTreeNodeForTablePath.getAnyNumberElementChild( );
 			if (node != null)
 			{
 				columnEndNodes.add( node );
@@ -474,7 +474,7 @@ public class MappingPathElementTree
 			{
 				return Collections.EMPTY_SET;
 			}
-			else if ( node instanceof AnyElementPlaceholderNode )
+			else if ( node instanceof AnyNumberElementPlaceholderNode )
 			{
 				Set result = new HashSet( );
 
@@ -496,7 +496,7 @@ public class MappingPathElementTree
 			{
 				Set result = new HashSet( );
 				result.add( node.getParent( ) );
-				if ( node.getParent( ) instanceof AnyElementPlaceholderNode )
+				if ( node.getParent( ) instanceof AnyNumberElementPlaceholderNode )
 				{
 					result.add( node.getParent( ).getParent( ) );
 				}
@@ -525,38 +525,17 @@ public class MappingPathElementTree
 
 		root = new ElementNode( "/" );
 
-		if ( splits.length == 0 )
-		{
-			//tablePath can not be "/", so never go here
-			assert false;
-		}
+		assert splits.length > 1;
+		
 		// Attention: splits of "/A/B" be [][A][B]
 		// So, the first empty string should be ignored
-		else if ( !isAnyElementMapping(splits[1]))
-		{
-			// table path is such as /A/....
-			firstTreeNodeForTablePath = root.addChild( splits[1] );
-		}
-		else
-		{
-			// table path is a relative path which begins with "//"
-			firstTreeNodeForTablePath = root.addChild( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER );
-		}
+		firstTreeNodeForTablePath = root.addChild( splits[1] );
 
 		TreeNode currentNode = firstTreeNodeForTablePath;
 		
 		for ( int i = 2; i < splits.length; i++ )
 		{
-			//A double slash or a wildcard in the path
-			if ( isAnyElementMapping(splits[i]) ) 
-			{
-				currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER );
-			}
-			else
-			// xml element in the path
-			{
-				currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[i] );
-			}
+			currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[i] );
 		}
 		lastTreeNodeForTablePath = currentNode;
 	}
@@ -581,25 +560,9 @@ public class MappingPathElementTree
 		int j = splits[0].equals( "" ) ? 1 : 0;
 		for ( ; j < splits.length; j++ )
 		{
-			//double slash or wildcard
-			if ( isAnyElementMapping(splits[j]) ) 
-			{
-				currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER );
-			}
-			else
-			{
-				currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[j] );
-			}
+			currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[j] );
 		}
 		currentNode.addColumnIndex( columnIndex );
-	}
-	
-	/**
-	 * Whether a path element in the mapping path represent any element
-	 */
-	private static boolean isAnyElementMapping(String pathElement)
-	{
-		return pathElement.equals( "*" ) || pathElement.equals( DOUBLE_SLASH_REPLACEMENT );
 	}
 	
 	/**
@@ -610,9 +573,7 @@ public class MappingPathElementTree
 	public static boolean isValidTableMappingPath(String tablePath)
 	{
 		return (tablePath != null
-				&& (tablePath.startsWith( "/" ) 
-						|| tablePath.startsWith( "*/" )
-						|| tablePath.equals( "*" )) //tablePath must start with "/" or "*/" or just be "*"
+				&& tablePath.startsWith( "/" ) //tablePath must start with "/"
 				&& !tablePath.equals( "/" )	   //tablePath can not be "/"
 				&& tablePath.indexOf( "///" ) == -1
 				&& !containParentAxisAfterAnyElement(tablePath)
@@ -635,7 +596,7 @@ public class MappingPathElementTree
 	}
 	
 	/**
-	 * Whether mapping path contains "//.." or "wildcard/.."
+	 * Whether mapping path contains "//.."
 	 * Currently do not support this kind of mapping path
 	 * @param mappingPath
 	 * @return
@@ -643,11 +604,7 @@ public class MappingPathElementTree
 	private static boolean containParentAxisAfterAnyElement(String mappingPath)
 	{
 		return 	mappingPath.matches( ".*\\Q//../\\E.*" )
-				|| mappingPath.matches( ".*\\Q//..\\E$" )
-				|| mappingPath.matches( ".*\\Q/*/../\\E.*" )
-				|| mappingPath.matches( ".*\\Q/*/..\\E$" )
-				|| mappingPath.matches( "^\\Q*/../\\E.*" )
-				|| mappingPath.matches( "^\\Q*/..\\E$" );
+				|| mappingPath.matches( ".*\\Q//..\\E$" );
 	}
 }
 
@@ -662,7 +619,7 @@ abstract class TreeNode
 	// saves the indexes of column which mapping path ends at this node
 	private Set columnIndexes = new HashSet( );
 
-	ChildrenAllowedTreeNode parent;
+	private ChildrenAllowedTreeNode parent;
 
 	public TreeNode( String pathElementName )
 	{
@@ -715,11 +672,10 @@ abstract class TreeNode
 	}
 
 	/**
-	 * find child by node name
 	 * @param nodeName
 	 * @return
 	 */
-	protected TreeNode getChildByName(String nodeName)
+	protected TreeNode getAnyNumberElementChild()
 	{
 		return null;
 	}
@@ -736,13 +692,15 @@ abstract class TreeNode
 
 abstract class ChildrenAllowedTreeNode extends TreeNode
 {
-	AnyElementPlaceholderNode anyElementChild = null;
+	private AnyNumberElementPlaceholderNode anyNumberElementChild = null;
+	
+	private OneElementPlaceholderNode oneElementChild = null;
 	
 	//<attrName, AttrNode> map
-	Map attrChildren = new HashMap();
+	private Map attrChildren = new HashMap();
 	
 	//<pureElementName, Set<ElementNode>> map, pureElementName: the result of removing prediction part
-	Map elementChildren = new HashMap();
+	private Map elementChildren = new HashMap();
 	
 	private boolean hasChild = false;
 
@@ -760,15 +718,25 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 	{
 		assert pathElement != null;
 		
-		if ( pathElement.equals( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER ) )
+		if ( pathElement.equals( MappingPathElementTree.DOUBLE_SLASH_REPLACEMENT ) )
 		{
-			if (anyElementChild == null)
+			if (anyNumberElementChild == null)
 			{
-				anyElementChild = new AnyElementPlaceholderNode( );
-				anyElementChild.setParent( this );
+				anyNumberElementChild = new AnyNumberElementPlaceholderNode( );
+				anyNumberElementChild.setParent( this );
 			}
 			hasChild = true;
-			return anyElementChild;
+			return anyNumberElementChild;
+		}
+		else if (pathElement.equals( MappingPathElementTree.ASTERISK ))
+		{
+			if (oneElementChild == null)
+			{
+				oneElementChild = new OneElementPlaceholderNode();
+				oneElementChild.setParent( this );
+			}
+			hasChild = true;
+			return oneElementChild;
 		}
 		else if ( pathElement.startsWith( "@" ) )
 		{
@@ -818,39 +786,14 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 		return hasChild;
 	}
 
-	protected TreeNode getChildByName(String nodeName)
-	{
-		assert nodeName != null;
-		if (nodeName.equals( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER ))
-		{
-			return anyElementChild;
-		}
-		else if (nodeName.startsWith( "@"))
-		{
-			TreeNode node = (TreeNode)attrChildren.get( nodeName );
-			return node;
-		}
-		else
-		{
-			TreeNode node = null;
-			String pureElement = nodeName.replaceAll( "\\Q[\\E\\d+\\Q]\\E$", "" );
-			Set elementNodes = (Set)elementChildren.get( pureElement );
-			if (elementNodes != null)
-			{
-				Iterator itr = elementNodes.iterator( );
-				while (itr.hasNext( ))
-				{
-					TreeNode elementNode = (TreeNode)itr.next( );
-					if (elementNode.getPathElemntName( ).equals( nodeName ))
-					{
-						node = elementNode;
-					}
-				}
-			}
-			return node;
-		}
-	}
+
 	
+	protected TreeNode getAnyNumberElementChild( )
+	{
+		return anyNumberElementChild;
+	}
+
+
 	/**
 	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
 	 * @return all the children which matches pathElement
@@ -859,9 +802,13 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 	{
 		assert pathElement != null;
 		Set result = new HashSet();
-		if (anyElementChild != null && anyElementChild.matches( pathElement ))
+		if (anyNumberElementChild != null && anyNumberElementChild.matches( pathElement ))
 		{
-			result.add( anyElementChild );
+			result.add( anyNumberElementChild );
+		}
+		if (oneElementChild != null && oneElementChild.matches( pathElement ))
+		{
+			result.add( oneElementChild );
 		}
 		if (pathElement.startsWith( "@"))
 		{
@@ -950,18 +897,15 @@ class ElementNode extends ChildrenAllowedTreeNode
 }
 
 /**
- * represent a double slash , i.e. "//" or a wildcard in the mapping path
+ * represent a double slash , i.e. "//" in the mapping path
  * 
  */
-class AnyElementPlaceholderNode extends ChildrenAllowedTreeNode
+class AnyNumberElementPlaceholderNode extends ChildrenAllowedTreeNode
 {
-
-	public static final String ANY_ELEMENT_HOLDER = "";
-
 	// node name makes no sense for AnyElementPlaceholderNode
-	AnyElementPlaceholderNode( )
+	AnyNumberElementPlaceholderNode( )
 	{
-		super( ANY_ELEMENT_HOLDER );
+		super( "" );
 	}
 
 	/**
@@ -979,7 +923,7 @@ class AnyElementPlaceholderNode extends ChildrenAllowedTreeNode
 	protected TreeNode addChild( String pathElement )
 	{
 		assert pathElement != null;
-		if (pathElement.equals( AnyElementPlaceholderNode.ANY_ELEMENT_HOLDER ))
+		if (pathElement.equals( MappingPathElementTree.DOUBLE_SLASH_REPLACEMENT ))
 		{
 			//two AnyElementPlaceholderNode nodes can be merged into one 
 			//AnyElementPlaceHolderNode never contain AnyElementPlaceHolderNode child
@@ -990,8 +934,30 @@ class AnyElementPlaceholderNode extends ChildrenAllowedTreeNode
 			return super.addChild( pathElement );
 		}
 	}
+}
 
-	
+/**
+ * represent a "*" path element in the mapping path
+ * 
+ */
+class OneElementPlaceholderNode extends ChildrenAllowedTreeNode
+{
+	OneElementPlaceholderNode( )
+	{
+		super("");
+	}
+
+	/**
+	 * Whether the content of this node match the specified pathElement
+	 * 
+	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
+	 * @return
+	 */
+	boolean matches( String pathElement )
+	{
+		// matches any xml element, but not attribute
+		return !pathElement.startsWith( "@" );
+	}
 }
 
 /**

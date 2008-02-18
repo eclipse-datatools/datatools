@@ -22,6 +22,10 @@ public class SaxParserUtil
 	public static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
 	public static final String ROOTTEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN_ROOT$-";
 
+	private SaxParserUtil()
+	{
+		
+	};
 
 	/**
 	 * Remove the redundant ".."
@@ -39,7 +43,7 @@ public class SaxParserUtil
 			return path;
 		}
 		
-		//to differentiate // and /
+		//to differentiate "//" and "/"
 		String[] splits = path.replaceAll( "//", "/<>/" ).split("/");
 		if (splits.length <= 1) // "/" or just one path element 
 		{
@@ -56,7 +60,6 @@ public class SaxParserUtil
 					Object last = pathElements.get( pathElements.size( ) - 1 );
 					if (last.equals( "" )
 							||last.equals( ".." )
-							|| last.equals( "*" )
 							|| last.equals( "<>" ))
 					{
 						//not a redundant one

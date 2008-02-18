@@ -57,7 +57,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}"
 			+ "#-# tableFilter#:#[/BookStore/Book[@id=\"A\"]/Author]#:#{book.author;String;}"
 			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
-			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}";
+			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}"
+			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}";
 
 	private RelationInformation ri;
 
@@ -962,5 +963,42 @@ public class SaxParserTest extends BaseTest
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST21_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST21_GOLDEN_XML ) ) );
+	}
+	
+	public void test22( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST22_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		XMLCreatorContent content = new XMLCreatorContent( TestConstants.RECURSIVE_DUPLICATENAME );
+		ResultSet rs = new ResultSet( content,
+				ri,
+				"Asterisk",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST22_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST22_GOLDEN_XML ) ) );
 	}
 }
