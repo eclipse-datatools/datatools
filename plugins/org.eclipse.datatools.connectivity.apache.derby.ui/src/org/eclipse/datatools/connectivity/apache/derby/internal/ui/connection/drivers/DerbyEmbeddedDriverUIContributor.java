@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2006, 2007 Sybase, Inc.
+ * Copyright (c) 2004-2006, 2007, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: brianf - initial API and implementation
  *     IBM Corporation - migrated to new wizard framework
+ *     IBM Corporation - defect fix #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers;
 
@@ -172,7 +173,7 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 		return isComplete;
 	}
 
-	public Composite getContributedDriverUI(Composite parent) {
+	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 		if (parentComposite == null || parentComposite.isDisposed()) {
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005, 2007, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -9,6 +9,7 @@
  * Contributors: 
  *  shongxum - initial API and implementation
  *  Actuate Corporation - refactored to improve extensibility
+ *  IBM Corporation - defect fix #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -79,7 +80,7 @@ public abstract class ConnectionProfileDetailsPage
 		composite.setLayout(new FillLayout());
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		createCustomControl(composite);
+		createCustomControl(composite, false);
 
 		btnPing = new Button(container, SWT.NONE);
 		btnPing.addSelectionListener(new SelectionAdapter() {
@@ -98,7 +99,7 @@ public abstract class ConnectionProfileDetailsPage
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
-	public abstract void createCustomControl(Composite parent);
+	public abstract void createCustomControl(Composite parent, boolean isReadOnly);
 
 	protected void testConnection() {
 		IWizard wiz = getWizard();

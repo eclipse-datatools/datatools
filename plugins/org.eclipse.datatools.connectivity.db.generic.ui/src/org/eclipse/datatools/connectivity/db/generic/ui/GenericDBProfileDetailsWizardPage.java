@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 		IBM Corporation - defect fix #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.db.generic.ui;
 
@@ -83,7 +84,7 @@ public class GenericDBProfileDetailsWizardPage
 	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createCustomControl(Composite parent) {
+	public void createCustomControl(Composite parent, boolean isReadOnly) {
 		Composite content = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout(2, false);
 		content.setLayout(layout);

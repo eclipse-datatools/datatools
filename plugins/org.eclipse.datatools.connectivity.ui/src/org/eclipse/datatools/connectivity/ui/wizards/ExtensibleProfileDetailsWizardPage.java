@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,7 +46,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 				"ExtensibleProfileDetailsWizardPage.description")); //$NON-NLS-1$
 	}
 
-	public void createCustomControl(Composite parent) {
+	public void createCustomControl(Composite parent, boolean isReadOnly) {
 		parent.setLayout(new GridLayout());
 
 		driverCombo = new DriverListCombo();
@@ -60,7 +60,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 		driverCombo.createContents(parent);
 
 		contributedUIComposite = new DriverUIContributorComposite(parent, this,
-				this);
+				this, isReadOnly);
 
 		driverCombo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {

@@ -33,13 +33,15 @@ public class DriverUIContributorComposite {
 	private DialogPage wizardPage;
 	private IDriverUIContributor uiContributor = null;
 	private IDriverUIContributorInformation contributorInformation;
+	private boolean isReadOnly = false;
 
 	public DriverUIContributorComposite(Composite parent,
 			DialogPage wizardPage,
-			IDriverUIContributorInformation contributorInformation) {
+			IDriverUIContributorInformation contributorInformation, boolean isReadOnly) {
 		createControls(parent);
 		this.wizardPage = wizardPage;
 		this.contributorInformation = contributorInformation;
+		this.isReadOnly = isReadOnly;
 	}
 
 	public void createControls(Composite parent) {
@@ -64,7 +66,7 @@ public class DriverUIContributorComposite {
 		uiContributor = DriverUIContributorRegistry.getInstance()
 				.getDriverUIContributor(driverTemplateID);
 		Composite contributedComposite = uiContributor
-				.getContributedDriverUI(group);
+				.getContributedDriverUI(group, isReadOnly);
 		contributedComposite.setParent(group);
 		uiContributor.setDialogPage(wizardPage);
 		uiContributor.setDriverUIContributorInformation(contributorInformation);
