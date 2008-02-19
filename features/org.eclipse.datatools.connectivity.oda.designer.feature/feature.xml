@@ -15,4 +15,5 @@
 	<plugin download-size="40" id="org.eclipse.datatools.connectivity.oda.template.ui" install-size="40" unpack="false" version="3.0.6.200710261"/>
 	<plugin download-size="61" id="org.eclipse.datatools.connectivity.ui.dse" install-size="61" unpack="false" version="1.0.1.200801021"/>
 	<plugin download-size="396" id="org.eclipse.datatools.connectivity.ui" install-size="396" unpack="false" version="1.1.0.200802011"/>
+	<plugin download-size="9" id="org.eclipse.datatools.help" install-size="9" unpack="false" version="1.5.0.200706181"/>
 </feature>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.sqldevtools.ddlgen.feature" image="eclipse_update_120.jpg" label="%featureName" provider-name="%providerName" version="1.6.0.200802041">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.datatools.sqldevtools.ddlgen.feature" image="eclipse_update_120.jpg" label="%featureName" provider-name="%providerName" version="1.6.0.200802041">
 	<description>%description</description>
 	<license url="%licenseURL">%license</license>
 	<url>
@@ -10,5 +11,10 @@
 		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.sqldevtools.results.feature" version="1.6.0"/>
 	</requires>
+	<plugin download-size="71" id="org.eclipse.datatools.sqltools.sql" install-size="71" unpack="false" version="1.0.0.200710291"/>
+	<plugin download-size="104" id="org.eclipse.datatools.sqltools.common.ui" install-size="104" unpack="false" version="1.0.0.200708161"/>
+	<plugin download-size="102" id="org.eclipse.datatools.sqltools.plan" install-size="102" unpack="false" version="1.0.0.200709061"/>
+	<plugin download-size="150" id="org.eclipse.datatools.sqltools.editor.core" install-size="150" unpack="false" version="1.0.0.200801031"/>
+	<plugin download-size="365" id="org.eclipse.datatools.sqltools.sqleditor" install-size="365" unpack="false" version="1.0.0.200801111"/>
 	<plugin download-size="56" id="org.eclipse.datatools.sqltools.ddlgen.ui" install-size="56" unpack="false" version="1.0.0.200801161"/>
-	</feature>
+</feature>

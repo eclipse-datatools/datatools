@@ -10,6 +10,7 @@
 		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.doc.user" match="greaterOrEqual" version="1.6.0"/>
 	</requires>
+	<plugin download-size="104" id="org.eclipse.datatools.sqltools.common.ui" install-size="104" unpack="false" version="1.0.0.200708161"/>
 	<plugin download-size="333" id="org.eclipse.datatools.sqltools.result" install-size="333" unpack="false" version="1.0.0.200712181"/>
 	<plugin download-size="204" id="org.eclipse.datatools.connectivity" install-size="204" unpack="false" version="1.1.0.200802011"/>
 </feature>
