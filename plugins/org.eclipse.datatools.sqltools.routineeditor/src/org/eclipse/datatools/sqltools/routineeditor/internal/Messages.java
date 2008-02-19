@@ -44,6 +44,11 @@ public final class Messages extends NLS {
     public static String Editor_warning_save_delete;
 	public static String plugin_internal_error;
 
+	public static String SaveScopeResourcesHandler_1;
+	public static String SaveScopeResourcesHandler_2;
+	public static String SaveScopeResourcesHandler_3;
+
+
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
