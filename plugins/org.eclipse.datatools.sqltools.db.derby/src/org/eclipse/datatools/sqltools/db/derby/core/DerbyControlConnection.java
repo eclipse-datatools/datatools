@@ -13,23 +13,12 @@ package org.eclipse.datatools.sqltools.db.derby.core;
 
 import java.sql.SQLException;
 
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
-import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.IControlConnectionManager;
 import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
-import org.eclipse.datatools.sqltools.editor.contentassist.ContentAssistQueryRequest;
 import org.eclipse.datatools.sqltools.internal.core.AbstractControlConnection;
-import org.eclipse.datatools.sqltools.sql.reference.DBObject;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Hui Cao

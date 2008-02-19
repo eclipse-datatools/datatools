@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Core Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.sql
-Bundle-Version: 1.0.0.200710291
+Bundle-Version: 1.0.0.200802191
 Bundle-Activator: org.eclipse.datatools.sqltools.sql.internal.SQLActivator
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
@@ -15,9 +15,9 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.modelbase.sql.query;bundle-version="[0.9.0,1.5.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.sqltools.sql,
- org.eclipse.datatools.sqltools.sql.parser;x-internal:=true,
- org.eclipse.datatools.sqltools.sql.parser.ast;x-internal:=true,
- org.eclipse.datatools.sqltools.sql.parser.util;x-internal:=true,
+ org.eclipse.datatools.sqltools.sql.parser;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic,org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.sqlscrapbook",
+ org.eclipse.datatools.sqltools.sql.parser.ast;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic,org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.sqlscrapbook",
+ org.eclipse.datatools.sqltools.sql.parser.util;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic,org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.sqlscrapbook",
  org.eclipse.datatools.sqltools.sql.reference,
  org.eclipse.datatools.sqltools.sql.reference.internal,
  org.eclipse.datatools.sqltools.sql.util;x-friends:="org.eclipse.datatools.sqltools.editor.core,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor"
