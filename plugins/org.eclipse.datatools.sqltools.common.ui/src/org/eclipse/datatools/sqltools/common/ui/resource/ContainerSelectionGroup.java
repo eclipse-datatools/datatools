@@ -45,7 +45,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
 import org.eclipse.ui.internal.ide.misc.ContainerContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.part.DrillDownComposite;
@@ -77,8 +76,8 @@ public class ContainerSelectionGroup extends Composite
     private MenuItem            _menuItem;
     private Button              _btnCreateProject;
     // the message to display at the top of this dialog
-    private static final String DEFAULT_MSG_NEW_ALLOWED      = IDEWorkbenchMessages.ContainerGroup_message; //$NON-NLS-1$
-    private static final String DEFAULT_MSG_SELECT_ONLY      = IDEWorkbenchMessages.ContainerGroup_selectFolder; //$NON-NLS-1$
+    private static final String DEFAULT_MSG_NEW_ALLOWED      = Messages.ContainerGroup_message; //$NON-NLS-1$
+    private static final String DEFAULT_MSG_SELECT_ONLY      = Messages.ContainerGroup_selectFolder; //$NON-NLS-1$
 
     // sizing constants
     private static final int    SIZING_SELECTION_PANE_WIDTH  = 320;

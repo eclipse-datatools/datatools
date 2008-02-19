@@ -67,6 +67,9 @@ public final class Messages extends NLS {
 
 	public static String ResourceAndContainerGroup_error_linked_project;
 
+	//from IDEWorkbenchMessages
+	public static String ContainerGroup_message;
+	public static String ContainerGroup_selectFolder;
 
 	private Messages() {
 		// Do not instantiate

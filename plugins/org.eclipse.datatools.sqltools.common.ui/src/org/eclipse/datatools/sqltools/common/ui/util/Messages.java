@@ -24,6 +24,7 @@ public final class Messages extends NLS {
 	public static String HTML2TextReader_listItemPrefix;
 	public static String HTMLTextPresenter_ellipse;
     public static String common_error;
+    public static String ImageDescriptorRegistry_Allocating_image_for_wrong_display_1;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

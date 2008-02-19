@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.sqltools.common.ui.internal.Activator;
+import org.eclipse.datatools.sqltools.common.ui.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.common.ui.internal.Messages;
 import org.eclipse.datatools.sqltools.common.ui.resource.ResourceAndContainerGroup;
 import org.eclipse.datatools.sqltools.common.ui.util.Images;
@@ -41,8 +42,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.internal.ide.IDEWorkbenchMessages;
-import org.eclipse.ui.internal.ide.IIDEHelpContextIds;
 
 /**
  * A standard "Save As" dialog which solicits a path from the user. The <code>getResult</code> method returns the
@@ -115,8 +114,8 @@ public class SaveAsDialog extends TitleAreaDialog
     protected void configureShell(Shell shell)
     {
         super.configureShell(shell);
-        shell.setText(IDEWorkbenchMessages.SaveAsDialog_text); //$NON-NLS-1$
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, IIDEHelpContextIds.SAVE_AS_DIALOG);
+        shell.setText(Messages.SaveAsDialog_text); //$NON-NLS-1$
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(shell, IHelpContextIds.SAVE_AS_DIALOG);
     }
 
     /*
@@ -130,7 +129,7 @@ public class SaveAsDialog extends TitleAreaDialog
         initializeControls();
         validatePage();
         _resourceGroup.setFocus();
-        setTitle(IDEWorkbenchMessages.SaveAsDialog_title); //$NON-NLS-1$
+        setTitle(Messages.SaveAsDialog_title); //$NON-NLS-1$
         _dlgTitleImage = Images.get(Images.IMG_SAVEAS);
         setTitleImage(_dlgTitleImage);
         _first = false;
@@ -188,7 +187,7 @@ public class SaveAsDialog extends TitleAreaDialog
         }
         ;
 
-        _resourceGroup = new ResourceAndContainerGroup(composite, listener, IDEWorkbenchMessages.SaveAsDialog_fileLabel, IDEWorkbenchMessages.SaveAsDialog_file); //$NON-NLS-2$ //$NON-NLS-1$
+        _resourceGroup = new ResourceAndContainerGroup(composite, listener, Messages.SaveAsDialog_fileLabel, Messages.SaveAsDialog_file); //$NON-NLS-2$ //$NON-NLS-1$
         _resourceGroup.setAllowExistingResources(true);
 
         return parentComposite;
@@ -262,13 +261,13 @@ public class SaveAsDialog extends TitleAreaDialog
                 IDialogConstants.YES_LABEL, IDialogConstants.NO_LABEL, IDialogConstants.CANCEL_LABEL
             }
             ;
-            String question = IDEWorkbenchMessages.bind(IDEWorkbenchMessages.SaveAsDialog_overwriteQuestion, //$NON-NLS-1$
+            String question = Messages.bind(Messages.SaveAsDialog_overwriteQuestion, //$NON-NLS-1$
             new Object[]
             {
                 path.toOSString()
             }
             );
-            MessageDialog d = new MessageDialog(getShell(), IDEWorkbenchMessages.Question, //$NON-NLS-1$
+            MessageDialog d = new MessageDialog(getShell(), Messages.Question, //$NON-NLS-1$
             null, question, MessageDialog.QUESTION, buttons, 0);
             int overwrite = d.open();
             switch (overwrite)
@@ -380,7 +379,7 @@ public class SaveAsDialog extends TitleAreaDialog
     private boolean validatePage()
     {
         setErrorMessage(null);
-        setMessage(IDEWorkbenchMessages.SaveAsDialog_message); //$NON-NLS-1$
+        setMessage(Messages.SaveAsDialog_message); //$NON-NLS-1$
 
         if (!_resourceGroup.areAllValuesValid())
         {

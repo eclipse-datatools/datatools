@@ -31,6 +31,13 @@ public final class Messages extends NLS {
     public static String SaveAsDialog_question;
     public static String SaveAsDialog_filename;
     public static String SaveAsDialog_export_error;
+	public static String SaveAsDialog_text;
+	public static String SaveAsDialog_fileLabel;
+	public static String SaveAsDialog_file;
+	public static String SaveAsDialog_overwriteQuestion;
+	public static String SaveAsDialog_closedProjectMessage;
+
+	public static String Question;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

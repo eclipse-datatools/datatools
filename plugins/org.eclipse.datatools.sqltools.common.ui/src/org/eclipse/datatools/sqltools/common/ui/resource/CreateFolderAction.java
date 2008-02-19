@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.datatools.sqltools.common.ui.internal.IHelpContextIds;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -24,7 +25,6 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.SelectionListenerAction;
 import org.eclipse.ui.dialogs.WizardNewFolderMainPage;
-import org.eclipse.ui.internal.ide.IIDEHelpContextIds;
 import org.eclipse.ui.wizards.newresource.BasicNewFolderResourceWizard;
 
 
@@ -72,7 +72,7 @@ public class CreateFolderAction extends SelectionListenerAction
         setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_OBJ_FOLDER));
         setToolTipText(Messages.CreateFolderAction_toolTip); //$NON-NLS-1$
         setId(ID);
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IIDEHelpContextIds.CREATE_FOLDER_ACTION);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IHelpContextIds.CREATE_FOLDER_ACTION);
     }
 
     /**
@@ -87,7 +87,7 @@ public class CreateFolderAction extends SelectionListenerAction
         WizardDialog dialog = new WizardDialog(_shell, wizard);
         dialog.create();
         dialog.getShell().setText(Messages.CreateFolderAction_title); //$NON-NLS-1$
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), IIDEHelpContextIds.NEW_FOLDER_WIZARD);
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), IHelpContextIds.NEW_FOLDER_WIZARD);
         if (dialog.open() != Window.CANCEL)
         {
             //views can implement ISetSelectionTarget but dialogs have to update and reveal resource by themselves.

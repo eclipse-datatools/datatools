@@ -12,6 +12,8 @@ package org.eclipse.datatools.sqltools.common.ui.internal;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -126,4 +128,8 @@ public class Activator extends AbstractUIPlugin
         log(createErrorStatus(message, e));
     }
 
+    public static Display getDisplay()
+    {
+    	return PlatformUI.getWorkbench().getDisplay();
+    }
 }

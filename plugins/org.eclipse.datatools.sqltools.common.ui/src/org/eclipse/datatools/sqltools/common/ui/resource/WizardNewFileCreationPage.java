@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.datatools.sqltools.common.ui.internal.Activator;
+import org.eclipse.datatools.sqltools.common.ui.internal.IHelpContextIds;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -52,7 +53,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.ContainerGenerator;
-import org.eclipse.ui.internal.ide.IIDEHelpContextIds;
 import org.eclipse.ui.internal.ide.dialogs.CreateLinkedResourceGroup;
 
 /**
@@ -181,7 +181,7 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
         topLevel.setLayout(new GridLayout());
         topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
         topLevel.setFont(parent.getFont());
-        PlatformUI.getWorkbench().getHelpSystem().setHelp(topLevel, IIDEHelpContextIds.NEW_FILE_WIZARD_PAGE);//TODO: use dmp help id
+        PlatformUI.getWorkbench().getHelpSystem().setHelp(topLevel, IHelpContextIds.NEW_FILE_WIZARD_PAGE);//TODO: use dmp help id
 
         createPageControl(topLevel);
 

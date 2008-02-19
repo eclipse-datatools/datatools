@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Tools Common UI Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.common.ui;singleton:=true
-Bundle-Version: 1.0.0.200708161
+Bundle-Version: 1.0.0.200802191
 Bundle-Activator: org.eclipse.datatools.sqltools.common.ui.internal.Activator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
@@ -24,5 +24,5 @@ Export-Package: org.eclipse.datatools.sqltools.common.core.tableviewer,
  org.eclipse.datatools.sqltools.common.ui.dialog,
  org.eclipse.datatools.sqltools.common.ui.preferences,
  org.eclipse.datatools.sqltools.common.ui.resource,
- org.eclipse.datatools.sqltools.common.ui.util;x-friends:="org.eclipse.datatools.sqltools.sqlscrapbook,org.eclipse.datatools.sqltools.sqleditor"
+ org.eclipse.datatools.sqltools.common.ui.util;x-friends:="org.eclipse.datatools.sqltools.sqlscrapbook,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.debugger.core,org.eclipse.datatools.sqltools.routineeditor"
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
