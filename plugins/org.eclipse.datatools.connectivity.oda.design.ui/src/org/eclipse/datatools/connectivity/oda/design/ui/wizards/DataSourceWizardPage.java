@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006 - 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  * 
  * Contributors:
  *  Actuate Corporation - initial API and implementation
- *  
+ *  IBM Corporation - defect fix #213266
  *************************************************************************
  */
 
@@ -125,7 +125,7 @@ public abstract class DataSourceWizardPage extends DataSourceWizardPageCore
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createCustomControl(org.eclipse.swt.widgets.Composite)
      */
-    public void createCustomControl( Composite parent )
+    public void createCustomControl( Composite parent, boolean isReadOnly )
     {
         // calls abstract method provided by custom extension
         createPageCustomControl( parent );
