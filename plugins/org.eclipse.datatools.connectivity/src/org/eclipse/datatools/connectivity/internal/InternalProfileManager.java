@@ -878,7 +878,11 @@ public class InternalProfileManager {
 		mProfileListeners.remove(listener);
 	}
 
-	private void loadProfiles() {
+	private synchronized void loadProfiles() {
+		if (mProfiles != null )
+		{
+			return;
+		}
 		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
 				.append(ConnectionProfileMgmt.FILENAME).toFile();
 		File defaultFile = null;
