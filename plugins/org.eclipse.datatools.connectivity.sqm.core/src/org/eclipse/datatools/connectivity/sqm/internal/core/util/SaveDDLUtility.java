@@ -23,7 +23,8 @@ public class SaveDDLUtility
 {
     
     private static final String DDL_FILE_EXTENSION = "sql"; //$NON-NLS-1$
-    
+    private static final String ALTERNATE_DDL_FILE_EXTENSION = "ddl";   //$NON-NLS-1$
+  
 	/** @modelguid {29599313-A7BB-48EC-B7A3-1E87ED6ABD2E} */
 	private final static SaveDDLUtility save = new SaveDDLUtility ();
 	
@@ -62,7 +63,7 @@ public class SaveDDLUtility
 	
 	public IFile saveDDLFileAsResource(StringWriter out, String filename){
 	    IPath thePath = new Path(filename);
-	    if ((thePath.getFileExtension() == null)  || (!thePath.getFileExtension().equals(DDL_FILE_EXTENSION))){
+	    if ((thePath.getFileExtension() == null)  || (!(thePath.getFileExtension().equalsIgnoreCase(DDL_FILE_EXTENSION) || thePath.getFileExtension().equalsIgnoreCase(ALTERNATE_DDL_FILE_EXTENSION)))){
 	        thePath = thePath.addFileExtension(DDL_FILE_EXTENSION);
 	    }
 	    IFile theFile = ResourcesPlugin.getWorkspace().getRoot().getFile(thePath);
@@ -70,7 +71,18 @@ public class SaveDDLUtility
 	    try 
         {
 	    file = new ByteArrayOutputStream ();
-	    file.write(out.toString().getBytes());
+	    
+	    // Save the file using encoding specified by user in
+	    // Window->Preferences...
+	    String encoding = ResourcesPlugin.getEncoding();
+	    if (encoding != null && !encoding.equals("")) {
+	    	file.write(out.toString().getBytes(encoding));
+	    }
+	    else
+	    {
+	    	file.write(out.toString().getBytes());
+	    }
+	    
 		saveDocumentAsResource (theFile, file);
         }
 		catch (FileNotFoundException e)
