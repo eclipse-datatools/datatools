@@ -15,11 +15,11 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.sqltools.common.ui.util.ImageDescriptorRegistry;
+import org.eclipse.datatools.sqltools.common.ui.util.ImageImageDescriptor;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
-import org.eclipse.debug.internal.ui.ImageDescriptorRegistry;
-import org.eclipse.debug.internal.ui.views.launch.ImageImageDescriptor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;

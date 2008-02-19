@@ -1,8 +1,8 @@
 package org.eclipse.datatools.sqltools.sqleditor.internal.templates.dialog;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
-import org.eclipse.jface.util.Assert;
 
 
 /**

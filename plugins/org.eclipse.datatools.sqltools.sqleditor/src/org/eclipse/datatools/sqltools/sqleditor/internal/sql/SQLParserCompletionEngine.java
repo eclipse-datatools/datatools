@@ -63,7 +63,6 @@ import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.internal.Workbench;
 
 /**
  * Computes proposals by <code>SQLParser</code>
@@ -124,8 +123,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		// init
 		resultCollector = new ResultCollector();
 
-		IEditorPart part = Workbench.getInstance()
-				.getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		IEditorPart part = SQLEditorPlugin.getActiveEditor();
 		if (part != null)
 		{
 			_editor = (SQLEditor) part.getAdapter(SQLEditor.class);

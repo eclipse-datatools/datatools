@@ -47,9 +47,9 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SymbolInserter;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.AddTemplateAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DMLDialogSelectionSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
-import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DMLDialogSelectionSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ToggleCommentAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLEditorContentOutlinePage;
@@ -119,6 +119,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Point;
@@ -139,7 +140,6 @@ import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 import org.eclipse.ui.editors.text.ILocationProvider;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.internal.texteditor.NLSUtility;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
 import org.eclipse.ui.texteditor.DefaultRangeIndicator;
@@ -1351,7 +1351,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
 
             if (provider.isDeleted(input) && original != null)
             {
-                String message = NLSUtility.format(SQLEditorResources.SQLEditor_file_deleted_or_not_accessible,
+                String message = NLS.bind(SQLEditorResources.SQLEditor_file_deleted_or_not_accessible,
                         original.getName());
                 dialog.setErrorMessage(null);
                 dialog.setMessage(message, IMessageProvider.WARNING);
@@ -1402,7 +1402,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
             if (status == null || status.getSeverity() != IStatus.CANCEL)
             {
                 String title = SQLEditorResources.SQLEditor_problem_save_as;
-                String msg = NLSUtility.format(SQLEditorResources.SQLEditor_could_not_save_as, x.getMessage());
+                String msg = NLS.bind(SQLEditorResources.SQLEditor_could_not_save_as, x.getMessage());
                 MessageDialog.openError(shell, title, msg);
             }
         }

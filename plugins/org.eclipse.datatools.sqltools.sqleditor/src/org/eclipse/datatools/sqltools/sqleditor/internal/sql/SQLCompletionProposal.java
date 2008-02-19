@@ -11,16 +11,15 @@
 
 package org.eclipse.datatools.sqltools.sqleditor.internal.sql;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.text.Assert;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.ui.internal.Workbench;
 
 
 /**
@@ -155,8 +154,7 @@ public class SQLCompletionProposal implements ISQLCompletionProposal
                 Point selection = getSelection(document);
                 if (selection != null)
                 {
-                    SQLEditor editor = ((SQLEditor) Workbench.getInstance().getActiveWorkbenchWindow().getActivePage()
-                        .getActiveEditor());
+                    SQLEditor editor = (SQLEditor)SQLEditorPlugin.getActiveEditor();
                     if (editor != null)
                     {
                         //move caret to the new position so that _postAction will get correct context information
