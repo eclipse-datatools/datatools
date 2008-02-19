@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Eclipse Data Tools Platform SQL Editor Core Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.editor.core;singleton:=true
-Bundle-Version: 1.0.0.200801031
+Bundle-Version: 1.0.0.200802191
 Bundle-Activator: org.eclipse.datatools.sqltools.core.EditorCorePlugin
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
@@ -37,8 +37,8 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.editor.contentassist,
  org.eclipse.datatools.sqltools.editor.core.connection,
  org.eclipse.datatools.sqltools.editor.template,
- org.eclipse.datatools.sqltools.internal;x-internal:=true,
- org.eclipse.datatools.sqltools.internal.core;x-internal:=true,
+ org.eclipse.datatools.sqltools.internal;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.sqlscrapbook",
+ org.eclipse.datatools.sqltools.internal.core;x-friends:="org.eclipse.datatools.sqltools.db.derby,org.eclipse.datatools.sqltools.db.generic,org.eclipse.datatools.sqltools.sqleditor,org.eclipse.datatools.sqltools.sqlscrapbook,org.eclipse.datatools.sqltools.routineeditor,org.eclipse.datatools.sqltools.debugger.core",
  org.eclipse.datatools.sqltools.internal.refresh,
  org.eclipse.datatools.sqltools.launching,
  org.eclipse.datatools.sqltools.sql.identifier,
