@@ -9,8 +9,8 @@
 		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.sqldevtools.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
 	</requires>
+	<includes id="org.eclipse.datatools.enablement.jdbc.feature" optional="false" version="1.6.0.200802041"/>
 	<plugin download-size="11" id="org.eclipse.datatools.connectivity.apache.derby.dbdefinition" install-size="11" unpack="false" version="1.0.0.200710151"/>
 	<plugin download-size="45" id="org.eclipse.datatools.connectivity.apache.derby.ui" install-size="45" unpack="false" version="1.0.0.200712171"/>
 	<plugin download-size="65" id="org.eclipse.datatools.connectivity.apache.derby" install-size="65" unpack="false" version="1.0.1.200801311"/>

@@ -13,6 +13,7 @@
 	<includes id="org.eclipse.datatools.enablement.hsqldb.feature" optional="true" version="1.6.0.200802041"/>
 	<includes id="org.eclipse.datatools.enablement.ibm.feature" optional="true" version="1.6.0.200802041"/>
 	<includes id="org.eclipse.datatools.enablement.jdbc.feature" optional="true" version="1.6.0.200802041"/>
+	<includes id="org.eclipse.datatools.enablement.jdt.feature" optional="true" version="1.6.0.200802041"/>
 	<includes id="org.eclipse.datatools.enablement.msft.feature" optional="true" version="1.6.0.200802041"/>
 	<includes id="org.eclipse.datatools.enablement.mysql.feature" optional="true" version="1.6.0.200802041"/>
 	<includes id="org.eclipse.datatools.enablement.oda.feature" optional="true" version="1.6.0.200802041"/>

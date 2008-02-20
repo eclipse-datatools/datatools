@@ -8,7 +8,7 @@
 	<requires>
 		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.sqldevtools.ddlgen.feature" version="1.6.0"/>
 	</requires>
+	<includes id="org.eclipse.datatools.sqldevtools.ddlgen.feature" optional="false" version="1.6.0.200802041"/>
 	<plugin download-size="57" id="org.eclipse.datatools.sqltools.tablewizard" install-size="57" unpack="false" version="1.0.0.200801181"/>
 </feature>

@@ -8,8 +8,8 @@
 	<requires>
 		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
 		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
 	</requires>
+	<includes id="org.eclipse.datatools.enablement.jdbc.feature" optional="false" version="1.6.0.200802041"/>
 	<plugin download-size="10" id="org.eclipse.datatools.enablement.hsqldb" install-size="10" unpack="false" version="1.0.0.200801241"/>
 	<plugin download-size="2" id="org.eclipse.datatools.enablement.hsqldb.dbdefinition" install-size="2" unpack="false" version="1.0.0.200801211"/>
 	<plugin download-size="24" id="org.eclipse.datatools.enablement.hsqldb.ui" install-size="24" unpack="false" version="1.0.0.200801211"/>
