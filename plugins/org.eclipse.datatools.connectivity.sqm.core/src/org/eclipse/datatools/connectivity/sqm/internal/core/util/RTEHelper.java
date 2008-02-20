@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
  */
 public class RTEHelper {
 
+	private static String LINE_RETURN = System.getProperty("line.separator");
 	/**
 	 * @param ddlStatements
 	 * @param databaseDefinition
@@ -46,9 +47,14 @@ public class RTEHelper {
 	}
 
 	private static String getDefaultStatementTerminator(DatabaseDefinition dbDef) {
-		// Probably should retrieve the default terminator from database
-		// definition
-		return dbDef.getProduct().equals("SQL Server") ? "\r\nGo\r\n\r\n" //$NON-NLS-1$ //$NON-NLS-2$
-				: ";\r\n\r\n"; //$NON-NLS-1$
+    	String statementTerminator = dbDef.getSQLTerminationCharacter();
+    	String fullStatementTermination = "";
+    	
+		if (statementTerminator.length() < 2){
+    		fullStatementTermination += statementTerminator + LINE_RETURN + LINE_RETURN;
+    	} else {
+    		fullStatementTermination += LINE_RETURN + statementTerminator + LINE_RETURN + LINE_RETURN;
+    	}
+		return fullStatementTermination;
 	}
 }
