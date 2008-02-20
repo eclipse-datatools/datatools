@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -38,9 +39,9 @@ public class ExpandAllActionDelegate implements IViewActionDelegate {
 
 	private final int EXPAND_TO_LEVEL = 25;
 	private IViewPart view;
-	private final boolean inDebug = false;
 	private Display currentDisplay = Display.getCurrent();
     private CommonViewer cViewer;
+	private static boolean mDebug = ConnectivityPlugin.getDefault().isDebugging();
 
 	/**
 	 * Creates a new instance of the receiver
@@ -140,8 +141,7 @@ public class ExpandAllActionDelegate implements IViewActionDelegate {
 		}
 		
 		long check = System.currentTimeMillis();
-		if (inDebug)
-			System.out.println("took " + (check - start) + " ms expanding " + item.getText() ); //$NON-NLS-1$ //$NON-NLS-2$
+		debug("took " + (check - start) + " ms expanding " + item.getText() ); //$NON-NLS-1$ //$NON-NLS-2$
 		if (item.getItemCount() > 0) {
 			
 		}
@@ -157,8 +157,7 @@ public class ExpandAllActionDelegate implements IViewActionDelegate {
 	private void expandToLevel2 (CommonViewer viewer, TreeItem item, IProgressMonitor monitor, int count) {
 		String subTask = ConnectivityUIPlugin.getDefault().getResourceString("DSE.Jobs.ExpandAll.Subtask.label", //$NON-NLS-1$
 				new String[] {item.getText()}); 
-		if (inDebug)
-			System.out.println("expanding..." + item.getText() + "... to level " + count); //$NON-NLS-1$ //$NON-NLS-2$
+		debug("expanding..." + item.getText() + "... to level " + count); //$NON-NLS-1$ //$NON-NLS-2$
 		monitor.subTask(subTask);
 		if(item.getData()==null) return;
 		
@@ -245,5 +244,10 @@ public class ExpandAllActionDelegate implements IViewActionDelegate {
 			}
 		}
 		return count;
+	}
+
+	public static void debug ( String msg ) {
+		if (mDebug)
+			System.out.println("Debug: " + msg); //$NON-NLS-1$
 	}
 }

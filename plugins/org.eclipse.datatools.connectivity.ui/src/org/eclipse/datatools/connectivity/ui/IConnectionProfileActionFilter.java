@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *    rcernich - initial API and implementation
+ *    brianf - updated to add read only repository filter
  *******************************************************************************/ 
 package org.eclipse.datatools.connectivity.ui;
 
@@ -15,7 +16,7 @@ import org.eclipse.ui.IActionFilter;
 
 
 /**
- * Constants used when evalutating connection profile state through
+ * Constants used when evaluating connection profile state through
  * IActionFilter or IPropertyTester
  * 
  * TODO: remove duplicate entries.
@@ -85,6 +86,13 @@ public interface IConnectionProfileActionFilter extends IActionFilter {
 
 	public static final String PROFILE_PROPERTY_DB_VENDOR = "org.eclipse.datatools.connectivity.profile.property.dbVendor";	//$NON-NLS-1$
 	public static final String DB_VENDOR = "dbVendor";	//$NON-NLS-1$
+
 	public static final String PROFILE_PROPERTY_DB_VERSION = "org.eclipse.datatools.connectivity.profile.property.dbVersion";	//$NON-NLS-1$
 	public static final String DB_VERSION = "dbVersion";	//$NON-NLS-1$
+	
+	public static final String PROFILE_PROPERTY_REPOSITORY_IS_READ_ONLY = "org.eclipse.datatools.connectivity.profile.property.repositoryIsReadOnly";//$NON-NLS-1$
+	public static final String REPOSITORY_IS_READ_ONLY = "repositoryIsReadOnly";//$NON-NLS-1$
+
+	public static final String PROFILE_PROPERTY_CAN_WORK_OFFLINE = "org.eclipse.datatools.connectivity.profile.property.canWorkOffline";//$NON-NLS-1$
+	public static final String CAN_WORK_OFFLINE = "canWorkOffline";//$NON-NLS-1$
 }

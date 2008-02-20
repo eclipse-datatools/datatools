@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -9,10 +9,16 @@
  * Contributors: 
  *  shongxum - initial API and implementation
  *  Actuate Corporation - refactored to improve extensibility
-
+ * 	brianf - added command handler code
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.HandlerEvent;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.IHandlerListener;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
 import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
@@ -27,25 +33,86 @@ import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
- * Ideally, this class should be splitted into two, one is for Action, the other
+ * Ideally, this class should be split into two, one is for Action, the other
  * is for View Action.
  * 
- * @author shongxum
+ * @author shongxum & brianf
  */
-public class ExportProfileViewAction extends Action implements
-		IViewActionDelegate {
+public class ExportProfileViewAction extends Action 
+	implements IHandler, IViewActionDelegate {
 
-    protected boolean isCompleted = false;
+	/**
+	 * A collection of objects listening to changes to this manager. This
+	 * collection is <code>null</code> if there are no listeners.
+	 */
+	private transient ListenerList listenerList = null;
+
+	protected boolean isCompleted = false;
 	private Shell shell;
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public ExportProfileViewAction() {
+		super();
 		setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ServersView.action.exportCPs")); //$NON-NLS-1$
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#addHandlerListener(org.eclipse.core.commands.IHandlerListener)
+	 */
+	public final void addHandlerListener(final IHandlerListener listener) {
+		if (listenerList == null) {
+			listenerList = new ListenerList(ListenerList.IDENTITY);
+		}
+
+		listenerList.add(listener);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#dispose()
+	 */
+	public final void dispose() {
+		listenerList = null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IWorkbenchPart part = HandlerUtil.getActivePart(event);
+		if (part == null && shell == null) 
+			return null;
+		else if (part instanceof IViewPart)
+			init((IViewPart)part);
+
+		isCompleted = false;    // reset state
+		final ExportProfilesDialog dlg = createExportProfilesDialog( shell );
+		int ret = dlg.open();
+		if (ret == Window.OK) {
+			BusyIndicator.showWhile(shell.getDisplay(), 
+			        createSaveExportedProfilesRunnable( shell, dlg ));
+		}
+		fireHandlerChanged(new HandlerEvent(this, false, false));
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#removeHandlerListener(org.eclipse.core.commands.IHandlerListener)
+	 */
+	public void removeHandlerListener(IHandlerListener handlerListener) {
+		if (listenerList != null) {
+			listenerList.remove(handlerListener);
+
+			if (listenerList.isEmpty()) {
+				listenerList = null;
+			}
+		}
 	}
 
 	/*
@@ -74,15 +141,17 @@ public class ExportProfileViewAction extends Action implements
 	 * @see org.eclipse.jface.action.IAction#run()
 	 */
 	public void run() {
-        isCompleted = false;    // reset state
-		final ExportProfilesDialog dlg = createExportProfilesDialog( shell );
-		int ret = dlg.open();
-		if (ret == Window.OK) {
-			BusyIndicator.showWhile(shell.getDisplay(), 
-			        createSaveExportedProfilesRunnable( shell, dlg ));
+		try {
+			execute(new ExecutionEvent());
+		} catch (final ExecutionException e) {
+			// TODO Do something meaningful and poignant.
 		}
 	}
 
+	/**
+	 * @param parentShell
+	 * @return
+	 */
 	protected ExportProfilesDialog createExportProfilesDialog( Shell parentShell )
 	{
 	    return new ExportProfilesDialog( parentShell );
@@ -122,6 +191,9 @@ public class ExportProfileViewAction extends Action implements
         };
     }
 
+    /**
+     * @return
+     */
     public boolean isCompleted()
     {
         return isCompleted;
@@ -143,5 +215,22 @@ public class ExportProfileViewAction extends Action implements
 	 *      org.eclipse.jface.viewers.ISelection)
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
+	}
+
+	/**
+	 * @param handlerEvent
+	 */
+	protected void fireHandlerChanged(final HandlerEvent handlerEvent) {
+		if (handlerEvent == null) {
+			throw new NullPointerException();
+		}
+		if( listenerList == null )
+		    return;
+
+		final Object[] listeners = listenerList.getListeners();
+		for (int i = 0; i < listeners.length; i++) {
+			final IHandlerListener listener = (IHandlerListener) listeners[i];
+			listener.handlerChanged(handlerEvent);
+		}
 	}
 }

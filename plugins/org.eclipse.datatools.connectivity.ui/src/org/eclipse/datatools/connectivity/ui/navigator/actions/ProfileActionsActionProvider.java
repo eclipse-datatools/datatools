@@ -158,6 +158,7 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
 	 * @see org.eclipse.ui.navigator.CommonActionProvider#init(org.eclipse.ui.navigator.ICommonActionExtensionSite)
 	 */
 	public void init(ICommonActionExtensionSite aConfig) {
+		super.init(aConfig);
         this.aViewer = aConfig.getStructuredViewer();
         makeActions();
 
@@ -183,6 +184,9 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
 	 */
 	private void makeActions() {
 		addCPAction = new AddProfileViewAction();
+		addCPAction.setUseSelection(false);
+		addCPAction.setIgnoreCategory(false);
+		addCPAction.init(getActionSite().getViewSite().getShell());
 		
 		propAction = new ViewPropertyAction(this.aViewer);
 		propAction.setActionDefinitionId("org.eclipse.ui.file.properties"); //$NON-NLS-1$

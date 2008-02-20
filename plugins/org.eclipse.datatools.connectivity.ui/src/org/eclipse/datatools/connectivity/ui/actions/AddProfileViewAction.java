@@ -16,6 +16,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.HandlerEvent;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.IHandlerListener;
+import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.IManagedConnection;
@@ -45,25 +51,41 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
 /**
- * Ideally, this class should be splitted into two, one is for Action, the other
+ * Ideally, this class should be split into two, one is for Action, the other
  * is for View Action.
  * 
  * @author shongxum, brianf
  */
-public class AddProfileViewAction extends Action implements IViewActionDelegate {
+public class AddProfileViewAction extends Action 
+	implements IHandler, IViewActionDelegate {
 
-	private String categoryID;
+	protected String categoryID;
 	private IConnectionProfile parentProfile;
 	private int returnCode;
 	private IConnectionProfile addedProfile;
 	private Shell shell;
+	private boolean ignoreCategory = false;
+	private boolean useSelection = true;
+	
+	private static String PROP_IGNORE_CATEGORY = "org.eclipse.datatools.connectivity.ui.ignoreCategory";//$NON-NLS-1$
+	private static String PROP_USE_SELECTION = "org.eclipse.datatools.connectivity.ui.useSelection";//$NON-NLS-1$
 	
 	/**
-	 * 
+	 * A collection of objects listening to changes to this manager. This
+	 * collection is <code>null</code> if there are no listeners.
+	 */
+	private transient ListenerList listenerList = null;
+
+	/**
+	 * Constructor
 	 */
 	public AddProfileViewAction() {
+		super();
 		setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ServersView.action.newCP")); //$NON-NLS-1$
 	}
@@ -97,17 +119,69 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 	 * with a view.
 	 * @param parentShell
 	 */
-	protected void init( Shell parentShell )
+	public void init( Shell parentShell )
 	{
 	    shell = parentShell;
 	}	
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.action.IAction#run()
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#addHandlerListener(org.eclipse.core.commands.IHandlerListener)
 	 */
-	public void run() {
+	public final void addHandlerListener(final IHandlerListener listener) {
+		if (listenerList == null) {
+			listenerList = new ListenerList(ListenerList.IDENTITY);
+		}
+
+		listenerList.add(listener);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#dispose()
+	 */
+	public final void dispose() {
+		listenerList = null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IWorkbenchPart part = HandlerUtil.getActivePart(event);
+		if (part == null && event.getApplicationContext() != null) 
+			return null;
+		else if (part instanceof IViewPart)
+			init((IViewPart)part);
+		
+	    String ignoreCategoryValue = event.getParameter(PROP_IGNORE_CATEGORY);
+	    if (ignoreCategoryValue != null && ignoreCategoryValue.trim().length() > 0) {
+	    	ignoreCategory = Boolean.valueOf(ignoreCategoryValue).booleanValue();
+	    }
+		
+	    String useSelectionValue = event.getParameter(PROP_USE_SELECTION);
+	    if (useSelectionValue != null && useSelectionValue.trim().length() > 0 ) {
+	    	useSelection = Boolean.valueOf(useSelectionValue).booleanValue();
+	    }
+
+	    if (ignoreCategory) {
+			categoryID = null;
+		}
+		else if (useSelection) {
+			ISelection selection =
+				part.getSite().getSelectionProvider().getSelection();
+			if (selection instanceof IStructuredSelection) {
+				Object sel = ((IStructuredSelection) selection).getFirstElement();
+				// update enabled state for add action on categories.
+				if (sel instanceof ICategory) {
+					setCategory((ICategory)sel);
+				}
+				else if (sel instanceof IConnectionProfile) {
+					setCategory(((IConnectionProfile)sel).getCategory());
+				}
+				else
+					categoryID = null;
+			}
+		}
+
 		IWizard wizard = getDefaultWizard(new String(), categoryID);
 
 		if (wizard == null) {
@@ -127,6 +201,53 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		
 		ProfileManager.getInstance().removeProfileListener(listener);
 		
+		fireHandlerChanged(new HandlerEvent(this, false, false));
+
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.IHandler#removeHandlerListener(org.eclipse.core.commands.IHandlerListener)
+	 */
+	public void removeHandlerListener(IHandlerListener handlerListener) {
+		if (listenerList != null) {
+			listenerList.remove(handlerListener);
+
+			if (listenerList.isEmpty()) {
+				listenerList = null;
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.jface.action.IAction#run()
+	 */
+	public void run() {
+		
+		if (shell == null) {
+			shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
+		}
+		
+		IWizard wizard = getDefaultWizard(new String(), categoryID);
+
+		if (wizard == null) {
+	        ViewerFilter[] wizardSelectionFilters = getApplicableFilters( categoryID );
+			wizard = new NewCPWizard(wizardSelectionFilters,parentProfile);
+		}		
+
+		WizardDialog wizardDialog = new WizardDialog(shell, wizard);		
+		wizardDialog.setBlockOnOpen(true);
+		
+		InternalProfileListener listener = new InternalProfileListener();
+		ProfileManager.getInstance().addProfileListener(listener);
+		
+		returnCode = wizardDialog.open();
+		
+		addedProfile = listener.cachedProfile;
+		
+		ProfileManager.getInstance().removeProfileListener(listener);
 	}
     
     /**
@@ -245,10 +366,16 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		this.categoryID = categoryID;
 	}
 
+	/**
+	 * @param profile
+	 */
 	public void setParentProfile(IConnectionProfile profile) {
 		parentProfile = profile;
 	}
 	
+	/**
+	 * @return
+	 */
 	public IConnectionProfile getParentProfile() {
 		return parentProfile;
 	}
@@ -267,6 +394,11 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 		return this.addedProfile;
 	}
 	
+	/**
+	 * @param parentCategoryID
+	 * @param categoryID
+	 * @return
+	 */
 	private IWizard getDefaultWizard(String parentCategoryID, String categoryID) {
 		List wizardNodes = new CPWizardSelectionPage(new String())
 				.getCategoryItems(parentCategoryID);
@@ -340,6 +472,65 @@ public class AddProfileViewAction extends Action implements IViewActionDelegate 
 
 		public void profileDeleted(IConnectionProfile profile) {
 			// ignore
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.action.Action#isEnabled()
+	 */
+	public boolean isEnabled() {
+		return true;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.action.Action#isHandled()
+	 */
+	public boolean isHandled() {
+		return true;
+	}
+	
+	/**
+	 * @return
+	 */
+	public boolean getIgnoreCategory() {
+		return this.ignoreCategory;
+	}
+	
+	/**
+	 * @param flag
+	 */
+	public void setIgnoreCategory( boolean flag ) {
+		this.ignoreCategory = flag;
+	}
+
+	/**
+	 * @return
+	 */
+	public boolean getUseSelection() {
+		return this.useSelection;
+	}
+	
+	/**
+	 * @param flag
+	 */
+	public void setUseSelection( boolean flag ) {
+		this.useSelection = flag;
+	}
+
+	/**
+	 * @param handlerEvent
+	 */
+	protected void fireHandlerChanged(final HandlerEvent handlerEvent) {
+		if (handlerEvent == null) {
+			throw new NullPointerException();
+		}
+		if (listenerList == null)
+			return;
+
+		final Object[] listeners = listenerList.getListeners();
+		for (int i = 0; i < listeners.length; i++) {
+			final IHandlerListener listener = (IHandlerListener) listeners[i];
+			listener.handlerChanged(handlerEvent);
 		}
 	}
 }
