@@ -24,6 +24,7 @@ import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
 import org.eclipse.datatools.sqltools.result.internal.core.IResultManager;
 import org.eclipse.datatools.sqltools.result.internal.utils.ILogger;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
+import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -534,12 +535,17 @@ public class ResultsViewAPI
             }
         }
 
-        activeWindow.getShell().getDisplay().syncExec(new Runnable()
+        activeWindow.getShell().getDisplay().asyncExec(new Runnable()
         {
             public void run()
             {
                 try
                 {
+                    IViewPart view = _activePage.findView(ResultsConstants.SQL_RESULTS_VIEW_ID);
+                    if(_activePage.isPartVisible(view))
+                    {
+                    	return;
+                    }
                     _activePage.showView(ResultsConstants.SQL_RESULTS_VIEW_ID, null, IWorkbenchPage.VIEW_VISIBLE);
                 }
                 catch (PartInitException ex)
