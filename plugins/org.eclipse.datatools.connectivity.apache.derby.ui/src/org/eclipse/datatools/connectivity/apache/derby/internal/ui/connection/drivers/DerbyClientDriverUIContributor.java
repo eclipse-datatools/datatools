@@ -130,12 +130,20 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 	private IDriverUIContributorInformation contributorInformation;
 
 	private Properties properties;
+	
+	private boolean isReadOnly = false;
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 
-		if ((parentComposite == null) || parentComposite.isDisposed()) {
+		if ((parentComposite == null) || parentComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
 			GridData gd;
 
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			parentComposite.setExpandHorizontal(true);
@@ -153,7 +161,7 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			databaseLabel.setLayoutData(gd);
 
-			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.verticalAlignment = GridData.BEGINNING;
 			gd.horizontalAlignment = GridData.FILL;
@@ -166,7 +174,7 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			hostLabel.setLayoutData(gd);
 
-			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -180,7 +188,7 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			portLabel.setLayoutData(gd);
 
-			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -194,7 +202,7 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			usernameLabel.setLayoutData(gd);
 
-			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -209,7 +217,7 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			passwordLabel.setLayoutData(gd);
 
 			passwordText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER
-					| SWT.PASSWORD);
+					| SWT.PASSWORD | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -231,8 +239,8 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 3;
 			upgradeCheck.setLayoutData(gd);
 
-			this.savePasswordButton = new Button(baseComposite, SWT.CHECK);
-			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
+			savePasswordButton = new Button(baseComposite, SWT.CHECK);
+			savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -326,9 +334,19 @@ public class DerbyClientDriverUIContributor implements IDriverUIContributor,
 		addListeners();
 	}
 
-	public void handleEvent(Event event) {
-		updateURL();
-		setConnectionInformation();
+	public void handleEvent(Event event) {	
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			} else if (event.widget == createCheck){
+				createCheck.setSelection(!createCheck.getSelection());
+			} else if (event.widget == upgradeCheck){
+				upgradeCheck.setSelection(!upgradeCheck.getSelection());
+			}	
+		} else {
+			updateURL();
+			setConnectionInformation();
+		}
 	}
 
 	public boolean determineContributorCompletion() {

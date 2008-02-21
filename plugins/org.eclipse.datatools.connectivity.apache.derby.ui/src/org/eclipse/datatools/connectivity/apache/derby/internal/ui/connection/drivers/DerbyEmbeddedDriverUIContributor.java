@@ -159,6 +159,8 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 
 	private String databaseName;
 
+	private boolean isReadOnly = false;
+	
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
 		if (databaseLocationCombo.getText().equals("")) //$NON-NLS-1$
@@ -174,7 +176,13 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 	}
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
-		if (parentComposite == null || parentComposite.isDisposed()) {
+		if (parentComposite == null || parentComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			parentComposite.setExpandHorizontal(true);
@@ -220,11 +228,13 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 
 			databaseLocationCombo = new Combo(textAndBrowseComposite,
 					SWT.SINGLE | SWT.BORDER);
+			databaseLocationCombo.setEnabled(!isReadOnly);
 			gd = new GridData(GridData.FILL_HORIZONTAL);
 			databaseLocationCombo.setLayoutData(gd);
 
 			browseDatabaseLocation = new Button(textAndBrowseComposite,
 					SWT.PUSH);
+			browseDatabaseLocation.setEnabled(!isReadOnly);
 			browseDatabaseLocation.setText(CUI_NEWCW_DBBROWSE_BTN_UI_);
 			browseDatabaseLocation.setLayoutData(new GridData(
 					GridData.HORIZONTAL_ALIGN_END));
@@ -241,7 +251,7 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			usernameLabel.setLayoutData(gd);
 
-			usernameText = new Text(generalComposite, SWT.SINGLE | SWT.BORDER);
+			usernameText = new Text(generalComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -256,7 +266,7 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 			passwordLabel.setLayoutData(gd);
 
 			passwordText = new Text(generalComposite, SWT.SINGLE | SWT.BORDER
-					| SWT.PASSWORD);
+					| SWT.PASSWORD | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -305,7 +315,7 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 					.setText(CUI_NEWCW_OPTIONAL_PROPERTIES_LBL_UI_); //$NON-NLS-1$
 
 			optionalConnectionProperties = new DelimitedStringList(
-					optionalComposite, SWT.NONE);
+					optionalComposite, SWT.NONE, isReadOnly);
 			gdata = new GridData(GridData.FILL_HORIZONTAL);
 			gdata.horizontalSpan = 2;
 			optionalConnectionProperties.setLayoutData(gdata);
@@ -443,8 +453,18 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 	}
 
 	public void handleEvent(Event event) {
-		updateURL();
-		setConnectionInformation();
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			} else if (event.widget == createCheck){
+				createCheck.setSelection(!createCheck.getSelection());
+			} else if (event.widget == upgradeCheck){
+				upgradeCheck.setSelection(!upgradeCheck.getSelection());
+			}	
+		} else {
+			updateURL();
+			setConnectionInformation();
+		}
 	}
 
 	public void addListeners() {
