@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.ui.actions.ViewPropertyAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.actions.ActionFactory;
@@ -183,22 +184,32 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
 	 * 
 	 */
 	private void makeActions() {
-		addCPAction = new AddProfileViewAction();
+		addCPAction = createAddProfileViewAction( );
 		addCPAction.setUseSelection(false);
 		addCPAction.setIgnoreCategory(false);
 		addCPAction.init(getActionSite().getViewSite().getShell());
 		
-		propAction = new ViewPropertyAction(this.aViewer);
+		propAction = createViewPropertyAction(this.aViewer);
 		propAction.setActionDefinitionId("org.eclipse.ui.file.properties"); //$NON-NLS-1$
 
-    	renameAction = new RenameAction();
+    	renameAction = createRenameAction();
     	renameAction.setActionDefinitionId("org.eclipse.ui.edit.rename"); //$NON-NLS-1$
     	renameAction.setText(ConnectivityUIPlugin.getDefault().getResourceString("DSE.Rename.label")); //$NON-NLS-1$
     	
-    	deleteAction = new DeleteAction();
+    	deleteAction = createDeleteAction();
     	deleteAction.setText(ConnectivityUIPlugin.getDefault().getResourceString("DSE.Delete.label")); //$NON-NLS-1$
     	deleteAction.setActionDefinitionId("org.eclipse.ui.edit.delete"); //$NON-NLS-1$
 	}
+
+	/**
+	 * Creates the action that adds a new connection profile instance.
+	 * Subclass may override to create an extended action.
+	 * @return an AddProfileViewAction instance
+     * @since DTP 1.6
+	 */
+	protected AddProfileViewAction createAddProfileViewAction() {
+        return new AddProfileViewAction();
+    }
 
 	/**
 	 * Sets the action that adds a new connection profile instance. 
@@ -212,6 +223,17 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
 	}
 
 	/**
+     * Creates the action that views a profile's properties.
+     * Subclass may override to create an extended action.
+     * @param viewer
+     * @return a ViewPropertyAction instance
+     * @since DTP 1.6
+	 */
+	protected ViewPropertyAction createViewPropertyAction( Viewer viewer ) {
+	    return new ViewPropertyAction( viewer );
+	}
+	
+	/**
      * Sets the action that views a profile's properties. 
      * This should be called after {@link #init(ICommonActionExtensionSite)} to override
      * the default ViewPropertyAction.
@@ -223,6 +245,16 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
     }
 
     /**
+     * Creates the action that renames a connection profile instance.
+     * Subclass may override to create an extended action.
+     * @return a RenameAction instance
+     * @since DTP 1.6
+     */
+    protected RenameAction createRenameAction() {
+        return new RenameAction();
+    }
+
+    /**
      * Sets the action that renames a connection profile instance. 
      * This should be called after {@link #init(ICommonActionExtensionSite)} to override
      * the default RenameAction.
@@ -231,6 +263,16 @@ public class ProfileActionsActionProvider extends CommonActionProvider {
      */
     protected void setRenameAction( RenameAction action ) {
         renameAction = action;
+    }
+
+    /**
+     * Creates the action that deletes a connection profile instance.
+     * Subclass may override to create an extended action.
+     * @return a DeleteAction instance
+     * @since DTP 1.6
+     */
+    protected DeleteAction createDeleteAction() {
+        return new DeleteAction();
     }
 
     /**
