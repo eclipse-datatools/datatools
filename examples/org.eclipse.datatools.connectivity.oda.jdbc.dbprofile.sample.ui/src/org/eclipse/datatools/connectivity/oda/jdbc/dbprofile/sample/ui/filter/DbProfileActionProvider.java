@@ -14,8 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.jdbc.dbprofile.sample.ui.filter;
 
+import org.eclipse.datatools.connectivity.ui.actions.AddProfileViewAction;
 import org.eclipse.datatools.connectivity.ui.navigator.actions.ProfileActionsActionProvider;
-import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 
 /**
  * Extends the DTP Data Source Explorer's Default Profile Action Provider
@@ -24,15 +24,12 @@ import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 public class DbProfileActionProvider extends
         ProfileActionsActionProvider
 {
-    public void init(ICommonActionExtensionSite aConfig)
-    {
-        super.init(  aConfig );
-
-        // override with own AddProfileViewAction
-        setAddProfileViewAction( getAddDbProfileViewAction() );
-    }
-
-    protected AddDbProfileViewAction getAddDbProfileViewAction()
+    
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.ui.navigator.actions.ProfileActionsActionProvider#createAddProfileViewAction()
+     */
+    protected AddProfileViewAction createAddProfileViewAction()
     {
         return new AddDbProfileViewAction();
     }
