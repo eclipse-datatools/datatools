@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ *          IBM Corporation - defect fix #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
@@ -80,17 +81,32 @@ public class DelimitedStringList extends Composite {
 	 * @param style
 	 */
 	public DelimitedStringList(Composite parent, int style) {
+		this(parent, style, false);
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param parent
+	 * @param style
+	 */
+	public DelimitedStringList(Composite parent, int style, boolean isReadOnly) {
 		super(parent, style);
-
+		
 		this.changeListeners = new ListenerList();
-
+		
+		int additionalStyles = SWT.NONE;
+		if (isReadOnly){
+			additionalStyles = SWT.READ_ONLY;
+		}
+		
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginWidth = 0;
 		gridLayout.marginHeight = 0;
 		gridLayout.numColumns = 2;
 		setLayout(gridLayout);
 		{
-			this.mAddText = new Text(this, SWT.BORDER);
+			this.mAddText = new Text(this, SWT.BORDER | additionalStyles);
 			this.mAddText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 			this.mAddText.addModifyListener(new AddTextModifyListener(this));
 		}

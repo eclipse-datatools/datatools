@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ *         IBM Corporation - defect fix #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui;
 
@@ -65,6 +66,7 @@ public class DriverListCombo {
 	private String mInitialDriverName;
 	private boolean mNullDriverValid = true;
 	private String mFilter = null;
+	private boolean isReadOnly = false;
 
 	// show the label?
 	private boolean mShowLabel = true;
@@ -79,7 +81,12 @@ public class DriverListCombo {
 	 * @param style
 	 */
 	public DriverListCombo() {
+		this(false);
+	}
+	
+	public DriverListCombo(boolean isReadOnly) {
 		this.changeListeners = new ListenerList();
+		this.isReadOnly = isReadOnly;
 	}
 
 	/**
@@ -208,6 +215,7 @@ public class DriverListCombo {
 
 		this.mComboList = new Combo(this.mPanel, SWT.DROP_DOWN | SWT.BORDER
 				| SWT.READ_ONLY);
+		this.mComboList.setEnabled(!isReadOnly);
 		GridData cdata = new GridData(GridData.HORIZONTAL_ALIGN_FILL
 				| GridData.GRAB_HORIZONTAL);
 		this.mComboList.setLayoutData(cdata);
@@ -218,6 +226,7 @@ public class DriverListCombo {
 		this.mComboList.addSelectionListener(listener);
 
 		this.mModify = new Button(this.mPanel, SWT.PUSH);
+		this.mModify.setEnabled(!isReadOnly);
 		this.mModify.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
 		this.mModify.setText(DriverMgmtMessages
 				.getString("DriverListCombo.button.browse")); //$NON-NLS-1$

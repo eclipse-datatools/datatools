@@ -53,9 +53,17 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 	private Properties properties;
 
 	private DialogPage parentPage;
+	
+	private boolean isReadOnly = false;
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
-		if ((scrolledComposite == null) || scrolledComposite.isDisposed()) {
+		if ((scrolledComposite == null) || scrolledComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			scrolledComposite.setExpandHorizontal(true);
@@ -93,7 +101,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 					.getResourceString(
 							"OtherDriverUIContributor.databaseName.label")); //$NON-NLS-1$
 
-			databaseNameText = new Text(generalComposite, SWT.BORDER);
+			databaseNameText = new Text(generalComposite, SWT.BORDER | additionalStyles);
 			databaseNameText.setLayoutData(new GridData(
 					GridData.FILL_HORIZONTAL));
 
@@ -102,7 +110,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			urlLabel.setText(ConnectivityUIPlugin.getDefault()
 					.getResourceString("OtherDriverUIContributor.url.label")); //$NON-NLS-1$
 
-			urlText = new Text(generalComposite, SWT.BORDER);
+			urlText = new Text(generalComposite, SWT.BORDER | additionalStyles);
 			urlText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 			Label usernameLabel = new Label(generalComposite, SWT.NULL);
@@ -111,7 +119,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 					.getResourceString(
 							"OtherDriverUIContributor.userName.label")); //$NON-NLS-1$
 
-			usernameText = new Text(generalComposite, SWT.BORDER);
+			usernameText = new Text(generalComposite, SWT.BORDER | additionalStyles);
 			usernameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 			Label passwordLabel = new Label(generalComposite, SWT.NULL);
@@ -120,11 +128,11 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 					.getResourceString(
 							"OtherDriverUIContributor.password.label")); //$NON-NLS-1$
 
-			passwordText = new Text(generalComposite, SWT.BORDER | SWT.PASSWORD);
+			passwordText = new Text(generalComposite, SWT.BORDER | SWT.PASSWORD | additionalStyles);
 			passwordText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
-			this.savePasswordButton = new Button(generalComposite, SWT.CHECK);
-			this.savePasswordButton.setText(ConnectivityUIPlugin.getDefault()
+			savePasswordButton = new Button(generalComposite, SWT.CHECK);
+			savePasswordButton.setText(ConnectivityUIPlugin.getDefault()
 					.getResourceString(
 							"OtherDriverUIContributor.savePassword.label")); //$NON-NLS-1$
 			GridData gd = new GridData();
@@ -144,7 +152,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 							"OtherDriverUIContributor.optionalProps.label")); //$NON-NLS-1$
 
 			this.optionalConnectionProperties = new DelimitedStringList(
-					optionalComposite, SWT.NONE);
+					optionalComposite, SWT.NONE, isReadOnly);
 			gdata = new GridData(GridData.FILL_HORIZONTAL);
 			gdata.horizontalSpan = 2;
 			this.optionalConnectionProperties.setLayoutData(gdata);
@@ -199,7 +207,13 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 	}
 
 	public void handleEvent(Event event) {
-		setConnectionInformation();
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			}
+		} else {
+			setConnectionInformation();
+		}
 	}
 
 	public boolean determineContributorCompletion() {

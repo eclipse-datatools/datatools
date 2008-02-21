@@ -49,7 +49,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 	public void createCustomControl(Composite parent, boolean isReadOnly) {
 		parent.setLayout(new GridLayout());
 
-		driverCombo = new DriverListCombo();
+		driverCombo = new DriverListCombo(isReadOnly);
 		driverCombo
 				.setLabelText(ConnectivityUIPlugin
 						.getDefault()
