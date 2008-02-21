@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.ui;singleton:=true
-Bundle-Version: 1.0.3.200802181
+Bundle-Version: 1.0.3.200802211
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin
 Bundle-Vendor: Eclipse.org

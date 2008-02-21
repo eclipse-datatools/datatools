@@ -372,7 +372,7 @@ public class XPathChoosePage extends DataSetWizardPage
 				absolutePathButton.setSelection( true );	
 				anyLocationButton.setSelection( false );
 				customButton.setSelection( false );
-				xmlPathField.setVisible( false );
+				doSelectAbsolutePathButton( );
 			}			
 		});
 		anyLocationLabel.addListener( SWT.MouseDown, new Listener(){
@@ -382,7 +382,7 @@ public class XPathChoosePage extends DataSetWizardPage
 				anyLocationButton.setSelection( true );
 				absolutePathButton.setSelection( false );	
 				customButton.setSelection( false );
-				xmlPathField.setVisible( false );
+				doSelectAnyLocationButton( );
 			}			
 		});
 		customPathLabel.addListener( SWT.MouseDown, new Listener(){
@@ -402,25 +402,14 @@ public class XPathChoosePage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				if ( absolutePathButton.getSelection( )
-						&& ( xpathList != null && xpathList.size( ) > 0 ) )
-
-				{
-					rootPath = xpathList.get( 0 ).toString( );
-					xmlPathField.setVisible( false );
-				}
+				doSelectAbsolutePathButton( );
 			}
 		} );
 		anyLocationButton.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				if ( anyLocationButton.getSelection( )
-						&& ( xpathList != null && xpathList.size( ) > 1 ) )
-				{
-					rootPath = xpathList.get( 1 ).toString( );
-					xmlPathField.setVisible( false );
-				}
+				doSelectAnyLocationButton( );
 			}
 		} );
 		customButton.addSelectionListener( new SelectionAdapter( ) {
@@ -439,6 +428,35 @@ public class XPathChoosePage extends DataSetWizardPage
 		composite.layout( );
 	}
 
+	/**
+	 * Reset the rootPath value after selecting the "Absolute Path" button
+	 * 
+	 */
+	private void doSelectAbsolutePathButton( )
+	{
+		if ( absolutePathButton.getSelection( )
+				&& ( xpathList != null && xpathList.size( ) > 0 ) )
+
+		{
+			rootPath = xpathList.get( 0 ).toString( );
+			xmlPathField.setVisible( false );
+		}
+	}
+
+	/**
+	 * Reset the rootPath value after selecting the "Any Location Path" button
+	 * 
+	 */
+	private void doSelectAnyLocationButton( )
+	{
+		if ( anyLocationButton.getSelection( )
+				&& ( xpathList != null && xpathList.size( ) > 1 ) )
+		{
+			rootPath = xpathList.get( 1 ).toString( );
+			xmlPathField.setVisible( false );
+		}
+	}
+	
 	/**
 	 * 
 	 */
