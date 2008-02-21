@@ -50,6 +50,7 @@ public class DelimitedStringList extends Composite {
 	private List mPropsList;
 	private Text mAddText;
 	private Text mHiddenText;
+	private boolean isReadOnly = false;
 
 	// current delimiter
 	private String mDelimiter = DELIMITER;
@@ -92,7 +93,7 @@ public class DelimitedStringList extends Composite {
 	 */
 	public DelimitedStringList(Composite parent, int style, boolean isReadOnly) {
 		super(parent, style);
-		
+		this.isReadOnly = isReadOnly;
 		this.changeListeners = new ListenerList();
 		
 		int additionalStyles = SWT.NONE;
@@ -168,6 +169,7 @@ public class DelimitedStringList extends Composite {
 					GridData.HORIZONTAL_ALIGN_FILL));
 			this.mDownButton.setText(DriverMgmtMessages
 					.getString("DelimitedStringList.button.down"));//$NON-NLS-1$
+			this.mDownButton.setEnabled(false);
 			this.mDownButton.addSelectionListener(new SelectionAdapter() {
 
 				public void widgetSelected(SelectionEvent e) {
@@ -181,6 +183,7 @@ public class DelimitedStringList extends Composite {
 					GridData.HORIZONTAL_ALIGN_FILL));
 			this.mRemoveButton.setText(DriverMgmtMessages
 					.getString("DelimitedStringList.button.remove"));//$NON-NLS-1$
+			this.mRemoveButton.setEnabled(false);
 			this.mRemoveButton.addSelectionListener(new SelectionAdapter() {
 
 				public void widgetSelected(SelectionEvent e) {
@@ -190,6 +193,7 @@ public class DelimitedStringList extends Composite {
 		}
 		{
 			this.mClearAllButton = new Button(this, SWT.NONE);
+			this.mClearAllButton.setEnabled(false);
 			this.mClearAllButton.setLayoutData(new GridData(
 					GridData.HORIZONTAL_ALIGN_FILL));
 			this.mClearAllButton.setText(DriverMgmtMessages
@@ -241,7 +245,9 @@ public class DelimitedStringList extends Composite {
 	private void addStringToList() {
 		if (this.mAddText.getText().length() > 0) {
 			this.mPropsList.add(this.mAddText.getText().trim());
-			this.mClearAllButton.setEnabled(true);
+			if (!isReadOnly){
+				this.mClearAllButton.setEnabled(true);
+			}
 			String selected = getSelection();
 			this.mHiddenText.setText(selected.trim());
 			this.mAddText.setSelection(0, this.mAddText.getText().length());
@@ -372,33 +378,35 @@ public class DelimitedStringList extends Composite {
 	 * Update button state based on what's selected
 	 */
 	public void updatePropertyButtons() {
-		this.mDownButton.setEnabled(false);
-		this.mUpButton.setEnabled(false);
-		this.mRemoveButton.setEnabled(false);
-		this.mClearAllButton.setEnabled(false);
-			
-		if (this.mPropsList.getItemCount() > 0) {
-			
-			this.mClearAllButton.setEnabled(true);
-			
-			if(this.mPropsList.getSelectionCount() == 1){
-				int selection = this.mPropsList.getSelectionIndex();
-
-				this.mRemoveButton.setEnabled(true);
-
-				if (selection - 1 >= 0)
-					this.mUpButton.setEnabled(true);
-
-				if (selection + 1 < this.mPropsList.getItemCount())
-					this.mDownButton.setEnabled(true);
+		if (!isReadOnly){
+			this.mDownButton.setEnabled(false);
+			this.mUpButton.setEnabled(false);
+			this.mRemoveButton.setEnabled(false);
+			this.mClearAllButton.setEnabled(false);
+				
+			if (this.mPropsList.getItemCount() > 0) {
+				
+				this.mClearAllButton.setEnabled(true);
+				
+				if(this.mPropsList.getSelectionCount() == 1){
+					int selection = this.mPropsList.getSelectionIndex();
+	
+					this.mRemoveButton.setEnabled(true);
+	
+					if (selection - 1 >= 0)
+						this.mUpButton.setEnabled(true);
+	
+					if (selection + 1 < this.mPropsList.getItemCount())
+						this.mDownButton.setEnabled(true);
+				}
 			}
+	
+			String value = ""; //$NON-NLS-1$
+			value = this.mAddText.getText();
+			boolean flag = value != null && value.trim().length() > 0;
+			boolean valid = validateText(value);
+			this.mAddButton.setEnabled(flag && valid);
 		}
-
-		String value = ""; //$NON-NLS-1$
-		value = this.mAddText.getText();
-		boolean flag = value != null && value.trim().length() > 0;
-		boolean valid = validateText(value);
-		this.mAddButton.setEnabled(flag && valid);
 	}
 
 	private boolean validateText(String text) {
