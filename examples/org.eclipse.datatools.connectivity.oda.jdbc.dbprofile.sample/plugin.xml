@@ -13,8 +13,8 @@
             id="%oda.data.source.id">
          <properties></properties>
          <relationship
-               relatedId="%oda.data.source.id"
-               type="replacedBy">
+               relatedId="%parent.category.id"
+               type="wrapperOf">
          </relationship>
       </dataSource>
       <dataSet
@@ -67,7 +67,7 @@
       <category
             id="%oda.data.source.id"
             name="%data.source.name"
-            parentCategory="org.eclipse.datatools.connectivity.db.category">
+            parentCategory="%parent.category.id">
       </category>
       <connectionProfile
             pingFactory="org.eclipse.datatools.connectivity.oda.profile.OdaConnectionFactory"

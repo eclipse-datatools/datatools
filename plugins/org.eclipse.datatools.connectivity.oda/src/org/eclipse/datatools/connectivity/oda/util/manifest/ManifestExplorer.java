@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -340,12 +340,13 @@ public class ManifestExplorer
      */
     public ExtensionManifest[] getExtensionManifests( String extensionPoint )
     {
-        // for backward compatibility, exclude those extensions 
-        // that have no data set elements defined, and
-        // include deprecated extensions
+        // for backward compatibility, hide those extensions 
+        // that have no data set elements defined, but
+        // include deprecated and wrapper extensions
         Filter aFilter = createFilter();
         aFilter.setMissingDataSetTypesFilter( true );
         aFilter.setDeprecatedFilter( false );
+        aFilter.setHideWrapper( false );
         return getExtensionManifests( extensionPoint, aFilter );
     }
     
@@ -433,10 +434,17 @@ public class ManifestExplorer
                     /* excludes this extension manifest if the filter argument
                      * indicates to filter out deprecated extensions
                      */
-                    if( collectionFilter.isDeprecatedFilterOn() &&
+                    else if( collectionFilter.isDeprecatedFilterOn() &&
                         manifest.isDeprecated() )
                         includeExtension = false;
-                }
+                    
+                    /* excludes this extension manifest if the filter argument
+                     * indicates to hide wrapper extensions
+                     */
+                    else if( collectionFilter.isHideWrapperFilterOn() &&
+                        manifest.isWrapper() )
+                        includeExtension = false;
+               }
                 
                 if( includeExtension )
                     manifestList.add( manifest );
@@ -673,39 +681,51 @@ public class ManifestExplorer
     /**
      * Filtering options for the manifest explorer to apply when
      * retrieving a collection of ODA data source extension manifests.
+     * @since 3.0.3
      */
     public class Filter
     {
         private boolean m_noDataSetTypes;   // extensions with no data set types defined
-        private boolean m_deprecated;       // deprecated extensions
+        private boolean m_hideDeprecated;       // deprecated extensions
+        private boolean m_hideWrapper;          // wrapper extensions
         
         Filter()
         {
-            // do not exclude or filter out any extensions, by default
             m_noDataSetTypes = false;
-            m_deprecated = false;       
+            m_hideDeprecated = true;
+            m_hideWrapper = true;
         }
         
         /**
-         * Specifies whether to exclude extensions with no data set types defined.
-         * @param exclude   true to exclude, false otherwise.
+         * Specifies whether to hide extensions with no data set types defined.
+         * @param hide   true to hide, false otherwise.
          */
-        public void setMissingDataSetTypesFilter( boolean exclude )
+        public void setMissingDataSetTypesFilter( boolean hide )
         {
-            m_noDataSetTypes = exclude;
+            m_noDataSetTypes = hide;
         }
         
         /**
-         * Specifies whether to exclude deprecated extensions.
-         * @param exclude   true to exclude, false otherwise.
+         * Specifies whether to hide deprecated extensions.
+         * @param hide   true to hide, false otherwise.
          */
-        public void setDeprecatedFilter( boolean exclude )
+        public void setDeprecatedFilter( boolean hide )
         {
-            m_deprecated = exclude;
+            m_hideDeprecated = hide;
         }
 
         /**
-         * Indicates whether to exclude extensions with no data set types defined.
+         * Specifies whether to hide wrapper extensions.
+         * @param hide   true to hide, false otherwise.
+         * @since 3.1.2
+         */
+        void setHideWrapper( boolean hide )
+        {
+            m_hideWrapper = hide;
+        }
+
+        /**
+         * Indicates whether to hide extensions with no data set types defined.
          */
         public boolean isMissingDataSetTypesFilterOn()
         {
@@ -713,12 +733,21 @@ public class ManifestExplorer
         }
 
         /**
-         * Indicates whether to exclude deprecated extensions.
+         * Indicates whether to hide deprecated extensions.
          */
         public boolean isDeprecatedFilterOn()
         {
-            return m_deprecated;
+            return m_hideDeprecated;
         }        
+
+        /**
+         * Indicates whether to hide wrapper extensions.
+         * @since 3.1.2
+         */
+        boolean isHideWrapperFilterOn()
+        {
+            return m_hideWrapper;
+        }
     }
     
 }

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+import java.util.Vector;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -48,7 +50,7 @@ public class ExtensionManifest
 	private Properties m_propsVisibility;
     private IConfigurationElement m_dataSourceElement;
     private IExtension m_dataSourceExtn;
-    private Relationship m_relationship;
+    private List m_relationships;
 
 	ExtensionManifest( IExtension dataSourceExtn ) throws OdaException
     {
@@ -130,7 +132,7 @@ public class ExtensionManifest
 		}
         
         // relationship element
-        m_relationship = Relationship.createInstance( m_dataSourceElement );
+        m_relationships = Relationship.createInstances( m_dataSourceElement );
         
         // successfully initialized
         m_dataSourceExtn = dataSourceExtn;
@@ -537,21 +539,59 @@ public class ExtensionManifest
      */
     public boolean isDeprecated()
     {
-        return ( m_relationship != null && m_relationship.isDeprecated() );
+        List replacedBy = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        return ( replacedBy != null && ! replacedBy.isEmpty() );
+    }
+
+    /**
+     * Indicates whether this extension is defined to be a wrapper.
+     * @since 3.1.2
+     */
+    public boolean isWrapper()
+    {
+        List wrappersOf = getRelationships( Relationship.TYPE_WRAPPER_OF_CODE );
+        return ( wrappersOf != null && ! wrappersOf.isEmpty() );
     }
 
     /**
      * Returns the related oda data source element id, if specified.
+     * For backward compatibility, this returns the first related replacedBy id.
      * @return  the related oda data source element id, or 
      *          null if none is specified.
      * @since 3.0.3
+     * @deprecated  since 3.1.2; replaced by {@link #getRelationships(int)}
      */
     public String getRelatedDataSourceId()
     {
-        if( m_relationship == null )
+        List relationships = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        if( relationships == null )
+            return null;
+        Relationship replacedBy = (Relationship) relationships.get( 0 );
+        return ( replacedBy != null ) ? replacedBy.getRelatedId() : null;
+    }
+
+    /**
+     * Returns a list of data source relationships defined with the specified type. 
+     * @param relationshipType    constant for the type of relationship
+     * @return  a list of specified type of relationships, or
+     *          null if the specified relationshipType is not defined in this extension.
+     * @see {@link Relationship.TYPE_* constants}
+     * @since 3.1.2
+     */
+    public List getRelationships( int relationshipType )
+    {
+        if( m_relationships == null || m_relationships.isEmpty() )
             return null;
         
-        return m_relationship.getRelatedId();
+        Vector matchingRelationships = new Vector( m_relationships.size() );
+        Iterator iter = m_relationships.iterator();
+        while( iter.hasNext() )
+        {
+            Relationship aRelationship = (Relationship) iter.next();
+            if( aRelationship.getType() == relationshipType )
+                matchingRelationships.add( aRelationship );
+        }
+        return matchingRelationships.isEmpty() ? null : matchingRelationships;
     }
     
 }

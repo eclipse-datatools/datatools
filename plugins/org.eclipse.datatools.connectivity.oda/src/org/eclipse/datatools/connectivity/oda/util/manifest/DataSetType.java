@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,10 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
+import java.util.Vector;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -38,7 +41,7 @@ public class DataSetType
 	private Property[] m_properties = null;
 	private Properties m_propsVisibility;
     private IConfigurationElement m_configElement;
-    private Relationship m_relationship;
+    private List m_relationships;
 	
 	DataSetType( IConfigurationElement dataSetElement ) throws OdaException
     {
@@ -89,7 +92,7 @@ public class DataSetType
 		}
         
         // relationship element
-        m_relationship = Relationship.createInstance( dataSetElement );
+        m_relationships = Relationship.createInstances( dataSetElement );
         
         // successfully initialized
         m_configElement = dataSetElement;
@@ -277,21 +280,59 @@ public class DataSetType
      */
     public boolean isDeprecated()
     {
-        return ( m_relationship != null && m_relationship.isDeprecated() );
+        List replacedBy = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        return ( replacedBy != null && ! replacedBy.isEmpty() );
+    }
+
+    /**
+     * Indicates whether this data set type is defined to be a wrapper.
+     * @since 3.1.2
+     */
+    public boolean isWrapper()
+    {
+        List wrappersOf = getRelationships( Relationship.TYPE_WRAPPER_OF_CODE );
+        return ( wrappersOf != null && ! wrappersOf.isEmpty() );
     }
 
     /**
      * Gets the related oda data set element id, if specified.
+     * For backward compatibility, this returns the first related replacedBy id.
      * @return  the related oda data set element id, or 
      *          null if none is specified.
      * @since 3.0.3
+     * @deprecated  since 3.1.2; replaced by {@link #getRelationships(int)}
      */
     public String getRelatedDataSetId()
     {
-        if( m_relationship == null )
+        List relationships = getRelationships( Relationship.TYPE_REPLACED_BY_CODE );
+        if( relationships == null )
+            return null;
+        Relationship replacedBy = (Relationship) relationships.get( 0 );
+        return ( replacedBy != null ) ? replacedBy.getRelatedId() : null;
+    }
+
+    /**
+     * Returns a list of data set relationships defined with the specified type. 
+     * @param relationshipType    constant for the type of relationship
+     * @return  a list of specified type of relationships, or
+     *          null if the specified relationshipType is not defined in this data set type.
+     * @see {@link Relationship.TYPE_* constants}
+     * @since 3.1.2
+     */
+    public List getRelationships( int relationshipType )
+    {
+        if( m_relationships == null || m_relationships.isEmpty() )
             return null;
         
-        return m_relationship.getRelatedId();
+        Vector matchingRelationships = new Vector( m_relationships.size() );
+        Iterator iter = m_relationships.iterator();
+        while( iter.hasNext() )
+        {
+            Relationship aRelationship = (Relationship) iter.next();
+            if( aRelationship.getType() == relationshipType )
+                matchingRelationships.add( aRelationship );
+        }
+        return matchingRelationships.isEmpty() ? null : matchingRelationships;
     }
 
 }

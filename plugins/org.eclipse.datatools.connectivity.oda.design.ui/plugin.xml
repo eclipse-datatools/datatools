@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.11 2006/03/10 00:43:12 lchan Exp $
+ * $Id: plugin.xml,v 1.12 2006/10/16 09:31:27 lchan Exp $
  */
 -->
 
@@ -34,6 +34,65 @@
             class="org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences.OpenDataAccessPage"
             id="org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences.OpenDataAccessPage"
             name="%oda.preference.page.name"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.datatools.connectivity.oda.design.ui.dse.actionExtension">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.filter.OdaProfileActionProvider"
+            id="org.eclipse.datatools.connectivity.oda.design.ui.dse.actionExtension"
+            overrides="org.eclipse.datatools.connectivity.ui.dse.actions.ProfileActionsActionProvider"
+            priority="normal">
+         <enablement>
+            <and>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.ICategory">
+               </instanceof>
+               <or>
+                  <test
+                        property="org.eclipse.datatools.connectivity.category.property.categoryID"
+                        value="org.eclipse.datatools.connectivity.db.category">
+                  </test>
+                  <test
+                        property="org.eclipse.datatools.connectivity.category.property.categoryID"
+                        value="%oda.parent.category.id">
+                  </test></or>
+            </and>
+         </enablement>
+      </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.filter.NewProfileAction"
+            commandId="org.eclipse.datatools.connectivity.commands.addprofile">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+               </equals>
+            </with>
+         </activeWhen>
+         <enabledWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+               </equals>
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
 
 </plugin>

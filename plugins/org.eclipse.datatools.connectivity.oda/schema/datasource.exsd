@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.connectivity.oda">
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dataSource" name="Open Data Access"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Platform API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
+         [API] This extension point is used to support the extension of design-time and run-time data source access by a data application.  Each extension must implement the Open Data Access (ODA) Java runtime interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package.
       </documentation>
    </annotation>
 
@@ -50,7 +50,7 @@
          <sequence>
             <element ref="traceLogging" minOccurs="0" maxOccurs="1"/>
             <element ref="properties" minOccurs="0" maxOccurs="1"/>
-            <element ref="relationship" minOccurs="0" maxOccurs="1"/>
+            <element ref="relationship" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="id" type="string" use="required">
             <annotation>
@@ -79,9 +79,9 @@ It can be used by an ODA consumer application&apos;s designer tool in displaying
                <documentation>
                   Concrete class that implements the &lt;i&gt;org.eclipse.datatools.connectivity.oda.IDriver&lt;/i&gt; interface. This is the entry point of the ODA runtime driver.  The same driver may support multiple data source extensions.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.IDriver"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="setThreadContextClassLoader" type="boolean" use="default" value="false">
@@ -286,9 +286,9 @@ The configured values are passed through to the driver&apos;s implementation of 
                <documentation>
                   The class name of a concrete log formatter, suitable for use by the driver-specific logging utility.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -474,7 +474,7 @@ The configured values are passed through to the driver&apos;s implementation of 
    <element name="relationship">
       <annotation>
          <documentation>
-            An optional element to specify the relationship of this element.
+            An optional element to specify the relationship(s) of this element.
          </documentation>
       </annotation>
       <complexType>
@@ -483,13 +483,15 @@ The configured values are passed through to the driver&apos;s implementation of 
                <documentation>
                   The type of relationship that this extension&apos;s dataSource or dataSet element has with the &lt;i&gt;relatedId&lt;/i&gt; element.
 Valid value(s) are: 
-&lt;br&gt;* &quot;replacedBy&quot; - this dataSource/dataSet is deprecated and replaced by that of &lt;i&gt;relatedId&lt;/i&gt;.  This setting is for consumption by an ODA host, and does not automatically affect the behavior of the ODA framework.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.
-&lt;br&gt;* (Additional types are TBD.)
+&lt;br&gt;* &lt;i&gt;replacedBy&lt;/i&gt;: specifies that this dataSource/dataSet is deprecated and replaced by that of &lt;i&gt;relatedId&lt;/i&gt;.  It is up to an ODA host to apply as appropriate, e.g. to migrate its reference of a deprecated extension, and to control which ODA extension to use at runtime.  A deprecated data source type is hidden by default from the list of data sources presented in the ODA design UI framework, such as for creating a new connection profile instance.
+&lt;br&gt;* &lt;i&gt;wrapperOf&lt;/i&gt;: specifies that this dataSource/dataSet is a wrapper of the &lt;i&gt;relatedId&lt;/i&gt; identifier.  A wrapper data source type is hidden by default from the list of available data sources presented in the ODA design UI framework. Since: 3.1.2.
                </documentation>
             </annotation>
             <simpleType>
                <restriction base="string">
                   <enumeration value="replacedBy">
+                  </enumeration>
+                  <enumeration value="wrapperOf">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -498,7 +500,7 @@ Valid value(s) are:
             <annotation>
                <documentation>
                   The fully qualified ID of the related ODA data source or data set element.
-Its value must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; or &lt;i&gt;dataSet.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
+Its value for a  &lt;i&gt;replacedBy&lt;/i&gt; type must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; or &lt;i&gt;dataSet.id&lt;/i&gt; attribute defined in another ODA driver&apos;s &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension.
                </documentation>
             </annotation>
          </attribute>
@@ -506,25 +508,25 @@ Its value must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; 
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          3.0
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          &lt;p&gt;
    &lt;pre&gt;
    &lt;extension
          point=&quot;org.eclipse.datatools.connectivity.oda.dataSource&quot;&gt;
       &lt;dataSource
-            odaVersion=&quot;3.0&quot;
+            odaVersion=&quot;3.1&quot;
             driverClass=&quot;org.eclipse.datatools.connectivity.oda.flatfile.FlatFileDriver&quot;
             defaultDisplayName=&quot;Flat File Data Source&quot;
             id=&quot;org.eclipse.datatools.connectivity.oda.flatfile&quot;
@@ -650,35 +652,33 @@ Its value must match that of the corresponding &lt;i&gt;dataSource.id&lt;/i&gt; 
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          The data source extension&apos;s driver must implement the interfaces defined in the &lt;i&gt;org.eclipse.datatools.connectivity.oda&lt;/i&gt; package. See the package&apos;s JavaDoc documentation and API interfaces for more information.
       </documentation>
    </annotation>
 
+
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         The plug-in &lt;i&gt;org.eclipse.datatools.connectivity.oda.flatfile&lt;/i&gt;, supplied with the Eclipse DTP Connectivity source, provides an example for implementing a simple ODA run-time extension.
+         The ODA framework provides an ODA Plug-in Project Template Wizard to automatically generate a custom ODA plug-in project with a set of default implementation of the main ODA interfaces.  The wizard is available in the New-&gt;Project... dialog; one for ODA Runtime Driver, another for ODA Designer. 
 &lt;br&gt;
-In addition, a set of default implementation of the main ODA runtime interfaces are provided in the
-&lt;i&gt;org.eclipse.datatools.connectivity.oda.impl&lt;/i&gt; package.
-These classes assume the behavior of a simple ODA driver,
-and have labeled TODO tasks for a driver developer to implement data source specific behavior.
-These concrete classes are provided for use as templates or base classes to aid in the development of an ODA custom driver.  Their use is purely optional.
+Their generated implementation classes assume the behavior of a simple ODA driver and designer UI.  They contain TODO task tags for an ODA driver developer to implement data source specific behavior.
+These concrete classes are provided to aid in the development of a custom ODA data source.  Their use is purely optional.
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="copyright"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         Copyright (c) 2004-2007 Actuate Corporation.
+         Copyright (c) 2004-2008 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>

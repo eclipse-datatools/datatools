@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,8 +15,8 @@
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.profile;
 
 import org.eclipse.datatools.connectivity.internal.ui.wizards.ExportProfilesDialog;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.filter.NewProfileAction;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-import org.eclipse.datatools.connectivity.ui.actions.AddProfileViewAction;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -110,17 +110,8 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 					{
 						// Create a new connection profile
 						NewProfileAction newProfileAction = new NewProfileAction( getShell() );
-						newProfileAction.run( null );
+						newProfileAction.run();
 						profilesViewer.refresh();						
-					}
-					
-					final class NewProfileAction extends AddProfileViewAction
-					{
-					    public NewProfileAction( Shell dialogParentShell )
-						{
-							super();
-							init( dialogParentShell );
-						}						 
 					}
 		        } );      
 			}			

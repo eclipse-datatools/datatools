@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,6 +13,9 @@
  */
 
 package org.eclipse.datatools.connectivity.oda.util.manifest;
+
+import java.util.List;
+import java.util.Vector;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -30,10 +33,12 @@ class Relationship
 
     // relationship types
     static final int TYPE_REPLACED_BY_CODE = 1;
+    static final int TYPE_WRAPPER_OF_CODE = 2;
     static final String[] sm_typeValues = 
     { 
         "none",             //$NON-NLS-1$
-        "replacedBy"        //$NON-NLS-1$
+        "replacedBy",       //$NON-NLS-1$
+        "wrapperOf"         //$NON-NLS-1$
     };
     
     private int m_type;
@@ -44,41 +49,46 @@ class Relationship
      * of the relationship element in the specified parent element.
      * @param relationshipParentElement    configuration element that may contain
      *                                     a relationship element
-     * @return  the relationship object, or null if none is defined or 
+     * @return  a list of relationship instances, or null if none is defined or 
      *          has an invalid element
      */
-    static Relationship createInstance( IConfigurationElement relationshipParentElement )
+    static List createInstances( IConfigurationElement relationshipParentElement )
     {
-        Relationship anInstance = new Relationship();
-        try
-        {
-            anInstance.init( relationshipParentElement );
-        }
-        catch( OdaException e )
-        {
-            // none or invalid relationship element, ignore and return null
+        if( relationshipParentElement == null )
+            return null;       // nothing to create from
+        IConfigurationElement[] elements =
+            relationshipParentElement.getChildren( ELEMENT_NAME );
+        if( elements.length < 1 )           // no relationship element
             return null;
+        
+        Vector instances = new Vector( elements.length );
+        for( int i=0; i < elements.length; i++ )
+        {
+            Relationship anInstance = new Relationship();
+            try
+            {
+                anInstance.init( elements[i] );
+            }
+            catch( OdaException e )
+            {
+                // none or invalid relationship element, ignore and skip element
+                anInstance = null;
+            }
+
+            if( anInstance != null )
+                instances.add( anInstance );
         }
         
-        return anInstance;
+        return instances.isEmpty() ? null : instances;
     }
     
     private Relationship()
     {           
     }
         
-    private void init( IConfigurationElement parentElement )
+    private void init( IConfigurationElement relationshipElement )
         throws OdaException
-    {
-        if( parentElement == null )
-            throw new OdaException();       // nothing to initialize
-        IConfigurationElement[] elements =
-            parentElement.getChildren( ELEMENT_NAME );
-        if( elements.length < 1 )           // no relationship element
-            throw new OdaException();
-    
-        // expects one element only, use the first element found
-        IConfigurationElement relationshipElement = elements[0];        
+    {    
         m_relatedId = relationshipElement.getAttribute( RELATED_ID_ATTRIBUTE_NAME );
         if( m_relatedId == null || m_relatedId.length() == 0 )
             throw new OdaException( 
@@ -116,6 +126,23 @@ class Relationship
         return ( m_type == TYPE_REPLACED_BY_CODE );
     }
 
+    /**
+     * Indicates whether this extension is defined to be a wrapper 
+     * with a wrapperOf relationship type.
+     */
+    boolean isWrapper()
+    {
+        return ( m_type == TYPE_WRAPPER_OF_CODE );
+    }
+   
+    /**
+     * Returns the relationship type constant.
+     */
+    int getType()
+    {
+        return m_type;
+    }
+    
     /**
      * Returns the related id.
      */
