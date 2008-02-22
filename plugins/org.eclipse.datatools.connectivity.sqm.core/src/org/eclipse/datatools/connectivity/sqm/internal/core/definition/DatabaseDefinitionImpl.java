@@ -716,10 +716,10 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
 					}
 				}
-				if (predefinedDataTypeDefinition.isLengthSupported() &&
-						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
-					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
-				}
+//				if (predefinedDataTypeDefinition.isLengthSupported() &&
+//						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
+//					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+//				}
 			}
 			break;
 			
