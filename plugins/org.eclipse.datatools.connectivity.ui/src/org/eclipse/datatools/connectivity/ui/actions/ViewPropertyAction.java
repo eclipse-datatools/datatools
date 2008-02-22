@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -83,7 +83,7 @@ public class ViewPropertyAction extends Action {
 		Object selected = getSelectedObject();
 		PreferenceDialog propertyDialog = 
 		    ProfileUIManager.createPreferenceDialog( mViewer.getControl().getShell(), 
-		            mViewer.getSelection(), selected );
+		            selected );
 		if( propertyDialog == null )
 		    return;
 
@@ -269,7 +269,7 @@ public class ViewPropertyAction extends Action {
 				else if (parent.getChildren()[i] instanceof Button) {
 					if (checkForPing) {
 						String pingLabel = ConnectivityUIPlugin.getDefault().getResourceString(
-							"ConnectionProfileDetailsPage.Button.TestConnection");
+							"ConnectionProfileDetailsPage.Button.TestConnection"); //$NON-NLS-1$
 						Button btn = (Button) parent.getChildren()[i];
 						if (!btn.isDisposed() && btn.getText().equals(pingLabel)) {
 							btn.setEnabled(true);
