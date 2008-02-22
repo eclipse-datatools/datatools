@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.oracle;singleton:=true
-Bundle-Version: 1.0.0.200712171
+Bundle-Version: 1.0.0.200802211
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.enablement.internal.oracle
 Require-Bundle: org.eclipse.datatools.connectivity;bundle-version="[1.0.1,2.0.0)"
