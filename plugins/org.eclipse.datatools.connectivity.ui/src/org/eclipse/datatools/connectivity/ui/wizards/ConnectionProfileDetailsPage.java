@@ -80,7 +80,7 @@ public abstract class ConnectionProfileDetailsPage
 		composite.setLayout(new FillLayout());
 		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
 
-		createCustomControl(composite, false);
+		createCustomControl(composite);
 
 		btnPing = new Button(container, SWT.NONE);
 		btnPing.addSelectionListener(new SelectionAdapter() {
@@ -99,8 +99,13 @@ public abstract class ConnectionProfileDetailsPage
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
-	public abstract void createCustomControl(Composite parent, boolean isReadOnly);
+	public void createCustomControl(Composite parent, boolean isReadOnly){};
 
+	public void createCustomControl(Composite parent){
+		createCustomControl(parent, false);
+	}
+
+	
 	protected void testConnection() {
 		IWizard wiz = getWizard();
 		if (wiz instanceof NewConnectionProfileWizard) {
