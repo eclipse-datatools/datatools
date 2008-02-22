@@ -704,6 +704,18 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 			case PrimitiveType.CHARACTER: {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
+				if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
+					String temp = predefinedDataTypeDefinition.getDisplayName();
+					if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
+						predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+					}
+				}
+				else {
+					if (predefinedDataTypeDefinition.isLengthSupported() &&
+							(((CharacterStringDataType)predefinedDataType).getLength() > 0) ) {
+						predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+					}
+				}
 				if (predefinedDataTypeDefinition.isLengthSupported() &&
 						(((CharacterStringDataType)predefinedDataType).getLength() > 0)	) {
 					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
