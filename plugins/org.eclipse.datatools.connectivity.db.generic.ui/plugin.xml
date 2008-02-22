@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard
-            class="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.NewGenericJDBCConnectionProfileWizard"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.connectivity.db.generic.ui.NewConnectionProfileWizard"
             name="%wizard.name"
@@ -14,7 +14,7 @@
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            class="org.eclipse.datatools.connectivity.db.generic.ui.GenericDBProfilePropertyPage"
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.GenericJDBCDBProfilePropertyPage"
             id="org.eclipse.datatools.connectivity.db.generic.profileProperties"
             name="%page.name.jdbcConnectionProperties">
          <filter
@@ -36,4 +36,13 @@
             id="org.eclipse.datatools.connectivity.db.generic.genericDriver.ui.propertyEditor.driverClass">
       </propertyEditor>
    </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.connectivity.db.generic.internal.ui.drivers.GenericJDBCDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"
+            id="org.eclipse.datatools.connectivity.db.generic.internal.ui.drivers.GenericJDBCDriverUIContributor">
+      </driverUIContributor>
+   </extension>
+   
 </plugin>
