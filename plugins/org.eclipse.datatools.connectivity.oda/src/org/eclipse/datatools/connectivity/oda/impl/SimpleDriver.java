@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 /**
  * Default implementation of IDriver 
  * for a simple ODA runtime driver.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class SimpleDriver implements IDriver
 {

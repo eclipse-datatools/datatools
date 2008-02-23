@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  * Default implementation of IBlob for use by ODA runtime drivers.
  * <code>Blob</code> handles common types of raw data that represent
  * a BLOB value.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class Blob implements IBlob
 {

@@ -20,6 +20,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 /**
  * Default implementation of IParameterMetaData 
  * for a simple ODA runtime driver.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class SimpleParameterMetaData implements IParameterMetaData 
 {

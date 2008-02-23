@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  * Default implementation of IClob for use by ODA runtime drivers.
  * <code>Clob</code> handles common types of raw data that represent
  * a CLOB value.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class Clob implements IClob
 {

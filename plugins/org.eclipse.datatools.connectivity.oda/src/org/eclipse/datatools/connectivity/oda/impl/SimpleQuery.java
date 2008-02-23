@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.oda.SortSpec;
 /**
  * Default implementation of IQuery 
  * for a simple ODA runtime driver.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class SimpleQuery implements IQuery
 {

@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 /**
  * Default implementation of IDataSetMetaData 
  * for a simple ODA runtime driver.
+ * @deprecated  As of 3.1.2, see package documentation.
  */
 public class SimpleDataSetMetaData implements IDataSetMetaData
 {
