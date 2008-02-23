@@ -559,7 +559,7 @@ public class ExtensionManifest
      * @return  the related oda data source element id, or 
      *          null if none is specified.
      * @since 3.0.3
-     * @deprecated  since 3.1.2; replaced by {@link #getRelationships(int)}
+     * @deprecated  As of 3.1.2, replaced by {@link #getRelationships(int)}
      */
     public String getRelatedDataSourceId()
     {

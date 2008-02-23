@@ -300,7 +300,7 @@ public class DataSetType
      * @return  the related oda data set element id, or 
      *          null if none is specified.
      * @since 3.0.3
-     * @deprecated  since 3.1.2; replaced by {@link #getRelationships(int)}
+     * @deprecated  As of 3.1.2, replaced by {@link #getRelationships(int)}
      */
     public String getRelatedDataSetId()
     {
