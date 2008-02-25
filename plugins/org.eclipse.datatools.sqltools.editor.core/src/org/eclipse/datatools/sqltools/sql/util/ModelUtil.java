@@ -44,6 +44,7 @@ import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
 import org.eclipse.datatools.sqltools.sql.reference.IDatatype;
 import org.eclipse.datatools.sqltools.sql.reference.internal.Datatype;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -222,45 +223,54 @@ public class ModelUtil {
 	}
 	
 	/**
-	 * Returns the schema list for the database, or, if catalog feature is supported, returns
-	 * the schema list for the default catalog. 
+	 * Returns the schema list for the database, or, if catalog feature is
+	 * supported, returns the schema list for the default catalog.
+	 * 
 	 * @param database
+	 * @param catalogName
+	 *            uses same convention as JDBC DatabaseMetaData: null returns
+	 *            all schema; catalog name returns schema for the specified
+	 *            catalog; empty string returns schema not associated with a
+	 *            specific catalog (use for DBs that do not support catalogs)
 	 * @return
 	 */
 	public static EList getSchemas(Database database, String catalogName) {
-		if (catalogName == null || catalogName.equals(""))
-		{
-			catalogName = database.getName();
-		}
-		EList schemas = database.getSchemas();
+        // Check legacy model structure (i.e. no catalogs)
+        EList schemas = new BasicEList(); // defensive copy
+        EList dbSchemas = database.getSchemas();
+        
+        //if database.getSchemas() returns invalid entries, use catalog
 		boolean isAllInvalid = true;
-		if(schemas != null && schemas.size() > 0){
-			for(Iterator iter = schemas.iterator();iter.hasNext();){
-				Schema schema = (Schema)iter.next();
-				if(!"".equals(schema.getName())){
+		if (dbSchemas != null && dbSchemas.size() > 0) {
+			for (Iterator iter = dbSchemas.iterator(); iter.hasNext();) {
+				Schema schema = (Schema) iter.next();
+				if (!"".equals(schema.getName())) {
 					isAllInvalid = false;
 					break;
 				}
-			}			
-		}
-
-		if (schemas == null || schemas.size() == 0 || isAllInvalid) {
-			EList catalogs = database.getCatalogs();
-			if (catalogs != null) {
-				for (Iterator iter = catalogs.iterator(); iter
-						.hasNext();) {
-					Catalog catalog = (Catalog) iter.next();
-                    //empty name means this is a dummy catalog
-					if (catalog.getName()
-							.equals(catalogName) || catalog.getName().equals("")) {
-						
-						schemas = (EList) catalog.getSchemas();
-						break;
-					}
-				}
 			}
 		}
-		return schemas;
+        
+        if (dbSchemas == null || dbSchemas.size() == 0 || isAllInvalid) {
+                // Use catalogs
+                EList catalogs = database.getCatalogs();
+                if (catalogs != null) {
+                        for (Iterator iter = catalogs.iterator();iter.hasNext();) {
+                                Catalog catalog = (Catalog)iter.next();
+                                // empty name means this is a dummy catalog
+                                if (catalogName == null || catalogName.equals(catalog.getName())) {
+                                	schemas.addAll(catalog.getSchemas());
+                                    if (catalogName != null) {
+                                            break;
+                                    }
+                                }
+                        }
+                }
+        }
+        else {
+                schemas.addAll(dbSchemas);
+        }
+        return schemas;		
 	}
 
 	/**
