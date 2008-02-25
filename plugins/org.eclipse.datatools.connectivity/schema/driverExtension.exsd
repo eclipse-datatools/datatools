@@ -357,6 +357,13 @@ Also note that there is a new interface that your Property Descriptor can extend
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The id attribute, though optional, is required to allow one driverTemplateOverride instance to override another. For example, if driver A has an override B that changes or removes a property, another adopter might implement override C that uses the id of override B as the targetId, thus replacing the overridden driver template with their own. In the case of multiple overrides or overrides of overrides, the priority is taken into account. 
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

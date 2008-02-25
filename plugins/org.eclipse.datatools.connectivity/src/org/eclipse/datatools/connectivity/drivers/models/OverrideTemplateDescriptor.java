@@ -13,7 +13,9 @@ package org.eclipse.datatools.connectivity.drivers.models;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,8 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
+
+import sun.misc.Compare;
 
 /**
  * Represents a driver template override which is provided by the
@@ -46,6 +50,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 
 	// attributes
 	private static final String CREATEDEFAULT_TAG = "createDefault"; //$NON-NLS-1$
+	private static final String ID_ATTRIBUTE = "id"; //$NON-NLS-1$
 	private static final String TARGET_ID_ATTRIBUTE = "targetId"; //$NON-NLS-1$
 	private static final String NAME_ATTRIBUTE = "name"; //$NON-NLS-1$
 	private static final String DESCRIPTION_ATTRIBUTE = "description"; //$NON-NLS-1$	
@@ -70,6 +75,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 	// local list of driver templates
 //	private static OverrideTemplateDescriptor[] fgDriverTemplateDescriptors;
 	private static Map fgDriverTemplateDescriptors;
+	private static Map fgDriverTemplateOverrideDescriptorIDMap;
 
 	// local copy of configuration element
 	private IConfigurationElement fElement;
@@ -102,8 +108,28 @@ public class OverrideTemplateDescriptor implements Comparable {
 
 		List descriptors = (List)fgDriverTemplateDescriptors.get(driverTemplateId);
 		if (descriptors != null && descriptors.size() > 0) {
+			Iterator iter = descriptors.iterator();
+			ArrayList finalList = new ArrayList();
+			while (iter.hasNext()) {
+				OverrideTemplateDescriptor otd = (OverrideTemplateDescriptor) iter.next();
+				if (otd.getId() != null) {
+					List overrides = (List)fgDriverTemplateDescriptors.get(otd.getId());
+					if (overrides != null) {
+						OverrideTemplateDescriptor[] overridesArray = 
+							(OverrideTemplateDescriptor[]) overrides.toArray(new OverrideTemplateDescriptor[descriptors.size()]);
+						Arrays.sort(overridesArray, new OverridesPriorityComparator());
+						finalList.add(overridesArray[0]);
+					}
+					else {
+						finalList.add(otd);
+					}
+				}
+				else {
+					finalList.add(otd);
+				}
+			}
 			OverrideTemplateDescriptor[] array = 
-				(OverrideTemplateDescriptor[]) descriptors.toArray(new OverrideTemplateDescriptor[descriptors.size()]);
+				(OverrideTemplateDescriptor[]) finalList.toArray(new OverrideTemplateDescriptor[finalList.size()]);
 			Arrays.sort(array);
 			return array;
 		}
@@ -130,6 +156,9 @@ public class OverrideTemplateDescriptor implements Comparable {
 	 */
 	public String getTargetId() {
 		return this.fElement.getAttribute(TARGET_ID_ATTRIBUTE);
+	}
+	public String getId() {
+		return this.fElement.getAttribute(ID_ATTRIBUTE);
 	}
 
 	/**
@@ -371,6 +400,7 @@ public class OverrideTemplateDescriptor implements Comparable {
 	private static void createDriverTemplateDescriptors(
 			IConfigurationElement[] elements) {
 		fgDriverTemplateDescriptors = new HashMap();
+		fgDriverTemplateOverrideDescriptorIDMap = new HashMap();
 		
 		for (int i = 0; i < elements.length; ++i) {
 			final IConfigurationElement element = elements[i];
