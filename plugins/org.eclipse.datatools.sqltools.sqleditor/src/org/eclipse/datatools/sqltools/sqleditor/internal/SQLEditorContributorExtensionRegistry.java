@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionContributorExtension;
+import org.eclipse.datatools.sqltools.sqleditor.internal.editor.SQLSourceViewerConfiguration;
 
 /**
  * 
@@ -29,7 +30,8 @@ public class SQLEditorContributorExtensionRegistry
 {
 
     private static SQLEditorContributorExtensionRegistry instance               = null;
-    private List                                         _extensionContributors = new ArrayList();
+    private List                                         _actionContributors = new ArrayList();
+    private SQLSourceViewerConfiguration _sourceViewerConfig = null;
 
     private SQLEditorContributorExtensionRegistry()
     {
@@ -64,7 +66,7 @@ public class SQLEditorContributorExtensionRegistry
                         {
                             ISQLEditorActionContributorExtension factory = (ISQLEditorActionContributorExtension) configElements[j]
                                     .createExecutableExtension("class"); //$NON-NLS-1$
-                            _extensionContributors.add(factory);
+                            _actionContributors.add(factory);
                         }
                         catch (Exception e)
                         {
@@ -81,10 +83,41 @@ public class SQLEditorContributorExtensionRegistry
                 }
             }
         }
+        
+        extensionPoint = pluginRegistry.getExtensionPoint(
+				SQLEditorPlugin.PLUGIN_ID, "sourceViewerConfiguration"); //$NON-NLS-1$ //$NON-NLS-2$
+		extensions = extensionPoint.getExtensions();
+		if (extensions != null && extensions.length > 0) {
+			//only read the first one
+			IConfigurationElement[] configElements = extensions[0]
+					.getConfigurationElements();
+			for (int j = 0; j < configElements.length; ++j) {
+				if (configElements[j].getName().equals(
+						"sourceViewerConfiguration")) {
+					try {
+						SQLSourceViewerConfiguration config = (SQLSourceViewerConfiguration) configElements[j]
+								.createExecutableExtension("class"); //$NON-NLS-1$
+						_sourceViewerConfig = config;
+					} catch (Exception e) {
+						try {
+							SQLEditorPlugin.getDefault().log(e);
+						} catch (Exception ee) {
+							ee.printStackTrace();
+						}
+					}
+				}
+			}
+		}
+
     }
 
-    public Collection getExtensions()
+    public Collection getActionExtensions()
     {
-        return _extensionContributors;
+        return _actionContributors;
+    }
+    
+    public SQLSourceViewerConfiguration getSQLSourceViewerConfiguration()
+    {
+    	return _sourceViewerConfig;
     }
 }

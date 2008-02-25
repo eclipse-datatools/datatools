@@ -4,6 +4,7 @@
 
    <extension-point id="texthover" name="SQL Editor Text Hover" schema="schema/texthover.exsd"/>
    <extension-point id="actionExtensions" name="SQL Editor Action Extensions" schema="schema/actionExtensions.exsd"/>
+   <extension-point id="sourceViewerConfiguration" name="SQL Editor Source Viewer Configuration" schema="schema/sourceViewerConfiguration.exsd"/>
     
     <extension
          point="org.eclipse.core.runtime.preferences">

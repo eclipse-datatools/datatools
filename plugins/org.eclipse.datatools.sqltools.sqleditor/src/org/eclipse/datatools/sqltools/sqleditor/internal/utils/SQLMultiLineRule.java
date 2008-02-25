@@ -725,26 +725,26 @@ public class SQLMultiLineRule extends MultiLineRule {
      * @param scanner the scanner to use
      * @return int the character read 
      */
-    private char readChar( ICharacterScanner scanner ) {
+    private int readChar( ICharacterScanner scanner ) {
         int c;
         char[][] delimiters = scanner.getLegalLineDelimiters();
 
         while (true) {
             c = scanner.read();
             if (c != '-')
-                return (char) c;
+                return c;
 
             int nextC = scanner.read();
             if (nextC != '-') {
                 scanner.unread();
-                return (char) c;
+                return c;
             }
 
             boolean loop = true;
             while (loop) {
                 c = scanner.read();
                 if (c == ICharacterScanner.EOF)
-                    return (char) c;
+                    return c;
 
                 // Check for end of line since it can be used to terminate the
                 // comment.

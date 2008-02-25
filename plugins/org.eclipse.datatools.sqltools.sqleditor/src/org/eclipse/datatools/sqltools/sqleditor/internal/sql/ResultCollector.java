@@ -363,20 +363,11 @@ public class ResultCollector
             case SQLParser.SCOPE_SEGMENT:
                 setSegmentList(proposals);
                 break;          
-            case SQLParser.SCOPE_TABLES | SQLParser.SCOPE_STORED_PROCEDURES:
-            	//FIXME when will this happen?
-//                setTableList(new ArrayList(Arrays.asList(getTablesProposals(getContextElements(
-//                    CONTEXT_TABLES, null), SQLParser.SCOPE_TABLES, SQLCompletionProposal.TABLE))));
-//                setStoredProcedureList(new ArrayList(Arrays.asList(getProcedureProposals(
-//                    getContextElements(CONTEXT_STORED_PROCEDURES, null), SQLParser.SCOPE_STORED_PROCEDURES,
-//                    SQLCompletionProposal.STORED_PROCEDURE))));                        
-                break;         
             default: 
-            	//FIXME shall we use SQLParser.SCOPE_STORED_PROCEDURES here?
             	// we are in some undermined state as of now but probably looking at the
                 // expected sequence, we can add proposals to the list. So lets begin
-//                setOtherList(new ArrayList(Arrays.asList(getDefaultProposals(tokenImage,
-//                    expectedTokenSequences[i]))));
+            	//203804
+                setOtherList(proposals);
                 break;
         }
 

@@ -81,6 +81,13 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
     }
 
     /**
+     * Constructs an instance of this class.
+     */
+    public SQLSourceViewerConfiguration() {
+    	this(null);
+	}
+    
+    /**
      * Constructs an instance of this class with the given SQLEditor to
      * configure.
      * 
@@ -301,6 +308,15 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
      */
     public SQLEditor getSQLEditor() {
         return fEditor;
+    }
+    
+    /**
+     * Associates the SQLEditor with this object.
+     * 
+     * @return the SQLEditor that this object configures
+     */
+    public void setSQLEditor(SQLEditor editor) {
+    	fEditor = editor;
     }
     
     /**

@@ -42,6 +42,7 @@ import org.eclipse.datatools.sqltools.sql.parser.SQLParserConstants;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
 import org.eclipse.datatools.sqltools.sqleditor.internal.IHelpContextIds;
 import org.eclipse.datatools.sqltools.sqleditor.internal.PreferenceConstants;
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorContributorExtensionRegistry;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorDocumentSetupParticipant;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
@@ -762,7 +763,15 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
      * @return the new source viewer configuration object
      */
     protected SQLSourceViewerConfiguration createSourceViewerConfiguration() {
-        SQLSourceViewerConfiguration config = new SQLSourceViewerConfiguration( this );
+        SQLSourceViewerConfiguration config = SQLEditorContributorExtensionRegistry.getInstance().getSQLSourceViewerConfiguration();
+        if (config == null)
+        {
+        	config = new SQLSourceViewerConfiguration( this );
+        }
+        else
+        {
+        	config.setSQLEditor(this);
+        }
         ISQLDBProposalsService proposalsService = getDBProposalsService();
         if (proposalsService != null) {
             config.setDBProposalsService( proposalsService );

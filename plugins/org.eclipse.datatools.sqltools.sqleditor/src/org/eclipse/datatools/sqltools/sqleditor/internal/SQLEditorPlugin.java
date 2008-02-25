@@ -391,7 +391,7 @@ public class SQLEditorPlugin extends AbstractUIPlugin{
     
     public static Collection getSQLEditorActionContributorExtension()
     {
-        return SQLEditorContributorExtensionRegistry.getInstance().getExtensions();
+        return SQLEditorContributorExtensionRegistry.getInstance().getActionExtensions();
     }
 
 } // end class
