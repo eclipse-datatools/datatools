@@ -26,6 +26,10 @@
    <includes
          id="org.eclipse.datatools.intro"
          version="0.0.0"/>
+   
+   <includes
+         id="org.eclipse.datatools.doc.user"
+         version="0.0.0"/>
              
    <includes id="org.eclipse.datatools.intro.source" version="0.0.0"/>
    <includes id="org.eclipse.datatools.modelbase.feature.source" version="0.0.0"/>
