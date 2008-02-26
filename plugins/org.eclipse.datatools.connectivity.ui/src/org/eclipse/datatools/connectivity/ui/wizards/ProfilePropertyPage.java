@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005, 2007, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ * 			IBM Corporation - fix for defect #213266
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -41,6 +42,8 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 	private boolean mAffectsConnectionProperties;
 
 	private ISchedulingRule mProfileRule;
+	
+	private boolean isReadOnly = false;
 
 	protected ProfilePropertyPage() {
 		this(false);
@@ -51,6 +54,11 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 		mAffectsConnectionProperties = affectsConnectionProperties;
 	}
 
+	public void createControl(Composite parent, boolean isReadOnly){
+		this.isReadOnly = isReadOnly;
+		createControl(parent);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -73,8 +81,12 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 		return container;
 	}
 
-	protected abstract void createCustomContents(Composite parent);
+	protected void createCustomContents(Composite parent, boolean isReadOnly){};
 
+	protected void createCustomContents(Composite parent){
+		createCustomContents(parent, this.isReadOnly);
+	}
+	
 	protected abstract Properties collectProperties();
 
 	public IConnectionProfile getConnectionProfile() {

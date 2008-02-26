@@ -44,10 +44,10 @@ public class ExtensibleProfileDetailsPropertyPage extends
 		return getProperties();
 	}
 
-	protected void createCustomContents(Composite parent) {
+	protected void createCustomContents(Composite parent, boolean isReadOnly) {
 		parent.setLayout(new GridLayout());
 
-		driverCombo = new DriverListCombo();
+		driverCombo = new DriverListCombo(isReadOnly);
 		driverCombo
 				.setLabelText(ConnectivityUIPlugin
 						.getDefault()
@@ -58,7 +58,7 @@ public class ExtensibleProfileDetailsPropertyPage extends
 		driverCombo.createContents(parent);
 
 		contributedUIComposite = new DriverUIContributorComposite(parent, this,
-				this, false);
+				this, isReadOnly);
 
 		driverCombo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
