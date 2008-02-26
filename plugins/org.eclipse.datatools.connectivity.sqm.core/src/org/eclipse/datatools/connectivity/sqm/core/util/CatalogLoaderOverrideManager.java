@@ -111,7 +111,18 @@ public final class CatalogLoaderOverrideManager {
 			Map eClasses = (Map) this.loaders.get(defn);
 			if (eClasses != null && eClasses.containsKey(eClassName)) {
 				LoaderDetails details = (LoaderDetails) eClasses.get(eClassName);
-				return details.loader;
+				JDBCBaseLoader loader = details.loader;
+				if (loader != null) {
+					try {
+						loader = (JDBCBaseLoader) loader.getClass().newInstance();
+					} catch (InstantiationException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+				}
+				
+				return loader;
 			}
 		}
 		return null;
