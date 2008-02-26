@@ -19,15 +19,15 @@
       <definition
             version="7.6"
             product="MaxDB"
-            productDisplayString="MaxDB"
-            versionDisplayString="7.6"
+            productDisplayString="%productDisplayString_76"
+            versionDisplayString="%versionDisplayString_76"
             file="runtime/vendors/MaxDB_7.6/MaxDB_7.6.xmi">
       </definition>
        <definition
             version="7.7"
             product="MaxDB"
-            productDisplayString="MaxDB"
-            versionDisplayString="7.7"
+            productDisplayString="%productDisplayString_77"
+            versionDisplayString="%versionDisplayString_77"
             file="runtime/vendors/MaxDB_7.7/MaxDB_7.7.xmi">
       </definition>
    </extension>

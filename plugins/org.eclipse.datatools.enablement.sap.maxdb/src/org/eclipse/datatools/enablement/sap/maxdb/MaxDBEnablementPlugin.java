@@ -11,6 +11,8 @@
 
 package org.eclipse.datatools.enablement.sap.maxdb;
 
+import java.util.ResourceBundle;
+
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
@@ -22,10 +24,13 @@ public class MaxDBEnablementPlugin extends Plugin {
 	// The shared instance
 	private static MaxDBEnablementPlugin plugin;
 	
+	private static ResourceBundle bundle;
+	
 	/**
 	 * The constructor
 	 */
 	public MaxDBEnablementPlugin() {
+		bundle = null;
 	}
 	
 	/*
@@ -53,5 +58,13 @@ public class MaxDBEnablementPlugin extends Plugin {
 	 */
 	public static MaxDBEnablementPlugin getDefault() {
 		return plugin;
+	}
+	
+	public static String getResourceString(String key){
+		if(bundle == null){
+			bundle = ResourceBundle.getBundle("org.eclipse.datatools.enablement.sap.maxdb.resources");  //$NON-NLS-1$
+		}
+		
+		return bundle.getString(key);
 	}
 }

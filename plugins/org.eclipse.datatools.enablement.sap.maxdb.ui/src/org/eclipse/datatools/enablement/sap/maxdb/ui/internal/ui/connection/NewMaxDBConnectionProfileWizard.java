@@ -19,6 +19,6 @@ public class NewMaxDBConnectionProfileWizard extends
 	public NewMaxDBConnectionProfileWizard() {
 		super(
 				new MaxDBProfileDetailsWizardPage(
-						"org.eclipse.datatools.enablement.sap.maxdb.internal.ui.connection.MaxDBProfileDetailsWizardPage"));
+						"org.eclipse.datatools.enablement.sap.maxdb.internal.ui.connection.MaxDBProfileDetailsWizardPage"));  //$NON-NLS-1$
 	}
 }

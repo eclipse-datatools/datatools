@@ -18,7 +18,7 @@
       <page
             class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.MaxDBProfilePropertyPage"
             id="org.eclipse.datatools.enablement.sap.maxdb.ui.profileProperties"
-            name="MaxDB Driver Properties"
+            name="%profile.maxdb.properties"
             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
          <filter
                name="org.eclipse.datatools.profile.property.id"
@@ -30,10 +30,10 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard
             class="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
-            description="Create a MaxDB connection profile."
+            description="%profile.maxdb.wizard.description"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.sap.maxdb.ui.internal.ui.connection.NewMaxDBConnectionProfileWizard"
-            name="MaxDB"
+            name="%profile.maxdb.wizard.title"
             profile="org.eclipse.datatools.enablement.sap.maxdb.connectionProfile">
       </newWizard>
    </extension>  

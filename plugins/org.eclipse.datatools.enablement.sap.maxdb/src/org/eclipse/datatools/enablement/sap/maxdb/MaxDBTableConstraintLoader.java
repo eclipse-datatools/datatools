@@ -75,7 +75,7 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 				if (pk == null) {
 					String pkName = rs.getString(COLUMN_PK_NAME);
 					if (pkName == null) {
-						pkName = rs.getString("TABLE_NAME")+"_PK";
+						pkName = rs.getString("TABLE_NAME")+"_PK"; //$NON-NLS-1$  //$NON-NLS-2$
 					}
 					if (existingPK != null
 							&& 
@@ -131,7 +131,7 @@ public class MaxDBTableConstraintLoader extends JDBCTableConstraintLoader{
 			for (rs = createUniqueConstraintResultSet(); rs.next();) {
 				String ucName = rs.getString(COLUMN_PK_NAME);				
 				if (ucName == null) {
-					ucName = rs.getString(COLUMN_PKTABLE_NAME)+"_PK";
+					ucName = rs.getString(COLUMN_PKTABLE_NAME)+"_PK";  //$NON-NLS-1$  //$NON-NLS-2$
 				}
 				
 				if (ucName.equals(pk == null ? null : pk.getName())) {

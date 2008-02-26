@@ -16,6 +16,7 @@ import java.sql.DatabaseMetaData;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
 import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
+import org.eclipse.datatools.enablement.sap.maxdb.MaxDBEnablementPlugin;
 
 public class JDBCMaxDBJDBCConnection extends JDBCConnection {
 
@@ -31,12 +32,12 @@ public class JDBCMaxDBJDBCConnection extends JDBCConnection {
 	}
 	
 	public String getProviderName() {
-		return "MaxDB";
+		return MaxDBEnablementPlugin.getResourceString("MaxDBName"); //$NON-NLS-1$
 	}
 	
 	protected void initVersions() {
 		
-		String versionString = "";
+		String versionString = "";  //$NON-NLS-1$
 		try {			
 			super.initVersions();			
 			DatabaseMetaData dbmd = ((Connection) getRawConnection()).getMetaData();			
@@ -81,6 +82,6 @@ public class JDBCMaxDBJDBCConnection extends JDBCConnection {
         endpos = curpos;
         String plVersion = versionStr.substring(startpos, endpos);*/
         
-        mMaxDBServerVersion = new Version(majorVersion,minorVersion,clVersion,"");
+        mMaxDBServerVersion = new Version(majorVersion,minorVersion,clVersion,"");  //$NON-NLS-1$
 	}
 }
