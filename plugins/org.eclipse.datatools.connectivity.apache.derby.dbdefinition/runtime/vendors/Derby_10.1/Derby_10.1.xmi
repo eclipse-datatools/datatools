@@ -15,7 +15,7 @@
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" defaultLength="1" maximumLength="254" primitiveType="BINARY_VARYING" jdbcEnumType="-2" javaClassName="byte[]">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="CHAR ({0}) FOR BIT DATA" maximumLength="254" primitiveType="BINARY_VARYING" jdbcEnumType="-2" javaClassName="byte[]">
     <name>CHAR FOR BIT DATA</name>
     <name>CHARACTER FOR BIT DATA</name>
     <name>CHAR () FOR BIT DATA</name>
@@ -88,7 +88,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TIMESTAMP</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" defaultLength="1" maximumLength="32700" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="VARCHAR ({0}) FOR BIT DATA" maximumLength="32700" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
     <name>VARCHAR FOR BIT DATA</name>
     <name>CHAR VARYING FOR BIT DATA</name>
     <name>CHARACTER VARYING FOR BIT DATA</name>
@@ -104,7 +104,7 @@
   </storedProcedureDefinition>
   <triggerDefinition maximumIdentifierLength="128" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true" whenClauseSupported="false"/>
   <columnDefinition maximumIdentifierLength="128" identitySupported="true" computedSupported="true"/>
-  <constraintDefinition>
+  <constraintDefinition maximumPrimaryKeyIdentifierLength="18" maximumForeignKeyIdentifierLength="18" maximumCheckConstraintIdentifierLength="18">
     <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
     <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
@@ -116,7 +116,7 @@
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
   <queryDefinition hostVariableMarker="?"/>
-  <indexDefinition clusteringSupported="false"/>
+  <indexDefinition clusteringSupported="false" maximumIdentifierLength="128"/>
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
