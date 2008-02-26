@@ -108,7 +108,7 @@
             jarList="derby.jar"
             name="%DERBY_EMBEDDED_DRIVER_TEMPLATE_NAME"
             parentCategory="org.eclipse.datatools.connectivity.db.derby.10_0.driverCategory"
-            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider">
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider101">
          <properties>
             <property
                   generated="false"
@@ -168,7 +168,7 @@
             jarList="derby.jar"
             name="%DERBY101_EMBEDDED_DRIVER_TEMPLATE_NAME"
             parentCategory="org.eclipse.datatools.connectivity.db.derby.10_1.driverCategory"
-            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider">
+            valuesProvider="org.eclipse.datatools.connectivity.apache.internal.derby.driver.DerbyDriverValuesProvider101">
          <properties>
             <property
                   generated="false"

@@ -24,6 +24,24 @@ import org.osgi.framework.Bundle;
 public class DerbyClientDriverValuesProvider extends DefaultDriverValuesProvider {
 
 	public String createDefaultValue(String key) {
+		/**
+		 * Check to see if the org.apache.derby.core wrapper plug-in is 
+		 * in the Eclipse environment. If it is (most recently with 10.3 support),
+		 * we'll use it and grab the derby client jar from there.
+		 */
+		if (key.equals(IDriverValuesProvider.VALUE_CREATE_DEFAULT)) {
+			Bundle[] bundles =
+				Platform.getBundles("org.apache.derby.core", null); //$NON-NLS-1$
+			if (bundles != null && bundles.length > 0) {
+				if (bundles != null && bundles.length > 0) {
+					URL url =
+						bundles[0].getEntry("derbyclient.jar"); //$NON-NLS-1$
+					if (url != null) {
+						return Boolean.toString(true);
+					}
+				}
+			}
+		}
 		if (key.equals(IDriverValuesProvider.VALUE_JARLIST)) {
 			Bundle[] bundles =
 				Platform.getBundles("org.apache.derby.core", null); //$NON-NLS-1$
@@ -40,13 +58,6 @@ public class DerbyClientDriverValuesProvider extends DefaultDriverValuesProvider
 						e.printStackTrace();
 					}
 				}
-			}
-		}
-		if (key.equals(IDriverValuesProvider.VALUE_CREATE_DEFAULT)) {
-			Bundle[] bundles =
-				Platform.getBundles("org.apache.derby.core", null); //$NON-NLS-1$
-			if (bundles != null && bundles.length > 0) {
-				return Boolean.toString(true);
 			}
 		}
 		return super.createDefaultValue(key);
