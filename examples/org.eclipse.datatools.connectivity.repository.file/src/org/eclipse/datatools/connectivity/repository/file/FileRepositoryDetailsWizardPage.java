@@ -56,7 +56,7 @@ public class FileRepositoryDetailsWizardPage extends
 		return new String();
 	}
 
-	public void createCustomControl(Composite parent, boolean isReadOnly) {
+	public void createCustomControl(Composite parent) {
 		Composite content = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout(3, false);
 		content.setLayout(layout);

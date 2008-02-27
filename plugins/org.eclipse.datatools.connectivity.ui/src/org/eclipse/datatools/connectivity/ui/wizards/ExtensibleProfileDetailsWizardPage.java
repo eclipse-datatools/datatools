@@ -46,10 +46,10 @@ public class ExtensibleProfileDetailsWizardPage extends
 				"ExtensibleProfileDetailsWizardPage.description")); //$NON-NLS-1$
 	}
 
-	public void createCustomControl(Composite parent, boolean isReadOnly) {
+	public void createCustomControl(Composite parent) {
 		parent.setLayout(new GridLayout());
 
-		driverCombo = new DriverListCombo(isReadOnly);
+		driverCombo = new DriverListCombo();
 		driverCombo
 				.setLabelText(ConnectivityUIPlugin
 						.getDefault()
@@ -60,7 +60,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 		driverCombo.createContents(parent);
 
 		contributedUIComposite = new DriverUIContributorComposite(parent, this,
-				this, isReadOnly);
+				this, false);
 
 		driverCombo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
