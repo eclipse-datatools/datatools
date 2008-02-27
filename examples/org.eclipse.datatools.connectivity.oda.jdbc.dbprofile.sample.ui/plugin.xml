@@ -2,6 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
 
+<!--
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard
@@ -13,6 +14,7 @@
             id="%oda.data.source.id">
       </newWizard>
    </extension>
+-->
    <extension
          point="org.eclipse.ui.propertyPages">
       <page
