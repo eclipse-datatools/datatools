@@ -78,7 +78,7 @@ public class PostgreSQLProfileDetailsWizardPage extends ConnectionProfileDetails
 	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	public void createCustomControl(Composite parent, boolean isReadOnly) {
+	public void createCustomControl(Composite parent) {
 		Composite content = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout(2, false);
 		content.setLayout(layout);
