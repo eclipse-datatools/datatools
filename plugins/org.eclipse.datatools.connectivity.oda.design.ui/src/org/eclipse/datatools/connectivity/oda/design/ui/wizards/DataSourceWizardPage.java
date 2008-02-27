@@ -125,7 +125,7 @@ public abstract class DataSourceWizardPage extends DataSourceWizardPageCore
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage#createCustomControl(org.eclipse.swt.widgets.Composite)
      */
-    public void createCustomControl( Composite parent, boolean isReadOnly )
+    public void createCustomControl( Composite parent )
     {
         // calls abstract method provided by custom extension
         createPageCustomControl( parent );
