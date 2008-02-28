@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: org.eclipse.datatools.enablement.hsqldb.ui;singleton:=true
-Bundle-Version: 1.0.0.200802261
+Bundle-Version: 1.0.0.200802271
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Activator: org.eclipse.datatools.enablement.hsqldb.ui.HSQLDBActivator
 Bundle-Localization: plugin
@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.enablement.hsqldb.ui,
- org.eclipse.datatools.enablement.hsqldb.ui.properties,
- org.eclipse.datatools.enablement.hsqldb.ui.wizard
+ org.eclipse.datatools.enablement.hsqldb.ui.connection,
+ org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers
 Bundle-RequiredExecutionEnvironment: J2SE-1.4

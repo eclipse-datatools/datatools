@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <newWizard
-            class="org.eclipse.datatools.enablement.hsqldb.ui.wizard.NewHSQLDBConnectionProfileWizard"
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.NewHSQLDBConnectionProfileWizard"
             icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.hsqldb.connectionProfile.NewConnectionProfileWizard"
             name="%connection.profile.newwizard"
@@ -15,7 +15,7 @@
       <extension
          point="org.eclipse.ui.propertyPages">
       <page
-            class="org.eclipse.datatools.enablement.hsqldb.ui.properties.HSQLDBPropertyPage"
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.HSQLDBProfilePropertyPage"
             id="org.eclipse.datatools.enablement.hsqldb.connectionProfile.profileProperties"
             name="%profile.page.name">
          <filter
@@ -27,6 +27,14 @@
             </instanceof>
          </enabledWhen>
       </page>
+   </extension>
+   
+   <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers.HSQLDBDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.hsqldb.1_8.driver"
+            id="org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers.1_8.HSQLDBDriverUIContributor">
+      </driverUIContributor>
    </extension>
    
 <!--
