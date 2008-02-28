@@ -18,6 +18,11 @@ import java.sql.SQLWarning;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
+import org.eclipse.emf.common.util.EList;
+
 /**
  * Vendors can subclass this class to provide database-specific utility methods.
  * 
@@ -218,13 +223,35 @@ public class DBHelper {
 	}
 
 	/**
-	 * Switches databases for the shared connection.
+	 * Switches databases(catalog) for the shared connection. Returns the original database (catalog) if the switching is successful, otherwise return null.
 	 * @param databaseIdentifier
 	 * @param conn
 	 * @return
 	 */
 	public String switchDatabase(DatabaseIdentifier databaseIdentifier, Connection conn) {
-	    return null;
+		if (databaseIdentifier.getDBname() == null || "".equals(databaseIdentifier.getDBname()))
+		{
+			return null;
+		}
+		//test whether catalog is supported by the vendor
+		Database db = ProfileUtil.getDatabase(databaseIdentifier);
+		EList catalogs = db.getCatalogs();
+		if (catalogs == null || catalogs.size() <= 1 ){
+			return null;
+		}
+		String oldName = null;
+		try {
+			oldName = conn.getCatalog();
+			if (databaseIdentifier.getDBname().equals(oldName))
+			{
+				//no need to switch
+				return null;
+			}
+			conn.setCatalog(databaseIdentifier.getDBname());
+		} catch (SQLException e) {
+			EditorCorePlugin.getDefault().log(e);
+		}
+		return oldName;
 	}
 
 	/**
