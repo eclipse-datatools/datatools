@@ -258,7 +258,10 @@ public class ModelUtil {
                         for (Iterator iter = catalogs.iterator();iter.hasNext();) {
                                 Catalog catalog = (Catalog)iter.next();
                                 // empty name means this is a dummy catalog
-                                if (catalogName == null || catalogName.equals(catalog.getName())) {
+                                // when "".equals(catalog.getName()), it's
+								// possible that existing clients still pass in
+								// catalogName which equals to the database name
+                                if (catalogName == null || catalogName.equals(catalog.getName()) || "".equals(catalog.getName())) {
                                 	schemas.addAll(catalog.getSchemas());
                                     if (catalogName != null) {
                                             break;

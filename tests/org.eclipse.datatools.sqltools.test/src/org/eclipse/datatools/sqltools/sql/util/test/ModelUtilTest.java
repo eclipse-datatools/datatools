@@ -123,6 +123,23 @@ public class ModelUtilTest extends TestCase {
 		assertTrue(ss.size() == 1);
 		assertEquals(((Schema)ss.get(0)).getName(), "s1");
 		
+		//No Database.getSchemas, and Database only has a dummy catalog,
+		//use catalogName to retrieve all schemas for a specific catalog.
+		//This is for backward compatibility 
+		db = SQLSchemaFactoryImpl.eINSTANCE.createDatabase();
+		db.setName("database");
+		s1 = SQLSchemaFactoryImpl.eINSTANCE.createSchema();
+		s1.setName("s1");
+		s2 = SQLSchemaFactoryImpl.eINSTANCE.createSchema();
+		s2.setName("s2");
+		cat1 = SQLSchemaFactoryImpl.eINSTANCE.createCatalog();
+		cat1.setName("");
+		db.getCatalogs().add(cat1);
+		cat1.getSchemas().add(s1);
+		cat1.getSchemas().add(s2);
+		
+		ss = ModelUtil.getSchemas(db, "database");
+		assertTrue(ss.size() == 2);
 	}
 
 }
