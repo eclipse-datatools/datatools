@@ -21,7 +21,6 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
-import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -29,6 +28,7 @@ import org.eclipse.swt.widgets.Composite;
  * Common implementation of data source properties page controls,
  * shared by the ODA data source wizard page and property page that wrap 
  * a Database driver-contributed property page.
+ * @since DTP 1.6
  */
 public class DbProfilePageWrapper 
 {
@@ -58,11 +58,11 @@ public class DbProfilePageWrapper
     private void init()
     {
     }
-
     
-    protected void createCustomControl( Composite parent ) throws OdaException
+    protected void createCustomControl( Composite parent, boolean isReadOnly ) 
+        throws OdaException
     {
-        m_wrappedPage.createControl( parent );
+        m_wrappedPage.createControl( parent, isReadOnly );
     }
 
     protected void initCustomControl( Properties profileProps )
@@ -73,16 +73,7 @@ public class DbProfilePageWrapper
         // it is up to the wrapped property page to initialize its controls based on
         // the page's connection profile element        
     }
-    
-    void setWrappedPingButtonEnabled( boolean enabled )
-    {
-        // if page has Test Connection button, set its enabled state
-        if( m_wrappedPage instanceof ProfileDetailsPropertyPage )
-        {
-            ((ProfileDetailsPropertyPage) m_wrappedPage).setPingButtonEnabled( enabled );
-        }      
-    }
-    
+        
     boolean isValid()
     {
         return m_wrappedPage.isValid();

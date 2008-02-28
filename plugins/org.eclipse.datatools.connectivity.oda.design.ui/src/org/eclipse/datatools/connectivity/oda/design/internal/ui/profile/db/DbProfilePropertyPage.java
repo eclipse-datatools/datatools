@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * The base class implementation of an ODA data source editor page that wraps 
  * the driver-contributed property page of a Database connection profile type.
+ * @since DTP 1.6
  */
 public class DbProfilePropertyPage extends DataSourceEditorPage
 {
@@ -55,7 +56,8 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
         {
             try
             {
-                m_pageHelper.createCustomControl( parent );
+                // specifies isReadOnly option based on the editable session state
+                m_pageHelper.createCustomControl( parent, ! isSessionEditable() );
             }
             catch( OdaException e )
             {
@@ -149,17 +151,10 @@ public class DbProfilePropertyPage extends DataSourceEditorPage
      */
     protected void refresh( Properties customConnectionProps  )
     {
-        if( m_pageHelper != null )
-            m_pageHelper.initCustomControl( customConnectionProps );
-        
-        // enable/disable all controls on page based on the editable session state
-        enableAllControls( getControl(), isSessionEditable() );
-        
-        // re-enable the custom db property page's ping button, even if 
-        // its properties are not editable
-        if( m_pageHelper != null && ! isSessionEditable() && 
-            ! m_pageHelper.hasDefaultPropertyPage() )
-            m_pageHelper.setWrappedPingButtonEnabled( true );
+        // noop;
+        // a db profile page does not allow a caller to re-initialize its controls
+        // with another set of profile properties; and
+        // the editable session state is handled when custom control is first created
     }
 
     /* (non-Javadoc)

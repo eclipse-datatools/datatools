@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * The base class implementation of an ODA data source wizard page that wraps 
  * the driver-contributed property page of a Database connection profile type.
+ * @since DTP 1.6
  */
 public class DbProfileWizardPage extends DataSourceWizardPage
 {
@@ -51,7 +52,8 @@ public class DbProfileWizardPage extends DataSourceWizardPage
         
         try
         {
-            m_pageHelper.createCustomControl( parent );
+            // specifies isReadOnly option based on the editable session state
+            m_pageHelper.createCustomControl( parent, ! isSessionEditable() );
         }
         catch( OdaException e )
         {
@@ -91,12 +93,8 @@ public class DbProfileWizardPage extends DataSourceWizardPage
      */
     public void refresh()
     {
-        // enable/disable all controls on page in respect of the editable session state
-        enableAllControls( getControl(), isSessionEditable() );
-        
-        // re-enable the db property page's ping button, even though its properties are not editable
-        if( m_pageHelper != null && ! isSessionEditable() )
-            m_pageHelper.setWrappedPingButtonEnabled( true );
+        // noop;
+        // the editable session state is handled when custom control is first created
     }
     
     /* (non-Javadoc)
