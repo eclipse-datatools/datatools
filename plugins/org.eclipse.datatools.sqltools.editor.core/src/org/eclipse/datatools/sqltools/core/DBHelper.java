@@ -18,7 +18,6 @@ import java.sql.SQLWarning;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.emf.common.util.EList;
