@@ -10,23 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
-import java.sql.Array;
-import java.sql.Blob;
 import java.sql.CallableStatement;
-import java.sql.Clob;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.NClob;
 import java.sql.PreparedStatement;
-import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
-import java.sql.SQLXML;
 import java.sql.Savepoint;
 import java.sql.Statement;
-import java.sql.Struct;
 import java.util.Map;
-import java.util.Properties;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -191,74 +183,18 @@ public class ConnectionAdapter implements Connection {
 	}
 
 	public CallableStatement prepareCall(String arg0, int arg1, int arg2, int arg3) throws SQLException {
-		return connection.prepareCall(arg0, arg1, arg2, arg3);
+		return prepareCall(arg0, arg1, arg2, arg3);
 	}
 
 	public PreparedStatement prepareStatement(String arg0, int arg1) throws SQLException {
-		return connection.prepareStatement(arg0, arg1);
+		return prepareStatement(arg0, arg1);
 	}
 
 	public PreparedStatement prepareStatement(String arg0, int[] arg1) throws SQLException {
-		return connection.prepareStatement(arg0, arg1);
+		return prepareStatement(arg0, arg1);
 	}
 
 	public PreparedStatement prepareStatement(String arg0, String[] arg1) throws SQLException {
-		return connection.prepareStatement(arg0, arg1);
-	}
-
-	public Array createArrayOf(String typeName, Object[] elements)
-			throws SQLException {
-		return connection.createArrayOf(typeName, elements);
-	}
-
-	public Blob createBlob() throws SQLException {
-		return connection.createBlob();
-	}
-
-	public Clob createClob() throws SQLException {
-		return connection.createClob();
-	}
-
-	public NClob createNClob() throws SQLException {
-		return connection.createNClob();
-	}
-
-	public SQLXML createSQLXML() throws SQLException {
-		return connection.createSQLXML();
-	}
-
-	public Struct createStruct(String typeName, Object[] attributes)
-			throws SQLException {
-		return connection.createStruct(typeName, attributes);
-	}
-
-	public Properties getClientInfo() throws SQLException {
-		return connection.getClientInfo();
-	}
-
-	public String getClientInfo(String name) throws SQLException {
-		return connection.getClientInfo(name);
-	}
-
-	public boolean isValid(int timeout) throws SQLException {
-		return connection.isValid(timeout);
-	}
-
-	public void setClientInfo(Properties properties)
-			throws SQLClientInfoException {
-		connection.setClientInfo(properties);
-	}
-
-	public void setClientInfo(String name, String value)
-			throws SQLClientInfoException {
-		connection.setClientInfo(name, value);
-	}
-
-	public boolean isWrapperFor(Class arg0) throws SQLException {
-		return connection.isWrapperFor(arg0);
-	}
-
-	public Object unwrap(Class arg0) throws SQLException {
-		return connection.unwrap(arg0);
+		return prepareStatement(arg0, arg1);
 	}
 }
