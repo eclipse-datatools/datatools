@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,4 +26,8 @@ public interface GroupID {
 	public static final String USER_DEFINED_TYPE = "core.sql.datatypes.UserDefinedType";  //$NON-NLS-1$
 	public static final String VIEW = "core.sql.tables.ViewTable";  //$NON-NLS-1$
 	public static final String CATALOG = "core.sql.schema.Catalog";  //$NON-NLS-1$
+	public static final String GROUP = "core.sql.schema.Group"; //$NON-NLS-1$
+	public static final String USER = "core.sql.schema.User"; //$NON-NLS-1$
+	public static final String ROLE = "core.sql.schema.Role"; //$NON-NLS-1$
+	public static final String PRIVILEGE = "core.sql.accesscontrol.Privilege"; //$NON-NLS-1$
 }

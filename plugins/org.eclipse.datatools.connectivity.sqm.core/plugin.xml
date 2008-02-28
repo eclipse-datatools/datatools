@@ -80,6 +80,21 @@
             class="Catalog"
             provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.CatalogContainmentProvider">
       </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="AuthorizationIdentifier"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.AuthorizationIdContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="Privilege"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.PrivilegeContainmentProvider">
+      </containment>
+      <containment
+            package="http:///org/eclipse/datatools/modelbase/sql/accesscontrol.ecore"
+            class="RoleAuthorization"
+            provider="org.eclipse.datatools.connectivity.sqm.internal.core.containment.RoleAuthorizationContainmentProvider">
+      </containment>
    </extension>
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">
