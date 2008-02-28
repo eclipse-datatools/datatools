@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006, 2007 IBM Corporation and others. All rights reserved.
+ * Copyright (c) 2006 - 2008 IBM Corporation and others. All rights reserved.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
@@ -158,14 +158,22 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 	private static final String CUI_NEWCW_SELECT_TRACE_LEVEL_MESSAGE_UI_ = Messages
 			.getString("CUI_NEWCW_SELECT_TRACE_LEVEL_MESSAGE_UI_"); //$NON-NLS-1$
 
+	private boolean isReadOnly = false;
+	
 	public IBMJDBCDriverTracingOptionsPane(Composite parent, int style,
-			IIBMJDBCDriverProvider parentDriverProvider) {
+			IIBMJDBCDriverProvider parentDriverProvider, boolean isReadOnly) {
 		super(parent, style);
 		this.parentDriverProvider = parentDriverProvider;
 		Composite parentComposite = this;
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 3;
 		parentComposite.setLayout(layout);
+		
+		this.isReadOnly = isReadOnly;
+		int additionalStyles = SWT.NONE;
+		if (isReadOnly){
+			additionalStyles = SWT.READ_ONLY;
+		}
 
 		GridData gd;
 
@@ -185,7 +193,7 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 		gd.verticalAlignment = GridData.BEGINNING;
 		traceDirectoryLabel.setLayoutData(gd);
 
-		traceDirectoryText = new Text(parentComposite, SWT.SINGLE | SWT.BORDER);
+		traceDirectoryText = new Text(parentComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 		gd = new GridData();
 		gd.widthHint = 180;
 		gd.horizontalAlignment = GridData.FILL;
@@ -196,6 +204,7 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 
 		browseDirectory = new Button(parentComposite, SWT.PUSH);
 		browseDirectory.setText(CUI_NEWCW_TRACE_DIRECTORY_BROWSE_BUTTON_UI_);
+		browseDirectory.setEnabled(!isReadOnly);
 		gd = new GridData();
 		gd.verticalAlignment = GridData.BEGINNING;
 		gd.horizontalAlignment = GridData.FILL;
@@ -209,7 +218,7 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 		gd.verticalAlignment = GridData.BEGINNING;
 		traceFileLabel.setLayoutData(gd);
 
-		traceFileText = new Text(parentComposite, SWT.SINGLE | SWT.BORDER);
+		traceFileText = new Text(parentComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 		gd = new GridData();
 		gd.verticalAlignment = GridData.BEGINNING;
 		gd.horizontalAlignment = GridData.FILL;
@@ -331,11 +340,13 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 		xaCallsCheckbox.setLayoutData(gd);
 
 		allButton = new Button(traceLevelGroup, SWT.NONE);
+		allButton.setEnabled(!isReadOnly);
 		allButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
 				| GridData.VERTICAL_ALIGN_BEGINNING));
 		allButton.setText(CUI_NEWCW_SELECT_ALL_BUTTON_UI_);
 
 		noneButton = new Button(traceLevelGroup, SWT.NONE);
+		noneButton.setEnabled(!isReadOnly);
 		noneButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
 				| GridData.VERTICAL_ALIGN_BEGINNING));
 		noneButton.setText(CUI_NEWCW_DESELECT_ALL_BUTTON_UI_);
@@ -347,8 +358,7 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 
 	private void enableTracingUI(boolean enable) {
 		traceDirectoryLabel.setEnabled(enable);
-		traceDirectoryText.setEnabled(enable);
-		browseDirectory.setEnabled(enable);
+		traceDirectoryText.setEnabled(enable);	
 		traceFileLabel.setEnabled(enable);
 		traceFileText.setEnabled(enable);
 		appendCheckbox.setEnabled(enable);
@@ -364,8 +374,11 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 		diagnosticsCheckbox.setEnabled(enable);
 		sqlJCheckbox.setEnabled(enable);
 		xaCallsCheckbox.setEnabled(enable);
-		allButton.setEnabled(enable);
-		noneButton.setEnabled(enable);
+		if (!isReadOnly) {
+			browseDirectory.setEnabled(enable);
+			allButton.setEnabled(enable);
+			noneButton.setEnabled(enable);
+		}
 	}
 
 	private void addListeners() {
@@ -412,23 +425,42 @@ public class IBMJDBCDriverTracingOptionsPane extends Composite implements
 
 	public void handleEvent(Event event) {
 		Widget source = event.widget;
-		if (source == disableTracingCheckbox) {
-			enableTracingUI(!disableTracingCheckbox.getSelection());
-		} else if (source == allButton) {
-			setAllLevelsChecked(true);
-		} else if (source == noneButton) {
-			setAllLevelsChecked(false);
-		} else if (source == browseDirectory) {
-			DirectoryDialog dialog = new DirectoryDialog(browseDirectory
-					.getShell(), SWT.OPEN);
-			dialog.setFilterPath(traceDirectoryText.getText().trim());
-			String directory = dialog.open();
-			if (directory != null) {
-				traceDirectoryText.setText(directory);
+		if (isReadOnly){
+			if ((source == disableTracingCheckbox)
+				|| 	(source == appendCheckbox)
+				|| 	(source == connectionCallsCheckbox)
+				|| 	(source == statementCallsCheckbox)
+				|| 	(source == resultSetCallsCheckbox)
+				|| 	(source == driverConfigurationCheckbox)
+				|| 	(source == connectsCheckbox)
+				|| 	(source == drdaFlowsCheckbox)
+				|| 	(source == resultsetMetadataCheckbox)
+				|| 	(source == parameterMetadataCheckbox)
+				|| 	(source == diagnosticsCheckbox)
+				|| 	(source == sqlJCheckbox)
+				|| 	(source == xaCallsCheckbox)			
+			){
+				((Button)source).setSelection(!((Button)source).getSelection());
+			}	
+		} else {
+			if (source == disableTracingCheckbox) {
+				enableTracingUI(!disableTracingCheckbox.getSelection());
+			} else if (source == allButton) {
+				setAllLevelsChecked(true);
+			} else if (source == noneButton) {
+				setAllLevelsChecked(false);
+			} else if (source == browseDirectory) {
+				DirectoryDialog dialog = new DirectoryDialog(browseDirectory
+						.getShell(), SWT.OPEN);
+				dialog.setFilterPath(traceDirectoryText.getText().trim());
+				String directory = dialog.open();
+				if (directory != null) {
+					traceDirectoryText.setText(directory);
+				}
 			}
+			parentDriverProvider.updateURL();
+			parentDriverProvider.setConnectionInformation();
 		}
-		parentDriverProvider.updateURL();
-		parentDriverProvider.setConnectionInformation();
 	}
 
 	private void setAllLevelsChecked(boolean check) {

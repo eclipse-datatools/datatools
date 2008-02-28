@@ -123,12 +123,20 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 	private IDriverUIContributorInformation contributorInformation;
 
 	private Properties properties;
+	
+	private boolean isReadOnly = false;
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 
-		if ((parentComposite == null) || parentComposite.isDisposed()) {
+		if ((parentComposite == null) || parentComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
 			GridData gd;
 
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			parentComposite.setExpandHorizontal(true);
@@ -151,7 +159,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			driverOptionsTab.setControl(driverOptionsComposite);
 
 			tracingOptionsComposite = new IBMJDBCDriverTracingOptionsPane(
-					tabComposite, SWT.NULL, this);
+					tabComposite, SWT.NULL, this, isReadOnly);
 			tracingOptionsTab.setControl(tracingOptionsComposite);
 
 			databaseLabel = new Label(driverOptionsComposite, SWT.NONE);
@@ -161,7 +169,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			databaseLabel.setLayoutData(gd);
 
 			databaseText = new Text(driverOptionsComposite, SWT.SINGLE
-					| SWT.BORDER);
+					| SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.verticalAlignment = GridData.BEGINNING;
 			gd.horizontalAlignment = GridData.FILL;
@@ -174,7 +182,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			hostLabel.setLayoutData(gd);
 
-			hostText = new Text(driverOptionsComposite, SWT.SINGLE | SWT.BORDER);
+			hostText = new Text(driverOptionsComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -188,7 +196,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			portLabel.setLayoutData(gd);
 
-			portText = new Text(driverOptionsComposite, SWT.SINGLE | SWT.BORDER);
+			portText = new Text(driverOptionsComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -203,7 +211,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			usernameLabel.setLayoutData(gd);
 
 			usernameText = new Text(driverOptionsComposite, SWT.SINGLE
-					| SWT.BORDER);
+					| SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -218,7 +226,7 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 			passwordLabel.setLayoutData(gd);
 
 			passwordText = new Text(driverOptionsComposite, SWT.SINGLE
-					| SWT.BORDER | SWT.PASSWORD);
+					| SWT.BORDER | SWT.PASSWORD | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -311,8 +319,14 @@ public class DB2ISeriesDriverUIContributor implements IDriverUIContributor,
 	}
 
 	public void handleEvent(Event event) {
-		updateURL();
-		setConnectionInformation();
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			}	
+		} else {
+			updateURL();
+			setConnectionInformation();
+		}
 	}
 
 	public boolean determineContributorCompletion() {
