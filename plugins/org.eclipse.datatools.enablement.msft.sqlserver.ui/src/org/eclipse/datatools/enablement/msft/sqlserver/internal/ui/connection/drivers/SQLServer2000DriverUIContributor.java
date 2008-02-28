@@ -114,6 +114,8 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 	private ScrolledComposite parentComposite;
 
 	private Properties properties;
+	
+	private boolean isReadOnly = false;
 
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
@@ -149,9 +151,15 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 
-		if ((parentComposite == null) || parentComposite.isDisposed()) {
+		if ((parentComposite == null) || parentComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
 			GridData gd;
 
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			parentComposite.setExpandHorizontal(true);
@@ -169,7 +177,7 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			databaseLabel.setLayoutData(gd);
 
-			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.verticalAlignment = GridData.BEGINNING;
 			gd.horizontalAlignment = GridData.FILL;
@@ -183,7 +191,7 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 1;
 			hostLabel.setLayoutData(gd);
 
-			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -198,7 +206,7 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 1;
 			portLabel.setLayoutData(gd);
 
-			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -212,7 +220,7 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			usernameLabel.setLayoutData(gd);
 
-			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -227,7 +235,7 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 			passwordLabel.setLayoutData(gd);
 
 			passwordText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER
-					| SWT.PASSWORD);
+					| SWT.PASSWORD | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -332,8 +340,14 @@ public class SQLServer2000DriverUIContributor implements IDriverUIContributor,
 	}
 
 	public void handleEvent(Event event) {
-		updateURL();
-		setConnectionInformation();
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			}
+		} else {
+			updateURL();
+			setConnectionInformation();
+		}
 	}
 
 	private void setConnectionInformation() {
