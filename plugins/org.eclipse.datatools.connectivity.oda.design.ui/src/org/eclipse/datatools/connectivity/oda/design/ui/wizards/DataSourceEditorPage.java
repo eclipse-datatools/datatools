@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -76,7 +76,7 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage#createCustomContents(org.eclipse.swt.widgets.Composite)
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage#createCustomContents(org.eclipse.swt.widgets.Composite)
      */
     protected void createCustomContents( Composite parent )
     {
@@ -86,7 +86,7 @@ public abstract class DataSourceEditorPage extends DataSourceEditorPageCore
     }
 
     /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage#collectProperties()
+     * @see org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage#collectProperties()
      */
     protected Properties collectProperties()
     {
