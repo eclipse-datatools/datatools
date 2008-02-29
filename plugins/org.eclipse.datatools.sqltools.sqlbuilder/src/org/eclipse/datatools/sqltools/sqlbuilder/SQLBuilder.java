@@ -1026,6 +1026,11 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
         int outlineViewerWidth = UNKNOWN_VALUE;       
         int designViewerHeight = UNKNOWN_VALUE;
 
+        
+        //
+        // Get parts of the StateInfo
+        //
+        
         IWindowStateInfo windowStateInfo = _sqlBuilderEditorInput.getWindowStateInfo();
         if ( windowStateInfo == null ){
             return;     // no state info to restore from
@@ -1063,53 +1068,71 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
         }
         
         //
-        // If the height states exist in memento, restore the sash weights
+        // Restore the Window state to the settings found
         //
-        // Set weights for _sashMain
+        
+        // set all weights before setting hidden
+        // _sashMain
         if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE
         		&&  designViewerHeight != UNKNOWN_VALUE){
-        	_sashMain.setWeights(new int[]{sourceViewerHeight + graphControlHeight, designViewerHeight});
-        	
-        	if (!designViewerState.isVisible() && designViewerState.isHideable()){
-        		_sashMain.hideDown();
-        	}
+        	_sashMain.setWeights(new int[]{sourceViewerHeight + graphControlHeight, designViewerHeight});      	
         }
         else {
         	_sashMain.setWeights(new int[]{DEFAULT_SASHMAIN_WEIGHT1, DEFAULT_SASHMAIN_WEIGHT2});
         }
-        	
-        // Set weights for _sashSourceGraph
+        // _sashSourceGraph
         if (sourceViewerHeight != UNKNOWN_VALUE && graphControlHeight != UNKNOWN_VALUE){
         	_sashSourceGraph.setWeights(new int[]{sourceViewerHeight, graphControlHeight});
-        	
-        	if (! sourceViewerState.isVisible() && sourceViewerState.isHideable()){
-        		_sashSourceGraph.hideUp();
-        	}
-        	else if (! graphViewerState.isVisible() && graphViewerState.isHideable()){
-        		_sashSourceGraph.hideDown();
-        	}
         }
         else {
-        	_sashSourceGraph.setWeights(new int[]{DEFAULT_SASHSOURCEGRAPH_WEIGHT1, DEFAULT_SASHSOURCEGRAPH_WEIGHT2});
+           	_sashSourceGraph.setWeights(new int[]{DEFAULT_SASHSOURCEGRAPH_WEIGHT1, DEFAULT_SASHSOURCEGRAPH_WEIGHT2});
         }
-        
-        
-        // Set weights for _sashGraphOutline
+        // _sashGraphOutline
+        // Must check for _sashGraphOutline's existence because it's not present in the editor
         if (_sashGraphOutline != null){
         	if (graphControlWidth != UNKNOWN_VALUE && outlineViewerWidth != UNKNOWN_VALUE){
         		_sashGraphOutline.setWeights(new int[]{graphControlWidth, outlineViewerWidth});
-        		
-        		if (! graphViewerState.isVisible() && graphViewerState.isHideable()){
-        			_sashGraphOutline.hideLeft();
-            	}
-        		else if (! outlineViewerState.isVisible() && outlineViewerState.isHideable()){
-        			_sashGraphOutline.hideRight();
-            	}
         	}
         	else {
         		_sashGraphOutline.setWeights(new int[]{DEFAULT_SASHGRAPHOUTLINE_WEIGHT1, DEFAULT_SASHGRAPHOUTLINE_WEIGHT2});
         	}
-        }
+       }
+
+        
+        // set hidden
+        // _sashMain
+    	if (designViewerState != null && !designViewerState.isVisible()){
+    		hideDown(_sashMain);
+    	}
+        // _sashSourceGraph
+    	if (sourceViewerState != null && ! sourceViewerState.isVisible()){
+    		hideUp(_sashSourceGraph);
+    	}
+    	else if (graphViewerState != null && ! graphViewerState.isVisible()){
+    		// if there's no outline view, hideDown
+    		if (_sashGraphOutline == null){
+    			hideDown(_sashSourceGraph);
+    		}
+    		// else if the outlineViewer should also be hidden, hideDown
+    		else if (outlineViewerState != null && ! outlineViewerState.isVisible()){
+    			hideDown(_sashSourceGraph);
+    		}
+    	}
+        // _sashGraphOutline
+        // Must check for _sashGraphOutline's existence because it's not present in the editor
+        if (_sashGraphOutline != null){
+        	if (graphViewerState != null && ! graphViewerState.isVisible()
+        			&& outlineViewerState != null && ! outlineViewerState.isVisible()){
+        		// both should be hidden, so would call hideDown(_sashSourceGraph);
+        		// but it's already been done
+        	}
+        	else if (graphViewerState != null && ! graphViewerState.isVisible()){
+        		hideLeft(_sashGraphOutline);
+       		}
+        	else if (outlineViewerState != null && ! outlineViewerState.isVisible()){
+       			hideRight(_sashGraphOutline);
+        	}
+       }
         
         // Set hide / restore arrows
         if (designViewerState != null && !designViewerState.isHideable()){
@@ -1121,11 +1144,51 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
         if (graphViewerState != null && !graphViewerState.isHideable()){
         	_sashSourceGraph.setNoHideDown(true);
         }
-        if (outlineViewerState != null && !outlineViewerState.isHideable()){
-        	_sashGraphOutline.setNoHideRight(true);
+        if (_sashGraphOutline != null){
+        	if (outlineViewerState != null && !outlineViewerState.isHideable()){
+        		_sashGraphOutline.setNoHideRight(true);
+        	}
         }
   	}
   	
+  	/*
+  	 * Helper method for restoreWindowState
+  	 * Forces a hideUp, even if NoHideUp is set for the control
+  	 */
+	private void hideUp(CustomSashForm sashForm) {
+		boolean tmpNoHideUp = sashForm.isNoHideUp();
+		sashForm.setNoHideUp(false);
+		sashForm.hideUp();
+		sashForm.setNoHideUp(tmpNoHideUp);
+	}
+
+  	/*
+  	 * Helper method for restoreWindowState
+  	 * Forces a hideLeft, even if NoHideLeft is set for the control
+  	 */
+	private void hideLeft(CustomSashForm sashForm) {
+		hideUp(sashForm);
+	}
+
+	/*
+  	 * Helper method for restoreWindowState
+  	 * Forces a hideDown, even if NoHideDown is set for the control
+  	 */
+	private void hideDown(CustomSashForm sashForm) {
+		boolean tmpNoHideDown = sashForm.isNoHideDown();
+		sashForm.setNoHideDown(false);
+		sashForm.hideDown();
+		sashForm.setNoHideDown(tmpNoHideDown);
+	}
+
+  	/*
+  	 * Helper method for restoreWindowState
+  	 * Forces a hideRight, even if NoHideRight is set for the control
+  	 */
+	private void hideRight(CustomSashForm sashForm) {
+		hideDown(sashForm);
+	}
+
 	/**
 	 * Returns the current window state of the <code>SQLBuilder</code>.
 	 * @return

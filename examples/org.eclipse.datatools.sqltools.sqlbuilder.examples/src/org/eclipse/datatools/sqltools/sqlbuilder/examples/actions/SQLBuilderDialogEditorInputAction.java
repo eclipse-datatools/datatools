@@ -39,7 +39,7 @@ public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate 
 	private IFile _selectedFile;
 	
 	private static final String sXMLWindowStateInfo =
-		"<?xml version='1.0' encoding='UTF-8'?>" + "\n" +
+/*		"<?xml version='1.0' encoding='UTF-8'?>" + "\n" +
 		"<SQLQueryBuilder>" + "\n" +
 		"<windowState version='1.0' height='435' width='668'>" + "\n" +
 		"<control name='SQLSourceViewer' isVisible='true' isHideable='true' height='81' width='641'/>" + "\n" +
@@ -48,6 +48,24 @@ public class SQLBuilderDialogEditorInputAction implements IObjectActionDelegate 
 		"<control name='OutlineViewer' isVisible='true' isHideable='false' height='214' width='200'/>" + "\n" +
 		"</windowState>" + "\n" +
 		"</SQLQueryBuilder>";
+*/	
+/*
+		"<?xml version='1.0' encoding='UTF-8'?>" + "\n" +
+		"<SQLQueryBuilder>" + "\n" +
+		"<windowState version='1.0'>" + "\n" +
+		"<control name='SQLSourceViewer' isVisible='true' isHideable='true'/>" + "\n" +
+		"<control name='DesignViewer' isVisible='true' isHideable='true'/>" + "\n" +
+		"<control name='GraphControl' isVisible='true' isHideable='true'/>" + "\n" +
+		"<control name='OutlineViewer' isVisible='false' isHideable='true'/>" + "\n" +
+		"</windowState>" + "\n" +
+		"</SQLQueryBuilder>";
+*/
+	"<?xml version='1.0' encoding='UTF-8'?>" + "\n" +
+	"<SQLQueryBuilder>" + "\n" +
+	"<windowState version='1.0'>" + "\n" +
+	"<control name='OutlineViewer' isVisible='false' isHideable='true'/>" + "\n" +
+	"</windowState>" + "\n" +
+	"</SQLQueryBuilder>";
 	
 
 	private static final String sEditorInputUsageOptions =
