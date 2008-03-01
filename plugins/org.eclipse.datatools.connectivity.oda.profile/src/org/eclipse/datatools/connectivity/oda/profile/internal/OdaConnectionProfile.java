@@ -186,7 +186,7 @@ public class OdaConnectionProfile extends PlatformObject
     {
         if( m_wrappedProfile != null )
             return m_wrappedProfile.canWorkOffline();
-        return true;
+        return false;
     }
     
     /* (non-Javadoc)
