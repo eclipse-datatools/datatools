@@ -45,6 +45,8 @@ DriverValidator.msg.missing_required_property = ドライバ定義に必要なプロパティの
 DriverValidator.msg.jarfile_not_found = ドライバ定義 {0} で指定されている JAR または zip がファイルシステムにありません。
 DriverInstance.error.invalidClassPath=ドライバクラスのパスが無効です。
 DriverValidator.msg.empty_jar_list = ドライバ定義にドライバファイルが指定されていません。
+DriverValidator.msg.empty_name = ドライバ名には空の文字列を指定できません。
+
 DriverValidator.msg.no_driver_selected=ドロップダウン・リストからドライバーを定義および選択して、続行します。
 DriverInstance.error.jarListNotDefined=無効なドライバー定義。JAR リストが定義されていません。
 NewDriverDialog.label.availableTemplates = 使用可能なドライバのテンプレート(&A) :

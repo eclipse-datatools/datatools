@@ -14,3 +14,12 @@ datatools.preference.page.name=Konnektivität
 drivers.preference.page.name=Treiberdefinitionen
 category.name.connectionProfiles=Verbindungsprofile
 DSE.content = Erweiterung für Datenquellen-Explorer
+
+AddProfile.command.label = Befehl 'Neues Verbindungsprofil'
+AddProfile.command.description = Befehl zur Erstellung eines neuen Verbindungsprofils
+AddRepositoryProfile.command.label = Befehl 'Neues Repository-Profil'
+AddRepositoryProfile.command.description = Befehl zur Erstellung eines neuen Repository-Profils
+ExportProfile.command.label = Befehl 'Profile exportieren'
+ExportProfile.command.description = Befehl zum Exportieren von Verbindungsprofilen
+ImportProfile.command.label = Befehl 'Profile importieren'
+ImportProfile.command.description = Befehl zum Importieren von Verbindungsprofilen

@@ -45,6 +45,8 @@ DriverValidator.msg.missing_required_property = 驱动程序定义中的必需属性缺少值: 
 DriverValidator.msg.jarfile_not_found = 无法在驱动程序定义指定的文件系统中找到 JAR/zip: {0}。
 DriverInstance.error.invalidClassPath=驱动程序类路径无效。
 DriverValidator.msg.empty_jar_list = 驱动程序定义中没有指定驱动程序文件。
+DriverValidator.msg.empty_name = 驱动程序名称不能为空字符串。
+
 DriverValidator.msg.no_driver_selected=定义并从下拉列表中选择驱动程序以继续。
 DriverInstance.error.jarListNotDefined=驱动程序定义无效；未定义 JAR 列表。
 NewDriverDialog.label.availableTemplates = 可用的驱动程序模板(&A):

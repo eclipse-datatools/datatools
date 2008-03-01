@@ -14,3 +14,12 @@ datatools.preference.page.name=连接
 drivers.preference.page.name=驱动程序定义
 category.name.connectionProfiles=连接概要文件
 DSE.content = 数据源资源管理器扩展
+
+AddProfile.command.label = 新建连接配置文件命令
+AddProfile.command.description = 用于创建新连接配置文件的命令
+AddRepositoryProfile.command.label = 新建存储库配置文件命令
+AddRepositoryProfile.command.description = 用于创建新存储库配置文件的命令
+ExportProfile.command.label = 导出配置文件命令
+ExportProfile.command.description = 用于导出连接配置文件的命令
+ImportProfile.command.label = 导入配置文件命令
+ImportProfile.command.description = 用于导入连接配置文件的命令

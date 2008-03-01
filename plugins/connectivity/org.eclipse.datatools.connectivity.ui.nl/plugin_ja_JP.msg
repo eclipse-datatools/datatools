@@ -14,3 +14,12 @@ datatools.preference.page.name=接続
 drivers.preference.page.name=ドライバー定義
 category.name.connectionProfiles=接続プロファイル
 DSE.content = データソースエクスプローラの拡張
+
+AddProfile.command.label = 新しい接続プロファイルのコマンド
+AddProfile.command.description = このコマンドを実行すると、新しい接続プロファイルが作成されます。
+AddRepositoryProfile.command.label = 新しいリポジトリプロファイルのコマンド
+AddRepositoryProfile.command.description = このコマンドを実行すると、新しいリポジトリプロファイルが作成されます。
+ExportProfile.command.label = プロファイルのエクスポートコマンド
+ExportProfile.command.description = このコマンドを実行すると、接続プロファイルがエクスポートされます。
+ImportProfile.command.label = プロファイルのインポートコマンド
+ImportProfile.command.description = このコマンドを実行すると、接続プロファイルがインポートされます。

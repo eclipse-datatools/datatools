@@ -45,6 +45,8 @@ DriverValidator.msg.missing_required_property = Propriété obligatoire dans la va
 DriverValidator.msg.jarfile_not_found = Impossible de localiser une archive JAR/zip dans le système de fichiers défini par la définition de pilote : {0}.
 DriverInstance.error.invalidClassPath=Chemin de la classe de pilote.
 DriverValidator.msg.empty_jar_list = Fichiers de pilote non spécifiés dans la définition de pilote.
+DriverValidator.msg.empty_name = Un nom de pilote ne peut pas être une chaîne vide.
+
 DriverValidator.msg.no_driver_selected=Pour continuer, définissez et sélectionnez un pilote dans la liste déroulante.
 DriverInstance.error.jarListNotDefined=Définition de pilote incorrecte ; la liste JAR n'est pas définie.
 NewDriverDialog.label.availableTemplates = &Modèles de pilotes disponibles :

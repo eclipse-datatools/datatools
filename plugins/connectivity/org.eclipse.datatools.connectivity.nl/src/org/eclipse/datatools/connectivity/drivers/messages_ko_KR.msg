@@ -45,6 +45,8 @@ DriverValidator.msg.missing_required_property = 드라이버 정의에서 필요한 속성 값
 DriverValidator.msg.jarfile_not_found = 드라이버 정의 {0}에서 지정한 대로 파일 시스템에서 JAR/zip을 찾을 수 없습니다.
 DriverInstance.error.invalidClassPath=잘못된 드라이버 클래스 경로입니다.
 DriverValidator.msg.empty_jar_list = 드라이버 정의에서 드라이버 파일을 지정하지 않았습니다.
+DriverValidator.msg.empty_name = 드라이버 이름이 빈 문자열이면 안됩니다.
+
 DriverValidator.msg.no_driver_selected=계속하려면 드롭 다운 목록에서 드라이버를 정의 및 선택하십시오.
 DriverInstance.error.jarListNotDefined=올바르지 않은 드라이버 정의입니다. JAR 목록이 정의되지 않았습니다.
 NewDriverDialog.label.availableTemplates = 사용 가능한 드라이버 템플릿(&A):

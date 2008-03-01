@@ -45,6 +45,8 @@ DriverValidator.msg.missing_required_property = Fehlender Wert für die erforderl
 DriverValidator.msg.jarfile_not_found = JAR-/ZIP-Datei konnte nicht wie von der Treiberdefinition angegeben im Dateisystem gefunden werden: {0}.
 DriverInstance.error.invalidClassPath=Ungültiger Pfad für Treiberklasse.
 DriverValidator.msg.empty_jar_list = Treiberdateien in Treiberdefinition nicht spezifiziert.
+DriverValidator.msg.empty_name = A driver name must not be an empty string.
+
 DriverValidator.msg.no_driver_selected=Definieren und wählen Sie einen Treiber in der Dropdown-Liste für die weiteren Aktionen aus.
 DriverInstance.error.jarListNotDefined=Ungültige Treiberdefinition\: JAR-Liste ist nicht definiert.
 NewDriverDialog.label.availableTemplates = &Verfügbare Treibervorlagen:
