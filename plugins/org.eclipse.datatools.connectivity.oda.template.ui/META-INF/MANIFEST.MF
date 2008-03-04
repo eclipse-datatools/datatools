@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.template.ui;singleton:=true
-Bundle-Version: 3.0.6.200802051
+Bundle-Version: 3.0.6.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.template.ui.plugin.Activator
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
