@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ibm.ui
-Bundle-Version: 1.0.0.200802281
+Bundle-Version: 1.0.0.qualifier
 Export-Package: org.eclipse.datatools.enablement.ibm.internal.ui.drivers
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0)"
 Bundle-Vendor: %providerName
