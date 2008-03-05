@@ -7,6 +7,13 @@
       <definition
             version="10.0"
             product="Informix"
+            productDisplayString="%10.0ProductString"
+            versionDisplayString="%10.0VersionString"
+            file="runtime/vendors/Informix_10.0/Informix_10.0.xmi">
+      </definition>
+      <definition
+            version="10"
+            product="Informix"
             productDisplayString="%10ProductString"
             versionDisplayString="%10VersionString"
             file="runtime/vendors/Informix_10.0/Informix_10.0.xmi">
