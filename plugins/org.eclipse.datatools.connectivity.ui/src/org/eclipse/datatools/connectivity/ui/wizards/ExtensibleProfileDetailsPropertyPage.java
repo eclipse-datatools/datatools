@@ -80,6 +80,7 @@ public class ExtensibleProfileDetailsPropertyPage extends
 						ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID);
 		if (driverDefinitionID != null) {
 			driverCombo.setSelectionToID(driverDefinitionID);
+			handleDriverComboSelectionChangeEvent(new ChangeEvent(driverCombo.getCombo()));
 		}
 	}
 
