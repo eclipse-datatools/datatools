@@ -41,6 +41,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 	public ProfileStoreCreationDialog( Shell parentShell )
 	{
 		super( parentShell );
+        setShellStyle( super.getShellStyle() | SWT.PRIMARY_MODAL );
 	}
 	
 	//@Override base method
