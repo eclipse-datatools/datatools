@@ -1,27 +1,127 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.enablement.ibm.feature" image="eclipse_update_120.jpg" label="%featureName" plugin="org.eclipse.datatools.enablement.finfo" provider-name="%providerName" version="1.6.0.200802041">
-	<description>%description</description>
-	<license url="%licenseURL">%license</license>
-	<url>
-		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-	</url>
-	<requires>
-		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
-	</requires>
-	<plugin download-size="10" id="org.eclipse.datatools.enablement.ibm.ui" install-size="10" unpack="false" version="1.0.0.200801211"/>
-	<plugin download-size="11" id="org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition" install-size="11" unpack="false" version="1.0.0.200712131"/>
-	<plugin download-size="7" id="org.eclipse.datatools.enablement.ibm.db2.iseries" install-size="7" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="20" id="org.eclipse.datatools.enablement.ibm.db2.iseries.ui" install-size="20" unpack="false" version="1.0.0.200801211"/>
-	<plugin download-size="18" id="org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition" install-size="18" unpack="false" version="1.0.0.200712131"/>
-	<plugin download-size="7" id="org.eclipse.datatools.enablement.ibm.db2.luw" install-size="7" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="14" id="org.eclipse.datatools.enablement.ibm.db2.luw.ui" install-size="14" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="28" id="org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition" install-size="28" unpack="false" version="1.0.0.200801151"/>
-	<plugin download-size="8" id="org.eclipse.datatools.enablement.ibm.db2.zseries" install-size="8" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="13" id="org.eclipse.datatools.enablement.ibm.db2.zseries.ui" install-size="13" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="22" id="org.eclipse.datatools.enablement.ibm.informix.dbdefinition" install-size="22" unpack="false" version="1.0.0.200712131"/>
-	<plugin download-size="5" id="org.eclipse.datatools.enablement.ibm.informix" install-size="5" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="12" id="org.eclipse.datatools.enablement.ibm.informix.ui" install-size="12" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="9" id="org.eclipse.datatools.enablement.finfo" install-size="9" unpack="false" version="1.5.1.200708161"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.datatools.enablement.ibm.feature"
+      label="%featureName"
+      version="1.6.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.datatools.enablement.finfo"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.iseries.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.luw.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.luw"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.luw.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.db2.zseries.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.informix.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.informix"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.ibm.informix.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.finfo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

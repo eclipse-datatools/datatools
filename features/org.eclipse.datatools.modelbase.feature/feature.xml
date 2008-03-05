@@ -1,17 +1,69 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.modelbase.feature" image="eclipse_update_120.jpg" label="%featureName" plugin="org.eclipse.datatools.modelbase.sql" provider-name="%providerName" version="1.6.0.200802041">
-	<description>%description</description>
-	<license url="%licenseURL">%license</license>
-	<url>
-		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-	</url>
-	<requires>
-		<import feature="org.eclipse.emf" match="greaterOrEqual" version="2.2.0"/>
-	</requires>
-	<plugin download-size="146" id="org.eclipse.datatools.modelbase.dbdefinition" install-size="146" unpack="false" version="1.0.0.200706071"/>
-	<plugin download-size="239" id="org.eclipse.datatools.modelbase.sql.edit" install-size="239" unpack="false" version="1.0.0.200706071"/>
-	<plugin download-size="525" id="org.eclipse.datatools.modelbase.sql.query" install-size="525" unpack="false" version="1.0.1.200801291"/>
-	<plugin download-size="174" id="org.eclipse.datatools.modelbase.sql.query.edit" install-size="174" unpack="false" version="1.0.0.200802012"/>
-	<plugin download-size="239" id="org.eclipse.datatools.modelbase.sql.xml.query" install-size="239" unpack="false" version="1.0.0.200706151"/>
-	<plugin download-size="392" id="org.eclipse.datatools.modelbase.sql" install-size="392" unpack="false" version="1.0.0.200708161"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.datatools.modelbase.feature"
+      label="%featureName"
+      version="1.6.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.datatools.modelbase.sql"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.emf" version="2.2.0" match="greaterOrEqual"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.sql.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.sql.query"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.sql.query.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.sql.xml.query"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.modelbase.sql"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

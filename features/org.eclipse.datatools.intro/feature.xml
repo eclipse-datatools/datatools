@@ -1,22 +1,33 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.intro" image="eclipse32.png" label="%featureName" provider-name="%providerName" version="1.6.0.200802041">
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.datatools.intro"
+      label="%featureName"
+      version="1.6.0.qualifier"
+      provider-name="%providerName"
+      image="eclipse32.png">
 
-    <description>
-        %description
-    </description>
+   <description>
+      %description
+   </description>
 
-    <copyright>
-        %copyright
-    </copyright>
+   <copyright>
+      %copyright
+   </copyright>
 
-    <license url="%licenseURL">
-        %license
-    </license>
+   <license url="%licenseURL">
+      %license
+   </license>
 
-    <url>
-        <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-        <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-    </url>
+   <url>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+   </url>
 
-   <plugin download-size="31" id="org.eclipse.datatools.intro" install-size="31" unpack="false" version="1.0.0.200706071"/>
+   <plugin
+         id="org.eclipse.datatools.intro"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>

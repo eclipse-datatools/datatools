@@ -1,17 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?><feature id="org.eclipse.datatools.enablement.msft.feature" image="eclipse_update_120.jpg" label="%featureName" plugin="org.eclipse.datatools.enablement.finfo" provider-name="%providerName" version="1.6.0.200802041">
-	<description>%description</description>
-	<license url="%licenseURL">%license</license>
-	<url>
-		<update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-		<discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
-	</url>
-	<requires>
-		<import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
-		<import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
-	</requires>
-	<plugin download-size="11" id="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition" install-size="11" unpack="false" version="1.0.0.200712131"/>
-	<plugin download-size="13" id="org.eclipse.datatools.enablement.msft.sqlserver" install-size="13" unpack="false" version="1.0.1.200801211"/>
-	<plugin download-size="21" id="org.eclipse.datatools.enablement.msft.sqlserver.ui" install-size="21" unpack="false" version="1.0.0.200712171"/>
-	<plugin download-size="9" id="org.eclipse.datatools.enablement.finfo" install-size="9" unpack="false" version="1.5.1.200708161"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.datatools.enablement.msft.feature"
+      label="%featureName"
+      version="1.6.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.datatools.enablement.finfo"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+   </url>
+
+   <requires>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.msft.sqlserver.dbdefinition"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.msft.sqlserver"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.msft.sqlserver.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.finfo"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
