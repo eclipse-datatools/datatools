@@ -18,6 +18,13 @@
             versionDisplayString="%15.0VersionString"
             file="runtime/vendors/Sybase_15.0/Sybase_15.0.xmi">
       </definition>
+      <definition
+            version="15"
+            product="Sybase"
+            productDisplayString="%15ProductString"
+            versionDisplayString="%15VersionString"
+            file="runtime/vendors/Sybase_15.0/Sybase_15.0.xmi">
+      </definition>
    </extension>
 
 </plugin>
