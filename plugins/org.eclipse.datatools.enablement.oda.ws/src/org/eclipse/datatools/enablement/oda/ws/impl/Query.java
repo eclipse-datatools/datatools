@@ -14,8 +14,8 @@
 
 package org.eclipse.datatools.enablement.oda.ws.impl;
 
-import java.io.InputStream;
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
@@ -32,6 +32,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 import org.eclipse.datatools.enablement.oda.ws.util.Constants;
@@ -84,8 +85,8 @@ public class Query implements IQuery
 	{
 		if ( isCustom )
 			java2SOAPManager.setQueryText( queryText );
-		else
-			soapRequest = new SOAPRequest( queryText );
+		
+		soapRequest = new SOAPRequest( queryText );
 
 	}
 
@@ -193,6 +194,14 @@ public class Query implements IQuery
 	{
 		try
 		{
+			Map parameterMap = new HashMap( );
+			SOAPParameter[] parameters = this.soapRequest.getParameters( );
+			for ( int i = 0; i < parameters.length; i++ )
+			{
+				parameterMap.put( parameters[i].getName( ),
+						parameters[i].getDefaultValue( ) );
+			}
+			this.java2SOAPManager.setParameterValues( parameterMap );
 			Object o = java2SOAPManager.executeQuery( );
 			if ( o instanceof InputStream )
 				return (InputStream) o;

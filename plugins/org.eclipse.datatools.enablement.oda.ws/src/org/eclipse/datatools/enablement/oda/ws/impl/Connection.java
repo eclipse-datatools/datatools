@@ -41,27 +41,20 @@ public class Connection implements IConnection
 	private Properties connProperties;
 	private Java2SOAPManager java2SOAPManager;
 	private boolean isCustom = false;
+	private Map appContext = null;
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties)
 	 */
 	public void open( Properties connProperties ) throws OdaException
 	{
-		try
-		{
-			ping( connProperties );
-		}
-		catch ( Exception e )
-		{
-			throw new OdaException( );
-		}
-		
 		this.connProperties = connProperties;
 		isCustom = !WSUtil.isNull( connProperties.getProperty( Constants.CUSTOM_CONNECTION_CLASS ) );
 		if ( isCustom )
 		{
 			java2SOAPManager = new Java2SOAPManager( );
 			java2SOAPManager.setConnectionProperties( connProperties );
+			java2SOAPManager.setAppConext( this.appContext );
 			String driverPath= connProperties.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH );
 			try
 			{
@@ -77,6 +70,15 @@ public class Connection implements IConnection
 			rawMessageSender = new RawMessageSender( );
 		}
 
+		try
+		{
+			ping( connProperties );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( );
+		}
+		
 		m_isOpen = true;
 	}
 	
@@ -104,8 +106,8 @@ public class Connection implements IConnection
 	 */
 	public void setAppContext( Object context ) throws OdaException
 	{
-		if ( isCustom && ( context instanceof Map ) )
-			java2SOAPManager.setAppConext( (Map) context );
+		if ( context instanceof Map )
+			this.appContext = (Map) context;
 	}
 
 	/*
