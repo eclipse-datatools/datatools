@@ -4171,7 +4171,7 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         if (variable.getName() != null) 
         {
             sbExpr.append(hostVarPrefix);
-            sbExpr.append(StatementHelper.convertCatalogIdentifierToSQLFormat(variable.getName(), getDelimitedIdentifierQuote()));
+            sbExpr.append(variable.getName()); // [bug 221028]
         }
         else
         {
