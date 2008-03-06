@@ -2180,7 +2180,7 @@ public ValueExpressionVariable createVariableExpression( String aVarName ) {
     if (aVarName.startsWith(hostVarPrefix)) {
       aVarName = aVarName.substring(1);
     }
-    varExpr.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aVarName,  getDelimitedIdentifierQuote()));
+    varExpr.setName(aVarName); // [bug 221028]
   }
   return varExpr;
 }
