@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.ecore; singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .,
  src
-Bundle-Vendor: The Eclipse Foundation
+Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.enablement.oda.ecore,
  org.eclipse.datatools.enablement.oda.ecore.impl
