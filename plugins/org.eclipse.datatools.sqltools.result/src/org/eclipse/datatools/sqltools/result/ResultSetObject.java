@@ -108,6 +108,13 @@ public class ResultSetObject implements IResultSetObject
             for (int i = 0; i < columnCount; i++)
             {
                 _columnNames[i] = meta.getColumnLabel(i + 1);
+                
+                //If no label, use the column name instead. Fix BZ221334
+                if ( null == _columnNames[i] || _columnNames[i].trim().equals("") )
+                {
+                    _columnNames[i] = meta.getColumnName(i + 1);
+                }
+
                 _columnDisplaySizes[i] = meta.getColumnDisplaySize(i + 1);
                 _columnTypes[i] = meta.getColumnType(i + 1);
                 _columnTypeNames[i] = meta.getColumnTypeName(i + 1);
