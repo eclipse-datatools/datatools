@@ -382,10 +382,18 @@ class OdaPluginModeler
         pageElement.setAttribute( "name", "%profile.propertypage.name" ); //$NON-NLS-1$ //$NON-NLS-2$
         pageElement.setAttribute( "class",   //$NON-NLS-1$
                 "org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourcePropertyPage" ); //$NON-NLS-1$
-        pageElement.setAttribute( "objectClass",   //$NON-NLS-1$
-                "org.eclipse.datatools.connectivity.IConnectionProfile" ); //$NON-NLS-1$
         profilePageExtension.add( pageElement );
         
+        // page enabledWhen element
+        IPluginElement pageEnabledWhenElement = factory.createElement( pageElement );
+        pageEnabledWhenElement.setName( "enabledWhen" ); //$NON-NLS-1$
+        IPluginElement pageinstanceOfElement = factory.createElement( pageEnabledWhenElement );
+        pageinstanceOfElement.setName( "instanceof" ); //$NON-NLS-1$
+        pageinstanceOfElement.setAttribute( "value",  //$NON-NLS-1$
+                "org.eclipse.datatools.connectivity.IConnectionProfile" ); //$NON-NLS-1$
+        pageEnabledWhenElement.add( pageinstanceOfElement );
+        pageElement.add( pageEnabledWhenElement );
+
         // page filter element
         IPluginElement pageFilterElement = factory.createElement( pageElement );
         pageFilterElement.setName( "filter" ); //$NON-NLS-1$
@@ -478,28 +486,9 @@ class OdaPluginModeler
      */
     void adjustManifestHeaders( IPluginModelBase odaModel, boolean forRuntimeBundle )
     {
-        /* TODO - remove workaround code;
-         * bug 173393 is fixed in PDE UI Template 3.3M7;
-         * keeps work-around code below as comments for now, in case anyone needs it
-         * to work with Eclipse Platform 3.3 M4 thru M6
-         */
-        
-/*        if( odaModel == null )
-            return;     // nothing to adjust, ignore
-
-        // model object type got changed in PDE UI Template 3.3M4 to 
-        // one of IBundlePluginModelBase, whose impl. stops generating needed headers;
-        // checks for this new type to proceed with adjustment
-        if( ! ( odaModel instanceof IBundlePluginModelBase ))
-            return;     // no need to adjust
-
-        // add missing header(s) in bundle to trigger its generation in manifest.mf
-        if( forRuntimeBundle )
-        {
-            IBundle bundle = ((IBundlePluginModelBase) odaModel ).getBundleModel().getBundle();
-            bundle.setHeader( Constants.BUNDLE_LOCALIZATION, "plugin" );  //$NON-NLS-1$
-            bundle.setHeader( Constants.EXPORT_PACKAGE, getKeyPackageName() );  
-        }
-*/    }
+        /* removed workaround code for bug 173393, which is 
+         * fixed in PDE UI Template 3.3M7
+         */        
+    }
 
 }
