@@ -556,8 +556,8 @@ public class MappingPathElementTree
 
 		TreeNode currentNode = fromNode;
 
-		// Attention: splits of "/A/B" be [][A][B], splits of "A/B" be [A][B]
-		int j = splits[0].equals( "" ) ? 1 : 0;
+		int j = (splits.length > 0  // splits of "/" is String[0]
+				&& splits[0].equals( "" )) ? 1 : 0; //splits of "/A/B" be [][A][B], splits of "A/B" be [A][B]
 		for ( ; j < splits.length; j++ )
 		{
 			currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[j] );

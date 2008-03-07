@@ -39,7 +39,7 @@ public class SaxParserTest extends BaseTest
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
 	private String testString = "book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
-			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat;String;../@category}"
+			+ "#-# stat #:#[/library/book/title]#:#{cat9;String;},{cat10;String;/},{cat;String;../@category}"
 			+ "#-# aut  hor  #:#[//book/author]#:#{title;String;../title},{lang;String;../title/@lang},{author;String;/@name},{country;String;/@country},{date;String;../date},{isn;String;../isn},{category;String;../@category}"
 			+ "#-# title#:#[/library/*/ad/../title]#:#{title;String;},{lang;String;/@lang},{author;String;../*/@name}"
 			+ "#-# one#:#[//author]#:#{author;String;@name},{title;String;../title},{category;String;../../book[1]/@category},{category2;String;../@category}"
@@ -59,7 +59,7 @@ public class SaxParserTest extends BaseTest
 			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
 			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}"
 			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}";
-
+	
 	private RelationInformation ri;
 
 	protected void setUp( ) throws Exception
