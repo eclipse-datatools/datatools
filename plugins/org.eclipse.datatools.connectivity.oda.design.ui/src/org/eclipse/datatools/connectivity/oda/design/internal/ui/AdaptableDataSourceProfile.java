@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
 
 /**
  * Implementation of connection profile for an ODA data source design.
@@ -88,7 +89,7 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
      */
     public boolean hasLinkedProfile()
     {
-        return ( getWrappedProfile() != null );
+        return hasWrappedProfile();
     }
     
     /**
@@ -322,9 +323,8 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
         if( hasLinkedProfile() )
             return super.getCategory();
 
-        // TODO - get IConfigurationElement for oda extension's
-        // connection profile category
-        return null;
+        // get oda extension's connection profile category
+        return ProfileCategoryUtil.getCategory( getProviderId() );
     }
 
 }

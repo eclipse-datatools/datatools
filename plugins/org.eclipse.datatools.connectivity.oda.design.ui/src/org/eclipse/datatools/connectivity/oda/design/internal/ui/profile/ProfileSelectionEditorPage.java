@@ -134,6 +134,8 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
      */
     protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
+        ProfileReferenceBase profileRef = collectEditedProfileRef();
+        
         // no delegation is specified, perform default update task
         if( m_updateDesignTask == null ) 
         {
@@ -143,7 +145,6 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         {
             try
             {
-                ProfileReferenceBase profileRef = collectEditedProfileRef();
                 if( profileRef != null )
                     design = m_updateDesignTask.collectDataSourceDesign( design, this, 
                                     profileRef.getProfileInstance() );
@@ -159,8 +160,6 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
         
         // adds attributes of linked profile, if specified, to the data source design; 
         // ignores any data source design name change
-        ProfileReferenceBase profileRef = collectEditedProfileRef();
-        
         if( profileRef != null && profileRef.maintainExternalLink() )
         {
             design.setLinkedProfileName( profileRef.getName() );

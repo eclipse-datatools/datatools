@@ -76,15 +76,24 @@ public class OdaConnectionProfile extends PlatformObject
     }
 
     /**
+     * Indicates whether this contains a wrapped connection profile instance.
+     * @return  true if a wrapped profile instance exists; false otherwise.
+     */
+    public boolean hasWrappedProfile()
+    {
+        return ( m_wrappedProfile != null );
+    }
+    
+    /**
      * Compares this to the specified connection profile instance.
      * @param aProfile  the connection profile instance to compare this against
      * @return  true if the specified instance is equal to this; false otherwise.
      */
     public boolean equals( IConnectionProfile aProfile )
     {
-        if( aProfile == null )
+        if( aProfile == null || ! hasWrappedProfile() )
             return false;
-        return m_wrappedProfile.getInstanceID().equals( aProfile.getInstanceID() );
+        return getWrappedProfile().getInstanceID().equals( aProfile.getInstanceID() );
     }
 
     /**
@@ -96,7 +105,8 @@ public class OdaConnectionProfile extends PlatformObject
     public void setOdaWrapperExtensionId( String odaWrapperExtensionId )
     {
         // oda extension is not a direct provider of the wrapped profile
-       if( ! m_wrappedProfile.getProviderId().equals( odaWrapperExtensionId ) )    
+       if( hasWrappedProfile() &&
+           ! getWrappedProfile().getProviderId().equals( odaWrapperExtensionId ) )    
            m_odaWrapperExtensionId = odaWrapperExtensionId;
        else
            m_odaWrapperExtensionId = null;  // no separate ODA wrapper profile provider
@@ -144,7 +154,7 @@ public class OdaConnectionProfile extends PlatformObject
     {
         if( m_directProviderId != null )
             return m_directProviderId;
-        return m_wrappedProfile.getProviderId();
+        return hasWrappedProfile() ? getWrappedProfile().getProviderId() : null;
     }
     
     /* (non-Javadoc)
@@ -168,7 +178,9 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean arePropertiesComplete()
     {
-        return m_wrappedProfile.arePropertiesComplete();
+        if( hasWrappedProfile() )
+            return getWrappedProfile().arePropertiesComplete();
+        return false;
     }
 
     /* (non-Javadoc)
@@ -176,7 +188,9 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean arePropertiesComplete( String type )
     {
-        return m_wrappedProfile.arePropertiesComplete( type );
+        if( hasWrappedProfile() )
+            return getWrappedProfile().arePropertiesComplete( type );
+        return false;
     }
 
     /* (non-Javadoc)
@@ -184,8 +198,8 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean canWorkOffline()
     {
-        if( m_wrappedProfile != null )
-            return m_wrappedProfile.canWorkOffline();
+        if( hasWrappedProfile() )
+            return getWrappedProfile().canWorkOffline();
         return false;
     }
     
@@ -307,8 +321,8 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public int getConnectionState()
     {
-        if( m_wrappedProfile != null )
-            return m_wrappedProfile.getConnectionState();
+        if( hasWrappedProfile() )
+            return getWrappedProfile().getConnectionState();
         return DISCONNECTED_STATE;
     }
 
@@ -389,7 +403,9 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean isAutoConnect()
     {
-        return m_wrappedProfile.isAutoConnect();
+        if( hasWrappedProfile() )
+            return getWrappedProfile().isAutoConnect();
+        return false;
     }
 
     /* (non-Javadoc)
@@ -397,8 +413,8 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean isConnected()
     {
-        if( m_wrappedProfile != null )
-            return m_wrappedProfile.getConnectionState() == IConnectionProfile.CONNECTED_STATE;
+        if( hasWrappedProfile() )
+            return getWrappedProfile().getConnectionState() == IConnectionProfile.CONNECTED_STATE;
         return false;
     }
 
@@ -431,8 +447,8 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public void setConnected( boolean connected )
     {
-        if( m_wrappedProfile != null )
-            m_wrappedProfile.setConnected( connected );
+        if( hasWrappedProfile() )
+            getWrappedProfile().setConnected( connected );
     }
 
     /* (non-Javadoc)
@@ -448,8 +464,8 @@ public class OdaConnectionProfile extends PlatformObject
      */
     public boolean supportsWorkOfflineMode()
     {
-        if( m_wrappedProfile != null )
-            return m_wrappedProfile.supportsWorkOfflineMode();
+        if( hasWrappedProfile() )
+            return getWrappedProfile().supportsWorkOfflineMode();
         return false;
     }
 

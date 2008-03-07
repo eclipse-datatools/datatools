@@ -66,7 +66,10 @@ public class DbProfileUtil
     static ProfilePropertyPage createDbPropertyPage( 
             OdaConnectionProfile odaDbProfile,
             String odaWrapperExtensionId )
-    {
+    {   
+        if( ! odaDbProfile.hasWrappedProfile() )
+            return null;    // cannot create page if no wrapped db profile
+        
         updateProfileDbProviderInfo( odaDbProfile, odaWrapperExtensionId );
         
         // create the db profile's custom property page contribution
