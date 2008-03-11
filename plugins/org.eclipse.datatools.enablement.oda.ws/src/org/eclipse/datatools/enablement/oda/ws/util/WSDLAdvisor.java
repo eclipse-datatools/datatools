@@ -459,8 +459,7 @@ public class WSDLAdvisor
 					String[] parentNode = {
 						EMPTY_STRING
 					};
-					WSNonLeafNode node = new WSNonLeafNode( );
-					node = generateNode( localPart, element, parentNode, null );
+					WSNonLeafNode node = generateNode( localPart, element, parentNode, null );
 					if ( node.getNodeList( ).size( ) == 0 )
 						continue;
 					return node;
@@ -969,8 +968,7 @@ public class WSDLAdvisor
 			String name, int tabCount )
 	{
 		String result = EMPTY_STRING;
-		WSNonLeafNode newNode = new WSNonLeafNode( );
-		newNode = generateTargetNode( wsdlURI, name );
+		WSNonLeafNode newNode = generateTargetNode( wsdlURI, name );
 		result = builderRequestParameters( newNode, nameSpace, tabCount );
 		return result;
 	}
@@ -1050,8 +1048,7 @@ public class WSDLAdvisor
 	{
 		String result = EMPTY_STRING;
 
-		WSNonLeafNode newNode = new WSNonLeafNode( );
-		newNode = generateTargetNode( wsdlURI, name );
+		WSNonLeafNode newNode = generateTargetNode( wsdlURI, name );
 
 		result = builderResponseParameters( newNode );
 
@@ -1418,7 +1415,7 @@ public class WSDLAdvisor
 	 * 
 	 * @return
 	 */
-	private static String buildParametersByList( String wsdlURI,
+	private String buildParametersByList( String wsdlURI,
 			String nameSpace, List paramNames, List paramTypes, int tabCount,
 			String inOrOutput )
 	{
@@ -1431,15 +1428,11 @@ public class WSDLAdvisor
 			// complexType reference
 			if ( !isPrimitiveDataType( paramType ) )
 			{
-				List paramNameList = new ArrayList( );
-				List paramTypeList = new ArrayList( );
-				addParamComplexType( wsdlURI,
-						getParamTypeLocalPart( paramType ),
-						paramNameList,
-						paramTypeList );
+				
+				WSNonLeafNode newNode = generateTargetNode( wsdlURI, paramType );
 
 				// temporarily solution to handle simpleType
-				if ( paramNameList.isEmpty( ) && paramTypeList.isEmpty( ) )
+				if ( newNode.getNodeList() == null )
 				{
 					if ( inOrOutput == "in" ) //$NON-NLS-1$
 					{
@@ -1461,10 +1454,9 @@ public class WSDLAdvisor
 						result += enter( )
 								+ tab( tabCount )
 								+ "<" + nameSpace + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
-						result += buildParametersByList( wsdlURI,
+						result += buildParametersByTypeTree( wsdlURI,
 								nameSpace,
-								paramNameList,
-								paramTypeList,
+								newNode,
 								tabCount + 1,
 								inOrOutput );
 						result += enter( )
@@ -1474,10 +1466,9 @@ public class WSDLAdvisor
 					else
 					{
 						result += enter( ) + "<" + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
-						result += buildParametersByList( wsdlURI,
+						result += buildParametersByTypeTree( wsdlURI,
 								nameSpace,
-								paramNameList,
-								paramTypeList,
+								newNode,
 								tabCount,
 								inOrOutput );
 						result += enter( ) + "</" + paramName + ">"; //$NON-NLS-1$//$NON-NLS-2$
@@ -1504,6 +1495,113 @@ public class WSDLAdvisor
 		return result;
 	}
 
+	/**
+	 * 
+	 * @param wsdlURI
+	 * @param nameSpace
+	 * @param typeTree
+	 * @param tabCount
+	 * @param inOrOutput
+	 * @return
+	 */
+	private String buildParametersByTypeTree( String wsdlURI,
+			String nameSpace, WSNonLeafNode typeTree, int tabCount,
+			String inOrOutput )
+	{
+		String result = EMPTY_STRING;
+		List subNode = typeTree.getNodeList();
+		for( int i=0; i<subNode.size(); i++ )
+		{
+			if ( subNode.get( i ) instanceof WSLeafNode )
+			{
+				WSLeafNode leafnode = (WSLeafNode) subNode.get( i );
+				result += buildParametersByType( wsdlURI,
+						nameSpace, leafnode.getName(), leafnode.getType(), tabCount,
+						inOrOutput );
+			}
+			else if ( subNode.get( i ) instanceof WSNonLeafNode )
+			{
+				WSNonLeafNode nonLeafnode = (WSNonLeafNode) subNode.get( i );
+
+				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				{
+					result += enter( )
+							+ tab( tabCount )
+							+ "<" + nameSpace + nonLeafnode.getName() + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					result += buildParametersByTypeTree( wsdlURI,
+							nameSpace,
+							nonLeafnode,
+							tabCount + 1,
+							inOrOutput );
+					result += enter( )
+							+ tab( tabCount )
+							+ "</" + nameSpace + nonLeafnode.getName() + ">"; //$NON-NLS-1$//$NON-NLS-2$
+				}
+				else
+				{
+					result += enter( ) + "<" + nonLeafnode.getName() + ">"; //$NON-NLS-1$//$NON-NLS-2$
+					result += buildParametersByTypeTree( wsdlURI,
+							nameSpace,
+							nonLeafnode,
+							tabCount,
+							inOrOutput );
+					result += enter( ) + "</" + nonLeafnode.getName() + ">"; //$NON-NLS-1$//$NON-NLS-2$
+				}
+
+			}
+		}
+	
+		return result;
+	}
+
+	/**
+	 * 
+	 * @param wsdlURI
+	 * @param nameSpace
+	 * @param paramName
+	 * @param paramType
+	 * @param tabCount
+	 * @param inOrOutput
+	 * @return
+	 */
+	private String buildParametersByType( String wsdlURI,
+			String nameSpace, String paramName, String paramType, int tabCount,
+			String inOrOutput )
+	{
+		String result = EMPTY_STRING;
+		if ( !isPrimitiveDataType( paramType ) )
+		{
+			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			{
+				result += enter( )
+						+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$
+						+ buildParamType( paramType ) + ">&?" + paramName //$NON-NLS-1$
+						+ "?&</" + nameSpace + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+			else
+			{
+				result += enter( ) + "<" + paramName + ">" //$NON-NLS-1$ //$NON-NLS-2$					
+						+ "</" + paramName + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+			}
+		}
+		else
+		{
+			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			{
+				result += enter( )
+						+ tab( tabCount ) + "<" + nameSpace + paramName //$NON-NLS-1$ 
+						+ ">&?" + paramName //$NON-NLS-1$
+						+ "?&</" + nameSpace + paramName + ">";  //$NON-NLS-1$//$NON-NLS-2$
+			}
+			else
+			{
+				result += enter( ) + "<" + paramName + ">" //$NON-NLS-1$ //$NON-NLS-2$ 					
+						+ "</" + paramName + ">";  //$NON-NLS-1$//$NON-NLS-2$
+			}
+		}
+		return result;
+	}
+	
 	private static String getNameSpaceDoc( String wsdlURI )
 	{
 		String namespace = EMPTY_STRING;
