@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
@@ -182,6 +183,8 @@ public class SQLBuilderDialog extends Dialog
 		_resultsViewControl.getControl().setLayoutData(gd);
 		
 		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
+		
+		ResultsViewAPI.getInstance().setCheckSRV(false);
 		
 		return topComposite;
 	}
@@ -392,6 +395,8 @@ public class SQLBuilderDialog extends Dialog
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
+		ResultsViewAPI.getInstance().setCheckSRV(true);
+		
 		_sqlBuilder.removeExecuteSQLListener(this);
 		_resultsViewControl.dispose();
 		

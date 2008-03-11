@@ -20,6 +20,7 @@ import org.eclipse.datatools.sqltools.core.profile.NoSuchProfileException;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.core.services.UIComponentService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
+import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.datatools.sqltools.result.ui.view.ResultsViewControl;
 import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
@@ -208,7 +209,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		
 		filterResultsView(_connectionInfo.getConnectionProfile());
 
-		
+		ResultsViewAPI.getInstance().setCheckSRV(false);
 		
 		return topComposite;
 	}
@@ -313,6 +314,8 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 * @see org.eclipse.jface.window.Window#close()
 	 */
 	public boolean close() {
+		ResultsViewAPI.getInstance().setCheckSRV(true);
+
 		_sqlBuilder.removeExecuteSQLListener(this);
 		_resultsViewControl.dispose();
 		return super.close();
