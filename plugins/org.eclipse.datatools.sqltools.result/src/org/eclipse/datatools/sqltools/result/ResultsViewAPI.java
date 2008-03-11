@@ -111,7 +111,9 @@ import org.eclipse.ui.PartInitException;
 public class ResultsViewAPI
 {
     private static ResultsViewAPI _instance;
-    private static ILogger        _log     = ResultsViewPlugin.getLogger(null);
+    private static ILogger        _log      = ResultsViewPlugin.getLogger(null);
+    private boolean               _checkSRV = true;
+    
     /**
      * Returns the instance of <code>ResultsViewAPI</code>
      * 
@@ -493,6 +495,10 @@ public class ResultsViewAPI
      */
     public boolean checkView()
     {
+        if ( !_checkSRV )
+        {
+            return true;
+        }
         // get the active window
         IWorkbenchWindow activeWindow = ResultsViewPlugin.getDefault().getWorkbench().getActiveWorkbenchWindow();
 
@@ -779,5 +785,10 @@ public class ResultsViewAPI
     {
     	return ResultsViewPlugin.getDefault().getPreferenceStore().getInt(
                 PreferenceConstants.SQL_RESULTS_VIEW_MAX_DISPLAY_ROW_COUNT);
+    }
+
+    public void setCheckSRV(boolean checksrv)
+    {
+        _checkSRV = checksrv;
     }
 }
