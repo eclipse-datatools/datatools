@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<description url="http://download.eclipse.org//datatools/drops/updates/site.xml">
+	To install these plugins, point your Eclipse Update Manager at this site.
+	</description>
+	<category-def name="Eclipse Data Tools Platform @RELEASE.VERSION@" label="Eclipse Data Tools Platform @RELEASE.VERSION@">
+		<description>
+         The @RELEASE.VERSION@ build of the Eclipse Data Tools Platform (DTP)
+      </description>
+	</category-def>
+	<category-def name="Enabling Features for DTP@RELEASE.VERSION@" label="Enabling Features for DTP@RELEASE.VERSION@">
+		<description>
+         Features required/used by DTP @RELEASE.VERSION@
+      </description>
+	</category-def>
+	<!--*****************************************************************************************-->
+     <!-- DTP @RELEASE.VERSION@ -->
+	<feature url="features/org.eclipse.datatools.connectivity.feature_@org.eclipse.datatools.connectivity.feature@.jar" id="org.eclipse.datatools.connectivity.feature" version="@org.eclipse.datatools.connectivity.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.connectivity.oda.designer.feature_@org.eclipse.datatools.connectivity.oda.designer.feature@.jar" id="org.eclipse.datatools.connectivity.oda.designer.feature" version="@org.eclipse.datatools.connectivity.oda.designer.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.connectivity.oda.feature_@org.eclipse.datatools.connectivity.oda.feature@.jar" id="org.eclipse.datatools.connectivity.oda.feature" version="@org.eclipse.datatools.connectivity.oda.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.doc.user_@org.eclipse.datatools.doc.user@.jar" id="org.eclipse.datatools.doc.user" version="@org.eclipse.datatools.doc.user@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.apache.derby.feature_@org.eclipse.datatools.enablement.apache.derby.feature@.jar" id="org.eclipse.datatools.enablement.apache.derby.feature" version="@org.eclipse.datatools.enablement.apache.derby.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.feature_@org.eclipse.datatools.enablement.feature@.jar" id="org.eclipse.datatools.enablement.feature" version="@org.eclipse.datatools.enablement.feature@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.hsqldb.feature_@org.eclipse.datatools.enablement.hsqldb.feature@.jar" id="org.eclipse.datatools.enablement.hsqldb.feature" version="@org.eclipse.datatools.enablement.hsqldb.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.ibm.feature_@org.eclipse.datatools.enablement.ibm.feature@.jar" id="org.eclipse.datatools.enablement.ibm.feature" version="@org.eclipse.datatools.enablement.ibm.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.jdbc.feature_@org.eclipse.datatools.enablement.jdbc.feature@.jar" id="org.eclipse.datatools.enablement.jdbc.feature" version="@org.eclipse.datatools.enablement.jdbc.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.jdt.feature_@org.eclipse.datatools.enablement.jdt.feature@.jar" id="org.eclipse.datatools.enablement.jdt.feature" version="@org.eclipse.datatools.enablement.jdt.feature@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.msft.feature_@org.eclipse.datatools.enablement.msft.feature@.jar" id="org.eclipse.datatools.enablement.msft.feature" version="@org.eclipse.datatools.enablement.msft.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.mysql.feature_@org.eclipse.datatools.enablement.mysql.feature@.jar" id="org.eclipse.datatools.enablement.mysql.feature" version="@org.eclipse.datatools.enablement.mysql.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.oda.designer.feature_@org.eclipse.datatools.enablement.oda.designer.feature@.jar" id="org.eclipse.datatools.enablement.oda.designer.feature" version="@org.eclipse.datatools.enablement.oda.designer.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.oda.feature_@org.eclipse.datatools.enablement.oda.feature@.jar" id="org.eclipse.datatools.enablement.oda.feature" version="@org.eclipse.datatools.enablement.oda.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.oracle.feature_@org.eclipse.datatools.enablement.oracle.feature@.jar" id="org.eclipse.datatools.enablement.oracle.feature" version="@org.eclipse.datatools.enablement.oracle.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.postgresql.feature_@org.eclipse.datatools.enablement.postgresql.feature@.jar" id="org.eclipse.datatools.enablement.postgresql.feature" version="@org.eclipse.datatools.enablement.postgresql.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.sap.feature_@org.eclipse.datatools.enablement.postgresql.feature@.jar" id="org.eclipse.datatools.enablement.sap.feature" version="@org.eclipse.datatools.enablement.postgresql.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.enablement.sybase.feature_@org.eclipse.datatools.enablement.sybase.feature@.jar" id="org.eclipse.datatools.enablement.sybase.feature" version="@org.eclipse.datatools.enablement.sybase.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.intro_@org.eclipse.datatools.intro@.jar" id="org.eclipse.datatools.intro" version="@org.eclipse.datatools.intro@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.modelbase.feature_@org.eclipse.datatools.modelbase.feature@.jar" id="org.eclipse.datatools.modelbase.feature" version="@org.eclipse.datatools.modelbase.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sdk.feature_@org.eclipse.datatools.sdk.feature@.jar" id="org.eclipse.datatools.sdk.feature" version="@org.eclipse.datatools.sdk.feature@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.data.feature_@org.eclipse.datatools.sqldevtools.data.feature@.jar" id="org.eclipse.datatools.sqldevtools.data.feature" version="@org.eclipse.datatools.sqldevtools.data.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.ddl.feature_@org.eclipse.datatools.sqldevtools.ddl.feature@.jar" id="org.eclipse.datatools.sqldevtools.ddl.feature" version="@org.eclipse.datatools.sqldevtools.ddl.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.ddlgen.feature_@org.eclipse.datatools.sqldevtools.ddlgen.feature@.jar" id="org.eclipse.datatools.sqldevtools.ddlgen.feature" version="org.eclipse.datatools.sqldevtools.ddlgen.feature">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.feature_@org.eclipse.datatools.sqldevtools.feature@.jar" id="org.eclipse.datatools.sqldevtools.feature" version="@org.eclipse.datatools.sqldevtools.feature@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.parsers.feature_@org.eclipse.datatools.sqldevtools.parsers.feature@.jar" id="org.eclipse.datatools.sqldevtools.parsers.feature" version="@org.eclipse.datatools.sqldevtools.parsers.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.results.feature_@org.eclipse.datatools.sqldevtools.results.feature@.jar" id="org.eclipse.datatools.sqldevtools.results.feature" version="@org.eclipse.datatools.sqldevtools.results.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+</site>
