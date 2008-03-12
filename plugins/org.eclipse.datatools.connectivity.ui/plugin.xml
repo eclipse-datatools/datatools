@@ -6,7 +6,8 @@
    <extension-point id="connectionProfileImage" name="Connection Profile Image" schema="schema/connectionProfileImage.exsd"/>
    <extension point="org.eclipse.ui.preferencePages">
    	<page name="%datatools.preference.page.name" class="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
-   	id = "org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"/>
+   	id = "org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
+   	category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.dataNode"/>
    	</extension>
    <extension
          point="org.eclipse.ui.preferencePages">

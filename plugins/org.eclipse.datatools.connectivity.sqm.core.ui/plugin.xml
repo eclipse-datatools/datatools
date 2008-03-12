@@ -9,11 +9,18 @@
 
    <extension
          point="org.eclipse.ui.preferencePages">
-      <!-- Data Node -->
+      <!-- SQL Development Node -->
       <page
             name="%datatools.core.ui.preferences.data"
             class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.PreferencePage"
-            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data">
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.dataNode">            
+      </page>
+      <!-- Data Tooling Node -->
+      <page
+            name="%datatools.core.ui.preferences.data.node"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.DataPreferencePage"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.dataNode">
       </page>
    	  <!-- Preference page for Label Decorations -->
       <page
