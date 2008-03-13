@@ -7,7 +7,7 @@
    <extension point="org.eclipse.ui.preferencePages">
    	<page name="%datatools.preference.page.name" class="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
    	id = "org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage"
-   	category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.dataNode"/>
+   	category="org.eclipse.datatools.connectivity.ui.preferences.dataNode"/>
    	</extension>
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -16,6 +16,12 @@
             class="org.eclipse.datatools.connectivity.internal.ui.preferences.DriverPreferences"
             id="org.eclipse.datatools.connectivity.internal.ui.preferences.DriverPreferences"
             category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage">
+      </page>
+      <!-- Data Tooling Node -->
+      <page
+            name="%datatools.core.ui.preferences.data.node"
+            class="org.eclipse.datatools.connectivity.ui.DataPreferencePage"
+            id="org.eclipse.datatools.connectivity.ui.preferences.dataNode">
       </page>
    </extension>
    <extension
