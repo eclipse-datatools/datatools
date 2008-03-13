@@ -76,7 +76,9 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             {
                 new Thread(parallelRunnable).start();
             }
-            PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(EditorConstants.RESULTS_VIEW);
+            // BZ 220685
+            // Don't show ResultsView here because ResultsViewAPI takes care of it
+            //PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(EditorConstants.RESULTS_VIEW);
         }
         catch (Exception e)
         {
