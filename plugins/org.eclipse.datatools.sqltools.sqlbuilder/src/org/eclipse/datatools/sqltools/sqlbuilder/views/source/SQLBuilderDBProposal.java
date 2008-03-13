@@ -45,7 +45,7 @@ public class SQLBuilderDBProposal extends SQLDBProposal {
         fExtraInfo = null;
         
         if (dbObject instanceof Column) {
-            Column col = (Column) dbObject;
+//            Column col = (Column) dbObject;
 //            IColumnHelperService colHelper = IDataToolsUIServiceManager.INSTANCE.getColumnHelperService();
 //            if (colHelper != null) {
 //                String datatype = colHelper.getDataType(col);
@@ -55,13 +55,29 @@ public class SQLBuilderDBProposal extends SQLDBProposal {
 //                setExtraInfo(datatype);
 //            }
             
-            if (col.isPartOfPrimaryKey() == true) {
-                Image pkColImage = SQLBuilderPlugin.getSQLImage( "icons/PrimaryKeyColumn.gif" ); //$NON-NLS-1$
-                setImage(pkColImage);
-            }
-            else if (col.isPartOfForeignKey() == true) {
-                Image fkColImage = SQLBuilderPlugin.getSQLImage( "icons/ForeignKeyColumn.gif" ); //$NON-NLS-1$
-                setImage(fkColImage);
+//            if (col.isPartOfPrimaryKey() == true) {
+//                Image pkColImage = SQLBuilderPlugin.getSQLImage( "icons/PrimaryKeyColumn.gif" ); //$NON-NLS-1$
+//                setImage(pkColImage);
+//            }
+//            else if (col.isPartOfForeignKey() == true) {
+//                Image fkColImage = SQLBuilderPlugin.getSQLImage( "icons/ForeignKeyColumn.gif" ); //$NON-NLS-1$
+//                setImage(fkColImage);
+//            }
+            
+            /* The superclass appends the datatype to the name, separated by
+             * "-".  Move the datatype to the extra info field. */
+            String name = getName();
+            String typeSeparator = " - ";
+            int typeSepIndex = name.indexOf(typeSeparator); //$NON-NLS-1$
+            if (typeSepIndex > 0) {
+                String shortName = name.substring(0, typeSepIndex);
+                if (shortName != null) {
+                    setName(shortName);
+                }
+                String datatypeStr = name.substring(typeSepIndex + typeSeparator.length());
+                if (datatypeStr != null) {
+                    setExtraInfo(datatypeStr);
+                }
             }
         }
     }

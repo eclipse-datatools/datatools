@@ -79,6 +79,7 @@ public class SQLBuilderDBProposalsService/* extends SQLDBProposalsService */{
     public SQLBuilderDBProposalsService( ISQLEditorConnectionInfo connInfo , String schemaName) { 
         fConnInfo = connInfo;
         fImpliedSchemaName = schemaName;
+        fDBProposalList = new ArrayList();
         fComparator = new SQLDBProposalComparator(); // RATLC01136221 bgp 10Jan2007
     }
 
