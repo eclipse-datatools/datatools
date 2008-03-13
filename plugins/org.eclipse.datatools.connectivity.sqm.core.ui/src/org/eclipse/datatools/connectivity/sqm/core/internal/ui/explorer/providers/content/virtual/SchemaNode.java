@@ -12,10 +12,15 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provide
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons.ImageDescription;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 
 /**
@@ -45,4 +50,29 @@ public class SchemaNode extends VirtualNode implements ISchemaNode, IFilterNode
 		}
 		return ConnectionFilter.SCHEMA_FILTER;
 	}
+    
+	//@Override
+	public ImageDescriptor[] getCreateImageDescriptor() {
+		return new ImageDescriptor[] {ImageDescription.getSchemaDescriptor()};
+	}
+
+	//@Override
+	public String[] getCreateLabel() {
+		return new String[] {ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_SCHEMA")};
+	}
+
+	//@Override
+	public EClass[] getCreateType() {
+		return new EClass[] {SQLSchemaPackage.eINSTANCE.getSchema()};
+	}
+
+	//@Override
+	public boolean shouldDisplayCreate() {
+		return true;
+	}
+
+	public boolean shouldDisplayAdd() {
+		return false;
+	}
+    
 }

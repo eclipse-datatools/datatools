@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualCreationNode;
 
 /**
  * @author ljulien
  */
-public interface IColumnNode extends IVirtualNode
+public interface IColumnNode extends IVirtualCreationNode
 {
 
 }

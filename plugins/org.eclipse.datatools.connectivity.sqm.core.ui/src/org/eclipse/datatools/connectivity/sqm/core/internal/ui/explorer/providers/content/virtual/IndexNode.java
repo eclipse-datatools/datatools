@@ -11,8 +11,13 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IIndexNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons.ImageDescription;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
+import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.jface.resource.ImageDescriptor;
 
 
 /**
@@ -33,4 +38,36 @@ public class IndexNode extends VirtualNode implements IIndexNode
     {
         return GroupID.INDEX;
     }
+    
+	//@Override
+	public ImageDescriptor[] getCreateImageDescriptor() {
+		return new ImageDescriptor[] { 
+				ImageDescription.getIndexDescriptor()
+		};
+	}
+
+	//@Override
+	public String[] getCreateLabel() {
+		return new String[] {
+				ResourceLoader.getResourceLoader().queryString("SCHEMA_MANAGEMENT_CREATE_INDEX")
+		};
+	}
+
+	//@Override
+	public EClass[] getCreateType() {
+		return new EClass[] {
+				SQLConstraintsPackage.eINSTANCE.getIndex()
+		};
+	}
+
+	//@Override
+	public boolean shouldDisplayCreate() {
+		return true;
+	}
+
+	//@Override
+	public boolean shouldDisplayAdd() {
+		return false;
+	}
+
 }
