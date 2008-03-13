@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.core.ui; singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.core.internal.ui.RDBCoreUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -15,7 +15,6 @@ Export-Package: org.eclipse.datatools.connectivity.sqm.core.internal.ui,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl,
- org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons,

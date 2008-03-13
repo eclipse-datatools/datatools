@@ -13,11 +13,9 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provide
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IDependencyNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IIndexNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISequenceNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IStoredProcedureNode;
@@ -26,7 +24,6 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDFNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDTNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IViewNode;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 
 
 /**
@@ -35,22 +32,6 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Connectio
 public class VirtualNodeServiceFactory implements IVirtualNodeServiceFactory
 {
 	public static final VirtualNodeServiceFactory INSTANCE = new VirtualNodeServiceFactory ();
-
-	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory#makeKnownServersNode(java.lang.String, java.lang.String)
-	 */
-	public IKnownConnectionNode makeKnownConnectionNode(String name, String displayName, Object parent)
-	{
-		return new KnownConnections (name, displayName, parent);
-	}
-	
-	/**
-	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory#makeServerNode(java.lang.String, java.lang.String)
-	 */
-	public IConnectionNode makeConnectionNode (String name, String displayName, Object parent, ConnectionInfo info)
-	{
-		return new ConnectionNode (name, displayName, parent, info);
-	}
 	
 	/**
 	 * @see org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory#makeColumnNode(java.lang.String, java.lang.String)

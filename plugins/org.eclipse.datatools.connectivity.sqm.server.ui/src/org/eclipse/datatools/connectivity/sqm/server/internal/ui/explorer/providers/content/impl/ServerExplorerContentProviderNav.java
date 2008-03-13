@@ -14,29 +14,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
-import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.ServerExplorerViewer;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerInitializer;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.ILoadingService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
@@ -49,14 +36,18 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServe
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerLayoutService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNavigationService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil.IGroup;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.swt.widgets.Widget;
+import org.eclipse.ui.navigator.CommonViewer;
 
 
 /**
@@ -68,116 +59,37 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     private static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
     private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
 
-    private static final Object[] EMPTY_ELEMENT_ARRAY = new Object[0];
-    private static final String KNOWN_SERVERS = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.KNOWN_SERVERS"); //$NON-NLS-1$
     private static final String DESCRIPTION = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.DESCRIPTION"); //$NON-NLS-1$
 
-    private static final IVirtualNodeServiceFactory virtualNodeFactory = IDataToolsUIServiceManager.INSTANCE.getVirtualNodeServiceFactory();
- //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
-
- //   private INavigatorContentExtension containedExtension;
- //   private ServerExplorerConfiguration serverExplorerConfiguration = new ServerExplorerConfiguration();
-    private IKnownConnectionNode knownServer;
     private IServerExplorerLayoutProviderNav layoutProvider = new ServerExplorerVirtualNodeLayoutNav(this);
-    private TreeViewer viewer;
+    private CommonViewer viewer;
     private List layoutProvidersExtensionList = new LinkedList();
     
     /**
      * Will initialize the Server Explorer
      */
-    private void initializeServerExplorer()
+    public ServerExplorerContentProviderNav()
     {
-        knownServer = virtualNodeFactory.makeKnownConnectionNode(KNOWN_SERVERS, KNOWN_SERVERS, null);
-        ServerExplorerManager.INSTANCE.setRootKnownServerNode(knownServer);
-
         ServerExplorerManager.INSTANCE.setServerExplorerService(this);
-
-        new ServerExplorerInitializer().loadLocalRegisteredDatabases();
-        layoutProvider.initializeKnownServers(knownServer);
-    }
-
-    /**
-     * Will initialize the Layout Extension providers that are connected to the Server Explorer
-     */
-    private void initializeLayoutExtensionProviders()
-    {
-        IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-        IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.server.ui", //$NON-NLS-1$
-                "serverExplorerLayoutExtension"); //$NON-NLS-1$ //$NON-NLS-2$
-        IExtension[] extensions = extensionPoint.getExtensions();
-        for (int i = 0; i < extensions.length; ++i)
-        {
-            IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
-            for (int j = 0; j < configElements.length; ++j)
-            {
-                try
-                {
-                    IServerExplorerLayoutExtensionProvider layout = (IServerExplorerLayoutExtensionProvider) configElements[j]
-                            .createExecutableExtension("class"); //$NON-NLS-1$
-                    layout.enableLayout(isVirtualNodeLayoutSelected() ? Layout.VNODE : Layout.HIERARCHICAL);
-                    layoutProvidersExtensionList.add(layout);
-                }
-                catch (CoreException e)
-                {
-                }
-            }
-        }
     }
     
     /**
-     * Will disconnect the Server
-     * @param server
+     * @return The viewer used by the Data Server Explorer
      */
-    private void removeServerConnection(IConnectionNode server)
-    {
-        server.shouldDisconnect(true);
-    }
-
-    /**
-     * @param connected - if we want the connected [true] / disconnected [false] servers
-     * @return the array of asked servers
-     */
-    private IConnectionNode[] getServers(boolean connected)
-    {
-        List connectedServers = new LinkedList();
-        for (int i = 0, n = knownServer.getChildrenArray().length; i < n; i++)
-        {
-            IConnectionNode server = (IConnectionNode) knownServer.getChildrenArray()[i];
-            if (server.isConnected() == connected)
-            {
-                connectedServers.add(server);
-            }
-        }
-        return (IConnectionNode[]) connectedServers.toArray(new IConnectionNode[connectedServers.size()]);
-    }
-    
-    /**
-     * @return The viewer used by the Server Explorer
-     */
-    private TreeViewer getViewer ()
+    private CommonViewer getViewer ()
     {
         return this.viewer;
     }
-
-    /**
-     * @see org.eclipse.ui.views.navigator.INavigatorContentProvider#getContainingExtension()
-     */
-//    public INavigatorContentExtension getContainingExtension()
-//    {
-//        return containedExtension;
-//    }
 
     /**
      * @see org.eclipse.ui.views.navigator.INavigatorContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
      */
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
     {
-    	if (viewer instanceof TreeViewer && this.viewer == null)
+    	if (viewer instanceof CommonViewer && this.viewer == null)
     	{
-    		this.viewer = (TreeViewer) viewer;
+    		this.viewer = (CommonViewer) viewer;
 	        this.enableVirtualNodeLayout();
-//	        initializeServerExplorer();
-//	        initializeLayoutExtensionProviders();
 	        RefreshManager.getInstance().AddListener(null, this);
     	}
     }
@@ -224,11 +136,6 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 		}
 		else if (parentElement instanceof VirtualNode && ((IVirtualNode) parentElement).hasChildren())
 		{
-			if (parentElement instanceof IConnectionNode && ((IConnectionNode) parentElement).shouldDisconnect())
-			{
-				((IConnectionNode) parentElement).setConnected(false);
-				return EMPTY_ELEMENT_ARRAY;
-			}
 			return ((IVirtualNode) parentElement).getChildrenArray();
 		}
 		else
@@ -244,26 +151,18 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     {
         if (isServerExplorerViewer ())
         {
-            if (element instanceof IWorkspaceRoot)
-            {
-                return knownServer; 
-            }
-            else
-            {
-                Object result = null; //getViewer().getParent(element);
-                result = result != null ? result : element instanceof IVirtualNode ? ((IVirtualNode) element).getParent()
-                        : null;
-                result = result != null ? result : element instanceof EObject ? containmentService.getContainer((EObject) element)
-                		: null;
-                return result;
-            }
-        }
+			Object result = getViewer().testFindItem(element);
+			result = result != null ? ((TreeItem)result).getParentItem().getData() : element instanceof IVirtualNode ? ((IVirtualNode) element).getParent() : null;
+			result = result != null ? result : element instanceof EObject ? containmentService.getContainer((EObject) element)
+					: null;
+			return result;
+		}
         return null;
     }
 
     /**
-     * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
-     */
+	 * @see org.eclipse.jface.viewers.ITreeContentProvider#hasChildren(java.lang.Object)
+	 */
     public boolean hasChildren(Object element)
     {
     	if (element instanceof IConnectionProfile)
@@ -289,82 +188,22 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
         RefreshManager.getInstance().removeListener(null, this);
     }
 
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#addNode(java.lang.Object)
-     */
-    public void addNode(Object newNode)
+    private void loadChilds (CommonViewer viewer, Object parent)
     {
-        addNode(ResourcesPlugin.getWorkspace().getRoot(), newNode);
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#addNode(java.lang.Object, java.lang.Object)
-     */
-    public void addNode(Object parentNode, Object newNode)
-    {
-//        if (parentNode instanceof IVirtualNode)
-//        {
-//            ((IVirtualNode) parentNode).addChildren(newNode);
-//        }
-//        if (isServerExplorerViewer ())
-//        {
-//        	this.viewer.add(parentNode, newNode);
-//        }
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#addKnownServer(java.lang.Object)
-     */
-    public void addKnownServer(Object server)
-    {
-        IConnectionNode serverNode = (IConnectionNode) server;
-        serverNode.setConnected(true);
-        knownServer.addChildren(serverNode);
-        addNode (getKnownServerNode (), serverNode);
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#addProxyNode(java.lang.Object)
-     */
-    public void addProxyNode(Object parentNode)
-    {
-    }
-
-    /**
-     * @param item
-     * @param child
-     * @return
-     */
-    private boolean isSupported (Object parent, Object child)
-    {
-        if (parent instanceof IVirtualNode && child instanceof EObject)
-        {
-            String groupID = containmentService.getGroupId((EObject)child);
-            return groupID != null && groupID.equals(((IVirtualNode)parent).getGroupID());
-        }
-        else if (parent instanceof EObject && child instanceof IVirtualNode)
-        {
-            
-        }
-        return false;
-    }
-
-    private void loadChilds (ServerExplorerViewer viewer, Object parent)
-    {
-//        viewer.expandToLevel(parent, 1);
+        viewer.expandToLevel(parent, 1);
     }
     
-    private Object getVirtualNode (ServerExplorerViewer viewer, Object parent, String groupID)
+    private Object getVirtualNode (CommonViewer viewer, Object parent, String groupID)
     {
         if (parent != null)
         {
-            if (parent instanceof IConnectionNode)
+            if (parent instanceof IConnectionProfile)
             {
                 return parent;
             }
             else
             {
-                TreeItem [] items = viewer.getServerExplorerChildren(parent);
+                TreeItem [] items = getServerExplorerChildren(parent);
                 if (items.length != 0)
                 {   
                     for (int i = 0, n = items.length; i < n; i++)
@@ -381,12 +220,18 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
         }
         return null;
     }
+    
+    public TreeItem[] getServerExplorerChildren(Object object)
+    {
+        TreeItem w = (TreeItem)this.getViewer().testFindItem(object);
+        return w == null ? new TreeItem[0] : (TreeItem [])w.getItems();
+    }
 
-    private Object getEObjectNode (ServerExplorerViewer viewer, Object parent, String name)
+    private Object getEObjectNode (CommonViewer viewer, Object parent, String name)
     {
         if (parent != null)
         {
-            TreeItem [] items = viewer.getServerExplorerChildren(parent);
+            TreeItem [] items = getServerExplorerChildren(parent);
             if (items.length != 0)
             {
                 for (int i = 0, n = items.length; i < n; i++)
@@ -419,86 +264,86 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
     public void selectAndReveal(ISelection selection)
     {
-//        if (selection instanceof IStructuredSelection)
-//        {
-//            IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-//            for (Iterator iterator = structuredSelection.iterator(); iterator.hasNext();)
-//            {
-//                Object object = iterator.next();
-//                if (object instanceof EObject)
-//                {
-//                    expandNode ((EObject)object);
-//                }
-//            }
-//        }
-//        getViewer().setSelection(selection, true);
+        if (selection instanceof IStructuredSelection)
+        {
+            IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+            for (Iterator iterator = structuredSelection.iterator(); iterator.hasNext();)
+            {
+                Object object = iterator.next();
+                if (object instanceof EObject)
+                {
+                    expandNode ((EObject)object);
+                }
+            }
+        }
+        getViewer().setSelection(selection, true);
     }
     
     public void expandNode (String pathToNavigate)
     {
-//        final ServerExplorerViewer viewer = getViewer();
-//
-//        try
-//        {
-//            List path = TransientEObjectUtil.getPathFromID (pathToNavigate);
-//            Iterator pathIterator = path.iterator();
-//            
-//            Object parent1 = ConnectionNodeUtil.getConnectionNode(manager.getConnectionInfo((String)pathIterator.next()));
-//            Object parent2 = null;
-//            while (pathIterator.hasNext())
-//            {
-//                String pathString = (String) pathIterator.next();
-//                IGroup group = TransientEObjectUtil.getGroupInfo(pathString);
-//                String groupID = group.getGroupId();
-//                String elementName = group.getElementName();
-//                
-//                parent2 = getVirtualNode (viewer, parent1, groupID);
-//                if (parent2 == null)
-//                {
-//                    loadChilds (viewer, parent1);
-//                    parent2 = getVirtualNode (viewer, parent1, groupID);
-//                    if (parent2 == null && parent1 instanceof IVirtualNode)
-//                    {
-//                        IVirtualNode temp = (IVirtualNode) parent1;
-//                        Object [] children =  ((IVirtualNode) parent1).getChildrenArray();
-//                        for (int i = 0, n = children.length; i < n; i++)
-//                        {
-//                            Object parent4 = getVirtualNode (viewer, children[i], groupID);
-//                            if (parent4 != null)
-//                            {
-//                                parent2 = parent4;
-//                                break;
-//                            }
-//                        }
-//                    }
-//                }
-//                else
-//                {
-//                    loadChilds (viewer, parent2);
-//                    Object parent3 = getVirtualNode (viewer, parent2, groupID);
-//                    if (parent3 != null)
-//                    {
-//                        parent2 = parent3;
-//                    }
-//                }
-//                parent1 = parent2;
-//                if (elementName != null)
-//                {
-//                    parent2 = getEObjectNode (viewer, parent1, elementName);
-//                    if (parent2 == null)
-//                    {
-//                        loadChilds (viewer, parent1);
-//                        parent2 = getEObjectNode (viewer, parent1, elementName);
-//                    }
-//                }
-//                parent1 = parent2;
-//            }
-//            
-//            viewer.selectInExplorer(new StructuredSelection(parent1));
-//        }
-//        catch (Exception e)
-//        {
-//        }
+        final CommonViewer viewer = getViewer();
+
+        try
+        {
+            List path = TransientEObjectUtil.getPathFromID (pathToNavigate);
+            Iterator pathIterator = path.iterator();
+            
+            Object parent1 = ProfileManager.getInstance().getProfileByName((String)pathIterator.next());
+            Object parent2 = null;
+            while (pathIterator.hasNext())
+            {
+                String pathString = (String) pathIterator.next();
+                IGroup group = TransientEObjectUtil.getGroupInfo(pathString);
+                String groupID = group.getGroupId();
+                String elementName = group.getElementName();
+                
+                parent2 = getVirtualNode (viewer, parent1, groupID);
+                if (parent2 == null)
+                {
+                    loadChilds (viewer, parent1);
+                    parent2 = getVirtualNode (viewer, parent1, groupID);
+                    if (parent2 == null && parent1 instanceof IVirtualNode)
+                    {
+                        Object [] children =  ((IVirtualNode) parent1).getChildrenArray();
+                        for (int i = 0, n = children.length; i < n; i++)
+                        {
+                            Object parent4 = getVirtualNode (viewer, children[i], groupID);
+                            if (parent4 != null)
+                            {
+                                parent2 = parent4;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    loadChilds (viewer, parent2);
+                    Object parent3 = getVirtualNode (viewer, parent2, groupID);
+                    if (parent3 != null)
+                    {
+                        parent2 = parent3;
+                    }
+                }
+                parent1 = parent2;
+                if (elementName != null)
+                {
+                    parent2 = getEObjectNode (viewer, parent1, elementName);
+                    if (parent2 == null)
+                    {
+                        loadChilds (viewer, parent1);
+                        parent2 = getEObjectNode (viewer, parent1, elementName);
+                    }
+                }
+                parent1 = parent2;
+            }
+            
+            viewer.setSelection(new StructuredSelection(parent1));
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        }
     }
     
     /**
@@ -526,62 +371,18 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     /**
      * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#refreshNode(java.lang.Object)
      */
-    public void refreshNode(Object node)
+    public void refreshNode(final Object node)
     {
-//    	if (isServerExplorerViewer ())
-//    	{
-//    		viewer.refresh(node, true);
-//    	}
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#collapseAll()
-     */
-    public void collapseAll()
-    {
-//    	if (isServerExplorerViewer ())
-//    	{
-//    		viewer.collapseAll();
-//    	}
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#getAllConnectedServers()
-     */
-    public IConnectionNode[] getAllConnectedServers()
-    {
-        return getServers(true);
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#getAllDisconnectedServers()
-     */
-    public IConnectionNode[] getAllDisconnectedServers()
-    {
-        return getServers(false);
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#disconnectServers(com.ibm.datatools.core.ui.modelexplorer.virtual.IServerNode[])
-     */
-    public void disconnectServers(IConnectionNode[] servers)
-    {
-        for (int i = 0, n = servers.length; i < n; i++)
-        {
-            removeServerConnection(servers[i]);
-            refreshNode (servers[i]);
-        }
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#connectServer(java.lang.Object)
-     */
-    public void connectServer(Object server)
-    {
-        // FIXME Make sure that i can have two servers with the same name and different connection Info
-        IConnectionNode serverNode = (IConnectionNode) server;
-        // FIXME -> Is the filtering implemented?
-        refreshNode (serverNode);
+    	Display.getDefault().asyncExec(new Runnable()
+    	{
+    		public void run ()
+    		{
+    	    	if (isServerExplorerViewer ())
+    	    	{
+    	    		viewer.refresh(node, true);
+    	    	}
+    		}
+    	});
     }
 
     /**
@@ -624,82 +425,10 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
         return this.layoutProvider instanceof ServerExplorerHierarchicalLayoutNav;
     }
 
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#getKnownServerNode()
-     */
-    public IKnownConnectionNode getKnownServerNode()
-    {
-        return knownServer;
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#deleteServer(com.ibm.datatools.core.ui.modelexplorer.virtual.IServerNode[])
-     */
-    public void deleteServer(IConnectionNode[] servers)
-    {
-//        for (int i = 0, n = servers.length; i < n; i++)
-//        {
-//            serverExplorerConfiguration.deleteServer(servers[i]);
-//            removeServerConnection(servers[i]);
-//            getKnownServerNode().removeChildren(servers[i]);
-//            removeNode (servers[i]);
-//        }
-    }
-
-    /**
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.ui.services.IServerExplorerServices#reconnectServer(com.ibm.datatools.core.ui.modelexplorer.virtual.IServerNode[])
-     */
-    public void reconnectServer(IConnectionNode[] servers)
-    {
-    }
-
-    public void removeNode(Object removedChild)
-    {
-//		if(isServerExplorerViewer ())
-//		{
-//			try
-//			{
-//				viewer.remove(removedChild);
-//			}
-//			catch (Throwable e)
-//			{
-//				
-//			}
-//		}
-    }
-
-    public void removeNode(Object parent, Object removedChild)
-    {
-//		if(isServerExplorerViewer ())
-//		{
-//			try
-//			{
-//				viewer.remove(removedChild);
-//			}
-//			catch (Throwable e)
-//			{
-//				
-//			}
-//		}
-    }
-
-    public Object[] getServerExplorerObjectsByType(ConnectionInfo info, Class type)
-    {
-        Database database = info.getSharedDatabase();
-        return getServerExplorerObjectsByType (database, type);
-    }
-
-    public Object[] getServerExplorerObjectsByType(Object parent, Class type)
-    {
-    	// TODO: udpate implementation
-    	//viewer.getServerExplorerObjectsByType(parent,type);
-    	return new Object[0];
-    }
-
     public void expandNode(Object node, int depth)
     {
-//        while (Display.getDefault().readAndDispatch());
-//        viewer.expandToLevel(node, depth);
+        while (Display.getDefault().readAndDispatch());
+        viewer.expandToLevel(node, depth);
     }
 
     public void updateSelection(ISelection selection)
@@ -707,8 +436,7 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
         viewer.setSelection(selection,true);
     }
 
-	public void init(Object oldInput, Object newInput) {
-		// TODO Auto-generated method stub
-		
+	public void init(Object oldInput, Object newInput) 
+	{
 	}
 }

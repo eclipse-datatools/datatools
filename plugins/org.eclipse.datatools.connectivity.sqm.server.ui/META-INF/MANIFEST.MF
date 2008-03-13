@@ -2,13 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.sqm.server.ui; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.datatools.connectivity.sqm.server.internal.ui.ServerUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.datatools.connectivity.sqm.server.internal.ui,
  org.eclipse.datatools.connectivity.sqm.server.internal.ui.dialogs,
- org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer,
  org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup,
  org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content,
  org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.layout,

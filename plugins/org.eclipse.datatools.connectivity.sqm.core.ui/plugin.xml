@@ -259,29 +259,6 @@
 			displayType = "%folder">
 		</contributor>
 		<contributor
-			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode"
-			iconLocation = "/icons/connectionFolder.gif"
-			displayType = "%existingConnection">
-		</contributor>
-		<contributor
-			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
-			iconLocation = "/icons/connection.gif"
-			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.ConnectionSelector"
-			displayType = "%connectedConnection">
-		</contributor>
-		<contributor
-			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
-			iconLocation = "/icons/disconnect_server.gif"
-			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.DisconnectedConnectionSelector"
-			displayType = "%disconnectedConnection">
-		</contributor>
-		<contributor
-			type = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode"
-			iconLocation = "/icons/cachedConnection.gif"
-			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.CachedConnectionSelector"
-			displayType = "%cachedConnection">
-		</contributor>
-		<contributor
 			type = "org.eclipse.datatools.modelbase.sql.schema.Catalog"
 			iconLocation = "/icons/database.gif"
 			displayType = "%catalog">

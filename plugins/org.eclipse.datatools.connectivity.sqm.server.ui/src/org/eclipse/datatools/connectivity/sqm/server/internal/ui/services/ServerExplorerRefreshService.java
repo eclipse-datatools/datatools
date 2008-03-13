@@ -11,7 +11,7 @@
 
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.services;
 
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RefreshAction;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RevisedRefreshAction;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 
@@ -22,8 +22,8 @@ public class ServerExplorerRefreshService implements IServerExplorerRefreshServi
 {
     public void refresh(Object objectToRefresh)
     {
-        RefreshAction action = new RefreshAction();
+    	RevisedRefreshAction action = new RevisedRefreshAction(null);
         action.selectionChanged(null, new StructuredSelection(objectToRefresh));
-        action.run(null);
+        action.run();
     }
 }

@@ -16,11 +16,9 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IDependencyNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IIndexNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISequenceNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IStoredProcedureNode;
@@ -58,16 +56,6 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 	protected static final Object[] EMPTY_ELEMENT_ARRAY = new Object[0];
 	protected static final IVirtualNodeServiceFactory nodeFactory = IDataToolsUIServiceManager.INSTANCE.getVirtualNodeServiceFactory();
 	protected static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
-	
-	/**
-	 * Will display the Known Servers list
-	 * @param element
-	 * @return
-	 */
-	private Object [] displayKnownServerChildren (Object element)
-	{
-		return ((IVirtualNode)element).getChildrenArray();
-	}
 	
 	/**
 	 * @return a IVieverElement array from the collection provided
@@ -165,15 +153,7 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 	
 	private Object [] getChildren (IVirtualNode parent)
 	{
-		if (parent instanceof IKnownConnectionNode)
-		{
-			return displayKnownServerChildren(parent);
-		}
-		else if (parent instanceof IConnectionNode)
-		{
-			return displayServerChildren (parent);
-		}
-		else if (parent instanceof ICatalogNode)
+		if (parent instanceof ICatalogNode)
 		{
 			return displayCatalogNodeChildren (parent);
 		}

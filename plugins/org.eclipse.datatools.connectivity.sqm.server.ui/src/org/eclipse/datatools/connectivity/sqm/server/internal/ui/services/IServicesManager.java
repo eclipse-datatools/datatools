@@ -20,6 +20,4 @@ public interface IServicesManager
 	public IServerExplorerRefreshService getServerExplorerRefreshService ();
 	public IServerExplorerContentService getServerExplorerContentService ();
 	public IServerExplorerNavigationService getServerExplorerNavigationService ();
-	public IServerStatusDecorationService getServerStatusDecorationService ();
-	public IConnectedServerDialog getConnectedServerDialog ();
 }

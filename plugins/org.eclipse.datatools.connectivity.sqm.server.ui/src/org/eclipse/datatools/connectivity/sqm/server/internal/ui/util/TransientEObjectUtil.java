@@ -14,12 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IElementIDProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ConnectionNodeUtil;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 
@@ -31,8 +32,7 @@ import com.ibm.icu.util.StringTokenizer;
 public class TransientEObjectUtil implements IElementIDProvider
 {
     private static final ContainmentService containment = RDBCorePlugin.getDefault().getContainmentService();
- //   private static final ConnectionManager manager = RDBCorePlugin.getDefault().getConnectionManager();
-    
+   
     private static final String SEPARATOR = "#"; //$NON-NLS-1$
     private static final String VIRTUAL_SEPARATOR = "/"; //$NON-NLS-1$
     private static final String NULL = ""; //$NON-NLS-1$
@@ -58,19 +58,19 @@ public class TransientEObjectUtil implements IElementIDProvider
     
     public static ConnectionInfo getConnectionInfo (EObject object)
     {
-//        SQLObject root = (SQLObject) getRoot (object);
-//        if (root != null)
-//        {
-//            return manager.getConnectionInfo(root);
-//        }
+        SQLObject root = (SQLObject) getRoot (object);
+        if (root != null)
+        {
+            return ConnectionUtil.getConnectionForEObject(root);
+        }
         return null;
     }
     
-    private static IConnectionNode getConnectionNode (EObject object) throws Exception
+    private static IConnectionProfile getConnectionProfile (EObject object) throws Exception
     {
         try
         {
-            return ConnectionNodeUtil.getConnectionNode(getConnectionInfo (object));
+            return getConnectionInfo (object).getConnectionProfile();
         }
         catch (Exception e)
         {
@@ -96,12 +96,11 @@ public class TransientEObjectUtil implements IElementIDProvider
     public static String getEObjectId (EObject object) throws Exception
     {
         StringBuffer buffer = new StringBuffer();
-        //TODO:  Restore this if needed
-//        stack.clear();
-//        IConnectionNode node = getConnectionNode(object);
-//        buildID(buffer, node.getName());
-//        buildID(buffer);
-//        stack.clear();
+        stack.clear();
+        IConnectionProfile profile = getConnectionProfile(object);
+        buildID(buffer, profile.getName());
+        buildID(buffer);
+        stack.clear();
         return buffer.toString();
     }
     

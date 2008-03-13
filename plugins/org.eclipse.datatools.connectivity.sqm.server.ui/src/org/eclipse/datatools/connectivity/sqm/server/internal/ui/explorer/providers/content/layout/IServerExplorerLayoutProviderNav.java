@@ -18,7 +18,5 @@ public interface IServerExplorerLayoutProviderNav
 {
 	public Object[] getChildren(Object parentElement);
 	public Object organizeChildren (Object parent);
-	public void initializeKnownServers(Object parent);
-	public void initializeDiscoveredServers(Object parent);
 	public Object [] displayServerChildren (Object server);
 }

@@ -27,8 +27,7 @@ public class ServerExplorerRefreshListener implements ICatalogObjectListener
     {
         if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH)
         {
-        	//TODO:Need to refresh DSE nodes
- //           IServicesManager.INSTANCE.getServerExplorerContentService().refreshNode(dmElement);
+        	IServicesManager.INSTANCE.getServerExplorerContentService().refreshNode(dmElement);
         }
     }
 }

@@ -13,9 +13,6 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.content.ServerExplorerConfiguration;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl.ServerExplorerContentProviderNav;
 
 
@@ -86,18 +83,6 @@ public abstract class AbstractLayoutProviderNav implements IServerExplorerLayout
 	public Object[] getChildren(Object parentElement)
 	{
 		return onDemandContentProvider.getChildren(parentElement);
-	}
-
-	/**
-	 * @return Reestablished in the Server Explorer the servers that have been already added
-	 */
-	public void initializeKnownServers(Object parent)
-	{
-		ConnectionInfo [] infos = new ServerExplorerConfiguration().getRestoredConnections();
-		for (int i = 0, n = infos.length; i < n; i++)
-	    {
-		    ServerExplorerManager.INSTANCE.initializeConnectionInfo(infos[i]);
-	    }
 	}
 
 	/**

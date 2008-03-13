@@ -13,8 +13,6 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actio
 
 import java.util.Iterator;
 
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConnectionNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IKnownConnectionNode;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
@@ -57,34 +55,21 @@ public class RevisedRefreshAction extends RevisedAbstractAction
     
     private void refreshVirtualNode (IVirtualNode virtualNode)
     {
-        if (virtualNode instanceof IConnectionNode)
-        {
-            refreshCatalogObject (virtualNode.getChildrenArray());
-        }
-        else if (!(virtualNode instanceof IKnownConnectionNode))
-        {
-	        Object object = virtualNode.getParent();
-	        virtualNode.removeAllChildren();
-	        if (object instanceof ICatalogObject)
-	        {
-	            refreshCatalogObject ((ICatalogObject)object);
-	        }
-	        else if (object instanceof IVirtualNode)
-	        {
-	            refreshVirtualNode ((IVirtualNode)object);
-	        }
-        }
-    }
+		Object object = virtualNode.getParent();
+		virtualNode.removeAllChildren();
+		if (object instanceof ICatalogObject)
+		{
+			refreshCatalogObject((ICatalogObject) object);
+		}
+		else if (object instanceof IVirtualNode)
+		{
+			refreshVirtualNode((IVirtualNode) object);
+		}
+	}
 
     private void refreshCatalogObject (ICatalogObject catalogObject)
     {
         refreshCatalogObject (new ICatalogObject [] {catalogObject});
-    }
-    
-    private boolean isConnected (Object current)
-    {
-        IConnectionNode connectionNode = (IConnectionNode) current;
-        return connectionNode.isConnected() && !connectionNode.shouldDisconnect();
     }
     
     protected void setSelection(ISelection selection)
@@ -100,36 +85,22 @@ public class RevisedRefreshAction extends RevisedAbstractAction
         return selection;
     }
 
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actions.popup.RevisedAbstractAction#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-     */
     public void selectionChanged (IAction action, ISelection sel)
 	{
         if (sel instanceof IStructuredSelection && action != null)
         {
-            if (((IStructuredSelection)sel).size() == 1)
-            {
-	            Object current = ((IStructuredSelection)sel).getFirstElement();
-	            if (current instanceof IKnownConnectionNode || current instanceof IConnectionNode && !isConnected (current))
-	            {
-	                action.setEnabled(false);
-	            }
-	            else
-	            {
-	                action.setEnabled(true);
-	            }
-            }
-            else
-            {
-                action.setEnabled(false);
-            }
-        }
+			if (((IStructuredSelection) sel).size() == 1)
+			{
+				action.setEnabled(true);
+			}
+			else
+			{
+				action.setEnabled(false);
+			}
+		}
 		setSelection (sel);
 	}
 
-    /* (non-Javadoc)
-     * @see org.eclipse.jface.action.Action#run()
-     */
     public void run()
     {
     	if (this.aViewer != null) {
