@@ -50,7 +50,7 @@ public class BookmarkDecorationService extends AbstractDecorationService impleme
 		    }
 		    else if (object instanceof IAdaptable && (resource = (IResource) ((IAdaptable)object).getAdapter(IResource.class)) != null)
 		    {
-		        bookmarks = resource.findMarkers(DataToolsUIConstants.SUPER_BOOKMARK, true, IResource.DEPTH_INFINITE);
+		        bookmarks = resource.exists()? resource.findMarkers(DataToolsUIConstants.SUPER_BOOKMARK, true, IResource.DEPTH_INFINITE) : null;
 		    }
 		} 
 		catch (CoreException e) 
