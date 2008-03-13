@@ -132,40 +132,32 @@ public class ManifestExplorer
     }
 	
 	/**
-	 * Returns a collection of identifiers of 
-	 * all ODA data source extensions.
+	 * Returns a collection of identifiers of all ODA data source extensions.
 	 * The extension's data source element ID and display name
 	 * are stored as the key and value in the returned Properties instance.
      * The returned collection includes all matching extensions, including those
      * with no dataSet elements defined.
-	 * Returns an empty <code>Properties</code> if there are 
-	 * no data source extensions found.
-	 * @return	a <code>Properties</code> containing the id
-	 * 			and display name of all data source extensions.
+     * @return  a <code>Properties</code> containing the id and display name 
+     *          of all ODA data source extensions.  
+     *          May be an empty collection if no data source extensions are found.
 	 */
 	public Properties getDataSourceIdentifiers()
 	{
-        // for backward compatibility, does not hide any ODA extensions 
-        Filter defaultFilter = createFilter();
-        defaultFilter.setMissingDataSetTypesFilter( false );
-        defaultFilter.setDeprecatedFilter( false );
-        defaultFilter.setHideWrapper( false );
-
-        return getDataSourceIdentifiers( defaultFilter );
+        // does not hide any ODA extensions 
+        return getDataSourceIdentifiers( null );
 	}
 	
 	/**
-     * Returns a collection of identifiers of all ODA data source extensions.
+     * Returns a collection of identifiers of all ODA data source extensions that meet
+     * the specified filter criteria.
      * The extension's data source element ID and display name
      * are stored as the key and value in the returned Properties instance.
-     * The returned collection includes all ODA data source extensions that meet
-     * the specified filter criteria.
      * @param collectionFilter  specifies the types of extension to exclude in
      *                          the returned collection; 
      *                          may be null if no filtering is needed
      * @return  a <code>Properties</code> containing the id and display name 
      *          of all ODA data source extensions that meet the specified filter criteria.  
-     *          May be empty if no matching data source extensions are found.
+     *          May be an empty collection if no data source extensions are found.
      * @since 3.1.2 (DTP 1.6)
 	 */
     public Properties getDataSourceIdentifiers( Filter dataSourceFilter )
