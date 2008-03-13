@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,6 +59,7 @@ public class Messages extends NLS
     public static String wizard_missingDataSourceId;
     public static String wizard_invalidManifest;
     public static String page_defaultDataSourceTitle;
+    public static String designSession_flushFailed;
     public static String designSession_invalidArgument;
     public static String designSession_invalidEditApiCall;
     public static String designSession_invalidNewDesignApiCall;

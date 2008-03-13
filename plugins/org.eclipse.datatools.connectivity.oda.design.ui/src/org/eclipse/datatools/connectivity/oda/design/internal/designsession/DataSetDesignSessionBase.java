@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
@@ -144,6 +145,41 @@ public class DataSetDesignSessionBase
         if( m_odaDesign == null )
             return null;
         return m_odaDesign.getRequest();
+    }
+    
+    /**
+     * Flushes the current state of this data set design session to the response
+     * of the returned OdaDesignSession.
+     * It would also reset this design session with the flushed design in a new request. 
+     * <br>Flushing a design session preserves and re-uses this session's custom page(s).
+     * <br>A design session can be flushed only when it is active, and has not gone through 
+     * the finish() operation.
+     * @return  a completed OdaDesignSession with the the original request and
+     *          the flushed data set design and designer state in the session response.
+     * @throws OdaException
+     */
+    protected OdaDesignSession flush()
+        throws OdaException
+    {
+        if( m_odaDesign == null )
+            throw new OdaException( Messages.common_notInDesignSession );
+
+        // triggers saving the latest design state into the response of the current OdaDesignSession
+        OdaDesignSession origSession = finishDataSetDesign();
+        if( origSession.getResponse() == null )
+            throw new OdaException( Messages.designSession_flushFailed );
+
+        // copy the flushed session to a new one; and reset its request with the latest response info
+        OdaDesignSession newSession = (OdaDesignSession) EcoreUtil.copy( origSession );
+        DesignSessionResponse latestResponse = newSession.getResponse();
+        newSession.getRequest().setNewDataAccessDesign( latestResponse.getDataSetDesign() );
+        newSession.getRequest().setDesignerState( latestResponse.getDesignerState() );
+        newSession.setResponse( null );
+        m_odaDesign = newSession;
+
+        initWizard();
+
+        return origSession;
     }
     
     /**

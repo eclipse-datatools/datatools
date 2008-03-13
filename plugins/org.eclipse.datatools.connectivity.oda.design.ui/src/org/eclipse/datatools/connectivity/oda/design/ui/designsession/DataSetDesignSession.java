@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -115,6 +115,16 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         newSession.initWizard();
         
         return newSession;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSetDesignSessionBase#flushEditDesign()
+     */
+    public OdaDesignSession flush()
+        throws OdaException
+    {
+        return super.flush();
     }
 
     /** Not allowed to instantiate the class directly;
