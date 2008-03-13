@@ -16,6 +16,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.routines.Function;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
@@ -105,12 +106,15 @@ public class SQLDBProposal {
     public SQLDBProposal( EObject dbObject ) {
         this.fDBObject = dbObject;
         if (dbObject instanceof Schema) {
+            Schema schema = (Schema) dbObject;
             fType = SCHEMA_OBJTYPE;
-            fName = ((Schema) dbObject).getName();
-            fParentName = ((Schema) dbObject).getDatabase().getName();
-            fParentObject = ((Schema) dbObject).getDatabase();
-            fGrandParentName = null;
-            fGrandGrandParentName = null;
+            fName = schema.getName();
+            /* Need to deal with Database vs. Catalog as parent. */ 
+            Database db = ModelUtil.getDatabase(schema);
+            if (db != null) {
+                fParentObject = db;
+                fParentName = db.getName();
+            }
             setImage( SQLEditorResources.getImage( "schema" )); //$NON-NLS-1$
         }
         else if (dbObject instanceof Table) {
