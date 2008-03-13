@@ -32,6 +32,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.internal.ProfileCategoryUtil;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer.Filter;
 import org.eclipse.datatools.connectivity.ui.actions.ExportProfileViewAction;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.PreferencePage;
@@ -630,8 +631,13 @@ class ProfileSelectionPageHelper
      */
     private SortedSet createOdaProfileCategoryInfoSet()
     {
+        Filter profileTypeFilter = ManifestExplorer.createFilter();
+        profileTypeFilter.setMissingDataSetTypesFilter( true );
+        profileTypeFilter.setDeprecatedFilter( true );
+        profileTypeFilter.setHideWrapper( false );
+        
         Properties dsIdentifiers = ManifestExplorer.getInstance()
-                .getDataSourceIdentifiers( );
+                .getDataSourceIdentifiers( profileTypeFilter );
         
         TreeSet sortedSet = new TreeSet();
         Iterator keyIter = dsIdentifiers.keySet().iterator();

@@ -145,28 +145,44 @@ public class ManifestExplorer
 	 */
 	public Properties getDataSourceIdentifiers()
 	{
-		IExtension[] extensions = getDataSourceExtensions();
-		int length = ( extensions == null ) ? 
-		        		0 : extensions.length;
-		Properties extensionIds = new Properties();
-		for( int i = 0; i < length; i++ )
-		{
-			IExtension extension = extensions[i];			
-			try
-			{
-				IConfigurationElement dsElement = getDataSourceElement( extension );
-				String dataSourceId = dsElement.getAttribute( "id" );  //$NON-NLS-1$
-				String dataSourceDisplayName = getElementDisplayName( dsElement );
-				extensionIds.setProperty( dataSourceId, dataSourceDisplayName );
-			}
-			catch( OdaException ex )
-			{
-                getLogger().log( Level.WARNING, "Ignoring invalid extension.", ex );  //$NON-NLS-1$
-			}
-		}
-		
-		return extensionIds;
+        // for backward compatibility, does not hide any ODA extensions 
+        Filter defaultFilter = createFilter();
+        defaultFilter.setMissingDataSetTypesFilter( false );
+        defaultFilter.setDeprecatedFilter( false );
+        defaultFilter.setHideWrapper( false );
+
+        return getDataSourceIdentifiers( defaultFilter );
 	}
+	
+	/**
+     * Returns a collection of identifiers of all ODA data source extensions.
+     * The extension's data source element ID and display name
+     * are stored as the key and value in the returned Properties instance.
+     * The returned collection includes all ODA data source extensions that meet
+     * the specified filter criteria.
+     * @param collectionFilter  specifies the types of extension to exclude in
+     *                          the returned collection; 
+     *                          may be null if no filtering is needed
+     * @return  a <code>Properties</code> containing the id and display name 
+     *          of all ODA data source extensions that meet the specified filter criteria.  
+     *          May be empty if no matching data source extensions are found.
+     * @since 3.1.2 (DTP 1.6)
+	 */
+    public Properties getDataSourceIdentifiers( Filter dataSourceFilter )
+    {
+        ExtensionManifest[] odaManifests = getExtensionManifests( dataSourceFilter );
+        Properties extensionIds = new Properties();
+        for( int i = 0; i < odaManifests.length; i++ )
+        {
+            ExtensionManifest odaManifest = odaManifests[i];
+            
+            String dataSourceId = odaManifest.getDataSourceElementID();
+            String dataSourceDisplayName = odaManifest.getDataSourceDisplayName();
+            extensionIds.setProperty( dataSourceId, dataSourceDisplayName );
+        }
+        
+        return extensionIds;
+    }
 
 	/**
 	 * Returns the extension configuration information found 
@@ -322,7 +338,7 @@ public class ManifestExplorer
      *                          may be null if no filtering is needed
      * @return  an <code>ExtensionManifest</code> array containing 
      *          the definition of all matching ODA data source extensions.
-     * @since DTP 1.6
+     * @since 3.1.2 (DTP 1.6)
      */
     public ExtensionManifest[] getExtensionManifests( Filter collectionFilter )
     {
@@ -495,11 +511,6 @@ public class ManifestExplorer
 		}
 		
 		return null;
-	}
-	
-	private IExtension[] getDataSourceExtensions()
-	{
-		return getExtensions( DTP_ODA_EXT_POINT );
 	}
 
     // Package static helper methods
@@ -717,9 +728,9 @@ public class ManifestExplorer
         /**
          * Specifies whether to hide wrapper extensions.
          * @param hide   true to hide, false otherwise.
-         * @since 3.1.2
+         * @since 3.1.2 (DTP 1.6)
          */
-        void setHideWrapper( boolean hide )
+        public void setHideWrapper( boolean hide )
         {
             m_hideWrapper = hide;
         }
@@ -742,9 +753,9 @@ public class ManifestExplorer
 
         /**
          * Indicates whether to hide wrapper extensions.
-         * @since 3.1.2
+         * @since 3.1.2 (DTP 1.6)
          */
-        boolean isHideWrapperFilterOn()
+        public boolean isHideWrapperFilterOn()
         {
             return m_hideWrapper;
         }
