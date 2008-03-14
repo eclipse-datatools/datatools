@@ -121,7 +121,7 @@ public class CPWizardSelectionPage
      * Get wizard for specified category
      * @param wizardCategory
      * @return
-     * @deprecated  since DTP 1.6; replaced by {@link #getCategoryItems(String)}
+     * @deprecated  As of DTP 1.6, replaced by {@link #getCategoryItems(String)}
      */
 	public List getCatagoryItems(String wizardCategory) {
 	    return getCategoryItems( wizardCategory );
