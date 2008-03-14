@@ -90,7 +90,7 @@
             label="%datatools.core.ui.modelexplorer.bookmarkDecoration"
             state="true"
             class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.BookmarkDecorationService"
-            id="org.eclipse.datatools.connectivity.sqm.internal.core.ui.bookmarkDecoration">
+            id="org.eclipse.datatools.connectivity.internal.core.ui.bookmarkDecoration">
          <enablement>
             <or> 
 	            <objectClass
