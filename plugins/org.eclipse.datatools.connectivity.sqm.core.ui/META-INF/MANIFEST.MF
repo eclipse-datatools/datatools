@@ -24,6 +24,7 @@ Export-Package: org.eclipse.datatools.connectivity.sqm.core.internal.ui,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.util,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources,
  org.eclipse.datatools.connectivity.sqm.core.internal.ui.widgets,
+ org.eclipse.datatools.connectivity.sqm.core.ui.explorer.filter,
  org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual,
  org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual,
  org.eclipse.datatools.connectivity.sqm.core.ui.services
