@@ -403,8 +403,11 @@ public final class Messages extends NLS {
 	public static String _UI_VIEWS_GRAPH_SELECT_ALL_COLUMN;
 	public static String _UI_VIEWS_GRAPH_DESELECT_ALL_COLUMN;
 	public static String _UI_SQLQUERYBUILDERDIALOG_NAME;
-	public static String SQLQueryBuilderDialogParseFailOnOpenAskUserTitle;
+	public static String SQLQueryBuilderDialogEditTabName;
+    public static String SQLQueryBuilderDialogNoInput;
+    public static String SQLQueryBuilderDialogParseFailOnOpenAskUserTitle;
 	public static String SQLQueryBuilderDialogParseFailOnOpenAskUserMessage;
+    public static String SQLQueryBuilderDialogResultsTabName;
 	public static String _UI_SQLQUERY_NAME;
 	public static String ContentAssistProposal_label;
 	public static String ContentAssistProposal_tooltip;

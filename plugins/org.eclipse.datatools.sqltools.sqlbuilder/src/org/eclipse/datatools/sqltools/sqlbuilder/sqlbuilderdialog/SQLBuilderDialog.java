@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 Sybase, Inc. and others.
+ * Copyright © 2000, 2008 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Sybase, Inc. - initial API and implementation
+ *     Actuate Corporation - refactoring to allow extended class to use other type of input
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.sqlbuilderdialog;
 
@@ -26,6 +27,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.IExecuteSQLListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
 import org.eclipse.datatools.sqltools.sqlbuilder.ParseException;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.OmitSchemaInfo;
@@ -54,16 +56,20 @@ import org.eclipse.ui.PlatformUI;
 public class SQLBuilderDialog extends SQLPainterDlg 
 	implements IExecuteSQLListener {
 
-	public static final String DIALOG_TITLE = "SQL Builder";
-	public static final String TAB_EDITOR = "Edit";
-	public static final String TAB_RESULTS = "SQL Results";
-
+	public static final String DIALOG_TITLE = Messages._UI_SQLQUERYBUILDERDIALOG_NAME;
+	public static final String TAB_EDITOR = Messages.SQLQueryBuilderDialogEditTabName;
+	public static final String TAB_RESULTS = Messages.SQLQueryBuilderDialogResultsTabName;
+	private static final String LEFT_BRACKET = " <";    //$NON-NLS-1$
+    private static final String RIGHT_BRACKET = ">";    //$NON-NLS-1$
+    private static final String EMPTY_STRING = "";    //$NON-NLS-1$
+	
 	CTabFolder _tabFolder;
 	CTabItem _tabItemResults;
 	
 	private SQLBuilder _sqlBuilder = null;
 	private IFile _file = null;
 	private ISQLEditorConnectionInfo _connectionInfo = null;
+    private ISQLBuilderEditorInput _editorInput = null;
 
 	ResultsViewControl _resultsViewControl;
 	
@@ -72,19 +78,40 @@ public class SQLBuilderDialog extends SQLPainterDlg
     		String parametersType, String parameter, String table, HashMap info)
     {
         super(parentShell, statementType, statement, profileName, database, parametersType, parameter, table, info);
-        setShellStyle(SWT.RESIZE | SWT.TITLE | SWT.CLOSE | SWT.BORDER
-				| SWT.APPLICATION_MODAL);
-
+        initDialog();
+    }
+    
+    /**
+     * Constructor with no editor input information.
+     * Sub-class must then use {@link #setInput(ISQLBuilderEditorInput)} to specify input information.
+     * @param parentShell
+     *            the parent shell, or <code>null</code> to create a top-level shell
+     */
+    protected SQLBuilderDialog(Shell parentShell) {
+        super(parentShell, null, null, null, null, null, null);
+        initDialog();
     }
 	
-	/**
+    private void initDialog()
+    {
+        setShellStyle(SWT.RESIZE | SWT.TITLE | SWT.CLOSE | SWT.BORDER
+                | SWT.APPLICATION_MODAL);
+
+        /*
+         * Create the SQLBuilder part of the dialog.
+         */
+        _sqlBuilder = new SQLBuilder();
+    }
+    
+	protected SQLBuilder getSQLBuilder()
+    {
+        return _sqlBuilder;
+    }
+
+    /**
 	 * Overrides {@link org.eclipse.datatools.sqltools.common.ui.dialog.SQLPainterDlg.load()}
 	 */
 	public String load() {
-		/*
-		 * Create the SQLBuilder part of the dialog.
-		 */
-		_sqlBuilder = new SQLBuilder();
         try {
 			_connectionInfo = new SQLBuilderConnectionInfo(ProfileUtil.getProfile(_profileName));
 		} catch (NoSuchProfileException e1) {
@@ -92,46 +119,42 @@ public class SQLBuilderDialog extends SQLPainterDlg
 			e1.printStackTrace();
 		}
 		
-		try {
-			// Get file from info param 
-			_file = null;
-			if (_info != null && (!_info.isEmpty())){
-				Object value = _info.get(UIComponentService.KEY_FILE);
-				if (value instanceof IFile){
-					_file = (IFile) value;
-				}
+		// Get file from info param 
+		_file = null;
+		if (_info != null && (!_info.isEmpty())){
+			Object value = _info.get(UIComponentService.KEY_FILE);
+			if (value instanceof IFile){
+				_file = (IFile) value;
 			}
-			// Get omitSchemaInfo from file if available
-			IOmitSchemaInfo omitSchemaInfo;
-			if (_file != null){
-				omitSchemaInfo = SQLFileUtil.getOmitSchemaInfo(_file);
-			}
-			else
-			{
-				omitSchemaInfo = new OmitSchemaInfo();
-				omitSchemaInfo.initFromPreferences();
-			}
-			
-			SQLBuilderEditorInput input;
-			if (_statement != null && _statement.length() > 0){
-				input = new SQLBuilderEditorInput(_connectionInfo, new SQLStatementInfo(_statement), omitSchemaInfo);
-			}
-			else {
-				input = new SQLBuilderEditorInput(_connectionInfo, StatementHelper.STATEMENT_TYPE_SELECT);
-				input.setOmitSchemaInfo(omitSchemaInfo);
-			}
-			_sqlBuilder.setInput(input);
-			
-		} catch (PartInitException e) {
-			e.printStackTrace();
-			return null;
 		}
-		catch (ParseException e){
-			String sMessage = e.getLocalizedMessage() + " " + Messages.SQLQueryBuilderDialogParseFailOnOpenAskUserMessage;
-			if (! MessageDialog.openQuestion(getParentShell(),
-					Messages.SQLQueryBuilderDialogParseFailOnOpenAskUserTitle, sMessage)){
-				return null;
-			}
+		// Get omitSchemaInfo from file if available
+		IOmitSchemaInfo omitSchemaInfo;
+		if (_file != null){
+			omitSchemaInfo = SQLFileUtil.getOmitSchemaInfo(_file);
+		}
+		else
+		{
+			omitSchemaInfo = new OmitSchemaInfo();
+			omitSchemaInfo.initFromPreferences();
+		}
+		
+		SQLBuilderEditorInput input;
+		if (_statement != null && _statement.length() > 0){
+			input = new SQLBuilderEditorInput(_connectionInfo, new SQLStatementInfo(_statement), omitSchemaInfo);
+		}
+		else {
+			input = new SQLBuilderEditorInput(_connectionInfo, StatementHelper.STATEMENT_TYPE_SELECT);
+			input.setOmitSchemaInfo(omitSchemaInfo);
+		}
+
+		boolean isInputLoaded = setInput(input);
+		if( ! isInputLoaded )
+		{
+            String sMessage = Messages.SQLQueryBuilderDialogParseFailOnOpenAskUserMessage ;
+            boolean bContinue = MessageDialog.openQuestion(getParentShell(),
+                    Messages.SQLQueryBuilderDialogParseFailOnOpenAskUserTitle, sMessage);
+            if( ! bContinue )
+                return null;
 		}
 
 		this.setBlockOnOpen(true);
@@ -142,6 +165,27 @@ public class SQLBuilderDialog extends SQLPainterDlg
 			return null;
 		}
 	}
+
+	/**
+     * Sets the SQLBuilderDialog's editor input. The caller should continue creating
+     * the dialog only if setInput returns true.
+     * @param editorInput
+     * @return true if the input was loaded, false otherwise.
+     */
+    protected boolean setInput(ISQLBuilderEditorInput editorInput){
+        _editorInput = editorInput;
+
+        try {
+            _sqlBuilder.setInput(_editorInput);
+            return true;
+        } catch (PartInitException e) {
+            e.printStackTrace();
+            return false;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	
 	/**
 	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
@@ -164,12 +208,21 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
 	public Control createDialogArea(Composite parent) {
+        if (_editorInput == null) {
+            Shell shell = new Shell();
+            MessageDialog.openInformation(shell, DIALOG_TITLE,
+                    Messages.SQLQueryBuilderDialogNoInput);
+            return null;
+        }
 
 		/*
 		 * Set dialog title
 		 */
-		getShell().setText(DIALOG_TITLE);
-		
+        String dialogTitle = DIALOG_TITLE;
+        if( _editorInput.getName() != null && _editorInput.getName().length() > 0 )
+            dialogTitle += LEFT_BRACKET + _editorInput.getName() + RIGHT_BRACKET;
+		parent.getShell().setText(dialogTitle);
+        
 		/*
 		 * Create controls to host the SQLBuilder
 		 */
@@ -207,10 +260,12 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		GridData gd = new GridData(GridData.FILL, GridData.FILL, true, true);
 		_resultsViewControl.getControl().setLayoutData(gd);
 		
-		filterResultsView(_connectionInfo.getConnectionProfile());
+		filterResultsView(_editorInput.getConnectionInfo().getConnectionProfile());
 
 		ResultsViewAPI.getInstance().setCheckSRV(false);
 		
+		// set focus on the editor tab
+        _tabFolder.setSelection(tabEditor);
 		return topComposite;
 	}
 
@@ -257,7 +312,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	public boolean isDirty() {
 		String sCurrentSQL = _sqlBuilder.getSQL();
 		if (sCurrentSQL == null){
-			sCurrentSQL = "";
+			sCurrentSQL = EMPTY_STRING;
 		}
 		return (! sCurrentSQL.equals(_statement));
 	}
