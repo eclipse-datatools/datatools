@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006-2007 Sybase, Inc.
+ * Copyright (c) 2006-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ *           IBM Corporation - fix for defect 222818
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -169,6 +170,11 @@ public class ConnectionFactoryAdapterProvider implements InternalConnectionFacto
 		};
 		SafeRunner.run(code);
 		mConnectionFactory = result[0];
+	}
+
+	public String getPriority() {
+		// Return null since since connection factory adapters do not support priority
+		return null;
 	}
 
 }

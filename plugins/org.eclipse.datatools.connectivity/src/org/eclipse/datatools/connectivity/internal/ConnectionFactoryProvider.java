@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ *              IBM Corporation - fix for defect 222818
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -37,10 +38,14 @@ public class ConnectionFactoryProvider implements InternalConnectionFactoryProvi
 	public static final String ATTR_CLASS = "class"; //$NON-NLS-1$
 
 	public static final String ATTR_NAME = "name"; //$NON-NLS-1$
+	
+	public static final String ATTR_PRIORITY = "priority"; //$NON-NLS-1$
 
 	private String mId;
 
 	private String mName;
+	
+	private String mPriority;
 
 	private String mProfile;
 	
@@ -55,12 +60,13 @@ public class ConnectionFactoryProvider implements InternalConnectionFactoryProvi
 		init(element);
 	}
 	
-	public ConnectionFactoryProvider(IConfigurationElement element, String factoryID, String profileID, String classAttr) {
+	public ConnectionFactoryProvider(IConfigurationElement element, String factoryID, String profileID, String classAttr, String priority) {
 		super();
 		mElement = element;
 		mId = factoryID;
 		mProfile = profileID;
 		mClassAttr = classAttr;
+		mPriority = priority;
 	}
 
 	/*
@@ -123,6 +129,15 @@ public class ConnectionFactoryProvider implements InternalConnectionFactoryProvi
 	public String getName() {
 		return mName;
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.datatools.connectivity.IConnectionFactoryProvider#getPriority()
+	 */
+	public String getPriority() {
+		return mPriority;
+	}
 
 	private void init(IConfigurationElement element) {
 		Assert.isTrue(ConnectionProfileManager.EXT_ELEM_CONNECTION_FACTORY
@@ -134,6 +149,7 @@ public class ConnectionFactoryProvider implements InternalConnectionFactoryProvi
 		mName = element.getAttribute(ATTR_NAME);
 		mProfile = element.getAttribute(ATTR_PROFILE);
 		mClassAttr = ATTR_CLASS;
+		mPriority = element.getAttribute(ATTR_PRIORITY);
 	}
 
 	public Class getConnectionFactoryClass() {
@@ -193,5 +209,4 @@ public class ConnectionFactoryProvider implements InternalConnectionFactoryProvi
 		SafeRunner.run(code);
 		mFactory = result[0];
 	}
-
 }

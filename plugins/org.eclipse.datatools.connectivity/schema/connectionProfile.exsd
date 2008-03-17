@@ -253,6 +253,13 @@
                </appInfo>
             </annotation>
          </attribute>
+         <attribute name="priority" type="string">
+            <annotation>
+               <documentation>
+                  The priority is an integer value indicating which connection factory will take precedence when multiple connection factories are registered for a specific profile.  Higher numbers will override lower numbers.  If the priority is not specified then it will be considered the lowest priority.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -589,14 +596,6 @@ If this element is used, the targetProfile attribute must be set.
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         
-      </documentation>
-   </annotation>
 
    <annotation>
       <appInfo>
