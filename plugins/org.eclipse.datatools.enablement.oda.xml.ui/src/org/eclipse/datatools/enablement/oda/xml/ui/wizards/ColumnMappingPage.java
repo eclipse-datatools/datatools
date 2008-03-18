@@ -108,6 +108,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	private static String DEFAULT_PAGE_NAME = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );
 	private static String DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );
 	private static String PATH_SEPERATOR = "/";
+	private static String ATTRIBUTE_MARK = "@";
 	
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
@@ -308,7 +309,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 					return;
 				}
 				TreeItem selectedItem = selectedMultiItems[0];
-				String pathStr = createXPath( selectedItem );
+				ATreeNode treeNode = ( ( TreeNodeData )selectedItem.getData( ) ).getTreeNode( );
+				String pathStr = createXPath( treeNode );
 				String name = selectedItem.getText( );
 				int type = -1;
 				if ( selectedItem.getData( ) instanceof TreeNodeData )
@@ -521,14 +523,14 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 * @param aTreeNode
 	 * @param treeItem
 	 */
-	private void addChildrenElements( ATreeNode aTreeNode, TreeItem treeItem )
+	private void addChildrenElements( ATreeNode aTreeNode )
 	{
 		try
 		{
 			if ( aTreeNode.getType( ) == ATreeNode.ATTRIBUTE_TYPE
 					|| ( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE && ( aTreeNode.getChildren( ) == null || aTreeNode.getChildren( ).length == 0 ) ) )
 			{
-				String pathStr = createXPath( treeItem );
+				String pathStr = createXPath( aTreeNode );
 				updateColumnMappingElement( createSingleElement( aTreeNode,
 						pathStr ) );
 			}
@@ -539,8 +541,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				{
 					for ( int i = 0; i < children.length; i++ )
 					{
-						addChildrenElements( (ATreeNode) children[i],
-								treeItem.getItems( )[i] );
+						addChildrenElements( (ATreeNode) children[i] );
 					}
 				}
 			}
@@ -584,53 +585,50 @@ public class ColumnMappingPage extends DataSetWizardPage
 	}
 
 	/**
-	 * get the xpath from the selected item of tree
+	 * get the xpath according to a specific ATreeNode object
 	 * 
-	 * @param selectedItem
+	 * @param ATreeNode aTreeNode
 	 * @return
 	 */
-	private String createXPath( TreeItem selectedItem )
+	private String createXPath( ATreeNode aTreeNode )
 	{
-		if ( selectedItem == null )
+		if ( aTreeNode == null )
 			return null;
-		TreeItem select = selectedItem;
 
-		// TODO Automatically generate the available column xpath
-		String columnPath = "";
-		Object data = selectedItem.getData( );
-		if ( data instanceof TreeNodeData )
-		{
-			columnPath = generateXpathFromTreeItem( select );
-		}
+		String columnPath = generateXpathFromATreeNode( aTreeNode );
 		return XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
 				columnPath );
 	}
-
+	
 	/**
-	 * This method is used to generate the XPath expression from a TreeItem.
+	 * This method is used to generate the XPath expression from an ATreeNode object.
 	 * 
-	 * @param treeItem
+	 * @param ATreeNode aTreeNode
 	 * @return
 	 */
-	private String generateXpathFromTreeItem( TreeItem treeItem )
+	private String generateXpathFromATreeNode( ATreeNode aTreeNode )
 	{
-		String columnPath = treeItem.getText( );
-
-		while ( treeItem.getParentItem( ) != null
-				&& treeItem.getParentItem( ).getData( ) instanceof TreeNodeData )
+		String columnPath = (String) aTreeNode.getValue( );
+		if ( aTreeNode.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
 		{
-			treeItem = treeItem.getParentItem( );
+			columnPath = ATTRIBUTE_MARK + columnPath;
+		}
 
-			if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
-					.getType( ) == ATreeNode.ELEMENT_TYPE
+		ATreeNode parent = aTreeNode.getParent( );
+		while ( parent != null )
+		{
+			if ( parent.getType( ) == ATreeNode.ELEMENT_TYPE
 					&& ( columnPath != null && columnPath.trim( ).length( ) > 0 ) )
-				columnPath = treeItem.getText( ) + PATH_SEPERATOR + columnPath;
-			else if ( ( (TreeNodeData) treeItem.getData( ) ).getTreeNode( )
-					.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
-				columnPath = columnPath + PATH_SEPERATOR + treeItem.getText( );
+				columnPath = parent.getValue( ) + PATH_SEPERATOR + columnPath;
+			else if ( parent.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
+				columnPath = columnPath
+						+ PATH_SEPERATOR + ATTRIBUTE_MARK + parent.getValue( );
+			parent = parent.getParent( );
 		}
 		if ( !columnPath.startsWith( PATH_SEPERATOR ) )
+		{
 			columnPath = PATH_SEPERATOR + columnPath;
+		}
 		return columnPath;
 	}
 	
@@ -1145,7 +1143,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			if ( type == ATreeNode.ATTRIBUTE_TYPE )
 			{
 				treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
-				treeItem.setText( "@" + treeNode.getValue( ).toString( ) );
+				treeItem.setText( ATTRIBUTE_MARK + treeNode.getValue( ).toString( ) );
 			}
 			else if ( type == ATreeNode.ELEMENT_TYPE )
 			{
@@ -1167,8 +1165,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 			{
 				treeItem.setText( treeNode.getValue( ).toString( ) );
 			}
+			ATreeNode aTreeNode = ( (TreeNodeData)  treeItem.getData( ) ).getTreeNode( );
 			String populateString = XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
-					generateXpathFromTreeItem( treeItem ) );
+					generateXpathFromATreeNode( aTreeNode ) );
 			if ( populateString != null )
 			{
 				if ( populateString.equals( "" ) )
@@ -1686,7 +1685,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				&& selectedItem.getData( ) instanceof TreeNodeData )
 		{
 			ATreeNode aTreeNode = ( (TreeNodeData) selectedItem.getData( ) ).getTreeNode( );
-			addChildrenElements( aTreeNode, selectedItem );
+			addChildrenElements( aTreeNode );
 			return true;
 		}
 		return false;
