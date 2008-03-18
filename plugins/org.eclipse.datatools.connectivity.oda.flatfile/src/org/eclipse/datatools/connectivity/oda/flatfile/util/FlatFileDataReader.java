@@ -512,7 +512,7 @@ public class FlatFileDataReader
 	private Vector fetchQueriedDataFromFileToVector( ) throws OdaException
 	{
 		Vector result = new Vector( );
-
+		String aLine = null;
 		try
 		{
 			if ( isFirstTimeToReadSourceData )
@@ -528,8 +528,7 @@ public class FlatFileDataReader
 					this.originalColumnNames = getColumnNameArray( columeNameLine,
 							true );
 				}
-				else
-					this.originalColumnNames = createTempColumnNames( rsmd.getColumnCount( ) );
+					
 
 				// skip Type information. The type information is in the second
 				// line
@@ -539,20 +538,28 @@ public class FlatFileDataReader
 					while ( isEmptyRow( flatFileBufferedReader.readLine( ) ) )
 						continue;
 				}
-
+				aLine = flatFileBufferedReader.readLine( );
+				if ( !this.hasColumnNames )
+				{
+					this.originalColumnNames = createTempColumnNames( aLine );
+				}
 				isFirstTimeToReadSourceData = false;
+			}
+			else
+			{
+				aLine = flatFileBufferedReader.readLine( );
 			}
 
 			// temporary variable which is used to store the data of a row
 			// fetched from a flat file
-			String aLine = null;
-
+			
+			
 			int counterLimitPerFetch = fetchCounter + MAX_ROWS_PER_FETCH;
 
 			while ( ( this.maxRowsToRead <= 0 ? true
 					: this.fetchCounter < this.maxRowsToRead )
-					&& this.fetchCounter < counterLimitPerFetch
-					&& ( aLine = flatFileBufferedReader.readLine( ) ) != null )
+					&& this.fetchCounter < counterLimitPerFetch 
+					&& aLine != null )
 			{
 				if ( !isEmptyRow( aLine ) )
 				{
@@ -560,9 +567,7 @@ public class FlatFileDataReader
 					result.add( fetchQueriedDataFromRow( aLine,
 							this.originalColumnNames ) );
 				}
-				// end of the file
-				else
-					continue;
+				aLine = flatFileBufferedReader.readLine( );
 			}
 
 			return result;
@@ -663,12 +668,14 @@ public class FlatFileDataReader
 	 * 
 	 * @param columnCount
 	 * @return
+	 * @throws OdaException 
 	 */
-	private String[] createTempColumnNames( int columnCount )
+	private String[] createTempColumnNames( String aRow ) throws OdaException
 	{
-		String[] tempColumnNames = new String[columnCount];
+		Vector vTemp = splitDoubleQuotedString( aRow );
+		String[] tempColumnNames = new String[vTemp.size()];
 
-		for ( int i = 0; i < columnCount; i++ )
+		for ( int i = 0; i < vTemp.size(); i++ )
 		{
 			tempColumnNames[i] = "COLUMN_" + ( i + 1 ); //$NON-NLS-1$
 		}
