@@ -753,6 +753,8 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private boolean isValid( )
 	{
+		if ( this.getControl( ) == null || this.getControl( ).isDisposed( ) )
+			return true;
 		if ( !isRootPathValid( ) )
 		{
 			this.setMessage( Messages.getFormattedString( "error.invalidXpath",

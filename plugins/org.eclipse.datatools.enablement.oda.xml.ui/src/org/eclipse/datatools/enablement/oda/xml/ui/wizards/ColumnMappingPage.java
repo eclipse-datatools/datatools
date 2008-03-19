@@ -74,7 +74,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
- * Column mapping page to define the colum mapping with xml data set
+ * Column mapping page to define the column mapping with xml data set
  */
 
 public class ColumnMappingPage extends DataSetWizardPage
@@ -115,10 +115,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 			Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.float" ), //$NON-NLS-1$
 			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.date" ),
-			Messages.getString( "datatypes.time" ),
-			Messages.getString( "datatypes.string" ),
-			Messages.getString( "datatypes.boolean" )
+			Messages.getString( "datatypes.date" ),//$NON-NLS-1$
+			Messages.getString( "datatypes.time" ),//$NON-NLS-1$
+			Messages.getString( "datatypes.string" ),//$NON-NLS-1$
+			Messages.getString( "datatypes.boolean" )//$NON-NLS-1$
 	};
 	
 	private static Logger logger = Logger.getLogger( ColumnMappingPage.class.getName( ) );
@@ -1010,7 +1010,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		int index = columnMappingTable.getViewer( )
 				.getTable( )
 				.getSelectionIndex( );
-		if ( index > -1 && index < count - 2 )
+		if ( index > -1 && index <= count - 2 )
 		{
 			Object obj = this.columnMappingList.get( index );
 			this.columnMappingList.set( index,
