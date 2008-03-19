@@ -33,12 +33,13 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.texteditor.IUpdate;
 
 /**
  * @author Jeremy Lindop
  *  
  */
-public class DMLDialogSelectionSQLAction extends Action  implements ISelectionChangedListener, IPageUpdate
+public class DMLDialogSelectionSQLAction extends Action  implements ISelectionChangedListener, IPageUpdate, IUpdate
 {
     private SQLEditor     _sqlEditor;
     private ITextSelection _selection;
