@@ -13,6 +13,8 @@ Extension.NewRepositoryWizard.Description = Créer un nouveau référentiel pour le
 datatools.preference.page.name=Connectivité
 drivers.preference.page.name=Définitions de pilote
 category.name.connectionProfiles=Profils de connexion
+datatools.core.ui.preferences.data.node = Outillage des données
+
 DSE.content = Extension de l'explorateur de source de données
 
 AddProfile.command.label = Commande nouveau profil de connexion

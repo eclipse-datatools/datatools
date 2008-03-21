@@ -13,6 +13,8 @@ Extension.NewRepositoryWizard.Description = Neues Repository für Verbindungsprof
 datatools.preference.page.name=Konnektivität
 drivers.preference.page.name=Treiberdefinitionen
 category.name.connectionProfiles=Verbindungsprofile
+datatools.core.ui.preferences.data.node = Datentools
+
 DSE.content = Erweiterung für Datenquellen-Explorer
 
 AddProfile.command.label = Befehl 'Neues Verbindungsprofil'

@@ -13,6 +13,8 @@ Extension.NewRepositoryWizard.Description = Crear un nuevo repositorio para perf
 datatools.preference.page.name=Conectividad
 drivers.preference.page.name=Definiciones de controlador
 category.name.connectionProfiles=Perfiles de conexión
+datatools.core.ui.preferences.data.node = Herramientas de datos
+
 DSE.content = Extensión de explorador de fuentes de datos
 
 AddProfile.command.label = Nuevo comando de perfil de conexión

@@ -10,6 +10,7 @@ wizard_dataSource_defaultTitle=Neue Datenquelle
 wizard_missingDataSourceId=Im Attribut für das Verbindungsprofil fehlt die ID der ODA-Datenquelle.
 wizard_invalidManifest=Der Inhalt des Plug-in-Manifestes in der Erweiterung 'oda.design.ui.dataSource' ist ungültig.
 page_defaultDataSourceTitle=Eigenschaften der Datenquelle anpassen
+designSession_flushFailed=Die aktuelle Datensatz-Designsitzung kann nicht beendet werden.
 designSession_invalidArgument=Im Entwurfssitzungsmodus ist ein ungültiges Argument angegeben.
 designSession_invalidEditApiCall=Ungültiger Designsitzungs-API-Aufruf zum Bearbeiten eines Designs.
 designSession_invalidNewDesignApiCall=Ungültiger Designsitzungs-API-Aufruf zum Bearbeiten eines neuen Designs.

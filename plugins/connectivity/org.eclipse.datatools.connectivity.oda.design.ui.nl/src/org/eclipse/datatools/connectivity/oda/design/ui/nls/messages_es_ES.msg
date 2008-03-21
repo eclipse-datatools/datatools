@@ -10,6 +10,7 @@ wizard_dataSource_defaultTitle=Origen de datos nuevo
 wizard_missingDataSourceId=Falta el ID de origen de datos ODA en el atributo de perfil de conexión.
 wizard_invalidManifest=Contenido de manifiesto de plug-in no válido en la extensión oda.design.ui.dataSource.
 page_defaultDataSourceTitle=Propiedades de origen de datos personalizado
+designSession_flushFailed=No ha sido posible procesar la sesión de diseño del conjunto de datos actual.
 designSession_invalidArgument=Se ha especificado un argumento no válido en el método de sesión de diseño.
 designSession_invalidEditApiCall=Llamada API de sesión de diseño no válida para editar un diseño.
 designSession_invalidNewDesignApiCall=Llamada API de sesión de diseño no válida para crear un diseño.

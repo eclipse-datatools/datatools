@@ -10,6 +10,7 @@ wizard_dataSource_defaultTitle=新建数据源
 wizard_missingDataSourceId=在“连接概要文件”属性中缺少 ODA 数据源标识。
 wizard_invalidManifest=oda.design.ui.dataSource 扩展包含无效的插件清单内容。
 page_defaultDataSourceTitle=定制数据源属性
+designSession_flushFailed=无法刷新当前数据集设计会话。
 designSession_invalidArgument=在设计会话方法中指定了无效的参数。
 designSession_invalidEditApiCall=用于编辑设计的设计会话 API 调用无效。
 designSession_invalidNewDesignApiCall=用于创建新设计的设计会话 API 调用无效。
