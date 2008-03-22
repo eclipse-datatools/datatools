@@ -60,5 +60,4 @@ public interface EditorConstants
 
 	public static final String SQLFILE_EDITOR_ID = "org.eclipse.datatools.sqltools.sqlscrapbook.SQLScrapbookEditor";
 
-	
 }

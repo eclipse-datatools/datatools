@@ -77,6 +77,11 @@ public interface IHelpConstants
     public static final String PREFERENCES_TEMPLATES                 = "preferences_templates";
 
     /**
+     * Used for Syntax Coloring preference page.
+     */
+    public static final String PREFERENCES_SYNTAX_COLORING           = "preferences_syntax_coloring";
+
+    /**
      * Used for Toggle Comment action in SQL Editor.
      */
     public static final String TOGGLE_COMMENT_ACTION                 = "toggle_comment_action";

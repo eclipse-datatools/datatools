@@ -129,6 +129,8 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
 
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout compositeLayout = new GridLayout(1, true);
+        compositeLayout.marginHeight = 0;
+        compositeLayout.marginWidth = 0;
         composite.setLayout(compositeLayout);
 
         TabFolder folder = new TabFolder(composite, SWT.NONE);

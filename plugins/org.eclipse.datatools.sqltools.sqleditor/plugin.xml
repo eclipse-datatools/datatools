@@ -232,6 +232,12 @@
             category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
             name="%DatabaseManagement.CodeAssist"
             id="org.eclipse.datatools.sqltools.sqleditor.preferences.codeassist"/>
+      <!-- syntax coloring for SQL editor -->
+      <page
+            class="org.eclipse.datatools.sqltools.sqleditor.preferences.SyntaxColoringPage"
+            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data/org.eclipse.datatools.sqltools.sqleditor.preferences.SQLEditor" 
+            name="%DatabaseManagement.SyntaxColoring"
+            id="org.eclipse.datatools.sqltools.sqleditor.preferences.syntaxcoloring"/>
    </extension>
 
   

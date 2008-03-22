@@ -14,6 +14,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorPlugin;
+import org.eclipse.datatools.sqltools.sqleditor.preferences.SyntaxItem;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.rules.IToken;
+import org.eclipse.jface.text.rules.Token;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
@@ -43,11 +50,21 @@ public class SQLColorProvider {
     public static final RGB SQL_HC_DELIMITED_IDENTIFIER_COLOR = new RGB( 255, 0, 0 ) ;    // bright red
     public static final RGB SQL_HC_DEFAULT_COLOR              = new RGB( 255, 255, 255 ); // bright white
     
+    // Define names for displaying.
+    public static final String SQL_COMMENT 					= "Single-line comment";
+	public static final String SQL_MULTILINE_COMMENT 		= "Multi-line comment";
+	public static final String SQL_QUOTED_LITERAL 			= "Single quoted string";
+	public static final String SQL_DELIMITED_IDENTIFIER 	= "Double quoted string";
+	public static final String SQL_KEYWORD 					= "Keyword";
+	public static final String SQL_TYPE 					= "Type";
+	public static final String SQL_IDENTIFIER 				= "Identifier";
+	public static final String SQL_DEFAULT 					= "Others";
+    
     protected Map fColorTable = new HashMap(10);
 
     /**
-     * Release all of the color resources held onto by the receiver.
-     */
+	 * Release all of the color resources held onto by the receiver.
+	 */
     public void dispose() {
         Iterator e = fColorTable.values().iterator();
         while (e.hasNext())
@@ -71,4 +88,67 @@ public class SQLColorProvider {
         return color;
     }
     
+    /**
+     * Creates a IToken object for the given syntax value.
+     * 
+     * @param syntax the value representing a syntax
+     * @return the IToken object corresponding to the value saved in preference store
+     */
+    public IToken createToken(String syntax) {
+    	
+    	TextAttribute ta = createTextAttribute(syntax);
+    	if (ta != null) {
+    		return new Token(ta);
+    	}
+
+    	return null;
+    }
+    
+    /**
+     * Creates a TextAttribute object for the given syntax value.
+     * 
+     * @param syntax the value representing a syntax
+     * @return the TextAttribute object corresponding to the value saved in preference store
+     */
+    public TextAttribute createTextAttribute(String syntax) {
+		IPreferenceStore store = SQLEditorPlugin.getDefault().getPreferenceStore();
+
+		if (!store.getString(syntax).equals("")) {
+			SyntaxItem si = new SyntaxItem(store.getString(syntax));
+			if (si != null) {
+				int style = 0;
+				if (si.isBold()) {
+					style = style | SWT.BOLD;
+				}
+				if (si.isItalic()) {
+					style = style | SWT.ITALIC;
+				}
+				if (si.isStrikethrough()) {
+					style = style | TextAttribute.STRIKETHROUGH;
+				}
+				if (si.isUnderline()) {
+					style = style | TextAttribute.UNDERLINE;
+				}
+				return new TextAttribute(getColor(si.getColor()), null, style);
+			}
+		}
+
+		if (syntax.equals(SQL_COMMENT)) {
+			return new TextAttribute(getColor(SQL_COMMENT_COLOR));
+		} else if (syntax.equals(SQL_MULTILINE_COMMENT)) {
+			return new TextAttribute(getColor(SQL_MULTILINE_COMMENT_COLOR));
+		} else if (syntax.equals(SQL_QUOTED_LITERAL)) {
+			return new TextAttribute(getColor(SQL_QUOTED_LITERAL_COLOR));
+		} else if (syntax.equals(SQL_KEYWORD)) {
+			return new TextAttribute(getColor(SQL_KEYWORD_COLOR), null, SWT.BOLD);
+		} else if (syntax.equals(SQL_TYPE)) {
+			return new TextAttribute(getColor(SQL_TYPE_COLOR), null, SWT.BOLD);
+		} else if (syntax.equals(SQL_IDENTIFIER)) {
+			return new TextAttribute(getColor(SQL_IDENTIFIER_COLOR));
+		} else if (syntax.equals(SQL_DELIMITED_IDENTIFIER)) {
+			return new TextAttribute(getColor(SQL_DELIMITED_IDENTIFIER_COLOR));
+		} else {
+			return new TextAttribute(getColor(SQL_DEFAULT_COLOR));
+		}
+    }
 } // end class

@@ -279,22 +279,22 @@ public class SQLSourceViewerConfiguration extends SourceViewerConfiguration {
         // rule for multiline comments
         // We just need a scanner that does nothing but returns a token with
         // the corrresponding text attributes
-        dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_MULTILINE_COMMENT_COLOR))));
+        dr = new DefaultDamagerRepairer( new SingleTokenScanner( colorProvider.createTextAttribute( SQLColorProvider.SQL_MULTILINE_COMMENT)));
         reconciler.setDamager(dr, SQLPartitionScanner.SQL_MULTILINE_COMMENT);
         reconciler.setRepairer(dr, SQLPartitionScanner.SQL_MULTILINE_COMMENT);
 
         // Add a "damager-repairer" for changes witin one-line SQL comments.
-        dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_COMMENT_COLOR ))));
+        dr = new DefaultDamagerRepairer( new SingleTokenScanner( colorProvider.createTextAttribute( SQLColorProvider.SQL_COMMENT )));
         reconciler.setDamager( dr, SQLPartitionScanner.SQL_COMMENT );
         reconciler.setRepairer( dr, SQLPartitionScanner.SQL_COMMENT );
 
         // Add a "damager-repairer" for changes witin quoted literals.
-        dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_QUOTED_LITERAL_COLOR ))));
+        dr = new DefaultDamagerRepairer( new SingleTokenScanner( colorProvider.createTextAttribute( SQLColorProvider.SQL_QUOTED_LITERAL )));
         reconciler.setDamager( dr, SQLPartitionScanner.SQL_STRING );
         reconciler.setRepairer( dr, SQLPartitionScanner.SQL_STRING );
 
         // Add a "damager-repairer" for changes witin delimited identifiers.
-        dr = new DefaultDamagerRepairer( new SingleTokenScanner( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DELIMITED_IDENTIFIER_COLOR ))));
+        dr = new DefaultDamagerRepairer( new SingleTokenScanner( colorProvider.createTextAttribute( SQLColorProvider.SQL_DELIMITED_IDENTIFIER )));
         reconciler.setDamager( dr, SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER );
         reconciler.setRepairer( dr, SQLPartitionScanner.SQL_DOUBLE_QUOTES_IDENTIFIER );
 

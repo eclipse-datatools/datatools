@@ -75,7 +75,15 @@ public final class PreferenceMessages extends NLS
     public static String GeneralPreferencePage_description;
     public static String GeneralPreferencePage_hover_affordance;
     public static String GeneralPreferencePage_portable_check;
-
+	public static String SyntaxColoringPage_description;
+	public static String SyntaxColoringPage_color;
+	public static String SyntaxColoringPage_bold;
+	public static String SyntaxColoringPage_italic;
+	public static String SyntaxColoringPage_strikethrough;
+	public static String SyntaxColoringPage_underline;
+	public static String SyntaxColoringPage_preview;
+	public static String SyntaxColoringPage_syntax_items;
+	
     static 
     {
         NLS.initializeMessages(BUNDLE_NAME, PreferenceMessages.class);

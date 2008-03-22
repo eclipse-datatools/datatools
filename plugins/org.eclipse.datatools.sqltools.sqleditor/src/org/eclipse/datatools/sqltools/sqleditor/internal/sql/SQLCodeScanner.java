@@ -42,6 +42,7 @@ public class SQLCodeScanner extends RuleBasedScanner {
 	private IToken functionToken;
 	private IToken delimitedIdentifierToken;
 	private IToken otherToken;
+	private IToken multilineCommentToken;
 	private List rules;
 
 	/**
@@ -70,6 +71,7 @@ public class SQLCodeScanner extends RuleBasedScanner {
          */
         if (Display.getDefault().getHighContrast() == true) {
             commentToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_COMMENT_COLOR )));
+    		multilineCommentToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_MULTILINE_COMMENT_COLOR )));
             stringToken     = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_QUOTED_LITERAL_COLOR )));
             keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_KEYWORD_COLOR), null, SWT.BOLD));
             datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_TYPE_COLOR), null, SWT.BOLD ));
@@ -79,14 +81,15 @@ public class SQLCodeScanner extends RuleBasedScanner {
             otherToken      = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_HC_DEFAULT_COLOR )));
         }
         else {
-            commentToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_COMMENT_COLOR )));
-            stringToken     = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_QUOTED_LITERAL_COLOR )));
-            keywordToken    = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_KEYWORD_COLOR), null, SWT.BOLD ));
-            datatypeToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_TYPE_COLOR), null, SWT.BOLD ));
-            functionToken   = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_IDENTIFIER_COLOR )));
-//            identifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_IDENTIFIER_COLOR )));
-            delimitedIdentifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DELIMITED_IDENTIFIER_COLOR )));
-            otherToken      = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_DEFAULT_COLOR )));
+    		commentToken 	= colorProvider.createToken(SQLColorProvider.SQL_COMMENT);
+    		multilineCommentToken = colorProvider.createToken(SQLColorProvider.SQL_MULTILINE_COMMENT);
+    		stringToken 	= colorProvider.createToken(SQLColorProvider.SQL_QUOTED_LITERAL);
+    		keywordToken 	= colorProvider.createToken(SQLColorProvider.SQL_KEYWORD);
+    		datatypeToken 	= colorProvider.createToken(SQLColorProvider.SQL_TYPE);
+    		functionToken 	= colorProvider.createToken(SQLColorProvider.SQL_IDENTIFIER);
+//          identifierToken = new Token( new TextAttribute( colorProvider.getColor( SQLColorProvider.SQL_IDENTIFIER_COLOR )));
+    		delimitedIdentifierToken 	= colorProvider.createToken(SQLColorProvider.SQL_DELIMITED_IDENTIFIER);
+    		otherToken 		= colorProvider.createToken(SQLColorProvider.SQL_DEFAULT);
         }
 
         setDefaultReturnToken( otherToken );
@@ -98,6 +101,9 @@ public class SQLCodeScanner extends RuleBasedScanner {
         // Add rules for delimited identifiers and string literals.
         rules.add( new SingleLineRule( "'", "'", stringToken, (char) 0 )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         rules.add( new SingleLineRule( "\"", "\"", delimitedIdentifierToken, (char) 0 )); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+        // Add rules for multi-line comments
+        rules.add(new NestedMultiLineRule("/*", "*/", multilineCommentToken, (char) 0, true));
 
         // Add generic whitespace rule.
         rules.add( new WhitespaceRule( new SQLWhiteSpaceDetector() ));
@@ -161,6 +167,5 @@ public class SQLCodeScanner extends RuleBasedScanner {
 
         setRules(result);
     }
-
     
 } // end class
