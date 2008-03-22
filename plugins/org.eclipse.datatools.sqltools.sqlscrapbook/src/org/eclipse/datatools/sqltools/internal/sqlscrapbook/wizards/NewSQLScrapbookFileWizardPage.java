@@ -134,7 +134,7 @@ public class NewSQLScrapbookFileWizardPage extends WizardNewFileCreationPage {
     {
         super.createPageControl(parent);
 
-        ISQLEditorConnectionInfo connInfo = SQLFileUtil.getConnectionInfoFromPreference();
+        ISQLEditorConnectionInfo connInfo = SQLFileUtil.getDefaultConnectionInfo();
         _group = new ConnectionInfoGroup(parent, this, connInfo, false, false);
 
         PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, HelpUtil.getContextId(IHelpContextIds.NEW_SQL_FILE, SQLEditorPlugin.getDefault().getBundle().getSymbolicName()));

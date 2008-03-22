@@ -3,17 +3,13 @@ package org.eclipse.datatools.sqltools.sqlscrapbook.actions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
-import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -44,7 +40,7 @@ public class OpenScrapbookAction implements IWorkbenchWindowActionDelegate {
 	public void run(IAction action) {
         String scrap = "";
         SQLEditorStorageEditorInput editorStorageEditorInput = new SQLEditorStorageEditorInput("", scrap);
-        ISQLEditorConnectionInfo editorConnectionInfo = SQLFileUtil.getConnectionInfoFromPreference();
+        ISQLEditorConnectionInfo editorConnectionInfo = SQLFileUtil.getDefaultConnectionInfo();
 
         editorStorageEditorInput.setConnectionInfo(editorConnectionInfo);
 

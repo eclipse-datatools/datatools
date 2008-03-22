@@ -37,6 +37,36 @@
       </viewerContribution>
    </extension>
 
+   <!-- sql file popup menus -->   
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      
+      <objectContribution 
+         id="com.sybase.stf.dmp.ui.actions.ExecuteSQLFileActionDelegate.contribution" 
+         objectClass="org.eclipse.core.resources.IFile">
+		<visibility>
+			<and>
+				<objectClass name="org.eclipse.core.resources.IFile">
+				</objectClass>
+				<objectState 
+					name="extension"
+					value="sql"/>
+			</and>
+		</visibility>
+         <action
+               helpContextId="com.sybase.stf.dmp.debugger.sql_file_action"
+               enablesFor="+"
+               label="%DatabaseManagement.ExecuteSQLFile"
+               class="org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions.ExecuteSQLFileActionDelegate"
+               icon="images/sql_execute.gif"
+               style="push"
+               menubarPath="additions"
+               id="com.sybase.stf.dmp.ui.actions.ExecuteSQLFileActionDelegate"> 
+         </action> 
+      </objectContribution> 
+      
+   </extension>   
+   
    <extension
          point="org.eclipse.ui.newWizards">
       <category

@@ -50,6 +50,8 @@ public class SQLScrapbookPage extends PreferencePage implements IWorkbenchPrefer
 
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout compositeLayout = new GridLayout(1, true);
+        compositeLayout.marginHeight = 0;
+        compositeLayout.marginWidth = 0;
         composite.setLayout(compositeLayout);
 
         connBar = new ConnectionInfoComposite2(composite, SWT.NONE, this, null, null, AbstractConnectionInfoComposite.STYLE_SEPARATE_TYPE_NAME

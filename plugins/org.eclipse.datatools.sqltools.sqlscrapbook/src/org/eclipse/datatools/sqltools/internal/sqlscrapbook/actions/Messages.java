@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.internal.sqlscrapbook.actions;
 
-import java.util.ResourceBundle;
-
 import org.eclipse.osgi.util.NLS;
 
 public final class Messages extends NLS {
@@ -25,7 +23,24 @@ public final class Messages extends NLS {
 	public static String common_error;
 	public static String Save;
     public static String EditorManager_saveChangesQuestion;
-
+    public static String GroupSQLResultRunnable_group_exec;
+	public static String ResultSupportRunnable_name;
+	public static String ResultSupportRunnable_task_connection;
+	public static String ResultSupportRunnable_task_statement;
+	public static String ResultSupportRunnable_task_run;
+	public static String ResultSupportRunnable_task_iterate;
+	public static String ResultSupportRunnable_exception_terminated;
+	public static String sqlEditorName;
+	public static String GroupSQLResultRunnable_name;
+	public static String GroupSQLResultRunnable_groups;
+	public static String GroupSQLResultRunnable_group;
+	public static String GroupSQLResultRunnable_error_interrupted;
+	public static String GroupSQLResultRunnable_title;
+	public static String GroupSQLResultRunnable_message;
+	public static String BaseExecuteAction_job_title;
+	public static String BaseExecuteAction_group_exec_title;
+	public static String GettingConnection_Error;
+	
 	private Messages() {
 		// Do not instantiate
 	}
