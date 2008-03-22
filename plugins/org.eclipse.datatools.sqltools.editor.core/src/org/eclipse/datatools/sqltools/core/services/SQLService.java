@@ -145,10 +145,14 @@ public class SQLService
 	    return (String[]) groups.toArray(new String[groups.size()]);
 	}
 	
+	/**
+	 * Splits SQL statements on any ";" characters and stand-alone "GO".
+	 */
 	public String[] splitSQLByTerminatorLine(String sql, String[] terminators)
 	{
 		IDocument doc = new Document(sql);
 		ArrayList groups = new ArrayList();
+		//the start position for current group
 		int index = 0;
 		int numberOfLines = doc.getNumberOfLines();
 		try {
@@ -162,6 +166,15 @@ public class SQLService
 							groups.add(string);
 						}
 						index = r.getOffset() + doc.getLineLength(i);
+						break;
+					}
+					else if (line.indexOf(";")>=0)
+					{
+						String string = doc.get(index, r.getOffset() + line.indexOf(";") - index);
+						if (string.trim().length() > 0) {
+							groups.add(string);
+						}
+						index = r.getOffset() + line.indexOf(";") + 1;
 						break;
 					}
 				}
