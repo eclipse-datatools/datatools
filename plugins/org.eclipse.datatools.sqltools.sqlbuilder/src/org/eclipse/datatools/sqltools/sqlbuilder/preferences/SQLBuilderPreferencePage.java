@@ -49,6 +49,8 @@ public class SQLBuilderPreferencePage extends PreferencePage implements IWorkben
         Composite composite = new Composite(parent, SWT.NONE);
         
         GridLayout compositeLayout = new GridLayout(1, true);
+        compositeLayout.marginHeight = 0;
+        compositeLayout.marginWidth = 0;
         composite.setLayout(compositeLayout);
               
 		Label lblCurrentSchemaDesc = new Label(composite, SWT.LEFT);

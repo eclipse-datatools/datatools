@@ -62,6 +62,8 @@ public class CodeAssistPage extends AbstractDBPreferenceFieldPage
 
         Composite composite = new Composite(parent, SWT.NONE);
         GridLayout gridLayout = new GridLayout(1, true);
+        gridLayout.marginHeight = 0;
+        gridLayout.marginWidth = 0;
         composite.setLayout(gridLayout);
         GridData gridData = new GridData(GridData.FILL_BOTH);
         composite.setLayoutData(gridData);
