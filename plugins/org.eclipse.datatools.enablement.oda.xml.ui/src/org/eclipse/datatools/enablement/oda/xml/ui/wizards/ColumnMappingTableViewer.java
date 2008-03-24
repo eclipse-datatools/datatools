@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.MenuItem;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.5 $ $Date: 2007/09/12 18:49:43 $
+ * @version $Revision: 1.6 $ $Date: 2007/12/29 03:59:28 $
  */
 public final class ColumnMappingTableViewer
 {
@@ -107,6 +107,7 @@ public final class ColumnMappingTableViewer
 			btnRemove = new Button( btnComposite, SWT.WRAP );
 			btnRemove.setText( Messages.getString( "menu.button.remove" ) );
 			btnRemove.setLayoutData( btnData );
+			btnRemove.setEnabled( false );
 			btnRemove.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetSelected( SelectionEvent e )
@@ -125,10 +126,12 @@ public final class ColumnMappingTableViewer
 			btnUp = new Button( btnComposite, SWT.WRAP );
 			btnUp.setText( Messages.getString( "menu.button.up" ) );
 			btnUp.setLayoutData( btnData );
+			btnUp.setEnabled( false );
 
 			btnDown = new Button( btnComposite, SWT.WRAP );
 			btnDown.setText( Messages.getString( "menu.button.down" ) );
 			btnDown.setLayoutData( btnData );
+			btnDown.setEnabled( false );
 			btnDown.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetSelected( SelectionEvent e )

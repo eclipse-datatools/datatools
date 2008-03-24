@@ -300,57 +300,61 @@ public class ColumnMappingPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
-				if ( selectedMultiItems == null
-						|| selectedMultiItems.length != 1 )
+				if ( selectedMultiItems == null )
 				{
 					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ),
 							ERROR );
 					btnAddOne.setEnabled( false );
+					btnAddAll.setEnabled( false );
 					return;
 				}
-				TreeItem selectedItem = selectedMultiItems[0];
-				ATreeNode treeNode = ( ( TreeNodeData )selectedItem.getData( ) ).getTreeNode( );
-				String pathStr = createXPath( treeNode );
-				String name = selectedItem.getText( );
-				int type = -1;
-				if ( selectedItem.getData( ) instanceof TreeNodeData )
+				for ( int i = 0; i < selectedMultiItems.length; i++ )
 				{
-					// if the select treeItem is attribute, the name should not
-					// start with '@'
-					TreeNodeData node = (TreeNodeData) selectedItem.getData( );
-					if ( node.getTreeNode( ).getType( ) == ATreeNode.ATTRIBUTE_TYPE )
-						name = (String) node.getTreeNode( ).getValue( );
-					try
+					TreeItem selectedItem = selectedMultiItems[i];
+					ATreeNode treeNode = ( (TreeNodeData) selectedItem.getData( ) ).getTreeNode( );
+					String pathStr = createXPath( treeNode );
+					ColumnMappingElement columnElement = null;
+					if ( selectedMultiItems.length > 1 )
 					{
-						type = DataTypes.getType( node.getTreeNode( )
-								.getDataType( ) );
+						columnElement = createSingleElement( treeNode, pathStr );
 					}
-					catch ( OdaException e1 )
+					else
 					{
-						type = DataTypes.STRING;
+						String name = (String) treeNode.getValue( );
+						int type = -1;
+						try
+						{
+							type = DataTypes.getType( treeNode.getDataType( ) );
+						}
+						catch ( OdaException e1 )
+						{
+							type = DataTypes.STRING;
+						}
+						ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
+								DEFAULT_PAGE_NAME,
+								name,
+								pathStr,
+								type,
+								false );
+						if ( columnDialog.open( ) == Window.OK )
+						{
+							columnElement = columnDialog.getColumnMapping( );
+						}
+					}
+					if ( columnElement != null )
+					{
+						updateColumnMappingElement( columnElement );
 					}
 				}
-				ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
-						DEFAULT_PAGE_NAME,
-						name,
-						pathStr,
-						type,
-						false );
-				if ( columnDialog.open( ) == Window.OK )
-				{
-					ColumnMappingElement columnElement = columnDialog.getColumnMapping( );
-					updateColumnMappingElement( columnElement );
-					selectedItem = null;
-					btnAddOne.setEnabled( false );
-					btnAddAll.setEnabled( false );
-				}
+				selectedMultiItems = null;
+				btnAddOne.setEnabled( false );
 			}
 		} );
 		btnAddAll = new Button( btnComposite, SWT.NONE );
 		btnAddAll.setText( ">>" ); //$NON-NLS-1$
 		// TODO to externalize into message file
 		btnAddAll.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) );
-		btnAddAll.setEnabled( false );
+		btnAddAll.setEnabled( true );
 		btnAddAll.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -364,9 +368,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				if ( selectedMultiItems == null
 						|| selectedMultiItems.length == 0 )
 				{
-					btnAddAll.setEnabled( false );
-					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ),
-							ERROR );
+					selectedMultiItems = availableXmlTree.getItems( );
 				}
 				if ( selectedMultiItems.length == 1 )
 				{
@@ -393,7 +395,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 				}
 				selectedMultiItems = null;
 				btnAddOne.setEnabled( false );
-				btnAddAll.setEnabled( false );
 			}
 		} );
 		// create the right table viewer group
@@ -669,7 +670,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 					setMessage( DEFAULT_PAGE_Message );
 					btnAddAll.setEnabled( true );
-					btnAddOne.setEnabled( false );
+					btnAddOne.setEnabled( true );
 				}
 				else if ( selectedMultiItems.length == 1 )
 				{
@@ -694,6 +695,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 						btnAddAll.setEnabled( false );
 					}
 				}
+				enableAllTableSideButtons( false );
 			}
 
 		} );
@@ -732,14 +734,17 @@ public class ColumnMappingPage extends DataSetWizardPage
 					{
 						if ( columnMappingTable.getViewer( )
 								.getTable( )
-								.getSelectionIndices( ).length > 1 )
+								.getSelectionCount( ) > 1 )
 						{
-							columnMappingTable.getEditButton( )
-									.setEnabled( false );
-							columnMappingTable.getUpButton( )
-									.setEnabled( false );
-							columnMappingTable.getDownButton( )
-									.setEnabled( false );
+							enableAllTableSideButtons( false );
+							columnMappingTable.getRemoveButton( )
+									.setEnabled( true );
+						}
+						else if ( columnMappingTable.getViewer( )
+								.getTable( )
+								.getSelectionCount( ) == 1 )
+						{
+							enableAllTableSideButtons( true );
 						}
 					}
 				} );
@@ -843,6 +848,22 @@ public class ColumnMappingPage extends DataSetWizardPage
 				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) );
 	}
 	
+	/**
+	 * Enable or disable all the buttons the right table, say, "Edit", "Remove", "Up" and "Down" buttons 
+	 * 
+	 * @param enabled
+	 */
+	private void enableAllTableSideButtons( boolean enabled )
+	{
+		columnMappingTable.getEditButton( )
+				.setEnabled( enabled );
+		columnMappingTable.getRemoveButton( )
+				.setEnabled( enabled );
+		columnMappingTable.getUpButton( ).setEnabled( enabled );
+		columnMappingTable.getDownButton( )
+				.setEnabled( enabled );
+	}
+
 	/**
 	 * Edit the single table viewer element
 	 * 
@@ -1087,7 +1108,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 						setMessage( Messages.getString( "error.columnMapping.createPage" ),
 								ERROR );
 					}
-
+					enableAllTableSideButtons( false );
 				}
 			} );
 
@@ -1249,22 +1270,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 	}
 
-	/**
-	 * 
-	 * @param value
-	 * @return
-	 */
-	private boolean isXpathValid( String value )
-	{
-		//TODO add xpath validation codes
-		return true;
-		/*
-		if( value == null )
-			return true;
-		return !value.trim( ).matches( ".*\\Q[\\E.*\\Q]\\E.+" );
-		*/
-	}
-	
 	/**
 	 * 
 	 *
@@ -1476,10 +1481,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 			dataFileExist = true;
 
 		columnMappingExist = ( columnMappingList != null && columnMappingList.size( ) > 0 );
-		columnMappingTable.getEditButton( ).setEnabled( columnMappingExist );
-		columnMappingTable.getDownButton( ).setEnabled( columnMappingExist );
-		columnMappingTable.getUpButton( ).setEnabled( columnMappingExist );
-		columnMappingTable.getRemoveButton( ).setEnabled( columnMappingExist );
+		enableAllTableSideButtons( columnMappingExist
+				&& columnMappingTable.getViewer( )
+						.getTable( )
+						.getSelectionCount( ) > 1 );
 		columnMappingTable.getRemoveMenuItem( ).setEnabled( columnMappingExist );
 		columnMappingTable.getRemoveAllMenuItem( )
 				.setEnabled( columnMappingExist );
