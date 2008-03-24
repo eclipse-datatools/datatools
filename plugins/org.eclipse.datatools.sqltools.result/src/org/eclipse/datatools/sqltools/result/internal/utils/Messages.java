@@ -66,6 +66,7 @@ public final class Messages extends NLS {
 	public static String MultipleTabsTextSection_parameter;
 	public static String MultipleTabsModeSection_message;
 	public static String MultipleTabsModeSection_tabs_hidden;
+    public static String ResultSetViewer_copy_rows;
 	public static String ResultsView_preference;
 	public static String ResultsView_tooltip;
 	public static String ResultsView_layout_vertical;
