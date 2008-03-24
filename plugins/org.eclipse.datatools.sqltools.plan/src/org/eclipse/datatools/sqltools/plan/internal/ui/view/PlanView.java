@@ -38,6 +38,8 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.widgets.Composite;
@@ -114,8 +116,18 @@ public class PlanView extends ViewPart
         _textPlan.setEditable(false);
         _textPlan.setBackground(ColorConstants.white);
         FontData fd = new FontData(FONT_STYLE, FONT_SIZE, SWT.NORMAL);
-        Font font = new Font(_textPlan.getDisplay(), fd);
+        final Font font = new Font(_textPlan.getDisplay(), fd);
         _textPlan.setFont(font);
+        _textPlan.addDisposeListener(new DisposeListener()
+        {
+            public void widgetDisposed(DisposeEvent e)
+            {
+                if ( font != null && !font.isDisposed() )
+                {
+                    font.dispose();
+                }
+            }
+        });
         
         // Page 4 of page book (graphics Control )
         _graphicsControl = new GraphicsPlanControl(_fPagebook, SWT.NONE);

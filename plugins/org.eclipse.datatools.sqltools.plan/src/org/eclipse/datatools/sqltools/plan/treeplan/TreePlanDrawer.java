@@ -42,6 +42,8 @@ import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Canvas;
 
@@ -71,8 +73,10 @@ public class TreePlanDrawer extends AbstractPlanDrawer
 
     private String                 _htmlStart       = "<html><body>";
     private String                 _htmlEnd         = "</body></html>";
-    private static final String    HTML_FILE_NAME   = "query_plan.html"; 
+    private static final String    HTML_FILE_NAME   = "query_plan.html";
     private String                 _canvasTip       = "";
+    private Font                   _objFont         = new Font(null, "Arial", 10, SWT.BOLD);
+    
     public TreePlanDrawer()
     {
         super();
@@ -86,6 +90,16 @@ public class TreePlanDrawer extends AbstractPlanDrawer
     public void init()
     {
         _lws = new LightweightSystem(_canvas);
+        _canvas.addDisposeListener(new DisposeListener()
+        {
+            public void widgetDisposed(DisposeEvent e)
+            {
+                if(_objFont != null && !_objFont.isDisposed())
+                {
+                    _objFont.dispose();
+                }
+            }
+        });
     }
 
     /**
@@ -348,8 +362,7 @@ public class TreePlanDrawer extends AbstractPlanDrawer
                 _label1 = new Label(" " + label1);
                 if(isLabel1Highlighted)
                 {
-                    Font objFont = new Font(null, "Arial", 10, SWT.BOLD);
-                    _label1.setFont(objFont);
+                    _label1.setFont(_objFont);
                     _label1.setForegroundColor(ColorConstants.blue);
                 }
                 add(_label1);
