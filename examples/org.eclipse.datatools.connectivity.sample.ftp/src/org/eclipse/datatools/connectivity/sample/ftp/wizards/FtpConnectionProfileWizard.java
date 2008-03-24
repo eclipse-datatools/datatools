@@ -19,18 +19,16 @@ import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
 import org.eclipse.datatools.connectivity.sample.ftp.FTPProfileMessages;
 import org.eclipse.datatools.connectivity.sample.ftp.IFtpProfileConstants;
 import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
-import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.Wizard;
 
 
 /**
- * This class is the wizard for creating new flat file connection profiles.
+ * This class is the wizard for creating new ftp connection profiles.
  * 
  * @author mdow
  * @see Wizard
  */
-public class FtpConnectionProfileWizard extends NewConnectionProfileWizard implements
-    IWizard {
+public class FtpConnectionProfileWizard extends NewConnectionProfileWizard {
 
 	// The file property page
 	private FtpPropertyWizardPage mPropPage;

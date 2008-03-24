@@ -17,3 +17,5 @@ Export-Package: org.eclipse.datatools.connectivity.sample.ftp,
  org.eclipse.datatools.connectivity.sample.ftp.internal,
  org.eclipse.datatools.connectivity.sample.ftp.properties,
  org.eclipse.datatools.connectivity.sample.ftp.wizards
+Bundle-ClassPath: cpftpsample.jar
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

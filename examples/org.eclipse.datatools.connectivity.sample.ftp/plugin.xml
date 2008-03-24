@@ -11,7 +11,7 @@
             icon="icons/file.gif"
             id="org.eclipse.datatools.connectivity.sample.ftp.profile"
             name="%ServerExtension.ConnectionProfile.name"
-            />
+            pingFactory="org.eclipse.datatools.connectivity.sample.ftp.internal.FtpConnectionFactory"/>
       <connectionFactory
             name="%ServerExtension.ConnectionFactory.name"
             profile="org.eclipse.datatools.connectivity.sample.ftp.profile"
@@ -26,19 +26,13 @@
             name="%NewWizard.name"
             profile="org.eclipse.datatools.connectivity.sample.ftp.profile">
       </newWizard>
-      <connectionFactory
-            class="org.eclipse.datatools.connectivity.sample.ftp.internal.FtpConnectionFactory"
-            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
-            name="Ping Factory"
-            profile="org.eclipse.datatools.connectivity.sample.ftp.profile">
-      </connectionFactory>
    </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             contentProvider="org.eclipse.datatools.connectivity.sample.ftp.internal.FTPContentProviderExtension"
             icon="icons/file.gif"
-            id="org.eclipse.datatools.enablement.ftp.content"
+            id="org.eclipse.datatools.connectivity.sample.ftp.content"
             labelProvider="org.eclipse.datatools.connectivity.sample.ftp.internal.FTPLabelProviderExtension"
             name="%Navigator.extension.name"
             priority="normal">
@@ -61,7 +55,7 @@
             point="org.eclipse.ui.navigator.viewer">
          <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
             <includes>
-               <contentExtension pattern="org.eclipse.datatools.enablement.ftp.content"/>
+               <contentExtension pattern="org.eclipse.datatools.connectivity.sample.ftp.content"/>
             </includes>
          </viewerContentBinding>
       </extension>  
