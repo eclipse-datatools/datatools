@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.loader;
 
+import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -226,19 +227,27 @@ public class JDBCSchemaLoader extends JDBCBaseLoader {
 	 * @throws SQLException if anything goes wrong
 	 */
 	protected boolean isSchemaInCatalog(ResultSet rs) throws SQLException {
+	    DatabaseMetaData databaseMetaData = getCatalogObject().getConnection().getMetaData ();
+	    boolean caseSensitive = databaseMetaData.supportsMixedCaseIdentifiers () || databaseMetaData.supportsMixedCaseQuotedIdentifiers ();
+	    
 		if (mSupportedColumns.contains(COLUMN_TABLE_CATALOG)) {
 			Catalog catalog = getCatalog();
 			String catalogName = rs.getString(COLUMN_TABLE_CATALOG);
 			if (catalogName != null) {
-				return catalog.getName().equals(catalogName);
+			    if (caseSensitive) {
+			        return catalog.getName().equalsIgnoreCase (catalogName.toLowerCase ());
+			    } else {
+			        return catalog.getName().equals(catalogName);
+			    }
 			}
 		}
 		// NULL/No catalog found. Some databases only return the schema column.
 		// check to see if the current catalog matches this catalog or
 		// if the current catalog does not exist and this is the catalog
 		// for objects without a catalog.
-		return getCatalog().getName().equals(
-				getCatalogObject().getConnection().getCatalog())
+		
+		return (caseSensitive && getCatalog().getName().equals(getCatalogObject().getConnection().getCatalog()) 
+				|| !caseSensitive && getCatalog().getName ().equalsIgnoreCase (getCatalogObject().getConnection().getCatalog()))
 				|| (getCatalog().getName().length() == 0 && getCatalogObject()
 						.getConnection().getCatalog() == null);
 	}
