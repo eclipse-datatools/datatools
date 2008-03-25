@@ -168,6 +168,11 @@ javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONGTEXT</name>
   </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="ENUM" keyConstraintSupported="false" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>ENUM</name>
+  </predefinedDataTypeDefinitions>
+
   <storedProcedureDefinition/>
   <triggerDefinition/>
   <columnDefinition maximumIdentifierLength="64" identitySupported="true" identityIncrementSupported="true"/>
