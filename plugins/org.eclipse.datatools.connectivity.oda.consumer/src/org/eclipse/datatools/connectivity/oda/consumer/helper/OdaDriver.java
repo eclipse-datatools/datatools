@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -503,7 +503,7 @@ public class OdaDriver extends OdaObject
 			// set the ODA consumer helper's log directory to the ODA driver's 
 			// log directory only the first time setLogConfiguration() is called and 
 			// if the caller didn't already specify a directory using setLogDirectory().
-			if( LogManager.getLogger( getLoggerName() ) == null && 
+			if( getLogger() == null && 
 				m_logDirectory == null )
             {
                 // use underlying oda data source id as the logs' relative sub-directory
@@ -518,8 +518,9 @@ public class OdaDriver extends OdaObject
                 // has an absolute path
                 m_logDirectory = LogPathHelper.getAbsoluteLogDirName( m_logDirectory );
 
-                LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
-								  m_logDirectory, "OdaHelperLog", null ); //$NON-NLS-1$
+                // configure the odaconsumer logger, and cache it for use by the local thread
+                setLogger( LogManager.getLogger( getLoggerName(), logConfig.getLogLevel(), 
+								  m_logDirectory, "OdaHelperLog", null ) ); //$NON-NLS-1$
             }
         }
         catch( RuntimeException ex )

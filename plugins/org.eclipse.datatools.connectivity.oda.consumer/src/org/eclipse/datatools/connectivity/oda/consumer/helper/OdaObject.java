@@ -1,13 +1,13 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  */
@@ -21,7 +21,6 @@ import java.sql.Types;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.util.logging.Level;
-import org.eclipse.datatools.connectivity.oda.util.logging.LogManager;
 import org.eclipse.datatools.connectivity.oda.util.logging.Logger;
 import org.eclipse.osgi.util.NLS;
 
@@ -41,6 +40,7 @@ class OdaObject
 	static final String sm_loggerName = "org.eclipse.datatools.connectivity.oda.consumer"; //$NON-NLS-1$
 	
 	private static boolean sm_ThrowExceptionOnly = true;
+    private static ThreadLocal sm_loggerAccessor = null;
 	
 	/*
 	 * Static method to be used by host to have oda consumer manager return errors 
@@ -424,9 +424,35 @@ class OdaObject
         return ( logger != null ) ? logger.isLoggable( level ) : false;
     }
 
-    private Logger getLogger()
+    /**
+     * Caches the specified odaconsumer logger.
+     * @param logger    logger instance; may be null to reset the cached holder.
+     */
+    protected void setLogger( Logger logger )
     {
-        return LogManager.getLogger( sm_loggerName );
+        if( sm_loggerAccessor == null )
+        {
+            synchronized( OdaObject.class )
+            {
+                if( sm_loggerAccessor == null )
+                {
+                    sm_loggerAccessor = new ThreadLocal();
+                }
+            }
+        }
+        sm_loggerAccessor.set( logger );
+    }
+  
+    /**
+     * Returns the odaconsumer logger specified by the {@link #setLogger(Logger)} method.
+     * @return  an odaconsumer logger instance, if exists.  May return null if none is available.
+     */
+    protected Logger getLogger()
+    {
+        if( sm_loggerAccessor != null )
+            return (Logger) sm_loggerAccessor.get();
+
+        return null;
     }
 
 	protected void logUnsupportedOp( UnsupportedOperationException exception,
