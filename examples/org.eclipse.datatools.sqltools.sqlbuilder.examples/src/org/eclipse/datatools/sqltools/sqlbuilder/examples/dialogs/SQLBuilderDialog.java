@@ -409,5 +409,13 @@ public class SQLBuilderDialog extends Dialog
 	public void executedSQL() {
 		_tabFolder.setSelection(_tabItemResults);
 	}
+
+	/**
+	 * Returns the tab folder control that hosts the SQLBuilder and results view.
+	 * @return
+	 */
+	protected CTabFolder getTabFolder() {
+		return _tabFolder;
+	}
 	
 }
