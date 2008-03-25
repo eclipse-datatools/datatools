@@ -27,17 +27,9 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.mysql.MysqlPlugin;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
-import org.eclipse.datatools.modelbase.sql.constraints.IncrementType;
-import org.eclipse.datatools.modelbase.sql.constraints.Index;
-import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
-import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
-import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
+import org.eclipse.datatools.modelbase.sql.constraints.*;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.schema.IdentitySpecifier;
-import org.eclipse.datatools.modelbase.sql.schema.ReferentialActionType;
-import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.*;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
@@ -87,10 +79,22 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 	}
 
 	public PrimaryKey getPrimaryKey() {
-		if (!this.pkLoaded)
-			this.loadPrimaryKey();
-		return super.getPrimaryKey();
+        if (!this.pkLoaded)
+                this.loadPrimaryKey();
+        return doGetPrimaryKey();
 	}
+	
+	private PrimaryKey doGetPrimaryKey() {
+	        Iterator allConstraints = super.getConstraints().iterator();
+	        while( allConstraints.hasNext() ) {
+	             Constraint currentConstraint = (Constraint)allConstraints.next();
+	             if (currentConstraint instanceof PrimaryKey) {
+	                return (PrimaryKey)currentConstraint;
+	             }
+	        }
+	        return null;
+	}
+
 
 	public EList getColumns() {
 		if (!this.columnsLoaded)
