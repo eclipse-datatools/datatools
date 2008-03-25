@@ -114,6 +114,8 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 	protected static final int DEFAULT_SASHSOURCEGRAPH_WEIGHT2 = 100;
 	protected static final int DEFAULT_SASHGRAPHOUTLINE_WEIGHT1 = 200;
 	protected static final int DEFAULT_SASHGRAPHOUTLINE_WEIGHT2 = 100;
+	protected static final int DEFAULT_SASHMAIN_HEIGHT = 400;
+	protected static final int DEFAULT_SASHMAIN_WIDTH = 600;
 	
 	protected SQLTreeViewer _contentOutlinePage;
 	protected DesignViewer _designViewer;
@@ -239,7 +241,20 @@ public class SQLBuilder implements IEditingDomainProvider, Observer,
 		_inCreateClient = true;
         _parentControl = parent;
 		_sashMain = new CustomSashForm(parent, SWT.VERTICAL, CustomSashForm.NO_HIDE_UP);
-
+		int height = DEFAULT_SASHMAIN_HEIGHT;
+		int width = DEFAULT_SASHMAIN_WIDTH;
+		if ( _sqlBuilderEditorInput != null )
+		{
+			IWindowStateInfo winState = _sqlBuilderEditorInput.getWindowStateInfo( );
+			if ( winState != null )
+			{
+				height = winState.getHeight( ) <= 0? height:winState.getHeight( );
+				width = winState.getWidth( ) <= 0? width:winState.getWidth( );
+			}
+		}
+		
+		_sashMain.setSize( width , height );
+		
 		if (_inputLoaded){
 			doCreateClient();
 		}
