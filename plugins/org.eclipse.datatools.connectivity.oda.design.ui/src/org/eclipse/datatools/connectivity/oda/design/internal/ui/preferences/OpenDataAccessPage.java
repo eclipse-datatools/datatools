@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,16 +8,21 @@
  *
  * Contributors:
  *  Actuate Corporation - initial API and implementation
+ *  Sybase, Inc. - implemented initial page contents
  *  
  *************************************************************************
  */
 
 package org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences;
 
+import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -49,8 +54,15 @@ public class OpenDataAccessPage extends PreferencePage implements
      */
     protected Control createContents( Composite parent )
     {
-        // TODO - framework preferences
-        return null;
+		Composite comp = new Composite( parent, SWT.NONE );
+		GridLayout layout = new GridLayout();
+		layout.marginWidth = 0;
+		comp.setLayout( layout );
+
+		Label descLabel = new Label( comp, SWT.NONE );
+		descLabel.setText( Messages.preferencesPage_openDataAccessDescription );
+
+		return comp;
     }
 
     /* (non-Javadoc)

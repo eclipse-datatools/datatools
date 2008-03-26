@@ -78,4 +78,5 @@ public class Messages extends NLS
     public static String profileStoreCreationDialog_title;
     public static String profileStoreCreationDialog_grouptext;
     public static String profileStoreCreationDialog_newbutton_tooltiptext;
+    public static String preferencesPage_openDataAccessDescription;
 }
