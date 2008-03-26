@@ -15,9 +15,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.ecore;bundle-version="[2.2.0,3.0.0)",
  org.eclipse.emf.ecore.change,
  org.eclipse.datatools.modelbase.sql;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.emf.ecore.change.edit,
- org.eclipse.emf.commonj.sdo,
- org.eclipse.emf.ecore.sdo
+ org.eclipse.emf.ecore.change.edit
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.datatools.enablement.sybase,
  org.eclipse.datatools.enablement.sybase.ddl,

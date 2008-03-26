@@ -23,11 +23,11 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.change.ChangeDescription;
-import org.eclipse.emf.ecore.sdo.EChangeSummary;
-import org.eclipse.emf.ecore.sdo.EDataObject;
-import org.eclipse.emf.ecore.sdo.EProperty;
-
-import commonj.sdo.ChangeSummary.Setting;
+//import org.eclipse.emf.ecore.sdo.EChangeSummary;
+//import org.eclipse.emf.ecore.sdo.EDataObject;
+//import org.eclipse.emf.ecore.sdo.EProperty;
+//
+//import commonj.sdo.ChangeSummary.Setting;
 
 /**
  * some code copied from GenericDeltaDdlGenerator, since some methods of GenericDeltaDdlGenerator are final or private.
@@ -42,32 +42,33 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
     public static final int       MODIFIED      = 4;
 
     protected Map                 modifyRecords = null;
-    protected EChangeSummary      changeSummary = null;
+//    protected EChangeSummary      changeSummary = null;
     protected Collection          redoChanges   = null;
     protected EngineeringOption[] options       = null;
 	private EngineeringOptionCategory[] categories = null;
 
-    public String[] generateDeltaDDL(EChangeSummary changeSummary, IProgressMonitor monitor)
+    public String[] generateDeltaDDL(/*EChangeSummary changeSummary,*/ IProgressMonitor monitor)
     {
-        this.changeSummary = changeSummary;
-        this.changeSummary.summarize();
+//        this.changeSummary = changeSummary;
+//        this.changeSummary.summarize();
         Map changeMap = buildChangeMap(monitor);
         analyze(changeMap);
         String[] statements = processChangeMap(changeMap, monitor);
-        this.changeSummary = null;
+//        this.changeSummary = null;
         this.redoChanges = null;
         this.modifyRecords = null;
         this.options = null;
         return statements;
     }
 
-    public String[] generateDeltaDDL(EChangeSummary changeSummary, EngineeringOption[] options, IProgressMonitor monitor)
+    public String[] generateDeltaDDL(/*EChangeSummary changeSummary,*/ EngineeringOption[] options, IProgressMonitor monitor)
     {
         this.options = options;
-        return generateDeltaDDL(changeSummary, monitor);
+//        return generateDeltaDDL(changeSummary, monitor);
+        return null;
     }
 
-    protected int getChangeFlag(EObject element, EObject changed, EStructuralFeature feature, Setting setting)
+    protected int getChangeFlag(EObject element, EObject changed, EStructuralFeature feature/* , Setting setting*/)
     {
         int flag = MODIFIED;
 
@@ -82,7 +83,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
 
         FeatureChangeRecord cr = new FeatureChangeRecord();
         cr.feature = feature;
-        cr.oldValue = setting.getValue();
+//        cr.oldValue = setting.getValue();
         cr.newValue = changed.eGet(feature);
 
         records.add(cr);
@@ -119,7 +120,7 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
         redo();
         processCreateStatements(ddlGenerator, changeMap, script, monitor);
         processAlterStatements(changeMap, script, monitor);
-        changeSummary = null;
+//        changeSummary = null;
         polishScripts(changeMap, script);
         return script.getStatements();
     }
@@ -268,153 +269,154 @@ public class SybaseDeltaDdlGeneration implements ISybaseDeltaDdlGenerator
     private Map buildChangeMap(IProgressMonitor monitor)
     {
         Map changeMap = new HashMap();
-        Iterator it = changeSummary.getChangedDataObjects().iterator();
-        while (it.hasNext())
-        {
-            Object changedObject = it.next();
-            if (!(changedObject instanceof EDataObject))
-                continue;
-            EDataObject changed = (EDataObject) changedObject;
-            EDataObject element = (EDataObject) getDisplayableElement(changed);
-
-            // ignore all disconnected nondisplayable elements
-            if (element == null)
-                continue;
-
-            int flag = 0;
-            if (changeMap.containsKey(element))
-                flag = ((Integer) changeMap.get(element)).intValue();
-            if (flag == DROP || flag == CREATE)
-                continue;
-
-            if (changeSummary.isCreated(element))
-            {
-                if (changeSummary.isDeleted(element))
-                    continue;
-                flag = CREATE;
-            }
-            else if (changeSummary.isDeleted(element))
-            {
-                flag = DROP;
-            }
-            else
-            {
-                if (changeSummary.isCreated(changed))
-                    continue;
-                if (changeSummary.isDeleted(changed))
-                    continue;
-                List oldValues = changeSummary.getOldValues(changed);
-                if (oldValues == null)
-                    continue;
-                Iterator vi = oldValues.iterator();
-                while (vi.hasNext())
-                {
-                    Setting changeSetting = (Setting) vi.next();
-                    EProperty p = (EProperty) changeSetting.getProperty();
-                    EStructuralFeature f = p.getEStructuralFeature();
-                    if (!changeSetting.isSet() && !changed.eIsSet(f))
-                        continue;
-                    Object currentValue = changed.eGet(f);
-                    Object previousValue = changeSetting.getValue();
-                    if (currentValue == null)
-                        currentValue = ""; //$NON-NLS-1$
-                    if (previousValue == null)
-                        previousValue = ""; //$NON-NLS-1$
-                    if (currentValue.equals(previousValue))
-                        continue;
-                    flag = flag | this.getChangeFlag(element, changed, f, changeSetting);
-                }
-            }
-
-            if (flag != 0)
-            {
-                changeMap.put(element, new Integer(flag));
-            }
-        }
+//        Iterator it = changeSummary.getChangedDataObjects().iterator();
+//        while (it.hasNext())
+//        {
+//            Object changedObject = it.next();
+//            if (!(changedObject instanceof EDataObject))
+//                continue;
+//            EDataObject changed = (EDataObject) changedObject;
+//            EDataObject element = (EDataObject) getDisplayableElement(changed);
+//
+//            // ignore all disconnected nondisplayable elements
+//            if (element == null)
+//                continue;
+//
+//            int flag = 0;
+//            if (changeMap.containsKey(element))
+//                flag = ((Integer) changeMap.get(element)).intValue();
+//            if (flag == DROP || flag == CREATE)
+//                continue;
+//
+//            if (changeSummary.isCreated(element))
+//            {
+//                if (changeSummary.isDeleted(element))
+//                    continue;
+//                flag = CREATE;
+//            }
+//            else if (changeSummary.isDeleted(element))
+//            {
+//                flag = DROP;
+//            }
+//            else
+//            {
+//                if (changeSummary.isCreated(changed))
+//                    continue;
+//                if (changeSummary.isDeleted(changed))
+//                    continue;
+//                List oldValues = changeSummary.getOldValues(changed);
+//                if (oldValues == null)
+//                    continue;
+//                Iterator vi = oldValues.iterator();
+//                while (vi.hasNext())
+//                {
+//                    Setting changeSetting = (Setting) vi.next();
+//                    EProperty p = (EProperty) changeSetting.getProperty();
+//                    EStructuralFeature f = p.getEStructuralFeature();
+//                    if (!changeSetting.isSet() && !changed.eIsSet(f))
+//                        continue;
+//                    Object currentValue = changed.eGet(f);
+//                    Object previousValue = changeSetting.getValue();
+//                    if (currentValue == null)
+//                        currentValue = ""; //$NON-NLS-1$
+//                    if (previousValue == null)
+//                        previousValue = ""; //$NON-NLS-1$
+//                    if (currentValue.equals(previousValue))
+//                        continue;
+//                    flag = flag | this.getChangeFlag(element, changed, f, changeSetting);
+//                }
+//            }
+//
+//            if (flag != 0)
+//            {
+//                changeMap.put(element, new Integer(flag));
+//            }
+//        }
         return changeMap;
     }
 
     protected final DDLGenerator getDDLGenerator()
     {
-        EObject x = (EObject) this.changeSummary.getDataGraph().getRootObject();
-        Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(x);
-        DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(database);
-        return def.getDDLGenerator();
+//        EObject x = (EObject) this.changeSummary.getDataGraph().getRootObject();
+//        Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(x);
+//        DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(database);
+//        return def.getDDLGenerator();
+    	return null;
     }
 
     protected final void undo()
     {
-        List undoStack = new LinkedList();
-        List redoStack = new LinkedList();
-        Iterator it = changeSummary.getChangedDataObjects().iterator();
-        while (it.hasNext())
-        {
-            Object changedObject = it.next();
-            if (!(changedObject instanceof EDataObject))
-                continue;
-            EDataObject changed = (EDataObject) changedObject;
-            List oldValues = changeSummary.getOldValues(changed);
-            if (oldValues == null)
-                continue;
-            Iterator vi = oldValues.iterator();
-            while (vi.hasNext())
-            {
-                Setting changeSetting = (Setting) vi.next();
-                EProperty p = (EProperty) changeSetting.getProperty();
-                EStructuralFeature f = p.getEStructuralFeature();
-                changeSetting.getValue();
-                ChangeRecord c1 = new ChangeRecord();
-                c1.element = changed;
-                c1.feature = f;
-
-                c1.isSet = true;
-                if (f.isUnsettable())
-                {
-                    c1.isSet = changeSetting.isSet();
-                }
-
-                if (c1.isSet)
-                {
-                    c1.value = changeSetting.getValue();
-                    if (c1.value instanceof Collection)
-                    {
-                        List l = new LinkedList();
-                        l.addAll((Collection) c1.value);
-                        c1.value = l;
-                    }
-                }
-                else
-                {
-                    c1.value = null;
-                }
-                undoStack.add(c1);
-
-                ChangeRecord c2 = new ChangeRecord();
-                c2.element = changed;
-                c2.feature = f;
-
-                c2.isSet = true;
-                if (f.isUnsettable())
-                {
-                    c2.isSet = changed.eIsSet(f);
-                }
-
-                if (c2.isSet)
-                {
-                    c2.value = changed.eGet(f);
-                    if (c2.value instanceof Collection)
-                    {
-                        List l = new LinkedList();
-                        l.addAll((Collection) c2.value);
-                        c2.value = l;
-                    }
-                }
-
-                redoStack.add(c2);
-            }
-        }
-        executeChangeRecords(undoStack);
-        this.redoChanges = redoStack;
+//        List undoStack = new LinkedList();
+//        List redoStack = new LinkedList();
+//        Iterator it = changeSummary.getChangedDataObjects().iterator();
+//        while (it.hasNext())
+//        {
+//            Object changedObject = it.next();
+//            if (!(changedObject instanceof EDataObject))
+//                continue;
+//            EDataObject changed = (EDataObject) changedObject;
+//            List oldValues = changeSummary.getOldValues(changed);
+//            if (oldValues == null)
+//                continue;
+//            Iterator vi = oldValues.iterator();
+//            while (vi.hasNext())
+//            {
+//                Setting changeSetting = (Setting) vi.next();
+//                EProperty p = (EProperty) changeSetting.getProperty();
+//                EStructuralFeature f = p.getEStructuralFeature();
+//                changeSetting.getValue();
+//                ChangeRecord c1 = new ChangeRecord();
+//                c1.element = changed;
+//                c1.feature = f;
+//
+//                c1.isSet = true;
+//                if (f.isUnsettable())
+//                {
+//                    c1.isSet = changeSetting.isSet();
+//                }
+//
+//                if (c1.isSet)
+//                {
+//                    c1.value = changeSetting.getValue();
+//                    if (c1.value instanceof Collection)
+//                    {
+//                        List l = new LinkedList();
+//                        l.addAll((Collection) c1.value);
+//                        c1.value = l;
+//                    }
+//                }
+//                else
+//                {
+//                    c1.value = null;
+//                }
+//                undoStack.add(c1);
+//
+//                ChangeRecord c2 = new ChangeRecord();
+//                c2.element = changed;
+//                c2.feature = f;
+//
+//                c2.isSet = true;
+//                if (f.isUnsettable())
+//                {
+//                    c2.isSet = changed.eIsSet(f);
+//                }
+//
+//                if (c2.isSet)
+//                {
+//                    c2.value = changed.eGet(f);
+//                    if (c2.value instanceof Collection)
+//                    {
+//                        List l = new LinkedList();
+//                        l.addAll((Collection) c2.value);
+//                        c2.value = l;
+//                    }
+//                }
+//
+//                redoStack.add(c2);
+//            }
+//        }
+//        executeChangeRecords(undoStack);
+//        this.redoChanges = redoStack;
     }
 
     protected final void redo()

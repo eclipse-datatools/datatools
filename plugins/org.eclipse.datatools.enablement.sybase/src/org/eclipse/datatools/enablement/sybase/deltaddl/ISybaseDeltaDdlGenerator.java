@@ -3,7 +3,7 @@ package org.eclipse.datatools.enablement.sybase.deltaddl;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.internal.core.rte.DeltaDDLGenerator;
-import org.eclipse.emf.ecore.sdo.EChangeSummary;
+//import org.eclipse.emf.ecore.sdo.EChangeSummary;
 
 public interface ISybaseDeltaDdlGenerator extends DeltaDDLGenerator
 {
@@ -14,5 +14,5 @@ public interface ISybaseDeltaDdlGenerator extends DeltaDDLGenerator
      * @param monitor
      * @return
      */
-    public String[] generateDeltaDDL(EChangeSummary changeSummary, EngineeringOption[] options, IProgressMonitor monitor);
+//    public String[] generateDeltaDDL(EChangeSummary changeSummary, EngineeringOption[] options, IProgressMonitor monitor);
 }
