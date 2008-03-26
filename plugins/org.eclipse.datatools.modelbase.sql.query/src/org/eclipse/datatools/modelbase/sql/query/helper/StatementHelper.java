@@ -921,11 +921,41 @@ public class StatementHelper {
      */
     private static Set getAllDirectReferences(EObject eObject) {
         return getDirectReferences(eObject, null);
-    }/**
-     * Returns all <code>ValueExpressionVariables</code> contained in the
-     * given <code>QueryStatement</code>.
+    }
+    
+    /**
+     * Gets all the parameter marker-type ("?") variables in the given query
+     * statement.
      * 
-     * @param queryStmt
+     * @param queryStmt 
+     * @return
+     */
+    public static List getAllParameterMarkersInQueryStatement(QueryStatement queryStmt) {
+        // [bug 223776]
+        List paramMarkerList = new ArrayList(); 
+
+        Class typeFilter = ValueExpressionVariable.class;
+        Set varSet = getReferencesRecursively(queryStmt, typeFilter);
+
+        Iterator varSetIter = varSet.iterator();
+        while (varSetIter.hasNext()) {
+            ValueExpressionVariable var = (ValueExpressionVariable) varSetIter.next();
+            String varName = var.getName();
+            if (varName == null) {
+                paramMarkerList.add(var);
+            }
+        }
+
+        return paramMarkerList;
+    }
+    
+    /**
+     * Returns all <code>ValueExpressionVariables</code> contained in the
+     * given <code>QueryStatement</code>.  All parameter marker-type ("?")
+     * variables will be modified to have names VAR0n where n is a sequence
+     * number.
+     * 
+     * @param queryStmt the statement from which variables are wanted
      * @return List of the {@link ValueExpressionVariable}
      */
     public static List getAllVariablesInQueryStatement(QueryStatement queryStmt) {
