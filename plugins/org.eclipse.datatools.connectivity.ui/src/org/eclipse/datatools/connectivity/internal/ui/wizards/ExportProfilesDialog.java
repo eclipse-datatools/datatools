@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -268,7 +268,9 @@ public class ExportProfilesDialog extends TrayDialog implements IContextProvider
 		button.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
-				txtFile.setText(new FileDialog(getShell()).open());
+				String filePath = new FileDialog(getShell()).open();
+				if( filePath != null )
+					txtFile.setText(filePath);
 			}
 		});
 		button.setLayoutData( layoutData );
