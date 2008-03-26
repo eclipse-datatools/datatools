@@ -10,11 +10,13 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.IManagedConnection;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -24,6 +26,7 @@ import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.ILoadingService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
@@ -38,6 +41,7 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServe
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil.IGroup;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
@@ -438,5 +442,44 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
 	public void init(Object oldInput, Object newInput) 
 	{
+	}
+	
+    private void traverseChildrenForType (List objectsList, TreeItem [] items, Class type)
+    {
+        for (int i = 0, n = items.length; i < n; i++)
+        {
+            TreeItem item = items[i];
+            if (item.getData() != null && type.isAssignableFrom(item.getData().getClass()))
+            {
+                objectsList.add(item.getData());
+            }
+            traverseChildrenForType (objectsList, item.getItems(), type);
+        }
+    }
+
+	public Object[] getDSEExplorerObjectsByType(IConnectionProfile profile, Class type)
+	{
+		IManagedConnection managedConnection = profile.getManagedConnection(ConnectionUtil.CONNECTION_TYPE);
+	    if (managedConnection != null)
+	    {
+	        ConnectionInfo connectionInfo = (ConnectionInfo) managedConnection.getConnection().getRawConnection();
+	        Database database = connectionInfo.getSharedDatabase();
+	        if (database != null || (database = connectionInfo.getCachedDatabase()) != null)
+	        {
+	        	return getDSEExplorerObjectsByType (database, type);
+	        }
+	    }
+	    return new Object[0];
+	}
+
+	public Object[] getDSEExplorerObjectsByType(Object parent, Class type)
+	{
+        List objectsList = new ArrayList ();
+        if (parent != null)
+        {
+            TreeItem [] items =  getServerExplorerChildren (parent);
+            traverseChildrenForType (objectsList, items, type);
+        }
+        return objectsList.toArray(new Object [objectsList.size()]);
 	}
 }

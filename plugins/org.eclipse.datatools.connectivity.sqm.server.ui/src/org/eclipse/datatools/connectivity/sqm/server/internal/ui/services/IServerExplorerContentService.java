@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.services;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 
@@ -68,4 +69,14 @@ public interface IServerExplorerContentService
      * @param selection
      */
     public void selectAndReveal (ISelection selection);
+    
+    /**
+     * return the objects under that node that match the provided type
+     */
+    public Object[] getDSEExplorerObjectsByType(IConnectionProfile profile, Class type);
+
+    /**
+     * return the objects under that node that match the provided type
+     */
+    public Object[] getDSEExplorerObjectsByType(Object parent, Class type);
 }
