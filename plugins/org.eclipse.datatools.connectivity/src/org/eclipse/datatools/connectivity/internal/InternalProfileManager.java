@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *     IBM Corporation -  fix for defect #223855
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -33,9 +34,15 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.ListenerList;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.ICategory;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
@@ -44,7 +51,12 @@ import org.eclipse.datatools.connectivity.IProfileListener;
 import org.eclipse.datatools.connectivity.IProfileListener1;
 import org.eclipse.datatools.connectivity.IPropertySetChangeEvent;
 import org.eclipse.datatools.connectivity.IPropertySetListener;
+import org.eclipse.datatools.connectivity.ProfileManager;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
+import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleException;
 
 /**
  * ProfileManger is a singleton class serving as a helper class for connection
@@ -66,6 +78,9 @@ public class InternalProfileManager {
 	private boolean mIsDirty = false;
 	
 	private ListenerList mProfileListeners = new ListenerList();
+	
+	private static final String PLUGIN_STATE_LOCATION = "Plugin_State_Location"; //$NON-NLS-1$
+	private boolean loadLocal = true;  // do we need to load locally registered db's?
 	
 	private IPropertySetListener mPropertySetListener = new IPropertySetListener() {
 		public void propertySetChanged(IPropertySetChangeEvent event) {
@@ -963,6 +978,16 @@ public class InternalProfileManager {
 				}
 			}
 		}
+
+		
+		if (loadLocal) {
+			loadLocal = false;
+			IConnectionProfile localConnProfile = loadLocalRegisteredDatabases();
+			if (localConnProfile != null) {
+				nameToProfileMap.put(localConnProfile.getName(), localConnProfile);
+			
+			}
+		}
 		
 		for (Iterator it = nameToProfileMap.values().iterator(); it.hasNext(); ) {
 			ConnectionProfile profile = (ConnectionProfile)it.next();
@@ -972,6 +997,7 @@ public class InternalProfileManager {
 
 			profile.addPropertySetListener(mPropertySetListener);
 		}
+		
 		
 		mProfiles = (IConnectionProfile[]) nameToProfileMap.values().toArray(
 				new IConnectionProfile[nameToProfileMap.size()]);
@@ -1151,5 +1177,243 @@ public class InternalProfileManager {
 		}
 		return null;
 	}
+	
+
+	/**
+	 * Will load the locally registered databases
+	 * @return IConnectionProfile
+	 */
+
+	public IConnectionProfile loadLocalRegisteredDatabases()
+	{
+
+		IConnectionProfile newProfile = null;
+		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
+		IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.ProfileManagerInitializationProvider"); //$NON-NLS-1$
+		IExtension[] extensions = extensionPoint.getExtensions();
+		for (int i = 0; i < extensions.length; ++i)
+		{
+			IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
+			for (int j = 0; j < configElements.length; ++j)
+			{
+				if (configElements[j].getName().equals("connection")) //$NON-NLS-1$
+				{
+				
+					String jarList = configElements[j].getAttribute("jarList"); //$NON-NLS-1$
+					String connectionProfileName = configElements[j].getAttribute("connectionProfileName"); //$NON-NLS-1$
+					String connectionProfileID = configElements[j].getAttribute("connectionProfileID"); //$NON-NLS-1$
+					String driverDefinitionName = configElements[j].getAttribute("driverDefinitionName"); //$NON-NLS-1$
+					String driverTemplateID = configElements[j].getAttribute("driverTemplateID"); //$NON-NLS-1$
+					String initializationClass = configElements[j].getAttribute("connectionInitializer"); //$NON-NLS-1$
+				
+					if (initializationClass != null)
+					{
+						initializeLocalDatabase(configElements[j], initializationClass);
+					}
+					newProfile = enableLocalDatabase(configElements[j].getChildren("property"), jarList, connectionProfileName, connectionProfileID, driverDefinitionName, driverTemplateID); //$NON-NLS-1$
+				}
+			}
+		}
+		return newProfile;
+	}
+	
+	
+	/**
+	 * Initialize the local database
+	 * @param config
+	 * @param initializationClass
+	 */
+	private void initializeLocalDatabase (IConfigurationElement config, String initializationClass)
+	{
+		try
+		{
+			config.createExecutableExtension("connectionInitializer");
+		}
+		catch (CoreException e)
+		{
+			ConnectivityPlugin.getDefault().log(e);
+		}
+	}
+	
+
+	/**
+	 * Enable the local database - set up the properties and create the ConnectionProfile
+	 * @param configElements
+	 * @param jarList
+	 * @param connProfileName
+	 * @param connProfileID
+	 * @param driverDefName
+	 * @param driverTemplateID
+	 * @return returns newly created IConnectionProfile
+	 */
+	private IConnectionProfile enableLocalDatabase(IConfigurationElement[] configElements, String jarList, String connProfileName, String connProfileID,
+			String driverDefName, String driverTemplateID)
+	{
+		
+		    IConnectionProfile newProfile = null;
+			if (isBundleActivated (configElements[0])) {
+			 
+				DriverInstance driverInstance = getDriverInstance(driverDefName, driverTemplateID, jarList);
+
+				if (driverInstance != null) {
+				
+					Properties connectionProfileProperties = driverInstance
+						.getPropertySet().getBaseProperties();
+					connectionProfileProperties.setProperty(
+						ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID,
+						driverInstance.getId());
+					List propList = new ArrayList();
+
+					for (int i = 0, n = configElements.length; i < n; i++)
+					{
+
+						String propertyID = configElements[i].getAttribute("id"); //$NON-NLS-1$
+						propList.add(propertyID);
+						String propertyValue = configElements[i].getAttribute("value");
+						propertyValue = substituteLocationDirectory(propertyValue, configElements[i]);
+						connectionProfileProperties.setProperty(propertyID, propertyValue);
+					}
+					newProfile = getProfileInstance(connProfileName, connProfileID, connectionProfileProperties, propList);
+			    
+				}
+			}
+			return newProfile;
+
+	}
+	
+	
+	private boolean isBundleActivated (IConfigurationElement element)
+	{
+	    try
+        {
+            Bundle bundle = Platform.getBundle(element.getDeclaringExtension().getNamespace());
+            if (bundle.getState() == Bundle.RESOLVED)
+            {
+                bundle.start();
+            }
+            return bundle.getState() == Bundle.ACTIVE;
+        }
+        catch (BundleException e)
+        {
+			ConnectivityPlugin.getDefault().log(e);
+        }
+        return false;
+	}
+	
+	
+	private String substituteLocationDirectory (String logicalPath, IConfigurationElement element)
+	{
+	    String stateLocation = Platform.getStateLocation(Platform.getBundle(element.getDeclaringExtension().getNamespace())).toOSString();
+		int index = logicalPath.indexOf(PLUGIN_STATE_LOCATION);
+		if (index != -1)
+		{
+		    logicalPath = logicalPath.substring(0, index) + stateLocation + logicalPath.substring(index + PLUGIN_STATE_LOCATION.length());
+		}
+		return logicalPath;
+	}
+	
+	/**
+	 * Get the driver instance for this connection.  If a driver already exists with the associated properties, don't create a new one.
+	 * If a driver with the same name, but different properties exists, modify the name and create a new one.
+	 * @param inName
+	 * @param driverTemplateID
+	 * @param jarList
+	 * @return DriverInstance
+	 */
+	private DriverInstance getDriverInstance(String inName, String driverTemplateID, String jarList) {
+
+		String defName = inName;
+		DriverInstance driverInstance = DriverManager.getInstance().getDriverInstanceByName(inName);
+		if (driverInstance != null) {
+			if ((driverInstance.getTemplate().getId().equals(driverTemplateID)) && (driverInstance.getJarList().equals(jarList))) {
+					return driverInstance;
+			} else {
+				defName = determineUniqueDriverName(defName);
+				
+			}
+		}
+		return DriverManager.getInstance()
+			.createNewDriverInstance(
+				driverTemplateID, 								
+				defName, jarList);
+	}
+	
+	/**
+	 * Determine a unique name for the new driver
+	 * @param inName
+	 * @return String driverName
+	 */
+	private String determineUniqueDriverName(String inName) {
+		int index = 1;
+		String testName = inName + String.valueOf(index);
+		while (DriverManager.getInstance().getDriverInstanceByName(testName) != null) {
+			index++;
+			testName = inName + String.valueOf(index);
+		}
+		return testName;
+	}
+	
+	
+	/**
+	 * Get the connection profile for this connection.  If it already exists, use the existing connection;  else, create a new one
+	 * @param profileName
+	 * @param profileID
+	 * @param connProperties
+	 * @param propList
+	 * @return IConnectionProfile
+	 */
+	private IConnectionProfile getProfileInstance(String profileName, String profileID, Properties connProperties, List propList) {
+
+		String profName = profileName;
+		IConnectionProfile connProfile = ProfileManager.getInstance().getProfileByName(profileName);
+		if (connProfile != null) {
+			Properties props = connProfile.getBaseProperties();
+			if (connProfile.getProviderId().equals(profileID)) {
+				boolean match = true;
+				for (int i = 0; i < propList.size(); i++) {
+					String propName = (String)propList.get(i);
+					if (!connProperties.get(propName).equals(props.get(propName))) {
+						match = false;
+					}
+				}
+				    if (match) {
+				    	return connProfile;
+				    }
+			} else {
+				profName = determineUniqueProfileName(profName);
+				
+			}
+		}
+		try {
+			ProfileManager
+				.getInstance()
+				.createProfile(
+						profName,
+						"",
+						profileID,
+						connProperties, "", false);
+		
+				connProfile = ProfileManager.getInstance().getProfileByName(profName);
+		} catch (ConnectionProfileException e) {
+			ConnectivityPlugin.getDefault().log(e);
+		}
+		return connProfile;
+	}
+
+	/**
+	 * Determine unique connection profile name for the new connection
+	 * @param inName
+	 * @return String profile name
+	 */
+	private String determineUniqueProfileName(String inName) {
+		int index = 1;
+		String testName = inName + String.valueOf(index);
+		while (ProfileManager.getInstance().getProfileByName(testName) != null) {
+			index++;
+			testName = inName + String.valueOf(index);
+		}
+		return testName;
+	}
+
 
 }
