@@ -10,12 +10,15 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.sqlbuilder.views.execute;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionVariable;
 import org.eclipse.datatools.modelbase.sql.query.helper.StatementHelper;
+import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.StringUtility;
 import org.eclipse.swt.widgets.Display;
 
@@ -48,9 +51,21 @@ public class ParameterMarkers {
      * Return the SQL statement with values substituted if there are any markers
      */
     public String substituteParameters() {
-        List parms = StatementHelper.getAllVariablesInQueryStatement(sqlStatement);
-        Vector parmMarkers = new Vector();
-        parmMarkers.addAll(parms);
+        // [bug 223776]
+        /* Get a list of parameter marker-type ("?") variables in the statement. */
+        List paramMarkerList = StatementHelper.getAllParameterMarkersInQueryStatement(sqlStatement);
+        
+        /* Get a list of all variables in the statement.  This has the bad side-effect
+         * of modifying the model to give generated names (ie, "VAR01") to all parameter 
+         * marker-type variables.  These names are needed when the variable values are 
+         * substituted into the SQL source for execution.  We will have to "un-name" the
+         * parameter marker variables later. 
+         */
+        List allVarList = StatementHelper.getAllVariablesInQueryStatement(sqlStatement);
+        /* The parameter marker dialog wants a vector rather than a list, so 
+         * create one. */
+        Vector paramVec = new Vector();
+        paramVec.addAll(allVarList);
 
 //        // Qualified any statement omitted schema
 //        SQLQuerySourceFormat srcFormat = sqlStatement.getSourceInfo().getSqlFormat();
@@ -67,8 +82,8 @@ public class ParameterMarkers {
         // fix: wsdbu00037267
         String sqlString = StatementHelper.getSQLForExecution(sqlStatement);
         
-        if (parmMarkers.size() > 0) {
-            ParameterWizard wizard = new ParameterWizard(parmMarkers);
+        if (paramVec.size() > 0) {
+            ParameterWizard wizard = new ParameterWizard(paramVec);
 
             Vector valueMarkers = new Vector();
             ParameterWizardDialog wizardDialog = new ParameterWizardDialog(Display.getCurrent().getActiveShell(), wizard);
@@ -84,9 +99,9 @@ public class ParameterMarkers {
                 String value = "";
                 QueryValueExpression expr;
 
-                for (int i = 0; i < parmMarkers.size(); i++) {
-                    if (parmMarkers.elementAt(i) instanceof QueryValueExpression) {
-                        expr = (QueryValueExpression) parmMarkers.elementAt(i);
+                for (int i = 0; i < paramVec.size(); i++) {
+                    if (paramVec.elementAt(i) instanceof QueryValueExpression) {
+                        expr = (QueryValueExpression) paramVec.elementAt(i);
 
                         if (expr != null) {
                             marker = expr.getSQL();
@@ -103,6 +118,17 @@ public class ParameterMarkers {
             else {
                 sqlString = "";
                 continueExecution = false;
+            }
+            /* If there were any parameter markers that were modified with
+             * variable names, set them back to null and refresh the display
+             * so the model change will be picked up. */
+            if (paramMarkerList.size() > 0) {
+                Iterator paramMarkerListIter = paramMarkerList.iterator();
+                while (paramMarkerListIter.hasNext()) {
+                    ValueExpressionVariable var = (ValueExpressionVariable) paramMarkerListIter.next();
+                    var.setName(null);
+                }
+                SelectHelper.refresh(sqlStatement);
             }
         }
         return sqlString;
