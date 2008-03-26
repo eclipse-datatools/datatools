@@ -72,7 +72,7 @@
          point="org.eclipse.ui.preferencePages">
          <page
             class="org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage"
-            category="org.eclipse.datatools.connectivity.oda.design.internal.ui.preferences.OpenDataAccessPage"
+            category="org.eclipse.datatools.connectivity.oda.design.ui.preferences.OpenDataAccessPage"
             name="%preference.datasetpreview"
             id="org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage"/>
    </extension>

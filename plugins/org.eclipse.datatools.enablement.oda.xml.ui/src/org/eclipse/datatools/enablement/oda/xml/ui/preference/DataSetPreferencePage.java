@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,8 +11,8 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.preference;
 
-import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
+import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.jface.preference.FieldEditor;
@@ -27,7 +27,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -49,7 +48,7 @@ public class DataSetPreferencePage extends PreferencePage
 	
 	
 	/** max Row preference name */
-	public static final String USER_MAX_NUM_OF_ELEMENT_PASSED = "user_max_num_of_element_passed";
+	public static final String USER_MAX_NUM_OF_ELEMENT_PASSED = "user_max_num_of_element_passed"; //$NON-NLS-1$
 	
 	private static final int MAX_INTEGER = Integer.MAX_VALUE;
 	/*
@@ -58,27 +57,24 @@ public class DataSetPreferencePage extends PreferencePage
 	protected Control createContents( Composite parent )
 	{
 		Composite mainComposite = new Composite( parent, SWT.NONE );
-		GridData data = new GridData( GridData.FILL_HORIZONTAL);
-
-		data.horizontalSpan = 2;
-		data.verticalSpan = 5;
-		//mainComposite.setLayoutData( data );
 		GridLayout layout = new GridLayout();
+        layout.marginWidth = 0;
 		mainComposite.setLayout( layout );
 
 		Group columnMappingPageGroup = new Group( mainComposite, SWT.NONE );
-
 		columnMappingPageGroup.setLayout( layout );
-		columnMappingPageGroup.setText( Messages.getString( "designer.preview.preference.columnMappingPage.group.title" ) );
-		columnMappingPageGroup.setLayoutData( data );
-
-		columnMappingPageGroup.setEnabled( true );
+        columnMappingPageGroup.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+		columnMappingPageGroup.setText( 
+		        Messages.getString( "designer.preview.preference.columnMappingPage.group.title" ) ); //$NON-NLS-1$
 
 		//Set up the maximum number of schemas to be fetched in SQLDataSetPage.
-		maxNumberOfElementPassed = new IntegerFieldEditor( USER_MAX_NUM_OF_ELEMENT_PASSED, "", columnMappingPageGroup ); 
-		
-		Label lab = maxNumberOfElementPassed.getLabelControl( columnMappingPageGroup );
-        lab.setText(Messages.getString("designer.preview.preference.numberOfElementPassedToGetSchema" ));
+		maxNumberOfElementPassed = new IntegerFieldEditor( USER_MAX_NUM_OF_ELEMENT_PASSED, 
+		        Messages.getString( "designer.preview.preference.numberOfElementPassedToGetSchema" ),  //$NON-NLS-1$
+		        columnMappingPageGroup ); 
+		// adjust the parent layout margin set by the field editor
+		GridLayout groupLayout = (GridLayout) columnMappingPageGroup.getLayout();
+		groupLayout.marginWidth = 5;
+        groupLayout.marginHeight = 5;
 		
 		maxNumberOfElementPassed.setPage(this);
 		maxNumberOfElementPassed.setTextLimit( Integer.toString( MAX_INTEGER ).length( ) );
@@ -93,7 +89,7 @@ public class DataSetPreferencePage extends PreferencePage
             }
         });
 		
-		maxNumberOfElementPassed.setErrorMessage( Messages.getFormattedString( "designer.preview.preference.numberOfElementPassedToGetSchema.errormessage",
+		maxNumberOfElementPassed.setErrorMessage( Messages.getFormattedString( "designer.preview.preference.numberOfElementPassedToGetSchema.errormessage", //$NON-NLS-1$
 				new Object[]{new Integer( MAX_INTEGER )	} ) );
 		
 		String defaultMaxSchema = UiPlugin.getDefault( )
