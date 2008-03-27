@@ -113,7 +113,7 @@ public class LoggerInstanceTest extends TestCase
         String logDir = sm_consumerLogDir.getAbsolutePath();
         LogConfiguration logConfig = new LogConfiguration( TEST_DRIVER_ID,
                 Level.FINE, logDir, TraceLogTestUtil.CONSUMER_LOG_PREFIX,
-                LoggerAccessor.HANDLES_LOG_CONFIG ); // triggers test driver to throw exception
+                LoggerAccessor.HANDLES_LOG_CONFIG ); // triggers LoggerAccessor to handle log config
         sm_odaDriver.setLogConfiguration( logConfig );
         loggerInstance1 = sm_odaDriver.getLogger();
         Logger loggerInstance2 = sm_odaDriver.getLogger();
