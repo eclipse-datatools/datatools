@@ -18,8 +18,18 @@
             id="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.base">
          <enablement>
             <or>
-               <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
-               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Database"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Schema"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.constraints.Index"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.schema.Sequence"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.Procedure"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction"/>
+               <instanceof value="org.eclipse.datatools.modelbase.sql.accesscontrol.Role"/>
+               <instanceof value="org.eclipse.datatools.modelbase.derby.DerbySchema"/>
+               <instanceof value="org.eclipse.datatools.modelbase.derby.Synonym"/>
             </or>
          </enablement>
       </actionProvider>
