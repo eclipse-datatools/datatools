@@ -3,3 +3,4 @@ doc
 *.jar
 download
 v*.scc
+build*.xml

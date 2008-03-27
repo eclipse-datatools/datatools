@@ -4,3 +4,4 @@ download
 *.zip
 plugin_*.properties
 vss*.scc
+build*.xml
