@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,7 +36,8 @@ public class DatabaseProviderHelper
     {
 		ICatalogProvider catalogProvider = info.getDatabaseDefinition().getDatabaseCatalogProvider();
 		Database database = catalogProvider.getCatalogDatabase(connection);
-//		connectionManager.setConnectionInfo(database, info);
+		//Need to add an EAnnotation to the database object for the connection profile name
+		ConnectionUtil.setConnectionProfile(database, info.getConnectionProfile());
 		setSharedInformation (info, database);
 		return database;
     }
