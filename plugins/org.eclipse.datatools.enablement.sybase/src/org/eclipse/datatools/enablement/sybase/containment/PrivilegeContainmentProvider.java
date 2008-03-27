@@ -12,6 +12,6 @@ public class PrivilegeContainmentProvider extends AbstractContainmentProvider
 {
     public String getGroupId(EObject obj)
     {
-        return "privilegegroup"; //$NON-NLS-1$
+        return "privilegegroup";
     }
 }

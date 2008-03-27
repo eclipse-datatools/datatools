@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.EcorePackage;
  */
 public abstract class AbstractDeltaDdlGenProvider extends GenericDdlBuilder implements IDeltaDdlGenProvider
 {
+    private Object _parameter;
+    
     public void analyze(SQLObject element, Map changeMap, Map modificationRecords)
     {
         List records = (List) modificationRecords.get(element);
@@ -78,7 +80,7 @@ public abstract class AbstractDeltaDdlGenProvider extends GenericDdlBuilder impl
     public void processCreateStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax, SybaseDdlScript script, ISybaseDdlGenerator generator, IProgressMonitor monitor)
     {
-        String[] statements = generator.createSQLObjects(new SQLObject[]
+        String[] statements = generator.createSQLObjectsForDeltaDDL(new SQLObject[]
         {
             element
         }, quoteIdentifiers, qualifyNames, fullSyntax, monitor);
@@ -90,9 +92,9 @@ public abstract class AbstractDeltaDdlGenProvider extends GenericDdlBuilder impl
     }
 
     public void processDropStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
-            SybaseDdlScript script, DDLGenerator generator, IProgressMonitor monitor)
+            SybaseDdlScript script, ISybaseDdlGenerator generator, IProgressMonitor monitor)
     {
-        String[] statements = generator.dropSQLObjects(new SQLObject[]
+        String[] statements = generator.dropSQLObjectsForDeltaDDL(new SQLObject[]
         {
             element
         }, quoteIdentifiers, qualifyNames, monitor);
@@ -103,6 +105,14 @@ public abstract class AbstractDeltaDdlGenProvider extends GenericDdlBuilder impl
         }
     }
 
+    public void setParameter(Object obj) {
+        _parameter = obj;
+    }
+
+    public Object getParameter() {
+        return _parameter;
+    }
+    
     /**
      * add create statement to the specified position of the scripts
      * 
@@ -133,5 +143,4 @@ public abstract class AbstractDeltaDdlGenProvider extends GenericDdlBuilder impl
      */
     protected abstract void getModificationResult(SQLObject e, EStructuralFeature feature, Object oldValue,
             Object newValue, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script);
-
 }

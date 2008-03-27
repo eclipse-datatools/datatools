@@ -35,6 +35,8 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
             addCreateStatement(script, statement[i]);
         }
     }
+
+    
     public void processDropStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
             SybaseDdlScript script, DDLGenerator generator, IProgressMonitor monitor)
     {
@@ -44,18 +46,37 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
         }
         Privilege p = (Privilege) element;
         SybaseDdlBuilder ddlBuilder = ((SybaseDdlGenerator) generator).getSybaseDdlBuilder();
-        String statement = ddlBuilder.revokePrivilege(p, quoteIdentifiers, qualifyNames);
-
-        addDropStatement(script, statement);
+        try
+        {
+            String statement = ddlBuilder.revokePrivilege(p, quoteIdentifiers, qualifyNames);
+            if (statement == null && statement.trim().length() == 0)
+            {
+                return;
+            }
+            addDropStatement(script, statement);
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            /**
+             * On the safe side, we catch the exception from ddl layer
+             */
+        }
     }
+
+    
     protected void addCreateStatement(SybaseDdlScript script, String statement)
     {
         script.addGrantPrivilegeStatement(statement);
     }
+
+    
     protected void addDropStatement(SybaseDdlScript script, String statement)
     {
         script.addRevokePrivilegeStatement(statement);
     }
+
+    
     protected void getModificationResult(SQLObject e, EStructuralFeature feature, Object oldValue, Object newValue,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script)
     {
@@ -97,7 +118,7 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
     protected String[] generateGrantGOStatement(Privilege p, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
-        return new String[]{""}; //$NON-NLS-1$
+        return new String[]{""};
     }
 
     /**
@@ -113,6 +134,6 @@ public class PrivilegeDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
     protected String generateRevokeGOStatement(Privilege p, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
-        return ""; //$NON-NLS-1$
+        return "";
     }
 }

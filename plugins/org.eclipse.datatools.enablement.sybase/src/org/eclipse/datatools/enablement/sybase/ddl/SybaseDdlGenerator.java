@@ -5,7 +5,9 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
 import org.eclipse.datatools.connectivity.sqm.core.rte.fe.GenericDdlGenerator;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Group;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+import org.eclipse.datatools.modelbase.sql.accesscontrol.User;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
@@ -19,16 +21,12 @@ import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
-import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
-import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * provide sckeletal implementation for database specified DdlGenrator, such as ASEDdlGenerator, 
@@ -38,8 +36,21 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements ISybaseDdlGenerator, DDLGenerator
 {
+    public final static byte GENERATE_CREATE_STATEMENTS_GEN_OPTION_INDEX  = 0; 
+    public final static byte GENERATE_DROP_STATEMENTS_GEN_OPTION_INDEX  = 1;
+    public final static byte GENERATE_FULLY_QUALIFIED_NAME_GEN_OPTION_INDEX = 2;
+    public final static byte GENERATE_QUOTED_IDENTIFIER_GEN_OPTION_INDEX = 3;
+    public final static byte GENERATE_FULL_SYNTAX_GEN_OPTION_INDEX = 4;
+    public final static byte GENERATE_PRIVILEGES_GEN_OPTION_INDEX = 5;
+    public final static byte GENERATE_COMMENTS_GEN_OPTION_INDEX = 6;
+    public final static byte GENERATE_SETUSER_GEN_OPTION_INDEX = 7;
+    public final static byte GENERATE_USEDATABASE_GEN_OPTION_INDEX = 8;
+    
+    
     protected SybaseDdlBuilder sybaseDdlBuilder;
 
+    protected Object           _parameter;
+    
     /**
      * @return all global EngineeringOption array
      */
@@ -48,20 +59,20 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         return SybaseDdlGenerationOptions.getGlobalSybaseDDLGenerationOptions();
     }
     
-    /**
-     * 
-     * @return global generate options array
-     */
-    public EngineeringOption[] getGenrerationOptions()
-    {
-        byte[] optionIndices = getCommonGenerateOptionIndices();
-        EngineeringOption[] results = new EngineeringOption[optionIndices.length];
-        for(int i = 0; i<optionIndices.length; i++)
-        {
-            results[i] = this.getOptions()[optionIndices[i]];
-        }
-        return results;
-    }
+//    /**
+//     * 
+//     * @return global generate options array
+//     */
+//    public EngineeringOption[] getGenrerationOptions()
+//    {
+//        byte[] optionIndices = getCommonGenerateOptionIndices();
+//        EngineeringOption[] results = new EngineeringOption[optionIndices.length];
+//        for(int i = 0; i<optionIndices.length; i++)
+//        {
+//            results[i] = this.getOptions()[optionIndices[i]];
+//        }
+//        return results;
+//    }
     
     /**
      * @return cloned generate options array
@@ -69,24 +80,38 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
     public EngineeringOption[] createGenerationOptions()
     {
         byte[] generateionIndices = getCommonGenerateOptionIndices();
-        EngineeringOption[] results = new EngineeringOption[generateionIndices.length];
-        for(int i = 0; i<generateionIndices.length; i++)
-        {
-            results[i] = createEngineeringOption(SybaseDdlGenerationOptions.getGlobalSybaseDDLGenerationOptions()[generateionIndices[i]]);
-        }
-    	return results;
+    	return createOptions(generateionIndices);
+    }
+    
+    ///for ddlgen wizard
+    public EngineeringOption[] getGenerationOptions(int objectType)
+    {
+        byte[] genOptionIndices = getGenerationOptionIndices(objectType);
+        return createOptions(genOptionIndices);
+    } 
+    
+    public EngineeringOption[] getAdditionalOptions(int objectType)
+    {
+        byte[] additionOptionIndices = getAdditionalOptionIndices(objectType);
+        return createOptions(additionOptionIndices);
     }
     
     /**
-     * @return cloned additional options for specified elements
+     * 
+     * @param optionIndices
+     * @return cloned specified option index options
      */
-    public EngineeringOption[] createSelectedOptions(SQLObject[] elements)
+    static public EngineeringOption[] createOptions(byte[] optionIndices)
     {
-        //TODO: used for ddlgen wizard
-    	return null;
+        EngineeringOption[] results = new EngineeringOption[optionIndices.length];
+        for(int i = 0; i<optionIndices.length; i++)
+        {
+            results[i] = createEngineeringOption(SybaseDdlGenerationOptions.getGlobalSybaseDDLGenerationOptions()[optionIndices[i]]);
+        }
+        return results;
     }
     
-    private EngineeringOption createEngineeringOption(EngineeringOption oldOption)
+    static public EngineeringOption createEngineeringOption(EngineeringOption oldOption)
     {
         EngineeringOption newOption = null;
         switch(oldOption.getOptionType())
@@ -112,43 +137,20 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         return newOption;
     }
 
-    protected byte[] getCommonGenerateOptionIndices()
+    public byte[] getCommonGenerateOptionIndices()
     {
         return new byte[]
         {
+            SybaseDdlGenerationOptions.GENERATE_CREATE_STATEMENTS,
+            SybaseDdlGenerationOptions.GENERATE_DROP_STATEMENTS, 
             SybaseDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME,
             SybaseDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER,
             SybaseDdlGenerationOptions.GENERATE_FULL_SYNTAX,
+            SybaseDdlGenerationOptions.GENERATE_PRIVILEGE,
             SybaseDdlGenerationOptions.GENERATE_COMMENTS,
-            SybaseDdlGenerationOptions.GENERATE_CREATE_STATEMENTS,
-            SybaseDdlGenerationOptions.GENERATE_DROP_STATEMENTS, 
+            SybaseDdlGenerationOptions.GENERATE_SETUSER,
+            SybaseDdlGenerationOptions.GENERATE_USEDATABASE,
         };
-    }
-    
-    protected byte[] getAdditionalObjectTypeOptionIndices(EClass objectType)
-    {
-        if (SQLSchemaPackage.eINSTANCE.getSchema().isSuperTypeOf(objectType))
-        {
-            return new byte[]
-            {
-                SybaseDdlGenerationOptions.GENERATE_STORED_PROCEDURES, SybaseDdlGenerationOptions.GENERATE_INDICES,
-                SybaseDdlGenerationOptions.GENERATE_TABLES, SybaseDdlGenerationOptions.GENERATE_USERS_GROUPS,
-                SybaseDdlGenerationOptions.GENERATE_VIEWS, SybaseDdlGenerationOptions.GENERATE_PROXY_TABLES,
-            };
-        }
-        else if (SQLTablesPackage.eINSTANCE.getPersistentTable().isSuperTypeOf(objectType))
-        {
-            return new byte[]
-            {
-                SybaseDdlGenerationOptions.GENERATE_INDICES, SybaseDdlGenerationOptions.GENERATE_CHECK_CONSTRAINTS,
-                SybaseDdlGenerationOptions.GENERATE_UNIQUE_CONSTRAINTS, SybaseDdlGenerationOptions.GENERATE_PRIMARY_KEYS,
-                SybaseDdlGenerationOptions.GENERATE_FOREIGN_KEYS,SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
-            };
-        }
-        else
-        {
-            return new byte[0];
-        }
     }
     
     /**
@@ -174,8 +176,8 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
             drops = dropSQLObjects(elements, options, progressMonitor);
         }
         statements = new String[creations.length + drops.length];
-        System.arraycopy(creations, 0, statements, 0, creations.length);
-        System.arraycopy(drops, 0, statements, creations.length, drops.length);
+        System.arraycopy(drops, 0, statements, 0, drops.length);
+        System.arraycopy(creations, 0, statements, drops.length, creations.length);
 
         return statements;
     }
@@ -213,7 +215,6 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         SybaseDdlScript script = new SybaseDdlScript();
         createStatements(elements, quoteIdentifiers, qualifyNames, fullSyntax, script, progressMonitor, 100);
         return script.getStatements();
-
     }
     
     /*
@@ -347,7 +348,7 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
             {
                 for (int j = 0; j < statement.length; j++)
                 {
-                    script.addAlterTableAddConstraintStatement(statement[j]);
+                    script.addAlterTableAddForeignKeyStatement(statement[j]);
                 }
             }
         }
@@ -445,13 +446,21 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         }
         else if(element instanceof AuthorizationIdentifier)
         {
+            boolean isUser = !(element instanceof Group);
             String[] statement = sybaseDdlBuilder.createAuthorizationId((AuthorizationIdentifier) element, quoteIdentifiers,
                     qualifyNames, fullSyntax);
             if (statement != null)
             {
                 for (int j = 0; j < statement.length; j++)
                 {
-                    script.addCreateAuthIdStatements(statement[j]);
+                    if(isUser)
+                    {
+                        script.addCreateUserStatements(statement[j]);
+                    }
+                    else
+                    {
+                        script.addCreateGroupStatements(statement[j]);
+                    }
                 }
             }
         }
@@ -596,9 +605,19 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         }
         else if(element instanceof AuthorizationIdentifier)
         {
+            boolean isUser = element instanceof User;
             String statement = sybaseDdlBuilder.dropAuthorizationId((AuthorizationIdentifier) element, quoteIdentifiers, qualifyNames);
             if (statement != null)
-                script.addDropAuthIdStatements(statement);
+            {
+                if(isUser)
+                {
+                    script.addDropUserStatements(statement);
+                }
+                else
+                {
+                    script.addDropGroupStatements(statement);
+                }
+            }
         }
         else if(element instanceof Privilege)
         {
@@ -625,7 +644,7 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
             {
                 String statement = sybaseDdlBuilder.dropColumn((Column)element, quoteIdentifiers, qualifyNames);
                 if (statement != null)
-                    script.addAlterTableStatement(statement);
+                    script.addAlterTableDropColumnStatements(statement);
             }
         }
     }
@@ -638,6 +657,26 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
     public boolean generateFullSyntax(EngineeringOption[] options)
     {
         return getOptionValueByID(SybaseEngineeringOptionID.GENERATE_FULL_SYNTAX, options);
+    }
+
+    /**
+     * generate setuser statement or not
+     * 
+     * @return
+     */
+    public boolean generateSetUser(EngineeringOption[] options)
+    {
+        return getOptionValueByID(SybaseEngineeringOptionID.GENERATE_SETUSER, options);
+    }
+    
+    /**
+     * generate use database statement or not
+     * 
+     * @return
+     */
+    public boolean generateUseDatabase(EngineeringOption[] options)
+    {
+        return getOptionValueByID(SybaseEngineeringOptionID.GENERATE_USEDATABASE, options);
     }
 //    protected boolean generatePrivilegeStatement(EngineeringOption[] options)
 //    {
@@ -707,6 +746,20 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
         return ret;
     } 
     
+    public EngineeringOption getOptionByID(String optionID, EngineeringOption[] options)
+    {
+        for (int i = 0; i < options.length; i++)
+        {
+            EngineeringOption option = (EngineeringOption) options[i];
+            if (option != null && option.getId().equals(optionID))
+            {
+                return option;
+            }
+        }
+        
+        return null;
+    }
+    
 //    protected Set getAllContainedDisplayableElementSet(SQLObject element)
 //    {
 //        Set s = new HashSet();
@@ -720,9 +773,46 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
      * @param objectType database object type
      */
     abstract public byte[] getAdditionalOptionIndices(int objectType);
-
+    
+    abstract public byte[] getExclusiveAdditionalOptionIndices(int objectType);
+    
+    abstract public byte[] getGenerationOptionIndices(int objectType);
+    
     abstract protected SybaseDdlBuilder createBuilder();
 
+    public byte[] getCommonAdditionalOptionIndices(int objectType)
+    {
+        if(objectType == SybaseDatabaseObjecType.DATABASE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_STORED_PROCEDURES,
+                SybaseDdlGenerationOptions.GENERATE_TABLES,
+                SybaseDdlGenerationOptions.GENERATE_PROXY_TABLES,
+                SybaseDdlGenerationOptions.GENERATE_VIEWS,
+                SybaseDdlGenerationOptions.GENERATE_USER_DEFINED_TYPES,
+                SybaseDdlGenerationOptions.GENERATE_INDICES,
+                SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
+                SybaseDdlGenerationOptions.GENERATE_USERS_GROUPS,
+            };
+        }
+        else if(objectType == SybaseDatabaseObjecType.TABLE || objectType == SybaseDatabaseObjecType.PROXY_TABLE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_PRIMARY_KEYS,
+                SybaseDdlGenerationOptions.GENERATE_UNIQUE_CONSTRAINTS,
+                SybaseDdlGenerationOptions.GENERATE_FOREIGN_KEYS,
+                SybaseDdlGenerationOptions.GENERATE_CHECK_CONSTRAINTS,
+                SybaseDdlGenerationOptions.GENERATE_INDICES,
+//                SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
+                SybaseDdlGenerationOptions.GENERATE_USER_DEFINED_TYPES,
+            };
+        }
+        else
+        {
+            return new byte[]{};
+        }
+    }
+    
     public SybaseDdlBuilder getSybaseDdlBuilder()
     {
         if(sybaseDdlBuilder == null)
@@ -730,5 +820,13 @@ public abstract class SybaseDdlGenerator extends GenericDdlGenerator implements 
             createBuilder();
         }
         return sybaseDdlBuilder;
+    }
+    
+    public void setParameter(Object obj) {
+        _parameter = obj;
+    }
+
+    public Object getParameter() {
+        return _parameter;
     }
 }

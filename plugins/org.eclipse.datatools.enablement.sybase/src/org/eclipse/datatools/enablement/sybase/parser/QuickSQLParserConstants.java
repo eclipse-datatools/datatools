@@ -101,142 +101,140 @@ public interface QuickSQLParserConstants {
   int MAX = 105;
   int MIN = 106;
   int MODIFY = 107;
-  int NATIONAL = 108;
-  int NOHOLDLOCK = 109;
-  int NONCLUSTERED = 110;
-  int NOT = 111;
-  int NULL = 112;
-  int NULLIF = 113;
-  int OF = 114;
-  int OFF = 115;
-  int OFFSETS = 116;
-  int ON = 117;
-  int ONCE = 118;
-  int ONLINE = 119;
-  int ONLY = 120;
-  int OPEN = 121;
-  int OPTION = 122;
-  int OR = 123;
-  int ORDER = 124;
-  int OUT = 125;
-  int OUTPUT = 126;
-  int OVER = 127;
-  int PARTITION = 128;
-  int PERM = 129;
-  int PERMANENT = 130;
-  int PLAN = 131;
-  int PREPARE = 132;
-  int PRIMARY = 133;
-  int PRINT = 134;
-  int PRIVILEGES = 135;
-  int PROC = 136;
-  int PROCEDURE = 137;
-  int PROCESSEXIT = 138;
-  int PROXY_TABLE = 139;
-  int PUBLIC = 140;
-  int QUIESCE = 141;
-  int RAISERROR = 142;
-  int READ = 143;
-  int READPAST = 144;
-  int READTEXT = 145;
-  int RECONFIGURE = 146;
-  int REFERENCES = 147;
-  int REMOVE = 148;
-  int REORG = 149;
-  int REPLACE = 150;
-  int REPLICATION = 151;
-  int RETURN = 152;
-  int RETURNS = 153;
-  int REVOKE = 154;
-  int ROLE = 155;
-  int ROLLBACK = 156;
-  int ROWCOUNT = 157;
-  int ROWS = 158;
-  int RULE = 159;
-  int SAVE = 160;
-  int SCHEMA = 161;
-  int SELECT = 162;
-  int SET = 163;
-  int SETUSER = 164;
-  int SHARED = 165;
-  int SHUTDOWN = 166;
-  int SOME = 167;
-  int STATISTICS = 168;
-  int STRINGSIZE = 169;
-  int STRIPE = 170;
-  int SUM = 171;
-  int TABLE = 172;
-  int TEMP = 173;
-  int TEMPORARY = 174;
-  int TEXTSIZE = 175;
-  int TO = 176;
-  int TRAN = 177;
-  int TRANSACTION = 178;
-  int TRIGGER = 179;
-  int TRUNCATE = 180;
-  int UNION = 181;
-  int UNIQUE = 182;
-  int UNPARTITION = 183;
-  int UPDATE = 184;
-  int USE = 185;
-  int USER = 186;
-  int USING = 187;
-  int VALUES = 188;
-  int VARYING = 189;
-  int VIEW = 190;
-  int WAITFOR = 191;
-  int WHEN = 192;
-  int WHERE = 193;
-  int WHILE = 194;
-  int WITH = 195;
-  int WORK = 196;
-  int WRITETEXT = 197;
-  int SQLCODE = 198;
-  int SQLSTATE = 199;
-  int OPENDESCRIPTION = 200;
-  int CLOSEDESCRIPTION = 201;
-  int DESCRIPTION = 202;
-  int INTEGER_LITERAL = 203;
-  int FLOATING_POINT_LITERAL = 204;
-  int EXPONENT = 205;
-  int SINGLE_STRING_LITERAL = 206;
-  int DOUBLE_STRING_LITERAL = 207;
-  int BINARY_LITERAL = 208;
-  int HEXDIGIT = 209;
-  int MONEY_LITERAL = 210;
-  int ID = 211;
-  int SQUARE_BRACKET_ID = 212;
-  int VAR_NAME_BODY = 213;
-  int VAR_NAME = 214;
-  int LABEL = 215;
-  int GLOBAL_VAR_NAME = 216;
-  int TEMP_TABLE_NAME = 217;
-  int LETTER = 218;
-  int DIGIT = 219;
-  int SYMBOL = 220;
-  int CONCAT = 221;
-  int COMMA = 222;
-  int SEMICOLON = 223;
-  int DOT = 224;
-  int ROWTYPE = 225;
-  int TILDE = 226;
-  int LESS = 227;
-  int LESSEQUAL = 228;
-  int GREATER = 229;
-  int GREATEREQUAL = 230;
-  int EQUAL = 231;
-  int NOTEQUAL = 232;
-  int JOINPLUS = 233;
-  int OPENPAREN = 234;
-  int CLOSEPAREN = 235;
-  int ASTERISK = 236;
-  int SLASH = 237;
-  int PLUS = 238;
-  int MINUS = 239;
-  int QUESTIONMARK = 240;
-  int LEQJOIN = 241;
-  int REQJOIN = 242;
-  int JAVA_REF = 243;
+  int NOHOLDLOCK = 108;
+  int NONCLUSTERED = 109;
+  int NOT = 110;
+  int NULL = 111;
+  int NULLIF = 112;
+  int OF = 113;
+  int OFF = 114;
+  int OFFSETS = 115;
+  int ON = 116;
+  int ONCE = 117;
+  int ONLINE = 118;
+  int ONLY = 119;
+  int OPEN = 120;
+  int OPTION = 121;
+  int OR = 122;
+  int ORDER = 123;
+  int OUT = 124;
+  int OUTPUT = 125;
+  int OVER = 126;
+  int PARTITION = 127;
+  int PERM = 128;
+  int PERMANENT = 129;
+  int PLAN = 130;
+  int PREPARE = 131;
+  int PRIMARY = 132;
+  int PRINT = 133;
+  int PRIVILEGES = 134;
+  int PROC = 135;
+  int PROCEDURE = 136;
+  int PROCESSEXIT = 137;
+  int PROXY_TABLE = 138;
+  int PUBLIC = 139;
+  int QUIESCE = 140;
+  int RAISERROR = 141;
+  int READ = 142;
+  int READPAST = 143;
+  int READTEXT = 144;
+  int RECONFIGURE = 145;
+  int REFERENCES = 146;
+  int REMOVE = 147;
+  int REORG = 148;
+  int REPLACE = 149;
+  int REPLICATION = 150;
+  int RETURN = 151;
+  int RETURNS = 152;
+  int REVOKE = 153;
+  int ROLE = 154;
+  int ROLLBACK = 155;
+  int ROWCOUNT = 156;
+  int ROWS = 157;
+  int RULE = 158;
+  int SAVE = 159;
+  int SCHEMA = 160;
+  int SELECT = 161;
+  int SET = 162;
+  int SETUSER = 163;
+  int SHARED = 164;
+  int SHUTDOWN = 165;
+  int SOME = 166;
+  int STATISTICS = 167;
+  int STRINGSIZE = 168;
+  int STRIPE = 169;
+  int SUM = 170;
+  int TABLE = 171;
+  int TEMP = 172;
+  int TEMPORARY = 173;
+  int TEXTSIZE = 174;
+  int TO = 175;
+  int TRAN = 176;
+  int TRANSACTION = 177;
+  int TRIGGER = 178;
+  int TRUNCATE = 179;
+  int UNION = 180;
+  int UNIQUE = 181;
+  int UNPARTITION = 182;
+  int UPDATE = 183;
+  int USE = 184;
+  int USER = 185;
+  int USING = 186;
+  int VALUES = 187;
+  int VIEW = 188;
+  int WAITFOR = 189;
+  int WHEN = 190;
+  int WHERE = 191;
+  int WHILE = 192;
+  int WITH = 193;
+  int WORK = 194;
+  int WRITETEXT = 195;
+  int SQLCODE = 196;
+  int SQLSTATE = 197;
+  int OPENDESCRIPTION = 198;
+  int CLOSEDESCRIPTION = 199;
+  int DESCRIPTION = 200;
+  int INTEGER_LITERAL = 201;
+  int FLOATING_POINT_LITERAL = 202;
+  int EXPONENT = 203;
+  int SINGLE_STRING_LITERAL = 204;
+  int DOUBLE_STRING_LITERAL = 205;
+  int BINARY_LITERAL = 206;
+  int HEXDIGIT = 207;
+  int MONEY_LITERAL = 208;
+  int ID = 209;
+  int SQUARE_BRACKET_ID = 210;
+  int VAR_NAME_BODY = 211;
+  int VAR_NAME = 212;
+  int LABEL = 213;
+  int GLOBAL_VAR_NAME = 214;
+  int TEMP_TABLE_NAME = 215;
+  int LETTER = 216;
+  int DIGIT = 217;
+  int SYMBOL = 218;
+  int CONCAT = 219;
+  int COMMA = 220;
+  int SEMICOLON = 221;
+  int DOT = 222;
+  int ROWTYPE = 223;
+  int TILDE = 224;
+  int LESS = 225;
+  int LESSEQUAL = 226;
+  int GREATER = 227;
+  int GREATEREQUAL = 228;
+  int EQUAL = 229;
+  int NOTEQUAL = 230;
+  int JOINPLUS = 231;
+  int OPENPAREN = 232;
+  int CLOSEPAREN = 233;
+  int ASTERISK = 234;
+  int SLASH = 235;
+  int PLUS = 236;
+  int MINUS = 237;
+  int QUESTIONMARK = 238;
+  int LEQJOIN = 239;
+  int REQJOIN = 240;
+  int JAVA_REF = 241;
 
   int DEFAULT = 0;
   int IN_SINGLE_LINE_COMMENT = 1;
@@ -246,250 +244,248 @@ public interface QuickSQLParserConstants {
   int DESCRIPTION_STATE = 5;
 
   String[] tokenImage = {
-    "<EOF>", //$NON-NLS-1$
-    "\" \"", //$NON-NLS-1$
-    "\"\\n\"", //$NON-NLS-1$
-    "\"\\r\"", //$NON-NLS-1$
-    "\"\\t\"", //$NON-NLS-1$
-    "\"--\"", //$NON-NLS-1$
-    "<SINGLE_LINE_COMMENT>", //$NON-NLS-1$
-    "<token of kind 7>", //$NON-NLS-1$
-    "\"/*\"", //$NON-NLS-1$
-    "\"/*\"", //$NON-NLS-1$
-    "\"*/\"", //$NON-NLS-1$
-    "<COMMENT_CONTENT>", //$NON-NLS-1$
-    "<token of kind 12>", //$NON-NLS-1$
-    "\"!%^&\"", //$NON-NLS-1$
-    "\"add\"", //$NON-NLS-1$
-    "\"alter\"", //$NON-NLS-1$
-    "\"and\"", //$NON-NLS-1$
-    "\"any\"", //$NON-NLS-1$
-    "\"as\"", //$NON-NLS-1$
-    "\"asc\"", //$NON-NLS-1$
-    "\"at\"", //$NON-NLS-1$
-    "\"authorization\"", //$NON-NLS-1$
-    "\"avg\"", //$NON-NLS-1$
-    "\"begin\"", //$NON-NLS-1$
-    "\"between\"", //$NON-NLS-1$
-    "\"break\"", //$NON-NLS-1$
-    "\"browse\"", //$NON-NLS-1$
-    "\"bulk\"", //$NON-NLS-1$
-    "\"by\"", //$NON-NLS-1$
-    "\"cascade\"", //$NON-NLS-1$
-    "\"case\"", //$NON-NLS-1$
-    "\"check\"", //$NON-NLS-1$
-    "\"checkpoint\"", //$NON-NLS-1$
-    "\"close\"", //$NON-NLS-1$
-    "\"clustered\"", //$NON-NLS-1$
-    "\"coalesce\"", //$NON-NLS-1$
-    "\"commit\"", //$NON-NLS-1$
-    "\"compute\"", //$NON-NLS-1$
-    "\"confirm\"", //$NON-NLS-1$
-    "\"connect\"", //$NON-NLS-1$
-    "\"constraint\"", //$NON-NLS-1$
-    "\"continue\"", //$NON-NLS-1$
-    "\"controlrow\"", //$NON-NLS-1$
-    "\"convert\"", //$NON-NLS-1$
-    "\"count\"", //$NON-NLS-1$
-    "\"create\"", //$NON-NLS-1$
-    "\"current\"", //$NON-NLS-1$
-    "\"cursor\"", //$NON-NLS-1$
-    "\"database\"", //$NON-NLS-1$
-    "\"dbcc\"", //$NON-NLS-1$
-    "\"deallocate\"", //$NON-NLS-1$
-    "\"declare\"", //$NON-NLS-1$
-    "\"default\"", //$NON-NLS-1$
-    "\"delete\"", //$NON-NLS-1$
-    "\"desc\"", //$NON-NLS-1$
-    "\"deterministic\"", //$NON-NLS-1$
-    "\"disk\"", //$NON-NLS-1$
-    "\"distinct\"", //$NON-NLS-1$
-    "\"drop\"", //$NON-NLS-1$
-    "\"dummy\"", //$NON-NLS-1$
-    "\"dump\"", //$NON-NLS-1$
-    "\"else\"", //$NON-NLS-1$
-    "\"end\"", //$NON-NLS-1$
-    "\"endtran\"", //$NON-NLS-1$
-    "\"escape\"", //$NON-NLS-1$
-    "\"except\"", //$NON-NLS-1$
-    "\"exclusive\"", //$NON-NLS-1$
-    "\"exec\"", //$NON-NLS-1$
-    "\"execute\"", //$NON-NLS-1$
-    "\"exists\"", //$NON-NLS-1$
-    "\"exit\"", //$NON-NLS-1$
-    "\"external\"", //$NON-NLS-1$
-    "\"event\"", //$NON-NLS-1$
-    "\"fetch\"", //$NON-NLS-1$
-    "\"fillfactor\"", //$NON-NLS-1$
-    "\"for\"", //$NON-NLS-1$
-    "\"foreign\"", //$NON-NLS-1$
-    "\"from\"", //$NON-NLS-1$
-    "\"func\"", //$NON-NLS-1$
-    "\"function\"", //$NON-NLS-1$
-    "\"go\"", //$NON-NLS-1$
-    "\"goto\"", //$NON-NLS-1$
-    "\"grant\"", //$NON-NLS-1$
-    "\"group\"", //$NON-NLS-1$
-    "\"having\"", //$NON-NLS-1$
-    "\"holdlock\"", //$NON-NLS-1$
-    "\"identity\"", //$NON-NLS-1$
-    "\"if\"", //$NON-NLS-1$
-    "\"in\"", //$NON-NLS-1$
-    "\"index\"", //$NON-NLS-1$
-    "\"inout\"", //$NON-NLS-1$
-    "\"insert\"", //$NON-NLS-1$
-    "\"install\"", //$NON-NLS-1$
-    "\"intersect\"", //$NON-NLS-1$
-    "\"into\"", //$NON-NLS-1$
-    "\"is\"", //$NON-NLS-1$
-    "\"isolation\"", //$NON-NLS-1$
-    "\"jar\"", //$NON-NLS-1$
-    "\"join\"", //$NON-NLS-1$
-    "\"key\"", //$NON-NLS-1$
-    "\"kill\"", //$NON-NLS-1$
-    "\"level\"", //$NON-NLS-1$
-    "\"like\"", //$NON-NLS-1$
-    "\"load\"", //$NON-NLS-1$ 
-    "\"lock\"", //$NON-NLS-1$
-    "\"max\"", //$NON-NLS-1$
-    "\"min\"", //$NON-NLS-1$
-    "\"modify\"", //$NON-NLS-1$
-    "\"national\"", //$NON-NLS-1$
-    "\"noholdlock\"", //$NON-NLS-1$
-    "\"nonclustered\"", //$NON-NLS-1$
-    "\"not\"", //$NON-NLS-1$
-    "\"null\"", //$NON-NLS-1$
-    "\"nullif\"", //$NON-NLS-1$
-    "\"of\"", //$NON-NLS-1$
-    "\"off\"", //$NON-NLS-1$
-    "\"offsets\"", //$NON-NLS-1$
-    "\"on\"", //$NON-NLS-1$
-    "\"once\"", //$NON-NLS-1$
-    "\"online\"", //$NON-NLS-1$
-    "\"only\"", //$NON-NLS-1$
-    "\"open\"", //$NON-NLS-1$
-    "\"option\"", //$NON-NLS-1$
-    "\"or\"", //$NON-NLS-1$
-    "\"order\"", //$NON-NLS-1$
-    "\"out\"", //$NON-NLS-1$
-    "\"output\"", //$NON-NLS-1$
-    "\"over\"", //$NON-NLS-1$
-    "\"partition\"", //$NON-NLS-1$
-    "\"perm\"", //$NON-NLS-1$
-    "\"permanent\"", //$NON-NLS-1$
-    "\"plan\"", //$NON-NLS-1$
-    "\"prepare\"", //$NON-NLS-1$
-    "\"primary\"", //$NON-NLS-1$
-    "\"print\"", //$NON-NLS-1$
-    "\"privileges\"", //$NON-NLS-1$
-    "\"proc\"", //$NON-NLS-1$
-    "\"procedure\"", //$NON-NLS-1$
-    "\"processexit\"", //$NON-NLS-1$
-    "\"proxy_table\"", //$NON-NLS-1$
-    "\"public\"", //$NON-NLS-1$
-    "\"quiesce\"", //$NON-NLS-1$
-    "\"raiserror\"", //$NON-NLS-1$
-    "\"read\"", //$NON-NLS-1$
-    "\"readpast\"", //$NON-NLS-1$
-    "\"readtext\"", //$NON-NLS-1$
-    "\"reconfigure\"", //$NON-NLS-1$
-    "\"references\"", //$NON-NLS-1$
-    "\"remove\"", //$NON-NLS-1$
-    "\"reorg\"", //$NON-NLS-1$
-    "\"replace\"", //$NON-NLS-1$
-    "\"replication\"", //$NON-NLS-1$
-    "\"return\"", //$NON-NLS-1$
-    "\"returns\"", //$NON-NLS-1$
-    "\"revoke\"", //$NON-NLS-1$
-    "\"role\"", //$NON-NLS-1$
-    "\"rollback\"", //$NON-NLS-1$
-    "\"rowcount\"", //$NON-NLS-1$
-    "\"rows\"", //$NON-NLS-1$
-    "\"rule\"", //$NON-NLS-1$
-    "\"save\"", //$NON-NLS-1$
-    "\"schema\"", //$NON-NLS-1$
-    "\"select\"", //$NON-NLS-1$
-    "\"set\"", //$NON-NLS-1$
-    "\"setuser\"", //$NON-NLS-1$
-    "\"shared\"", //$NON-NLS-1$
-    "\"shutdown\"", //$NON-NLS-1$
-    "\"some\"", //$NON-NLS-1$
-    "\"statistics\"", //$NON-NLS-1$
-    "\"stringsize\"", //$NON-NLS-1$
-    "\"stripe\"", //$NON-NLS-1$
-    "\"sum\"", //$NON-NLS-1$
-    "\"table\"", //$NON-NLS-1$
-    "\"temp\"", //$NON-NLS-1$
-    "\"temporary\"", //$NON-NLS-1$
-    "\"textsize\"", //$NON-NLS-1$
-    "\"to\"", //$NON-NLS-1$
-    "\"tran\"", //$NON-NLS-1$
-    "\"transaction\"", //$NON-NLS-1$
-    "\"trigger\"", //$NON-NLS-1$
-    "\"truncate\"", //$NON-NLS-1$
-    "\"union\"", //$NON-NLS-1$
-    "\"unique\"", //$NON-NLS-1$
-    "\"unpartition\"",//$NON-NLS-1$
-    "\"update\"", //$NON-NLS-1$
-    "\"use\"", //$NON-NLS-1$
-    "\"user\"", //$NON-NLS-1$
-    "\"using\"", //$NON-NLS-1$ 
-    "\"values\"", //$NON-NLS-1$
-    "\"varying\"", //$NON-NLS-1$
-    "\"view\"", //$NON-NLS-1$
-    "\"waitfor\"", //$NON-NLS-1$
-    "\"when\"", //$NON-NLS-1$
-    "\"where\"", //$NON-NLS-1$
-    "\"while\"", //$NON-NLS-1$ 
-    "\"with\"", //$NON-NLS-1$
-    "\"work\"", //$NON-NLS-1$
-    "\"writetext\"", //$NON-NLS-1$
-    "\"SQLCODE\"", //$NON-NLS-1$
-    "\"SQLSTATE\"", //$NON-NLS-1$
-    "\"\\r\\n\"", //$NON-NLS-1$
-    "\"~\"", //$NON-NLS-1$
-    "<DESCRIPTION>", //$NON-NLS-1$
-    "<INTEGER_LITERAL>", //$NON-NLS-1$
-    "<FLOATING_POINT_LITERAL>", //$NON-NLS-1$
-    "<EXPONENT>", //$NON-NLS-1$
-    "<SINGLE_STRING_LITERAL>", //$NON-NLS-1$
-    "<DOUBLE_STRING_LITERAL>", //$NON-NLS-1$
-    "<BINARY_LITERAL>", //$NON-NLS-1$
-    "<HEXDIGIT>", //$NON-NLS-1$
-    "<MONEY_LITERAL>", //$NON-NLS-1$
-    "<ID>", //$NON-NLS-1$
-    "<SQUARE_BRACKET_ID>", //$NON-NLS-1$
-    "<VAR_NAME_BODY>", //$NON-NLS-1$
-    "<VAR_NAME>", //$NON-NLS-1$
-    "<LABEL>", //$NON-NLS-1$
-    "<GLOBAL_VAR_NAME>", //$NON-NLS-1$
-    "<TEMP_TABLE_NAME>", //$NON-NLS-1$
-    "<LETTER>", //$NON-NLS-1$
-    "<DIGIT>", //$NON-NLS-1$
-    "<SYMBOL>", //$NON-NLS-1$
-    "\"||\"", //$NON-NLS-1$
-    "\",\"", //$NON-NLS-1$
-    "\";\"", //$NON-NLS-1$
-    "\".\"", //$NON-NLS-1$
-    "\"%rowtype\"", //$NON-NLS-1$
-    "\"~\"", //$NON-NLS-1$
-    "\"<\"", //$NON-NLS-1$
-    "\"<=\"", //$NON-NLS-1$
-    "\">\"", //$NON-NLS-1$
-    "\">=\"", //$NON-NLS-1$
-    "\"=\"", //$NON-NLS-1$
-    "\"!=\"", //$NON-NLS-1$
-    "\"(+)\"", //$NON-NLS-1$
-    "\"(\"", //$NON-NLS-1$
-    "\")\"", //$NON-NLS-1$
-    "\"*\"", //$NON-NLS-1$
-    "\"/\"", //$NON-NLS-1$
-    "\"+\"", //$NON-NLS-1$
-    "\"-\"", //$NON-NLS-1$
-    "\"?\"", //$NON-NLS-1$
-    "\"*=\"", //$NON-NLS-1$
-    "\"=*\"", //$NON-NLS-1$
-    "\">>\"", //$NON-NLS-1$
+    "<EOF>",
+    "\" \"",
+    "\"\\n\"",
+    "\"\\r\"",
+    "\"\\t\"",
+    "\"--\"",
+    "<SINGLE_LINE_COMMENT>",
+    "<token of kind 7>",
+    "\"/*\"",
+    "\"/*\"",
+    "\"*/\"",
+    "<COMMENT_CONTENT>",
+    "<token of kind 12>",
+    "\"!%^&\"",
+    "\"add\"",
+    "\"alter\"",
+    "\"and\"",
+    "\"any\"",
+    "\"as\"",
+    "\"asc\"",
+    "\"at\"",
+    "\"authorization\"",
+    "\"avg\"",
+    "\"begin\"",
+    "\"between\"",
+    "\"break\"",
+    "\"browse\"",
+    "\"bulk\"",
+    "\"by\"",
+    "\"cascade\"",
+    "\"case\"",
+    "\"check\"",
+    "\"checkpoint\"",
+    "\"close\"",
+    "\"clustered\"",
+    "\"coalesce\"",
+    "\"commit\"",
+    "\"compute\"",
+    "\"confirm\"",
+    "\"connect\"",
+    "\"constraint\"",
+    "\"continue\"",
+    "\"controlrow\"",
+    "\"convert\"",
+    "\"count\"",
+    "\"create\"",
+    "\"current\"",
+    "\"cursor\"",
+    "\"database\"",
+    "\"dbcc\"",
+    "\"deallocate\"",
+    "\"declare\"",
+    "\"default\"",
+    "\"delete\"",
+    "\"desc\"",
+    "\"deterministic\"",
+    "\"disk\"",
+    "\"distinct\"",
+    "\"drop\"",
+    "\"dummy\"",
+    "\"dump\"",
+    "\"else\"",
+    "\"end\"",
+    "\"endtran\"",
+    "\"escape\"",
+    "\"except\"",
+    "\"exclusive\"",
+    "\"exec\"",
+    "\"execute\"",
+    "\"exists\"",
+    "\"exit\"",
+    "\"external\"",
+    "\"event\"",
+    "\"fetch\"",
+    "\"fillfactor\"",
+    "\"for\"",
+    "\"foreign\"",
+    "\"from\"",
+    "\"func\"",
+    "\"function\"",
+    "\"go\"",
+    "\"goto\"",
+    "\"grant\"",
+    "\"group\"",
+    "\"having\"",
+    "\"holdlock\"",
+    "\"identity\"",
+    "\"if\"",
+    "\"in\"",
+    "\"index\"",
+    "\"inout\"",
+    "\"insert\"",
+    "\"install\"",
+    "\"intersect\"",
+    "\"into\"",
+    "\"is\"",
+    "\"isolation\"",
+    "\"jar\"",
+    "\"join\"",
+    "\"key\"",
+    "\"kill\"",
+    "\"level\"",
+    "\"like\"",
+    "\"load\"",
+    "\"lock\"",
+    "\"max\"",
+    "\"min\"",
+    "\"modify\"",
+    "\"noholdlock\"",
+    "\"nonclustered\"",
+    "\"not\"",
+    "\"null\"",
+    "\"nullif\"",
+    "\"of\"",
+    "\"off\"",
+    "\"offsets\"",
+    "\"on\"",
+    "\"once\"",
+    "\"online\"",
+    "\"only\"",
+    "\"open\"",
+    "\"option\"",
+    "\"or\"",
+    "\"order\"",
+    "\"out\"",
+    "\"output\"",
+    "\"over\"",
+    "\"partition\"",
+    "\"perm\"",
+    "\"permanent\"",
+    "\"plan\"",
+    "\"prepare\"",
+    "\"primary\"",
+    "\"print\"",
+    "\"privileges\"",
+    "\"proc\"",
+    "\"procedure\"",
+    "\"processexit\"",
+    "\"proxy_table\"",
+    "\"public\"",
+    "\"quiesce\"",
+    "\"raiserror\"",
+    "\"read\"",
+    "\"readpast\"",
+    "\"readtext\"",
+    "\"reconfigure\"",
+    "\"references\"",
+    "\"remove\"",
+    "\"reorg\"",
+    "\"replace\"",
+    "\"replication\"",
+    "\"return\"",
+    "\"returns\"",
+    "\"revoke\"",
+    "\"role\"",
+    "\"rollback\"",
+    "\"rowcount\"",
+    "\"rows\"",
+    "\"rule\"",
+    "\"save\"",
+    "\"schema\"",
+    "\"select\"",
+    "\"set\"",
+    "\"setuser\"",
+    "\"shared\"",
+    "\"shutdown\"",
+    "\"some\"",
+    "\"statistics\"",
+    "\"stringsize\"",
+    "\"stripe\"",
+    "\"sum\"",
+    "\"table\"",
+    "\"temp\"",
+    "\"temporary\"",
+    "\"textsize\"",
+    "\"to\"",
+    "\"tran\"",
+    "\"transaction\"",
+    "\"trigger\"",
+    "\"truncate\"",
+    "\"union\"",
+    "\"unique\"",
+    "\"unpartition\"",
+    "\"update\"",
+    "\"use\"",
+    "\"user\"",
+    "\"using\"",
+    "\"values\"",
+    "\"view\"",
+    "\"waitfor\"",
+    "\"when\"",
+    "\"where\"",
+    "\"while\"",
+    "\"with\"",
+    "\"work\"",
+    "\"writetext\"",
+    "\"SQLCODE\"",
+    "\"SQLSTATE\"",
+    "\"\\r\\n\"",
+    "\"~\"",
+    "<DESCRIPTION>",
+    "<INTEGER_LITERAL>",
+    "<FLOATING_POINT_LITERAL>",
+    "<EXPONENT>",
+    "<SINGLE_STRING_LITERAL>",
+    "<DOUBLE_STRING_LITERAL>",
+    "<BINARY_LITERAL>",
+    "<HEXDIGIT>",
+    "<MONEY_LITERAL>",
+    "<ID>",
+    "<SQUARE_BRACKET_ID>",
+    "<VAR_NAME_BODY>",
+    "<VAR_NAME>",
+    "<LABEL>",
+    "<GLOBAL_VAR_NAME>",
+    "<TEMP_TABLE_NAME>",
+    "<LETTER>",
+    "<DIGIT>",
+    "<SYMBOL>",
+    "\"||\"",
+    "\",\"",
+    "\";\"",
+    "\".\"",
+    "\"%rowtype\"",
+    "\"~\"",
+    "\"<\"",
+    "\"<=\"",
+    "\">\"",
+    "\">=\"",
+    "\"=\"",
+    "\"!=\"",
+    "\"(+)\"",
+    "\"(\"",
+    "\")\"",
+    "\"*\"",
+    "\"/\"",
+    "\"+\"",
+    "\"-\"",
+    "\"?\"",
+    "\"*=\"",
+    "\"=*\"",
+    "\">>\"",
   };
 
 }

@@ -1,13 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2005 -- 2007 Sybase, Inc.
- * 
- * All rights reserved. This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License v1.0 which
- * accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Sybase, Inc. - initial API and implementation
- ******************************************************************************/
+//
+//Confidential property of Sybase, Inc.
+//(c) Copyright Sybase, Inc. 2004.
+//All rights reserved
+//
 package org.eclipse.datatools.enablement.sybase;
 
 import java.text.MessageFormat;
@@ -20,7 +15,7 @@ import org.eclipse.osgi.util.NLS;
  * Utility class which helps managing messages
  */
 public class Messages extends NLS{
-	private static final String RESOURCE_BUNDLE= "org.eclipse.datatools.enablement.ase.messages";//$NON-NLS-1$
+	private static final String RESOURCE_BUNDLE= "org.eclipse.datatools.enablement.sybase.messages";//$NON-NLS-1$
 	private static ResourceBundle bundle = ResourceBundle.getBundle(RESOURCE_BUNDLE);
 	
 /**
@@ -73,4 +68,9 @@ public static String getString(String key, String def) {
 }
 	
 	public static String plugin_internal_error;
+    public static String PrimaryKey_folder_name;
+    public static String UniqueConstraint_folder_name;
+    public static String CheckConstraint_folder_name;
+    public static String ForeignKey_folder_name;
+    public static String Parameters_folder_name;
 }

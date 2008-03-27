@@ -39,16 +39,35 @@ public class SQLUtil
     public static String unquote(String quoted)
     {
         String content = quoted;
-        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1)  //$NON-NLS-1$//$NON-NLS-2$
+        if (quoted.indexOf("'") == 0 && quoted.lastIndexOf("'") == quoted.length() - 1)
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'"); //$NON-NLS-1$ //$NON-NLS-2$
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("''", "'");
         }
-        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1)  //$NON-NLS-1$//$NON-NLS-2$
+        else if (quoted.indexOf("\"") == 0 && quoted.lastIndexOf("\"") == quoted.length() - 1)
         {
-            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\"");  //$NON-NLS-1$//$NON-NLS-2$
+            content = quoted.substring(1, quoted.length() - 1).replaceAll("\"\"", "\"");
         }
         return content;
     }
 
-
+    /**
+     * 
+     * @param statement
+     * @return the expression of check constraint
+     */
+    public static String parseSearchStatement(String statement)
+    {
+        String defStr = "";
+        if (statement != null)
+        {
+            defStr = statement.trim();
+            int leftParenthesis = defStr.indexOf("(");
+            int righParenthesis = defStr.lastIndexOf(")");
+            if (leftParenthesis >= 0 && righParenthesis > leftParenthesis)
+            {
+                defStr = defStr.substring(leftParenthesis + 1, righParenthesis);
+            }
+        }
+        return defStr.trim();
+    }
 }

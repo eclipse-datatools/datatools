@@ -66,5 +66,5 @@ public interface IDeltaDdlGenProvider {
      */
     public void processDropStatement(SQLObject element,
 			boolean quoteIdentifiers, boolean qualifyNames, SybaseDdlScript script,
-			DDLGenerator generator, IProgressMonitor monitor);
+			ISybaseDdlGenerator generator, IProgressMonitor monitor);
 }

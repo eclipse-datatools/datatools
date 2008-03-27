@@ -17,8 +17,6 @@ public class QuickSQLParser extends AbstractQuickSQLParser
 {
 	private static QuickSQLParser _instance = new QuickSQLParser(new StringReader(""));
     private boolean _debug = false;
-    private static String SEPARATOR = System.getProperty("line.separator");
-    private static Pattern p = Pattern.compile("(.*"+SEPARATOR+")");
 	
 	private String _input = "";
     private boolean canUseDelimiter = false;
@@ -44,7 +42,7 @@ public class QuickSQLParser extends AbstractQuickSQLParser
 	private static final String[] TERMINATORS_STRING = new String[]{"GO", ";"};
 
 	private static final String[] WATCOM_POST_PARAM= new String[]
-		{"BEGIN","RETURNS", "RESULT","AT","AS","EXTERNAL","ON","DYNAMIC"};
+		{"BEGIN","RETURNS", "RESULT","AT","WITH", "AS","EXTERNAL","ON","DYNAMIC"};
 	
     /**
 	 * Returns the statement terminator array. Different vendors will have their
@@ -63,6 +61,7 @@ public class QuickSQLParser extends AbstractQuickSQLParser
     
     public QuickSQLParser()
     {
+        this(new StringReader(""));
     }
 
     final private void logDebug(String message)
@@ -87,6 +86,11 @@ public class QuickSQLParser extends AbstractQuickSQLParser
 		ReInit(r);
     }
 
+	public String getInput()
+	{
+		return _input;
+	}
+	
     public boolean match(String input, int pattern)
     {
     	try{
@@ -117,6 +121,22 @@ public class QuickSQLParser extends AbstractQuickSQLParser
     
     public int[] find(String input, String[][] tokens)
     {
+    	Token[] ts = getTokens(input, tokens);
+    	if (ts == null)
+    	{
+    		return new int[]{-1, -1};
+    	}
+    	
+    	//calculate index
+    	int[] index = new int[2];
+    	index[0] = getStartIndex(ts[0]);
+    	index[1] = getEndIndex(ts[1]);
+    	return index;
+    }
+  
+  
+    public Token[] getTokens(String input, String[][] tokens)
+      {
     	initParser(input);
 	    boolean found = true;
 	    try{
@@ -124,7 +144,7 @@ public class QuickSQLParser extends AbstractQuickSQLParser
 		    do
 		    {
 			    error_skiptobefore1(tokens[0], new String[]{}, false);
-			    int i = 1;
+			    int i = 0;
 		    	for (; i< tokens.length; i++)
 		    	{
 		    		boolean tokenMatch = false;
@@ -157,53 +177,18 @@ public class QuickSQLParser extends AbstractQuickSQLParser
 	    }catch(Throwable e)
         {
         	logDebug(e.getMessage());
-        	return new int[]{-1, -1};
+        	return null;
         }
         if (! found)
         {
-        	return new int[]{-1, -1};
+        	return null;
         }
     	//calculate index
-    	int[] index = new int[2];
-    	index[0] = getStartIndex(getToken(0));
-    	index[1] = getEndIndex(getToken(tokens.length - 1));
-    	return index;
+    	Token[] ts = new Token[2];
+    	ts[0] = getToken(0);
+    	ts[1] = getToken(tokens.length - 1);
+    	return ts;
     }
-  
-    /**
-    * Gets the start index of a Token for a String input
-    */
-    private int getStartIndex(Token t)
-    {
-        //calculate index
-        Matcher m = p.matcher(_input);
-        int i = 1;
-        int count = 0;
-        while (m.find() && i < t.beginLine)
-        {
-            i ++;
-            count = m.end(1);//Returns the index of the last character matched, plus one. (number of characters)
-        }
-        return count + t.beginColumn - 1;
-    }
-    
-    /**
-    * Gets the end index of a Token for a String input
-    */
-    private int getEndIndex(Token t)
-    {
-    	//calculate index
-    	Matcher m = p.matcher(_input);
-        int i = 1;
-        int count = 0;
-        while (m.find() && i < t.endLine)
-        {
-            i ++;
-            count = m.end(1);//Returns the index of the last character matched, plus one.
-        }
-    	return count + t.endColumn;
-    }
-    
     public String[][] getParameters(String input)
     {
     	initParser(input);
@@ -385,7 +370,6 @@ TOKEN:
 | < MAX: "max" >
 | < MIN: "min" >
 | < MODIFY: "modify" >
-| < NATIONAL: "national" >
 | < NOHOLDLOCK: "noholdlock" >
 | < NONCLUSTERED: "nonclustered" >
 | < NOT: "not" >
@@ -466,7 +450,6 @@ TOKEN:
 | < USER: "user" >
 | < USING: "using" >
 | < VALUES: "values" >
-| < VARYING: "varying" >
 | < VIEW: "view" >
 | < WAITFOR: "waitfor" >
 | < WHEN: "when" >
@@ -742,7 +725,7 @@ String[] parameter(): {Token name=null; String defaultValue=null; String type=nu
 			//As long as the param name starts with @, we regard it as a tsql parameter
 			LOOKAHEAD(1) ( name = <VAR_NAME> 
 			 type = datatype() 
-			 defaultValue = optional_param_default() 
+			 [ "=" defaultValue = procparmdefault()] 
 			 direction = param_options() 
 			)|(
 			   ({direction = 0;}  [<IN> | {direction = 1;}  <OUT> | {direction = 2;}  <INOUT> ] ) 
@@ -827,30 +810,62 @@ String procparmdefault() : {}
 	int startIndex = getStartIndex(start);
 	boolean match = false;
 	do{
-		error_skiptobefore(new int[]{}, new int[]{COMMA, CLOSEPAREN});
-		Token end = getToken(1);
-		Token next = getToken(2);
-		if (end == null || next == null)
-		{
-			match = true;
-			break;
-		}
-		else if (end.kind == EOF || end.kind == COMMA)
-		{
-			match = true;
-			break;
-		}
-		else if (end.kind == CLOSEPAREN)
-		{
-			for (int i=0;i<WATCOM_POST_PARAM.length; i++)
-			{
-				if (WATCOM_POST_PARAM[i].equalsIgnoreCase(next.image))
-				{
-					match = true;
-					break;
-				}
-			}
-		}
+        int balance = 0;//open parenthesis minus close parenthesis
+        error_skiptobefore(new int[]{OPENPAREN}, new int[]{COMMA, CLOSEPAREN, OUTPUT, OUT, IN, WITH, AS});
+
+        if (getToken(0).kind == OPENPAREN )
+        {
+                balance ++;
+        }
+
+        if (getToken(1).kind == CLOSEPAREN )
+        {
+                balance --;
+        }
+        Token end = getToken(1);
+        Token next = getToken(2);
+        if (end == null || next == null)
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == EOF || end.kind == COMMA)
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == COMMA && balance == 0)
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == WITH && balance == 0)
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == AS && balance == 0)//TSQL
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == OUTPUT || end.kind == OUT || end.kind == IN )//TSQL: IN/OUT follows the default value
+        {
+                match = true;
+                break;
+        }
+        else if (end.kind == CLOSEPAREN && balance < 0)
+        {
+                for (int i=0;i<WATCOM_POST_PARAM.length; i++)
+                {
+                        if (WATCOM_POST_PARAM[i].equalsIgnoreCase(next.image))
+                        {
+                                match = true;
+                                break;
+                        }
+                }
+        }
+
 	}while (!match);
 	int endIndex = getEndIndex(getToken(0));
 	if (endIndex > startIndex)

@@ -2,9 +2,15 @@ package org.eclipse.datatools.enablement.sybase.ddl;
 
 import java.util.Iterator;
 
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.fe.GenericDdlBuilder;
+import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
 import org.eclipse.datatools.enablement.sybase.parser.QuickSQLParser;
+import org.eclipse.datatools.enablement.sybase.util.SQLUtil;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
@@ -13,7 +19,10 @@ import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
+import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
+import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
@@ -24,6 +33,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.TypedElement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
@@ -32,8 +42,11 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
+import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
+import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
 
 public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISybaseDdlConstants
 {
@@ -105,7 +118,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
 
     abstract public String dropAuthorizationId(AuthorizationIdentifier authId, boolean quoteIdentifiers,
             boolean qualifyNames);
-
+    
     /**
      * <pre>
      *     DROP VIEW
@@ -115,7 +128,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
      */
     public String dropView(ViewTable view, boolean quoteIdentifiers, boolean qualifyNames)
     {
-        StringBuffer dropView = new StringBuffer(""); //$NON-NLS-1$
+        StringBuffer dropView = new StringBuffer("");
         dropView.append(DROP).append(SPACE).append(VIEW).append(SPACE).append(
                 getName(view, quoteIdentifiers, qualifyNames));
 
@@ -149,16 +162,8 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
     public String dropColumn(Column col, boolean quoteIdentifiers, boolean qualifyNames)
     {
         StringBuffer sb = new StringBuffer(128);
-        sb.append(ALTER).append(SPACE).append(TABLE).append(getName(col.getTable(), quoteIdentifiers, qualifyNames))
+        sb.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(getName(col.getTable(), quoteIdentifiers, qualifyNames))
                 .append(SPACE).append(DROP).append(SPACE).append(getName(col, quoteIdentifiers, false));
-        return sb.toString();
-    }
-
-    public String dropDatabase(Database db, boolean quoteIdentifiers, boolean qualifyNames)
-    {
-        StringBuffer sb = new StringBuffer(128);
-        sb.append(DROP).append(SPACE).append(DATABASE).append(SPACE)
-                .append(getName(db, quoteIdentifiers, qualifyNames));
         return sb.toString();
     }
 
@@ -169,7 +174,12 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
                 .append(getName(db, quoteIdentifiers, qualifyNames));
         return sb.toString();
     }
-
+    
+    public String dropDatabase(Database db, boolean quoteIdentifiers, boolean qualifyNames)
+    {
+        return EMPTY_STRING;
+    }
+    
     public String getName(ENamedElement element, boolean quoteIdentifiers, boolean qualifyNames)
     {
         if (element instanceof Event)
@@ -208,6 +218,10 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         {
             return getName((UserDefinedType) element, quoteIdentifiers, qualifyNames);
         }
+        else if (element instanceof Catalog)
+        {
+        	return SQLDevToolsUtil.quoteWhenNecessary(element.getName(), getDatabaseIdentifier(element));
+        }
         else
         {
             if (quoteIdentifiers)
@@ -221,6 +235,26 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         }
     }
 
+    protected String getName(TableConstraint constraint, boolean quoteIdentifiers, boolean qualifyNames)
+    {
+    	String name = constraint.getName();
+        if (quoteIdentifiers)
+        {
+        	name = this.getDoubleQuotedString(name);
+        }
+        return name;
+    }
+    
+    protected String getName(TableConstraint constraint, boolean quoteIdentifiers)
+    {
+    	String name = constraint.getName();
+        if (quoteIdentifiers)
+        {
+        	name = this.getDoubleQuotedString(name);
+        }
+        return name;
+    }
+    
     protected String getName(Event event, boolean quoteIdentifiers, boolean qualifyNames)
     {
         String typeName = event.getName();
@@ -241,7 +275,6 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         if (quoteIdentifiers)
         {
             name = this.getDoubleQuotedString(name);
-            schemaName = this.getDoubleQuotedString(schemaName);
         }
 
         if (qualifyNames)
@@ -249,6 +282,20 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
             name = schemaName + DOT + name;
         }
 
+        return name;
+    }
+    
+    protected String getName(Trigger trigger, boolean quoteIdentifiers, boolean qualifyNames) {
+        String name = trigger.getName();
+        String schemaName = trigger.getSchema().getName();
+    
+        if(quoteIdentifiers) {
+            name = this.getDoubleQuotedString(name);
+        }
+        if(qualifyNames) {
+            name = schemaName + DOT + name;
+        }
+        
         return name;
     }
 
@@ -260,7 +307,6 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         if (quoteIdentifiers)
         {
             name = this.getDoubleQuotedString(name);
-            schemaName = this.getDoubleQuotedString(schemaName);
         }
 
         if (qualifyNames)
@@ -273,18 +319,9 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
 
     protected String getName(Index index, boolean quoteIdentifiers, boolean qualifyNames)
     {
-        Table table = index.getTable();
-
-        String indexName = index.getName();
-        String schemaName = table.getSchema().getName();
-
-        if (quoteIdentifiers)
-        {
-            indexName = this.getDoubleQuotedString(indexName);
-            schemaName = this.getDoubleQuotedString(schemaName);
-        }
-
-        return indexName;
+        String name = index.getName(); 
+        name = SQLDevToolsUtil.quoteWhenNecessary(index.getName(), getDatabaseIdentifier(index));      
+        return name;
     }
 
     protected String getName(Column col, boolean quoteIdentifiers, boolean qualifyNames)
@@ -320,8 +357,13 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
             }
             statement.append(CONSTRAINT).append(SPACE).append(name).append(SPACE);
         }
-        statement.append(CHECK).append(SPACE).append(LEFT_PARENTHESIS).append(constraint.getSearchCondition().getSQL())
-                .append(RIGHT_PARENTHESIS);
+        SearchCondition condition = constraint.getSearchCondition();
+        String conditionSql = EMPTY_STRING;
+        if (condition != null)
+        {
+            conditionSql = condition.getSQL();
+        }
+        statement.append(CHECK).append(SPACE).append(LEFT_PARENTHESIS).append(conditionSql).append(RIGHT_PARENTHESIS);
         return statement.toString();
     }
 
@@ -331,9 +373,9 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
      * See following SQL Syntax:
      * 
      * <pre>
-     *  alter table [[database.][owner].table_name
-     *     add {[constraint constraint_name]
-     *     check (search_condition)}
+     *   alter table [[database.][owner].table_name
+     *      add {[constraint constraint_name]
+     *      check (search_condition)}
      * </pre>
      * 
      * @param constraint
@@ -348,7 +390,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         StringBuffer statement = new StringBuffer(128);
         statement.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(
                 getName(constraint.getBaseTable(), quoteIdentifiers, qualifyNames)).append(SPACE);
-        statement.append(ADD).append(SPACE);
+        statement.append(NEWLINE).append(TAB).append(ADD).append(SPACE);
         statement.append(this.getAddCheckConstraintClause(constraint, quoteIdentifiers));
         return new String[]
         {
@@ -423,36 +465,46 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
             boolean fullSyntax)
     {
         /**
-         * If the container is null, then it's in the granted privileges list.<br>
-         * Otherwise, it's in the received privileges list.
+         * if privilege not instaneof SybasePrivilege then throw exception
          */
-        if (privilege == null || privilege.eContainer() == null)
-        {
-            return new String[]
-            {};
-        }
+        if(!(privilege instanceof SybasePrivilege))
+            throw new IllegalArgumentException("Only SybasePrivilege supported");
+        
+        SybasePrivilege sybPrivilege = (SybasePrivilege)privilege;
+        if(sybPrivilege.getGrantee() == null)
+            throw new IllegalArgumentException("Privilege without grantee!");
+        
+//        /**
+//         * If the container is null, then it's in the granted privileges list.<br>
+//         * Otherwise, it's in the received privileges list.
+//         */
+//        if (privilege == null || privilege.eContainer() == null)
+//        {
+//            return new String[]
+//            {};
+//        }
 
-        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
-        String permissionString = assemblePermissionList(privilege, quoteIdentifiers, qualifyNames);
-        StringBuffer objectName = new StringBuffer(""); //$NON-NLS-1$
-        if (privilege.getObject() == null)
+        StringBuffer sb = new StringBuffer("");
+        String permissionString = assemblePermissionList(sybPrivilege, quoteIdentifiers, qualifyNames);
+        StringBuffer objectName = new StringBuffer("");
+        if (sybPrivilege.getObject() == null)
         {
-            objectName.append(""); //$NON-NLS-1$
+            objectName.append("");
         }
-        else if (privilege.getObject() instanceof Column)
+        else if (sybPrivilege.getObject() instanceof Column)
         {
-            Column col = (Column) privilege.getObject();
+            Column col = (Column) sybPrivilege.getObject();
             objectName.append(getName((SQLObject) col.getTable(), quoteIdentifiers, qualifyNames));
         }
         else
         {
-            objectName.append(getName((SQLObject) privilege.getObject(), quoteIdentifiers, qualifyNames));
+            objectName.append(getName((SQLObject) sybPrivilege.getObject(), quoteIdentifiers, qualifyNames));
         }
 
-        AuthorizationIdentifier grantee = (AuthorizationIdentifier) privilege.eContainer();
+        AuthorizationIdentifier grantee = getAuthorizationIdentifier(sybPrivilege);
         sb.append(GRANT).append(SPACE).append(permissionString).append(SPACE).append(ON).append(SPACE).append(
                 objectName).append(SPACE).append(TO).append(SPACE).append(
-                getName((SQLObject) grantee, quoteIdentifiers, qualifyNames));
+                grantee.getName());//never need to quote authorization identifier
         return new String[]
         {
             sb.toString()
@@ -513,16 +565,36 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
          * If the container is null, then it's in the granted privileges list.<br>
          * Otherwise, it's in the received privileges list.
          */
-        if (privilege.eContainer() == null)
+//        if (privilege.eContainer() == null)
+//        {
+//            return "";
+//        }
+        /**
+         * if privilege not instaneof SybasePrivilege then throw exception
+         */
+        if(!(privilege instanceof SybasePrivilege))
+            throw new IllegalArgumentException("Only SybasePrivilege supported");
+        
+        SybasePrivilege sybPrivilege = (SybasePrivilege)privilege;
+        if(sybPrivilege.getGrantee() == null)
+            throw new IllegalArgumentException("Privilege without grantee!");
+        
+        if (privilege.getObject() instanceof Column)
         {
-            return ""; //$NON-NLS-1$
+            Column col = (Column) privilege.getObject();
+            // This happens when the column is already removed from the table
+            if (col.getTable() == null)
+            {
+                return "";
+            }
         }
-        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
+        
+        StringBuffer sb = new StringBuffer("");
         String permissionString = assemblePermissionList(privilege, quoteIdentifiers, qualifyNames);
-        StringBuffer objectName = new StringBuffer(""); //$NON-NLS-1$
+        StringBuffer objectName = new StringBuffer("");
         if (privilege.getObject() == null)
         {
-            objectName.append(""); //$NON-NLS-1$
+            objectName.append("");
         }
         else if (privilege.getObject() instanceof Column)
         {
@@ -533,37 +605,48 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         {
             objectName.append(getName((SQLObject) privilege.getObject(), quoteIdentifiers, qualifyNames));
         }
-        AuthorizationIdentifier grantee = (AuthorizationIdentifier) privilege.eContainer();
+        AuthorizationIdentifier grantee = getAuthorizationIdentifier(privilege);
         sb.append(REVOKE).append(SPACE).append(permissionString).append(SPACE).append(ON).append(SPACE).append(
                 objectName).append(SPACE).append(FROM).append(SPACE).append(
-                getName(grantee, quoteIdentifiers, qualifyNames));
+                getName(grantee, false, qualifyNames));
 
         return sb.toString();
     }
 
+    private AuthorizationIdentifier getAuthorizationIdentifier(Privilege privilege)
+    {
+        if (privilege instanceof SybasePrivilege)
+        {
+            return ((SybasePrivilege)privilege).getGrantee();
+        }
+        else
+        {
+            return (AuthorizationIdentifier) privilege.eContainer();
+        }
+    }
     private String assemblePermissionList(Privilege privilege, boolean quoteIdentifiers, boolean qualifyNames)
     {
-        StringBuffer permissionList = new StringBuffer(""); //$NON-NLS-1$
+        StringBuffer permissionList = new StringBuffer("");
         if (privilege.getObject() == null)
         {
-            return ""; //$NON-NLS-1$
+            return "";
         }
         else if (privilege.getObject() instanceof Column)
         {
             Column col = (Column) privilege.getObject();
-            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()).append(LEFT_PARENTHESIS) //$NON-NLS-1$
+            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()).append(LEFT_PARENTHESIS)
                     .append(getName(col, quoteIdentifiers, false)).append(RIGHT_PARENTHESIS);
         }
         else
         {
-            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction()); //$NON-NLS-1$
+            permissionList.append(privilege.getAction() == null ? "" : privilege.getAction());
         }
         return permissionList.toString();
     }
 
     protected String getViewColumnList(ViewTable view, boolean quoteIdentifiers)
     {
-        StringBuffer columnsStr = new StringBuffer(""); //$NON-NLS-1$
+        StringBuffer columnsStr = new StringBuffer("");
         Iterator it = view.getColumns().iterator();
 
         if (view.getColumns().size() == 0)
@@ -640,7 +723,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         sb.append(type);
         if (defValue != null)
         {
-            sb.append("=").append(defValue); //$NON-NLS-1$
+            sb.append("=").append(defValue);
         }
         if(mode != null && (mode.equalsIgnoreCase(ParameterMode.INOUT_LITERAL.getLiteral()) || mode.equalsIgnoreCase(ParameterMode.OUT_LITERAL.getLiteral()))) {
             sb.append(SPACE).append(OUTPUT);
@@ -653,11 +736,11 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         StringBuffer sb = new StringBuffer();
         if (routine.isDeterministic())
         {
-            sb.append(ISybaseDdlConstants.DETERMINISTIC).append(NEWLINE);
+            sb.append(DETERMINISTIC).append(NEWLINE);
         }
         else
         {
-            sb.append(NOT).append(SPACE).append(ISybaseDdlConstants.DETERMINISTIC).append(NEWLINE);
+            sb.append(NOT).append(SPACE).append(DETERMINISTIC).append(NEWLINE);
         }
         return sb.toString();
     }
@@ -689,7 +772,7 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         else
         {
             // TODO report error
-            return null;
+            return SPACE;
         }
 
         while (it.hasNext())
@@ -787,4 +870,94 @@ public abstract class SybaseDdlBuilder extends GenericDdlBuilder implements ISyb
         sb.append(bodyString);
         return sb.toString();
     }
+    
+    public String getIndexKeyColumns(Index index, boolean quoteIdentifiers)
+    {
+        return SybaseDdlUtils.getIndexMemberKeys(index.getMembers(), quoteIdentifiers);        
+    }   
+    
+    protected String getDataTypeString(TypedElement typedElement, Schema schema)
+    {
+        //TODO temparory solution, should use DataTypeProvider.getDataTypeString in the future
+        boolean needQuote = false;
+        if (typedElement.getDataType().getName().indexOf("\"") >= 0
+                || typedElement.getDataType().getName().indexOf(" ") >= 0)
+        {
+            needQuote = true;
+        }
+        return getDataTypeString(typedElement, schema, needQuote);
+    }
+    
+    protected String getDataTypeString(TypedElement typedElement, Schema schema, boolean quotedIdentifier) {
+        SQLDataType containedType = typedElement.getContainedType();
+        if(containedType != null) {
+            if(containedType instanceof PredefinedDataType) {
+                EObject root = ContainmentServiceImpl.INSTANCE.getRootElement(typedElement);
+                if(root instanceof Database) {
+                    DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition((Database) root);
+                    return def.getPredefinedDataTypeFormattedName((PredefinedDataType) containedType);
+                }
+            }
+        }
+        else {
+            UserDefinedType referencedType = typedElement.getReferencedType();
+            if(referencedType != null) {
+                if (referencedType.getSchema() != schema) {
+                    return this.getName(referencedType,quotedIdentifier, false);
+                } else {
+                    if(quotedIdentifier)
+                    {
+                        return getDoubleQuotedString(referencedType.getName());
+                    }
+                    else
+                    {
+                        return referencedType.getName();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * super implementation is wrong
+     */
+    protected String getDoubleQuotedString(String original)
+    {
+        return SQLUtil.quote(original, "\"");
+    }
+    
+    /**
+     * super implementation is wrong
+     */
+    protected String getSingleQuotedString(String original)
+    {
+        return SQLUtil.quote(original, "'");
+    }
+    
+    protected String getDropPreconditionPattern() 
+    {
+        StringBuffer sb = new StringBuffer();
+        
+        sb.append(IF).append(SPACE).append(EXISTS).append(SPACE).append(LEFT_PARENTHESIS).append(NEWLINE);
+        sb.append(TAB).append("{0}").append(RIGHT_PARENTHESIS).append(NEWLINE).append(THEN).
+            append(NEWLINE).append(BEGIN).append(NEWLINE);
+        sb.append(TAB).append("{1}").append(NEWLINE).append(END).append(NEWLINE).append(END_IF);
+        return sb.toString();
+    }
+
+    public DatabaseIdentifier getDatabaseIdentifier(EObject ojb) {
+        EObject root = ContainmentServiceImpl.INSTANCE.getRootElement(ojb);
+        if(root instanceof Database) {
+            DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition((Database) root);
+            DDLGenerator ddlgen = def.getDDLGenerator();
+            if (ddlgen instanceof SybaseDdlGenerator) {
+                if (((SybaseDdlGenerator) ddlgen).getParameter() instanceof DatabaseIdentifier)
+                {
+                    return (DatabaseIdentifier) ((SybaseDdlGenerator) ddlgen).getParameter();
+                }
+            }
+        }
+        return null;
+    }    
 }

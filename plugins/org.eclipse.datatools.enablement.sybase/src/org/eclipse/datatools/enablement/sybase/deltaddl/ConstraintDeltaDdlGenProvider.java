@@ -19,6 +19,11 @@ public class ConstraintDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
 {
     protected Map _modifyRecordMap;
 
+    protected void initProvider()
+    {
+        
+    }
+    
     public void processAlterStatement(SQLObject element, Map modifyRecordMap, boolean quoteIdentifiers,
             boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script, IProgressMonitor monitor)
     {
@@ -26,6 +31,7 @@ public class ConstraintDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
         List list = (List) modifyRecordMap.get(element);
         if (list != null)
         {
+            initProvider();
             for (int i = 0; i < list.size(); i++)
             {
                 SybaseDeltaDdlGeneration.FeatureChangeRecord cr = (SybaseDeltaDdlGeneration.FeatureChangeRecord) list.get(i);
@@ -33,14 +39,17 @@ public class ConstraintDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
             }
         }
     }
+
     protected void addCreateStatement(SybaseDdlScript script, String statement)
     {
         script.addAlterTableAddConstraintStatement(statement);
     }
+
     protected void addDropStatement(SybaseDdlScript script, String statement)
     {
         script.addAlterTableDropConstraintStatement(statement);
     }
+
     protected void getModificationResult(SQLObject e, EStructuralFeature feature, Object oldValue, Object newValue,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script)
     {
@@ -53,15 +62,19 @@ public class ConstraintDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider
         // name changed
         if (feature.getFeatureID() == SQLConstraintsPackage.CONSTRAINT__NAME && needGenerateRenamingDdl(c))
         {
-            script.addAlterTableRenameConstraintStatement(generateRenameConstraintStatement(c, (String) oldValue, (String) newValue,
-                    quoteIdentifiers, qualifyNames, fullSyntax));
+            String[] statements = generateRenameConstraintStatement(c, (String) oldValue, (String) newValue,
+                    quoteIdentifiers, qualifyNames, fullSyntax);
+            for (int i = 0; i < statements.length; i++)
+            {
+                script.addAlterTableRenameConstraintStatement(statements[i]);
+            }
         }
     }
 
-    protected String generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
+    protected String[] generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
-        return ""; //$NON-NLS-1$
+        return new String[]{};
     }
     
     protected boolean needGenerateRenamingDdl(Constraint constraint)

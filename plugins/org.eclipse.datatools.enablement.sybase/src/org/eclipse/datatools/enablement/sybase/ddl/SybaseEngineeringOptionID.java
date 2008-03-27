@@ -19,11 +19,13 @@ public class SybaseEngineeringOptionID extends EngineeringOptionID
     public final static String GENERATE_FULL_SYNTAX        = "GENERATE_FULL_SYNTAX";       //$NON-NLS-1$
     public final static String GENERATE_EXTRA_CODE         = "GENERATE_EXTRA_CODE";        //$NON-NLS-1$
     public final static String GENERATE_COMMENTS           = "GENERATE_COMMENTS";          //$NON-NLS-1$
+    public final static String GENERATE_PRIVILEGE          = "GENERATE_PRIVILEGE";         //$NON-NLS-1$
+    public final static String GENERATE_SETUSER            = "GENERATE_SETUSER";           //$NON-NLS-1$
+    public final static String GENERATE_USEDATABASE        = "GENERATE_USEDATABASE";       //$NON-NLS-1$
 
     // ASE & ASA
     public final static String GENERATE_USERS_GROUPS       = "GENERATE_USERS_GROUPS";      //$NON-NLS-1$
     public final static String GENERATE_PROXY_TABLES       = "GENERATE_PROXY_TABLES";      //$NON-NLS-1$
-    public final static String GENERATE_PRIVILEGE          = "GENERATE_PRIVILEGE";         //$NON-NLS-1$
     public final static String GENERATE_UNIQUE_CONSTRAINTS = "GENERATE_UNIQUE_CONSTRAINTS"; //$NON-NLS-1$
     public final static String GENERATE_DATABASE           = "GENERATE_DATABASE";          //$NON-NLS-1$
     public final static String GENERATE_CATALOGS           = "GENERATE_CATALOG";           //$NON-NLS-1$
@@ -36,7 +38,9 @@ public class SybaseEngineeringOptionID extends EngineeringOptionID
     // ASA/IQ
     public final static String GENERATE_DBSPACES           = "GENERATE_DBSPACES";          //$NON-NLS-1$
     public final static String GENERATE_EVENTS             = "GENERATE_EVENTS";            //$NON-NLS-1$
-
+    public final static String GENERATE_ROUTINES           = "GENERATE_ROUTINES";          //$NON-NLS-1$
+    public final static String GENERATE_JOIN_INDICES       = "GENERATE_JOIN_INDICES";      //$NON-NLS-1$
+    
     // masks
     // for Sybase
     public final static int    USERS_GROUPS                = 1 << 13;

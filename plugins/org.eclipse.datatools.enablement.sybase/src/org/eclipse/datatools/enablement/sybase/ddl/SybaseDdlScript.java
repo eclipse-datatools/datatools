@@ -11,34 +11,102 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.fe.GenericDdlScript;
 
 public class SybaseDdlScript extends GenericDdlScript
 {
+    public void merge(SybaseDdlScript script)
+    {
+        useDatabaseDropStatements.addAll(script.useDatabaseDropStatements);
+        useDatabaseCreateStatements.addAll(script.useDatabaseCreateStatements);
+        alterTableRenameStatements.addAll(script.alterTableRenameStatements);
+        alterTableDropColumnStatements.addAll(script.alterTableDropColumnStatements);
+        createRuleStatements.addAll(script.createRuleStatements);
+        createDefaultStatements.addAll(script.createDefaultStatements);
+        createUDDStatements.addAll(script.createUDDStatements);
+        createOtherStatements.addAll(script.createOtherStatements);
+        createRoutineStatements.addAll(script.createRoutineStatements);
+        createEventStatements.addAll(script.createEventStatements);
+        dropRuleStatements.addAll(script.dropRuleStatements);
+        dropDefaultStatements.addAll(script.dropDefaultStatements);
+        dropUDDStatements.addAll(script.dropUDDStatements);
+        dropOtherStatements.addAll(script.dropOtherStatements);
+        dropEventStatements.addAll(script.dropEventStatements);
+        dropRoutineStatements.addAll(script.dropRoutineStatements);
+        alterOtherStatements.addAll(script.alterOtherStatements);
+        grantPrivilegesStatements.addAll(script.grantPrivilegesStatements);
+        revokePrivilegesStatements.addAll(script.revokePrivilegesStatements);
+        createDatabaseStatements.addAll(script.createDatabaseStatements);
+        alterTableRenameConstraintStatements.addAll(script.alterTableRenameConstraintStatements);
+        dropDatabaseStatements.addAll(script.dropDatabaseStatements);
+        dropUserStatements.addAll(script.dropUserStatements);
+        dropGroupStatements.addAll(script.dropGroupStatements);
+        createGroupStatements.addAll(script.createGroupStatements);
+        createUserStatements.addAll(script.createUserStatements);
+        dropDatabaseObjectsStatements.addAll(script.dropDatabaseObjectsStatements);
+        createDatabaseObjectsStatements.addAll(script.createDatabaseObjectsStatements);
+        alterTableColumnStatements.addAll(script.alterTableColumnStatements);
+        alterIndexNonclusteredStatements.addAll(script.alterIndexNonclusteredStatements);
+        alterIndexClusteredStatements.addAll(script.alterIndexClusteredStatements);
+        dropForeignKeyStatements.addAll(script.dropForeignKeyStatements);
+        dropTableStatements.addAll(script.dropTableStatements);
+        dropViewStatements.addAll(script.dropViewStatements);
+        dropConstraintStatements.addAll(script.dropConstraintStatements);
+        dropTriggerStatements.addAll(script.dropTriggerStatements);
+        dropIndexStatements.addAll(script.dropIndexStatements);
+        createTableStatements.addAll(script.createTableStatements);
+        alterTableStatements.addAll(script.alterTableStatements);
+        createViewStatements.addAll(script.createViewStatements);
+        addForeignKeyStatements.addAll(script.addForeignKeyStatements);
+        createIndexStatements.addAll(script.createIndexStatements);
+        createTriggerStatements.addAll(script.createTriggerStatements);
+        addConstraintStatements.addAll(script.addConstraintStatements);
+        alterTableModifyColumnTypeStatements.addAll(script.alterTableModifyColumnTypeStatements);
+        alterTableRenameColumnStatements.addAll(script.alterTableRenameColumnStatements);
+        alterTableAlterConstraintStatements.addAll(script.alterTableAlterConstraintStatements);
+        commentOnStatements.addAll(script.commentOnStatements);
+    }
+    
     public String[] getStatements()
     {
         Vector scriptVec = new Vector();
 
+        /**
+         * 1.drop contraint 2.drop column 3.rename table 4.add columnn 5.add constraint 6.alter table ...
+         */
+        scriptVec.addAll(useDatabaseDropStatements);
+        scriptVec.addAll(revokePrivilegesStatements);
+        scriptVec.addAll(dropConstraintStatements);
+        scriptVec.addAll(alterTableDropColumnStatements);
+        scriptVec.addAll(alterTableRenameStatements);
+        scriptVec.addAll(alterIndexNonclusteredStatements);
+        scriptVec.addAll(alterIndexClusteredStatements);
         scriptVec.addAll(dropOtherStatements);
         scriptVec.addAll(dropEventStatements);
         scriptVec.addAll(dropTriggerStatements);
         scriptVec.addAll(dropRoutineStatements);
         scriptVec.addAll(dropForeignKeyStatements);
-        scriptVec.addAll(dropConstraintStatements);
+        
         scriptVec.addAll(dropIndexStatements);
         scriptVec.addAll(dropViewStatements);
         scriptVec.addAll(dropTableStatements);
         scriptVec.addAll(dropUDDStatements);
         scriptVec.addAll(dropRuleStatements);
         scriptVec.addAll(dropDefaultStatements);
-        scriptVec.addAll(dropAuthIdStatements);
+        scriptVec.addAll(dropUserStatements);
+        scriptVec.addAll(dropGroupStatements);
         scriptVec.addAll(dropDatabaseObjectsStatements);
         scriptVec.addAll(dropDatabaseStatements);
         scriptVec.addAll(createDatabaseStatements);
+        scriptVec.addAll(useDatabaseCreateStatements);
         scriptVec.addAll(createDatabaseObjectsStatements);
-        scriptVec.addAll(createAuthIdStatements);
+        scriptVec.addAll(createUserStatements);
+        scriptVec.addAll(createGroupStatements);
         scriptVec.addAll(createRuleStatements);
         scriptVec.addAll(createDefaultStatements);
         scriptVec.addAll(createUDDStatements);
         scriptVec.addAll(createTableStatements);
         scriptVec.addAll(alterTableStatements);
+        scriptVec.addAll(alterTableRenameColumnStatements);
+        scriptVec.addAll(alterTableModifyColumnTypeStatements);
         scriptVec.addAll(alterTableColumnStatements);
+        
         scriptVec.addAll(createViewStatements);
         scriptVec.addAll(createIndexStatements);
         scriptVec.addAll(addConstraintStatements);
@@ -49,11 +117,33 @@ public class SybaseDdlScript extends GenericDdlScript
         scriptVec.addAll(createOtherStatements);
         scriptVec.addAll(alterOtherStatements);
         scriptVec.addAll(grantPrivilegesStatements);
-        scriptVec.addAll(revokePrivilegesStatements);
         scriptVec.addAll(alterTableRenameConstraintStatements);
+        scriptVec.addAll(alterTableAlterConstraintStatements);
+        scriptVec.addAll(cleanUpStatements);
+        scriptVec.addAll(commentOnStatements);
         String[] scripts = new String[scriptVec.size()];
         scriptVec.copyInto(scripts);
         return scripts;
+    }
+
+    public void addAlterIndexNonclusteredStatements(String statement)
+    {
+        alterIndexNonclusteredStatements.add(statement);
+    }
+    
+    public void addAlterIndexClusteredStatements(String statement)
+    {
+        alterIndexClusteredStatements.add(statement);
+    }
+    
+    public void addAlterTableRenameStatements(String statement)
+    {
+        alterTableRenameStatements.add(statement);
+    }
+    
+    public void addAlterTableDropColumnStatements(String statement)
+    {
+        alterTableDropColumnStatements.add(statement);
     }
     
     public void addCreateRuleStatements(String statement)
@@ -146,14 +236,24 @@ public class SybaseDdlScript extends GenericDdlScript
         dropDatabaseStatements.add(statement);
     }
     
-    public void addCreateAuthIdStatements(String statement)
+    public void addCreateUserStatements(String statement)
     {
-        createAuthIdStatements.add(statement);
+        createUserStatements.add(statement);
     }
     
-    public void addDropAuthIdStatements(String statement)
+    public void addCreateGroupStatements(String statement)
     {
-        dropDatabaseStatements.add(statement);
+        createGroupStatements.add(statement);
+    }
+    
+    public void addDropUserStatements(String statement)
+    {
+        dropUserStatements.add(statement);
+    }
+    
+    public void addDropGroupStatements(String statement)
+    {
+        dropGroupStatements.add(statement);
     }
     
     //database objects includes segment, dbspace, encripted key, etc.
@@ -171,6 +271,45 @@ public class SybaseDdlScript extends GenericDdlScript
     {
         alterTableColumnStatements.add(statement);
     }
+    
+    public void addAlterTableModifyColumnTypeStatements(String statement)
+    {
+        alterTableModifyColumnTypeStatements.add(statement);
+    }
+    
+    public void addAlterTableRenameColumnStatements(String statement)
+    {
+        alterTableRenameColumnStatements.add(statement);
+    }
+    
+    public void addCleanUpStatements(String statement)
+    {
+        cleanUpStatements.add(statement);
+    }
+    
+    public void addUseDatabaseDropStatements(String statement)
+    {
+        useDatabaseDropStatements.add(statement);
+    }
+    
+    public void addUseDatabaseCreateStatements(String statement)
+    {
+        useDatabaseCreateStatements.add(statement);
+    }
+    
+    public void addAlterTableAlterConstraintStatements(String statement)
+    {
+        alterTableAlterConstraintStatements.add(statement);
+    }
+    
+    public void addCommentOnStatements(String statement)
+    {
+        commentOnStatements.add(statement);
+    }
+    
+    protected Vector alterTableRenameStatements = new Vector();
+    
+    protected Vector alterTableDropColumnStatements = new Vector();
     
     protected Vector createRuleStatements = new Vector();
 
@@ -208,14 +347,35 @@ public class SybaseDdlScript extends GenericDdlScript
     
     protected Vector dropDatabaseStatements = new Vector();
     
-    protected Vector dropAuthIdStatements = new Vector();
+    protected Vector dropUserStatements = new Vector();
     
-    protected Vector createAuthIdStatements = new Vector();
+    protected Vector dropGroupStatements = new Vector();
+    
+    protected Vector createUserStatements = new Vector();
+    
+    protected Vector createGroupStatements = new Vector();
     
     protected Vector dropDatabaseObjectsStatements = new Vector();
     
     protected Vector createDatabaseObjectsStatements = new Vector();
     
     protected Vector alterTableColumnStatements = new Vector();
+    
+    protected Vector alterTableModifyColumnTypeStatements = new Vector();
+    
+    protected Vector alterTableRenameColumnStatements = new Vector();
+
+    protected Vector cleanUpStatements = new Vector();
    
+    protected Vector alterIndexNonclusteredStatements = new Vector();
+    
+    protected Vector alterIndexClusteredStatements = new Vector();
+    
+    protected Vector useDatabaseDropStatements = new Vector();
+    
+    protected Vector useDatabaseCreateStatements = new Vector();
+    
+    protected Vector alterTableAlterConstraintStatements = new Vector();
+    
+    protected Vector commentOnStatements = new Vector();
 }

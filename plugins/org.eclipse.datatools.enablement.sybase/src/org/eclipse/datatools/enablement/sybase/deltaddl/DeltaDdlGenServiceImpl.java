@@ -157,6 +157,7 @@ public final class DeltaDdlGenServiceImpl
             }
         }
     }
+
     private void initProductsMap(String product, String version, String packageURI, String className,
             IDeltaDdlGenProvider provider)
     {
@@ -189,14 +190,14 @@ public final class DeltaDdlGenServiceImpl
 
                     int result = 0;
 
-                    final String[] ls = leftString.split("\\Q.\\E"); //$NON-NLS-1$
-                    final String[] rs = rightString.split("\\Q.\\E"); //$NON-NLS-1$
+                    final String[] ls = leftString.split("\\Q.\\E");
+                    final String[] rs = rightString.split("\\Q.\\E");
                     final int length = Math.min(ls.length, rs.length);
                     for (int i = 0; i < length; i++)
                     {
                         //only one x can be present in the string array
-                        int lxindex = ls[i].indexOf("x"); //$NON-NLS-1$
-                        int rxindex = rs[i].indexOf("x"); //$NON-NLS-1$
+                        int lxindex = ls[i].indexOf("x");
+                        int rxindex = rs[i].indexOf("x");
                         if ((lxindex >= 0 || rxindex >= 0))
                         {
                             if( lxindex != rxindex)
@@ -246,8 +247,8 @@ public final class DeltaDdlGenServiceImpl
 
         ProductVersionClass(String product, String version, EClass clazz)
         {
-            this._productName = product != null ? product : ""; //$NON-NLS-1$
-            this._version = version != null ? version : ""; //$NON-NLS-1$
+            this._productName = product != null ? product : "";
+            this._version = version != null ? version : "";
             this._clazz = clazz;
         }
 

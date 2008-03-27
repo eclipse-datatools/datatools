@@ -49,104 +49,140 @@ public class SybaseDdlBuilderWrapper extends SybaseDdlBuilder
         }
         return builder;
     }
+    
     public String[] addForeignKey(ForeignKey foreignKey, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
     public String[] addUniqueConstraint(UniqueConstraint constraint, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createAuthorizationId(AuthorizationIdentifier authId, boolean quoteIdentifiers,
             boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createCatalogs(Catalog catalog, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createColumn(Column col, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createDatabase(Database database, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createEvent(Event event, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     protected String[] createPersistentTable(PersistentTable table, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createProcedure(Procedure procedure, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     protected String[] createTempoeryTable(TemporaryTable table, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createTrigger(Trigger trigger, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createUserDefinedFunction(UserDefinedFunction function, boolean quoteIdentifiers,
             boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createUserDefinedType(UserDefinedType udt, boolean quoteIdentifiers, boolean qualifyNames,
             boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String[] createView(ViewTable table, boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String dropAuthorizationId(AuthorizationIdentifier authId, boolean quoteIdentifiers, boolean qualifyNames)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String dropCheckConstraint(CheckConstraint constraint, boolean quoteIdentifiers, boolean qualifyNames)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String dropForeignKey(ForeignKey foreignKey, boolean quoteIdentifiers, boolean qualifyNames)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String dropUniqueConstraint(UniqueConstraint constraint, boolean quoteIdentifiers, boolean qualifyNames)
     {
         // TODO Auto-generated method stub
         return null;
     }
+
+    
     public String dropUserDefinedType(UserDefinedType udt, boolean quoteIdentifiers, boolean qualifyNames)
     {
         // TODO Auto-generated method stub
