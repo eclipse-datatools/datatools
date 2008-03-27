@@ -5,7 +5,7 @@
          point="org.eclipse.datatools.connectivity.connectionProfile">
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
-            icon="icons/aseserver.gif"
+            icon="icons/jdbc_16.gif"
             id="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile"
             name="%profile.ase.title"
             pingFactory="org.eclipse.datatools.enablement.sybase.ase.internal.connection.JDBCASEConnectionFactory"
@@ -17,7 +17,7 @@
             profile="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.enablement.sybase.ase.internal.ui.connection.NewASEConnectionProfileWizard"
-            icon="icons/new_ase.gif"
+            icon="icons/new_db_element.gif"
             id="com.sybase.stf.servers.jdbc.ase2.embedded.NewConnectionProfileWizard"
             name="%profile.ase.wizard.title"
             profile="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile"/>

@@ -6,7 +6,7 @@
       <connectionProfile
             category="org.eclipse.datatools.connectivity.db.category"
             configurationType="org.eclipse.datatools.connectivity.db.generic.configurationType"
-            icon="icons/asaserver.gif"
+            icon="icons/jdbc_16.gif"
             id="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"
             name="%profile.asa.title"
             pingFactory="org.eclipse.datatools.enablement.sybase.asa.internal.connection.JDBCASAConnectionFactory"
@@ -18,7 +18,7 @@
             profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.enablement.sybase.asa.internal.ui.connection.NewASAConnectionProfileWizard"
-            icon="icons/new_asa.gif"
+            icon="icons/new_db_element.gif"
             id="org.eclipse.datatools.enablement.sybase.asa.NewConnectionProfileWizard"
             name="%profile.asa.wizard.title"
             profile="org.eclipse.datatools.enablement.sybase.asa.connectionProfile"/>
