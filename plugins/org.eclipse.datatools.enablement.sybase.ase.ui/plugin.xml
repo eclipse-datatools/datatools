@@ -65,19 +65,26 @@
 						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
 						value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
                   </and>
-	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema"/>
+	                <!--instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalog"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesFolder"/>
+	                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/-->
+	                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
+	                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
+	                
 	            </or>
             </triggerPoints>
             <possibleChildren>
                 <or>
+                <!--instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPredefinedDataType"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService"/>
                 <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder"/>
                 <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesFolder"/>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPredefinedDataType"/>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService"/>
+                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/-->
+                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"/>
+                <instanceof value="org.eclipse.datatools.modelbase.sql.schema.SQLObject"/>
 	            </or>
             </possibleChildren>
             <override

@@ -1446,7 +1446,7 @@ public class SybaseASEDdlBuilder extends SybaseDdlBuilder implements ISybaseASED
     	String useMaseter = new StringBuffer().append(USE).append(SPACE).append(master).toString();
     	String dropStatement = useMaseter + NEWLINE + TAB + super.dropCatalog(db, quoteIdentifiers, qualifyNames);
     	String dbName = db.getName();
-    	String existingCheck = MessageFormat.format(QueryObjectsSQL.QUERY_CATALOG, dbName);
+    	String existingCheck = MessageFormat.format(QueryObjectsSQL.QUERY_CATALOG, new Object[]{dbName});
     	return MessageFormat.format(getDropPreconditionPattern(), new Object[]{existingCheck, dropStatement});
     } 
 
@@ -1484,7 +1484,7 @@ public class SybaseASEDdlBuilder extends SybaseDdlBuilder implements ISybaseASED
 
         String dropStatement = sb.toString();
         String udtName = udt.getName();
-        String existingCheck = MessageFormat.format(QueryObjectsSQL.QUERY_UDT, udtName);
+        String existingCheck = MessageFormat.format(QueryObjectsSQL.QUERY_UDT, new Object[]{udtName});
         return MessageFormat.format(getDropPreconditionPattern(), new Object[]{existingCheck, dropStatement});
     }
 

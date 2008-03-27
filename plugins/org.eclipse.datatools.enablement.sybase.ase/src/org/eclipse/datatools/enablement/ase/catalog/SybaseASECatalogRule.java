@@ -132,7 +132,7 @@ public class SybaseASECatalogRule extends SybaseASERuleImpl implements ICatalogO
 
         this.eSetDeliver(deliver);
         
-        this.isStatementLoaded = true;
+        this.isStatementLoaded = Boolean.TRUE;
     }
     
     private void loadRuleAccess()
@@ -163,7 +163,7 @@ public class SybaseASECatalogRule extends SybaseASERuleImpl implements ICatalogO
 
         eSetDeliver(deliver);
 
-        this.isAccessRuleLoaded = true;
+        this.isAccessRuleLoaded = Boolean.TRUE;
     }
     
     private void loadRuleAccessType()
@@ -207,7 +207,7 @@ public class SybaseASECatalogRule extends SybaseASERuleImpl implements ICatalogO
 
         eSetDeliver(deliver);
 
-        this.isAccessTypeLoaded = true;
+        this.isAccessTypeLoaded = Boolean.TRUE;
     }
 
     public Object getAdapter(Class adapter) {

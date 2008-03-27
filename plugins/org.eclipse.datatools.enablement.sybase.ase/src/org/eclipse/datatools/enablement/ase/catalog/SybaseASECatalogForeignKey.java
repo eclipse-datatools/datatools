@@ -163,7 +163,7 @@ public class SybaseASECatalogForeignKey extends ForeignKeyImpl implements ICatal
     {
         synchronized (referTableLoaded)
         {
-            if(!referTableLoaded)
+            if(!referTableLoaded.booleanValue())
             {
                 Index uniqueIndex = null;
                 if(this.getUniqueConstraint() != null)

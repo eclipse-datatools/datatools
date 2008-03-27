@@ -57,7 +57,6 @@
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASABaseCatalog"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DataTypesFolder"/>
-	                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.WebServicesFolder"/>
 	            </or>
             </triggerPoints>
@@ -68,7 +67,6 @@
      	       	<instanceof value="org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseSchema"/>
                 <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DataTypesFolder"/>
                 <instanceof value="org.eclipse.datatools.enablement.sybase.asa.virtual.DBEventsFolder"/>
-                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/>
 	            </or>
 	     	   <and>
                      <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>

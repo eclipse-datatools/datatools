@@ -170,7 +170,7 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 SybaseASABaseDatabase sac = (SybaseASABaseDatabase) sn.getParent();
                 SchemaFilterProvider provider = new SchemaFilterProvider();
                 ConnectionFilter filter = provider.getConnectionFilter((Catalog) sac.getCatalogs().get(0));
-                List<Schema> schemas = sac.getSchemas();
+                List schemas = sac.getSchemas();
                 if (sn.getChildrenArray().length == 0)
                 {
                     sn.addChildren(getFilteredObjects(filter, schemas));
@@ -215,11 +215,12 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) tableNode.getParent();
                     List tables = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
+                    List schemas = database.getSchemas();
                     List dspTables = new ArrayList();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
 
                         boolean isShowAll = ShowSysTableUtil.isShowSysTableOn(schema);
                         if (isShowAll)
@@ -235,7 +236,8 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                         dspTables.addAll(this.appendOwnerToLabel(schema.getOwner().getName(), schema.getTempTables(), isShowOwner));
                         tables.addAll(getFilteredObjects(filter, dspTables));
                         dspTables.clear();
-                    }
+					}
+
                     return tables.toArray();
                 }
             }
@@ -255,13 +257,15 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) tableNode.getParent();
                     List proxyTables = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    List schemas = database.getSchemas();
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
                         proxyTables.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getOwner()
                                 .getName(), schema.getProxyTables(), isShowOwner)));
-                    }
+					}
+
                     return proxyTables.toArray();
                 }
             }
@@ -280,13 +284,15 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) tableNode.getParent();
                     List views = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    List schemas = database.getSchemas();
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
                         views.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getOwner().getName(),
                                 schema.getViewTables(true), isShowOwner)));
-                    }
+					}
+
                     return views.toArray();
                 }
             }
@@ -306,13 +312,14 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) spNode.getParent();
                     List sps = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    List schemas = database.getSchemas();
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
                         sps.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getOwner().getName(),
                                 schema.getProcedures(), isShowOwner)));
-                    }
+					}
                     return sps.toArray();
                 }
             }
@@ -332,13 +339,15 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) udfNode.getParent();
                     List udfs = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    List schemas = database.getSchemas();
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
                         udfs.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getOwner().getName(),
                                 schema.getUDFs(), isShowOwner)));
-                    }
+					}
+                    
                     return udfs.toArray();
                 }
             }
@@ -359,13 +368,15 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 {
                     SybaseASABaseDatabase database = (SybaseASABaseDatabase) spNode.getParent();
                     List udts = new ArrayList();
-                    List<SybaseASABaseSchema> schemas = database.getSchemas();
-                    for (SybaseASABaseSchema schema : schemas)
-                    {
-                        ConnectionFilter filter = provider.getConnectionFilter(schema);
+                    List schemas = database.getSchemas();
+                    for (Iterator iterator = schemas.iterator(); iterator
+							.hasNext();) {
+						SybaseASABaseSchema schema = (SybaseASABaseSchema) iterator.next();
+						ConnectionFilter filter = provider.getConnectionFilter(schema);
                         udts.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getOwner().getName(),
                                 schema.getUserDefinedTypes(), isShowOwner)));
-                    }
+					}
+
                     return udts.toArray();
                 }
             }
@@ -731,16 +742,16 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
     {
     }
 
-    protected List<SQLObject> appendOwnerToLabel(String owner, List<SQLObject> sqlObjects, boolean isShowOwner)
+    protected List appendOwnerToLabel(String owner, List sqlObjects, boolean isShowOwner)
     {
         return DSEContentProviderUtil.appendOwnerToLabel(sqlObjects, owner, isShowOwner);
     }
 
-    protected List<SQLObject> convertArrayToSQLObjectList(Object[] objs)
+    protected List convertArrayToSQLObjectList(Object[] objs)
     {
         if (objs == null)
-            return new ArrayList<SQLObject>();
-        List<SQLObject> sqlObjs = new ArrayList<SQLObject>(objs.length);
+            return new ArrayList ();
+        List sqlObjs = new ArrayList( objs.length);
         for (int i = 0; i < objs.length; i++)
         {
             sqlObjs.add((SQLObject) objs[i]);

@@ -178,9 +178,9 @@ public class SybaseASECatalogUserDefinedType extends SybaseASEUserDefinedTypeImp
             {
                 String udtName = rs.getString(2);
                 String udtSysName = rs.getString(3);
-                int udtLength = rs.getString(4) == null ? 0 : Integer.valueOf(rs.getString(4));
-                int udtPrecision = rs.getString(5) == null ? 0 : Integer.valueOf(rs.getString(5));
-                int udtScale = rs.getString(6) == null ? 0 : Integer.valueOf(rs.getString(6));
+                int udtLength = rs.getString(4) == null ? 0 : Integer.valueOf(rs.getString(4)).intValue();
+                int udtPrecision = rs.getString(5) == null ? 0 : Integer.valueOf(rs.getString(5)).intValue();
+                int udtScale = rs.getString(6) == null ? 0 : Integer.valueOf(rs.getString(6)).intValue();
 
                 boolean isAllowNulls = rs.getBoolean(7);
                 boolean isIdentity = rs.getBoolean(8);
