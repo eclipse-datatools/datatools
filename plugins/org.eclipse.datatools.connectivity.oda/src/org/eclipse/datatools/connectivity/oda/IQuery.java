@@ -26,13 +26,13 @@ import java.sql.Timestamp;
  * such as returning data rows in a single result set, and
  * may support scalar input parameters.
  * <p>
- * Note: An IQuery object must <b>ALWAYS</b> be prepared before 
- * calling execute().  For example:
+ * Note: An IQuery object must <b>always</b> be prepared before 
+ * it can be executed.  For example:
  * <p>
  * <code>
  * query.prepare( "SELECT * FROM TABLE" );<br>
  * // prepare succeeded, no exception was thrown <br>
- * query.execute();</pre>
+ * query.executeQuery();</pre>
  * </code>
  * <p>
  * An input parameter may be referenced by name or position.  
@@ -79,16 +79,16 @@ public interface IQuery
      * it should simply ignore, and not throw an exception.
 	 * <br>Each ODA extension property defined for a data set
 	 * triggers an ODA consumer to call this method
-	 * with corresponding property value, which could be null. 
+	 * with corresponding property value, which may be null. 
 	 * An ODA consumer does not distinguish whether a property value
 	 * is not set or explicitly set to null.  
 	 * Its handling is specific to individual driver implementation.
 	 * <br>
-	 * <b>Note:</b> This method should be called before executeQuery() or
-	 * other extended execution method(s).
+	 * <b>Note:</b> This method should be called after {@link #prepare(String)}, and
+	 * before {@link #executeQuery()} or other extended execution method(s).
 	 * <br>An optional method.
 	 * @param name		name of the property.
-	 * @param value		value to assign to the named property; could be null.
+	 * @param value		value to assign to the named property; may be null.
 	 * @throws OdaException		if data source error occurs
 	 */
 	public void setProperty( String name, String value ) throws OdaException;
@@ -325,8 +325,8 @@ public interface IQuery
 
 	/**
 	 * Specifies the sort specification for this <code>IQuery</code>.  
-	 * The setter must be called before this <code>IQuery</code> is executed 
-	 * or before <code>getMoreResults</code> is called.  
+	 * This method must be called before this <code>IQuery</code> is executed 
+	 * or before {@link IAdvancedQuery#getMoreResults()} is called.  
 	 * More sort keys can be added to the SortSpec after 
 	 * it is associated with the query.  
 	 * The final sort specification is then applied 
