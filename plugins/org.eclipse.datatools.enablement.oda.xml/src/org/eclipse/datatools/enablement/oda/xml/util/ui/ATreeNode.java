@@ -201,6 +201,10 @@ public class ATreeNode
 				}
 			}
 		}
+		for ( int i = 0; i < result.size(); i++ ) 
+		{
+			( ( ATreeNode ) result.get( i ) ).setParent( this );
+		}
 		return result.toArray( );
 	}
 
