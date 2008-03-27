@@ -722,6 +722,32 @@
          </properties>
       </driverTemplate>
    </extension> 
-   
-    
+   <extension point="org.eclipse.ui.navigator.navigatorContent">
+	   <!-- Database Explorer Menu for Generate DDL -->
+	      <actionProvider
+	            id="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.base"
+	            class = "org.eclipse.datatools.sqltools.ddlgen.internal.ui.actions.popup.ForwardEngineerActionProvider">
+	         <enablement>
+	          <and>
+	            <or>
+	               <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEColumn"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEColumnCheckConstraint"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEFuncBasedIndexMember"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEIndex"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPredefinedDataType"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPrimaryKey"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProcedure"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETempTable"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEUniqueConstraint"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEUserDefinedType"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEViewTable"/>
+				   <adapt type="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebServiceTable"/>
+	            </or>
+	          </and>
+	         </enablement>
+	      </actionProvider>
+	   </extension>    
  </plugin>  
