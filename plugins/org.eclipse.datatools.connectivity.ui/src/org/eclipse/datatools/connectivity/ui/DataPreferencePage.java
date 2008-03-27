@@ -10,8 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.ui;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -28,7 +31,16 @@ public class DataPreferencePage extends org.eclipse.jface.preference.PreferenceP
 
 	protected Control createContents(Composite parent)
     {
-        return null;
+		Composite comp = new Composite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout();
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		comp.setLayout(layout);
+
+		Label descLabel = new Label(comp, SWT.NONE);
+		descLabel.setText(Messages.Datatooling_description);
+
+		return comp;
     }
 
     public void init(IWorkbench workbench)
