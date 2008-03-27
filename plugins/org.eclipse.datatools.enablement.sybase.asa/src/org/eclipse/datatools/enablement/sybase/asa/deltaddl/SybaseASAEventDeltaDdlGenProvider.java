@@ -48,7 +48,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
     private static final int ENABLE_IND = 3;
     private static final int LOCATION_IND = 4;
     
-    private static final String MODIFY = "MODIFY"; //$NON-NLS-1$
+    private static final String MODIFY = "MODIFY";
     
     public void processAlterStatement(SQLObject element, Map modifyRecordMap, boolean quoteIdentifiers,
             boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script, IProgressMonitor monitor)
@@ -72,7 +72,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
             for (Iterator iter = records.iterator(); iter.hasNext();)
             {
                 FeatureChangeRecord r = (FeatureChangeRecord) iter.next();
-                if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__NAME)
+                if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__NAME && r.changed == event)
                 {
                     //rename: create new and drop old
                     String oldName = (String)r.oldValue;
@@ -80,15 +80,10 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
 
                     if (quoteIdentifiers)
                     {
-                        oldName = SQLUtil.quote(oldName, "\""); //$NON-NLS-1$
-                        schemaName = SQLUtil.quote(schemaName, "\""); //$NON-NLS-1$
+                        oldName = SQLUtil.quote(oldName, "\"");
+                        schemaName = SQLUtil.quote(schemaName, "\"");
                     }
 
-                    if (qualifyNames)
-                    {
-                        oldName = schemaName + DOT + oldName;
-                    }
-                    
                     StringBuffer drop = new StringBuffer(128);
                     drop.append(DROP).append(SPACE).append(EVENT).append(SPACE).append(oldName);
 
@@ -101,7 +96,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                 }
                 else if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__DESCRIPTION)
                 {
-                    comment = ((SybaseASADdlBuilder)builder).createComment(event, quoteIdentifiers, qualifyNames);
+                    comment = ((SybaseASADdlBuilder)builder).createComment(event, quoteIdentifiers, qualifyNames, true);
                 }
                 else if (r.feature.getFeatureID() == SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__EVENT_TYPE)
                 {
@@ -116,7 +111,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                 }
                 else if (r.feature.getFeatureID() == SQLSchemaPackage.EVENT__CONDITION)
                 {
-                    if (event.getCondition() == null || event.getCondition().trim().equals("")) //$NON-NLS-1$
+                    if (event.getCondition() == null || event.getCondition().trim().equals(""))
                     {
                         alters[WHERE_IND] = WHERE + SPACE + NULL + NEWLINE;
                     }
@@ -127,17 +122,19 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                 }
                 else if (r.feature.getFeatureID() == SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_EVENT__SCHEDULES)
                 {
+                    //alter schedule can't be combined with alter where statement, 
+                    //to simplify the logic, always create separate statements for schedule
                     EList oldSch = (EList)r.oldValue;
                     EList schedules = event.getSchedules();
                     if (schedules == null || schedules.isEmpty())
                     {
                         if (oldSch != null && !oldSch.isEmpty())
                         {
-                            String sch = DELETE + SPACE + SCHEDULE  + SPACE + ((Schedule)oldSch.get(0)).getName() + NEWLINE;
-                            alters[SCHEDULE_IND] = sch;
-                            for (int i = 1; i < oldSch.size(); i++)
+//                            String sch = DELETE + SPACE + SCHEDULE  + SPACE + ((Schedule)oldSch.get(0)).getName() + NEWLINE;
+//                            alters[SCHEDULE_IND] = sch;
+                            for (int i = 0; i < oldSch.size(); i++)
                             {
-                                sch = DELETE + SPACE + SCHEDULE  + SPACE + ((Schedule)oldSch.get(i)).getName() + NEWLINE;
+                                String sch = DELETE + SPACE + SCHEDULE  + SPACE + ((Schedule)oldSch.get(i)).getName() + NEWLINE;
                                 altSchedules.add(sch);
                             }
                         }
@@ -146,11 +143,11 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                     {
                         if (oldSch == null && oldSch.isEmpty())
                         {
-                            String sch = ADD + SPACE + SCHEDULE  + SPACE + builder.getEventSchedule((Schedule)schedules.get(0)) + NEWLINE;
-                            alters[SCHEDULE_IND] = sch;
-                            for (int i = 1; i < schedules.size(); i++)
+//                            String sch = ADD + SPACE + SCHEDULE  + SPACE + builder.getEventSchedule((Schedule)schedules.get(0)) + NEWLINE;
+//                            alters[SCHEDULE_IND] = sch;
+                            for (int i = 0; i < schedules.size(); i++)
                             {
-                                sch = ADD + SPACE + SCHEDULE  + SPACE + ((Schedule)schedules.get(i)).getName() + NEWLINE;
+                                String sch = ADD + SPACE + SCHEDULE  + SPACE + ((Schedule)schedules.get(i)).getName() + NEWLINE;
                                 altSchedules.add(sch);
                             }
                         }
@@ -170,51 +167,57 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                                 if (!found)
                                 {
                                     String sch = DELETE + SPACE + SCHEDULE  + SPACE + ((Schedule)oldSch.get(i)).getName() + NEWLINE;
-                                    if (i == 0 && alters[SCHEDULE_IND] == null)
-                                    {
-                                        alters[SCHEDULE_IND] = sch;
-                                    }
-                                    else
-                                    {
+//                                    if (i == 0 && alters[SCHEDULE_IND] == null)
+//                                    {
+//                                        alters[SCHEDULE_IND] = sch;
+//                                    }
+//                                    else
+//                                    {
                                         altSchedules.add(sch);
-                                    }
+//                                    }
                                 }
                             }
                             
                             for (int j = 0; j < schedules.size(); j++)
                             {
                                 boolean found = false;
+                                boolean same = false;
                                 {
                                     for (int i = 0; i < oldSch.size(); i++)
                                     if (((Schedule)schedules.get(j)).getName().equals(((Schedule)oldSch.get(i)).getName()))
                                     {
                                         found = true;
+                                        if (((Schedule)schedules.get(j)).equals(oldSch.get(i)))
+                                        {
+                                            same = true;
+                                        }
+                                        
                                         break;
                                     }
                                 }
-                                if (found)
+                                if (found && !same)
                                 {
-                                    String sch = MODIFY + SPACE + SCHEDULE  + SPACE + builder.getEventSchedule((Schedule)schedules.get(j)) + NEWLINE;
-                                    if (j == 0 && alters[SCHEDULE_IND] == null)
-                                    {
-                                        alters[SCHEDULE_IND] = sch;
-                                    }
-                                    else
-                                    {
+                                    String sch = MODIFY + SPACE + builder.getEventSchedule((Schedule)schedules.get(j)) + NEWLINE;
+//                                    if (j == 0 && alters[SCHEDULE_IND] == null)
+//                                    {
+//                                        alters[SCHEDULE_IND] = sch;
+//                                    }
+//                                    else
+//                                    {
                                         altSchedules.add(sch);
-                                    }
+//                                    }
                                 }
-                                else
+                                else if (!found)
                                 {
-                                    String sch = ADD + SPACE + SCHEDULE  + SPACE + builder.getEventSchedule((Schedule)schedules.get(j)) + NEWLINE;
-                                    if (j == 0 && alters[SCHEDULE_IND] == null)
-                                    {
-                                        alters[SCHEDULE_IND] = sch;
-                                    }
-                                    else
-                                    {
+                                    String sch = ADD + SPACE + builder.getEventSchedule((Schedule)schedules.get(j)) + NEWLINE;
+//                                    if (j == 0 && alters[SCHEDULE_IND] == null)
+//                                    {
+//                                        alters[SCHEDULE_IND] = sch;
+//                                    }
+//                                    else
+//                                    {
                                         altSchedules.add(sch);
-                                    }
+//                                    }
                                 }
                             }
                         }
@@ -252,7 +255,13 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
             
             if (createIndex[0] >= 0 && handlerIndex[0] >= 0 )
             {
-                String alter = create[0].substring(0, createIndex[0]) + ALTER + SPACE + EVENT + builder.getName(event, quoteIdentifiers, false) + NEWLINE;
+                //do not include header comment in alter: create[0].substring(0, createIndex[0]) +
+                String alter =  ALTER + SPACE + EVENT + SPACE + builder.getName(event, quoteIdentifiers, false) + NEWLINE;
+                if (alters[WHERE_IND] == null && !altSchedules.isEmpty())
+                {
+                    alters[SCHEDULE_IND] = (String)altSchedules.get(0);
+                    altSchedules.remove(0);
+                }
                 for (int i = 0; i < alters.length; i++)
                 {
                     if (alters[i] != null)
@@ -263,10 +272,11 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
                 alter += create[0].substring(handlerIndex[0]);
                 script.addCreateEventStatements(alter);
                 
+                String alterHeader = ALTER + SPACE + EVENT + SPACE + builder.getName(event, quoteIdentifiers, false) + NEWLINE;
                 for (Iterator it = altSchedules.iterator(); it.hasNext();)
                 {
                     String sch = (String) it.next();
-                    script.addCreateEventStatements(sch);
+                    script.addCreateEventStatements( alterHeader + sch);
                 }
                 
                 if (comment != null)
@@ -295,7 +305,7 @@ public class SybaseASAEventDeltaDdlGenProvider implements IDeltaDdlGenProvider, 
     }
 
     public void processDropStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
-            SybaseDdlScript script, DDLGenerator generator, IProgressMonitor monitor)
+            SybaseDdlScript script, ISybaseDdlGenerator generator, IProgressMonitor monitor)
     {
         // TODO Auto-generated method stub
 

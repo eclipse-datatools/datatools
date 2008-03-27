@@ -29,13 +29,16 @@ public class SybaseASACatalogBaseIndex extends SybaseASABaseIndexImpl implements
 	}
 
 	public void refresh() {
-		synchronized (indexInfoLoaded) {
-			if(indexInfoLoaded.booleanValue())
-			{
-				indexInfoLoaded = Boolean.FALSE;
-			}
-		}
-		RefreshManager.getInstance().referesh(this);
+        if(isNeedRefresh())
+        {
+            synchronized (indexInfoLoaded) {
+                if(indexInfoLoaded.booleanValue())
+                {
+                    indexInfoLoaded = Boolean.FALSE;
+                }
+            }
+            RefreshManager.getInstance().referesh(this);
+        }
 	}
 
 	public boolean eIsSet(EStructuralFeature eFeature) {
@@ -138,4 +141,17 @@ public class SybaseASACatalogBaseIndex extends SybaseASABaseIndexImpl implements
 	{
 		return new IndexInfoASALoader(this);
 	}
+
+	private boolean isNeedRefresh()
+    {
+        if(indexInfoLoaded.booleanValue())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }

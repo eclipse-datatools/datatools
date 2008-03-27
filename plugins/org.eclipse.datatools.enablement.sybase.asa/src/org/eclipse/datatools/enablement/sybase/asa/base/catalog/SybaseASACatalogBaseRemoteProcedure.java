@@ -30,19 +30,22 @@ public class SybaseASACatalogBaseRemoteProcedure extends SybaseASABaseRemoteProc
 	}
 	
 	public void refresh() {
-		synchronized (procedureInfoLoaded) {
-			if(procedureInfoLoaded.booleanValue())
-			{
-				procedureInfoLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (parameterInfoLoaded) {
-			if(parameterInfoLoaded.booleanValue())
-			{
-				parameterInfoLoaded = Boolean.FALSE;
-			}
-		}
-		RefreshManager.getInstance().referesh(this);
+	    if(isNeedRefresh())
+	    {
+	        synchronized (procedureInfoLoaded) {
+	            if(procedureInfoLoaded.booleanValue())
+	            {
+	                procedureInfoLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (parameterInfoLoaded) {
+	            if(parameterInfoLoaded.booleanValue())
+	            {
+	                parameterInfoLoaded = Boolean.FALSE;
+	            }
+	        }
+	        RefreshManager.getInstance().referesh(this);
+	    }
 	}
 	
 	public boolean eIsSet(EStructuralFeature eFeature) {
@@ -116,4 +119,16 @@ public class SybaseASACatalogBaseRemoteProcedure extends SybaseASABaseRemoteProc
 	{
 		new SybaseASABaseParameterLoader(this).loadParameterInfo(super.getParameters());
 	}	
+	
+	private boolean isNeedRefresh()
+	{
+	    if(procedureInfoLoaded.booleanValue()||parameterInfoLoaded.booleanValue())
+	    {
+	        return true;
+	    }
+	    else
+	    {
+	        return false;
+	    }
+	}
 }

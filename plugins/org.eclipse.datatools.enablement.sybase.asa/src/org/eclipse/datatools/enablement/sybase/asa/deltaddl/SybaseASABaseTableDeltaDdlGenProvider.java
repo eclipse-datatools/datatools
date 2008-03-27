@@ -30,7 +30,7 @@ public class SybaseASABaseTableDeltaDdlGenProvider extends AbstractDeltaDdlGenPr
                     .append(SPACE).append(RENAME).append(SPACE).append(
                             quoteIdentifiers ? SQLUtil.quote((String) newValue, DOUBLE_QUOTE) : newValue);
         }
-        script.addAlterTableStatement(sb.toString());
+        script.addAlterTableRenameStatements(sb.toString());
     }
     
     private String getTableName(String tableName, String ownerName, boolean quoteIdentifiers, boolean qualifyNames)

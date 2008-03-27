@@ -1,13 +1,8 @@
-/*******************************************************************************
- * Copyright (c) 2005 -- 2007 Sybase, Inc.
+/**
+ * Created on 2007-1-19
  * 
- * All rights reserved. This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License v1.0 which
- * accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: Sybase, Inc. - initial API and implementation
- ******************************************************************************/
+ * Copyright (c) Sybase, Inc. 2004-2006. All rights reserved.
+ */
 package org.eclipse.datatools.enablement.sybase.asa;
 
 import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
@@ -32,7 +27,7 @@ public interface ISybaseASADdlConstants extends ISybaseDdlConstants
     public static final String   AND                      = "AND";                          //$NON-NLS-1$
     public final static String[] DAYS_OF_WEEK             =
                                                           {
-        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$//$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
                                                           };
 
     public final static int      SYNTAX_TYPE_TSQL         = 0;
@@ -60,7 +55,7 @@ public interface ISybaseASADdlConstants extends ISybaseDdlConstants
     public final static String   CHECKSUM                 = "CHECKSUM";                     //$NON-NLS-1$
     public final static String   KEY                      = "KEY";                          //$NON-NLS-1$
     public final static String   OFF                      = "OFF";                          //$NON-NLS-1$
-    public final static String   DOMAIN                   = "DOMAIN";                       //$NON-NLS-1$
+//    public final static String   DOMAIN                   = "DOMAIN";                       //$NON-NLS-1$
 
     public final static String   COMPUTE                  = "COMPUTE";                      //$NON-NLS-1$
     public final static String   MODIFY                   = "MODIFY";                       //$NON-NLS-1$
@@ -81,4 +76,6 @@ public interface ISybaseASADdlConstants extends ISybaseDdlConstants
     public final static String   GROUP                    = "GROUP";                        //$NON-NLS-1$
     public final static String   MEMBERSHIP               = "MEMBERSHIP";                   //$NON-NLS-1$
     public final static String   PCTFREE                  = "PCTFREE";                      //$NON-NLS-1$
+    public final static String   EVENT_CONDITION          = "EVENT_CONDITION";                      //$NON-NLS-1$
+    public final static String   EXISTING                 = "EXISTING";                     //$NON-NLS-1$
 }

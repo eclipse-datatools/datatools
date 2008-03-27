@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ASE Enablement UI Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ase.ui;singleton:=true
+Bundle-Version: 1.0.1.200801241
+Bundle-Activator: org.eclipse.datatools.enablement.sybase.ase.ui.ASEUIPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.datatools.connectivity.ui,
+ org.eclipse.datatools.sqltools.editor.core,
+ org.eclipse.datatools.enablement.sybase,
+ org.eclipse.datatools.enablement.sybase.ase,
+ org.eclipse.datatools.enablement.sybase.ase.models,
+ org.eclipse.datatools.help,
+ org.eclipse.ui.navigator,
+ org.eclipse.datatools.connectivity.sqm.core.ui,
+ org.eclipse.datatools.connectivity.sqm.server.ui
+Eclipse-LazyStart: true
+Bundle-Localization: plugin
+Bundle-Vendor: Sybase Inc.

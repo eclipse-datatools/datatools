@@ -11,25 +11,19 @@
 
 package org.eclipse.datatools.enablement.sybase.asa;
 
-import java.text.MessageFormat;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-
-import org.eclipse.ui.plugin.*;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.osgi.framework.BundleContext;
 
 /**
  * The main plugin class to be used in the desktop.
  */
-public class JDBCASAPlugin extends AbstractUIPlugin {
+public class JDBCASAPlugin extends Plugin {
 
 	//The shared instance.
 	private static JDBCASAPlugin plugin;
 	public static final int INTERNAL_ERROR = 100001;
-	private ResourceBundle resourceBundle;
 	
 	/**
 	 * The constructor.
@@ -58,17 +52,6 @@ public class JDBCASAPlugin extends AbstractUIPlugin {
 	 */
 	public static JDBCASAPlugin getDefault() {
 		return plugin;
-	}
-
-	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
-	 * @param path the path
-	 * @return the image descriptor
-	 */
-	public static ImageDescriptor getImageDescriptor(String path) {
-		return AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.datatools.enablement.sybase.asa", path); //$NON-NLS-1$
 	}
 
 	/**

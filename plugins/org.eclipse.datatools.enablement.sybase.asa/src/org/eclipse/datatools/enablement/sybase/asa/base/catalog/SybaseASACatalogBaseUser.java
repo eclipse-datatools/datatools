@@ -84,7 +84,7 @@ public class SybaseASACatalogBaseUser extends SybaseASABaseUserImpl implements I
 		synchronized (privilegesLoaded) {
 			if(!privilegesLoaded.booleanValue())
 			{
-				getAuthIdLoader().loadPrivilegs(super.getReceivedPrivilege());
+				//getAuthIdLoader().loadPrivilegs(super.getReceivedPrivilege());
 				privilegesLoaded = Boolean.TRUE;
 			}
 		}

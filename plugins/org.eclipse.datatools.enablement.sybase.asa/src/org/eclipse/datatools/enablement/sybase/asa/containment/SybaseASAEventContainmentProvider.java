@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseEvent;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -25,7 +26,11 @@ public class SybaseASAEventContainmentProvider  extends AbstractContainmentProvi
 	}
 
 	public EObject getContainer(EObject obj) {
-		return ((SybaseASABaseEvent) obj).getDatabase();
+	    Database database = ((SybaseASABaseEvent) obj).getDatabase();
+        if (database != null)
+            return (EObject) database.getCatalogs().get(0);
+        else
+            return null;	    
 	}
 
 	public EStructuralFeature getContainmentFeature(EObject obj) {

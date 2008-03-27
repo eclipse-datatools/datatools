@@ -18,8 +18,16 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SystemDefinedDefaultType;
 import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition;
+import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.CharacterStringDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DateDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.Domain;
+import org.eclipse.datatools.modelbase.sql.datatypes.NumberDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.NumericalDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.expressions.QueryExpression;
 import org.eclipse.datatools.modelbase.sql.expressions.QueryExpressionDefault;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsFactory;
@@ -224,7 +232,7 @@ public class SybaseASACatalogUtils {
 
 	public static synchronized String retrieveRoutineObjectCode(
 			Connection conn, String schemaName, String routineName) throws SQLException{
-		String code = ""; //$NON-NLS-1$
+		String code = "";
 		
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
@@ -282,7 +290,7 @@ public class SybaseASACatalogUtils {
 	
 	public static synchronized String retrieveTriggerObjectCode(
 			Connection conn, String tableSchemaName, String tableName, String schemaName, String routineName) throws SQLException {
-		String code = ""; //$NON-NLS-1$
+		String code = "";
 		
 		PreparedStatement stmt=null;
 		ResultSet rs= null;
@@ -290,10 +298,10 @@ public class SybaseASACatalogUtils {
 		int trigger_id = 0;
 		long table_id = 0;
 		try {
-            String sql = "SELECT T.trigger_id, T.table_id FROM " //$NON-NLS-1$
-                + "SYS.SYSTRIGGER T JOIN SYS.SYSTABLE A ON T.table_id = A.table_id " //$NON-NLS-1$
-                + "JOIN SYS.SYSUSERPERMS U on A.creator = U.user_id " + "WHERE T.trigger_name = ? AND " //$NON-NLS-1$ //$NON-NLS-2$
-                + "A.table_name = ? AND " + "U.user_name = ?"; //$NON-NLS-1$ //$NON-NLS-2$
+            String sql = "SELECT T.trigger_id, T.table_id FROM "
+                + "SYS.SYSTRIGGER T JOIN SYS.SYSTABLE A ON T.table_id = A.table_id "
+                + "JOIN SYS.SYSUSERPERMS U on A.creator = U.user_id " + "WHERE T.trigger_name = ? AND "
+                + "A.table_name = ? AND " + "U.user_name = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, routineName);
             stmt.setString(2, tableName);
@@ -381,7 +389,7 @@ public class SybaseASACatalogUtils {
 		Iterator it = collection.iterator();
 		while(it.hasNext()){
 			SQLObject sqlObject = (SQLObject) it.next();
-			if (sqlObject.getName().equals(name) && sqlObject.eClass() == metaclass){
+			if (sqlObject.getName().equals(name) && metaclass.isSuperTypeOf(sqlObject.eClass())){
 				object = sqlObject;
 				break;
 			}
@@ -441,6 +449,10 @@ public class SybaseASACatalogUtils {
 		PredefinedDataType type = databaseDefinition
 				.getPredefinedDataType(typeDefinition);
 
+        if(typeDefinition == null)
+        {
+            return type;
+        }
 		if (typeDefinition.isLengthSupported()) {
 			EStructuralFeature feature = type.eClass().getEStructuralFeature(
 					"length"); //$NON-NLS-1$
@@ -465,7 +477,7 @@ public class SybaseASACatalogUtils {
 		if(sddt != null)
 			return true;
 		
-		Pattern p = Pattern.compile("global autoincrement\\(\\d+\\)"); //$NON-NLS-1$
+		Pattern p = Pattern.compile("global autoincrement\\(\\d+\\)");
 		Matcher m = p.matcher(defaultValue);
 		return m.matches();
 	}
@@ -525,4 +537,80 @@ public class SybaseASACatalogUtils {
 		
 		return results;
 	}
+    
+    public static PredefinedDataType getPredefinedRepresentation(DataType datatype)
+    {
+        if (datatype instanceof DistinctUserDefinedType)
+        {
+            DistinctUserDefinedType udt = (DistinctUserDefinedType) datatype;
+            PredefinedDataType pType = udt.getPredefinedRepresentation();
+            return pType;
+        }
+        return null;
+    }
+
+    public static boolean isNumericType(DataType datatype)
+    {
+        if (getPredefinedRepresentation(datatype) != null)
+        {
+            return isNumericType(getPredefinedRepresentation(datatype));
+        }
+        if ((datatype instanceof NumericalDataType) || (datatype instanceof NumberDataType))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isStringType(DataType datatype)
+    {
+        if (getPredefinedRepresentation(datatype) != null)
+        {
+            return isStringType(getPredefinedRepresentation(datatype));
+        }
+        if (datatype instanceof CharacterStringDataType)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isTimeType(DataType datatype)
+    {
+        if (getPredefinedRepresentation(datatype) != null)
+        {
+            return isTimeType(getPredefinedRepresentation(datatype));
+        }
+        if (datatype instanceof TimeDataType)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isDateType(DataType datatype)
+    {
+        if (getPredefinedRepresentation(datatype) != null)
+        {
+            return isDateType(getPredefinedRepresentation(datatype));
+        }
+        if (datatype instanceof DateDataType)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isBinaryType(DataType datatype)
+    {
+        if (getPredefinedRepresentation(datatype) != null)
+        {
+            return isBinaryType(getPredefinedRepresentation(datatype));
+        }
+        if (datatype instanceof BinaryStringDataType)
+        {
+            return true;
+        }
+        return false;
+    }
 }

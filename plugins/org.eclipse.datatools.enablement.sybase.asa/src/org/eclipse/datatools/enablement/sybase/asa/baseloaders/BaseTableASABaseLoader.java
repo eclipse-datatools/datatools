@@ -32,11 +32,11 @@ abstract public class BaseTableASABaseLoader extends TableASABaseLoader{
 
 	protected BaseTable baseTable;
 	
-	final public static String PRIMARY_KEY_TYPE = "P"; //$NON-NLS-1$
-	final public static String UNIQUE_CONSTRAINT_TYPE = "U"; //$NON-NLS-1$
-	final public static String FOREIGN_KEY_TYPE = "F"; //$NON-NLS-1$
-	final public static String TABLE_CHECK_CONSTRAINT_TYPE = "T"; //$NON-NLS-1$
-	final public static String COLUMN_CHECK_CONSTRAINT_TYPE = "C"; //$NON-NLS-1$
+	final public static String PRIMARY_KEY_TYPE = "P";
+	final public static String UNIQUE_CONSTRAINT_TYPE = "U";
+	final public static String FOREIGN_KEY_TYPE = "F";
+	final public static String TABLE_CHECK_CONSTRAINT_TYPE = "T";
+	final public static String COLUMN_CHECK_CONSTRAINT_TYPE = "C";
 	
 	public BaseTableASABaseLoader(BaseTable catalogTable) {
 		super(catalogTable);
@@ -79,9 +79,11 @@ abstract public class BaseTableASABaseLoader extends TableASABaseLoader{
 		for(int i = 0; i<columns.size(); i++)
 		{
 			SybaseASABaseColumn column = (SybaseASABaseColumn)columns.get(i);
-			SybaseASABaseColumnCheckConstraint columnCheck = column.getColumnConstraint();
-			if(columnCheck != null)
-				results.add(columnCheck);
+//			SybaseASABaseColumnCheckConstraint columnCheck = column.getColumnConstraint();
+            List checks = column.getColumnConstraint();
+//			if(columnCheck != null)
+//				results.add(columnCheck);
+            results.addAll(checks);
 		}
 		return results;
 	}
@@ -116,6 +118,17 @@ abstract public class BaseTableASABaseLoader extends TableASABaseLoader{
 					result = pk;
 				}
 			}
+			
+			//we remove the obsolete PK from existingConstraintList [cr476913]
+			for (int i = 0; i < existingConstraintList.size(); i++)
+            {
+                Object constraint = existingConstraintList.get(i);
+                if(constraint instanceof PrimaryKey)
+                {
+                    existingConstraintList.remove(constraint);
+                    break;
+                }
+            }
 		}
 		catch(SQLException e)
 		{

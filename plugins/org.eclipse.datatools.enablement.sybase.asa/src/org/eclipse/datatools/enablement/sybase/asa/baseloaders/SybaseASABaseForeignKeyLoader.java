@@ -76,7 +76,7 @@ public class SybaseASABaseForeignKeyLoader {
 
         char updateActinChar = SybaseASACatalogUtils.getCharValue(rs.getString(8));
         char deleteActinChar = SybaseASACatalogUtils.getCharValue(rs.getString(9));
-        boolean isClustered = rs.getString(3).equals("Y"); //$NON-NLS-1$
+        boolean isClustered = rs.getString(3).equals("Y");
         String remarks = rs.getString(4);
         
         Schema primarySchema = (Schema) SybaseASACatalogUtils

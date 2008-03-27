@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelAdapterFactory.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseasasqlmodelAdapterFactory.java,v 1.6 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.util;
 
@@ -12,9 +12,8 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.*;
-
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
-
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex;
@@ -49,7 +48,7 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl 
 {
-	/**
+    /**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -57,19 +56,20 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 */
 	protected static SybaseasasqlmodelPackage modelPackage;
 
-	/**
+    /**
 	 * Creates an instance of the adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseasasqlmodelAdapterFactory() {
+	public SybaseasasqlmodelAdapterFactory()
+    {
 		if (modelPackage == null) {
 			modelPackage = SybaseasasqlmodelPackage.eINSTANCE;
 		}
 	}
 
-	/**
+    /**
 	 * Returns whether this factory is applicable for the type of the object.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
@@ -77,7 +77,8 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
-	public boolean isFactoryForType(Object object) {
+	public boolean isFactoryForType(Object object)
+    {
 		if (object == modelPackage) {
 			return true;
 		}
@@ -87,14 +88,14 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 		return false;
 	}
 
-	/**
+    /**
 	 * The switch the delegates to the <code>createXXX</code> methods.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected SybaseasasqlmodelSwitch modelSwitch =
-		new SybaseasasqlmodelSwitch() {
+        new SybaseasasqlmodelSwitch() {
 			public Object caseSybaseASADatabase(SybaseASADatabase object) {
 				return createSybaseASADatabaseAdapter();
 			}
@@ -134,6 +135,9 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 			public Object casePersistentTable(PersistentTable object) {
 				return createPersistentTableAdapter();
 			}
+			public Object caseSybaseAuthorizedObject(SybaseAuthorizedObject object) {
+				return createSybaseAuthorizedObjectAdapter();
+			}
 			public Object caseSybaseBaseTable(SybaseBaseTable object) {
 				return createSybaseBaseTableAdapter();
 			}
@@ -172,7 +176,7 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 			}
 		};
 
-	/**
+    /**
 	 * Creates an adapter for the <code>target</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -180,12 +184,13 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
-	public Adapter createAdapter(Notifier target) {
+	public Adapter createAdapter(Notifier target)
+    {
 		return (Adapter)modelSwitch.doSwitch((EObject)target);
 	}
 
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase <em>Sybase ASA Database</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -195,11 +200,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase
 	 * @generated
 	 */
-	public Adapter createSybaseASADatabaseAdapter() {
+	public Adapter createSybaseASADatabaseAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATable <em>Sybase ASA Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -209,11 +215,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATable
 	 * @generated
 	 */
-	public Adapter createSybaseASATableAdapter() {
+	public Adapter createSybaseASATableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey <em>Sybase ASA Foreign Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -223,11 +230,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey
 	 * @generated
 	 */
-	public Adapter createSybaseASAForeignKeyAdapter() {
+	public Adapter createSybaseASAForeignKeyAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex <em>Sybase ASA Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -237,11 +245,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex
 	 * @generated
 	 */
-	public Adapter createSybaseASAIndexAdapter() {
+	public Adapter createSybaseASAIndexAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable <em>Sybase ASA Temp Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -251,11 +260,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable
 	 * @generated
 	 */
-	public Adapter createSybaseASATempTableAdapter() {
+	public Adapter createSybaseASATempTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -265,11 +275,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.emf.ecore.EModelElement
 	 * @generated
 	 */
-	public Adapter createEModelElementAdapter() {
+	public Adapter createEModelElementAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.ENamedElement <em>ENamed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -279,11 +290,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.emf.ecore.ENamedElement
 	 * @generated
 	 */
-	public Adapter createENamedElementAdapter() {
+	public Adapter createENamedElementAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.schema.SQLObject <em>SQL Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -293,11 +305,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.schema.SQLObject
 	 * @generated
 	 */
-	public Adapter createSQLObjectAdapter() {
+	public Adapter createSQLObjectAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.schema.Database <em>Database</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -307,11 +320,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.schema.Database
 	 * @generated
 	 */
-	public Adapter createDatabaseAdapter() {
+	public Adapter createDatabaseAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase <em>Sybase ASA Base Database</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -321,11 +335,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase
 	 * @generated
 	 */
-	public Adapter createSybaseASABaseDatabaseAdapter() {
+	public Adapter createSybaseASABaseDatabaseAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.tables.Table <em>Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -335,11 +350,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.tables.Table
 	 * @generated
 	 */
-	public Adapter createTableAdapter() {
+	public Adapter createTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.tables.BaseTable <em>Base Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -349,11 +365,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.tables.BaseTable
 	 * @generated
 	 */
-	public Adapter createBaseTableAdapter() {
+	public Adapter createBaseTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.tables.PersistentTable <em>Persistent Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -363,11 +380,26 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.tables.PersistentTable
 	 * @generated
 	 */
-	public Adapter createPersistentTableAdapter() {
+	public Adapter createPersistentTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject <em>Sybase Authorized Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject
+	 * @generated
+	 */
+	public Adapter createSybaseAuthorizedObjectAdapter() {
+		return null;
+	}
+
+				/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable <em>Sybase Base Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -381,7 +413,7 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 		return null;
 	}
 
-	/**
+				/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable <em>Sybase ASA Base Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -391,11 +423,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable
 	 * @generated
 	 */
-	public Adapter createSybaseASABaseTableAdapter() {
+	public Adapter createSybaseASABaseTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -405,11 +438,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.Constraint
 	 * @generated
 	 */
-	public Adapter createConstraintAdapter() {
+	public Adapter createConstraintAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.TableConstraint <em>Table Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -419,11 +453,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.TableConstraint
 	 * @generated
 	 */
-	public Adapter createTableConstraintAdapter() {
+	public Adapter createTableConstraintAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint <em>Reference Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -433,11 +468,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint
 	 * @generated
 	 */
-	public Adapter createReferenceConstraintAdapter() {
+	public Adapter createReferenceConstraintAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.ForeignKey <em>Foreign Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -447,11 +483,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.ForeignKey
 	 * @generated
 	 */
-	public Adapter createForeignKeyAdapter() {
+	public Adapter createForeignKeyAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseForeignKey <em>Sybase ASA Base Foreign Key</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -461,11 +498,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseForeignKey
 	 * @generated
 	 */
-	public Adapter createSybaseASABaseForeignKeyAdapter() {
+	public Adapter createSybaseASABaseForeignKeyAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.constraints.Index <em>Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -475,11 +513,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.constraints.Index
 	 * @generated
 	 */
-	public Adapter createIndexAdapter() {
+	public Adapter createIndexAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseIndex <em>Sybase ASA Base Index</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -489,11 +528,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseIndex
 	 * @generated
 	 */
-	public Adapter createSybaseASABaseIndexAdapter() {
+	public Adapter createSybaseASABaseIndexAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.tables.TemporaryTable <em>Temporary Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -503,11 +543,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.modelbase.sql.tables.TemporaryTable
 	 * @generated
 	 */
-	public Adapter createTemporaryTableAdapter() {
+	public Adapter createTemporaryTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable <em>Sybase ASA Base Temp Table</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -517,11 +558,12 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable
 	 * @generated
 	 */
-	public Adapter createSybaseASABaseTempTableAdapter() {
+	public Adapter createSybaseASABaseTempTableAdapter()
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
@@ -529,7 +571,8 @@ public class SybaseasasqlmodelAdapterFactory extends AdapterFactoryImpl
 	 * @return the new adapter.
 	 * @generated
 	 */
-	public Adapter createEObjectAdapter() {
+	public Adapter createEObjectAdapter()
+    {
 		return null;
 	}
 

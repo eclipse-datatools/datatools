@@ -12,6 +12,8 @@ import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASAUtil;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasePrivilege;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelFactory;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.AuthorizationIdentifier;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlFactory;
@@ -42,8 +44,9 @@ public class AuthorizationIdentifierASALoader {
         
         privileges.clear();
 		
-		List tableIdsWithColumnPrivilege = loadTablePrivilegs(privileges);
-		loadTableColumnPrivilege(privileges, tableIdsWithColumnPrivilege);
+		loadTablePrivilegs(privileges);
+        loadTableColumnPrivilege(privileges);
+        
 		loadRoutinePrivileges(privileges);
 		
 		authId.eSetDeliver(deliver);
@@ -75,65 +78,61 @@ public class AuthorizationIdentifierASALoader {
         authId.eSetDeliver(deliver);
     }
 	
-	protected void loadTableColumnPrivilege(List privileges, List tableIdsWithColumnPrivilege) {
+	protected void loadTableColumnPrivilege(List privileges) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		
-		for(int i = 0; i<tableIdsWithColumnPrivilege.size(); i++)
-		{
-			int tableId = ((Integer)tableIdsWithColumnPrivilege.get(i)).intValue();
-			Table table = null;
-			try
-			{
-				stmt = conn.prepareStatement(ASASQLs.QUERY_COLUMN_PERMISSIONS);
-				stmt.setString(1, authId.getName());
-				stmt.setInt(2, tableId);
-				rs = stmt.executeQuery();
-				while(rs.next())
-				{
-					String tableName = rs.getString(1);
-					String ownerName = rs.getString(2);
-					String columnName = rs.getString(3);
-					int privilegeType = rs.getInt(4);
-					boolean isGrantable = rs.getString(5).equals("Y"); //$NON-NLS-1$
-					String grantorName = rs.getString(6);
-					
-					if(table == null)
-					{
-						Schema schema = (Schema)SybaseASACatalogUtils.findElement(catalogObj.getCatalogDatabase().getSchemas(), ownerName);
-						table = (Table)SybaseASACatalogUtils.findElement(schema.getTables(), tableName);
-					}
-					Column col = (Column)SybaseASACatalogUtils.findElement(table.getColumns(), columnName);
-					Privilege p = SQLAccessControlFactory.eINSTANCE.createPrivilege();
-					AuthorizationIdentifier grantor = (AuthorizationIdentifier)SybaseASACatalogUtils.findElement(catalogObj.getCatalogDatabase().getAuthorizationIds(), grantorName); 
-					String action = null; 
-					switch(privilegeType)
-					{
-					case 1:
-						action = ASAUtil.PERMISSION_SELECT_ACTION;
-						break;
-					case 8:
-						action = ASAUtil.PERMISSION_UPDATE_ACTION;
-						break;
-					case 16:
-						action = ASAUtil.PERMISSION_REFERENCE_ACTION;
-						break;
-					}
-					p.setAction(action);
-					p.setGrantable(isGrantable);
-					p.setObject(col);
-					p.setGrantor(grantor);
-					privileges.add(p);
-				}
-			}
-			catch (SQLException e) {
-				JDBCASAPlugin.getDefault().log(e);
-			}
-			finally
-			{
-				SybaseASACatalogUtils.cleanupJDBCResouce(rs, stmt);
-			}
-		}
+		try
+        {
+            stmt = conn.prepareStatement(ASASQLs.QUERY_COLUMN_PERMISSIONS);
+            stmt.setString(1, authId.getName());
+            rs = stmt.executeQuery();
+            while (rs.next())
+            {
+                String tableName = rs.getString(1);
+                String ownerName = rs.getString(2);
+                String columnName = rs.getString(3);
+                int privilegeType = rs.getInt(4);
+                boolean isGrantable = rs.getString(5).equals("Y");
+                String grantorName = rs.getString(6);
+
+                Schema schema = (Schema) SybaseASACatalogUtils.findElement(
+                        catalogObj.getCatalogDatabase().getSchemas(), ownerName);
+                Table table = (Table) SybaseASACatalogUtils.findElement(schema.getTables(), tableName);
+                Column col = (Column) SybaseASACatalogUtils.findElement(table.getColumns(), columnName);
+                SybasePrivilege p = SybasesqlmodelFactory.eINSTANCE.createSybasePrivilege();
+                AuthorizationIdentifier grantor = (AuthorizationIdentifier) SybaseASACatalogUtils.findElement(
+                        catalogObj.getCatalogDatabase().getAuthorizationIds(), grantorName);
+                String action = null;
+                switch (privilegeType)
+                {
+                    case 1:
+                        action = ASAUtil.PERMISSION_SELECT_ACTION;
+                        break;
+                    case 8:
+                        action = ASAUtil.PERMISSION_UPDATE_ACTION;
+                        break;
+                    case 16:
+                        action = ASAUtil.PERMISSION_REFERENCE_ACTION;
+                        break;
+                }
+                p.setAction(action);
+                p.setGrantable(isGrantable);
+                p.setObject(col);
+                p.setGrantor(grantor);
+                p.setGrantee(authId);
+                privileges.add(p);
+            }
+        }
+        catch (SQLException e)
+        {
+            JDBCASAPlugin.getDefault().log(e);
+        }
+        finally
+        {
+            SybaseASACatalogUtils.cleanupJDBCResouce(rs, stmt);
+        }
+		
 	}
 
 	protected void loadRoutinePrivileges(List privileges) {
@@ -149,7 +148,7 @@ public class AuthorizationIdentifierASALoader {
 			{
 				String routineName = rs.getString(1);
 				String ownerName = rs.getString(2);
-				boolean isExcutable = rs.getString(4).equals("Y"); //$NON-NLS-1$
+				boolean isExcutable = rs.getString(4).equals("Y");
 				if(isExcutable)
 				{
 					Privilege p = SQLAccessControlFactory.eINSTANCE.createPrivilege();
@@ -170,8 +169,8 @@ public class AuthorizationIdentifierASALoader {
 		}
 	}
 
-	protected List loadTablePrivilegs(List privileges) {
-		List results = new ArrayList();
+	protected void loadTablePrivilegs(List privileges) 
+    {
 		
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -192,7 +191,7 @@ public class AuthorizationIdentifierASALoader {
 				char referenceAuth = SybaseASACatalogUtils.getCharValue(rs.getString(8));
 				String grantorName = rs.getString(9);
 				char updateColAuth = SybaseASACatalogUtils.getCharValue(rs.getString(10));
-				int tableId = rs.getInt(11);
+//				int tableId = rs.getInt(11);
 				
 				SQLObject obj = null; 
 				
@@ -232,10 +231,10 @@ public class AuthorizationIdentifierASALoader {
 					privileges.add(p);
 				}
 				
-				if(updateColAuth == 'Y' || updateColAuth == 'G')
-				{
-					results.add(new Integer(tableId));
-				}
+//				if(updateColAuth == 'Y' || updateColAuth == 'G')
+//				{
+//					results.add(new Integer(tableId));
+//				}
 			}
 		}
 		catch (SQLException e) {
@@ -245,18 +244,19 @@ public class AuthorizationIdentifierASALoader {
 		{
 			SybaseASACatalogUtils.cleanupJDBCResouce(rs, stmt);
 		}
-		return results;
+//		return results;
 	}
 	
 	private Privilege createTablePrivilege(char authChar, String action, String grantorName, String tableOwner, String tableName, SQLObject obj)
 	{
-		Privilege result = SQLAccessControlFactory.eINSTANCE.createPrivilege();
+        SybasePrivilege result = SybasesqlmodelFactory.eINSTANCE.createSybasePrivilege();
 		result.setGrantable(authChar == 'G');
 		result.setAction(action);
 		AuthorizationIdentifier grantor = (AuthorizationIdentifier) SybaseASACatalogUtils
 				.findElement(catalogObj.getCatalogDatabase().getAuthorizationIds(),
 						grantorName);
 		result.setGrantor(grantor);
+        result.setGrantee(authId);
 		if(obj == null)
 			obj = findSQLObject(tableOwner, tableName, true);
 		result.setObject(obj);

@@ -5,13 +5,20 @@
  */
 package org.eclipse.datatools.enablement.sybase.asa.deltaddl;
 
+import java.util.Map;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.enablement.sybase.asa.ISybaseASADdlConstants;
 import org.eclipse.datatools.enablement.sybase.asa.ddl.SybaseASADdlBuilder;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelFactory;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlBuilder;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.enablement.sybase.deltaddl.IDeltaDdlGenProvider;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SybaseASATableDeltaDdlGenProvider extends SybaseASABaseTableDeltaDdlGenProvider implements IDeltaDdlGenProvider,
@@ -30,12 +37,26 @@ public class SybaseASATableDeltaDdlGenProvider extends SybaseASABaseTableDeltaDd
         
         SybaseDdlBuilder builder = (SybaseDdlBuilder) SybaseASADdlBuilder.getInstance();
         StringBuffer sb = new StringBuffer(128);
-        if (feature == SybaseasasqlmodelPackage.eINSTANCE.getSybaseASATable_Pctfree())
+        if (feature == SybaseasasqlmodelPackage.eINSTANCE.getSybaseASATable_Pctfree()
+                || feature == SybaseasasqlmodelPackage.eINSTANCE.getSybaseASATempTable_Pctfree())
         {
+            int pctvalue = ((Integer)newValue).intValue();
             sb.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(
-                    builder.getName(e, quoteIdentifiers, qualifyNames)).append(SPACE).append(ADD).append(SPACE).append(PCTFREE)
-                    .append(SPACE).append(((Integer)newValue).intValue() == -1 ? DEFAULT : newValue);
+                    builder.getName(e, quoteIdentifiers, qualifyNames));
+            if(pctvalue != -1)
+            {
+                sb.append(SPACE).append(ADD);
+            }
+            sb.append(SPACE).append(PCTFREE)
+                    .append(SPACE).append(pctvalue == -1 ? DEFAULT : newValue);
             script.addAlterTableStatement(sb.toString());
+        }
+        
+        if (feature == SQLSchemaPackage.eINSTANCE.getSQLObject_Description())
+        {
+            sb = new StringBuffer("");
+            sb.append(SybaseASADdlBuilder.getInstance().createComment(e, quoteIdentifiers, qualifyNames, true));
+            script.addAlterOtherStatements(sb.toString());
         }
     }
 

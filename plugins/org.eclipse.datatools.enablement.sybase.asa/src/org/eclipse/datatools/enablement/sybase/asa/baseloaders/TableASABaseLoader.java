@@ -19,6 +19,7 @@ import org.eclipse.datatools.enablement.sybase.asa.catalog.ASASQLs;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseSchema;
 import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
@@ -92,6 +93,17 @@ public abstract class TableASABaseLoader {
 			return stmt.executeQuery();
 		}
         
+        protected void closeResultSet(ResultSet rs)
+        {
+            try {
+                Statement stmt = rs.getStatement();
+                super.closeResultSet(rs);
+                stmt.close();
+            }
+            catch (SQLException e) {
+            }
+        }
+        
         protected Column createColumn() {
             return new SybaseASACatalogBaseColumn();
         }
@@ -118,7 +130,7 @@ public abstract class TableASABaseLoader {
 		SybaseASABaseDatabase db = (SybaseASABaseDatabase)catalogObj.getCatalogDatabase();
 		
 		try {
-			stmt = conn.prepareStatement(SQLScriptsProvider.getQueryTableIndex(db));
+			stmt = conn.prepareStatement(getIndexQuerySQL(db));
 			stmt.setString(1, table.getSchema().getName());
 			stmt.setString(2, table.getName());
 			rs = stmt.executeQuery();
@@ -132,10 +144,12 @@ public abstract class TableASABaseLoader {
 					index = createCatalogIndex();
 					initIndex(index, rs);
 					indexConstainmentList.add(index);
+					((SybaseASABaseSchema)table.getSchema()).getSuperIndices().add(index);
 				}
 				else
 				{
 					indexConstainmentList.add(index);
+					((SybaseASABaseSchema)table.getSchema()).getSuperIndices().add(index);
 					((ICatalogObject)index).refresh();
 				}
 			}
@@ -149,6 +163,11 @@ public abstract class TableASABaseLoader {
 		
 		table.eSetDeliver(deliver);
 	}
+
+    protected String getIndexQuerySQL(SybaseASABaseDatabase db)
+    {
+        return SQLScriptsProvider.getQueryTableIndex(db);
+    }
 	
 	protected void initIndex(Index index, ResultSet rs) throws SQLException
 	{
@@ -173,7 +192,7 @@ public abstract class TableASABaseLoader {
 		else
 		{//for ASA9
 			String strUnique = rs.getString(2);
-			isSysGen = strUnique.equals("U"); //$NON-NLS-1$
+			isSysGen = strUnique.equals("U");
 		}
 		index.setSystemGenerated(isSysGen);
 	}
@@ -211,10 +230,12 @@ public abstract class TableASABaseLoader {
 					trigger = new SybaseASACatalogBaseTrigger();
 					trigger.setName(triggerName);
 					triggerContainmentList.add(trigger);
+					((SybaseASABaseSchema)table.getSchema()).getSuperTriggers().add(trigger);
 				}
 				else
 				{
 					triggerContainmentList.add(trigger);
+					((SybaseASABaseSchema)table.getSchema()).getSuperTriggers().add(trigger);
 					((ICatalogObject)trigger).refresh();
 				}
 			}
@@ -274,4 +295,17 @@ public abstract class TableASABaseLoader {
 	
 	abstract protected void processTableInfoResultSet(ResultSet rs) throws SQLException;
 	
+	/**
+     * 
+     * @author linsong
+     */
+    public static interface IASABaseLoaderTable
+    {
+        Boolean isTriggerLoaded();
+        Boolean isIndexLoaded();
+        void setTriggerLoaded(Boolean loaded);
+        void setIndexLoaded(Boolean loaded);
+        EList getTriggerSuper();
+        EList getIndexSupper();
+    }
 }

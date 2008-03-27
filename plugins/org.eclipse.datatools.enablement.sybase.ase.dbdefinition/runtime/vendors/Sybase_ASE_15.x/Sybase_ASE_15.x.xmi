@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Sybase_ASE" version="15.x" maximumIdentifierLength="253" joinSupported="true" maximumCommentLength="2147483647" aliasSupported="true" userDefinedTypeSupported="true" storedProcedureSupported="true" triggerSupported="true">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1"
+  	lengthSupported="true" keyConstraintSupported="true" jdbcEnumType="1"
+  	javaClassName="java.lang.String" primitiveType="CHARACTER" maximumLength="16384">
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>CHAR</name>
+  	<name>CHARACTER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	primitiveType="CHARACTER_VARYING" jdbcEnumType="12"
+  	javaClassName="java.lang.String" maximumLength="16384">
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARCHAR</name>
+    <name>CHARACTER VARYING</name>
+    <name>CHAR VARYING</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]"
+  	maximumLength="16384">
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>BINARY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	primitiveType="BINARY_VARYING" jdbcEnumType="-3"
+  	javaClassName="byte[]" maximumLength="16384">
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>VARBINARY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal" maximumPrecision="38" maximumScale="38">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DECIMAL</name>
+    <name>DEC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE PRECISION</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>INT</name>
+    <name>INTEGER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1"
+  	scaleSupported="true" precisionSupported="true"
+  	keyConstraintSupported="true" primitiveType="NUMERIC"
+  	jdbcEnumType="2" javaClassName="java.math.BigDecimal"
+  	identitySupported="true" maximumPrecision="38" maximumScale="38">
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>NUMERIC</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="short">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SMALLINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="4" javaClassName="java.math.BigInteger">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIGINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1"
+  	precisionSupported="true" keyConstraintSupported="true"
+  	identitySupported="true" primitiveType="FLOAT" jdbcEnumType="6"
+  	javaClassName="double" maximumPrecision="48">
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>FLOAT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="REAL_1" keyConstraintSupported="true" identitySupported="true" primitiveType="REAL" jdbcEnumType="7" javaClassName="float">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>REAL</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" identitySupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIME_1" keyConstraintSupported="true" identitySupported="true" primitiveType="TIME" jdbcEnumType="92" javaClassName="java.sql.Time">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>timestamp</name>
+    <name>TIMESTAMP</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BOOLEAN_1" keyConstraintSupported="true" nullableSupported="false" primitiveType="BOOLEAN" jdbcEnumType="-7" javaClassName="boolean">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BIT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" keyConstraintSupported="true" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="-1" javaClassName="java.lang.String">
+    <defaultValueTypes>CURRENT_USER</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_1" keyConstraintSupported="true" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="-4" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>IMAGE</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_2"
+  	keyConstraintSupported="true" primitiveType="CHARACTER_LARGE_OBJECT"
+  	jdbcEnumType="-1" javaClassName="java.lang.String">
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>UNITEXT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="TINYINT_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="INTEGER" jdbcEnumType="-6" javaClassName="byte">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TINYINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_2" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>MONEY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATETIME_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
+    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATETIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_3"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	multipleColumnsSupported="true" primitiveType="CHARACTER_VARYING"
+  	jdbcEnumType="12" javaClassName="java.lang.String"
+  	maximumLength="8192">
+  	<defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>UNIVARCHAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_2"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	multipleColumnsSupported="true" primitiveType="CHARACTER"
+  	jdbcEnumType="1" javaClassName="java.lang.String" maximumLength="8192">
+  	<defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+  	<name>UNICHAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" keyConstraintSupported="true" nullableSupported="false" multipleColumnsSupported="true" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String"  defaultLength="30" lengthSupported="false">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SYSNAME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_4" keyConstraintSupported="true" nullableSupported="false" multipleColumnsSupported="true" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String"  defaultLength="255" lengthSupported="false">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>LONGSYSNAME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_3" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SMALLMONEY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_2" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="92" javaClassName="java.sql.Timestamp">
+    <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>SMALLDATETIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	multipleColumnsSupported="true"
+  	primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12"
+  	javaClassName="java.lang.String" maximumLength="16384">
+  	<defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+    <name>NVARCHAR</name>
+    <name>NCHAR VARYING</name>
+    <name>NATIONAL CHAR VARYING</name>
+    <name>NATIONAL CHARACTER VARYING</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1"
+  	lengthSupported="true" keyConstraintSupported="true"
+  	multipleColumnsSupported="true" primitiveType="NATIONAL_CHARACTER"
+  	jdbcEnumType="1" javaClassName="java.lang.String" maximumLength="16384">
+  	<defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+  	<defaultValueTypes>CURRENT_USER</defaultValueTypes>
+  	<defaultValueTypes>NULL</defaultValueTypes>
+    <name>NCHAR</name>
+    <name>NATIONAL CHAR</name>
+  	<name>NATIONAL CHARACTER</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_2" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="long">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>UNSIGNED INT</name>
+    <name>UNSIGNED INTEGER</name>
+    <name>UINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="INTEGER_3" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>UNSIGNED SMALLINT</name>
+    <name>USMALLINT</name>
+  </predefinedDataTypeDefinitions>
+    <predefinedDataTypeDefinitions xmi:id="TINYINT_2" keyConstraintSupported="true" identitySupported="true" primitiveType="INTEGER" jdbcEnumType="-6" javaClassName="byte">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>UNSIGNED TINYINT</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BIGINT_2" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="java.math.BigInteger">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>UNSIGNED BIGINT</name>
+    <name>UBIGINT</name>
+  </predefinedDataTypeDefinitions>
+  <columnDefinition identitySupported="true" identityStartValueSupported="true"/>
+  <constraintDefinition clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true">
+    <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
+    <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
+    <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>SET_NULL</parentDeleteDRIRuleType>
+    <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
+    <checkOption>NONE</checkOption>
+    <checkOption>LOCAL</checkOption>
+    <checkOption>CASCADE</checkOption>
+  </constraintDefinition>
+  <debuggerDefinition conditionSupported="false"/>
+</DBDefinition:DatabaseVendorDefinition>

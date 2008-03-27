@@ -11,9 +11,11 @@ import org.eclipse.datatools.enablement.sybase.ddl.ISybaseDdlConstants;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.enablement.sybase.deltaddl.ConstraintDeltaDdlGenProvider;
 import org.eclipse.datatools.enablement.sybase.deltaddl.SybaseDeltaDdlGeneration;
+import org.eclipse.datatools.enablement.sybase.util.SQLUtil;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.Constraint;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsPackage;
+import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
@@ -39,10 +41,19 @@ public class ASATableCheckConstraintDeltaDdlGenProvider extends ConstraintDeltaD
         // The search condition is changed
         if(feature.getFeatureID() == SQLExpressionsPackage.SEARCH_CONDITION_DEFAULT__SQL)
         {
-            Database database = (Database) ContainmentServiceImpl.INSTANCE.getRootElement(rc);
-            DatabaseDefinition def = DatabaseDefinitionRegistryImpl.INSTANCE.getDefinition(database);
-            DDLGenerator ddlgen = def.getDDLGenerator();
-            reCreateConstraint(ddlgen, rc, quoteIdentifiers, qualifyNames, fullSyntax, script);
+            String tableName = rc.getBaseTable().getName();
+            String constraintName = rc.getName();
+            if(quoteIdentifiers)
+            {
+                tableName = SQLUtil.quote(tableName,DOUBLE_QUOTE);
+                constraintName = SQLUtil.quote(constraintName,DOUBLE_QUOTE);
+            }
+            StringBuffer statement = new StringBuffer(128);
+            statement.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(
+                    getName(rc.getBaseTable(), quoteIdentifiers, qualifyNames)).append(SPACE).append(ALTER).append(
+                    SPACE).append(CONSTRAINT).append(SPACE).append(constraintName).append(SPACE).append(CHECK).append(
+                    LEFT_PARENTHESIS).append(rc.getSearchCondition().getSQL()).append(RIGHT_PARENTHESIS);
+            script.addAlterTableAlterConstraintStatements(statement.toString());
         }
     }
     
@@ -73,6 +84,8 @@ public class ASATableCheckConstraintDeltaDdlGenProvider extends ConstraintDeltaD
             script.addAlterTableAddConstraintStatement(ddl[i]);
         }
     }
+
+    
     protected boolean needGenerateRenamingDdl(Constraint constraint)
     {
         if(!(constraint instanceof CheckConstraint))
@@ -89,7 +102,7 @@ public class ASATableCheckConstraintDeltaDdlGenProvider extends ConstraintDeltaD
                 SybaseDeltaDdlGeneration.FeatureChangeRecord cr = (SybaseDeltaDdlGeneration.FeatureChangeRecord) list.get(i);
                 if(cr.feature.getFeatureID() == SQLExpressionsPackage.SEARCH_CONDITION_DEFAULT__SQL)
                 {
-                    return false;
+                    return true;
                 }
             }
         }
@@ -129,16 +142,18 @@ public class ASATableCheckConstraintDeltaDdlGenProvider extends ConstraintDeltaD
         }
         return obj.getName();
     }
-    protected String generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
+    
+    
+    protected String[] generateRenameConstraintStatement(Constraint constraint, String oldname, String newname,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax)
     {
-        StringBuffer sb = new StringBuffer(""); //$NON-NLS-1$
+        StringBuffer sb = new StringBuffer("");
         sb.append(ALTER).append(SPACE).append(TABLE).append(SPACE).append(
                 (getName((Table) constraint.eContainer(), quoteIdentifiers, qualifyNames))).append(SPACE).append(
-                IGenericDdlConstants.RENAME).append(SPACE).append(
+                IGenericDdlConstants.RENAME).append(SPACE).append(CONSTRAINT).append(SPACE).append(SPACE).append(
                 quoteIdentifiers ? getDoubleQuotedString(oldname) : oldname).append(SPACE).append(
                 ISybaseDdlConstants.TO).append(SPACE).append(
                 quoteIdentifiers ? getDoubleQuotedString(newname) : newname);
-        return sb.toString();
+        return new String[]{sb.toString()};
     }
 }

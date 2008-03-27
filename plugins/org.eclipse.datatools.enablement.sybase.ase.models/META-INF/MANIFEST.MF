@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ase.models
+Bundle-Version: 1.0.1.200801241
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.datatools.modelbase.sql;visibility:=reexport,
+ org.eclipse.datatools.enablement.sybase
+Export-Package: org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel,
+ org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl,
+ org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition,
+ org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.impl,
+ org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.partition.util,
+ org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.util
+Bundle-Vendor: %providerName
+Eclipse-LazyStart: true

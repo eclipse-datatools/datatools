@@ -3,9 +3,11 @@ package org.eclipse.datatools.enablement.sybase.asa.loaders;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SchemaASABaseLoader;
+import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogIndex;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogSchema;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogTable;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogTempTable;
+import org.eclipse.datatools.modelbase.sql.constraints.Index;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 public class SchemaASALoader extends SchemaASABaseLoader{
@@ -14,6 +16,11 @@ public class SchemaASALoader extends SchemaASABaseLoader{
 	{
 		super(catalogSchema);
 	}
+	
+	protected Index createCatalogIndex()
+    {
+        return new SybaseASACatalogIndex();
+    }
 	
 	protected JDBCTableLoader createTableLoader() {
 		return new ASATableLoader(catalogObj);

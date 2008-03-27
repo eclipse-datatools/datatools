@@ -10,6 +10,7 @@ import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
+import org.eclipse.datatools.enablement.sybase.util.SQLUtil;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsFactory;
 import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
@@ -17,8 +18,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 public class CheckConstraintASALoader {
 
-	public static final String TABLE_CHECK_CONSTRAINT_TYPE = "T"; //$NON-NLS-1$
-	public static final String COLUMN_CHECK_CONSTRAINT_TYPE = "C"; //$NON-NLS-1$
+	public static final String TABLE_CHECK_CONSTRAINT_TYPE = "T";
+	public static final String COLUMN_CHECK_CONSTRAINT_TYPE = "C";
 	
 	protected CheckConstraint check;
 	protected Connection conn;
@@ -77,10 +78,10 @@ public class CheckConstraintASALoader {
 	{
 		String conditions = rs.getString(2);
 		SearchCondition sc = SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault();
-		sc.setSQL(conditions);
+		sc.setSQL(SQLUtil.parseSearchStatement(conditions));
 		check.setSearchCondition(sc);
 	}
-	
+    
 	protected Table getTable()
 	{
 		return check.getBaseTable();

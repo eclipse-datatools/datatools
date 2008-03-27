@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseProcedureImpl.java,v 1.2 2007/03/19 16:37:07 jgraham Exp $
+ * $Id: SybaseASABaseProcedureImpl.java,v 1.12 2007/09/06 01:45:22 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
+
+import java.util.Collection;
 
 import java.util.Iterator;
 
@@ -12,6 +14,12 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseParameter;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProcedure;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
+
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseRoutineUtil;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
@@ -21,9 +29,16 @@ import org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,64 +55,68 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseASABaseProcedure 
 {
-	/**
-	 * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOnExceptionResume()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isOnExceptionResume()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean ON_EXCEPTION_RESUME_EDEFAULT = false;
 
-	/**
-	 * The cached value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #isOnExceptionResume() <em>On Exception Resume</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOnExceptionResume()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isOnExceptionResume()
+     * @generated
+     * @ordered
+     */
 	protected boolean onExceptionResume = ON_EXCEPTION_RESUME_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SybaseASABaseProcedureImpl() {
-		super();
-	}
+     * @generated
+     */
+	protected SybaseASABaseProcedureImpl()
+    {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EClass eStaticClass() {
-		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PROCEDURE;
-	}
+     * @generated
+     */
+	protected EClass eStaticClass()
+    {
+        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_PROCEDURE;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isOnExceptionResume() {
-		return onExceptionResume;
-	}
+     * @generated
+     */
+	public boolean isOnExceptionResume()
+    {
+        return onExceptionResume;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOnExceptionResume(boolean newOnExceptionResume) {
-		boolean oldOnExceptionResume = onExceptionResume;
-		onExceptionResume = newOnExceptionResume;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
-	}
+     * @generated
+     */
+	public void setOnExceptionResume(boolean newOnExceptionResume)
+    {
+        boolean oldOnExceptionResume = onExceptionResume;
+        onExceptionResume = newOnExceptionResume;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME, oldOnExceptionResume, onExceptionResume));
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -115,77 +134,86 @@ public class SybaseASABaseProcedureImpl extends ProcedureImpl implements SybaseA
 	 */
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
-		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");  //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
+		return owner.equals("SYS") || owner.equals("rs_systabgroup");
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
-				return isOnExceptionResume() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+     * @generated
+     */
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
+                return isOnExceptionResume() ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
-				setOnExceptionResume(((Boolean)newValue).booleanValue());
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+     * @generated
+     */
+	public void eSet(int featureID, Object newValue)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
+                setOnExceptionResume(((Boolean)newValue).booleanValue());
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
-				setOnExceptionResume(ON_EXCEPTION_RESUME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+     * @generated
+     */
+	public void eUnset(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
+                setOnExceptionResume(ON_EXCEPTION_RESUME_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
-				return onExceptionResume != ON_EXCEPTION_RESUME_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+     * @generated
+     */
+	public boolean eIsSet(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_PROCEDURE__ON_EXCEPTION_RESUME:
+                return onExceptionResume != ON_EXCEPTION_RESUME_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+     * @generated
+     */
+	public String toString()
+    {
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (onExceptionResume: ");
-		result.append(onExceptionResume);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (onExceptionResume: ");
+        result.append(onExceptionResume);
+        result.append(')');
+        return result.toString();
+    }
 
     /**
      * If the SQLRoutinesPackage.PROCEDURE__RESULT_SET feature is not set, this ASA implementation returns a single

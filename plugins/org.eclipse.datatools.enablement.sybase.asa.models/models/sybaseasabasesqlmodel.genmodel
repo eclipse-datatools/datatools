@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.datatools.enablement.sybase.asa.models/src"
     modelPluginID="org.eclipse.datatools.enablement.sybase.asa.models" modelName="Sybaseasabasesqlmodel"
-    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="../../../plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
+    importerID="org.eclipse.emf.importer.ecore" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.genmodel#//sqlmodel ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.genmodel#//sybasesqlmodel">
   <foreignModel>sybaseasabasesqlmodel.ecore</foreignModel>
   <genPackages prefix="Sybaseasabasesqlmodel" basePackage="org.eclipse.datatools.enablement.sybase.asa.models"
       disposableProviderFactory="true" ecorePackage="sybaseasabasesqlmodel.ecore#/">
@@ -91,6 +91,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/eventCreator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/location"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/schedules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseEvent/conditionDetails"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseDatabase/dataTypes"/>
@@ -137,7 +138,6 @@
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseTable">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseTable/dbSpace"/>
-      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseTable/getCheckConstraints"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseColumn/columnConstraint"/>
@@ -149,6 +149,7 @@
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint/clustered"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//SybaseASABaseUniqueConstraint/systemGenIndex"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABasePrimaryKey"/>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASABaseForeignKey">
@@ -222,6 +223,7 @@
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables">
         <genParameters ecoreParameter="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getViewTables/systemFlag"/>
       </genOperations>
+      <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASABaseSchema/getSystemAndNormalTables"/>
     </genClasses>
     <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/value"/>
@@ -229,6 +231,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/partitionSize"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/type"/>
       <genOperations ecoreOperation="sybaseasabasesqlmodel.ecore#//SybaseASADefaultWrapper/parse"/>
+    </genClasses>
+    <genClasses ecoreClass="sybaseasabasesqlmodel.ecore#//EventCondition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EventCondition/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sybaseasabasesqlmodel.ecore#//EventCondition/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sybaseasabasesqlmodel.ecore#//EventCondition/event"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

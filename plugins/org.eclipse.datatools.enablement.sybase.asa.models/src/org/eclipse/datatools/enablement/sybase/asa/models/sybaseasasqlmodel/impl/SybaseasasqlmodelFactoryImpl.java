@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
+ * $Id: SybaseasasqlmodelFactoryImpl.java,v 1.8 2007/06/05 14:41:03 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.*;
-
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex;
@@ -29,13 +28,14 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements SybaseasasqlmodelFactory 
 {
-	/**
+    /**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static SybaseasasqlmodelFactory init() {
+	public static SybaseasasqlmodelFactory init()
+    {
 		try {
 			SybaseasasqlmodelFactory theSybaseasasqlmodelFactory = (SybaseasasqlmodelFactory)EPackage.Registry.INSTANCE.getEFactory("http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasasqlmodel.ecore"); 
 			if (theSybaseasasqlmodelFactory != null) {
@@ -48,22 +48,24 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 		return new SybaseasasqlmodelFactoryImpl();
 	}
 
-	/**
+    /**
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseasasqlmodelFactoryImpl() {
+	public SybaseasasqlmodelFactoryImpl()
+    {
 		super();
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject create(EClass eClass) {
+	public EObject create(EClass eClass)
+    {
 		switch (eClass.getClassifierID()) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE: return createSybaseASADatabase();
 			case SybaseasasqlmodelPackage.SYBASE_ASA_TABLE: return createSybaseASATable();
@@ -75,72 +77,79 @@ public class SybaseasasqlmodelFactoryImpl extends EFactoryImpl implements Sybase
 		}
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseASADatabase createSybaseASADatabase() {
+	public SybaseASADatabase createSybaseASADatabase()
+    {
 		SybaseASADatabaseImpl sybaseASADatabase = new SybaseASADatabaseImpl();
 		return sybaseASADatabase;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseASATable createSybaseASATable() {
+	public SybaseASATable createSybaseASATable()
+    {
 		SybaseASATableImpl sybaseASATable = new SybaseASATableImpl();
 		return sybaseASATable;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseASAForeignKey createSybaseASAForeignKey() {
+	public SybaseASAForeignKey createSybaseASAForeignKey()
+    {
 		SybaseASAForeignKeyImpl sybaseASAForeignKey = new SybaseASAForeignKeyImpl();
 		return sybaseASAForeignKey;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseASAIndex createSybaseASAIndex() {
+	public SybaseASAIndex createSybaseASAIndex()
+    {
 		SybaseASAIndexImpl sybaseASAIndex = new SybaseASAIndexImpl();
 		return sybaseASAIndex;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseASATempTable createSybaseASATempTable() {
+	public SybaseASATempTable createSybaseASATempTable()
+    {
 		SybaseASATempTableImpl sybaseASATempTable = new SybaseASATempTableImpl();
 		return sybaseASATempTable;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseasasqlmodelPackage getSybaseasasqlmodelPackage() {
+	public SybaseasasqlmodelPackage getSybaseasasqlmodelPackage()
+    {
 		return (SybaseasasqlmodelPackage)getEPackage();
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
-	public static SybaseasasqlmodelPackage getPackage() {
+	public static SybaseasasqlmodelPackage getPackage()
+    {
 		return SybaseasasqlmodelPackage.eINSTANCE;
 	}
 

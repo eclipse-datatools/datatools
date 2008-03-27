@@ -7,15 +7,18 @@ import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.enablement.sybase.asa.baseloaders.AuthorizedObjectPrivilegeASALoader;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SybaseASABaseTempTableLoader;
+import org.eclipse.datatools.enablement.sybase.asa.baseloaders.TableASABaseLoader.IASABaseLoaderTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseTempTableImpl;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl implements ICatalogObject
+public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl implements ICatalogObject, IASABaseLoaderTable
 {
 	private static final long serialVersionUID = -8103460895608980796L;
 
@@ -24,8 +27,10 @@ public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl im
 	protected Boolean triggersLoaded = Boolean.FALSE;
 	protected Boolean indicesLoaded = Boolean.FALSE;
 	protected Boolean tableInfoLoaded = Boolean.FALSE; 
-	
-	private SoftReference tableLoaderRef = null;
+	protected Boolean privilegesLoaded = Boolean.FALSE;
+
+    private SoftReference tableLoaderRef = null;
+	private SoftReference authIdLoaderRef;
 	
 	public Database getCatalogDatabase() {
 		return this.getSchema().getDatabase();
@@ -36,37 +41,46 @@ public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl im
 	}
 
 	public void refresh() {
-		synchronized (columnsLoaded) {
-			if(columnsLoaded.booleanValue())
-			{
-				columnsLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (constraintsLoaded) {
-			if(constraintsLoaded.booleanValue())
-			{
-				constraintsLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (triggersLoaded) {
-			if(triggersLoaded.booleanValue())
-			{
-				triggersLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (indicesLoaded) {
-			if(indicesLoaded.booleanValue())
-			{
-				indicesLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (tableInfoLoaded) {
-			if(tableInfoLoaded.booleanValue())
-			{
-				tableInfoLoaded = Boolean.FALSE;
-			}
-		}
-		RefreshManager.getInstance().referesh(this);
+	    if(isNeedRefresh())
+	    {
+	        synchronized (columnsLoaded) {
+	            if(columnsLoaded.booleanValue())
+	            {
+	                columnsLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (constraintsLoaded) {
+	            if(constraintsLoaded.booleanValue())
+	            {
+	                constraintsLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (triggersLoaded) {
+	            if(triggersLoaded.booleanValue())
+	            {
+	                triggersLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (indicesLoaded) {
+	            if(indicesLoaded.booleanValue())
+	            {
+	                indicesLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (tableInfoLoaded) {
+	            if(tableInfoLoaded.booleanValue())
+	            {
+	                tableInfoLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (privilegesLoaded) {
+	            if(privilegesLoaded.booleanValue())
+	            {
+	                privilegesLoaded = Boolean.FALSE;
+	            }
+	        }
+	        RefreshManager.getInstance().referesh(this);
+	    }
 	}
 	
 	public boolean eIsSet(EStructuralFeature eFeature) {
@@ -90,6 +104,9 @@ public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl im
 		case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TEMP_TABLE__TRANSACTION_OPTION:
 			this.getTransactionOption();
 			break;
+        case SybasesqlmodelPackage.SYBASE_BASE_TABLE__PRIVILEGES:
+            getPrivileges();
+            break;
 		}
 		return super.eIsSet(eFeature);
 	}	
@@ -141,7 +158,7 @@ public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl im
 		synchronized (triggersLoaded) {
 			if(!triggersLoaded.booleanValue())
 			{
-				getTableLoader().loadTriggers(super.getTriggers());
+			    getTableLoader().loadTriggers(super.getTriggers());
 				triggersLoaded = Boolean.TRUE;
 			}
 		}
@@ -180,4 +197,78 @@ public class SybaseASACatalogBaseTempTable extends SybaseASABaseTempTableImpl im
 		}
 		return super.getTransactionOption();
 	}
+	
+    public EList getPrivileges()
+    {
+        synchronized (privilegesLoaded) {
+            if(!privilegesLoaded.booleanValue())
+            {
+                getPrivilegeLoader().loadPrivilegs(super.getPrivileges());
+                privilegesLoaded = Boolean.TRUE;
+            }
+        }
+        return super.getPrivileges();
+    }
+    
+    private AuthorizedObjectPrivilegeASALoader getPrivilegeLoader()
+    {
+        AuthorizedObjectPrivilegeASALoader loader = authIdLoaderRef == null ? null
+                : (AuthorizedObjectPrivilegeASALoader) authIdLoaderRef.get();
+        
+        if(loader == null)
+        {
+            loader = createPrivilegeLoader();
+            authIdLoaderRef = new SoftReference(loader);
+        }
+        
+        return loader;
+    }
+    
+    private AuthorizedObjectPrivilegeASALoader createPrivilegeLoader()
+    {
+        return new AuthorizedObjectPrivilegeASALoader(this);
+    }
+    
+    private boolean isNeedRefresh()
+    {
+        if(columnsLoaded.booleanValue()||constraintsLoaded.booleanValue()||triggersLoaded.booleanValue()
+                ||indicesLoaded.booleanValue()||tableInfoLoaded.booleanValue()||privilegesLoaded.booleanValue())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public Boolean isIndexLoaded()
+    {
+        return this.indicesLoaded;
+    }
+
+    public Boolean isTriggerLoaded()
+    {
+        return this.triggersLoaded;
+    }
+
+    public void setIndexLoaded(Boolean loaded)
+    {
+        this.indicesLoaded = loaded;
+    }
+
+    public void setTriggerLoaded(Boolean loaded)
+    {
+        this.triggersLoaded = loaded;
+    }
+    
+    public EList getIndexSupper()
+    {
+        return super.getIndex();
+    }
+
+    public EList getTriggerSuper()
+    {
+        return super.getTriggers();
+    }
 }

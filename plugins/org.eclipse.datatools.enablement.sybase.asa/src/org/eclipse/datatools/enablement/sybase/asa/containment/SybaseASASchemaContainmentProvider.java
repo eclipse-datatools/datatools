@@ -11,15 +11,7 @@ public class SybaseASASchemaContainmentProvider extends
 		SchemaContainmentProvider {
 
 	public Collection getContainedElements(EObject obj) {
-		Collection children = super.getContainedElements(obj);
-		Schema schema = (Schema)obj;
-		children.addAll(schema.getTables());
-		children.addAll(schema.getRoutines());
-		children.addAll(schema.getSequences());
-		children.addAll(schema.getUserDefinedTypes());
-		children.addAll(schema.getAssertions());
-		children.addAll(schema.getCharSets());
-		return children;
+		return super.getContainedElements(obj);
 	}
 
 	public String getGroupId(EObject obj) {

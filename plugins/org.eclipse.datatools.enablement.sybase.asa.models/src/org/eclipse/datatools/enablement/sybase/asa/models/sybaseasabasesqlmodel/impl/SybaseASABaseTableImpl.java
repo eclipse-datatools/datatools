@@ -2,23 +2,36 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTableImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
+ * $Id: SybaseASABaseTableImpl.java,v 1.11 2007/09/06 01:45:22 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
+
+import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
+
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
 import org.eclipse.datatools.modelbase.sql.tables.impl.PersistentTableImpl;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,71 +48,84 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASABaseTableImpl extends PersistentTableImpl implements SybaseASABaseTable 
 {
-	/**
-	 * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDbSpace()
-	 * @generated
-	 * @ordered
-	 */
-	protected SybaseASABaseDBSpace dbSpace = null;
+    final public static String[]   PB_SYS_TABLES     = new String[]
+                                                     {
+        "pbcatcol", "pbcatedt", "pbcatfmt", "pbcattbl", "pbcatvld"
+                                                     };
+    final public static List       PB_SYS_TABLE_LIST = Arrays.asList(PB_SYS_TABLES);
+    
+    /**
+     * The cached value of the '{@link #getDbSpace() <em>Db Space</em>}' reference. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * 
+     * @see #getDbSpace()
+     * @generated
+     * @ordered
+     */
+	protected SybaseASABaseDBSpace dbSpace;
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SybaseASABaseTableImpl() {
-		super();
-	}
+     * @generated
+     */
+	protected SybaseASABaseTableImpl()
+    {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EClass eStaticClass() {
-		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TABLE;
-	}
+     * @generated
+     */
+	protected EClass eStaticClass()
+    {
+        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TABLE;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SybaseASABaseDBSpace getDbSpace() {
-		if (dbSpace != null && dbSpace.eIsProxy()) {
-			InternalEObject oldDbSpace = (InternalEObject)dbSpace;
-			dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
-			if (dbSpace != oldDbSpace) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
-			}
-		}
-		return dbSpace;
-	}
+     * @generated
+     */
+	public SybaseASABaseDBSpace getDbSpace()
+    {
+        if (dbSpace != null && dbSpace.eIsProxy())
+        {
+            InternalEObject oldDbSpace = (InternalEObject)dbSpace;
+            dbSpace = (SybaseASABaseDBSpace)eResolveProxy(oldDbSpace);
+            if (dbSpace != oldDbSpace)
+            {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+            }
+        }
+        return dbSpace;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SybaseASABaseDBSpace basicGetDbSpace() {
-		return dbSpace;
-	}
+     * @generated
+     */
+	public SybaseASABaseDBSpace basicGetDbSpace()
+    {
+        return dbSpace;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDbSpace(SybaseASABaseDBSpace newDbSpace) {
-		SybaseASABaseDBSpace oldDbSpace = dbSpace;
-		dbSpace = newDbSpace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
-	}
+     * @generated
+     */
+	public void setDbSpace(SybaseASABaseDBSpace newDbSpace)
+    {
+        SybaseASABaseDBSpace oldDbSpace = dbSpace;
+        dbSpace = newDbSpace;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE, oldDbSpace, dbSpace));
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,7 +133,8 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 	 */
 	public boolean isSystem() {
 		String owner = this.getSchema().getName();
-		return owner.equals("SYS") || owner.equals("dbo") || owner.equals("rs_systabgroup");  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+		return owner.equals("SYS") || owner.equals("rs_systabgroup")
+                || PB_SYS_TABLE_LIST.contains(getName());
 	}
 
 	/**
@@ -128,59 +155,67 @@ public class SybaseASABaseTableImpl extends PersistentTableImpl implements Sybas
 		return result;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-				if (resolve) return getDbSpace();
-				return basicGetDbSpace();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+     * @generated
+     */
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+                if (resolve) return getDbSpace();
+                return basicGetDbSpace();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-				setDbSpace((SybaseASABaseDBSpace)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+     * @generated
+     */
+	public void eSet(int featureID, Object newValue)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+                setDbSpace((SybaseASABaseDBSpace)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-				setDbSpace((SybaseASABaseDBSpace)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+     * @generated
+     */
+	public void eUnset(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+                setDbSpace((SybaseASABaseDBSpace)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
-				return dbSpace != null;
-		}
-		return super.eIsSet(featureID);
-	}
+     * @generated
+     */
+	public boolean eIsSet(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TABLE__DB_SPACE:
+                return dbSpace != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SybaseASABaseTableImpl

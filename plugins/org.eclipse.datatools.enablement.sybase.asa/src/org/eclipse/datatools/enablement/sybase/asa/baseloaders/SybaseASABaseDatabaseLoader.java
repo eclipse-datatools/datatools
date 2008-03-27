@@ -104,7 +104,7 @@ public class SybaseASABaseDatabaseLoader {
 	static public class ASABaseSchemaLoader extends JDBCSchemaLoader {
 
 		public ASABaseSchemaLoader(ICatalogObject catalogObject) {
-			super(catalogObject);
+			super(catalogObject, null);
 		}
 
 		protected Schema createSchema() {
@@ -239,17 +239,23 @@ public class SybaseASABaseDatabaseLoader {
 			rs = stmt.executeQuery(ASASQLs.QUERY_EVENTS);
 			while(rs.next()) {				
 				String eventName = rs.getString("event_name"); //$NON-NLS-1$
+				String creator = rs.getString("user_name");
 				SybaseASABaseEvent event;
 				Object element = SybaseASACatalogUtils.findElement(existingEvents,eventName);
 
+				Schema schema = (Schema)SybaseASACatalogUtils.findElement(database.getSchemas(), creator);
+				
 				if (element != null) {
 					eventContainmentList.add(element);
+					((SybaseASABaseEvent)element).setEventCreator(schema);
 					((ICatalogObject)element).refresh();
 				} else {
 					event = createCatalogEvent();
 					event.setName(eventName);
+					event.setEventCreator(schema);
 					eventContainmentList.add(event);
 				}
+				
 			}
 		}
 		catch (SQLException e) {
@@ -282,7 +288,7 @@ public class SybaseASABaseDatabaseLoader {
 			while(rs.next())
 			{
 				String authIdName = rs.getString(1);
-				boolean isGroup = rs.getString(2).equals("Y"); //$NON-NLS-1$
+				boolean isGroup = rs.getString(2).equals("Y");
 				SybaseAuthorizationIdentifier id = null;
 				if(isGroup)
 				{
@@ -414,11 +420,15 @@ public class SybaseASABaseDatabaseLoader {
         String mirrorLogFileName = rs.getString(3);
         int pageSize = rs.getInt(4);
         String encryptionSpec = rs.getString(5);
-        boolean isCaseSensitive = rs.getString(6).equalsIgnoreCase("ON"); //$NON-NLS-1$
-        boolean hasBlankPadding = rs.getString(7).equalsIgnoreCase("ON"); //$NON-NLS-1$
+        boolean isCaseSensitive = rs.getString(6).equalsIgnoreCase("ON");
+        boolean hasBlankPadding = rs.getString(7).equalsIgnoreCase("ON");
         String collationLabel = rs.getString(8);
-        boolean isCheckSum = rs.getString(9).equalsIgnoreCase("ON"); //$NON-NLS-1$
-        
+        boolean isCheckSum = rs.getString(9).equalsIgnoreCase("ON");
+        Boolean isPasswordSensitive = null; // for ASA10, password always case sensitive
+        if(!this.database.isBaseOnASA10())
+        {
+            isPasswordSensitive = Boolean.valueOf(rs.getString(10).equalsIgnoreCase("ON"));
+        }
         database.setDatabaseFileName(fileName);
         database.setLogFileName(logFileName);
         database.setMirrorFileName(mirrorLogFileName);
@@ -427,18 +437,19 @@ public class SybaseASABaseDatabaseLoader {
         database.setBlankPaddingOn(hasBlankPadding);
         database.setCollation(collationLabel);
         database.setCheckSumOn(isCheckSum);
+        database.setPasswordCaseSensitive(isPasswordSensitive);
         
         EncryptionInfo encryInfo = SybaseasabasesqlmodelFactory.eINSTANCE.createEncryptionInfo();
-		if(encryptionSpec == null || encryptionSpec.length() == 0 || encryptionSpec.equalsIgnoreCase("None")) //$NON-NLS-1$
+		if(encryptionSpec == null || encryptionSpec.length() == 0 || encryptionSpec.equalsIgnoreCase("None"))
 			encryInfo = null;
-        else if(encryptionSpec.equalsIgnoreCase("Simple")) //$NON-NLS-1$
+        else if(encryptionSpec.equalsIgnoreCase("Simple"))
             encryInfo.setAlgorithm(null);
-        else if(encryptionSpec.equalsIgnoreCase("AES")) //$NON-NLS-1$
-        	encryInfo.setAlgorithm("AES"); //$NON-NLS-1$
-        else if(encryptionSpec.equalsIgnoreCase("AES_FIPS")) //$NON-NLS-1$
-        	encryInfo.setAlgorithm("AES_FIPS"); //$NON-NLS-1$
-        else if(encryptionSpec.equalsIgnoreCase("MDSR")) //$NON-NLS-1$
-        	encryInfo.setAlgorithm("MDSR"); //$NON-NLS-1$
+        else if(encryptionSpec.equalsIgnoreCase("AES"))
+        	encryInfo.setAlgorithm("AES");
+        else if(encryptionSpec.equalsIgnoreCase("AES_FIPS"))
+        	encryInfo.setAlgorithm("AES_FIPS");
+        else if(encryptionSpec.equalsIgnoreCase("MDSR"))
+        	encryInfo.setAlgorithm("MDSR");
 		//we can not get the KEY value
 		database.setEncryptionInfo(encryInfo);
 	}
@@ -478,18 +489,18 @@ public class SybaseASABaseDatabaseLoader {
 	protected void processDbInfo2ResutSet(ResultSet rs) throws SQLException
 	{
 		String jdkVersion1 = rs.getString(1);
-        boolean isJarSupport = rs.getString(2).equalsIgnoreCase("Y"); //$NON-NLS-1$
-        boolean isJconnectSupport = rs.getString(3).equalsIgnoreCase("Y"); //$NON-NLS-1$
+        boolean isJarSupport = rs.getString(2).equalsIgnoreCase("Y");
+        boolean isJconnectSupport = rs.getString(3).equalsIgnoreCase("Y");
         
         JavaSupportType jst = null;
         if(jdkVersion1 != null || isJarSupport)
         {
 			//TODO: not sure about jdk version retrieving
-            if ("1.3".equals(jdkVersion1)) //$NON-NLS-1$
+            if ("1.3".equals(jdkVersion1))
             {
                 jst = JavaSupportType.JDK13_LITERAL;
             }
-            else if ("1.18".equals(jdkVersion1)) //$NON-NLS-1$
+            else if ("1.18".equals(jdkVersion1))
             {
                 jst = JavaSupportType.JDK118_LITERAL;
             }

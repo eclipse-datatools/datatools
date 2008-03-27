@@ -2,35 +2,28 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sybase ASA Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.asa;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+Require-Bundle: 
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.ui;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.datatools.connectivity.sqm.server.ui;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.modelbase.dbdefinition;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.sybase.asa.models;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.datatools.enablement.sybase;bundle-version="[1.0.0,2.0.0)",
- com.ibm.icu;bundle-version="[3.4.0,4.0.0)"
+ com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
+ org.eclipse.datatools.sqltools.editor.core,
+ org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[1.0.0,2.0.0)"
 Eclipse-LazyStart: true
 Bundle-Vendor: Eclipse.org
 Export-Package: org.eclipse.datatools.enablement.sybase.asa,
- org.eclipse.datatools.enablement.sybase.asa.actions,
  org.eclipse.datatools.enablement.sybase.asa.base.catalog,
  org.eclipse.datatools.enablement.sybase.asa.baseloaders,
  org.eclipse.datatools.enablement.sybase.asa.catalog,
  org.eclipse.datatools.enablement.sybase.asa.containment,
  org.eclipse.datatools.enablement.sybase.asa.ddl,
  org.eclipse.datatools.enablement.sybase.asa.deltaddl,
- org.eclipse.datatools.enablement.sybase.asa.loaders,
- org.eclipse.datatools.enablement.sybase.asa.providers,
- org.eclipse.datatools.enablement.sybase.asa.ui,
- org.eclipse.datatools.enablement.sybase.asa.virtual
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+ org.eclipse.datatools.enablement.sybase.asa.internal.connection,
+ org.eclipse.datatools.enablement.sybase.asa.loaders

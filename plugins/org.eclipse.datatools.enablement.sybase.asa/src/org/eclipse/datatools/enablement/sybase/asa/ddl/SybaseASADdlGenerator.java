@@ -7,7 +7,9 @@ import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace;
+import org.eclipse.datatools.enablement.sybase.ddl.SybaseDatabaseObjecType;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlBuilder;
+import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlGenerationOptions;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlGenerator;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -101,8 +103,103 @@ public class SybaseASADdlGenerator extends SybaseDdlGenerator implements DDLGene
 	}
 
 	public byte[] getAdditionalOptionIndices(int objectType) {
-		// TODO Auto-generated method stub
-		return null;
+		if(objectType == SybaseDatabaseObjecType.DATABASE)
+        {
+		    return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_STORED_PROCEDURES,
+                SybaseDdlGenerationOptions.GENERATE_USER_FUNCTION,
+                SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
+                SybaseDdlGenerationOptions.GENERATE_EVENTS,
+		        SybaseDdlGenerationOptions.GENERATE_TABLES,
+                SybaseDdlGenerationOptions.GENERATE_PROXY_TABLES,
+                SybaseDdlGenerationOptions.GENERATE_VIEWS,
+                SybaseDdlGenerationOptions.GENERATE_INDICES,
+                SybaseDdlGenerationOptions.GENERATE_USER_DEFINED_TYPES,
+                SybaseDdlGenerationOptions.GENERATE_USERS_GROUPS,
+                SybaseDdlGenerationOptions.GENERATE_DBSPACE,
+            };
+        }
+        else if(objectType == SybaseDatabaseObjecType.TABLE || objectType == SybaseDatabaseObjecType.PROXY_TABLE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_PRIMARY_KEYS,
+                SybaseDdlGenerationOptions.GENERATE_UNIQUE_CONSTRAINTS,
+                SybaseDdlGenerationOptions.GENERATE_FOREIGN_KEYS,
+                SybaseDdlGenerationOptions.GENERATE_CHECK_CONSTRAINTS,
+                SybaseDdlGenerationOptions.GENERATE_INDICES,
+                SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
+                SybaseDdlGenerationOptions.GENERATE_USER_DEFINED_TYPES,
+            };
+        }
+        else
+        {
+            return new byte[]{};
+        }
+	}
+
+    public byte[] getGenerationOptionIndices(int objectType)
+    {
+        if (objectType == SybaseDatabaseObjecType.TABLE || objectType == SybaseDatabaseObjecType.USER_DEFINED_FUNCTION
+                || objectType == SybaseDatabaseObjecType.PROCEDURE || objectType == SybaseDatabaseObjecType.VIEW
+                || objectType == SybaseDatabaseObjecType.DATABASE || objectType == SybaseDatabaseObjecType.PROXY_TABLE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_CREATE_STATEMENTS,
+                SybaseDdlGenerationOptions.GENERATE_DROP_STATEMENTS,
+                SybaseDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME,
+                SybaseDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER,
+//                SybaseDdlGenerationOptions.GENERATE_FULL_SYNTAX,
+                SybaseDdlGenerationOptions.GENERATE_PRIVILEGE,
+                //TODO: currently we always generate comments 
+//                SybaseDdlGenerationOptions.GENERATE_COMMENTS,
+            };
+        }
+        else
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_CREATE_STATEMENTS,
+                SybaseDdlGenerationOptions.GENERATE_DROP_STATEMENTS,
+                SybaseDdlGenerationOptions.GENERATE_FULLY_QUALIFIED_NAME,
+                SybaseDdlGenerationOptions.GENERATE_QUOTED_IDENTIFIER,
+//                SybaseDdlGenerationOptions.GENERATE_FULL_SYNTAX,
+                //TODO: currently we always generate comments
+//                SybaseDdlGenerationOptions.GENERATE_COMMENTS,
+            };
+        }
+    }
+    
+    public byte[] getExclusiveAdditionalOptionIndices(int objectType)
+    {
+        if(objectType == SybaseDatabaseObjecType.DATABASE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_USER_FUNCTION,
+                SybaseDdlGenerationOptions.GENERATE_EVENTS,
+                SybaseDdlGenerationOptions.GENERATE_DBSPACE,
+            };
+        }
+        else if(objectType == SybaseDatabaseObjecType.TABLE || objectType == SybaseDatabaseObjecType.PROXY_TABLE)
+        {
+            return new byte[]{
+                SybaseDdlGenerationOptions.GENERATE_TRIGGERS,
+            };
+        }
+        else
+        {
+            return new byte[]{};
+        }
+    }
+
+	public String[] dropSQLObjectsForDeltaDDL(SQLObject[] elements,boolean quoteIdentifiers, boolean qualifyNames,
+			IProgressMonitor progressMonitor) 
+	{
+		return super.dropSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor);
+	}
+
+	public String[] createSQLObjectsForDeltaDDL(SQLObject[] elements,boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax,
+			IProgressMonitor progressMonitor) 
+	{
+		return super.createSQLObjects(elements, quoteIdentifiers, qualifyNames, progressMonitor);
 	}
 }
 

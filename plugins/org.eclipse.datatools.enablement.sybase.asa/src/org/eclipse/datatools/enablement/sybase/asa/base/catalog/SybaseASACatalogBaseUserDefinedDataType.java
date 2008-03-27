@@ -5,7 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
@@ -23,17 +29,20 @@ import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.expressions.SQLExpressionsFactory;
 import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseUserDefinedDataType extends SybaseASABaseUserDefinedTypeImpl implements ICatalogObject
+public class SybaseASACatalogBaseUserDefinedDataType extends SybaseASABaseUserDefinedTypeImpl implements ICatalogObject,IAdaptable
 {
+    public static final int BATCH_LOAD_THRESHHOLD = 10;
 	private static final long serialVersionUID = 1757200934996274093L;
 
 	protected Boolean UDTInfoLoaded = Boolean.FALSE;
 	
 	public Database getCatalogDatabase() {
-		return this.getSchema().getDatabase();
+		return getSchema().getCatalog().getDatabase();
 	}
 
 	public Connection getConnection() {
@@ -123,20 +132,56 @@ public class SybaseASACatalogBaseUserDefinedDataType extends SybaseASABaseUserDe
 		}
 		return super.getConstraint();
 	}
+	
+	public EList getSuperConstraint()
+	{
+	    return super.getConstraint();
+	}
 
+	private List getAllUDTs()
+	{
+        List allUDTs = new ArrayList();
+        for (Iterator it = this.getSchema().getDatabase().getSchemas().iterator(); it.hasNext();)
+        {
+            Schema s = (Schema) it.next();
+            allUDTs.addAll(s.getUserDefinedTypes());
+        }
+        return allUDTs;
+	}
+	
+	private boolean needBatchLoad(List allUDTs)
+	{
+	    int numOfUDTNotLoaded = 0;
+        for (Iterator it = allUDTs.iterator(); it.hasNext();)
+        {
+            SybaseASACatalogBaseUserDefinedDataType udt = (SybaseASACatalogBaseUserDefinedDataType) it.next();
+            if (!udt.UDTInfoLoaded.booleanValue())
+            {
+                numOfUDTNotLoaded ++;
+                if (numOfUDTNotLoaded >= BATCH_LOAD_THRESHHOLD)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+	}
+	
 	protected void loadUDTInfo() {
 		boolean deliver = this.eDeliver();
 		this.eSetDeliver(false);
+		List allUDTs = getAllUDTs();
+		boolean needBatchLoadStrategy = needBatchLoad(allUDTs);
 		
 		Connection conn = this.getConnection();
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
-			rs = createUDTInfoResultSet(conn);
+			rs = createUDTInfoResultSet(conn, needBatchLoadStrategy);
 			stmt = rs.getStatement();
 			while(rs.next())
 			{
-                processUDTInfoResultSet(rs);
+                processUDTInfoResultSet(rs, allUDTs);
 			}
 		}
 		catch (SQLException e) {
@@ -161,15 +206,41 @@ public class SybaseASACatalogBaseUserDefinedDataType extends SybaseASABaseUserDe
 		}
 	}
 	
-	protected ResultSet createUDTInfoResultSet(Connection conn) throws SQLException
+	protected ResultSet createUDTInfoResultSet(Connection conn, boolean needBatchLoadStrategy) throws SQLException
 	{
-		PreparedStatement stmt = conn.prepareStatement(ASASQLs.QUERY_UDT_INFO);
-		stmt.setString(1, this.getName());
+		PreparedStatement stmt = conn.prepareStatement(needBatchLoadStrategy ? ASASQLs.QUERY_ALL_UDT_INFO
+                : ASASQLs.QUERY_UDT_INFO);
+		if(!needBatchLoadStrategy)
+		{
+		    stmt.setString(1, this.getName());
+		}
 		return stmt.executeQuery();
 	}
 	
-	protected void processUDTInfoResultSet(ResultSet rs) throws SQLException
+    public static SQLObject getSQLObject(List sqlObjs, String objName)
+    {
+        Iterator it = sqlObjs.iterator();
+        while (it.hasNext())
+        {
+            SQLObject obj = (SQLObject) it.next();
+            if (obj.getName().equals(objName))
+            {
+                return obj;
+            }
+        }
+        return null;
+    }
+	
+	protected void processUDTInfoResultSet(ResultSet rs, List allUDTs) throws SQLException
 	{
+	    String typeName = rs.getString(1);
+	    
+	    // The UDT to be populated
+	    SybaseASACatalogBaseUserDefinedDataType udt = (SybaseASACatalogBaseUserDefinedDataType)getSQLObject(allUDTs, typeName);
+	    if(udt == null || udt.UDTInfoLoaded.booleanValue())
+	    {
+	    	return;
+	    }
 		String domainName = rs.getString(3);
         int width = rs.getInt(4);
         int scale = rs.getInt(5);
@@ -189,15 +260,27 @@ public class SybaseASACatalogBaseUserDefinedDataType extends SybaseASABaseUserDe
         }
         	
         
-        super.setPredefinedRepresentation(pdt);
-        super.setNullable(nulltype);
-        super.setDefaultValue(defaultValue);
-        super.setDefaultType(td);
-        super.getConstraint().clear();
-        CheckConstraint checkContr = SQLConstraintsFactory.eINSTANCE.createCheckConstraint();
-        SearchCondition sc = SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault();
-        sc.setSQL(check);
-        checkContr.setSearchCondition(sc);
-        super.getConstraint().add(checkContr);
+        udt.setPredefinedRepresentation(pdt);
+        udt.setNullable(nulltype);
+        udt.setDefaultValue(defaultValue);
+        udt.setDefaultType(td);
+        udt.getSuperConstraint().clear();
+        if(check != null && !check.equals(""))
+        {
+            CheckConstraint checkContr = SQLConstraintsFactory.eINSTANCE.createCheckConstraint();
+            SearchCondition sc = SQLExpressionsFactory.eINSTANCE.createSearchConditionDefault();
+            sc.setSQL(check);
+            checkContr.setSearchCondition(sc);
+            udt.getSuperConstraint().add(checkContr);
+        }
+        udt.UDTInfoLoaded = Boolean.TRUE;
 	}
+	
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}	
 }

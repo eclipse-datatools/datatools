@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTriggerImpl.java,v 1.2 2007/03/19 16:37:07 jgraham Exp $
+ * $Id: SybaseASABaseTriggerImpl.java,v 1.12 2007/08/24 08:24:46 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -35,187 +35,197 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABaseTrigger 
 {
-	/**
-	 * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOrder()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOrder()
+     * @generated
+     * @ordered
+     */
 	protected static final int ORDER_EDEFAULT = 1;
 
-	/**
-	 * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #getOrder() <em>Order</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOrder()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOrder()
+     * @generated
+     * @ordered
+     */
 	protected int order = ORDER_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getSybaseASABaseActionTime() <em>Sybase ASA Base Action Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #getSybaseASABaseActionTime() <em>Sybase ASA Base Action Time</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSybaseASABaseActionTime()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSybaseASABaseActionTime()
+     * @generated
+     * @ordered
+     */
 	protected static final SybaseASABaseActionTime SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT = SybaseASABaseActionTime.BEFORE_LITERAL;
 
-	/**
-	 * The cached value of the '{@link #getSybaseASABaseActionTime() <em>Sybase ASA Base Action Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #getSybaseASABaseActionTime() <em>Sybase ASA Base Action Time</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSybaseASABaseActionTime()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSybaseASABaseActionTime()
+     * @generated
+     * @ordered
+     */
 	protected SybaseASABaseActionTime sybaseASABaseActionTime = SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getRemoteName() <em>Remote Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #getRemoteName() <em>Remote Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRemoteName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String REMOTE_NAME_EDEFAULT = ""; //$NON-NLS-1$
+     * @see #getRemoteName()
+     * @generated
+     * @ordered
+     */
+	protected static final String REMOTE_NAME_EDEFAULT = "";
 
-	/**
-	 * The cached value of the '{@link #getRemoteName() <em>Remote Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #getRemoteName() <em>Remote Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRemoteName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getRemoteName()
+     * @generated
+     * @ordered
+     */
 	protected String remoteName = REMOTE_NAME_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #isUpdateColumnType() <em>Update Column Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #isUpdateColumnType() <em>Update Column Type</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isUpdateColumnType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isUpdateColumnType()
+     * @generated
+     * @ordered
+     */
     protected static final boolean UPDATE_COLUMN_TYPE_EDEFAULT = false;
 
-	/**
-	 * The cached value of the '{@link #isUpdateColumnType() <em>Update Column Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #isUpdateColumnType() <em>Update Column Type</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isUpdateColumnType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isUpdateColumnType()
+     * @generated
+     * @ordered
+     */
     protected boolean updateColumnType = UPDATE_COLUMN_TYPE_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SybaseASABaseTriggerImpl() {
-		super();
-	}
+     * @generated
+     */
+	protected SybaseASABaseTriggerImpl()
+    {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EClass eStaticClass() {
-		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TRIGGER;
-	}
+     * @generated
+     */
+	protected EClass eStaticClass()
+    {
+        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_TRIGGER;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getOrder() {
-		return order;
-	}
+     * @generated
+     */
+	public int getOrder()
+    {
+        return order;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOrder(int newOrder) {
-		int oldOrder = order;
-		order = newOrder;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER, oldOrder, order));
-	}
+     * @generated
+     */
+	public void setOrder(int newOrder)
+    {
+        int oldOrder = order;
+        order = newOrder;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER, oldOrder, order));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SybaseASABaseActionTime getSybaseASABaseActionTime() {
-		return sybaseASABaseActionTime;
-	}
+     * @generated
+     */
+	public SybaseASABaseActionTime getSybaseASABaseActionTime()
+    {
+        return sybaseASABaseActionTime;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSybaseASABaseActionTime(SybaseASABaseActionTime newSybaseASABaseActionTime) {
-		SybaseASABaseActionTime oldSybaseASABaseActionTime = sybaseASABaseActionTime;
-		sybaseASABaseActionTime = newSybaseASABaseActionTime == null ? SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT : newSybaseASABaseActionTime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME, oldSybaseASABaseActionTime, sybaseASABaseActionTime));
-	}
+     * @generated
+     */
+	public void setSybaseASABaseActionTime(SybaseASABaseActionTime newSybaseASABaseActionTime)
+    {
+        SybaseASABaseActionTime oldSybaseASABaseActionTime = sybaseASABaseActionTime;
+        sybaseASABaseActionTime = newSybaseASABaseActionTime == null ? SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT : newSybaseASABaseActionTime;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME, oldSybaseASABaseActionTime, sybaseASABaseActionTime));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getRemoteName() {
-		return remoteName;
-	}
+     * @generated
+     */
+	public String getRemoteName()
+    {
+        return remoteName;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRemoteName(String newRemoteName) {
-		String oldRemoteName = remoteName;
-		remoteName = newRemoteName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME, oldRemoteName, remoteName));
-	}
+     * @generated
+     */
+	public void setRemoteName(String newRemoteName)
+    {
+        String oldRemoteName = remoteName;
+        remoteName = newRemoteName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME, oldRemoteName, remoteName));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public boolean isUpdateColumnType() {
-		return updateColumnType;
-	}
+     * @generated
+     */
+    public boolean isUpdateColumnType()
+    {
+        return updateColumnType;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
-    public void setUpdateColumnType(boolean newUpdateColumnType) {
-		boolean oldUpdateColumnType = updateColumnType;
-		updateColumnType = newUpdateColumnType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE, oldUpdateColumnType, updateColumnType));
-	}
+     * @generated
+     */
+    public void setUpdateColumnType(boolean newUpdateColumnType)
+    {
+        boolean oldUpdateColumnType = updateColumnType;
+        updateColumnType = newUpdateColumnType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE, oldUpdateColumnType, updateColumnType));
+    }
 
     /**
      * <!-- begin-user-doc -->
@@ -273,126 +283,126 @@ public class SybaseASABaseTriggerImpl extends TriggerImpl implements SybaseASABa
     {
         if (getActionGranularity().getValue() == ActionGranularityType.ROW)
         {
-            setOldRow(newName);
+            setNewRow(newName);
         }
         else
         {
-            setOldTable(newName);
+            setNewTable(newName);
         }
     }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				return new Integer(getOrder());
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
-				return getSybaseASABaseActionTime();
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
-				return getRemoteName();
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
-				return isUpdateColumnType() ? Boolean.TRUE : Boolean.FALSE;
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				setOrder(((Integer)newValue).intValue());
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
-				setSybaseASABaseActionTime((SybaseASABaseActionTime)newValue);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
-				setRemoteName((String)newValue);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
-				setUpdateColumnType(((Boolean)newValue).booleanValue());
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				setOrder(ORDER_EDEFAULT);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
-				setSybaseASABaseActionTime(SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
-				setRemoteName(REMOTE_NAME_EDEFAULT);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
-				setUpdateColumnType(UPDATE_COLUMN_TYPE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
-				return order != ORDER_EDEFAULT;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
-				return sybaseASABaseActionTime != SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
-				return REMOTE_NAME_EDEFAULT == null ? remoteName != null : !REMOTE_NAME_EDEFAULT.equals(remoteName);
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
-				return updateColumnType != UPDATE_COLUMN_TYPE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (order: ");
-		result.append(order);
-		result.append(", sybaseASABaseActionTime: ");
-		result.append(sybaseASABaseActionTime);
-		result.append(", remoteName: ");
-		result.append(remoteName);
-		result.append(", updateColumnType: ");
-		result.append(updateColumnType);
-		result.append(')');
-		return result.toString();
-	}
-
-    public Schema getSchema()
+     * @generated
+     */
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
     {
-        Table table = this.getSubjectTable();
-        if(table == null)
-            return null;
-        else
-            return table.getSchema();
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
+                return new Integer(getOrder());
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
+                return getSybaseASABaseActionTime();
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
+                return getRemoteName();
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
+                return isUpdateColumnType() ? Boolean.TRUE : Boolean.FALSE;
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public void eSet(int featureID, Object newValue)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
+                setOrder(((Integer)newValue).intValue());
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
+                setSybaseASABaseActionTime((SybaseASABaseActionTime)newValue);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
+                setRemoteName((String)newValue);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
+                setUpdateColumnType(((Boolean)newValue).booleanValue());
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public void eUnset(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
+                setOrder(ORDER_EDEFAULT);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
+                setSybaseASABaseActionTime(SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
+                setRemoteName(REMOTE_NAME_EDEFAULT);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
+                setUpdateColumnType(UPDATE_COLUMN_TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public boolean eIsSet(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__ORDER:
+                return order != ORDER_EDEFAULT;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__SYBASE_ASA_BASE_ACTION_TIME:
+                return sybaseASABaseActionTime != SYBASE_ASA_BASE_ACTION_TIME_EDEFAULT;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__REMOTE_NAME:
+                return REMOTE_NAME_EDEFAULT == null ? remoteName != null : !REMOTE_NAME_EDEFAULT.equals(remoteName);
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_TRIGGER__UPDATE_COLUMN_TYPE:
+                return updateColumnType != UPDATE_COLUMN_TYPE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public String toString()
+    {
+        if (eIsProxy()) return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (order: ");
+        result.append(order);
+        result.append(", sybaseASABaseActionTime: ");
+        result.append(sybaseASABaseActionTime);
+        result.append(", remoteName: ");
+        result.append(remoteName);
+        result.append(", updateColumnType: ");
+        result.append(updateColumnType);
+        result.append(')');
+        return result.toString();
     }
 
 } //SybaseASABaseTriggerImpl

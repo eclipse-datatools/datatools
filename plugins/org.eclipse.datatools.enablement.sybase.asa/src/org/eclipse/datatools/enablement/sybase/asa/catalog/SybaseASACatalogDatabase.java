@@ -4,9 +4,12 @@ import java.lang.ref.SoftReference;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
+import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASABaseCatalog.ISybaseASABaseCatalogDatabase;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SybaseASABaseDatabaseLoader;
 import org.eclipse.datatools.enablement.sybase.asa.loaders.SybaseASADatabaseLoader;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.EncryptionInfo;
@@ -20,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
-public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements ICatalogObject{
+public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements ICatalogObject, IAdaptable, ISybaseASABaseCatalogDatabase{
 	private static final long serialVersionUID = 3257562914901669687L;
 	
 	protected Connection connection = null;
@@ -53,6 +56,15 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 		}
 	}
 
+	/**
+	 * This constructor is specially used for 'working set' functionality.
+	 * DON'T USE IT.
+	 *
+	 */
+	public SybaseASACatalogDatabase(){
+		
+	}
+	
 	public Connection getConnection() {
 		return this.connection;
 	}
@@ -99,6 +111,14 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 				catalogsLoaded = Boolean.FALSE;
 		}
 		RefreshManager.getInstance().referesh(this);
+	}
+	
+	public void refreshEvent()
+	{
+		synchronized (eventsLoaded) {
+			if(eventsLoaded.booleanValue())
+				eventsLoaded = Boolean.FALSE;
+		}
 	}
 	
 	public boolean eIsSet(EStructuralFeature eFeature) {
@@ -158,6 +178,9 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 		case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__CATALOGS:
 			this.getCatalogs();
 			break;
+        case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_DATABASE__PASSWORD_CASE_SENSITIVE:
+            this.getPasswordCaseSensitive();
+            break;
 		}
 		return super.eIsSet(eFeature);
 	}	
@@ -167,10 +190,18 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 			if(!this.catalogsLoaded.booleanValue())
 			{
 				EList catalogs = super.getCatalogs(); 
-				catalogs.clear();
-				SybaseASACatalog catalog = new SybaseASACatalog();
-				catalog.setName(dbName);
-				catalogs.add(catalog);
+				if(catalogs.size() > 0)
+				{
+				    SybaseASACatalog catalog = (SybaseASACatalog)catalogs.get(0);
+				    catalog.refresh();
+				}
+				else
+				{
+    				SybaseASACatalog catalog = new SybaseASACatalog();
+    				catalog.setName(dbName);
+    				catalogs.add(catalog);
+				}
+                catalogsLoaded = Boolean.TRUE;
 			}
 		}
 		return super.getCatalogs();
@@ -189,28 +220,11 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 	}
 	
 	public EList getSchemas() {
-		synchronized (schemasLoaded) {
-			if(!this.schemasLoaded.booleanValue()) 
-			{
-//				this.getDatabaseLoader().loadSchemas(super.getSchemas());
-				//modified to be compatitable to database->catalog->schema hierarchy
-				EList schemas = super.getSchemas();
-				schemas.clear();
-				Catalog catalog = (Catalog)this.getCatalogs().get(0);
-				schemas.addAll(catalog.getSchemas());
-				this.schemasLoaded = Boolean.TRUE;
-				
-//				if (filterListener == null) {
-//					ConnectionInfo connectionInfo = DatabaseConnectionRegistry
-//							.getInstance().getConnectionForDatabase(
-//									getCatalogDatabase());
-//					filterListener = new FilterListener();
-//					connectionInfo.addFilterListener(filterListener);
-//				}
-			}
-		}
+
+        Catalog catalog = (Catalog) this.getCatalogs().get(0);
+        catalog.getSchemas();
+
 		return super.getSchemas();
-		
 	}
 
 	public EList getDataTypes() {
@@ -370,8 +384,14 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 	}
 	
 	public Boolean getPasswordCaseSensitive() {
-		// TODO: can not retrieve this attribute
-		return super.getPasswordCaseSensitive();
+        synchronized (dbInfo1Loaded) {
+            if(!dbInfo1Loaded.booleanValue())
+            {
+                this.getDatabaseLoader().loadDbInfo1();
+                this.dbInfo1Loaded = Boolean.TRUE;
+            }
+        }
+        return super.getPasswordCaseSensitive();
 	}
 	
 	public EncryptionInfo getEncryptionInfo() {
@@ -446,6 +466,14 @@ public class SybaseASACatalogDatabase extends SybaseASADatabaseImpl implements I
 	protected SybaseASABaseDatabaseLoader createDatabaseLoader()
 	{
 		return new SybaseASADatabaseLoader(this);
+	}
+
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
 	}
 
 }

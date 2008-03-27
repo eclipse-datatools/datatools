@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelPackageImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
+ * $Id: SybaseasasqlmodelPackageImpl.java,v 1.8 2007/06/05 14:41:03 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -15,7 +15,6 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.Syba
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelFactory;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
 import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
 import org.eclipse.datatools.modelbase.sql.datatypes.SQLDataTypesPackage;
@@ -38,42 +37,42 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements SybaseasasqlmodelPackage 
 {
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sybaseASADatabaseEClass = null;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sybaseASATableEClass = null;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sybaseASAForeignKeyEClass = null;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sybaseASAIndexEClass = null;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass sybaseASATempTableEClass = null;
 
-	/**
+    /**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -88,18 +87,19 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * @see #init()
 	 * @generated
 	 */
-	private SybaseasasqlmodelPackageImpl() {
+	private SybaseasasqlmodelPackageImpl()
+    {
 		super(eNS_URI, SybaseasasqlmodelFactory.eINSTANCE);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
-	/**
+    /**
 	 * Creates, registers, and initializes the <b>Package</b> for this
 	 * model, and for any others upon which it depends.  Simple
 	 * dependencies are satisfied by calling this method on all
@@ -121,7 +121,8 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static SybaseasasqlmodelPackage init() {
+	public static SybaseasasqlmodelPackage init()
+    {
 		if (isInited) return (SybaseasasqlmodelPackage)EPackage.Registry.INSTANCE.getEPackage(SybaseasasqlmodelPackage.eNS_URI);
 
 		// Obtain or create and register package
@@ -154,129 +155,142 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 		return theSybaseasasqlmodelPackage;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSybaseASADatabase() {
+	public EClass getSybaseASADatabase()
+    {
 		return sybaseASADatabaseEClass;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASADatabase_ASECompatible() {
+	public EAttribute getSybaseASADatabase_ASECompatible()
+    {
 		return (EAttribute)sybaseASADatabaseEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSybaseASATable() {
+	public EClass getSybaseASATable()
+    {
 		return sybaseASATableEClass;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASATable_Pctfree() {
+	public EAttribute getSybaseASATable_Pctfree()
+    {
 		return (EAttribute)sybaseASATableEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSybaseASAForeignKey() {
+	public EClass getSybaseASAForeignKey()
+    {
 		return sybaseASAForeignKeyEClass;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASAForeignKey_CheckOnCommit() {
+	public EAttribute getSybaseASAForeignKey_CheckOnCommit()
+    {
 		return (EAttribute)sybaseASAForeignKeyEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASAForeignKey_Nullable() {
+	public EAttribute getSybaseASAForeignKey_Nullable()
+    {
 		return (EAttribute)sybaseASAForeignKeyEClass.getEStructuralFeatures().get(1);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSybaseASAIndex() {
+	public EClass getSybaseASAIndex()
+    {
 		return sybaseASAIndexEClass;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASAIndex_Virtual() {
+	public EAttribute getSybaseASAIndex_Virtual()
+    {
 		return (EAttribute)sybaseASAIndexEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSybaseASATempTable() {
+	public EClass getSybaseASATempTable()
+    {
 		return sybaseASATempTableEClass;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSybaseASATempTable_Pctfree() {
+	public EAttribute getSybaseASATempTable_Pctfree()
+    {
 		return (EAttribute)sybaseASATempTableEClass.getEStructuralFeatures().get(0);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseasasqlmodelFactory getSybaseasasqlmodelFactory() {
+	public SybaseasasqlmodelFactory getSybaseasasqlmodelFactory()
+    {
 		return (SybaseasasqlmodelFactory)getEFactoryInstance();
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
-	/**
+    /**
 	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void createPackageContents() {
+	public void createPackageContents()
+    {
 		if (isCreated) return;
 		isCreated = true;
 
@@ -298,21 +312,22 @@ public class SybaseasasqlmodelPackageImpl extends EPackageImpl implements Sybase
 		createEAttribute(sybaseASATempTableEClass, SYBASE_ASA_TEMP_TABLE__PCTFREE);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
-	/**
+    /**
 	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void initializePackageContents() {
+	public void initializePackageContents()
+    {
 		if (isInitialized) return;
 		isInitialized = true;
 

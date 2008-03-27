@@ -20,6 +20,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.IndexMember;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsFactory;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.emf.common.util.EList;
 
 public class IndexInfoASALoader {
 
@@ -68,9 +69,9 @@ public class IndexInfoASALoader {
                 else
                 {
                 	String strUnique = rs.getString(4);
-                	isUnique = strUnique.equals("Y") || strUnique.equals("U"); //$NON-NLS-1$ //$NON-NLS-2$
+                	isUnique = strUnique.equals("Y") || strUnique.equals("U");
                 }
-                boolean isClustered = rs.getString(5).equals("Y"); //$NON-NLS-1$
+                boolean isClustered = rs.getString(5).equals("Y");
                 String remarks = rs.getString(6);
                 String orderListStr = rs.getString(7);
                 
@@ -92,7 +93,7 @@ public class IndexInfoASALoader {
                 		IndexMember member = SQLConstraintsFactory.eINSTANCE.createIndexMember();
                 		String order = ((String)orderList.get(i)).trim();
                 		member.setColumn(column);
-                		member.setIncrementType(order.equals("A")?IncrementType.ASC_LITERAL:IncrementType.DESC_LITERAL); //$NON-NLS-1$
+                		member.setIncrementType(order.equals("A")?IncrementType.ASC_LITERAL:IncrementType.DESC_LITERAL);
                 		memberList.add(member);
                 	}
                 }

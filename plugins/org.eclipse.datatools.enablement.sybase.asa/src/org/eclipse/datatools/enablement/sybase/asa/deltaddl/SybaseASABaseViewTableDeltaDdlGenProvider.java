@@ -7,20 +7,26 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.enablement.sybase.deltaddl.AbstractDeltaDdlGenProvider;
 import org.eclipse.datatools.enablement.sybase.deltaddl.IDeltaDdlGenProvider;
+import org.eclipse.datatools.enablement.sybase.util.SQLUtil;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class SybaseASABaseViewTableDeltaDdlGenProvider extends AbstractDeltaDdlGenProvider implements
         IDeltaDdlGenProvider, ISybaseASADdlConstants
 {
+    
     protected void addCreateStatement(SybaseDdlScript script, String statement)
     {
 
     }
+
+ 
     protected void addDropStatement(SybaseDdlScript script, String statement)
     {
 
     }
+
+   
     protected void getModificationResult(SQLObject e, EStructuralFeature feature, Object oldValue, Object newValue,
             boolean quoteIdentifiers, boolean qualifyNames, boolean fullSyntax, SybaseDdlScript script)
     {
@@ -38,10 +44,10 @@ public class SybaseASABaseViewTableDeltaDdlGenProvider extends AbstractDeltaDdlG
             }
             else
             {
-                description = getSingleQuotedString(e.getDescription());
+                description = SQLUtil.quote(e.getDescription(), SINGLE_QUOTE);
             }
             String objectName = builder.getName((SybaseASABaseViewTable) e, quoteIdentifiers, qualifyNames);
-            StringBuffer comment = new StringBuffer(""); //$NON-NLS-1$
+            StringBuffer comment = new StringBuffer("");
             comment.append(COMMENT).append(SPACE).append(ON).append(SPACE).append(VIEW).append(SPACE)
                     .append(objectName);
             comment.append(SPACE).append(IS).append(SPACE).append(description);

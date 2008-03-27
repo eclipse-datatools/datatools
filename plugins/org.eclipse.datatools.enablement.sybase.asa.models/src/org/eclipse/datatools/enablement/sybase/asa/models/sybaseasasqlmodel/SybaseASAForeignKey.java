@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASAForeignKey.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseASAForeignKey.java,v 1.4 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -25,8 +25,9 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  * @model
  * @generated
  */
-public interface SybaseASAForeignKey extends SybaseASABaseForeignKey {
-	/**
+public interface SybaseASAForeignKey extends SybaseASABaseForeignKey
+{
+    /**
 	 * Returns the value of the '<em><b>Check On Commit</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -42,7 +43,7 @@ public interface SybaseASAForeignKey extends SybaseASABaseForeignKey {
 	 */
 	boolean isCheckOnCommit();
 
-	/**
+    /**
 	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey#isCheckOnCommit <em>Check On Commit</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,7 +53,7 @@ public interface SybaseASAForeignKey extends SybaseASABaseForeignKey {
 	 */
 	void setCheckOnCommit(boolean value);
 
-	/**
+    /**
 	 * Returns the value of the '<em><b>Nullable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -68,7 +69,7 @@ public interface SybaseASAForeignKey extends SybaseASABaseForeignKey {
 	 */
 	boolean isNullable();
 
-	/**
+    /**
 	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey#isNullable <em>Nullable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

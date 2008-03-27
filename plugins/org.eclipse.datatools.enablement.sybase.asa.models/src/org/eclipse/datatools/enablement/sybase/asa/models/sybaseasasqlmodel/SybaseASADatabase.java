@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADatabase.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseASADatabase.java,v 1.7 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -24,8 +24,9 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  * @model
  * @generated
  */
-public interface SybaseASADatabase extends SybaseASABaseDatabase {
-	/**
+public interface SybaseASADatabase extends SybaseASABaseDatabase
+{
+    /**
 	 * Returns the value of the '<em><b>ASE Compatible</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,7 +42,7 @@ public interface SybaseASADatabase extends SybaseASABaseDatabase {
 	 */
 	boolean isASECompatible();
 
-	/**
+    /**
 	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase#isASECompatible <em>ASE Compatible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

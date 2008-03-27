@@ -19,7 +19,7 @@ public class SybaseASADatabaseLoader extends SybaseASABaseDatabaseLoader{
 	}
 	
 	protected void processDbInfo2ResutSet(ResultSet rs) throws SQLException {
-		boolean isASECompatible = rs.getString(4).equalsIgnoreCase("Y"); //$NON-NLS-1$
+		boolean isASECompatible = rs.getString(4).equalsIgnoreCase("Y");
 		((SybaseASADatabase)database).setASECompatible(isASECompatible);
 		super.processDbInfo2ResutSet(rs);
 	}
@@ -31,7 +31,7 @@ public class SybaseASADatabaseLoader extends SybaseASABaseDatabaseLoader{
     static public class ASASchemaLoader extends JDBCSchemaLoader {
 
         public ASASchemaLoader(ICatalogObject catalogObject) {
-            super(catalogObject);
+            super(catalogObject, null);
         }
 
         protected Schema createSchema() {

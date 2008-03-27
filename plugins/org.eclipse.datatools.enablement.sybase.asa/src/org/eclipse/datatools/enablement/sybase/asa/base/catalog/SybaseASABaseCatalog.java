@@ -5,30 +5,31 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterListener;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCSchemaLoader;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SybaseASABaseDatabaseLoader;
+import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogDatabase;
+import org.eclipse.datatools.enablement.sybase.asa.containment.DBEventGroupID;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
+import org.eclipse.datatools.modelbase.sql.schema.Event;
 import org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl;
+import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
+import org.eclipse.datatools.sqltools.internal.refresh.RefreshManager2;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASABaseCatalog extends CatalogImpl implements ICatalogObject
+abstract public class SybaseASABaseCatalog extends CatalogImpl implements ICatalogObject, ICatalogObject2, IAdaptable
 {
 
 	private static final long serialVersionUID = 3372967146783478978L;
 
 	protected Boolean schemaLoaded = Boolean.FALSE;
 	private SoftReference schemaLoaderRef;
-	
-	private transient ConnectionFilterListener filterListener;
 	
 	public Database getCatalogDatabase() {
 		return getDatabase();
@@ -57,14 +58,6 @@ public class SybaseASABaseCatalog extends CatalogImpl implements ICatalogObject
 			{
 				loadSchemas(super.getSchemas());
 				this.schemaLoaded = Boolean.TRUE;
-				
-				if (filterListener == null) {
-					ConnectionInfo connectionInfo = DatabaseConnectionRegistry
-							.getInstance().getConnectionForDatabase(
-									getCatalogDatabase());
-					filterListener = new FilterListener();
-					connectionInfo.addFilterListener(filterListener);
-				}
 			}
 		}
 		return super.getSchemas();
@@ -72,15 +65,21 @@ public class SybaseASABaseCatalog extends CatalogImpl implements ICatalogObject
 	
 	public void loadSchemas(EList schemaConstainmentList) {
 		try {
-			boolean deliver = database.eDeliver();
+			boolean deliver1 = database.eDeliver();
+			boolean deliver2 = this.eDeliver();
 			database.eSetDeliver(false);
+			this.eSetDeliver(deliver2);
 			
 			List existingSchemas = new ArrayList(schemaConstainmentList.size());
 			existingSchemas.addAll(schemaConstainmentList);
 			getSchemaLoader().clearSchemas(schemaConstainmentList);
 			getSchemaLoader().loadSchemas(schemaConstainmentList, existingSchemas);
+			
+			((SybaseASABaseDatabase)database).getDatabaseSchemas().clear();
+            ((SybaseASABaseDatabase)database).getDatabaseSchemas().addAll(super.getSchemas());
 
-			database.eSetDeliver(deliver);
+			database.eSetDeliver(deliver1);
+			this.eSetDeliver(deliver2);
 		}
 		catch (Exception e) {
 			JDBCASAPlugin.getDefault().log(e);
@@ -94,50 +93,53 @@ public class SybaseASABaseCatalog extends CatalogImpl implements ICatalogObject
 		return (JDBCSchemaLoader) schemaLoaderRef.get();
 	}
 	
-	protected JDBCSchemaLoader createSchemaLoader() {
-		return new SybaseASABaseDatabaseLoader.ASABaseSchemaLoader(this);
-	}
+	abstract protected JDBCSchemaLoader createSchemaLoader();
 	
-	public static class ASABaseSchemaLoader extends JDBCSchemaLoader {
-
-		public ASABaseSchemaLoader(ICatalogObject catalogObject) {
-			super(catalogObject);
+	//only event supported[488803] while user drop event, this method will be called. 
+	public String getRefreshContext(Object obj) 
+	{
+		if(obj instanceof Event)
+		{
+			return DBEventGroupID.DBEVENT;
 		}
-
-		protected Schema createSchema() {
-			return new SybaseASACatalogBaseSchema();
-		}
-	}
-	
-	public class FilterListener implements ConnectionFilterListener {
-	
-			public void connectionFilterAdded(String filterKey) {
-				handleFilterChanged(filterKey);
-			}
-	
-			public void connectionFilterRemoved(String filterKey) {
-				handleFilterChanged(filterKey);
-			}
+		else if(obj instanceof IVirtualNode)
+		{
+			return ((IVirtualNode)obj).getGroupID();
 		}
 		
-		private void handleFilterChanged(String filterKey) {
-			boolean refresh = false;
-			ConnectionInfo conInf = DatabaseConnectionRegistry.getInstance()
-					.getConnectionForDatabase(this.getDatabase());
-			if (schemaLoaded.booleanValue()
-					&& (filterKey.equals(getSchemaFilterKey()) || (conInf != null
-							&& ConnectionFilter.SCHEMA_FILTER.equals(filterKey) && conInf
-							.getFilter(getSchemaFilterKey()) == null))) {
-				schemaLoaded = Boolean.FALSE;
-				refresh = true;
-			}
-			if (refresh) {
-				RefreshManager.getInstance().referesh(this);
-			}
+		return null;
+	}
+
+	public boolean needsRefresh(String context) 
+	{
+		if(context != null && context.equals(DBEventGroupID.DBEVENT))
+			return true;
+		else
+			return false;
+	}
+
+	public void refresh(String context) 
+	{
+		if(needsRefresh(context))
+		{
+			((ISybaseASABaseCatalogDatabase)getCatalogDatabase()).refreshEvent();
 		}
 		
-		private String getSchemaFilterKey() {
-			return this.getName() + ConnectionFilter.FILTER_SEPARATOR
-					+ ConnectionFilter.SCHEMA_FILTER;
-		} 
+		RefreshManager2.getInstance().referesh(this, context);
+	}
+	
+	public static interface ISybaseASABaseCatalogDatabase
+	{
+		public void refreshEvent();
+	}
+	
+    public Object getAdapter(Class adapter)
+    {
+        Object adapterObject = Platform.getAdapterManager().getAdapter(this, adapter);
+        if (adapterObject == null)
+        {
+            adapterObject = Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+        }
+        return adapterObject;
+    }
 }

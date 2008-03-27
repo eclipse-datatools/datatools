@@ -3,10 +3,15 @@ package org.eclipse.datatools.enablement.sybase.asa.base.catalog;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.core.internal.runtime.AdapterManager;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
+import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASACatalogBaseColumn.ISybaseASACatalogBaseColumnOwner;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SybaseASABaseProxyTableLoader;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SybaseASABaseTableLoader;
+import org.eclipse.datatools.enablement.sybase.asa.baseloaders.TableASABaseLoader.IASABaseLoaderTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDBSpace;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseProxyTableImpl;
@@ -14,11 +19,16 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseProxyTable extends SybaseASABaseProxyTableImpl implements ICatalogObject
+public class SybaseASACatalogBaseProxyTable extends SybaseASABaseProxyTableImpl implements ICatalogObject, IAdaptable,
+        ISybaseASACatalogBaseColumnOwner, IASABaseLoaderTable
 {
 	private static final long serialVersionUID = 8442762226853172306L;
 
 	protected Boolean columnsLoaded = Boolean.FALSE;
+	protected Boolean columnInfoLoaded = Boolean.FALSE;
+    protected Boolean colConstraintInfoLoaded = Boolean.FALSE;
+    protected Boolean colPrivilegesLoaded = Boolean.FALSE;
+	
 	protected Boolean constraintsLoaded = Boolean.FALSE;
 	protected Boolean triggersLoaded = Boolean.FALSE;
 	protected Boolean indicesLoaded = Boolean.FALSE;
@@ -35,37 +45,58 @@ public class SybaseASACatalogBaseProxyTable extends SybaseASABaseProxyTableImpl 
 	}
 
 	public void refresh() {
-		synchronized (columnsLoaded) {
-			if(columnsLoaded.booleanValue())
-			{
-				columnsLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (constraintsLoaded) {
-			if(constraintsLoaded.booleanValue())
-			{
-				constraintsLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (triggersLoaded) {
-			if(triggersLoaded.booleanValue())
-			{
-				triggersLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (indicesLoaded) {
-			if(indicesLoaded.booleanValue())
-			{
-				indicesLoaded = Boolean.FALSE;
-			}
-		}
-		synchronized (tableInfoLoaded) {
-			if(tableInfoLoaded.booleanValue())
-			{
-				tableInfoLoaded = Boolean.FALSE;
-			}
-		}
-		RefreshManager.getInstance().referesh(this);
+	    if(isNeedRefresh())
+	    {
+	        synchronized (columnsLoaded) {
+	            if(columnsLoaded.booleanValue())
+	            {
+	                columnsLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (columnInfoLoaded) {
+                if(columnInfoLoaded.booleanValue())
+                {
+                    columnInfoLoaded = Boolean.FALSE;
+                }
+            }
+            synchronized (colConstraintInfoLoaded) {
+                if(colConstraintInfoLoaded.booleanValue())
+                {
+                    colConstraintInfoLoaded = Boolean.FALSE;
+                }
+            }
+            synchronized (colPrivilegesLoaded) {
+                if(colPrivilegesLoaded.booleanValue())
+                {
+                    colPrivilegesLoaded = Boolean.FALSE;
+                }
+            }
+	        synchronized (constraintsLoaded) {
+	            if(constraintsLoaded.booleanValue())
+	            {
+	                constraintsLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (triggersLoaded) {
+	            if(triggersLoaded.booleanValue())
+	            {
+	                triggersLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (indicesLoaded) {
+	            if(indicesLoaded.booleanValue())
+	            {
+	                indicesLoaded = Boolean.FALSE;
+	            }
+	        }
+	        synchronized (tableInfoLoaded) {
+	            if(tableInfoLoaded.booleanValue())
+	            {
+	                tableInfoLoaded = Boolean.FALSE;
+	            }
+	        }
+	        RefreshManager.getInstance().referesh(this);
+	    }
 	}
 	
 	public boolean eIsSet(EStructuralFeature eFeature) {
@@ -192,4 +223,85 @@ public class SybaseASACatalogBaseProxyTable extends SybaseASABaseProxyTableImpl 
 		return super.getRemoteObjectLocation();
 	}
 
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}
+	
+	protected boolean isNeedRefresh()
+	{
+	    if (columnsLoaded.booleanValue() || constraintsLoaded.booleanValue() || triggersLoaded.booleanValue()
+                || indicesLoaded.booleanValue() || tableInfoLoaded.booleanValue() || columnInfoLoaded.booleanValue()
+                || colPrivilegesLoaded.booleanValue() || colConstraintInfoLoaded.booleanValue())
+	    {
+	        return true;
+	    }
+	    else
+	    {
+	        return false;
+	    }
+	}
+	
+	public Boolean isColumnConstraintLoaded()
+    {
+        return colConstraintInfoLoaded;
+    }
+
+    public Boolean isColumnInfoLoaded()
+    {
+        return columnInfoLoaded;
+    }
+
+    public Boolean isColumnPrivilegeLoaded()
+    {
+        return colPrivilegesLoaded;
+    }
+
+    public void setColumnConstraintLoaded(Boolean loaded)
+    {
+        this.colConstraintInfoLoaded = loaded;
+    }
+
+    public void setColumnInfoLoaded(Boolean loaded)
+    {
+        this.columnInfoLoaded = loaded;
+    }
+
+    public void setColumnPrivilegeLoaded(Boolean loaded)
+    {
+        this.colPrivilegesLoaded = loaded;
+    }
+
+    public Boolean isIndexLoaded()
+    {
+        return this.indicesLoaded;
+    }
+
+    public Boolean isTriggerLoaded()
+    {
+        return this.triggersLoaded;
+    }
+
+    public void setIndexLoaded(Boolean loaded)
+    {
+        this.indicesLoaded = loaded;
+    }
+
+    public void setTriggerLoaded(Boolean loaded)
+    {
+        this.triggersLoaded = loaded;
+    }
+    
+    public EList getIndexSupper()
+    {
+        return super.getIndex();
+    }
+
+    public EList getTriggerSuper()
+    {
+        return super.getTriggers();
+    }
 }

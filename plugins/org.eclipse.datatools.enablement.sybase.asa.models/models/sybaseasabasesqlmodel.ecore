@@ -12,6 +12,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" eType="#//EventLocationType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="schedules" upperBound="-1"
         eType="#//Schedule" containment="true" eOpposite="#//Schedule/event"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditionDetails" upperBound="-1"
+        eType="#//EventCondition" containment="true" eOpposite="#//EventCondition/event">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Contains the details of the condition statement. See &lt;code>condition&lt;/code>. This feature is not guaranteed to be set even when &lt;code>condition&lt;/code> contains value."/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseDatabase" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/Database ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eOperations name="isBaseOnASA10" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -20,7 +26,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="webServices" upperBound="-1"
         eType="#//SybaseASAWebService" eOpposite="#//SybaseASAWebService/database"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbSpaces" lowerBound="1"
-        upperBound="-1" eType="#//SybaseASABaseDBSpace" eOpposite="#//SybaseASABaseDBSpace/database"/>
+        upperBound="-1" eType="#//SybaseASABaseDBSpace" containment="true" eOpposite="#//SybaseASABaseDBSpace/database"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="databaseFileName" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="logFileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -51,7 +57,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="auth_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secure_required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url_path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user_name" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="user_name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="statement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="database" lowerBound="1"
@@ -68,7 +74,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseUserDefinedType" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//datatypes/Domain">
     <eOperations name="isLiteralDefault" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="getGlobalIncrementPartitionSize" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+    <eOperations name="getGlobalIncrementPartitionSize" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="-1 stand for default value"/>
       </eAnnotations>
@@ -81,19 +87,18 @@
         eType="#//SybaseASABaseDatabase" defaultValueLiteral="" eOpposite="#//SybaseASABaseDatabase/dataTypes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseTable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/PersistentTable ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
-    <eOperations name="getCheckConstraints" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dbSpace" lowerBound="1"
         eType="#//SybaseASABaseDBSpace"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseColumn" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseColumn" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/Column ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseAuthorizedObject">
     <eOperations name="isLiteralDefault" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eOperations name="getGlobalIncrementPartitionSize" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+    <eOperations name="getGlobalIncrementPartitionSize" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="-1 stand for default value"/>
       </eAnnotations>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="columnConstraint" eType="#//SybaseASABaseColumnCheckConstraint"
-        defaultValueLiteral="" containment="true" eOpposite="#//SybaseASABaseColumnCheckConstraint/column"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnConstraint" upperBound="-1"
+        eType="#//SybaseASABaseColumnCheckConstraint" defaultValueLiteral="" eOpposite="#//SybaseASABaseColumnCheckConstraint/column"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="typeOfDefault" eType="#//TypeOfDefault"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="unique" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComputedColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -105,10 +110,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseUniqueConstraint" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/UniqueConstraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clustered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="systemGenIndex" eType="#//SybaseASABaseIndex"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABasePrimaryKey" eSuperTypes="#//SybaseASABaseUniqueConstraint ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/PrimaryKey"/>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseForeignKey" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/ForeignKey">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleName" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clustered" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseIndex" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//constraints/Index">
@@ -131,7 +137,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseProcedure" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Procedure ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseRoutine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="onExceptionResume" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseTempTable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/TemporaryTable">
+  <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseTempTable" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//tables/TemporaryTable ../../org.eclipse.datatools.enablement.sybase/models/sybasesqlmodel.ecore#//SybaseBaseTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionOption" eType="#//TransactionOption"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TypeOfDefault">
@@ -158,13 +164,13 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="delegates to setOldRow or setOldTable based on the action granularity"/>
       </eAnnotations>
-      <eParameters name="oldName" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="oldName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eOperations name="setNewName">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="delegates to setNewRow or setNewTable based on the action granularity"/>
       </eAnnotations>
-      <eParameters name="newName" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="newName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="order" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
@@ -207,6 +213,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASABaseProxyTable" eSuperTypes="#//SybaseASABaseTable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="remoteObjectLocation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="existing" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="JavaSupportType">
     <eLiterals name="OFF"/>
@@ -226,10 +234,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Schedule" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="recurring" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stopTime" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daysOfWeek" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stopTime" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="daysOfWeek" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="x01 = Sunday | x02 = Monday | x04 = Tuesday | x08 = Wednesday&#xD;&#xA; | x10 = Thursday | x20 = Friday | x40 = Saturday&#xD;&#xA;"/>
       </eAnnotations>
@@ -240,7 +248,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalUnit" eType="#//IntervalUnitType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalMount" eType="ecore:EDataType ../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="intervalMount" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//SybaseASABaseEvent"
         defaultValueLiteral="" eOpposite="#//SybaseASABaseEvent/schedules"/>
   </eClassifiers>
@@ -294,6 +302,7 @@
     <eOperations name="getViewTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List">
       <eParameters name="systemFlag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eOperations>
+    <eOperations name="getSystemAndNormalTables" eType="ecore:EDataType ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/List"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SybaseASADefaultWrapper">
     <eOperations name="parse"/>
@@ -302,5 +311,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="partitionSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="-1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//TypeOfDefault"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventCondition" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="x01 = first day | x02 = second day | ... x40000000 = 31st day&#xD;&#xA; | x80000000 = last day of month&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" lowerBound="1" eType="#//SybaseASABaseEvent"
+        defaultValueLiteral="" eOpposite="#//SybaseASABaseEvent/conditionDetails"/>
   </eClassifiers>
 </ecore:EPackage>

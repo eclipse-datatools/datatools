@@ -1,7 +1,7 @@
 /**
  * <copyright> </copyright>
  * 
- * $Id: SybaseASABaseSchemaImpl.java,v 1.1 2007/03/05 15:52:15 jgraham Exp $
+ * $Id: SybaseASABaseSchemaImpl.java,v 1.10 2007/08/24 08:24:47 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -14,8 +14,10 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseViewTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.impl.SchemaImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,21 +30,23 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABaseSchema
 {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-    protected SybaseASABaseSchemaImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SybaseASABaseSchemaImpl()
+    {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-    protected EClass eStaticClass() {
-		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_SCHEMA;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected EClass eStaticClass()
+    {
+        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_SCHEMA;
+    }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -155,6 +159,36 @@ public class SybaseASABaseSchemaImpl extends SchemaImpl implements SybaseASABase
             }
         }
         return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    public List getSystemAndNormalTables()
+    {
+        List result = new ArrayList();
+        List tableList = getTables();
+        for (int i = 0; i < tableList.size(); i++)
+        {
+            SQLObject table = (SQLObject) tableList.get(i);
+            if ((table instanceof SybaseASABaseTable && !(table instanceof SybaseASABaseProxyTable)))
+            {
+                result.add(table);
+            }
+        }
+        return result;
+    }
+
+    public EList getSuperIndices()
+    {
+        return super.getIndices();
+    }
+
+    public EList getSuperTriggers()
+    {
+        return super.getTriggers();
     }
 
 } // SybaseASABaseSchemaImpl

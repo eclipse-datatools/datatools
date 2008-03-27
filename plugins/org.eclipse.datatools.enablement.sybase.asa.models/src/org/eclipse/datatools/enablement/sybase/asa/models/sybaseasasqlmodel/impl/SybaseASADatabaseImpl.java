@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASADatabaseImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
+ * $Id: SybaseASADatabaseImpl.java,v 1.8 2007/06/05 14:41:03 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.impl;
 
@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements SybaseASADatabase 
 {
-	/**
+    /**
 	 * The default value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38,7 +38,7 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 	 */
 	protected static final boolean ASE_COMPATIBLE_EDEFAULT = false;
 
-	/**
+    /**
 	 * The cached value of the '{@link #isASECompatible() <em>ASE Compatible</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,51 +48,56 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 	 */
 	protected boolean aseCompatible = ASE_COMPATIBLE_EDEFAULT;
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SybaseASADatabaseImpl() {
+	protected SybaseASADatabaseImpl()
+    {
 		super();
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass() {
+	protected EClass eStaticClass()
+    {
 		return SybaseasasqlmodelPackage.Literals.SYBASE_ASA_DATABASE;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isASECompatible() {
+	public boolean isASECompatible()
+    {
 		return aseCompatible;
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setASECompatible(boolean newASECompatible) {
+	public void setASECompatible(boolean newASECompatible)
+    {
 		boolean oldASECompatible = aseCompatible;
 		aseCompatible = newASECompatible;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE, oldASECompatible, aseCompatible));
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+    {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
 				return isASECompatible() ? Boolean.TRUE : Boolean.FALSE;
@@ -100,12 +105,13 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 		return super.eGet(featureID, resolve, coreType);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(int featureID, Object newValue) {
+	public void eSet(int featureID, Object newValue)
+    {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
 				setASECompatible(((Boolean)newValue).booleanValue());
@@ -114,12 +120,13 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 		super.eSet(featureID, newValue);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(int featureID) {
+	public void eUnset(int featureID)
+    {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
 				setASECompatible(ASE_COMPATIBLE_EDEFAULT);
@@ -128,12 +135,13 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 		super.eUnset(featureID);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(int featureID) {
+	public boolean eIsSet(int featureID)
+    {
 		switch (featureID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE__ASE_COMPATIBLE:
 				return aseCompatible != ASE_COMPATIBLE_EDEFAULT;
@@ -141,12 +149,13 @@ public class SybaseASADatabaseImpl extends SybaseASABaseDatabaseImpl implements 
 		return super.eIsSet(featureID);
 	}
 
-	/**
+    /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString() {
+	public String toString()
+    {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

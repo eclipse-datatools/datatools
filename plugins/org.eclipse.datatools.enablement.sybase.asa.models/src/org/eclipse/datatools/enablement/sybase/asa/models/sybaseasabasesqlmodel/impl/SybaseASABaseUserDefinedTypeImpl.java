@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseUserDefinedTypeImpl.java,v 1.2 2007/03/19 16:37:08 jgraham Exp $
+ * $Id: SybaseASABaseUserDefinedTypeImpl.java,v 1.7 2007/07/16 08:01:51 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -32,105 +32,111 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SybaseASABaseUserDefinedTypeImpl extends DomainImpl implements SybaseASABaseUserDefinedType 
 {
-	/**
-	 * The default value of the '{@link #getNullable() <em>Nullable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #getNullable() <em>Nullable</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNullable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNullable()
+     * @generated
+     * @ordered
+     */
 	protected static final AllowNullType NULLABLE_EDEFAULT = AllowNullType.NULLABLE_LITERAL;
 
-	/**
-	 * The cached value of the '{@link #getNullable() <em>Nullable</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #getNullable() <em>Nullable</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNullable()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNullable()
+     * @generated
+     * @ordered
+     */
 	protected AllowNullType nullable = NULLABLE_EDEFAULT;
 
-	/**
-	 * The default value of the '{@link #getDefaultType() <em>Default Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The default value of the '{@link #getDefaultType() <em>Default Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDefaultType()
+     * @generated
+     * @ordered
+     */
 	protected static final TypeOfDefault DEFAULT_TYPE_EDEFAULT = TypeOfDefault.NO_DEFAULT_LITERAL;
 
-	/**
-	 * The cached value of the '{@link #getDefaultType() <em>Default Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * The cached value of the '{@link #getDefaultType() <em>Default Type</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDefaultType()
+     * @generated
+     * @ordered
+     */
 	protected TypeOfDefault defaultType = DEFAULT_TYPE_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SybaseASABaseUserDefinedTypeImpl() {
-		super();
-	}
+     * @generated
+     */
+	protected SybaseASABaseUserDefinedTypeImpl()
+    {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EClass eStaticClass() {
-		return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_USER_DEFINED_TYPE;
-	}
+     * @generated
+     */
+	protected EClass eStaticClass()
+    {
+        return SybaseasabasesqlmodelPackage.Literals.SYBASE_ASA_BASE_USER_DEFINED_TYPE;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AllowNullType getNullable() {
-		return nullable;
-	}
+     * @generated
+     */
+	public AllowNullType getNullable()
+    {
+        return nullable;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNullable(AllowNullType newNullable) {
-		AllowNullType oldNullable = nullable;
-		nullable = newNullable == null ? NULLABLE_EDEFAULT : newNullable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE, oldNullable, nullable));
-	}
+     * @generated
+     */
+	public void setNullable(AllowNullType newNullable)
+    {
+        AllowNullType oldNullable = nullable;
+        nullable = newNullable == null ? NULLABLE_EDEFAULT : newNullable;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE, oldNullable, nullable));
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TypeOfDefault getDefaultType() {
-		return defaultType;
-	}
+     * @generated
+     */
+	public TypeOfDefault getDefaultType()
+    {
+        return defaultType;
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDefaultType(TypeOfDefault newDefaultType) {
-		TypeOfDefault oldDefaultType = defaultType;
-		defaultType = newDefaultType == null ? DEFAULT_TYPE_EDEFAULT : newDefaultType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE, oldDefaultType, defaultType));
-	}
+     * @generated
+     */
+	public void setDefaultType(TypeOfDefault newDefaultType)
+    {
+        TypeOfDefault oldDefaultType = defaultType;
+        defaultType = newDefaultType == null ? DEFAULT_TYPE_EDEFAULT : newDefaultType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE, oldDefaultType, defaultType));
+    }
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,85 +156,94 @@ public class SybaseASABaseUserDefinedTypeImpl extends DomainImpl implements Syba
 		return Utils.getDefaultGlobalIncrementPartitionSize(this.getDefaultType(), this.getDefaultValue());
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
-				return getNullable();
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
-				return getDefaultType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+     * @generated
+     */
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
+                return getNullable();
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
+                return getDefaultType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
-				setNullable((AllowNullType)newValue);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
-				setDefaultType((TypeOfDefault)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+     * @generated
+     */
+	public void eSet(int featureID, Object newValue)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
+                setNullable((AllowNullType)newValue);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
+                setDefaultType((TypeOfDefault)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
-				setNullable(NULLABLE_EDEFAULT);
-				return;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
-				setDefaultType(DEFAULT_TYPE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+     * @generated
+     */
+	public void eUnset(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
+                setNullable(NULLABLE_EDEFAULT);
+                return;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
+                setDefaultType(DEFAULT_TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
-				return nullable != NULLABLE_EDEFAULT;
-			case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
-				return defaultType != DEFAULT_TYPE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+     * @generated
+     */
+	public boolean eIsSet(int featureID)
+    {
+        switch (featureID)
+        {
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__NULLABLE:
+                return nullable != NULLABLE_EDEFAULT;
+            case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_USER_DEFINED_TYPE__DEFAULT_TYPE:
+                return defaultType != DEFAULT_TYPE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+     * @generated
+     */
+	public String toString()
+    {
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (nullable: ");
-		result.append(nullable);
-		result.append(", defaultType: ");
-		result.append(defaultType);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (nullable: ");
+        result.append(nullable);
+        result.append(", defaultType: ");
+        result.append(defaultType);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SybaseASABaseUserDefinedTypeImpl

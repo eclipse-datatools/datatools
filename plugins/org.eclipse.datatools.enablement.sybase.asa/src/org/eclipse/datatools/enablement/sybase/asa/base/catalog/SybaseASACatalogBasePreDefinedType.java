@@ -1,17 +1,16 @@
-/*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
+/***********************************************************************************************************************
+ * Copyright (c) 2007 Sybase, Inc. All rights reserved. This program and the accompanying materials are made available
+ * under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors:
- *     IBM Corporation - initial API and implementation
- *******************************************************************************/
+ * Contributors: Sybase, Inc. - initial API and implementation
+ **********************************************************************************************************************/
 package org.eclipse.datatools.enablement.sybase.asa.base.catalog;
 
 import java.sql.Connection;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogDatabase;
@@ -19,12 +18,10 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
-public class SybaseASACatalogBasePreDefinedType extends SybaseASABasePredefinedDataTypeImpl implements ICatalogObject{
+public class SybaseASACatalogBasePreDefinedType extends SybaseASABasePredefinedDataTypeImpl implements ICatalogObject, IAdaptable{
 	
 	private static final long serialVersionUID = 9187374515403919324L;
 
-	private SybaseASACatalogDatabase database = null;
-	
 	public void refresh() {
 		RefreshManager.getInstance().referesh(this);
 	}
@@ -45,4 +42,12 @@ public class SybaseASACatalogBasePreDefinedType extends SybaseASABasePredefinedD
 	public void setCatalogDatabase(SybaseASACatalogDatabase db) {
 		this.database = db;
 	}
+	
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}	
 }

@@ -54,11 +54,13 @@ public class SybaseASAFunctionDeltaDdlGenProvider implements IDeltaDdlGenProvide
         {
             String[] create = builder.createUserDefinedFunction(function, quoteIdentifiers, qualifyNames, fullSyntax);
             String comment = null;
-            
+            boolean sourceChanged = false;
+            boolean commentChanged = false;
+
             for (Iterator iter = records.iterator(); iter.hasNext();)
             {
                 FeatureChangeRecord r = (FeatureChangeRecord) iter.next();
-                if (r.feature.getFeatureID() == SQLRoutinesPackage.PROCEDURE__NAME)
+                if (r.feature.getFeatureID() == SQLRoutinesPackage.PROCEDURE__NAME && r.changed == function)
                 {
                     //rename: create new and drop old
                     String oldName = (String)r.oldValue;
@@ -66,8 +68,8 @@ public class SybaseASAFunctionDeltaDdlGenProvider implements IDeltaDdlGenProvide
 
                     if (quoteIdentifiers)
                     {
-                        oldName = SQLUtil.quote(oldName, "\""); //$NON-NLS-1$
-                        schemaName = SQLUtil.quote(schemaName, "\""); //$NON-NLS-1$
+                        oldName = SQLUtil.quote(oldName, "\"");
+                        schemaName = SQLUtil.quote(schemaName, "\"");
                     }
 
                     if (qualifyNames)
@@ -87,14 +89,26 @@ public class SybaseASAFunctionDeltaDdlGenProvider implements IDeltaDdlGenProvide
                 }
                 else if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__DESCRIPTION)
                 {
-                    comment = ((SybaseASADdlBuilder)builder).createComment(function, quoteIdentifiers, qualifyNames);
+                    commentChanged = true;
+                    comment = ((SybaseASADdlBuilder)builder).createComment(function, quoteIdentifiers, qualifyNames, true);
                 }
+                else if (r.feature.getFeatureID() == SQLRoutinesPackage.SOURCE__BODY && r.changed == function.getSource())
+                {
+                    sourceChanged = true;
+                }
+                
             }
 
-            if (records.size() == 1 && ((FeatureChangeRecord)records.get(0)).feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__DESCRIPTION)
+            if (commentChanged && !sourceChanged)
             {
                 //comments only
                 script.addCreateRoutineStatements(comment);
+                return;
+            }
+            
+            if (!sourceChanged)
+            {
+                //let AuthorizationIdentifier delta ddl to handle privileges
                 return;
             }
 
@@ -131,7 +145,7 @@ public class SybaseASAFunctionDeltaDdlGenProvider implements IDeltaDdlGenProvide
     }
 
     public void processDropStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
-            SybaseDdlScript script, DDLGenerator generator, IProgressMonitor monitor)
+            SybaseDdlScript script, ISybaseDdlGenerator generator, IProgressMonitor monitor)
     {
         // TODO Auto-generated method stub
 

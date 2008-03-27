@@ -3,6 +3,8 @@ package org.eclipse.datatools.enablement.sybase.asa.base.catalog;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.CheckConstraintASALoader;
@@ -13,7 +15,7 @@ import org.eclipse.datatools.modelbase.sql.expressions.SearchCondition;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseColumnCheckConstraint extends SybaseASABaseColumnCheckConstraintImpl implements ICatalogObject
+public class SybaseASACatalogBaseColumnCheckConstraint extends SybaseASABaseColumnCheckConstraintImpl implements ICatalogObject,IAdaptable
 {
 	private static final long serialVersionUID = -305794559657625178L;
 	
@@ -79,4 +81,13 @@ public class SybaseASACatalogBaseColumnCheckConstraint extends SybaseASABaseColu
 	{
 		return new ColumnCheckConstraintASALoader(this);
 	}
+
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}
+	
 }

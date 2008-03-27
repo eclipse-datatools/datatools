@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASATable.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseASATable.java,v 1.4 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -24,8 +24,9 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  * @model
  * @generated
  */
-public interface SybaseASATable extends SybaseASABaseTable {
-	/**
+public interface SybaseASATable extends SybaseASABaseTable
+{
+    /**
 	 * Returns the value of the '<em><b>Pctfree</b></em>' attribute.
 	 * The default value is <code>"-1"</code>.
 	 * <!-- begin-user-doc -->
@@ -41,7 +42,7 @@ public interface SybaseASATable extends SybaseASABaseTable {
 	 */
 	int getPctfree();
 
-	/**
+    /**
 	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATable#getPctfree <em>Pctfree</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

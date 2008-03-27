@@ -57,21 +57,24 @@ public class SybaseASATriggerDeltaDdlGenProvider implements IDeltaDdlGenProvider
             for (Iterator iter = records.iterator(); iter.hasNext();)
             {
                 FeatureChangeRecord r = (FeatureChangeRecord) iter.next();
-                if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__NAME)
+                if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__NAME && r.changed == trigger)
                 {
                     //rename: create new and drop old
                     String oldName = (String)r.oldValue;
-                    String schemaName = trigger.getSchema().getName();
 
+                    //we have to include the table name as well
                     if (quoteIdentifiers)
                     {
-                        oldName = SQLUtil.quote(oldName, "\""); //$NON-NLS-1$
-                        schemaName = SQLUtil.quote(schemaName, "\""); //$NON-NLS-1$
+                        oldName = SQLUtil.quote(oldName, "\"");
                     }
 
-                    if (qualifyNames)
-                    {
-                        oldName = schemaName + DOT + oldName;
+                    if(qualifyNames) {
+                        String schemaName = trigger.getSchema().getName();
+                        String tableName = trigger.getSubjectTable().getName();
+                        if(quoteIdentifiers) {
+                            tableName = SQLUtil.quote(tableName, "\"");
+                        }
+                        oldName = schemaName + DOT + tableName + DOT + oldName;
                     }
                     
                     StringBuffer drop = new StringBuffer(128);
@@ -88,7 +91,7 @@ public class SybaseASATriggerDeltaDdlGenProvider implements IDeltaDdlGenProvider
                 }
                 else if (r.feature.getFeatureID() == SQLSchemaPackage.SQL_OBJECT__DESCRIPTION)
                 {
-                    comment = ((SybaseASADdlBuilder)builder).createComment(trigger, quoteIdentifiers, qualifyNames);
+                    comment = ((SybaseASADdlBuilder)builder).createComment(trigger, quoteIdentifiers, qualifyNames, true);
                 }
             }
 
@@ -133,7 +136,7 @@ public class SybaseASATriggerDeltaDdlGenProvider implements IDeltaDdlGenProvider
     }
 
     public void processDropStatement(SQLObject element, boolean quoteIdentifiers, boolean qualifyNames,
-            SybaseDdlScript script, DDLGenerator generator, IProgressMonitor monitor)
+            SybaseDdlScript script, ISybaseDdlGenerator generator, IProgressMonitor monitor)
     {
         // TODO Auto-generated method stub
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseasasqlmodelSwitch.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseasasqlmodelSwitch.java,v 1.6 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.util;
 
@@ -14,9 +14,8 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.*;
-
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
-
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex;
@@ -52,8 +51,9 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseasasqlmodelPackage
  * @generated
  */
-public class SybaseasasqlmodelSwitch {
-	/**
+public class SybaseasasqlmodelSwitch 
+{
+    /**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -61,37 +61,40 @@ public class SybaseasasqlmodelSwitch {
 	 */
 	protected static SybaseasasqlmodelPackage modelPackage;
 
-	/**
+    /**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SybaseasasqlmodelSwitch() {
+	public SybaseasasqlmodelSwitch()
+    {
 		if (modelPackage == null) {
 			modelPackage = SybaseasasqlmodelPackage.eINSTANCE;
 		}
 	}
 
-	/**
+    /**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public Object doSwitch(EObject theEObject)
+    {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
-	/**
+    /**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected Object doSwitch(EClass theEClass, EObject theEObject)
+    {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
@@ -104,14 +107,15 @@ public class SybaseasasqlmodelSwitch {
 		}
 	}
 
-	/**
+    /**
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected Object doSwitch(int classifierID, EObject theEObject)
+    {
 		switch (classifierID) {
 			case SybaseasasqlmodelPackage.SYBASE_ASA_DATABASE: {
 				SybaseASADatabase sybaseASADatabase = (SybaseASADatabase)theEObject;
@@ -131,6 +135,7 @@ public class SybaseasasqlmodelSwitch {
 				if (result == null) result = casePersistentTable(sybaseASATable);
 				if (result == null) result = caseSybaseBaseTable(sybaseASATable);
 				if (result == null) result = caseBaseTable(sybaseASATable);
+				if (result == null) result = caseSybaseAuthorizedObject(sybaseASATable);
 				if (result == null) result = caseTable(sybaseASATable);
 				if (result == null) result = caseSQLObject(sybaseASATable);
 				if (result == null) result = caseENamedElement(sybaseASATable);
@@ -168,7 +173,9 @@ public class SybaseasasqlmodelSwitch {
 				Object result = caseSybaseASATempTable(sybaseASATempTable);
 				if (result == null) result = caseSybaseASABaseTempTable(sybaseASATempTable);
 				if (result == null) result = caseTemporaryTable(sybaseASATempTable);
+				if (result == null) result = caseSybaseBaseTable(sybaseASATempTable);
 				if (result == null) result = caseBaseTable(sybaseASATempTable);
+				if (result == null) result = caseSybaseAuthorizedObject(sybaseASATempTable);
 				if (result == null) result = caseTable(sybaseASATempTable);
 				if (result == null) result = caseSQLObject(sybaseASATempTable);
 				if (result == null) result = caseENamedElement(sybaseASATempTable);
@@ -180,7 +187,7 @@ public class SybaseasasqlmodelSwitch {
 		}
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Database</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -191,11 +198,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASADatabase(SybaseASADatabase object) {
+	public Object caseSybaseASADatabase(SybaseASADatabase object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -206,11 +214,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASATable(SybaseASATable object) {
+	public Object caseSybaseASATable(SybaseASATable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Foreign Key</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -221,11 +230,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASAForeignKey(SybaseASAForeignKey object) {
+	public Object caseSybaseASAForeignKey(SybaseASAForeignKey object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Index</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -236,11 +246,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASAIndex(SybaseASAIndex object) {
+	public Object caseSybaseASAIndex(SybaseASAIndex object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Temp Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -251,11 +262,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASATempTable(SybaseASATempTable object) {
+	public Object caseSybaseASATempTable(SybaseASATempTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>EModel Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -266,11 +278,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseEModelElement(EModelElement object) {
+	public Object caseEModelElement(EModelElement object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>ENamed Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -281,11 +294,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseENamedElement(ENamedElement object) {
+	public Object caseENamedElement(ENamedElement object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>SQL Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -296,11 +310,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSQLObject(SQLObject object) {
+	public Object caseSQLObject(SQLObject object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Database</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -311,11 +326,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseDatabase(Database object) {
+	public Object caseDatabase(Database object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Base Database</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -326,11 +342,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASABaseDatabase(SybaseASABaseDatabase object) {
+	public Object caseSybaseASABaseDatabase(SybaseASABaseDatabase object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -341,11 +358,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTable(Table object) {
+	public Object caseTable(Table object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Base Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -356,11 +374,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseBaseTable(BaseTable object) {
+	public Object caseBaseTable(BaseTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Persistent Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -371,11 +390,27 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePersistentTable(PersistentTable object) {
+	public Object casePersistentTable(PersistentTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
+	 * Returns the result of interpretting the object as an instance of '<em>Sybase Authorized Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpretting the object as an instance of '<em>Sybase Authorized Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public Object caseSybaseAuthorizedObject(SybaseAuthorizedObject object) {
+		return null;
+	}
+
+				/**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase Base Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -390,7 +425,7 @@ public class SybaseasasqlmodelSwitch {
 		return null;
 	}
 
-	/**
+				/**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Base Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -401,11 +436,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASABaseTable(SybaseASABaseTable object) {
+	public Object caseSybaseASABaseTable(SybaseASABaseTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -416,11 +452,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseConstraint(Constraint object) {
+	public Object caseConstraint(Constraint object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Table Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -431,11 +468,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTableConstraint(TableConstraint object) {
+	public Object caseTableConstraint(TableConstraint object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Reference Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -446,11 +484,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseReferenceConstraint(ReferenceConstraint object) {
+	public Object caseReferenceConstraint(ReferenceConstraint object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Foreign Key</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -461,11 +500,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseForeignKey(ForeignKey object) {
+	public Object caseForeignKey(ForeignKey object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Base Foreign Key</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -476,11 +516,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASABaseForeignKey(SybaseASABaseForeignKey object) {
+	public Object caseSybaseASABaseForeignKey(SybaseASABaseForeignKey object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Index</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -491,11 +532,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseIndex(Index object) {
+	public Object caseIndex(Index object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Base Index</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -506,11 +548,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASABaseIndex(SybaseASABaseIndex object) {
+	public Object caseSybaseASABaseIndex(SybaseASABaseIndex object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Temporary Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -521,11 +564,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseTemporaryTable(TemporaryTable object) {
+	public Object caseTemporaryTable(TemporaryTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>Sybase ASA Base Temp Table</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -536,11 +580,12 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseSybaseASABaseTempTable(SybaseASABaseTempTable object) {
+	public Object caseSybaseASABaseTempTable(SybaseASABaseTempTable object)
+    {
 		return null;
 	}
 
-	/**
+    /**
 	 * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -551,7 +596,8 @@ public class SybaseasasqlmodelSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public Object defaultCase(EObject object)
+    {
 		return null;
 	}
 

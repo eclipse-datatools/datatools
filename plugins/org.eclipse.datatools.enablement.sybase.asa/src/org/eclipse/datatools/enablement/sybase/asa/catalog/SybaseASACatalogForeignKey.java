@@ -2,6 +2,8 @@ package org.eclipse.datatools.enablement.sybase.asa.catalog;
 
 import java.sql.Connection;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.loaders.SybaseASAForeignKeyLoader;
@@ -16,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 
-public class SybaseASACatalogForeignKey extends SybaseASAForeignKeyImpl  implements ICatalogObject {
+public class SybaseASACatalogForeignKey extends SybaseASAForeignKeyImpl  implements ICatalogObject,IAdaptable {
 
 	private static final long serialVersionUID = -8241692487967261118L;
 	
@@ -205,4 +207,12 @@ public class SybaseASACatalogForeignKey extends SybaseASAForeignKeyImpl  impleme
 		new SybaseASAForeignKeyLoader(this).loadFKInfo(super.getMembers(), super.getReferencedMembers());
 	}
 
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}
+	
 }

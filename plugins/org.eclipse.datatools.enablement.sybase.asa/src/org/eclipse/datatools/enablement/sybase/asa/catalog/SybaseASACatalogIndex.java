@@ -3,6 +3,8 @@ package org.eclipse.datatools.enablement.sybase.asa.catalog;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.IndexInfoASALoader;
@@ -13,7 +15,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogIndex extends SybaseASAIndexImpl implements ICatalogObject
+public class SybaseASACatalogIndex extends SybaseASAIndexImpl implements ICatalogObject,IAdaptable
 {
 	private static final long serialVersionUID = -7809985229115506992L;
 	
@@ -115,16 +117,16 @@ public class SybaseASACatalogIndex extends SybaseASAIndexImpl implements ICatalo
 		return super.getDescription();
 	}
 	
-	public boolean isSystemGenerated() {
-		synchronized (indexInfoLoaded) {
-			if(!indexInfoLoaded.booleanValue())
-			{
-				loadIndexInfo();
-				indexInfoLoaded = Boolean.TRUE;
-			}
-		}
-		return super.isSystemGenerated();
-	}
+//	public boolean isSystemGenerated() {
+//		synchronized (indexInfoLoaded) {
+//			if(!indexInfoLoaded.booleanValue())
+//			{
+//				loadIndexInfo();
+//				indexInfoLoaded = Boolean.TRUE;
+//			}
+//		}
+//		return super.isSystemGenerated();
+//	}
 	
 	private void loadIndexInfo() {
 		getIndexLoader().loadIndexInfo(super.getMembers());
@@ -149,4 +151,12 @@ public class SybaseASACatalogIndex extends SybaseASAIndexImpl implements ICatalo
 	{
 		return new IndexInfoASALoader(this);
 	}
+	
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}	
 }

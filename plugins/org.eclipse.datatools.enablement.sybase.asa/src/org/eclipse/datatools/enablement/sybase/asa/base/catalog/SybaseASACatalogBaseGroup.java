@@ -103,7 +103,7 @@ public class SybaseASACatalogBaseGroup extends SybaseASABaseGroupImpl implements
 		synchronized (privilegesLoaded) {
 			if(!privilegesLoaded.booleanValue())
 			{
-				getGroupLoader().loadPrivilegs(super.getReceivedPrivilege());
+				//getGroupLoader().loadPrivilegs(super.getReceivedPrivilege());
 				privilegesLoaded = Boolean.TRUE;
 			}
 		}

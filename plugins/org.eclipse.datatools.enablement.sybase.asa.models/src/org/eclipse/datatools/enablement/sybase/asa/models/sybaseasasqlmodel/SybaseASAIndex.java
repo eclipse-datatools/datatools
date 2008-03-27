@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASAIndex.java,v 1.1 2007/03/05 15:52:16 jgraham Exp $
+ * $Id: SybaseASAIndex.java,v 1.4 2007/06/05 14:41:04 hcao Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel;
 
@@ -24,8 +24,9 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
  * @model
  * @generated
  */
-public interface SybaseASAIndex extends SybaseASABaseIndex {
-	/**
+public interface SybaseASAIndex extends SybaseASABaseIndex
+{
+    /**
 	 * Returns the value of the '<em><b>Virtual</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -41,7 +42,7 @@ public interface SybaseASAIndex extends SybaseASABaseIndex {
 	 */
 	boolean isVirtual();
 
-	/**
+    /**
 	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex#isVirtual <em>Virtual</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

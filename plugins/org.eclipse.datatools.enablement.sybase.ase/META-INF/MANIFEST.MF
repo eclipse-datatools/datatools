@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sybase ASE Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ase;singleton:=true
+Bundle-Version: 1.0.1.200801241
+Bundle-Activator: org.eclipse.datatools.enablement.ase.JDBCASEPlugin
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.modelbase.sql;visibility:=reexport,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.sqm.core,
+ org.eclipse.ui.navigator,
+ org.eclipse.datatools.enablement.sybase.ase.models,
+ org.eclipse.datatools.sqltools.editor.core,
+ org.eclipse.datatools.sqltools.sql,
+ org.eclipse.datatools.enablement.sybase,
+ com.ibm.icu,
+ org.eclipse.datatools.connectivity.sqm.core.ui
+Eclipse-LazyStart: true
+Bundle-Vendor: Sybase, Inc.
+Export-Package: org.eclipse.datatools.enablement.ase,
+ org.eclipse.datatools.enablement.ase.catalog,
+ org.eclipse.datatools.enablement.ase.containment,
+ org.eclipse.datatools.enablement.ase.ddl,
+ org.eclipse.datatools.enablement.ase.deltaddl,
+ org.eclipse.datatools.enablement.ase.util,
+ org.eclipse.datatools.enablement.sybase.ase.internal.connection

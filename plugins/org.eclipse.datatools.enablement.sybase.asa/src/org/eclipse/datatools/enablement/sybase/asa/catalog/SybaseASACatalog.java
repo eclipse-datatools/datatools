@@ -1,142 +1,61 @@
 package org.eclipse.datatools.enablement.sybase.asa.catalog;
 
-import java.lang.ref.SoftReference;
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterListener;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCSchemaLoader;
-import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
+import org.eclipse.datatools.connectivity.sqm.loader.Messages;
+import org.eclipse.datatools.enablement.sybase.asa.base.catalog.SybaseASABaseCatalog;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
-import org.eclipse.datatools.modelbase.sql.schema.impl.CatalogImpl;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
 
-public class SybaseASACatalog extends CatalogImpl implements ICatalogObject
+import com.ibm.icu.text.MessageFormat;
+
+public class SybaseASACatalog extends SybaseASABaseCatalog implements ICatalogObject, IAdaptable, ICatalogObject2
 {
 
-	private static final long serialVersionUID = 3372967146783478978L;
+    private static final long                  serialVersionUID = 3372967146783478978L;
 
-	protected Boolean schemaLoaded = Boolean.FALSE;
-	private SoftReference schemaLoaderRef;
-	
-	private transient ConnectionFilterListener filterListener;
-	
-	public Database getCatalogDatabase() {
-		return getDatabase();
-	}
+    protected JDBCSchemaLoader createSchemaLoader()
+    {
+        return new ASASchemaLoader(this);
+    }
 
-	public Connection getConnection() 
-	{
-		return ((ICatalogObject)getCatalogDatabase()).getConnection();
-	}
+    public class ASASchemaLoader extends JDBCSchemaLoader
+    {
 
-	public void refresh() {
-		synchronized (schemaLoaded) {
-			if(schemaLoaded.booleanValue())
-				schemaLoaded = Boolean.FALSE;
-		}
-		RefreshManager.getInstance().referesh(this);
-	}
+        public ASASchemaLoader(ICatalogObject catalogObject)
+        {
+            super(catalogObject, null);
+        }
 
-	public boolean eIsSet(EStructuralFeature eFeature) {
-		return super.eIsSet(eFeature);
-	}	
-	
-	public EList getSchemas() {
-		synchronized (schemaLoaded) {
-			if(!this.schemaLoaded.booleanValue()) 
-			{
-				loadSchemas(super.getSchemas());
-				this.schemaLoaded = Boolean.TRUE;
-				
-				if (filterListener == null) {
-					ConnectionInfo connectionInfo = DatabaseConnectionRegistry
-							.getInstance().getConnectionForDatabase(
-									getCatalogDatabase());
-					filterListener = new FilterListener();
-					connectionInfo.addFilterListener(filterListener);
-				}
-			}
-		}
-		return super.getSchemas();
-	}
-	
-	public void loadSchemas(EList schemaConstainmentList) {
-		try {
-			boolean deliver = database.eDeliver();
-			database.eSetDeliver(false);
-			
-			List existingSchemas = new ArrayList(schemaConstainmentList.size());
-			existingSchemas.addAll(schemaConstainmentList);
-			getSchemaLoader().clearSchemas(schemaConstainmentList);
-			getSchemaLoader().loadSchemas(schemaConstainmentList, existingSchemas);
+        protected Schema createSchema()
+        {
+            return new SybaseASACatalogSchema();
+        }
 
-			database.eSetDeliver(deliver);
-		}
-		catch (Exception e) {
-			JDBCASAPlugin.getDefault().log(e);
-		}
-	}
-	
-	private JDBCSchemaLoader getSchemaLoader() {
-		if (schemaLoaderRef == null || schemaLoaderRef.get() == null) {
-			schemaLoaderRef = new SoftReference(createSchemaLoader());
-		}
-		return (JDBCSchemaLoader) schemaLoaderRef.get();
-	}
-	
-	protected JDBCSchemaLoader createSchemaLoader() {
-		return new ASASchemaLoader(this);
-	}
-	
-	public class ASASchemaLoader extends JDBCSchemaLoader {
+        protected ResultSet createResultSet() throws SQLException
+        {
+            try
+            {
+                Connection conn = this.getCatalogObject().getConnection();
+                PreparedStatement stmt = conn.prepareStatement(ASASQLs.QUERY_SCHEMAS);
+                return stmt.executeQuery();
+            }
+            catch (RuntimeException e)
+            {
+                SQLException error = new SQLException(MessageFormat.format(
+                        Messages.Error_Unsupported_DatabaseMetaData_Method, new Object[]
+                        {
+                            "java.sql.DatabaseMetaData.getSchemas()"})); //$NON-NLS-1$
+                error.initCause(e);
+                throw error;
+            }
+        }
+    }
 
-		public ASASchemaLoader(ICatalogObject catalogObject) {
-			super(catalogObject);
-		}
-
-		protected Schema createSchema() {
-			return new SybaseASACatalogSchema();
-		}
-	}
-	
-	public class FilterListener implements ConnectionFilterListener {
-	
-			public void connectionFilterAdded(String filterKey) {
-				handleFilterChanged(filterKey);
-			}
-	
-			public void connectionFilterRemoved(String filterKey) {
-				handleFilterChanged(filterKey);
-			}
-		}
-		
-		private void handleFilterChanged(String filterKey) {
-			boolean refresh = false;
-			ConnectionInfo conInf = DatabaseConnectionRegistry.getInstance()
-					.getConnectionForDatabase(this.getDatabase());
-			if (schemaLoaded.booleanValue()
-					&& (filterKey.equals(getSchemaFilterKey()) || (conInf != null
-							&& ConnectionFilter.SCHEMA_FILTER.equals(filterKey) && conInf
-							.getFilter(getSchemaFilterKey()) == null))) {
-				schemaLoaded = Boolean.FALSE;
-				refresh = true;
-			}
-			if (refresh) {
-				RefreshManager.getInstance().referesh(this);
-			}
-		}
-		
-		private String getSchemaFilterKey() {
-			return this.getName() + ConnectionFilter.FILTER_SEPARATOR
-					+ ConnectionFilter.SCHEMA_FILTER;
-		} 
 }

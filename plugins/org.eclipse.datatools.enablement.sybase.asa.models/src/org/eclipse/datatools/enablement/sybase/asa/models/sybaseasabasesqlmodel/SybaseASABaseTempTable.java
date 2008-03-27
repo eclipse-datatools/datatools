@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseTempTable.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
+ * $Id: SybaseASABaseTempTable.java,v 1.7 2007/07/16 08:01:53 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
+import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
 
 /**
@@ -24,34 +25,35 @@ import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
  * @model
  * @generated
  */
-public interface SybaseASABaseTempTable extends TemporaryTable {
-	/**
-	 * Returns the value of the '<em><b>Transaction Option</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption}.
-	 * <!-- begin-user-doc -->
+public interface SybaseASABaseTempTable extends TemporaryTable, SybaseBaseTable
+{
+    /**
+     * Returns the value of the '<em><b>Transaction Option</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Transaction Option</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Transaction Option</em>' attribute.
-	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption
-	 * @see #setTransactionOption(TransactionOption)
-	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseTempTable_TransactionOption()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Transaction Option</em>' attribute.
+     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption
+     * @see #setTransactionOption(TransactionOption)
+     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage#getSybaseASABaseTempTable_TransactionOption()
+     * @model
+     * @generated
+     */
 	TransactionOption getTransactionOption();
 
-	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable#getTransactionOption <em>Transaction Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable#getTransactionOption <em>Transaction Option</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Transaction Option</em>' attribute.
-	 * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption
-	 * @see #getTransactionOption()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Transaction Option</em>' attribute.
+     * @see org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.TransactionOption
+     * @see #getTransactionOption()
+     * @generated
+     */
 	void setTransactionOption(TransactionOption value);
 
 } // SybaseASABaseTempTable

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: EventTriggerType.java,v 1.1 2007/03/05 15:52:14 jgraham Exp $
+ * $Id: EventTriggerType.java,v 1.3 2007/02/08 01:41:34 linsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel;
 
@@ -75,7 +75,7 @@ public final class EventTriggerType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventTriggerType MANUALLY_LITERAL = new EventTriggerType(MANUALLY, "MANUALLY", "MANUALLY"); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final EventTriggerType MANUALLY_LITERAL = new EventTriggerType(MANUALLY, "MANUALLY", "MANUALLY");
 
 	/**
 	 * The '<em><b>SCHEDULED</b></em>' literal object.
@@ -85,7 +85,7 @@ public final class EventTriggerType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventTriggerType SCHEDULED_LITERAL = new EventTriggerType(SCHEDULED, "SCHEDULED", "SCHEDULED"); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final EventTriggerType SCHEDULED_LITERAL = new EventTriggerType(SCHEDULED, "SCHEDULED", "SCHEDULED");
 
 	/**
 	 * The '<em><b>CONDITIONAL</b></em>' literal object.
@@ -95,7 +95,7 @@ public final class EventTriggerType extends AbstractEnumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final EventTriggerType CONDITIONAL_LITERAL = new EventTriggerType(CONDITIONAL, "CONDITIONAL", "CONDITIONAL"); //$NON-NLS-1$ //$NON-NLS-2$
+	public static final EventTriggerType CONDITIONAL_LITERAL = new EventTriggerType(CONDITIONAL, "CONDITIONAL", "CONDITIONAL");
 
 	/**
 	 * An array of all the '<em><b>Event Trigger Type</b></em>' enumerators.

@@ -34,17 +34,18 @@ public class SybaseASACatalogProvider implements ICatalogProvider, IExecutableEx
 		try
 		{
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT @@version"); //$NON-NLS-1$
+			ResultSet rs = stmt.executeQuery("SELECT @@version");
 			while(rs.next())
 			{
 				this.version = rs.getString(1);
-				if(version.startsWith("9")) //$NON-NLS-1$
+				if(version.startsWith("10"))
 				{
-					this.version = "9.x"; //$NON-NLS-1$
+				    this.version = "10.x";
 				}
-				else if(version.startsWith("10")) //$NON-NLS-1$
+                else
 				{
-					this.version = "10.x"; //$NON-NLS-1$
+                    //to handle more versions
+					this.version = "9.x";
 				}
 			}
 		}

@@ -6,12 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SQLScriptsProvider;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogUtils;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
+import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseIndex;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseasabasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl.SybaseASABaseUniqueConstraintImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -19,7 +22,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueConstraintImpl implements ICatalogObject
+public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueConstraintImpl implements ICatalogObject,IAdaptable
 {	
 	private static final long serialVersionUID = 9022615295148300491L;
 	protected Boolean UCInfoLoaded = Boolean.FALSE;
@@ -51,6 +54,9 @@ public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueCon
 		case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__CLUSTERED:
 			isClustered();
 			break;
+        case SybaseasabasesqlmodelPackage.SYBASE_ASA_BASE_UNIQUE_CONSTRAINT__SYSTEM_GEN_INDEX:
+            getSystemGenIndex();
+            break;
 		}
 		return super.eIsSet(eFeature);
 	}
@@ -76,7 +82,20 @@ public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueCon
 		}
 		return super.isClustered();
 	}
+    
+    public SybaseASABaseIndex getSystemGenIndex()
+    {
+        synchronized (UCInfoLoaded) {
+            if(!UCInfoLoaded.booleanValue())
+            {
+                loadUCInfo();
+                UCInfoLoaded = Boolean.TRUE;
+            }
+        }
+        return super.getSystemGenIndex();
+    }
 	
+    //TODO: refactor the following code to merge with SybaseASACatalogPrimaryKey
 	protected void loadUCInfo() {
 		boolean deliver = this.eDeliver();
 		this.eSetDeliver(false);
@@ -98,13 +117,21 @@ public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueCon
 			rs = stmt.executeQuery();
 			while(rs.next())
 			{
+                String indexName = rs.getString("INDEX_NAME");
                 String colListStr = rs.getString(2);
-                boolean isClustered = rs.getString(3).equals("Y"); //$NON-NLS-1$
+                boolean isClustered = rs.getString(3).equals("Y");
                 
                 List columnList = SybaseASACatalogUtils.getSpecifiedColumns(colListStr, table.getColumns());
                 super.getMembers().clear();
                 super.getMembers().addAll(columnList);
                 super.setClustered(isClustered);
+                
+                SybaseASABaseIndex index = null;
+                if(indexName != null || !indexName.equals(""))
+                {
+                    index = (SybaseASABaseIndex)SybaseASACatalogUtils.findElement(this.getBaseTable().getIndex(), indexName);
+                }
+                super.setSystemGenIndex(index);
 			}
 		}
 		catch (SQLException e) {
@@ -115,5 +142,14 @@ public class SybaseASACatalogBaseUniqueConstraint extends SybaseASABaseUniqueCon
 			SybaseASACatalogUtils.cleanupJDBCResouce(rs, stmt);
 		}
 		this.eSetDeliver(deliver);
-	}	
+	}
+
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}
+	
 }

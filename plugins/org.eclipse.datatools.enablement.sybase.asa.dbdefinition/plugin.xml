@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+<extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            file="runtime/vendors/Sybase_ASA_9.x/Sybase_ASA_9.x.xmi"
+            product="Sybase_ASA"
+            productDisplayString="%9.xProductString"
+            version="9.x"
+            versionDisplayString="%9.xVersionString">
+      </definition>
+	  <definition
+            file="runtime/vendors/Sybase_ASA_10.x/Sybase_ASA_10.x.xmi"
+            product="Sybase_ASA"
+            productDisplayString="%10.xProductString"
+            version="10.x"
+            versionDisplayString="%10.xVersionString">
+      </definition>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="Sybase_ASA_9.x.xmi"
+            target="runtime/vendors/Sybase_ASA_9.x/Sybase_ASA_9.x.xmi">
+      </mapping>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="Sybase_ASA_10.x.xmi"
+            target="runtime/vendors/Sybase_ASA_10.x/Sybase_ASA_10.x.xmi">
+      </mapping>
+   </extension>
+</plugin>

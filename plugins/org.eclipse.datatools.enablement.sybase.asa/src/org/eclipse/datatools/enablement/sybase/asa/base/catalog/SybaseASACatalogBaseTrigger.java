@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
@@ -22,7 +24,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class SybaseASACatalogBaseTrigger extends SybaseASABaseTriggerImpl implements ICatalogObject
+public class SybaseASACatalogBaseTrigger extends SybaseASABaseTriggerImpl implements ICatalogObject,IAdaptable
 {
 	private static final long serialVersionUID = 7357619526611063764L;
 	protected Boolean triggerInfoLoaded = Boolean.FALSE;
@@ -31,6 +33,15 @@ public class SybaseASACatalogBaseTrigger extends SybaseASABaseTriggerImpl implem
 	final private static byte DELETE_EVENT = 2;
 	final private static byte UPDATE_EVENT = 4;
 	final private static byte UPDATE_COLUMN_EVENT = 8;
+    
+    protected final static String OLD                 = "OLD";               //$NON-NLS-1$
+    protected final static String NEW                 = "NEW";               //$NON-NLS-1$
+    protected final static String REMOTE              = "REMOTE";            //$NON-NLS-1$
+    protected final static String AS                  = "AS";                //$NON-NLS-1$
+    protected final static String UPDATE              = "UPDATE";            //$NON-NLS-1$
+    protected final static String OF                  = "OF";                //$NON-NLS-1$
+    protected final static String ORDER               = "ORDER";                //$NON-NLS-1$
+    protected final static String ON                  = "ON";                //$NON-NLS-1$
 
 	public Database getCatalogDatabase() {
 		return this.getSubjectTable().getSchema().getDatabase();
@@ -333,12 +344,13 @@ public class SybaseASACatalogBaseTrigger extends SybaseASABaseTriggerImpl implem
                 super.setDescription(remark);
                 super.setActionGranularity(agt);
                 super.setSybaseASABaseActionTime(actionTime);
-                //TODO: we need to parse statement to get all other attributes
-                //includes: when, triggerColumn, new xxx, old xxx, remote name
                 SQLStatement sqlStmt = SQLStatementsFactory.eINSTANCE.createSQLStatementDefault();
                 sqlStmt.setSQL(statement);
                 super.getActionStatement().clear();
                 super.getActionStatement().add(sqlStmt);
+
+                //TODO: we need to parse statement to get all other attributes
+                //includes: when, triggerColumn, new xxx, old xxx, remote name
 			}
 		}
 		catch (SQLException e) {
@@ -399,5 +411,12 @@ public class SybaseASACatalogBaseTrigger extends SybaseASABaseTriggerImpl implem
         }
         return SybaseASABaseActionTime.AFTER_LITERAL;
     }
-	
+
+	public Object getAdapter(Class adapter) {
+		Object adapterObject=Platform.getAdapterManager().getAdapter(this, adapter);
+		if(adapterObject==null){
+			adapterObject=Platform.getAdapterManager().loadAdapter(this, adapter.getName());
+		}
+		return adapterObject;
+	}
 }
