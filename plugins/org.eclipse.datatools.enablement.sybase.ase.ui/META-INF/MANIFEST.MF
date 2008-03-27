@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ASE Enablement UI Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ase.ui;singleton:=true
-Bundle-Version: 1.0.1.200801241
+Bundle-Version: 1.0.1.qualifier
 Bundle-Activator: org.eclipse.datatools.enablement.sybase.ase.ui.ASEUIPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -17,4 +17,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.datatools.connectivity.sqm.server.ui
 Eclipse-LazyStart: true
 Bundle-Localization: plugin
-Bundle-Vendor: Sybase Inc.
+Bundle-Vendor: Eclipse.org
