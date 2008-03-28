@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/wst/rdb/models/dbdefinition/dbdefinition.ecore" vendor="Oracle" version="11" maximumIdentifierLength="8" snapshotViewSupported="true" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" synonymSupported="true" mQTSupported="true" mQTIndexSupported="true" userDefinedTypeSupported="true" packageSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Oracle" version="11" maximumIdentifierLength="8" snapshotViewSupported="true" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" synonymSupported="true" mQTSupported="true" mQTIndexSupported="true" userDefinedTypeSupported="true" packageSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="2000" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>RAW</name>
