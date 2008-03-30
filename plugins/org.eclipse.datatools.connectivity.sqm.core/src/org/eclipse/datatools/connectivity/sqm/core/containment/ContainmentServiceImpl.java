@@ -177,6 +177,7 @@ public final class ContainmentServiceImpl implements ContainmentService {
 	}
 
 	private ContainmentServiceImpl() {
+		Hashtable providers = new Hashtable();
 		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "logicalContainment"); //$NON-NLS-1$ //$NON-NLS-2$
 		IExtension[] extensions = extensionPoint.getExtensions();
@@ -198,12 +199,30 @@ public final class ContainmentServiceImpl implements ContainmentService {
 						continue;
 					}
 
+					String priority = configElements[j].getAttribute("priority"); //$NON-NLS-1$
+					int currentPriority = 0;
+					if (priority != null) {
+						try {
+							currentPriority = Integer.parseInt(priority);
+						}catch (NumberFormatException formatEx){
+						}
+					} 
+					
 					if(this.packages.containsKey(packageURI)) {
-						((Hashtable) this.packages.get(packageURI)).put(className, provider);
+						Hashtable contentProviders = ((Hashtable) this.packages.get(packageURI));
+						if (contentProviders.containsKey(className)) {
+							Provider existProvider = (Provider)  contentProviders.get(className);
+							if (currentPriority > existProvider.getPriority()) {
+								existProvider.setPriority(currentPriority);
+								existProvider.setContainmentProvider(provider);
+							}
+						} else {
+							((Hashtable) this.packages.get(packageURI)).put(className, new Provider(provider,currentPriority));
+						}
 					}
 					else {
 						Hashtable classNames = new Hashtable();
-						classNames.put(className, provider);
+						classNames.put(className, new Provider(provider,currentPriority));
 						this.packages.put(packageURI, classNames);
 					}
 				}
@@ -242,13 +261,39 @@ public final class ContainmentServiceImpl implements ContainmentService {
 			if(this.packages.containsKey(uri)) {
 				Hashtable classNames = (Hashtable) this.packages.get(uri);
 				if(classNames.containsKey(clazz.getName())) {
-					return (ContainmentProvider) classNames.get(clazz.getName());
+					return (ContainmentProvider) ((Provider)classNames.get(clazz.getName())).getContainmentProvider();
 				}
 			}
 		}
 		return null;
 	}
 	
+	private class Provider{
+		private ContainmentProvider provider;
+		private int currentPriority;
+		
+		public Provider(ContainmentProvider provider,int priority) {
+			this.provider  = provider;
+			this.currentPriority = priority;
+		}
+		
+		public int getPriority(){
+			return this.currentPriority;
+		}
+		
+		public void setPriority(int priority) {
+			this.currentPriority = priority;
+		}
+		
+		public ContainmentProvider getContainmentProvider(){
+			return this.provider;
+		}
+		
+		public void setContainmentProvider(ContainmentProvider provider){
+			this.provider = provider;
+		}
+		
+	}
 	private Hashtable packages = new Hashtable();
 	private Hashtable cache = new Hashtable();
 }
