@@ -231,6 +231,7 @@
 
 		<!-- Sends email to recipient list in monitor.properties with compile logs attached if errors found-->
 		<!-- The shell scripts will gather compile error plugin list into monitor.properties -->
+		<echo message="${eclipse.build.configs}/../../extras/verifyCompile.sh"/>
 		<exec executable="${eclipse.build.configs}/../../extras/verifyCompile.sh">
 			<arg value="${postingDirectory}/${buildId}/compilelogs"/>
 		</exec>
@@ -795,6 +796,7 @@ Please visit [ http://qa-build:8080/BuildCentral ] for more information.
 				
 Have a nice day!
 			</message>
+			<!--
 			<fileset dir="${test.dir}/unitTestReport/html">
 				<!--
 				<include name="TESTS-EngineSmokeTests.html"/>
@@ -806,6 +808,7 @@ Have a nice day!
 				<include name="org.eclipse.birt.tests.data.engine.AllTests.html"/>
 				<include name="org.eclipse.birt.report.tests.regression.AllTests.html"/>
 			</fileset>
+			-->
 		</mail>
 	</target>
 	
@@ -819,14 +822,21 @@ Have a nice day!
     <target name="checkCompileError" depends="checkErrorExist" if="has.compile.error" >
 		<property file="${eclipse.build.configs}/../../config.properties" />
 		<property file="${eclipse.build.configs}/../../monitor.properties" />
+		<echo message="${mail.port}"/>
+		<echo message="${buildId}"/>
+		<echo message="${COMPILE.ERROR.RECIPIENTS}"/>
+		<echo message="${mail.from}"/>
+		<echo message="${replyto.address}"/>
+		<echo message="${error.plugin.list}"/>
 
+		<echo message="${postingDirectory}/${buildId}/compilelogs/plugins"/>
 		<mail mailport="${mail.port}" subject="Compile errors found in Today's Datatools Build (BuildId: ${buildId} ) " tolist="${COMPILE.ERROR.RECIPIENTS}">
                     <from address="${mail.from}"/>
                     <replyto address="${replyto.address}"/>
                     <message>
 Hi All,
 
-Compile errors are found in today's BIRT build(BuildId: ${buildId}):
+Compile errors are found in today's DTP build(BuildId: ${buildId}):
                     	
 ${error.plugin.list}  
         

@@ -63,7 +63,7 @@
 	<feature url="features/org.eclipse.datatools.enablement.postgresql.feature_@org.eclipse.datatools.enablement.postgresql.feature@.jar" id="org.eclipse.datatools.enablement.postgresql.feature" version="@org.eclipse.datatools.enablement.postgresql.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
-	<feature url="features/org.eclipse.datatools.enablement.sap.feature_@org.eclipse.datatools.enablement.postgresql.feature@.jar" id="org.eclipse.datatools.enablement.sap.feature" version="@org.eclipse.datatools.enablement.postgresql.feature@">
+	<feature url="features/org.eclipse.datatools.enablement.sap.feature_@org.eclipse.datatools.enablement.sap.feature@.jar" id="org.eclipse.datatools.enablement.sap.feature" version="@org.eclipse.datatools.enablement.sap.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
 	<feature url="features/org.eclipse.datatools.enablement.sybase.feature_@org.eclipse.datatools.enablement.sybase.feature@.jar" id="org.eclipse.datatools.enablement.sybase.feature" version="@org.eclipse.datatools.enablement.sybase.feature@">
@@ -84,7 +84,7 @@
 	<feature url="features/org.eclipse.datatools.sqldevtools.ddl.feature_@org.eclipse.datatools.sqldevtools.ddl.feature@.jar" id="org.eclipse.datatools.sqldevtools.ddl.feature" version="@org.eclipse.datatools.sqldevtools.ddl.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
-	<feature url="features/org.eclipse.datatools.sqldevtools.ddlgen.feature_@org.eclipse.datatools.sqldevtools.ddlgen.feature@.jar" id="org.eclipse.datatools.sqldevtools.ddlgen.feature" version="org.eclipse.datatools.sqldevtools.ddlgen.feature">
+	<feature url="features/org.eclipse.datatools.sqldevtools.ddlgen.feature_@org.eclipse.datatools.sqldevtools.ddlgen.feature@.jar" id="org.eclipse.datatools.sqldevtools.ddlgen.feature" version="@org.eclipse.datatools.sqldevtools.ddlgen.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
 	<feature url="features/org.eclipse.datatools.sqldevtools.feature_@org.eclipse.datatools.sqldevtools.feature@.jar" id="org.eclipse.datatools.sqldevtools.feature" version="@org.eclipse.datatools.sqldevtools.feature@">

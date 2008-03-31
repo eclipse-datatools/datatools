@@ -77,9 +77,9 @@
 	<target name="tagMapFiles" if="tagMaps">
 		<!-- Stores tag on the filesystem so map files can be compared -->
 		<echo file="${mapTag.properties}">
-		lastMapTag=R320_${buildId}
+		lastMapTag=r16_${buildId}
 		</echo>
-		<cvs dest="${buildDirectory}/maps/source" command="tag R320_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r16_${buildId}" />
 	</target>
 	
 	<!-- ===================================================================== -->
@@ -107,6 +107,9 @@
 		<copy todir="${buildDirectory}/plugins">
 			<fileset dir="${buildDirectory}/../staticFiles" includes="*.jar"/>
 		</copy>
+                <replace dir="${buildDirectory}/plugins" value="1.6.0.${buildId}" token="@BUILD@">
+                        <include name="**/about.mappings" />
+                </replace>
 	</target>
 	
 	<!-- ===================================================================== -->
