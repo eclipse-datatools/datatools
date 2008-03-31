@@ -200,7 +200,7 @@ echo "==========[antRunner]: $antRunner" >> adb.log
 #clean drop directories
 
 #full command with args
-#buildId=v20070626-1010
+#buildId=v20080325-0953
 echo $tagMaps >> adb.log
 echo $compareMaps >> adb.log
 
@@ -216,6 +216,7 @@ buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMap
 -Dbasebuilder=/home/adb/releng.dtp/org.eclipse.releng.basebuilder  \
 -Djvm15_home=$jvm15_home  -DmapTag.properties=/home/adb/releng.dtp/org.eclipse.datatools.releng.builder/mapTag.properties \
 -Dbuild.date=$builddate -Dpackage.version=1.6M6-$timestamp \
+-DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
 -DmapVersionTag=HEAD -DjavacTarget=1.4 -DjavacSource=1.4"
 
 #skipPreBuild
@@ -235,4 +236,4 @@ $buildCommand >> adb.log
 
 #clean up
 #rm -rf $builderDir
-rm -rf /home/adb/releng.dtp/src/$buildId
+#rm -rf /home/adb/releng.dtp/src/$buildId

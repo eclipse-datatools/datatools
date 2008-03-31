@@ -40,11 +40,12 @@
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
 		<antcall target="Package"/>
+                <antcall target="GenerateUpdateSite"/>
+		<!--
                 <parallel failonany="false">
-                    <antcall target="GenerateUpdateSite"/>
                     <antcall target="GenerateCVSChangeLog"/>
                 </parallel>
-     
+		-->
 	</target>
 
 	<target name="init">
@@ -75,20 +76,43 @@
 		<!--unzip args-->
 		<property name="unzipArgs" value="-qq" />
 	</target>
+	
 
 	<target name="buildDtpEnablementAllFeature">
-	    <ant antfile="build.xml" dir="${basedir}">
-	        <property name="component" value="${eclipse.build.configs}/dtp.enablement.all" />
-		</ant>
+                <ant antfile="build.xml" dir="${basedir}">
+                        <property name="component" value="${eclipse.build.configs}/dtp.enablement.all" />
+                </ant>
 	</target>
 
 	<target name="buildDtpSdkAllFeature">
+
+		<!-- fetch org.eclipse.datatools.enablement.jdbc.feature -->
+		<!--
+		<ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="preBuild">
+			<property name="builder" value="${eclipse.build.configs}/dtp.enablement.jdbc" />
+		</ant>
+		<ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="fetch">
+			<property name="builder" value="${eclipse.build.configs}/dtp.enablement.jdbc" />
+		</ant>
+		-->
+
+		<!-- build dtp sdk feature -->
 		<ant antfile="build.xml" dir="${basedir}">
 			<property name="component" value="${eclipse.build.configs}/dtp.sdk.all" />
 		</ant>
 
 	</target>
 
+	<target name="buildDtpEnablementFeature">
+		<ant antfile="build.xml" dir="${basedir}">
+			<property name="component" value="${eclipse.build.configs}/dtp.enablement" />
+		</ant>
+	</target>
+	
+	<target name="buildUpdateSite" if="updateSite">
+		<ant antfile="${eclipse.build.configs}/../helper.xml" target="buildUpdateJars" />
+	</target>
+	
 	<target name="integrateDtpFeatures">
 
 		<property name="tmpsite" value="${buildDirectory}/tmpsite" />
@@ -100,10 +124,10 @@
 		<unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
 
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
+
 		<copy todir="${tmpsite}/new/eclipse">
 			<fileset dir="${tmpsite}/eclipse" includes="*.html,readme/**" />
 		</copy>
-		
 	</target>
 
 	<target name="Package">
@@ -139,20 +163,29 @@
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.connectivity.oda.feature.source_${org.eclipse.datatools.connectivity.oda.feature.source}/src" includes="**"/>
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.connectivity.feature.source_${org.eclipse.datatools.connectivity.feature.source}/src" includes="**"/>
 		</copy>
-		
-        <delete includeemptydirs="true">
-                <fileset dir="${buildDirectory}/tmpsite/new/eclipse/features">
-                        <include name="*.feature.source_*/**"/>
-                        <include name="org.eclipse.datatools.intro.source_*/**"/>
-                        <exclude name="*.sdk.feature*/**"/>
-                </fileset>
-                <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins">
-                        <include name="*.feature.source_*/**"/>
-                        <include name="org.eclipse.datatools.intro.source_*/**"/>
-                        <exclude name="*.sdk.feature*/**"/>
-                </fileset>
-        </delete>
-		
+
+		<delete includeemptydirs="true">
+			<fileset dir="${buildDirectory}/tmpsite/eclipse/features">
+				<include name="*.feature.source_*/**"/>
+				<include name="org.eclipse.datatools.intro.source_*/**"/>
+				<include name="org.eclipse.datatools.enablement-all.feature_*/**"/>
+				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
+				<exclude name="*.sdk.feature.source*/**"/>
+			</fileset>
+			<fileset dir="${buildDirectory}/tmpsite/new/eclipse/features">
+				<include name="*.feature.source_*/**"/>
+				<include name="org.eclipse.datatools.intro.source_*/**"/>
+				<include name="org.eclipse.datatools.enablement-all.feature_*/**"/>
+				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
+				<exclude name="*.sdk.feature.source*/**"/>
+			</fileset>
+			<fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins">
+				<include name="*.feature.source_*/**"/>
+				<include name="org.eclipse.datatools.intro.source_*/**"/>
+				<exclude name="*.sdk.feature.source*/**"/>
+			</fileset>
+		</delete>
+
 		<!-- package sdk package -->
 		<zip destfile="${buildDirectory}/${buildId}/dtp-sdk-${package.version}.zip" basedir="${buildDirectory}/tmpsite/new" />
 
@@ -178,8 +211,8 @@
 		<mkdir dir="${postingDirectory}/${buildId}" />
 		<copy file="${buildDirectory}/${buildId}/dtp-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
+		<copy file="${buildDirectory}/directory.txt" todir="${postingDirectory}/${buildId}"/>
 		<copy tofile="${postingDirectory}/monitor.properties" file="monitor.properties" overwrite="true" />
-
 	</target>
 
 	<target name="GenerateUpdateSite">
@@ -187,49 +220,101 @@
 		<property file="${buildDirectory}/finalFeaturesVersions.properties"/>
 		<mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
 
-        <!-- replace the feature version in site.xml -->
+                <!-- replace the feature version in site.xml -->
 		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${buildDirectory}/site.xml"/>
-       	<replace file="${buildDirectory}/site.xml" value="1.6M6" token="@RELEASE.VERSION@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.feature}" token="@org.eclipse.datatools.connectivity.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.designer.feature}" token="@org.eclipse.datatools.connectivity.oda.designer.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.feature}" token="@org.eclipse.datatools.connectivity.oda.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.doc.user}" token="@org.eclipse.datatools.doc.user@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.apache.derby.feature}" token="@org.eclipse.datatools.enablement.apache.derby.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.feature}" token="@org.eclipse.datatools.enablement.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.hsqldb.feature}" token="@org.eclipse.datatools.enablement.hsqldb.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.ibm.feature}" token="@org.eclipse.datatools.enablement.ibm.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.jdbc.feature}" token="@org.eclipse.datatools.enablement.jdbc.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.jdt.feature}" token="@org.eclipse.datatools.enablement.jdt.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.msft.feature}" token="@org.eclipse.datatools.enablement.msft.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.mysql.feature}" token="@org.eclipse.datatools.enablement.mysql.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oda.designer.feature}" token="@org.eclipse.datatools.enablement.oda.designer.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oda.feature}" token="@org.eclipse.datatools.enablement.oda.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oracle.feature}" token="@org.eclipse.datatools.enablement.oracle.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.postgresql.feature}" token="@org.eclipse.datatools.enablement.postgresql.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sap.feature}" token="@org.eclipse.datatools.enablement.sap.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sybase.feature}" token="@org.eclipse.datatools.enablement.sybase.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.intro}" token="@org.eclipse.datatools.intro@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.modelbase.feature}" token="@org.eclipse.datatools.modelbase.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.data.feature}" token="@org.eclipse.datatools.sqldevtools.data.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.ddl.feature}" token="@org.eclipse.datatools.sqldevtools.ddl.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.ddlgen.feature}" token="@org.eclipse.datatools.sqldevtools.ddlgen.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.feature}" token="@org.eclipse.datatools.sqldevtools.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.parsers.feature}" token="@org.eclipse.datatools.sqldevtools.parsers.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.results.feature}" token="@org.eclipse.datatools.sqldevtools.results.feature@"/>
-        <!-- push update site to output directory -->
-        <copy todir="${postingDirectory}/${buildId}/UpdateSite">
-			<fileset dir="${buildDirectory}/tmpsite/new/eclipse">
-        	    <include name="**"/>
-            </fileset>
+                <replace file="${buildDirectory}/site.xml" value="1.6M6" token="@RELEASE.VERSION@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.feature}" token="@org.eclipse.datatools.connectivity.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.designer.feature}" token="@org.eclipse.datatools.connectivity.oda.designer.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.feature}" token="@org.eclipse.datatools.connectivity.oda.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.doc.user}" token="@org.eclipse.datatools.doc.user@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.apache.derby.feature}" token="@org.eclipse.datatools.enablement.apache.derby.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.feature}" token="@org.eclipse.datatools.enablement.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.hsqldb.feature}" token="@org.eclipse.datatools.enablement.hsqldb.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.ibm.feature}" token="@org.eclipse.datatools.enablement.ibm.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.jdbc.feature}" token="@org.eclipse.datatools.enablement.jdbc.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.jdt.feature}" token="@org.eclipse.datatools.enablement.jdt.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.msft.feature}" token="@org.eclipse.datatools.enablement.msft.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.mysql.feature}" token="@org.eclipse.datatools.enablement.mysql.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oda.designer.feature}" token="@org.eclipse.datatools.enablement.oda.designer.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oda.feature}" token="@org.eclipse.datatools.enablement.oda.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.oracle.feature}" token="@org.eclipse.datatools.enablement.oracle.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.postgresql.feature}" token="@org.eclipse.datatools.enablement.postgresql.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sap.feature}" token="@org.eclipse.datatools.enablement.sap.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sybase.feature}" token="@org.eclipse.datatools.enablement.sybase.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.intro}" token="@org.eclipse.datatools.intro@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.modelbase.feature}" token="@org.eclipse.datatools.modelbase.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.data.feature}" token="@org.eclipse.datatools.sqldevtools.data.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.ddl.feature}" token="@org.eclipse.datatools.sqldevtools.ddl.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.ddlgen.feature}" token="@org.eclipse.datatools.sqldevtools.ddlgen.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.feature}" token="@org.eclipse.datatools.sqldevtools.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.parsers.feature}" token="@org.eclipse.datatools.sqldevtools.parsers.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.results.feature}" token="@org.eclipse.datatools.sqldevtools.results.feature@"/>
+
+		<!-- generate dtp.sc for Ganymede update site -->
+		<copy file="${eclipse.build.configs}/../../extras/dtp.sc.template" tofile="${buildDirectory}/dtp.sc"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.feature}" token="@org.eclipse.datatools.connectivity.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.oda.designer.feature}" token="@org.eclipse.datatools.connectivity.oda.designer.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.oda.feature}" token="@org.eclipse.datatools.connectivity.oda.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.doc.user}" token="@org.eclipse.datatools.doc.user@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.apache.derby.feature}" token="@org.eclipse.datatools.enablement.apache.derby.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.feature}" token="@org.eclipse.datatools.enablement.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.hsqldb.feature}" token="@org.eclipse.datatools.enablement.hsqldb.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.ibm.feature}" token="@org.eclipse.datatools.enablement.ibm.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.jdbc.feature}" token="@org.eclipse.datatools.enablement.jdbc.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.jdt.feature}" token="@org.eclipse.datatools.enablement.jdt.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.msft.feature}" token="@org.eclipse.datatools.enablement.msft.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.mysql.feature}" token="@org.eclipse.datatools.enablement.mysql.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.oda.designer.feature}" token="@org.eclipse.datatools.enablement.oda.designer.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.oda.feature}" token="@org.eclipse.datatools.enablement.oda.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.oracle.feature}" token="@org.eclipse.datatools.enablement.oracle.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.postgresql.feature}" token="@org.eclipse.datatools.enablement.postgresql.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.sap.feature}" token="@org.eclipse.datatools.enablement.sap.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.sybase.feature}" token="@org.eclipse.datatools.enablement.sybase.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.intro}" token="@org.eclipse.datatools.intro@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.modelbase.feature}" token="@org.eclipse.datatools.modelbase.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.data.feature}" token="@org.eclipse.datatools.sqldevtools.data.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.ddl.feature}" token="@org.eclipse.datatools.sqldevtools.ddl.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.ddlgen.feature}" token="@org.eclipse.datatools.sqldevtools.ddlgen.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.feature}" token="@org.eclipse.datatools.sqldevtools.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.parsers.feature}" token="@org.eclipse.datatools.sqldevtools.parsers.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.results.feature}" token="@org.eclipse.datatools.sqldevtools.results.feature@"/>
+
+                <!-- push update site to output directory -->
+                <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
+                <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
+
+		<delete includeemptydirs="true">
+			<fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
+				<include name="*.feature.source_*/**"/>
+				<include name="org.eclipse.datatools.intro.source_*/**"/>
+				<include name="org.eclipse.datatools.enablement-all.feature_*/**"/>
+				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
+				<exclude name="*.sdk.feature.source*/**"/>
+			</fileset>
+                        <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/plugins">
+                                <include name="*.feature.source_*/**"/>
+                                <include name="org.eclipse.datatools.intro.source_*/**"/>
+                                <exclude name="*.sdk.feature.source*/**"/>
+                        </fileset>
+                        <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
+                                <include name="readme/**"/>
+                                <include name="*.html"/>
+			</fileset>
+                </delete>
+
+                <copy todir="${postingDirectory}/${buildId}/UpdateSite">
 			<fileset dir="${buildDirectory}">
 				<include name="site.xml"/>
+				<include name="dtp.sc"/>
 			</fileset>
-        </copy>
+                </copy>
+
 	</target>
 
 	<target name="GenerateCVSChangeLog">
-		<ant file="${eclipse.build.configs}/../../extras/cvschanges.xml"/>
+		<ant antfile="${eclipse.build.configs}/../../extras/cvschanges.xml"/>
 	</target>
 
 </project>
