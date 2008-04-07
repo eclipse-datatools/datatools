@@ -72,7 +72,7 @@
                   generated="false"
                   id="org.eclipse.datatools.connectivity.db.URL"
                   name="%driverConnectionURL"
-                  value=""
+                  value="jdbc:db2://:446/:retrieveMessagesFromServerOnGetMessage=true;emulateParameterMetaDataForZCalls=1;"
                   required="true"
                   visible="true"/>
             <property
