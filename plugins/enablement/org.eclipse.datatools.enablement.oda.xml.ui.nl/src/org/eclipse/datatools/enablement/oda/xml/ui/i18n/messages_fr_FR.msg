@@ -21,9 +21,9 @@ wizard.title.selectColumn=Définir la mise en correspondance de colonne
 wizard.title.defineColumnMapping=Créez des colonnes de jeux de données en sélectionnant et en ajoutant des éléments provenant de la structure XML.\nChaque attribut ou chaque élément XML ajouté est associé à une colonne de jeu de données. 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=Nombre d'éléments accédés dans l'analyse de l'arborescence du schéma XML.
+designer.preview.preference.numberOfElementPassedToGetSchema=Nombre d'éléments de données à analyser pour le schéma XML :
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Entrez un nombre compris entre 0 et {0}.
-designer.preview.preference.columnMappingPage.group.title=Page de mise en correspondance de colonne
+designer.preview.preference.columnMappingPage.group.title=Mise en correspondance de colonne
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Sélection de l'élément XML

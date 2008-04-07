@@ -21,9 +21,9 @@ wizard.title.selectColumn=Spaltenzuordnung definieren
 wizard.title.defineColumnMapping=Erstellen Sie Datensatzspalten durch Auswahl und Hinzufügen von Elementen aus der XML-Struktur.\nJedes hinzugefügte XML-Element oder -Attribut wird einer Datensatzspalte zugeordnet. 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=Anzahl der Elemente, die bei der XML-Schemastruktur verwendet wurden.
+designer.preview.preference.numberOfElementPassedToGetSchema=Anzahl der zu analysierenden Datenelemente für XML-Schema:
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Geben Sie eine Zahl zwischen 0 und {0} ein.
-designer.preview.preference.columnMappingPage.group.title=Spaltenzuordnungsseite
+designer.preview.preference.columnMappingPage.group.title=Spaltenzuordnung
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML-Element-Auswahl

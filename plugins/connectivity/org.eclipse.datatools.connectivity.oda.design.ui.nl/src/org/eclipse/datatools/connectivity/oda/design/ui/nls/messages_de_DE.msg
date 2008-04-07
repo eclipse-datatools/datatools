@@ -46,3 +46,4 @@ profileStoreCreationDialog_newbutton_tooltiptext=Neues Verbindungsprofil erstell
 dbProfilePage_defaultPageMessage=Geben Sie einen JDBC-Treiber sowie die Verbindungsdetails an.
 dbProfilePage_notInDesignSession=Eigenschaftenseite kann außerhalb einer ODA-Designsitzung nicht geöffnet werden.
 dbProfilePage_noCustomPage=Die für die Datenbanktreiber spezifische Eigenschaftenseite kann nicht gefunden und geöffnet werden.
+preferencesPage_openDataAccessDescription=Legen Sie die Einstellungen für einzelne Open Data Access-Datenquellen\nüber die Seiten unter diesem Knoten fest.

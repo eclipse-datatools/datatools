@@ -46,3 +46,4 @@ profileStoreCreationDialog_newbutton_tooltiptext=Crear un nuevo perfil de conexi
 dbProfilePage_defaultPageMessage=Especifique un controlador JDBC y los detalles de conexión
 dbProfilePage_notInDesignSession=No es posible abrir la página de propiedades fuera de una sesión de diseño ODA.
 dbProfilePage_noCustomPage=No es posible encontrar y abrir la página de propiedades específica del controlador de la base de datos.
+preferencesPage_openDataAccessDescription=Establezca las preferencias para las fuentes de datos de acceso a datos abiertos individuales \na través de las páginas recogidas en este nodo.

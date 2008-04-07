@@ -21,9 +21,9 @@ wizard.title.selectColumn=列マッピングの定義
 wizard.title.defineColumnMapping=XML 構造から項目を選択・追加して、データセットの列を作成します。\n追加した XML 要素または属性は、データセット列に割り当てられます。 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=XML スキーマツリーの解析中にアクセスした要素の数
+designer.preview.preference.numberOfElementPassedToGetSchema=XML スキーマで解析するデータ要素の数 :
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0～{0} までの数値を入力してください。
-designer.preview.preference.columnMappingPage.group.title=カラムマッピングページ
+designer.preview.preference.columnMappingPage.group.title=列のマッピング
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 要素の選択

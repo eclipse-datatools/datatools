@@ -13,7 +13,7 @@ Extension.NewRepositoryWizard.Description = 接続プロファイルへの新しいリポジトリ
 datatools.preference.page.name=接続
 drivers.preference.page.name=ドライバー定義
 category.name.connectionProfiles=接続プロファイル
-datatools.core.ui.preferences.data.node = データツーリング
+datatools.core.ui.preferences.data.node = データ管理
 
 DSE.content = データソースエクスプローラの拡張
 

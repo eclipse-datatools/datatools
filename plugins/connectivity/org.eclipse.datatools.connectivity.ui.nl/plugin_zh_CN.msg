@@ -13,7 +13,7 @@ Extension.NewRepositoryWizard.Description = 为连接配置文件创建新存储库
 datatools.preference.page.name=连接
 drivers.preference.page.name=驱动程序定义
 category.name.connectionProfiles=连接概要文件
-datatools.core.ui.preferences.data.node = 数据加工
+datatools.core.ui.preferences.data.node = 数据管理
 
 DSE.content = 数据源资源管理器扩展
 

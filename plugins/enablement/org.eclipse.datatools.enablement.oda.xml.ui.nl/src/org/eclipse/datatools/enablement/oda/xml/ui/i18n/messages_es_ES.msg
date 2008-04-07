@@ -21,9 +21,9 @@ wizard.title.selectColumn=Definir asignación de columnas
 wizard.title.defineColumnMapping=Crear columnas de conjunto de datos seleccionando y añadiendo elementos de la estructura XML.\nCada atributo o elemento XML añadido se asigna a una columna de conjunto de datos. 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=Número de elementos con acceso en el análisis de árbol de esquema XML.
+designer.preview.preference.numberOfElementPassedToGetSchema=Número de elementos datos a analizar para el esquema XML:
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=Introduzca un número entre 0 y {0}.
-designer.preview.preference.columnMappingPage.group.title=Página de asignación de columnas
+designer.preview.preference.columnMappingPage.group.title=Asignación de columnas
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Selección de elemento XML

@@ -46,3 +46,4 @@ profileStoreCreationDialog_newbutton_tooltiptext=Créer un nouveau profil de conn
 dbProfilePage_defaultPageMessage=Spécifiez un pilote JDBC et les informations de connexion
 dbProfilePage_notInDesignSession=Impossible d'ouvrir une page de propriétés en dehors d'une session de conception ODA.
 dbProfilePage_noCustomPage=Impossible de trouver et d'ouvrir la page de propriété des pilotes de base de données.
+preferencesPage_openDataAccessDescription=Définissez les préférences pour les sources de données Open Data Access individuelles \nen utilisant les pages sous ce nœud.

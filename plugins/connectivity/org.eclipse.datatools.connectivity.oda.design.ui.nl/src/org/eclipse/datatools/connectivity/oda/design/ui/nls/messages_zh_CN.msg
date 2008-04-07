@@ -46,3 +46,4 @@ profileStoreCreationDialog_newbutton_tooltiptext=创建新的连接配置文件
 dbProfilePage_defaultPageMessage=指定 JDBC 驱动程序和连接详细信息
 dbProfilePage_notInDesignSession=无法在 ODA 设计会话外部打开属性页。
 dbProfilePage_noCustomPage=无法找到并打开数据库驱动程序特定属性页。
+preferencesPage_openDataAccessDescription=使用此节点下面的页面为各个开放数据访问数据源\n设置首选项。

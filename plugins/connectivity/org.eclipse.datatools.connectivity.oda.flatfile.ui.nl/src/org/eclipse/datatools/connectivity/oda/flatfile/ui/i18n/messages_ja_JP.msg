@@ -21,11 +21,11 @@ editor.title.type=型
 datatypes.dateTime=日時
 datatypes.decimal=小数値
 datatypes.float=浮動小数値
-datatypes.integer=Integer
-datatypes.string=String
-datatypes.date=Date
-datatypes.time=Time
-datatypes.boolean=Boolean
+datatypes.integer=整数値
+datatypes.string=文字列
+datatypes.date=日付
+datatypes.time=時間
+datatypes.boolean=論理
 
 tooltip.flatfilestyle=フラットファイルの各スタイルにマウスのポインタを置くと詳しい説明が表示されます。
 tooltip.csv=値をコンマ { , } で区切る

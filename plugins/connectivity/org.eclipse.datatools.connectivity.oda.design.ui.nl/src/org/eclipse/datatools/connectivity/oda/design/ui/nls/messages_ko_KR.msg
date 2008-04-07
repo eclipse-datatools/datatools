@@ -46,3 +46,4 @@ profileStoreCreationDialog_newbutton_tooltiptext=새 연결 프로필을 생성합니다.
 dbProfilePage_defaultPageMessage=JDBC 드라이버 및 연결 상세 정보 지정
 dbProfilePage_notInDesignSession=ODA 디자인 세션 외부에서 속성 페이지를 열 수 없습니다.
 dbProfilePage_noCustomPage=데이터베이스 드라이버별 속성 페이지를 찾아 열 수 없습니다.
+preferencesPage_openDataAccessDescription=이 노드에 포함된 페이지를 사용하여 각 개방형 데이터 액세스(ODA)에\n대한 기본 설정을 지정하십시오.

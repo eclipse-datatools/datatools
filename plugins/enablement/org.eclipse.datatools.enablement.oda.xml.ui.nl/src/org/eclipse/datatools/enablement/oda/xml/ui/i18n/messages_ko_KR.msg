@@ -21,9 +21,9 @@ wizard.title.selectColumn=열 매핑 정의
 wizard.title.defineColumnMapping=XML 구조에서 항목을 선택하고 추가하여 데이터 집합 열을 생성합니다.\n추가한 각 XML 요소 또는 특성이 데이터 집합 열에 매핑됩니다. 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=XML 스키마 트리 구문 분석 시 액세스하는 요소 수
+designer.preview.preference.numberOfElementPassedToGetSchema=XML 스키마를 구문 분석할 데이터 요소 개수:
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=0과 {0} 사이에 있는 숫자를 입력하십시오.
-designer.preview.preference.columnMappingPage.group.title=열 매핑 페이지
+designer.preview.preference.columnMappingPage.group.title=열 매핑
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 요소 선택

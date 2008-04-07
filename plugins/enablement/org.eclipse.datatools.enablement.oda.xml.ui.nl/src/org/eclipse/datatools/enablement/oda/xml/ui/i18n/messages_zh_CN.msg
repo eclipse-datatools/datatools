@@ -21,9 +21,9 @@ wizard.title.selectColumn=定义列映射
 wizard.title.defineColumnMapping=通过从 XML 结构中选择并添加项目，创建数据集列。\n添加的每个 XML 元素或属性均会映射到一个数据集列。 
 
 #preference
-designer.preview.preference.numberOfElementPassedToGetSchema=XML 架构树分析中访问的元素数
+designer.preview.preference.numberOfElementPassedToGetSchema=要为 XML 架构分析的数据元素数:
 designer.preview.preference.numberOfElementPassedToGetSchema.errormessage=请输入一个介于 0 和 {0} 之间的数。
-designer.preview.preference.columnMappingPage.group.title=列映射页
+designer.preview.preference.columnMappingPage.group.title=列映射
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 元素选择
