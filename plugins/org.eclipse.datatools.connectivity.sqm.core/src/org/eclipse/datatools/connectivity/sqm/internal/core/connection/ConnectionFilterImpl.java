@@ -10,6 +10,7 @@ package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -152,8 +153,7 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 				regex = new String();
 			}
 			else {
-				regex = pattern.substring(1, pattern.length() - 1).replaceAll("%",
-						".*").replaceAll("_", ".?");
+				regex = quote(pattern.substring(1, pattern.length() - 1));
 			}
 			this.pattern = Pattern.compile(regex);
 		}
@@ -161,6 +161,24 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		public boolean isFiltered(String name) {
 			return pattern.matcher(name).matches();
 		}
+		
+		private String quote(String pattern) {
+			StringBuffer buf = new StringBuffer();
+			StringTokenizer tokenizer = new StringTokenizer(pattern, "%_", true);
+
+			while (tokenizer.hasMoreTokens()) {
+				String token = tokenizer.nextToken();
+				if ("%".equals(token)) {
+					buf.append(".*");
+				} else if ("_".equals(token)) {
+					buf.append(".?");
+				} else {
+					buf.append(Pattern.quote(token));
+				}
+			}
+			return buf.toString();
+		}
+
 	}
 
 	private static class LikeFilter extends NotLikeFilter {
