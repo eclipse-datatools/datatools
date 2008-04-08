@@ -10,4 +10,7 @@ RelationInformation.InvalidDataTypeName=指定されたデータ型の名前が無効です。
 RelationInformation.InvalidFilterDefinition=フィルタの定義が無効です。 
 DateUtil.ConvertFails=日付に変換できません。ソース :
 dataTypes.typeNameInvalid=無効なデータ型名 :
+dateFormatISO8601.inconvertibleValueError=Cannot convert the value of 
+exception.invalidArgument=Invalid argument type.
+exception.nullDataSourceContent=Data source content is null.
 ui.invalidXSDFile=指定された XSD ファイルが無効です。

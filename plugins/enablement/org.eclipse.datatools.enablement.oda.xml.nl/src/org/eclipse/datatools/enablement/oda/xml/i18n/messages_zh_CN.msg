@@ -10,4 +10,7 @@ RelationInformation.InvalidDataTypeName=提供的数据类型名称无效。
 RelationInformation.InvalidFilterDefinition=筛选定义无效。 
 DateUtil.ConvertFails=转换为日期失败。 源:
 dataTypes.typeNameInvalid=数据类型名称无效:
+dateFormatISO8601.inconvertibleValueError=Cannot convert the value of 
+exception.invalidArgument=Invalid argument type.
+exception.nullDataSourceContent=Data source content is null.
 ui.invalidXSDFile=提供的 xsd 文件无效。

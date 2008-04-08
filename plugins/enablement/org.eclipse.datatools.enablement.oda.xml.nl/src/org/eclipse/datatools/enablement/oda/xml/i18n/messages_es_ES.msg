@@ -10,4 +10,7 @@ RelationInformation.InvalidDataTypeName=El nombre del tipo de datos proporcionad
 RelationInformation.InvalidFilterDefinition=La definición de filtro no es válida. 
 DateUtil.ConvertFails=Error al convertir la fecha. Fuente:
 dataTypes.typeNameInvalid=Nombre de tipo de datos no válido:
+dateFormatISO8601.inconvertibleValueError=Cannot convert the value of 
+exception.invalidArgument=Invalid argument type.
+exception.nullDataSourceContent=Data source content is null.
 ui.invalidXSDFile=El archivo xsd proporcionado no es válido.
