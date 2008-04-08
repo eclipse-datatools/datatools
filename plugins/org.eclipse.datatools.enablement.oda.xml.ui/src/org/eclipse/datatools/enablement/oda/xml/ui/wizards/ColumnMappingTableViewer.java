@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ import org.eclipse.swt.widgets.MenuItem;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.6 $ $Date: 2007/12/29 03:59:28 $
+ * @version $Revision: 1.7 $ $Date: 2008/03/24 10:13:32 $
  */
 public final class ColumnMappingTableViewer
 {
@@ -86,7 +86,7 @@ public final class ColumnMappingTableViewer
 			btnData.widthHint = 50;
 			btnData.heightHint = 20;
 			btnEdit = new Button( btnComposite, SWT.WRAP );
-			btnEdit.setText( Messages.getString( "menu.button.edit" ) );
+			btnEdit.setText( Messages.getString( "menu.button.edit" ) );     //$NON-NLS-1$
 			btnEdit.setLayoutData( btnData );
 			btnEdit.setEnabled( false );
 			btnEdit.addSelectionListener( new SelectionListener( ) {
@@ -105,7 +105,7 @@ public final class ColumnMappingTableViewer
 			btnData.widthHint = 50;
 			btnData.heightHint = 20;
 			btnRemove = new Button( btnComposite, SWT.WRAP );
-			btnRemove.setText( Messages.getString( "menu.button.remove" ) );
+			btnRemove.setText( Messages.getString( "menu.button.remove" ) );     //$NON-NLS-1$
 			btnRemove.setLayoutData( btnData );
 			btnRemove.setEnabled( false );
 			btnRemove.addSelectionListener( new SelectionListener( ) {
@@ -124,12 +124,12 @@ public final class ColumnMappingTableViewer
 			blankLabel.setLayoutData( btnData );
 
 			btnUp = new Button( btnComposite, SWT.WRAP );
-			btnUp.setText( Messages.getString( "menu.button.up" ) );
+			btnUp.setText( Messages.getString( "menu.button.up" ) );         //$NON-NLS-1$
 			btnUp.setLayoutData( btnData );
 			btnUp.setEnabled( false );
 
 			btnDown = new Button( btnComposite, SWT.WRAP );
-			btnDown.setText( Messages.getString( "menu.button.down" ) );
+			btnDown.setText( Messages.getString( "menu.button.down" ) );     //$NON-NLS-1$
 			btnDown.setLayoutData( btnData );
 			btnDown.setEnabled( false );
 			btnDown.addSelectionListener( new SelectionListener( ) {
@@ -156,10 +156,10 @@ public final class ColumnMappingTableViewer
 				}
 			} );
 			itmRemove = new MenuItem( menu, SWT.NONE );
-			itmRemove.setText( Messages.getString( "menu.menuItem.remove" ) ); //$NON-NLS-1$
+			itmRemove.setText( Messages.getString( "menu.menuItem.remove" ) );         //$NON-NLS-1$
 
 			itmRemoveAll = new MenuItem( menu, SWT.NONE );
-			itmRemoveAll.setText( Messages.getString( "menu.menuItem.removeAll" ) ); //$NON-NLS-1$
+			itmRemoveAll.setText( Messages.getString( "menu.menuItem.removeAll" ) );   //$NON-NLS-1$
 
 			viewer.getTable( ).setMenu( menu );
 		}

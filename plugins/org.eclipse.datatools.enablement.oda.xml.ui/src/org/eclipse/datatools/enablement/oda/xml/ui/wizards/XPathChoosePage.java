@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -57,8 +57,9 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class XPathChoosePage extends DataSetWizardPage
 {
-	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );
-	private static final String PATH_SEPERATOR = "/";
+    private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );  //$NON-NLS-1$
+	private static final String PATH_SEPERATOR = "/";  //$NON-NLS-1$
+	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
 	private transient Tree availableXmlTree;
 	private transient Composite centerComposite;
@@ -89,7 +90,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	public XPathChoosePage( )
 	{
-		this( Messages.getString( "wizard.title.newDataSet" ) );
+		this( Messages.getString( "wizard.title.newDataSet" ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			rootPath = XMLRelationInfoUtil.getXPathExpression( queryText,
 					tableName );
 		else
-			rootPath = "";
+			rootPath = EMPTY_STRING;
 
 		backupRootPath( );
 		if ( rootPath != null && rootPath.length( ) > 0 )
@@ -158,7 +159,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
-		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.elementSelection.label" );
+		DEFAULT_MESSAGE = Messages.getString( "xPathChoosePage.messages.elementSelection.label" );     //$NON-NLS-1$
 		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( dataSetDesign );
 		
@@ -182,7 +183,7 @@ public class XPathChoosePage extends DataSetWizardPage
     */
 	public Control createPageControl( Composite parent )
 	{
-		DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );
+		DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );   //$NON-NLS-1$
 		this.setMessage( DEFAULT_MESSAGE );
 		Composite composite = new Composite( parent, SWT.NONE );
 
@@ -256,7 +257,7 @@ public class XPathChoosePage extends DataSetWizardPage
 
 		} );
 
-		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) );
+		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) );  //$NON-NLS-1$
 	}
 	
 	/**
@@ -275,7 +276,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 2;
 		rightGroup.setLayout( layout );
-		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.label" ) );
+		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.label" ) );  //$NON-NLS-1$
 		rightGroup.setLayoutData( data );
 		
 		GridData buttonGd = new GridData( );
@@ -298,11 +299,10 @@ public class XPathChoosePage extends DataSetWizardPage
 		customButton.setSelection( true );
 		customPathLabel = new Label( rightGroup, SWT.WRAP );
 		customPathLabel.setLayoutData( labelGd );
-		customPathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) );
+		customPathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) ); //$NON-NLS-1$
 		
 		setLabelValuesAndListeners( rightGroup );
 		
-		Label blankLabel = new Label( rightGroup, SWT.NONE );
 		GridData txtGridData = new GridData();
 		txtGridData.widthHint = 200;
 		xmlPathField = new Combo( rightGroup, SWT.DROP_DOWN );
@@ -357,7 +357,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			xpathList = getSelectedXPathList( );
 			if ( xpathList.size( ) < 2 )
 			{
-				setMessage( Messages.getString( "error.xpath.getPathList" ), ERROR );
+				setMessage( Messages.getString( "error.xpath.getPathList" ), ERROR ); //$NON-NLS-1$
 			}
 			resetButtonsAndLabels( true );
 		}
@@ -464,12 +464,12 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		if ( visible )
 		{
-			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",
+			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",  //$NON-NLS-1$
 					new String[]{
 							selectedItem.getText( ),
 							(String) xpathList.get( 0 )
 					} ) );
-			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation",
+			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation",    //$NON-NLS-1$
 					new String[]{
 							selectedItem.getText( ),
 							(String) xpathList.get( 1 )
@@ -477,8 +477,8 @@ public class XPathChoosePage extends DataSetWizardPage
 		}
 		else
 		{
-			absolutePathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );
-			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );
+			absolutePathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
+			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );   //$NON-NLS-1$
 		}
 		absolutePathButton.setEnabled( visible );
 		absolutePathLabel.setEnabled( visible );
@@ -583,9 +583,9 @@ public class XPathChoosePage extends DataSetWizardPage
 						|| treeNode.getChildren( ) == null
 						|| treeNode.getChildren( ).length == 0 )
 				{
-					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );
+					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );       //$NON-NLS-1$
 					ExceptionHandler.showException( getShell( ),
-							Messages.getString( "error.label" ),
+							Messages.getString( "error.label" ), //$NON-NLS-1$
 							ex.getMessage( ),
 							ex );
 				}
@@ -617,7 +617,7 @@ public class XPathChoosePage extends DataSetWizardPage
 							catch ( OdaException e )
 							{
 								ExceptionHandler.showException( getShell( ),
-										Messages.getString( "error.label" ),
+										Messages.getString( "error.label" ),       //$NON-NLS-1$
 										e.getMessage( ),
 										e );
 							}
@@ -634,7 +634,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		catch ( Exception e )
 		{
 			ExceptionHandler.showException( getShell( ),
-					Messages.getString( "error.label" ),
+					Messages.getString( "error.label" ),       //$NON-NLS-1$
 					e.getMessage( ),
 					e );
 		}
@@ -649,18 +649,18 @@ public class XPathChoosePage extends DataSetWizardPage
 		if ( !isRootPathValid( ) )
 		{
 			setPageComplete( false );
-			this.setMessage( Messages.getFormattedString( "error.invalidXpath",
+			this.setMessage( Messages.getFormattedString( "error.invalidXpath",       //$NON-NLS-1$
 					new Object[]{
-						rootPath == null ? "" : rootPath
+						rootPath == null ? EMPTY_STRING : rootPath
 					} ), IMessageProvider.ERROR );
 		}
 		else
 		{
 			if ( initRootPath != null
-					&& !initRootPath.equals( "" )
+					&& !initRootPath.equals( EMPTY_STRING )
 					&& !initRootPath.equals( rootPath ) )
 			{
-				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),
+				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),      //$NON-NLS-1$
 						INFORMATION );
 			}
 			else
@@ -757,9 +757,9 @@ public class XPathChoosePage extends DataSetWizardPage
 			return true;
 		if ( !isRootPathValid( ) )
 		{
-			this.setMessage( Messages.getFormattedString( "error.invalidXpath",
+			this.setMessage( Messages.getFormattedString( "error.invalidXpath",       //$NON-NLS-1$
 					new Object[]{
-						rootPath == null ? "" : rootPath
+						rootPath == null ? EMPTY_STRING : rootPath
 					} ), IMessageProvider.ERROR );
 			return false;
 		}

@@ -1,6 +1,6 @@
 
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,23 +28,23 @@ final class DataTypeUtil
 	
     static
     {
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.dateTime"),new Integer( DataTypes.TIMESTAMP ) );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.decimal"),new Integer( DataTypes.BIGDECIMAL ) );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.float"),new Integer( DataTypes.DOUBLE ) );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.integer"), new Integer( DataTypes.INT ));
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.date"), new Integer( DataTypes.DATE )  );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.time"), new Integer( DataTypes.TIME ) );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.string"), new Integer( DataTypes.STRING ) );
-    	displayNameDataTypeMapping.put( Messages.getString("datatypes.boolean"), new Integer( DataTypes.BOOLEAN ) );
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.dateTime"),new Integer( DataTypes.TIMESTAMP ) );     //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.decimal"),new Integer( DataTypes.BIGDECIMAL ) );     //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.float"),new Integer( DataTypes.DOUBLE ) );           //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.integer"), new Integer( DataTypes.INT ));            //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.date"), new Integer( DataTypes.DATE )  );            //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.time"), new Integer( DataTypes.TIME ) );             //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.string"), new Integer( DataTypes.STRING ) );         //$NON-NLS-1$
+    	displayNameDataTypeMapping.put( Messages.getString("datatypes.boolean"), new Integer( DataTypes.BOOLEAN ) );       //$NON-NLS-1$
     	
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIMESTAMP ), Messages.getString("datatypes.dateTime") );
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BIGDECIMAL ), Messages.getString("datatypes.decimal"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DOUBLE ), Messages.getString("datatypes.float"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.INT ),Messages.getString("datatypes.integer"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DATE ),Messages.getString("datatypes.date"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIME ), Messages.getString("datatypes.time"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.STRING ), Messages.getString("datatypes.string"));
-    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BOOLEAN ), Messages.getString("datatypes.boolean"));
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIMESTAMP ), Messages.getString("datatypes.dateTime") );    //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BIGDECIMAL ), Messages.getString("datatypes.decimal"));     //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DOUBLE ), Messages.getString("datatypes.float"));           //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.INT ),Messages.getString("datatypes.integer"));             //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.DATE ),Messages.getString("datatypes.date"));               //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.TIME ), Messages.getString("datatypes.time"));              //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.STRING ), Messages.getString("datatypes.string"));          //$NON-NLS-1$
+    	dataTypeDisplayNameMapping.put( new Integer( DataTypes.BOOLEAN ), Messages.getString("datatypes.boolean"));        //$NON-NLS-1$
     }
     
     /**
@@ -59,7 +59,7 @@ final class DataTypeUtil
     	if( o != null )
     		return o.toString( );
     	else
-    		return Messages.getString("datatypes.string");
+    		return Messages.getString("datatypes.string");   //$NON-NLS-1$
     }
     
     /**

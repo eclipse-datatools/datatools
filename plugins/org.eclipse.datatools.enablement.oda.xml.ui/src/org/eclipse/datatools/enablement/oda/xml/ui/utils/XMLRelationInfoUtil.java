@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,7 +25,9 @@ import org.eclipse.ui.PlatformUI;
 
 public class XMLRelationInfoUtil
 {
-	/**
+	private static final String EMPTY_STRING = "";     //$NON-NLS-1$
+
+    /**
 	 * connect the relationInfo with special regular expression "#-#"
 	 * 
 	 * @param originalStr
@@ -37,7 +39,7 @@ public class XMLRelationInfoUtil
 		if ( originalStr == null || originalStr.trim( ).length( ) <= 0 )
 			return newInfo;
 		else
-			return originalStr + "#-#" + newInfo;
+			return originalStr + "#-#" + newInfo; //$NON-NLS-1$
 	}
 
 	/**
@@ -49,7 +51,7 @@ public class XMLRelationInfoUtil
 	 */
 	public static String getTableRelationInfo( String info, String tableName )
 	{
-		String[] splitStr = info.split( "\\Q#-#\\E" );
+		String[] splitStr = info.split( "\\Q#-#\\E" ); //$NON-NLS-1$
 		for ( int i = 0; i < splitStr.length; i++ )
 		{
 			if ( splitStr[i].startsWith( tableName ) )
@@ -77,7 +79,7 @@ public class XMLRelationInfoUtil
 	{
 		if ( info == null || info.trim( ).length( ) <= 0 )
 			return 0;
-		String[] splitStr = info.split( "\\Q#-#\\E" );
+		String[] splitStr = info.split( "\\Q#-#\\E" ); //$NON-NLS-1$
 		return splitStr.length;
 	}
 
@@ -116,7 +118,7 @@ public class XMLRelationInfoUtil
 		if ( relationInformation == null
 				|| relationInformation.trim( ).length( ) == 0 )
 			return newString;
-		String[] splitStr = relationInformation.split( "\\Q#-#\\E" );
+		String[] splitStr = relationInformation.split( "\\Q#-#\\E" ); //$NON-NLS-1$
 		for ( int i = 0; i < splitStr.length; i++ )
 		{
 			if ( splitStr[i].startsWith( tableName ) )
@@ -135,7 +137,7 @@ public class XMLRelationInfoUtil
 	 */
 	private static String concatRealtionInfo( String[] splitStr )
 	{
-		String str = "";
+		String str = EMPTY_STRING; 
 		for ( int i = 0; i < splitStr.length; i++ )
 		{
 			if ( splitStr[i] != null && splitStr[i].trim( ).length( ) > 0 )
@@ -162,7 +164,7 @@ public class XMLRelationInfoUtil
 	 */
 	private static int getTableRelationInfoIndex( String info, String tableName )
 	{
-		String[] splitStr = info.split( "\\Q#-#\\E" );
+		String[] splitStr = info.split( "\\Q#-#\\E" ); //$NON-NLS-1$
 		for ( int i = 0; i < splitStr.length; i++ )
 		{
 			if ( splitStr[i].startsWith( tableName ) )
@@ -182,14 +184,14 @@ public class XMLRelationInfoUtil
 			String relationInfo, String xPath )
 	{
 		String infoStr = relationInfo;
-		String[] splitStr = relationInfo.split( "\\Q#-#\\E" );
+		String[] splitStr = relationInfo.split( "\\Q#-#\\E" ); //$NON-NLS-1$
 		String tableStr = splitStr[0];
 		RelationInformation info = null;
 		try
 		{
 			info = new RelationInformation( tableStr );
 			String rootPath = info.getTableOriginalRootPath( tableName );
-			tableStr = tableStr.replaceFirst( "\\Q" + rootPath + "\\E", xPath );
+			tableStr = tableStr.replaceFirst( "\\Q" + rootPath + "\\E", xPath ); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		catch ( OdaException e )
 		{

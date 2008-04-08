@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,6 +33,8 @@ import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
  */
 public class Connection implements IConnection
 {
+    private static final String TRUE_LITERAL = "true";	//$NON-NLS-1$
+
 	//The file which server as data source.
 	private XMLCreatorContent xmlContent;
 
@@ -72,7 +74,7 @@ public class Connection implements IConnection
 			}
 		}
 		else
-			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
+			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
 		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
 		xmlContent.setEncoding(encoding);
 		
@@ -116,7 +118,7 @@ public class Connection implements IConnection
 				Object closeInputStream = appContext.get(Constants.APPCONTEXT_CLOSEINPUTSTREAM);
 				if( closeInputStream != null )
 				{
-					if( closeInputStream.toString().equalsIgnoreCase("true"))
+					if( closeInputStream.toString().equalsIgnoreCase( TRUE_LITERAL ) )
 						closeInputStreamFromAppContext( );
 				}
 			}
@@ -156,7 +158,7 @@ public class Connection implements IConnection
 	public void setAppContext( Object context ) throws OdaException
 	{
 		if ( !( context instanceof Map ) )
-			throw new OdaException( Messages.getString( "Connection.InvalidAppContext" ) );
+			throw new OdaException( Messages.getString( "Connection.InvalidAppContext" ) );//$NON-NLS-1$
 		this.appContext = (Map) context;
 
 		// The following code are for backward compatibility only.Once we
@@ -164,7 +166,7 @@ public class Connection implements IConnection
 		// support original BIRT ODA XML Driver this code block should be
 		// removed.
 		// ///////////////////////////////////////////////////////////////////
-		String legacyInputStreamKey = "org.eclipse.birt.report.data.oda.xml.inputStream";
+		String legacyInputStreamKey = "org.eclipse.birt.report.data.oda.xml.inputStream"; //$NON-NLS-1$
 		if ( this.appContext.get( legacyInputStreamKey ) != null )
 		{
 			this.appContext.put( Constants.APPCONTEXT_INPUTSTREAM,
@@ -172,7 +174,7 @@ public class Connection implements IConnection
 			this.appContext.remove( legacyInputStreamKey );
 		}
 
-		String legacyCloseInputStreamKey = "org.eclipse.birt.report.data.oda.xml.closeInputStream";
+		String legacyCloseInputStreamKey = "org.eclipse.birt.report.data.oda.xml.closeInputStream"; //$NON-NLS-1$
 		if ( this.appContext.get( legacyCloseInputStreamKey ) != null )
 		{
 			this.appContext.put( Constants.APPCONTEXT_CLOSEINPUTSTREAM,

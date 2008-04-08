@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -45,7 +45,8 @@ import org.eclipse.swt.widgets.Text;
 public class ColumnMappingDialog extends TrayDialog
 {
 
-	private String title;
+	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+    private String title;
 	private Combo typeCombo;
 
 	private String columnName;
@@ -67,14 +68,14 @@ public class ColumnMappingDialog extends TrayDialog
 	private boolean isEditMode;
 
 	private static String[] dataTypeDisplayNames = new String[]{
-			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.float" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.date" ),
-			Messages.getString( "datatypes.time" ),
-			Messages.getString( "datatypes.string" ),
-			Messages.getString( "datatypes.boolean" )
+			Messages.getString( "datatypes.dateTime" ),           //$NON-NLS-1$
+			Messages.getString( "datatypes.decimal" ),            //$NON-NLS-1$
+			Messages.getString( "datatypes.float" ),              //$NON-NLS-1$
+			Messages.getString( "datatypes.integer" ),            //$NON-NLS-1$
+			Messages.getString( "datatypes.date" ),               //$NON-NLS-1$
+			Messages.getString( "datatypes.time" ),               //$NON-NLS-1$
+			Messages.getString( "datatypes.string" ),             //$NON-NLS-1$
+			Messages.getString( "datatypes.boolean" )             //$NON-NLS-1$
 	};
 
 	public ColumnMappingDialog( Shell parent, String title,
@@ -82,8 +83,8 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		super( parent );
 		this.title = title;
-		this.columnName = ( selectedItem == null ? "" : selectedItem );
-		this.xpath = ( xpath == null ? "" : xpath );
+		this.columnName = ( selectedItem == null ? EMPTY_STRING : selectedItem );
+		this.xpath = ( xpath == null ? EMPTY_STRING : xpath );
 		this.type = DataTypeUtil.getDataTypeDisplayName( dataType );
 		this.isEditMode = editMode;
 		this.xpathList = editMode ? null
@@ -168,7 +169,7 @@ public class ColumnMappingDialog extends TrayDialog
 			{
 				typeIndex = i;
 			}
-			else if ( dataTypeDisplayNames[i].equals( Messages.getString( "datatypes.string" ) ) )
+			else if ( dataTypeDisplayNames[i].equals( Messages.getString( "datatypes.string" ) ) ) //$NON-NLS-1$
 			{
 				stringIndex = i;
 			}
@@ -217,7 +218,7 @@ public class ColumnMappingDialog extends TrayDialog
 		GridData labelData = new GridData( );
 		labelData.horizontalAlignment = 10;
 		Label customLabel = new Label( customComposite, SWT.WRAP );
-		customLabel.setText( Messages.getString( "ColumnMappingDialog.info.xPath" ) );
+		customLabel.setText( Messages.getString( "ColumnMappingDialog.info.xPath" ) ); //$NON-NLS-1$
 		customLabel.setLayoutData( labelData );
 		GridData textData = new GridData( );
 		textData.widthHint = 300;
@@ -343,7 +344,7 @@ public class ColumnMappingDialog extends TrayDialog
 		customData.widthHint = 400;
 		customButton = new Button( exprBtnGroup, SWT.RADIO );
 		customButton.setLayoutData( customData );
-		customButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) );
+		customButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) ); //$NON-NLS-1$
 		customButton.setSelection( true );
 		customButton.addSelectionListener( new SelectionAdapter( ) {
 
@@ -395,19 +396,19 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		if ( xpathList == null )
 		{
-			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );
-			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );
+			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );   //$NON-NLS-1$
+			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
 			setButtonsEnabled( false );
 			return;
 		}
 
 		if ( xpathList.size( ) >= 2 )
 		{
-			absoluteLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",
+			absoluteLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",   //$NON-NLS-1$
 					new String[]{
 							columnName, (String) xpathList.get( 0 )
 					} ) );
-			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation",
+			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
 					new String[]{
 							columnName, (String) xpathList.get( 1 )
 					} ) );
@@ -415,8 +416,8 @@ public class ColumnMappingDialog extends TrayDialog
 		}
 		else
 		{
-			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );
-			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );
+			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );   //$NON-NLS-1$
+			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
 			setButtonsEnabled( false );
 		}
 		composite.layout( );
@@ -447,7 +448,7 @@ public class ColumnMappingDialog extends TrayDialog
 		}
 		else
 		{
-			xmlPathCombo.setText( "" );
+			xmlPathCombo.setText( EMPTY_STRING );
 			setButtonsEnabled( false );
 			return;
 		}

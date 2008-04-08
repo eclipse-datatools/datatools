@@ -1,4 +1,13 @@
-
+/*******************************************************************************
+ * Copyright (c) 2004, 2008 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
@@ -77,7 +86,7 @@ public class XMLDataPreviewDialog extends TrayDialog
 	protected void configureShell( Shell shell )
 	{
 		super.configureShell( shell );
-		shell.setText( Messages.getString( "XMLDataPreviewDialog.title" ) );
+		shell.setText( Messages.getString( "XMLDataPreviewDialog.title" ) );     //$NON-NLS-1$
 	}
 
 	/**

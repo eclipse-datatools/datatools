@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,7 @@ package org.eclipse.datatools.enablement.oda.xml.util.date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 
 
 
@@ -55,7 +56,7 @@ public class DateFormatISO8601
 		// for the String can not be parsed, throws a BirtException
 		if ( resultDate == null )
 		{
-			throw new ParseException( "an not convert the value of " + source,
+			throw new ParseException( Messages.getString("dateFormatISO8601.inconvertibleValueError") + source, //$NON-NLS-1$
 					0 );
 		}
 

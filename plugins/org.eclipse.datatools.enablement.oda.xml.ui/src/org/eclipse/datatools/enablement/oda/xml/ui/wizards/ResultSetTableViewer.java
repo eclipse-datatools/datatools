@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.TableItem;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.7 $ $Date: 2007/09/12 18:49:43 $
+ * @version $Revision: 1.8 $ $Date: 2007/12/29 03:59:28 $
  */
 public final class ResultSetTableViewer
 {
@@ -48,6 +48,8 @@ public final class ResultSetTableViewer
 	private String[][] resultSet;
 	private TableColumn column;
 	private final int MAX_ROW = 500;
+
+    private static final String EMPTY_STRING = "";  //$NON-NLS-1$
 
 	/**
 	 * result set table viewer
@@ -103,11 +105,11 @@ public final class ResultSetTableViewer
 		}
 
 		properties.setProperty( Constants.CONST_PROP_FILELIST, xmlFile == null
-				? "" : xmlFile );
+				? EMPTY_STRING : xmlFile );
 		
 		String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 		properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
-				xmlEncoding == null ? "" : xmlEncoding );
+				xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
 		try
 		{
 			conn.open( properties );
@@ -116,7 +118,7 @@ public final class ResultSetTableViewer
 
 			int maxRow = Integer.parseInt( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW ) != null
 					? XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW )
-					: "-1" ); //$NON-NLS-1$
+					: "-1" );                                                               //$NON-NLS-1$
 			query.setMaxRows( maxRow );
 			query.prepare( XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 			rs = query.executeQuery( );
@@ -125,7 +127,7 @@ public final class ResultSetTableViewer
 		catch ( Exception ex )
 		{
 			ExceptionHandler.showException( this.getControl( ).getShell( ),
-					Messages.getString( "error.label" ),
+					Messages.getString( "error.label" ),                    //$NON-NLS-1$
 					ex.getMessage( ),
 					ex );
 		}
@@ -157,7 +159,7 @@ public final class ResultSetTableViewer
 		viewer.removeAll( );
 		for ( int i = 0; i < viewer.getColumnCount( ); i++  )
 		{
-            viewer.getColumn( i ).setText( "" );
+            viewer.getColumn( i ).setText( EMPTY_STRING );
 		}
 
 		while ( viewer.getColumnCount( ) > 0 )
@@ -248,8 +250,8 @@ public final class ResultSetTableViewer
 				{
 					MessageDialog.openInformation( this.getControl( )
 							.getShell( ),
-							Messages.getString( "ColumnMappingDialog.prompt.dialog.title" ),
-							Messages.getString( "ColumnMappingDialog.prompt.maxRow" ) );
+							Messages.getString( "ColumnMappingDialog.prompt.dialog.title" ),     //$NON-NLS-1$
+							Messages.getString( "ColumnMappingDialog.prompt.maxRow" ) );         //$NON-NLS-1$
 					rowCount = MAX_ROW;
 				}
 			}
@@ -260,7 +262,7 @@ public final class ResultSetTableViewer
 			}
 
 			column = new TableColumn( viewer, SWT.LEFT );
-			column.setText( " " ); //$NON-NLS-1$
+			column.setText( " " );                           //$NON-NLS-1$
 			column.setResizable( false );
 			column.setWidth( 20 );
 			for ( int i = 0; i < count; i++ )
@@ -269,7 +271,7 @@ public final class ResultSetTableViewer
 					column = new TableColumn( viewer, SWT.LEFT );
 				else
 					column = viewer.getColumn( i + 1 );
-				column.setText( columnName[i] ); //$NON-NLS-1$
+				column.setText( columnName[i] ); 
 				column.setWidth( 100 );
 				addColumnSortListener( column, i+1 );
 			}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,7 +32,9 @@ import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSess
 public class DataSetDesignPopulator
 {
 	
-	public static void populateResultSet( DataSetDesign dataSetDesign )
+	private static final String EMPTY_STRING = "";     //$NON-NLS-1$
+
+    public static void populateResultSet( DataSetDesign dataSetDesign )
 	{
 		IConnection conn = null;
 		try
@@ -48,11 +50,11 @@ public class DataSetDesignPopulator
 			}
 
 			properties.setProperty( Constants.CONST_PROP_FILELIST,
-					xmlFile == null ? "" : xmlFile );
+					xmlFile == null ? EMPTY_STRING : xmlFile );
 			
 			String xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 			properties.setProperty( Constants.CONST_PROP_ENCODINGLIST,
-					xmlEncoding == null ? "" : xmlEncoding );
+					xmlEncoding == null ? EMPTY_STRING : xmlEncoding );
 			conn.open( properties );
 
 			IQuery query = conn.newQuery( null );

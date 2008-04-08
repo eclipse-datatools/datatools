@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,8 @@ import com.ibm.icu.util.ULocale;
 public class DateFormatFactory
 {
 
-	private static final int NO_TIME_STYLE = -999;
+    private static final int NO_TIME_STYLE = -999;
+	private static final String FORWARD_SLASH = "/";	//$NON-NLS-1$
 
 	// TLS HashMap from locale/style key to DateFormat instance
 	private static ThreadLocal tlsCache = new ThreadLocal( ) {
@@ -48,27 +49,27 @@ public class DateFormatFactory
 		{
 			HashMap value = new HashMap( );
 			String[] dateFormatPattern = {
-					"yyyy-MM-dd HH:mm:ss.S z",
-					"yyyy-MM-dd HH:mm:ss.Sz",
-					"yyyy-MM-dd HH:mm:ss.S",
-					"yyyy-MM-dd HH:mm:ss z",
-					"yyyy-MM-dd HH:mm:ssz",
-					"yyyy-MM-dd HH:mm:ss",
-					"yyyy-MM-dd HH:mm z",
-					"yyyy-MM-dd HH:mmz",
-					"yyyy-MM-dd HH:mm",
-					"yyyy-MM-dd",
-					"yyyy-MM",
-					"yyyy",
-					"HH:mm:ss.S z",
-					"HH:mm:ss.Sz",
-					"HH:mm:ss.S",
-					"HH:mm:ss z",
-					"HH:mm:ssz",
-					"HH:mm:ss",
-					"HH:mm z",
-					"HH:mmz",
-					"HH:mm"
+					"yyyy-MM-dd HH:mm:ss.S z", //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm:ss.Sz",  //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm:ss.S",   //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm:ss z",   //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm:ssz",    //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm:ss",     //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm z",      //$NON-NLS-1$
+					"yyyy-MM-dd HH:mmz",       //$NON-NLS-1$
+					"yyyy-MM-dd HH:mm",        //$NON-NLS-1$
+					"yyyy-MM-dd",              //$NON-NLS-1$
+					"yyyy-MM",                 //$NON-NLS-1$
+					"yyyy",                    //$NON-NLS-1$
+					"HH:mm:ss.S z",            //$NON-NLS-1$
+					"HH:mm:ss.Sz",             //$NON-NLS-1$
+					"HH:mm:ss.S",              //$NON-NLS-1$
+					"HH:mm:ss z",              //$NON-NLS-1$
+					"HH:mm:ssz",               //$NON-NLS-1$
+					"HH:mm:ss",                //$NON-NLS-1$
+					"HH:mm z",                 //$NON-NLS-1$
+					"HH:mmz",                  //$NON-NLS-1$
+					"HH:mm"                    //$NON-NLS-1$
 			};
 			SimpleDateFormat simpleDateFormatter = null;
 			PatternKey patterKey = null;
@@ -96,7 +97,7 @@ public class DateFormatFactory
 
 		// Create key string for cache lookup
 		String keyStr = locale.getName( )
-				+ "/" + Integer.toString( dateStyle ) + "/"
+				+ FORWARD_SLASH + Integer.toString( dateStyle ) + FORWARD_SLASH
 				+ Integer.toString( timeStyle );
 
 		HashMap tlsMap = (HashMap) tlsCache.get( );

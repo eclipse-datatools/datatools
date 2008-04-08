@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,37 +59,37 @@ public class ATreeNode
 	{
 		try
 		{
-			xmlTypeToDataType.put( "string",
+			xmlTypeToDataType.put( "string", //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.STRING ) );
-			xmlTypeToDataType.put( "byte",
+			xmlTypeToDataType.put( "byte",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "decimal",
+			xmlTypeToDataType.put( "decimal",    //$NON-NLS-1$    
 					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
-			xmlTypeToDataType.put( "double",
+			xmlTypeToDataType.put( "double",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "float",
+			xmlTypeToDataType.put( "float",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.DOUBLE ) );
-			xmlTypeToDataType.put( "int",
+			xmlTypeToDataType.put( "int",    //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "integer",
+			xmlTypeToDataType.put( "integer",    //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "negativeInteger",
+			xmlTypeToDataType.put( "negativeInteger",    //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonNegativeInteger",
+			xmlTypeToDataType.put( "nonNegativeInteger", //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "nonPositiveInteger",
+			xmlTypeToDataType.put( "nonPositiveInteger", //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "positiveInteger",
+			xmlTypeToDataType.put( "positiveInteger",    //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "short",
+			xmlTypeToDataType.put( "short",  //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.INT ) );
-			xmlTypeToDataType.put( "date",
+			xmlTypeToDataType.put( "date",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.DATE ) );
-			xmlTypeToDataType.put( "dateTime",
+			xmlTypeToDataType.put( "dateTime",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.TIMESTAMP ) );
-			xmlTypeToDataType.put( "time",
+			xmlTypeToDataType.put( "time",   //$NON-NLS-1$       
 					DataTypes.getTypeString( DataTypes.TIME ) );
-			xmlTypeToDataType.put( "boolean",
+			xmlTypeToDataType.put( "boolean",    //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.BOOLEAN ) );
 		}
 		catch ( OdaException e )

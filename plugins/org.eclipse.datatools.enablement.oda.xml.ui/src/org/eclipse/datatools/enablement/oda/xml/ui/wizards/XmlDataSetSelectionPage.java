@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,9 @@ import org.eclipse.ui.PlatformUI;
 public class XmlDataSetSelectionPage extends DataSetWizardPage
 {
 
-	private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
+	private static final String MINUS_ONE = "-1";  //$NON-NLS-1$
+    private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+    private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectFile" ); //$NON-NLS-1$
 	private static final int ERROR_FOLDER = 1;
 	private static final int ERROR_EMPTY_PATH = 2;
 
@@ -68,13 +70,15 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	private final int NEGATIVE_ROW_NUMBER = -4;
 
 	private int maxRow = UNUSED_ROW_CACHE;
+	
+	private final String[] XML_FILTER = new String[]{"*.xml", "*.*"};   //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * @param string
 	 */
 	public XmlDataSetSelectionPage( )
 	{
-		this( Messages.getString( "wizard.title.newDataSet" ) );
+		this( Messages.getString( "wizard.title.newDataSet" ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		if ( xmlFile == null || xmlFile.trim( ).length( ) == 0 )
 		{
 			this.useDataSourceXMLDataSelected = true;
-			this.folderLocation.setText( "" );
+			this.folderLocation.setText( EMPTY_STRING );
 			enableFolderLocation( false );
 		}
 		else
@@ -207,7 +211,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 
 		GridData data = new GridData( );
 		Label previewLabel = new Label( numOfLinesGroup, SWT.NONE );
-		previewLabel.setText( Messages.getString( "label.preview" ) );
+		previewLabel.setText( Messages.getString( "label.preview" ) ); //$NON-NLS-1$
 		previewLabel.setData( data );
 
 		numberText = new Text( numOfLinesGroup, SWT.BORDER );
@@ -228,7 +232,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			}
 		} );
 		final Label label = new Label( numOfLinesGroup, SWT.BEGINNING );
-		label.setText( Messages.getString( "xmlDataSetSelectionPage.messages.lineofdata" ) );
+		label.setText( Messages.getString( "xmlDataSetSelectionPage.messages.lineofdata" ) );     //$NON-NLS-1$
 	}
 
 	/**
@@ -246,7 +250,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		useXMLDataSourceButton = new Button( composite, SWT.RADIO );
 		
 		useXMLDataSourceButton.setSelection( true );
-		useXMLDataSourceButton.setText( Messages.getString( "label.useXMLFileFromDataSource" ) );
+		useXMLDataSourceButton.setText( Messages.getString( "label.useXMLFileFromDataSource" ) );    //$NON-NLS-1$
 		
 		useXMLDataSourceButton.setLayoutData( data );
 		
@@ -259,7 +263,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				if ( useDataSourceXMLDataSelected )
 				{
 					enableFolderLocation( false );
-					fileLocation = "";
+					fileLocation = EMPTY_STRING;
 				}
 				else
 				{
@@ -281,7 +285,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		sourceData.verticalIndent = 8;		
 		enterXMLSourceButton = new Button( composite, SWT.RADIO );
 		enterXMLSourceButton.setLayoutData( sourceData );
-		enterXMLSourceButton.setText( Messages.getString( "lable.selectXmlFile" ) ); 
+		enterXMLSourceButton.setText( Messages.getString( "lable.selectXmlFile" ) );       //$NON-NLS-1$
 	}
 
 	/**
@@ -310,7 +314,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		if ( maxRow == INVALID_ROW_NUMBER || maxRow == NEGATIVE_ROW_NUMBER )
 		{
 			setPageComplete( false );
-			setDetailsMessage( Messages.getString( "error.dataset.maxRowNumberError" ),
+			setDetailsMessage( Messages.getString( "error.dataset.maxRowNumberError" ),       //$NON-NLS-1$
 					IMessageProvider.ERROR );
 		}
 		else
@@ -401,9 +405,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 						.getDisplay( )
 						.getActiveShell( ), SWT.OPEN );
-				dialog.setFilterExtensions( new String[]{
-						"*.xml", "*.*"
-				} );
+				dialog.setFilterExtensions( XML_FILTER );
 				if ( folderLocation.getText( ) != null
 						&& folderLocation.getText( ).trim( ).length( ) > 0 )
 				{
@@ -449,7 +451,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				}
 				else
 				{
-					setDetailsMessage( Messages.getString( "error.selectFolder" ),
+					setDetailsMessage( Messages.getString( "error.selectFolder" ),     //$NON-NLS-1$
 							IMessageProvider.ERROR );
 					result = ERROR_FOLDER;
 				}
@@ -457,7 +459,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		}
 		else if( !useDataSourceXMLDataSelected )
 		{
-			setDetailsMessage( Messages.getString( "error.emptyPath" ),
+			setDetailsMessage( Messages.getString( "error.emptyPath" ),                //$NON-NLS-1$
 					IMessageProvider.ERROR );
 			result = ERROR_EMPTY_PATH;
 		}
@@ -472,11 +474,11 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	{
 		if( this.useDataSourceXMLDataSelected )
 		{
-			this.fileLocation = "";
+			this.fileLocation = EMPTY_STRING;
 		}
 		else 
 		{
-			this.fileLocation = this.folderLocation.getText( ) == null ? ""
+			this.fileLocation = this.folderLocation.getText( ) == null ? EMPTY_STRING
 					: this.folderLocation.getText( );
 		}
 		XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_XML_FILE, fileLocation );
@@ -563,18 +565,18 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		if ( result == ERROR_FOLDER )
 			doNext = MessageDialog.openQuestion( getShell( ),
 					DEFAULT_MESSAGE,
-					Messages.getFormattedString( "xmlDataSetSelectionPage.warning.errorReadXMLFile",
+					Messages.getFormattedString( "xmlDataSetSelectionPage.warning.errorReadXMLFile",   //$NON-NLS-1$
 							new Object[]{
 									fileLocation,
-									Messages.getString( "error.selectFolder" )
+									Messages.getString( "error.selectFolder" )                         //$NON-NLS-1$
 							} ) );
 		else if ( result == ERROR_EMPTY_PATH )
 			doNext = MessageDialog.openQuestion( getShell( ),
 					DEFAULT_MESSAGE,
-					Messages.getFormattedString( "xmlDataSetSelectionPage.warning.errorReadXMLFile",
+					Messages.getFormattedString( "xmlDataSetSelectionPage.warning.errorReadXMLFile",   //$NON-NLS-1$
 							new Object[]{
 									fileLocation,
-									Messages.getString( "error.emptyPath" )
+									Messages.getString( "error.emptyPath" )                            //$NON-NLS-1$
 							} ) );
 		if ( isValid( ) && doNext )
 		{
@@ -615,8 +617,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	private static Properties getPageProperties( )
 	{
 		Properties	prop = new Properties( );
-		prop.setProperty( Constants.CONST_PROP_XML_FILE, "" );
-		prop.setProperty( Constants.CONST_PROP_MAX_ROW, "-1" );
+		prop.setProperty( Constants.CONST_PROP_XML_FILE, EMPTY_STRING );
+		prop.setProperty( Constants.CONST_PROP_MAX_ROW, MINUS_ONE );
 		return prop;
 	}
 

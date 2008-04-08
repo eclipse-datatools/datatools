@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,7 +59,9 @@ public class XMLSelectionPageHelper
         Messages.getString( "wizard.defaultMessage.selectFolder" ); //$NON-NLS-1$
 
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
-    
+    private final String[] XML_FILTER = new String[]{"*.xml", "*.*"} ;  //$NON-NLS-1$ //$NON-NLS-2$
+    private final String[] XSD_FILTER = new String[]{"*.xsd", "*.*"} ;  //$NON-NLS-1$ //$NON-NLS-2$
+
     XMLSelectionPageHelper( WizardPage page )
     {
         m_wizardPage = page;
@@ -221,9 +223,7 @@ public class XMLSelectionPageHelper
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );
-				dialog.setFilterExtensions( new String[]{
-						"*.xml", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
-				} );
+				dialog.setFilterExtensions( XML_FILTER );
                 String folderLocationValue = getFolderLocationString( );
 				if ( folderLocationValue != null
 						&& folderLocationValue.trim( ).length( ) > 0 )
@@ -266,9 +266,7 @@ public class XMLSelectionPageHelper
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 						.getDisplay( )
 						.getActiveShell( ), SWT.OPEN );
-				dialog.setFilterExtensions( new String[]{
-						"*.xsd", "*.*" //$NON-NLS-1$ //$NON-NLS-2$
-				} );
+				dialog.setFilterExtensions( XSD_FILTER );
 
                 String schemaLocationValue = getSchemaLocationString( );
 				if ( schemaLocationValue != null

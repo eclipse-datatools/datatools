@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,7 +31,11 @@ import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
  */
 public class ResultSet implements IResultSet
 {
-	//The ResultSetMetaData of this resultSet.
+	private static final String FALSE_LITERAL = "false";	//$NON-NLS-1$
+    private static final String TRUE_LITERAL = "true";	//$NON-NLS-1$
+    private static final String SINGLE_SPACE = " ";	//$NON-NLS-1$
+
+    //The ResultSetMetaData of this resultSet.
 	private ResultSetMetaData rsMetaData;
 	
 	//the max number of rows can be fetched from this result set.
@@ -432,7 +436,7 @@ public class ResultSet implements IResultSet
         {
             try
             {
-            	stringValue = stringValue.replaceAll("\\QT\\E"," ").split("\\QZ\\E")[0];
+            	stringValue = stringValue.replaceAll("\\QT\\E", SINGLE_SPACE).split("\\QZ\\E")[0];//$NON-NLS-1$	//$NON-NLS-2$
             	return Timestamp.valueOf( stringValue );
             }
             catch( IllegalArgumentException e )
@@ -546,9 +550,9 @@ public class ResultSet implements IResultSet
 		testClosed( );
 		if ( stringValue != null )
 		{
-			if ( stringValue.equalsIgnoreCase( "true" ) )
+			if ( stringValue.equalsIgnoreCase( TRUE_LITERAL ) )
 				return Boolean.TRUE;
-			else if ( stringValue.equalsIgnoreCase( "false" ) )
+			else if ( stringValue.equalsIgnoreCase( FALSE_LITERAL ) )
 				return Boolean.FALSE;
 			else
 			{

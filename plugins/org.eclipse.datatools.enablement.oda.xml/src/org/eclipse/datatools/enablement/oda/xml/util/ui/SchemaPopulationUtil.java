@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -43,7 +43,9 @@ import org.w3c.dom.ls.LSInput;
  */
 public class SchemaPopulationUtil
 {
-	/**
+	private static final String XSD_EXTENSION = ".XSD"; //$NON-NLS-1$
+    
+    /**
 	 * Get the schema tree's root node
 	 * @param xsdFileName
 	 * @param xmlFileName
@@ -59,7 +61,7 @@ public class SchemaPopulationUtil
 			throws OdaException, MalformedURLException, URISyntaxException
 	{
 		if ( xsdFileName != null
-				&& xsdFileName.toUpperCase( ).endsWith( ".XSD" ) )
+				&& xsdFileName.toUpperCase( ).endsWith( XSD_EXTENSION ) )
 		{
 			if ( xmlFileName != null && xmlFileName.trim( ).length( ) > 0 )
 				return XSDFileSchemaTreePopulator.getSchemaTree( xsdFileName,
@@ -92,7 +94,10 @@ public class SchemaPopulationUtil
 final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 {
 
-	//
+	private static final String FORWARD_SLASH = "/";	//$NON-NLS-1$
+    private static final String EMPTY_STRING = "";      //$NON-NLS-1$
+    private static final String ROOT_LITERAL = "ROOT";	//$NON-NLS-1$
+    
 	private int rowCount;
 	private ATreeNode root;
 	private SaxParser sp;
@@ -108,7 +113,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	{
 		this.rowCount = 0;
 		this.root = new ATreeNode( );
-		this.root.setValue( "ROOT" );
+		this.root.setValue( ROOT_LITERAL );
 		this.numberOfElementsAccessiable = numberOfElementsAccessiable == 0
 				? Integer.MAX_VALUE : numberOfElementsAccessiable;
 	}
@@ -124,7 +129,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		if ( isAttribute( path ) )
 		try
 		{
-			this.insertNode( path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", "" ).trim( ) );
+			this.insertNode( path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( ) ); //$NON-NLS-1$
 		}
 		catch ( OdaException e )
 		{
@@ -143,7 +148,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	{
 		if( isAttribute( path ) )
 			return;
-		String treamedPath = path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", "" ).trim( );
+		String treamedPath = path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( );	//$NON-NLS-1$
 		try
 		{
 			this.insertNode( treamedPath );
@@ -177,7 +182,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 */
 	private boolean isAttribute( String path )
 	{
-		return path.matches( ".*\\Q@\\E.*" );
+		return path.matches( ".*\\Q@\\E.*" ); //$NON-NLS-1$
 	}
 
 	/*
@@ -254,14 +259,14 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		boolean isAttribute = isAttribute( treatedPath );
 
 		// Remove the leading "/" then split the path.
-		String[] path = treatedPath.replaceFirst( "/", "" ).split( "/" );
+		String[] path = treatedPath.replaceFirst( FORWARD_SLASH, EMPTY_STRING ).split( FORWARD_SLASH );
 
 		// If the path specified an attribute then re-build the path array so
 		// that it can divid element and
 		// its attribute to two array items.
 		if ( isAttribute )
 		{
-			String[] temp = path[path.length - 1].split( "\\Q@\\E" );
+			String[] temp = path[path.length - 1].split( "\\Q@\\E" );	//$NON-NLS-1$
 
 			assert temp.length == 2;
 			path[path.length-1] = temp[1];
@@ -319,6 +324,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
  */
 final class XSDFileSchemaTreePopulator
 {
+    private static final String ROOT_LITERAL = "ROOT";          //$NON-NLS-1$
 
 	/**
 	 * Return the root node of a schema tree.
@@ -357,7 +363,7 @@ final class XSDFileSchemaTreePopulator
 		XSNamedMap map = loadSchema( schemafileName, xmlEncoding );
 
 		ATreeNode xsdRoot = new ATreeNode( );
-		xsdRoot.setValue( "ROOT" );
+		xsdRoot.setValue( ROOT_LITERAL );
 		for ( int i = 0; i < map.getLength( ); i++ )
 		{
 			XSElementDecl element = (XSElementDecl) map.item( i );
@@ -375,7 +381,7 @@ final class XSDFileSchemaTreePopulator
 							.equals( ( (ATreeNode) xmlRoot.getChildren( )[0] ).getValue( ) ) )
 			{
 				xsdRoot = new ATreeNode( );
-				xsdRoot.setValue( "ROOT" );
+				xsdRoot.setValue( ROOT_LITERAL );
 				xsdRoot.addChild( node );
 				break;
 			}
@@ -429,13 +435,13 @@ final class XSDFileSchemaTreePopulator
 		}
 		catch ( IOException e )
 		{
-			throw new OdaException( Messages.getString( "ui.invalidXSDFile" ) );
+			throw new OdaException( Messages.getString( "ui.invalidXSDFile" ) );	//$NON-NLS-1$
 		}
 		
 		input.setEncoding( xmlEncoding );
 		XSModel xsModel = xsLoader.load( input );
 		if ( xsModel == null )
-			throw new OdaException( Messages.getString( "ui.invalidXSDFile" ) );
+			throw new OdaException( Messages.getString( "ui.invalidXSDFile" ) );	//$NON-NLS-1$
 
 		return xsModel.getComponents( XSConstants.ELEMENT_DECLARATION );
 	}
@@ -456,7 +462,7 @@ final class XSDFileSchemaTreePopulator
 		XSNamedMap map = loadSchema( xsdFileName, xmlEncoding );
 
 		ATreeNode root = new ATreeNode( );
-		root.setValue( "ROOT" );
+		root.setValue( ROOT_LITERAL );
 		for ( int i = 0; i < map.getLength( ); i++ )
 		{
 			XSElementDecl element = (XSElementDecl) map.item( i );

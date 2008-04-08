@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.utils;
 public interface IHelpConstants
 {
 
-	public static final String PREFIX = "org.eclipse.datatools.oda.cshelp" + "."; //$NON-NLS-1$
+	public static final String PREFIX = "org.eclipse.datatools.oda.cshelp" + "."; //$NON-NLS-1$ //$NON-NLS-2$
 
 	public static final String CONEXT_ID_DATASOURCE_XML = PREFIX
 			+ "Wizard_XML_Datasource_ID";//$NON-NLS-1$

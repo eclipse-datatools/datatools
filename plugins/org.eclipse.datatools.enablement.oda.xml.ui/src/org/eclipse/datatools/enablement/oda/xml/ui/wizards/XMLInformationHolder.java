@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,8 +26,9 @@ import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 public class XMLInformationHolder
 {
 
-	private static Properties prop;
-	private static String EMPTY_STRING = ""; // //$NON-NLS-1$
+    private static Properties prop;
+	private static final String EMPTY_STRING = "";   //$NON-NLS-1$
+	private static final String MINUS_ONE = "-1";  //$NON-NLS-1$
 
 	/**
 	 * 
@@ -114,7 +115,7 @@ public class XMLInformationHolder
 					.getProperty( Constants.CONST_PROP_MAX_ROW );
 
 			setPropertyValue( Constants.CONST_PROP_MAX_ROW, maxRow != null
-					? maxRow : "-1" );
+					? maxRow : MINUS_ONE );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{

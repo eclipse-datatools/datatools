@@ -1,6 +1,6 @@
 
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,6 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -24,7 +23,10 @@ import org.eclipse.swt.widgets.TreeItem;
 final class TreePopulationUtil
 {
 
-	/**
+	private static final String ROOT = "ROOT";         //$NON-NLS-1$
+    private static final String ATTRIBUTE_MARKER = "@";  //$NON-NLS-1$
+
+    /**
 	 * populate tree items
 	 * @param tree
 	 * @param node
@@ -48,7 +50,7 @@ final class TreePopulationUtil
 			TreeNodeData treeNode = new TreeNodeData( aTreeNode );
 			if( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE )
 			{
-				if ( aTreeNode.getParent() != null && "ROOT".equals( aTreeNode.getParent( ).getValue( )) )
+				if ( aTreeNode.getParent() != null && ROOT.equals( aTreeNode.getParent( ).getValue( )) )
 				{
 					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
 				}
@@ -66,7 +68,7 @@ final class TreePopulationUtil
 			treeItem.setData( treeNode );
 			int type = treeNode.getTreeNode().getType( );
 			if ( type == ATreeNode.ATTRIBUTE_TYPE )
-				treeItem.setText( "@" + treeNode.getTreeNode().getValue( ).toString( ) );
+				treeItem.setText( ATTRIBUTE_MARKER + treeNode.getTreeNode().getValue( ).toString( ) );
 			else
 				treeItem.setText( treeNode.getTreeNode().getValue( ).toString( ) );
 		

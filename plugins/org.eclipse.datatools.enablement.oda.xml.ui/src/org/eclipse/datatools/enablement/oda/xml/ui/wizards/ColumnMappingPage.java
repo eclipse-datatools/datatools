@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -82,7 +82,17 @@ public class ColumnMappingPage extends DataSetWizardPage
 			ITableLabelProvider
 {
 
-	private Tree availableXmlTree;
+	private static final String ROOT = "ROOT";                  //$NON-NLS-1$
+    private static final String RIGHT_SQUARE_BRACKET = "]";     //$NON-NLS-1$
+    private static final String LEFT_SQUARE_BRACKET = "[";      //$NON-NLS-1$
+    private static final String LEFT_CURLY_BRACKET = "{";       //$NON-NLS-1$
+    private static final String RIGHT_CURLY_BRACKET = "}";      //$NON-NLS-1$
+    private static final String RIGHT_ANGLE_BRACKET = ">";      //$NON-NLS-1$
+    private static final String COMMA = ",";                    //$NON-NLS-1$
+    private static final String SEMICOLON = ";";                //$NON-NLS-1$
+    private static final String UNDERSCORE = "_";               //$NON-NLS-1$
+    private static final String EMPTY_STRING = "";              //$NON-NLS-1$
+    private Tree availableXmlTree;
 	private Button btnAddOne;
 	private Button btnAddAll;
 	private Button btnPreview;
@@ -102,23 +112,23 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 	private String selectedTreeItemText;
 
-	private static String COLUMN_NAME = Messages.getString( "dataset.editor.columnName" );
-	private static String XPATH_NAME = Messages.getString( "dataset.editor.xpathexpression" );
-	private static String TYPE_NAME = Messages.getString( "dataset.editor.datatype" );
-	private static String DEFAULT_PAGE_NAME = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );
-	private static String DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );
-	private static String PATH_SEPERATOR = "/";
-	private static String ATTRIBUTE_MARK = "@";
+	private static String COLUMN_NAME = Messages.getString( "dataset.editor.columnName" );                         //$NON-NLS-1$
+	private static String XPATH_NAME = Messages.getString( "dataset.editor.xpathexpression" );                     //$NON-NLS-1$
+	private static String TYPE_NAME = Messages.getString( "dataset.editor.datatype" );                             //$NON-NLS-1$
+	private static String DEFAULT_PAGE_NAME = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );   //$NON-NLS-1$
+	private static String DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );         //$NON-NLS-1$
+	private static String PATH_SEPERATOR = "/"; //$NON-NLS-1$
+	private static String ATTRIBUTE_MARK = "@"; //$NON-NLS-1$
 	
 	private static String[] dataTypeDisplayNames = new String[]{
-			Messages.getString( "datatypes.dateTime" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.decimal" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.float" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.integer" ), //$NON-NLS-1$
-			Messages.getString( "datatypes.date" ),//$NON-NLS-1$
-			Messages.getString( "datatypes.time" ),//$NON-NLS-1$
-			Messages.getString( "datatypes.string" ),//$NON-NLS-1$
-			Messages.getString( "datatypes.boolean" )//$NON-NLS-1$
+			Messages.getString( "datatypes.dateTime" ),  //$NON-NLS-1$
+			Messages.getString( "datatypes.decimal" ),   //$NON-NLS-1$
+			Messages.getString( "datatypes.float" ),     //$NON-NLS-1$
+			Messages.getString( "datatypes.integer" ),   //$NON-NLS-1$
+			Messages.getString( "datatypes.date" ),      //$NON-NLS-1$
+			Messages.getString( "datatypes.time" ),      //$NON-NLS-1$
+			Messages.getString( "datatypes.string" ),    //$NON-NLS-1$
+			Messages.getString( "datatypes.boolean" )    //$NON-NLS-1$
 	};
 	
 	private static Logger logger = Logger.getLogger( ColumnMappingPage.class.getName( ) );
@@ -128,7 +138,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	public ColumnMappingPage( )
 	{
-		this( Messages.getString( "wizard.title.newDataSet" ) );
+		this( Messages.getString( "wizard.title.newDataSet" ) ); //$NON-NLS-1$
 		Arrays.sort( dataTypeDisplayNames );
 	}
 
@@ -139,7 +149,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	{
 		super( pageName );
 		this.setTitle( pageName );
-		DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );
+		DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" ); //$NON-NLS-1$
 		this.setMessage( DEFAULT_PAGE_Message );
 		this.columnMap = new HashMap( );
 		this.columnMappingList = new ArrayList( );
@@ -187,7 +197,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			}
 			catch ( OdaException e )
 			{
-				setMessage( Messages.getString( "error.columnMapping.createPage" ),
+				setMessage( Messages.getString( "error.columnMapping.createPage" ), //$NON-NLS-1$
 						ERROR );
 				logger.log( Level.INFO, e.getMessage( ), e );
 			}
@@ -233,7 +243,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	protected void refresh( DataSetDesign dataSetDesign )
 	{
-		DEFAULT_PAGE_Message = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" );
+		DEFAULT_PAGE_Message = Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ); //$NON-NLS-1$
 		if ( XMLInformationHolder.hasDestroyed( ) )
 			XMLInformationHolder.start( dataSetDesign );
 		this.setMessage( DEFAULT_PAGE_Message );
@@ -247,7 +257,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	public Control createPageControl( Composite parent )
 	{
-		DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" );
+		DEFAULT_PAGE_Message = Messages.getString( "wizard.title.defineColumnMapping" ); //$NON-NLS-1$
 		Composite composite = new Composite( parent, SWT.NONE );
 
 		GridLayout layout = new GridLayout( );
@@ -286,9 +296,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 		btnComposite.setLayout( btnLayout );
 
 		btnAddOne = new Button( btnComposite, SWT.NONE );
-		btnAddOne.setText( ">" ); //$NON-NLS-1$
+		btnAddOne.setText( RIGHT_ANGLE_BRACKET );
 		// TODO to externalize into message file
-		btnAddOne.setToolTipText( Messages.getString( "ColumnMappingPage.AddSingleButton.tooltip" ) );
+		btnAddOne.setToolTipText( Messages.getString( "ColumnMappingPage.AddSingleButton.tooltip" ) ); //$NON-NLS-1$
 		btnAddOne.setEnabled( false );
 		btnAddOne.addSelectionListener( new SelectionAdapter( ) {
 
@@ -302,7 +312,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
 				if ( selectedMultiItems == null )
 				{
-					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ),
+					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ), //$NON-NLS-1$
 							ERROR );
 					btnAddOne.setEnabled( false );
 					btnAddAll.setEnabled( false );
@@ -353,7 +363,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		btnAddAll = new Button( btnComposite, SWT.NONE );
 		btnAddAll.setText( ">>" ); //$NON-NLS-1$
 		// TODO to externalize into message file
-		btnAddAll.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) );
+		btnAddAll.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) ); //$NON-NLS-1$
 		btnAddAll.setEnabled( true );
 		btnAddAll.addSelectionListener( new SelectionAdapter( ) {
 
@@ -375,7 +385,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					/* Only one node is selected at a time */
 					if ( !handleSelectedItem( selectedMultiItems[0] ) )
 					{
-						setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),
+						setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),     //$NON-NLS-1$
 								ERROR );
 					}
 				}
@@ -387,7 +397,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 						TreeItem selectedItem = selectedMultiItems[i];
 						if ( !handleSelectedItem( selectedItem ) )
 						{
-							setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),
+							setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),    //$NON-NLS-1$
 									ERROR );
 							break;
 						}
@@ -409,8 +419,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 	private void createPreviewButton( Composite parent )
 	{
 		btnPreview = new Button( parent, SWT.PUSH );
-		btnPreview.setText( Messages.getString( "menu.button.preview" ) );
-		btnPreview.setToolTipText( Messages.getString( "ColumnMappingTable.previewButton.tooltip" ) );
+		btnPreview.setText( Messages.getString( "menu.button.preview" ) ); //$NON-NLS-1$
+		btnPreview.setToolTipText( Messages.getString( "ColumnMappingTable.previewButton.tooltip" ) ); //$NON-NLS-1$
 		btnPreview.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -459,7 +469,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		tableViewerGroup = new Group( composite2, SWT.NONE
 				| SWT.H_SCROLL | SWT.V_SCROLL );
 		tableViewerGroup.setLayout( new GridLayout( ) );
-		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) );
+		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) ); //$NON-NLS-1$
 		tableViewerGroup.setLayoutData( new GridData( GridData.FILL_BOTH ) );
 
 		tableViewerGroup.setEnabled( true );
@@ -474,15 +484,15 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 		TableColumn column = new TableColumn( columnMappingTable.getViewer( )
 				.getTable( ), SWT.LEFT );
-		column.setText( COLUMN_NAME ); //$NON-NLS-1$
+		column.setText( COLUMN_NAME ); 
 		column.setWidth( 100 );
 		column = new TableColumn( columnMappingTable.getViewer( ).getTable( ),
 				SWT.LEFT );
-		column.setText( XPATH_NAME ); //$NON-NLS-1$
+		column.setText( XPATH_NAME );
 		column.setWidth( 100 );
 		column = new TableColumn( columnMappingTable.getViewer( ).getTable( ),
 				SWT.LEFT );
-		column.setText( TYPE_NAME ); //$NON-NLS-1$
+		column.setText( TYPE_NAME ); 
 		column.setWidth( 60 );
 
 		columnMappingTable.getViewer( )
@@ -550,7 +560,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		catch ( OdaException e )
 		{
 			logger.log( Level.INFO, e.getMessage( ), e );
-			setMessage( Messages.getString( "error.columnMapping.ATreeNode.getChildren" ),
+			setMessage( Messages.getString( "error.columnMapping.ATreeNode.getChildren" ),   //$NON-NLS-1$
 					ERROR );
 		}
 	}
@@ -700,7 +710,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 		} );
 
-		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) );
+		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -763,7 +773,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 				} );
 		columnMappingTable.getEditButton( )
-				.setToolTipText( Messages.getString( "ColumnMappingTable.editButton.tooltip" ) );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.editButton.tooltip" ) ); //$NON-NLS-1$
 
 		columnMappingTable.getRemoveButton( )
 				.addSelectionListener( new SelectionListener( ) {
@@ -781,7 +791,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				} );
 		// TODO to externalize into message file
 		columnMappingTable.getRemoveButton( )
-				.setToolTipText( Messages.getString( "ColumnMappingTable.removeButton.tooltip" ) );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.removeButton.tooltip" ) ); //$NON-NLS-1$
 
 		columnMappingTable.getRemoveMenuItem( )
 				.addSelectionListener( new SelectionListener( ) {
@@ -828,7 +838,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				} );
 		// TODO to externalize into message file
 		columnMappingTable.getUpButton( )
-				.setToolTipText( Messages.getString( "ColumnMappingTable.upButton.tooltip" ) );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.upButton.tooltip" ) ); //$NON-NLS-1$
 
 		columnMappingTable.getDownButton( )
 				.addSelectionListener( new SelectionListener( ) {
@@ -845,7 +855,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				} );
 		// TODO to externalize into message file
 		columnMappingTable.getDownButton( )
-				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) );
+				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) ); //$NON-NLS-1$
 	}
 	
 	/**
@@ -904,7 +914,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 					if ( appendix > 0 )
 					{
-						editedColumnName = editedColumnName + "_" + appendix;
+						editedColumnName = editedColumnName + UNDERSCORE + appendix;
 					}
 					columnElement.setColumnName( editedColumnName );
 				}
@@ -925,7 +935,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		catch ( OdaException e1 )
 		{
 			logger.log( Level.INFO, e1.getMessage( ), e1 );
-			setMessage( Messages.getString( "error.columnMapping.columnElement.edit" ),
+			setMessage( Messages.getString( "error.columnMapping.columnElement.edit" ),      //$NON-NLS-1$
 					ERROR );
 		}
 	}
@@ -958,7 +968,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				.getTable( )
 				.getItem( index )
 				.getData( );
-		String elementName = "";
+		String elementName = EMPTY_STRING;
 		if ( element instanceof ColumnMappingElement )
 		{
 			ColumnMappingElement entry = (ColumnMappingElement) element;
@@ -989,7 +999,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			removeSingleColumnItem( 0 );
 		}
 		String str = XMLRelationInfoUtil.replaceInfo( this.tableName,
-				"",
+				EMPTY_STRING,
 				XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION ) );
 		XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
 				str );
@@ -1105,7 +1115,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 					catch ( OdaException e )
 					{
-						setMessage( Messages.getString( "error.columnMapping.createPage" ),
+						setMessage( Messages.getString( "error.columnMapping.createPage" ),       //$NON-NLS-1$
 								ERROR );
 					}
 					enableAllTableSideButtons( false );
@@ -1118,7 +1128,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			{
 				btnAddOne.setEnabled( false );
 				btnAddAll.setEnabled( false );
-				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),
+				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),      //$NON-NLS-1$
 						ERROR );
 			}
 			else
@@ -1131,7 +1141,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		catch ( Exception e )
 		{
 			logger.log( Level.INFO, e.getMessage( ), e );
-			setMessage( Messages.getString( "error.columnMapping.createPage" ),
+			setMessage( Messages.getString( "error.columnMapping.createPage" ),           //$NON-NLS-1$
 					ERROR );
 		}
 	}
@@ -1168,7 +1178,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			}
 			else if ( type == ATreeNode.ELEMENT_TYPE )
 			{
-				if ( treeNode.getParent( )!= null && "ROOT".equals( treeNode.getParent( ).getValue( )) )
+				if ( treeNode.getParent( )!= null && ROOT.equals( treeNode.getParent( ).getValue( )) )  
 				{
 					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
 				}
@@ -1191,9 +1201,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 					generateXpathFromATreeNode( aTreeNode ) );
 			if ( populateString != null )
 			{
-				if ( populateString.equals( "" ) )
+				if ( populateString.equals( EMPTY_STRING ) )
 				{
-					FontData fontData = new FontData( "", 8, SWT.BOLD );
+					FontData fontData = new FontData( EMPTY_STRING, 8, SWT.BOLD );
 					treeItem.setFont( new Font( null, fontData ) );
 					
 					availableXmlTree.setSelection( new TreeItem[]{
@@ -1209,8 +1219,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 			if ( treeNode.getChildren( ) != null
 					&& treeNode.getChildren( ).length > 0 )
 			{
-				if ( level > ( ( selectedTreeItemText == null || selectedTreeItemText.split( "/" ).length < 5 )
-						? 5 : selectedTreeItemText.split( "/" ).length ) )
+				if ( level > ( ( selectedTreeItemText == null || selectedTreeItemText.split( PATH_SEPERATOR ).length < 5 )   
+						? 5 : selectedTreeItemText.split( PATH_SEPERATOR ).length ) )                                        
 					new TreeItem( treeItem, 0 );
 				else
 				{
@@ -1227,7 +1237,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private String getRootPathWithOutFilter( )
 	{
-		return selectedTreeItemText.replaceAll( "\\Q[\\E.*\\Q]\\E", "" );
+		return selectedTreeItemText.replaceAll( "\\Q[\\E.*\\Q]\\E", EMPTY_STRING ); //$NON-NLS-1$
 	}
 	
 	// expand the tree
@@ -1254,9 +1264,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 				.getTable( ), dataTypeDisplayNames, SWT.READ_ONLY );
 		columnMappingTable.getViewer( ).setCellEditors( editors );
 		columnMappingTable.getViewer( ).setColumnProperties( new String[]{
-				COLUMN_NAME, //$NON-NLS-1$ 
-				XPATH_NAME, //$NON-NLS-1$
-				TYPE_NAME, //$NON-NLS-1$
+				COLUMN_NAME, 
+				XPATH_NAME, 
+				TYPE_NAME, 
 		} );
 		
 		columnMappingTable.getViewer( )
@@ -1328,22 +1338,22 @@ public class ColumnMappingPage extends DataSetWizardPage
 	{
 		if ( !this.columnMappingList.isEmpty( ) )
 		{
-			String tablePath = "[" + selectedTreeItemText + "]";
+			String tablePath = LEFT_SQUARE_BRACKET + selectedTreeItemText + RIGHT_SQUARE_BRACKET;  
 			String queryString = tableName +
 					RelationInformation.CONST_TABLE_COLUMN_DELIMITER +
 					tablePath +
 					RelationInformation.CONST_TABLE_COLUMN_DELIMITER;
-			String rowStr = "";
+			String rowStr = EMPTY_STRING;
 			Iterator rowObj = this.columnMappingList.iterator( );
 			while ( rowObj.hasNext( ) )
 			{
 				ColumnMappingElement element = (ColumnMappingElement) rowObj.next( );
-				rowStr = "{" +
-						element.getColumnName( ) + ";" +
-						element.getTypeStandardString( ) + ";" +
-						element.getXPath( ) + "}";
+				rowStr = LEFT_CURLY_BRACKET +                                            
+						element.getColumnName( ) + SEMICOLON +
+						element.getTypeStandardString( ) + SEMICOLON +
+						element.getXPath( ) + RIGHT_CURLY_BRACKET;                       
 				if ( rowObj.hasNext( ) )
-					rowStr = rowStr + ",";
+					rowStr = rowStr + COMMA;                               
 				queryString = queryString + rowStr;
 			}
 			return queryString;
@@ -1378,17 +1388,17 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 			Object element = ti.getData( );
 
-			String c1 = "", c2 = "", c3 = ""; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			String c1 = EMPTY_STRING, c2 = EMPTY_STRING, c3 = EMPTY_STRING; 
 
 			if ( element instanceof ColumnMappingElement )
 			{
 				ColumnMappingElement colElement = (ColumnMappingElement) element;
 
-				c1 = colElement.getColumnName( ) == null ? ""
+				c1 = colElement.getColumnName( ) == null ? EMPTY_STRING
 						: colElement.getColumnName( );
-				c2 = colElement.getXPath( ) == null ? ""
+				c2 = colElement.getXPath( ) == null ? EMPTY_STRING
 						: colElement.getXPath( );
-				c3 = colElement.getType( ) == null ? "" : colElement.getType( );
+				c3 = colElement.getType( ) == null ? EMPTY_STRING : colElement.getType( );
 			}
 			ti.setText( 0, c1 );
 			ti.setText( 1, c2 );
@@ -1433,7 +1443,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			{
 				case 0 :
 				{
-					value = (String) ( (ColumnMappingElement) element ).getColumnName( ); //$NON-NLS-1$
+					value = (String) ( (ColumnMappingElement) element ).getColumnName( ); 
 					break;
 				}
 				case 1 :
@@ -1443,7 +1453,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				}
 				case 2 :
 				{
-					value = (String) ( (ColumnMappingElement) element ).getType( ); //$NON-NLS-1$
+					value = (String) ( (ColumnMappingElement) element ).getType( ); 
 					break;
 				}
 			}
@@ -1452,13 +1462,13 @@ public class ColumnMappingPage extends DataSetWizardPage
 		{
 			logger.log( Level.INFO, ex.getMessage( ), ex );
 			ExceptionHandler.showException( getShell( ),
-					Messages.getString( "error.label" ),
+					Messages.getString( "error.label" ),       //$NON-NLS-1$
 					ex.getMessage( ),
 					ex );
 		}
 		if ( value == null )
 		{
-			value = ""; //$NON-NLS-1$
+			value = EMPTY_STRING; 
 		}
 		return value;
 	}
@@ -1636,7 +1646,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		while ( !isUniqueName( columnName, columnElement ) )
 		{
 			index++;
-			String alias = columnName + "_" + index;
+			String alias = columnName + UNDERSCORE + index;
 			if ( isUniqueName( alias, columnElement ) )
 			{
 				columnElement.setColumnName( alias );

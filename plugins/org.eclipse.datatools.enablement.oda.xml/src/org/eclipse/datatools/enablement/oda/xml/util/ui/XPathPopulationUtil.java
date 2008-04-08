@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,9 +23,11 @@ import org.eclipse.datatools.enablement.oda.xml.util.UtilConstants;
 
 final public class XPathPopulationUtil
 {
-	private static final String XPATH_WILDCARD = "*";
-	private static final String XPATH_ATTR_HEADER_WITH_SLASH = "/@";
-	private static final String XPATH_ATTR_HEADER_WITH_SQUARE_PATTERN = "\\Q[@\\E";
+	private static final String XPATH_WILDCARD = "*"; //$NON-NLS-1$
+	private static final String XPATH_ATTR_HEADER_WITH_SLASH = "/@"; //$NON-NLS-1$
+	private static final String XPATH_ATTR_HEADER_WITH_SQUARE_PATTERN = "\\Q[@\\E"; //$NON-NLS-1$
+	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+    private static final String FORWARD_SLASH = "/"; //$NON-NLS-1$
 	
 	/**
 	 * This method is used to populate the possible root path expressions List
@@ -39,7 +41,7 @@ final public class XPathPopulationUtil
 		List result = new ArrayList();
 		result.add( absolutePath );
 		if( absolutePath.startsWith(UtilConstants.XPATH_SLASH) )
-			absolutePath = absolutePath.replaceFirst(UtilConstants.XPATH_SLASH,"");
+			absolutePath = absolutePath.replaceFirst(UtilConstants.XPATH_SLASH, EMPTY_STRING);
 		String[] xPathFrags = absolutePath.split(UtilConstants.XPATH_SLASH);
 		
 		for ( int i = 1; i < xPathFrags.length;i++)
@@ -67,7 +69,7 @@ final public class XPathPopulationUtil
 		result.add( absolutePath );
 		if ( absolutePath.startsWith( UtilConstants.XPATH_SLASH ) )
 			absolutePath = absolutePath.replaceFirst( UtilConstants.XPATH_SLASH,
-					"" );
+					EMPTY_STRING );
 		String[] xPathFrags = absolutePath.split( UtilConstants.XPATH_SLASH );
 		if ( xPathFrags.length > 0 )
 		{
@@ -114,17 +116,17 @@ final public class XPathPopulationUtil
 		assert columnPath != null;
 	
 		rootPath = SaxParserUtil.removeRedundantParentAxis( rootPath );
-		if( rootPath.equals( "//" )||rootPath.equals( "//*" ))
+		if( rootPath.equals( "//" )||rootPath.equals( "//*" )) //$NON-NLS-1$ //$NON-NLS-2$
 		{
-			String[] temp = columnPath.split( "\\Q/\\E" );
+			String[] temp = columnPath.split( "\\Q/\\E" ); //$NON-NLS-1$
 			if( temp.length <=2 )
 				return null;
 			else
 			{
-				String result = "";
+				String result = EMPTY_STRING;
 				for(int i = 2; i < temp.length; i++)
 				{
-					result+="/"+temp[i];
+					result+= FORWARD_SLASH+temp[i];
 				}
 				return result;
 			}
@@ -132,7 +134,7 @@ final public class XPathPopulationUtil
 			
 		if ( isDescendantOrSelf( columnPath, rootPath ) )
 		{
-			return columnPath.replaceFirst("\\Q"+rootPath+"\\E", "");
+			return columnPath.replaceFirst("\\Q"+rootPath+"\\E", EMPTY_STRING); //$NON-NLS-1$ //$NON-NLS-2$
 		}else
 		{
 			return getXPathExpression( rootPath, columnPath );
@@ -170,8 +172,8 @@ final public class XPathPopulationUtil
 	 */
 	private static String getXPathExpression( String rootPath, String columnPath )
 	{
-		String[] rootPathFrags = rootPath.replaceAll(UtilConstants.XPATH_ELEM_INDEX_PATTERN,"").split(UtilConstants.XPATH_SLASH);
-		String[] columnPathFrags = columnPath.replaceAll(UtilConstants.XPATH_ELEM_INDEX_PATTERN,"").split(UtilConstants.XPATH_SLASH);
+		String[] rootPathFrags = rootPath.replaceAll(UtilConstants.XPATH_ELEM_INDEX_PATTERN, EMPTY_STRING).split(UtilConstants.XPATH_SLASH);
+		String[] columnPathFrags = columnPath.replaceAll(UtilConstants.XPATH_ELEM_INDEX_PATTERN, EMPTY_STRING).split(UtilConstants.XPATH_SLASH);
 		
 		//The length of rootPathFrags and columnPathFrags should larger than 2,
 		//for the simplest path would be /elementName, which, if being splitted by "/",
@@ -285,12 +287,12 @@ final public class XPathPopulationUtil
 	 */
 	private static String populateXpathExpression( String columnPath, String[] rootPathFrags, int startingIndex, int endingIndex )
 	{
-		String result = "";
+		String result = EMPTY_STRING;
 		
 		int fetchBackLevel = rootPathFrags.length - 3 - (endingIndex - startingIndex);
 		for( int i = 0; i < fetchBackLevel; i ++)
 		{
-			result += "../";
+			result += "../"; //$NON-NLS-1$
 		}
 		
 		return addXPathFragsToAString( columnPath.replaceAll(XPATH_ATTR_HEADER_WITH_SQUARE_PATTERN,XPATH_ATTR_HEADER_WITH_SLASH).split(UtilConstants.XPATH_SLASH), endingIndex+1, result);

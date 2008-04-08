@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,10 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SaxParser extends DefaultHandler implements Runnable
 {
-	private XMLDataInputStream inputStream;
+    private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
+	private static final String EMPTY_STRING = "";	//$NON-NLS-1$
+
+    private XMLDataInputStream inputStream;
 	
 	//The XPathHolder instance that hold the information of element currently
 	//being proceed
@@ -82,7 +85,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		spConsumer = consumer;
 		start = true;
 		alive = true;
-		currentCacheValue = "";
+		currentCacheValue = EMPTY_STRING;
 		currentElementRecoder = new HashMap();
 		stopCurrentThread = false;
 		cachedValues = new HashMap( );
@@ -152,7 +155,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	private void parse( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
 	{
-		Method parse = this.getMethod( "parse",
+		Method parse = this.getMethod( "parse",//$NON-NLS-1$
 				xmlReader.getClass( ),
 				new Class[]{
 					InputSource.class
@@ -173,7 +176,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	private void setErrorHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
 	{
-		Method setErrorHandler = this.getMethod( "setErrorHandler",
+		Method setErrorHandler = this.getMethod( "setErrorHandler",//$NON-NLS-1$
 				xmlReader.getClass( ),
 				new Class[]{
 					ErrorHandler.class
@@ -190,7 +193,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	private void setContentHandler( Object xmlReader ) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException
 	{
-		Method setContentHandler = this.getMethod( "setContentHandler",
+		Method setContentHandler = this.getMethod( "setContentHandler",//$NON-NLS-1$
 				xmlReader.getClass( ),
 				new Class[]{
 					ContentHandler.class
@@ -215,13 +218,13 @@ public class SaxParser extends DefaultHandler implements Runnable
 		{
 			Object xmlReader = Thread.currentThread( )
 					.getContextClassLoader( )
-					.loadClass( "org.apache.xerces.parsers.SAXParser" )
+					.loadClass( SAX_PARSER )
 					.newInstance( );
 			return xmlReader;
 		}
 		catch ( ClassNotFoundException e )
 		{
-			return Class.forName( "org.apache.xerces.parsers.SAXParser" )
+			return Class.forName( SAX_PARSER )
 					.newInstance( );
 		}
 
@@ -305,7 +308,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		{
 			this.currentElementRecoder.put(parentPath+UtilConstants.XPATH_SLASH+elementName, new Integer(((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+1 )); 
 		}
-		pathHolder.push( elementName+"["+((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+"]" );
+		pathHolder.push( elementName+"["+((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+"]" );//$NON-NLS-1$ //$NON-NLS-2$
 		spConsumer.detectNewRow( pathHolder.getPath( ), true );
 		
 		for ( int i = 0; i < atts.getLength( ); i++ )
@@ -325,7 +328,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private String getAttributePath( Attributes atts, int i )
 	{
 		return pathHolder.getPath( )
-				+ "/@"
+				+ "/@"  //$NON-NLS-1$
 				+ atts.getQName( i );
 	}
 
@@ -347,7 +350,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 		String path = pathHolder.getPath();
 	
 		Object[] keys = this.currentElementRecoder.keySet().toArray();
-		if (!path.equals( "" ))
+		if (!path.equals( EMPTY_STRING ))
 		{
 			for(int i= 0; i < keys.length; i++)
 			{
@@ -369,7 +372,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	public void characters( char ch[], int start, int length )
 	{
 		currentCacheValue = new String( ch, start, length );
-		if ( !currentCacheValue.trim( ).equals( "" ) )
+		if ( !currentCacheValue.trim( ).equals( EMPTY_STRING ) )
 		{
 			if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
 				currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
@@ -479,7 +482,8 @@ public class SaxParser extends DefaultHandler implements Runnable
  */
 class XPathHolder
 {
-	private List holder;
+	private static final String FORWARD_SLASH = "/"; //$NON-NLS-1$
+    private List holder;
 	private StringBuffer pathBuffer;
 
 	public XPathHolder( )
@@ -521,6 +525,6 @@ class XPathHolder
 	{
 		assert path != null;
 		holder.add( path );
-		this.pathBuffer.append("/").append( path );
+		this.pathBuffer.append( FORWARD_SLASH ).append( path );
 	}
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,8 +19,13 @@ import java.util.List;
  */
 public class SaxParserUtil
 {
-	public static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";
-	public static final String ROOTTEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN_ROOT$-";
+    public static final String TEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN$-";//$NON-NLS-1$
+	public static final String ROOTTEMPCOLUMNNAMEPREFIX = "-$TEMP_XML_COLUMN_ROOT$-";//$NON-NLS-1$
+
+	private static final String EMPTY_STRING = ""; 		//$NON-NLS-1$
+    private static final String FORWARD_SLASH = "/"; 	//$NON-NLS-1$
+    private static final String DOUBLE_SLASH = "//"; 	//$NON-NLS-1$
+    private static final String ANGLE_BRACKET = "<>"; 	//$NON-NLS-1$
 
 	private SaxParserUtil()
 	{
@@ -36,15 +41,15 @@ public class SaxParserUtil
 	public static String removeRedundantParentAxis( String path )
 	{
 		if (path == null
-				|| path.equals( "" )
-				|| path.indexOf( ".." ) == -1 // not contain ..
-				|| path.indexOf( "///" ) != -1) //invalid path
+				|| path.equals( EMPTY_STRING )
+				|| path.indexOf( ".." ) == -1 // not contain ..		//$NON-NLS-1$
+				|| path.indexOf( "///" ) != -1) //invalid path		//$NON-NLS-1$
 		{
 			return path;
 		}
 		
 		//to differentiate "//" and "/"
-		String[] splits = path.replaceAll( "//", "/<>/" ).split("/");
+		String[] splits = path.replaceAll( DOUBLE_SLASH, "/<>/" ).split( FORWARD_SLASH );	//$NON-NLS-1$
 		if (splits.length <= 1) // "/" or just one path element 
 		{
 			return path;
@@ -53,14 +58,14 @@ public class SaxParserUtil
 		pathElements.add( splits[0] );
 		for (int i = 1; i < splits.length; i++)
 		{
-			if (splits[i].equals( ".." ))
+			if (splits[i].equals( ".." ))	//$NON-NLS-1$
 			{
 				if (pathElements.size( ) > 0)
 				{
 					Object last = pathElements.get( pathElements.size( ) - 1 );
-					if (last.equals( "" )
-							||last.equals( ".." )
-							|| last.equals( "<>" ))
+					if (last.equals( EMPTY_STRING )
+							||last.equals( ".." )	//$NON-NLS-1$
+							|| last.equals( ANGLE_BRACKET ))
 					{
 						//not a redundant one
 						pathElements.add( splits[i] );
@@ -81,13 +86,13 @@ public class SaxParserUtil
 				pathElements.add( splits[i] );
 			}
 		}
-		StringBuffer result = new StringBuffer("");
+		StringBuffer result = new StringBuffer(EMPTY_STRING);
 		
-		if (pathElements.get( 0 ).equals( "" ) //start with "/", because Spits of "/A/B" be [][A][B]
-				&& !pathElements.get( 1 ).equals( "<>" ) // but not start with "//"
+		if (pathElements.get( 0 ).equals( EMPTY_STRING ) //start with "/", because Spits of "/A/B" be [][A][B]
+				&& !pathElements.get( 1 ).equals( ANGLE_BRACKET ) // but not start with "//"
 				) 
 		{
-			result.append( "/" );
+			result.append( FORWARD_SLASH );
 		}
 		else
 		{
@@ -95,14 +100,14 @@ public class SaxParserUtil
 		}
 		for (int i = 1; i <= pathElements.size( ) - 1; i++)
 		{
-			if (pathElements.get( i ).equals( "<>" ))
+			if (pathElements.get( i ).equals( ANGLE_BRACKET ))
 			{
 				//restore to "//"
-				result.append( "//" );
+				result.append( DOUBLE_SLASH );
 			}
 			else
 			{
-				result.append( "/" ).append( pathElements.get( i ) );
+				result.append( FORWARD_SLASH ).append( pathElements.get( i ) );
 			}
 		}
 		return result.toString( );

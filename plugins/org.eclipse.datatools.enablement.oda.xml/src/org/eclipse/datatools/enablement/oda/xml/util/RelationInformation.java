@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,11 +29,15 @@ import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
  */
 public class RelationInformation
 {
-	//
-	public static final String CONST_TABLE_DELIMITER = "#-#";
-	public static final String CONST_TABLE_COLUMN_DELIMITER = "#:#";
-	public static final String CONST_COLUMN_METAINFO_DELIMITER = ";";
-	public static final String CONST_COLUMN_DELIMITER = ",";
+	private static final String EMPTY_STRING = "";     //$NON-NLS-1$
+    private static final String DOUBLE_QUOTE = "\"";    //$NON-NLS-1$
+    private static final String SINGLE_QUOTE = "'";     //$NON-NLS-1$
+    private static final String FORWARD_SLASH = "/";    //$NON-NLS-1$
+
+	public static final String CONST_TABLE_DELIMITER = "#-#";  //$NON-NLS-1$
+	public static final String CONST_TABLE_COLUMN_DELIMITER = "#:#";   //$NON-NLS-1$
+	public static final String CONST_COLUMN_METAINFO_DELIMITER = ";";  //$NON-NLS-1$
+	public static final String CONST_COLUMN_DELIMITER = ",";   //$NON-NLS-1$
 	
 	//
 	private HashMap tableInfos;
@@ -57,7 +61,7 @@ public class RelationInformation
 	private void initialize( String relationString ) throws OdaException
 	{	
 		if( relationString == null|| relationString.length() == 0)
-			throw new OdaException( Messages.getString("RelationInformation.InputStringCannotBeNull"));
+			throw new OdaException( Messages.getString("RelationInformation.InputStringCannotBeNull"));//$NON-NLS-1$
 		
 		String[] tables = relationString.split( CONST_TABLE_DELIMITER );
 		for ( int i = 0; i < tables.length; i++ )
@@ -88,7 +92,7 @@ public class RelationInformation
 				//columnInfos[0]: column name
 				//columnInfos[1]: column type
 				//columnInfos[2]: column XPath
-				String columnXpath = "";
+				String columnXpath = EMPTY_STRING;
 				for ( int m = 0; m < columnInfos.length; m++ )
 					columnInfos[m] = columnInfos[m].trim( );
 				if( columnInfos.length == 3 )
@@ -97,7 +101,7 @@ public class RelationInformation
 				}
 				HashMap map = null;
 				//if it is a filter expression
-				if ( columnXpath.matches( ".*\\Q[@\\E.*\\Q=\\E.*" ) )
+				if ( columnXpath.matches( ".*\\Q[@\\E.*\\Q=\\E.*" ) )//$NON-NLS-1$
 				{
 					map = populateFilterInfo(filterColumnInfos, tableInfo,
 							columns, columnXpath);
@@ -113,19 +117,19 @@ public class RelationInformation
 				tableInfo.addColumn( (ColumnInfo )filterColumnInfos.get( j ));
 			}
 			
-			if ( tableRawRoot.matches(".*\\Q[@\\E.*\\Q=\\E.*")) 
+			if ( tableRawRoot.matches(".*\\Q[@\\E.*\\Q=\\E.*")) //$NON-NLS-1$
 			{
 				String tableRootWithFilter = SaxParserUtil.removeRedundantParentAxis( tableRawRoot );
 				
 				String value = RelationInformation.getFilterValue( tableRootWithFilter );
 
 				String filterColumnXpath = tableRootWithFilter.replaceAll(
-						"\\Q=\\E.*", "]");
-				int backRef = tableRootWithFilter.split( "/" ).length - filterColumnXpath.split( "/" ).length;
-				String tableFilterPart = tableRawRoot.replaceAll( ".*\\Q[\\E", "" ).replaceAll( "\\Q=\\E.*", "" );
+						"\\Q=\\E.*", "]"); //$NON-NLS-1$//$NON-NLS-2$
+				int backRef = tableRootWithFilter.split( FORWARD_SLASH ).length - filterColumnXpath.split( FORWARD_SLASH ).length;
+				String tableFilterPart = tableRawRoot.replaceAll( ".*\\Q[\\E", EMPTY_STRING ).replaceAll( "\\Q=\\E.*", EMPTY_STRING );//$NON-NLS-1$//$NON-NLS-2$
 				for( int n = 0; n < backRef; n++ )
 				{
-					tableFilterPart = "../"+tableFilterPart;
+					tableFilterPart = "../"+tableFilterPart;//$NON-NLS-1$
 				}
 				String tempColumnName = SaxParserUtil.createTableRootTempColumnNameForFilter( );
 
@@ -133,7 +137,7 @@ public class RelationInformation
 				tableInfo.addFilter(tempColumnName, value);
 
 				tableInfo.addColumn(new ColumnInfo( columns.length + filterColumnInfos.size( ) + 1, tempColumnName,
-						"String", tableFilterPart,
+						"String", tableFilterPart, //$NON-NLS-1$
 						null));
 			}
 			tableInfo.bulidMappingPathTree( );
@@ -159,12 +163,12 @@ public class RelationInformation
 		//get the filter value
 		String value = getFilterValue(columnXpath);
 		
-		columnXpath = columnXpath.replaceAll( "\\Q=\\E.*","" );
+		columnXpath = columnXpath.replaceAll( "\\Q=\\E.*", EMPTY_STRING ); //$NON-NLS-1$
 		//Replace the last "[a" with "/a"
-		int index = columnXpath.lastIndexOf( "[@" );
+		int index = columnXpath.lastIndexOf( "[@" ); //$NON-NLS-1$
 		String before = columnXpath.substring( 0,  index);
 		String after = columnXpath.substring( index + 1 );
-		String relativePath = before + "/" + after;
+		String relativePath = before + FORWARD_SLASH + after;
 		
 
 		String tempColumnName = SaxParserUtil
@@ -179,7 +183,7 @@ public class RelationInformation
 		filterColumnInfos.add( new ColumnInfo( columns.length
 				+ filterColumnInfos.size( ) + 1,
 				tempColumnName,
-				"String",
+				"String", //$NON-NLS-1$
 				relativePath,
 				null) );
 		return map;
@@ -193,17 +197,17 @@ public class RelationInformation
 	 */
 	static String getFilterValue(String columnXpath) throws OdaException 
 	{
-		String value = columnXpath.replaceAll( ".*\\Q[@\\E.*\\Q=\\E",
-				"" )
+		String value = columnXpath.replaceAll( ".*\\Q[@\\E.*\\Q=\\E", //$NON-NLS-1$
+				EMPTY_STRING )
 				.trim( );
-		value = value.replaceAll( "\\Q]\\E.*", "" ).trim( );
+		value = value.replaceAll( "\\Q]\\E.*", EMPTY_STRING ).trim( ); //$NON-NLS-1$
 		
 		//by now, the value should be something like "ABC" or 'ABC'
-		if ( ( value.startsWith( "'" ) && value.endsWith( "'" ) )
-				|| ( value.startsWith( "\"" ) && value.endsWith( "\"" ) ) )
+		if ( ( value.startsWith( SINGLE_QUOTE ) && value.endsWith( SINGLE_QUOTE ) )
+				|| ( value.startsWith( DOUBLE_QUOTE ) && value.endsWith( DOUBLE_QUOTE ) ) )
 			value = value.substring( 1, value.length( ) - 1 );
 		else 
-			throw new OdaException( Messages.getString( "RelationInformation.InvalidFilterDefinition" ));
+			throw new OdaException( Messages.getString( "RelationInformation.InvalidFilterDefinition" ));//$NON-NLS-1$
 		return value;
 	}
 
@@ -218,9 +222,9 @@ public class RelationInformation
 	 */
 	public String getTableOriginalColumnPath( String tableName, String columnName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo != null )
-			return ( (TableInfo) tableInfo ).getOriginalPath( columnName == null? "":columnName.trim( ) );
+			return ( (TableInfo) tableInfo ).getOriginalPath( columnName == null? EMPTY_STRING:columnName.trim( ) );
 		else
 			return null;
 	}
@@ -234,9 +238,9 @@ public class RelationInformation
 	 */
 	public String getTableColumnType( String tableName, String columnName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
-			return ( (TableInfo)tableInfo ).getType( columnName == null? "":columnName.trim( ) );
+			return ( (TableInfo)tableInfo ).getType( columnName == null? EMPTY_STRING:columnName.trim( ) );
 		else
 			return null;
 	}
@@ -249,7 +253,7 @@ public class RelationInformation
 	 */
 	public String[] getTableColumnNames( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getColumnNames( );
 		else
@@ -263,7 +267,7 @@ public class RelationInformation
 	 */
 	String[] getTableRealColumnNames( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getRealColumnNames( );
 		else
@@ -278,7 +282,7 @@ public class RelationInformation
 	 */
 	public String[] getTableNestedXMLColumnNames( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getNestedXMLColumnNames( );
 		else
@@ -293,7 +297,7 @@ public class RelationInformation
 	 */
 	public MappingPathElementTree getTableMappingPathElementTree( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getMappingPathTree( );
 		else
@@ -308,7 +312,7 @@ public class RelationInformation
 	 */
 	public String getTableRootPath( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getRootPath( );
 		else
@@ -323,7 +327,7 @@ public class RelationInformation
 	 */
 	public String getTableOriginalRootPath( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getOriginalRootPath( );
 		else
@@ -338,7 +342,7 @@ public class RelationInformation
 	 */
 	public HashMap getTableFilter( String tableName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getFilter( );
 		else
@@ -361,7 +365,7 @@ public class RelationInformation
 	 */
 	public HashMap getTableColumnFilter( String tableName, String columnName )
 	{
-		Object tableInfo = this.tableInfos.get( tableName == null ? "":tableName.trim( ) );
+		Object tableInfo = this.tableInfos.get( tableName == null ? EMPTY_STRING:tableName.trim( ) );
 		if( tableInfo!= null )
 			return ( (TableInfo)tableInfo ).getColumnFilters(columnName);
 		else
@@ -376,7 +380,9 @@ public class RelationInformation
  */
 class TableInfo
 {
-	//The name of the table.
+	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+    //The name of the table.
 	private String tableName;
 	
 	//The hashmap which host columnInfos
@@ -405,7 +411,7 @@ class TableInfo
 	{
 		this.tableName = tableName;
 		this.originalRootPath = rootPath;
-		this.rootPath = SaxParserUtil.removeRedundantParentAxis( originalRootPath.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", ""));
+		this.rootPath = SaxParserUtil.removeRedundantParentAxis( originalRootPath.replaceAll("\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", EMPTY_STRING));//$NON-NLS-1$
 		this.columnInfos = new HashMap( );
 		this.filterInfos = new HashMap( );
 	}
@@ -628,7 +634,8 @@ class TableInfo
  */
 class ColumnInfo
 {
-	//
+	private static final String EMPTY_STRING = "";	//$NON-NLS-1$
+
 	private int index;
 	private String name;
 	private String type;
@@ -652,12 +659,12 @@ class ColumnInfo
 		this.name = name;
 		this.type = type;
 		if ( !DataTypes.isValidType( type ) )
-			throw new OdaException( Messages.getString( "RelationInformation.InvalidDataTypeName" ) );
+			throw new OdaException( Messages.getString( "RelationInformation.InvalidDataTypeName" ) );//$NON-NLS-1$
 		this.originalPath = originalPath;
 		
 		//the result of removing attribution filters
-		String purePath = originalPath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", "" )
-								   .replaceAll( "\\Q[@\\E.*\\Q]\\E", "" ).trim( );
+		String purePath = originalPath.replaceAll( "\\Q[@\\E.*\\Q=\\E.*\\Q]\\E", EMPTY_STRING )//$NON-NLS-1$
+								   .replaceAll( "\\Q[@\\E.*\\Q]\\E", EMPTY_STRING ).trim( );//$NON-NLS-1$
 		
 		this.path = SaxParserUtil.removeRedundantParentAxis(  purePath );
 		this.filters = filters;
