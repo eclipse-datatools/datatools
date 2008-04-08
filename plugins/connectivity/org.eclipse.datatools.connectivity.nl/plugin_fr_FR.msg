@@ -3,4 +3,5 @@ Plugin.Name=Plug-in de connectivité de la plateforme d'Outils de données
 Plugin.ProviderName=Eclipse.org
 extension-point.name.connectionProfile=Extension du profil de connexion
 extension-point.name.driverExtension=driverExtension
+extension-point.name.ProfileManagerInitializationProvider =  ProfileManagerInitializationProvider
 ConnectionProfileRepository.Category.Name = Répertoires des profils de connexion
