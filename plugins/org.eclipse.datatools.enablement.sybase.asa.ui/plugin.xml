@@ -194,5 +194,21 @@
             id="org.eclipse.datatools.enablement.sybase.asa.ui.connection.drivers.ASA10DriverUIContributor">
       </driverUIContributor>
    </extension>
+    <extension
+          point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+       <driverUIContributor
+             class="org.eclipse.datatools.enablement.sybase.asa.ui.ASAOtherDriverUIContributor"
+             driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate"
+             id="org.eclipse.datatools.enablement.sybase.asa.9_x.other.ASAOtherDriverUIContributor">
+       </driverUIContributor>
+    </extension>
+    <extension
+          point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+       <driverUIContributor
+             class="org.eclipse.datatools.enablement.sybase.asa.ui.ASAOtherDriverUIContributor"
+             driverTemplateID="org.eclipse.datatools.enablement.sybase.asa.10_x.other.driverTemplate"
+             id="org.eclipse.datatools.enablement.sybase.asa.10_x.other.ASAOtherDriverUIContributor">
+       </driverUIContributor>
+    </extension>
  
 </plugin>

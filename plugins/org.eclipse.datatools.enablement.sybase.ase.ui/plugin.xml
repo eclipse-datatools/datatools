@@ -216,4 +216,20 @@
             id="org.eclipse.datatools.enablement.sybase.ase.ui.connection.drivers.ASE15XADriverUIContributor">
       </driverUIContributor>
    </extension>
+       <extension
+             point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+          <driverUIContributor
+                class="org.eclipse.datatools.enablement.sybase.ase.ui.ASEOtherDriverUIContributor"
+                driverTemplateID="org.eclipse.datatools.enablement.sybase.ase.12_x.other.driverTemplate"
+                id="org.eclipse.datatools.enablement.sybase.ase.12_x.other.ASEOtherDriverUIContributor">
+          </driverUIContributor>
+       </extension>
+       <extension
+             point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+          <driverUIContributor
+                class="org.eclipse.datatools.enablement.sybase.ase.ui.ASEOtherDriverUIContributor"
+                driverTemplateID="org.eclipse.datatools.enablement.sybase.ase.15_0.other.driverTemplate"
+                id="org.eclipse.datatools.enablement.sybase.ase.15_0.other.ASEOtherDriverUIContributor">
+          </driverUIContributor>
+       </extension>
 </plugin>

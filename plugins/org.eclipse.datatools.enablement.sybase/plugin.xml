@@ -41,19 +41,19 @@
    
    <!--For PrimaryKeyNode,UniqueConstraintNode,CheckConstraintNode,ForeignKeyNode -->
    <extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
-      <contributor
+<!--      <contributor
         displayType="%temptable.name"
         iconLocation="/icons/temporary_table.gif"
         type="org.eclipse.datatools.modelbase.sql.tables.TemporaryTable"/>
       <contributor
         displayType="%trigger.name"
         iconLocation="/icons/trigger.gif"
-        type="org.eclipse.datatools.modelbase.sql.tables.Trigger"/>
+        type="org.eclipse.datatools.modelbase.sql.tables.Trigger"/> -->
       <contributor
         displayType="%parameters.node.name"
         iconLocation="/icons/folder.gif"
         type="org.eclipse.datatools.enablement.sybase.virtual.ParametersNode"/>
-      <contributor
+<!--      <contributor
         displayType="%storedprocedure.node.name"
         iconLocation="/icons/folder.gif"
         type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.StoredProcedureNode"/>
@@ -92,7 +92,7 @@
       <contributor
         displayType="%udf.node.name"
         iconLocation="/icons/folder.gif"
-        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDFNode"/>
+        type="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDFNode"/> -->
       <contributor
         displayType="%checkconstraint.node.name"
         iconLocation="/icons/folder.gif"
@@ -109,15 +109,15 @@
         displayType="%uniqueconstraint.node.name"
         iconLocation="/icons/folder.gif"
         type="org.eclipse.datatools.enablement.sybase.virtual.UniqueConstraintNode"/>
-      <contributor
+<!--      <contributor
         displayType="%parameter.name"
         iconLocation="/icons/param_obj.gif"
-        type="org.eclipse.datatools.modelbase.sql.routines.Parameter"/>
+        type="org.eclipse.datatools.modelbase.sql.routines.Parameter"/>-->
    </extension>
    <!--end -->
    
 	<!-- Label Providers -->
-	<extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
+<!--	<extension point = "org.eclipse.datatools.connectivity.sqm.core.ui.labelService">
 		<contributor
 			type = "org.eclipse.datatools.modelbase.sql.schema.Database"
 			iconLocation = "/icons/database.gif"
@@ -208,7 +208,7 @@
 			displayType = "%foreignKey"
 			selector = "org.eclipse.datatools.enablement.sybase.SybaseLabelSelector">
 		</contributor>
-	</extension>
+	</extension>-->
 	<!-- end -->   
    <extension
          point="org.eclipse.ui.decorators">

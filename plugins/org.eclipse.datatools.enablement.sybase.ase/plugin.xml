@@ -243,9 +243,10 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.sybase.ase.genericDriverTemplate_12"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%ase12.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.ase.12x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.ase.12x"
+            valuesProvider="org.eclipse.datatools.enablement.ase.ASEDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -327,9 +328,10 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.sybase.ase.genericDriverTemplate_15"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%ase15.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.ase.15x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.ase.15x"
+            valuesProvider="org.eclipse.datatools.enablement.ase.ASEDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -411,9 +413,10 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.sybase.ase.genericDriverTemplate_12_xa"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%ase12.xa.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.ase.12x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.ase.12x"
+            valuesProvider="org.eclipse.datatools.enablement.ase.ASEDriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -501,9 +504,10 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.connectivity.db.sybase.ase.genericDriverTemplate_15_xa"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%ase15.xa.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.ase.15x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.ase.15x"
+            valuesProvider="org.eclipse.datatools.enablement.ase.ASEDriverValuesProvider">
          <properties>
             <property
                   generated="false"

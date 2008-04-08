@@ -172,14 +172,18 @@
       </extension>
  
  <extension
-         point="org.eclipse.datatools.connectivity.driverExtension">     
+         point="org.eclipse.datatools.connectivity.driverExtension">
+         <!--     
+            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            -->
       <driverTemplate
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.enablement.sybase.asa.drivertemplate"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%asa9.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.asa.9x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.asa.9x"
+            valuesProvider="org.eclipse.datatools.enablement.sybase.asa.ASADriverValuesProvider">
          <properties>
             <property
                   generated="false"
@@ -261,9 +265,10 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.enablement.sybase.asa.drivertemplate10"
-            jarList="[com.sybase.jconnect60]\lib\jconn3.jar"
+            jarList="jconn3.jar"
             name="%asa10.driver.template"
-            parentCategory="org.eclipse.datatools.enablement.sybase.asa.10x">
+            parentCategory="org.eclipse.datatools.enablement.sybase.asa.10x"
+            valuesProvider="org.eclipse.datatools.enablement.sybase.asa.ASADriverValuesProvider">
          <properties>
             <property
                   generated="false"
