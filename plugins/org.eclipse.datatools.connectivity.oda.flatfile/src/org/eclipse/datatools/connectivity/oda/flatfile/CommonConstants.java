@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -38,7 +38,7 @@ public final class CommonConstants
 	public static final String DELIMITER_TAB_VALUE = "\t"; //$NON-NLS-1$
 
 	public static final String DELIMITER_SPACE = " "; //$NON-NLS-1$
-	public static final char DELIMITER_DOUBLEQUOTE = '"'; //$NON-NLS-1$
+	public static final char DELIMITER_DOUBLEQUOTE = '"'; 
 	public static final String KEYWORD_SELECT = "SELECT"; //$NON-NLS-1$
 	public static final String KEYWORD_FROM = "FROM"; //$NON-NLS-1$
 	public static final String KEYWORD_AS = "AS"; //$NON-NLS-1$
