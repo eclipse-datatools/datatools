@@ -14,7 +14,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.impl;
 
+import static org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil.createFor;
+import static org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil.getAllEStructuralFeatures;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
@@ -22,20 +26,20 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public class Connection implements IConnection {
 
 	private boolean isOpen = false;
-	private Properties connProperties;
-	private EObject model;
+	private Collection<EObject> eObjects;
 	private EClassifier classifier;
 
 	/*
@@ -50,25 +54,32 @@ public class Connection implements IConnection {
 		if (connProperties == null) {
 			throw new OdaException(new IllegalArgumentException("NULL connection properties not allowed"));
 		}
-		this.connProperties = connProperties;
 
-		model = getModel(connProperties);
+		eObjects = getModel(connProperties);
 		isOpen = true;
 	}
 
-	protected EObject getModel(final Properties properties) throws OdaException {
-		EObject model = null;
-		final Object object = properties.get(Constants.CONNECTION_ECORE_MODEL_INSTANCE);
-		if (object instanceof EObject) {
-			model = (EObject) object;
-		} else {
-			final String uriString = (String) properties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING);
-			final ResourceSet resourceSet = new ResourceSetImpl();
-			final URI uri = URI.createURI(uriString);
-			final Resource resource = resourceSet.getResource(uri, true);
-			model = resource.getContents().get(0);
+	private Collection<EObject> getModel(final Properties properties) throws OdaException {
+		final Object object = properties.get(Constants.CONNECTION_EOBJECT_INSTANCES);
+		if (object instanceof Collection) {
+			@SuppressWarnings("unchecked")
+			final Collection<EObject> returnValue = (Collection<EObject>) object;
+			return returnValue;
 		}
-		return model;
+		final String uriString = (String) properties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING);
+		if (uriString == null) {
+			final String errmsg = "Connection property " + Constants.CONNECTION_EOBJECT_INSTANCES
+					+ " has not been set, therefore " + Constants.CONNECTION_ECORE_MODEL_URI_STRING
+					+ " must be set but it was null";
+			throw new OdaException(errmsg);
+		}
+		final URI uri = URI.createURI(uriString);
+		try {
+			final Resource resource = new ResourceSetImpl().getResource(uri, true);
+			return resource.getContents();
+		} catch (final WrappedException e) {
+			throw new OdaException(e.getCause());
+		}
 	}
 
 	/*
@@ -118,53 +129,23 @@ public class Connection implements IConnection {
 		if (!isOpen) {
 			throw new OdaException("Query cannot be created for closed connection");
 		}
-		return new Query(model, classifier, getColumnDefinitions());
+		return new Query(eObjects, classifier, getColumnDefinitions());
 	}
 
 	private ColumnDefinition[] getColumnDefinitions() {
 		final List<ColumnDefinition> columnDefinitions = new ArrayList<ColumnDefinition>();
 		if (classifier != null) {
 			for (final EStructuralFeature structuralFeature : classifier.eClass().getEAllStructuralFeatures()) {
-				final ColumnDefinition columnDefinition = new ColumnDefinition(structuralFeature.getName(),
-						structuralFeature);
+				final ColumnDefinition columnDefinition = createFor(structuralFeature);
 				columnDefinitions.add(columnDefinition);
 			}
 		} else {
-			for (final EStructuralFeature structuralFeature : model.eClass().getEAllStructuralFeatures()) {
-				final ColumnDefinition columnDefinition = new ColumnDefinition(structuralFeature.getName(),
-						structuralFeature);
+			for (final EStructuralFeature structuralFeature : getAllEStructuralFeatures(eObjects)) {
+				final ColumnDefinition columnDefinition = createFor(structuralFeature);
 				columnDefinitions.add(columnDefinition);
 			}
 		}
 		return columnDefinitions.toArray(new ColumnDefinition[columnDefinitions.size()]);
-	}
-
-	private ColumnDefinition[] getColumnDefinitions(final Properties properties) throws OdaException {
-		ColumnDefinition[] columnDefinitions = (ColumnDefinition[]) properties
-				.get(Constants.CONNECTION_COLUMN_DEFINITIONS);
-		if (columnDefinitions == null) {
-			final String[] columnNames = (String[]) properties.get(Constants.CONNECTION_COLUMN_DEFINITION_NAMES);
-			if (columnNames == null) {
-				throw new OdaException("No column names were defined in property '"
-						+ Constants.CONNECTION_COLUMN_DEFINITION_NAMES + "'");
-			}
-			final String[][] columnReferences = (String[][]) properties
-					.get(Constants.CONNECTION_COLUMN_DEFINITION_REFERENCES);
-			if (columnReferences == null) {
-				throw new OdaException("No column references were defined in property '"
-						+ Constants.CONNECTION_COLUMN_DEFINITION_REFERENCES + "'");
-			}
-			final int[] columnFeatures = (int[]) properties.get(Constants.CONNECTION_COLUMN_DEFINITION_FEATURES);
-			if (columnReferences == null) {
-				throw new OdaException("No column structural features were defined in property '"
-						+ Constants.CONNECTION_COLUMN_DEFINITION_FEATURES + "'");
-			}
-			columnDefinitions = new ColumnDefinition[columnReferences.length];
-			for (int i = 0; i < columnReferences.length; i++) {
-				columnDefinitions[i] = new ColumnDefinition(columnNames[i], columnReferences[i], columnFeatures[i]);
-			}
-		}
-		return columnDefinitions;
 	}
 
 	/*

@@ -11,28 +11,10 @@
             setThreadContextClassLoader="false"
             odaVersion="3.1"
             id="%oda.data.source.id">
-         <properties>
-            <property
-                  name="ECOREFILE"
-                  allowsEmptyValueAsNull="true"
-                  defaultDisplayName="%datasource.property.ecoreFile"
-                  type="string"
-                  isEncryptable="false">
-            </property>
-         </properties>
       </dataSource>
       <dataSet
             defaultDisplayName="%data.set.name"
             id="org.eclipse.datatools.enablement.oda.ecore.dataSet">
-         <properties>
-            <property
-                  name="property1"
-                  allowsEmptyValueAsNull="true"
-                  defaultDisplayName="Property 1"
-                  type="string"
-                  isEncryptable="false">
-            </property>
-         </properties>
          <dataTypeMapping
                nativeDataTypeCode="1"
                odaScalarDataType="String"

@@ -14,24 +14,22 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.i18n;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import org.eclipse.osgi.util.NLS;
 
-public class Messages {
+public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.datatools.enablement.oda.ecore.i18n.messages"; //$NON-NLS-1$
-
-	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME);
 
 	private Messages() {
 		// not instantiable
 	}
 
-	public static String getString(final String key) {
-		try {
-			return RESOURCE_BUNDLE.getString(key);
-		} catch (final MissingResourceException e) {
-			return '!' + key + '!';
-		}
+	static {
+		// initialize resource bundle
+		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
+
+	public static String dataTypes_typeNameInvalid;
+	public static String query_alreadyClosed;
+	public static String resultSet_alreadyClosed;
 }

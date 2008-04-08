@@ -14,19 +14,31 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.datatools.connectivity.oda.IConnection;
+import org.eclipse.datatools.connectivity.oda.IDriver;
+import org.eclipse.datatools.connectivity.oda.IQuery;
+import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
+import org.eclipse.datatools.enablement.oda.ecore.impl.Driver;
+import org.eclipse.datatools.enablement.oda.ecore.ui.Activator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.search.ocl.ui.viewer.OCLSourceViewer;
@@ -37,8 +49,10 @@ import org.eclipse.jface.text.source.SourceViewer;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
@@ -59,7 +73,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 
 	private transient OCLExpressionWidget expressionWidget;
 
-	private DataSetDesign dataSetDesign;
+	private Properties dataSourceProperties;
+
+	private StyledText queryText;
 
 	public DataSetQueryWizardPage(final String pageName) {
 		super(pageName);
@@ -93,8 +109,15 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		contextCombo = new ComboViewer(composite, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(contextCombo.getControl());
 		contextCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+
 			public void selectionChanged(final SelectionChangedEvent event) {
 				validateData();
+				final IStructuredSelection eventSelection = (IStructuredSelection) event.getSelection();
+				setInvariantToSelection(getEditingDesign(), eventSelection);
+				// if (!eventSelection.isEmpty()) {
+				// expressionWidget.setContext((EObject)
+				// eventSelection.getFirstElement());
+				// }
 			}
 		});
 
@@ -107,14 +130,15 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(expressionWidget);
 		final SourceViewer viewer = expressionWidget.getViewer();
 		if (viewer instanceof OCLSourceViewer) {
-			final StyledText textWidget = ((OCLSourceViewer) viewer).getTextWidget();
-			GridDataFactory.fillDefaults().grab(true, true).applyTo(textWidget);
-			textWidget.addModifyListener(new ModifyListener() {
+			queryText = ((OCLSourceViewer) viewer).getTextWidget();
+			GridDataFactory.fillDefaults().grab(true, true).applyTo(queryText);
+			queryText.addModifyListener(new ModifyListener() {
+
 				public void modifyText(final ModifyEvent e) {
 					validateData();
 				}
 			});
-			textWidget.addKeyListener(new InputKeyListener(viewer));
+			queryText.addKeyListener(new InputKeyListener(viewer));
 		}
 
 		setControl(composite);
@@ -125,24 +149,27 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 * Initializes the page control with the last edited data set design.
 	 */
 	private void initializeControl() {
-		dataSetDesign = getInitializationDesign();
-		final Properties dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign
-				.getDataSourceDesign());
+		final DataSetDesign dataSetDesign = getInitializationDesign();
+		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
 		final URI uri = URI.createURI((String) dataSourceProperties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING));
 
 		try {
-			fillContextCombo(EcoreUtil.getPackageForDataSource(uri));
-		} catch (final IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			fillContextCombo(dataSetDesign, EcoreUtil.getPackageForDataSource(uri));
+			expressionWidget.setExpression(dataSetDesign.getQueryText());
+			// if (!contextCombo.getSelection().isEmpty()) {
+			// expressionWidget.setContext((EObject) ((IStructuredSelection)
+			// contextCombo.getSelection())
+			// .getFirstElement());
+			// }
+			validateData();
+		} catch (final WrappedException e) {
+			final Throwable cause = e.getCause();
+			if (cause == null) {
+				setMessage(e.getMessage(), ERROR);
+			} else {
+				setMessage("Got an error trying to load: " + cause.getMessage(), ERROR);
+			}
 		}
-
-		expressionWidget.setExpression(dataSetDesign.getQueryText());
-		if (!contextCombo.getSelection().isEmpty()) {
-			expressionWidget.setContext((EObject) contextCombo.getSelection());
-		}
-
-		validateData();
 	}
 
 	/*
@@ -150,15 +177,17 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 * 
 	 * @see org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
 	 */
-	private void fillContextCombo(final EPackage ePackage) {
+	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
 		contextCombo.setLabelProvider(new LabelProvider() {
+
 			@Override
 			public String getText(final Object element) {
 				return ((EClassifier) element).getName();
 			}
 		});
 		contextCombo.setSorter(new ViewerSorter() {
+
 			@Override
 			public int compare(final Viewer viewer, final Object e1, final Object e2) {
 				return ((EClassifier) e1).getName().compareTo(((EClassifier) e2).getName());
@@ -176,14 +205,19 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		dummy.setName("");
 		classes.add(dummy);
 		contextCombo.setInput(classes);
+		initializeContextCombo(getEditingDesign(), ePackage);
+	}
 
-		// // apply the default selection, if possible
-		// final EClassifier defaultSelection =
-		// ePackage.getEClassifier(metaClassDefault);
-		// if (defaultSelection != null) {
-		// contextCombo.setSelection(new StructuredSelection(defaultSelection),
-		// true);
-		// }
+	private void initializeContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
+		if (dataSetDesign.getPrivateProperties() != null) {
+			final String invariant = dataSetDesign.getPrivateProperties().getProperty(Constants.OCL_ECORE_INVARIANT);
+			if (invariant == null || invariant.length() == 0 || ePackage.getEClassifier(invariant) == null) {
+				return;
+			} else {
+				final EClassifier invariantEClass = ePackage.getEClassifier(invariant);
+				contextCombo.setSelection(new StructuredSelection(invariantEClass));
+			}
+		}
 	}
 
 	/*
@@ -193,29 +227,13 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
-		// FIXME: How to preserve page contributions in design?
-		// if (!hasValidData()) {
-		// return design;
-		// }
-		// design.setQueryText(expressionWidget.getExpression());
-		return design;
-	}
+		// if this page in DataSetEditor hasn't been activated
+		if (expressionWidget == null || queryText == null) {
+			return design;
+		}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#collectResponseState()
-	 */
-	@Override
-	protected void collectResponseState() {
-		super.collectResponseState();
-		/*
-		 * To optionally assign a custom response state, for inclusion in the
-		 * ODA design session response, use setResponseSessionStatus(
-		 * SessionStatus status ); setResponseDesignerState( DesignerState
-		 * customState );
-		 */
-		// TODO: Implement something for additional fields?
+		savePage(design);
+		return design;
 	}
 
 	/*
@@ -226,6 +244,111 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	@Override
 	protected boolean canLeave() {
 		return isPageComplete();
+	}
+
+	private void setInvariantToSelection(final DataSetDesign dataSetDesign, final IStructuredSelection selection) {
+		final Object selectedElement = selection.getFirstElement();
+		if (selectedElement == null) {
+			return;
+		}
+		org.eclipse.datatools.connectivity.oda.design.Properties privateProperties = dataSetDesign
+				.getPrivateProperties();
+		if (privateProperties == null) {
+			privateProperties = DesignFactory.eINSTANCE.createProperties();
+			dataSetDesign.setPrivateProperties(privateProperties);
+		}
+		String property;
+		if (selectedElement instanceof EClassifier) {
+			property = ((EClassifier) selectedElement).getName();
+		} else {
+			property = selectedElement.toString();
+		}
+		privateProperties.setProperty(Constants.OCL_ECORE_INVARIANT, property);
+	}
+
+	/**
+	 * Updates the given dataSetDesign with the query and its metadata defined
+	 * in this page.
+	 * 
+	 * @param dataSetDesign
+	 */
+	private void savePage(final DataSetDesign dataSetDesign) {
+		dataSetDesign.setQueryText(queryText.getText());
+		setInvariantToSelection(dataSetDesign, (IStructuredSelection) contextCombo.getSelection());
+		if (dataSetDesign.getPrimaryResultSet() != null) {
+			return;
+		}
+		IConnection connection = null;
+		try {
+			// instantiate your custom ODA runtime driver class
+			/*
+			 * Note: You may need to manually update your ODA runtime
+			 * extension's plug-in manifest to export its package for visibility
+			 * here.
+			 */
+			final IDriver driver = new Driver();
+
+			// obtain and open a live connection
+			connection = driver.getConnection(null);
+			connection.open(dataSourceProperties);
+
+			// update the data set design with the
+			// query's current runtime metadata
+			updateDesign(connection, dataSetDesign);
+		} catch (final OdaException e) {
+			// not able to get current metadata, reset previous derived metadata
+			dataSetDesign.setResultSets(null);
+			dataSetDesign.setParameters(null);
+			final String message = "Got an error when updating the design: " + e.getMessage();
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, e));
+		} finally {
+			try {
+				connection.close();
+			} catch (final OdaException e) {
+				// Ignore--nothing can be done
+			}
+		}
+	}
+
+	/**
+	 * Updates the given dataSetDesign with the queryText and its derived
+	 * metadata obtained from the ODA runtime connection.
+	 */
+	private void updateDesign(final IConnection conn, final DataSetDesign dataSetDesign) throws OdaException {
+		final IQuery query = conn.newQuery(null);
+		query.prepare(dataSetDesign.getQueryText());
+		try {
+			final IResultSetMetaData resultSetMetaData = query.getMetaData();
+			updateResultSetDesign(resultSetMetaData, dataSetDesign);
+		} catch (final OdaException e) {
+			dataSetDesign.setResultSets(null);
+			throw e;
+		}
+
+	}
+
+	/**
+	 * Updates the specified data set design's result set definition based on
+	 * the specified runtime metadata.
+	 * 
+	 * @param resultSetMetaData
+	 *            runtime result set metadata instance
+	 * @param dataSetDesign
+	 *            data set design instance to update
+	 * @throws OdaException
+	 */
+	private void updateResultSetDesign(final IResultSetMetaData resultSetMetaData, final DataSetDesign dataSetDesign)
+			throws OdaException {
+		final ResultSetColumns columns = DesignSessionUtil.toResultSetColumnsDesign(resultSetMetaData);
+
+		final ResultSetDefinition resultSetDefinition = DesignFactory.eINSTANCE.createResultSetDefinition();
+		// resultSetDefn.setName( value ); // result set name
+		resultSetDefinition.setResultSetColumns(columns);
+
+		// no exception in conversion; go ahead and assign to specified
+		// dataSetDesign
+		dataSetDesign.setPrimaryResultSet(resultSetDefinition);
+		dataSetDesign.getResultSets().setDerivedMetaData(true);
 	}
 
 	/**
@@ -243,16 +366,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		}
 
 		setPageComplete(isValid);
-	}
-
-	/**
-	 * Indicates whether the custom page has valid data to proceed with defining
-	 * a data set.
-	 */
-	private boolean hasValidData() {
-		validateData();
-
-		return canLeave();
 	}
 
 	/**

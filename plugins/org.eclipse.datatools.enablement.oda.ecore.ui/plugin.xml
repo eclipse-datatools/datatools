@@ -42,7 +42,7 @@
             initialPageId="org.eclipse.datatools.enablement.oda.ecore.dataSet.page1"
             id="org.eclipse.datatools.enablement.oda.ecore.dataSet">
          <dataSetWizard
-               class="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSetWizard"
+               class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"
                windowTitle="%wizard.data.set.window.title">
          </dataSetWizard>
          <dataSetPage

@@ -26,8 +26,10 @@ import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.enablement.oda.ecore.i18n.Messages;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ResultSet implements IResultSet {
 
@@ -106,7 +108,7 @@ public class ResultSet implements IResultSet {
 	 */
 	private void verifyNotClosed() throws OdaException {
 		if (isClosed) {
-			throw new OdaException(Messages.getString("ResultSet.ResultSetClosed")); //$NON-NLS-1$
+			throw new OdaException(Messages.resultSet_alreadyClosed);
 		}
 	}
 
@@ -142,7 +144,12 @@ public class ResultSet implements IResultSet {
 	 */
 	public String getString(final int index) throws OdaException {
 		validateColumn(index);
-		return eObject.eGet(columns[index - 1].getFeature()).toString();
+		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
+		if (structuralFeature == null) {
+			return null;
+		}
+		final Object value = eObject.eGet(structuralFeature);
+		return value == null ? null : value.toString();
 	}
 
 	/*
@@ -157,7 +164,11 @@ public class ResultSet implements IResultSet {
 	 */
 	public int getInt(final int index) throws OdaException {
 		validateColumn(index);
-		return Integer.parseInt(eObject.eGet(columns[index - 1].getFeature()).toString());
+		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
+		if (structuralFeature == null) {
+			return 0;
+		}
+		return Integer.parseInt(eObject.eGet(structuralFeature).toString());
 	}
 
 	/*
@@ -172,7 +183,11 @@ public class ResultSet implements IResultSet {
 	 */
 	public double getDouble(final int index) throws OdaException {
 		validateColumn(index);
-		return Double.parseDouble(eObject.eGet(columns[index - 1].getFeature()).toString());
+		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
+		if (structuralFeature == null) {
+			return 0;
+		}
+		return Double.parseDouble(eObject.eGet(structuralFeature).toString());
 	}
 
 	/*
@@ -186,7 +201,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBigDecimal(int)
 	 */
 	public BigDecimal getBigDecimal(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -201,7 +215,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getDate(int)
 	 */
 	public Date getDate(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -216,7 +229,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getTime(int)
 	 */
 	public Time getTime(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -231,7 +243,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getTimestamp(int)
 	 */
 	public Timestamp getTimestamp(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -246,7 +257,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getBlob(int)
 	 */
 	public IBlob getBlob(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -261,7 +271,6 @@ public class ResultSet implements IResultSet {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#getClob(int)
 	 */
 	public IClob getClob(final int index) throws OdaException {
-		// TODO Auto-generated method stub
 		throw new UnsupportedOperationException();
 	}
 
@@ -279,7 +288,11 @@ public class ResultSet implements IResultSet {
 	 */
 	public boolean getBoolean(final int index) throws OdaException {
 		validateColumn(index);
-		return Boolean.parseBoolean(eObject.eGet(columns[index - 1].getFeature()).toString());
+		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
+		if (structuralFeature == null) {
+			return false;
+		}
+		return Boolean.parseBoolean(eObject.eGet(structuralFeature).toString());
 	}
 
 	/*
@@ -308,7 +321,7 @@ public class ResultSet implements IResultSet {
 
 		for (int i = 0; i < columns.length; i++) {
 			final ColumnDefinition column = columns[i];
-			if (column.getName().equals(columnName)) {
+			if (column.getAttributes().getName().equals(columnName)) {
 				return i + 1;
 			}
 		}

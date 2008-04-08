@@ -16,6 +16,7 @@ package org.eclipse.datatools.enablement.oda.ecore.impl;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 
 public class ResultSetMetaData implements IResultSetMetaData {
 
@@ -41,7 +42,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 */
 	public String getColumnName(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return columns[index - 1].getName();
+		return columns[index - 1].getAttributes().getName();
 	}
 
 	/*
@@ -51,8 +52,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 */
 	public String getColumnLabel(final int index) throws OdaException {
 		validateColumnIndex(index);
-		// TODO: Do something different for labels?
-		return columns[index - 1].getName();
+		return columns[index - 1].getAttributes().getUiHints().getDisplayName();
 	}
 
 	/*
@@ -84,9 +84,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnDisplayLength(int)
 	 */
 	public int getColumnDisplayLength(final int index) throws OdaException {
-		// TODO replace with data source specific implementation
-
-		// hard-coded for demo purpose
+		validateColumnIndex(index);
 		return 8;
 	}
 
@@ -96,7 +94,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getPrecision(int)
 	 */
 	public int getPrecision(final int index) throws OdaException {
-		// TODO Auto-generated method stub
+		validateColumnIndex(index);
 		return -1;
 	}
 
@@ -106,7 +104,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getScale(int)
 	 */
 	public int getScale(final int index) throws OdaException {
-		// TODO Auto-generated method stub
+		validateColumnIndex(index);
 		return -1;
 	}
 
@@ -116,7 +114,7 @@ public class ResultSetMetaData implements IResultSetMetaData {
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#isNullable(int)
 	 */
 	public int isNullable(final int index) throws OdaException {
-		// TODO Auto-generated method stub
+		validateColumnIndex(index);
 		return IResultSetMetaData.columnNullableUnknown;
 	}
 

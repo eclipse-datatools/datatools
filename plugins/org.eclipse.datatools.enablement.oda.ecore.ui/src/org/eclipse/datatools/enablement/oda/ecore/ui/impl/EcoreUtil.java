@@ -14,8 +14,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
-import java.io.IOException;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -28,10 +26,9 @@ public final class EcoreUtil {
 		// Can't instantiate util class
 	}
 
-	public static EPackage getPackageForDataSource(final URI uri) throws IOException {
+	public static EPackage getPackageForDataSource(final URI uri) {
 		final ResourceSetImpl resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(uri, true);
-		resource.load(resourceSet.getLoadOptions());
 		final EObject eObject = resource.getContents().get(0);
 		return eObject.eClass().getEPackage();
 	}

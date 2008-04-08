@@ -63,8 +63,7 @@ public final class DataTypes {
 		if (typeMapping != null) {
 			return typeMapping.getNativeTypeCode();
 		}
-
-		throw new OdaException(Messages.getString("dataTypes.typeNameInvalid") + typeName); //$NON-NLS-1$
+		throw new OdaException(Messages.bind(Messages.dataTypes_typeNameInvalid, typeName));
 	}
 
 	/**
@@ -84,7 +83,7 @@ public final class DataTypes {
 			return typeMapping.getNativeType();
 		}
 
-		throw new OdaException(Messages.getString("dataTypes.typeNameInvalid") + type); //$NON-NLS-1$
+		throw new OdaException(Messages.bind(Messages.dataTypes_typeNameInvalid, type));
 	}
 
 	/**

@@ -18,6 +18,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -25,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.enablement.oda.ecore.i18n.Messages;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -43,16 +45,17 @@ public class Query implements IQuery {
 	private int maxRows = 0;
 	private final ColumnDefinition[] columns;
 	private final EClassifier contextClassifier;
-	private final EObject model;
 	private boolean isPrepared;
 	private SELECT statement;
 	private boolean isClosed;
 	private IQueryResult queryResult;
+	private final Collection<EObject> eObjects;
 
-	public Query(final EObject model, final EClassifier contextClassifier, final ColumnDefinition[] columns) {
+	public Query(final Collection<EObject> eObjects, final EClassifier contextClassifier,
+			final ColumnDefinition[] columns) {
 		this.columns = columns;
 		this.contextClassifier = contextClassifier;
-		this.model = model;
+		this.eObjects = eObjects;
 	}
 
 	/*
@@ -78,7 +81,7 @@ public class Query implements IQuery {
 		} catch (final ParserException e) {
 			throw new OdaException(e);
 		}
-		statement = new SELECT(maxRows, false, new FROM(model), new WHERE(condition));
+		statement = new SELECT(maxRows, false, new FROM(eObjects), new WHERE(condition));
 	}
 
 	/**
@@ -376,7 +379,8 @@ public class Query implements IQuery {
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#getParameterMetaData()
 	 */
 	public IParameterMetaData getParameterMetaData() throws OdaException {
-		return new ParameterMetaData();
+		// not necessary here
+		return null;
 	}
 
 	/*
@@ -418,7 +422,7 @@ public class Query implements IQuery {
 	 */
 	private void verifyNotClosed() throws OdaException {
 		if (isClosed) {
-			throw new OdaException(Messages.getString("Query.ResultSetClosed")); //$NON-NLS-1$
+			throw new OdaException(Messages.query_alreadyClosed);
 		}
 	}
 
