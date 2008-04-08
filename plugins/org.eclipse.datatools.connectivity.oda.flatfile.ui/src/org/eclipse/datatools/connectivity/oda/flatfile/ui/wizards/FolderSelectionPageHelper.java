@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -56,10 +56,10 @@ public class FolderSelectionPageHelper
 	private transient Combo flatFileStyleCombo = null;
 
 	private static final String[] flatFileStyles= new String[]{
-		Messages.getString( "label.flatfileComma" ),
-		Messages.getString( "label.flatfileSemicolon" ),
-		Messages.getString( "label.flatfilePipe" ),
-		Messages.getString( "label.flatfileTab" ),
+		Messages.getString( "label.flatfileComma" ), //$NON-NLS-1$
+		Messages.getString( "label.flatfileSemicolon" ),//$NON-NLS-1$
+		Messages.getString( "label.flatfilePipe" ),//$NON-NLS-1$
+		Messages.getString( "label.flatfileTab" ),//$NON-NLS-1$
 	};
 
 	private SortedMap charSetMap;
