@@ -1,0 +1,2 @@
+planoption_graphic=Graphic plan
+planoption_text=Text plan

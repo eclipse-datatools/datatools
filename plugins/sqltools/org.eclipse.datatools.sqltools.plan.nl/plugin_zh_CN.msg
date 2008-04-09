@@ -1,0 +1,3 @@
+PlanView.name=Execution Plan
+PlanView.preferencePage.title=Execution Plan View Options
+DataTools.name=Data Tools
