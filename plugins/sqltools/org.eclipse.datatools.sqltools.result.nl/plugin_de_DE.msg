@@ -1,0 +1,14 @@
+SQLResultsView.name=SQL Results
+SQLResultsView.full.name=SQL Results View
+SQLResultsView.display.options=SQL Results View Options
+SQLResultsView.export.options=Export Format Options
+SQLResultsView.history.page=History Options
+SQLResultsView.resultsetviewer.page=Result Set Viewer Options
+RemoveResultAction.command.name=Remove Result
+RemoveAllResultAction.command.name=Remove All Visible Results
+TerminateInstanceAction.command.name=Terminate Result
+DataTools.name=Data Tools
+Outputter.plain.text=Plain Text
+Outputter.xml=XML
+Outputter.html=HTML
+Outputter.csv=CSV File
