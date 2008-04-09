@@ -19,6 +19,8 @@ import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInforma
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -41,6 +43,9 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 
 	private static final String CUI_NEWCW_PORT_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_PORT_LBL_UI_");
+	
+	private static final String CUI_NEWCW_INTEGRATED_AUTHENTICATION_BTN_UI_ = Messages
+	.getString("CUI_NEWCW_INTEGRATED_AUTHENTICATION_BTN_UI_");
 
 	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_USERNAME_LBL_UI_"); //$NON-NLS-1$
@@ -66,6 +71,9 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
+	private static final String CUI_NEWCW_USE_INTEGRATED_AUTHENICATION_SUMMARY_DATA_TEXT_ = Messages
+			.getString("CUI_NEWCW_USE_INTEGRATED_AUTHENICATION_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	
 	private static final String CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
@@ -80,6 +88,8 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 
 	private static final String CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_URL_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	
+	private static final String INTEGRATED_AUTHETICATION_TEXT = "integratedSecurity=true;"; 
 
 	protected IDriverUIContributorInformation contributorInformation;
 
@@ -94,6 +104,8 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 	private Label portLabel;
 
 	protected Text portText;
+	
+	private Button integratedAuthenticationButton;
 
 	private Label usernameLabel;
 
@@ -129,11 +141,13 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_HOST_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (usernameText.getText().trim().length() < 1) {
+		} else if (!integratedAuthenticationButton.getSelection()
+				&& usernameText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (passwordText.getText().trim().length() < 1) {
+		} else if (!integratedAuthenticationButton.getSelection()
+				&& passwordText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
@@ -210,6 +224,32 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 			gd.horizontalSpan = 2;
 			portText.setLayoutData(gd);
 
+			integratedAuthenticationButton = new Button(baseComposite, SWT.CHECK);
+			integratedAuthenticationButton.setText(CUI_NEWCW_INTEGRATED_AUTHENTICATION_BTN_UI_); //$NON-NLS-1$
+			gd = new GridData();
+			gd.horizontalAlignment = GridData.FILL;
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 3;
+			gd.grabExcessHorizontalSpace = true;
+			integratedAuthenticationButton.setLayoutData(gd);
+			integratedAuthenticationButton
+			.addSelectionListener(new SelectionListener() {
+				public void widgetDefaultSelected(SelectionEvent e) {
+
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					if (!SQLServer2005DriverUIContributor.this.isReadOnly){
+						if (((Button) e.widget).getSelection()) {
+							enableAuthenticationControls(false);
+						} else {
+							enableAuthenticationControls(true);
+						}
+					}
+				}
+			});
+
+			
 			usernameLabel = new Label(baseComposite, SWT.NONE);
 			usernameLabel.setText(CUI_NEWCW_USERNAME_LBL_UI_);
 			gd = new GridData();
@@ -275,6 +315,14 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		return parentComposite;
 	}
 
+	private void enableAuthenticationControls(boolean enabled) {
+		usernameLabel.setEnabled(enabled);
+		usernameText.setEnabled(enabled);
+		passwordLabel.setEnabled(enabled);
+		passwordText.setEnabled(enabled);
+		savePasswordButton.setEnabled(enabled);
+	}
+	
 	public List getSummaryData() {
 		List summaryData = new ArrayList();
 
@@ -284,6 +332,12 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 				this.hostText.getText().trim() });
 		summaryData.add(new String[] { CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_,
 				this.portText.getText().trim() });
+		summaryData
+		.add(new String[] {
+				CUI_NEWCW_USE_INTEGRATED_AUTHENICATION_SUMMARY_DATA_TEXT_,
+				integratedAuthenticationButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
+						: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		if (!integratedAuthenticationButton.getSelection()) {
 		summaryData.add(new String[] { CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_,
 				this.usernameText.getText().trim() });
 		summaryData
@@ -291,6 +345,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 						CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_,
 						savePasswordButton.getSelection() ? CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_
 								: CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ });
+		}
 		summaryData.add(new String[] { CUI_NEWCW_URL_SUMMARY_DATA_TEXT_,
 				this.urlText.getText().trim() });
 		return summaryData;
@@ -304,6 +359,10 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		portText.setText(url.getPort());
 		databaseText.setText(url.getDatabaseName());
 
+		if (url.getProperties().indexOf(INTEGRATED_AUTHETICATION_TEXT) > -1) {
+			integratedAuthenticationButton.setSelection(true);
+			enableAuthenticationControls(false);
+		}
 		String username = this.properties
 				.getProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID);
 		if (username != null) {
@@ -371,6 +430,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		databaseText.addListener(SWT.Modify, this);
 		hostText.addListener(SWT.Modify, this);
 		portText.addListener(SWT.Modify, this);
+		integratedAuthenticationButton.addListener(SWT.Selection, this);
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
 		savePasswordButton.addListener(SWT.Selection, this);
@@ -380,6 +440,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 		databaseText.removeListener(SWT.Modify, this);
 		hostText.removeListener(SWT.Modify, this);
 		portText.removeListener(SWT.Modify, this);
+		integratedAuthenticationButton.removeListener(SWT.Selection, this);
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
 		savePasswordButton.removeListener(SWT.Selection, this);
@@ -387,6 +448,7 @@ public class SQLServer2005DriverUIContributor implements IDriverUIContributor,
 
 	protected void updateURL() {
 		String url = "jdbc:sqlserver://" + this.hostText.getText() + (this.portText.getText().equalsIgnoreCase("") ? "" : ":" + this.portText.getText()) + ";databaseName=" + this.databaseText.getText(); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		url += !integratedAuthenticationButton.getSelection() ? "" : ";" + INTEGRATED_AUTHETICATION_TEXT;
 		urlText.setText(url);
 	}
 
