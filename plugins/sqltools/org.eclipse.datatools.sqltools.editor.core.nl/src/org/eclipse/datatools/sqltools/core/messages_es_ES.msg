@@ -1,0 +1,11 @@
+DataTypeValidator_no_db_definition=No database configuration found
+DataTypeValidator_can_not_use_in_current_context=Type ''{0}'': cannot be used in current context
+DataTypeValidator_invalid_type=Type ''{0}'': invalid data type
+PredefinedDataTypeValidator_no_db_definition=No database definition provided
+PredefinedDataTypeValidator_no_datatype_definition=Datatype definition not found
+PredefinedDataTypeValidator_length_shouldbe_positive=Predefined type ''{0}'': length should be a positive value
+PredefinedDataTypeValidator_length_exceed_max=Predefined type ''{0}'': length can not exceed {1}
+PredefinedDataTypeValidator_precision_positive=Predefined type ''{0}'': precision should be a positive value
+PredefinedDataTypeValidator_precision_exceed_max=Predefined type ''{0}'': precision cannot exceed {1}
+PredefinedDataTypeValidator_scale_below_min=Predefined type ''{0}'': scale cannot be less than {1}
+PredefinedDataTypeValidator_precision_lessthan_scale=Predefined type ''{0}'': precision must be greater than or equal to scale
