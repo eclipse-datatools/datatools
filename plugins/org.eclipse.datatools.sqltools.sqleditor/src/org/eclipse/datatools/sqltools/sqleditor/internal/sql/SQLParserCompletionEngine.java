@@ -696,15 +696,11 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 			}
 			display.append(proposal.getName());
 			//always uses the longer name except column
-			String replace = "";
+			String replace = display.length() > fullName.length() ? display.toString() : fullName.toString();
 			if (proposal.getType() == SQLDBProposal.TABLECOLUMN_OBJTYPE)
 			{
                 // reduce 'datatype' behind the column name
-			    replace = display.toString().substring(0,display.toString().indexOf(" - ")); //$NON-NLS-1$
-            }
-            else
-            {
-                replace = display.length() > fullName.length() ? display.toString() : fullName.toString();
+			    replace = replace.substring(0, replace.indexOf(" - ")); //$NON-NLS-1$
             }
 			if (length != 3)
             {

@@ -994,7 +994,10 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener {
         addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_SAVE, ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
 
         // Edit SQL in DMLdialog
-       	addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID);
+        if (actionServie.supportsAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID))
+        {
+            addAction( menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION, ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID);
+        }
 
         Collection extensions = SQLEditorPlugin.getSQLEditorActionContributorExtension();
         if (extensions != null)
