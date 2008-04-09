@@ -69,8 +69,10 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -495,8 +497,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		data.right = new FormAttachment( 100, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
 
-		selectedColumnsViewer = new TableViewer( composite, SWT.FULL_SELECTION
-				| SWT.BORDER );
+		selectedColumnsViewer = new TableViewer( composite, SWT.MULTI
+				| SWT.FULL_SELECTION | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
 
@@ -513,27 +515,27 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		selectedColumnsViewer.getTable( ).setLayoutData( data );
 		selectedColumnsViewer.getTable( )
-				.addSelectionListener( new SelectionAdapter( ) {
+				.addListener( SWT.MouseDown ,new Listener( ) {
 
-					public void widgetSelected( SelectionEvent e )
+					public void handleEvent( Event e )
 					{
-						btnRemove.setEnabled( true );
 						btnAdd.setEnabled( false );
-
 						availableList.deselectAll( );
 
 						int count = selectedColumnsViewer.getTable( )
-								.getItemCount( );
+								.getSelectionCount( );
 						int index = selectedColumnsViewer.getTable( )
 								.getSelectionIndex( );
-						if ( count > 1 )
+						if ( count == 1 )
 						{
+							btnRemove.setEnabled( true );
 							if ( index == 0 )
 							{
 								btnMoveUp.setEnabled( false );
 								btnMoveDown.setEnabled( true );
 							}
-							else if ( index == ( count - 1 ) )
+							else if ( index == ( selectedColumnsViewer.getTable( )
+									.getItemCount( ) - 1 ) )
 							{
 								btnMoveUp.setEnabled( true );
 								btnMoveDown.setEnabled( false );
@@ -544,8 +546,15 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 								btnMoveDown.setEnabled( true );
 							}
 						}
+						else if ( count > 1 )
+						{
+							btnRemove.setEnabled( true );
+							btnMoveUp.setEnabled( false );
+							btnMoveDown.setEnabled( false );
+						}
 						else
 						{
+							btnRemove.setEnabled( false );
 							btnMoveUp.setEnabled( false );
 							btnMoveDown.setEnabled( false );
 						}
