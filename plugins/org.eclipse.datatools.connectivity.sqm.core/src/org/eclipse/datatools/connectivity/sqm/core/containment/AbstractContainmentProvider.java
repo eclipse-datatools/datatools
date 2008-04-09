@@ -15,13 +15,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.ContainmentProvider;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class AbstractContainmentProvider implements ContainmentProvider {
 	public Collection getContainedElements(EObject obj) {
-	    List children = new LinkedList();
-	    children.addAll(obj.eContents());
+	    List children = new LinkedList(obj.eContents());
+	    
+	    if (SQLSchemaPackage.eINSTANCE.getSQLObject().isSuperTypeOf(obj.eClass())){
+	    	children.addAll(((SQLObject)obj).getComments());
+	    }
 	    return children;
 	}
 

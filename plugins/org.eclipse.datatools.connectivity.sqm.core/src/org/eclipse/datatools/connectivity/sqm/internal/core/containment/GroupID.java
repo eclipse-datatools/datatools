@@ -14,6 +14,7 @@ public interface GroupID {
 	public static final String CORE_PREFIX = "core.";  //$NON-NLS-1$
 	public static final String COLUMN = "core.sql.tables.Column";  //$NON-NLS-1$
 	public static final String CONSTRAINT = "core.sql.constraints.Constraint";  //$NON-NLS-1$
+	public static final String COMMENT = "core.sql.schema.Comment"; //$NON-NLS-1$
 	public static final String DATABASE = "core.sql.schema.Database";  //$NON-NLS-1$
 	public static final String DEPENDENCY = "core.sql.schema.Dependency";  //$NON-NLS-1$
 	public static final String INDEX = "core.sql.constraints.Index";  //$NON-NLS-1$
