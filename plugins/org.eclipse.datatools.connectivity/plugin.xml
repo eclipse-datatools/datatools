@@ -4,7 +4,7 @@
 
    <extension-point id="connectionProfile" name="%extension-point.name.connectionProfile" schema="schema/connectionProfile.exsd"/>
    <extension-point id="driverExtension" name="%extension-point.name.driverExtension" schema="schema/driverExtension.exsd"/>
-   <extension-point id=" ProfileManagerInitializationProvider" name="%extension-point.name. ProfileManagerInitializationProvider" schema="schema/ ProfileManagerInitializationProvider"/> 
+   <extension-point id="ProfileManagerInitializationProvider" name="%extension-point.name.ProfileManagerInitializationProvider" schema="schema/ProfileManagerInitializationProvider.exsd"/> 
 
    <extension
          point="org.eclipse.datatools.connectivity.connectionProfile">

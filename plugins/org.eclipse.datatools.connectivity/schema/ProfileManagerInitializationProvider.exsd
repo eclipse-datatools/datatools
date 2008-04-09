@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity" id="ProfileManagerInitializationProvider" name="ProfileManagerInitializationProvider"/>
+      </appinfo>
+      <documentation>
+         This extension point will provide a way for a sample profile to be populated at start-up time
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="connection"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="connection">
+      <complexType>
+         <sequence>
+            <element ref="property" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="jarList" type="string">
+            <annotation>
+               <documentation>
+                  jar list for driver definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="connectionProfileName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  name of the generated connection profile
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="connectionProfileID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  id of the connection profile to generate
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="driverDefinitionName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  name of the generated driver definition
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="driverTemplateID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  id of the driver template to generate driver definition from
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="connectionInitializer" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Class that initializes the connection
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="property">
+      <annotation>
+         <documentation>
+            Collection of properties for specifying the properties needed by the driver template
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  id of driver template property
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="value" type="string" use="required">
+            <annotation>
+               <documentation>
+                  value of driver template property
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiInfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>
