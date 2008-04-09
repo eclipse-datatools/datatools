@@ -14,6 +14,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -380,10 +381,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 				{
 					selectedMultiItems = availableXmlTree.getItems( );
 				}
+				HashSet selectedNodes = new HashSet( );
 				if ( selectedMultiItems.length == 1 )
 				{
 					/* Only one node is selected at a time */
-					if ( !handleSelectedItem( selectedMultiItems[0] ) )
+					if ( !handleSelectedItem( selectedMultiItems[0], selectedNodes ) )
 					{
 						setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),     //$NON-NLS-1$
 								ERROR );
@@ -395,7 +397,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					for ( int i = 0; i < selectedMultiItems.length; i++ )
 					{
 						TreeItem selectedItem = selectedMultiItems[i];
-						if ( !handleSelectedItem( selectedItem ) )
+						if ( !handleSelectedItem( selectedItem, selectedNodes ) )
 						{
 							setMessage( Messages.getString( "error.columnMapping.columnElement.create" ),    //$NON-NLS-1$
 									ERROR );
@@ -403,7 +405,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 						}
 					}
 				}
-				selectedMultiItems = null;
+				availableXmlTree.setSelection( availableXmlTree.getItem( 0 ) );
 				btnAddOne.setEnabled( false );
 			}
 		} );
@@ -534,16 +536,21 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 * @param aTreeNode
 	 * @param treeItem
 	 */
-	private void addChildrenElements( ATreeNode aTreeNode )
+	private void addChildrenElements( ATreeNode aTreeNode, HashSet selectedNodes )
 	{
 		try
 		{
 			if ( aTreeNode.getType( ) == ATreeNode.ATTRIBUTE_TYPE
 					|| ( aTreeNode.getType( ) == ATreeNode.ELEMENT_TYPE && ( aTreeNode.getChildren( ) == null || aTreeNode.getChildren( ).length == 0 ) ) )
 			{
-				String pathStr = createXPath( aTreeNode );
-				updateColumnMappingElement( createSingleElement( aTreeNode,
-						pathStr ) );
+				if ( selectedNodes != null
+						&& !selectedNodes.contains( aTreeNode ) )
+				{
+					String pathStr = createXPath( aTreeNode );
+					updateColumnMappingElement( createSingleElement( aTreeNode,
+							pathStr ) );
+					selectedNodes.add( aTreeNode );
+				}
 			}
 			else
 			{
@@ -552,7 +559,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				{
 					for ( int i = 0; i < children.length; i++ )
 					{
-						addChildrenElements( (ATreeNode) children[i] );
+						addChildrenElements( (ATreeNode) children[i], selectedNodes );
 					}
 				}
 			}
@@ -705,6 +712,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 						btnAddAll.setEnabled( false );
 					}
 				}
+				else
+				{
+					btnAddOne.setEnabled( false );
+					btnAddAll.setEnabled( true );
+				}
 				enableAllTableSideButtons( false );
 			}
 
@@ -744,17 +756,20 @@ public class ColumnMappingPage extends DataSetWizardPage
 					{
 						if ( columnMappingTable.getViewer( )
 								.getTable( )
-								.getSelectionCount( ) > 1 )
-						{
-							enableAllTableSideButtons( false );
-							columnMappingTable.getRemoveButton( )
-									.setEnabled( true );
-						}
-						else if ( columnMappingTable.getViewer( )
-								.getTable( )
 								.getSelectionCount( ) == 1 )
 						{
 							enableAllTableSideButtons( true );
+						}
+						else
+						{
+							enableAllTableSideButtons( false );
+							if ( columnMappingTable.getViewer( )
+									.getTable( )
+									.getSelectionCount( ) > 1 )
+							{
+								columnMappingTable.getRemoveButton( )
+										.setEnabled( true );
+							}
 						}
 					}
 				} );
@@ -789,7 +804,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 
 				} );
-		// TODO to externalize into message file
 		columnMappingTable.getRemoveButton( )
 				.setToolTipText( Messages.getString( "ColumnMappingTable.removeButton.tooltip" ) ); //$NON-NLS-1$
 
@@ -836,7 +850,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 
 				} );
-		// TODO to externalize into message file
+
 		columnMappingTable.getUpButton( )
 				.setToolTipText( Messages.getString( "ColumnMappingTable.upButton.tooltip" ) ); //$NON-NLS-1$
 
@@ -853,7 +867,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 
 				} );
-		// TODO to externalize into message file
+
 		columnMappingTable.getDownButton( )
 				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) ); //$NON-NLS-1$
 	}
@@ -1084,7 +1098,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				preferences.setValue( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED,
 						numberOfElement );
 			}
-			// TODO For migrate into ODA3.0,the relative path cannot be
+
 			// retrieved
 			// Object url = StructureFactory.getModuleHandle( ).findResource(
 			// schemaFileName,IResourceLocator.LIBRARY );
@@ -1413,7 +1427,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	public String getToolTip( )
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -1430,7 +1443,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 	public Image getColumnImage( Object element, int columnIndex )
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -1566,19 +1578,16 @@ public class ColumnMappingPage extends DataSetWizardPage
 	
 	public void addListener( ILabelProviderListener listener )
 	{
-		// TODO Auto-generated method stub
 		
 	}
 
 	public boolean isLabelProperty( Object element, String property )
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public void removeListener( ILabelProviderListener listener )
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -1694,13 +1703,16 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 * Handler for selecting a tree item
 	 * 
 	 */
-	private boolean handleSelectedItem( TreeItem selectedItem )
+	private boolean handleSelectedItem( TreeItem selectedItem, HashSet selectedNodes )
 	{
 		if ( selectedItem.getData( ) != null
 				&& selectedItem.getData( ) instanceof TreeNodeData )
 		{
 			ATreeNode aTreeNode = ( (TreeNodeData) selectedItem.getData( ) ).getTreeNode( );
-			addChildrenElements( aTreeNode );
+			if ( selectedNodes != null && !selectedNodes.contains( aTreeNode ) )
+			{
+				addChildrenElements( aTreeNode, selectedNodes );
+			}
 			return true;
 		}
 		return false;
