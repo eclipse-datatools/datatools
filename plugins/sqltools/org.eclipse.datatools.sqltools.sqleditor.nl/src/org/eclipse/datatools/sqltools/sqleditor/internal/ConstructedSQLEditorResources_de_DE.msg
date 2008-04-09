@@ -1,0 +1,66 @@
+## *******************************************************************************
+## Copyright (c) 2000, 2005 IBM Corporation and others.
+## All rights reserved. This program and the accompanying materials 
+## are made available under the terms of the Eclipse Public License v1.0
+## which is available at
+## http://www.eclipse.org/legal/epl-v10.html
+## 
+## Contributors:
+##     IBM Corporation - initial API and implementation
+## *******************************************************************************/
+
+## Resources for the standard editor actions
+
+ContentAssistProposal.label       =Co&ntent Assist@Ctrl+SPACE
+ContentAssistProposal.tooltip     =Content Assist
+ContentAssistProposal.image       =
+ContentAssistProposal.description =Content Assist
+
+ContentAssistTip.label       =Content Tip@Ctrl+SHIFT+SPACE
+ContentAssistTip.tooltip     =Content Tip
+ContentAssistTip.image       =
+ContentAssistTip.description =Content Tip
+
+ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
+ContentFormat.tooltip     =Format SQL
+ContentFormat.image       =
+ContentFormat.description =Format SQL source
+
+## Resources for SQL Editor-specific actions
+
+# Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
+SQLEditor.connectAction.label       =Connect to Data&base
+SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.image       =
+SQLEditor.connectAction.description =Select or create the database connection for this editor
+
+SQLEditor.disconnectAction.label       =Disconnect fro&m Database
+SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.image       =
+SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+
+SQLEditor.runAction.label       =Run S&QL
+SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.image       =
+SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+
+SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
+SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.image       =
+SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+
+SQLEditor.action.toggle.commect.label=Togg&le Comment
+SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.image=
+SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+
+AddTemplateAction.label=Save as &Template...
+AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.image=
+AddTemplateAction.description=Save Selected Text as Template...
+
+Editor.ContextPreferencesAction.label=Preferences...
+Editor.ContextPreferencesAction.description=Show preferences
+Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.image=
+

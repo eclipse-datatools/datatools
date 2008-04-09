@@ -1,0 +1,72 @@
+## *******************************************************************************
+## Copyright (c) 2000, 2005 IBM Corporation and others_
+## All rights reserved_ This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1_0
+## which is available at
+## http://www_eclipse_org/legal/epl-v10_html
+##
+## Contributors:
+##     IBM Corporation - initial API and implementation
+## *******************************************************************************/
+
+## Resources for the standard editor actions
+
+common_error=Error
+SQLUpdater_nonportable=Not portable to {0}:
+SQLUpdater_error_location=Failed to get marker location
+SQLUpdater_error_annotation=Error occurred while updating annotations
+SQLUpdater_error_removemarker=Error occurred while removing markers
+SQLUpdate_dialog_title=Information
+SQLUpdate_dialog_message=Content contains more than {0} lines. Do you want to disable syntax validation?
+SQLUpdate_dialog_toggle=&Remember my decision
+SQLErrorHover_makeStickyHint=Press {0} for focus.
+
+## Resources for the Set Statement Terminator dialog and composite panel
+
+#SQLEditor_setStatementTerminatorDialog_title  = Set Statement Terminator
+#SQLEditor_setStatementTerminatorDialog_prompt = Statement terminator:
+
+## Resources for the Outline view
+
+SQLEditor_outlinePage_sqlSegment_titlePattern=position {0}
+
+## Resources for the database connection management
+
+SQLEditor_connection_status_noConnection = No connection
+SQLEditor_file_deleted_or_not_accessible=The original file "{0}" has been deleted or is not accessible.
+#SQLEditor_connection_errorDialog_title   = Connection Exception
+#SQLeditor_connection_errorDialog_message = Connection has. The following error was reported:\n"{0}"
+
+## Miscellaneous resources
+
+#SQLEditor_textHover_emptySelection=empty selection
+#SQLEditor_error_save_message=Save could not be completed_ {0}
+#SQLEditor_error_save_title=Problems During Save As__.
+#SQLEditor_warning_save_delete=The original file ''{0}'' has been deleted.
+
+plugin_internal_error=SQL Editor plugin internal error
+
+#AbstractSQLHover_makeStickyHint=Press {0} for focus.
+
+SQLEditorConnectionInfo_decode_error=Failed to decode SQLEditorConnectionInfo from {0}
+
+# ==============================================================================
+# Editor Framework
+# ==============================================================================
+EditorManager_operationFailed = {0} Failed
+#EditorManager_saveChangesQuestion = ''{0}'' has been modified_ Save changes to update the syntax highlighting?
+
+Save = Save
+
+SQLEditor_error_while_trying_to_install_sql_updater=Error occurred while trying to install SQL udpater
+
+SQLEditorStorage_default_name=Scrapbook
+
+SQLEditor_status_profile=Current profile: {0}, 
+SQLEditor_status_database=Database: {0},
+SQLEditor_problem_save_as=Problems During Save As...
+SQLEditor_could_not_save_as=Save could not be completed. {0}
+SQLEditor_status_dbType=Database type: {0},
+SQLEditor_save_message="Save" will deploy the stored procedure to database
+SQLEditor_status_profile_connected=connected
+SQLEditor_status_profile_notconnected=not connected
