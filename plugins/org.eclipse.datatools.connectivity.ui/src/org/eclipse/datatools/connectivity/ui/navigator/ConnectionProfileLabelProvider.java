@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.ui.ProfileImageRegistry;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.ISharedImages;
@@ -143,7 +144,7 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 					String versionStr = null;
 					if(serverVersion.compareTo(Version.NULL_VERSION) == 0) {
 						versionStr = MessageFormat.format(
-								ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version.versionless"), 
+								ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version.versionless"),  //$NON-NLS-1$
 								new String[] {sb.toString(),
 									serverName});
 					} else {
@@ -165,6 +166,8 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 		else {
 			text = super.getText(element);
 		}
+		if (text != null && text.trim().length() > 0)
+			text = TextProcessor.process(text);
 		return text;
 	}
 
@@ -257,6 +260,8 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 		else {
 			desc = null;
 		}
+		if (desc != null && desc.trim().length() > 0)
+			desc = TextProcessor.process(desc);
 		return desc;
 	}
 
