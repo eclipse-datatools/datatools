@@ -64,7 +64,7 @@ builderDir=/home/adb/releng.dtp/org.eclipse.datatools.releng.builder/
 buildType=I
 
 # directory where to copy build
-postingDirectory=/home/adb/releng/BIRTOutput/dtp.output/1.6
+postingDirectory=/home/adb/releng.dtp/output
 
 # flag to indicate if test build
 testBuild=""

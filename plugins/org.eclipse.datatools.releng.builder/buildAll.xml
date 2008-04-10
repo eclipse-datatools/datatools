@@ -86,16 +86,6 @@
 
 	<target name="buildDtpSdkAllFeature">
 
-		<!-- fetch org.eclipse.datatools.enablement.jdbc.feature -->
-		<!--
-		<ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="preBuild">
-			<property name="builder" value="${eclipse.build.configs}/dtp.enablement.jdbc" />
-		</ant>
-		<ant antfile="build.xml" dir="${eclipse.pdebuild.scripts}" target="fetch">
-			<property name="builder" value="${eclipse.build.configs}/dtp.enablement.jdbc" />
-		</ant>
-		-->
-
 		<!-- build dtp sdk feature -->
 		<ant antfile="build.xml" dir="${basedir}">
 			<property name="component" value="${eclipse.build.configs}/dtp.sdk.all" />
@@ -103,16 +93,6 @@
 
 	</target>
 
-	<target name="buildDtpEnablementFeature">
-		<ant antfile="build.xml" dir="${basedir}">
-			<property name="component" value="${eclipse.build.configs}/dtp.enablement" />
-		</ant>
-	</target>
-	
-	<target name="buildUpdateSite" if="updateSite">
-		<ant antfile="${eclipse.build.configs}/../helper.xml" target="buildUpdateJars" />
-	</target>
-	
 	<target name="integrateDtpFeatures">
 
 		<property name="tmpsite" value="${buildDirectory}/tmpsite" />
