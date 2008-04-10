@@ -1,0 +1,40 @@
+###############################################################################
+# Copyright (c) 2007 IBM Corporation and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     IBM Corporation - initial API and implementation
+###############################################################################
+
+#
+## zSeries Driver UI Contributor
+#
+CUI_NEWCW_LOCATION_LBL_UI_ = Locat&ion:
+CUI_NEWCW_HOST_LBL_UI_ = &Host:
+CUI_NEWCW_PORT_LBL_UI_ = Port nu&mber:
+CUI_NEWCW_CONNECTIONURL_LBL_UI_= Connection UR&L:
+CUI_NEWCW_TBCREATOR_LBL_UI = &Retrieve objects created by this user only
+CUI_NEWCW_USERNAME_LBL_UI_ = User name:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Password:
+CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Sa&ve password
+CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Location
+CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host
+CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Port number
+CUI_NEWCW_RETRIEVE_OBJECTS_RESTRICTION_SUMMARY_DATA_TEXT_ = Retrieve objects created by this user only
+CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = User name
+CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Save password
+CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
+CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = true
+CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = false
+
+CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = Enter a location name.
+CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Enter the host name for the database server.
+CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Enter the connection port number for the database server.
+CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Enter a user name.
+CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Enter a password.
+
+
+
