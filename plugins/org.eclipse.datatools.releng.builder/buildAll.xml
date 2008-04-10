@@ -37,7 +37,6 @@
 	<target name="main" depends="init">
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
-		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
 		<antcall target="Package"/>
                 <antcall target="GenerateUpdateSite"/>
