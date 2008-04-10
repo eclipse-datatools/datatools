@@ -1,0 +1,139 @@
+###############################################################################
+# Copyright (c) 2001, 2004 IBM Corporation and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     IBM Corporation - initial API and implementation
+###############################################################################
+##
+###
+##  !!! This property file should only contain resources that are "translatable" !!!
+###
+##
+
+#
+## Loading support
+#
+DATATOOLS.SERVER.UI.EXPLORER.LOADING = Loading {0} provider
+DATATOOLS.SERVER.UI.EXPLORER.REMOVING_PLACE_HOLDER=Removing place holder ...
+DATATOOLS.SERVER.UI.EXPLORER.DESCRIPTION = Core
+
+#
+## Actions
+#
+DATATOOLS.SERVER.UI.EXPLORER.CONNECT_SERVER = Add Server Connection
+DATATOOLS.SERVER.UI.EXPLORER.DISCONNECT_SERVER = Disconnect Server
+DATATOOLS.SERVER.UI.EXPLORER.LAYOUT_OPTIONS = layout
+DATATOOLS.SERVER.UI.EXPLORER.VIRTUAL_FOLDER = Virtual Folder
+DATATOOLS.SERVER.UI.EXPLORER.HIERARCHICAL = Hierarchical
+DATATOOLS.SERVER.UI.EXPLORER.COLLAPSE_ALL = Collapse All
+DATATOOLS.SERVER.UI.EXPLORER.REFRESH = Ref&resh
+
+#
+## Filtering Decoration
+#
+DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtered]
+DATATOOLS.SERVER.UI.EXPLORER.FILTER = Filter
+#
+## Developer Actions
+#
+DATATOOLS.SERVER.UI.DEVELOPER.ADD_TABLE = Add Table
+
+#
+## Delete Connection Warning
+#
+DATATOOLS.SERVER.UI.DELETE_CONNECTION_TITLE = Delete Connection
+DATATOOLS.SERVER.UI.DELETE_CONNECTION_MANY = The following Eclipse Projects: {0} are dependent on this connection.\n\nAre you sure you want to delete connection "{1}"?
+DATATOOLS.SERVER.UI.DELETE_CONNECTION_ONE = The following Eclipse Project: {0} is dependent on this connection.\n\nAre you sure you want to delete connection "{1}"?
+
+#
+## Add New Server Dialog
+#
+DATATOOLS.SERVER.UI.ADD_NEW_SERVER_TITLE = Add Server Connection
+DATATOOLS.SERVER.UI.DATABASE_TYPE = Database Type:
+DATATOOLS.SERVER.UI.DATABASE_VERSION = Database Version:
+DATATOOLS.SERVER.UI.SELECT_DATABASE = Select or Enter the Database Name:
+DATATOOLS.SERVER.UI.ADD_NEW_SERVER_ENTER_INFO=Enter Connection Information
+DATATOOLS.SERVER.UI.ADD_NEW_SERVER_CONNECTING=Connecting to Server...
+DATATOOLS.SERVER.UI.ADD_NEW_SERVER_FAILURE=Connection to server failed
+DATATOOLS.SERVER.UI.IDENTIFICATION_LABEL = Server Connection Identification
+DATATOOLS.SERVER.UI.PROVIDER_NOT_FOUND = No provider implemented yet
+DATATOOLS.SERVER.UI.EXPLORER.NULL_CONNECTION = Connection Not Established
+DATATOOLS.SERVER.UI.EXPLORER.CONNECTION_EXCEPTION = SQL Connection Exception with {0}
+DATATOOLS.SERVER.UI.USER_NAME_LABEL = User ID:
+DATATOOLS.SERVER.UI.PASSWORD_LABEL = Password:
+_UI_DIALOG_CONNECTION_TITLE  = New Connection
+
+#
+## Error Connection Dialog
+#
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.TITLE = Invalid Connection Exception
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Connection failed
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.TITLE = SQL Exception Notification
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.RECONNECT = Reconnect
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.DISCONNECT = Disconnect
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.IGNORE = Ignore
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.MESSAGE = Please perform one of the proposed actions:
+DATATOOLS.SERVER.UI.CONNECTION.SQLEXCEPTION.SQLMESSAGE = A SQL Exception was reported during this operation.
+ 
+#
+## Server Disconnect
+#
+DATATOOLS.SERVER.UI.DISCONNECT_SERVER_TITLE = Connection Selection
+DATATOOLS.SERVER.UI.DISCONNECT_SERVER_SELECTION = Select one Connection:
+DATATOOLS.SERVER.UI.DISCONNECT_CONNECTED_SERVERS = Available Connections
+
+#
+## Server Explorer Nodes
+#
+DATATOOLS.SERVER.UI.EXPLORER.KNOWN_SERVERS=Connections
+DATATOOLS.SERVER.UI.EXPLORER.DISC_SERVERS=Discovered Aliases
+DATATOOLS.SERVER.UI.EXPLORER.SCHEMA=Schemas
+DATATOOLS.SERVER.UI.EXPLORER.DATABASE=Databases
+DATATOOLS.SERVER.UI.EXPLORER.TABLE=Tables
+DATATOOLS.SERVER.UI.EXPLORER.ROUTINE=Routines
+DATATOOLS.SERVER.UI.EXPLORER.SEQUENCE=Sequences
+DATATOOLS.SERVER.UI.EXPLORER.UDT=User-Defined Types
+DATATOOLS.SERVER.UI.EXPLORER.VIEW= Views
+DATATOOLS.SERVER.UI.EXPLORER.TRIGGER= Triggers
+DATATOOLS.SERVER.UI.EXPLORER.INDEX=Indexes
+DATATOOLS.SERVER.UI.EXPLORER.CONSTRAINT=Constraints
+DATATOOLS.SERVER.UI.EXPLORER.COLUMN=Columns
+DATATOOLS.SERVER.UI.EXPLORER.PROXY=Proxy
+DATATOOLS.SERVER.UI.EXPLORER.DEPENDENCY= Dependencies
+DATATOOLS.SERVER.UI.EXPLORER.EXTERNAL_DEPENDENCY = External Dependency
+DATATOOLS.SERVER.UI.EXPLORER.DB2_CLOUDSCAPE = localhost [DB2 Cloudscape]
+DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE=Stored Procedures
+DATATOOLS.SERVER.UI.EXPLORER.UDF=User-Defined Functions
+DATATOOLS.SERVER.UI.EXPLORER.CATALOG=Catalogs
+
+#
+## Update Offline Items
+#
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE = &Save Offline
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE = &Work Offline
+DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = Save Offline
+DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Work Offline
+DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Offline content has not been found in your workspace.\nRun "Save Offline" when you are connected.
+DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Connection failed
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Connection has failed. The following error was reported:\n"{0}"\n\nDo you want to work offline?
+
+#
+## Bookmark
+#
+DATATOOLS.SERVER.UI.BOOKMARK.TITLE=Add Bookmark
+DATATOOLS.SERVER.UI.BOOKMARK.MESSAGE=Enter Bookmark Name:
+
+
+SQL_MODEL_CONTENT_EXTENSION_LABEL=SQL Model Content
+
+
+
+
+
+
+
+
