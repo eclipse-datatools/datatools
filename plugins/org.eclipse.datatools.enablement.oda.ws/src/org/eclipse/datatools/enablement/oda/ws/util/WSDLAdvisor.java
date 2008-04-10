@@ -75,6 +75,7 @@ public class WSDLAdvisor
 	public static final String BASE = "base"; //$NON-NLS-1$
 	public static final String SIMPLE_TYPE = "simpleType"; //$NON-NLS-1$
 	public static final String COMPLEX_TYPE = "complexType"; //$NON-NLS-1$
+	public static final String CHOICE = "choice"; //$NON-NLS-1$
 	private static Map definitionMap = new HashMap( );
 	private static List primitiveDataTypeList;
 
@@ -690,7 +691,7 @@ public class WSDLAdvisor
 				if ( !WSUtil.isNull( nodeMap.getNamedItem( NAME ) )
 						|| !WSUtil.isNull( nodeMap.getNamedItem( REF ) ) )
 				{
-					return node.getParentNode( );
+					return getSignificantParentNode( node );
 				}
 				else
 				{
@@ -702,6 +703,23 @@ public class WSDLAdvisor
 		return null;
 	}
 
+	private Node getSignificantParentNode( Node node )
+	{
+		Node parentNode = node.getParentNode( );
+		while( isChoiceNode( parentNode ) )
+		{
+			if( !WSUtil.isNull( parentNode.getParentNode( ) ) )
+			{
+				parentNode = parentNode.getParentNode( );
+			}
+			else
+			{
+				return parentNode;
+			}
+		}
+		return parentNode;
+	}
+	
 	private String[] generateSubNodeParents( String nodeName,
 			String[] parentNode )
 	{
@@ -803,7 +821,14 @@ public class WSDLAdvisor
 			{
 				return;
 			}
-
+			if( isChoiceNode( sub ) )
+			{
+				genetateLowerLeverList( element,
+						lowerLeverList,
+						subNodeParents,
+						sub,
+						anonymousComplexParentNode );
+			}
 			if ( sub.getNodeType( ) != Node.ELEMENT_NODE )
 				continue;
 
@@ -813,6 +838,16 @@ public class WSDLAdvisor
 					anonymousComplexParentNode,
 					sub );
 		}
+	}
+
+	/**
+	 * 
+	 * @param node
+	 * @return
+	 */
+	private boolean isChoiceNode( Node node )
+	{
+		return getParamTypeLocalPart( node.getNodeName( ) ).equals( CHOICE );
 	}
 
 	private void handleNodes( Element element, List lowerLeverList,
