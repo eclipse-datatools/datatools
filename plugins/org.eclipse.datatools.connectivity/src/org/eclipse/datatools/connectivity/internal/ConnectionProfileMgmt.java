@@ -52,6 +52,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.internal.security.ICipherProvider;
 import org.eclipse.datatools.connectivity.internal.security.SecurityManager;
 import org.w3c.dom.DOMException;
@@ -623,9 +624,16 @@ public class ConnectionProfileMgmt {
 							// This section is to fix BZ 213258 -- brianf
 							String jarList = 
 								cp.getBaseProperties().getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
-							if (jarList != null && jarList.trim().length() > 0) {
+							String driverClass = cp.getBaseProperties().getProperty(IJDBCDriverDefinitionConstants.DRIVER_CLASS_PROP_ID);
+							if ((jarList != null && jarList.trim().length() > 0) 
+									|| (driverClass != null && driverClass.trim().length() > 0)) {
 								Properties diprops = di.getPropertySet().getBaseProperties();
-								diprops.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
+								if (jarList != null && jarList.trim().length() > 0) {
+									diprops.setProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST, jarList);
+								}						
+								if (driverClass != null && driverClass.trim().length() > 0){
+									diprops.setProperty(IJDBCDriverDefinitionConstants.DRIVER_CLASS_PROP_ID, driverClass);
+								}
 								di.getPropertySet().setBaseProperties(diprops);
 
 								DriverManager.getInstance().removeDriverInstance(di.getId());
