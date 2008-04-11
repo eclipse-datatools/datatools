@@ -290,7 +290,7 @@ public class AddTableDialog extends Dialog {
      * below the message and above the button bar.
      */
     public Control createDialogArea(Composite parent) {
-        Composite panel = ViewUtility.createComposite(parent, 1, true);
+        Composite panel = ViewUtility.createComposite(parent, 1, true, true);
         WorkbenchHelp.setHelp(panel, SQLBuilderContextIds.SQLB_ADD_TABLE_DIALOG);
         createInputPanel(panel);
 
@@ -298,7 +298,7 @@ public class AddTableDialog extends Dialog {
     }
 
     Composite createInputPanel(Composite parent) {
-        Composite panel = ViewUtility.createComposite(parent, 2, true);
+        Composite panel = ViewUtility.createComposite(parent, 2, true, true);
         ViewUtility.createLabel(panel, Messages._UI_LABEL_TABLE_NAME);
 
         // Create a tree control for selecting a schema/table. The tree is
