@@ -1,0 +1,29 @@
+###############################################################################
+# Copyright (c) 2001, 2004 IBM Corporation and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     IBM Corporation - initial API and implementation
+###############################################################################
+
+pluginName = Eclipse Data Tools Platform Informix Database Definition Plug-in
+nl1PluginName = Informix Database Definition NL1 Fragment
+providerName = Eclipse.org
+
+10.0ProductString = Informix
+10.0VersionString = 10.0
+
+10ProductString = Informix
+10VersionString = 10
+
+94ProductString = Informix
+94VersionString = 9.4
+
+93ProductString = Informix
+93VersionString = 9.3
+
+92ProductString = Informix
+92VersionString = 9.2
