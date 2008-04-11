@@ -641,41 +641,30 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 			Object sel = ((StructuredSelection) selection).getFirstElement();
 			selectionTable.removeAll();
 			if (sel instanceof IVirtualNode) {
-				if (sel instanceof ISchemaNode) {
-					Iterator schemas = Arrays.asList(
-							((ISchemaNode) sel).getChildrenArray()).iterator();
-					while (schemas.hasNext()) {
-						TableItem tableItem = new TableItem(selectionTable,
-								SWT.NONE);
-						tableItem.setText(((SQLObject) schemas.next())
-								.getName());
+				ContainmentService containmentService = RDBCorePlugin
+						.getDefault().getContainmentService();
+				EObject schema = (EObject) getParentEObject(sel);
+				Collection viewsCollection = containmentService
+						.getContainedDisplayableElements(schema,
+								((IVirtualNode) sel).getGroupID());
+				ArrayList viewsList = new ArrayList(viewsCollection);
+				Collections.sort(viewsList, new Comparator() {
+					public int compare(Object sqlObject1, Object sqlObject2) {
+						return collator
+								.getCollationKey(
+										((SQLObject) sqlObject1).getName())
+								.compareTo(
+										collator
+												.getCollationKey(((SQLObject) sqlObject2)
+														.getName()));
 					}
-				} else {
-					ContainmentService containmentService = RDBCorePlugin
-							.getDefault().getContainmentService();
-					EObject schema = (EObject) getParentEObject(sel);
-					Collection viewsCollection = containmentService
-							.getContainedDisplayableElements(schema,
-									((IVirtualNode) sel).getGroupID());
-					ArrayList viewsList = new ArrayList(viewsCollection);
-					Collections.sort(viewsList, new Comparator() {
-						public int compare(Object sqlObject1, Object sqlObject2) {
-							return collator
-									.getCollationKey(
-											((SQLObject) sqlObject1).getName())
-									.compareTo(
-											collator
-													.getCollationKey(((SQLObject) sqlObject2)
-															.getName()));
-						}
-					});
-					Iterator views = viewsList.iterator();
-					while (views.hasNext()) {
-						TableItem tableItem = new TableItem(selectionTable,
-								SWT.NONE);
-						tableItem.setText(((SQLObject) views.next()).getName());
-					}
-				}
+				});
+				Iterator views = viewsList.iterator();
+				while (views.hasNext()) {
+					TableItem tableItem = new TableItem(selectionTable,
+							SWT.NONE);
+					tableItem.setText(((SQLObject) views.next()).getName());
+				}			
 			}
 		}
 	}
