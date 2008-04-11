@@ -10,8 +10,24 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.ibm.db2.internal.luw;
 
+import java.util.Properties;
+
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
 public class LUWDBPropertiesPersistenceHook extends
 		JDBCPasswordPropertyPersistenceHook {
+
+	public boolean arePropertiesComplete(Properties props) {
+		return super.arePropertiesComplete(props) && areUserNameAndPasswordComplete(props);
+	}
+
+	private boolean areUserNameAndPasswordComplete(Properties props) {
+		String userid = props.getProperty(
+			IJDBCConnectionProfileConstants.USERNAME_PROP_ID, null);
+		String passwd = props.getProperty(
+				IJDBCConnectionProfileConstants.PASSWORD_PROP_ID, null);
+		return userid != null && userid.trim().length() > 0 && passwd != null
+			&& passwd.trim().length() > 0;
+	}
 }
