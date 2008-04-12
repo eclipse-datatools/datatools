@@ -1,0 +1,22 @@
+###############################################################################
+# Copyright (c) 2001, 2004 IBM Corporation and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     IBM Corporation - initial API and implementation
+###############################################################################
+
+pluginName = Eclipse Data Tools Platform Sybase Database Definition Plug-in
+providerName = Eclipse.org
+
+12.xProductString = Sybase
+12.xVersionString = 12.x
+
+15.0ProductString = Sybase
+15.0VersionString = 15.0
+
+15ProductString = Sybase
+15VersionString = 15
