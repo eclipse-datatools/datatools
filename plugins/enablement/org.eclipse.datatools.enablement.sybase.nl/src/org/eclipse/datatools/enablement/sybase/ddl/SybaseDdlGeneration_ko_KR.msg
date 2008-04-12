@@ -1,0 +1,63 @@
+GENERATE_FULL_SYNTAX = Fu&lly Syntax 
+GENERATE_FULL_SYNTAX_DES = Generate fully syntax
+GENERATE_EXTRA_CODE	=	E&xtra Code
+GENERATE_EXTRA_CODE_DES	=	Generate extra code
+GENERATE_PRIVILEGE	=	&Privilege
+GENERATE_PRIVILEGE_DES	=	Generate privilege grant
+GENERATE_COMMENTS = Comments
+GENERATE_COMMENTS_DES = Generate Commen&ts
+
+
+GENERATE_USER_DEFINED_TYPES 	= User Defined &Types
+GENERATE_USER_DEFINED_TYPES_DES 	= Generate user defined types
+GENERATE_DEFAULTS_DES 	= Generate defaults
+GENERATE_DEFAULTS 		= &Defaults
+GENERATE_DEFAULTS_DES 	= Generate defaults
+GENERATE_RULES 		= &Rules
+GENERATE_RULES_DES 	= Generate rules
+GENERATE_USERS_GROUPS = &Users & Groups
+GENERATE_USERS_GROUPS_DES = Generate users and groups
+GENERATE_PROXY_TABLES = &Proxy Tables
+GENERATE_PROXY_TABLES_DES = Generate proxy tables
+GENERATE_SEGMENTS = Se&gments
+GENERATE_SEGMENTS_DES = Generate segments
+GENERATE_DBSPACES = Dbs&pace
+GENERATE_DBSPACES_DES = Generate dbspaces
+GENERATE_EVENTS = E&vents
+GENERATE_EVENTS_DES = Generate events
+
+GENERATE_CHECK_CONSTRAINTS = &Check Constraints
+GENERATE_CHECK_CONSTRAINTS_DES = Generate check constraints
+GENERATE_UNIQUE_CONSTRAINTS = &Unique Constraints
+GENERATE_UNIQUE_CONSTRAINTS_DES = Generate unique constraints
+GENERATE_PRIMARY_KEYS = &Primary Keys
+GENERATE_PRIMARY_KEYS_DES = Generate primary keys
+GENERATE_FOREIGN_KEYS = &Foreign Keys
+GENERATE_FOREIGN_KEYS_DES = Generate foreign keys
+
+GENERATE_CATALOGS = Catalo&g
+GENERATE_CATALOGS_DES = Generate Catalog
+GENERATE_DATABASE = &Database
+GENERATE_DATABASE_DES = Generate Database
+
+#GENERATE_DOMAINS = Do&mains
+#GENERATE_DOMAINS_DES = Generate domains
+
+DATABASE_LABEL = Database
+TABLE_LABEL = Table
+PROCEDURE_LABEL = Procedure
+USER_DEFINED_FUNCTION_LABEL = User Defined Function
+VIEW_LABEL = View
+USER_DEFINED_DATATYPE_LABEL = User Defined Datatype
+EVENT_LABEL = Event
+CHECK_CONSTRAINT_LABEL = Check Constraint
+UNIQUE_CONSTRAINT_LABEL = Unique Constraint
+PRIMARY_KEY_LABEL = Primary Key
+FOREIGN_KEY_LABEL = Foreign Key
+INDEX_LABEL = Index
+TRIGGER_LABEL = Trigger
+DEFAULT_LABEL = Default
+RULE_LABEL = Rule
+
+
+
