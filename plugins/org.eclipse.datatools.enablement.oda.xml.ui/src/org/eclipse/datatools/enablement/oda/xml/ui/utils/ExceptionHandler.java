@@ -1,13 +1,13 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 Sybase, Inc.
- * 
- * All rights reserved. This program and the accompanying materials are made
- * available under the terms of the Eclipse Public License v1.0 which
- * accompanies this distribution, and is available at
+ * Copyright (c) 2004, 2008 Actuate Corporation.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: mbarrett - initial API and implementation
- ******************************************************************************/
+ * Contributors:
+ *  Actuate Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.ui.utils;
 
 import org.eclipse.swt.widgets.Shell;
@@ -15,13 +15,14 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * Exception handler that displays an exception in a message box, and prints a
  * stack trace.
- * 
- * @author mbarrett
+ *
  */
-public class ExceptionHandler {
+public class ExceptionHandler
+{
 
-	public static void showException(Shell parentShell, String title,
-			String msg, Throwable ex) {
-		new ExceptionDialog(parentShell, title, msg, ex).open();
+	public static void showException( Shell parentShell, String title,
+			String msg, Throwable ex )
+	{
+		new ExceptionDialog( parentShell, title, msg, ex ).open( );
 	}
 }

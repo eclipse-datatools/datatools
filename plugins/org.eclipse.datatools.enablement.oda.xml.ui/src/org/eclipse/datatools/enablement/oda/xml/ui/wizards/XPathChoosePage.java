@@ -11,8 +11,6 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
-import java.util.List;
-
 import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
@@ -25,49 +23,37 @@ import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.SchemaPopulationUtil;
-import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.PlatformUI;
 
 /**
- * Root xpath choose page. It expands the xml tree list to choose the prefered
+ * Root xpath choose page. It expands the xml tree list to choose the preferred
  * root path
  */
 
 public class XPathChoosePage extends DataSetWizardPage
 {
     private static String DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );  //$NON-NLS-1$
-	private static final String PATH_SEPERATOR = "/";  //$NON-NLS-1$
 	private static final String EMPTY_STRING = ""; //$NON-NLS-1$
 	
-	private transient Tree availableXmlTree;
-	private transient Composite centerComposite;
-	private Button absolutePathButton;
-	private Button anyLocationButton;
-	private Button customButton;
-	private Combo xmlPathField;
-	private transient Group treeGroup;
+	private transient XMLTreeViewer availableXmlTree;
+	private transient Text xmlPathText;
 	private transient Group rightGroup;
 	
 	private ATreeNode treeNode;
@@ -75,15 +61,9 @@ public class XPathChoosePage extends DataSetWizardPage
 	private String xsdFileName;
 	private String xmlFileName;
 	private String xmlEncoding;
-
-	private String rootPath;
 	private String initRootPath;
-
-	private Label absolutePathLabel;
-	private Label anyLocationLabel;
-	private Label customPathLabel;
-	
-	private List xpathList;
+	private String rootPath;
+	private int selectRadioIndex = 1; // default selection is 3
 
 	/**
 	 * @param string
@@ -102,7 +82,6 @@ public class XPathChoosePage extends DataSetWizardPage
 		this.setTitle( pageName );
 		this.setMessage( DEFAULT_MESSAGE );
 		this.setPageComplete( false );
-		// TODO Auto-generated constructor stub
 	}
 
 	/*
@@ -143,8 +122,7 @@ public class XPathChoosePage extends DataSetWizardPage
 
 		backupRootPath( );
 		if ( rootPath != null && rootPath.length( ) > 0 )
-			xmlPathField.setText( rootPath );
-		xpathList = XPathPopulationUtil.getPathList( rootPath );
+			xmlPathText.setText( rootPath );
 	}
 	
 	private void backupRootPath( )
@@ -173,15 +151,16 @@ public class XPathChoosePage extends DataSetWizardPage
 		xmlEncoding = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_ENCODINGLIST );
 		populateXMLTree( );
 		backupRootPath( );
+		this.availableXmlTree.getSingleButton( ).setEnabled( false );
 		setMessage( DEFAULT_MESSAGE );
 	}
 	
     /**
-    * 
-    * @param parent
-    * @return
-    */
-	public Control createPageControl( Composite parent )
+	 * 
+	 * @param parent
+	 * @return
+	 */
+	public Control createPageControl(Composite parent) 
 	{
 		DEFAULT_MESSAGE = Messages.getString( "wizard.defaultMessage.selectXPath" );   //$NON-NLS-1$
 		this.setMessage( DEFAULT_MESSAGE );
@@ -191,16 +170,30 @@ public class XPathChoosePage extends DataSetWizardPage
 		composite.setLayout( layout );
 
 		createLeftGroup( composite );
+		availableXmlTree.getSingleButton( )
+				.addSelectionListener( new SelectionAdapter( ) {
 
-		FormData data = new FormData( );
-		data.left = new FormAttachment( treeGroup, 5 );
-		data.bottom = new FormAttachment( 50 );
-		data.width = 20;
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
 
-		centerComposite = new Composite( composite, SWT.NONE );
-		centerComposite.setLayoutData( data );
-		FillLayout centerLayout = new FillLayout( );
-		centerComposite.setLayout( centerLayout );
+				RowMappingDialog dialog = new RowMappingDialog( PlatformUI.getWorkbench( )
+						.getDisplay( )
+						.getActiveShell( ),
+						Messages.getString( "RowMappingDialog.title" ), //$NON-NLS-1$
+						selectedItem, selectRadioIndex, rootPath );
+				if ( dialog.open( ) == Window.OK )
+				{
+					rootPath = dialog.getSelectedPath( );
+					selectRadioIndex = dialog.getSelectIndex( );
+					xmlPathText.setText( rootPath );
+				}
+			}
+		} );
 
 		createRightGroup( composite );
 		return composite;
@@ -212,52 +205,31 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void createLeftGroup( Composite composite2 )
 	{
-		FormData data = new FormData( );
-
-		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 47, -5 );
-		data.bottom = new FormAttachment( 100, -5 );
-
-		treeGroup = new Group( composite2, SWT.NONE );
-		treeGroup.setLayout( new FillLayout( ) );
-		treeGroup.setLayoutData( data );
-		availableXmlTree = new Tree( treeGroup, SWT.MULTI
-				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
-		availableXmlTree.addSelectionListener( new SelectionAdapter( ) {
+		availableXmlTree = new XMLTreeViewer( composite2, false );
+		availableXmlTree.getTree( ).addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				TreeItem items[] = availableXmlTree.getSelection( );
+				TreeItem items[] = availableXmlTree.getTree( ).getSelection( );
 				for ( int i = 0; i < items.length; i++ )
 				{
 					selectedItem = items[0];
 					if ( items[i].getGrayed( ) )
 					{
-						availableXmlTree.setRedraw( false );
-						availableXmlTree.deselectAll( );
-						availableXmlTree.setRedraw( true );
-						availableXmlTree.redraw( );
+						availableXmlTree.getTree( ).setRedraw( false );
+						availableXmlTree.getTree( ).deselectAll( );
+						availableXmlTree.getTree( ).setRedraw( true );
+						availableXmlTree.getTree( ).redraw( );
 					}
 				}
-				if ( selectedItem != null )
-				{
-					xpathList = getSelectedXPathList( );
-					if( customButton.getSelection( ) )
-					{
-						resetCustomXMLPathField( );
-					}
-					resetButtonsAndLabels( true );
-				}
-				else
-				{
-					resetButtonsAndLabels( false);
-				}
+						if ( selectedItem != null )
+							availableXmlTree.getSingleButton( )
+									.setEnabled( true );
+						else
+							availableXmlTree.getSingleButton( )
+									.setEnabled( false );
 			}
-
 		} );
-
-		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) );  //$NON-NLS-1$
 	}
 	
 	/**
@@ -268,277 +240,41 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		FormData data = new FormData( );
 		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( centerComposite, 5 );
+		data.left = new FormAttachment( availableXmlTree.getBtnComposite( ), 5 );
 		data.right = new FormAttachment( 100, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
-		
 		rightGroup = new Group( composite2, SWT.NONE );
-		GridLayout layout = new GridLayout( );
-		layout.numColumns = 2;
-		rightGroup.setLayout( layout );
+
+		rightGroup.setLayout( new FormLayout( ) );
 		rightGroup.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.label" ) );  //$NON-NLS-1$
 		rightGroup.setLayoutData( data );
-		
-		GridData buttonGd = new GridData( );
-		buttonGd.verticalAlignment = SWT.BEGINNING;
-		buttonGd.verticalIndent = 10;
-		
-		GridData labelGd = new GridData( GridData.FILL_HORIZONTAL );
-		labelGd.verticalIndent = 10;
 
-		absolutePathButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
-		absolutePathButton.setLayoutData( buttonGd );
-		absolutePathLabel = new Label( rightGroup, SWT.WRAP );
-		absolutePathLabel.setLayoutData( labelGd );
-		anyLocationButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
-		anyLocationButton.setLayoutData( buttonGd );
-		anyLocationLabel = new Label( rightGroup, SWT.WRAP );
-		anyLocationLabel.setLayoutData( labelGd );
-		customButton = new Button( rightGroup, SWT.RADIO | SWT.WRAP );
-		customButton.setLayoutData( buttonGd );
-		customButton.setSelection( true );
-		customPathLabel = new Label( rightGroup, SWT.WRAP );
-		customPathLabel.setLayoutData( labelGd );
-		customPathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) ); //$NON-NLS-1$
-		
-		setLabelValuesAndListeners( rightGroup );
-		
-		GridData txtGridData = new GridData();
-		txtGridData.widthHint = 200;
-		xmlPathField = new Combo( rightGroup, SWT.DROP_DOWN );
-		xmlPathField.setLayoutData( txtGridData );
-		xmlPathField.setVisible( true );
-		xmlPathField.addSelectionListener( new SelectionAdapter( ) {
+		data = new FormData( );
+		data.top = new FormAttachment( 0, 5 );
+		data.left = new FormAttachment( 0, 5 );
+		data.right = new FormAttachment( 100, -5 );
 
-			public void widgetSelected( SelectionEvent e )
-			{
-			}
-		} );
-		xmlPathField.addModifyListener( new ModifyListener( ) {
+		final Label label = new Label( rightGroup, SWT.NONE );
+		label.setText( Messages.getString( "xPathChoosePage.messages.xPathExpression" ) );  //$NON-NLS-1$
+		label.setLayoutData( data );
+
+		data = new FormData( );
+		data.top = new FormAttachment( 0, 25 );
+		data.left = new FormAttachment( 0, 5 );
+		data.right = new FormAttachment( 100, -5 );
+		xmlPathText = new Text( rightGroup, SWT.BORDER );
+		xmlPathText.setLayoutData( data );
+
+		xmlPathText.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )
 			{
-				rootPath = xmlPathField.getText( );
-				resetXPathPropInHandle( rootPath );
+				rootPath = xmlPathText.getText( );
 				setPageStatus( );
 			}
 		} );
 	}
 
-	/**
-	 * reset the custom xpath expression field
-	 * 
-	 */
-	private void resetCustomXMLPathField( )
-	{
-		xmlPathField.removeAll( );
-		if ( xpathList != null )
-		{
-			if ( xpathList.size( ) < 2 )
-			{
-				
-			}
-			xmlPathField.setText( xpathList.get( 0 ).toString( ) );
-			xmlPathField.add( xpathList.get( 0 ).toString( ) );
-			xmlPathField.add( xpathList.get( 1 ).toString( ) );
-		}
-		rootPath = xmlPathField.getText( );
-		resetXPathPropInHandle( rootPath );
-		setPageStatus( );
-	}
-	
-	/**
-	 * 
-	 */
-	private void setLabelValuesAndListeners( Composite composite )
-	{
-		if ( this.selectedItem != null )
-		{
-			xpathList = getSelectedXPathList( );
-			if ( xpathList.size( ) < 2 )
-			{
-				setMessage( Messages.getString( "error.xpath.getPathList" ), ERROR ); //$NON-NLS-1$
-			}
-			resetButtonsAndLabels( true );
-		}
-		else
-		{
-			resetButtonsAndLabels( false );
-		}		
-		absolutePathLabel.addListener( SWT.MouseDown, new Listener(){
-
-			public void handleEvent( Event event )
-			{
-				absolutePathButton.setSelection( true );	
-				anyLocationButton.setSelection( false );
-				customButton.setSelection( false );
-				doSelectAbsolutePathButton( );
-			}			
-		});
-		anyLocationLabel.addListener( SWT.MouseDown, new Listener(){
-
-			public void handleEvent( Event event )
-			{
-				anyLocationButton.setSelection( true );
-				absolutePathButton.setSelection( false );	
-				customButton.setSelection( false );
-				doSelectAnyLocationButton( );
-			}			
-		});
-		customPathLabel.addListener( SWT.MouseDown, new Listener(){
-
-			public void handleEvent( Event event )
-			{
-				customButton.setSelection( true );
-				xmlPathField.setVisible( true );
-				absolutePathButton.setSelection( false );
-				anyLocationButton.setSelection( false );
-				xpathList = getSelectedXPathList( );
-				resetCustomXMLPathField( );
-				setPageStatus( );
-			}			
-		});
-		absolutePathButton.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				doSelectAbsolutePathButton( );
-			}
-		} );
-		anyLocationButton.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				doSelectAnyLocationButton( );
-			}
-		} );
-		customButton.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				if ( customButton.getSelection( ) )
-				{
-					xmlPathField.setVisible( true );
-					xpathList = getSelectedXPathList( );
-					resetCustomXMLPathField( );
-				}
-				setPageStatus( );
-			}
-		} );
-		composite.layout( );
-	}
-
-	/**
-	 * Reset the rootPath value after selecting the "Absolute Path" button
-	 * 
-	 */
-	private void doSelectAbsolutePathButton( )
-	{
-		if ( absolutePathButton.getSelection( )
-				&& ( xpathList != null && xpathList.size( ) > 0 ) )
-
-		{
-			rootPath = xpathList.get( 0 ).toString( );
-			xmlPathField.setVisible( false );
-		}
-	}
-
-	/**
-	 * Reset the rootPath value after selecting the "Any Location Path" button
-	 * 
-	 */
-	private void doSelectAnyLocationButton( )
-	{
-		if ( anyLocationButton.getSelection( )
-				&& ( xpathList != null && xpathList.size( ) > 1 ) )
-		{
-			rootPath = xpathList.get( 1 ).toString( );
-			xmlPathField.setVisible( false );
-		}
-	}
-	
-	/**
-	 * 
-	 */
-	private void resetButtonsAndLabels( boolean visible )
-	{
-		if ( visible )
-		{
-			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",  //$NON-NLS-1$
-					new String[]{
-							selectedItem.getText( ),
-							(String) xpathList.get( 0 )
-					} ) );
-			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation",    //$NON-NLS-1$
-					new String[]{
-							selectedItem.getText( ),
-							(String) xpathList.get( 1 )
-					} ) );
-		}
-		else
-		{
-			absolutePathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
-			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) );   //$NON-NLS-1$
-		}
-		absolutePathButton.setEnabled( visible );
-		absolutePathLabel.setEnabled( visible );
-		anyLocationButton.setEnabled( visible );
-		anyLocationLabel.setEnabled( visible );
-	}
-
-	/**
-	 * get the standby XPath expression
-	 * 
-	 * @return
-	 */
-	protected List getSelectedXPathList( )
-	{
-		String path;
-		if ( this.selectedItem == null )
-		{
-			path = PATH_SEPERATOR + initRootPath;
-		}
-		else
-		{
-			path = getRootPath( );
-		}
-		return XPathPopulationUtil.getPathList( path );
-	}
-
-	/**
-	 * @return root path string
-	 */
-	private String getRootPath( )
-	{
-		TreeItem selected = this.selectedItem;
-
-		if ( selected.getData( ) instanceof TreeNodeData )
-		{
-			ATreeNode node = ( (TreeNodeData) selected.getData( ) ).getTreeNode( );
-			if ( node.getType( ) == ATreeNode.ATTRIBUTE_TYPE )
-			{
-				return null;
-			}
-			else
-			{
-				rootPath = PATH_SEPERATOR + selected.getText( );
-			}
-		}
-
-		while ( selected.getParentItem( ) != null )
-		{
-			selected = selected.getParentItem( );
-			if ( selected.getData( ) instanceof TreeNodeData )
-			{
-				ATreeNode node = ( (TreeNodeData) selected.getData( ) ).getTreeNode( );
-				if ( node.getType( ) == ATreeNode.ELEMENT_TYPE )
-				{
-					rootPath = PATH_SEPERATOR + selected.getText( ) + rootPath;
-				}
-			}
-		}
-		return rootPath;
-	}
 
 	/**
 	 * populate xml tree
@@ -552,89 +288,49 @@ public class XPathChoosePage extends DataSetWizardPage
 		
 		try
 		{
-			availableXmlTree.removeAll( );
-			if ( ( xsdFileName != null && xsdFileName.trim( ).length( ) > 0 )
-					|| ( xmlFileName != null && xmlFileName.trim( ).length( ) > 0 ) )
+			this.availableXmlTree.getTree( ).removeAll( );
+			int numberOfElement = 0;
+			Preferences preferences = UiPlugin.getDefault( )
+					.getPluginPreferences( );
+			if ( preferences.contains( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED ) )
 			{
-				int numberOfElement = 0;
-				Preferences preferences = UiPlugin.getDefault( )
-						.getPluginPreferences( );
-				if ( preferences.contains( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED ) )
-				{
-					numberOfElement = preferences.getInt( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED );
-				}
-				else
-				{
-					numberOfElement = DataSetPreferencePage.DEFAULT_MAX_NUM_OF_ELEMENT_PARSED;
-					preferences.setValue( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED,
-							numberOfElement );
-				}
-				// TODO for migrate into ODA3.0, the relative path is not
-				// supported
-				// Object url = this.dataSetHandle.getModuleHandle(
-				// ).findResource( fileName,IResourceLocator.LIBRARY );
-				//				
-				// if( url != null )
-				treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
-						xmlFileName,
-						xmlEncoding,
+				numberOfElement = preferences.getInt( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED );
+			}
+			else
+			{
+				numberOfElement = DataSetPreferencePage.DEFAULT_MAX_NUM_OF_ELEMENT_PARSED;
+				preferences.setValue( DataSetPreferencePage.USER_MAX_NUM_OF_ELEMENT_PASSED,
 						numberOfElement );
-				if ( treeNode == null
-						|| treeNode.getChildren( ) == null
-						|| treeNode.getChildren( ).length == 0 )
-				{
-					OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) );       //$NON-NLS-1$
-					ExceptionHandler.showException( getShell( ),
-							Messages.getString( "error.label" ), //$NON-NLS-1$
-							ex.getMessage( ),
-							ex );
-				}
-				else
-				{
-					Object[] childs = treeNode.getChildren( );
-					initRootPath = (String)( (ATreeNode)childs[0] ).getValue( );
-					availableXmlTree.addListener( SWT.Expand, new Listener( ) {
-
-						public void handleEvent( Event event )
-						{
-							TreeItem currentItem = (TreeItem) event.item;
-
-							if ( ( (TreeNodeData) currentItem.getData( ) ).hasBeenExpandedOnce( ) )
-								return;
-
-							( (TreeNodeData) currentItem.getData( ) ).setHasBeenExpandedOnce( );
-							currentItem.removeAll( );
-							try
-							{
-								if ( ( ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( ) ).getChildren( ) != null
-										&& ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-												.getChildren( ).length > 0 )
-									TreePopulationUtil.populateTreeItems( currentItem,
-											( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-													.getChildren( ),
-											false );
-							}
-							catch ( OdaException e )
-							{
-								ExceptionHandler.showException( getShell( ),
-										Messages.getString( "error.label" ),       //$NON-NLS-1$
-										e.getMessage( ),
-										e );
-							}
-
-						}
-					} );
-
-					TreePopulationUtil.populateTreeItems( availableXmlTree,
-							childs,
-							false );
-				}
+			}
+			// TODO for migrate into ODA3.0, the relative path is not
+			// supported
+			// Object url = this.dataSetHandle.getModuleHandle(
+			// ).findResource( fileName,IResourceLocator.LIBRARY );
+			//				
+			// if( url != null )
+			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
+					xmlFileName,
+					xmlEncoding,
+					numberOfElement );
+			if ( treeNode == null
+					|| treeNode.getChildren( ) == null
+					|| treeNode.getChildren( ).length == 0 )
+			{
+				OdaException ex = new OdaException( Messages.getString( "dataset.error.populateXMLTree" ) ); //$NON-NLS-1$
+				ExceptionHandler.showException( getShell( ),
+						Messages.getString( "error.label" ), //$NON-NLS-1$
+						ex.getMessage( ),
+						ex );
+			}
+			else
+			{
+				availableXmlTree.populateTree( treeNode, this.rootPath, false );
 			}
 		}
 		catch ( Exception e )
 		{
 			ExceptionHandler.showException( getShell( ),
-					Messages.getString( "error.label" ),       //$NON-NLS-1$
+					Messages.getString( "error.label" ),  //$NON-NLS-1$
 					e.getMessage( ),
 					e );
 		}
@@ -660,7 +356,7 @@ public class XPathChoosePage extends DataSetWizardPage
 					&& !initRootPath.equals( EMPTY_STRING )
 					&& !initRootPath.equals( rootPath ) )
 			{
-				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),      //$NON-NLS-1$
+				setMessage( Messages.getString( "xPathChoosePage.messages.xpathChange" ),  //$NON-NLS-1$
 						INFORMATION );
 			}
 			else
@@ -757,7 +453,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			return true;
 		if ( !isRootPathValid( ) )
 		{
-			this.setMessage( Messages.getFormattedString( "error.invalidXpath",       //$NON-NLS-1$
+			this.setMessage( Messages.getFormattedString( "error.invalidXpath",  //$NON-NLS-1$
 					new Object[]{
 						rootPath == null ? EMPTY_STRING : rootPath
 					} ), IMessageProvider.ERROR );

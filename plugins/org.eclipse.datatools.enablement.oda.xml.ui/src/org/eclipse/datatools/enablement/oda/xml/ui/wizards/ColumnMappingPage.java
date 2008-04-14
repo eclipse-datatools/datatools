@@ -54,10 +54,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -71,7 +68,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 
 /**
@@ -83,24 +79,18 @@ public class ColumnMappingPage extends DataSetWizardPage
 			ITableLabelProvider
 {
 
-	private static final String ROOT = "ROOT";                  //$NON-NLS-1$
     private static final String RIGHT_SQUARE_BRACKET = "]";     //$NON-NLS-1$
     private static final String LEFT_SQUARE_BRACKET = "[";      //$NON-NLS-1$
     private static final String LEFT_CURLY_BRACKET = "{";       //$NON-NLS-1$
     private static final String RIGHT_CURLY_BRACKET = "}";      //$NON-NLS-1$
-    private static final String RIGHT_ANGLE_BRACKET = ">";      //$NON-NLS-1$
     private static final String COMMA = ",";                    //$NON-NLS-1$
     private static final String SEMICOLON = ";";                //$NON-NLS-1$
     private static final String UNDERSCORE = "_";               //$NON-NLS-1$
     private static final String EMPTY_STRING = "";              //$NON-NLS-1$
-    private Tree availableXmlTree;
-	private Button btnAddOne;
-	private Button btnAddAll;
+    private XMLTreeViewer availableXmlTree;
 	private Button btnPreview;
-	private Composite btnComposite;
 
 	private ColumnMappingTableViewer columnMappingTable;
-	private Group treeGroup;
 	private Group tableViewerGroup;
 	private ATreeNode treeNode;
 
@@ -285,23 +275,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		gridData.heightHint = height * 4 / 10;
 		composite.setLayoutData( gridData );
 		createLeftGroup( composite );
-
-		FormData data = new FormData( );
-		data.left = new FormAttachment( treeGroup, 5 );
-		data.bottom = new FormAttachment( 50 );
-
-		btnComposite = new Composite( composite, SWT.NONE );
-		btnComposite.setLayoutData( data );
-		FillLayout btnLayout = new FillLayout( SWT.VERTICAL );
-		btnLayout.spacing = 5;
-		btnComposite.setLayout( btnLayout );
-
-		btnAddOne = new Button( btnComposite, SWT.NONE );
-		btnAddOne.setText( RIGHT_ANGLE_BRACKET );
-		// TODO to externalize into message file
-		btnAddOne.setToolTipText( Messages.getString( "ColumnMappingPage.AddSingleButton.tooltip" ) ); //$NON-NLS-1$
-		btnAddOne.setEnabled( false );
-		btnAddOne.addSelectionListener( new SelectionAdapter( ) {
+		availableXmlTree.getSingleButton( ).addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -310,13 +284,13 @@ public class ColumnMappingPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				TreeItem[] selectedMultiItems = availableXmlTree.getTree( ).getSelection( );
 				if ( selectedMultiItems == null )
 				{
 					setMessage( Messages.getString( "error.columnMapping.SelectedTreeItem.notNull" ), //$NON-NLS-1$
 							ERROR );
-					btnAddOne.setEnabled( false );
-					btnAddAll.setEnabled( false );
+					availableXmlTree.getSingleButton( ).setEnabled( false );
+					availableXmlTree.getMultiButton( ).setEnabled( false );
 					return;
 				}
 				for ( int i = 0; i < selectedMultiItems.length; i++ )
@@ -358,15 +332,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 					}
 				}
 				selectedMultiItems = null;
-				btnAddOne.setEnabled( false );
+				availableXmlTree.getSingleButton( ).setEnabled( false );
 			}
 		} );
-		btnAddAll = new Button( btnComposite, SWT.NONE );
-		btnAddAll.setText( ">>" ); //$NON-NLS-1$
-		// TODO to externalize into message file
-		btnAddAll.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) ); //$NON-NLS-1$
-		btnAddAll.setEnabled( true );
-		btnAddAll.addSelectionListener( new SelectionAdapter( ) {
+		availableXmlTree.getMultiButton( ).addSelectionListener( new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -375,11 +344,11 @@ public class ColumnMappingPage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				TreeItem[] selectedMultiItems = availableXmlTree.getTree( ).getSelection( );
 				if ( selectedMultiItems == null
 						|| selectedMultiItems.length == 0 )
 				{
-					selectedMultiItems = availableXmlTree.getItems( );
+					selectedMultiItems = availableXmlTree.getTree( ).getItems( );
 				}
 				HashSet selectedNodes = new HashSet( );
 				if ( selectedMultiItems.length == 1 )
@@ -405,8 +374,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 						}
 					}
 				}
-				availableXmlTree.setSelection( availableXmlTree.getItem( 0 ) );
-				btnAddOne.setEnabled( false );
+				availableXmlTree.getTree( ).setSelection( availableXmlTree.getTree( ).getItem( 0 ) );
+				availableXmlTree.getSingleButton( ).setEnabled( false );
 			}
 		} );
 		// create the right table viewer group
@@ -450,7 +419,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		Composite rightComposite = new Composite( composite, SWT.NONE );
 		FormData data = new FormData( );
 		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( btnComposite, 5 );
+		data.left = new FormAttachment( availableXmlTree.getBtnComposite( ), 5 );
 		data.right = new FormAttachment( 100, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
 		rightComposite.setLayoutData( data );
@@ -619,6 +588,15 @@ public class ColumnMappingPage extends DataSetWizardPage
 	}
 	
 	/**
+	 * Return the tailored root path without filter definition.
+	 * @return
+	 */
+	private String getRootPathWithOutFilter( )
+	{
+		return selectedTreeItemText.replaceAll( "\\Q[\\E.*\\Q]\\E", EMPTY_STRING ); //$NON-NLS-1$
+	}
+	
+	/**
 	 * This method is used to generate the XPath expression from an ATreeNode object.
 	 * 
 	 * @param ATreeNode aTreeNode
@@ -657,37 +635,27 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private void createLeftGroup( Composite composite2 )
 	{
-		FormData data = new FormData( );
-
-		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 40, -5 );
-		data.bottom = new FormAttachment( 100, -5 );
-		treeGroup = new Group( composite2, SWT.VERTICAL );
-		treeGroup.setLayout( new FillLayout( ) );
-		treeGroup.setLayoutData( data );
-		availableXmlTree = new Tree( treeGroup, SWT.MULTI
-				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
-		availableXmlTree.addSelectionListener( new SelectionAdapter( ) {
+		availableXmlTree = new XMLTreeViewer( composite2, true );
+		availableXmlTree.getTree( ).addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+				TreeItem[] selectedMultiItems = availableXmlTree.getTree( ).getSelection( );
 				if ( selectedMultiItems.length > 1 )
 				{
 					for ( int i = 0; i < selectedMultiItems.length; i++ )
 					{
 						if ( selectedMultiItems[i].getGrayed( ) )
 						{
-							availableXmlTree.setRedraw( false );
-							availableXmlTree.deselectAll( );
-							availableXmlTree.setRedraw( true );
-							availableXmlTree.redraw( );
+							availableXmlTree.getTree( ).setRedraw( false );
+							availableXmlTree.getTree( ).deselectAll( );
+							availableXmlTree.getTree( ).setRedraw( true );
+							availableXmlTree.getTree( ).redraw( );
 						}
 					}
 					setMessage( DEFAULT_PAGE_Message );
-					btnAddAll.setEnabled( true );
-					btnAddOne.setEnabled( true );
+					availableXmlTree.getMultiButton( ).setEnabled( true );
+					availableXmlTree.getSingleButton( ).setEnabled( true );
 				}
 				else if ( selectedMultiItems.length == 1 )
 				{
@@ -695,34 +663,33 @@ public class ColumnMappingPage extends DataSetWizardPage
 					selectedMultiItems = null;
 					if ( selectedItem.getGrayed( ) )
 					{
-						availableXmlTree.setRedraw( false );
-						availableXmlTree.deselectAll( );
-						availableXmlTree.setRedraw( true );
-						availableXmlTree.redraw( );
+						availableXmlTree.getTree( ).setRedraw( false );
+						availableXmlTree.getTree( ).deselectAll( );
+						availableXmlTree.getTree( ).setRedraw( true );
+						availableXmlTree.getTree( ).redraw( );
 					}
 					if ( selectedItem != null )
 					{
 						setMessage( DEFAULT_PAGE_Message );
-						btnAddOne.setEnabled( true );
-						btnAddAll.setEnabled( true );
+						availableXmlTree.getSingleButton( ).setEnabled( true );
+						availableXmlTree.getMultiButton( ).setEnabled( true );
 					}
 					else
 					{
-						btnAddOne.setEnabled( false );
-						btnAddAll.setEnabled( false );
+						availableXmlTree.getSingleButton( ).setEnabled( false );
+						availableXmlTree.getMultiButton( ).setEnabled( false );
 					}
 				}
 				else
 				{
-					btnAddOne.setEnabled( false );
-					btnAddAll.setEnabled( true );
+					availableXmlTree.getSingleButton( ).setEnabled( false );
+					availableXmlTree.getMultiButton( ).setEnabled( true );
 				}
 				enableAllTableSideButtons( false );
 			}
 
 		} );
 
-		treeGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlStructure" ) ); //$NON-NLS-1$
 	}
 
 	/**
@@ -1083,7 +1050,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		try
 		{
 			this.treeNode = null;
-			this.availableXmlTree.removeAll( );
+			this.availableXmlTree.getTree( ).removeAll( );
 			
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
@@ -1103,52 +1070,26 @@ public class ColumnMappingPage extends DataSetWizardPage
 			// Object url = StructureFactory.getModuleHandle( ).findResource(
 			// schemaFileName,IResourceLocator.LIBRARY );
 			// if( url != null )
-			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName, xmlFileName,xmlEncoding, numberOfElement );
-			Object[] childs = treeNode.getChildren( );
-			populateTreeItems( availableXmlTree, childs, 0 );
-			availableXmlTree.addListener(SWT.Expand, new Listener(){
+			treeNode = SchemaPopulationUtil.getSchemaTree( xsdFileName,
+					xmlFileName,
+					xmlEncoding,
+					numberOfElement );
+			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true );
 
-				public void handleEvent( Event event )
-				{
-					TreeItem currentItem = (TreeItem) event.item;
 
-					if ( ( (TreeNodeData) currentItem.getData( ) ).hasBeenExpandedOnce( ) )
-						return;
-
-					( (TreeNodeData) currentItem.getData( ) ).setHasBeenExpandedOnce( );
-					currentItem.removeAll( );
-					try
-					{
-						if ( ( ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( ) ).getChildren( ) != null
-								&& ( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-										.getChildren( ).length > 0 )
-							TreePopulationUtil.populateTreeItems( currentItem,
-									( (TreeNodeData) currentItem.getData( ) ).getTreeNode( )
-											.getChildren( ),
-									true );
-					}
-					catch ( OdaException e )
-					{
-						setMessage( Messages.getString( "error.columnMapping.createPage" ),       //$NON-NLS-1$
-								ERROR );
-					}
-					enableAllTableSideButtons( false );
-				}
-			} );
-
-			TreeItem[] selectedMultiItems = availableXmlTree.getSelection( );
+			TreeItem[] selectedMultiItems = availableXmlTree.getTree( ).getSelection( );
 			if ( selectedMultiItems == null ||
 					selectedMultiItems.length == 0 )
 			{
-				btnAddOne.setEnabled( false );
-				btnAddAll.setEnabled( false );
+				availableXmlTree.getSingleButton( ).setEnabled( false );
+				availableXmlTree.getMultiButton( ).setEnabled( false );
 				this.setMessage( Messages.getString( "error.columnMapping.tableMappingXPathNotExist" ),      //$NON-NLS-1$
 						ERROR );
 			}
 			else
 			{
-				btnAddOne.setEnabled( true );
-				btnAddAll.setEnabled( true );
+				availableXmlTree.getSingleButton( ).setEnabled( true );
+				availableXmlTree.getMultiButton( ).setEnabled( true );
 				this.setMessage( DEFAULT_PAGE_Message );
 			}
 		}
@@ -1158,108 +1099,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 			setMessage( Messages.getString( "error.columnMapping.createPage" ),           //$NON-NLS-1$
 					ERROR );
 		}
-	}
-
-	/**
-	 * 
-	 * @param tree
-	 * @param node
-	 * @throws OdaException
-	 */
-	private void populateTreeItems( Object tree, Object[] node, int level )
-			throws OdaException
-	{
-		level ++;
-		
-		for ( int i = 0; i < node.length; i++ )
-		{
-			TreeItem treeItem;
-			if ( tree instanceof Tree )
-			{
-				treeItem = new TreeItem( (Tree) tree, 0 );
-			}
-			else
-				treeItem = new TreeItem( (TreeItem) tree, 0 );
-			ATreeNode treeNode = (ATreeNode) node[i];
-			TreeNodeData data = new TreeNodeData( treeNode );
-			
-			treeItem.setData( data );
-			int type = treeNode.getType( );
-			if ( type == ATreeNode.ATTRIBUTE_TYPE )
-			{
-				treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
-				treeItem.setText( ATTRIBUTE_MARK + treeNode.getValue( ).toString( ) );
-			}
-			else if ( type == ATreeNode.ELEMENT_TYPE )
-			{
-				if ( treeNode.getParent( )!= null && ROOT.equals( treeNode.getParent( ).getValue( )) )  
-				{
-					treeItem.setImage( TreeNodeDataUtil.getSourceFileImage( ) );
-				}
-				else if ( treeNode.getChildren( ) == null || treeNode.getChildren( ).length == 0 )
-				{
-					treeItem.setImage( TreeNodeDataUtil.getColumnImage( ) );
-				}
-				else
-				{
-					treeItem.setImage( TreeNodeDataUtil.getXmlElementImage( ) );
-				}
-				treeItem.setText( treeNode.getValue( ).toString( ) );
-			}
-			else
-			{
-				treeItem.setText( treeNode.getValue( ).toString( ) );
-			}
-			ATreeNode aTreeNode = ( (TreeNodeData)  treeItem.getData( ) ).getTreeNode( );
-			String populateString = XPathPopulationUtil.populateColumnPath( getRootPathWithOutFilter( ),
-					generateXpathFromATreeNode( aTreeNode ) );
-			if ( populateString != null )
-			{
-				if ( populateString.equals( EMPTY_STRING ) )
-				{
-					FontData fontData = new FontData( EMPTY_STRING, 8, SWT.BOLD );
-					treeItem.setFont( new Font( null, fontData ) );
-					
-					availableXmlTree.setSelection( new TreeItem[]{
-						treeItem
-					} );
-					availableXmlTree.setFocus();
-					availableXmlTree.setSelection( treeItem );
-				}
-				
-				setExpanded( treeItem );
-	
-			}
-			if ( treeNode.getChildren( ) != null
-					&& treeNode.getChildren( ).length > 0 )
-			{
-				if ( level > ( ( selectedTreeItemText == null || selectedTreeItemText.split( PATH_SEPERATOR ).length < 5 )   
-						? 5 : selectedTreeItemText.split( PATH_SEPERATOR ).length ) )                                        
-					new TreeItem( treeItem, 0 );
-				else
-				{
-					data.setHasBeenExpandedOnce( );
-					populateTreeItems( treeItem, treeNode.getChildren( ), level );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Return the tailored root path without filter definition.
-	 * @return
-	 */
-	private String getRootPathWithOutFilter( )
-	{
-		return selectedTreeItemText.replaceAll( "\\Q[\\E.*\\Q]\\E", EMPTY_STRING ); //$NON-NLS-1$
-	}
-	
-	// expand the tree
-	private void setExpanded( TreeItem treeItem )
-	{
-		if ( treeItem.getParentItem( ) != null )
-			setExpanded( treeItem.getParentItem( ) );
-		treeItem.setExpanded( true );
 	}
 
 	/**
