@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=•ÏXŒã‚Ìƒe[ƒuƒ‹ƒ}ƒbƒsƒ“ƒO‚ª—ñƒ}ƒbƒsƒ“ƒO‚ÆŒ
 xPathChoosePage.FileNameIcon=ƒtƒ@ƒCƒ‹–¼ƒAƒCƒRƒ“
 xPathChoosePage.XMLElementIcon=XML —v‘fƒAƒCƒRƒ“
 xPathChoosePage.ColumnIcon=—ñƒAƒCƒRƒ“
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=s‚ğƒvƒŒƒrƒ…[(&P)

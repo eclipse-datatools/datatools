@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=Stellen Sie sicher, dass die geänderte Tabe
 xPathChoosePage.FileNameIcon=Dateinamensymbol
 xPathChoosePage.XMLElementIcon=XML-Element-Symbol
 xPathChoosePage.ColumnIcon=Spaltensymbol
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=Zeilen der Quelldaten anzeigen

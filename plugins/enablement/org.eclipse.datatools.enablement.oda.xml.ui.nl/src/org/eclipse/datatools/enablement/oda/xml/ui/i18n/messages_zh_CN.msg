@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=确保更改的表映射与列映射兼容（如果适用）
 xPathChoosePage.FileNameIcon=文件名图标
 xPathChoosePage.XMLElementIcon=XML 元素图标
 xPathChoosePage.ColumnIcon=列图标
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=行(&P)

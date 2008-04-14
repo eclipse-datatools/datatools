@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되�
 xPathChoosePage.FileNameIcon=파일 이름 아이콘
 xPathChoosePage.XMLElementIcon=XML 요소 아이콘
 xPathChoosePage.ColumnIcon=열 아이콘
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=줄 미리보기(&P)

@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=Asegúrese de que la asignación de tabla mod
 xPathChoosePage.FileNameIcon=Icono de nombre de archivo
 xPathChoosePage.XMLElementIcon=Icono de elemento XML
 xPathChoosePage.ColumnIcon=Icono de columna
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=líneas de datos fuente

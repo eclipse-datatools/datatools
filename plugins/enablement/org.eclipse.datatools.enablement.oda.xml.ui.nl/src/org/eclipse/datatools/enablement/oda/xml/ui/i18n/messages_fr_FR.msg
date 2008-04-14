@@ -39,6 +39,7 @@ xPathChoosePage.messages.xpathChange=Vérifiez que la mise en correspondance de t
 xPathChoosePage.FileNameIcon=Icône du nom de fichier
 xPathChoosePage.XMLElementIcon=Icône d'élément XML
 xPathChoosePage.ColumnIcon=Icône de colonne
+xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=premières lignes de données source
