@@ -1,4 +1,14 @@
-#Thu Jun 22 00:30:53 EDT 2006
+################################################################################
+## Copyright (c) 2005, 2008 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##	  IBM Corporation = bug fix #203829
+################################################################################ 
 plugin.internal_error=内部错误 － org.eclipse.datatools.connectivity
 ImportProfilesDialog.btnOverwrite.text=使用相同的名称覆盖现有的连接概要文件(&O)
 ExportProfilesDialog.button.text2=浏览(&B)...

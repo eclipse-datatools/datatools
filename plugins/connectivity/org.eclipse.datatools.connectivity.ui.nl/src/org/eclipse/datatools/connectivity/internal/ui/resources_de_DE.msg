@@ -1,4 +1,14 @@
-#Thu Jun 22 00:30:52 EDT 2006
+################################################################################
+## Copyright (c) 2005, 2008 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##	  IBM Corporation = bug fix #203829
+################################################################################ 
 plugin.internal_error=Interner Fehler - org.eclipse.datatools.connectivity
 ImportProfilesDialog.btnOverwrite.text=&Vorhandene Verbindungsprofile gleichen Namens überschreiben
 ExportProfilesDialog.button.text2=Dur&chsuchen...
@@ -151,7 +161,6 @@ OtherDriverUIContributor.databaseName.label = &Datenbank:
 OtherDriverUIContributor.url.label = &URL:
 OtherDriverUIContributor.userName.label = &Benutzername:
 OtherDriverUIContributor.password.label = &Kennwort:
-OtherDriverUIContributor.persistpassword.label = &Kennwort speichern
 OtherDriverUIContributor.savePassword.label = &Kennwort speichern
 OtherDriverUIContributor.optionalProps.label = Zusätzliche Eigenschaften:
 OtherDriverUIContributor.summaryData.database = Datenbank
