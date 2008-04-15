@@ -74,3 +74,11 @@ GeneralPreferencePage_description=General settings for the Database Development 
 GeneralPreferencePage_hover_affordance=Show affordance in &hover on how to make it sticky
 GeneralPreferencePage_portable_check=&Portability check target:
 
+SyntaxColoringPage_description=Color and style settings for the syntax.
+SyntaxColoringPage_color=&Color:
+SyntaxColoringPage_bold=&Bold
+SyntaxColoringPage_italic=&Italic
+SyntaxColoringPage_strikethrough=&Strikethrough
+SyntaxColoringPage_underline=&Underline
+SyntaxColoringPage_preview=Previe&w:
+SyntaxColoringPage_syntax_items=S&yntax items:
