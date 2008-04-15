@@ -81,7 +81,8 @@ JDBCPropertyWizardPage.schema.label = Schema:
 JDBCProfilePropertyPage.PingButton=Test connection
 JDBCPropertyWizardPage.procedureName.label = Procedure name:
 JDBCPropertyWizardPage.optionalProps.label = Optional properties:
-JDBCPropertyWizardPage.summary.driverName.label = Driver name
+JDBCPropertyWizardPage.summary.driverName.label = JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.filterGroup.label = name
 JDBCPropertyWizardPage.summary.connProps.label = Connection properties
 JDBCPropertyWizardPage.summary.userName.label = User name
 JDBCPropertyWizardPage.summary.password.label = Password
@@ -157,6 +158,8 @@ JDBCProfileTabs.errors.requiredUID = User name required
 events.folder.name=Events
 webservices.folder.name=Web Services
 datatypes.folder.name=Data Types
+udt.folder.name=User Defined Types
+udf.folder.name=User Defined Functions
 
 plugin_internal_error=Internal error occurred
 
