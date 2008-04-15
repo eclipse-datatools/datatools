@@ -1,5 +1,10 @@
 GENERATE_FULL_SYNTAX = Fu&lly Syntax 
 GENERATE_FULL_SYNTAX_DES = Generate fully syntax
+GENERATE_SETUSER= Set user 
+GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
+GENERATE_USEDATABASE= Use Database 
+GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
+
 GENERATE_EXTRA_CODE	=	E&xtra Code
 GENERATE_EXTRA_CODE_DES	=	Generate extra code
 GENERATE_PRIVILEGE	=	&Privilege
@@ -7,7 +12,12 @@ GENERATE_PRIVILEGE_DES	=	Generate privilege grant
 GENERATE_COMMENTS = Comments
 GENERATE_COMMENTS_DES = Generate Commen&ts
 
+GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
+GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
 
+
+GENERATE_FUNCTION=User Defined &Functions
+GENERATE_FUNCTION_DES=Generate user defined functions
 GENERATE_USER_DEFINED_TYPES 	= User Defined &Types
 GENERATE_USER_DEFINED_TYPES_DES 	= Generate user defined types
 GENERATE_DEFAULTS_DES 	= Generate defaults
@@ -39,6 +49,9 @@ GENERATE_CATALOGS = Catalo&g
 GENERATE_CATALOGS_DES = Generate Catalog
 GENERATE_DATABASE = &Database
 GENERATE_DATABASE_DES = Generate Database
+
+GENERATE_JOIN_INDICES=&Join Index
+GENERATE_JOIN_INDICES_DES=Generate Join Index
 
 #GENERATE_DOMAINS = Do&mains
 #GENERATE_DOMAINS_DES = Generate domains
