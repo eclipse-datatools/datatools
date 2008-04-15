@@ -23,10 +23,12 @@ webServiceSelectionPage.message.error=SOAP エンドポイントの URL を指定するか、WS
 webServiceSelectionPage.group.wsdl=WSDL 記述子
 webServiceSelectionPage.group.endPoint=SOAP エンドポイント
 webServiceSelectionPage.group.customClass=カスタムドライバクラス
+webServiceSelectionPage.group.classPath=Driver Class Path
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
 webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
 webServiceSelectionPage.label.endPoint=SOAP のエンドポイント URL の指定(&E) (WSDL で定義したエンドポイントを使用する場合や、エンドポイントの \nURL を必要としないカスタム接続クラスを使用する場合は、この値を省略できます)
 webServiceSelectionPage.label.customClass=カスタム Java クラスを使用して Web サービスへの接続やクエリを行う場合は、ここに完全修飾クラス名を入力してください(&J)
+webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
 webServiceSelectionPage.button.browse=参照(&B)...
 
 # OperationPage

@@ -23,10 +23,12 @@ webServiceSelectionPage.message.error=SOAP 끝점 URL을 지정하거나 WSDL 설명자를 �
 webServiceSelectionPage.group.wsdl=WSDL 설명자
 webServiceSelectionPage.group.endPoint=SOAP 끝점
 webServiceSelectionPage.group.customClass=사용자 지정 드라이버 클래스
+webServiceSelectionPage.group.classPath=Driver Class Path
 webServiceSelectionPage.label.wsdl=웹 서비스의 WSDL 설명자가 있으면 해당 URL을 입력하거나 로컬 파일 시스템에서 위치를 찾으십시오.
 webServiceSelectionPage.label.wsdlURI=WSDL URL 또는 위치(&W):
 webServiceSelectionPage.label.endPoint=SOAP 끝점 URL(&E)을 지정합니다. WSDL에서 정의된 끝점을 사용하는 경우나, 끝점 URL이 필요하지 않는\n사용자 지정 연결 클래스를 사용할 경우 이 값을 생략해도 됩니다.
 webServiceSelectionPage.label.customClass=웹 서비스 연결 및 쿼리가 사용자 지정 Java 클래스를 통해 이루어진 경우 여기에 정규화된 클래스 이름을 입력하십시오(&J).
+webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
 webServiceSelectionPage.button.browse=찾아보기(&B)...
 
 # OperationPage

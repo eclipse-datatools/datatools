@@ -23,10 +23,12 @@ webServiceSelectionPage.message.error=指定 SOAP 终结点 URL 或选择 WSDL 描述符
 webServiceSelectionPage.group.wsdl=WSDL 描述符
 webServiceSelectionPage.group.endPoint=SOAP 终结点
 webServiceSelectionPage.group.customClass=自定义驱动程序类
+webServiceSelectionPage.group.classPath=Driver Class Path
 webServiceSelectionPage.label.wsdl=如果 Web Services 的 WSDL 描述符可用，请输入其 URL 或浏览到其在本地文件系统中的所在位置
 webServiceSelectionPage.label.wsdlURI=WSDL URL 或位置(&W):
 webServiceSelectionPage.label.endPoint=指定 SOAP 终结点 URL(&E)。如果要使用 WSDL 中定义的终结点，\n或者您正在使用不需要终结点 URL 的自定义连接类，则可以忽略此值
 webServiceSelectionPage.label.customClass=如果 Web Services 的连接和查询是通过自定义 Java 类来完成的，请在此处输入完全限定类名称(&J)
+webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
 webServiceSelectionPage.button.browse=浏览(&B)...
 
 # OperationPage

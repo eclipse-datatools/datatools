@@ -23,10 +23,12 @@ webServiceSelectionPage.message.error=Spécifiez l'URL de point de fin SOAP ou sé
 webServiceSelectionPage.group.wsdl=Descripteur WSDL
 webServiceSelectionPage.group.endPoint=Point de fin SOAP
 webServiceSelectionPage.group.customClass=Classe de pilote personnalisée
+webServiceSelectionPage.group.classPath=Driver Class Path
 webServiceSelectionPage.label.wsdl=Si le descripteur WSDL des Services Web est disponible, entrez son URL ou recherchez son emplacement dans le système de fichiers local
 webServiceSelectionPage.label.wsdlURI=URL ou emplacement du descripteur &WSDL :
 webServiceSelectionPage.label.endPoint=Spécifiez l'URL du point de &fin SOAP. Cette valeur est facultative si le point de fin défini dans le WSDL doit être utilisé,\nou si vous utilisez une classe de connexion personnalisée qui ne requiert pas d'URL de point de fin
 webServiceSelectionPage.label.customClass=Si les connexions et les requêtes vers les Services Web sont effectuées par l'intermédiaire d'une classe &Java personnalisée, indiquez ici le nom de classe complet
+webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
 webServiceSelectionPage.button.browse=&Parcourir...
 
 # OperationPage
