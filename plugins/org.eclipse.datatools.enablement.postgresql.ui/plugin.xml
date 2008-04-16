@@ -39,4 +39,12 @@
             id="org.eclipse.datatools.enablement.postgresql.postgresqlDriverTemplate.password">
       </propertyEditor>
    </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
+      <driverUIContributor
+            class="org.eclipse.datatools.enablement.postgresql.internal.ui.PostgreSQLOtherDriverUIContributor"
+            driverTemplateID="org.eclipse.datatools.enablement.postgresql.postgresqlDriverTemplate"
+            id="org.eclipse.datatools.enablement.postgresql.postgresqlDriverUIContributor">
+      </driverUIContributor>
+   </extension>
 </plugin>
