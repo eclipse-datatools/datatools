@@ -320,7 +320,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 								name,
 								pathStr,
 								type,
-								false );
+								true );
 						if ( columnDialog.open( ) == Window.OK )
 						{
 							columnElement = columnDialog.getColumnMapping( );
@@ -726,6 +726,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 								.getSelectionCount( ) == 1 )
 						{
 							enableAllTableSideButtons( true );
+							resetUpDownButton( );
 						}
 						else
 						{
@@ -803,6 +804,23 @@ public class ColumnMappingPage extends DataSetWizardPage
 						widgetSelected( e );
 					}
 				} );
+		
+		columnMappingTable.getAddButton( ).addSelectionListener( new SelectionListener( ) {
+
+					public void widgetSelected( SelectionEvent e )
+					{
+						manuallyAddOneColumn( );
+						columnMappingTable.getViewer( )
+								.getTable( )
+								.setSelection( -1 );
+						enableAllTableSideButtons( false );
+					}
+
+					public void widgetDefaultSelected( SelectionEvent e )
+					{
+					}
+
+				} );
 
 		columnMappingTable.getUpButton( )
 				.addSelectionListener( new SelectionListener( ) {
@@ -837,6 +855,29 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 		columnMappingTable.getDownButton( )
 				.setToolTipText( Messages.getString( "ColumnMappingTable.downButton.tooltip" ) ); //$NON-NLS-1$
+	}
+	
+	/**
+	 * Add a single column created by the user typing via a mapping dialog
+	 * 
+	 */
+	private void manuallyAddOneColumn( )
+	{
+		ColumnMappingElement columnElement;
+		ColumnMappingDialog columnDialog = new ColumnMappingDialog( getShell( ),
+				DEFAULT_PAGE_NAME,
+				null,
+				null,
+				-1,
+				false );
+		if ( columnDialog.open( ) == Window.OK )
+		{
+			columnElement = columnDialog.getColumnMapping( );
+			if ( columnElement != null )
+			{
+				updateColumnMappingElement( columnElement );
+			}
+		}
 	}
 	
 	/**
@@ -879,7 +920,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					columnMappingElement.getColumnName( ),
 					columnMappingElement.getXPath( ),
 					DataTypes.getType( columnMappingElement.getTypeStandardString( ) ),
-					true );
+					false );
 			if ( columnDialog.open( ) == Window.OK )
 			{
 				columnMap.remove( columnMappingElement.getColumnName( ) );
@@ -918,6 +959,35 @@ public class ColumnMappingPage extends DataSetWizardPage
 			logger.log( Level.INFO, e1.getMessage( ), e1 );
 			setMessage( Messages.getString( "error.columnMapping.columnElement.edit" ),      //$NON-NLS-1$
 					ERROR );
+		}
+	}
+	
+	/**
+	 * Reset the up and down buttons' state
+	 * 
+	 */
+	private void resetUpDownButton( )
+	{
+		if ( columnMappingTable.getViewer( ).getTable( ).getItemCount( ) == 1 )
+		{
+			columnMappingTable.getUpButton( ).setEnabled( false );
+			columnMappingTable.getDownButton( ).setEnabled( false );
+		}
+		else if ( columnMappingTable.getViewer( )
+				.getTable( )
+				.getSelectionIndex( ) == 0 )
+		{
+			columnMappingTable.getUpButton( ).setEnabled( false );
+			columnMappingTable.getDownButton( ).setEnabled( true );
+		}
+		else if ( columnMappingTable.getViewer( )
+				.getTable( )
+				.getSelectionIndex( ) == columnMappingTable.getViewer( )
+				.getTable( )
+				.getItemCount( ) - 1 )
+		{
+			columnMappingTable.getDownButton( ).setEnabled( false );
+			columnMappingTable.getUpButton( ).setEnabled( true );
 		}
 	}
 
@@ -1009,6 +1079,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
 					str );
 			refreshColumnMappingViewer( );
+			resetUpDownButton( );
 		}
 	}
 
@@ -1034,6 +1105,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 			XMLInformationHolder.setPropertyValue( Constants.CONST_PROP_RELATIONINFORMATION,
 					str );
 			refreshColumnMappingViewer( );
+			resetUpDownButton( );
 		}
 	}
 
@@ -1128,6 +1200,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					public void doubleClick( DoubleClickEvent e )
 					{
 						doEdit( );
+						resetUpDownButton( );
 					}
 				} );
 
@@ -1345,7 +1418,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 		enableAllTableSideButtons( columnMappingExist
 				&& columnMappingTable.getViewer( )
 						.getTable( )
-						.getSelectionCount( ) > 1 );
+						.getSelectionCount( ) > 0 );
 		columnMappingTable.getRemoveMenuItem( ).setEnabled( columnMappingExist );
 		columnMappingTable.getRemoveAllMenuItem( )
 				.setEnabled( columnMappingExist );

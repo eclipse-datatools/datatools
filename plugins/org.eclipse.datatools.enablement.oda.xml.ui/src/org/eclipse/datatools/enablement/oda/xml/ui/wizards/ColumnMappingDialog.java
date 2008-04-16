@@ -21,6 +21,7 @@ import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -65,8 +66,8 @@ public class ColumnMappingDialog extends TrayDialog
 	private Combo xmlPathCombo;
 	private Text xmlPathText;
 	private List xpathList;
-	private boolean isEditMode;
-
+	private boolean isMappingMode;
+	
 	private static String[] dataTypeDisplayNames = new String[]{
 			Messages.getString( "datatypes.dateTime" ),           //$NON-NLS-1$
 			Messages.getString( "datatypes.decimal" ),            //$NON-NLS-1$
@@ -79,16 +80,28 @@ public class ColumnMappingDialog extends TrayDialog
 	};
 
 	public ColumnMappingDialog( Shell parent, String title,
-			String selectedItem, String xpath, int dataType, boolean editMode )
+			String selectedItem, String xpath, int dataType, boolean isMappingMode )
 	{
 		super( parent );
+		initializeDialogInfos( title, selectedItem, xpath, dataType, isMappingMode );
+	}
+
+	private void initializeDialogInfos( String title, String selectedItem,
+			String xpath, int dataType, boolean isMappingMode )
+	{
 		this.title = title;
 		this.columnName = ( selectedItem == null ? EMPTY_STRING : selectedItem );
 		this.xpath = ( xpath == null ? EMPTY_STRING : xpath );
 		this.type = DataTypeUtil.getDataTypeDisplayName( dataType );
-		this.isEditMode = editMode;
-		this.xpathList = editMode ? null
-				: XPathPopulationUtil.getPathList( xpath );
+		this.isMappingMode = isMappingMode;
+		if( isMappingMode )
+		{
+			this.xpathList = XPathPopulationUtil.getPathList( xpath );
+		}
+		else
+		{
+			this.xpathList = null;
+		}
 		Arrays.sort( dataTypeDisplayNames );
 	}
 
@@ -110,13 +123,13 @@ public class ColumnMappingDialog extends TrayDialog
 		composite.setLayout( layout );
 
 		setupTopComposite( composite );
-		if ( isEditMode )
+		if ( isMappingMode )
 		{
-			setupCustomExprArea( composite );
+			setupButtonComposite( composite );
 		}
 		else
 		{
-			setupButtonComposite( composite );
+			setupCustomExprArea( composite );
 		}
 
 		return composite;
@@ -140,7 +153,7 @@ public class ColumnMappingDialog extends TrayDialog
 		topComposite.setLayoutData( gridData );
 
 		GridData labelData = new GridData( );
-		labelData.widthHint = 70;
+		labelData.widthHint = 100;
 
 		GridData comboData = new GridData( );
 		comboData.widthHint = 300;
@@ -152,7 +165,15 @@ public class ColumnMappingDialog extends TrayDialog
 		columnNameText = new Text( topComposite, SWT.BORDER );
 		columnNameText.setLayoutData( comboData );
 		columnNameText.setText( columnName );
+		columnNameText.addModifyListener( new ModifyListener( ) {
 
+			public void modifyText( ModifyEvent e )
+			{
+				columnName = columnNameText.getText( );
+				updateOKbuttonState( );
+			}
+
+		} );
 		Label label2 = new Label( topComposite, SWT.NONE );
 		label2.setText( Messages.getString( "ColumnMappingDialog.info.dataType" ) ); //$NON-NLS-1$
 		label2.setLayoutData( labelData );
@@ -294,6 +315,9 @@ public class ColumnMappingDialog extends TrayDialog
 				if ( absolutePathButton.getSelection( ) )
 				{
 					xpath = xpathList.get( 0 ).toString( );
+					absolutePathButton.setSelection( true );
+					anyLocationButton.setSelection( false );
+					customButton.setSelection( false );
 					xmlPathCombo.setVisible( false );
 				}
 			}
@@ -305,6 +329,7 @@ public class ColumnMappingDialog extends TrayDialog
 
 			public void handleEvent( Event event )
 			{
+				xpath = xpathList.get( 0 ).toString( );
 				absolutePathButton.setSelection( true );
 				anyLocationButton.setSelection( false );
 				customButton.setSelection( false );
@@ -321,6 +346,9 @@ public class ColumnMappingDialog extends TrayDialog
 				if ( anyLocationButton.getSelection( ) )
 				{
 					xpath = xpathList.get( 1 ).toString( );
+					anyLocationButton.setSelection( true );
+					absolutePathButton.setSelection( false );
+					customButton.setSelection( false );
 					xmlPathCombo.setVisible( false );
 				}
 			}
@@ -331,6 +359,7 @@ public class ColumnMappingDialog extends TrayDialog
 
 			public void handleEvent( Event event )
 			{
+				xpath = xpathList.get( 1 ).toString( );
 				anyLocationButton.setSelection( true );
 				absolutePathButton.setSelection( false );
 				customButton.setSelection( false );
@@ -396,7 +425,7 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		if ( xpathList == null )
 		{
-			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );   //$NON-NLS-1$
+			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
 			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
 			setButtonsEnabled( false );
 			return;
@@ -404,7 +433,7 @@ public class ColumnMappingDialog extends TrayDialog
 
 		if ( xpathList.size( ) >= 2 )
 		{
-			absoluteLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath",   //$NON-NLS-1$
+			absoluteLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath", //$NON-NLS-1$
 					new String[]{
 							columnName, (String) xpathList.get( 0 )
 					} ) );
@@ -416,7 +445,7 @@ public class ColumnMappingDialog extends TrayDialog
 		}
 		else
 		{
-			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) );   //$NON-NLS-1$
+			absoluteLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
 			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
 			setButtonsEnabled( false );
 		}
@@ -453,6 +482,44 @@ public class ColumnMappingDialog extends TrayDialog
 			return;
 		}
 		xpath = xmlPathCombo.getText( );
+	}
+
+	/**
+	 * Update the OK button's state
+	 * 
+	 */
+	private void updateOKbuttonState( )
+	{
+		if ( columnName == null
+				|| columnName.trim( ).length( ) == 0 )
+		{
+			enableOKButton( false );
+		}
+		else
+		{
+			enableOKButton( true );
+		}
+	}
+	
+	/**
+	 * Enable or disable the OK button
+	 * 
+	 * @param enabled
+	 */
+	private void enableOKButton( boolean enabled )
+	{
+		Button okBtn = getButton( Window.OK );
+		if ( okBtn != null )
+		{
+			okBtn.setEnabled( enabled );
+		}
+	}
+
+	protected Control createButtonBar( Composite parent )
+	{
+		Control control = super.createButtonBar( parent );
+		updateOKbuttonState( );
+		return control;
 	}
 
 }

@@ -38,12 +38,13 @@ import org.eclipse.swt.widgets.MenuItem;
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.7 $ $Date: 2008/03/24 10:13:32 $
+ * @version $Revision: 1.8 $ $Date: 2008/04/08 03:23:02 $
  */
 public final class ColumnMappingTableViewer
 {
 	private TableViewer viewer;
 	private Composite mainControl;
+	private Button btnAdd;
 	private Button btnEdit;
 	private Button btnRemove;
 	private Button btnUp;
@@ -85,21 +86,19 @@ public final class ColumnMappingTableViewer
 			GridData btnData = new GridData( );
 			btnData.widthHint = 50;
 			btnData.heightHint = 20;
+			
+			btnAdd = new Button( btnComposite, SWT.WRAP );
+			btnAdd.setText( Messages.getString( "menu.button.add" ) ); //$NON-NLS-1$
+			btnAdd.setEnabled( true );
+			btnAdd.setLayoutData( btnData );
+		
+			btnData = new GridData( GridData.CENTER );
+			btnData.widthHint = 50;
+			btnData.heightHint = 20;
 			btnEdit = new Button( btnComposite, SWT.WRAP );
 			btnEdit.setText( Messages.getString( "menu.button.edit" ) );     //$NON-NLS-1$
 			btnEdit.setLayoutData( btnData );
 			btnEdit.setEnabled( false );
-			btnEdit.addSelectionListener( new SelectionListener( ) {
-
-				public void widgetSelected( SelectionEvent e )
-				{
-				}
-
-				public void widgetDefaultSelected( SelectionEvent e )
-				{
-				}
-
-			} );
 
 			btnData = new GridData( GridData.CENTER );
 			btnData.widthHint = 50;
@@ -108,17 +107,6 @@ public final class ColumnMappingTableViewer
 			btnRemove.setText( Messages.getString( "menu.button.remove" ) );     //$NON-NLS-1$
 			btnRemove.setLayoutData( btnData );
 			btnRemove.setEnabled( false );
-			btnRemove.addSelectionListener( new SelectionListener( ) {
-
-				public void widgetSelected( SelectionEvent e )
-				{
-				}
-
-				public void widgetDefaultSelected( SelectionEvent e )
-				{
-				}
-
-			} );
 
 			Label blankLabel = new Label( btnComposite, SWT.WRAP );
 			blankLabel.setLayoutData( btnData );
@@ -201,6 +189,16 @@ public final class ColumnMappingTableViewer
 	public Composite getControl( )
 	{
 		return mainControl;
+	}
+
+	/**
+	 * get the Add button
+	 * 
+	 * @return
+	 */
+	public Button getAddButton( )
+	{
+		return btnAdd;
 	}
 
 	/**
