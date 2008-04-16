@@ -89,6 +89,18 @@ public class OperationPage extends DataSetWizardPage
 		initialImages( );
 		setControl( createPageControl( parent ) );
 		initializeControl( );
+		int x = java.awt.Toolkit.getDefaultToolkit( ).getScreenSize( ).width
+				- 800;
+		int y = java.awt.Toolkit.getDefaultToolkit( ).getScreenSize( ).height
+				- 700;
+		if ( getShell( ) != null )
+		{
+			getShell( ).setLocation( x / 2, y / 2 );
+		}
+		else
+		{
+			parent.getShell( ).setLocation( x / 2, y / 2 );
+		}
 	}
 
 	private void initialImages( )
@@ -128,8 +140,8 @@ public class OperationPage extends DataSetWizardPage
 		operationTree = new Tree( parent, SWT.BORDER
 				| SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL );
 		operationTree.setLayout( new GridLayout( ) );
-		GridData layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 100;
+		GridData layoutData = new GridData( GridData.FILL_BOTH );
+		layoutData.heightHint = 200;
 		operationTree.setLayoutData( layoutData );
 
 		operationTree.addSelectionListener( new SelectionAdapter( ) {

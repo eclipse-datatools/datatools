@@ -36,11 +36,15 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -90,13 +94,14 @@ public class SOAPParametersPage extends DataSetWizardPage
 	{
 		Composite composite = new Composite( parent, SWT.NONE );
 		GridLayout layout = new GridLayout( 1, false );
+		layout.verticalSpacing = 20;
 		composite.setLayout( layout );
 		GridData layoutData = new GridData( GridData.HORIZONTAL_ALIGN_FILL
 				| GridData.VERTICAL_ALIGN_FILL );
 		composite.setLayoutData( layoutData );
 
 		setupParametersComposite( composite );
-
+		setupSelectionButtons( composite );
 		return composite;
 	}
 
@@ -105,6 +110,52 @@ public class SOAPParametersPage extends DataSetWizardPage
 		createCheckboxTable( parent );
 		setupEditors( );
 	}
+	
+	/**
+	 * Create the "select all" and "deselect all" buttons
+	 * 
+	 * @param parent
+	 */
+	private void setupSelectionButtons( Composite parent )
+	{
+		GridLayout layout = new GridLayout( );
+		Composite btnComposite = new Composite( parent, SWT.NONE );
+		btnComposite.setLayout( layout );
+		layout.numColumns = 3;
+		btnComposite.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+
+		Label label = new Label( btnComposite, SWT.NONE );
+		label.setLayoutData( new GridData( GridData.FILL_HORIZONTAL ) );
+
+		GridData btnGd = new GridData( GridData.CENTER );
+		btnGd.widthHint = 100;
+		btnGd.horizontalIndent = 10;
+
+		Button selectAllBtn = new Button( btnComposite, SWT.NONE );
+		selectAllBtn.setText( Messages.getString( "soapParametersPage.button.selectAll" ) );  //$NON-NLS-1$
+		selectAllBtn.setLayoutData( btnGd );
+		selectAllBtn.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				viewer.setAllChecked( true );
+			}
+
+		} );
+
+		Button deselectAllBtn = new Button( btnComposite, SWT.NONE );
+		deselectAllBtn.setText( Messages.getString( "soapParametersPage.button.deselectAll" ) ); //$NON-NLS-1$
+		deselectAllBtn.setLayoutData( btnGd );
+		deselectAllBtn.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				viewer.setAllChecked( false );
+			}
+
+		} );
+		
+}
 
 	private void createCheckboxTable( Composite parent )
 	{
