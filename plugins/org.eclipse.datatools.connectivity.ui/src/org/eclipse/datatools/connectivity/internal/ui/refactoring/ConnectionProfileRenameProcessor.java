@@ -37,7 +37,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
  */
 public class ConnectionProfileRenameProcessor extends RenameProcessor {
 
-	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.renameProcessor";
+	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.renameProcessor"; //$NON-NLS-1$
 	private IConnectionProfile mProfile;
 	private RenameArguments mArguments;
 
@@ -73,7 +73,7 @@ public class ConnectionProfileRenameProcessor extends RenameProcessor {
 	 */
 	public String getProcessorName()
 	{
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPRenameChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPRenameChange.name"), //$NON-NLS-1$
 				new Object[] { mProfile.getName()});
 //		return ConnectivityUIPlugin.getDefault().getResourceString("CPRenameProcessor.name");
 	}

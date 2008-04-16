@@ -143,4 +143,9 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 	public String getSearchExpression(Object target) {
 		return contextProviderDelegate.getSearchExpression(target);
 	}
+
+	public boolean canFinish() {
+		return super.canFinish();
+	}
+
 }

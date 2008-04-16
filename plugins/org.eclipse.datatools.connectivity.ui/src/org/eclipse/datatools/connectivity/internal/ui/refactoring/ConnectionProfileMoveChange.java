@@ -60,7 +60,7 @@ public class ConnectionProfileMoveChange extends Change {
 
 	public String getName() {
 		return MessageFormat.format(ConnectivityUIPlugin.getDefault()
-				.getResourceString("CPMoveChange.name"),
+				.getResourceString("CPMoveChange.name"), //$NON-NLS-1$
 				new Object[] { mProfileToMove.getName()});
 	}
 
@@ -76,7 +76,7 @@ public class ConnectionProfileMoveChange extends Change {
 			result
 					.addFatalError(ConnectivityUIPlugin.getDefault()
 							.getResourceString(
-									"CPMoveChange.error.ProfileDoesNotExist"));
+									"CPMoveChange.error.ProfileDoesNotExist")); //$NON-NLS-1$
 		}
 
 		return result;
@@ -159,7 +159,7 @@ public class ConnectionProfileMoveChange extends Change {
 				Status status = new Status(Status.ERROR, ConnectivityUIPlugin
 						.getDefault().getBundle().getSymbolicName(), -1,
 						ConnectivityUIPlugin.getDefault().getResourceString(
-								"CPCopyChange.error.InvalidTarget"), null);
+								"CPCopyChange.error.InvalidTarget"), null); //$NON-NLS-1$
 				throw new CoreException(status);
 			}
 			else if (!imc.isConnected() || imc.getConnection() == null
@@ -173,7 +173,7 @@ public class ConnectionProfileMoveChange extends Change {
 						ConnectivityUIPlugin
 								.getDefault()
 								.getResourceString(
-										"CPCopyChange.error.RepositoryNotConnected",
+										"CPCopyChange.error.RepositoryNotConnected", //$NON-NLS-1$
 										new Object[] { ((IConnectionProfile) destination)
 												.getName()}), null);
 				throw new CoreException(status);
@@ -185,7 +185,7 @@ public class ConnectionProfileMoveChange extends Change {
 		Status status = new Status(Status.ERROR, ConnectivityUIPlugin
 				.getDefault().getBundle().getSymbolicName(), -1,
 				ConnectivityUIPlugin.getDefault().getResourceString(
-						"CPCopyChange.error.InvalidTarget"), null);
+						"CPCopyChange.error.InvalidTarget"), null); //$NON-NLS-1$
 		throw new CoreException(status);
 	}
 

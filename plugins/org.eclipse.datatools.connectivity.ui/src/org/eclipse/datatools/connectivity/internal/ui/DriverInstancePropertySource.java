@@ -218,7 +218,7 @@ public class DriverInstancePropertySource implements IPropertySource {
 				return propval;
 			}
 		}
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/*

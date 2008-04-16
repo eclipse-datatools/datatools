@@ -84,7 +84,7 @@ public class CommonLabelProviderBase implements ICommonLabelProvider {
 				String techName = isvp.getTechnologyName();
 				if (techName != null && techName.length() > 0) {
 					String versionStr = MessageFormat.format(
-							ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"), 
+							ConnectivityUIPlugin.getDefault().getResourceString("CommonLabelProviderBase.label.version"),  //$NON-NLS-1$
 							new String[] {sb.toString(),
 								techName,
 								techVersion.toString()});

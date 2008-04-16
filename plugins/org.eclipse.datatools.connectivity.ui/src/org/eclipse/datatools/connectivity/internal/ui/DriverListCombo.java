@@ -29,21 +29,31 @@ import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
-import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDefinitionsDialog;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.DecorationOverlayIcon;
+import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.ToolBar;
+import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.ibm.icu.util.StringTokenizer;
 
@@ -58,7 +68,6 @@ public class DriverListCombo {
 	// ui pieces
 	private Composite mPanel;
 	private Combo mComboList;
-	private Button mModify;
 	private Label mLabel;
 	private String mLabelText;
 	private String mCategoryId;
@@ -73,6 +82,19 @@ public class DriverListCombo {
 
 	// change listeners
 	private ListenerList changeListeners;
+
+	private Image mDriverImage = null;
+
+	private static ImageDescriptor PLUS = null;
+
+	private static ImageDescriptor ARROW = null;
+
+	private Image mArrowImage = null;
+
+	// show the new driver button?
+	private boolean mShowNewDriverButton = true;
+	private boolean mShowGenericDriverButton = true;
+	private boolean mShowMenu = false;
 
 	/**
 	 * Constructor
@@ -150,6 +172,15 @@ public class DriverListCombo {
 	public void setShowLabel(boolean flag) {
 		this.mShowLabel = flag;
 	}
+	public void setShowNewDriverButton(boolean flag) {
+		this.mShowNewDriverButton = flag;
+	}
+	public void setShowGenericDriverButton(boolean flag) {
+		this.mShowGenericDriverButton = flag;
+	}
+	public void setShowMenu(boolean flag) {
+		this.mShowMenu = flag;
+	}
 
 	/**
 	 * Indicate the state of the "show label" flag
@@ -192,6 +223,7 @@ public class DriverListCombo {
 	 * @param parent
 	 */
 	public void createContents(Composite parent) {
+		makeImages();
 		this.mPanel = new Composite(parent, SWT.NULL);
 
 		GridData vdata = new GridData(GridData.FILL_HORIZONTAL
@@ -200,7 +232,7 @@ public class DriverListCombo {
 		this.mPanel.setLayoutData(vdata);
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 2;
+		gridLayout.numColumns = 4;
 		gridLayout.marginWidth = 0;
 		gridLayout.marginHeight = 0;
 		this.mPanel.setLayout(gridLayout);
@@ -225,14 +257,47 @@ public class DriverListCombo {
 		this.mComboList.addModifyListener(listener);
 		this.mComboList.addSelectionListener(listener);
 
-		this.mModify = new Button(this.mPanel, SWT.PUSH);
-		this.mModify.setEnabled(!isReadOnly);
-		this.mModify.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
-		this.mModify.setText(DriverMgmtMessages
-				.getString("DriverListCombo.button.browse")); //$NON-NLS-1$
-		this.mModify
-				.addSelectionListener(new EditButtonSelectionChangedListener(
+	    final ToolBar toolBar = new ToolBar(this.mPanel, SWT.FLAT);
+		if (mShowNewDriverButton) {
+		    final ToolItem item1 = new ToolItem(toolBar, SWT.PUSH);
+		    DecorationOverlayIcon icon = new DecorationOverlayIcon(mDriverImage, PLUS, IDecoration.TOP_RIGHT);
+		    item1.setImage(icon.createImage());
+		    item1.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
+			item1
+				.addSelectionListener(new NewButtonSelectionChangedListener(
+					this));
+		}
+		
+		if (mShowGenericDriverButton) {
+		    final ToolItem item2 = new ToolItem(toolBar, SWT.PUSH);
+		    item2.setImage(mDriverImage);
+		    item2.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.button.generic")); //$NON-NLS-1$
+			item2.
+				addSelectionListener(new NewGenericSelectionChangedListener(
 						this));
+		}
+		
+		if (mShowMenu) {
+			final Menu menu = new Menu (this.mPanel.getShell(), SWT.POP_UP);
+			MenuItem mitem1 = new MenuItem(menu, SWT.PUSH);
+			mitem1.setText(DriverMgmtMessages.getString("DriverListCombo.button.newdriver")); //$NON-NLS-1$
+			mitem1.addSelectionListener(new NewButtonSelectionChangedListener(this));
+			MenuItem mitem2 = new MenuItem(menu, SWT.PUSH);
+			mitem2.setText(DriverMgmtMessages.getString("DriverListCombo.button.generic")); //$NON-NLS-1$
+			mitem2.addSelectionListener(new NewGenericSelectionChangedListener(this));
+
+			final ToolItem item3 = new ToolItem(toolBar, SWT.PUSH );
+			item3.setImage(mArrowImage);
+		    item3.addListener (SWT.Selection, new Listener () {
+		        public void handleEvent (org.eclipse.swt.widgets.Event event) {
+	                Rectangle rect = item3.getBounds ();
+	                Point pt = new Point (rect.x, rect.y + rect.height);
+	                pt = toolBar.toDisplay (pt);
+	                menu.setLocation (pt.x, pt.y);
+	                menu.setVisible (true);
+		        }
+		    });
+		}
 
 		refreshCombo();
 	}
@@ -505,6 +570,7 @@ public class DriverListCombo {
 				new TemplateDescriptorComparator();
 			Object[] templatesArray = templates.toArray();
 			Arrays.sort(templatesArray, comparator);
+			Arrays.sort(psets, new PropertySetComparator());
 			for (int i = 0; i < templatesArray.length; i++)  {
 				TemplateDescriptor template = (TemplateDescriptor) templatesArray[i];
 				for (int j = 0; j < psets.length; j++) {
@@ -650,35 +716,37 @@ public class DriverListCombo {
 	 * 
 	 * @author brianf
 	 */
-	public class EditButtonSelectionChangedListener implements
+	public class NewButtonSelectionChangedListener implements
 			SelectionListener {
 
 		private DriverListCombo parent;
 
-		public EditButtonSelectionChangedListener(DriverListCombo combo) {
+		public NewButtonSelectionChangedListener(DriverListCombo combo) {
 			this.parent = combo;
 		}
 
 		public void widgetSelected(SelectionEvent e) {
 			Shell newShell = parent.getCombo().getShell();
-			DriverDefinitionsDialog dlg;
+			DriverDialog dlg;
 			if (DriverListCombo.this.mCategoryId != null) {
-				dlg = new DriverDefinitionsDialog(newShell,
+				dlg = new DriverDialog(newShell,
 						DriverListCombo.this.mCategoryId);
 			}
 			else {
-				dlg = new DriverDefinitionsDialog(newShell);
+				dlg = new DriverDialog(newShell);
 			}
-			if (this.parent.getCombo().getText() != null
-					&& this.parent.getCombo().getText().length() > 0)
-				dlg.setInitialDriverName(this.parent.getCombo().getText());
 
 			int rtn = dlg.open();
 			if (rtn != Window.OK)
 				return;
 
 			String tempStore = DriverListCombo.this.mComboList.getText();
-
+			
+			if (dlg.getPropertySet() != null) {
+				DriverManager.getInstance().addDriverInstance(dlg.getPropertySet());
+//				saveChanges();
+			}
+			
 			refreshCombo();
 
 			boolean fireEvent = false;
@@ -728,7 +796,110 @@ public class DriverListCombo {
 		public void widgetDefaultSelected(SelectionEvent e) {
 			widgetSelected(e);
 		}
-
 	}
 
+	public class NewGenericSelectionChangedListener implements
+		SelectionListener {
+
+		private DriverListCombo parent;
+
+		public NewGenericSelectionChangedListener(DriverListCombo combo) {
+			this.parent = combo;
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			Shell newShell = parent.getCombo().getShell();
+			DriverDialog dlg;
+			if (DriverListCombo.this.mCategoryId != null) {
+				dlg = new DriverDialog(newShell,
+						DriverListCombo.this.mCategoryId);
+			}
+			else {
+				dlg = new DriverDialog(newShell);
+			}
+			dlg.setHideDriverList(true);
+			dlg.setInitialTemplate("org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate"); //$NON-NLS-1$
+
+			int rtn = dlg.open();
+			if (rtn != Window.OK)
+				return;
+
+			String tempStore = DriverListCombo.this.mComboList.getText();
+
+			if (dlg.getPropertySet() != null) {
+				DriverManager.getInstance().addDriverInstance(dlg.getPropertySet());
+//				saveChanges();
+			}
+
+			refreshCombo();
+
+			boolean fireEvent = false;
+			if (dlg.getSelectedDefinition() != null) {
+				fireEvent = true;
+				String driverName = dlg.getSelectedDefinition().getName();
+				String[] itemList = DriverListCombo.this.mComboList.getItems();
+				if (itemList.length > 0) {
+					for (int i = 0; i < itemList.length; i++) {
+						String item = itemList[i];
+						IPropertySet temp = (IPropertySet) DriverListCombo.this.mComboList
+						.getData(item);
+						if (temp.getID().equals(
+								dlg.getSelectedDefinition().getID())) {
+							DriverListCombo.this.mComboList.setText(driverName);
+							DriverListCombo.this.mComboList.select(i);
+
+							String driverType = temp
+							.getBaseProperties()
+							.getProperty(
+									IDriverMgmtConstants.PROP_DEFN_TYPE); //$NON-NLS-1$
+							if (driverType != null) {
+								TemplateDescriptor template = TemplateDescriptor
+								.getDriverTemplateDescriptor(driverType);
+								if (template != null) {
+									DriverValidator validator = new DriverValidator(
+											template, temp);
+									DriverListCombo.this.mErrorMessage = null;
+									if (!validator.isValid()) {
+										DriverListCombo.this.mErrorMessage = validator
+										.getMessage();
+									}
+								}
+							}
+							break;
+						}
+					}
+				}
+			}
+			else
+				DriverListCombo.this.mComboList.setText(tempStore);
+
+			if (fireEvent)
+				fireChangedEvent(this.parent);
+		}
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			widgetSelected(e);
+		}
+	}
+
+	protected void finalize() throws Throwable {
+		this.mDriverImage.dispose();
+		super.finalize();
+	}
+	
+	private void makeImages() {
+		mDriverImage = DriverImages.DRIVER.createImage();
+
+		PLUS = AbstractUIPlugin
+			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
+				.getBundle().getSymbolicName(), "icons/add_obj2.gif"); //$NON-NLS-1$
+
+		PLUS.createImage();
+
+		ARROW = AbstractUIPlugin
+		.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
+			.getBundle().getSymbolicName(), "icons/view_menu.gif"); //$NON-NLS-1$
+
+		mArrowImage = ARROW.createImage();
+	}
 }

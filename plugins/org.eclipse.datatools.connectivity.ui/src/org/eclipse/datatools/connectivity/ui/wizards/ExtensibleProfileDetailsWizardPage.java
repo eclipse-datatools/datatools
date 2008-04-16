@@ -125,4 +125,14 @@ public class ExtensibleProfileDetailsWizardPage extends
 		}
 		return copy;
 	}
+
+	public boolean isPageComplete() {
+		if (driverCombo == null) // means this control hasn't been instantiated yet
+			return false;
+		if (driverCombo != null && driverCombo.getSelectedDriverID() == null)
+			return false;
+		if (getErrorMessage() != null)
+			return false;
+		return super.isPageComplete();
+	}
 }

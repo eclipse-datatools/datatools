@@ -12,6 +12,8 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -27,6 +29,8 @@ import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
 import org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileCreateChange;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizard;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.ISkippable;
+import org.eclipse.datatools.connectivity.internal.ui.wizards.ISummaryDataSource;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.SummaryWizardPage;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
@@ -35,6 +39,7 @@ import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ltk.core.refactoring.PerformChangeOperation;
 import org.eclipse.swt.widgets.Composite;
@@ -59,6 +64,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	
     private boolean mSkipProfileNamePage = false;
     private String mProfileName;
+    private String mProfileDesc;
 	private IFinishTask mFinishTask;
 
 	public NewConnectionProfileWizard() {
@@ -112,7 +118,7 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 								.getProfileDescription(), mProviderID,
 						getProfileProperties(), repo == null ? null : repo
 								.getInstanceID(), mProfilePage.getAutoConnect(),
-						getShell()));
+						getShell(), mProfilePage.getAutoConnectOnFinish()));
     	try 
     	{
     		ResourcesPlugin.getWorkspace().run(refOperation, null);
@@ -196,6 +202,36 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 */
 	public abstract void addCustomPages();
 
+	public void setProfileNameAndDescription() {
+		if( mProfileName != null )
+			mProfilePage.setProfileName( mProfileName );
+		if( mProfileDesc != null )
+			mProfilePage.setProfileDescription( mProfileDesc );
+		
+		boolean hideNamePage = true;
+		doSkipProfileNamePage( hideNamePage );
+	}
+
+	public List getSummaryData() {
+		List data = new ArrayList();
+		IWizardPage[] pages = getPages();
+		for (int i = 0; i < pages.length; i++) {
+			if (pages[i] instanceof ISummaryDataSource) {
+				if (pages[i] instanceof ISkippable) {
+					ISkippable page = (ISkippable) pages[i];
+					if (page instanceof NewConnectionProfileWizardPage){
+						// ignore
+					}
+					else if (page.getSkippable()) {
+						continue;
+					}
+				}
+				data.addAll(((ISummaryDataSource) pages[i]).getSummaryData());
+			}
+		}
+		return data;
+	}
+	
 	public String getProfileProviderID() {
 		return mProviderID;
 	}
@@ -212,6 +248,12 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	        mProfilePage.setProfileName( mProfileName );
 	}
 	
+	public void setProfileDescription( String desc )
+	{
+        // cache the value, in case the page is not yet added
+		mProfileDesc = desc;
+	}
+
 	public String getProfileDescription() {
 		return mProfilePage.getProfileDescription();
 	}
@@ -256,6 +298,8 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
             doSkipProfileNamePage( true );
 
 		addCustomPages();
+
+		setProfileNameAndDescription();
 
 		mSummaryPage = new SummaryWizardPage(this);
 		addPage(mSummaryPage);
@@ -319,4 +363,8 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	    public boolean performFinish( NewConnectionProfileWizard delegatingWizard );	    
 	}
 	
+	public NewConnectionProfileWizardPage getProfilePage() {
+		return mProfilePage;
+	}
+
 }

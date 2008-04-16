@@ -50,7 +50,7 @@ public class CategoryProvider {
 	
 	private CategoryProvider() {
 		mName = ConnectivityPlugin.getDefault().getResourceString(
-				"Category.Name.Unknown");
+				"Category.Name.Unknown"); //$NON-NLS-1$
 		mId = ID_CATEGORY_UNKNOWN;
 		mParentCategory = null;
 	}

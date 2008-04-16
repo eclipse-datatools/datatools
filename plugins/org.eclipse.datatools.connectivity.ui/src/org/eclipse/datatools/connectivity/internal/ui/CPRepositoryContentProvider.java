@@ -35,7 +35,7 @@ import org.eclipse.ui.navigator.IExtensionStateModel;
 
 public class CPRepositoryContentProvider implements ITreeContentProvider {
 	
-	private static final String PROP_SHOW_CATEGORIES = "showCategories";
+	private static final String PROP_SHOW_CATEGORIES = "showCategories"; //$NON-NLS-1$
 	private static final String DSE_VIEW_CONTENT_EXTENSION_ID = "org.eclipse.datatools.connectivity.dsexplorer.content"; //$NON-NLS-1$
 
 	private Viewer mViewer;

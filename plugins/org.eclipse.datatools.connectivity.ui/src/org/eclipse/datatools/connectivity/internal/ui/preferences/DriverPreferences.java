@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,13 +7,16 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - update for usability work
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.preferences;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
@@ -25,12 +28,18 @@ import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.DriversProvider;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.datatools.connectivity.internal.ui.DriverTreeContentProvider;
-import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
+import org.eclipse.datatools.connectivity.internal.ui.DriverTableFilter;
+import org.eclipse.datatools.connectivity.internal.ui.DriverTreeFilter;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeSorter;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.AbstractInvertableTableSorter;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.CategoryDescriptorNameComparator;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.CategoryUtils;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDialog;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverListContentProvider;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverListLabelProvider;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.EditDriverDialog;
-import org.eclipse.datatools.connectivity.internal.ui.dialogs.NewDriverDialog;
+import org.eclipse.datatools.connectivity.internal.ui.dialogs.TableSortSelectionListener;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.help.IContext;
@@ -42,15 +51,14 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.JFaceColors;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -59,12 +67,16 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+
+import com.ibm.icu.text.Collator;
 
 /**
  * Driver management preference page.
@@ -74,13 +86,16 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 public class DriverPreferences extends PreferencePage implements
 		IWorkbenchPreferencePage, IContextProvider {
 
+	private static String ALL_STRING = DriverMgmtMessages.getString("DriverDialog.AllFilter"); //$NON-NLS-1$
+
 	// ui elements
 	private Button mAddButton;
 	private Button mRemoveButton;
 	private Button mEditButton;
 	private Button mCopyButton;
-	private Label mErrorLabel;
-	private TreeViewer mTreeViewer;
+	private TableViewer mTableViewer;
+	private Combo mTypeCombo;
+	private Combo mVendorCombo;
 
 	private Action mAddAction;
 	private Action mRemoveAction;
@@ -90,6 +105,16 @@ public class DriverPreferences extends PreferencePage implements
 	// dirty flag for save/no save
 	private boolean mDirty = false;
 
+	// viewer filter
+	private DriverTableFilter mViewerFilter;
+	private DriverTableFilter mTypeFilter;
+	private DriverTableFilter mVendorFilter;
+
+	// stashed selected propertyset
+	private IPropertySet selectedPS = null;
+	
+	private String mMessage = null;
+
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
 
@@ -98,6 +123,7 @@ public class DriverPreferences extends PreferencePage implements
 	 */
 	public DriverPreferences() {
 		super();
+		this.noDefaultAndApplyButton();
 	}
 
 	/**
@@ -107,6 +133,7 @@ public class DriverPreferences extends PreferencePage implements
 	 */
 	public DriverPreferences(String title) {
 		super(title);
+		this.noDefaultAndApplyButton();
 	}
 
 	/**
@@ -117,6 +144,7 @@ public class DriverPreferences extends PreferencePage implements
 	 */
 	public DriverPreferences(String title, ImageDescriptor image) {
 		super(title, image);
+		this.noDefaultAndApplyButton();
 	}
 
 	/*
@@ -125,6 +153,7 @@ public class DriverPreferences extends PreferencePage implements
 	 * @see org.eclipse.jface.preference.PreferencePage#createContents(org.eclipse.swt.widgets.Composite)
 	 */
 	protected Control createContents(Composite parent) {
+		mMessage = getMessage();
         Font font = parent.getFont();
 
 		Composite content = new Composite(parent, SWT.NONE);
@@ -139,65 +168,169 @@ public class DriverPreferences extends PreferencePage implements
 		content.setLayoutData(data);
 		content.setFont(font);
 
-		this.mErrorLabel = new Label(content, SWT.LEFT | SWT.WRAP);
-		data = new GridData(GridData.VERTICAL_ALIGN_FILL
-				| GridData.HORIZONTAL_ALIGN_FILL);
-		data.horizontalSpan = 2;
-		data.heightHint = 35;
-		this.mErrorLabel.setLayoutData(data);
-		this.mErrorLabel.setForeground(JFaceColors.getErrorText(getControl()
-				.getDisplay()));
-		this.mErrorLabel.setFont(font);
-
-		Label label = new Label(content, SWT.LEFT);
-		label.setText(DriverMgmtMessages
-				.getString("DriverPreferences.label.availableDrivers")); //$NON-NLS-1$
-		data = new GridData();
-		data.horizontalAlignment = GridData.FILL;
-		data.horizontalSpan = 2;
-		label.setLayoutData(data);
-		label.setFont(font);
+		Composite comboComposite = new Composite ( content, SWT.NONE);
+		GridLayout combolayout = new GridLayout(2, false);
+		combolayout.marginWidth = 0;
+		combolayout.marginHeight = 0;
+		comboComposite.setLayout(combolayout);
+		GridData CCdata = new GridData();
+		CCdata.horizontalAlignment = GridData.FILL;
+		CCdata.horizontalSpan = 2;
+		comboComposite.setLayoutData(CCdata);
 		
-		this.mTreeViewer = new TreeViewer(content, SWT.BORDER | SWT.H_SCROLL
-				| SWT.V_SCROLL);
+		CategoryDescriptor[] roots = CategoryUtils.getOrderedRootCategories();
+		if (mViewerFilter != null) {
+			roots = new CategoryDescriptor[] {((DriverTreeFilter) mViewerFilter).getCategoryDescriptor()};
+		}
+		if (roots != null && roots.length > 1) {
+			Label tlabel = new Label(comboComposite, SWT.LEFT);
+			tlabel.setText(DriverMgmtMessages.getString("DriverPreferences.DriverTypeFilter")); //$NON-NLS-1$
+			tlabel.setLayoutData(new GridData());
+			
+			mTypeCombo = new Combo (comboComposite, SWT.BORDER | SWT.READ_ONLY );
+			mTypeCombo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+			
+			mTypeCombo.add(ALL_STRING);
+			mTypeCombo.setData(ALL_STRING, roots);
+			
+			for (int i = 0; i < roots.length; i++) {
+				mTypeCombo.add(roots[i].getName());
+				mTypeCombo.setData(roots[i].getName(), roots[i]);
+			}
+			
+			mTypeCombo.addSelectionListener(new SelectionListener() {
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					handleTypeSelection();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					widgetDefaultSelected(e);
+				}
+			});
+		}
+
+		if (roots[0].getParent() != null && roots[0].getParent().getParent() == null) {
+			// too deep
+		}
+		else {
+			Label vLabel = new Label(comboComposite, SWT.LEFT);
+			vLabel.setText(DriverMgmtMessages.getString("DriverPreferences.VendorFilter")); //$NON-NLS-1$
+			vLabel.setLayoutData(new GridData());
+			
+			mVendorCombo = new Combo (comboComposite, SWT.BORDER | SWT.READ_ONLY );
+			mVendorCombo.setLayoutData(new GridData(SWT.FILL, SWT.NONE, true, false));
+			
+			mVendorCombo.addSelectionListener( new SelectionListener() {
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					handleVendorSelection();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					widgetDefaultSelected(e);
+				}
+			});
+			
+			if (roots != null && roots.length == 1) {
+				CategoryDescriptor[] children = 
+					CategoryUtils.getOrderedChildCategories(roots[0].getId());
+				if (children != null && children.length > 0) {
+					mVendorCombo.add(ALL_STRING);
+					for (int i = 0; i < children.length; i++) {
+						mVendorCombo.add(children[i].getName());
+						mVendorCombo.setData(children[i].getName(), children[i]);
+					}
+				}
+				else {
+					mVendorCombo.setEnabled(false);
+				}
+			}
+		}
+
+		this.mTableViewer = new TableViewer(content, SWT.BORDER | SWT.FULL_SELECTION);
 		data = new GridData(GridData.FILL_HORIZONTAL | GridData.FILL_VERTICAL);
-		data.verticalSpan = 10;
-		this.mTreeViewer.getTree().setLayoutData(data);
-		this.mTreeViewer.getTree().setFont(font);
+		this.mTableViewer.getTable().setLayoutData(data);
+		this.mTableViewer.getTable().setFont(font);
+		this.mTableViewer.getTable().setHeaderVisible( true );
 
 		makeActions();
 		hookContextMenu();
 
-		this.mTreeViewer.setContentProvider(new DriverTreeContentProvider());
-		this.mTreeViewer.setLabelProvider(new DecoratingLabelProvider(
-				new DriverTreeLabelProvider(), new DriverTreeLabelProvider()));
-		this.mTreeViewer.setSorter(new DriverTreeSorter());
-		this.mTreeViewer.setInput(DriversProvider.getInstance());
-		this.mTreeViewer.expandToLevel(3);
 
-		this.mTreeViewer
+		TableSortSelectionListener tssl1 = createTableColumn(mTableViewer, DriverMgmtMessages.getString("DriverPreferences.NameColumn"), DriverMgmtMessages.getString("DriverPreferences.DriverNameColumn"), //$NON-NLS-1$ //$NON-NLS-2$
+				new TextSorter(0), SWT.UP, false);
+		tssl1.getColumn().setWidth(200);
+		tssl1.getColumn().setResizable(true);
+		tssl1.chooseColumnForSorting();
+		
+		TableSortSelectionListener tssl2 = createTableColumn(mTableViewer, DriverMgmtMessages.getString("DriverPreferences.VendorColumn"), DriverMgmtMessages.getString("DriverPreferences.DriverVendorColumn"), //$NON-NLS-1$ //$NON-NLS-2$
+				new TextSorter(1), SWT.UP, true);
+		tssl2.getColumn().setWidth(200);
+		tssl2.getColumn().setResizable(true);
+		
+		TableSortSelectionListener tssl3 = createTableColumn(mTableViewer, DriverMgmtMessages.getString("DriverPreferences.VersionColumn"), DriverMgmtMessages.getString("DriverPreferences.DriverVersionColumn"), //$NON-NLS-1$ //$NON-NLS-2$
+				new TextSorter(2), SWT.UP, false);
+		tssl3.getColumn().setWidth(100);
+		tssl3.getColumn().setResizable(true);
+
+		this.mTableViewer.setContentProvider(new DriverListContentProvider());
+		this.mTableViewer.setLabelProvider(new DriverListLabelProvider()); //DecoratingLabelProvider(
+//				new DriverTreeLabelProvider(), new DriverTreeLabelProvider()));
+		this.mTableViewer.setSorter(new DriverTreeSorter());
+		if (this.mViewerFilter != null) {
+			this.mTableViewer.addFilter(this.mViewerFilter);
+		}
+		this.mTableViewer.setInput(DriversProvider.getInstance());
+//		this.mTableViewer.expandToLevel(3);
+
+		this.mTableViewer
 				.addSelectionChangedListener(new ISelectionChangedListener() {
 
 					public void selectionChanged(SelectionChangedEvent event) {
-						StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTreeViewer
+						DriverPreferences.this.setMessage(DriverPreferences.this.mMessage);
+						DriverPreferences.this.setErrorMessage(null);
+						
+						DriverPreferences.this.selectedPS = null;
+						StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTableViewer
 								.getSelection();
-
-						if (selection != null && selection.size() > 0 && selection.getFirstElement() != null)
-							updateButtons (selection.getFirstElement());
-						else 
-							updateButtons ( null );
+						DriverPreferences.this.mAddButton
+							.setEnabled(true);
+						if (selection.getFirstElement() instanceof CategoryDescriptor) {
+							DriverPreferences.this.mRemoveButton
+									.setEnabled(false);
+							DriverPreferences.this.mEditButton
+									.setEnabled(false);
+							DriverPreferences.this.mCopyButton
+								.setEnabled(false);
+						}
+						else if (selection.getFirstElement() instanceof IPropertySet) {
+							DriverPreferences.this.mRemoveButton
+									.setEnabled(true);
+							DriverPreferences.this.mEditButton
+									.setEnabled(true);
+							DriverPreferences.this.mCopyButton
+								.setEnabled(true);
+							DriverPreferences.this.selectedPS = (IPropertySet) selection
+									.getFirstElement();
+							if (DriverPreferences.this.selectedPS != null) {
+								validate(DriverPreferences.this.selectedPS);
+							}
+						}
 					}
 
-				});
-
-		this.mTreeViewer.addDoubleClickListener( new IDoubleClickListener() {
+				}
+			);
+		
+		mTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
-				StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTreeViewer
-						.getSelection();
-				editDriver(selection);
+				StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTableViewer
+					.getSelection();
+				DriverPreferences.this.editDriver(selection);
 			}
 		});
+
 		Composite groupComponent = new Composite(content, SWT.NULL);
 		GridLayout groupLayout = new GridLayout();
 		groupLayout.marginWidth = 0;
@@ -218,7 +351,7 @@ public class DriverPreferences extends PreferencePage implements
 		this.mAddButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				addDriver(DriverPreferences.this.mTreeViewer.getSelection());
+				addDriver(DriverPreferences.this.mTableViewer.getSelection());
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -227,7 +360,7 @@ public class DriverPreferences extends PreferencePage implements
 
 		});
 
-		this.mEditButton = new Button(content, SWT.PUSH);
+		this.mEditButton = new Button(groupComponent, SWT.PUSH);
 		this.mEditButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.editDriver")); //$NON-NLS-1$
 		this.mEditButton.setLayoutData(data);
@@ -236,7 +369,7 @@ public class DriverPreferences extends PreferencePage implements
 		this.mEditButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				editDriver(DriverPreferences.this.mTreeViewer.getSelection());
+				editDriver(DriverPreferences.this.mTableViewer.getSelection());
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -245,7 +378,7 @@ public class DriverPreferences extends PreferencePage implements
 
 		});
 
-		this.mRemoveButton = new Button(content, SWT.PUSH);
+		this.mRemoveButton = new Button(groupComponent, SWT.PUSH);
 		this.mRemoveButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.removeDriver")); //$NON-NLS-1$
 		this.mRemoveButton.setLayoutData(data);
@@ -254,7 +387,7 @@ public class DriverPreferences extends PreferencePage implements
 		this.mRemoveButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				removeDriver(DriverPreferences.this.mTreeViewer.getSelection());
+				removeDriver(DriverPreferences.this.mTableViewer.getSelection());
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -263,7 +396,7 @@ public class DriverPreferences extends PreferencePage implements
 
 		});
 
-		this.mCopyButton = new Button(content, SWT.PUSH);
+		this.mCopyButton = new Button(groupComponent, SWT.PUSH);
 		this.mCopyButton.setText(DriverMgmtMessages
 				.getString("DriverPreferences.button.copyDriver")); //$NON-NLS-1$
 		this.mCopyButton.setLayoutData(data);
@@ -272,7 +405,7 @@ public class DriverPreferences extends PreferencePage implements
 		this.mCopyButton.addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				copyDriver(DriverPreferences.this.mTreeViewer.getSelection());
+				copyDriver(DriverPreferences.this.mTableViewer.getSelection());
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -282,46 +415,39 @@ public class DriverPreferences extends PreferencePage implements
 		});
 
 		if (CategoryDescriptor.getRootCategories() != null && CategoryDescriptor.getRootCategories().length > 0)
-			this.mTreeViewer.setSelection(new StructuredSelection(
+			this.mTableViewer.setSelection(new StructuredSelection(
 					CategoryDescriptor.getRootCategories()[0]));
 		
+		if (mTypeCombo != null) {
+			mTypeCombo.select(0);
+			handleTypeSelection();
+		}
+		if (mVendorCombo != null && mVendorCombo.getItemCount() > 0) {
+			mVendorCombo.select(0);
+			handleVendorSelection();
+		}
+
 		updateButtons(null);
 
 		return content;
 	}
 
 	private void updateButtons ( Object selection ) {
+		DriverPreferences.this.mAddButton.setEnabled(true);
 		// if they selected a category...
 		if (selection instanceof CategoryDescriptor) {
-			DriverPreferences.this.mAddButton.setEnabled(true);
-			DriverPreferences.this.mAddAction.setEnabled(true);
-			DriverPreferences.this.mRemoveButton
-					.setEnabled(false);
 			DriverPreferences.this.mRemoveAction
-					.setEnabled(false);
-			DriverPreferences.this.mEditButton
 					.setEnabled(false);
 			DriverPreferences.this.mEditAction
 					.setEnabled(false);
-			DriverPreferences.this.mCopyButton
-					.setEnabled(false);
 			DriverPreferences.this.mCopyAction
 					.setEnabled(false);
-			DriverPreferences.this.mErrorLabel.setText(""); //$NON-NLS-1$
-			DriverPreferences.this.mErrorLabel.computeSize(
-					SWT.DEFAULT, SWT.DEFAULT);
 		}
 		// if they selected a driver instance
 		else if (selection instanceof IPropertySet) {
-			DriverPreferences.this.mAddButton.setEnabled(false);
-			DriverPreferences.this.mAddAction.setEnabled(false);
-			DriverPreferences.this.mRemoveButton
-					.setEnabled(true);
 			DriverPreferences.this.mRemoveAction
 					.setEnabled(true);
-			DriverPreferences.this.mEditButton.setEnabled(true);
 			DriverPreferences.this.mEditAction.setEnabled(true);
-			DriverPreferences.this.mCopyButton.setEnabled(true);
 			DriverPreferences.this.mCopyAction.setEnabled(true);
 
 			IPropertySet ps = (IPropertySet) selection;
@@ -330,54 +456,37 @@ public class DriverPreferences extends PreferencePage implements
 			}
 		}
 		else {
-			DriverPreferences.this.mAddButton.setEnabled(false);
-			DriverPreferences.this.mAddAction.setEnabled(false);
-			DriverPreferences.this.mRemoveButton.setEnabled(false);
 			DriverPreferences.this.mRemoveAction.setEnabled(false);
-			DriverPreferences.this.mEditButton.setEnabled(false);
 			DriverPreferences.this.mEditAction.setEnabled(false);
-			DriverPreferences.this.mCopyButton.setEnabled(false);
 			DriverPreferences.this.mCopyAction.setEnabled(false);
 		}
 	}
 	
 	private void addDriver(ISelection selection) {
-		StructuredSelection sselection = (StructuredSelection) selection;
-
-		// Add a new driver instance from one of the templates for the category
-		if (sselection.getFirstElement() instanceof CategoryDescriptor) {
-
-			CategoryDescriptor descriptor = (CategoryDescriptor) sselection
-					.getFirstElement();
-			NewDriverDialog dlg = new NewDriverDialog(getShell(), descriptor
-					.getId());
-			if (dlg.open() == Window.OK) {
-				IPropertySet instance = dlg.getNewDriverInstance();
-
-				DriverPreferences.this.mDirty = true;
-
-				// Should we edit immediately? if yes, pop up the edit dialog
-				if (dlg.getEditImmediately()) {
-					EditDriverDialog editdlg = new EditDriverDialog(getShell(),
-							instance);
-					int rtn_code = editdlg.open();
-					if (rtn_code != EditDriverDialog.OK) {
-						instance = editdlg.getInitialPropertySet();
-					}
-				}
-
-				// stash the new instance
-				DriverManager.getInstance().addDriverInstance(instance);
-
-				// refresh
-				DriverPreferences.this.mTreeViewer.getControl().setRedraw(false);
-				DriverPreferences.this.mTreeViewer.setInput(DriversProvider.getInstance());
-				DriverPreferences.this.mTreeViewer.refresh(descriptor);
-				DriverPreferences.this.mTreeViewer.expandToLevel(descriptor, 1);
-				DriverPreferences.this.mTreeViewer.getControl().setRedraw(true);
-
-			}
+		DriverDialog ddtt = new DriverDialog(this.getShell());
+		ddtt.setEditMode(false); // NEW Driver Dialog
+		ddtt.setVendorFilter(this.mVendorFilter);
+		ddtt.setTypeFilter(this.mTypeFilter);
+		int rtn_code = ddtt.open();
+		if (rtn_code != EditDriverDialog.OK) {
+			// do nothing
+			return;
 		}
+
+		// stash the new instance
+		DriverManager.getInstance().addDriverInstance(ddtt.getPropertySet());
+
+		// refresh
+		this.mTableViewer.getControl().setRedraw(false);
+		this.mTableViewer.setInput(DriversProvider.getInstance());
+		this.mTableViewer.refresh();
+		this.mDirty = true;
+		
+		DriverInstance instance =
+			DriverManager.getInstance().getDriverInstanceByName(ddtt.getPropertySet().getName());
+		this.mTableViewer.setSelection(new StructuredSelection(instance.getPropertySet()), true);
+		this.mTableViewer.getControl().setRedraw(true);
+
 	}
 
 	private void editDriver(ISelection selection) {
@@ -385,9 +494,12 @@ public class DriverPreferences extends PreferencePage implements
 		if (sselection.getFirstElement() instanceof IPropertySet) {
 			IPropertySet instance = (IPropertySet) sselection.getFirstElement();
 			IPropertySet copy = duplicatePropertySet(instance);
-			EditDriverDialog dlg = new EditDriverDialog(getShell(), copy);
+			DriverDialog dlg = new DriverDialog(this.getShell());
+			dlg.setEditMode(true); // EDIT Driver Dialog
+			dlg.setPropertySet(copy);
 			if (dlg.open() == Window.OK) {
 				
+				copy = dlg.getPropertySet();
 				copyPropertySet(copy, instance);
 				DriverManager.getInstance().removeDriverInstance(instance.getID());
 				
@@ -402,9 +514,9 @@ public class DriverPreferences extends PreferencePage implements
 				 */
 				System.gc();
 				
-				DriverManager.getInstance().addDriverInstance(instance);
-				DriverPreferences.this.mDirty = true;
-				DriverPreferences.this.mTreeViewer.refresh();
+				DriverManager.getInstance().addDriverInstance(copy);
+				this.mDirty = true;
+				this.mTableViewer.refresh();
 				validate(instance);
 			}
 		}
@@ -421,10 +533,8 @@ public class DriverPreferences extends PreferencePage implements
 							new String[] { instance.getName()})) == true) {
 				DriverManager.getInstance().removeDriverInstance(instance.getID());
 
-				CategoryDescriptor category = getCategoryFromPropertySet(instance);
-				DriverPreferences.this.mTreeViewer.refresh(category);
-				DriverPreferences.this.mDirty = true;
-				DriverPreferences.this.mErrorLabel.setText(""); //$NON-NLS-1$
+				this.mTableViewer.refresh();//category);
+				this.mDirty = true;
 			}
 		}
 	}
@@ -448,9 +558,9 @@ public class DriverPreferences extends PreferencePage implements
 				
 				DriverManager.getInstance().addDriverInstance(cloned);
 
-				DriverPreferences.this.mTreeViewer.refresh();
-
-				DriverPreferences.this.mTreeViewer
+				this.mTableViewer.refresh();
+				this.mDirty = true;
+				this.mTableViewer
 						.setSelection(new StructuredSelection(cloned));
 			}
 		}
@@ -483,8 +593,8 @@ public class DriverPreferences extends PreferencePage implements
 				manager.add(DriverPreferences.this.mCopyAction);
 			}
 		});
-		Menu menu = menuMgr.createContextMenu(this.mTreeViewer.getControl());
-		this.mTreeViewer.getControl().setMenu(menu);
+		Menu menu = menuMgr.createContextMenu(this.mTableViewer.getControl());
+		this.mTableViewer.getControl().setMenu(menu);
 	}
 
 	/**
@@ -493,6 +603,8 @@ public class DriverPreferences extends PreferencePage implements
 	 * @param instance
 	 */
 	private void validate(IPropertySet instance) {
+		DriverPreferences.this.setMessage(DriverPreferences.this.mMessage);
+		this.setErrorMessage(null);
 		String driverType = instance.getBaseProperties().getProperty(
 				IDriverMgmtConstants.PROP_DEFN_TYPE); //$NON-NLS-1$
 		if (driverType != null) {
@@ -504,9 +616,10 @@ public class DriverPreferences extends PreferencePage implements
 				String mErrorMessage = ""; //$NON-NLS-1$
 				if (!validator.isValid()) {
 					mErrorMessage = validator.getMessage();
+					this.setErrorMessage(mErrorMessage);
 				}
-				this.mErrorLabel.setText(mErrorMessage);
-				this.mErrorLabel.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+//				this.mErrorLabel.setText(mErrorMessage);
+//				this.mErrorLabel.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 			}
 		}
 	}
@@ -538,7 +651,7 @@ public class DriverPreferences extends PreferencePage implements
 	private void saveChanges() {
 		// this code isn't needed any more because 
 		XMLFileManager.setFileName(IDriverMgmtConstants.DRIVER_FILE);
-		List psetsList = ((DriverTreeContentProvider) this.mTreeViewer
+		List psetsList = ((DriverListContentProvider) this.mTableViewer
 				.getContentProvider()).getDriverInstances();
 		Object[] objs = psetsList.toArray();
 		IPropertySet[] propsets = new IPropertySet[objs.length];
@@ -566,56 +679,31 @@ public class DriverPreferences extends PreferencePage implements
 		return super.performOk();
 	}
 
-	/**
-	 * Return the category descriptor for the instance passed in.
-	 * 
-	 * @param instance
-	 * @return
-	 */
-	private CategoryDescriptor getCategoryFromPropertySet(IPropertySet instance) {
-		if (instance != null) {
-			if (instance.getBaseProperties().getProperty(
-					IDriverMgmtConstants.PROP_DEFN_TYPE) != null) {
-				String driverType = instance.getBaseProperties().getProperty(
-						IDriverMgmtConstants.PROP_DEFN_TYPE);
-				TemplateDescriptor descriptor = TemplateDescriptor
-						.getDriverTemplateDescriptor(driverType);
-				if (descriptor != null) {
-					CategoryDescriptor category = CategoryDescriptor
-							.getCategoryDescriptor(descriptor
-									.getParentCategory());
-					return category;
-				}
-			}
-		}
-		return null;
-	}
-
 	private class AddAction extends Action {
 
 		public void run() {
-			addDriver(DriverPreferences.this.mTreeViewer.getSelection());
+			addDriver(DriverPreferences.this.mTableViewer.getSelection());
 		}
 	}
 
 	private class RemoveAction extends Action {
 
 		public void run() {
-			removeDriver(DriverPreferences.this.mTreeViewer.getSelection());
+			removeDriver(DriverPreferences.this.mTableViewer.getSelection());
 		}
 	}
 
 	private class EditAction extends Action {
 
 		public void run() {
-			editDriver(DriverPreferences.this.mTreeViewer.getSelection());
+			editDriver(DriverPreferences.this.mTableViewer.getSelection());
 		}
 	}
 
 	private class CopyAction extends Action {
 
 		public void run() {
-			copyDriver(DriverPreferences.this.mTreeViewer.getSelection());
+			copyDriver(DriverPreferences.this.mTableViewer.getSelection());
 		}
 	}
 
@@ -655,4 +743,144 @@ public class DriverPreferences extends PreferencePage implements
 		HelpUtil.setHelp(getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_DRIVER_PREFERENCES, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 
 	}
+
+	private class TextSorter extends AbstractInvertableTableSorter {
+		 
+		private int mColumn = -1;
+		
+		public TextSorter ( int column ) {
+			super();
+			this.mColumn = column;
+		}
+		
+		public int compare(Viewer viewer, Object e1, Object e2) {
+			if (viewer instanceof TableViewer) {
+				TableViewer tv = (TableViewer) viewer;
+				if (tv.getLabelProvider() instanceof DriverListLabelProvider) {
+					DriverListLabelProvider dtlp = 
+						(DriverListLabelProvider) tv.getLabelProvider();
+					String text1 = dtlp.getColumnText(e1, this.mColumn);
+					String text2 = dtlp.getColumnText(e2, this.mColumn);
+					if (text1 == null) text1 = ""; //$NON-NLS-1$
+					if (text2 == null) text2 = ""; //$NON-NLS-1$
+					return Collator.getInstance().compare(text1, text2);
+				}
+			}
+			return Collator.getInstance().compare((String) e1, (String) e2);
+		}
+	}
+
+	public static TableSortSelectionListener createTableColumn(
+			TableViewer viewer, String text, String tooltip,
+			AbstractInvertableTableSorter sorter, int initialDirection,
+			boolean keepDirection) {
+		TableColumn column = new TableColumn(viewer.getTable(), SWT.LEFT);
+		column.setText(text);
+		column.setToolTipText(tooltip);
+		return new TableSortSelectionListener(viewer, column, sorter,
+				initialDirection, keepDirection);
+	}
+
+	private void handleTypeSelection() {
+		if (this.mTableViewer != null && !this.mTableViewer.getTable().isDisposed())
+			this.mTableViewer.getTable().setRedraw(false);
+		if (this.mTypeCombo == null)
+			return;
+		if (mTypeFilter != null && mTableViewer != null) {
+			mTableViewer.removeFilter(mTypeFilter);
+		}
+		mVendorCombo.removeAll();
+		if (mTypeCombo.getSelectionIndex() > -1) {
+			String selectedText = mTypeCombo.getText().trim();
+			if (selectedText.length() > 0) {
+				Object data = mTypeCombo.getData(selectedText);
+				CategoryDescriptor[] kids = null;
+				if (data instanceof CategoryDescriptor) {
+					CategoryDescriptor cd = (CategoryDescriptor) data;
+					mTypeFilter = new DriverTableFilter();
+					mTypeFilter.setCategoryId(cd.getId());
+					mTableViewer.addFilter(mTypeFilter);
+					mTableViewer.refresh();
+					kids = CategoryUtils.getOrderedChildCategories(cd.getId());
+				}
+				else if (data instanceof CategoryDescriptor[]) {
+					kids = (CategoryDescriptor[]) data;
+					Arrays.sort(kids, new CategoryDescriptorNameComparator());
+				}
+				if (kids != null && !selectedText.equals(ALL_STRING)) {
+					mVendorCombo.add(ALL_STRING);
+					for (int j = 0; j < kids.length; j++) {
+						mVendorCombo.add(kids[j].getName());
+						mVendorCombo.setData(kids[j].getName(), kids[j]);
+					}
+					if (mVendorCombo.getItemCount() == 0) {
+						mVendorCombo.setEnabled(false);
+					}
+				}
+				else {
+					mVendorCombo.add(ALL_STRING);
+					for (int j = 0; j < kids.length; j++) {
+						CategoryDescriptor[] details =
+							CategoryUtils.getOrderedChildCategories(kids[j].getId());
+						if (details != null && details.length > 0) {
+							for (int i = 0; i < details.length; i++) {
+								mVendorCombo.add(details[i].getName());
+								mVendorCombo.setData(details[i].getName(), details[i]);
+							}
+						}
+					}
+					if (mVendorCombo.getItemCount() == 0) {
+						mVendorCombo.setEnabled(false);
+					}
+				}
+				mVendorCombo.select(0);
+			}
+		}
+		else {
+			mVendorCombo.setEnabled(false);
+		}
+		if (this.mTableViewer != null && !this.mTableViewer.getTable().isDisposed())
+			this.mTableViewer.getTable().setRedraw(true);
+	}
+	
+	private void handleVendorSelection() {
+		if (this.mTableViewer != null && !this.mTableViewer.getTable().isDisposed())
+			this.mTableViewer.getTable().setRedraw(false);
+		if (this.mVendorCombo == null)
+			return;
+		if (mTypeFilter != null && mTableViewer != null) {
+			mTableViewer.removeFilter(mTypeFilter);
+		}
+		if (mTableViewer != null && mVendorCombo != null && mVendorCombo.getText().trim().length() > 0) {
+			String selText = mVendorCombo.getText().trim();
+			if (!selText.equalsIgnoreCase(ALL_STRING)) {
+				CategoryDescriptor cd = (CategoryDescriptor) mVendorCombo.getData(selText);
+				if (cd != null) {
+					mTypeFilter = new DriverTableFilter(false);
+					mTypeFilter.setCategoryId(cd.getId());
+					mTableViewer.addFilter(mTypeFilter);
+					mTableViewer.refresh();
+				}
+			}
+			else {
+				if (mTypeCombo != null) {
+					String selectedText = mTypeCombo.getText().trim();
+					if (selectedText.length() > 0) {
+						Object data = mTypeCombo.getData(selectedText);
+						if (data instanceof CategoryDescriptor) {
+							CategoryDescriptor cd = (CategoryDescriptor) data;
+							mTypeFilter = new DriverTableFilter();
+							mTypeFilter.setCategoryId(cd.getId());
+							mTableViewer.addFilter(mTypeFilter);
+							mTableViewer.refresh();
+						}
+					}
+				}
+			}
+		}
+		if (this.mTableViewer != null && !this.mTableViewer.getTable().isDisposed())
+			this.mTableViewer.getTable().setRedraw(true);
+	}
+
 }
+

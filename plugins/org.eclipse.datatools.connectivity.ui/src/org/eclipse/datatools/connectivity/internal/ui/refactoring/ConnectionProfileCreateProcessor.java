@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class ConnectionProfileCreateProcessor extends RefactoringProcessor {
 
-	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.createProcessor";
+	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.createProcessor"; //$NON-NLS-1$
 
 	private String mNewProfileName;
 	private String mNewProfileDescription;
@@ -96,7 +96,7 @@ public class ConnectionProfileCreateProcessor extends RefactoringProcessor {
 	 */
 	public String getProcessorName()
 	{
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"), //$NON-NLS-1$
 				new Object[] { mNewProfileName });
 //		return ConnectivityUIPlugin.getDefault().getResourceString("CPCreateProcessor.name");
 	}

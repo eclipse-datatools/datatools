@@ -46,7 +46,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
  */
 public class ConnectionProfileCopyProcessor extends CopyProcessor {
 
-	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.copyProcessor";
+	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.copyProcessor"; //$NON-NLS-1$
 	private IConnectionProfile[] mProfiles;
 	private List mProfilesToCopy;
 	private CopyArguments mArguments;
@@ -87,7 +87,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 	 */
 	public String getProcessorName() {
 		return ConnectivityUIPlugin.getDefault().getResourceString(
-				"CPDuplicateProcessor.name");
+				"CPDuplicateProcessor.name"); //$NON-NLS-1$
 	}
 
 	/*
@@ -246,7 +246,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 				Status status = new Status(Status.ERROR, ConnectivityUIPlugin
 						.getDefault().getBundle().getSymbolicName(), -1,
 						ConnectivityUIPlugin.getDefault().getResourceString(
-								"CPCopyChange.error.InvalidTarget"), null);
+								"CPCopyChange.error.InvalidTarget"), null); //$NON-NLS-1$
 				throw new CoreException(status);
 			}
 			else if (!imc.isConnected() || imc.getConnection() == null
@@ -260,7 +260,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 						ConnectivityUIPlugin
 								.getDefault()
 								.getResourceString(
-										"CPCopyChange.error.RepositoryNotConnected",
+										"CPCopyChange.error.RepositoryNotConnected", //$NON-NLS-1$
 										new Object[] { ((IConnectionProfile) destination)
 												.getName()}), null);
 				throw new CoreException(status);
@@ -272,7 +272,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 		Status status = new Status(Status.ERROR, ConnectivityUIPlugin
 				.getDefault().getBundle().getSymbolicName(), -1,
 				ConnectivityUIPlugin.getDefault().getResourceString(
-						"CPCopyChange.error.InvalidTarget"), null);
+						"CPCopyChange.error.InvalidTarget"), null); //$NON-NLS-1$
 		throw new CoreException(status);
 	}
 

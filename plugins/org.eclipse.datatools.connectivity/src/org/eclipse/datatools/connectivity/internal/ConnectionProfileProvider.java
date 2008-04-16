@@ -98,7 +98,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 	}
 	
 	public ConnectionProfileProvider(String id) {
-		mName = ConnectivityPlugin.getDefault().getResourceString("NullConnectionProfileProvider.name");
+		mName = ConnectivityPlugin.getDefault().getResourceString("NullConnectionProfileProvider.name"); //$NON-NLS-1$
 		mId = id;
 		mIconURL = null;
 		mCategory = CategoryProvider.ID_CATEGORY_UNKNOWN;
@@ -341,7 +341,7 @@ public class ConnectionProfileProvider implements IConnectionProfileProvider {
 		String iconAttr = mElement == null ? null : mElement
 				.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
-			if (iconAttr.startsWith("platform:/")){
+			if (iconAttr.startsWith("platform:/")){ //$NON-NLS-1$
 				try {
 					mIconURL = new URL(iconAttr);
 				} catch (MalformedURLException e) {

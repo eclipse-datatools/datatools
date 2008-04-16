@@ -51,7 +51,7 @@ public class ConnectionProfileDeleteChange extends Change {
 	 */
 	public String getName()
 	{
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.name"), //$NON-NLS-1$
 				new Object[] { mProfileToDelete.getName()});
 	}
 
@@ -72,12 +72,12 @@ public class ConnectionProfileDeleteChange extends Change {
 		// Make sure the element exists
 		if (mProfileToDelete == null) // || ProfileManager.getInstance().getProfileByName(mProfileToDelete.getName()) == null)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist")); //$NON-NLS-1$
 		}
 		else {
 			String path = ProfileManager.getInstance().getProfilePath(mProfileToDelete);
 			if (ProfileManager.getInstance().getProfileByFullPath(path) == null) {
-				result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist"));
+				result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.error.ProfileDoesNotExist")); //$NON-NLS-1$
 			}
 		}
 

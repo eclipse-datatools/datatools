@@ -1214,7 +1214,7 @@ public class ConnectionProfile extends PlatformObject implements
 			}
 
 			// Create a group monitor
-			IProgressMonitor group = Platform.getJobManager()
+			IProgressMonitor group = Job.getJobManager()
 					.createProgressGroup();
 			group.beginTask(getName(), IProgressMonitor.UNKNOWN);
 
@@ -1238,7 +1238,7 @@ public class ConnectionProfile extends PlatformObject implements
 
 			// Wait for everyone to connect
 			try {
-				Platform.getJobManager().join(this, null);
+				Job.getJobManager().join(this, null);
 			}
 			catch (OperationCanceledException e) {
 				// TODO: RJC: Cleanup any connections that got created

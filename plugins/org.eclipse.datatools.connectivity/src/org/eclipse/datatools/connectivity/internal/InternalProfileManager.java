@@ -67,7 +67,7 @@ import org.osgi.framework.BundleException;
  */
 public class InternalProfileManager {
 	
-	public static String PROFILE_PATH_SEPARATOR = "::";
+	public static String PROFILE_PATH_SEPARATOR = "::"; //$NON-NLS-1$
 
 	private static InternalProfileManager mManager = null;
 
@@ -308,7 +308,7 @@ public class InternalProfileManager {
 	public String[] tokenize (String input, String delim) {
 		char[] chars = input.toCharArray();
 		ArrayList list = new ArrayList();
-		String temp = "";
+		String temp = ""; //$NON-NLS-1$
 		boolean skip = false;
 		for (int i = 0; i < chars.length; i++) {
 			char test = chars[i];
@@ -316,10 +316,10 @@ public class InternalProfileManager {
 			if (i < (chars.length - 1)) {
 				test2 = chars[i+1];
 			}
-			String testStr = "" + test + test2;
+			String testStr = "" + test + test2; //$NON-NLS-1$
 			if (testStr.equals(delim)) {
 				list.add(temp.trim());
-				temp = "";
+				temp = ""; //$NON-NLS-1$
 				skip = true;
 			}
 			else if (!skip) {
@@ -1227,7 +1227,7 @@ public class InternalProfileManager {
 	{
 		try
 		{
-			config.createExecutableExtension("connectionInitializer");
+			config.createExecutableExtension("connectionInitializer"); //$NON-NLS-1$
 		}
 		catch (CoreException e)
 		{
@@ -1269,7 +1269,7 @@ public class InternalProfileManager {
 
 						String propertyID = configElements[i].getAttribute("id"); //$NON-NLS-1$
 						propList.add(propertyID);
-						String propertyValue = configElements[i].getAttribute("value");
+						String propertyValue = configElements[i].getAttribute("value"); //$NON-NLS-1$
 						propertyValue = substituteLocationDirectory(propertyValue, configElements[i]);
 						connectionProfileProperties.setProperty(propertyID, propertyValue);
 					}
@@ -1389,9 +1389,9 @@ public class InternalProfileManager {
 				.getInstance()
 				.createProfile(
 						profName,
-						"",
+						"", //$NON-NLS-1$
 						profileID,
-						connProperties, "", false);
+						connProperties, "", false); //$NON-NLS-1$
 		
 				connProfile = ProfileManager.getInstance().getProfileByName(profName);
 		} catch (ConnectionProfileException e) {

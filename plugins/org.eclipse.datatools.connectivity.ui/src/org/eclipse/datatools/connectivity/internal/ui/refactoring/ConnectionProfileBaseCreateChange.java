@@ -79,13 +79,13 @@ public class ConnectionProfileBaseCreateChange extends Change {
 	public String getName()
 	{
 		if (mNewProfileName != null)
-			return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"),
+			return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"), //$NON-NLS-1$
 					new Object[] { mNewProfileName });
 		if (mProfile != null)
-			return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"),
+			return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"), //$NON-NLS-1$
 					new Object[] { mProfile.getName() });
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"),
-				new Object[] { "" });
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.name"), //$NON-NLS-1$
+				new Object[] { "" }); //$NON-NLS-1$
 	}
 
 	/* (non-Javadoc)
@@ -108,21 +108,21 @@ public class ConnectionProfileBaseCreateChange extends Change {
 		// Make sure we have appropriate information
 		if (mNewProfileName == null || mNewProfileName.trim().length() == 0)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveName"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveName")); //$NON-NLS-1$
 		}
 		else if ( ProfileManager.getInstance().getProfileByName(mNewProfileName) != null)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileAlreadyExists"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileAlreadyExists")); //$NON-NLS-1$
 		}
 		
 		if (mNewProfileProviderID == null || mNewProfileProviderID.trim().length() == 0)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveProviderID"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveProviderID")); //$NON-NLS-1$
 		}
 
 		if (mNewProfileProperties == null)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCreateChange.error.NewProfileDoesNotHaveNonNullPropertiesObject")); //$NON-NLS-1$
 		}
 
 		return result;
@@ -158,9 +158,9 @@ public class ConnectionProfileBaseCreateChange extends Change {
 			}
 			else {
 				if (mNewProfileDescription == null)
-					mNewProfileDescription = "";
+					mNewProfileDescription = ""; //$NON-NLS-1$
 				if (mNewProfileParentProfile == null)
-					mNewProfileParentProfile = "";
+					mNewProfileParentProfile = ""; //$NON-NLS-1$
 				ProfileManager.getInstance().createProfile(
 						mNewProfileName,
 						mNewProfileDescription, 

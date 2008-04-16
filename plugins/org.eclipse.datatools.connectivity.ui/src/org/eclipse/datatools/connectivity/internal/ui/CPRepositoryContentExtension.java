@@ -13,6 +13,7 @@ package org.eclipse.datatools.connectivity.internal.ui;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.eclipse.datatools.connectivity.ui.ManagedContentExtensionBase;
+import org.eclipse.datatools.connectivity.ui.Messages;
 import org.eclipse.swt.graphics.Image;
 
 public class CPRepositoryContentExtension extends ManagedContentExtensionBase {
@@ -26,7 +27,7 @@ public class CPRepositoryContentExtension extends ManagedContentExtensionBase {
 	}
 
 	public String getLabel() {
-		return "Connection Profiles";
+		return Messages.CPRepositoryContentExtension_CPExtensionName;
 	}
 
 	public boolean isVisible() {

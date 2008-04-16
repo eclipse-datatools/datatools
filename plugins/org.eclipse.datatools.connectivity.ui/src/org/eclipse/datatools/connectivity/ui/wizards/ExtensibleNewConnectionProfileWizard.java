@@ -37,11 +37,15 @@ public class ExtensibleNewConnectionProfileWizard extends
 		return wizardPage.getProperties();
 	}
 
+	public NewConnectionProfileWizardPage getProfilePage() {
+		return mProfilePage;
+	}
+
 	public boolean canFinish() {
 		// This guarantees the Ping button is correctly enabled/disabled.
 		if (isWizardPageCreated) {
-			wizardPage.determinePageCompletion();
 			isWizardPageCreated = false;
+			wizardPage.determinePageCompletion();
 		}
 		return super.canFinish();
 	}

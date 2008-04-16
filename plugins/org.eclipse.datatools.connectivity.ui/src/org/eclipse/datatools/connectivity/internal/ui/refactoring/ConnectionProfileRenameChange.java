@@ -40,7 +40,7 @@ public class ConnectionProfileRenameChange extends ConnectionProfileChange {
 	 * @see org.eclipse.datatools.connectivity.internal.ui.refactoring.ConnectionProfileChange#getName()
 	 */
 	public String getName() {
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPRenameChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPRenameChange.name"), //$NON-NLS-1$
 				new Object[] { mSource.getName()});
 	}
 

@@ -20,7 +20,6 @@ import org.eclipse.datatools.connectivity.IConnectListener;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IActionFilter;
 
 /**

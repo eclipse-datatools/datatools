@@ -27,7 +27,7 @@ public interface IDriverMgmtConstants {
 
 	// standard jar list delimiter
 //	public static final String PATH_DELIMITER = ","; //$NON-NLS-1$
-	public static final String PATH_DELIMITER = "" + File.pathSeparatorChar;
+	public static final String PATH_DELIMITER = "" + File.pathSeparatorChar; //$NON-NLS-1$
 
 	// jar list, class, and template type
 	public static final String PROP_DEFN_JARLIST = "jarList"; //$NON-NLS-1$

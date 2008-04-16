@@ -72,7 +72,7 @@ public class ConnectionProfileActionFilter extends PropertyTester
 			return profile.getProvider().needsMaintainConnection();
 		}
 		else if (name.equals(PROFILE_PROPERTY_IS_CONNECTED) || name.equals(IS_CONNECTED)) {
-			return profile.isConnected();
+			return profile.getConnectionState() == IConnectionProfile.CONNECTED_STATE; //isConnected();
 		}
 		else if (name.equals(PROFILE_PROPERTY_SUPPORTS_PING) || name.equals(SUPPORTS_PING)) {
 			return profile.getProvider().getConnectionFactories().containsKey(

@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.BaseWizardPage;
+import org.eclipse.datatools.connectivity.ui.Messages;
 import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
@@ -30,6 +31,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -44,6 +46,9 @@ public abstract class ConnectionProfileDetailsPage
 	implements IContextProvider {
 	
 	protected Button btnPing;
+
+	private Button autoConnectOnFinishButton = null;
+	private Button autoConnectOnStartupButton = null;
 
 	private ContextProviderDelegate contextProviderDelegate =
 		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
@@ -77,23 +82,65 @@ public abstract class ConnectionProfileDetailsPage
 
 		final Composite composite = new Composite(container, SWT.NONE);
 		composite.setLayout(new FillLayout());
-		composite.setLayoutData(new GridData(GridData.FILL_BOTH));
+		composite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL));
 
 		createCustomControl(composite);
+		
+		Composite bottom = new Composite(composite, SWT.NULL);
+		bottom.setLayoutData(new GridData(GridData.FILL_BOTH ));
+		GridLayout gl = new GridLayout(2, false);
+		gridLayout.horizontalSpacing = 0;
+		gridLayout.marginWidth = 0;
+		gridLayout.marginHeight = 0;
+		bottom.setLayout(gl);
+		
+		autoConnectOnFinishButton = new Button(bottom, SWT.CHECK);
+		autoConnectOnFinishButton.setText(Messages.ConnectionProfileDetailsPage_Autoconnect_finish);
+		autoConnectOnFinishButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
+		autoConnectOnFinishButton.addSelectionListener(new SelectionListener() {
 
-		btnPing = new Button(container, SWT.NONE);
+			public void widgetDefaultSelected(SelectionEvent e) {
+				ConnectionProfileDetailsPage.this.setAutoConnectFinish(
+						ConnectionProfileDetailsPage.this.autoConnectOnStartupButton.getSelection());
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+		});
+
+		btnPing = new Button(bottom, SWT.NONE);
 		btnPing.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
 				testConnection();
 			}
 		});
-		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END));
+		btnPing.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_END | GridData.FILL_HORIZONTAL));
 		btnPing.setText(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ConnectionProfileDetailsPage.Button.TestConnection")); //$NON-NLS-1$
 
-//		PlatformUI.getWorkbench().getHelpSystem().setHelp(parent,
-//				IHelpConstants.CONTEXT_ID_CONNECTION_PROFILE_DETAILS_PAGE);
+		autoConnectOnStartupButton = new Button(bottom, SWT.CHECK);
+		autoConnectOnStartupButton.setText(Messages.ConnectionProfileDetailsPage_Autoconnect_startup);
+		autoConnectOnStartupButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
+		autoConnectOnStartupButton.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+				ConnectionProfileDetailsPage.this.setAutoConnect(
+						ConnectionProfileDetailsPage.this.autoConnectOnStartupButton.getSelection());
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				widgetDefaultSelected(e);
+			}
+		});
+
+		autoConnectOnFinishButton.setSelection(true);
+		if (this.getWizard() instanceof NewConnectionProfileWizard) {
+			NewConnectionProfileWizard wiz =
+				(NewConnectionProfileWizard) this.getWizard();
+			wiz.getProfilePage().setAutoConnectOnFinish(true);
+		}
 		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
@@ -173,4 +220,19 @@ public abstract class ConnectionProfileDetailsPage
         };
 	}
 	
+	private void setAutoConnectFinish ( boolean flag ) {
+		if (this.getWizard() instanceof NewConnectionProfileWizard) {
+			NewConnectionProfileWizard wiz =
+				(NewConnectionProfileWizard) this.getWizard();
+			wiz.getProfilePage().setAutoConnectOnFinish(flag);
+		}
+	}
+
+	private void setAutoConnect ( boolean flag ) {
+		if (this.getWizard() instanceof NewConnectionProfileWizard) {
+			NewConnectionProfileWizard wiz =
+				(NewConnectionProfileWizard) this.getWizard();
+			wiz.getProfilePage().setAutoConnect(flag);
+		}
+	}
 }

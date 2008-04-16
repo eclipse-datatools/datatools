@@ -234,7 +234,7 @@ public class CPVersionPropertyPage extends PropertyPage implements
 		mUpdateVersionInfoButton = new Button(content, SWT.PUSH);
 		mUpdateVersionInfoButton
 				.setText(ConnectivityUIPlugin.getDefault().getResourceString(
-						"CPVersionPropertyPage.button.updateVersion"));
+						"CPVersionPropertyPage.button.updateVersion")); //$NON-NLS-1$
 		mUpdateVersionInfoButton.setLayoutData(new GridData(
 				GridData.HORIZONTAL_ALIGN_BEGINNING
 						| GridData.VERTICAL_ALIGN_END));

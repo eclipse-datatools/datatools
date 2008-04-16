@@ -295,6 +295,9 @@ public class DriverInstance {
 
 
 	public synchronized boolean migrate() {
+		if (mTemplate == null || mTemplate.getElement() == null)
+			return false;
+		
 		IDriverMigrator migrator = getMigrator(mTemplate.getElement());
 		if (migrator == null) {
 			return false;

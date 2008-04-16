@@ -138,7 +138,7 @@ public class DriverMigratorBase implements
 				mNewDriverTemplateID) == null) {
 			Status status = new Status(Status.ERROR, ConnectivityPlugin
 					.getDefault().getBundle().getSymbolicName(), -1,
-					"migration.error.templateDoesNotExist", null);
+					"migration.error.templateDoesNotExist", null); //$NON-NLS-1$
 			throw new CoreException(status);
 		}
 		parsePropertyMigrations(config);

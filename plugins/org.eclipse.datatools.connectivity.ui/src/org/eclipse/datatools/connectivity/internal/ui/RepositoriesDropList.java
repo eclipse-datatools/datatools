@@ -87,7 +87,7 @@ public class RepositoriesDropList extends DropListViewer {
 									ConnectivityUIPlugin
 											.getDefault()
 											.getResourceString(
-													"CommonLabelProviderBase.label.version"),
+													"CommonLabelProviderBase.label.version"), //$NON-NLS-1$
 									new String[] { profile.getName(),
 											serverName,
 											serverVersion.toString()});

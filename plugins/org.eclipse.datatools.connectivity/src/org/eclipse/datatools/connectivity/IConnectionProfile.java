@@ -13,8 +13,6 @@ package org.eclipse.datatools.connectivity;
 import java.util.Map;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.jobs.IJobChangeListener;
 
@@ -200,8 +198,8 @@ public interface IConnectionProfile {
 	
 	/**
 	 * @return the connection state of this profile. May be one of:
-	 *         {@link #DISCONNECTED}, {@link #CONNECTED},
-	 *         {@link #WORKING_OFFLINE}
+	 *         {@link #DISCONNECTED_STATE}, {@link #CONNECTED_STATE},
+	 *         {@link #WORKING_OFFLINE_STATE}
 	 */
 	int getConnectionState();
 

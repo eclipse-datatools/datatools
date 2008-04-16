@@ -31,14 +31,21 @@ public class DriverTreeFilter extends ViewerFilter {
 	private String mDriverTemplateId;
 
 	// Lists of OK categories and templates
-	private ArrayList okCategoryIds;
-	private ArrayList okTemplateIds;
+	protected ArrayList okCategoryIds;
+	protected ArrayList okTemplateIds;
+	
+	private boolean parentIsOk = true;
 
 	/**
 	 * Constructor
 	 */
 	public DriverTreeFilter() {
 		super();
+	}
+	
+	public DriverTreeFilter( boolean flag ) {
+		super();
+		parentIsOk = flag;
 	}
 
 	/**
@@ -51,6 +58,14 @@ public class DriverTreeFilter extends ViewerFilter {
 		mCategoryDescriptor = CategoryDescriptor
 				.getCategoryDescriptor(categoryId);
 		refreshOkList();
+	}
+	
+	public String getCategoryId() {
+		return this.mCategoryId;
+	}
+	
+	public CategoryDescriptor getCategoryDescriptor() {
+		return this.mCategoryDescriptor;
 	}
 
 	/**
@@ -75,7 +90,7 @@ public class DriverTreeFilter extends ViewerFilter {
 			CategoryDescriptor category = CategoryDescriptor
 					.getCategoryDescriptor(this.mCategoryId);
 			if (category != null) {
-				if (category.getParentCategory() != null) {
+				if (category.getParentCategory() != null && parentIsOk ) {
 					CategoryDescriptor parent = CategoryDescriptor
 							.getCategoryDescriptor(category.getParentCategory());
 					this.okCategoryIds.add(parent.getId());

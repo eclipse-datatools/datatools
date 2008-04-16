@@ -15,8 +15,8 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.CPPropetyPage;
@@ -145,7 +145,7 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 						 * being executed.
 						 */
 						mProfileRule = CPPropetyPage.getProfileRule(profile);
-						Platform.getJobManager().beginRule(mProfileRule,
+						Job.getJobManager().beginRule(mProfileRule,
 								null);
 						profile.disconnect(null);
 						profile.connect(null);
@@ -159,7 +159,7 @@ public abstract class ProfilePropertyPage extends PropertyPage {
 
 	public void dispose() {
 		if (mProfileRule != null) {
-			Platform.getJobManager().endRule(mProfileRule);
+			Job.getJobManager().endRule(mProfileRule);
 			mProfileRule = null;
 		}
 		super.dispose();

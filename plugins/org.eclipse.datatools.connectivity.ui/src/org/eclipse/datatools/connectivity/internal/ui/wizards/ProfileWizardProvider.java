@@ -87,7 +87,7 @@ public class ProfileWizardProvider implements IProfileWizardProvider {
 		String iconAttr = mElement.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
 			URL url = null;
-			if (iconAttr.startsWith("platform:/")){
+			if (iconAttr.startsWith("platform:/")){ //$NON-NLS-1$
 				try {
 					url = new URL(iconAttr);
 				} catch (MalformedURLException e) {

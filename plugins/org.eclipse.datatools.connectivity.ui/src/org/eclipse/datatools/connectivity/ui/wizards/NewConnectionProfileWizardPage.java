@@ -55,12 +55,14 @@ public class NewConnectionProfileWizardPage
 	private Text mCPName;
 	private Text mCPDesc;
 	private Button mAutoConnect;
+	private Button mAutoConnectOnFinish;
 	private Button mLocalRepository;
 	private RepositoriesDropList mRepositories;
 
 	private String mCPNameStr;
 	private String mCPDescStr;
     private boolean mCPAutoConnectValue = false;
+    private boolean mCPAutoConnectOnFinishValue = false;
 	private boolean _showAutoConnect = true;
 
     private static final String EMPTY_STRING = "";      //$NON-NLS-1$
@@ -232,6 +234,21 @@ public class NewConnectionProfileWizardPage
 		gd.horizontalIndent = 20;
 		mAutoConnect.setLayoutData(gd);
 
+		mAutoConnectOnFinish = new Button(composite, SWT.CHECK);
+		mAutoConnectOnFinish.setText(ConnectivityUIPlugin.getDefault()
+				.getResourceString(
+				"NewConnectionProfileWizardPage.Button.AutoConnectOnFinish"));//$NON-NLS-1$
+
+		if (!_showAutoConnect) {
+			mAutoConnectOnFinish.setSelection(true);
+			mAutoConnectOnFinish.setVisible(false);
+			mAutoConnectOnFinish.setEnabled(false);
+		}
+		gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = 2;
+		gd.horizontalIndent = 20;
+		mAutoConnectOnFinish.setLayoutData(gd);
+
 		if (mCPNameStr != null) {
 			mCPName.setText(mCPNameStr);
 		}
@@ -332,10 +349,21 @@ public class NewConnectionProfileWizardPage
                 mCPAutoConnectValue : mAutoConnect.getSelection();
 	}
 
+	public boolean getAutoConnectOnFinish() {
+        return ( mAutoConnectOnFinish == null || mAutoConnectOnFinish.isDisposed() ) ? 
+                mCPAutoConnectOnFinishValue : mAutoConnectOnFinish.getSelection();
+	}
+
 	public void setAutoConnect(boolean selection) {
         mCPAutoConnectValue = selection;
         if ( mAutoConnect != null && ! mAutoConnect.isDisposed() )
             mAutoConnect.setSelection(selection);
+	}
+
+	public void setAutoConnectOnFinish(boolean selection) {
+        mCPAutoConnectOnFinishValue = selection;
+        if ( mAutoConnectOnFinish != null && ! mAutoConnectOnFinish.isDisposed() )
+        	mAutoConnectOnFinish.setSelection(selection);
 	}
 
 	/*
@@ -364,6 +392,13 @@ public class NewConnectionProfileWizardPage
 									.getResourceString(
 											"NewConnectionProfileWizardPage.summary_autoconnect"), //$NON-NLS-1$
 							"" + getAutoConnect()}); //$NON-NLS-1$
+			data
+				.add(new String[] {
+						ConnectivityUIPlugin
+								.getDefault()
+								.getResourceString(
+										"NewConnectionProfileWizardPage.summary_autoconnect_on_finish"), //$NON-NLS-1$
+						"" + getAutoConnectOnFinish()}); //$NON-NLS-1$
 		}
 
 		return data;

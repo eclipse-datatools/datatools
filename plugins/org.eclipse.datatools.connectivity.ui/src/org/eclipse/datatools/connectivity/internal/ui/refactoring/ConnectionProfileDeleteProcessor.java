@@ -40,7 +40,7 @@ import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
  */
 public class ConnectionProfileDeleteProcessor extends DeleteProcessor {
 
-	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.deleteProcessor";
+	public static final String PROCESSOR_ID = "org.eclipse.datatools.connectivity.ui.deleteProcessor"; //$NON-NLS-1$
 	private IConnectionProfile mProfile;
 
 	/**
@@ -73,7 +73,7 @@ public class ConnectionProfileDeleteProcessor extends DeleteProcessor {
 	 */
 	public String getProcessorName()
 	{
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteChange.name"), //$NON-NLS-1$
 				new Object[] { mProfile.getName()});
 //		return ConnectivityUIPlugin.getDefault().getResourceString("CPDeleteProcessor.name");
 	}

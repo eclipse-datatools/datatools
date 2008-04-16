@@ -14,7 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
@@ -22,9 +21,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
-import org.eclipse.datatools.connectivity.drivers.models.MySafeRunnable;
-import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.ui.Messages;
 
 import com.ibm.icu.text.Collator;
 
@@ -67,9 +64,9 @@ public class ProfileImageDescriptor implements Comparable {
 		 * valid ID");
 		 */
 		Assert.isNotNull(getId(), 
-				"The target connection profile ID for the profile image extension cannot be null.");
+				Messages.ProfileImageDescriptor_target_profile_id_not_null_msg);
 		Assert.isNotNull(getIcon(), 
-			"The icon for the profile image extension cannot be null.");
+			Messages.ProfileImageDescriptor_target_profile_image_not_null);
 	}
 
 	/**
@@ -181,7 +178,7 @@ public class ProfileImageDescriptor implements Comparable {
 		String iconAttr = fElement == null ? null : fElement
 				.getAttribute(ATTR_ICON);
 		if (iconAttr != null && iconAttr.trim().length() > 0) {
-			if (iconAttr.startsWith("platform:/")){
+			if (iconAttr.startsWith("platform:/")){ //$NON-NLS-1$
 				try {
 					mIconURL = new URL(iconAttr);
 				} catch (MalformedURLException e) {

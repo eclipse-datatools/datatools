@@ -326,15 +326,15 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 						ConnectivityUIPlugin
 								.getDefault()
 								.getResourceString(
-										"OtherDriverUIContributor.summaryData.savePassword"),
+										"OtherDriverUIContributor.summaryData.savePassword"), //$NON-NLS-1$
 						savePasswordButton.getSelection() ? ConnectivityUIPlugin
 								.getDefault()
 								.getResourceString(
-										"OtherDriverUIContributor.summaryData.true")
+										"OtherDriverUIContributor.summaryData.true") //$NON-NLS-1$
 								: ConnectivityUIPlugin
 										.getDefault()
 										.getResourceString(
-												"OtherDriverUIContributor.summaryData.false") });
+												"OtherDriverUIContributor.summaryData.false") }); //$NON-NLS-1$
 		return summaryData;
 	}
 

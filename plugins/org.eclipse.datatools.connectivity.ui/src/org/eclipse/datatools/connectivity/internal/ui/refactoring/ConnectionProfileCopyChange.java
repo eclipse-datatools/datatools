@@ -54,7 +54,7 @@ public class ConnectionProfileCopyChange extends Change {
 	 */
 	public String getName()
 	{
-		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCopyChange.name"),
+		return MessageFormat.format(ConnectivityUIPlugin.getDefault().getResourceString("CPCopyChange.name"), //$NON-NLS-1$
 				new Object[] { mProfileToDuplicate.getName()});
 	}
 
@@ -75,7 +75,7 @@ public class ConnectionProfileCopyChange extends Change {
 		// Make sure the element exists
 		if (mProfileToDuplicate == null)
 		{
-			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCopyChange.error.ProfileDoesNotExist"));
+			result.addFatalError(ConnectivityUIPlugin.getDefault().getResourceString("CPCopyChange.error.ProfileDoesNotExist")); //$NON-NLS-1$
 		}
 
 		return result;
