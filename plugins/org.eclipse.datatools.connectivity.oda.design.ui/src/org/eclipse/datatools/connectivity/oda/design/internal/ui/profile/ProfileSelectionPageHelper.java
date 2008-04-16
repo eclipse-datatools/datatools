@@ -70,6 +70,7 @@ class ProfileSelectionPageHelper
         "org.eclipse.datatools.oda.cshelp.Wizard_ConnectionProfile_ID";//$NON-NLS-1$
 
     private static final int TREE_ITEM_STYLE = SWT.NONE;
+    private static final int BUTTON_MIN_WIDTH = 80;
     
     private WizardPage m_wizardPage;
     private PreferencePage m_propertyPage;
@@ -299,7 +300,7 @@ class ProfileSelectionPageHelper
         browseButton.setText( Messages.profilePage_button_browse );
         {
             GridData data = new GridData();
-            data.widthHint = 80;
+	        data.widthHint = computeButtonWidth( browseButton );
             browseButton.setLayoutData( data );
         }
         browseButton.addSelectionListener( new SelectionAdapter() 
@@ -325,7 +326,7 @@ class ProfileSelectionPageHelper
             GridData data = new GridData();
             data.horizontalSpan = 3;
             data.horizontalAlignment = SWT.RIGHT;
-            data.widthHint = 80;
+		    data.widthHint = computeButtonWidth( newButton );
             newButton.setLayoutData( data );
         }
         
@@ -942,7 +943,20 @@ class ProfileSelectionPageHelper
         String localizedText = m_connectionProfilePath.getText();
         return TextProcessorWrapper.deprocess( localizedText );
     }
-            
+
+    /**
+     * Compute the preferred width of the specified button based on
+     * its label size or the minimum button width, whichever is wider.
+     * @param button    
+     * @return      preferred button width
+     */
+    static int computeButtonWidth( Button button )
+    {
+        int defaultWidth = button.computeSize( SWT.DEFAULT, SWT.DEFAULT ).x;
+        return ( defaultWidth < BUTTON_MIN_WIDTH ) ? 
+                BUTTON_MIN_WIDTH : defaultWidth;
+    }
+    
     /**
      * Internal class that encapsulates related identifier information on 
      * an ODA connection profile category.  

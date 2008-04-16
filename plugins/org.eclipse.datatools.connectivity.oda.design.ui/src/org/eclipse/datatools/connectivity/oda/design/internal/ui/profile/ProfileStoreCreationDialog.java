@@ -36,8 +36,6 @@ import org.eclipse.swt.widgets.Text;
 
 public class ProfileStoreCreationDialog extends ExportProfilesDialog
 {
-	private static final int BUTTON_WIDTH = 80;
-	
 	public ProfileStoreCreationDialog( Shell parentShell )
 	{
 		super( parentShell );
@@ -77,16 +75,16 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 			{				
 				GridData selectAllButtonData = new GridData();
 				selectAllButtonData.horizontalAlignment = SWT.LEFT;
-				selectAllButtonData.widthHint = BUTTON_WIDTH;
-				createSelectAllButton( group, selectAllButtonData );
+				Button button = createSelectAllButton( group, selectAllButtonData );
+		        selectAllButtonData.widthHint = ProfileSelectionPageHelper.computeButtonWidth( button );
 			}
 			
             // DeselectAll button
 			{
 				GridData deselectAllButtonData = new GridData();
 				deselectAllButtonData.horizontalAlignment = SWT.LEFT;
-				deselectAllButtonData.widthHint = BUTTON_WIDTH;
-				createDeselectAllButton( group, deselectAllButtonData );
+				Button button = createDeselectAllButton( group, deselectAllButtonData );
+				deselectAllButtonData.widthHint = ProfileSelectionPageHelper.computeButtonWidth( button );
 			}
 			
             // New... button
@@ -97,7 +95,7 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 		        GridData newButtonData = new GridData();
 		        newButtonData.horizontalAlignment = SWT.RIGHT;
 		        newButtonData.verticalAlignment = SWT.TOP;
-		        newButtonData.widthHint = BUTTON_WIDTH;
+		        newButtonData.widthHint = ProfileSelectionPageHelper.computeButtonWidth( newButton );
 		        newButton.setLayoutData( newButtonData );
 
 		        newButton.addSelectionListener( new SelectionAdapter() 
@@ -145,9 +143,9 @@ public class ProfileStoreCreationDialog extends ExportProfilesDialog
 			FormData data = new FormData();
 			data.left = new FormAttachment( filenameText, 12 );
 			data.top = new FormAttachment( spacingLabel, -1 );
-			data.width = BUTTON_WIDTH;
 			
-		    createFilePathBrowseButton( composite, data );
+		    Button browseButton = createFilePathBrowseButton( composite, data );
+            data.width = ProfileSelectionPageHelper.computeButtonWidth( browseButton );
 		} 
         
         // Encrypt file checkbox
