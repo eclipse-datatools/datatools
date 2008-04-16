@@ -119,7 +119,7 @@ public class WebServiceSelectionPageHelper
 
 		Button button = new Button( group, SWT.NONE );
 		layoutData = new GridData( );
-		layoutData.widthHint = 70;
+		//layoutData.widthHint = 70;
 		button.setLayoutData( layoutData );
 		button.setText( Messages.getString( "webServiceSelectionPage.button.browse" ) ); //$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
