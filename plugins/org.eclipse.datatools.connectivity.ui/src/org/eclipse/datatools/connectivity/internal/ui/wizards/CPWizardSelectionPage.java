@@ -426,6 +426,13 @@ public class CPWizardSelectionPage
 			// Allow the wizard to create its pages
 			wizard.addPages();
 		}
+		else {
+			if (wizard instanceof NewConnectionProfileWizard) {
+				NewConnectionProfileWizard ancpw = (NewConnectionProfileWizard) wizard;
+				ancpw.setProfileName(getProfileName());
+				ancpw.setProfileDescription(getProfileDescription());
+			}
+		}
 
 		return wizard.getStartingPage();
 	}	

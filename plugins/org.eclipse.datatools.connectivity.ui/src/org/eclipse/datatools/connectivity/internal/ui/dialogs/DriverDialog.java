@@ -605,7 +605,7 @@ public class DriverDialog extends TitleAreaDialog {
 		}
 		
 		if (!mInEdit) {
-			setTitle(DriverMgmtMessages.getString("DriverDialog.NewDriver.title")); //$NON-NLS-1$
+			setTitle(DriverMgmtMessages.getString("NewDriverDialog.title")); //$NON-NLS-1$
 			setMessage(DriverMgmtMessages.getString("DriverDialog.DialogMessage")); //$NON-NLS-1$
 
 			String quickName =
@@ -631,7 +631,7 @@ public class DriverDialog extends TitleAreaDialog {
 				updateFromPropertySet();
 				updatePropertyDescriptors();
 			}
-			setTitle(DriverMgmtMessages.getString("DriverDialog.EditDriverDialogTitle")); //$NON-NLS-1$
+			setTitle(DriverMgmtMessages.getString("EditDriverDialog.title")); //$NON-NLS-1$
 			setMessage(DriverMgmtMessages.getString("DriverDialog.EditDriver.message")); //$NON-NLS-1$
 		}
 
@@ -1255,6 +1255,14 @@ public class DriverDialog extends TitleAreaDialog {
 
 		int width = 500;
 		int height = 400;
+
+		if (!this.mInEdit)
+			newShell.setText(DriverMgmtMessages
+				.getString("NewDriverDialog.windowTitle")); //$NON-NLS-1$
+		else
+			newShell.setText(DriverMgmtMessages
+					.getString("EditDriverDialog.windowTitle")); //$NON-NLS-1$
+			
 
 		IDialogSettings dset = ConnectivityUIPlugin.getDefault()
 			.getDialogSettings();

@@ -252,6 +252,8 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	{
         // cache the value, in case the page is not yet added
 		mProfileDesc = desc;
+	    if( mProfilePage != null )
+	        mProfilePage.setProfileDescription( mProfileDesc );
 	}
 
 	public String getProfileDescription() {

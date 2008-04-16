@@ -81,8 +81,15 @@ public abstract class ConnectionProfileDetailsPage
 		setControl(container);
 
 		final Composite composite = new Composite(container, SWT.NONE);
-		composite.setLayout(new FillLayout());
-		composite.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL));
+		final GridLayout gridLayoutComposite = new GridLayout();
+		gridLayoutComposite.horizontalSpacing = 0;
+		gridLayoutComposite.marginWidth = 0;
+		gridLayoutComposite.marginHeight = 0;
+		composite.setLayout(gridLayoutComposite);
+//		composite.setLayout(new GridLayout());
+		GridData gdComposite =new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
+		gdComposite.horizontalSpan = 2;
+		composite.setLayoutData(gdComposite);
 
 		createCustomControl(composite);
 		
