@@ -15,8 +15,8 @@ package org.eclipse.datatools.connectivity.oda.flatfile.util;
 
 import java.util.HashMap;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 
 import com.ibm.icu.util.ULocale;
 
