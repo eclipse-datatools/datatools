@@ -912,6 +912,11 @@ public class InternalProfileManager {
 		catch (IOException e) {
 			ConnectivityPlugin.getDefault().log(e);
 		}
+		
+		if (loadLocal) {
+			loadLocal = false;
+			loadLocalRegisteredDatabases();
+		}
 
 		IConnectionProfile[] scps;
 		IConnectionProfile[] dcps;
@@ -980,14 +985,6 @@ public class InternalProfileManager {
 		}
 
 		
-		if (loadLocal) {
-			loadLocal = false;
-			IConnectionProfile localConnProfile = loadLocalRegisteredDatabases();
-			if (localConnProfile != null) {
-				nameToProfileMap.put(localConnProfile.getName(), localConnProfile);
-			
-			}
-		}
 		
 		for (Iterator it = nameToProfileMap.values().iterator(); it.hasNext(); ) {
 			ConnectionProfile profile = (ConnectionProfile)it.next();
@@ -1181,13 +1178,11 @@ public class InternalProfileManager {
 
 	/**
 	 * Will load the locally registered databases
-	 * @return IConnectionProfile
 	 */
 
-	public IConnectionProfile loadLocalRegisteredDatabases()
+	public void loadLocalRegisteredDatabases()
 	{
 
-		IConnectionProfile newProfile = null;
 		IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.ProfileManagerInitializationProvider"); //$NON-NLS-1$
 		IExtension[] extensions = extensionPoint.getExtensions();
@@ -1210,11 +1205,12 @@ public class InternalProfileManager {
 					{
 						initializeLocalDatabase(configElements[j], initializationClass);
 					}
-					newProfile = enableLocalDatabase(configElements[j].getChildren("property"), jarList, connectionProfileName, connectionProfileID, driverDefinitionName, driverTemplateID); //$NON-NLS-1$
-				}
+					if (checkForValidValues(connectionProfileName, connectionProfileID, driverDefinitionName, driverTemplateID)) {
+						enableLocalDatabase(configElements[j].getChildren("property"), jarList, connectionProfileName, connectionProfileID, driverDefinitionName, driverTemplateID); //$NON-NLS-1$
+					}
+				} 
 			}
 		}
-		return newProfile;
 	}
 	
 	
@@ -1244,14 +1240,12 @@ public class InternalProfileManager {
 	 * @param connProfileID
 	 * @param driverDefName
 	 * @param driverTemplateID
-	 * @return returns newly created IConnectionProfile
 	 */
-	private IConnectionProfile enableLocalDatabase(IConfigurationElement[] configElements, String jarList, String connProfileName, String connProfileID,
+	private void enableLocalDatabase(IConfigurationElement[] configElements, String jarList, String connProfileName, String connProfileID,
 			String driverDefName, String driverTemplateID)
 	{
 		
-		    IConnectionProfile newProfile = null;
-			if (isBundleActivated (configElements[0])) {
+		    if ((configElements.length == 0) || (isBundleActivated (configElements[0]))) {
 			 
 				DriverInstance driverInstance = getDriverInstance(driverDefName, driverTemplateID, jarList);
 
@@ -1273,11 +1267,10 @@ public class InternalProfileManager {
 						propertyValue = substituteLocationDirectory(propertyValue, configElements[i]);
 						connectionProfileProperties.setProperty(propertyID, propertyValue);
 					}
-					newProfile = getProfileInstance(connProfileName, connProfileID, connectionProfileProperties, propList);
+					getProfileInstance(connProfileName, connProfileID, connectionProfileProperties, propList);
 			    
 				}
 			}
-			return newProfile;
 
 	}
 	
@@ -1323,14 +1316,16 @@ public class InternalProfileManager {
 	private DriverInstance getDriverInstance(String inName, String driverTemplateID, String jarList) {
 
 		String defName = inName;
-		DriverInstance driverInstance = DriverManager.getInstance().getDriverInstanceByName(inName);
+
+		DriverInstance driverInstance = DriverManager.getInstance().getDriverInstanceByID(driverTemplateID);
 		if (driverInstance != null) {
-			if ((driverInstance.getTemplate().getId().equals(driverTemplateID)) && (driverInstance.getJarList().equals(jarList))) {
-					return driverInstance;
-			} else {
-				defName = determineUniqueDriverName(defName);
-				
+			// jarList is not required, so it can be null, which isn't going to match any jarList coming back from a DriverInstance
+			if ((jarList == null) || (driverInstance.getJarList().equals(jarList))) {
+				return driverInstance;
 			}
+			 
+			defName = determineUniqueDriverName(defName);
+				
 		}
 		return DriverManager.getInstance()
 			.createNewDriverInstance(
@@ -1360,9 +1355,8 @@ public class InternalProfileManager {
 	 * @param profileID
 	 * @param connProperties
 	 * @param propList
-	 * @return IConnectionProfile
 	 */
-	private IConnectionProfile getProfileInstance(String profileName, String profileID, Properties connProperties, List propList) {
+	private void getProfileInstance(String profileName, String profileID, Properties connProperties, List propList) {
 
 		String profName = profileName;
 		IConnectionProfile connProfile = ProfileManager.getInstance().getProfileByName(profileName);
@@ -1377,7 +1371,7 @@ public class InternalProfileManager {
 					}
 				}
 				    if (match) {
-				    	return connProfile;
+				    	return;
 				    }
 			} else {
 				profName = determineUniqueProfileName(profName);
@@ -1393,11 +1387,9 @@ public class InternalProfileManager {
 						profileID,
 						connProperties, "", false); //$NON-NLS-1$
 		
-				connProfile = ProfileManager.getInstance().getProfileByName(profName);
 		} catch (ConnectionProfileException e) {
 			ConnectivityPlugin.getDefault().log(e);
 		}
-		return connProfile;
 	}
 
 	/**
@@ -1415,5 +1407,28 @@ public class InternalProfileManager {
 		return testName;
 	}
 
+	
+	/**
+	 * Make sure that all required items have values - if not, don't attempt driver or connection creation
+	 * @param inProfileName
+	 * @param inProfileID
+	 * @param inDriverDefName
+	 * @param inDriverTemplateID
+	 * @return boolean true if all items have valid values 
+	 */
+	private boolean checkForValidValues(String inProfileName, String inProfileID, String inDriverDefName, String inDriverTemplateID) {
+		boolean validValue = true;
+
+		if ((inProfileName == null) || (inProfileName.equals(""))) { //$NON-NLS-1$
+			validValue = false;
+		} else if ((inProfileID == null) || (inProfileID.equals(""))) { //$NON-NLS-1$
+			validValue = false;
+		} else if ((inDriverDefName == null) || (inDriverDefName.equals(""))) { //$NON-NLS-1$
+			validValue = false;
+		} else if ((inDriverTemplateID == null) || (inDriverTemplateID.equals(""))) { //$NON-NLS-1$
+			validValue = false;
+		}
+		return validValue;
+	}
 
 }
