@@ -173,7 +173,11 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 				} else if ("_".equals(token)) {
 					buf.append(".?");
 				} else {
-					buf.append(Pattern.quote(token));
+					buf.append(token.replaceAll("\\p{Punct}", "\\\\$0"));
+					/* 
+					 * The following is not supported in JDK 1.4
+					 * buf.append(Pattern.quote(token));
+					 */
 				}
 			}
 			return buf.toString();
