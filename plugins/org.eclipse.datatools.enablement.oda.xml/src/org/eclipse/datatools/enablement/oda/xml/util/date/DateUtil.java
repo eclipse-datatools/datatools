@@ -13,9 +13,9 @@
 package org.eclipse.datatools.enablement.oda.xml.util.date;
 
 import java.sql.Time;
-import java.text.DateFormat;
+import com.ibm.icu.text.DateFormat;
 import java.text.ParseException;
-import java.util.Calendar;
+import com.ibm.icu.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
