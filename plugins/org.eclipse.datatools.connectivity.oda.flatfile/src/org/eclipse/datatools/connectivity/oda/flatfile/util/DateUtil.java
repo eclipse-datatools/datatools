@@ -13,15 +13,15 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.util;
 
 import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.util.Calendar;
 import com.ibm.icu.util.ULocale;
 
 /**

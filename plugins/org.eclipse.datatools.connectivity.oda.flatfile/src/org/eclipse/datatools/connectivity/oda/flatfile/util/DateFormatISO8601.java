@@ -12,7 +12,7 @@
 package org.eclipse.datatools.connectivity.oda.flatfile.util;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.ibm.icu.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
