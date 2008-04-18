@@ -61,7 +61,7 @@ public class ProfileCategoryFilter extends ViewerFilter {
 				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	/**
