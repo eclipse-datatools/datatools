@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -93,6 +93,15 @@ public abstract class DataSourceWizardPageCore extends
         NewDataSourceWizardBase wizard = getOdaWizard();       
         return( wizard != null && wizard.isInOdaDesignSession() ) ? 
                 null : super.getNextPage();
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+     */
+    public boolean isPageComplete()
+    {
+        return isControlCreated() && super.isPageComplete();
     }
 
     /**
@@ -195,6 +204,12 @@ public abstract class DataSourceWizardPageCore extends
      */
     public void createControl( Composite parent )
     {
+        // since connecting to an ODA data source does not provide additional info in DSE,
+        // hide the option to auto connect for all oda data sources
+        setAutoConnectOnFinishDefault( false );
+        setShowAutoConnectOnFinish( false );
+        setShowAutoConnect( false );    // auto connect at workbench startup
+        
         super.createControl( parent );
         
         // now that all control contents are created, go ahead and 

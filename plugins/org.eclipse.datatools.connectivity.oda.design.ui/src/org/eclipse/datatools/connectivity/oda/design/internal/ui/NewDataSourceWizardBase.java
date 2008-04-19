@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -260,22 +260,19 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     public void setProfilePageProperties( String profileName, String profileDesc, 
             Boolean autoConnect, Boolean skipProfilePage )
     {
-        NewConnectionProfileWizardPage profileNamePage = getProfileNamePage();
-        if( profileNamePage == null )
-            return;     // page not available to set values
-        
-        // override page properties only if a non-null value is specified
+        // override page properties only if a non-null argument value is specified
         if( profileName != null )
-            profileNamePage.setProfileName( profileName );
+            setProfileName( profileName );
         if( profileDesc != null )
-            profileNamePage.setProfileDescription( profileDesc );
+            setProfileDescription( profileDesc );
         if( autoConnect != null )
-            profileNamePage.setAutoConnect( autoConnect.booleanValue() );
+        {
+            if( getProfileNamePage() != null )
+                getProfileNamePage().setAutoConnect( autoConnect.booleanValue() );
+        }
         
         if( skipProfilePage != null )
-        {
-            profileNamePage.setSkippable( skipProfilePage.booleanValue() );
-        }
+            setSkipProfileNamePage( skipProfilePage.booleanValue() );
     }
     
     /**
@@ -288,7 +285,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     
     protected NewConnectionProfileWizardPage getProfileNamePage()
     {
-        return this.mProfilePage;
+        return getProfilePage();
     }
     
     /**
