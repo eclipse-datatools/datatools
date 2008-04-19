@@ -30,6 +30,7 @@ public class DriverImages {
 	public static String MISSING_KEY = "Missing"; //$NON-NLS-1$
 	public static String DRIVER_KEY = "Driver"; //$NON-NLS-1$
 	public static String CATEGORY_KEY = "Category"; //$NON-NLS-1$
+	public static String CHANGE_KEY = "Change"; //$NON-NLS-1$
 
 	// image descriptors
 	public static ImageDescriptor ERROR = AbstractUIPlugin
@@ -49,6 +50,9 @@ public class DriverImages {
 			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
 					.getBundle().getSymbolicName(),
 					"icons/driver_category_obj.gif"); //$NON-NLS-1$
+	public static ImageDescriptor CHANGE = AbstractUIPlugin
+		.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
+				.getBundle().getSymbolicName(), "icons/change_obj.gif"); //$NON-NLS-1$
 
 	/**
 	 * Constructor for DriverImages.
@@ -77,6 +81,10 @@ public class DriverImages {
 		return CATEGORY.getImageData();
 	}
 
+	public ImageData getChangeImageData() {
+		return CHANGE.getImageData();
+	}
+
 	/**
 	 * Get the image data depending on the key
 	 * 
@@ -98,6 +106,9 @@ public class DriverImages {
 		}
 		if (imageKey.equals(CATEGORY_KEY)) {
 			return getCategoryImageData();
+		}
+		if (imageKey.equals(CHANGE_KEY)) {
+			return getChangeImageData();
 		}
 		return null;
 	}

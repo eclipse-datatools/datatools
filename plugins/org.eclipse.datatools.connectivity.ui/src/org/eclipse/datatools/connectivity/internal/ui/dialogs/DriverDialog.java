@@ -60,6 +60,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -140,7 +141,7 @@ public class DriverDialog extends TitleAreaDialog {
 	 */
 	public DriverDialog(Shell parentShell, String category) {
 		this(parentShell);
-
+		
 		if (CategoryDescriptor.getCategoryDescriptor(category) != null) {
 			this.mViewerFilter = new DriverTreeFilter();
 			this.mViewerFilter.setCategoryId(category);
@@ -272,26 +273,15 @@ public class DriverDialog extends TitleAreaDialog {
 		propertiesTab.setControl(propertiesComposite);
 
 		if (!mInEdit && !hideDriverList ) {
-			Label label = new Label(generalComposite, SWT.LEFT);
-			label.setText(DriverMgmtMessages
-					.getString("NewDriverDialog.label.availableTemplates")); //$NON-NLS-1$
-			GridData data = new GridData();
-			data.horizontalAlignment = GridData.FILL;
-			data.horizontalSpan = 2;
-			label.setLayoutData(data);
-			
-			Composite comboComposite = new Composite ( generalComposite, SWT.NONE);
-			comboComposite.setLayout(new GridLayout(2, false));
-			GridData CCdata = new GridData();
-			CCdata.horizontalAlignment = GridData.FILL;
-			CCdata.horizontalSpan = 2;
-			comboComposite.setLayoutData(CCdata);
+			Composite comboComposite = null; 
 			
 			CategoryDescriptor[] roots = CategoryUtils.getOrderedRootCategories();
 			if (mViewerFilter != null) {
 				roots = new CategoryDescriptor[] {((DriverTreeFilter) mViewerFilter).getCategoryDescriptor()};
 			}
 			if (roots != null && roots.length > 1) {
+				if (comboComposite == null)
+					comboComposite = createComboComposite(generalComposite);
 				Label tlabel = new Label(comboComposite, SWT.LEFT);
 				tlabel.setText(DriverMgmtMessages.getString("DriverDialog.DriverTypeFilter")); //$NON-NLS-1$
 				tlabel.setLayoutData(new GridData());
@@ -323,6 +313,9 @@ public class DriverDialog extends TitleAreaDialog {
 				// too deep
 			}
 			else {
+				if (comboComposite == null)
+					comboComposite = createComboComposite(generalComposite);
+
 				Label vLabel = new Label(comboComposite, SWT.LEFT);
 				vLabel.setText(DriverMgmtMessages.getString("DriverDialog.VendorFilter")); //$NON-NLS-1$
 				vLabel.setLayoutData(new GridData());
@@ -357,11 +350,20 @@ public class DriverDialog extends TitleAreaDialog {
 				}
 			}
 			
+			Label label = new Label(generalComposite, SWT.LEFT);
+			label.setText(DriverMgmtMessages
+					.getString("NewDriverDialog.label.availableTemplates")); //$NON-NLS-1$
+			GridData data = new GridData();
+			data.horizontalAlignment = GridData.FILL;
+			data.horizontalSpan = 2;
+			label.setLayoutData(data);
+			
 			mTreeViewer = new TreeViewer(generalComposite, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
 			mTreeViewer.setContentProvider(new DriverTreeTableContentProvider());
 			mTreeViewer.setLabelProvider(new DriverTreeTableLabelProvider());
 			mTreeViewer.setSorter(new ViewerSorter());
-			mTreeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			GridData tvGD = new GridData(SWT.FILL, SWT.FILL, true, true);
+			mTreeViewer.getTree().setLayoutData(tvGD);
 			mTreeViewer.getTree().setHeaderVisible(true);
 			if (this.mViewerFilter != null) {
 				mTreeViewer.addFilter(this.mViewerFilter);
@@ -608,9 +610,12 @@ public class DriverDialog extends TitleAreaDialog {
 			setTitle(DriverMgmtMessages.getString("NewDriverDialog.title")); //$NON-NLS-1$
 			setMessage(DriverMgmtMessages.getString("DriverDialog.DialogMessage")); //$NON-NLS-1$
 
+			if (this.descriptor != null) {
+				this.mDriverName = this.descriptor.getName();
+			}
 			String quickName =
 				DriverMgmtMessages
-				.format("DriverDialog.quickdriver.name",  //$NON-NLS-1$
+					.format("DriverDialog.quickdriver.name",  //$NON-NLS-1$
 						new String[]{this.mDriverName});
 			if (this.descriptor != null && this.mTreeViewer != null) {
 				mTreeViewer.setSelection(new StructuredSelection(this.descriptor), true);
@@ -638,6 +643,16 @@ public class DriverDialog extends TitleAreaDialog {
 		if (this.mOKButton != null)
 			this.mOKButton.setEnabled(false);
 		return area;
+	}
+	
+	private Composite createComboComposite( Composite parent ) {
+		Composite comboComposite = new Composite ( parent, SWT.NONE);
+		comboComposite.setLayout(new GridLayout(2, false));
+		GridData CCdata = new GridData();
+		CCdata.horizontalAlignment = GridData.FILL;
+		CCdata.horizontalSpan = 2;
+		comboComposite.setLayoutData(CCdata);
+		return comboComposite;
 	}
 
 	private class TextSorter extends AbstractInvertableTableSorter {
@@ -1253,8 +1268,8 @@ public class DriverDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 
-		int width = 500;
-		int height = 400;
+		int width = 600;
+		int height = 500;
 
 		if (!this.mInEdit)
 			newShell.setText(DriverMgmtMessages

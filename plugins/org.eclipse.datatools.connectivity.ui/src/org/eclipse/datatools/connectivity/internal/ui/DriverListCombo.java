@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -27,6 +28,7 @@ import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
+import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.DriverDialog;
@@ -84,10 +86,13 @@ public class DriverListCombo {
 	private ListenerList changeListeners;
 
 	private Image mDriverImage = null;
+	private Image mChangeImage = null;
 
 	private static ImageDescriptor PLUS = null;
 
 	private static ImageDescriptor ARROW = null;
+
+	private static ImageDescriptor CHANGE = null;
 
 	private Image mArrowImage = null;
 
@@ -95,6 +100,7 @@ public class DriverListCombo {
 	private boolean mShowNewDriverButton = true;
 	private boolean mShowGenericDriverButton = true;
 	private boolean mShowMenu = false;
+	private boolean mShowEditButton = true;
 
 	/**
 	 * Constructor
@@ -180,6 +186,9 @@ public class DriverListCombo {
 	}
 	public void setShowMenu(boolean flag) {
 		this.mShowMenu = flag;
+	}
+	public void setShowEditButton(boolean flag) {
+		this.mShowEditButton = flag;
 	}
 
 	/**
@@ -277,6 +286,15 @@ public class DriverListCombo {
 						this));
 		}
 		
+		if (mShowEditButton) {
+			final ToolItem item4 = new ToolItem(toolBar, SWT.PUSH);
+			item4.setImage(mChangeImage);
+			item4.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip")); //$NON-NLS-1$
+			item4.
+				addSelectionListener(new EditButtonSelectionChangedListener(
+					this));
+		}
+
 		if (mShowMenu) {
 			final Menu menu = new Menu (this.mPanel.getShell(), SWT.POP_UP);
 			MenuItem mitem1 = new MenuItem(menu, SWT.PUSH);
@@ -882,8 +900,109 @@ public class DriverListCombo {
 		}
 	}
 
+	/**
+	 * Listener for edit button clicks events
+	 * 
+	 * @author brianf
+	 */
+	public class EditButtonSelectionChangedListener implements
+			SelectionListener {
+
+		private DriverListCombo parent;
+
+		public EditButtonSelectionChangedListener(DriverListCombo combo) {
+			this.parent = combo;
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			Shell newShell = parent.getCombo().getShell();
+			DriverDialog dlg;
+			if (DriverListCombo.this.mCategoryId != null) {
+				dlg = new DriverDialog(newShell,
+						DriverListCombo.this.mCategoryId);
+			}
+			else {
+				dlg = new DriverDialog(newShell);
+			}
+			IPropertySet copy = duplicatePropertySet(parent.getSelectedDriver());
+			dlg.setPropertySet(copy);
+			dlg.setEditMode(true);
+			
+			int rtn = dlg.open();
+			if (rtn != Window.OK)
+				return;
+
+			copy = dlg.getPropertySet();
+			copyPropertySet(copy, parent.getSelectedDriver());
+			DriverManager.getInstance().removeDriverInstance(parent.getSelectedDriver().getID());
+			
+			/*
+			 * This call to garbage collect is to try and reclaim
+			 * the classloader held by the last instance of the 
+			 * DriverInstance that is being dropped and re-added.
+			 * Note that if the class is in use (i.e. any profile
+			 * is connected that uses the referenced driver), it 
+			 * won't be unloaded and subsequent connections will 
+			 * fail.
+			 */
+			System.gc();
+			
+			DriverManager.getInstance().addDriverInstance(copy);
+
+			refreshCombo();
+
+			boolean fireEvent = false;
+			if (dlg.getSelectedDefinition() != null) {
+				fireEvent = true;
+				String driverName = dlg.getSelectedDefinition().getName();
+				String[] itemList = DriverListCombo.this.mComboList.getItems();
+				if (itemList.length > 0) {
+					for (int i = 0; i < itemList.length; i++) {
+						String item = itemList[i];
+						IPropertySet temp = (IPropertySet) DriverListCombo.this.mComboList
+								.getData(item);
+						if (temp.getID().equals(
+								dlg.getSelectedDefinition().getID())) {
+							DriverListCombo.this.mComboList.setText(driverName);
+							DriverListCombo.this.mComboList.select(i);
+
+							String driverType = temp
+									.getBaseProperties()
+									.getProperty(
+											IDriverMgmtConstants.PROP_DEFN_TYPE); //$NON-NLS-1$
+							if (driverType != null) {
+								TemplateDescriptor template = TemplateDescriptor
+										.getDriverTemplateDescriptor(driverType);
+								if (template != null) {
+									DriverValidator validator = new DriverValidator(
+											template, temp);
+									DriverListCombo.this.mErrorMessage = null;
+									if (!validator.isValid()) {
+										DriverListCombo.this.mErrorMessage = validator
+												.getMessage();
+									}
+								}
+							}
+							break;
+						}
+					}
+				}
+			}
+			else
+				DriverListCombo.this.mComboList.setText(copy.getName());
+
+			if (fireEvent)
+				fireChangedEvent(this.parent);
+		}
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+			widgetSelected(e);
+		}
+	}
+
 	protected void finalize() throws Throwable {
 		this.mDriverImage.dispose();
+		this.mChangeImage.dispose();
 		super.finalize();
 	}
 	
@@ -897,9 +1016,36 @@ public class DriverListCombo {
 		PLUS.createImage();
 
 		ARROW = AbstractUIPlugin
-		.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
-			.getBundle().getSymbolicName(), "icons/view_menu.gif"); //$NON-NLS-1$
-
+			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
+					.getBundle().getSymbolicName(), "icons/view_menu.gif"); //$NON-NLS-1$
+		
 		mArrowImage = ARROW.createImage();
+
+		CHANGE = AbstractUIPlugin
+			.imageDescriptorFromPlugin(ConnectivityUIPlugin.getDefault()
+					.getBundle().getSymbolicName(), "icons/change_obj.gif"); //$NON-NLS-1$
+		
+		mChangeImage = CHANGE.createImage();
+
+
+		PLUS.createImage();
+	}
+
+	private IPropertySet duplicatePropertySet ( IPropertySet pset ) {
+		IPropertySet newPset = new PropertySetImpl(pset.getName(), pset.getID());
+		if (pset.getBaseProperties().size() > 0) {
+			Properties newProps = new Properties();
+			newPset.setBaseProperties(newProps);
+			newPset.getBaseProperties().putAll(pset.getBaseProperties());
+		}
+		return newPset;
+	}
+
+	private void copyPropertySet ( IPropertySet fromPset, IPropertySet topset ) {
+		topset.setID(fromPset.getID());
+		topset.setName(fromPset.getName());
+		if (topset.getBaseProperties().size() > 0) {
+			topset.getBaseProperties().putAll(fromPset.getBaseProperties());
+		}
 	}
 }

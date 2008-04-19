@@ -80,6 +80,8 @@ public class CPWizardSelectionPage
 
 	private String mCPNameStr;
 	private String mCPDescStr;
+	
+	private boolean mPageIsVisible = false;
 
 	private String category = ""; //$NON-NLS-1$
 	private TableViewer tableViewer;
@@ -433,6 +435,13 @@ public class CPWizardSelectionPage
 				ancpw.setProfileDescription(getProfileDescription());
 			}
 		}
+		
+		if (this.mPageIsVisible) {
+			if (wizard instanceof NewConnectionProfileWizard) {
+				NewConnectionProfileWizard ancpw = (NewConnectionProfileWizard) wizard;
+				ancpw.setSkipProfileNamePage(true);
+			}
+		}
 
 		return wizard.getStartingPage();
 	}	
@@ -548,5 +557,10 @@ public class CPWizardSelectionPage
 		if (!this.getNextPage().isPageComplete())
 			return false;
 		return super.isPageComplete();
+	}
+
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		this.mPageIsVisible = visible;
 	}
 }

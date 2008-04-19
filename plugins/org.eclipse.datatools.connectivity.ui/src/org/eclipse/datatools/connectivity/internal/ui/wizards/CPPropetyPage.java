@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.dialogs.ExceptionHandler;
+import org.eclipse.datatools.connectivity.ui.Messages;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.help.IContext;
@@ -98,9 +99,7 @@ public class CPPropetyPage extends PropertyPage
 		txtProfileDesc.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		btnAutoConnect = new Button(content, SWT.CHECK);
-		btnAutoConnect.setText(ConnectivityUIPlugin.getDefault()
-				.getResourceString(
-						"NewConnectionProfileWizardPage.Button.AutoConnect1")); //$NON-NLS-1$
+		btnAutoConnect.setText(Messages.ConnectionProfileDetailsPage_Autoconnect_startup);
 
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = 2;

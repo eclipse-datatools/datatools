@@ -54,8 +54,6 @@ public class NewConnectionProfileWizardPage
 
 	private Text mCPName;
 	private Text mCPDesc;
-	private Button mAutoConnect;
-	private Button mAutoConnectOnFinish;
 	private Button mLocalRepository;
 	private RepositoriesDropList mRepositories;
 
@@ -219,36 +217,6 @@ public class NewConnectionProfileWizardPage
 		gd.horizontalSpan = 2;
 		label.setLayoutData(gd);
 
-		mAutoConnect = new Button(composite, SWT.CHECK);
-		mAutoConnect.setText(ConnectivityUIPlugin.getDefault()
-				.getResourceString(
-						"NewConnectionProfileWizardPage.Button.AutoConnect")); //$NON-NLS-1$
-
-		if (!_showAutoConnect) {
-			mAutoConnect.setSelection(true);
-			mAutoConnect.setVisible(false);
-			mAutoConnect.setEnabled(false);
-		}
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = 2;
-		gd.horizontalIndent = 20;
-		mAutoConnect.setLayoutData(gd);
-
-		mAutoConnectOnFinish = new Button(composite, SWT.CHECK);
-		mAutoConnectOnFinish.setText(ConnectivityUIPlugin.getDefault()
-				.getResourceString(
-				"NewConnectionProfileWizardPage.Button.AutoConnectOnFinish"));//$NON-NLS-1$
-
-		if (!_showAutoConnect) {
-			mAutoConnectOnFinish.setSelection(true);
-			mAutoConnectOnFinish.setVisible(false);
-			mAutoConnectOnFinish.setEnabled(false);
-		}
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		gd.horizontalSpan = 2;
-		gd.horizontalIndent = 20;
-		mAutoConnectOnFinish.setLayoutData(gd);
-
 		if (mCPNameStr != null) {
 			mCPName.setText(mCPNameStr);
 		}
@@ -345,25 +313,19 @@ public class NewConnectionProfileWizardPage
 	}
 
 	public boolean getAutoConnect() {
-        return ( mAutoConnect == null || mAutoConnect.isDisposed() ) ? 
-                mCPAutoConnectValue : mAutoConnect.getSelection();
+        return mCPAutoConnectValue;
 	}
 
 	public boolean getAutoConnectOnFinish() {
-        return ( mAutoConnectOnFinish == null || mAutoConnectOnFinish.isDisposed() ) ? 
-                mCPAutoConnectOnFinishValue : mAutoConnectOnFinish.getSelection();
+        return mCPAutoConnectOnFinishValue;
 	}
 
 	public void setAutoConnect(boolean selection) {
         mCPAutoConnectValue = selection;
-        if ( mAutoConnect != null && ! mAutoConnect.isDisposed() )
-            mAutoConnect.setSelection(selection);
 	}
 
 	public void setAutoConnectOnFinish(boolean selection) {
         mCPAutoConnectOnFinishValue = selection;
-        if ( mAutoConnectOnFinish != null && ! mAutoConnectOnFinish.isDisposed() )
-        	mAutoConnectOnFinish.setSelection(selection);
 	}
 
 	/*

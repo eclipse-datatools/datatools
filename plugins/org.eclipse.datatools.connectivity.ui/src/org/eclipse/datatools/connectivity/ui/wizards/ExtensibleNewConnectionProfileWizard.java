@@ -31,6 +31,7 @@ public class ExtensibleNewConnectionProfileWizard extends
 
 	public void addCustomPages() {
 		addPage(wizardPage);
+		setSkipProfileNamePage(true);
 	}
 
 	public Properties getProfileProperties() {
