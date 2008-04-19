@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -92,7 +92,7 @@ public abstract class ConnectionProfileDetailsPage
 		flayout.marginHeight = 0;
 		flayout.marginWidth = 0;
 		composite.setLayout(flayout);
-		GridData compositeGD = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
+        GridData compositeGD = new GridData(GridData.FILL_BOTH);
 		composite.setLayoutData(compositeGD);
 
 		createCustomControl(composite);
