@@ -1,1 +1,1 @@
-NewDerbyEmbeddedConnectionProfileWizard.DerbyEmbeddedDatabaseWizardTitle=New Derby Connection Profile
+NewDerbyEmbeddedConnectionProfileWizard.DerbyEmbeddedDatabaseWizardTitle=Neues Derby-Verbindungsprofil

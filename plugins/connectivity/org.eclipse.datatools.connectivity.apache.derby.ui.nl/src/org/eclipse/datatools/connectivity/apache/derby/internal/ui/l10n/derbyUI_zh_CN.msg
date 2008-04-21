@@ -13,4 +13,4 @@
 ##  !!! This property file should only contain resources that are "translatable" !!!
 ###
 ##
-DATATOOLS.DERBY.UI.SYNONYMS = Synonym
+DATATOOLS.DERBY.UI.SYNONYMS = Õ¨“Â¥ 

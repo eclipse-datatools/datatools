@@ -12,6 +12,6 @@ pluginName=Eclipse Data Tools Platform Apache Derby UI Plug-in
 providerName=Eclipse.org
 
 DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_NAME=Derby
-DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_DESCRIPTION = Create a Derby connection profile.
-DERBY_EMBEDDED_DB_PROPERTY_PAGE_NAME=JDBC Connection Properties
+DERBY_EMBEDDED_CONNECTION_PROFILE_WIZARD_DESCRIPTION = Créer un profil de connexion Derby.
+DERBY_EMBEDDED_DB_PROPERTY_PAGE_NAME=Propriétés de connexion JDBC
 
