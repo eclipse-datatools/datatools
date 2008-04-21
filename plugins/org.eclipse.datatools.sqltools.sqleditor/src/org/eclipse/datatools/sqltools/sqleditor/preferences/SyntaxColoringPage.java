@@ -1,8 +1,13 @@
-/**
- * Created on 2008-3-15
+/*******************************************************************************
+ * Copyright (c) 2008 Sybase, Inc.
  * 
- * Copyright (c) Sybase, Inc. 2004-2008 All rights reserved.
- */
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Sybase
+ ******************************************************************************/
 package org.eclipse.datatools.sqltools.sqleditor.preferences;
 
 import java.util.Iterator;
