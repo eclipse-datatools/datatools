@@ -40,6 +40,8 @@ operationPage.label.document=Dokumentation
 
 # SoapParametersPage
 soapParametersPage.message.default=Geben Sie die Parameter des gewählten WSDL-Vorgangs ein.
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für den Code der benutzerdefinierten Verbindungsklasse Ihrer Datenquelle kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.

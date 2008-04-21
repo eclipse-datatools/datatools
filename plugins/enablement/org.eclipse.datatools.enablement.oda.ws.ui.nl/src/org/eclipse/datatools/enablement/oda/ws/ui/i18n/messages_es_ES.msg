@@ -40,6 +40,8 @@ operationPage.label.document=Documentación
 
 # SoapParametersPage
 soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=Edite la plantilla de solicitud de SOAP de este conjunto de datos. Si el código de la clase de conexión personalizada de la fuente de datos no requiere un texto de consulta, puede dejar vacío el texto

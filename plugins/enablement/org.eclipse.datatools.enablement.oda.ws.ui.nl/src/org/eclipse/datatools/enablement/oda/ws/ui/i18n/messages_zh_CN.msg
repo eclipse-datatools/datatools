@@ -40,6 +40,8 @@ operationPage.label.document=文档
 
 # SoapParametersPage
 soapParametersPage.message.default=输入所选 WSDL 操作的参数
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=编辑此数据集的 SOAP 请求模板。如果您的数据源自定义连接类代码不需要查询文本，您可以将文本留空。

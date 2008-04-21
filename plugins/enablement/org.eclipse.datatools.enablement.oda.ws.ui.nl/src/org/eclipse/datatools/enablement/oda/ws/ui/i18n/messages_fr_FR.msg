@@ -40,6 +40,8 @@ operationPage.label.document=Documentation
 
 # SoapParametersPage
 soapParametersPage.message.default=Entrez les paramètres de l'opération WSDL sélectionnée
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=Modifiez le modèle de requête SOAP de ce jeu de données. Inutile de remplir cette zone si le code de classe de la connexion personnalisée de votre source de données ne requiert aucun texte de requête

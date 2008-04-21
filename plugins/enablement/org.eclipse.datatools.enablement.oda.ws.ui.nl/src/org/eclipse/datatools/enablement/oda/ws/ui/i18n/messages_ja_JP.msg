@@ -40,6 +40,8 @@ operationPage.label.document=文書
 
 # SoapParametersPage
 soapParametersPage.message.default=指定した WSDL 操作のパラメタを入力してください。
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。データソースのカスタム接続クラスコードにクエリテキストが必要ない場合は、テキストを入力する必要はありません。

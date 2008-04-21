@@ -40,6 +40,8 @@ operationPage.label.document=설명서
 
 # SoapParametersPage
 soapParametersPage.message.default=선택된 WSDL 작업의 매개 변수를 입력하십시오.
+soapParametersPage.button.selectAll=&Select All
+soapParametersPage.button.deselectAll=&Deselect All
 
 # SoapRequestPage
 soapRequestPage.message.default=이 데이터 집합의 SOAP 요청 템플릿을 편집합니다. 데이터 원본의 사용자 지정 연결 클래스 코드가 쿼리 텍스트를 필요로 하지 않을 경우 입력란을 비워두셔도 됩니다.
