@@ -49,6 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=파일[{0}]에서 XML 데이터를 읽는
 button.refresh=새로 고침
 menu.menuItem.removeAll=모두 제거
 menu.menuItem.remove=제거
+menu.button.add=&Add...
 menu.button.edit=편집(&E)...
 menu.button.remove=제거(&R)
 menu.button.up=위로(&U)

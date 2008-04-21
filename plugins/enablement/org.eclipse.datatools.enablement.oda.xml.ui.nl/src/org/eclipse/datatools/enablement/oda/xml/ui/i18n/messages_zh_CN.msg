@@ -49,6 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=´ÓÎÄ¼þ [{0}] ¶ÁÈ¡ XML Êý¾ÝÊ±³ö´
 button.refresh=Ë¢ÐÂ
 menu.menuItem.removeAll=È«²¿É¾³ý
 menu.menuItem.remove=É¾³ý
+menu.button.add=&Add...
 menu.button.edit=±à¼­(&E)...
 menu.button.remove=É¾³ý(&R)
 menu.button.up=ÉÏÒÆ(&U)

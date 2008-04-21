@@ -49,6 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=Fehler beim Lesen der XML-Daten
 button.refresh=Aktualisieren
 menu.menuItem.removeAll=Alles entfernen
 menu.menuItem.remove=Entfernen
+menu.button.add=&Add...
 menu.button.edit=&Bearbeiten...
 menu.button.remove=&Entfernen
 menu.button.up=Nach &oben
