@@ -36,7 +36,7 @@
             createDefault="false"
             emptyJarListIsOK="false"
             id="org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate"
-            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar,C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cisuz.jar"
+            jarList="C:\Program Files\IBM\SQLLIB\java\db2jcc.jar;C:\Program Files\IBM\SQLLIB\java\db2jcc_license_cisuz.jar"
             name="%org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate"
             parentCategory="org.eclipse.datatools.enablement.ibm.db2.zseries.driverCategory">
          <properties>
