@@ -11,7 +11,9 @@
 
 package org.eclipse.datatools.enablement.oda.ws.util;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -144,7 +146,7 @@ public class RawMessageSender
 
 				connection.connect( );
 
-				soapResponse = new SOAPResponse( connection.getInputStream( ) );
+				soapResponse = new SOAPResponse( getSOAPResponseStream( connection.getInputStream( ) ) );
 			}
 			catch ( MalformedURLException e )
 			{
@@ -163,7 +165,198 @@ public class RawMessageSender
 							e.getMessage( ) );
 				this.e = e;
 			}
+			catch ( OdaException e )
+			{
+				if ( !WSUtil.isNull( connection ) )
+					soapResponse = new SOAPResponse( connection.getErrorStream( ),
+							SOAPResponse.ERROR_STREAM,
+							e.getMessage( ) );
+				this.e = e;
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * @param connectionStream
+	 * @return
+	 * @throws IOException 
+	 */
+	private InputStream getSOAPResponseStream( InputStream connectionStream ) throws IOException, OdaException
+	{
+		byte[] buffer = new byte[4000];
+		try
+		{
+			int pos = 0;
+			int readLen = 1;
+			do
+			{
+				readLen = connectionStream.read( buffer, pos, buffer.length - pos );
+				if( readLen != -1 )
+				{
+					pos += readLen;
+				}
+			}
+			while( readLen >= 0 && pos < buffer.length );
+			if( pos == 0 )
+			{
+				return connectionStream;
+			}
+			if( pos < buffer.length )
+			{	 
+				InputStream faultStream = new ByteArrayInputStream( buffer, 0, pos );
+				SOAPFaultParser parser = new SOAPFaultParser( );
+				parser.parse( faultStream );
+				if( parser.isSoapFault( ) )
+				{
+					throw new OdaException( parser.getErrorMessage( ) + '\n' + new String( buffer, 0, pos ) );
+				}
+				else
+				{
+					byte[] buffer1 = new byte[pos];
+					System.arraycopy( buffer, 0, buffer1, 0, pos );
+					return new CompositeInputStream(  buffer1, connectionStream );
+				}
+			}
+			else
+			{
+				return new CompositeInputStream(  buffer, connectionStream );
+			}
+		}
+		catch ( IOException e )
+		{
+			throw e;
+		}
+		
+	}
+
+}
+
+class CompositeInputStream extends InputStream
+{
+
+	private byte buf[];
+	private int pos;
+    private InputStream stream;
+    
+    public CompositeInputStream( byte[] buffer, InputStream stream )
+    {
+    	this.buf = buffer;
+    	this.stream = stream;
+    	this.pos = 0;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#read()
+     */
+    public synchronized int read( ) throws IOException
+    {
+    	if ( pos < buf.length )
+		{
+			return buf[pos++] & 0xff;
+		}
+		else
+		{
+			pos++;
+			return stream.read( );
+		}
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#read(byte[], int, int)
+     */
+    public synchronized int read( byte b[], int off, int len ) throws IOException
+	{
+    	if ( pos + len <= buf.length )
+		{
+    		System.arraycopy( buf, pos, b, off, len );
+			pos += len;
+			return len;
+		}
+		if ( pos < buf.length )
+		{
+			int readLen = buf.length - pos;
+			System.arraycopy( buf, pos, b, off, readLen );
+			int sReadLen = stream.read( buf, off + readLen, len - readLen );
+			if( sReadLen != -1 )
+			{
+				readLen += sReadLen;
+			}
+			pos += readLen;
+			return readLen;
+		}
+		else
+		{
+			int readLen = stream.read( buf, off, len );
+			if( readLen != -1 )
+				pos += readLen;
+			return readLen;
 		}
 	}
 
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#skip(long)
+     */
+    public synchronized long skip( long n ) throws IOException
+	{
+		if ( pos + n <= buf.length )
+		{
+			pos += n;
+			return n;
+		}
+		if ( pos < buf.length )
+		{
+			pos += n;
+			return stream.skip( pos - buf.length );
+		}
+		else
+		{
+			return stream.skip( n );
+		}
+	}
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#available()
+     */
+    public synchronized int available( ) throws IOException
+	{
+		return stream.available( ) + buf.length - pos;
+	}
+
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#markSupported()
+     */
+    public boolean markSupported( )
+	{
+		return false;
+	}
+
+    /*
+     * (non-Javadoc)
+     * @see java.io.InputStream#mark(int)
+     */
+	public void mark( int readAheadLimit )
+	{
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.io.InputStream#reset()
+	 */
+	public synchronized void reset( )
+	{
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.io.InputStream#close()
+	 */
+	public void close( ) throws IOException
+	{
+		stream.close( );
+	}
 }
