@@ -101,6 +101,7 @@ public class DriverListCombo {
 	private boolean mShowGenericDriverButton = true;
 	private boolean mShowMenu = false;
 	private boolean mShowEditButton = true;
+	private ToolItem mTBButtonEdit;
 
 	/**
 	 * Constructor
@@ -287,10 +288,10 @@ public class DriverListCombo {
 		}
 		
 		if (mShowEditButton) {
-			final ToolItem item4 = new ToolItem(toolBar, SWT.PUSH);
-			item4.setImage(mChangeImage);
-			item4.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip")); //$NON-NLS-1$
-			item4.
+			mTBButtonEdit = new ToolItem(toolBar, SWT.PUSH);
+			mTBButtonEdit.setImage(mChangeImage);
+			mTBButtonEdit.setToolTipText(DriverMgmtMessages.getString("DriverListCombo.EditDriverButton.tooltip")); //$NON-NLS-1$
+			mTBButtonEdit.
 				addSelectionListener(new EditButtonSelectionChangedListener(
 					this));
 		}
@@ -615,6 +616,8 @@ public class DriverListCombo {
 			}
 		}
 
+		if (mTBButtonEdit != null)
+			mTBButtonEdit.setEnabled(false);
 		String text = getCombo().getText();
 		for (int i = 0; i < getCombo().getItemCount(); i++) {
 			if (getCombo().getItem(i).equals(text)) {
@@ -647,7 +650,12 @@ public class DriverListCombo {
 
 		public void widgetSelected(SelectionEvent e) {
 			int keyIndex = DriverListCombo.this.mComboList.getSelectionIndex();
+			if (keyIndex == -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(false);
+			else if (keyIndex > -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(true);
 			if (keyIndex > -1) {
+				
 				String keyString = DriverListCombo.this.mComboList
 						.getItem(keyIndex);
 				if (DriverListCombo.this.mComboList.getData(keyString) != null) {
@@ -807,6 +815,12 @@ public class DriverListCombo {
 			else
 				DriverListCombo.this.mComboList.setText(tempStore);
 
+			int keyIndex = DriverListCombo.this.mComboList.getSelectionIndex();
+			if (keyIndex == -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(false);
+			else if (keyIndex > -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(true);
+			
 			if (fireEvent)
 				fireChangedEvent(this.parent);
 		}
@@ -891,6 +905,12 @@ public class DriverListCombo {
 			else
 				DriverListCombo.this.mComboList.setText(tempStore);
 
+			int keyIndex = DriverListCombo.this.mComboList.getSelectionIndex();
+			if (keyIndex == -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(false);
+			else if (keyIndex > -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(true);
+
 			if (fireEvent)
 				fireChangedEvent(this.parent);
 		}
@@ -924,6 +944,9 @@ public class DriverListCombo {
 			else {
 				dlg = new DriverDialog(newShell);
 			}
+			if (parent.getSelectedDriver() == null) 
+				return;
+			
 			IPropertySet copy = duplicatePropertySet(parent.getSelectedDriver());
 			dlg.setPropertySet(copy);
 			dlg.setEditMode(true);
@@ -990,6 +1013,12 @@ public class DriverListCombo {
 			}
 			else
 				DriverListCombo.this.mComboList.setText(copy.getName());
+
+			int keyIndex = DriverListCombo.this.mComboList.getSelectionIndex();
+			if (keyIndex == -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(false);
+			else if (keyIndex > -1 && mTBButtonEdit != null)
+				mTBButtonEdit.setEnabled(true);
 
 			if (fireEvent)
 				fireChangedEvent(this.parent);

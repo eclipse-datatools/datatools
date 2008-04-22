@@ -103,7 +103,7 @@ public class CPPropetyPage extends PropertyPage
 
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = 2;
-		gd.horizontalIndent = 20;
+//		gd.horizontalIndent = 20;
 		btnAutoConnect.setLayoutData(gd);
 
 		initControls();

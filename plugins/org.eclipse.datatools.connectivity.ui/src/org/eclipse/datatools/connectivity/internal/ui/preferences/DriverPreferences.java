@@ -294,29 +294,31 @@ public class DriverPreferences extends PreferencePage implements
 						DriverPreferences.this.selectedPS = null;
 						StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTableViewer
 								.getSelection();
-						DriverPreferences.this.mAddButton
-							.setEnabled(true);
-						if (selection.getFirstElement() instanceof CategoryDescriptor) {
-							DriverPreferences.this.mRemoveButton
-									.setEnabled(false);
-							DriverPreferences.this.mEditButton
-									.setEnabled(false);
-							DriverPreferences.this.mCopyButton
-								.setEnabled(false);
-						}
-						else if (selection.getFirstElement() instanceof IPropertySet) {
-							DriverPreferences.this.mRemoveButton
-									.setEnabled(true);
-							DriverPreferences.this.mEditButton
-									.setEnabled(true);
-							DriverPreferences.this.mCopyButton
-								.setEnabled(true);
-							DriverPreferences.this.selectedPS = (IPropertySet) selection
-									.getFirstElement();
-							if (DriverPreferences.this.selectedPS != null) {
-								validate(DriverPreferences.this.selectedPS);
-							}
-						}
+						updateButtons(selection.getFirstElement());
+//						DriverPreferences.this.mAddButton
+//							.setEnabled(true);
+//						if (selection.getFirstElement() instanceof CategoryDescriptor) {
+//							DriverPreferences.this.mRemoveButton
+//									.setEnabled(false);
+//							DriverPreferences.this.mEditButton
+//									.setEnabled(false);
+//							DriverPreferences.this.mCopyButton
+//								.setEnabled(false);
+//						}
+//						else if (selection.getFirstElement() instanceof IPropertySet) {
+//							DriverPreferences.this.mRemoveButton
+//									.setEnabled(true);
+//							DriverPreferences.this.mEditButton
+//									.setEnabled(true);
+//							DriverPreferences.this.mCopyButton
+//								.setEnabled(true);
+//							DriverPreferences.this.selectedPS = (IPropertySet) selection
+//									.getFirstElement();
+//							if (DriverPreferences.this.selectedPS != null) {
+//								validate(DriverPreferences.this.selectedPS);
+//							}
+//							updateButtons(selection.getFirstElement());
+//						}
 					}
 
 				}
@@ -433,33 +435,68 @@ public class DriverPreferences extends PreferencePage implements
 	}
 
 	private void updateButtons ( Object selection ) {
-		DriverPreferences.this.mAddButton.setEnabled(true);
-		// if they selected a category...
-		if (selection instanceof CategoryDescriptor) {
+		DriverPreferences.this.mAddButton
+			.setEnabled(true);
+		if (selection instanceof IPropertySet) {
 			DriverPreferences.this.mRemoveAction
-					.setEnabled(false);
+					.setEnabled(true);
+			DriverPreferences.this.mEditAction
+					.setEnabled(true);
+			DriverPreferences.this.mCopyAction
+				.setEnabled(true);
+			DriverPreferences.this.mRemoveButton
+				.setEnabled(true);
+			DriverPreferences.this.mEditButton
+				.setEnabled(true);
+			DriverPreferences.this.mCopyButton
+				.setEnabled(true);
+			DriverPreferences.this.selectedPS = (IPropertySet) selection;
+			if (DriverPreferences.this.selectedPS != null) {
+				validate(DriverPreferences.this.selectedPS);
+			}
+//			updateButtons(selection);
+		}
+		else {
+			DriverPreferences.this.mRemoveAction
+				.setEnabled(false);
 			DriverPreferences.this.mEditAction
 					.setEnabled(false);
 			DriverPreferences.this.mCopyAction
-					.setEnabled(false);
+				.setEnabled(false);
+			DriverPreferences.this.mRemoveButton
+				.setEnabled(false);
+			DriverPreferences.this.mEditButton
+				.setEnabled(false);
+			DriverPreferences.this.mCopyButton
+				.setEnabled(false);
 		}
-		// if they selected a driver instance
-		else if (selection instanceof IPropertySet) {
-			DriverPreferences.this.mRemoveAction
-					.setEnabled(true);
-			DriverPreferences.this.mEditAction.setEnabled(true);
-			DriverPreferences.this.mCopyAction.setEnabled(true);
-
-			IPropertySet ps = (IPropertySet) selection;
-			if (ps != null) {
-				validate(ps);
-			}
-		}
-		else {
-			DriverPreferences.this.mRemoveAction.setEnabled(false);
-			DriverPreferences.this.mEditAction.setEnabled(false);
-			DriverPreferences.this.mCopyAction.setEnabled(false);
-		}
+//		DriverPreferences.this.mAddButton.setEnabled(true);
+//		// if they selected a category...
+//		if (selection instanceof CategoryDescriptor) {
+//			DriverPreferences.this.mRemoveAction
+//					.setEnabled(false);
+//			DriverPreferences.this.mEditAction
+//					.setEnabled(false);
+//			DriverPreferences.this.mCopyAction
+//					.setEnabled(false);
+//		}
+//		// if they selected a driver instance
+//		else if (selection instanceof IPropertySet) {
+//			DriverPreferences.this.mRemoveAction
+//					.setEnabled(true);
+//			DriverPreferences.this.mEditAction.setEnabled(true);
+//			DriverPreferences.this.mCopyAction.setEnabled(true);
+//
+//			IPropertySet ps = (IPropertySet) selection;
+//			if (ps != null) {
+//				validate(ps);
+//			}
+//		}
+//		else {
+//			DriverPreferences.this.mRemoveAction.setEnabled(false);
+//			DriverPreferences.this.mEditAction.setEnabled(false);
+//			DriverPreferences.this.mCopyAction.setEnabled(false);
+//		}
 	}
 	
 	private void addDriver(ISelection selection) {
@@ -531,9 +568,24 @@ public class DriverPreferences extends PreferencePage implements
 					DriverMgmtMessages.format(
 							"DriverPreferences.text.removeMessage", //$NON-NLS-1$ 
 							new String[] { instance.getName()})) == true) {
+				int selIndex = this.mTableViewer.getTable().getSelectionIndex();
 				DriverManager.getInstance().removeDriverInstance(instance.getID());
 
 				this.mTableViewer.refresh();//category);
+				if (selIndex < this.mTableViewer.getTable().getItemCount() &&
+						selIndex > -1) {
+					Object obj = this.mTableViewer.getTable().getItem(selIndex).getData();
+					StructuredSelection ssel = new StructuredSelection(obj);
+					this.mTableViewer.setSelection(ssel, true);
+				}
+				else if ((selIndex - 1) > -1) {
+					selIndex = selIndex - 1;
+					if (this.mTableViewer.getTable().getItem(selIndex) != null) {
+						Object obj = this.mTableViewer.getTable().getItem(selIndex).getData();
+						StructuredSelection ssel = new StructuredSelection(obj);
+						this.mTableViewer.setSelection(ssel, true);
+					}
+				}
 				this.mDirty = true;
 			}
 		}

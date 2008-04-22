@@ -60,7 +60,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
@@ -516,9 +515,24 @@ public class DriverDialog extends TitleAreaDialog {
 										.getSelectionCount() > 0) {
 									String[] selected = DriverDialog.this.list
 											.getSelection();
+									int selIndex = DriverDialog.this.list.getSelectionIndex();
 									for (int i = 0; i < selected.length; i++) {
 										DriverDialog.this.list
 												.remove(selected[i]);
+									}
+									if (selIndex < DriverDialog.this.list.getItemCount() &&
+											selIndex > -1) {
+										DriverDialog.this.list.setSelection(selIndex);
+									}
+									else if ((selIndex - 1) > -1) {
+										selIndex = selIndex - 1;
+										if (DriverDialog.this.list.getItem(selIndex) != null) {
+											DriverDialog.this.list.setSelection(selIndex);
+										}
+									}
+									else {
+										DriverDialog.this.mEditJar.setEnabled(false);
+										DriverDialog.this.mRemoveJar.setEnabled(false);
 									}
 									updateJarList();
 								}
@@ -1008,6 +1022,12 @@ public class DriverDialog extends TitleAreaDialog {
 				IDriverMgmtConstants.PROP_DEFN_JARLIST, this.mJarList);
 		validateName();
 		updatePropertyDescriptors();
+		if (this.mJarList.trim().length() > 0) {
+			this.mClearAll.setEnabled(true);
+		}
+		else {
+			this.mClearAll.setEnabled(false);
+		}
 	}
 
 	/*
@@ -1083,6 +1103,11 @@ public class DriverDialog extends TitleAreaDialog {
 			}
 		}
 
+		mAddJar.setEnabled(true);
+		mEditJar.setEnabled(false);
+		mRemoveJar.setEnabled(false);
+		mClearAll.setEnabled(false);
+		
 		if (this.mPropertySet != null) {
 			this.mDriverNameText.setText(this.mPropertySet.getName());
 			this.mDriverName = this.mPropertySet.getName();
@@ -1094,6 +1119,9 @@ public class DriverDialog extends TitleAreaDialog {
 			this.list.removeAll();
 			for (int i = 0; i < jarListArray.length; i++) {
 				this.list.add(jarListArray[i]);
+			}
+			if (jarList != null && jarList.trim().length() > 0) {
+				mClearAll.setEnabled(true);
 			}
 
 		}
