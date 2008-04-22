@@ -11,13 +11,13 @@
 pluginName=Eclipse Data Tools Platform Informix Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = Clase de controlador
+driverVendor = Proveedor
+driverVersion = Versión
+driverDBName = Nombre de base de datos
+driverConnectionURL = URL de conexión
+driverUID = Identificador de usuario
+driverPWD = Contraseña
 
 INFORMIX_CATEGORY_NAME = Informix
 10_0_VERSION_CATEGORY_NAME = 10.0
@@ -25,14 +25,14 @@ INFORMIX_CATEGORY_NAME = Informix
 9_3_VERSION_CATEGORY_NAME = 9.3
 9_2_VERSION_CATEGORY_NAME = 9.2
 
-org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Controlador JDBC de Informix
+org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Controlador JDBC de Informix
+org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Controlador JDBC de Informix
+org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Controlador JDBC de Informix
+org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = Otro controlador
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = Conexión JDBC
 profile.informix.title = Informix

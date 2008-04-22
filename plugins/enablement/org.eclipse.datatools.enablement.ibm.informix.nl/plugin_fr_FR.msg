@@ -11,13 +11,13 @@
 pluginName=Eclipse Data Tools Platform Informix Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Classe de pilote
+driverVendor = Vendeur
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverDBName = Nom de la base de données
+driverConnectionURL = URL de connexion
+driverUID = ID utilisateur
+driverPWD = Mot de passe
 
 INFORMIX_CATEGORY_NAME = Informix
 10_0_VERSION_CATEGORY_NAME = 10.0
@@ -25,14 +25,14 @@ INFORMIX_CATEGORY_NAME = Informix
 9_3_VERSION_CATEGORY_NAME = 9.3
 9_2_VERSION_CATEGORY_NAME = 9.2
 
-org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Pilote JDBC Informix
+org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Pilote JDBC Informix
+org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Pilote JDBC Informix
+org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Pilote JDBC Informix
+org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = Autre pilote
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = Connexion JDBC
 profile.informix.title = Informix

@@ -11,13 +11,13 @@
 pluginName=Eclipse Data Tools Platform Informix Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = 드라이버 클래스
+driverVendor = 공급업체
+driverVersion = 버전
+driverDBName = 데이터베이스 이름
+driverConnectionURL = 연결 URL
+driverUID = 사용자 ID
+driverPWD = 암호
 
 INFORMIX_CATEGORY_NAME = Informix
 10_0_VERSION_CATEGORY_NAME = 10.0
@@ -25,14 +25,14 @@ INFORMIX_CATEGORY_NAME = Informix
 9_3_VERSION_CATEGORY_NAME = 9.3
 9_2_VERSION_CATEGORY_NAME = 9.2
 
-org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Informix JDBC Driver
-org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.informix.10_0.driverTemplate = Informix JDBC 드라이버
+org.eclipse.datatools.enablement.ibm.informix.10_0.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_4.driverTemplate = Informix JDBC 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_4.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_3.driverTemplate = Informix JDBC 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_3.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_2.driverTemplate = Informix JDBC 드라이버
+org.eclipse.datatools.enablement.ibm.informix.9_2.other.driverTemplate = 기타 드라이버
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = JDBC 연결
 profile.informix.title = Informix

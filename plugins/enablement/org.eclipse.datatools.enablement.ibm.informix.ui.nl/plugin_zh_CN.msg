@@ -12,5 +12,5 @@ pluginName=Eclipse Data Tools Platform Informix UI Plug-in
 providerName=Eclipse.org
 
 profile.informix.wizard.title = Informix
-profile.informix.wizard.description = Create an Informix connection profile.
-profile.informix.properties = Driver Properties
+profile.informix.wizard.description = 创建 Informix 连接配置文件。
+profile.informix.properties = 驱动程序属性
