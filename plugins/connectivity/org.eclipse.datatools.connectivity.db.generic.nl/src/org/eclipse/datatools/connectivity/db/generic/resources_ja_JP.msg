@@ -1,32 +1,32 @@
 # package: com.sybase.suade.servers.sample.jdbc
-NewConnectionProfileWizard.title = New JDBC Connection Profile
-NewConnectionProfileWizard.error.title = Error Creating New JDBC Connection Profile
-NewConnectionProfileWizard.error.msg = An exception occurred while creating a new JDBC connection profile.
+NewConnectionProfileWizard.title = 新しい JDBC 接続プロファイル
+NewConnectionProfileWizard.error.title = JDBC 接続プロファイルの新規作成エラー
+NewConnectionProfileWizard.error.msg = JDBC 接続プロファイルの新規作成中に例外が発生しました。
 
-GenericDBProfileDetailsWizardPage.title = Specify a Driver and Connection Details
-GenericDBProfileDetailsWizardPage.msg = Select a driver from the drop-down and provide login details for the connection.
-GenericDBProfileDetailsWizardPage.driverCombo.label = Drivers:
-GenericDBProfileDetailsWizardPage.databaseName.label = Database:
-GenericDBProfileDetailsWizardPage.url.label = URL:
-GenericDBProfileDetailsWizardPage.PingButton=Test connection
-GenericDBProfileDetailsWizardPage.userName.label = User name:
-GenericDBProfileDetailsWizardPage.password.label = Password:
-GenericDBProfileDetailsWizardPage.persistpassword.label = Save password
-GenericDBProfileDetailsWizardPage.optionalProps.label = Optional properties:
-GenericDBProfileDetailsWizardPage.summary.driverName.label = Driver name
-GenericDBProfileDetailsWizardPage.summary.connProps.label = Connection properties
-GenericDBProfileDetailsWizardPage.summary.userName.label = User name
-GenericDBProfileDetailsWizardPage.summary.password.label = Password
+GenericDBProfileDetailsWizardPage.title = ドライバと接続の詳細を指定
+GenericDBProfileDetailsWizardPage.msg = ドロップダウンリストからドライバを選択し、接続用のログイン情報を指定してください。
+GenericDBProfileDetailsWizardPage.driverCombo.label = ドライバ :
+GenericDBProfileDetailsWizardPage.databaseName.label = データベース :
+GenericDBProfileDetailsWizardPage.url.label = URL :
+GenericDBProfileDetailsWizardPage.PingButton=接続テスト
+GenericDBProfileDetailsWizardPage.userName.label = ユーザ名 :
+GenericDBProfileDetailsWizardPage.password.label = パスワード :
+GenericDBProfileDetailsWizardPage.persistpassword.label = パスワードの保存
+GenericDBProfileDetailsWizardPage.optionalProps.label = オプションプロパティ :
+GenericDBProfileDetailsWizardPage.summary.driverName.label = ドライバ名
+GenericDBProfileDetailsWizardPage.summary.connProps.label = 接続プロパティ
+GenericDBProfileDetailsWizardPage.summary.userName.label = ユーザ名
+GenericDBProfileDetailsWizardPage.summary.password.label = パスワード
 GenericDBProfileDetailsWizardPage.summary.url.label = URL
 
-JDBCConnectionUtils.Milliseconds=\ milli(s)
+JDBCConnectionUtils.Milliseconds=\ ミリ秒
 JDBCConnectionUtils.StatusTitle=JDBCConnectionUtils
-JDBCConnectionUtils.TimeoutInXMilliSecondsMsg=Login timeout in 
-JDBCConnectionUtils.AttemptToConnectMessage=Attempting to connect...
-JDBCConnectionUtils.DBConnectAttemptJob=Database Connection Attempt
-JDBCConnectionUtils.ClassNotFoundStatus=Could not load class: 
-JDBCConnectionUtils.ConnectionTimeoutMessage=Connection timed out.
+JDBCConnectionUtils.TimeoutInXMilliSecondsMsg=ログインのタイムアウトまであと 
+JDBCConnectionUtils.AttemptToConnectMessage=接続中...
+JDBCConnectionUtils.DBConnectAttemptJob=データベースへの接続を試行
+JDBCConnectionUtils.ClassNotFoundStatus=クラスを読み込めません : 
+JDBCConnectionUtils.ConnectionTimeoutMessage=接続がタイムアウトしました。
 
 JDBCConnection.technologyName = JDBC
-JDBCConnection.error.DriverNotExist = Driver does not exist.
-JDBCConnection.error.EmptyJarList = Empty jar list in driver definition.
+JDBCConnection.error.DriverNotExist = ドライバがありません。
+JDBCConnection.error.EmptyJarList = ドライバ定義の jar リストが空です。

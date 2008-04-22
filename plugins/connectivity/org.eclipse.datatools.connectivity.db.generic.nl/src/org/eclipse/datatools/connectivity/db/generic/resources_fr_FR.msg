@@ -1,32 +1,32 @@
 # package: com.sybase.suade.servers.sample.jdbc
-NewConnectionProfileWizard.title = New JDBC Connection Profile
-NewConnectionProfileWizard.error.title = Error Creating New JDBC Connection Profile
-NewConnectionProfileWizard.error.msg = An exception occurred while creating a new JDBC connection profile.
+NewConnectionProfileWizard.title = Nouveau profil de connexion JDBC
+NewConnectionProfileWizard.error.title = Erreur lors de la création d'un nouveau profil de connexion JDBC
+NewConnectionProfileWizard.error.msg = Une exception s'est produite lors de la création d'un nouveau profil de connexion JDBC.
 
-GenericDBProfileDetailsWizardPage.title = Specify a Driver and Connection Details
-GenericDBProfileDetailsWizardPage.msg = Select a driver from the drop-down and provide login details for the connection.
-GenericDBProfileDetailsWizardPage.driverCombo.label = Drivers:
-GenericDBProfileDetailsWizardPage.databaseName.label = Database:
-GenericDBProfileDetailsWizardPage.url.label = URL:
-GenericDBProfileDetailsWizardPage.PingButton=Test connection
-GenericDBProfileDetailsWizardPage.userName.label = User name:
-GenericDBProfileDetailsWizardPage.password.label = Password:
-GenericDBProfileDetailsWizardPage.persistpassword.label = Save password
-GenericDBProfileDetailsWizardPage.optionalProps.label = Optional properties:
-GenericDBProfileDetailsWizardPage.summary.driverName.label = Driver name
-GenericDBProfileDetailsWizardPage.summary.connProps.label = Connection properties
-GenericDBProfileDetailsWizardPage.summary.userName.label = User name
-GenericDBProfileDetailsWizardPage.summary.password.label = Password
+GenericDBProfileDetailsWizardPage.title = Spécifier un pilote et les informations de connexion
+GenericDBProfileDetailsWizardPage.msg = Dans le menu déroulant, sélectionner un pilote et lui fournir les informations de connexion.
+GenericDBProfileDetailsWizardPage.driverCombo.label = Pilotes :
+GenericDBProfileDetailsWizardPage.databaseName.label = Base de données :
+GenericDBProfileDetailsWizardPage.url.label = URL :
+GenericDBProfileDetailsWizardPage.PingButton=Connexion test
+GenericDBProfileDetailsWizardPage.userName.label = Nom d'utilisateur :
+GenericDBProfileDetailsWizardPage.password.label = Mot de passe :
+GenericDBProfileDetailsWizardPage.persistpassword.label = Enregistrer le mot de passe
+GenericDBProfileDetailsWizardPage.optionalProps.label = Propriétés facultatives :
+GenericDBProfileDetailsWizardPage.summary.driverName.label = Nom du pilote
+GenericDBProfileDetailsWizardPage.summary.connProps.label = Propriétés de connexion
+GenericDBProfileDetailsWizardPage.summary.userName.label = Nom d'utilisateur
+GenericDBProfileDetailsWizardPage.summary.password.label = Mot de passe
 GenericDBProfileDetailsWizardPage.summary.url.label = URL
 
 JDBCConnectionUtils.Milliseconds=\ milli(s)
 JDBCConnectionUtils.StatusTitle=JDBCConnectionUtils
-JDBCConnectionUtils.TimeoutInXMilliSecondsMsg=Login timeout in 
-JDBCConnectionUtils.AttemptToConnectMessage=Attempting to connect...
-JDBCConnectionUtils.DBConnectAttemptJob=Database Connection Attempt
-JDBCConnectionUtils.ClassNotFoundStatus=Could not load class: 
-JDBCConnectionUtils.ConnectionTimeoutMessage=Connection timed out.
+JDBCConnectionUtils.TimeoutInXMilliSecondsMsg=Délai de connexion 
+JDBCConnectionUtils.AttemptToConnectMessage=Tentative de connexion...
+JDBCConnectionUtils.DBConnectAttemptJob=Tentative de connexion à la base de données
+JDBCConnectionUtils.ClassNotFoundStatus=Impossible de charger la classe : 
+JDBCConnectionUtils.ConnectionTimeoutMessage=Délai de connexion dépassé.
 
 JDBCConnection.technologyName = JDBC
-JDBCConnection.error.DriverNotExist = Driver does not exist.
-JDBCConnection.error.EmptyJarList = Empty jar list in driver definition.
+JDBCConnection.error.DriverNotExist = Le pilote n'existe pas.
+JDBCConnection.error.EmptyJarList = Liste jar vide dans la définition de pilote.

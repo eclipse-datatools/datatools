@@ -1,15 +1,15 @@
 # properties file for org.eclipse.datatools.connectivity.db.generic
 Bundle-Vendor = Eclipse.org
 Bundle-Name = Eclipse Data Tools Platform Generic DB Connectivity Plug-in
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
-org.eclipse.datatools.connectivity.db.driverCategory = Database
-org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = Generic JDBC
-org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = Generic JDBC Driver
-databases.category = Databases
-generic.profile.name = SQL Model-JDBC Connection
+driverClass = Clase de controlador
+driverVendor = Proveedor
+driverVersion = Versión
+driverDBName = Nombre de base de datos
+driverConnectionURL = URL de conexión
+driverUID = Identificador de usuario
+driverPWD = Contraseña
+org.eclipse.datatools.connectivity.db.driverCategory = Base de datos
+org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = JDBC genérico
+org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = Controlador de JDBC genérico
+databases.category = Bases de datos
+generic.profile.name = Modelo SQL-Conexión JDBC
