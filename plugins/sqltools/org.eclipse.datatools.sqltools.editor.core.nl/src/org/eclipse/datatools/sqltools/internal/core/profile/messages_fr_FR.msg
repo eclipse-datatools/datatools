@@ -1,9 +1,10 @@
-NoSuchProfileException_cant_find_profile=Cannot find profile: {0}
-ProfileUtil_unkown_connection_type=Unsupported connection type: {0} created by connection profile: {1}
-ProfileUtil_error_create_connection=Failed to create connection using connection profile: {0}
-ProfileUtil_error_getReusableConnection=Failed to get reusable connection by : {0}
-ProfileUtil_error_not_connected=The connection profile : {0} is not connected yet.
+NoSuchProfileException_cant_find_profile=Impossible de trouver le profil : {0}
+ProfileUtil_unkown_connection_type=Type de connexion non pris en charge : {0} créé par profil de connexion : {1}
+ProfileUtil_error_create_connection=Impossible de créer une connexion à l'aide du profil de connexion : {0}
+ProfileUtil_error_getReusableConnection=Impossible d'obtenir une connexion réutilisable par : {0}
+ProfileUtil_error_not_connected=Le profil de connexion : {0} n'est pas encore connecté.
 
-ProfileUtil_error_getdriver=Driver definition not specified for {0}.
-ProfileUtil_error_wrong_database_name=Wrong database returned {0} from connection profile {1}. Expected name is {2}
+ProfileUtil_error_getdriver=Définition de pilote non spécifiée pour {0}.
+ProfileUtil_error_wrong_database_name=Base de données incorrecte renvoyée {0} à partir du profil de connexion {1}. Le nom attendu est {2}
+
 
