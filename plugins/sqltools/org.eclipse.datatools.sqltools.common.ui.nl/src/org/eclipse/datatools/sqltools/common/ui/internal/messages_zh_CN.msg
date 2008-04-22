@@ -1,25 +1,25 @@
-AbstractDBPreferenceFieldPage_nodb=Cannot find database name by id: {0}
+AbstractDBPreferenceFieldPage_nodb=找不到具有以下标识的数据库名称: {0}
 
-SaveAsDialog_filetype_label=&File type:
-SaveAsDialog_overwrite=The file ''{0}'' already exists. Do you want to replace the existing file?
-SaveAsDialog_question=Question
-SaveAsDialog_filename=&File name:
-SaveAsDialog_export_error=Export Error
-SaveAsDialog_title=Save As
-SaveAsDialog_message=Save as a SQL file
-SaveAsDialog_error=Error
-SaveAsDialog_error_msg=Error occurs when trying to save the scripts as a file
+SaveAsDialog_filetype_label=文件类型(&F):
+SaveAsDialog_overwrite=文件“{0}”已存在。要替换现有文件吗?
+SaveAsDialog_question=问题
+SaveAsDialog_filename=文件名(&F):
+SaveAsDialog_export_error=导出错误
+SaveAsDialog_title=另存为
+SaveAsDialog_message=另存为 SQL 文件
+SaveAsDialog_error=错误
+SaveAsDialog_error_msg=尝试将脚本另存为文件时发生了错误
 
 #######################################
 #Copied from IDEWorkbenchMessages
 #######################################
-SaveAsDialog_text = Save As
-SaveAsDialog_file = file
-SaveAsDialog_closedProjectMessage = The selected project is closed.
-# ==============================================================================
+SaveAsDialog_text = 另存为
+SaveAsDialog_file = 文件
+SaveAsDialog_closedProjectMessage = 选择的项目已关闭。
+# =============================================================================
 # Dialogs: Copied from IDEWorkbenchMessages
-# ==============================================================================
-Question = Question
-Always = &Always
-Never = &Never
-Prompt = &Prompt
+# =============================================================================
+Question = 问题
+Always = 始终(&A)
+Never = 从不(&N)
+Prompt = 提示(&P)

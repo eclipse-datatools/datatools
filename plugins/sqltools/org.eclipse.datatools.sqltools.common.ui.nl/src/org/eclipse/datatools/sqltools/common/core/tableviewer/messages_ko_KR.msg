@@ -1,8 +1,8 @@
-DataDeserializer_invalid_binary_data=Invalid binary data
+DataDeserializer_invalid_binary_data=잘못된 이진 데이터
 
-ParameterTableViewer_name=Name
-ParameterTableViewer_type=Datatype
-ParameterTableViewer_null=Null
+ParameterTableViewer_name=이름
+ParameterTableViewer_type=데이터 형식
+ParameterTableViewer_null=널(Null)
 ParameterTableViewer_value=Value
-ParameterTableViewer_inout=In/Out
-ParseException_encountered=Encountered "{0}"
+ParameterTableViewer_inout=입력/출력
+ParseException_encountered="{0}" 발생

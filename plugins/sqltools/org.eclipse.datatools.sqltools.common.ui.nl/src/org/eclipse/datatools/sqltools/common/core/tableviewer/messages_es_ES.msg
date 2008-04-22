@@ -1,8 +1,8 @@
-DataDeserializer_invalid_binary_data=Invalid binary data
+DataDeserializer_invalid_binary_data=Datos binarios no válidos
 
-ParameterTableViewer_name=Name
-ParameterTableViewer_type=Datatype
-ParameterTableViewer_null=Null
-ParameterTableViewer_value=Value
-ParameterTableViewer_inout=In/Out
-ParseException_encountered=Encountered "{0}"
+ParameterTableViewer_name=Nombre
+ParameterTableViewer_type=Tipo de datos
+ParameterTableViewer_null=Nulo
+ParameterTableViewer_value=Valor
+ParameterTableViewer_inout=Dentro/fuera
+ParseException_encountered=Se ha encontrado "{0}"

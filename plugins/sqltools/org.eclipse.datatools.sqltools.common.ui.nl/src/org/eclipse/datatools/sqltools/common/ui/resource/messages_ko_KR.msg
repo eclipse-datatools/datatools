@@ -1,39 +1,39 @@
 ####################################################
 #  ContainerSelectionGroup resource Message
 ####################################################
-ContainerSelectionGroup_createProjectAction_label =&Create Project...
-ResourceAndContainerGroup_error_linked_project=Invalid parent folder. Select a non-linked project.
+ContainerSelectionGroup_createProjectAction_label =프로젝트 생성(&C)...
+ResourceAndContainerGroup_error_linked_project=잘못된 부모 폴더입니다. 연결되지 않은 프로젝트를 선택하십시오.
 
-showAdvanced = &Advanced >>
-hideAdvanced = << &Advanced
+showAdvanced = 고급(&A)>>
+hideAdvanced = << 고급(&A)
 
-ResourceGroup_resource = resource
-ResourceGroup_nameExists = The same name already exists.
-ResourceGroup_folderEmpty = Select a project folder.
-ResourceGroup_noProject = The specified project does not exist.
-ResourceGroup_emptyName = The ''{0}'' name is empty.
-ResourceGroup_invalidFilename = ''{0}'' is not a valid file name.
+ResourceGroup_resource = 리소스
+ResourceGroup_nameExists = 동일한 이름이 이미 있습니다.
+ResourceGroup_folderEmpty = 프로젝트 폴더를 선택하십시오.
+ResourceGroup_noProject = 지정된 프로젝트가 없습니다.
+ResourceGroup_emptyName = ''{0}'' 이름이 비어 있습니다.
+ResourceGroup_invalidFilename = ''{0}''은(는) 잘못된 파일 이름입니다.
 
 # --- New File ---
-WizardNewFileCreationPage_progress = Creating
-WizardNewFileCreationPage_errorTitle = Creation Problems
-WizardNewFileCreationPage_fileLabel = File na&me:
-WizardNewFileCreationPage_file = file
-WizardNewFileCreationPage_internalErrorTitle = Creation problems
-WizardNewFileCreationPage_internalErrorMessage = Internal error: {0}
-WizardNewFileCreationPage_error_create_file="Exception in {0}.getNewFile(): {1}"
+WizardNewFileCreationPage_progress = 만드는 중
+WizardNewFileCreationPage_errorTitle = 생성 문제
+WizardNewFileCreationPage_fileLabel = 파일 이름(&M):
+WizardNewFileCreationPage_file = 파일
+WizardNewFileCreationPage_internalErrorTitle = 생성 문제
+WizardNewFileCreationPage_internalErrorMessage = 내부 오류: {0}
+WizardNewFileCreationPage_error_create_file="{0}에 예외가 발생했습니다. getNewFile(): {1}"
 
 # --- TextEditor Save As ---
-Editor_error_save_message=Save could not be completed. {0}
-Editor_error_save_title=Problems During Save As...
-Editor_warning_save_delete=The original file ''{0}'' has been deleted.
+Editor_error_save_message=저장을 완료할 수 없습니다. {0}
+Editor_error_save_title=다른 이름으로 저장 중 문제 발생...
+Editor_warning_save_delete=원본 파일 ''{0}''이(가) 삭제되었습니다.
 
-CreateFolderAction_text = Create F&older...
-CreateFolderAction_toolTip = Create New Folder
-CreateFolderAction_title = New
+CreateFolderAction_text = 폴더 생성(&L)...
+CreateFolderAction_toolTip = 새 폴더 생성
+CreateFolderAction_title = 새로 만들기
 
 ####################################
 # Copied from IDEWorkbenchMessages
 ####################################
-ContainerGroup_message = &Enter or select the parent folder:
-ContainerGroup_selectFolder = Select the folder:
+ContainerGroup_message = 부모 폴더 입력 또는 선택(&E):
+ContainerGroup_selectFolder = 폴더 선택:

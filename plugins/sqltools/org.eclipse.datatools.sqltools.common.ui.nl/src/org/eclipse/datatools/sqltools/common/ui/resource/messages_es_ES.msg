@@ -1,39 +1,39 @@
 ####################################################
 #  ContainerSelectionGroup resource Message
 ####################################################
-ContainerSelectionGroup_createProjectAction_label =&Create Project...
-ResourceAndContainerGroup_error_linked_project=Invalid parent folder. Select a non-linked project.
+ContainerSelectionGroup_createProjectAction_label =&Crear proyecto...
+ResourceAndContainerGroup_error_linked_project=Carpeta principal no válida. Seleccione un proyecto no vinculado.
 
-showAdvanced = &Advanced >>
-hideAdvanced = << &Advanced
+showAdvanced = &Avanzado>>
+hideAdvanced = << &Avanzado
 
-ResourceGroup_resource = resource
-ResourceGroup_nameExists = The same name already exists.
-ResourceGroup_folderEmpty = Select a project folder.
-ResourceGroup_noProject = The specified project does not exist.
-ResourceGroup_emptyName = The ''{0}'' name is empty.
-ResourceGroup_invalidFilename = ''{0}'' is not a valid file name.
+ResourceGroup_resource = recurso
+ResourceGroup_nameExists = Este nombre ya existe.
+ResourceGroup_folderEmpty = Seleccione una carpeta de proyecto.
+ResourceGroup_noProject = El proyecto especificado no existe.
+ResourceGroup_emptyName = El nombre ''{0}'' está vacío.
+ResourceGroup_invalidFilename = ''{0}'' no es un nombre de archivo válido.
 
 # --- New File ---
-WizardNewFileCreationPage_progress = Creating
-WizardNewFileCreationPage_errorTitle = Creation Problems
-WizardNewFileCreationPage_fileLabel = File na&me:
-WizardNewFileCreationPage_file = file
-WizardNewFileCreationPage_internalErrorTitle = Creation problems
-WizardNewFileCreationPage_internalErrorMessage = Internal error: {0}
-WizardNewFileCreationPage_error_create_file="Exception in {0}.getNewFile(): {1}"
+WizardNewFileCreationPage_progress = Creando
+WizardNewFileCreationPage_errorTitle = Problemas en la creación
+WizardNewFileCreationPage_fileLabel = No&mbre de archivo:
+WizardNewFileCreationPage_file = archivo
+WizardNewFileCreationPage_internalErrorTitle = Problemas en la creación
+WizardNewFileCreationPage_internalErrorMessage = Error interno: {0}
+WizardNewFileCreationPage_error_create_file="Excepción en {0}.getNewFile(): {1}"
 
 # --- TextEditor Save As ---
-Editor_error_save_message=Save could not be completed. {0}
-Editor_error_save_title=Problems During Save As...
-Editor_warning_save_delete=The original file ''{0}'' has been deleted.
+Editor_error_save_message=No se ha podido guardar. {0}
+Editor_error_save_title=Problemas al guardar como...
+Editor_warning_save_delete=Se ha eliminado el archivo original ''{0}''.
 
-CreateFolderAction_text = Create F&older...
-CreateFolderAction_toolTip = Create New Folder
-CreateFolderAction_title = New
+CreateFolderAction_text = Crear &carpeta...
+CreateFolderAction_toolTip = Crear nueva carpeta
+CreateFolderAction_title = Nuevo
 
 ####################################
 # Copied from IDEWorkbenchMessages
 ####################################
-ContainerGroup_message = &Enter or select the parent folder:
-ContainerGroup_selectFolder = Select the folder:
+ContainerGroup_message = &Introduzca o seleccione la carpeta principal:
+ContainerGroup_selectFolder = Seleccione la carpeta:

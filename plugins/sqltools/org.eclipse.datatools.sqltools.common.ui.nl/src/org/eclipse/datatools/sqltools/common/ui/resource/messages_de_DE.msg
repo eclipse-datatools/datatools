@@ -1,39 +1,39 @@
 ####################################################
 #  ContainerSelectionGroup resource Message
 ####################################################
-ContainerSelectionGroup_createProjectAction_label =&Create Project...
-ResourceAndContainerGroup_error_linked_project=Invalid parent folder. Select a non-linked project.
+ContainerSelectionGroup_createProjectAction_label =Projekt &erstellen...
+ResourceAndContainerGroup_error_linked_project=Ungültiger übergeordneter Ordner. Wählen Sie ein nicht verknüpftes Projekt aus.
 
-showAdvanced = &Advanced >>
-hideAdvanced = << &Advanced
+showAdvanced = &Erweitert >>
+hideAdvanced = << &Erweitert
 
-ResourceGroup_resource = resource
-ResourceGroup_nameExists = The same name already exists.
-ResourceGroup_folderEmpty = Select a project folder.
-ResourceGroup_noProject = The specified project does not exist.
-ResourceGroup_emptyName = The ''{0}'' name is empty.
-ResourceGroup_invalidFilename = ''{0}'' is not a valid file name.
+ResourceGroup_resource = Ressource
+ResourceGroup_nameExists = Dieser Name ist bereits vorhanden.
+ResourceGroup_folderEmpty = Wählen Sie einen Projektordner aus.
+ResourceGroup_noProject = Das angegebene Projekt existiert nicht.
+ResourceGroup_emptyName = Der Name ''{0}" ist leer.
+ResourceGroup_invalidFilename = ''{0}'' ist kein gültiger Dateiname.
 
 # --- New File ---
-WizardNewFileCreationPage_progress = Creating
-WizardNewFileCreationPage_errorTitle = Creation Problems
-WizardNewFileCreationPage_fileLabel = File na&me:
-WizardNewFileCreationPage_file = file
-WizardNewFileCreationPage_internalErrorTitle = Creation problems
-WizardNewFileCreationPage_internalErrorMessage = Internal error: {0}
-WizardNewFileCreationPage_error_create_file="Exception in {0}.getNewFile(): {1}"
+WizardNewFileCreationPage_progress = Wird erstellt
+WizardNewFileCreationPage_errorTitle = Probleme bei der Erstellung
+WizardNewFileCreationPage_fileLabel = Dateina&me:
+WizardNewFileCreationPage_file = Datei
+WizardNewFileCreationPage_internalErrorTitle = Probleme bei der Erstellung
+WizardNewFileCreationPage_internalErrorMessage = Interner Fehler: {0}
+WizardNewFileCreationPage_error_create_file="Ausnahme in {0}.getNewFile(): {1}"
 
 # --- TextEditor Save As ---
-Editor_error_save_message=Save could not be completed. {0}
-Editor_error_save_title=Problems During Save As...
-Editor_warning_save_delete=The original file ''{0}'' has been deleted.
+Editor_error_save_message=Speichervorgang konnte nicht abgeschlossen werden. {0}
+Editor_error_save_title=Probleme beim Speichern-unter-Vorgang...
+Editor_warning_save_delete=Die Originaldatei ''{0}'' wurde gelöscht.
 
-CreateFolderAction_text = Create F&older...
-CreateFolderAction_toolTip = Create New Folder
-CreateFolderAction_title = New
+CreateFolderAction_text = &Ordner erstellen...
+CreateFolderAction_toolTip = Neuen Ordner erstellen
+CreateFolderAction_title = Neu
 
 ####################################
 # Copied from IDEWorkbenchMessages
 ####################################
-ContainerGroup_message = &Enter or select the parent folder:
-ContainerGroup_selectFolder = Select the folder:
+ContainerGroup_message = Wählen Sie den übergeordneten Ordner aus, oder &geben Sie einen Namen ein:
+ContainerGroup_selectFolder = Wählen Sie den Ordner aus:

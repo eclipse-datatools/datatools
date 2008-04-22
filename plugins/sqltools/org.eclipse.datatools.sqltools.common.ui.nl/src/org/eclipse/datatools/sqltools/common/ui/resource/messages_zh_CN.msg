@@ -1,39 +1,39 @@
 ####################################################
 #  ContainerSelectionGroup resource Message
 ####################################################
-ContainerSelectionGroup_createProjectAction_label =&Create Project...
-ResourceAndContainerGroup_error_linked_project=Invalid parent folder. Select a non-linked project.
+ContainerSelectionGroup_createProjectAction_label =创建项目(&C)...
+ResourceAndContainerGroup_error_linked_project=无效父文件夹。选择未链接的项目。
 
-showAdvanced = &Advanced >>
-hideAdvanced = << &Advanced
+showAdvanced = 高级(&A) >>
+hideAdvanced = << 高级(&A)
 
-ResourceGroup_resource = resource
-ResourceGroup_nameExists = The same name already exists.
-ResourceGroup_folderEmpty = Select a project folder.
-ResourceGroup_noProject = The specified project does not exist.
-ResourceGroup_emptyName = The ''{0}'' name is empty.
-ResourceGroup_invalidFilename = ''{0}'' is not a valid file name.
+ResourceGroup_resource = 资源
+ResourceGroup_nameExists = 相同名称已存在。
+ResourceGroup_folderEmpty = 选择项目文件夹
+ResourceGroup_noProject = 指定的项目不存在。
+ResourceGroup_emptyName = “{0}”名称为空。
+ResourceGroup_invalidFilename = “{0}”不是有效文件名。
 
 # --- New File ---
-WizardNewFileCreationPage_progress = Creating
-WizardNewFileCreationPage_errorTitle = Creation Problems
-WizardNewFileCreationPage_fileLabel = File na&me:
-WizardNewFileCreationPage_file = file
-WizardNewFileCreationPage_internalErrorTitle = Creation problems
-WizardNewFileCreationPage_internalErrorMessage = Internal error: {0}
-WizardNewFileCreationPage_error_create_file="Exception in {0}.getNewFile(): {1}"
+WizardNewFileCreationPage_progress = 创建
+WizardNewFileCreationPage_errorTitle = 创建问题
+WizardNewFileCreationPage_fileLabel = 文件名(&M):
+WizardNewFileCreationPage_file = 文件
+WizardNewFileCreationPage_internalErrorTitle = 创建问题
+WizardNewFileCreationPage_internalErrorMessage = 内部错误:{0}
+WizardNewFileCreationPage_error_create_file=“{0}.getNewFile() 中出现异常: {1}”
 
 # --- TextEditor Save As ---
-Editor_error_save_message=Save could not be completed. {0}
-Editor_error_save_title=Problems During Save As...
-Editor_warning_save_delete=The original file ''{0}'' has been deleted.
+Editor_error_save_message=无法完成保存操作。{0}
+Editor_error_save_title=执行“另存为...”操作期间发生问题。
+Editor_warning_save_delete=已删除原始文件“{0}”。
 
-CreateFolderAction_text = Create F&older...
-CreateFolderAction_toolTip = Create New Folder
-CreateFolderAction_title = New
+CreateFolderAction_text = 创建文件夹(&O)...
+CreateFolderAction_toolTip = 创建新文件夹
+CreateFolderAction_title = 新建
 
 ####################################
 # Copied from IDEWorkbenchMessages
 ####################################
-ContainerGroup_message = &Enter or select the parent folder:
-ContainerGroup_selectFolder = Select the folder:
+ContainerGroup_message = 输入或选择父文件夹(&E):
+ContainerGroup_selectFolder = 选择文件夹:

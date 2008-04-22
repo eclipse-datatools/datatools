@@ -11,4 +11,4 @@
 #
 ## Preferences
 #
-datatools.core.ui.preferences.data = SQL Development
+datatools.core.ui.preferences.data = SQL ŠJ”­

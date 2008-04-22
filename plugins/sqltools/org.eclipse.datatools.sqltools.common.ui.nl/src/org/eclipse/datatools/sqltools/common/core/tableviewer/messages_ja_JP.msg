@@ -1,8 +1,8 @@
-DataDeserializer_invalid_binary_data=Invalid binary data
+DataDeserializer_invalid_binary_data=バイナリデータが無効です。
 
-ParameterTableViewer_name=Name
-ParameterTableViewer_type=Datatype
+ParameterTableViewer_name=名前
+ParameterTableViewer_type=データ型
 ParameterTableViewer_null=Null
-ParameterTableViewer_value=Value
-ParameterTableViewer_inout=In/Out
-ParseException_encountered=Encountered "{0}"
+ParameterTableViewer_value=値
+ParameterTableViewer_inout=イン/アウト
+ParseException_encountered="{0}" が見つかりました。

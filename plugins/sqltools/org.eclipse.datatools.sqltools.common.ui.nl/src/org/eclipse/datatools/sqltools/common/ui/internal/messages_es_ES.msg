@@ -1,25 +1,25 @@
-AbstractDBPreferenceFieldPage_nodb=Cannot find database name by id: {0}
+AbstractDBPreferenceFieldPage_nodb=No se puede encontrar nombre de base de datos por id: {0}
 
-SaveAsDialog_filetype_label=&File type:
-SaveAsDialog_overwrite=The file ''{0}'' already exists. Do you want to replace the existing file?
-SaveAsDialog_question=Question
-SaveAsDialog_filename=&File name:
-SaveAsDialog_export_error=Export Error
-SaveAsDialog_title=Save As
-SaveAsDialog_message=Save as a SQL file
+SaveAsDialog_filetype_label=&Tipo de archivo:
+SaveAsDialog_overwrite=El archivo ''{0}'' ya existe. ¿Desea reemplazar el archivo existente?
+SaveAsDialog_question=Pregunta
+SaveAsDialog_filename=&Nombre de archivo:
+SaveAsDialog_export_error=Error de exportación
+SaveAsDialog_title=Guardar como
+SaveAsDialog_message=Guardar como archivo SQL
 SaveAsDialog_error=Error
-SaveAsDialog_error_msg=Error occurs when trying to save the scripts as a file
+SaveAsDialog_error_msg=Se produce un error al intentar guardar los scripts como un archivo
 
 #######################################
 #Copied from IDEWorkbenchMessages
 #######################################
-SaveAsDialog_text = Save As
-SaveAsDialog_file = file
-SaveAsDialog_closedProjectMessage = The selected project is closed.
-# ==============================================================================
+SaveAsDialog_text = Guardar como
+SaveAsDialog_file = archivo
+SaveAsDialog_closedProjectMessage = El proyecto seleccionado está cerrado.
+# =============================================================================
 # Dialogs: Copied from IDEWorkbenchMessages
-# ==============================================================================
-Question = Question
-Always = &Always
-Never = &Never
-Prompt = &Prompt
+# =============================================================================
+Question = Pregunta
+Always = &Siempre
+Never = &Nunca
+Prompt = &Solicitar

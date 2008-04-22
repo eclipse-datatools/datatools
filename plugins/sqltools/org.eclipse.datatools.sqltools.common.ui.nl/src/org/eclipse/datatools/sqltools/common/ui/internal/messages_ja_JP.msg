@@ -1,25 +1,25 @@
-AbstractDBPreferenceFieldPage_nodb=Cannot find database name by id: {0}
+AbstractDBPreferenceFieldPage_nodb=ID が {0} のデータベース名が見つかりません。
 
-SaveAsDialog_filetype_label=&File type:
-SaveAsDialog_overwrite=The file ''{0}'' already exists. Do you want to replace the existing file?
-SaveAsDialog_question=Question
-SaveAsDialog_filename=&File name:
-SaveAsDialog_export_error=Export Error
-SaveAsDialog_title=Save As
-SaveAsDialog_message=Save as a SQL file
-SaveAsDialog_error=Error
-SaveAsDialog_error_msg=Error occurs when trying to save the scripts as a file
+SaveAsDialog_filetype_label=ファイルの種類(&F) :
+SaveAsDialog_overwrite=指定したファイル ''{0}'' はすでに存在します。既存のファイルを上書きしますか ?
+SaveAsDialog_question=質問
+SaveAsDialog_filename=ファイル名(&F) :
+SaveAsDialog_export_error=エクスポートエラー
+SaveAsDialog_title=名前を付けて保存
+SaveAsDialog_message=SQL ファイルとして保存
+SaveAsDialog_error=エラー
+SaveAsDialog_error_msg=スクリプトをファイルとして保存中にエラーが発生しました。
 
 #######################################
 #Copied from IDEWorkbenchMessages
 #######################################
-SaveAsDialog_text = Save As
+SaveAsDialog_text = 名前を付けて保存
 SaveAsDialog_file = file
-SaveAsDialog_closedProjectMessage = The selected project is closed.
-# ==============================================================================
+SaveAsDialog_closedProjectMessage = 選択したプロジェクトは閉じています。
+# =============================================================================
 # Dialogs: Copied from IDEWorkbenchMessages
-# ==============================================================================
-Question = Question
-Always = &Always
-Never = &Never
-Prompt = &Prompt
+# =============================================================================
+Question = 質問
+Always = 常に上書きする(&Al)
+Never = 続行しない(&N)
+Prompt = 確認メッセージを表示する(&P)
