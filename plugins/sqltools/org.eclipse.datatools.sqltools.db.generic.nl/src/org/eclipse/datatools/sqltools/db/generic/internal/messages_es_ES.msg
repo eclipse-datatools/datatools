@@ -1,8 +1,8 @@
 ####################################################
 #  SQL ParserExpection Message
 ####################################################
-SQLParser_datatype_judgeLength = Precision must be great than zero
-SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
-SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+SQLParser_datatype_judgeLength = Precisión debe ser mayor que cero
+SQLParser_datatype_judgeLengthAndScale = Debe especificar una escala que sea menor o igual que el tamaño
+SQLParser_datatype_exceed_maxlength = La longitud máxima en bytes del string permitida es de 32767.
 
-plugin_internal_error=Internal error
+plugin_internal_error=Error interno

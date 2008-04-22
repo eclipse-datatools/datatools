@@ -1,2 +1,2 @@
-generic.db=Generic JDBC
-generic.db.desc=Data Tools generic database support
+generic.db=Generische JDBC
+generic.db.desc=Datentools generischer Datenbanksupport
