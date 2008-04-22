@@ -12,15 +12,15 @@
 pluginName = Eclipse Data Tools Platform DB2 UDB Database Definition Plug-in
 providerName = Eclipse.org
 
-V81ProductString = DB2 for Linux, UNIX, and Windows
+V81ProductString = DB2 pour Linux, UNIX et Windows
 V81VersionString = V8.1
 
-V82ProductString = DB2 for Linux, UNIX, and Windows
+V82ProductString = DB2 pour Linux, UNIX et Windows
 V82VersionString = V8.2
 
-V91ProductString = DB2 for Linux, UNIX, and Windows
+V91ProductString = DB2 pour Linux, UNIX et Windows
 V91VersionString = V9.1
 
-V81Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 8.1
-V82Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 8.2
-V91Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 9.1
+V81Description = DB2 UDB IBM pour Linux, UNIX et Windows Version 8.1
+V82Description = DB2 UDB IBM pour Linux, UNIX et Windows Version 8.2
+V91Description = DB2 UDB IBM pour Linux, UNIX et Windows Version 9.1

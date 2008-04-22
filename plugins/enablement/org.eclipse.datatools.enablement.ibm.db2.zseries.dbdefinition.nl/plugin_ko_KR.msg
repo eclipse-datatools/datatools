@@ -12,23 +12,23 @@
 pluginName = DB2 UDB Database Definition Plug-in
 providerName = Eclipse.org
 
-V7ProductString = DB2 for z/OS
+V7ProductString = z/OS용 DB2
 V7VersionString = V7
 
-V8CompatibilityProductString = DB2 for z/OS
-V8CompatibilityVersionString = V8 (Compatibility Mode)
+V8CompatibilityProductString = z/OS용 DB2
+V8CompatibilityVersionString = V8(호환 모드)
 
-V8NewFunctionProductString = DB2 for z/OS
-V8NewFunctionVersionString = V8 (New-Function Mode)
+V8NewFunctionProductString = z/OS용 DB2
+V8NewFunctionVersionString = V8(새 기능 모드)
 
-V7Description = IBM DB2 UDB for z/OS and OS 390 Version 7
-V8CompatibilityDescription = IBM DB2 UDB for z/OS Version 8 in compatibility mode
-V8NewFunctionDescription = IBM DB2 UDB for z/OS Version 8 in new-function mode
+V7Description = z/OS 및 OS 390 버전 7용 IBM DB2 UDB
+V8CompatibilityDescription = z/OS 버전 8 호환 모드용 IBM DB2 UDB
+V8NewFunctionDescription = z/OS 버전 8 새 기능 모드용 IBM DB2 UDB
 
-V9CompatibilityDescription = IBM DB2 for z/OS Version 9 in compatibility mode
-V9CompatibilityProductString = DB2 for z/OS
-V9CompatibilityVersionString = V9 (Compatibility Mode)
+V9CompatibilityDescription = z/OS 버전 9 호환 모드용 IBM DB2
+V9CompatibilityProductString = z/OS용 DB2
+V9CompatibilityVersionString = V9(호환 모드)
 
-V9NewFunctionDescription = IBM DB2 for z/OS Version 9 in new-function mode
-V9NewFunctionProductString = DB2 for z/OS
-V9NewFunctionVersionString = V9 (New-Function Mode)
+V9NewFunctionDescription = z/OS 버전 9 새 기능 모드용 IBM DB2
+V9NewFunctionProductString = z/OS용 DB2
+V9NewFunctionVersionString = V9(새 기능 모드)

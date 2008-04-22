@@ -21,6 +21,6 @@ V82VersionString = V8.2
 V91ProductString = DB2 for Linux, UNIX, and Windows
 V91VersionString = V9.1
 
-V81Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 8.1
-V82Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 8.2
-V91Description = IBM DB2 UDB for Linux, UNIX, and Windows Version 9.1
+V81Description = IBM DB2 UDB for Linux, UNIX, and Windows °æ±¾ 8.1
+V82Description = IBM DB2 UDB for Linux, UNIX, and Windows °æ±¾ 8.2
+V91Description = IBM DB2 UDB for Linux, UNIX, and Windows °æ±¾ 9.1

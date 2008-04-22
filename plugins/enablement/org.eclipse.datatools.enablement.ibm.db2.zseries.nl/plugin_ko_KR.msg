@@ -11,19 +11,19 @@
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB zSeries Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-filterOnTBCreator = Retrieve Objects Created By This User Only
-driverUID = User ID
-driverPWD = Password
+driverClass = 드라이버 클래스
+driverVendor = 공급업체
+driverVersion = 버전
+driverDBName = 데이터베이스 이름
+driverConnectionURL = 연결 URL
+filterOnTBCreator = 이 사용자가 생성한 개체만 검색
+driverUID = 사용자 ID
+driverPWD = 암호
 
-DB2_UDB_ZSERIES_CATEGORY_NAME = DB2 for z/OS
+DB2_UDB_ZSERIES_CATEGORY_NAME = z/OS용 DB2
 
-org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate = IBM Data Server Driver for JDBC and SQLJ
-org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate = JDBC 및 SQLJ용 IBM 데이터 서버 드라이버
+org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate = 기타 드라이버
 
-jdbc.connection.name = JDBC Connection
-profile.db2.zseries.title = DB2 for z/OS
+jdbc.connection.name = JDBC 연결
+profile.db2.zseries.title = z/OS용 DB2

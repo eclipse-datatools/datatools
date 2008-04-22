@@ -11,18 +11,18 @@
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB LUW Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = Clase de controlador
+driverVendor = Proveedor
+driverVersion = Versión
+driverDBName = Nombre de base de datos
+driverConnectionURL = URL de conexión
+driverUID = Identificador de usuario
+driverPWD = Contraseña
 
-DB2_UDB_CATEGORY_NAME = DB2 for Linux, UNIX, and Windows
+DB2_UDB_CATEGORY_NAME = DB2 para Linux, UNIX y Windows
 
-org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate = IBM Data Server Driver for JDBC and SQLJ
-org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.db2.luw.driverTemplate = Controlador de servidor de datos de IBM para JDBC y SQLJ
+org.eclipse.datatools.enablement.ibm.db2.luw.other.driverTemplate = Otro controlador
 
-jdbc.connection.name = JDBC Connection
-profile.db2.luw.title = DB2 for Linux, UNIX, and Windows
+jdbc.connection.name = Conexión JDBC
+profile.db2.luw.title = DB2 para Linux, UNIX y Windows

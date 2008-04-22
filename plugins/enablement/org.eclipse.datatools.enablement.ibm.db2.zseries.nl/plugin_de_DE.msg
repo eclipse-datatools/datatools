@@ -11,19 +11,19 @@
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB zSeries Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Treiberklasse
+driverVendor = Anbieter
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-filterOnTBCreator = Retrieve Objects Created By This User Only
-driverUID = User ID
-driverPWD = Password
+driverDBName = Datenbankname
+driverConnectionURL = Verbindungs-URL
+filterOnTBCreator = Aufrufen von Objekten, die ausschließlich von diesem Nutzer erstellt wurden
+driverUID = Benutzer-ID
+driverPWD = Kennwort
 
-DB2_UDB_ZSERIES_CATEGORY_NAME = DB2 for z/OS
+DB2_UDB_ZSERIES_CATEGORY_NAME = DB2 für z/OS
 
-org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate = IBM Data Server Driver for JDBC and SQLJ
-org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.ibm.db2.zseries.driverTemplate = IBM Data Server Treiber für JDBC und SQLJ
+org.eclipse.datatools.enablement.ibm.db2.zseries.other.driverTemplate = Anderer Treiber
 
-jdbc.connection.name = JDBC Connection
-profile.db2.zseries.title = DB2 for z/OS
+jdbc.connection.name = JDBC-Verbindung
+profile.db2.zseries.title = DB2 für z/OS

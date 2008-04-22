@@ -12,29 +12,28 @@
 #
 ## zSeries Driver UI Contributor
 #
-CUI_NEWCW_LOCATION_LBL_UI_ = Locat&ion:
+CUI_NEWCW_LOCATION_LBL_UI_ = Speicher&ort:
 CUI_NEWCW_HOST_LBL_UI_ = &Host:
-CUI_NEWCW_PORT_LBL_UI_ = Port nu&mber:
-CUI_NEWCW_CONNECTIONURL_LBL_UI_= Connection UR&L:
-CUI_NEWCW_TBCREATOR_LBL_UI = &Retrieve objects created by this user only
-CUI_NEWCW_USERNAME_LBL_UI_ = User name:
-CUI_NEWCW_PASSWORD_LBL_UI_ = Password:
-CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Sa&ve password
-CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Location
-CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host
-CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Port number
-CUI_NEWCW_RETRIEVE_OBJECTS_RESTRICTION_SUMMARY_DATA_TEXT_ = Retrieve objects created by this user only
-CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = User name
-CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Save password
+CUI_NEWCW_PORT_LBL_UI_ = &Anschlussnummer:
+CUI_NEWCW_CONNECTIONURL_LBL_UI_= Verbindungs-UR&L:
+CUI_NEWCW_TBCREATOR_LBL_UI = &Abrufen von Objekten, die ausschließlich von diesem Nutzer erstellt wurden
+CUI_NEWCW_USERNAME_LBL_UI_ = Benutzername:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Kennwort:
+CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = &Kennwort speichern
+CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Speicherort
+CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Host:
+CUI_NEWCW_PORT_SUMMARY_DATA_TEXT_ = Anschlussnummer
+CUI_NEWCW_RETRIEVE_OBJECTS_RESTRICTION_SUMMARY_DATA_TEXT_ = &Abrufen von Objekten, die ausschließlich von diesem Nutzer erstellt wurden
+CUI_NEWCW_USERNAME_SUMMARY_DATA_TEXT_ = Benutzername
+CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Kennwort speichern
 CUI_NEWCW_URL_SUMMARY_DATA_TEXT_ = URL
-CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = true
-CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = false
+CUI_NEWCW_TRUE_SUMMARY_DATA_TEXT_ = Wahr
+CUI_NEWCW_FALSE_SUMMARY_DATA_TEXT_ = Falsch
 
-CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = Enter a location name.
-CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Enter the host name for the database server.
-CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Enter the connection port number for the database server.
-CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Enter a user name.
-CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Enter a password.
-
+CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_ = Geben Sie einen Speicherort ein.
+CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Geben Sie einen Hostnamen für den Datenbankserver ein.
+CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Geben Sie die Anschlussnummer der Verbindung für den Datenbankserver ein.
+CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Geben Sie einen Benutzernamen ein.
+CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Geben Sie ein Kennwort ein.
 
 

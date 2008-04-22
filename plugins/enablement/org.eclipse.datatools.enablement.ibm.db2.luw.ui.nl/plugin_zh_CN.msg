@@ -12,5 +12,5 @@ pluginName=Eclipse Data Tools Platform IBM DB2 UDB LUW UI Plug-in
 providerName=Eclipse.org
 
 profile.db2.luw.wizard.title = DB2 for Linux, UNIX, and Windows
-profile.db2.luw.wizard.description = Create a DB2 for Linux, UNIX, and Windows connection profile.
-profile.db2.luw.properties = Driver Properties
+profile.db2.luw.wizard.description = 创建 DB2 for Linux, UNIX, and Windows 连接配置文件。
+profile.db2.luw.properties = 驱动程序属性

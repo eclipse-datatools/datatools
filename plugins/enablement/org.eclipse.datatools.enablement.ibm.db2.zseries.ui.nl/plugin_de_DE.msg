@@ -11,6 +11,6 @@
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB zSeries UI Plug-in
 providerName=Eclipse.org
 
-profile.db2.zseries.wizard.title = DB2 for z/OS
-profile.db2.zseries.wizard.description = Create a DB2 for z/OS connection profile.
-profile.db2.zseries.properties = Driver Properties
+profile.db2.zseries.wizard.title = DB2 für z/OS
+profile.db2.zseries.wizard.description = Erstellung eines DB2 für z/OS-Verbindungsprofils.
+profile.db2.zseries.properties = Treibereigenschaften

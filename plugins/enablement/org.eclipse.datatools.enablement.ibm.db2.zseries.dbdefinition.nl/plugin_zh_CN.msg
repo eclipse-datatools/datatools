@@ -16,19 +16,19 @@ V7ProductString = DB2 for z/OS
 V7VersionString = V7
 
 V8CompatibilityProductString = DB2 for z/OS
-V8CompatibilityVersionString = V8 (Compatibility Mode)
+V8CompatibilityVersionString = V8（兼容性方式）
 
 V8NewFunctionProductString = DB2 for z/OS
-V8NewFunctionVersionString = V8 (New-Function Mode)
+V8NewFunctionVersionString = V8（新功能方式）
 
-V7Description = IBM DB2 UDB for z/OS and OS 390 Version 7
-V8CompatibilityDescription = IBM DB2 UDB for z/OS Version 8 in compatibility mode
-V8NewFunctionDescription = IBM DB2 UDB for z/OS Version 8 in new-function mode
+V7Description = IBM DB2 UDB for z/OS and OS 390 版本 7
+V8CompatibilityDescription = IBM DB2 UDB for z/OS 版本 8（兼容模式）
+V8NewFunctionDescription = IBM DB2 UDB for z/OS 版本 8（新功能模式）
 
-V9CompatibilityDescription = IBM DB2 for z/OS Version 9 in compatibility mode
+V9CompatibilityDescription = IBM DB2 for z/OS 版本 9（兼容模式）
 V9CompatibilityProductString = DB2 for z/OS
-V9CompatibilityVersionString = V9 (Compatibility Mode)
+V9CompatibilityVersionString = V9（兼容模式）
 
-V9NewFunctionDescription = IBM DB2 for z/OS Version 9 in new-function mode
+V9NewFunctionDescription = IBM DB2 for z/OS 版本 9（新功能模式）
 V9NewFunctionProductString = DB2 for z/OS
-V9NewFunctionVersionString = V9 (New-Function Mode)
+V9NewFunctionVersionString = V9（新功能模式）
