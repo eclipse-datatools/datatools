@@ -1,83 +1,83 @@
 # preference page
-TemplatePreferencePage_error_import=Failed to import templates.
-TemplatePreferencePage_error_export=Failed to export templates.
-TemplatePreferencePage_error_read_title=Reading Templates
-TemplatePreferencePage_error_write_title=Writing Templates
-TemplatePreferencePage_message=&Create, edit or remove templates:
-TemplatePreferencePage_title=Templates
+TemplatePreferencePage_error_import=Vorlagen wurden nicht importiert.
+TemplatePreferencePage_error_export=Vorlagen wurden nicht exportiert.
+TemplatePreferencePage_error_read_title=Vorlagen werden gelesen
+TemplatePreferencePage_error_write_title=Vorlagen werden geschrieben
+TemplatePreferencePage_message=Vorlagen &erstellen, bearbeiten oder entfernen:
+TemplatePreferencePage_title=Vorlagen
 
-TemplatePreferencePage_new=&New...
-TemplatePreferencePage_edit=&Edit...
-TemplatePreferencePage_import=&Import...
-TemplatePreferencePage_export=E&xport...
-TemplatePreferencePage_remove=&Remove
-TemplatePreferencePage_editor=Template
-TemplatePreferencePage_revert=Re&vert to Default
-TemplatePreferencePage_restore=Restore Re&moved
+TemplatePreferencePage_new=&Neu...
+TemplatePreferencePage_edit=&Bearbeiten...
+TemplatePreferencePage_import=&Importieren...
+TemplatePreferencePage_export=E&xportieren...
+TemplatePreferencePage_remove=&Entfernen
+TemplatePreferencePage_editor=Vorlage
+TemplatePreferencePage_revert=Auf &Standardwert zurücksetzen
+TemplatePreferencePage_restore=Entfernte &wiederherstellen
 
 TemplatePreferencePage_column_name=Name
-TemplatePreferencePage_column_context=Context
-TemplatePreferencePage_column_description=Description
-TemplatePreferencePage_column_autoinsert=Auto Insert
+TemplatePreferencePage_column_context=Kontext
+TemplatePreferencePage_column_description=Beschreibung
+TemplatePreferencePage_column_autoinsert=Autom einfügen
 
 # on (as the opposite of off)
-TemplatePreferencePage_on=on
+TemplatePreferencePage_on=am
 
-TemplatePreferencePage_use_code_formatter=Use code &formatter
+TemplatePreferencePage_use_code_formatter=Code&formatierung verwenden
 
-TemplatePreferencePage_import_title=Importing Templates
+TemplatePreferencePage_import_title=Vorlagen werden importiert
 TemplatePreferencePage_import_extension=*.xml
 
-TemplatePreferencePage_export_title=Exporting {0} Templates
+TemplatePreferencePage_export_title={0} Vorlagen werden exportiert
 TemplatePreferencePage_export_filename=templates.xml
 TemplatePreferencePage_export_extension=*.xml
 
-TemplatePreferencePage_export_exists_title= Exporting Templates
-TemplatePreferencePage_export_exists_message= {0} already exists.\nDo you want to replace it?
+TemplatePreferencePage_export_exists_title= Vorlagen werden exportiert
+TemplatePreferencePage_export_exists_message= {0} ist bereits vorhanden.\nErsetzen?
 
-TemplatePreferencePage_export_error_title= Exporting Templates
-TemplatePreferencePage_export_error_hidden= Export failed.\n{0} is a hidden file.
-TemplatePreferencePage_export_error_canNotWrite= Export failed.\n{0} cannot be modified.
-TemplatePreferencePage_export_error_fileNotFound= Export failed:\n{0}
+TemplatePreferencePage_export_error_title= Vorlagen werden exportiert
+TemplatePreferencePage_export_error_hidden= Export fehlgeschlagen.\n{0} ist eine verborgene Datei.
+TemplatePreferencePage_export_error_canNotWrite= Export fehlgeschlagen.\n{0} kann nicht geändert werden.
+TemplatePreferencePage_export_error_fileNotFound= Export fehlgeschlagen:\n{0}
 
-TemplatePreferencePage_error_parse_message= Failed to parse templates:\n{0}
-TemplatePreferencePage_error_read_message= Failed to read templates.
-TemplatePreferencePage_error_write_message= Failed to write templates.
+TemplatePreferencePage_error_parse_message= Vorlagen wurden nicht analysiert:\n{0}
+TemplatePreferencePage_error_read_message= Vorlagen wurden nicht gelesen.
+TemplatePreferencePage_error_write_message= Vorlagen wurden nicht geschrieben.
 
-TemplatePreferencePage_question_create_new_title= Edit Template
-TemplatePreferencePage_question_create_new_message= The name of the template has been changed. Click 'Yes' to create an additional template with the new name or 'No' to rename the existing one.
+TemplatePreferencePage_question_create_new_title= Vorlage bearbeiten
+TemplatePreferencePage_question_create_new_message= Der Name der Vorlage wurde geändert. Klicken Sie auf 'Ja', um eine weitere Vorlage mit dem neuen Namen zu erstellen, oder auf 'Nein', um die bestehende umzubenennen.
 
-TemplatePreferencePage_preview=Previe&w:
+TemplatePreferencePage_preview=Vor&schau:
 
 # edit template dialog
-EditTemplateDialog_error_noname=Template name cannot be empty.
-EditTemplateDialog_error_adjacent_variables=Template pattern has adjacent variables.
-EditTemplateDialog_title_new=New Template
-EditTemplateDialog_title_edit=Edit Template
+EditTemplateDialog_error_noname=Vorlagenname darf nicht leer sein.
+EditTemplateDialog_error_adjacent_variables=Vorlagenmuster hat benachbarte Variablen.
+EditTemplateDialog_title_new=Neue Vorlage
+EditTemplateDialog_title_edit=Vorlage bearbeiten
 
 EditTemplateDialog_name=&Name:
-EditTemplateDialog_description=&Description:
-EditTemplateDialog_context=&Context:
-EditTemplateDialog_pattern=&Pattern:
-EditTemplateDialog_insert_variable=Insert &Variable...
+EditTemplateDialog_description=&Beschreibung:
+EditTemplateDialog_context=&Kontext:
+EditTemplateDialog_pattern=&Muster:
+EditTemplateDialog_insert_variable=&Variable einfügen...
 
-EditTemplateDialog_undo=&Undo
-EditTemplateDialog_cut=Cu&t
-EditTemplateDialog_copy=&Copy
-EditTemplateDialog_paste=&Paste
-EditTemplateDialog_select_all=Select &All
-EditTemplateDialog_autoinsert=Auto&matically Insert
-EditTemplateDialog_content_assist=Insert &Variable...
+EditTemplateDialog_undo=&Rückgängig
+EditTemplateDialog_cut=Auss&chneiden
+EditTemplateDialog_copy=&Kopieren
+EditTemplateDialog_paste=&Einfügen
+EditTemplateDialog_select_all=Alles m&arkieren
+EditTemplateDialog_autoinsert=Auto&matisch einfügen
+EditTemplateDialog_content_assist=&Variable einfügen...
 
-TemplateVariableProposal_error_title=Error applying template variable proposal
-TemplateVariableProcessor_error_title=Error creating template variable proposals
+TemplateVariableProposal_error_title=Fehler beim Anwenden des Vorlagenvariablenvorschlags
+TemplateVariableProcessor_error_title=Fehler beim Erstellen von Vorlagenvariablenvorschlägen
 
-GlobalVariables_variable_description_cursor=The cursor position after editing template variables
-GlobalVariables_variable_description_dollar=The dollar symbol
-GlobalVariables_variable_description_date=Current date
-GlobalVariables_variable_description_year=Current year
-GlobalVariables_variable_description_time=Current time
-GlobalVariables_variable_description_user=User name
-GlobalVariables_variable_description_selectedWord= The selected word
-GlobalVariables_variable_description_selectedLines= The selected lines
+GlobalVariables_variable_description_cursor=Die Cursorposition nach der Bearbeitung der Vorlagenvariablen
+GlobalVariables_variable_description_dollar=Das Dollarsymbol
+GlobalVariables_variable_description_date=Aktuelles Datum
+GlobalVariables_variable_description_year=Aktuelles Jahr
+GlobalVariables_variable_description_time=Aktuelle Uhrzeit
+GlobalVariables_variable_description_user=Benutzername
+GlobalVariables_variable_description_selectedWord= Das ausgewählte Wort
+GlobalVariables_variable_description_selectedLines= Die ausgewählten Zeilen
 

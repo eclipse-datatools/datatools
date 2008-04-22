@@ -1,14 +1,13 @@
 # template proposal
 TemplateProposal.displayString= {0} - {1}
-TemplateProposal.errorDialog.title=Template Evaluation Error
+TemplateProposal.errorDialog.title=テンプレートの評価エラー
 
-SQLTemplateProposal_proposalInfo=After you fill in the table/procedure name variable, this intelligent template will be expanded into:<br>
+SQLTemplateProposal_proposalInfo=テーブル/プロシージャ名の変数を入力すると、このインテリジェントテンプレートが次の場所に展開されます :<br>
 
-ContributionTemplateStore_ignore_no_id= Ignoring template {0} since it has no id.
-ContributionTemplateStore_ignore_deleted= Ignoring template {0} since it is deleted.
-ContributionTemplateStore_ignore_validation_failed= Ignoring template {0} since validation failed.
+ContributionTemplateStore_ignore_no_id= テンプレート {0} は ID がないので無視されます。
+ContributionTemplateStore_ignore_deleted= テンプレート {0} は削除されているので無視されます。
+ContributionTemplateStore_ignore_validation_failed= テンプレート {0} は検証でエラーになったので無視されます。
 
-SQLTemplateReaderWriter_duplicate_id= Duplicate template id
-SQLTemplateReaderWriter_error_missing_attribute= Missing required attribute
-SQLTemplateReaderWriter_error_illegal_boolean_attribute= Illegal boolean attribute, must be "true" or "false".
-
+SQLTemplateReaderWriter_duplicate_id= 重複するテンプレート ID
+SQLTemplateReaderWriter_error_missing_attribute= 必要な属性が見つかりません。
+SQLTemplateReaderWriter_error_illegal_boolean_attribute= 論理値の属性が無効です。属性は "true" と "false" のいずれかでなければなりません。

@@ -1,20 +1,20 @@
-ResultSupportRunnable_name=SQL statement execution
-ResultSupportRunnable_task_connection=Obtaining connection...
-ResultSupportRunnable_task_statement=Obtaining statement...
-ResultSupportRunnable_task_run=Executing...
-ResultSupportRunnable_task_iterate=Iterating results...
-ResultSupportRunnable_exception_terminated=The instance has already been terminated!
+ResultSupportRunnable_name=SQL 文の実行
+ResultSupportRunnable_task_connection=接続を取得しています...
+ResultSupportRunnable_task_statement=文を取得しています...
+ResultSupportRunnable_task_run=実行しています...
+ResultSupportRunnable_task_iterate=結果を反復計算しています...
+ResultSupportRunnable_exception_terminated=インスタンスはすでに中止されています。
 
-GroupSQLResultRunnable_name=SQL statement execution
-GroupSQLResultRunnable_groups=({0} groups)
-GroupSQLResultRunnable_group=Group {0}
-GroupSQLResultRunnable_error_interrupted=The execution has been interrupted.
-GroupSQLResultRunnable_group_exec=Group execution
-GroupSQLResultRunnable_not_complete=Execution is not successful
+GroupSQLResultRunnable_name=SQL 文の実行
+GroupSQLResultRunnable_groups=({0} 個のグループ)
+GroupSQLResultRunnable_group=グループ {0}
+GroupSQLResultRunnable_error_interrupted=実行が中断されました。
+GroupSQLResultRunnable_group_exec=グループの実行
+GroupSQLResultRunnable_not_complete=正常に実行できません。
 
-GroupSQLResultRunnable_title=Continue Execution
-GroupSQLResultRunnable_message=Error occurred when executing last statement(s). Do you want to continue?
+GroupSQLResultRunnable_title=実行を続ける
+GroupSQLResultRunnable_message=最後の文の実行時にエラーが発生しました。続行しますか ?
 
-sqlEditorName=SQL Editor
-GroupSQLResultRunnable_fail_to_create_conn=Fail to create database connection
-GroupSQLResultRunnable_fail_to_create_conn_to=Failed to create connection to {0}
+sqlEditorName=SQL エディタ
+GroupSQLResultRunnable_fail_to_create_conn=データベース接続を作成できません。
+GroupSQLResultRunnable_fail_to_create_conn_to={0} への接続を作成できません。

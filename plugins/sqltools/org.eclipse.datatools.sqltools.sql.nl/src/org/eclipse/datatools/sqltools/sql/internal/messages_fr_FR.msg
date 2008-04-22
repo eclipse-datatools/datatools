@@ -1,1 +1,1 @@
-plugin_internal_error=Internal error occurred
+plugin_internal_error=Une erreur interne s'est produite

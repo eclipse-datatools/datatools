@@ -12,61 +12,61 @@
 ## Resources for the standard editor actions
 
 common_error=Error
-SQLUpdater_nonportable=Not portable to {0}:
-SQLUpdater_error_location=Failed to get marker location
-SQLUpdater_error_annotation=Error occurred while updating annotations
-SQLUpdater_error_removemarker=Error occurred while removing markers
-SQLUpdate_dialog_title=Information
-SQLUpdate_dialog_message=Content contains more than {0} lines. Do you want to disable syntax validation?
-SQLUpdate_dialog_toggle=&Remember my decision
-SQLErrorHover_makeStickyHint=Press {0} for focus.
+SQLUpdater_nonportable=No portátil a {0}:
+SQLUpdater_error_location=Error al obtener ubicación del marcador
+SQLUpdater_error_annotation=Se ha producido un error al actualizar anotaciones
+SQLUpdater_error_removemarker=Se ha producido un error al eliminar los marcadores
+SQLUpdate_dialog_title=Información
+SQLUpdate_dialog_message=El contenido incluye más de {0} líneas. ¿Desea desactivar la validación de sintaxis?
+SQLUpdate_dialog_toggle=&Recordar mi decisión
+SQLErrorHover_makeStickyHint=Pulse {0} para enfoque.
 
 ## Resources for the Set Statement Terminator dialog and composite panel
 
-#SQLEditor_setStatementTerminatorDialog_title  = Set Statement Terminator
-#SQLEditor_setStatementTerminatorDialog_prompt = Statement terminator:
+#SQLEditor_setStatementTerminatorDialog_title  = Establecer terminador de sentencias
+#SQLEditor_setStatementTerminatorDialog_prompt = Terminador de sentencias:
 
 ## Resources for the Outline view
 
-SQLEditor_outlinePage_sqlSegment_titlePattern=position {0}
+SQLEditor_outlinePage_sqlSegment_titlePattern=posición {0}
 
 ## Resources for the database connection management
 
-SQLEditor_connection_status_noConnection = No connection
-SQLEditor_file_deleted_or_not_accessible=The original file "{0}" has been deleted or is not accessible.
-#SQLEditor_connection_errorDialog_title   = Connection Exception
-#SQLeditor_connection_errorDialog_message = Connection has. The following error was reported:\n"{0}"
+SQLEditor_connection_status_noConnection = Sin conexión
+SQLEditor_file_deleted_or_not_accessible=El archivo original "{0}" se ha eliminado o no es accesible.
+#SQLEditor_connection_errorDialog_title   = Excepción de conexión
+#SQLeditor_connection_errorDialog_message = Se ha producido un error en la conexión. Se ha detectado el error siguiente:\n"{0}"
 
 ## Miscellaneous resources
 
-#SQLEditor_textHover_emptySelection=empty selection
-#SQLEditor_error_save_message=Save could not be completed_ {0}
-#SQLEditor_error_save_title=Problems During Save As__.
-#SQLEditor_warning_save_delete=The original file ''{0}'' has been deleted.
+#SQLEditor_textHover_emptySelection=selección vacía
+#SQLEditor_error_save_message=No se ha podido guardar_ {0}
+#SQLEditor_error_save_title=Problemas al guardar como__.
+#SQLEditor_warning_save_delete=Se ha eliminado el archivo original ''{0}''.
 
-plugin_internal_error=SQL Editor plugin internal error
+plugin_internal_error=Error interno del complemento SQL Editor
 
-#AbstractSQLHover_makeStickyHint=Press {0} for focus.
+#AbstractSQLHover_makeStickyHint=Pulse {0} para enfoque.
 
-SQLEditorConnectionInfo_decode_error=Failed to decode SQLEditorConnectionInfo from {0}
+SQLEditorConnectionInfo_decode_error=Error al descodificar SQLEditorConnectionInfo desde {0}
 
-# ==============================================================================
+# ============================================================================
 # Editor Framework
-# ==============================================================================
-EditorManager_operationFailed = {0} Failed
-#EditorManager_saveChangesQuestion = ''{0}'' has been modified_ Save changes to update the syntax highlighting?
+# ============================================================================
+EditorManager_operationFailed = {0} Error
+#EditorManager_saveChangesQuestion = ''{0}'' ha sido modificado_ ¿Guardar cambios para actualizar el resaltado de sintaxis?
 
-Save = Save
+Save = Guardar
 
-SQLEditor_error_while_trying_to_install_sql_updater=Error occurred while trying to install SQL udpater
+SQLEditor_error_while_trying_to_install_sql_updater=Se ha producido un error al intentar instalar el actualizador de SQL
 
-SQLEditorStorage_default_name=Scrapbook
+SQLEditorStorage_default_name=Álbum
 
-SQLEditor_status_profile=Current profile: {0}, 
-SQLEditor_status_database=Database: {0},
-SQLEditor_problem_save_as=Problems During Save As...
-SQLEditor_could_not_save_as=Save could not be completed. {0}
-SQLEditor_status_dbType=Database type: {0},
-SQLEditor_save_message="Save" will deploy the stored procedure to database
-SQLEditor_status_profile_connected=connected
-SQLEditor_status_profile_notconnected=not connected
+SQLEditor_status_profile=Perfil actual: {0}, 
+SQLEditor_status_database=Base de datos: {0},
+SQLEditor_problem_save_as=Problemas al guardar como...
+SQLEditor_could_not_save_as=No se ha podido guardar. {0}
+SQLEditor_status_dbType=Tipo de base de datos: {0},
+SQLEditor_save_message="Guardar" implementará el procedimiento almacenado en la base de datos
+SQLEditor_status_profile_connected=conectado
+SQLEditor_status_profile_notconnected=no conectado

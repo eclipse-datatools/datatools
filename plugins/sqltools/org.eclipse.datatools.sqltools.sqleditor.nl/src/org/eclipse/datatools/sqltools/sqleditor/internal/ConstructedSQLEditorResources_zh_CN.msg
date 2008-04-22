@@ -11,56 +11,55 @@
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal.label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal.tooltip     =Content Assist
+ContentAssistProposal.label       =内容助手@Ctrl+SPACE(&N)
+ContentAssistProposal.tooltip     =内容助手
 ContentAssistProposal.image       =
-ContentAssistProposal.description =Content Assist
+ContentAssistProposal.description =内容助手
 
-ContentAssistTip.label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentAssistTip.tooltip     =Content Tip
+ContentAssistTip.label       =内容提示@Ctrl+SHIFT+SPACE
+ContentAssistTip.tooltip     =内容提示
 ContentAssistTip.image       =
-ContentAssistTip.description =Content Tip
+ContentAssistTip.description =内容提示
 
-ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
-ContentFormat.tooltip     =Format SQL
+ContentFormat.label       =格式化 SQL@Ctrl+SHIFT+F(&O)
+ContentFormat.tooltip     =格式化 SQL
 ContentFormat.image       =
-ContentFormat.description =Format SQL source
+ContentFormat.description =格式化 SQL 源代码
 
 ## Resources for SQL Editor-specific actions
 
 # Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
-SQLEditor.connectAction.label       =Connect to Data&base
-SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.label       =连接至数据库(&B)
+SQLEditor.connectAction.tooltip     =选择或创建数据库连接
 SQLEditor.connectAction.image       =
-SQLEditor.connectAction.description =Select or create the database connection for this editor
+SQLEditor.connectAction.description =对此编辑器选择或创建数据库连接
 
-SQLEditor.disconnectAction.label       =Disconnect fro&m Database
-SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.label       =与数据库断开连接(&M)
+SQLEditor.disconnectAction.tooltip     =断开编辑器与数据库的连接
 SQLEditor.disconnectAction.image       =
-SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+SQLEditor.disconnectAction.description =断开编辑器与已连接的数据库的连接
 
-SQLEditor.runAction.label       =Run S&QL
-SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.label       =运行 SQL(&Q)
+SQLEditor.runAction.tooltip     =运行 SQL 语句
 SQLEditor.runAction.image       =
-SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+SQLEditor.runAction.description =在连接的数据库上的编辑器上运行 SQL 语句
 
-SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
-SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.label       =设置语句终止符(&E)
+SQLEditor.setStatementTerminatorAction.tooltip     =设置语句终止符
 SQLEditor.setStatementTerminatorAction.image       =
-SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+SQLEditor.setStatementTerminatorAction.description =设置编辑器在隔开 SQL 语句时应使用的字符串
 
-SQLEditor.action.toggle.commect.label=Togg&le Comment
-SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.label=切换注释(&L)
+SQLEditor.action.toggle.commect.tooltip=对所选行切换注释
 SQLEditor.action.toggle.commect.image=
-SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+SQLEditor.action.toggle.commect.description=对所选行切换注释
 
-AddTemplateAction.label=Save as &Template...
-AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.label=另存为模板(&T)...
+AddTemplateAction.tooltip=将所选文本另存为模板...
 AddTemplateAction.image=
-AddTemplateAction.description=Save Selected Text as Template...
+AddTemplateAction.description=将所选文本另存为模板...
 
-Editor.ContextPreferencesAction.label=Preferences...
-Editor.ContextPreferencesAction.description=Show preferences
-Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.label=首选项...
+Editor.ContextPreferencesAction.description=显示首选项
+Editor.ContextPreferencesAction.tooltip=显示首选项
 Editor.ContextPreferencesAction.image=
-

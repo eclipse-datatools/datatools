@@ -11,56 +11,55 @@
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal.label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal.tooltip     =Content Assist
+ContentAssistProposal.label       =내용 지원(&N)@Ctrl+SPACE
+ContentAssistProposal.tooltip     =내용 지원
 ContentAssistProposal.image       =
-ContentAssistProposal.description =Content Assist
+ContentAssistProposal.description =내용 지원
 
-ContentAssistTip.label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentAssistTip.tooltip     =Content Tip
+ContentAssistTip.label       =내용 팁@Ctrl+SHIFT+SPACE
+ContentAssistTip.tooltip     =내용 팁
 ContentAssistTip.image       =
-ContentAssistTip.description =Content Tip
+ContentAssistTip.description =내용 팁
 
-ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
-ContentFormat.tooltip     =Format SQL
+ContentFormat.label       =서식 SQL(&O)@Ctrl+SHIFT+F
+ContentFormat.tooltip     =서식 SQL
 ContentFormat.image       =
-ContentFormat.description =Format SQL source
+ContentFormat.description =서식 SQL 원본
 
 ## Resources for SQL Editor-specific actions
 
 # Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
-SQLEditor.connectAction.label       =Connect to Data&base
-SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.label       =데이터베이스에 연결(&B)
+SQLEditor.connectAction.tooltip     =데이터베이스 연결 선택 또는 생성
 SQLEditor.connectAction.image       =
-SQLEditor.connectAction.description =Select or create the database connection for this editor
+SQLEditor.connectAction.description =이 편집기에 데이터베이스 연결 선택 또는 생성
 
-SQLEditor.disconnectAction.label       =Disconnect fro&m Database
-SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.label       =데이터베이스와 연결 해제(&M)
+SQLEditor.disconnectAction.tooltip     =데이터베이스와 편집기 연결 해제
 SQLEditor.disconnectAction.image       =
-SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+SQLEditor.disconnectAction.description =연결된 데이터베이스와 편집기 연결 해제
 
-SQLEditor.runAction.label       =Run S&QL
-SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.label       =SQL 실행(&Q)
+SQLEditor.runAction.tooltip     =SQL 문 실행
 SQLEditor.runAction.image       =
-SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+SQLEditor.runAction.description =연결된 데이터베이스 편집기의 SQL 문 실행
 
-SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
-SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.label       =문 종결자 설정(&E)
+SQLEditor.setStatementTerminatorAction.tooltip     =문 종결자 설정
 SQLEditor.setStatementTerminatorAction.image       =
-SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+SQLEditor.setStatementTerminatorAction.description =SQL 문을 구분하는데 편집기를 사용하도록 문자열을 설정하십시오.
 
-SQLEditor.action.toggle.commect.label=Togg&le Comment
-SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.label=설명 전환(&L)
+SQLEditor.action.toggle.commect.tooltip=선택한 줄 설명 전환
 SQLEditor.action.toggle.commect.image=
-SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+SQLEditor.action.toggle.commect.description=선택한 줄 설명 전환
 
-AddTemplateAction.label=Save as &Template...
-AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.label=템플릿으로 저장(&T)...
+AddTemplateAction.tooltip=선택한 텍스트를 템플릿으로 저장...
 AddTemplateAction.image=
-AddTemplateAction.description=Save Selected Text as Template...
+AddTemplateAction.description=선택한 텍스트를 템플릿으로 저장...
 
-Editor.ContextPreferencesAction.label=Preferences...
-Editor.ContextPreferencesAction.description=Show preferences
-Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.label=기본 설정...
+Editor.ContextPreferencesAction.description=기본 설정 보기
+Editor.ContextPreferencesAction.tooltip=기본 설정 보기
 Editor.ContextPreferencesAction.image=
-

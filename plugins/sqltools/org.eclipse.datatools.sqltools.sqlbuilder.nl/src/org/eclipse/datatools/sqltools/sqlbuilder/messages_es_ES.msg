@@ -23,180 +23,180 @@
 !
 ! views/update/RemoveUpdateColumnAction.java
 !
-_UI_ACTION_REMOVE_UPDATE_COLUMN = Remove &Column
+_UI_ACTION_REMOVE_UPDATE_COLUMN = Quitar &columna
 
 !
 ! views/update/UpdateTreeElement.java
 !
-_UI_COLUMN_UPDATE_GROUP = Update Group
+_UI_COLUMN_UPDATE_GROUP = Actualizar grupo
 
 !
 ! views/update/UpdateTreeViewer.java
 !
-_UI_COLUMN_UPDATE_COLUMN     = Update Column
-_UI_COLUMN_UPDATE_EXPRESSION = Expression
+_UI_COLUMN_UPDATE_COLUMN     = Actualizar columna
+_UI_COLUMN_UPDATE_EXPRESSION = Expresión
 
 !
 !views/update/UpdateViewer.java
 !
-_UI_WORKBOOK_SET    = Set
-_UI_WORKBOOK_WHERE  = Where
+_UI_WORKBOOK_SET    = Conjunto
+_UI_WORKBOOK_WHERE  = Dónde
 
 
 !
 ! Actions
 !
 !! NOTE TO TRANSLATOR: Do not translate "WITH" in the following line
-_UI_ACTION_ADD_TABLE          = &Add Table...
-_UI_ACTION_ADD_TABLE_REPLACE  = R&eplace Table...
+_UI_ACTION_ADD_TABLE          = &Añadir tabla...
+_UI_ACTION_ADD_TABLE_REPLACE  = R&eemplazar tabla...
 !! NOTE TO TRANSLATOR: Do not translate "FULLSELECT" in the following line
-_UI_ACTION_ADD_FULLSELECT     = Add &FULLSELECT Statement
-_UI_ACTION_REMOVE_TABLE       = Re&move Table...
+_UI_ACTION_ADD_FULLSELECT     = Añadir sentencia &FULLSELECT
+_UI_ACTION_REMOVE_TABLE       = Eli&minar tabla...
 
 !actions/ChangeStatementTypeAction
-_UI_ACTION_CHANGE_STATEMENT_TYPE		= &Change Statement Type...
+_UI_ACTION_CHANGE_STATEMENT_TYPE		= &Cambiar tipo de sentencia...
 
 !actions/OmitCurrentSchemaAction
-_UI_ACTION_OMIT_CURRENT_SCHEMA		= &Omit Current Schema...
+_UI_ACTION_OMIT_CURRENT_SCHEMA		= &Omitir esquema actual...
 
 !actions/AddValueRowAction
-_UI_ACTION_ADD_VALUE_ROW=Add Values &Row
+_UI_ACTION_ADD_VALUE_ROW=Añadir fila de valo&res
 
 !actions/AddValuesAction.java
-_UI_ACTION_ADD_VALUES=Add &Values
+_UI_ACTION_ADD_VALUES=Añadir &valores
 
 !actions/AddSubSelectAction.java
 !! NOTE TO TRANSLATOR: Do not translate "SELECT" in the following line
-_UI_ACTION_ADD_SELECT=Add &SELECT Statement
+_UI_ACTION_ADD_SELECT=Añadir sentencia &SELECT
 
 !actions/CreateWithTableAction.java
-_UI_ACTION_ADD_COMMON_TABLE=&Add Common Table Expression (WITH)
+_UI_ACTION_ADD_COMMON_TABLE=&Añadir expresión de tabla común (WITH)
 
 !actions/DeleteStatementAction.java
-_UI_ACTION_DELETE_STATEMENT=&Delete
+_UI_ACTION_DELETE_STATEMENT=&Eliminar
 
 !expressionbuilder/actions/DeleteExpressionAction.java
-_UI_ACTION_DELETE_EXPRESSION=&Remove Expression
+_UI_ACTION_DELETE_EXPRESSION=Quita&r expresión
 
 !expressionbuilder/actions/DeleteCaseClauseAction.java
-_UI_ACTION_DELETE_CLAUSE=&Remove Clause
+_UI_ACTION_DELETE_CLAUSE=Quita&r cláusula
 
 !expressionbuilder/actions/DeleteFunctionParameterAction.java
-_UI_ACTION_DELETE_PARAMETER=&Remove Parameter
+_UI_ACTION_DELETE_PARAMETER=Quita&r parámetro
 
 !expressionbuilder/case/CastExpressionWizard.java
 !! NOTE TO TRANSLATOR: Do not translate "CAST" in the following line
-_UI_WIZARD_CAST_EXPRESSION_TITLE=CAST Expression Builder
+_UI_WIZARD_CAST_EXPRESSION_TITLE=Compilador de expresiones CAST
 
 !expressionbuilder/caseexpr/CaseSimplePage.java
-_UI_COMBO_ADDFUNCTION=Build function expression...
+_UI_COMBO_ADDFUNCTION=Compilar expresión de función...
 
 !! NOTE TO TRANSLATOR: Do not translate "CASE" in the following line
-_UI_COMBO_ADDCASE=Build CASE expression...
+_UI_COMBO_ADDCASE=Compilar expresión CASE...
 !! NOTE TO TRANSLATOR: Do not translate "CAST" in the following line
-_UI_COMBO_ADDCAST=Build CAST expression...
-_UI_COMBO_ADDCONSTANT=Build constant expression...
-_UI_COMBO_SELECTSUBQUERY=Select subquery...
-_UI_COMBO_ADDEXPRBYOPERATOR=Build expression by operators...
-_UI_WIZARD_CASE_SIMPLE_TITLE=Simple CASE Expression
-_UI_WIZARD_CASE_SIMPLE_HEADING=Build a simple CASE expression.
+_UI_COMBO_ADDCAST=Compilar expresión CAST...
+_UI_COMBO_ADDCONSTANT=Compilar expresión constante...
+_UI_COMBO_SELECTSUBQUERY=Seleccionar subconsulta...
+_UI_COMBO_ADDEXPRBYOPERATOR=Compilar expresión mediante operadores...
+_UI_WIZARD_CASE_SIMPLE_TITLE=Expresión CASE simple
+_UI_WIZARD_CASE_SIMPLE_HEADING=Compilar una expresión CASE simple.
 !! NOTE TO TRANSLATOR: Do not translate "WHEN-THEN" and "ELSE" in the following line
-_UI_LABEL_BUILD_WHEN_CLAUSE=B&uild WHEN-THEN clauses, add an ELSE clause, or both.
+_UI_LABEL_BUILD_WHEN_CLAUSE=Compilar clá&usulas WHEN-THEN, añadir una cláusula ELSE, o ambas cosas.
 !! NOTE TO TRANSLATOR: Do not translate "ELSE" in the following line
-_UI_CHECKBOX_ADD_ELSE=Add &ELSE clause
+_UI_CHECKBOX_ADD_ELSE=Añadir cláusula &ELSE
 !! NOTE TO TRANSLATOR: Do not translate "WHEN" in the following line
-_UI_BUTTON_ADD_WHEN=Add &WHEN Clause
-_UI_LABEL_EXPRESSION_PREVIEW=Preview of CASE expression:
+_UI_BUTTON_ADD_WHEN=Añadir cláusula &WHEN
+_UI_LABEL_EXPRESSION_PREVIEW=Vista previa de expresión CASE:
 
 !expressionbuilder/function/FunctionBuilderPage.java:
 
 !expressionbuilder/caseexpr/CaseSearchTable.java
-_UI_COLUMN_CASE_SEARCH_EXPRESSION=Expression
-_UI_COLUMN_CASE_SEARCH_OPERATOR=Operator
+_UI_COLUMN_CASE_SEARCH_EXPRESSION=Expresión
+_UI_COLUMN_CASE_SEARCH_OPERATOR=Operador
 !! NOTE TO TRANSLATOR: Do not translate "WHEN" in the following line
-_UI_ACTION_DELETE_WHEN_CLAUSE_SEARCH=&Remove WHEN Clause
-_UI_ACTION_DELETE_SEARCH_CONDITION=&Remove Search Condition
+_UI_ACTION_DELETE_WHEN_CLAUSE_SEARCH=Quita&r cláusula WHEN
+_UI_ACTION_DELETE_SEARCH_CONDITION=Quita&r condición de búsqueda
 !! NOTE TO TRANSLATOR: Do not translate "ELSE" in the following line
-_UI_ACTION_DELETE_ELSE_EXPRESSION_SEARCH=&Remove ELSE Expression
+_UI_ACTION_DELETE_ELSE_EXPRESSION_SEARCH=Quita&r expresión ELSE
 
 !expressionbuilder/caseexpr/CaseSearchPage.java
-_UI_WIZARD_CASE_SEARCH_HEADING=Searched CASE Expression
-_UI_WIZARD_CASE_SEARCH_EXPR=Build a searched CASE expression.
+_UI_WIZARD_CASE_SEARCH_HEADING=Expresión CASE buscada
+_UI_WIZARD_CASE_SEARCH_EXPR=Compilar una expresión CASE buscada.
 
 !expressionbuilder/caseexpr/CaseSimpleTable.java
-_UI_COLUMN_CASE_EXPRESSION=Expression
-_UI_COLUMN_RESULT_EXPRESSION=Result Expression
+_UI_COLUMN_CASE_EXPRESSION=Expresión
+_UI_COLUMN_RESULT_EXPRESSION=Expresión resultado
 !! NOTE TO TRANSLATOR: Do not translate "WHEN" in the following line
-_UI_ACTION_DELETE_WHEN_CLAUSE=&Remove WHEN Clause
+_UI_ACTION_DELETE_WHEN_CLAUSE=Quita&r cláusula WHEN
 !! NOTE TO TRANSLATOR: Do not translate "ELSE" in the following line
-_UI_ACTION_DELETE_ELSE_EXPRESSION=&Remove ELSE Expression
+_UI_ACTION_DELETE_ELSE_EXPRESSION=Quita&r expresión ELSE
 
 !expressionbuilder/...Signatures...
-_UI_FCN_ALL=All
-_UI_FCN_COLUMN=Column
-_UI_FCN_SPECIAL_REG=Special registers
-_UI_FCN_SCALAR=Scalar
-_UI_FCN_CONVERSION=Conversion
-_UI_FCN_SECURITY=Security
-_UI_FCN_DATE_TIME=Date and time
-_UI_FCN_DATE=Date
+_UI_FCN_ALL=Todos
+_UI_FCN_COLUMN=Columna
+_UI_FCN_SPECIAL_REG=Registros especiales
+_UI_FCN_SCALAR=Escala
+_UI_FCN_CONVERSION=Conversión
+_UI_FCN_SECURITY=Valor
+_UI_FCN_DATE_TIME=Fecha y hora
+_UI_FCN_DATE=Fecha
 _UI_FCN_DB2=DB2
-_UI_FCN_LOGICAL=Logical
-_UI_FCN_MATH=Math
+_UI_FCN_LOGICAL=Lógica
+_UI_FCN_MATH=Matemático
 _UI_FCN_BIT=Bit
-_UI_FCN_NUMBER=Number
-_UI_FCN_CHARACTER=Character
-_UI_FCN_SUMMARY=Summary
-_UI_FCN_TEXT=Text
-_UI_FCN_SYSTEM=System
+_UI_FCN_NUMBER=Número
+_UI_FCN_CHARACTER=Carácter
+_UI_FCN_SUMMARY=Resumen
+_UI_FCN_TEXT=Texto
+_UI_FCN_SYSTEM=Sistema
 _UI_FCN_STRING=String
-_UI_FCN_AGGREGATE=Aggregate
-_UI_FCN_MISCELLANEOUS_SINGLE_ROW=Miscellaneous single row
-_UI_FCN_MISCELLANEOUS=Miscellaneous
-_UI_FCN_OBJECT_REFERENCE=Object reference
-_UI_FCN_CONTROL_FLOW=Control flow
-_UI_FCN_TEXT_EXTENDERS=Text Extender
-_UI_FCN_AIV_EXTENDERS=Audio/Image/Video Extenders
+_UI_FCN_AGGREGATE=Total
+_UI_FCN_MISCELLANEOUS_SINGLE_ROW=Fila única de varios
+_UI_FCN_MISCELLANEOUS=Varios
+_UI_FCN_OBJECT_REFERENCE=Referencia de objeto
+_UI_FCN_CONTROL_FLOW=Flujo de control
+_UI_FCN_TEXT_EXTENDERS=Ampliador de texto
+_UI_FCN_AIV_EXTENDERS=Ampliadores de audio/imagen/vídeo
 _UI_FCN_XMLFUNCTIONS=XML
-_UI_FCN_NOT_SUPPORTED=NOT SUPPORTED
-_UI_FCN_UDF=User Defined Functions (UDF)
-_UI_FCN_DATALINK=Datalink
-_UI_FCN_MQ_EXTENDER=Message Queue (MQ)
+_UI_FCN_NOT_SUPPORTED=NO ADMITIDO
+_UI_FCN_UDF=Funciones definidas por el usuario (UDF)
+_UI_FCN_DATALINK=Enlace de datos
+_UI_FCN_MQ_EXTENDER=Cola de mensajes (MQ)
 
 !expressionbuilder/subquery/SubQueryWizard.java
-_UI_WINDOW_TITLE_CHOICES=Subquery Choices
+_UI_WINDOW_TITLE_CHOICES=Selecciones de subconsultas
 
 !expressionbuilder/function/FunctionBuilderPage.java
-_UI_WIZARD_FUNCTION_BUILDER_HEADING=Function Builder
-_UI_WIZARD_FUNCTION_BUILDER_EXPL=Use this page to build a function expression.
-_UI_WIZARD_FUNCTION_BUILDER_INSTR_CAT=1. Select a function &category:
-_UI_WIZARD_FUNCTION_BUILDER_INSTR_FCN=2. Select a f&unction:
-_UI_WIZARD_FUNCTION_BUILDER_INSTR_SIG=3. Select a function &signature:
-_UI_WIZARD_FUNCTION_BUILDER_INSTR_EXPR=4. Select an &expression for the argument(s):
-_UI_WIZARD_FUNCTION_BUILDER_INSTR_PRE=5. Preview of function expression:
+_UI_WIZARD_FUNCTION_BUILDER_HEADING=Compilador de funciones
+_UI_WIZARD_FUNCTION_BUILDER_EXPL=Usar esta página para compilar una expresión de función.
+_UI_WIZARD_FUNCTION_BUILDER_INSTR_CAT=1. Seleccionar una &categoría de función:
+_UI_WIZARD_FUNCTION_BUILDER_INSTR_FCN=2. Seleccionar una f&unción:
+_UI_WIZARD_FUNCTION_BUILDER_INSTR_SIG=3. &Seleccionar una firma de función:
+_UI_WIZARD_FUNCTION_BUILDER_INSTR_EXPR=4. Seleccionar una &expresión para los argumentos:
+_UI_WIZARD_FUNCTION_BUILDER_INSTR_PRE=5. Vista previa de expresión de función:
 
 !expressionbuilder/caseexpr/CaseExpressionDialog.java
 
 !! NOTE TO TRANSLATOR: Do not translate "CASE" in the following 2 lines
-_UI_WIZARD_CASE_OPTION_HEADING=CASE Options
-_UI_WIZARD_CASE_OPTION_EXPL=Select the type of CASE expression to build.
+_UI_WIZARD_CASE_OPTION_HEADING=Opciones CASE
+_UI_WIZARD_CASE_OPTION_EXPL=Seleccionar el tipo de expresión CASE a compilar.
 
-_UI_GROUP_CASE_TYPE=CASE type
+_UI_GROUP_CASE_TYPE=Tipo de CASE
 !! NOTE TO TRANSLATOR: Do not translate "WHEN" in the following line
-_UI_RADIO_SEARCHED_WHEN=&Searched-WHEN-Clause
+_UI_RADIO_SEARCHED_WHEN=Cláusula-WHEN-bu&scada
 
 !! NOTE TO TRANSLATOR: Translate only "for example," in the following line
-_UI_TOOLTIP_SEARCHED_WHEN = for example, CASE WHEN i>j THEN k END
+_UI_TOOLTIP_SEARCHED_WHEN = por ejemplo, CASE WHEN i>j THEN k END
 
 !! NOTE TO TRANSLATOR: Do not translate "WHEN" in the following line
-_UI_RADIO_SIMPLE_WHEN=S&imple-WHEN-Clause
+_UI_RADIO_SIMPLE_WHEN=Cláusula-WHEN-s&imple
 
 !! NOTE TO TRANSLATOR: Translate only "for example," in the following line
-_UI_TOOLTIP_SIMPLE_WHEN = for example, CASE i WHEN 8 THEN j END
+_UI_TOOLTIP_SIMPLE_WHEN = por ejemplo, CASE i WHEN 8 THEN j END
 
 !expressionbuilder/caseexpr/CaseExpressionDialog.java
 !! NOTE TO TRANSLATOR: Do not translate "CASE" in the following line
-_UI_WIZARD_CASE_EXPRESSION_TITLE=CASE Expression Builder
+_UI_WIZARD_CASE_EXPRESSION_TITLE=Compilador de expresiones CASE
 
 !expressionbuilder/constant/ConstantExpressionWizard.java
 !! NOTE TO TRANSLATOR: Do not translate the following line
@@ -204,217 +204,217 @@ _UI_NUMERIC_CONSTANT=0123456789-+E.
 
 !expressionbuilder/case/CaseBuilderPage.java
 !! NOTE TO TRANSLATOR: Do not translate "CAST" where it occurs in the following 6 lines
-_UI_WIZARD_CAST_BUILDER_TITLE=CAST Builder
-_UI_WIZARD_CAST_BUILDER_HEADING=Use this page to build a CAST expression.
+_UI_WIZARD_CAST_BUILDER_TITLE=Compilador de CAST
+_UI_WIZARD_CAST_BUILDER_HEADING=Usar esta página para compilar una expresión CAST.
 !! NOTE TO TRANSLATOR: Do not translate "SCOPE" in the following line
-_UI_LABEL_PREVIEW_CAST_EXPRESSION=Preview of CAST expression:
-_UI_LABEL_DATATYPE_LENGTH=Length of data type:
+_UI_LABEL_PREVIEW_CAST_EXPRESSION=Vista previa de expresión CAST:
+_UI_LABEL_DATATYPE_LENGTH=Longitud de tipo de datos:
 
 !expressionbuilder/constant/ConstantExpressionDialog.java
-_UI_WIZARD_CONSTANT_TITLE=Constant Expression Builder
+_UI_WIZARD_CONSTANT_TITLE=Compilador de expresión constante
 
 !expressionbuilder/constant/NumericConstantBuilderPage.java
-_UI_WIZARD_NUMERIC_CONSTANT_TITLE=Numeric Constant Builder
-_UI_WIZARD_NUMERIC_CONSTANT_HEADER=Numeric Constant Builder
-_UI_WIZARD_NUMERIC_CONSTANT_EXPL=This page helps you build a numeric constant expression.
-_UI_BUTTON_CLEAR=&Clear
+_UI_WIZARD_NUMERIC_CONSTANT_TITLE=Compilador de constante numérica
+_UI_WIZARD_NUMERIC_CONSTANT_HEADER=Compilador de constante numérica
+_UI_WIZARD_NUMERIC_CONSTANT_EXPL=Esta página le ayuda a compilar una expresión de constante numérica.
+_UI_BUTTON_CLEAR=&Borrar
 
 !! NOTE TO TRANSLATOR: Do not translate the following 2 lines
 _UI_BUTTON_FLOAT_TO_EXP=&F <-> E
 _UI_BUTTON_PLUS_MINUS=+&/-
 
 !expressionbuilder/constant/ConstantOptions.java
-_UI_WIZARD_CONSTANT_OPTIONS_TITLE=Constant Options
-_UI_WIZARD_CONSTANT_OPTIONS_HEADING=Constant Options
-_UI_WIZARD_CONSTANT_OPTIONS_EXPL=Select the type of constant expression to build.
-_UI_GROUP_CONSTANT_TYPE=Constant type
-_UI_RADIO_NUMERIC=N&umeric constant: integer, floating point, or decimal
-_UI_RADIO_STRING=&String constant: character or graphic string, hexadecimal, or host variable names
+_UI_WIZARD_CONSTANT_OPTIONS_TITLE=Opciones constantes
+_UI_WIZARD_CONSTANT_OPTIONS_HEADING=Opciones constantes
+_UI_WIZARD_CONSTANT_OPTIONS_EXPL=Seleccionar el tipo de expresión constante a compilar.
+_UI_GROUP_CONSTANT_TYPE=Tipo constante
+_UI_RADIO_NUMERIC=Constante n&umérica: entero, punto flotante o decimal
+_UI_RADIO_STRING=Constante &string: carácter o string gráfico, hexadecimal, o nombres de variables de host
 
 !expressionbuilder/constant/StringConstantBuilderPage.java
-_UI_WIZARD_STRING_CONSTANT_TITLE=String Constant Builder
-_UI_WIZARD_STRING_CONSTANT_HEADING=String Constant Builder
-_UI_WIZARD_STRING_CONSTANT_EXPL=This page helps you build a string constant expression. Type the expression in the text field.
-_UI_GROUP_STRING_TYPE=String constant type
-_UI_RADIO_CHARACTER=Ch&aracter string constant
-_UI_RADIO_HEX=&Hexadecimal constant
-_UI_RADIO_HOST_VARIABLE_NAME=Host &variable name
-_UI_RADIO_GRAPHIC=&Graphic string constant
-_UI_LABEL_PREVIEW_CONSTANT_EXPRESSION=Preview of constant expression:
+_UI_WIZARD_STRING_CONSTANT_TITLE=Compilador de constante string
+_UI_WIZARD_STRING_CONSTANT_HEADING=Compilador de constante string
+_UI_WIZARD_STRING_CONSTANT_EXPL=Esta página le ayuda a compilar una expresión de constante string. Introduzca la expresión en el campo de texto.
+_UI_GROUP_STRING_TYPE=Tipo de constante string
+_UI_RADIO_CHARACTER=Constante string c&arácter
+_UI_RADIO_HEX=Constante &hexadecimal
+_UI_RADIO_HOST_VARIABLE_NAME=Nombre de &variable de host
+_UI_RADIO_GRAPHIC=Constante string &gráfico
+_UI_LABEL_PREVIEW_CONSTANT_EXPRESSION=Vista previa de expresión constante:
 
 !expressionbuilder/function/FunctionExpressionDialog.java
-_UI_WIZARD_FUNCTION_EXPRESSION_TITLE=Function Expression Builder
+_UI_WIZARD_FUNCTION_EXPRESSION_TITLE=Compilador de expresiones de función
 
 !ExpressionBuilder/MainExpressionPage.java
-_UI_WIZARD_MAIN_EXPRESSION_TITLE=Expression Builder
-_UI_WIZARD_MAIN_EXPRESSION_HEADING=Expression Types
-_UI_WIZARD_MAIN_EXPRESSION_EXPL=Select the type of expression to build.
-_UI_RADIO_FUNCTION=&Function
+_UI_WIZARD_MAIN_EXPRESSION_TITLE=Compilador de expresiones
+_UI_WIZARD_MAIN_EXPRESSION_HEADING=Tipos de expresión
+_UI_WIZARD_MAIN_EXPRESSION_EXPL=Seleccionar el tipo de expresión a compilar.
+_UI_RADIO_FUNCTION=&Función
 
 !! NOTE TO TRANSLATOR: Do not translate "CASE" in the following line
-_UI_RADIO_CASE=&CASE - searched or simple
+_UI_RADIO_CASE=&CASE: buscada o simple
 
 !! NOTE TO TRANSLATOR: Do not translate the following line
 _UI_RADIO_CAST=C&AST
 
-_UI_RADIO_CONSTANT=C&onstant - numeric, string, or host variable
-_UI_RADIO_SUBQUERY=&Subquery
-_UI_RADIO_OPERATORS=Build &up expressions by operators
-_UI_COLUMN_EXPRESSION=Expression
-_UI_COLUMN_OPERATOR=Operator
-_UI_COLUMN_PARAMETER=Parameter
-_UI_COLUMN_VALUE=Value
+_UI_RADIO_CONSTANT=C&onstante: numérica, string o variable de host
+_UI_RADIO_SUBQUERY=&Subconsulta
+_UI_RADIO_OPERATORS=Com&pilar expresiones mediante operadores
+_UI_COLUMN_EXPRESSION=Expresión
+_UI_COLUMN_OPERATOR=Operador
+_UI_COLUMN_PARAMETER=Parámetro
+_UI_COLUMN_VALUE=Valor
 
 !expressionbuilder/multiexpr/ExpressionsByOperatorsWizard.java
-_UI_WIZARD_EXPRESSION_BY_OPERATOR_TITLE=Build Expressions By Operators
-_UI_WIZARD_EXPRESSION_BY_OPERATOR_HEADING=Expressions By Operators
-_UI_WIZARD_EXPRESSION_BY_OPERATOR_EXPL=Build up larger expressions by using the operators that are provided.
-_UI_LABEL_BUILD_LEFT_OP_RIGHT=B&uild expressions on the left and select operators on the right:
-_UI_LABEL_PREVIEW_EXPRESSION=Preview of expression:
+_UI_WIZARD_EXPRESSION_BY_OPERATOR_TITLE=Compilar expresiones mediante operadores
+_UI_WIZARD_EXPRESSION_BY_OPERATOR_HEADING=Expresiones mediante operadores
+_UI_WIZARD_EXPRESSION_BY_OPERATOR_EXPL=Compilar expresiones más grandes mediante los operadores que se proporcionan.
+_UI_LABEL_BUILD_LEFT_OP_RIGHT=Com&pilar expresiones a la izquierda y seleccionar operadores a la derecha:
+_UI_LABEL_PREVIEW_EXPRESSION=Vista previa de expresión:
 
 !expressionbuilder/subquery/SubQueryPage.java
-_UI_WIZARD_SUBQUERY_HEADING=Subquery
-_UI_WIZARD_SUBQUERY_EXPL=Select a subquery.
-_UI_LABEL_CHOICES=Available choices:
-_UI_RADIO_EXISTING_STATEMENTS=Create a subquery that is based on an &existing query
-_UI_RADIO_SCRATCH_SELECT=Create an original &subquery
+_UI_WIZARD_SUBQUERY_HEADING=Subconsulta
+_UI_WIZARD_SUBQUERY_EXPL=Seleccionar una subconsulta.
+_UI_LABEL_CHOICES=Selecciones disponibles:
+_UI_RADIO_EXISTING_STATEMENTS=Crear una subconsulta basada en una consulta &existente
+_UI_RADIO_SCRATCH_SELECT=Crear una &subconsulta original
 !! NOTE TO TRANSLATOR: Do not translate "SELECT" in the following 2 lines
-_UI_LABEL_EXISTING_SELECT=C&reate or edit a SELECT statement:
-_UI_LABEL_NEW_SELECT_INFO=&Type a SELECT statement. You can specify a virtual table.
+_UI_LABEL_EXISTING_SELECT=C&rear o editar una sentencia SELECT:
+_UI_LABEL_NEW_SELECT_INFO=Escribir una sen&tencia SELECT. Puede especificar una tabla virtual.
 
 !views/CustomSashForm.java
-_UI_TOOLTIP_RESTORE_PANE=Restore Pane
-_UI_TOOLTIP_HIDE_PANE=Hide Pane
+_UI_TOOLTIP_RESTORE_PANE=Restaurar panel
+_UI_TOOLTIP_HIDE_PANE=Ocultar panel
 
 
 !preferences/SQLBuilderPreferencePage.java
-_UI_PREFERENCES_OMIT_SCHEMA_DESC=Default values for the Omit Current Schema settings associated with SQL statements
-_UI_PREFERENCES_OMIT_SCHEMA_IN_SQL=&Omit current schema in generated SQL statements
-_UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Current schema
-_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=&Authorization ID
-_UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=&Schema name:
+_UI_PREFERENCES_OMIT_SCHEMA_DESC=Valores predeterminados de los ajustes Omitir esquema actual asociados con sentencias SQL
+_UI_PREFERENCES_OMIT_SCHEMA_IN_SQL=&Omitir esquema actual en sentencias SQL generadas
+_UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Esquema actual
+_UI_PREFERENCES_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID de &autorización
+_UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=Nombre de e&squema:
 
 !dialogs/ChangeStatementTypeDialog
-_UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE=Change SQL Statement Type
-_UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=Changing the SQL Statement Type will cause the current statement to be replaced by a new empty statement.
-_UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Statement type
+_UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE=Cambiar tipo de sentencia SQL
+_UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=Cambiar el tipo de sentencia SQL provocará que la sentencia actual sea reemplazada por una nueva sentencia vacía.
+_UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Tipo de sentencia
 
 !dialogs/OmitCurrentSchemaDialog
-_UI_DIALOG_OMIT_SCHEMA_TITLE=Omit Current Schema
-_UI_DIALOG_OMIT_SCHEMA_IN_SQL=&Omit current schema in generated SQL statements
-_UI_DIALOG_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Current schema
-_UI_DIALOG_OMIT_SCHEMA_USE_AUID_USER_AS_CURRENT_SCHEMA=&Authorization ID <{0}>
-_UI_DIALOG_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=&Authorization ID
-_UI_DIALOG_OMIT_SCHEMA_SCHEMA_NAME=&Schema name:
+_UI_DIALOG_OMIT_SCHEMA_TITLE=Omitir esquema actual
+_UI_DIALOG_OMIT_SCHEMA_IN_SQL=&Omitir esquema actual en sentencias SQL generadas
+_UI_DIALOG_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE=Esquema actual
+_UI_DIALOG_OMIT_SCHEMA_USE_AUID_USER_AS_CURRENT_SCHEMA=ID de &autorización <{0}>
+_UI_DIALOG_OMIT_SCHEMA_USE_AUID_AS_CURRENT_SCHEMA=ID de &autorización
+_UI_DIALOG_OMIT_SCHEMA_SCHEMA_NAME=Nombre de e&squema:
 
 !views/execute/ParameterWizards.java
-_UI_WIZARD_SPECIFY_VARIABLE_VALUES_TITLE=Specify Variable Values
+_UI_WIZARD_SPECIFY_VARIABLE_VALUES_TITLE=Especificar valores de variables
 
 !views/execute/ParameterWizardDialog.java
-_UI_WIZARD_PARAMETER_MARKERS_TITLE=Parameter Markers
+_UI_WIZARD_PARAMETER_MARKERS_TITLE=Marcadores de parámetros
 
 !views/execute/ParameterMarkerPage.java
-_UI_WIZARD_PARAMETER_MARKER_TITLE=Substitute Variables
-_UI_WIZARD_PARAMETER_MARKER_HEADING=Host Variable Values
-_UI_WIZARD_PARAMETER_MARKER_EXPL=Specify the variable values to use
+_UI_WIZARD_PARAMETER_MARKER_TITLE=Sustituir variables
+_UI_WIZARD_PARAMETER_MARKER_HEADING=Valores de variables de host
+_UI_WIZARD_PARAMETER_MARKER_EXPL=Especificar los valores de variables a utilizar
 
 !views/execute/ParameterTableViewer.java
-_UI_COLUMN_MARKER_NAME=Name
-_UI_COLUMN_TYPE=Type
-_UI_COLUMN_PARAMETER_VALUE=Value
+_UI_COLUMN_MARKER_NAME=Nombre
+_UI_COLUMN_TYPE=Tipo
+_UI_COLUMN_PARAMETER_VALUE=Valor
 
 
 !views/AddTableDialog.java
-_UI_LABEL_TABLE_NAME            = Table &name:
-_UI_DIALOG_REPLACE_TABLE_TITLE  = Replace Table
-_UI_DIALOG_ADD_TABLE_TITLE      = Add Table
-_UI_LABEL_TABLE_ALIAS           = Table &alias:
-_UI_DIALOG_TABLE_ALREADY_ADDED  = Table Already Added - Specify Alias
-_UI_DIALOG_ADD_VIEW_TO_SELF     = Cannot Add View to Own Definition
+_UI_LABEL_TABLE_NAME            = &Nombre de tabla:
+_UI_DIALOG_REPLACE_TABLE_TITLE  = Reemplazar tabla
+_UI_DIALOG_ADD_TABLE_TITLE      = Añadir tabla
+_UI_LABEL_TABLE_ALIAS           = &Alias de tabla:
+_UI_DIALOG_TABLE_ALREADY_ADDED  = Tabla ya añadida: especificar alias
+_UI_DIALOG_ADD_VIEW_TO_SELF     = No se puede añadir vista a definición propia
 
 
 !views/GridViewer.java
-_UI_COLUMN_DEFAULT_COLUMN=Column
+_UI_COLUMN_DEFAULT_COLUMN=Columna
 
 !views/insert/InsertGridViewer.java
-_UI_COLUMN_INSERT_VALUE=Value
+_UI_COLUMN_INSERT_VALUE=Valor
 
 !views/criteria/CriteriaGridViewer.java
-_UI_COLUMN_COLUMN=Column
-_UI_COLUMN_CRITERIA_OPERATOR=Operator
-_UI_COLUMN_CRITERIA_VALUE=Value
+_UI_COLUMN_COLUMN=Columna
+_UI_COLUMN_CRITERIA_OPERATOR=Operador
+_UI_COLUMN_CRITERIA_VALUE=Valor
 
 !! NOTE TO TRANSLATOR: Do not translate the following line
 _UI_COLUMN_CRTIERIA_AND_OR=AND/OR
 
 !views/criteria/CriteriaValueExpression.java
-_UI_ACTION_UPDATE_VALUE_EXPRESSON=&Update Value Expression
-_UI_ACTION_REMOVE_CONDITION=&Remove Condition
-_UI_MENU_EXECUTE= &Run SQL
+_UI_ACTION_UPDATE_VALUE_EXPRESSON=Act&ualizar expresión de valor
+_UI_ACTION_REMOVE_CONDITION=Quita&r condición
+_UI_MENU_EXECUTE= Ejecuta&r SQL
 
 !views/fullselect/FullSelectViewer.java
 !! NOTE TO TRANSLATOR: Do not translate VALUES in the following entry, since it is a SQL keyword
-_UI_LABEL_FULL_SELECT_VALUES_HELP=To add a values row, right-click VALUES in Outline view.
+_UI_LABEL_FULL_SELECT_VALUES_HELP=Para añadir una fila de valores, hacer clic con el botón derecho en VALUES en la vista de contorno.
 
 !views/fullselect/ValuesRowViewer.java
-_UI_COLUMN_VALUES_ROW_ITEM=Values Row Item
-_UI_ACTION_REMOVE_VALUES_ROW=&Remove Item
+_UI_COLUMN_VALUES_ROW_ITEM=Elemento de fila de valores
+_UI_ACTION_REMOVE_VALUES_ROW=Quita&r elemento
 
 !views/fullselect/FullSelectGridViewer.java
-_UI_COLUMN_STATEMENT=Statement
-_UI_COLUMN_FULL_SELECT_OPERATOR=Operator
+_UI_COLUMN_STATEMENT=Sentencia
+_UI_COLUMN_FULL_SELECT_OPERATOR=Operador
 
 !views/graph/editparts/TableEditPart.java
-_UI_ACTION_UPDATE_ALIAS=&Update Alias...
-_UI_DIALOG_CHANGE_ALIAS_TITLE=Change Table Alias
-_UI_DIALOG_CHANGE_ALIAS_TEXT=N&ew alias:
-_UI_ACTION_CREATE_JOIN=Create &Join...
-_UI_ACTION_REMOVE_TABLE_EDIT=Re&move Table
+_UI_ACTION_UPDATE_ALIAS=Act&ualizar alias...
+_UI_DIALOG_CHANGE_ALIAS_TITLE=Cambiar alias de tabla
+_UI_DIALOG_CHANGE_ALIAS_TEXT=Nu&evo alias:
+_UI_ACTION_CREATE_JOIN=Crear &combinación...
+_UI_ACTION_REMOVE_TABLE_EDIT=Eli&minar tabla
 
 
 !views/graph/GraphContextMenuProvider.java:
-_UI_ACTION_REMOVE_JOIN=&Remove Join
+_UI_ACTION_REMOVE_JOIN=Elimina&r combinación
 
 !views/graph/SourceTargetDialog.java
-_UI_DIALOG_SOURCE_AND_TARGET_TITLE=Create Join
-_UI_DIALOG_SOURCE_AND_TARGET_TEXT=Select source and target columns for the join.
-_UI_LABEL_JOIN_SRCCOL_TYPE = Source column type:
-_UI_LABEL_JOIN_TGTCOL_TYPE = Target column type:
+_UI_DIALOG_SOURCE_AND_TARGET_TITLE=Crear combinación
+_UI_DIALOG_SOURCE_AND_TARGET_TEXT=Seleccionar columnas fuente y destino para la combinación.
+_UI_LABEL_JOIN_SRCCOL_TYPE = Tipo de columna fuente:
+_UI_LABEL_JOIN_TGTCOL_TYPE = Tipo de columna destino:
 
-_UI_GROUP_SOURCE=Source
-_UI_LABEL_TABLE=&Table (alias)
-_UI_LABEL_COLUMN=&Column
-_UI_GROUP_TARGET=Target
-_UI_LABEL_TARGET_TABLE=T&able (alias)
-_UI_LABEL_TARGET_COLUMN=C&olumn
+_UI_GROUP_SOURCE=Fuente
+_UI_LABEL_TABLE=&Tabla (alias)
+_UI_LABEL_COLUMN=&Columna
+_UI_GROUP_TARGET=Destino
+_UI_LABEL_TARGET_TABLE=T&abla (alias)
+_UI_LABEL_TARGET_COLUMN=C&olumna
 
-_UI_GRAPH_PROMPT = To add a table, right-click in this pane and use the pop-up menu.
-_UI_GRAPH_PARSE_FAILED = This SQL syntax is either invalid or is not currently supported. \
-You can manually enter SQL. Some SQL builder functions have been disabled. \
-To enable these functions, change the syntax.\n\nTo undo recent changes, \
-select Revert to Last Correct Source from the SQL menu.
-_UI_GRAPH_NO_TABLE_FOUND = Unable to find table {0}. It might not exist or it might be filtered out. \
-Some SQL builder functions have been disabled. \
-To enable these functions, change the syntax and save the statement.\n\nTo undo recent changes, \
-select Revert to Last Correct Source from the SQL menu.
-_UI_GRAPH_NO_COLUMN_FOUND = Unable to find column {0}. Some SQL builder functions have been disabled. \
-To enable these functions, change the syntax and save the statement.\n\nTo undo recent changes, \
-select Revert to Last Correct Source from the SQL menu.
+_UI_GRAPH_PROMPT = Para añadir una tabla, hacer clic con el botón derecho en este panel y usar el menú emergente.
+_UI_GRAPH_PARSE_FAILED = Esta sintaxis de SQL no es válida o no se admite actualmente. \
+Puede entrar en SQL manualmente. Se han desactivado algunas funciones del compilador de SQL. \
+Para activar esas funciones, cambie la sintaxis.\n\nPara deshacer los últimos cambios, \
+seleccione Volver a la última fuente correcta en el menú de SQL.
+_UI_GRAPH_NO_TABLE_FOUND = No es posible encontrar la tabla {0}. Puede que no exista o que esté filtrada. \
+Se han desactivado algunas funciones del compilador de SQL. \
+Para activar esas funciones, cambie la sintaxis y guarde la sentencia.\n\nPara deshacer los últimos cambios, \
+seleccione Volver a la última fuente correcta en el menú de SQL.
+_UI_GRAPH_NO_COLUMN_FOUND = No es posible encontrar la columna {0}. Se han desactivado algunas funciones del compilador de SQL. \
+Para activar esas funciones, cambie la sintaxis y guarde la sentencia.\n\nPara deshacer los últimos cambios, \
+seleccione Volver a la última fuente correcta en el menú de SQL.
 
 !views/inster/InsertTypeViewer.java
-_UI_GROUP_INSERT_ROWS=Insert rows from:
-_UI_RADIO_VALUES=Values
-_UI_RADIO_INSERT_FROM_SUBQUERY=Subquery
-_UI_ACTION_REMOVE_COLUMN=&Remove column
+_UI_GROUP_INSERT_ROWS=Insertar filas de:
+_UI_RADIO_VALUES=Valores
+_UI_RADIO_INSERT_FROM_SUBQUERY=Subconsulta
+_UI_ACTION_REMOVE_COLUMN=Quita&r columna
 
 !views/insert/InsertSelectViewer.java
-_UI_LABEL_QUERY_NAME=Query name:
+_UI_LABEL_QUERY_NAME=Nombre de consulta:
 
 !views/select/GroupByContentViewer.java
-_UI_LABEL_GROUPS_TYPE=Type:
-_UI_COMBOBOXITEM_GROUPING_ROOT=Grouping root
-_UI_ACTION_REMOVE=&Remove
-_UI_NONE=None
+_UI_LABEL_GROUPS_TYPE=Tipo:
+_UI_COMBOBOXITEM_GROUPING_ROOT=Raíz de agrupación
+_UI_ACTION_REMOVE=Quita&r
+_UI_NONE=Ninguno
 _UI_SIMPLE=Simple
 
 !! NOTE TO TRANSLATOR: Do not translate following line
@@ -423,46 +423,46 @@ _UI_CUBE=CUBE
 !! NOTE TO TRANSLATOR: Do not translate following line
 _UI_ROLLUP=ROLLUP
 
-_UI_GROUPING=Grouping
-_UI_GROUPINGSETS=Grouping sets
+_UI_GROUPING=Agrupación
+_UI_GROUPINGSETS=Conjuntos de agrupación
 
 ! views/select/SelectGridViewer.java:
 !
-_UI_COMBO_SORT_UNSORTED   = Unsorted
-_UI_COMBO_SORT_ASCENDING  = Ascending
-_UI_COMBO_SORT_DESCENDING = Descending
-_UI_COMBO_SORT_DEFAULT = Default
+_UI_COMBO_SORT_UNSORTED   = Sin orden
+_UI_COMBO_SORT_ASCENDING  = Ascendente
+_UI_COMBO_SORT_DESCENDING = Descendente
+_UI_COMBO_SORT_DEFAULT = Predeterminado
 
 !
 !views/select/RemoveSelectColumnsAction.java
 !
-_UI_ACTION_REMOVE_SELECT_COLUMN = Remove &Column Expression
+_UI_ACTION_REMOVE_SELECT_COLUMN = Quitar expresión de &columna
 
 !
 !views/select/RemoveOrderByExpressionAction.java
 !
-_UI_ACTION_REMOVE_ORDER_BY_EXPRESSION = Remove &Order By Expression
+_UI_ACTION_REMOVE_ORDER_BY_EXPRESSION = Quitar &orden por expresión
 
 !
 ! views/select/SelectGridViewer.java
 !
 _UI_COLUMN_SELECT_ALIAS      = Alias
-_UI_COLUMN_SELECT_OUTPUT     = Output
-_UI_COLUMN_SELECT_SORT_TYPE  = Sort Type
-_UI_COLUMN_SELECT_SORT_ORDER = Sort Order
+_UI_COLUMN_SELECT_OUTPUT     = Salida
+_UI_COLUMN_SELECT_SORT_TYPE  = Clase de clasificación
+_UI_COLUMN_SELECT_SORT_ORDER = Orden
 
 !
 ! views/select/SelectViewer.java
 !
-_UI_WORKBOOKPAGE_COLUMNS          = Columns
-_UI_WORKBOOKPAGE_CONDITIONS       = Conditions
-_UI_WORKBOOKPAGE_GROUPS           = Groups
-_UI_WORKBOOKPAGE_GROUP_CONDITIONS = Group Conditions
+_UI_WORKBOOKPAGE_COLUMNS          = Columnas
+_UI_WORKBOOKPAGE_CONDITIONS       = Condiciones
+_UI_WORKBOOKPAGE_GROUPS           = Grupos
+_UI_WORKBOOKPAGE_GROUP_CONDITIONS = Agrupar condiciones
 
 !
 ! views/SQLBuilderActionBarContributor.java
 !
-_UI_TOOLTIP_EXECUTE_SQL = Run the SQL statement
+_UI_TOOLTIP_EXECUTE_SQL = Ejecutar la sentencia SQL
 _UI_MENU_SQLBUILDER     = &SQL
 
 !
@@ -474,45 +474,45 @@ _UI_UPDATE                   = UPDATE
 _UI_DELETE                   = DELETE
 _UI_SELECT                   = SELECT
 
-_UI_PARSE_ERROR_ENCOUNTERED  = Parse error encountered.
+_UI_PARSE_ERROR_ENCOUNTERED  = Se ha encontrado un error de analizador.
 
 
 !
 ! views/StatementNameViewer.java
 !
-_UI_LABEL_STATEMENT = Statement:
+_UI_LABEL_STATEMENT = Sentencia:
 
 
 !
 ! Join stuff - DefineJoinDialog.java, DefineJoinTypeDialog.java
 !
-_UI_DEFINE_JOIN_DIALOG_TITLE = Specify Join
-_UI_DEFINE_JOIN_DIALOG_INSTR = Join type
-_UI_RADIO_INNER_JOIN         = &Inner join
-_UI_RADIO_LEFT_OUTER_JOIN    = &Left outer join
-_UI_RADIO_RIGHT_OUTER_JOIN   = &Right outer join
-_UI_RADIO_FULL_OUTER_JOIN    = &Full outer join
-_UI_ACTION_SPECIFY_JOIN_TYPE = &Specify Join Type...
-_UI_MSG_INVALID_JOIN_TITLE = Incompatible Types
+_UI_DEFINE_JOIN_DIALOG_TITLE = Especificar combinación
+_UI_DEFINE_JOIN_DIALOG_INSTR = Tipo de combinación
+_UI_RADIO_INNER_JOIN         = Combinación &interna
+_UI_RADIO_LEFT_OUTER_JOIN    = Combinación externa &izquierda
+_UI_RADIO_RIGHT_OUTER_JOIN   = Combinación externa &derecha
+_UI_RADIO_FULL_OUTER_JOIN    = Combinación externa &completa
+_UI_ACTION_SPECIFY_JOIN_TYPE = E&specificar tipo de combinación...
+_UI_MSG_INVALID_JOIN_TITLE = Tipos incompatibles
 
 !
 !views/update/UpdateDesignViewer.java
 !
-_UI_TOOLTIP_UPDATE_ADD_COL = Add individual column to statement
-_UI_TOOLTIP_UPDATE_ADD_GRP = Add columns to statement as a qroup
+_UI_TOOLTIP_UPDATE_ADD_COL = Añadir columna individual a sentencia
+_UI_TOOLTIP_UPDATE_ADD_GRP = Añadir columnas a sentencia como grupo
 
 !
 !views/with/WithTableViewer.java
 !
-_UI_GROUP_WITH_TABLE     = Table
-_UI_GROUP_WITH_COLUMN    = Column
-_UI_BUTTON_ADD_RIGHT     = Add>>
-_UI_BUTTON_REMOVE_LEFT   = <<Remove
+_UI_GROUP_WITH_TABLE     = Tabla
+_UI_GROUP_WITH_COLUMN    = Columna
+_UI_BUTTON_ADD_RIGHT     = Añadir >>
+_UI_BUTTON_REMOVE_LEFT   = << Quitar
 
 !
 ! views/with/WithStatementViewer
 !
-_UI_LABEL_WITH_STATEMENT  = Statement name:
+_UI_LABEL_WITH_STATEMENT  = Nombre de sentencia:
 
 ! CreateWithTableAction.java
 
@@ -521,281 +521,281 @@ _UI_WITH_TABLE_NAME		  = WithTable%1
 !
 ! SQLPreferencePage.java
 !
-_UI_VALIDATE_PREFERENCE_LABEL = &Validate query statements by running before saving
-_UI_ERROR_VALUE_GREATER_THAN_0 = This value must be an integer greater than zero.
+_UI_VALIDATE_PREFERENCE_LABEL = &Validar sentencias de consulta mediante ejecución antes de guardar
+_UI_ERROR_VALUE_GREATER_THAN_0 = Este valor debe ser un entero mayor que cero.
 
 !
 !views/SQLBuilder.java
 !
-_UI_VALIDATE_FAILED_TITLE    = Validation Failed
-_UI_CONTINUE_WITH_SAVE       = Continue with save?
-_UI_VALIDATING_STATEMENT     = Validating statement...
-_UI_OBTAINING_CONNECTION     = Obtaining connection...
-_UI_VALIDATE_DONE            = Validation complete...
-_UI_SAVING_STATEMENT         = Saving statement...
+_UI_VALIDATE_FAILED_TITLE    = Error de validación
+_UI_CONTINUE_WITH_SAVE       = ¿Continuar guardando?
+_UI_VALIDATING_STATEMENT     = Validando sentencia...
+_UI_OBTAINING_CONNECTION     = Obteniendo conexión...
+_UI_VALIDATE_DONE            = Validación completada...
+_UI_SAVING_STATEMENT         = Guardando sentencia...
 
 !model/SQLBuilderConstants.java:
-_UI_BUILD_EXPRESSION   = Build Expression...
-_UI_EDIT_EXPRESSION    = Edit Expression...
-_UI_REPLACE_EXPRESSION = Replace Expression...
+_UI_BUILD_EXPRESSION   = Compilar expresión...
+_UI_EDIT_EXPRESSION    = Editar expresión...
+_UI_REPLACE_EXPRESSION = Reemplazar expresión...
 !! NOTE TO TRANSLATOR: Do not translate the words that are fully capitalized in the following 3 lines
-_UI_ADD_SELECT         = Add SELECT Statement...
-_UI_ADD_FULLSELECT     = Add FULLSELECT Statement...
-_UI_ADD_WITH           = Add WITH Statement...
-_UI_ADD_VALUES         = Add Values
-_UI_SPECIFY_VALUE	   = Specify Value...
-_UI_SPECIFY_VALUE_TITLE	   = Specify Value
+_UI_ADD_SELECT         = Añadir sentencia SELECT...
+_UI_ADD_FULLSELECT     = Añadir sentencia FULLSELECT...
+_UI_ADD_WITH           = Añadir sentencia WITH...
+_UI_ADD_VALUES         = Añadir valores
+_UI_SPECIFY_VALUE	   = Especificar valor...
+_UI_SPECIFY_VALUE_TITLE	   = Especificar valor
 
 
-!========================================================================================
+!
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!========================================================================================
-_WARN_MESSAGES_ENCOUNTERED      = Warning messages were encountered
-_WARN_DATA_WAS_TRUNCATED        = Data was truncated
-_WARN_SQL_WARNINGS_FOUND        = SQL warnings were found
+!
+_WARN_MESSAGES_ENCOUNTERED      = Se han encontrado mensajes de advertencia
+_WARN_DATA_WAS_TRUNCATED        = Se han truncado los datos
+_WARN_SQL_WARNINGS_FOUND        = Se han encontrado advertencias de SQL
 
-_WARN_BAD_JOIN_1                = Join types not compatible
-_WARN_INVALID_JOIN              = Invalid join
-_WARN_COLUMN_USED               = Column has already been used in a join between tables
+_WARN_BAD_JOIN_1                = Tipos de combinación no compatibles
+_WARN_INVALID_JOIN              = Combinación no válida
+_WARN_COLUMN_USED               = La columna ya se había utilizado en una combinación entre tablas
 
 ! Usage:
 !   {0} replaced with the column name and {1} replaced with the column datatype
 !
-_WARN_BAD_JOIN_TYPES               = The type of column {0} is {1}
+_WARN_BAD_JOIN_TYPES               = El tipo de la columna {0} es {1}
 
 
-!======================================================================================
+!
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!======================================================================================
+!
 
-_ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = Edit Expression Failed
-_ERROR_DIALOG_MSG_REBUILD_EXPR       = Expression must be rebuilt
+_ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = Error al editar expresión
+_ERROR_DIALOG_MSG_REBUILD_EXPR       = La expresión se debe volver a compilar
 
-_ERROR_TABLE_USED                    = Select a unique table or enter an alias.
-_ERROR_ALIAS_USED                    = Enter a unique alias.
+_ERROR_TABLE_USED                    = Seleccionar una tabla única o introducir un alias.
+_ERROR_ALIAS_USED                    = Introducir un alias único.
 
-_ERROR_ALIAS_NOT_UNIQUE_TEXT         = Alias is not unique
+_ERROR_ALIAS_NOT_UNIQUE_TEXT         = El alias no es único
 
 
-_EXC_OPEN_SQL_FILE_RESOURCE          = Error occurred opening input SQL file resource
-_EXC_OPEN_SQL_FILE_NOT_CONNECTED     = You must connect to the database "{0}" before opening the SQL file in the SQL Query Builder.
+_EXC_OPEN_SQL_FILE_RESOURCE          = Se ha producido un error al abrir el recurso del archivo SQL de entrada
+_EXC_OPEN_SQL_FILE_NOT_CONNECTED     = Debe conectarse a la base de datos "{0}" antes de abrir el archivo SQL en el compilador de consultas SQL.
 
 !! NOTE TO TRANSLATOR: Do not translate "ISQLBuilderEditorInput" in the following line
-_EXC_INPUT_NOT_ISQLBUILDEREDITORINPUT = Input is not an ISQLBuilderEditorInput
+_EXC_INPUT_NOT_ISQLBUILDEREDITORINPUT = La entrada no es una ISQLBuilderEditorInput
 
-_ERROR_ALIAS_NOT_ALPHANUMERIC        = Alias must contain all alphanumeric characters.
-_ERROR_ALIAS_TABLE_USED              = Alias must not be a database table name.
-_ERROR_ENTER_ALIAS                   = Table name is used. Enter an alias.
+_ERROR_ALIAS_NOT_ALPHANUMERIC        = Todos los caracteres del alias deben ser alfanuméricos.
+_ERROR_ALIAS_TABLE_USED              = El alias no debe ser un nombre de tabla de base de datos.
+_ERROR_ENTER_ALIAS                   = El nombre de tabla está en uso. Introduzca un alias.
 
-_ERROR_DATABASE_NOT_AVAILABLE        = A database connection is not available
-_ERROR_INPUT_NOT_RECOGNIZED          = The editor input type is not supported
-_ERROR_OPEN_SQL_STORAGE_RESOURCE     = An error occurred opening the input SQL storage resource
-_ERROR_OPEN_SQL_STRING_RESOURCE      = An error occurred opening the input
-_ERROR_OPEN_INPUT_PARSE_FAILED       = The SQL cannot be parsed because it is either invalid or is not currently supported.
-_QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED    = SQL Query Builder Parse Error
-_QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED    = An empty SQL Statement will be created in the SQL Query Builder.
+_ERROR_DATABASE_NOT_AVAILABLE        = No hay disponible una conexión con base de datos
+_ERROR_INPUT_NOT_RECOGNIZED          = No se admite el tipo de entrada del editor
+_ERROR_OPEN_SQL_STORAGE_RESOURCE     = Se ha producido un error al abrir el recurso de almacenamiento de SQL de entrada
+_ERROR_OPEN_SQL_STRING_RESOURCE      = Se ha producido un error al abrir la entrada
+_ERROR_OPEN_INPUT_PARSE_FAILED       = No se puede analizar el SQL porque no es válido o no se admite actualmente.
+_QUESTION_TITLE_OPEN_INPUT_PARSE_FAILED    = Error al analizar el compilador de consultas SQL
+_QUESTION_MESSAGE_OPEN_INPUT_PARSE_FAILED    = Se creará una sentencia SQL vacía en el compilador de consultas SQL.
 
 !
 !model/SQLDomainModel.java
 !
 !note we reuse messages from ErrorMessages.java in org.eclipse.ui.texteditor.ErrorMessages
 
-Editor_error_save_title=Save problems
-Editor_error_save_message=Save could not be completed.
-Editor_error_save_readonly=\n\nReason:\nCould not write to read-only file:
-Editor_error_save_failed=\n\nReason:\nCould not write to file:
+Editor_error_save_title=Problemas al guardar
+Editor_error_save_message=No se ha podido finalizar Guardar.
+Editor_error_save_readonly=\n\nCausa:\nNo se ha podido escribir en un archivo de sólo lectura:
+Editor_error_save_failed=\n\nCausa:\nNo se ha podido escribir en un archivo:
 
 !Strings from B2BGUI properties file
-_UI_ERROR_CREATING_FILE_TITLE = Error Creating File
-_UI_ERROR_CREATING_FILE_SHORT_DESC = Error creating file "{0}"
-_UI_ERROR_CREATING_FILE_LONG_DESC = An error occurred while attempting to create the file "{0}".
-_UI_PARENT_FOLDER_IS_READ_ONLY = The parent directory "{0}" is read only.
-_UI_UNKNOWN_ERROR_WITH_HINT = Unknown error. Ensure that the parent directory "{0}" is writable.
-_UI_UNKNOWN_ERROR = Unknown error. Ensure that the parent directory "{0}" is writable.
+_UI_ERROR_CREATING_FILE_TITLE = Error al crear el archivo
+_UI_ERROR_CREATING_FILE_SHORT_DESC = Error al crear el archivo "{0}"
+_UI_ERROR_CREATING_FILE_LONG_DESC = Se ha producido un error al intentar crear el archivo "{0}".
+_UI_PARENT_FOLDER_IS_READ_ONLY = El directorio principal "{0}" es de sólo lectura.
+_UI_UNKNOWN_ERROR_WITH_HINT = Error desconocido. Asegúrese de que se puede escribir en el directorio principal "{0}".
+_UI_UNKNOWN_ERROR = Error desconocido. Asegúrese de que se puede escribir en el directorio principal "{0}".
 ! TextViewerOperationAction
-_UI_MENU_COPY         = &Copy
-_UI_MENU_CUT          = Cu&t
-_UI_MENU_DELETE       = Delete
-_UI_MENU_PASTE        = &Paste
-_UI_MENU_PREFIX       = Prefix
-_UI_MENU_REDO         = Redo
-_UI_MENU_SELECT_ALL   = Select All
-_UI_MENU_SHIFT_LEFT   = Shift Left
-_UI_MENU_SHIFT_RIGHT  = Shift Right
-_UI_MENU_STRIP_PREFIX = Strip Prefix
-_UI_MENU_UNDO         = Undo
+_UI_MENU_COPY         = &Copiar
+_UI_MENU_CUT          = Cor&tar
+_UI_MENU_DELETE       = Eliminar
+_UI_MENU_PASTE        = &Pegar
+_UI_MENU_PREFIX       = Prefijo
+_UI_MENU_REDO         = Rehacer
+_UI_MENU_SELECT_ALL   = Seleccionar todo
+_UI_MENU_SHIFT_LEFT   = Mayús izquierda
+_UI_MENU_SHIFT_RIGHT  = Mayús derecha
+_UI_MENU_STRIP_PREFIX = Eliminar prefijo
+_UI_MENU_UNDO         = Deshacer
 
 !SQL Editor
-datatools_sqlbuilder_sqleditor_tooltip = Open SQL Editor
-datatools_sqlbuilder_sqleditor_title = &SQL Editor
+datatools_sqlbuilder_sqleditor_tooltip = Abrir Editor SQL
+datatools_sqlbuilder_sqleditor_title = Editor &SQL
 
 ! SQL Query Builder
 datatools_sqlbuilder_sqlbuilder_DML_error = Error
-datatools_sqlbuilder_sqlbuilder_multipleDML = The SQL builder can be used only for creating a single \
-SQL DML statement. File {0} does not contain a single DML statement. Open file using SQL editor?
-datatools_sqlbuilder_sqlbuilder_multipleDML_VE = Visual Explain can be used only for a single \
-SQL DML statement. File {0} does not contain a single DML statement.
-datatools_sqlbuilder_sqlbuilder_unsupport_VE = Visual Explain is not supported on this database connection.
+datatools_sqlbuilder_sqlbuilder_multipleDML = El compilador de SQL sólo se puede utilizar para crear una única \
+sentencia SQL DML. El archivo {0} no contiene una única sentencia DML. ¿Abrir archivo mediante el editor SQL?
+datatools_sqlbuilder_sqlbuilder_multipleDML_VE = Visual Explain sólo se puede utilizar para una única \
+sentencia SQL DML. El archivo {0} no contiene una única sentencia DML.
+datatools_sqlbuilder_sqlbuilder_unsupport_VE = Esta conexión de base de datos no es compatible con Visual Explain.
 !Clear to Skeleton and Revert to Last Correct
-_UI_CLEAR_TO_TEMPLATE 			     = Clear to Template
-_UI_REVERT_TO_LAST_CORRECT_SOURCE    = Revert to Last Correct Source
-_UI_LAST_CORRECT_SOURCE 			 = Last correct source?
+_UI_CLEAR_TO_TEMPLATE 			     = Borrar en plantilla
+_UI_REVERT_TO_LAST_CORRECT_SOURCE    = Volver a la última fuente correcta
+_UI_LAST_CORRECT_SOURCE 			 = ¿Última fuente correcta?
 !Change Statement Type
-_UI_CHANGE_STATEMENT_TYPE			= Change Statement Type...
+_UI_CHANGE_STATEMENT_TYPE			= Cambiar tipo de sentencia...
 !Omit Current Schema
-_UI_OMIT_CURRENT_SCHEMA              = Omit Current Schema... 
+_UI_OMIT_CURRENT_SCHEMA              = Omitir esquema actual... 
 
 !
 ! views/execute/ExecuteViewer.java & views/execute/QueryOutputHelper.java
 !
-_UI_DIALOG_EXECUTE_SQL_TITLE = Run SQL Statement
-_UI_BUTTON_EXECUTE_CLOSE     = &Close
-_UI_LABEL_SQL_STATEMENT      = &SQL statement:
-_UI_BUTTON_EXECUTE           = &Run
-_UI_LABEL_QUERY_RESULTS      = Query results:
-_UI_MONITOR_EXECUTING_QUERY  = Running SQL Statement...
-_UI_LABEL_NO_CONNECTION      = The database connection is missing or the relational database schema model is corrupted.
-_UI_LABEL_NO_CONNECTION_FILE = The database connection is not available because the connection xmi file is missing.
+_UI_DIALOG_EXECUTE_SQL_TITLE = Ejecutar sentencia SQL
+_UI_BUTTON_EXECUTE_CLOSE     = &Cerrar
+_UI_LABEL_SQL_STATEMENT      = Sentencia &SQL:
+_UI_BUTTON_EXECUTE           = Ejecuta&r
+_UI_LABEL_QUERY_RESULTS      = Resultados de consulta:
+_UI_MONITOR_EXECUTING_QUERY  = Ejecutando sentencia SQL...
+_UI_LABEL_NO_CONNECTION      = La conexión con la base de datos no está disponible o el modelo del esquema de la base de datos relacional está dañado.
+_UI_LABEL_NO_CONNECTION_FILE = La conexión con la base de datos no está disponible porque falta el archivo xmi de conexión.
 
-_UI_DIALOG_WARNING_TITLE       = Warning
-_UI_DIALOG_OP_FAILED_TITLE     = Operation Failed
-_UI_LABEL_EXECUTION_SUCCESSFUL = Statement ran successfully, but produced no results to display.
+_UI_DIALOG_WARNING_TITLE       = Advertencia
+_UI_DIALOG_OP_FAILED_TITLE     = Error de la operación
+_UI_LABEL_EXECUTION_SUCCESSFUL = La sentencia se ejecutó correctamente, pero no produjo resultados que mostrar.
 !! NOTE TO TRANSLATOR: the MAX_RECORD_EXCEEDED string should match
 !! the strings for RECORD_RETURNED and RECORD_DISPLAYED.
-_UI_MSG_MAX_RECORD_EXCEEDED    = More than 1000 records returned. 1000 records displayed.
-_UI_MSG_RECORD_RETURNED        = records returned.
+_UI_MSG_MAX_RECORD_EXCEEDED    = Se han devuelto más de 1000 registros. 1000 registros mostrados.
+_UI_MSG_RECORD_RETURNED        = registros devueltos.
 
 
 ! SQL Statement validation errors
 ! usage note: %1 will be replaced with a SQL statement name
-_ERROR_STATEMENT_NAME_EXISTS         = A statement named %1 already exists
-_ERROR_INVALID_STATEMENT_NAME = Enter a valid statement name.
+_ERROR_STATEMENT_NAME_EXISTS         = Ya existe una sentencia de nombre %1
+_ERROR_INVALID_STATEMENT_NAME = Introduzca un nombre de sentencia válido.
 ! usage note: %1 is replaced with the invalid character entered by the user
-_ERROR_INVALID_CHAR_IN_STATEMENT_NAME = The statement name cannot contain the character: %1
-_ERROR_STATEMENT_NAME_TOO_LONG = The statement name cannot exceed 160 characters.
+_ERROR_INVALID_CHAR_IN_STATEMENT_NAME = El nombre de sentencia no puede contener el carácter: %1
+_ERROR_STATEMENT_NAME_TOO_LONG = El nombre de sentencia no puede superar los 160 caracteres.
 
 
 ! SelectDBTablePage resources
-datatools_selectDBTablePage_statements = Statements
+datatools_selectDBTablePage_statements = Sentencias
 
 !
 ! SQL Statement actions
 !
-datatools_sqlbuilder_sqlstatement_actions_new = New...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = New SQL Statement...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Create a New Query Statement
-datatools_sqlbuilder_sqlstatement_actions_openwith = Open With
-datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL Query Builder
-datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL Editor
+datatools_sqlbuilder_sqlstatement_actions_new = Nuevo...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = Nueva sentencia SQL...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Crear una nueva sentencia de consulta
+datatools_sqlbuilder_sqlstatement_actions_openwith = Abrir con
+datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = Compilador de consultas SQL
+datatools_sqlbuilder_sqlstatement_actions_sqleditor = Editor SQL
 
 !
 ! New SQL statement wizard, dialog, and page
 !
-datatools_sqlbuilder_newStatementWizard_title = New SQL Statement
-datatools_sqlbuilder_newStatementWizard_description = Creates an SQL statement.
-datatools_sqlbuilder_newStatementDialog_title = New SQL Statement
-datatools_sqlbuilder_newStatementPage_title = Statement Type
-datatools_sqlbuilder_newStatementPage_description = Name and select the template type for this statement.
-datatools_sqlbuilder_newStatementPage_statementID = Statement identification
-datatools_sqlbuilder_newStatementPage_statementName = &Statement name:
-datatools_sqlbuilder_newStatementPage_statementType = Statement &template:
-datatools_sqlbuilder_newStatementPage_editUsing = Edit using
-datatools_sqlbuilder_newStatementPage_sqlQueryBuilder = S&QL builder
-datatools_sqlbuilder_newStatementPage_sqlEditor = SQL &editor
-datatools_sqlbuilder_newStatementPage_sampleStatements = Sample statements
-datatools_sqlbuilder_newStatementPage_none = None
+datatools_sqlbuilder_newStatementWizard_title = Nueva sentencia SQL
+datatools_sqlbuilder_newStatementWizard_description = Crea una sentencia SQL.
+datatools_sqlbuilder_newStatementDialog_title = Nueva sentencia SQL
+datatools_sqlbuilder_newStatementPage_title = Tipo de sentencia
+datatools_sqlbuilder_newStatementPage_description = Dar nombre y seleccionar el tipo de plantilla para esta sentencia.
+datatools_sqlbuilder_newStatementPage_statementID = Identificación de sentencia
+datatools_sqlbuilder_newStatementPage_statementName = Nombre de &sentencia:
+datatools_sqlbuilder_newStatementPage_statementType = Plan&tilla de sentencia:
+datatools_sqlbuilder_newStatementPage_editUsing = Editar utilizando
+datatools_sqlbuilder_newStatementPage_sqlQueryBuilder = Compilador de S&QL
+datatools_sqlbuilder_newStatementPage_sqlEditor = &Editor SQL
+datatools_sqlbuilder_newStatementPage_sampleStatements = Sentencias de muestra
+datatools_sqlbuilder_newStatementPage_none = Ninguno
 !
 ! Project selection page, for new SQL statement wizard
 !
-datatools_sqlbuilder_projectPage_title = Select Project
-datatools_sqlbuilder_projectPage_description = Select an existing project or add a new one for this statement.
+datatools_sqlbuilder_projectPage_title = Seleccionar proyecto
+datatools_sqlbuilder_projectPage_description = Seleccionar un proyecto existente o añadir uno nuevo para esta sentencia.
 
 !
 ! Generated comment text for template SQL for New SQL Statement action
 !
-_UI_SAMPLE_DML_TEMPLATE_STATEMENTS = Sample DML template statements
-_UI_SAMPLE_DDL_TEMPLATE_STATEMENTS = Sample DDL template statements
+_UI_SAMPLE_DML_TEMPLATE_STATEMENTS = Sentencias de plantilla DML de muestra
+_UI_SAMPLE_DDL_TEMPLATE_STATEMENTS = Sentencias de plantilla DDL de muestra
 
 !
 ! String for the AddTable With Table
 !! NOTE TO TRANSLATOR: Do not translate "WITH" in the following line
-_UI_AVAILABLE_TABLES_TREE_PROVIDER = WITH Tables
+_UI_AVAILABLE_TABLES_TREE_PROVIDER = Tablas WITH
 
 !actions/ConvertToFullSelectAction.java
 !! NOTE TO TRANSLATOR: Do not translate "FULLSELECT" and "UNION" in the following line
-_UI_ACTION_CONVERT_TO_FULL_SELECT=&Convert to FULLSELECT (UNION)
+_UI_ACTION_CONVERT_TO_FULL_SELECT=&Convertir a FULLSELECT (UNION)
 
 
 ! org.eclipse.datatools.sqltools.sqlbuilder.views.fullselect/fullselectElement.java
 !! NOTE TO TRANSLATOR: Do not translate the words that are fully capitalized in the following 3 lines
-_UI_VIEWS_FULLSELECTELEMENT_FULLSELECT = FULLSELECT Statement
-_UI_VIEWS_FULLSELECTELEMENT_SELECT = SELECT Statement
+_UI_VIEWS_FULLSELECTELEMENT_FULLSELECT = Sentencia FULLSELECT
+_UI_VIEWS_FULLSELECTELEMENT_SELECT = Sentencia SELECT
 _UI_VIEWS_FULLSELECTELEMENT_VALUES = VALUES
 
 ! org.eclipse.datatools.sqltools.sqlbuilder.views.graph/GraphContextMenuProvider.java
-_UI_VIEWS_GRAPH_SELECT_ALL_COLUMN = Select All Columns
-_UI_VIEWS_GRAPH_DESELECT_ALL_COLUMN = Deselect All Columns
+_UI_VIEWS_GRAPH_SELECT_ALL_COLUMN = Seleccionar todas las columnas
+_UI_VIEWS_GRAPH_DESELECT_ALL_COLUMN = Anular la selección de todas las columnas
 
 !SQLQueryBuilder Dialog
-_UI_SQLQUERYBUILDERDIALOG_NAME = SQL Query Builder
-SQLQueryBuilderDialogEditTabName=Edit
-SQLQueryBuilderDialogNoInput=SQLBuilder Dialog was not passed an input to open.
-SQLQueryBuilderDialogParseFailOnOpenAskUserTitle=SQL Query Builder
-SQLQueryBuilderDialogParseFailOnOpenAskUserMessage=If you continue, an empty SQL Statement will be created in the SQL Query Builder. Do you wish to continue?
-SQLQueryBuilderDialogResultsTabName=SQL Results
+_UI_SQLQUERYBUILDERDIALOG_NAME = Compilador de consultas SQL
+SQLQueryBuilderDialogEditTabName=Editar
+SQLQueryBuilderDialogNoInput=No se pasó una entrada para abrir a SQLBuilder Dialog.
+SQLQueryBuilderDialogParseFailOnOpenAskUserTitle=Compilador de consultas SQL
+SQLQueryBuilderDialogParseFailOnOpenAskUserMessage=Si continúa, se creará una sentencia SQL vacía en el compilador de consultas SQL. ¿Desea continuar?
+SQLQueryBuilderDialogResultsTabName=Resultados de SQL
 
 
 # plugin.xml.  preference page extension point
-_UI_SQLQUERY_NAME = SQL Query
+_UI_SQLQUERY_NAME = Consulta SQL
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal_label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal_tooltip     =Content Assist
+ContentAssistProposal_label       =Ayuda de co&ntenido@Ctrl+ESPACIO
+ContentAssistProposal_tooltip     =Ayuda de contenido
 ContentAssistProposal_image       =
-ContentAssistProposal_description =Content Assist
+ContentAssistProposal_description =Ayuda de contenido
 
-ContentTip_label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentTip_tooltip     =Content Tip
+ContentTip_label       =Sugerencia de contenido@Ctrl+MAYÚS+ESPACIO
+ContentTip_tooltip     =Sugerencia de contenido
 ContentTip_image       =
-ContentTip_description =Content Tip
+ContentTip_description =Sugerencia de contenido
 
 ## Resources for other SQL Query Builder actions
 
-datatools_sqlbuilder_RunSQLAction_label       = &Run SQL
-datatools_sqlbuilder_RunSQLAction_tooltip     = Run the SQL statement
+datatools_sqlbuilder_RunSQLAction_label       = Ejecuta&r SQL
+datatools_sqlbuilder_RunSQLAction_tooltip     = Ejecutar la sentencia SQL
 datatools_sqlbuilder_RunSQLAction_image       =
 datatools_sqlbuilder_RunSQLAction_description =
 
-datatools_sqlbuilder_RevertToPreviousAction_label       = Revert to Last Correct Source
+datatools_sqlbuilder_RevertToPreviousAction_label       = Volver a la última fuente correcta
 datatools_sqlbuilder_RevertToPreviousAction_tooltip     =
 datatools_sqlbuilder_RevertToPreviousAction_image       =
 datatools_sqlbuilder_RevertToPreviousAction_description =
 
-datatools_sqlbuilder_RevertToDefaultAction_label       = Clear to Template
+datatools_sqlbuilder_RevertToDefaultAction_label       = Borrar en plantilla
 datatools_sqlbuilder_RevertToDefaultAction_tooltip     =
 datatools_sqlbuilder_RevertToDefaultAction_image       =
 datatools_sqlbuilder_RevertToDefaultAction_description =
 
-datatools_sqlbuilder_ChangeStatementTypeAction_label   = Change Statement Type...
+datatools_sqlbuilder_ChangeStatementTypeAction_label   = Cambiar tipo de sentencia...
 datatools_sqlbuilder_ChangeStatementTypeAction_tooltip     =
 datatools_sqlbuilder_ChangeStatementTypeAction_image       =
 datatools_sqlbuilder_ChangeStatementTypeAction_description =
 
-datatools_sqlbuilder_OmitCurrentSchemaAction_label       = Omit Current Schema...
+datatools_sqlbuilder_OmitCurrentSchemaAction_label       = Omitir esquema actual...
 datatools_sqlbuilder_OmitCurrentSchemaAction_tooltip     =
 datatools_sqlbuilder_OmitCurrentSchemaAction_image       =
 datatools_sqlbuilder_OmitCurrentSchemaAction_description =
 
 !RDBTableDropListener
-_UI_INVALID_TABLE_ADDED = You cannot add tables from a database to a statement unless the database is associated with the project.
+_UI_INVALID_TABLE_ADDED = Si la base de datos no está asociada con el proyecto, no puede añadir tablas de base de datos a una sentencia.
 
 ## Resources for utilities
 
 VIEW_UTILITY_DEFAULT_FONT_UI_ = MS Sans Serif
-STRING_MATCH_EXPECTED_EXCEPTION_MESSAGE = Expected: 
-STRING_MATCH_RETURNED_EXCEPTION_MESSAGE =  Returned:
+STRING_MATCH_EXPECTED_EXCEPTION_MESSAGE = Se esperaba: 
+STRING_MATCH_RETURNED_EXCEPTION_MESSAGE =  Se ha devuelto:

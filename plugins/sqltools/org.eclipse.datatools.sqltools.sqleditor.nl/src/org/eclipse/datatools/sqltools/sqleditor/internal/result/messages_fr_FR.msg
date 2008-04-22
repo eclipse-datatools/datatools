@@ -1,20 +1,20 @@
-ResultSupportRunnable_name=SQL statement execution
-ResultSupportRunnable_task_connection=Obtaining connection...
-ResultSupportRunnable_task_statement=Obtaining statement...
-ResultSupportRunnable_task_run=Executing...
-ResultSupportRunnable_task_iterate=Iterating results...
-ResultSupportRunnable_exception_terminated=The instance has already been terminated!
+ResultSupportRunnable_name=Exécution de l'instruction SQL
+ResultSupportRunnable_task_connection=Obtention de la connexion...
+ResultSupportRunnable_task_statement=Obtention de l'instruction...
+ResultSupportRunnable_task_run=Exécution...
+ResultSupportRunnable_task_iterate=Itération des résultats...
+ResultSupportRunnable_exception_terminated=L'instance a déjà été terminée !
 
-GroupSQLResultRunnable_name=SQL statement execution
-GroupSQLResultRunnable_groups=({0} groups)
-GroupSQLResultRunnable_group=Group {0}
-GroupSQLResultRunnable_error_interrupted=The execution has been interrupted.
-GroupSQLResultRunnable_group_exec=Group execution
-GroupSQLResultRunnable_not_complete=Execution is not successful
+GroupSQLResultRunnable_name=Exécution de l'instruction SQL
+GroupSQLResultRunnable_groups=({0} groupes)
+GroupSQLResultRunnable_group=Groupe {0}
+GroupSQLResultRunnable_error_interrupted=L'exécution a été interrompue.
+GroupSQLResultRunnable_group_exec=Exécution du groupe
+GroupSQLResultRunnable_not_complete=Echec de l'exécution
 
-GroupSQLResultRunnable_title=Continue Execution
-GroupSQLResultRunnable_message=Error occurred when executing last statement(s). Do you want to continue?
+GroupSQLResultRunnable_title=Continuer l'exécution
+GroupSQLResultRunnable_message=Une erreur s'est produite lors de l'exécution de la/des dernière(s) instruction(s). Voulez-vous continuer ?
 
-sqlEditorName=SQL Editor
-GroupSQLResultRunnable_fail_to_create_conn=Fail to create database connection
-GroupSQLResultRunnable_fail_to_create_conn_to=Failed to create connection to {0}
+sqlEditorName=Editeur SQL
+GroupSQLResultRunnable_fail_to_create_conn=Impossible de créer une connexion à la base de données
+GroupSQLResultRunnable_fail_to_create_conn_to=Impossible de créer une connexion à {0}

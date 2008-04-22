@@ -24,38 +24,38 @@
 ! Menu action labels
 !
 _UI_PLUGIN_PROVIDER            = Eclipse.org
-_UI_PLUGIN_NAME                = SQL Builder
-_NL1_PLUGIN_NAME 			   = SQL Builder Nl1 Fragment
-_UI_BUILDER_NAME               = SQL Query Builder
+_UI_PLUGIN_NAME                = Compilador de SQL
+_NL1_PLUGIN_NAME 			   = Fragmento Nl1 del compilador de SQL
+_UI_BUILDER_NAME               = Compilador de consultas SQL
 
 !
 ! SQL Statement actions
 !
-datatools_sqlbuilder_sqlstatement_actions_new = New...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = New SQL Statement...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Create a New Query Statement
-datatools_sqlbuilder_sqlstatement_actions_openwith = Open With
-datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL Query Builder
-datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL Editor
+datatools_sqlbuilder_sqlstatement_actions_new = Nuevo...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = Nueva sentencia SQL...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Crear una nueva sentencia de consulta
+datatools_sqlbuilder_sqlstatement_actions_openwith = Abrir con
+datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = Compilador de consultas SQL
+datatools_sqlbuilder_sqlstatement_actions_sqleditor = Editor SQL
 
 !SQL Editor
-datatools_sqlbuilder_sqleditor_tooltip = Open SQL Editor
-datatools_sqlbuilder_sqleditor_title = &SQL Editor
+datatools_sqlbuilder_sqleditor_tooltip = Abrir Editor SQL
+datatools_sqlbuilder_sqleditor_title = Editor &SQL
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal_label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal_tooltip     =Content Assist
+ContentAssistProposal_label       =Ayuda de co&ntenido@Ctrl+ESPACIO
+ContentAssistProposal_tooltip     =Ayuda de contenido
 ContentAssistProposal_image       =
-ContentAssistProposal_description =Content Assist
+ContentAssistProposal_description =Ayuda de contenido
 
-ContentTip_label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentTip_tooltip     =Content Tip
+ContentTip_label       =Sugerencia de contenido@Ctrl+MAYÚS+ESPACIO
+ContentTip_tooltip     =Sugerencia de contenido
 ContentTip_image       =
-ContentTip_description =Content Tip
+ContentTip_description =Sugerencia de contenido
 
 # Preference page name
-SQLBuilder.PreferencePageName = SQL Query Builder
+SQLBuilder.PreferencePageName = Compilador de consultas SQL
 
 # Editor name for the editor which implements sqleditor's SQLBuilder extension point
-SQLEditor.SQLBuilderName = SQL Query Builder
+SQLEditor.SQLBuilderName = Compilador de consultas SQL

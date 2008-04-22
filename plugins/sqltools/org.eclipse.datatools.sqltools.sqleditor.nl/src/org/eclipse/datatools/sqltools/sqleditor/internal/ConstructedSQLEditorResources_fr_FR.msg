@@ -21,46 +21,45 @@ ContentAssistTip.tooltip     =Content Tip
 ContentAssistTip.image       =
 ContentAssistTip.description =Content Tip
 
-ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
-ContentFormat.tooltip     =Format SQL
+ContentFormat.label       =F&ormater SQL@Ctrl+SHIFT+F
+ContentFormat.tooltip     =Formater SQL
 ContentFormat.image       =
-ContentFormat.description =Format SQL source
+ContentFormat.description =Formater la source SQL
 
 ## Resources for SQL Editor-specific actions
 
 # Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
-SQLEditor.connectAction.label       =Connect to Data&base
-SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.label       =Se connecter à la &base de données
+SQLEditor.connectAction.tooltip     =Sélectionner ou créer une connexion à la base de données
 SQLEditor.connectAction.image       =
-SQLEditor.connectAction.description =Select or create the database connection for this editor
+SQLEditor.connectAction.description =Sélectionner ou créer la connexion à la base de données pour cet éditeur
 
-SQLEditor.disconnectAction.label       =Disconnect fro&m Database
-SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.label       =Se déconnecter &de la base de données
+SQLEditor.disconnectAction.tooltip     =Déconnecter l'éditeur de la base de données
 SQLEditor.disconnectAction.image       =
-SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+SQLEditor.disconnectAction.description =Déconnecter l'éditeur de la base de données connectée
 
-SQLEditor.runAction.label       =Run S&QL
-SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.label       =Exécuter S&QL
+SQLEditor.runAction.tooltip     =Exécuter les instructions SQL
 SQLEditor.runAction.image       =
-SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+SQLEditor.runAction.description =Exécuter les instructions SQL dans l'éditeur dans la base de données connectée
 
-SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
-SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.label       =Définir le t&erminateur d'instruction
+SQLEditor.setStatementTerminatorAction.tooltip     =Définir le terminateur d'instruction
 SQLEditor.setStatementTerminatorAction.image       =
-SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+SQLEditor.setStatementTerminatorAction.description =Définir la chaîne que l'éditeur doit utiliser pour séparer les instructions SQL
 
-SQLEditor.action.toggle.commect.label=Togg&le Comment
-SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.label=Bascu&ler un commentaire
+SQLEditor.action.toggle.commect.tooltip=Basculer les commentaires des lignes sélectionnées
 SQLEditor.action.toggle.commect.image=
-SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+SQLEditor.action.toggle.commect.description=Basculer les commentaires des lignes sélectionnées
 
-AddTemplateAction.label=Save as &Template...
-AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.label=Enregistrer comme &modèle...
+AddTemplateAction.tooltip=Enregistrer le texte sélectionné comme modèle...
 AddTemplateAction.image=
-AddTemplateAction.description=Save Selected Text as Template...
+AddTemplateAction.description=Enregistrer le texte sélectionné comme modèle...
 
-Editor.ContextPreferencesAction.label=Preferences...
-Editor.ContextPreferencesAction.description=Show preferences
-Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.label=Préférences...
+Editor.ContextPreferencesAction.description=Afficher les préférences
+Editor.ContextPreferencesAction.tooltip=Afficher les préférences
 Editor.ContextPreferencesAction.image=
-

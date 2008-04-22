@@ -1,2 +1,2 @@
-Cannot_disconnect_before_save=Cannot disconnect without saving the editor changes
-Disconnect_error=Error
+Cannot_disconnect_before_save=不能在未保存编辑器更改的情况下断开连接
+Disconnect_error=错误

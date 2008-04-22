@@ -1,78 +1,78 @@
 
-CodeAssist_description=Code assist settings for SQL Editor
-CodeAssist_general_title=&General
-CodeAssist_showSystemGroup=Show database objects
-CodeAssist_showSystemTables=Show system &tables
-CodeAssist_showSystemProcedures=Show system &procedures and functions
-CodeAssist_showOwnerOfTable=Show &owner of table or view
-CodeAssist_asa_tips=The following preferences are only available for SQL Anywhere database:
-CodeAssist_showSystemViews=Show system &views
+CodeAssist_description=Paramètres Code Assist pour l'éditeur SQL
+CodeAssist_general_title=&Général
+CodeAssist_showSystemGroup=Afficher les objets de la base de données
+CodeAssist_showSystemTables=Afficher les &tables du système
+CodeAssist_showSystemProcedures=Afficher les &procédures et fonctions du système
+CodeAssist_showOwnerOfTable=Afficher le pr&opriétaire de la table ou de la vue
+CodeAssist_asa_tips=Les préférences suivantes sont disponibles uniquement pour la base de données SQL Anywhere :
+CodeAssist_showSystemViews=Afficher les &vues du système
 CodeAssist_asa_titile=&ASA
-CodeAssist_insertSingleProposals=&Insert single proposals automatically
-CodeAssist_autoActivationGroup=Auto Activation
-CodeAssist_enableAuto=&Enable auto activation
-CodeAssist_autoActivationDelay=A&uto activation delay:
-CodeAssist_autoActivationTriggers=Auto activation triggers for SQL:
+CodeAssist_insertSingleProposals=&Insérer automatiquement des propositions uniques
+CodeAssist_autoActivationGroup=Activation automatique
+CodeAssist_enableAuto=Activ&er l'activation automatique
+CodeAssist_autoActivationDelay=Retard d'activation a&utomatique :
+CodeAssist_autoActivationTriggers=L'activation automatique se déclenche pour SQL :
 
 
 
 
-SQLEditor_general_title=&General
-SQLEditor_syntaxValidationGroup=&Syntax validation
-SQLEditor_syntaxValidation=E&nable syntax validation
-SQLEditor_syntaxValidation_tooltip=Perform syntax validation and update SQL statement structures in Outline view
-SQLEditor_maxLineButton=&Maximum number of lines:
-SQLEditor_maxLineButton_tooltip=Disable syntax validation when content exceeds maximum number of lines
-SQLEditor_showPromptDialog=Prompt to disable syntax validation when content exceeds maximum number of lines
+SQLEditor_general_title=&Général
+SQLEditor_syntaxValidationGroup=Validation de &syntaxe
+SQLEditor_syntaxValidation=&Activer la validation de syntaxe
+SQLEditor_syntaxValidation_tooltip=Effectuer une validation de syntaxe et mettre à jour les structures d'instructions SQL dans la vue de contour
+SQLEditor_maxLineButton=Nombre &maximum de lignes :
+SQLEditor_maxLineButton_tooltip=Désactiver la validation de syntaxe lorsque le contenu dépasse le nombre maximum de lignes
+SQLEditor_showPromptDialog=Invite de désactivation de la validation de syntaxe lorsque le contenu dépasse le nombre maximum de lignes
 
-SQLEditor_showSyntaxErorrDetail=S&how detailed annotation information
-SQLEditor_showSyntaxErorrDetail_tooltip=Show detailed annotation information, such as some syntax proposals
+SQLEditor_showSyntaxErorrDetail=Affic&her les informations d'annotations détaillées
+SQLEditor_showSyntaxErorrDetail_tooltip=Afficher les informations d'annotations détaillées telles que certaines suggestions de syntaxe
 
-SQLEditor_typing_title=&Typing
-SQLEditor_typingAidsGroup_title=Enable these typing aids in Smart Insert mode:
-SQLEditor_typingAidsTable_columnName1=Name
-SQLEditor_typingAidsTable_columnName2=Context
+SQLEditor_typing_title=&Saisie
+SQLEditor_typingAidsGroup_title=Activer ces aides à la saisie dans le mode d'insertion intelligent :
+SQLEditor_typingAidsTable_columnName1=Nom
+SQLEditor_typingAidsTable_columnName2=Contexte
 SQLEditor_typingAidsTable_columnName3=Description
 
-SQLEditor_closeSingleQuotes=Close single quotes
-SQLEditor_closeSingleQuotes_description=If enabled, close single quotes.
+SQLEditor_closeSingleQuotes=Fermer les guillemets simples
+SQLEditor_closeSingleQuotes_description=Si activés, fermer les guillemets simples.
 SQLEditor_closeSingleQuotes_preview='${cursor}'
 
-SQLEditor_closeDoubleQuotes=Close double quotes
-SQLEditor_closeDoubleQuotes_description=If enabled, close double quotes.
+SQLEditor_closeDoubleQuotes=Fermer les guillemets doubles
+SQLEditor_closeDoubleQuotes_description=Si activés, fermer les guillemets doubles.
 SQLEditor_closeDoubleQuotes_preview="${cursor}"
 
-SQLEditor_closeBrackets=Close parentheses
-SQLEditor_closeBrackets_description=If enabled, close parentheses.
+SQLEditor_closeBrackets=Fermer les parenthèses
+SQLEditor_closeBrackets_description=Si activées, fermer les parenthèses.
 SQLEditor_closeBrackets_preview=(${cursor})
 
-SQLEditor_closeComments=Close comments
-SQLEditor_closeComments_description=If enabled, close SQL multi-line comments.
+SQLEditor_closeComments=Fermer les commentaires
+SQLEditor_closeComments_description=Si activés, fermer les commentaires multilignes SQL.
 SQLEditor_closeComments_preview=/*\n *${cursor}\n */
 
 
-SQLEditor_beginEndStatement=Begin-End
-SQLEditor_beginEndStatement_description=Add the 'end' with proper indentation, then move the cursor to a new line between Begin/End with proper indentation.
+SQLEditor_beginEndStatement=Début-Fin
+SQLEditor_beginEndStatement_description=Ajouter la 'fin' en respectant le retrait de texte, puis déplacer le curseur sur une nouvelle ligne entre le début et la fin en respectant le retrait de texte.
 SQLEditor_beginEndStatement_preview=BEGIN\n\t${cursor}\nEND
 
-SQLEditor_typingAidsTable_context_all=All
+SQLEditor_typingAidsTable_context_all=Tous
 
-SQLEditor_typingAids_preview=Preview:
+SQLEditor_typingAids_preview=Aperçu :
 
-General_max_row_num=Maximum line number must be greater than zero.
-General_invalid_int=\ is not a valid integer
+General_max_row_num=Le nombre maximum de lignes doit être supérieur à zéro.
+General_invalid_int=\ n'est pas un entier valide
 
-GeneralPreferencePage_portable_target=None
-GeneralPreferencePage_execute_error_mode=Whether to continue when error occurs during SQL execution
-GeneralPreferencePage_execute_always=A&lways
-GeneralPreferencePage_execute_never=&Never
-GeneralPreferencePage_execute_prompt=P&rompt
-GeneralPreferencePage_savebeforerenaming_prompt=Pr&ompt
-GeneralPreferencePage_savebeforerenaming_always=Al&ways
-GeneralPreferencePage_title=General settings
-GeneralPreferencePage_description=General settings for the Database Development Tooling.
-GeneralPreferencePage_hover_affordance=Show affordance in &hover on how to make it sticky
-GeneralPreferencePage_portable_check=&Portability check target:
+GeneralPreferencePage_portable_target=Aucun
+GeneralPreferencePage_execute_error_mode=Continuer lorsqu'une erreur se produit lors de l'exécution de SQL ?
+GeneralPreferencePage_execute_always=&Toujours
+GeneralPreferencePage_execute_never=&Jamais
+GeneralPreferencePage_execute_prompt=&Invite
+GeneralPreferencePage_savebeforerenaming_prompt=&Invite
+GeneralPreferencePage_savebeforerenaming_always=&Toujours
+GeneralPreferencePage_title=Paramètres généraux
+GeneralPreferencePage_description=Paramètres généraux pour les outils de développement de base de données.
+GeneralPreferencePage_hover_affordance=Indiquer comment rendre l'élément copiable lors du pointage
+GeneralPreferencePage_portable_check=&Cible de vérification de portabilité :
 
 SyntaxColoringPage_description=Color and style settings for the syntax.
 SyntaxColoringPage_color=&Color:

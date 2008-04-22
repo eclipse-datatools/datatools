@@ -1,14 +1,14 @@
 # template proposal
 TemplateProposal.displayString= {0} - {1}
-TemplateProposal.errorDialog.title=Template Evaluation Error
+TemplateProposal.errorDialog.title=Fehler beim Auswerten der Vorlage
 
-SQLTemplateProposal_proposalInfo=After you fill in the table/procedure name variable, this intelligent template will be expanded into:<br>
+SQLTemplateProposal_proposalInfo=Nachdem Sie die Tabellen-/Prozedurnamenvariable eingegeben haben, wird diese intelligente Vorlage erweitert in:<br>
 
-ContributionTemplateStore_ignore_no_id= Ignoring template {0} since it has no id.
-ContributionTemplateStore_ignore_deleted= Ignoring template {0} since it is deleted.
-ContributionTemplateStore_ignore_validation_failed= Ignoring template {0} since validation failed.
+ContributionTemplateStore_ignore_no_id= Vorlage {0} wird ignoriert, da sie keine ID besitzt.
+ContributionTemplateStore_ignore_deleted= Vorlage {0} wird ignoriert, da sie gelöscht wurde.
+ContributionTemplateStore_ignore_validation_failed= Vorlage {0} wird ignoriert, da die Validierung fehlschlug.
 
-SQLTemplateReaderWriter_duplicate_id= Duplicate template id
-SQLTemplateReaderWriter_error_missing_attribute= Missing required attribute
-SQLTemplateReaderWriter_error_illegal_boolean_attribute= Illegal boolean attribute, must be "true" or "false".
+SQLTemplateReaderWriter_duplicate_id= Doppelte Vorlagen-ID
+SQLTemplateReaderWriter_error_missing_attribute= Erforderliches Attribut fehlt
+SQLTemplateReaderWriter_error_illegal_boolean_attribute= Ungültiges Boolesches Attribut; muss "wahr" oder "falsch" sein.
 

@@ -1,7 +1,7 @@
-ExplainSQLActionDelegate.action_title=&Get Execution Plan
-ExplainSQLActionDelegate.action_tooltip=Explain SQL Execution Plan
-GroupPlanSupportRunnable.continue_explain=Continue Explanation
-GroupPlanSupportRunnable.error_info=Error occurred when explaining last statement(s). Do you want to continue?
-GroupPlanSupportRunnable.sql_execution_plan=SQL execution plan
-GroupPlanSupportRunnable.groups=({0} groups)
-GroupPlanSupportRunnable.group=Group {0}
+ExplainSQLActionDelegate.action_title=Ausführungs&plan abrufen
+ExplainSQLActionDelegate.action_tooltip=SQL-Ausführungsplan erläutern
+GroupPlanSupportRunnable.continue_explain=Erläuterung fortsetzen
+GroupPlanSupportRunnable.error_info=Fehler beim Erläutern der letzten Anweisung(en). Möchten Sie fortfahren?
+GroupPlanSupportRunnable.sql_execution_plan=SQL-Ausführungsplan
+GroupPlanSupportRunnable.groups=({0} Gruppen)
+GroupPlanSupportRunnable.group=Gruppe {0}

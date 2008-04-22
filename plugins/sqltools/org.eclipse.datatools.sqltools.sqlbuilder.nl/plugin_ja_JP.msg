@@ -24,38 +24,38 @@
 ! Menu action labels
 !
 _UI_PLUGIN_PROVIDER            = Eclipse.org
-_UI_PLUGIN_NAME                = SQL Builder
+_UI_PLUGIN_NAME                = SQL ビルダ
 _NL1_PLUGIN_NAME 			   = SQL Builder Nl1 Fragment
-_UI_BUILDER_NAME               = SQL Query Builder
+_UI_BUILDER_NAME               = SQL クエリビルダ
 
 !
 ! SQL Statement actions
 !
-datatools_sqlbuilder_sqlstatement_actions_new = New...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = New SQL Statement...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Create a New Query Statement
-datatools_sqlbuilder_sqlstatement_actions_openwith = Open With
-datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL Query Builder
-datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL Editor
+datatools_sqlbuilder_sqlstatement_actions_new = 新規作成...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = SQL 文の新規作成...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = クエリ文の新規作成
+datatools_sqlbuilder_sqlstatement_actions_openwith = プログラムから開く
+datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL クエリビルダ
+datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL エディタ
 
 !SQL Editor
-datatools_sqlbuilder_sqleditor_tooltip = Open SQL Editor
-datatools_sqlbuilder_sqleditor_title = &SQL Editor
+datatools_sqlbuilder_sqleditor_tooltip = SQL エディタを開く
+datatools_sqlbuilder_sqleditor_title = SQL エディタ(&S)
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal_label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal_tooltip     =Content Assist
+ContentAssistProposal_label       =コンテンツのアシスト(&N)@Ctrl+SPACE
+ContentAssistProposal_tooltip     =コンテンツのアシスト
 ContentAssistProposal_image       =
-ContentAssistProposal_description =Content Assist
+ContentAssistProposal_description =コンテンツのアシスト
 
-ContentTip_label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentTip_tooltip     =Content Tip
+ContentTip_label       =コンテンツのヒント@Ctrl+SHIFT+SPACE
+ContentTip_tooltip     =コンテンツのヒント
 ContentTip_image       =
-ContentTip_description =Content Tip
+ContentTip_description =コンテンツのヒント
 
 # Preference page name
-SQLBuilder.PreferencePageName = SQL Query Builder
+SQLBuilder.PreferencePageName = SQL クエリビルダ
 
 # Editor name for the editor which implements sqleditor's SQLBuilder extension point
-SQLEditor.SQLBuilderName = SQL Query Builder
+SQLEditor.SQLBuilderName = SQL クエリビルダ

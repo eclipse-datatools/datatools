@@ -1,66 +1,66 @@
-common_error=Error
+common_error=Erreur
 
-CutAction_label= Cu&t
-CutAction_tooltip= Cut the Selected Text to the Clipboard
+CutAction_label= Co&uper
+CutAction_tooltip= Couper le texte sélectionné dans le Presse-papiers
 
-CopyAction_label= &Copy
-CopyAction_tooltip= Copy the Selected Text to the Clipboard
+CopyAction_label= &Copier
+CopyAction_tooltip= Copier le texte sélectionné dans le Presse-papiers
 
-CopyToClipboard_error_title= Problem Copying to Clipboard
-CollectionUtil_invalid_size=invalid size
-CopyToClipboard_error_message= There was a problem when accessing the system clipboard. Retry?
+CopyToClipboard_error_title= Problème de copie dans le Presse-papiers
+CollectionUtil_invalid_size=taille invalide
+CopyToClipboard_error_message= Un problème est survenu lors de l'accès au Presse-papiers du système.
 
-DeleteAction_label=&Delete
-DeleteAction_0=Error while trying to delete node:
-DeleteAction_tooltip=Deletes the selected elements
-DeleteAction_confirm_title=Confirm Delete
-DeleteAction_confirm_message=Are you sure you want to delete?
+DeleteAction_label=&Supprimer
+DeleteAction_0=Erreur lors de la tentative de suppression du nœud :
+DeleteAction_tooltip=Supprime les éléments sélectionnés
+DeleteAction_confirm_title=Confirmer la suppression
+DeleteAction_confirm_message=Voulez-vous vraiment procéder à la suppression ?
 
-DeployAction_label=&Save to Server
-DeployAction_error_title=Save Error
-DeployAction_error_message=Failed to save to server
-DeployAction_save_information=Information
-DeployAction_save_message=The object "{0}" was successfully saved to server!
+DeployAction_label=Enregi&strer sur le serveur
+DeployAction_error_title=Erreur d'enregistrement
+DeployAction_error_message=Impossible d'enregistrer sur le serveur
+DeployAction_save_information=Informations
+DeployAction_save_message=L'objet "{0}" a été enregistré avec succès sur le serveur !
 
-PasteAction_label=&Paste
-PasteAction_1=Error while trying to paste:
-PasteAction_tooltip=Pastes elements from the clipboard
+PasteAction_label=&Coller
+PasteAction_1=Erreur lors de la tentative de collage :
+PasteAction_tooltip=Colle les éléments du Presse-papiers
 
-ExecuteSQLAction_label=&Execute All
-ExecuteSQLAction_tooltip=Execute All SQL Statements
+ExecuteSQLAction_label=&Exécuter Tout
+ExecuteSQLAction_tooltip=Exécuter toutes les instructions SQL
 
-ExecuteSelectionSQLAction_label=E&xecute Selected Text
-ExecuteSelectionSQLAction_tooltip=Execute Selected SQL Statements
+ExecuteSelectionSQLAction_label=E&xécuter le texte sélectionné
+ExecuteSelectionSQLAction_tooltip=Exécuter les instructions SQL sélectionnées
 
-DMLDialogSelectionSQLAction_label=Edit in S&QL Query Builder...
-DMLDialogSelectionSQLAction_tooltip=Edit Selected SQL Statements in SQL Query Builder
+DMLDialogSelectionSQLAction_label=Modifier dans le générateur de requête S&QL...
+DMLDialogSelectionSQLAction_tooltip=Modifier les instructions SQL sélectionnées dans le générateur de requête SQL
 
-RunAction_label=&Run...
-RunAction_tooltip=Run
+RunAction_label=&Exécuter...
+RunAction_tooltip=Exécuter
 
-RunAction_runError=Error occurred when executing RunAction
+RunAction_runError=Une erreur s'est produite lors de l'exécution de RunAction
 
-DebugAction_label=&Debug...
-DebugAction_tooltip=Debug
-DebugAction_runError=Error occurred when executing DebugAction
+DebugAction_label=&Déboguer...
+DebugAction_tooltip=Déboguer
+DebugAction_runError=Une erreur s'est produite lors de l'exécution de DebugAction
 
-ExplainSQLAction_label=&Get Execution Plan
-ExplainSQLAction_tooltip=Explain SQL Execution Plan
-ExplainSQLActionDelegate_error_initview=Failed to initialize SQL Execution Plan view:
-ExplainSQLActionDelegate_error_proc_qp=Error occurs when getting query plan for procedural object
+ExplainSQLAction_label=&Obtenir le plan d'exécution
+ExplainSQLAction_tooltip=Expliquer le plan d'exécution SQL
+ExplainSQLActionDelegate_error_initview=Impossible d'initialiser la vue du plan d'exécution SQL :
+ExplainSQLActionDelegate_error_proc_qp=Une erreur se produit lors de l'obtention du plan de requête pour l'objet procédural
 
-ExecuteSQLActionDelegate_error_execute=Failed to execute SQL:
-ExecuteSQLActionDelegate_error_profile=Failed to get connection profile:
-ExecuteSQLActionDelegate_error_initview=Failed to initialize result view:
-ExecuteSQLActionDelegate_error_interrupted=The execution has been interrupted.
+ExecuteSQLActionDelegate_error_execute=Impossible d'exécuter SQL :
+ExecuteSQLActionDelegate_error_profile=Impossible d'obtenir un profil de connexion :
+ExecuteSQLActionDelegate_error_initview=Impossible d'initialiser la vue des résultats :
+ExecuteSQLActionDelegate_error_interrupted=L'exécution a été interrompue.
 
-ToggleComment_error_title=Toggle Comment
-ToggleComment_error_message=An error occurred while toggling comments.
+ToggleComment_error_title=Basculer le commentaire
+ToggleComment_error_message=Une erreur s'est produite lors du basculement des commentaires.
 
-AddTemplateAction_error_write_title=Saving Template
-AddTemplateAction_error_write_message=Failed to save template.
-AddTemplateAction_label=Save as &Template...
-AddTemplateAction_tooltip=Save Selected Text as Template...
+AddTemplateAction_error_write_title=Enregistrement du modèle
+AddTemplateAction_error_write_message=Echec d'enregistrement du modèle.
+AddTemplateAction_label=Enregistrer comme &modèle...
+AddTemplateAction_tooltip=Enregistrer le texte sélectionné comme modèle...
 
-BaseExecuteAction_job_title=SQL Statement Execution
-BaseExecuteAction_group_exec_title=Group Execution
+BaseExecuteAction_job_title=Exécution de l'instruction SQL
+BaseExecuteAction_group_exec_title=Exécution du groupe

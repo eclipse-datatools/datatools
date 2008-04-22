@@ -1,66 +1,66 @@
 common_error=Error
 
-CutAction_label= Cu&t
-CutAction_tooltip= Cut the Selected Text to the Clipboard
+CutAction_label= Cor&tar
+CutAction_tooltip= Cortar el texto seleccionado al Portapapeles
 
-CopyAction_label= &Copy
-CopyAction_tooltip= Copy the Selected Text to the Clipboard
+CopyAction_label= &Copiar
+CopyAction_tooltip= Copiar el texto seleccionado al Portapapeles
 
-CopyToClipboard_error_title= Problem Copying to Clipboard
-CollectionUtil_invalid_size=invalid size
-CopyToClipboard_error_message= There was a problem when accessing the system clipboard. Retry?
+CopyToClipboard_error_title= Problema al copiar al Portapapeles
+CollectionUtil_invalid_size=tamaño no válido
+CopyToClipboard_error_message= Se ha producido un problema al acceder al Portapapeles del sistema. ¿Reintentar?
 
-DeleteAction_label=&Delete
-DeleteAction_0=Error while trying to delete node:
-DeleteAction_tooltip=Deletes the selected elements
-DeleteAction_confirm_title=Confirm Delete
-DeleteAction_confirm_message=Are you sure you want to delete?
+DeleteAction_label=&Eliminar
+DeleteAction_0=Error al intentar eliminar nodo:
+DeleteAction_tooltip=Borra los elementos seleccionados
+DeleteAction_confirm_title=Confirmar eliminación
+DeleteAction_confirm_message=¿Seguro que desea eliminar?
 
-DeployAction_label=&Save to Server
-DeployAction_error_title=Save Error
-DeployAction_error_message=Failed to save to server
-DeployAction_save_information=Information
-DeployAction_save_message=The object "{0}" was successfully saved to server!
+DeployAction_label=Guardar en el &servidor
+DeployAction_error_title=Error al guardar
+DeployAction_error_message=Error al guardar en el servidor
+DeployAction_save_information=Información
+DeployAction_save_message=¡El objeto "{0}" se ha guardado en el servidor!
 
-PasteAction_label=&Paste
-PasteAction_1=Error while trying to paste:
-PasteAction_tooltip=Pastes elements from the clipboard
+PasteAction_label=&Pegar
+PasteAction_1=Error al intentar pegar:
+PasteAction_tooltip=Pega elementos del Portapapeles
 
-ExecuteSQLAction_label=&Execute All
-ExecuteSQLAction_tooltip=Execute All SQL Statements
+ExecuteSQLAction_label=&Ejecutar todo
+ExecuteSQLAction_tooltip=Ejecutar todas las sentencias SQL
 
-ExecuteSelectionSQLAction_label=E&xecute Selected Text
-ExecuteSelectionSQLAction_tooltip=Execute Selected SQL Statements
+ExecuteSelectionSQLAction_label=E&jecutar texto seleccionado
+ExecuteSelectionSQLAction_tooltip=Ejecutar sentencias SQL seleccionadas
 
-DMLDialogSelectionSQLAction_label=Edit in S&QL Query Builder...
-DMLDialogSelectionSQLAction_tooltip=Edit Selected SQL Statements in SQL Query Builder
+DMLDialogSelectionSQLAction_label=Editar en el compilador de consultas S&QL...
+DMLDialogSelectionSQLAction_tooltip=Editar sentencias SQL seleccionadas en el compilador de consultas SQL
 
-RunAction_label=&Run...
-RunAction_tooltip=Run
+RunAction_label=&Ejecutar...
+RunAction_tooltip=Ejecutar
 
-RunAction_runError=Error occurred when executing RunAction
+RunAction_runError=Se ha producido un error al ejecutar RunAction
 
-DebugAction_label=&Debug...
-DebugAction_tooltip=Debug
-DebugAction_runError=Error occurred when executing DebugAction
+DebugAction_label=&Depurar...
+DebugAction_tooltip=Depurar
+DebugAction_runError=Se ha producido un error al ejecutar DebugAction
 
-ExplainSQLAction_label=&Get Execution Plan
-ExplainSQLAction_tooltip=Explain SQL Execution Plan
-ExplainSQLActionDelegate_error_initview=Failed to initialize SQL Execution Plan view:
-ExplainSQLActionDelegate_error_proc_qp=Error occurs when getting query plan for procedural object
+ExplainSQLAction_label=&Obtener plan de ejecución
+ExplainSQLAction_tooltip=Explicar plan de ejecución SQL
+ExplainSQLActionDelegate_error_initview=Error al inicializar vista del plan de ejecución SQL:
+ExplainSQLActionDelegate_error_proc_qp=Se ha producido un error al obtener el plan de consulta para objeto de procedimiento
 
-ExecuteSQLActionDelegate_error_execute=Failed to execute SQL:
-ExecuteSQLActionDelegate_error_profile=Failed to get connection profile:
-ExecuteSQLActionDelegate_error_initview=Failed to initialize result view:
-ExecuteSQLActionDelegate_error_interrupted=The execution has been interrupted.
+ExecuteSQLActionDelegate_error_execute=Error al ejecutar SQL:
+ExecuteSQLActionDelegate_error_profile=Error al obtener el perfil de conexión:
+ExecuteSQLActionDelegate_error_initview=Error al inicializar vista de resultado:
+ExecuteSQLActionDelegate_error_interrupted=Se ha interrumpido la ejecución.
 
-ToggleComment_error_title=Toggle Comment
-ToggleComment_error_message=An error occurred while toggling comments.
+ToggleComment_error_title=Alternar comentario
+ToggleComment_error_message=Se ha producido un error al alternar comentarios.
 
-AddTemplateAction_error_write_title=Saving Template
-AddTemplateAction_error_write_message=Failed to save template.
-AddTemplateAction_label=Save as &Template...
-AddTemplateAction_tooltip=Save Selected Text as Template...
+AddTemplateAction_error_write_title=Guardando plantilla
+AddTemplateAction_error_write_message=Error al guardar plantilla.
+AddTemplateAction_label=Grabar como &plantilla...
+AddTemplateAction_tooltip=Grabar texto seleccionado como plantilla...
 
-BaseExecuteAction_job_title=SQL Statement Execution
-BaseExecuteAction_group_exec_title=Group Execution
+BaseExecuteAction_job_title=Ejecución de sentencia SQL
+BaseExecuteAction_group_exec_title=Ejecución de grupo

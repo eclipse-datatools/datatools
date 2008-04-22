@@ -25,37 +25,37 @@
 !
 _UI_PLUGIN_PROVIDER            = Eclipse.org
 _UI_PLUGIN_NAME                = SQL Builder
-_NL1_PLUGIN_NAME 			   = SQL Builder Nl1 Fragment
-_UI_BUILDER_NAME               = SQL Query Builder
+_NL1_PLUGIN_NAME 			   = SQL Builder Nl1-Fragment
+_UI_BUILDER_NAME               = SQL-Abfrageerstellung
 
 !
 ! SQL Statement actions
 !
-datatools_sqlbuilder_sqlstatement_actions_new = New...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = New SQL Statement...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Create a New Query Statement
-datatools_sqlbuilder_sqlstatement_actions_openwith = Open With
-datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL Query Builder
-datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL Editor
+datatools_sqlbuilder_sqlstatement_actions_new = Neu....
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = Neue SQL-Anweisung...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Neue Abfrageanweisung erstellen
+datatools_sqlbuilder_sqlstatement_actions_openwith = Öffnen mit
+datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL-Abfrageerstellung
+datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL-Editor
 
 !SQL Editor
-datatools_sqlbuilder_sqleditor_tooltip = Open SQL Editor
-datatools_sqlbuilder_sqleditor_title = &SQL Editor
+datatools_sqlbuilder_sqleditor_tooltip = SQL-Editor öffnen
+datatools_sqlbuilder_sqleditor_title = &SQL-Editor
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal_label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal_tooltip     =Content Assist
+ContentAssistProposal_label       =Hilfe zum &Inhalt@Strg+Leerzeichen
+ContentAssistProposal_tooltip     =Hilfe zum Inhalt
 ContentAssistProposal_image       =
-ContentAssistProposal_description =Content Assist
+ContentAssistProposal_description =Hilfe zum Inhalt
 
-ContentTip_label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentTip_tooltip     =Content Tip
+ContentTip_label       =Tipp zum Inhalt@Strg+Umschalt+Leerzeichen
+ContentTip_tooltip     =Tipp zum Inhalt
 ContentTip_image       =
-ContentTip_description =Content Tip
+ContentTip_description =Tipp zum Inhalt
 
 # Preference page name
-SQLBuilder.PreferencePageName = SQL Query Builder
+SQLBuilder.PreferencePageName = SQL-Abfrageerstellung
 
 # Editor name for the editor which implements sqleditor's SQLBuilder extension point
-SQLEditor.SQLBuilderName = SQL Query Builder
+SQLEditor.SQLBuilderName = SQL-Abfrageerstellung

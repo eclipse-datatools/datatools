@@ -1,24 +1,24 @@
-ParseException_expecting=Was expecting:
-ParseException_encountered=Encountered "
-ParseException_atline=" at line
-ParseException_atcolumn=, column
-ParseException_period=.
-ParseException_expection_oneof=Was expecting one of:
+ParseException_expecting=预期:
+ParseException_encountered=遇到 "
+ParseException_atline="，行
+ParseException_atcolumn=，列
+ParseException_period=。
+ParseException_expection_oneof=预期下列之一:
 
-JavaCharStream_invalid_escape=Invalid escape character at line {0} column {0}.
+JavaCharStream_invalid_escape=第 {0} 行第 {0} 列出现无效转义字符。
 
-SimpleNode_1=Error while trying to get position of node:
-SimpleNode_2=Error to getSQLText:
-SimpleNode_3=Error while trying to delete node:
+SimpleNode_1=尝试获取节点位置时出错:
+SimpleNode_2=执行 getSQLText 时出错:
+SimpleNode_3=尝试删除节点时出错:
 
 ####################################################
 #  SQL ParserExpection Message
 ####################################################
-SQLParser_datatype_judgeLength = Precision must be great than zero
-SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
-SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+SQLParser_datatype_judgeLength = 精度必须大于零
+SQLParser_datatype_judgeLengthAndScale = 必须指定小于或等于该大小的数值
+SQLParser_datatype_exceed_maxlength = 允许的最大字符串字节长度为 32767。
 
-TokenMgrError_lexical_error=Lexical error at line {0}, column {1}.  Encountered: {2}, after : "{3}"
+TokenMgrError_lexical_error=第 {0} 行第 {1} 列出现词法错误。在“{3}”之后遇到了 {2}。
 TokenMgrError_eof=<EOF>
 TokenMgrError_currentchar="{0}" ({1})
 

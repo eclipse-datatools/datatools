@@ -1,78 +1,78 @@
 
-CodeAssist_description=Code assist settings for SQL Editor
-CodeAssist_general_title=&General
-CodeAssist_showSystemGroup=Show database objects
-CodeAssist_showSystemTables=Show system &tables
-CodeAssist_showSystemProcedures=Show system &procedures and functions
-CodeAssist_showOwnerOfTable=Show &owner of table or view
-CodeAssist_asa_tips=The following preferences are only available for SQL Anywhere database:
-CodeAssist_showSystemViews=Show system &views
-CodeAssist_asa_titile=&ASA
-CodeAssist_insertSingleProposals=&Insert single proposals automatically
-CodeAssist_autoActivationGroup=Auto Activation
-CodeAssist_enableAuto=&Enable auto activation
-CodeAssist_autoActivationDelay=A&uto activation delay:
-CodeAssist_autoActivationTriggers=Auto activation triggers for SQL:
+CodeAssist_description=SQL 편집자용 코드 지원 설정
+CodeAssist_general_title=일반(&G)
+CodeAssist_showSystemGroup=데이터베이스 개체 보기
+CodeAssist_showSystemTables=시스템 테이블 보기(&T)
+CodeAssist_showSystemProcedures=시스템 프로시저와 함수 보기
+CodeAssist_showOwnerOfTable=테이블 또는 뷰 소유자 보기
+CodeAssist_asa_tips=다음 기본 설정은 SQL Anywhere 데이터베이스에만 사용할 수 있습니다:
+CodeAssist_showSystemViews=시스템 뷰 보기(&V)
+CodeAssist_asa_titile=&ASA(&A)
+CodeAssist_insertSingleProposals=단일 제안 자동 삽입(&I)
+CodeAssist_autoActivationGroup=자동 실행
+CodeAssist_enableAuto=자동 실행 사용(&E)
+CodeAssist_autoActivationDelay=자동 실행 지연(&U)
+CodeAssist_autoActivationTriggers=SQL용 자동 실행 트리거:
 
 
 
 
-SQLEditor_general_title=&General
-SQLEditor_syntaxValidationGroup=&Syntax validation
-SQLEditor_syntaxValidation=E&nable syntax validation
-SQLEditor_syntaxValidation_tooltip=Perform syntax validation and update SQL statement structures in Outline view
-SQLEditor_maxLineButton=&Maximum number of lines:
-SQLEditor_maxLineButton_tooltip=Disable syntax validation when content exceeds maximum number of lines
-SQLEditor_showPromptDialog=Prompt to disable syntax validation when content exceeds maximum number of lines
+SQLEditor_general_title=일반(&G)
+SQLEditor_syntaxValidationGroup=구문 유효성 검사(&S)
+SQLEditor_syntaxValidation=구문 유효성 검사 사용(&N)
+SQLEditor_syntaxValidation_tooltip=구문 유효성 검사를 실행하고 윤곽선 보기의 SQL 문 구조를 업데이트 하십시오.
+SQLEditor_maxLineButton=최대 줄 수(&M):
+SQLEditor_maxLineButton_tooltip=내용이 최대 줄 수를 초과하면 구문 유효성 검사를 사용할 수 없습니다.
+SQLEditor_showPromptDialog=내용이 최대 줄 수를 초과하면 구문 유효성 검사를 즉시 사용할 수 없습니다.
 
-SQLEditor_showSyntaxErorrDetail=S&how detailed annotation information
-SQLEditor_showSyntaxErorrDetail_tooltip=Show detailed annotation information, such as some syntax proposals
+SQLEditor_showSyntaxErorrDetail=상세 주석 정보표시(&H)
+SQLEditor_showSyntaxErorrDetail_tooltip=몇 가지 구문 제안과 같은 상세 주석 정보 보기
 
-SQLEditor_typing_title=&Typing
-SQLEditor_typingAidsGroup_title=Enable these typing aids in Smart Insert mode:
-SQLEditor_typingAidsTable_columnName1=Name
-SQLEditor_typingAidsTable_columnName2=Context
-SQLEditor_typingAidsTable_columnName3=Description
+SQLEditor_typing_title=입력(&T)
+SQLEditor_typingAidsGroup_title=스마트 삽입 모드의 입력 보조 기능 사용:
+SQLEditor_typingAidsTable_columnName1=이름
+SQLEditor_typingAidsTable_columnName2=컨텍스트
+SQLEditor_typingAidsTable_columnName3=설명
 
-SQLEditor_closeSingleQuotes=Close single quotes
-SQLEditor_closeSingleQuotes_description=If enabled, close single quotes.
-SQLEditor_closeSingleQuotes_preview='${cursor}'
+SQLEditor_closeSingleQuotes=작은 따옴표 닫기
+SQLEditor_closeSingleQuotes_description=사용 가능한 경우, 작은 따옴표를 닫으십시오.
+SQLEditor_closeSingleQuotes_preview='${커서}'
 
-SQLEditor_closeDoubleQuotes=Close double quotes
-SQLEditor_closeDoubleQuotes_description=If enabled, close double quotes.
-SQLEditor_closeDoubleQuotes_preview="${cursor}"
+SQLEditor_closeDoubleQuotes=큰 따옴표 닫기
+SQLEditor_closeDoubleQuotes_description=사용 가능한 경우, 큰 따옴표를 닫으십시오.
+SQLEditor_closeDoubleQuotes_preview="${커서}"
 
-SQLEditor_closeBrackets=Close parentheses
-SQLEditor_closeBrackets_description=If enabled, close parentheses.
-SQLEditor_closeBrackets_preview=(${cursor})
+SQLEditor_closeBrackets=괄호 닫기
+SQLEditor_closeBrackets_description=사용 가능한 경우, 괄호를 닫으십시오.
+SQLEditor_closeBrackets_preview=(${커서})
 
-SQLEditor_closeComments=Close comments
-SQLEditor_closeComments_description=If enabled, close SQL multi-line comments.
-SQLEditor_closeComments_preview=/*\n *${cursor}\n */
+SQLEditor_closeComments=설명 닫기
+SQLEditor_closeComments_description=사용 가능한 경우, 다중 선 설명을 닫으십시오.
+SQLEditor_closeComments_preview=/*\n *${커서}\n */
 
 
-SQLEditor_beginEndStatement=Begin-End
-SQLEditor_beginEndStatement_description=Add the 'end' with proper indentation, then move the cursor to a new line between Begin/End with proper indentation.
-SQLEditor_beginEndStatement_preview=BEGIN\n\t${cursor}\nEND
+SQLEditor_beginEndStatement=BEGIN-END
+SQLEditor_beginEndStatement_description=알맞게 들여쓰기하여 '끝'을 추가한 다음, 커서를 알맞게 들여쓰기하여 시작/끝 사이의 새 줄로 이동하십시오.
+SQLEditor_beginEndStatement_preview=BEGIN\n\t${커서}\nEND
 
-SQLEditor_typingAidsTable_context_all=All
+SQLEditor_typingAidsTable_context_all=모두
 
-SQLEditor_typingAids_preview=Preview:
+SQLEditor_typingAids_preview=미리 보기:
 
-General_max_row_num=Maximum line number must be greater than zero.
-General_invalid_int=\ is not a valid integer
+General_max_row_num=최대 줄 번호는 0보다 커야 합니다.
+General_invalid_int=\ 올바른 정수 아님
 
-GeneralPreferencePage_portable_target=None
-GeneralPreferencePage_execute_error_mode=Whether to continue when error occurs during SQL execution
-GeneralPreferencePage_execute_always=A&lways
-GeneralPreferencePage_execute_never=&Never
-GeneralPreferencePage_execute_prompt=P&rompt
-GeneralPreferencePage_savebeforerenaming_prompt=Pr&ompt
-GeneralPreferencePage_savebeforerenaming_always=Al&ways
-GeneralPreferencePage_title=General settings
-GeneralPreferencePage_description=General settings for the Database Development Tooling.
-GeneralPreferencePage_hover_affordance=Show affordance in &hover on how to make it sticky
-GeneralPreferencePage_portable_check=&Portability check target:
+GeneralPreferencePage_portable_target=없음
+GeneralPreferencePage_execute_error_mode=SQL 실행 중 오류가 발생했을 때 계속 여부
+GeneralPreferencePage_execute_always=항상(&L)
+GeneralPreferencePage_execute_never=안 함(&N)
+GeneralPreferencePage_execute_prompt=묻기(&R)
+GeneralPreferencePage_savebeforerenaming_prompt=묻기(&O)
+GeneralPreferencePage_savebeforerenaming_always=항상(&W)
+GeneralPreferencePage_title=일반 설정
+GeneralPreferencePage_description=데이터베이스 개발 도구의 일반 설정.
+GeneralPreferencePage_hover_affordance=가리킴의 행동 유동성 보기(&H)
+GeneralPreferencePage_portable_check=이식성 확인 대상(&P):
 
 SyntaxColoringPage_description=Color and style settings for the syntax.
 SyntaxColoringPage_color=&Color:
@@ -82,4 +82,3 @@ SyntaxColoringPage_strikethrough=&Strikethrough
 SyntaxColoringPage_underline=&Underline
 SyntaxColoringPage_preview=Previe&w:
 SyntaxColoringPage_syntax_items=S&yntax items:
-

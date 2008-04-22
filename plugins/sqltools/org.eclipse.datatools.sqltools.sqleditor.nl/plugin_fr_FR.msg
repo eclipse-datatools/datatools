@@ -1,23 +1,23 @@
-category.datatools.name=Database Tools
-category.datatools.description=Database Development tools
+category.datatools.name=Outils de base de données
+category.datatools.description=Outils de développement de base de données
 
-DatabaseManagement.command.explain=Get Execution Plan
-DatabaseManagement.command.execute=Execute All
-DatabaseManagement.command.execute.select=Execute Selected Text
-DatabaseManagement.command.dmldialog.select=Edit in SQL Query Builder...
-DatabaseManagement.ToggleComment=Toggle Comment
-DatabaseManagement.command.run=Run
-DatabaseManagement.command.debug=Debug
-DatabaseManagement.command.savetodb=Save to Database
-DatabaseManagement.command.refresh=Refresh from Database
-DatabaseManagement.command.saveAsTemplate=Save as Template
+DatabaseManagement.command.explain=Obtenir le plan d'exécution
+DatabaseManagement.command.execute=Exécuter Tout
+DatabaseManagement.command.execute.select=Exécuter le texte sélectionné
+DatabaseManagement.command.dmldialog.select=Modifier dans le générateur de requête SQL...
+DatabaseManagement.ToggleComment=Basculer le commentaire
+DatabaseManagement.command.run=Exécuter
+DatabaseManagement.command.debug=Déboguer
+DatabaseManagement.command.savetodb=Enregistrer dans la base de données
+DatabaseManagement.command.refresh=Actualiser à partir de la base de données
+DatabaseManagement.command.saveAsTemplate=Enregistrer comme modèle
 
-sqlEditorName=SQL Editor
+sqlEditorName=Editeur SQL
 
-sqlProblemName=SQL Syntax Validation Problem
-sqlPortabilityName=SQL Portability Task
+sqlProblemName=Problème de validation de syntaxe SQL
+sqlPortabilityName=Tâche de portabilité SQL
 
-database.development.perspective=Database Development
+database.development.perspective=Développement de base de données
 
 templates.sql.generic.contextType.name=SQL
 templates.sql.asa.contextType.name=SQL-ASA
@@ -25,17 +25,17 @@ templates.sql.ase.contextType.name=SQL-ASE
 templates.sql.ase15.contextType.name=SQL-ASE15
 templates.sql.asiq.contextType.name=SQL-ASIQ
 
-context.editingSQL.name= Editing SQL
-context.editingSQL.description= Editing SQL Context
+context.editingSQL.name= Modification de SQL
+context.editingSQL.description= Modification du contexte SQL
 
-ActionDefinition.showSQLInfo.name= Show SQL Information
-ActionDefinition.showSQLInfo.description= Shows the SQL information for the element at the cursor position
+ActionDefinition.showSQLInfo.name= Afficher les informations SQL
+ActionDefinition.showSQLInfo.description= Afficher les informations SQL pour l'élément à la position du curseur
 
 #preference page names
-DatabaseManagement.General=General
-DatabaseManagement.EditorTemplates=Templates
+DatabaseManagement.General=Général
+DatabaseManagement.EditorTemplates=Modèles
 DatabaseManagement.CodeAssist=Code Assist
-DatabaseManagement.SQLEditor=SQL Editor
-DatabaseManagement.ConnectionOptions=Connection Level Options
+DatabaseManagement.SQLEditor=Editeur SQL
+DatabaseManagement.ConnectionOptions=Options de niveau de connexion
 DatabaseManagement.SyntaxColoring=Syntax Coloring
 

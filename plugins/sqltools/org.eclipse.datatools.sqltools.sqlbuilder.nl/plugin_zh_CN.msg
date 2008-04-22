@@ -24,38 +24,38 @@
 ! Menu action labels
 !
 _UI_PLUGIN_PROVIDER            = Eclipse.org
-_UI_PLUGIN_NAME                = SQL Builder
-_NL1_PLUGIN_NAME 			   = SQL Builder Nl1 Fragment
-_UI_BUILDER_NAME               = SQL Query Builder
+_UI_PLUGIN_NAME                = SQL 生成器
+_NL1_PLUGIN_NAME 			   = SQL 生成器 Nl1 片段
+_UI_BUILDER_NAME               = SQL 查询生成器
 
 !
 ! SQL Statement actions
 !
-datatools_sqlbuilder_sqlstatement_actions_new = New...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = New SQL Statement...
-datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = Create a New Query Statement
-datatools_sqlbuilder_sqlstatement_actions_openwith = Open With
-datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL Query Builder
-datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL Editor
+datatools_sqlbuilder_sqlstatement_actions_new = 新建...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement = 新建 SQL 语句...
+datatools_sqlbuilder_sqlstatement_actions_newSQLStatement_tooltip = 创建新查询语句
+datatools_sqlbuilder_sqlstatement_actions_openwith = 打开方式
+datatools_sqlbuilder_sqlstatement_actions_sqlbuilder = SQL 查询生成器
+datatools_sqlbuilder_sqlstatement_actions_sqleditor = SQL 编辑器
 
 !SQL Editor
-datatools_sqlbuilder_sqleditor_tooltip = Open SQL Editor
-datatools_sqlbuilder_sqleditor_title = &SQL Editor
+datatools_sqlbuilder_sqleditor_tooltip = 打开 SQL 编辑器
+datatools_sqlbuilder_sqleditor_title = SQL 编辑器(&S)
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal_label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal_tooltip     =Content Assist
+ContentAssistProposal_label       =内容助手@Ctrl+SPACE(&N)
+ContentAssistProposal_tooltip     =内容助手
 ContentAssistProposal_image       =
-ContentAssistProposal_description =Content Assist
+ContentAssistProposal_description =内容助手
 
-ContentTip_label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentTip_tooltip     =Content Tip
+ContentTip_label       =内容提示@Ctrl+SHIFT+SPACE
+ContentTip_tooltip     =内容提示
 ContentTip_image       =
-ContentTip_description =Content Tip
+ContentTip_description =内容提示
 
 # Preference page name
-SQLBuilder.PreferencePageName = SQL Query Builder
+SQLBuilder.PreferencePageName = SQL 查询生成器
 
 # Editor name for the editor which implements sqleditor's SQLBuilder extension point
-SQLEditor.SQLBuilderName = SQL Query Builder
+SQLEditor.SQLBuilderName = SQL 查询生成器

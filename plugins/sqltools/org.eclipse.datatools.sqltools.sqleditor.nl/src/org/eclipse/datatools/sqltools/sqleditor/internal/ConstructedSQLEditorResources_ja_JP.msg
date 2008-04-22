@@ -11,56 +11,55 @@
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal.label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal.tooltip     =Content Assist
+ContentAssistProposal.label       =コンテンツのアシスト(&N)@Ctrl+SPACE
+ContentAssistProposal.tooltip     =コンテンツのアシスト
 ContentAssistProposal.image       =
-ContentAssistProposal.description =Content Assist
+ContentAssistProposal.description =コンテンツのアシスト
 
-ContentAssistTip.label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentAssistTip.tooltip     =Content Tip
+ContentAssistTip.label       =コンテンツのヒント@Ctrl+SHIFT+SPACE
+ContentAssistTip.tooltip     =コンテンツのヒント
 ContentAssistTip.image       =
-ContentAssistTip.description =Content Tip
+ContentAssistTip.description =コンテンツのヒント
 
-ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
-ContentFormat.tooltip     =Format SQL
+ContentFormat.label       =SQL の書式設定(&O)@Ctrl+SHIFT+F
+ContentFormat.tooltip     =SQL の書式設定
 ContentFormat.image       =
-ContentFormat.description =Format SQL source
+ContentFormat.description =SQL ソースの書式設定
 
 ## Resources for SQL Editor-specific actions
 
 # Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
-SQLEditor.connectAction.label       =Connect to Data&base
-SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.label       =データベースに接続(&B)
+SQLEditor.connectAction.tooltip     =データベース接続を選択・作成する
 SQLEditor.connectAction.image       =
-SQLEditor.connectAction.description =Select or create the database connection for this editor
+SQLEditor.connectAction.description =このエディタのデータベース接続を選択・作成します。
 
-SQLEditor.disconnectAction.label       =Disconnect fro&m Database
-SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.label       =データベースから切断(&M)
+SQLEditor.disconnectAction.tooltip     =エディタをデータベースから切断する
 SQLEditor.disconnectAction.image       =
-SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+SQLEditor.disconnectAction.description =エディタを接続されているデータベースから切断します。
 
-SQLEditor.runAction.label       =Run S&QL
-SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.label       =SQL の実行(&Q)
+SQLEditor.runAction.tooltip     =SQL 文を実行する
 SQLEditor.runAction.image       =
-SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+SQLEditor.runAction.description =接続されているデータベースに対して、SQL 文をエディタで実行します。
 
-SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
-SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.label       =文の終結子を設定(&E)
+SQLEditor.setStatementTerminatorAction.tooltip     =文の終結子を設定する
 SQLEditor.setStatementTerminatorAction.image       =
-SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+SQLEditor.setStatementTerminatorAction.description =SQL 文を区切るためにエディタで使用する文字列を設定します。
 
-SQLEditor.action.toggle.commect.label=Togg&le Comment
-SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.label=コメントの切り替え(&L)
+SQLEditor.action.toggle.commect.tooltip=選択した行のコメントを切り替える
 SQLEditor.action.toggle.commect.image=
-SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+SQLEditor.action.toggle.commect.description=選択した行のコメントを切り替えます。
 
-AddTemplateAction.label=Save as &Template...
-AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.label=テンプレートとして保存(&T)...
+AddTemplateAction.tooltip=選択したテキストをテンプレートとして保存する...
 AddTemplateAction.image=
-AddTemplateAction.description=Save Selected Text as Template...
+AddTemplateAction.description=選択したテキストをテンプレートとして保存する...
 
-Editor.ContextPreferencesAction.label=Preferences...
-Editor.ContextPreferencesAction.description=Show preferences
-Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.label=環境設定...
+Editor.ContextPreferencesAction.description=環境設定を表示します。
+Editor.ContextPreferencesAction.tooltip=環境設定を表示する
 Editor.ContextPreferencesAction.image=
-

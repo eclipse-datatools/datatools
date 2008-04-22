@@ -1,24 +1,24 @@
-ParseException_expecting=Was expecting:
-ParseException_encountered=Encountered "
-ParseException_atline=" at line
-ParseException_atcolumn=, column
+ParseException_expecting=Se esperaba:
+ParseException_encountered=Se ha encontrado "
+ParseException_atline=" en la línea
+ParseException_atcolumn=, columna
 ParseException_period=.
-ParseException_expection_oneof=Was expecting one of:
+ParseException_expection_oneof=Se esperaba uno de:
 
-JavaCharStream_invalid_escape=Invalid escape character at line {0} column {0}.
+JavaCharStream_invalid_escape=Carácter de escape no válido en la línea {0} columna {0}.
 
-SimpleNode_1=Error while trying to get position of node:
-SimpleNode_2=Error to getSQLText:
-SimpleNode_3=Error while trying to delete node:
+SimpleNode_1=Error al intentar obtener la posición del nodo:
+SimpleNode_2=Error en getSQLText:
+SimpleNode_3=Error al intentar eliminar nodo:
 
 ####################################################
 #  SQL ParserExpection Message
 ####################################################
-SQLParser_datatype_judgeLength = Precision must be great than zero
-SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
-SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+SQLParser_datatype_judgeLength = Precisión debe ser mayor que cero
+SQLParser_datatype_judgeLengthAndScale = Debe especificar una escala que sea menor o igual que el tamaño
+SQLParser_datatype_exceed_maxlength = La longitud máxima en bytes del string permitida es de 32767.
 
-TokenMgrError_lexical_error=Lexical error at line {0}, column {1}.  Encountered: {2}, after : "{3}"
+TokenMgrError_lexical_error=Error léxico en la línea {0}, columna {1}.  Se ha encontrado: {2}, después: "{3}"
 TokenMgrError_eof=<EOF>
 TokenMgrError_currentchar="{0}" ({1})
 

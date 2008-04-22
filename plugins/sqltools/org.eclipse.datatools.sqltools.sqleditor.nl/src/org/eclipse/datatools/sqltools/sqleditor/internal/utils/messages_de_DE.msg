@@ -1,2 +1,2 @@
-Cannot_disconnect_before_save=Cannot disconnect without saving the editor changes
-Disconnect_error=Error
+Cannot_disconnect_before_save=Kann Verbindung nicht trennen, ohne die Editoränderungen zu speichern
+Disconnect_error=Fehler

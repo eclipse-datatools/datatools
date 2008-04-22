@@ -1,24 +1,24 @@
-ParseException_expecting=Was expecting:
-ParseException_encountered=Encountered "
-ParseException_atline=" at line
-ParseException_atcolumn=, column
+ParseException_expecting=필요:
+ParseException_encountered=발생 "
+ParseException_atline="이(가) 열
+ParseException_atcolumn=줄에 발생했습니다.
 ParseException_period=.
-ParseException_expection_oneof=Was expecting one of:
+ParseException_expection_oneof=다음 중 하나 필요:
 
-JavaCharStream_invalid_escape=Invalid escape character at line {0} column {0}.
+JavaCharStream_invalid_escape=열 {0} 줄 {0}에 잘못된 확장 문자가 있습니다.
 
-SimpleNode_1=Error while trying to get position of node:
-SimpleNode_2=Error to getSQLText:
-SimpleNode_3=Error while trying to delete node:
+SimpleNode_1=노드의 위치를 가져오는 중 오류가 발생했습니다.
+SimpleNode_2=SQL 텍스트를 가져오는 중 오류가 발생했습니다.
+SimpleNode_3=노드 삭제 중 오류 발생:
 
 ####################################################
 #  SQL ParserExpection Message
 ####################################################
-SQLParser_datatype_judgeLength = Precision must be great than zero
-SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
-SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+SQLParser_datatype_judgeLength = 정밀도는 0보다 커야 합니다.
+SQLParser_datatype_judgeLengthAndScale = 0보다 작거나 같은 배율을 지정해야 합니다.
+SQLParser_datatype_exceed_maxlength = 문자열의 최대 허용 길이(바이트)는 32767입니다.
 
-TokenMgrError_lexical_error=Lexical error at line {0}, column {1}.  Encountered: {2}, after : "{3}"
+TokenMgrError_lexical_error=줄 {0}, 열 {1}에서 어휘 오류가 발생했습니다. 다음 이후 발생: {2}, 먼저 발생한 오류 : "{3}"
 TokenMgrError_eof=<EOF>
 TokenMgrError_currentchar="{0}" ({1})
 

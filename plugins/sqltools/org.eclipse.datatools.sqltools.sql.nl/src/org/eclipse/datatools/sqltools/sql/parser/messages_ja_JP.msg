@@ -1,24 +1,24 @@
-ParseException_expecting=Was expecting:
-ParseException_encountered=Encountered "
-ParseException_atline=" at line
-ParseException_atcolumn=, column
-ParseException_period=.
-ParseException_expection_oneof=Was expecting one of:
+ParseException_expecting=結果の予測値 :
+ParseException_encountered=実際の結果 : "
+ParseException_atline=" 行 :
+ParseException_atcolumn=、列 :
+ParseException_period=
+ParseException_expection_oneof=結果の予想値 (次のうちの 1 つ) :
 
-JavaCharStream_invalid_escape=Invalid escape character at line {0} column {0}.
+JavaCharStream_invalid_escape=行 {0}、列 {0} にあるエスケープ文字が無効です。
 
-SimpleNode_1=Error while trying to get position of node:
-SimpleNode_2=Error to getSQLText:
-SimpleNode_3=Error while trying to delete node:
+SimpleNode_1=ノードの位置を取得中にエラーが発生しました :
+SimpleNode_2=getSQLText でエラーが発生しました :
+SimpleNode_3=ノードの削除中にエラーが発生しました :
 
 ####################################################
 #  SQL ParserExpection Message
 ####################################################
-SQLParser_datatype_judgeLength = Precision must be great than zero
-SQLParser_datatype_judgeLengthAndScale = You must specify a scale that is less than or equal to the size
-SQLParser_datatype_exceed_maxlength = The maximum length in bytes of the string allowed is 32767.
+SQLParser_datatype_judgeLength = 精度はゼロよりも大きな値にしてください。
+SQLParser_datatype_judgeLengthAndScale = スケールはサイズ以下の値にしてください。
+SQLParser_datatype_exceed_maxlength = 文字列の長さは最大 32767 バイトです。
 
-TokenMgrError_lexical_error=Lexical error at line {0}, column {1}.  Encountered: {2}, after : "{3}"
+TokenMgrError_lexical_error=行 {0}、列 {1} で語彙エラーが発生しました  : {2} ("{3}" の後)
 TokenMgrError_eof=<EOF>
 TokenMgrError_currentchar="{0}" ({1})
 

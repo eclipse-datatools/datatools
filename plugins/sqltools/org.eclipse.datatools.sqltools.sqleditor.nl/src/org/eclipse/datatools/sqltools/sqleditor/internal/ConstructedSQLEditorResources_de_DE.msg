@@ -11,56 +11,55 @@
 
 ## Resources for the standard editor actions
 
-ContentAssistProposal.label       =Co&ntent Assist@Ctrl+SPACE
-ContentAssistProposal.tooltip     =Content Assist
+ContentAssistProposal.label       =Hilfe zum &Inhalt@Strg+Leerzeichen
+ContentAssistProposal.tooltip     =Hilfe zum Inhalt
 ContentAssistProposal.image       =
-ContentAssistProposal.description =Content Assist
+ContentAssistProposal.description =Hilfe zum Inhalt
 
-ContentAssistTip.label       =Content Tip@Ctrl+SHIFT+SPACE
-ContentAssistTip.tooltip     =Content Tip
+ContentAssistTip.label       =Tipp zum Inhalt@Strg+Umschalt+Leerzeichen
+ContentAssistTip.tooltip     =Tipp zum Inhalt
 ContentAssistTip.image       =
-ContentAssistTip.description =Content Tip
+ContentAssistTip.description =Tipp zum Inhalt
 
-ContentFormat.label       =F&ormat SQL@Ctrl+SHIFT+F
-ContentFormat.tooltip     =Format SQL
+ContentFormat.label       =SQL f&ormatieren@Strg+Umschalt+F
+ContentFormat.tooltip     =SQL formatieren
 ContentFormat.image       =
-ContentFormat.description =Format SQL source
+ContentFormat.description =SQL-Quelle formatieren
 
 ## Resources for SQL Editor-specific actions
 
 # Note: the image entry is the relative path from the xxxAction.class file to the yyy.gif file
-SQLEditor.connectAction.label       =Connect to Data&base
-SQLEditor.connectAction.tooltip     =Select or create a database connection
+SQLEditor.connectAction.label       =Mit Daten&bank verbinden
+SQLEditor.connectAction.tooltip     =Datenbankverbindung auswählen oder erstellen
 SQLEditor.connectAction.image       =
-SQLEditor.connectAction.description =Select or create the database connection for this editor
+SQLEditor.connectAction.description =Datenbankverbindung für diesen Editor auswählen oder erstellen
 
-SQLEditor.disconnectAction.label       =Disconnect fro&m Database
-SQLEditor.disconnectAction.tooltip     =Disconnect the editor from the database
+SQLEditor.disconnectAction.label       =Vo&n Datenbank trennen
+SQLEditor.disconnectAction.tooltip     =Editor von der Datenbank trennen
 SQLEditor.disconnectAction.image       =
-SQLEditor.disconnectAction.description =Disconnect the editor from connected the database
+SQLEditor.disconnectAction.description =Editor von der verbundenen Datenbank trennen
 
-SQLEditor.runAction.label       =Run S&QL
-SQLEditor.runAction.tooltip     =Run the SQL statements
+SQLEditor.runAction.label       =S&QL ausführen
+SQLEditor.runAction.tooltip     =SQL-Anweisungen ausführen
 SQLEditor.runAction.image       =
-SQLEditor.runAction.description =Run the SQL statements in the editor on the connected database
+SQLEditor.runAction.description =Die SQL-Anweisungen in dem Editor der verbundenen Datenbank ausführen
 
-SQLEditor.setStatementTerminatorAction.label       =Set Statement T&erminator
-SQLEditor.setStatementTerminatorAction.tooltip     =Set the statement terminator
+SQLEditor.setStatementTerminatorAction.label       =Anweisungsab&bruchzeichen festlegen
+SQLEditor.setStatementTerminatorAction.tooltip     =Anweisungsabbruchzeichen festlegen
 SQLEditor.setStatementTerminatorAction.image       =
-SQLEditor.setStatementTerminatorAction.description =Set the string that the editor should use to separate SQL statements
+SQLEditor.setStatementTerminatorAction.description =Zeichenfolge festlegen, anhand derer der Editor SQL-Anweisungen voneinander trennt
 
-SQLEditor.action.toggle.commect.label=Togg&le Comment
-SQLEditor.action.toggle.commect.tooltip=Toggle Comments For the Selected Lines
+SQLEditor.action.toggle.commect.label=Kommentar ein/aus
+SQLEditor.action.toggle.commect.tooltip=Kommentare für die ausgewählten Zeilen ein/aus
 SQLEditor.action.toggle.commect.image=
-SQLEditor.action.toggle.commect.description=Toggle comments for the selected lines
+SQLEditor.action.toggle.commect.description=Kommentare für die ausgewählten Zeilen ein/aus
 
-AddTemplateAction.label=Save as &Template...
-AddTemplateAction.tooltip=Save Selected Text as Template...
+AddTemplateAction.label=Als &Vorlage speichern...
+AddTemplateAction.tooltip=Ausgewählten Text als Vorlage speichern...
 AddTemplateAction.image=
-AddTemplateAction.description=Save Selected Text as Template...
+AddTemplateAction.description=Ausgewählten Text als Vorlage speichern...
 
-Editor.ContextPreferencesAction.label=Preferences...
-Editor.ContextPreferencesAction.description=Show preferences
-Editor.ContextPreferencesAction.tooltip=Show Preferences
+Editor.ContextPreferencesAction.label=Voreinstellungen...
+Editor.ContextPreferencesAction.description=Voreinstellungen anzeigen
+Editor.ContextPreferencesAction.tooltip=Voreinstellungen anzeigen
 Editor.ContextPreferencesAction.image=
-
