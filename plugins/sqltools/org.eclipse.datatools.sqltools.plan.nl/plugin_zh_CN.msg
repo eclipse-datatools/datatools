@@ -1,3 +1,3 @@
-PlanView.name=Execution Plan
-PlanView.preferencePage.title=Execution Plan View Options
-DataTools.name=Data Tools
+PlanView.name=执行计划
+PlanView.preferencePage.title=执行计划视图选项
+DataTools.name=数据工具

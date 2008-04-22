@@ -1,3 +1,3 @@
-PlanView.name=Execution Plan
-PlanView.preferencePage.title=Execution Plan View Options
+PlanView.name=Plan de ejecución
+PlanView.preferencePage.title=Opciones de visualización del plan de ejecución
 DataTools.name=Data Tools

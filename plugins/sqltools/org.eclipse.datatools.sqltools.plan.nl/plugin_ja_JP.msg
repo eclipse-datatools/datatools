@@ -1,3 +1,3 @@
-PlanView.name=Execution Plan
-PlanView.preferencePage.title=Execution Plan View Options
-DataTools.name=Data Tools
+PlanView.name=実行プラン
+PlanView.preferencePage.title=実行プランのビューオプション
+DataTools.name=データツール

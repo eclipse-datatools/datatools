@@ -1,2 +1,2 @@
-planoption_graphic=Graphic plan
-planoption_text=Text plan
+planoption_graphic=グラフィックプラン
+planoption_text=テキストプラン

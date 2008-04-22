@@ -1,2 +1,2 @@
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle=로거용으로 설정된 리소스 번들이 없습니다.
+StatusLogger_possible_args=\ 가능한 인수: {0}, {1}, {2}, {3}

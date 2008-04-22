@@ -1,4 +1,4 @@
-EPVFacade.checkview.error=Cannot open SQL Execution Plan View
-PlanServiceRegistry.create.runnable.error=Failed to create executable extension
-LoadPlanAction.error.message=Failed to load plan from file.
-SavePlanAction.error.message=Failed to save plan to file.
+EPVFacade.checkview.error=Ansicht des SQL-Ausführungsplans kann nicht geöffnet werden.
+PlanServiceRegistry.create.runnable.error=Ausführbare Erweiterung wurde nicht erstellt.
+LoadPlanAction.error.message=Plan wurde nicht aus Datei geladen.
+SavePlanAction.error.message=Plan wurde nicht in Datei gespeichert.

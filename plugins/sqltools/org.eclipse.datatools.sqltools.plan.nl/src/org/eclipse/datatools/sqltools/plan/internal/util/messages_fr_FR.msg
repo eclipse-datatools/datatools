@@ -1,2 +1,2 @@
-StatusLogger_no_bundle=No resource bundle has been set for the Logger
-StatusLogger_possible_args=\ possible args: {0}, {1}, {2}, {3}
+StatusLogger_no_bundle=Aucun groupe de ressources n'a été défini pour l'enregistreur
+StatusLogger_possible_args=args possibles : {0}, {1}, {2}, {3}
