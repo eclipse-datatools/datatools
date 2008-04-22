@@ -10,5 +10,5 @@
 ###############################################################################
 pluginName=Eclipse Data Tools Platform DBDefinition Generic JDBC Plug-in
 providerName=Eclipse.org
-1.0_ProductString = Generic JDBC
+1.0_ProductString = JDBC générique
 1.0_VersionString = 1.0
