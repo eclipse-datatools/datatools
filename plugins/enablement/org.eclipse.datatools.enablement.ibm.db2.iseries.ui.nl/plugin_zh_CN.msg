@@ -12,5 +12,5 @@ pluginName=Eclipse Data Tools Platform IBM DB2 UDB UI iSeries Plug-in
 providerName=Eclipse.org
 
 profile.db2.iseries.wizard.title = DB2 for i5/OS
-profile.db2.iseries.wizard.description = Create a DB2 for i5/OS connection profile.
-profile.db2.iseries.properties = Driver Properties
+profile.db2.iseries.wizard.description = 创建 DB2 for i5/OS 连接配置文件。
+profile.db2.iseries.properties = 驱动程序属性

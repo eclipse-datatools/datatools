@@ -11,19 +11,19 @@
 pluginName=Eclipse Data Tools Platform IBM DB2 UDB iSeries Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Classe de pilote
+driverVendor = Vendeur
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverDBName = Nom de la base de données
+driverConnectionURL = URL de connexion
+driverUID = ID utilisateur
+driverPWD = Mot de passe
 
-DB2_UDB_ISERIES_CATEGORY_NAME = DB2 for i5/OS
+DB2_UDB_ISERIES_CATEGORY_NAME = DB2 pour i5/OS
 
-org.eclipse.datatools.enablement.ibm.db2.iseries.driverTemplate = IBM Data Server Driver for JDBC and SQLJ
-org.eclipse.datatools.enablement.ibm.db2.iseries.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.ibm.db2.iseries.toolbox.driverTemplate = AS/400 Toolbox for Java
+org.eclipse.datatools.enablement.ibm.db2.iseries.driverTemplate = Pilote de serveur de données IBM pour JDBC et SQLJ
+org.eclipse.datatools.enablement.ibm.db2.iseries.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.ibm.db2.iseries.toolbox.driverTemplate = Boîte à outils AS/400 pour Java
 
-jdbc.connection.name = JDBC Connection
-profile.db2.iseries.title = DB2 for i5/OS
+jdbc.connection.name = Connexion JDBC
+profile.db2.iseries.title = DB2 pour i5/OS

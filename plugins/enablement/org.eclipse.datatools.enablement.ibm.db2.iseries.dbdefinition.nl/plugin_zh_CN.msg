@@ -18,5 +18,5 @@ V5R2VersionString = V5R2
 V5R3ProductString = DB2 for i5/OS
 V5R3VersionString = V5R3
 
-V5R2Description = IBM DB2 UDB for iSeries Version 5 Release 2
-V5R3Description = IBM DB2 UDB for iSeries Version 5 Release 3
+V5R2Description = IBM DB2 UDB for iSeries 版本 5 发行版 2
+V5R3Description = IBM DB2 UDB for iSeries 版本 5 发行版 3
