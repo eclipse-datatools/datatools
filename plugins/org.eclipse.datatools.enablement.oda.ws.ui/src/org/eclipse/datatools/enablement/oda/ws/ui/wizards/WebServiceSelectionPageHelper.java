@@ -303,7 +303,7 @@ public class WebServiceSelectionPageHelper
 		return TextProcessorWrapper.deprocess( wsdlURI.getText( ) );
 	}
 
-	private void setWsdlURIString( String text )
+	void setWsdlURIString( String text )
 	{
 		wsdlURI.setText( TextProcessorWrapper.process( text ) );
 	}
