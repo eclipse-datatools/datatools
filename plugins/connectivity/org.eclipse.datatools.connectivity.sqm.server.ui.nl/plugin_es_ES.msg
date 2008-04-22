@@ -10,45 +10,45 @@
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Server UI Plug-in
 providerName=Eclipse.org
-serverExplorerLayout=Server Explorer Layout Extension
-serverExplorerInitialization=Server Initialization Provider
-SQL_MODEL_CONTENT_EXTENSION_NAME=SQL Model Content Extension
+serverExplorerLayout=Extensión de diseño de explorador de servidor
+serverExplorerInitialization=Proveedor de inicialización de servidor
+SQL_MODEL_CONTENT_EXTENSION_NAME=Extensión de contenido del modelo SQL
 
 #
 ## Providers for the Server Explorer
 #
-org.eclipse.datatools.connectivity.server.ui.serverExplorer = Database Explorer - "Existing Connections" Core
-rdb.server.ui.views.serverExplorer = Database Explorer
-rdb.server.ui.category = Data
+org.eclipse.datatools.connectivity.server.ui.serverExplorer = Explorador de base de datos: Núcleo de "conexiones existentes"
+rdb.server.ui.views.serverExplorer = Explorador de base de datos
+rdb.server.ui.category = Datos
 
 #
 ## Menus for the Server Explorer
 #
-rdb.server.ui.actions.connect=&New Connection...
-rdb.server.ui.actions.disconnect=Dis&connect
-rdb.server.ui.actions.edit.table = Table
-rdb.server.ui.actions.edit = Add Database
-rdb.server.ui.actions.delete = &Delete
-rdb.server.ui.actions.reconnect = Reconnect
-rdb.server.ui.actions.navigate = Navigate to Target
+rdb.server.ui.actions.connect=&Nueva conexión...
+rdb.server.ui.actions.disconnect=Des&conectar
+rdb.server.ui.actions.edit.table = Tabla
+rdb.server.ui.actions.edit = Añadir base de datos
+rdb.server.ui.actions.delete = &Eliminar
+rdb.server.ui.actions.reconnect = Volver a conectarse
+rdb.server.ui.actions.navigate = Navegar al objetivo
 
 #
 ## Menus for the Data
 #
-rdb.server.ui.actions.fe = &Generate DDL
-rdb.server.ui.actions.refresh = &Refresh
+rdb.server.ui.actions.fe = &Generar DDL
+rdb.server.ui.actions.refresh = &Actualizar
 
 #
 ## Actions
 #
-rdb.server.ui.explorer.connect_server = New Connection...
-rdb.server.ui.explorer.reconnect_server = &Reconnect
-rdb.server.ui.explorer.disconnect_server = &Disconnect
-rdb.server.ui.explorer.collapse_all = Collapse All
-rdb.server.ui.actions.editfilter = &Filter...
+rdb.server.ui.explorer.connect_server = Nueva conexión...
+rdb.server.ui.explorer.reconnect_server = &Volver a conectar
+rdb.server.ui.explorer.disconnect_server = &Desconectar
+rdb.server.ui.explorer.collapse_all = Contraer todo
+rdb.server.ui.actions.editfilter = &Filtro...
 
 #
 ## Decorations
 #
-rdb.server.ui.serverDecoration = Data Tools - Server Explorer Connection Type Decoration
-rdb.server.ui.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
+rdb.server.ui.serverDecoration = Herramientas de datos: decoración de tipo de conexión de explorador de servidor
+rdb.server.ui.filterDecoration = Herramientas de datos: indicador de nodo de filtro de explorador de servidor

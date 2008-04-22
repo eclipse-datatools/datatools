@@ -19,146 +19,146 @@ DATATOOLS.CORE.UI.TEST = Test
 #
 ## Add Action
 #
-DATATOOLS.CORE.UI.NEW.COLUMN_NAME = Column 
-DATATOOLS.CORE.UI.NEW.SCHEMA_NAME = Schema
+DATATOOLS.CORE.UI.NEW.COLUMN_NAME = Colonne 
+DATATOOLS.CORE.UI.NEW.SCHEMA_NAME = Schéma
 DATATOOLS.CORE.UI.NEW.TABLE_NAME = Table
-DATATOOLS.CORE.UI.NEW.TRIGGER_NAME = Trigger
-DATATOOLS.CORE.UI.NEW.DOMAIN_NAME = Domain
-DATATOOLS.CORE.UI.NEW.SEQUENCE_NAME = Sequence
-DATATOOLS.CORE.UI.NEW.STORED_PROCEDURE_NAME = Stored_Procedure
-DATATOOLS.CORE.UI.NEW.DATABASE = New Database
+DATATOOLS.CORE.UI.NEW.TRIGGER_NAME = Déclencheur
+DATATOOLS.CORE.UI.NEW.DOMAIN_NAME = Domaine
+DATATOOLS.CORE.UI.NEW.SEQUENCE_NAME = Séquence
+DATATOOLS.CORE.UI.NEW.STORED_PROCEDURE_NAME = Procédure_stockée
+DATATOOLS.CORE.UI.NEW.DATABASE = Nouvelle base de données
 
 #
 ## Label Decorations
 #
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.DECORATION = Data decorator settings:
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.TAB = Text
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.FORMAT = Specify the display format for columns in the explorer:
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.CFORMAT = &Column format:
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.VARIABLE = Add &Variables...
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.EXAMPLE = &Example:
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.TITLE = Add Variables
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.MESSAGE = Select the variables to add to the decoration format:
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.DATATYPE_DESC = {datatype} - the column datatype
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.NULLABLE_DESC = {nullable} - indicate that the column is nullable
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.PK_DESC = {primaryKey} - indicate that the column belongs to the primary key constraint
-DATATOOLS.CORE.UI.PREFERENCES.COLUMN.FK_DESC = {foreignKey} - indicate that the column belongs to the foreign key constraint
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.DECORATION = Paramètres du décorateur de données :
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.TAB = Texte
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.FORMAT = Spécifier le format d'affichage pour les colonnes dans l'explorateur :
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.CFORMAT = Format de &colonne :
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.VARIABLE = Ajouter des &variables...
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.EXAMPLE = &Exemple :
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.TITLE = Ajouter des variables
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.MESSAGE = Sélectionner les variables à ajouter au format de décoration :
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.DATATYPE_DESC = {datatype} - type de données de colonne
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.NULLABLE_DESC = {nullable} - indique que la colonne est annulable
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.PK_DESC = {primaryKey} - indique que la colonne appartient à la contrainte de clé principale
+DATATOOLS.CORE.UI.PREFERENCES.COLUMN.FK_DESC = {foreignKey} - indique que la colonne appartient à la contrainte de clé étrangère
 
-DATATOOLS.CORE.UI.STATUS.CONNECTION = {0} - Connection "{1}"
-DATATOOLS.CORE.UI.STATUS.PROJECT = {0} - Project "{1}"
+DATATOOLS.CORE.UI.STATUS.CONNECTION = {0} - Connexion "{1}"
+DATATOOLS.CORE.UI.STATUS.PROJECT = {0} - Projet "{1}"
 
 #
 ## Model Explorer Strings
 #
-DATATOOLS.CORE.UI.EXPLORER.DEPENDENCY=External Dependency
+DATATOOLS.CORE.UI.EXPLORER.DEPENDENCY=Dépendance externe
 
 #
 ## Commands
 #
-DATATOOLS.CORE.UI.COMMAND.RENAMING = Renaming
-DATATOOLS.CORE.UI.COMMAND.ADD_DATABASE = Add Database
-DATATOOLS.CORE.UI.COMMAND.ADD_FOREIGN_KEY_INDEX= Add Foreign Key Index
-DATATOOLS.CORE.UI.COMMAND.ADD_PRIMARY_KEY_INDEX= Add Primary Key Index
-DATATOOLS.CORE.UI.COMMAND.ADD_SEQUENCE= Add Sequence
-DATATOOLS.CORE.UI.COMMAND.ADD_INDEX = Add Index
-DATATOOLS.CORE.UI.COMMAND.ADD_CHECK_CONSTRAINT = Add Check Constraint
-DATATOOLS.CORE.UI.COMMAND.ADD_ALIAS = Add Alias
-DATATOOLS.CORE.UI.COMMAND.ADD_UNIQUE_CONSTRAINT = Add Unique Constraint
+DATATOOLS.CORE.UI.COMMAND.RENAMING = Attribution d'un nouveau nom
+DATATOOLS.CORE.UI.COMMAND.ADD_DATABASE = Ajouter une base de données
+DATATOOLS.CORE.UI.COMMAND.ADD_FOREIGN_KEY_INDEX= Ajouter un index de clés étrangères
+DATATOOLS.CORE.UI.COMMAND.ADD_PRIMARY_KEY_INDEX= Ajouter un index de clés principales
+DATATOOLS.CORE.UI.COMMAND.ADD_SEQUENCE= Ajouter une séquence
+DATATOOLS.CORE.UI.COMMAND.ADD_INDEX = Ajouter un index
+DATATOOLS.CORE.UI.COMMAND.ADD_CHECK_CONSTRAINT = Ajouter une contrainte de vérification
+DATATOOLS.CORE.UI.COMMAND.ADD_ALIAS = Ajouter un pseudo
+DATATOOLS.CORE.UI.COMMAND.ADD_UNIQUE_CONSTRAINT = Ajouter une contrainte unique
 
 #
 ## Explorer Description
 #
-DATATOOLS.CORE.UI.EXPLORER.MULTI_SELECTION= {0} items selected
+DATATOOLS.CORE.UI.EXPLORER.MULTI_SELECTION= {0} éléments sélectionnés
 
 #
 ## DnD Actions
 #
-DATATOOLS.CORE.UI.DND.MOVE = Move
-DATATOOLS.CORE.UI.DND.COPY = Copy
-DATATOOLS.CORE.UI.DND.LINK = Link
+DATATOOLS.CORE.UI.DND.MOVE = Déplacer
+DATATOOLS.CORE.UI.DND.COPY = Copier
+DATATOOLS.CORE.UI.DND.LINK = Lien
 
 #
 ## Quick Fix
 #
-DATATOOLS.CORE.UI.QUICKFIX.ADD_DANGLING = Add Dangling Reference to Model
-DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = Remove Dangling Reference from Model
+DATATOOLS.CORE.UI.QUICKFIX.ADD_DANGLING = Ajouter une référence pendante au modèle
+DATATOOLS.CORE.UI.QUICKFIX.REMOVE_DANGLING = Supprimer une référence pendante du modèle
 
 #
 ## FE Action
 #
-GENERATE_DDL_MENU_TEXT = Generate DDL...
+GENERATE_DDL_MENU_TEXT = Générer un DDL...
 
 #
 ## FE and RE Wizards
 #
-FE_WIZARD_TITLEBAR_TEXT = Generate DDL
-FE_WELCOME_PAGE_TITLE_TEXT = Welcome to the Forward Engineering Wizard 
-FE_WELCOME_PAGE_DESCRIPTION_TEXT = This wizard guides you through the process of generating\na DDL script from a data model. You will be able to save\nthe script and have the option of executing the script on a\ndatabase.\r\n \r\n  ...to continue, click Next... 
-FE_COMPLETION_PAGE_TITLE_TEXT = Completing the Forward Engineering Wizard 
-FE_COMPLETION_PAGE_DESCRIPTION_TEXT = You have successfully completed the Forward Engineering Wizard. 
-FE_SELECT_OPTIONS_PAGE_HEADER_TITLE	= Select Model Elements 
-FE_SELECT_OPTIONS_PAGE_HEADER_SUBTITLE = Select the model elements that you want to generate into a DDL script. 
-FE_SELECT_DATABASE_PAGE_HEADER_TITLE = Save and Run DDL 
-FE_SELECT_DATABASE_PAGE_HEADER_SUBTITLE = Specify a path to save the generated DDL script.  You can run the DDL script by providing your database connection information. 
-FE_PROGRESS_BAR_PAGE_HEADER_TITLE = Generating DDL 
-FE_PROGRESS_BAR_PAGE_HEADER_SUBTITLE = Please wait while the forward engineering process completes. 
+FE_WIZARD_TITLEBAR_TEXT = Générer un DDL
+FE_WELCOME_PAGE_TITLE_TEXT = Bienvenue dans l'assistant d'ingénierie directe 
+FE_WELCOME_PAGE_DESCRIPTION_TEXT = Cet assistant vous aide à générer\nun script DDL à partir d'un modèle de données. Vous pourrez enregistrer\nle script et aurez la possibilité de l'exécuter sur une\nbase de données.\r\n \r\n  ...pour continuer, cliquez sur Suivant... 
+FE_COMPLETION_PAGE_TITLE_TEXT = Fin de l'assistant d'ingénierie directe 
+FE_COMPLETION_PAGE_DESCRIPTION_TEXT = Vous avez terminé l'assistant d'ingénierie directe avec succès. 
+FE_SELECT_OPTIONS_PAGE_HEADER_TITLE	= Sélectionner des éléments du modèle 
+FE_SELECT_OPTIONS_PAGE_HEADER_SUBTITLE = Sélectionner les éléments du modèle que vous souhaitez générer dans un script DDL. 
+FE_SELECT_DATABASE_PAGE_HEADER_TITLE = Enregistrer et exécuter le DDL 
+FE_SELECT_DATABASE_PAGE_HEADER_SUBTITLE = Spécifier un chemin d'accès pour enregistrer le script DDL généré.  Vous pouvez exécuter le script DDL en fournissant les informations de connexion à votre base de données. 
+FE_PROGRESS_BAR_PAGE_HEADER_TITLE = Génération d'un DDL 
+FE_PROGRESS_BAR_PAGE_HEADER_SUBTITLE = Veuillez patienter le temps que le processus d'ingénierie directe se termine. 
 COMPLETION_PAGE_TITLE_FONT = Verdana
-GENERATE_NO_MNEMONIC_LABEL_TEXT	= Generate: 
-DROP_STATEMENTS_CHECKBOX_TEXT = &Drop statements 
+GENERATE_NO_MNEMONIC_LABEL_TEXT	= Générer : 
+DROP_STATEMENTS_CHECKBOX_TEXT = Instructions &Drop 
 TABLES_CHECKBOX_TEXT = &Tables 
-TRIGGERS_CHECKBOX_TEXT_2 = T&riggers 
-FULLY_QUALIFIED_NAMES_CHECKBOX_TEXT	= &Fully qualified names 
-COMMENTS_CHECKBOX_TEXT = &Comments 
-VIEWS_CHECKBOX_TEXT = &Views 
-QUOTED_IDENTIFIERS_CHECKBOX_TEXT = &Quoted identifiers 
-INDEXES_CHECKBOX_TEXT = &Indexes 
-TRIGGERS_CHECKBOX_TEXT=	&Triggers
-STORED_PROCEDURES_CHECKBOX_TEXT	= &Stored Procedures
-TABLESPACES_CHECKBOX_TEXT = T&ablespaces
-FILE_PATH_LABEL_TEXT = &File name:
-BROWSE_BUTTON_TEXT_2 = B&rowse... 
-EXECUTE_CHECKBOX_TEXT =	&Run 
-FORWARD_SLASH_SQL_DELIMITER_CHECKBOX_TEXT = &Use '/' as SQL statement delimiter 
+TRIGGERS_CHECKBOX_TEXT_2 = Déclencheu&rs 
+FULLY_QUALIFIED_NAMES_CHECKBOX_TEXT	= Noms pleinement quali&fiés 
+COMMENTS_CHECKBOX_TEXT = &Commentaires 
+VIEWS_CHECKBOX_TEXT = &Vues 
+QUOTED_IDENTIFIERS_CHECKBOX_TEXT = Ide&ntificateurs entre guillemets 
+INDEXES_CHECKBOX_TEXT = &Index 
+TRIGGERS_CHECKBOX_TEXT=	&Déclencheurs
+STORED_PROCEDURES_CHECKBOX_TEXT	= Procédures &stockées
+TABLESPACES_CHECKBOX_TEXT = Espaces t&ables
+FILE_PATH_LABEL_TEXT = Nom de &fichier :
+BROWSE_BUTTON_TEXT_2 = Parc&ourir... 
+EXECUTE_CHECKBOX_TEXT =	Exécute&r 
+FORWARD_SLASH_SQL_DELIMITER_CHECKBOX_TEXT = &Utiliser '/' comme délimiteur d'instruction SQL 
 DEFAULT_FILE_EXTENSION = .ddl
 FILE_FILTER_SCRIPT_FILES = *.ddl;*.sql
 FILE_FILTER_ALL_FILES =	*.*
-FILE_FILTER_NAME_SCRIPT_FILES =	Script Files (*.ddl;*.sql)
-FILE_FILTER_NAME_ALL_FILES = All Files (*.*)
+FILE_FILTER_NAME_SCRIPT_FILES =	Fichiers de scripts (*.ddl;*.sql)
+FILE_FILTER_NAME_ALL_FILES = Tous les fichiers (*.*)
 
 #
 ## SQL View Menu
 #
-DATATOOLS.CORE.UI.SQLVIEW.LINK=Link with Editor
-DATATOOLS.CORE.UI.SQLVIEW.GENERATE=Generate SQL from Editor
+DATATOOLS.CORE.UI.SQLVIEW.LINK=Lien avec l'éditeur
+DATATOOLS.CORE.UI.SQLVIEW.GENERATE=Générer un SQL à partir de l'éditeur
 
 #
 ## Bookmark
 #
-DATATOOLS.PROJECT.UI.BOOKMARK.TITLE=Add Bookmark
-DATATOOLS.PROJECT.UI.BOOKMARK.MESSAGE=Enter Bookmark Name:
+DATATOOLS.PROJECT.UI.BOOKMARK.TITLE=Ajouter un signet
+DATATOOLS.PROJECT.UI.BOOKMARK.MESSAGE=Entrer un nom de signet :
 
 #
 ## Inactive Relationship
 #
-DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = Implicit
+DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = Implicite
 
 #
 ## Catalog Util
 #
-DATATOOLS.CORE.UI.LOADING=Loading
+DATATOOLS.CORE.UI.LOADING=Chargement
 
-DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.MESSAGE=Select Elements:
-DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.TITLE=Select Elements
-DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.FILTERLABEL=Apply Name Filter (? = Any character, * = Any string)
+DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.MESSAGE=Sélectionner des éléments :
+DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.TITLE=Sélectionner des éléments
+DATATOOLS.CORE.UI.DIALOGS.FILTERLISTSELECTIONDIALOG.FILTERLABEL=Appliquer un filtre au nom (?= Tout caractère, * = Toute chaîne)
 
 #
 ## Output Preferences
 #
-DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.DESCRIPTION = You can specify preferences for the result sets returned.
-DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.LIMIT_ROWS_RETRIEVED = &Limit number of rows retrieved
-DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.MAX_ROW_RETRIEVED = Maximum &rows to retrieve:
-DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.MAX_LOB_LENGTH = &Maximum bytes to retrieve for character or binary column:
-DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.ERROR_INVALID_INT = Specify a value between {0} and {1}.
+DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.DESCRIPTION = Vous pouvez spécifier des préférences pour les ensembles de résultats renvoyés.
+DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.LIMIT_ROWS_RETRIEVED = Nombre maximum de &lignes récupérées
+DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.MAX_ROW_RETRIEVED = Nombre maximum de lignes à &récupérer :
+DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.MAX_LOB_LENGTH = Nombre &maximum d'octets à récupérer pour la colonne binaire ou caractère :
+DATATOOLS.CORE.UI.PREFERENCES.OUTPUT.ERROR_INVALID_INT = Spécifier une valeur comprise entre {0} et {1}.
 
 #
 ## Index and Trigger Decorations
@@ -174,59 +174,59 @@ DATATOOLS.CORE.UI.TRIGGER_INSTEADOF.DECORATION = INSTEAD OF
 #
 ## Resource Chooser Dialog
 #
-_UI_TITLE_FILE_CHOOSER = File Selection
-_UI_TITLE_FOLDER_CHOOSER = Folder Selection
-_UI_DESCRIPTION_FILE = Enter or select a file:
-_UI_DESCRIPTION_FOLDER = Enter or select the parent folder:
-_UI_DEFAULT_MSG_NEW_ALLOWED = &Enter or select the parent folder:
-_UI_DEFAULT_MSG_SELECT_ONLY = Select the folder:
+_UI_TITLE_FILE_CHOOSER = Sélection de fichier
+_UI_TITLE_FOLDER_CHOOSER = Sélection de dossier
+_UI_DESCRIPTION_FILE = Entrer ou sélectionner un fichier :
+_UI_DESCRIPTION_FOLDER = Entrer ou sélectionner le dossier parent :
+_UI_DEFAULT_MSG_NEW_ALLOWED = &Entrer ou sélectionner le dossier parent :
+_UI_DEFAULT_MSG_SELECT_ONLY = Sélectionner le dossier :
 
 #
 ## Filter Dialog
 #
-_UI_TITLE_FILTER = Specify Filter
-_UI_DESCRIPTION_FILTER = Specify a filter by selecting a predicate and entering a value or by indicating whether to include or exclude a selection of items.
-_UI_DESCRIPTION_SELECTION_ONLY = Specify a filter by indicating whether to include or exclude a selection of items.
-_UI_DESCRIPTION_EXPRESSION_ONLY = Specify a filter by selecting a predicate and entering a value.
+_UI_TITLE_FILTER = Spécifier un filtre
+_UI_DESCRIPTION_FILTER = Spécifier un filtre en sélectionnant un prédicat et en entrant une valeur ou en indiquant si une sélection d'éléments doit être incluse ou exclue.
+_UI_DESCRIPTION_SELECTION_ONLY = Spécifier un filtre en indiquant si une sélection d'éléments doit être incluse ou exclue.
+_UI_DESCRIPTION_EXPRESSION_ONLY = Spécifier un filtre en sélectionnant un prédicat et en entrant une valeur.
 _UI_RADIO_BUTTON_EXPRESSION = &Expression
-_UI_LABEL_EXPRESSION = N&ame
-_UI_COMBO_STARTS_WITH = Starts with the characters
-_UI_COMBO_NOT_START_WITH = Does not start with the characters
-_UI_COMBO_CONTAINS = Contains the characters
-_UI_COMBO_NOT_CONTAIN = Does not contain the characters
-_UI_COMBO_ENDS_WITH = Ends with the characters
-_UI_COMBO_NOT_END_WITH = Does not end with the characters
-_UI_RADIO_BUTTON_SELECTION = Se&lection
-_UI_COMBO_INCLUDE_ITEMS = Include selected items
-_UI_COMBO_EXCLUDE_ITEMS = Exclude selected items
-_UI_BUTTON_SELECT_ALL = &Select All
-_UI_BUTTON_DESELECT_ALL = &Deselect All
-_UI_CHECKBOX_DISABLE_FILTER = D&isable filter
-_UI_MESSAGE_CRITERIA_REQUIRED = Please specify filtering criteria.
-_UI_MESSAGE_NO_QUOTES = The expression value must not contain quotes.
-_UI_MESSAGE_SELECTION_REQUIRED = Please select at least one item.
-_UI_SP_FILTER_PAGE_TITLE = Stored Procedure Filter Properties
-_UI_TABLE_FILTER_PAGE_TITLE = Table Filter Properties
-_UI_SCHEMA_FILTER_PAGE_TITLE = Schema Filter Properties
+_UI_LABEL_EXPRESSION = N&om
+_UI_COMBO_STARTS_WITH = Commence par les caractères
+_UI_COMBO_NOT_START_WITH = Ne commence pas par les caractères
+_UI_COMBO_CONTAINS = Contient les caractères
+_UI_COMBO_NOT_CONTAIN = Ne contient pas les caractères
+_UI_COMBO_ENDS_WITH = Finit par les caractères
+_UI_COMBO_NOT_END_WITH = Ne finit pas par les caractères
+_UI_RADIO_BUTTON_SELECTION = Sé&lection
+_UI_COMBO_INCLUDE_ITEMS = Inclure les éléments sélectionnés
+_UI_COMBO_EXCLUDE_ITEMS = Exclure les éléments sélectionnés
+_UI_BUTTON_SELECT_ALL = &Sélectionner tout
+_UI_BUTTON_DESELECT_ALL = &Désélectionner tout
+_UI_CHECKBOX_DISABLE_FILTER = D&ésactiver le filtre
+_UI_MESSAGE_CRITERIA_REQUIRED = Spécifier des critères de filtrage.
+_UI_MESSAGE_NO_QUOTES = La valeur de l'expression ne doit pas contenir de guillemets.
+_UI_MESSAGE_SELECTION_REQUIRED = Sélectionner au moins un élément.
+_UI_SP_FILTER_PAGE_TITLE = Propriétés de filtre de procédure stockée
+_UI_TABLE_FILTER_PAGE_TITLE = Propriétés de filtre de table
+_UI_SCHEMA_FILTER_PAGE_TITLE = Propriétés de filtre de schéma
 
 #
 ## Actions for Schema Management
 #
-SCHEMA_MANAGEMENT_CREATE_SCHEMA = Schema
+SCHEMA_MANAGEMENT_CREATE_SCHEMA = Schéma
 SCHEMA_MANAGEMENT_CREATE_TABLE = Table
-SCHEMA_MANAGEMENT_CREATE_VIEW = View
+SCHEMA_MANAGEMENT_CREATE_VIEW = Vue
 SCHEMA_MANAGEMENT_CREATE_INDEX = Index
-SCHEMA_MANAGEMENT_CREATE_BUFFER_POOL = Buffer Pool
-SCHEMA_MANAGEMENT_CREATE_PARTITION_GROUP = Partition Group
-SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE = Distinct User-Defined Type
-SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE = Structured User-Defined Type
-SCHEMA_MANAGEMENT_CREATE_SEQUENCE = Sequence
+SCHEMA_MANAGEMENT_CREATE_BUFFER_POOL = Réserve du tampon
+SCHEMA_MANAGEMENT_CREATE_PARTITION_GROUP = Groupe de partition
+SCHEMA_MANAGEMENT_CREATE_DISTINCT_TYPE = Type distinct défini par l'utilisateur
+SCHEMA_MANAGEMENT_CREATE_STRUCTURED_TYPE = Type structuré défini par l'utilisateur
+SCHEMA_MANAGEMENT_CREATE_SEQUENCE = Séquence
 SCHEMA_MANAGEMENT_CREATE_MQT = MQT
-SCHEMA_MANAGEMENT_CREATE_ALIAS = Alias
-SCHEMA_MANAGEMENT_CREATE_TRIGGER = Trigger
-SCHEMA_MANAGEMENT_CREATE_ROLE = Role
+SCHEMA_MANAGEMENT_CREATE_ALIAS = Pseudo
+SCHEMA_MANAGEMENT_CREATE_TRIGGER = Déclencheur
+SCHEMA_MANAGEMENT_CREATE_ROLE = Rôle
 #
-SCHEMA_MANAGEMENT_ADD_COLUMN = Column
-SCHEMA_MANAGEMENT_ADD_CHECK_CONSTRAINT = Check Constraint
-SCHEMA_MANAGEMENT_ADD_UNIQUE_CONSTRAINT = Unique Constraint
-SCHEMA_MANAGEMENT_ADD_FOREIGN_KEY = Foreign Key
+SCHEMA_MANAGEMENT_ADD_COLUMN = Colonne
+SCHEMA_MANAGEMENT_ADD_CHECK_CONSTRAINT = Contrainte de vérification
+SCHEMA_MANAGEMENT_ADD_UNIQUE_CONSTRAINT = Contrainte unique
+SCHEMA_MANAGEMENT_ADD_FOREIGN_KEY = Clé étrangère

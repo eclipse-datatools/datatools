@@ -12,9 +12,9 @@
 # *******************************************************************************/
 
 #FE
-FE_VIEW_HAS_NO_BODY = The view {0} has no SELECT statement
-FE_TRIGGER_ACTION_EMPTY = The trigger {0} action is empty
-FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = The parent table/key referenced by foreign key {0} does not exist
-FE_REFERENCE_CONSTAINT_HAS_NO_KEY = The refernece constraint {0} does not have any key
-FE_INDEX_HAS_NO_MEMBER = The index {0} does not have any member
-FE_ELEMENT_HAS_NO_TYPE = The typed element {0} does not have any type
+FE_VIEW_HAS_NO_BODY = ビュー {0} に SELECT 文がありません。
+FE_TRIGGER_ACTION_EMPTY = トリガ {0} のアクションが空です。
+FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = フォーリンキー {0} で参照する親テーブル/キーがありません。
+FE_REFERENCE_CONSTAINT_HAS_NO_KEY = 参照の制約 {0} にキーがありません。
+FE_INDEX_HAS_NO_MEMBER = インデックス {0} にメンバがありません。
+FE_ELEMENT_HAS_NO_TYPE = 入力した要素 {0} に型がありません。

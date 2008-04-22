@@ -10,13 +10,13 @@
 ###############################################################################
 pluginName=Eclipse Data Tools Platform SQM Core Plug-in
 providerName=Eclipse.org
-databaseDefinitionExtensionPointName=Database Definition
-logicalContainmentExtensionPointName=Logical Containment
-DataModelElementFactoryExtensionPointName=Data Model Element Factory
-DatabaseReverseEngineeringExtensionPointName=Database Reverse Engineering
-DDLReverseEngineeringExtensionPointName=DDL Reverse Engineering
-ForwardEngineeringExtensionPointName=Forward Engineering
-CatalogExtensionPointName=Database Catalog
-DatabaseRecognition=Database Recognition
-FilterProfileExtensionName=SQL Model Filter Settings
-SQLModelConnectionName=SQL Model Connection
+databaseDefinitionExtensionPointName=Définition de base de données
+logicalContainmentExtensionPointName=Confinement logique
+DataModelElementFactoryExtensionPointName=Génération d'éléments du modèle de données
+DatabaseReverseEngineeringExtensionPointName=Ingénierie inverse de base de données
+DDLReverseEngineeringExtensionPointName=Ingénierie inverse DDL
+ForwardEngineeringExtensionPointName=Ingénierie directe
+CatalogExtensionPointName=Catalogue de base de données
+DatabaseRecognition=Reconnaissance de base de données
+FilterProfileExtensionName=Paramètres des filtres du modèle SQL
+SQLModelConnectionName=Connexion du modèle SQL

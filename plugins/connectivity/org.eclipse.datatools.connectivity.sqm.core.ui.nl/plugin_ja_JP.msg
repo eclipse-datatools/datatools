@@ -22,149 +22,149 @@ DATA_SOURCE_EXPLORER_SORTER=sorterValidatorProvider
 #
 ## Model Explorer Selection
 #
-datatools.core.ui.modelExplorerSelection = Model Explorer Selection
+datatools.core.ui.modelExplorerSelection = モデルエクスプローラの選択
 
 #
 ## Preferences for Label Decoration
 #
-datatools.core.ui.preferences.labeldecorators = Label Decorations
+datatools.core.ui.preferences.labeldecorators = ラベルの装飾
 
 #
 ## Preferences
 #
-datatools.core.ui.preferences.data = SQL Development
-datatools.core.ui.preferences.output = Output
+datatools.core.ui.preferences.data = SQL 開発
+datatools.core.ui.preferences.output = 出力
 
 #
 ## Views
 #
-datatools.core.ui.modelElementProperties = Data Model Element Properties
-datatools.core.ui.views.interactiveSQL = Show SQL
+datatools.core.ui.modelElementProperties = データモデル要素のプロパティ
+datatools.core.ui.views.interactiveSQL = SQL を表示
 
 #
 ## Model Explorer
 #
-datatools.core.ui.contentProviders = Physical Model Content Provider
-datatools.core.ui.parserProviders = Physical Model Parser Provider
-datatools.core.ui.iconProviders = Physical Model Icon Provider
+datatools.core.ui.contentProviders = 物理モデルのコンテンツのプロバイダ
+datatools.core.ui.parserProviders = 物理モデルのパーサのプロバイダ
+datatools.core.ui.iconProviders = 物理モデルのアイコンのプロバイダ
 
 #
 ## Nature 
 #
-datatools.core.ui.projectNature = Database Project Data Nature
+datatools.core.ui.projectNature = データベースプロジェクトのデータの本質
 
 #
 ## Wizards
 # 
-datatools.core.ui.category.project = Database
-datatools.core.ui.category.model = Database Model
-datatools.core.ui.project.basic = Data Design Project
-datatools.core.ui.project.description = Create a Data Design Project
-datatools.core.ui.model.basic = Physical Data Model
+datatools.core.ui.category.project = データベース
+datatools.core.ui.category.model = データベースモデル
+datatools.core.ui.project.basic = データデザインプロジェクト
+datatools.core.ui.project.description = データデザインプロジェクトの作成
+datatools.core.ui.model.basic = 物理データモデル
 
 #
 ## Preferences
 #
-datatools.core.ui.preferences.modeler = Data
-datatools.core.ui.preferences.default = Database Defaults
+datatools.core.ui.preferences.modeler = データ
+datatools.core.ui.preferences.default = データベースのデフォルト値
 
 #
 ## Popup && Actions
 #
-datatools.core.ui.actions.close = Close
-datatools.core.ui.actions.add = Add SQL
+datatools.core.ui.actions.close = 閉じる
+datatools.core.ui.actions.add = SQL の追加
 datatools.core.ui.actions.addMQT = MQT
-datatools.core.ui.actions.addSchema = Schema
-datatools.core.ui.actions.addTable = Table
-datatools.core.ui.actions.addView = View
-datatools.core.ui.actions.addColumn = Column
-datatools.core.ui.actions.delete = Delete
-datatools.core.ui.actions.addTrigger = Trigger
-datatools.core.ui.globalActionHandlerProviders = Data Global Actions
-datatools.core.ui.actions.selectSupplier = Navigate To Unique Constraint Table
-datatools.core.ui.actions.fe=Generate DDL...
-datatools.core.ui.actions.re=Reverse Engineer from DDL...
-datatools.core.ui.actions.dataModeler = Data Modeler
-datatools.core.ui.actions.addDomain = Domain
-datatools.core.ui.actions.addSequence = Sequence
-datatools.core.ui.actions.addStoredProcedure = Stored Procedure
-datatools.core.ui.actions.addJavaStoredProcedure = Java Stored Procedure
-datatools.core.ui.actions.generateForeignKeyIndex = Index
-datatools.core.ui.actions.generatePrimaryKeyIndex = Index
-datatools.core.ui.actions.addDatabase = Database
-datatools.core.ui.actions.addTableIndex = Index
-datatools.core.ui.actions.addTableCheckConstraint = Check Constraint
-datatools.core.ui.actions.addUniqueConstraint = Unique Constraint
-datatools.core.ui.actions.addAlias = Alias
-datatools.core.ui.actions.addDistinctUDT = Distinct User Defined Type
-datatools.core.ui.actions.addStructuredUDT = Structured User Defined Type
-datatools.core.ui.actions.addMQTIndex = Index
-datatools.core.ui.actions.addMQTTrigger = Trigger
+datatools.core.ui.actions.addSchema = スキーマ
+datatools.core.ui.actions.addTable = テーブル
+datatools.core.ui.actions.addView = ビュー
+datatools.core.ui.actions.addColumn = 列
+datatools.core.ui.actions.delete = 削除
+datatools.core.ui.actions.addTrigger = トリガ
+datatools.core.ui.globalActionHandlerProviders = データのグローバルアクション
+datatools.core.ui.actions.selectSupplier = 固有の制約テーブルへの移動
+datatools.core.ui.actions.fe=DDL の生成...
+datatools.core.ui.actions.re=DDL からのリバースエンジニアリング...
+datatools.core.ui.actions.dataModeler = データモデル
+datatools.core.ui.actions.addDomain = ドメイン
+datatools.core.ui.actions.addSequence = シーケンス
+datatools.core.ui.actions.addStoredProcedure = ストアドプロシージャ
+datatools.core.ui.actions.addJavaStoredProcedure = Java ストアドプロシージャ
+datatools.core.ui.actions.generateForeignKeyIndex = インデックス
+datatools.core.ui.actions.generatePrimaryKeyIndex = インデックス
+datatools.core.ui.actions.addDatabase = データベース
+datatools.core.ui.actions.addTableIndex = インデックス
+datatools.core.ui.actions.addTableCheckConstraint = チェックの制約
+datatools.core.ui.actions.addUniqueConstraint = 固有の制約
+datatools.core.ui.actions.addAlias = エイリアス
+datatools.core.ui.actions.addDistinctUDT = 個別のユーザ定義型
+datatools.core.ui.actions.addStructuredUDT = 構造化されたユーザ定義型
+datatools.core.ui.actions.addMQTIndex = インデックス
+datatools.core.ui.actions.addMQTTrigger = トリガ
 #
 ## Editors
 #
-datatools.core.ui.model.editor = SQL Model Editor
+datatools.core.ui.model.editor = SQL モデルエディタ
 
 #
 ## Decorators
 #
-datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Data Tools - Column Data Type
-datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Data Tools - Foreign or Primary Key Indicator
-datatools.core.ui.modelexplorer.DependencyDecoration = Data Tools - Dependency Decoration
-datatools.core.ui.modelexplorer.bookmarkDecoration  = Data Tools - Bookmark Indicator
+datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = データツール - 列のデータ型
+datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = データツール - 外部キーまたはプライマリキーのインジケータ
+datatools.core.ui.modelexplorer.DependencyDecoration = データツール - 依存関係の装飾
+datatools.core.ui.modelexplorer.bookmarkDecoration  = データツール - ブックマークのインジケータ
 
 #
 ## Model Explorer Sorter Provider
 #
-datatools.core.ui.modelexplorer.sorterProviders = Model Explorer Sorter Provider
-datatools.core.ui.modelexplorer.menu.storageOrderSorter = Storage Order
-datatools.core.ui.modelexplorer.menu.name = Name
-datatools.core.ui.modelexplorer.menu.type = Type
-datatools.core.ui.modelexplorer.menu.stereotype = Stereotype
-datatools.core.ui.modelexplorer.menu.visibility = Visibility
+datatools.core.ui.modelexplorer.sorterProviders = モデルエクスプローラのソートプロバイダ
+datatools.core.ui.modelexplorer.menu.storageOrderSorter = 保存の順序
+datatools.core.ui.modelexplorer.menu.name = 名前
+datatools.core.ui.modelexplorer.menu.type = 種類
+datatools.core.ui.modelexplorer.menu.stereotype = ステレオタイプ
+datatools.core.ui.modelexplorer.menu.visibility = 表示/非表示
 
 #
 ## Model Explorer DnD
 #
-datatools.core.ui.modelexplorer.dragDrop = Drag and Drop
+datatools.core.ui.modelexplorer.dragDrop = ドラッグ＆ドロップ
 
 #
 ## Marker
 #
-datatools.core.ui.modelexplorer.marker.dangling = Dangling Reference
+datatools.core.ui.modelexplorer.marker.dangling = 宙吊り参照
 
 
 #
 ## Type for Label Service 
 #
-database = Database
-schema = Schema
-baseTable = Table
-column = Column
-domain = Domain
-udt = User Defined Type
-index = Index
-procedure = Stored Procedure
-view = View
-parameter = Parameter
-trigger = Trigger
-sequence = Sequence
-source= Source
-attributeDefinition = Attribute Definition
-function = User-Defined Function
-dependency = Dependency
-primaryKey = Primary Key
-foreignKey = Foreign Key
-folder = Logical Folder
-CheckConstraint = Check Constraint
-UniqueConstraint = Unique Constraint
-existingConnection = Connections Folder
-connectedConnection = Live Connection
-disconnectedConnection = Disconnected Connection
-cachedConnection = Cached Connection
-catalog = Catalog
+database = データベース
+schema = スキーマ
+baseTable = テーブル
+column = 列
+domain = ドメイン
+udt = ユーザ定義型
+index = インデックス
+procedure = ストアドプロシージャ
+view = ビュー
+parameter = パラメタ
+trigger = トリガ
+sequence = シーケンス
+source= ソース
+attributeDefinition = 属性の定義
+function = ユーザ定義の関数
+dependency = 依存関係
+primaryKey = プライマリキー
+foreignKey = 外部キー
+folder = 論理フォルダ
+CheckConstraint = チェックの制約
+UniqueConstraint = 固有の制約
+existingConnection = 接続フォルダ
+connectedConnection = ライブ接続
+disconnectedConnection = 切断された接続
+cachedConnection = キャッシュされた接続
+catalog = カタログ
 
-DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Default Schema Filter
-DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Default Table Filter
-DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME=Default Stored Procedure Filter
-FILTER_SETTINGS_PROPERTY_PAGE_NAME=Filter Settings
+DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=デフォルトのスキーマフィルタ
+DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=デフォルトのテーブルフィルタ
+DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME=デフォルトのストアドプロシージャフィルタ
+FILTER_SETTINGS_PROPERTY_PAGE_NAME=フィルタの設定

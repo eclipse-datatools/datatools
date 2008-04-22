@@ -10,45 +10,45 @@
 ###############################################################################
 pluginName=Eclipse Data Tools Platform Server UI Plug-in
 providerName=Eclipse.org
-serverExplorerLayout=Server Explorer Layout Extension
-serverExplorerInitialization=Server Initialization Provider
-SQL_MODEL_CONTENT_EXTENSION_NAME=SQL Model Content Extension
+serverExplorerLayout=服务器资源浏览器布局扩展
+serverExplorerInitialization=服务器初始化提供程序
+SQL_MODEL_CONTENT_EXTENSION_NAME=SQL 模型内容扩展
 
 #
 ## Providers for the Server Explorer
 #
-org.eclipse.datatools.connectivity.server.ui.serverExplorer = Database Explorer - "Existing Connections" Core
-rdb.server.ui.views.serverExplorer = Database Explorer
-rdb.server.ui.category = Data
+org.eclipse.datatools.connectivity.server.ui.serverExplorer = 数据库资源浏览器 -“现有连接”核心
+rdb.server.ui.views.serverExplorer = 数据库资源浏览器
+rdb.server.ui.category = 数据
 
 #
 ## Menus for the Server Explorer
 #
-rdb.server.ui.actions.connect=&New Connection...
-rdb.server.ui.actions.disconnect=Dis&connect
-rdb.server.ui.actions.edit.table = Table
-rdb.server.ui.actions.edit = Add Database
-rdb.server.ui.actions.delete = &Delete
-rdb.server.ui.actions.reconnect = Reconnect
-rdb.server.ui.actions.navigate = Navigate to Target
+rdb.server.ui.actions.connect=新建连接(&N)...
+rdb.server.ui.actions.disconnect=断开连接(&C)
+rdb.server.ui.actions.edit.table = 表
+rdb.server.ui.actions.edit = 添加数据库
+rdb.server.ui.actions.delete = 删除(&D)
+rdb.server.ui.actions.reconnect = 重新连接
+rdb.server.ui.actions.navigate = 导航至目标
 
 #
 ## Menus for the Data
 #
-rdb.server.ui.actions.fe = &Generate DDL
-rdb.server.ui.actions.refresh = &Refresh
+rdb.server.ui.actions.fe = 生成 DDL(&G)
+rdb.server.ui.actions.refresh = 刷新(&R)
 
 #
 ## Actions
 #
-rdb.server.ui.explorer.connect_server = New Connection...
-rdb.server.ui.explorer.reconnect_server = &Reconnect
-rdb.server.ui.explorer.disconnect_server = &Disconnect
-rdb.server.ui.explorer.collapse_all = Collapse All
-rdb.server.ui.actions.editfilter = &Filter...
+rdb.server.ui.explorer.connect_server = 新建连接...
+rdb.server.ui.explorer.reconnect_server = 重新连接(&R)
+rdb.server.ui.explorer.disconnect_server = 断开连接(&D)
+rdb.server.ui.explorer.collapse_all = 全部折叠
+rdb.server.ui.actions.editfilter = 筛选器(&F)...
 
 #
 ## Decorations
 #
-rdb.server.ui.serverDecoration = Data Tools - Server Explorer Connection Type Decoration
-rdb.server.ui.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
+rdb.server.ui.serverDecoration = 数据工具 - 服务器资源浏览器连接类型修饰
+rdb.server.ui.filterDecoration = 数据工具 - 服务器资源浏览器筛选器节点指示器

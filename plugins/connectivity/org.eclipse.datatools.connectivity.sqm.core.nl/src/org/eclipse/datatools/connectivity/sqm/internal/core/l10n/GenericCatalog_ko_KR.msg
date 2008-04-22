@@ -12,9 +12,9 @@
 # *******************************************************************************/
 
 #FE
-FE_VIEW_HAS_NO_BODY = The view {0} has no SELECT statement
-FE_TRIGGER_ACTION_EMPTY = The trigger {0} action is empty
-FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = The parent table/key referenced by foreign key {0} does not exist
-FE_REFERENCE_CONSTAINT_HAS_NO_KEY = The refernece constraint {0} does not have any key
-FE_INDEX_HAS_NO_MEMBER = The index {0} does not have any member
-FE_ELEMENT_HAS_NO_TYPE = The typed element {0} does not have any type
+FE_VIEW_HAS_NO_BODY = 뷰 {0}에 SELECT 문이 없습니다.
+FE_TRIGGER_ACTION_EMPTY = 트리거 {0} 작업이 비어 있습니다.
+FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = 외래 키 {0}에서 참조한 부모 테이블/키가 없습니다.
+FE_REFERENCE_CONSTAINT_HAS_NO_KEY = 참조 제약 조건 {0}에 키가 없습니다.
+FE_INDEX_HAS_NO_MEMBER = 인덱스 {0}에 멤버가 없습니다.
+FE_ELEMENT_HAS_NO_TYPE = 입력한 요소 {0}에 형식이 없습니다.

@@ -22,149 +22,149 @@ DATA_SOURCE_EXPLORER_SORTER=sorterValidatorProvider
 #
 ## Model Explorer Selection
 #
-datatools.core.ui.modelExplorerSelection = Model Explorer Selection
+datatools.core.ui.modelExplorerSelection = Modell-Explorer-Auswahl
 
 #
 ## Preferences for Label Decoration
 #
-datatools.core.ui.preferences.labeldecorators = Label Decorations
+datatools.core.ui.preferences.labeldecorators = Beschriftung – Dekoration
 
 #
 ## Preferences
 #
-datatools.core.ui.preferences.data = SQL Development
-datatools.core.ui.preferences.output = Output
+datatools.core.ui.preferences.data = SQL-Entwicklung
+datatools.core.ui.preferences.output = Ausgabe
 
 #
 ## Views
 #
-datatools.core.ui.modelElementProperties = Data Model Element Properties
-datatools.core.ui.views.interactiveSQL = Show SQL
+datatools.core.ui.modelElementProperties = Datenmodell-Element-Eigenschaften
+datatools.core.ui.views.interactiveSQL = SQL anzeigen
 
 #
 ## Model Explorer
 #
-datatools.core.ui.contentProviders = Physical Model Content Provider
-datatools.core.ui.parserProviders = Physical Model Parser Provider
-datatools.core.ui.iconProviders = Physical Model Icon Provider
+datatools.core.ui.contentProviders = Physikalisches Modell Content-Provider
+datatools.core.ui.parserProviders = Physikalisches Modell Parser-Provider
+datatools.core.ui.iconProviders = Physikalisches Modell Icon-Provider
 
 #
 ## Nature 
 #
-datatools.core.ui.projectNature = Database Project Data Nature
+datatools.core.ui.projectNature = Datenbank-Projekt – Data Nature
 
 #
 ## Wizards
 # 
-datatools.core.ui.category.project = Database
-datatools.core.ui.category.model = Database Model
-datatools.core.ui.project.basic = Data Design Project
-datatools.core.ui.project.description = Create a Data Design Project
-datatools.core.ui.model.basic = Physical Data Model
+datatools.core.ui.category.project = Datenbank
+datatools.core.ui.category.model = Datenbank-Modell
+datatools.core.ui.project.basic = Datendesign-Projekt
+datatools.core.ui.project.description = Erstellen Sie ein Datendesign-Projekt
+datatools.core.ui.model.basic = Physikalisches Datenmodell
 
 #
 ## Preferences
 #
-datatools.core.ui.preferences.modeler = Data
-datatools.core.ui.preferences.default = Database Defaults
+datatools.core.ui.preferences.modeler = Daten
+datatools.core.ui.preferences.default = Datenbank-Standardeinstellungen
 
 #
 ## Popup && Actions
 #
-datatools.core.ui.actions.close = Close
-datatools.core.ui.actions.add = Add SQL
+datatools.core.ui.actions.close = Schließ.en
+datatools.core.ui.actions.add = SQL hinzufügen
 datatools.core.ui.actions.addMQT = MQT
 datatools.core.ui.actions.addSchema = Schema
-datatools.core.ui.actions.addTable = Table
-datatools.core.ui.actions.addView = View
-datatools.core.ui.actions.addColumn = Column
-datatools.core.ui.actions.delete = Delete
-datatools.core.ui.actions.addTrigger = Trigger
-datatools.core.ui.globalActionHandlerProviders = Data Global Actions
-datatools.core.ui.actions.selectSupplier = Navigate To Unique Constraint Table
-datatools.core.ui.actions.fe=Generate DDL...
-datatools.core.ui.actions.re=Reverse Engineer from DDL...
+datatools.core.ui.actions.addTable = Tabelle
+datatools.core.ui.actions.addView = Ansicht
+datatools.core.ui.actions.addColumn = Spalte
+datatools.core.ui.actions.delete = Löschen
+datatools.core.ui.actions.addTrigger = Auslösen
+datatools.core.ui.globalActionHandlerProviders = Daten – globale Aktionen
+datatools.core.ui.actions.selectSupplier = Navigieren Sie zur Tabelle für eindeutige Einschränkungen
+datatools.core.ui.actions.fe=DDL erstellen...
+datatools.core.ui.actions.re=Reverse-Engineer von DDL...
 datatools.core.ui.actions.dataModeler = Data Modeler
-datatools.core.ui.actions.addDomain = Domain
-datatools.core.ui.actions.addSequence = Sequence
-datatools.core.ui.actions.addStoredProcedure = Stored Procedure
-datatools.core.ui.actions.addJavaStoredProcedure = Java Stored Procedure
+datatools.core.ui.actions.addDomain = Domäne
+datatools.core.ui.actions.addSequence = Sequenz
+datatools.core.ui.actions.addStoredProcedure = Gespeicherte Prozedur
+datatools.core.ui.actions.addJavaStoredProcedure = Java gespeicherte Prozedur
 datatools.core.ui.actions.generateForeignKeyIndex = Index
 datatools.core.ui.actions.generatePrimaryKeyIndex = Index
-datatools.core.ui.actions.addDatabase = Database
+datatools.core.ui.actions.addDatabase = Datenbank
 datatools.core.ui.actions.addTableIndex = Index
-datatools.core.ui.actions.addTableCheckConstraint = Check Constraint
-datatools.core.ui.actions.addUniqueConstraint = Unique Constraint
+datatools.core.ui.actions.addTableCheckConstraint = Prüf-Einschränkung
+datatools.core.ui.actions.addUniqueConstraint = Eindeutige Einschränkung
 datatools.core.ui.actions.addAlias = Alias
-datatools.core.ui.actions.addDistinctUDT = Distinct User Defined Type
-datatools.core.ui.actions.addStructuredUDT = Structured User Defined Type
+datatools.core.ui.actions.addDistinctUDT = Bestimmter benutzerdefinierter Typ
+datatools.core.ui.actions.addStructuredUDT = Strukturierter benutzerdefinierter Typ
 datatools.core.ui.actions.addMQTIndex = Index
-datatools.core.ui.actions.addMQTTrigger = Trigger
+datatools.core.ui.actions.addMQTTrigger = Auslösen
 #
 ## Editors
 #
-datatools.core.ui.model.editor = SQL Model Editor
+datatools.core.ui.model.editor = SQL-Modell-Editor
 
 #
 ## Decorators
 #
-datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Data Tools - Column Data Type
-datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Data Tools - Foreign or Primary Key Indicator
-datatools.core.ui.modelexplorer.DependencyDecoration = Data Tools - Dependency Decoration
-datatools.core.ui.modelexplorer.bookmarkDecoration  = Data Tools - Bookmark Indicator
+datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Datentools – Spaltendatentyp
+datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Datentools – Fremd- oder Primärschlüsselindikator
+datatools.core.ui.modelexplorer.DependencyDecoration = Datentools – Dependency Decoration
+datatools.core.ui.modelexplorer.bookmarkDecoration  = Datentools – Bookmark Indicator
 
 #
 ## Model Explorer Sorter Provider
 #
-datatools.core.ui.modelexplorer.sorterProviders = Model Explorer Sorter Provider
-datatools.core.ui.modelexplorer.menu.storageOrderSorter = Storage Order
+datatools.core.ui.modelexplorer.sorterProviders = Modell-Explorer – Sorter Provider
+datatools.core.ui.modelexplorer.menu.storageOrderSorter = Speicherungsreihenfolge
 datatools.core.ui.modelexplorer.menu.name = Name
-datatools.core.ui.modelexplorer.menu.type = Type
-datatools.core.ui.modelexplorer.menu.stereotype = Stereotype
-datatools.core.ui.modelexplorer.menu.visibility = Visibility
+datatools.core.ui.modelexplorer.menu.type = Typ
+datatools.core.ui.modelexplorer.menu.stereotype = Stereotyp
+datatools.core.ui.modelexplorer.menu.visibility = Sichtbarkeit
 
 #
 ## Model Explorer DnD
 #
-datatools.core.ui.modelexplorer.dragDrop = Drag and Drop
+datatools.core.ui.modelexplorer.dragDrop = Drag & Drop
 
 #
 ## Marker
 #
-datatools.core.ui.modelexplorer.marker.dangling = Dangling Reference
+datatools.core.ui.modelexplorer.marker.dangling = Alleinstehende Referenz
 
 
 #
 ## Type for Label Service 
 #
-database = Database
+database = Datenbank
 schema = Schema
-baseTable = Table
-column = Column
-domain = Domain
-udt = User Defined Type
+baseTable = Tabelle
+column = Spalte
+domain = Domäne
+udt = Benutzerdefinierter Typ
 index = Index
-procedure = Stored Procedure
-view = View
+procedure = Gespeicherte Prozedur
+view = Ansicht
 parameter = Parameter
-trigger = Trigger
-sequence = Sequence
-source= Source
-attributeDefinition = Attribute Definition
-function = User-Defined Function
-dependency = Dependency
-primaryKey = Primary Key
-foreignKey = Foreign Key
-folder = Logical Folder
-CheckConstraint = Check Constraint
-UniqueConstraint = Unique Constraint
-existingConnection = Connections Folder
-connectedConnection = Live Connection
-disconnectedConnection = Disconnected Connection
-cachedConnection = Cached Connection
-catalog = Catalog
+trigger = Auslösen
+sequence = Sequenz
+source= Quelle
+attributeDefinition = Attributdefinition
+function = Benutzerdefinierte Funktion
+dependency = Abhängigkeit
+primaryKey = Primärschlüssel
+foreignKey = Fremdschlüssel
+folder = Logischer Ordner
+CheckConstraint = Prüf-Einschränkung
+UniqueConstraint = Eindeutige Einschränkung
+existingConnection = Verbindungs-Ordner
+connectedConnection = Live-Verbindung
+disconnectedConnection = Unterbrochene Verbindung
+cachedConnection = Gepufferte Verbindung
+catalog = Katalog
 
-DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Default Schema Filter
-DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Default Table Filter
-DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME=Default Stored Procedure Filter
-FILTER_SETTINGS_PROPERTY_PAGE_NAME=Filter Settings
+DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Schema-Filter
+DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Tabellen-Filter
+DEFAULT_STORED_PROCEDURE_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Filter für gespeicherte Prozedur
+FILTER_SETTINGS_PROPERTY_PAGE_NAME=Filter-Einstellungen

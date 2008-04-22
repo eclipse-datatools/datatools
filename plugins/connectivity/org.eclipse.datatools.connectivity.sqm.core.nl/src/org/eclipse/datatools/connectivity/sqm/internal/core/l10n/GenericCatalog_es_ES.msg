@@ -12,9 +12,9 @@
 # *******************************************************************************/
 
 #FE
-FE_VIEW_HAS_NO_BODY = The view {0} has no SELECT statement
-FE_TRIGGER_ACTION_EMPTY = The trigger {0} action is empty
-FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = The parent table/key referenced by foreign key {0} does not exist
-FE_REFERENCE_CONSTAINT_HAS_NO_KEY = The refernece constraint {0} does not have any key
-FE_INDEX_HAS_NO_MEMBER = The index {0} does not have any member
-FE_ELEMENT_HAS_NO_TYPE = The typed element {0} does not have any type
+FE_VIEW_HAS_NO_BODY = La vista {0} no tiene ninguna sentencia SELECT
+FE_TRIGGER_ACTION_EMPTY = A acción del activador {0} está vacía
+FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST = La tabla/clave principal a la que hace referencia la clave externa {0} no existe
+FE_REFERENCE_CONSTAINT_HAS_NO_KEY = La restricción de referencia {0} no tiene ninguna clave
+FE_INDEX_HAS_NO_MEMBER = El índice {0} no tiene ningún miembro
+FE_ELEMENT_HAS_NO_TYPE = El elemento {0} introducido no tiene ningún tipo
