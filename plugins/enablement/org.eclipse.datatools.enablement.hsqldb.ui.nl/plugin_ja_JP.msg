@@ -1,14 +1,14 @@
-DRIVER_CLASS_PROPERTY_NAME=Driver Class
-VENDOR_PROPERTY_NAME=Vendor
-VERSION_PROPERTY_NAME=Version
-DATABASE_NAME_PROPERTY_NAME=Database Name
-CONNECTION_URL_PROPERTY_NAME=Connection URL
-USER_ID_PROPERTY_NAME=User ID
-PASSWORD_PROPERTY_NAME=Password
+DRIVER_CLASS_PROPERTY_NAME=ドライバクラス
+VENDOR_PROPERTY_NAME=ベンダ
+VERSION_PROPERTY_NAME=バージョン
+DATABASE_NAME_PROPERTY_NAME=データベース名
+CONNECTION_URL_PROPERTY_NAME=接続 URL
+USER_ID_PROPERTY_NAME=ユーザ ID
+PASSWORD_PROPERTY_NAME=パスワード
 
 Bundle-Vendor = Eclipse.org
 Bundle-Name = Eclipse Data Tools Platform HSQLDB UI Enablement Plug-in
-profile.page.name = HSQLDB Profile Properties
+profile.page.name = HSQLDB のプロファイルのプロパティ
 
 connection.profile.newwizard = HSQLDB
-connection.profile.newwizard.description = Create an HSQLDB connection profile.
+connection.profile.newwizard.description = HSQLDB の接続プロファイルを作成します。

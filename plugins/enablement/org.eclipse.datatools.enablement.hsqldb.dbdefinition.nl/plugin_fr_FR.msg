@@ -3,4 +3,4 @@ Bundle-Name = Eclipse Data Tools Platform HSQLDB Database Definition Enablement 
 
 product.display.string = HSQLDB
 product.display.version.string = 1.8
-product.display.description = HSQLDB Connection Profile
+product.display.description = Profil de connexion HSQLDB

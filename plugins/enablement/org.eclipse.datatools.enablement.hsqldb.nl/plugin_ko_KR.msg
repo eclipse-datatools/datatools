@@ -1,22 +1,22 @@
 Bundle-Vendor = Eclipse.org
-Bundle-Name = Eclipse Data Tools Platform HSQLDB Enablement Plug-in
+Bundle-Name = Eclipse Data Tools Platform HSQLDB 사용 플러그인
 
-navigator.content.name = HSQLDB Profile Content Extension
+navigator.content.name = HSQLDB 프로필 콘텐츠 확장명
 
-connection.factory = HSQLDB Connection Factory
-connection.profile = HSQLDB Connection Profile
+connection.factory = HSQLDB 연결 팩토리
+connection.profile = HSQLDB 연결 프로필
 
 driver.category.name = HSQLDB
-driver.category.description = HSQLDB JDBC Drivers
+driver.category.description = HSQLDB JDBC 드라이버
 driver.version.category.name = 1.8
-driver.version.category.description = HSQLDB JDBC Drivers for Version 1.8
-driver.name = HSQLDB JDBC Driver
-driver.description = JDBC driver for HSQLDB
+driver.version.category.description = 버전 1.8용 HSQLDB JDBC 드라이버
+driver.name = HSQLDB JDBC 드라이버
+driver.description = HSQLDB용 JDBC 드라이버
 
-DRIVER_CLASS_PROPERTY_NAME=Driver Class
-VENDOR_PROPERTY_NAME=Vendor
-VERSION_PROPERTY_NAME=Version
-DATABASE_NAME_PROPERTY_NAME=Database Name
-CONNECTION_URL_PROPERTY_NAME=Connection URL
-USER_ID_PROPERTY_NAME=User ID
+DRIVER_CLASS_PROPERTY_NAME=드라이버 클래스
+VENDOR_PROPERTY_NAME=공급업체
+VERSION_PROPERTY_NAME=버전
+DATABASE_NAME_PROPERTY_NAME=데이터베이스 이름
+CONNECTION_URL_PROPERTY_NAME=연결 URL
+USER_ID_PROPERTY_NAME=사용자 ID
 

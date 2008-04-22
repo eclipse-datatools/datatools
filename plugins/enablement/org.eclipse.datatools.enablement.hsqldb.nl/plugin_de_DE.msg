@@ -1,22 +1,22 @@
 Bundle-Vendor = Eclipse.org
-Bundle-Name = Eclipse Data Tools Platform HSQLDB Enablement Plug-in
+Bundle-Name = Eclipse-Datentools-Plattform HSQLDB Enablement Plug-In
 
-navigator.content.name = HSQLDB Profile Content Extension
+navigator.content.name = HSQLDB Profil-Content-Extension
 
-connection.factory = HSQLDB Connection Factory
-connection.profile = HSQLDB Connection Profile
+connection.factory = HSQLDB Verbindungs-Factory
+connection.profile = HSQLDB Verbindungsprofil
 
 driver.category.name = HSQLDB
-driver.category.description = HSQLDB JDBC Drivers
+driver.category.description = HSQLDB JDBC-Treiber
 driver.version.category.name = 1.8
-driver.version.category.description = HSQLDB JDBC Drivers for Version 1.8
-driver.name = HSQLDB JDBC Driver
-driver.description = JDBC driver for HSQLDB
+driver.version.category.description = HSQLDB JDBC-Treiber für Version 1.8
+driver.name = HSQLDB JDBC-Treiber
+driver.description = JDBC-Treiber für HSQLDB
 
-DRIVER_CLASS_PROPERTY_NAME=Driver Class
-VENDOR_PROPERTY_NAME=Vendor
+DRIVER_CLASS_PROPERTY_NAME=Treiberklasse
+VENDOR_PROPERTY_NAME=Anbieter
 VERSION_PROPERTY_NAME=Version
-DATABASE_NAME_PROPERTY_NAME=Database Name
-CONNECTION_URL_PROPERTY_NAME=Connection URL
-USER_ID_PROPERTY_NAME=User ID
+DATABASE_NAME_PROPERTY_NAME=Datenbankname
+CONNECTION_URL_PROPERTY_NAME=Verbindungs-URL
+USER_ID_PROPERTY_NAME=Benutzer-ID
 
