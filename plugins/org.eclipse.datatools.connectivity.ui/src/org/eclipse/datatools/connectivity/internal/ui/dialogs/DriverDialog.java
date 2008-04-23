@@ -1080,6 +1080,7 @@ public class DriverDialog extends TitleAreaDialog {
 			}
 			updateFromPropertySet();
 			updatePropertyDescriptors();
+			validateName();
 			boolean isOk = isValid();
 			if (this.mOKButton != null)
 				this.mOKButton.setEnabled(isOk);
@@ -1127,6 +1128,7 @@ public class DriverDialog extends TitleAreaDialog {
 		}
 
 		isValid(true);
+		validateName();
 	}
 
 	/*
