@@ -377,7 +377,7 @@
                   id="org.eclipse.datatools.connectivity.db.vendor"
                   name="%driverVendor"
                   required="true"
-                  value="Sybase"
+                  value="Sybase_ASA"
                   visible="false">
             </property>
             <property
@@ -385,7 +385,7 @@
                   id="org.eclipse.datatools.connectivity.db.version"
                   name="%driverVersion"
                   required="true"
-                  value="12.x"
+                  value="9.x"
                   visible="false">
             </property>
             <property
@@ -438,7 +438,7 @@
                   id="org.eclipse.datatools.connectivity.db.vendor"
                   name="%driverVendor"
                   required="true"
-                  value="Sybase"
+                  value="Sybase_ASA"
                   visible="false">
             </property>
             <property
@@ -446,7 +446,7 @@
                   id="org.eclipse.datatools.connectivity.db.version"
                   name="%driverVersion"
                   required="true"
-                  value="12.x"
+                  value="10.x"
                   visible="false">
             </property>
             <property

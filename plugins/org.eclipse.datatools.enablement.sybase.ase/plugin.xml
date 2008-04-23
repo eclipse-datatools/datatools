@@ -622,7 +622,7 @@
                   id="org.eclipse.datatools.connectivity.db.vendor"
                   name="%driverVendor"
                   required="true"
-                  value="Sybase"
+                  value="Sybase_ASE"
                   visible="false">
             </property>
             <property
@@ -683,7 +683,7 @@
                   id="org.eclipse.datatools.connectivity.db.vendor"
                   name="%driverVendor"
                   required="true"
-                  value="Sybase"
+                  value="Sybase_ASE"
                   visible="false">
             </property>
             <property
@@ -691,7 +691,7 @@
                   id="org.eclipse.datatools.connectivity.db.version"
                   name="%driverVersion"
                   required="true"
-                  value="15.0"
+                  value="15.x"
                   visible="false">
             </property>
             <property
