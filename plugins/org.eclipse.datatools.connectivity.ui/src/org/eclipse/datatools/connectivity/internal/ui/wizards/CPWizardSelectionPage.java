@@ -563,4 +563,10 @@ public class CPWizardSelectionPage
 		super.setVisible(visible);
 		this.mPageIsVisible = visible;
 	}
+
+	public boolean canFlipToNextPage() {
+		if (this.getErrorMessage() != null)
+			return false;
+		return super.canFlipToNextPage();
+	}
 }

@@ -78,7 +78,7 @@ public abstract class ConnectionProfileDetailsPage
 
 	public void createControl(Composite parent) {
 		Composite container = new Composite(parent, SWT.NULL);
-		final GridLayout gridLayout = new GridLayout();
+		final GridLayout gridLayout = new GridLayout(2, false);
 		gridLayout.horizontalSpacing = 0;
 		gridLayout.marginWidth = 0;
 		gridLayout.marginHeight = 0;
@@ -93,18 +93,14 @@ public abstract class ConnectionProfileDetailsPage
 		flayout.marginWidth = 0;
 		composite.setLayout(flayout);
         GridData compositeGD = new GridData(GridData.FILL_BOTH);
+        compositeGD.horizontalSpan = 2;
 		composite.setLayoutData(compositeGD);
 
 		createCustomControl(composite);
 		
 		
-		Composite bottom = null; 
-		
 		if (_showAutoConnectOnFinish) {
-		
-			if (bottom == null)
-				bottom = createAutoConnectComposite(container);
-			autoConnectOnFinishButton = new Button(bottom, SWT.CHECK);
+			autoConnectOnFinishButton = new Button(container, SWT.CHECK);
 			autoConnectOnFinishButton.setText(Messages.ConnectionProfileDetailsPage_Autoconnect_finish);
 			autoConnectOnFinishButton.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING));
 			autoConnectOnFinishButton.addSelectionListener(new SelectionListener() {
@@ -122,9 +118,7 @@ public abstract class ConnectionProfileDetailsPage
 		}
 
 		if (_showPing) {
-			if (bottom == null)
-				bottom = createAutoConnectComposite(container);
-			btnPing = new Button(bottom, SWT.NONE);
+			btnPing = new Button(container, SWT.NONE);
 			btnPing.addSelectionListener(new SelectionAdapter() {
 	
 				public void widgetSelected(SelectionEvent e) {
@@ -142,10 +136,7 @@ public abstract class ConnectionProfileDetailsPage
 		}
 
 		if (_showAutoConnect) {
-			
-			if (bottom == null)
-				bottom = createAutoConnectComposite(container);
-			autoConnectOnStartupButton = new Button(bottom, SWT.CHECK);
+			autoConnectOnStartupButton = new Button(container, SWT.CHECK);
 			autoConnectOnStartupButton.setText(Messages.ConnectionProfileDetailsPage_Autoconnect_startup);
 			GridData acStartupGD = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 			if (!_showPing)
@@ -173,17 +164,6 @@ public abstract class ConnectionProfileDetailsPage
 		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
-	private Composite createAutoConnectComposite ( Composite parent ) {
-		Composite bottom = new Composite(parent, SWT.NULL);
-		bottom.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.VERTICAL_ALIGN_BEGINNING ));
-		GridLayout gl = new GridLayout(2, false);
-		gl.horizontalSpacing = 0;
-		gl.marginWidth = 5;
-		gl.marginHeight = 0;
-		bottom.setLayout(gl);
-		return bottom;
-	}
-	
 	public abstract void createCustomControl(Composite parent);
 
 	protected void testConnection() {

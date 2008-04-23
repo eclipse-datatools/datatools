@@ -13,6 +13,8 @@ package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
 import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -38,13 +40,23 @@ public class DriverTreeTableLabelProvider extends LabelProvider implements
 				vendor = ""; //$NON-NLS-1$
 			if (version == null)
 				version = ""; //$NON-NLS-1$
+			DatabaseDefinition dbDef =
+				RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(vendor, version);
+
+			String versionDisplay = null;
+			String vendorDisplay = null;
+			if (dbDef != null) {
+				versionDisplay = dbDef.getVersionDisplayString();
+				vendorDisplay = dbDef.getProductDisplayString();
+			}
+
 			switch (columnIndex) {
 			case 0:
 				return name;
 			case 1: 
-				return vendor;
+				return vendorDisplay;
 			case 2:
-				return version;
+				return versionDisplay;
 			default:
 				return ""; //$NON-NLS-1$
 			}

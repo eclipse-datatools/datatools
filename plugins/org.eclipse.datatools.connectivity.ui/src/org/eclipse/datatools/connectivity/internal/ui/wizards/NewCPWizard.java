@@ -21,6 +21,8 @@ import org.eclipse.help.IContext;
 import org.eclipse.help.IContextProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.INewWizard;
@@ -78,6 +80,19 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 	 * @see Wizard#performFinish
 	 */
 	public boolean performFinish() {
+		if (mProfilePage != null && !mProfilePage.getControl().isDisposed()) {
+			IWizardNode selectedNode = mProfilePage.getSelectedNode();
+			if (selectedNode == null)
+				return false;
+			
+			IWizard wizard = selectedNode.getWizard();
+
+			if (wizard == null) {
+				return false;
+			}
+			else if (wizard.canFinish())
+				return wizard.performFinish();
+		}
 		// mStore.setValue(DONNT_SHOW_INRO, mIntroPage.isHideIntro());
 		return true;
 	}

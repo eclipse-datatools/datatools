@@ -14,6 +14,8 @@ import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeLabelProvider;
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
@@ -34,20 +36,31 @@ public class DriverListLabelProvider extends DriverTreeLabelProvider implements 
 		if (element instanceof IPropertySet) {
 			IPropertySet pset = (IPropertySet) element;
 			DriverInstance di = new DriverInstance(pset);
+			String vendor = 
+				di.getNamedPropertyByID(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
+			String version = 
+				di.getNamedPropertyByID(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
+
+			DatabaseDefinition dbDef =
+				RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(vendor, version);
+
+			String versionDisplay = null;
+			String vendorDisplay = null;
+			if (dbDef != null) {
+				versionDisplay = dbDef.getVersionDisplayString();
+				vendorDisplay = dbDef.getProductDisplayString();
+			}
+			
 			if (columnIndex == 0)
 				return di.getName();
 			else if (columnIndex == 1) {
-				String vendor = 
-					di.getNamedPropertyByID(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-				if (vendor != null && vendor.trim().length() > 0) {
-					return vendor;
+				if (vendorDisplay != null && vendorDisplay.trim().length() > 0) {
+					return vendorDisplay;
 				}
 			}
 			else if (columnIndex == 2) {
-				String version = 
-					di.getNamedPropertyByID(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
-				if (version != null && version.trim().length() > 0) {
-					return version;
+				if (versionDisplay != null && versionDisplay.trim().length() > 0) {
+					return versionDisplay;
 				}
 			}
 		}

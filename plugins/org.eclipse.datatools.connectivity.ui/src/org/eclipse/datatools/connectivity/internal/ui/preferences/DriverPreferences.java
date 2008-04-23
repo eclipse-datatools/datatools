@@ -295,30 +295,6 @@ public class DriverPreferences extends PreferencePage implements
 						StructuredSelection selection = (StructuredSelection) DriverPreferences.this.mTableViewer
 								.getSelection();
 						updateButtons(selection.getFirstElement());
-//						DriverPreferences.this.mAddButton
-//							.setEnabled(true);
-//						if (selection.getFirstElement() instanceof CategoryDescriptor) {
-//							DriverPreferences.this.mRemoveButton
-//									.setEnabled(false);
-//							DriverPreferences.this.mEditButton
-//									.setEnabled(false);
-//							DriverPreferences.this.mCopyButton
-//								.setEnabled(false);
-//						}
-//						else if (selection.getFirstElement() instanceof IPropertySet) {
-//							DriverPreferences.this.mRemoveButton
-//									.setEnabled(true);
-//							DriverPreferences.this.mEditButton
-//									.setEnabled(true);
-//							DriverPreferences.this.mCopyButton
-//								.setEnabled(true);
-//							DriverPreferences.this.selectedPS = (IPropertySet) selection
-//									.getFirstElement();
-//							if (DriverPreferences.this.selectedPS != null) {
-//								validate(DriverPreferences.this.selectedPS);
-//							}
-//							updateButtons(selection.getFirstElement());
-//						}
 					}
 
 				}
