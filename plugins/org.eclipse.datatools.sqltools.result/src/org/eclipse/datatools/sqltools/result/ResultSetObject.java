@@ -82,6 +82,7 @@ public class ResultSetObject implements IResultSetObject
     private int               _totalRowCount;
     private File              _backupFile;
     private static ILogger    _log             = ResultsViewPlugin.getLogger(null);
+    private ResultSetMetaData _meta;
 
     /**
      * Constructs a ResultSetObject instance from a JDBC ResultSet object
@@ -97,13 +98,13 @@ public class ResultSetObject implements IResultSetObject
         try
         {
             ResultSetMetaData meta = resultset.getMetaData();
+            _meta = meta;
             int columnCount = meta.getColumnCount();
             _totalRowCount = 0;
             _rows = new ArrayList();
             _columnNames = new String[columnCount];
             _columnDisplaySizes = new int[columnCount];
             _columnTypes = new int[columnCount];
-            _columnTypeNames = new String[columnCount];
             
             for (int i = 0; i < columnCount; i++)
             {
@@ -117,7 +118,9 @@ public class ResultSetObject implements IResultSetObject
 
                 _columnDisplaySizes[i] = meta.getColumnDisplaySize(i + 1);
                 _columnTypes[i] = meta.getColumnType(i + 1);
-                _columnTypeNames[i] = meta.getColumnTypeName(i + 1);
+                //[bug227975] In SQL debug mode, some JDBC driver will call stored procedure, 
+                //which will suspend until current debugee finished.  
+//                _columnTypeNames[i] = meta.getColumnTypeName(i + 1);
             }
 
             IResultSetRow row = null;
@@ -336,8 +339,31 @@ public class ResultSetObject implements IResultSetObject
         return _columnNames;
     }
     
+    /**
+     * Should be called before result set is closed, otherwise there is no guarantee that correct type names can be
+     * returned
+     * 
+     * @return type name of all the columns
+     */
     public String[] getColumnTypeNames()
     {
+        try
+        {
+            if ( _columnTypeNames == null && _meta != null )
+            {
+                int columnCount = _meta.getColumnCount();
+                _columnTypeNames = new String[columnCount];
+                for (int i = 0; i < columnCount; i++)
+                {
+                    _columnTypeNames[i] = _meta.getColumnTypeName(i + 1);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            // ignore
+        }
+
     	return _columnTypeNames;
     }
 
