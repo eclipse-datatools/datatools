@@ -11,6 +11,6 @@
 pluginName=Eclipse Data Tools Platform Microsoft SQL Server UI Plug-in
 providerName=Eclipse.org
 
-profile.sqlserver.wizard.title = SQL Server
-profile.sqlserver.wizard.description = Create a SQL Server connection profile.
-profile.sqlserver.properties = Driver Properties
+profile.sqlserver.wizard.title = Serveur SQL
+profile.sqlserver.wizard.description = Créer un profil de connexion de serveur SQL
+profile.sqlserver.properties = Propriétés de pilote

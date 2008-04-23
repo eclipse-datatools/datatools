@@ -11,22 +11,22 @@
 pluginName=Eclipse Data Tools Platform Microsoft SQL Server Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = ドライバクラス
+driverVendor = ベンダ
+driverVersion = バージョン
+driverDBName = データベース名
+driverConnectionURL = 接続 URL
+driverUID = ユーザ ID
+driverPWD = パスワード
 
-SQLSERVER_CATEGORY_NAME = SQL Server
+SQLSERVER_CATEGORY_NAME = SQL サーバ
 2005_VERSION_CATEGORY_NAME = 2005
 2000_VERSION_CATEGORY_NAME = 2000
 
 org.eclipse.datatools.enablement.msft.sqlserver.2005.driverTemplate = Microsoft SQL Server 2005 JDBC Driver
 org.eclipse.datatools.enablement.msft.sqlserver.2000.driverTemplate = Microsoft SQL Server 2000 Driver for JDBC
-org.eclipse.datatools.enablement.msft.sqlserver.2005.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.msft.sqlserver.2000.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.msft.sqlserver.2005.other.driverTemplate = その他のドライバ
+org.eclipse.datatools.enablement.msft.sqlserver.2000.other.driverTemplate = その他のドライバ
 
-jdbc.connection.name = JDBC Connection
-profile.sqlserver.title = SQL Server
+jdbc.connection.name = JDBC 接続
+profile.sqlserver.title = SQL サーバ

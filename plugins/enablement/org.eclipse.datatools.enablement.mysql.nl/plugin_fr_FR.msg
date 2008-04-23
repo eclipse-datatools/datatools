@@ -11,13 +11,13 @@
 pluginName=Eclipse Data Tools Platform MySQL Enablement Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Classe de pilote
+driverVendor = Vendeur
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverDBName = Nom de la base de données
+driverConnectionURL = URL de connexion
+driverUID = ID utilisateur
+driverPWD = Mot de passe
 
 MYSQL_CATEGORY_NAME = MySQL
 4_0_VERSION_CATEGORY_NAME = 4.0
@@ -25,10 +25,10 @@ MYSQL_CATEGORY_NAME = MySQL
 5_0_VERSION_CATEGORY_NAME = 5.0
 5_1_VERSION_CATEGORY_NAME = 5.1
 
-org.eclipse.datatools.enablement.mysql.4_0.driverTemplate = MySQL JDBC Driver
-org.eclipse.datatools.enablement.mysql.4_1.driverTemplate = MySQL JDBC Driver
-org.eclipse.datatools.enablement.mysql.5_0.driverTemplate = MySQL JDBC Driver
-org.eclipse.datatools.enablement.mysql.5_1.driverTemplate = MySQL JDBC Driver
+org.eclipse.datatools.enablement.mysql.4_0.driverTemplate = Pilote JDBC MySQL
+org.eclipse.datatools.enablement.mysql.4_1.driverTemplate = Pilote JDBC MySQL
+org.eclipse.datatools.enablement.mysql.5_0.driverTemplate = Pilote JDBC MySQL
+org.eclipse.datatools.enablement.mysql.5_1.driverTemplate = Pilote JDBC MySQL
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = Connexion JDBC
 profile.mysql.title = MySQL

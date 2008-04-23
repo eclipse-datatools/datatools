@@ -12,6 +12,6 @@ pluginName=Eclipse Data Tools Platform MySQL UI Plug-in
 providerName=Eclipse.org
 
 profile.mysql.wizard.title = MySQL
-profile.mysql.wizard.description = Create a MySQL connection profile.
-profile.mysql.properties = Driver Properties
+profile.mysql.wizard.description = MySQL の接続プロファイルを作成します。
+profile.mysql.properties = ドライバのプロパティ
 
