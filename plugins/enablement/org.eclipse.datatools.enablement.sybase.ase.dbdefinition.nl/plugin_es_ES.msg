@@ -8,9 +8,8 @@
 # Contributors:
 #     IBM Corporation - initial API and implementation
 ###############################################################################
-
-pluginName = Eclipse Data Tools Platform Sybase Database Definition Plug-in
-providerName = Eclipse.org
+pluginName=Eclipse Data Tools Platform Sybase ASE Database Definition
+providerName=Eclipse.org
 
 12.xProductString = Sybase Adaptive Server Enterprise (ASE)
 12.xVersionString = 12.x

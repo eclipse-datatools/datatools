@@ -1,4 +1,4 @@
-wizard.asa.multi.action = Create Multiple ASA Profiles
+wizard.asa.multi.action = Crear varios perfiles ASA
 profile.asa.content = Sybase ASA SQL Model Content Extension
 
 asa9.driver.template = Sybase JDBC Driver for Sybase ASA 9.x

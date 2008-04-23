@@ -1,4 +1,4 @@
-plugin_internal_error=Sybase enablement plugin internal error occurred.
+plugin_internal_error=Sybase Enablement Plugin ‚Å“à•”ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
 
 PrimaryKey_folder_name = Primary Key
 UniqueConstraint_folder_name = Unique Constraints

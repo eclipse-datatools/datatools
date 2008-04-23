@@ -1,76 +1,72 @@
-GENERATE_FULL_SYNTAX = Fu&lly Syntax 
-GENERATE_FULL_SYNTAX_DES = Generate fully syntax
+GENERATE_FULL_SYNTAX = Si&ntaxis completa 
+GENERATE_FULL_SYNTAX_DES = Generar sintaxis completa
 GENERATE_SETUSER= Set user 
 GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
 GENERATE_USEDATABASE= Use Database 
 GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
 
-GENERATE_EXTRA_CODE	=	E&xtra Code
-GENERATE_EXTRA_CODE_DES	=	Generate extra code
-GENERATE_PRIVILEGE	=	&Privilege
-GENERATE_PRIVILEGE_DES	=	Generate privilege grant
-GENERATE_COMMENTS = Comments
-GENERATE_COMMENTS_DES = Generate Commen&ts
+GENERATE_EXTRA_CODE	=	Código e&xtra
+GENERATE_EXTRA_CODE_DES	=	Generar código extra
+GENERATE_PRIVILEGE	=	&Privilegio
+GENERATE_PRIVILEGE_DES	=	Generar concesión de privilegios
+GENERATE_COMMENTS = Comentarios
+GENERATE_COMMENTS_DES = Generar comen&tarios
 
 GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
 GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
 
-
 GENERATE_FUNCTION=User Defined &Functions
 GENERATE_FUNCTION_DES=Generate user defined functions
-GENERATE_USER_DEFINED_TYPES 	= User Defined &Types
-GENERATE_USER_DEFINED_TYPES_DES 	= Generate user defined types
-GENERATE_DEFAULTS_DES 	= Generate defaults
-GENERATE_DEFAULTS 		= &Defaults
-GENERATE_DEFAULTS_DES 	= Generate defaults
-GENERATE_RULES 		= &Rules
-GENERATE_RULES_DES 	= Generate rules
-GENERATE_USERS_GROUPS = &Users & Groups
-GENERATE_USERS_GROUPS_DES = Generate users and groups
-GENERATE_PROXY_TABLES = &Proxy Tables
-GENERATE_PROXY_TABLES_DES = Generate proxy tables
-GENERATE_SEGMENTS = Se&gments
-GENERATE_SEGMENTS_DES = Generate segments
-GENERATE_DBSPACES = Dbs&pace
-GENERATE_DBSPACES_DES = Generate dbspaces
-GENERATE_EVENTS = E&vents
-GENERATE_EVENTS_DES = Generate events
+GENERATE_USER_DEFINED_TYPES 	= &Tipos definidos por el usuario
+GENERATE_USER_DEFINED_TYPES_DES 	= Generar tipos definidos por el usuario
+GENERATE_DEFAULTS_DES 	= Generar predeterminados
+GENERATE_DEFAULTS 		= &Predeterminados
+GENERATE_DEFAULTS_DES 	= Generar predeterminados
+GENERATE_RULES 		= &Reglas
+GENERATE_RULES_DES 	= Generar reglas
+GENERATE_USERS_GROUPS = &Usuarios y grupos
+GENERATE_USERS_GROUPS_DES = Generar usuarios y grupos
+GENERATE_PROXY_TABLES = Tablas de &proxy
+GENERATE_PROXY_TABLES_DES = Generar tablas de proxy
+GENERATE_SEGMENTS = Se&gmentos
+GENERATE_SEGMENTS_DES = Generar segmentos
+GENERATE_DBSPACES = Es&pacio DB
+GENERATE_DBSPACES_DES = Generar espacios de base de datos
+GENERATE_EVENTS = E&ventos
+GENERATE_EVENTS_DES = Generar eventos
 
-GENERATE_CHECK_CONSTRAINTS = &Check Constraints
-GENERATE_CHECK_CONSTRAINTS_DES = Generate check constraints
-GENERATE_UNIQUE_CONSTRAINTS = &Unique Constraints
-GENERATE_UNIQUE_CONSTRAINTS_DES = Generate unique constraints
-GENERATE_PRIMARY_KEYS = &Primary Keys
-GENERATE_PRIMARY_KEYS_DES = Generate primary keys
-GENERATE_FOREIGN_KEYS = &Foreign Keys
-GENERATE_FOREIGN_KEYS_DES = Generate foreign keys
+GENERATE_CHECK_CONSTRAINTS = &Comprobar restricciones
+GENERATE_CHECK_CONSTRAINTS_DES = Generar comprobación de restricciones
+GENERATE_UNIQUE_CONSTRAINTS = Restricciones &exclusivas
+GENERATE_UNIQUE_CONSTRAINTS_DES = Generar restricciones exclusivas
+GENERATE_PRIMARY_KEYS = Claves &primarias
+GENERATE_PRIMARY_KEYS_DES = Generar claves primarias
+GENERATE_FOREIGN_KEYS = Claves &externas
+GENERATE_FOREIGN_KEYS_DES = Generar claves externas
 
-GENERATE_CATALOGS = Catalo&g
-GENERATE_CATALOGS_DES = Generate Catalog
-GENERATE_DATABASE = &Database
-GENERATE_DATABASE_DES = Generate Database
+GENERATE_CATALOGS = Catálo&go
+GENERATE_CATALOGS_DES = Generar catálogo
+GENERATE_DATABASE = &Base de datos
+GENERATE_DATABASE_DES = Generar base de datos
 
 GENERATE_JOIN_INDICES=&Join Index
 GENERATE_JOIN_INDICES_DES=Generate Join Index
 
-#GENERATE_DOMAINS = Do&mains
-#GENERATE_DOMAINS_DES = Generate domains
+#GENERATE_DOMAINS = Do&minios
+#GENERATE_DOMAINS_DES = Generar dominios
 
-DATABASE_LABEL = Database
-TABLE_LABEL = Table
-PROCEDURE_LABEL = Procedure
-USER_DEFINED_FUNCTION_LABEL = User Defined Function
-VIEW_LABEL = View
-USER_DEFINED_DATATYPE_LABEL = User Defined Datatype
-EVENT_LABEL = Event
-CHECK_CONSTRAINT_LABEL = Check Constraint
-UNIQUE_CONSTRAINT_LABEL = Unique Constraint
-PRIMARY_KEY_LABEL = Primary Key
-FOREIGN_KEY_LABEL = Foreign Key
-INDEX_LABEL = Index
-TRIGGER_LABEL = Trigger
-DEFAULT_LABEL = Default
-RULE_LABEL = Rule
-
-
-
+DATABASE_LABEL = Base de datos
+TABLE_LABEL = Tabla
+PROCEDURE_LABEL = Procedimiento
+USER_DEFINED_FUNCTION_LABEL = Función definida por el usuario
+VIEW_LABEL = Ver
+USER_DEFINED_DATATYPE_LABEL = Tipo de datos definido por el usuario
+EVENT_LABEL = Evento
+CHECK_CONSTRAINT_LABEL = Comprobar restricción
+UNIQUE_CONSTRAINT_LABEL = Restricción exclusiva
+PRIMARY_KEY_LABEL = Clave primaria
+FOREIGN_KEY_LABEL = Clave externa
+INDEX_LABEL = Índice
+TRIGGER_LABEL = Activador
+DEFAULT_LABEL = Predeterminado
+RULE_LABEL = Regla

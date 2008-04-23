@@ -1,11 +1,11 @@
 Plugin.name = High-level Sybase Enablement Plug-in
-Plugin.providerName = Eclipse.org
+Plugin.providerName = Sybase, Inc.
 
 sybase.drivers.category = Sybase
-sybase.drivers.category.description = Drivers associated with Sybase products
-# ====================================================================
+sybase.drivers.category.description = Treiber für Sybase-Produkte
+# ===================================================================
 
-pluginName = Sybasesqlmodel Model
+pluginName = Sybasesqlmodel-Modell
 providerName = Eclipse.org
 temptable.name = Temporary Table
 trigger.name = Trigger
