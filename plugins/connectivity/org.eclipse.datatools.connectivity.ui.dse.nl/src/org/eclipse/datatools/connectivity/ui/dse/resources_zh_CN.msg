@@ -1,4 +1,13 @@
-#Thu Jun 22 00:30:53 EDT 2006
+################################################################################
+## Copyright (c) 2005 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+################################################################################ 
 plugin.internal_error=内部错误 － org.eclipse.datatools.connectivity
 properties.dialog=属性对话框
 properties.category.general=常规
@@ -37,6 +46,12 @@ SummaryWizardPage.title=总结
 SummaryWizardPage.description=从先前各页收集的信息。
 SummaryWizardPage.property=属性
 SummaryWizardPage.value=值
+error.connect={1}。请参阅日志文件以了解更多详细信息。
+error.contentExtension=连接到概要文件“{1}”上的“{0}”扩展时出错（错误：{2}）
+CPVersionPropertyPage.desc={0} 的版本信息。\n此信息是进行上次连接尝试时获取的。如果上次连接尝试未成功，则将没有版本信息。
+CPVersionPropertyPage.label.versionUnavailable=没有此概要文件的版本信息。
+CPVersionPropertyPage.label.techVersions=在此服务器上提供了下列技术：
+ConnectionProfileLabelProvider.label.versionIndicator={0} ({1} v. {2}) 
 ProfileSelectionDialog.Dialog.Title=配置文件浏览
 ProfileSelectionDialog.Title=选择可用的配置文件
 ProfileSelectionDialog.Message=从可用配置文件的列表中选择。
