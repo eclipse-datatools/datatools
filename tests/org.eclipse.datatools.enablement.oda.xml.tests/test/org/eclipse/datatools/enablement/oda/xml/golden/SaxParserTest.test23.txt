@@ -1,0 +1,2 @@
+Latitude					Longitude					AllocationFactor					FipsCode					PlaceName					StateCode					Status					Day					WeatherImage					MaxTemperatureF					MinTemperatureF					MaxTemperatureC					MinTemperatureC					
+37.61956					122.481606					0.001263					06					PACIFICA					CA					null					Friday, April 18, 2008					http://forecast.weather.gov/images/wtf/bkn.jpg					56					46					13					8					

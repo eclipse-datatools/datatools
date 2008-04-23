@@ -32,7 +32,7 @@ public class XMLDataPreviewDialog extends TrayDialog
 	 * 
 	 * @param shell
 	 */
-	protected XMLDataPreviewDialog( Shell shell )
+	public XMLDataPreviewDialog( Shell shell )
 	{
 		super( shell );
 	}

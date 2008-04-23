@@ -29,5 +29,6 @@ public class Constants
 	public static final String CONST_PROP_XPATH = org.eclipse.datatools.enablement.oda.xml.ui.wizards.Constants.CONST_PROP_XPATH;
 	public static final String CONST_PROP_TABLE_NAME = org.eclipse.datatools.enablement.oda.xml.ui.wizards.Constants.CONST_PROP_TABLE_NAME;
 	public static final String CONST_PROP_MAX_ROW = org.eclipse.datatools.enablement.oda.xml.ui.wizards.Constants.CONST_PROP_MAX_ROW;
+	public static final String CONST_PROP_SAMPLE_XML = org.eclipse.datatools.enablement.oda.xml.ui.wizards.Constants.CONST_PROP_XML_FILE;
 
 }

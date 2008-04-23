@@ -18,6 +18,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,10 +84,15 @@ public class ColumnMappingPage extends DataSetWizardPage
     private static final String LEFT_SQUARE_BRACKET = "[";      //$NON-NLS-1$
     private static final String LEFT_CURLY_BRACKET = "{";       //$NON-NLS-1$
     private static final String RIGHT_CURLY_BRACKET = "}";      //$NON-NLS-1$
+    private static final String LEFT_SHARP_ANGLED_BRACKET = "<";       //$NON-NLS-1$
+    private static final String RIGHT_SHARP_ANGLED_BRACKET = ">";      //$NON-NLS-1$
+    
     private static final String COMMA = ",";                    //$NON-NLS-1$
     private static final String SEMICOLON = ";";                //$NON-NLS-1$
     private static final String UNDERSCORE = "_";               //$NON-NLS-1$
     private static final String EMPTY_STRING = "";              //$NON-NLS-1$
+    private static final String DOUBLE_QUOTE = "\"";              //$NON-NLS-1$
+    
     private XMLTreeViewer availableXmlTree;
 	private Button btnPreview;
 
@@ -392,7 +398,16 @@ public class ColumnMappingPage extends DataSetWizardPage
 		btnPreview = new Button( parent, SWT.PUSH );
 		btnPreview.setText( Messages.getString( "menu.button.preview" ) ); //$NON-NLS-1$
 		btnPreview.setToolTipText( Messages.getString( "ColumnMappingTable.previewButton.tooltip" ) ); //$NON-NLS-1$
-		btnPreview.addSelectionListener( new SelectionAdapter( ) {
+		btnPreview.addSelectionListener( getPreviewButtonAdapter( ) );
+
+		GridData gd = new GridData( );
+		gd.horizontalAlignment = SWT.END;
+		btnPreview.setLayoutData( gd );
+	}
+
+	protected SelectionAdapter getPreviewButtonAdapter( )
+	{
+		return new SelectionAdapter( ) {
 
 			/*
 			 * (non-Javadoc)
@@ -407,11 +422,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					previewDialog.close( );
 				}
 			}
-		} );
-
-		GridData gd = new GridData( );
-		gd.horizontalAlignment = SWT.END;
-		btnPreview.setLayoutData( gd );
+		};
 	}
 
 	private void createRightGroup( Composite composite )
@@ -1282,7 +1293,14 @@ public class ColumnMappingPage extends DataSetWizardPage
 					rowStr = rowStr + COMMA;                               
 				queryString = queryString + rowStr;
 			}
-			return queryString;
+			String nameSpaceString = getNamespace( );
+			if ( nameSpaceString == null
+					|| nameSpaceString.trim( ).length( ) == 0 )
+				return queryString;
+			else
+				return queryString
+						+ RelationInformation.CONST_TABLE_COLUMN_DELIMITER
+						+ nameSpaceString;
 		}
 		return null;
 	}
@@ -1471,6 +1489,58 @@ public class ColumnMappingPage extends DataSetWizardPage
 				updateDesign(dataSetDesign);
 			}
 		}
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws OdaException 
+	 */
+	private String getNamespace( )
+	{
+		Map prefixMapping = null;
+		boolean start = true;
+		try{
+		if ( this.xsdFileName != null
+					&& this.xsdFileName.trim( ).length( ) > 0 )
+				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xsdFileName,
+						xmlEncoding );
+			else
+				prefixMapping = SchemaPopulationUtil.getPrefixMapping( xmlFileName,
+						xmlEncoding );
+		}
+		catch ( OdaException ex )
+		{
+			return null;
+		}
+		StringBuffer nameSpaceBuf = new StringBuffer( );
+		if ( prefixMapping.size( ) > 0 )
+		{
+			nameSpaceBuf.append( LEFT_SHARP_ANGLED_BRACKET );
+			Iterator entryIter = prefixMapping.entrySet( ).iterator( );
+			String key, value;
+			while ( entryIter.hasNext( ) )
+			{
+				Entry entry = (Entry) entryIter.next( );
+				key = entry.getKey( ).toString( );
+				value = entry.getValue( ).toString( );
+				if ( !start )
+				{
+					nameSpaceBuf.append( SEMICOLON
+							+ DOUBLE_QUOTE + key + DOUBLE_QUOTE + COMMA
+							+ DOUBLE_QUOTE + value + DOUBLE_QUOTE );
+				}
+				else
+				{
+					nameSpaceBuf.append( DOUBLE_QUOTE
+							+ key + DOUBLE_QUOTE + COMMA + DOUBLE_QUOTE + value
+							+ DOUBLE_QUOTE );
+					start = false;
+				}
+			}
+			nameSpaceBuf.append( RIGHT_SHARP_ANGLED_BRACKET );
+		}
+		return nameSpaceBuf.toString( );
 	}
 	
 	protected void updateDesign( DataSetDesign dataSetDesign )

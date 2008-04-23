@@ -139,6 +139,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				viewer.setAllChecked( true );
+				saveToModel( );
 			}
 
 		} );
@@ -151,6 +152,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 			public void widgetSelected( SelectionEvent e )
 			{
 				viewer.setAllChecked( false );
+				saveToModel( );
 			}
 
 		} );
@@ -256,8 +258,8 @@ public class SOAPParametersPage extends DataSetWizardPage
 				{
 					( (SOAPParameter) event.getElement( ) ).setDefaultValue( WSUIUtil.EMPTY_STRING );
 					viewer.refresh( );
+					saveToModel( );
 				}
-
 			}
 
 		} );
@@ -329,7 +331,11 @@ public class SOAPParametersPage extends DataSetWizardPage
 			return;
 
 		soapRequest = new SOAPRequest( wsQueryText );
-		SOAPParameter[] soapParameters = soapRequest.getParameters( );
+		SOAPParameter[] soapParameters = null;
+		if ( WSConsole.getInstance( ).getParameters( ) != null )
+			soapParameters = WSConsole.getInstance( ).getParameters( );
+		else
+			soapParameters = soapRequest.getParameters( );
 		if ( !WSUIUtil.isNull( soapParameters ) )
 		{
 			viewer.setInput( soapParameters );

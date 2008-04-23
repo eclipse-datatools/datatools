@@ -52,7 +52,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 		this.relationInfo = rinfo;
 		this.consumer = consumer;
 		mappingPathElementTree = relationInfo.getTableMappingPathElementTree( tableName );
-		this.sp = new SaxParser( xdis , this );
+		this.sp = new SaxParser( xdis , this, true );
 		this.spThread = new Thread( sp );
 		this.spThread.start();
 	}

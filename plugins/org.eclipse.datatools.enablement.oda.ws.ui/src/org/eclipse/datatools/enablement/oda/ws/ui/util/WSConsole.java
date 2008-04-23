@@ -32,7 +32,9 @@ import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
+import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLInformationHolder;
 import org.eclipse.emf.common.util.EList;
@@ -56,6 +58,8 @@ public class WSConsole
 	private boolean isSessionOK = false;
 	private static final int BACKWARD = 0;
 	private static final int FORWARD = 1;
+	
+	private File templateFile, sampleXMLFile;
 
 	/**
 	 * 
@@ -256,6 +260,14 @@ public class WSConsole
 		isSessionOK = false;
 		props = null;
 		parameters = null;
+		if ( sampleXMLFile != null && !sampleXMLFile.delete( ) )
+		{
+			sampleXMLFile.deleteOnExit( );
+		}
+		if ( templateFile != null && !templateFile.delete( ) )
+		{
+			templateFile.deleteOnExit( );
+		}
 		XMLInformationHolder.destory( );
 	}
 
@@ -349,18 +361,63 @@ public class WSConsole
 	 */
 	public void createXMLTempFileURI( ) throws OdaException
 	{
-		File file = generateTempXMLFile( );
-		String xmlTempFileURI = file == null ? WSUIUtil.EMPTY_STRING
-				: file.getAbsolutePath( );
+		String fileLocation = getPropertyValue( Constants.XML_TEMP_FILE_URI ) == null
+				? null
+				: getPropertyValue( Constants.XML_TEMP_FILE_URI ).toString( );
+		if ( fileLocation != null && !new File( fileLocation ).delete( ) )
+		{
+			new File( fileLocation ).deleteOnExit( );
+		}
+		
+		InputStream stream = getInputStream( true );
+		if ( WSUIUtil.isNull( stream ) )
+			return;
 
+		templateFile = generateTempXMLFile( stream );
+		try
+		{
+			stream.close( );
+		}
+		catch ( IOException e )
+		{
+		}
+		String xmlTempFileURI = templateFile.getAbsolutePath( );
 		setPropertyValue( Constants.XML_TEMP_FILE_URI, xmlTempFileURI );
 	}
-
-	private File generateTempXMLFile( ) throws OdaException
+	
+	/**
+	 * 
+	 * @throws OdaException
+	 */
+	public void createSampleXMLFile( ) throws OdaException
 	{
-		InputStream in = getInputStream( );
-		if ( WSUIUtil.isNull( in ) )
-			return null;
+		String fileLocation = getPropertyValue( Constants.CONST_PROP_SAMPLE_XML ) == null
+				? null
+				: getPropertyValue( Constants.CONST_PROP_SAMPLE_XML ).toString( );
+		if ( fileLocation != null && new File( fileLocation ).delete( ) )
+		{
+			new File( fileLocation ).deleteOnExit( );
+		}
+		setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML, "" ); //$NON-NLS-1$
+
+		InputStream stream = getInputStream( false );
+		if ( WSUIUtil.isNull( stream ) )
+			return;
+		sampleXMLFile = generateTempXMLFile( stream );
+		try
+		{
+			stream.close( );
+		}
+		catch ( IOException e )
+		{
+		}
+		String xmlTempFileURI = sampleXMLFile.getAbsolutePath( );
+		setPropertyValue( Constants.CONST_PROP_SAMPLE_XML, xmlTempFileURI );
+		setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML, xmlTempFileURI );
+	}
+
+	private File generateTempXMLFile( InputStream stream ) throws OdaException
+	{
 
 		File file;
 		try
@@ -368,15 +425,15 @@ public class WSConsole
 			file = File.createTempFile( XML_TEMP_FILE, null );
 			file.deleteOnExit( );
 			FileOutputStream fos = new FileOutputStream( file );
-			BufferedInputStream bis = new BufferedInputStream( in );
+			InputStream bis = new BufferedInputStream( stream );
 			int abyte;
 
 			while ( ( abyte = bis.read( ) ) != -1 )
 			{
 				fos.write( abyte );
 			}
+			bis.close( );
 			fos.close( );
-			in.close( );
 		}
 		catch ( IOException e )
 		{
@@ -386,7 +443,7 @@ public class WSConsole
 		return file;
 	}
 
-	private InputStream getInputStream( ) throws OdaException
+	private InputStream getInputStream( boolean fromWSDL ) throws OdaException
 	{
 		if ( !WSUIUtil.isNull( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) ) )
 		{
@@ -394,7 +451,7 @@ public class WSConsole
 		}
 		else
 		{
-			SOAPResponse soapResponse = connectNow( );
+			SOAPResponse soapResponse = connectNow( fromWSDL );
 			if ( soapResponse == null || soapResponse.getInputStream( ) == null )
 				throw new OdaException( Messages.getString( "wsConsole.message.error.cantRetrieveSOAPResponse" ) ); //$NON-NLS-1$
 
@@ -452,7 +509,7 @@ public class WSConsole
 		return p;
 	}
 
-	private SOAPResponse connectNow( ) throws OdaException
+	private SOAPResponse connectNow( boolean fromWSDL ) throws OdaException
 	{
 		String spec = getPropertyValue( Constants.SOAP_ENDPOINT );
 		// if soapEndPoint is not explicitly specified by the user, try locate
@@ -464,19 +521,35 @@ public class WSConsole
 		if ( WSUIUtil.isNull( spec ) || WSUIUtil.isNull( query ) )
 			return null;
 
-		String soapAction = WSUIUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( getPropertyValue( Constants.WSDL_URI ),
-				getPropertyValue( Constants.OPERATION_TRACE ) ) );
-
 		SOAPRequest soapRequest = new SOAPRequest( query );
 		populateSOAPParameterValues( soapRequest, parameters );
-		String message = soapRequest.toXML( );
 
-		WSDLAdvisor wsdlAdvisor = new WSDLAdvisor( );
-		String temlate = wsdlAdvisor.getLocalSOAPResponseTemplate( getPropertyValue( Constants.WSDL_URI ),
-				getPropertyValue( Constants.OPERATION_TRACE ) );
-		SOAPResponse soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( )
-				.getBytes( ) ) );
-		
+		SOAPResponse soapResponse = null;
+		if ( fromWSDL )
+		{
+			WSDLAdvisor wsdlAdvisor = new WSDLAdvisor( );
+			String temlate = wsdlAdvisor.getLocalSOAPResponseTemplate( getPropertyValue( Constants.WSDL_URI ),
+					getPropertyValue( Constants.OPERATION_TRACE ) );
+			soapResponse = new SOAPResponse( new ByteArrayInputStream( temlate.toString( )
+					.getBytes( ) ) );
+		}
+		else
+		{
+			RawMessageSender rawMessageSender = new RawMessageSender( );
+			rawMessageSender.setMessage( soapRequest.toXML( ) );
+			String soapEndPoint = getPropertyValue( Constants.SOAP_ENDPOINT );
+			String wsdlURI = getPropertyValue( Constants.WSDL_URI );
+			String operationTrace = getPropertyValue( Constants.OPERATION_TRACE );
+			int connectionTimeout = Integer.parseInt( getPropertyValue( Constants.CONNECTION_TIMEOUT ) );
+
+			if ( WSUtil.isNull( soapEndPoint ) )
+				soapEndPoint = WSDLAdvisor.getLocationURI( wsdlURI,
+						operationTrace );
+			rawMessageSender.setSpec( WSUtil.getNonNullString( soapEndPoint ) );
+			rawMessageSender.setSoapAction( WSUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( wsdlURI,
+					operationTrace ) ) );
+			soapResponse = rawMessageSender.getSOAPResponse( connectionTimeout );
+		}
 		return soapResponse;
 	}
 

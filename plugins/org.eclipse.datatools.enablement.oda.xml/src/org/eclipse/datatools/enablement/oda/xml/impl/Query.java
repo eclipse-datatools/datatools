@@ -75,7 +75,7 @@ public class Query implements IQuery
 			throw new org.eclipse.datatools.connectivity.oda.OdaException( Messages.getString("Query.InvalidQueryText") ); //$NON-NLS-1$
 	
 		this.tableName = temp[0];
-		this.relationInformation = new RelationInformation( temp[1] );
+		this.relationInformation = new RelationInformation( temp[1], true );
 	}
 
 	/*

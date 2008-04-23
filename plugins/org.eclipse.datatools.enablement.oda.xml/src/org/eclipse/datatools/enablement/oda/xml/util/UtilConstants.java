@@ -25,6 +25,8 @@ public final class UtilConstants
 	public static final String XPATH_ELEM_INDEX_PATTERN = "\\Q[\\E\\d+\\Q]\\E";                //$NON-NLS-1$
 	public static final String XPATH_DOUBLE_SLASH = "//";                                      //$NON-NLS-1$
 	public static final String XPATH_SLASH = "/";                                              //$NON-NLS-1$
-
+	public static final String NAMESPACE_COLON = ":";                                          //$NON-NLS-1$
+	public static final String BACK_SLASH = "%";
+	
 	public static final int COLUMN_REFNUMBER_RELATIVE = -1;
 }

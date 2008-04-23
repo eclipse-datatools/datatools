@@ -16,7 +16,11 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLDataPreviewDialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -46,6 +50,49 @@ public class XMLColumnMappingPage
 	{
 		initWSConsole( );
 		super.createPageCustomControl( parent );
+	}
+	
+	/*
+	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getPreviewButtonAdapter()
+	 */
+	protected SelectionAdapter getPreviewButtonAdapter( )
+	{
+		return new SelectionAdapter( ) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+	
+				try
+				{
+					String sampleXMLFile = WSConsole.getInstance( )
+							.getPropertyValue( Constants.XML_FILE_URI );
+					if ( sampleXMLFile != null
+							&& sampleXMLFile.trim( ).length( ) > 0 )
+					{
+						WSConsole.getInstance( ).setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML, sampleXMLFile );
+					}
+					else
+					{
+						WSConsole.getInstance( ).createSampleXMLFile( );
+					}
+				}
+				catch ( Exception ex )
+				{
+					// ignore it
+				}
+
+				XMLDataPreviewDialog previewDialog = new XMLDataPreviewDialog( getShell( ) );
+				if ( previewDialog.open( ) == IDialogConstants.CLOSE_ID )
+				{
+					previewDialog.close( );
+				}
+			}
+		};
 	}
 
 	private void initWSConsole( )

@@ -39,7 +39,7 @@ import org.eclipse.swt.widgets.TableItem;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.8 $ $Date: 2007/12/29 03:59:28 $
+ * @version $Revision: 1.9 $ $Date: 2008/04/08 03:23:02 $
  */
 public final class ResultSetTableViewer
 {
@@ -142,8 +142,6 @@ public final class ResultSetTableViewer
 			}
 			catch ( OdaException e )
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 
 		}

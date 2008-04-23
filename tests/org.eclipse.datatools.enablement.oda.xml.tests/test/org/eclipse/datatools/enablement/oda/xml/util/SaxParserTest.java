@@ -58,7 +58,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# tableFilter#:#[/BookStore/Book[@id=\"A\"]/Author]#:#{book.author;String;}"
 			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
 			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}"
-			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}";
+			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}"
+			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}#:#&lt;\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">";
 	
 	private RelationInformation ri;
 
@@ -1000,5 +1001,42 @@ public class SaxParserTest extends BaseTest
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST22_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST22_GOLDEN_XML ) ) );
+	}
+	
+	public void test23( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST23_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString , true);
+		XMLCreatorContent content = new XMLCreatorContent( TestConstants.XML_FILE_WITH_NAMESPACE );
+		ResultSet rs = new ResultSet( content,
+				ri,
+				"soap",
+				0 );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST23_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST23_GOLDEN_XML ) ) );
 	}
 }

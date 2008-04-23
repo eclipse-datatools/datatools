@@ -152,8 +152,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 				throw new OdaException( e.getLocalizedMessage( ) );
 			}
 		}
-		sp = new SaxParser( xdis,
-				this);
+		sp = new SaxParser( xdis, this, true );
 		spThread = new Thread( sp );
 		spThread.start( );
 	}

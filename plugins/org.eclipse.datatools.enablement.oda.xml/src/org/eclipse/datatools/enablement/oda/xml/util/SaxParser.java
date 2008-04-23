@@ -70,8 +70,10 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private String currentCacheValue;
 
 	private boolean stopCurrentThread;
+	private boolean useNamespace;
 	
 	private Map cachedValues;
+	private Map prefixMap;
 
 	private List exceptions;
 	/**
@@ -79,17 +81,19 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 * @param fileName
 	 * @param consumer
 	 */
-	public SaxParser( XMLDataInputStream stream, ISaxParserConsumer consumer )
+	public SaxParser( XMLDataInputStream stream, ISaxParserConsumer consumer, boolean useNamespace )
 	{
 		inputStream = stream;
 		spConsumer = consumer;
 		start = true;
 		alive = true;
+		this.useNamespace = useNamespace;
 		currentCacheValue = EMPTY_STRING;
 		currentElementRecoder = new HashMap();
 		stopCurrentThread = false;
 		cachedValues = new HashMap( );
 		exceptions = new ArrayList( );
+		prefixMap = new HashMap( );
 	}
 
 	/*
@@ -299,6 +303,12 @@ public class SaxParser extends DefaultHandler implements Runnable
 			throw new ThreadStopException();
 		
 		String elementName = qName;
+		if ( useNamespace && !qName.equals( name ) )
+		{
+			elementName = uri.replaceAll( UtilConstants.XPATH_SLASH,
+					UtilConstants.BACK_SLASH )
+					+ UtilConstants.NAMESPACE_COLON + name;
+		}
 		String parentPath = pathHolder.getPath();
 		//Record the occurance of elements
 		if(this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)==null)
@@ -412,6 +422,25 @@ public class SaxParser extends DefaultHandler implements Runnable
 			
 			}
 		}
+	}
+	
+	
+	/*
+	 * @see org.xml.sax.helpers.DefaultHandler#startPrefixMapping(java.lang.String, java.lang.String)
+	 */
+	public void startPrefixMapping( String prefix, String uri )
+	{
+		this.prefixMap.put( prefix, uri.replaceAll( UtilConstants.XPATH_SLASH,
+				UtilConstants.BACK_SLASH ) );
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Map getPrefixMapping( )
+	{
+		return this.prefixMap;
 	}
 	
 	/**

@@ -19,6 +19,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -84,6 +86,20 @@ public class SchemaPopulationUtil
 			throws OdaException, MalformedURLException, URISyntaxException
 	{
 		return getSchemaTree( xsdFileName, xmlFileName, null, numberOfElementsAccessiable );
+	}
+	
+	/**
+	 * 
+	 * @param xmlFileName
+	 * @param xmlEncoding
+	 * @return
+	 * @throws OdaException
+	 */
+	public static Map getPrefixMapping( String xmlFileName, String xmlEncoding )
+			throws OdaException
+	{
+		return new XMLFileSchemaTreePopulator( 1 ).getPrefixMapping( xmlFileName,
+				xmlEncoding );
 	}
 }
 
@@ -207,7 +223,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		{
 			
 			XMLDataInputStreamCreator is = XMLDataInputStreamCreator.getCreator( xmlFileName, xmlEncoding );
-			sp = new SaxParser( is.createXMLDataInputStream( ), this );
+			sp = new SaxParser( is.createXMLDataInputStream( ), this, false );
 
 			spThread = new Thread( sp );
 			spThread.start( );
@@ -246,6 +262,37 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	public ATreeNode getSchemaTree( String xmlFileName )
 	{
 		return getSchemaTree( xmlFileName, null );
+	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws OdaException 
+	 */
+	public Map getPrefixMapping( String xmlFileName, String xmlEncoding ) throws OdaException
+	{
+		XMLDataInputStreamCreator is = XMLDataInputStreamCreator.getCreator( xmlFileName, xmlEncoding );
+		sp = new SaxParser( is.createXMLDataInputStream( ), this, false );
+
+		spThread = new Thread( sp );
+		spThread.start( );
+		while ( sp.isAlive( ) && !sp.isSuspended( ) )
+		{
+			try
+			{
+				synchronized ( this )
+				{
+					wait( );
+				}
+			}
+			catch ( InterruptedException e )
+			{
+			}
+		}
+
+		if( sp== null )
+			return new HashMap( );
+		return this.sp.getPrefixMapping( );
 	}
 
 	/**
