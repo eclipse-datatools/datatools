@@ -2,5 +2,5 @@ pluginName=Eclipse Data Tools Platform MaxDB UI Plug-in
 providerName=Eclipse.org
 
 profile.maxdb.wizard.title = MaxDB
-profile.maxdb.wizard.description = Create a MaxDB connection profile.
-profile.maxdb.properties = MaxDB Driver Properties
+profile.maxdb.wizard.description = 创建 MaxDB 连接配置文件。
+profile.maxdb.properties = MaxDB 驱动程序属性

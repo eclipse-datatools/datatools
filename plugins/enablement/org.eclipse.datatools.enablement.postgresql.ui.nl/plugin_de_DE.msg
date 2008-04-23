@@ -1,3 +1,3 @@
 WIZARD_NAME=PostgreSQL
-WIZARD_DESCRIPTION = Create a PostgreSQL connection profile.
-PAGE_NAME_POSTGRESQL_CONNECTION_PROPERTIES=PostgreSQL Connection Properties
+WIZARD_DESCRIPTION = Erstellen Sie ein neues PostgreSQL-Verbindungsprofil.
+PAGE_NAME_POSTGRESQL_CONNECTION_PROPERTIES=PostgreSQL Verbindungseigenschaften

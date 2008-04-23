@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Classe de pilote
+driverVendor = Vendeur
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverDBName = Nom de la base de données
+driverConnectionURL = URL de connexion
+catalogType = Catalogue
+driverUID = ID utilisateur
+driverPWD = Mot de passe
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -26,14 +26,14 @@ ORACLE_CATEGORY_NAME = Oracle
 9_VERSION_CATEGORY_NAME = 9
 8_VERSION_CATEGORY_NAME = 8
 
-org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.driverTemplate = Pilote léger Oracle
+org.eclipse.datatools.enablement.oracle.10.driverTemplate = Pilote léger Oracle
+org.eclipse.datatools.enablement.oracle.9.driverTemplate = Pilote léger Oracle
+org.eclipse.datatools.enablement.oracle.8.driverTemplate = Pilote léger Oracle
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Autre pilote
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Autre pilote
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = Connexion JDBC
 profile.oracle.title = Oracle

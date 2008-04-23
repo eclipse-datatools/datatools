@@ -1,22 +1,23 @@
 pluginName=Eclipse Data Tools Platform MaxDB Enablement Plug-in
 providerName=Eclipse.org
 
-vendor = Vendor
+vendor = Anbieter
 version = Version 
 
-driver = MaxDB JDBC Driver
+driver = MaxDB JDBC-Treiber
 category = MaxDB
-connection_url = Connection URL
-instance_name = Instance Name
-driver_class = Driver Class
-user_id = User ID
-password = Password
+connection_url = Verbindungs-URL
+instance_name = Instanzname
+driver_class = Treiberklasse
+user_id = Benutzer-ID
+password = Kennwort
 
-profile.maxdb.title = MaxDB Profile
-jdbc.connection.name = MaxDB JDBC Factory
+profile.maxdb.title = MaxDB-Profil
+jdbc.connection.name = MaxDB JDBC-Factory
 
 MaxDBName=MaxDB
 
 7_6_category_name = 7.6
 7_7_category_name = 7.7
+
             

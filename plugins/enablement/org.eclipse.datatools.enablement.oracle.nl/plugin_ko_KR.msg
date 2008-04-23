@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverClass = 드라이버 클래스
+driverVendor = 공급업체
+driverVersion = 버전
+driverDBName = 데이터베이스 이름
+driverConnectionURL = 연결 URL
+catalogType = 카탈로그
+driverUID = 사용자 ID
+driverPWD = 암호
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -26,14 +26,14 @@ ORACLE_CATEGORY_NAME = Oracle
 9_VERSION_CATEGORY_NAME = 9
 8_VERSION_CATEGORY_NAME = 8
 
-org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin 드라이버
+org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin 드라이버
+org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin 드라이버
+org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin 드라이버
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = 기타 드라이버
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = 기타 드라이버
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = JDBC 연결
 profile.oracle.title = Oracle

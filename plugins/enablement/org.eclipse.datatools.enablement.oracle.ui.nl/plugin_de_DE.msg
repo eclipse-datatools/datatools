@@ -12,5 +12,5 @@ pluginName=Eclipse Data Tools Platform Oracle UI Plug-in
 providerName=Eclipse.org
 
 profile.oracle.wizard.title = Oracle
-profile.oracle.wizard.description = Create an Oracle connection profile.
-profile.oracle.properties = Driver Properties
+profile.oracle.wizard.description = Erstellen Sie ein Oracle-Verbindungsprofil.
+profile.oracle.properties = Treibereigenschaften

@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverClass = Clase de controlador
+driverVendor = Proveedor
+driverVersion = Versión
+driverDBName = Nombre de base de datos
+driverConnectionURL = URL de conexión
+catalogType = Catálogo
+driverUID = Identificador de usuario
+driverPWD = Contraseña
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -26,14 +26,14 @@ ORACLE_CATEGORY_NAME = Oracle
 9_VERSION_CATEGORY_NAME = 9
 8_VERSION_CATEGORY_NAME = 8
 
-org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.driverTemplate = Controlador de Oracle Thin
+org.eclipse.datatools.enablement.oracle.10.driverTemplate = Controlador de Oracle Thin
+org.eclipse.datatools.enablement.oracle.9.driverTemplate = Controlador de Oracle Thin
+org.eclipse.datatools.enablement.oracle.8.driverTemplate = Controlador de Oracle Thin
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Otro controlador
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = Conexión JDBC
 profile.oracle.title = Oracle

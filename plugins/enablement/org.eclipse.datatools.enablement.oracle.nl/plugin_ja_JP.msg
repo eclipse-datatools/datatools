@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverClass = ドライバクラス
+driverVendor = ベンダ
+driverVersion = バージョン
+driverDBName = データベース名
+driverConnectionURL = 接続 URL
+catalogType = カタログ
+driverUID = ユーザ ID
+driverPWD = パスワード
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -30,10 +30,10 @@ org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
 org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
 org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
 org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = その他のドライバ
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = その他のドライバ
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = その他のドライバ
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = その他のドライバ
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = JDBC 接続
 profile.oracle.title = Oracle

@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverClass = 驱动程序类
+driverVendor = 供应商
+driverVersion = 版本
+driverDBName = 数据库名称
+driverConnectionURL = 连接 URL
+catalogType = 目录
+driverUID = 用户 ID
+driverPWD = 密码
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -26,14 +26,14 @@ ORACLE_CATEGORY_NAME = Oracle
 9_VERSION_CATEGORY_NAME = 9
 8_VERSION_CATEGORY_NAME = 8
 
-org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle 瘦驱动程序
+org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle 瘦驱动程序
+org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle 瘦驱动程序
+org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle 瘦驱动程序
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = 其他驱动程序
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = 其他驱动程序
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = 其他驱动程序
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = 其他驱动程序
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = JDBC 连接
 profile.oracle.title = Oracle

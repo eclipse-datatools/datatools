@@ -11,14 +11,14 @@
 pluginName=Eclipse Data Tools Platform Oracle Plug-in
 providerName=Eclipse.org
 
-driverClass = Driver Class
-driverVendor = Vendor
+driverClass = Treiberklasse
+driverVendor = Anbieter
 driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-catalogType = Catalog
-driverUID = User ID
-driverPWD = Password
+driverDBName = Datenbankname
+driverConnectionURL = Verbindungs-URL
+catalogType = Katalog
+driverUID = Benutzer-ID
+driverPWD = Kennwort
 
 ORACLE_CATEGORY_NAME = Oracle
 11_VERSION_CATEGORY_NAME = 11
@@ -26,14 +26,14 @@ ORACLE_CATEGORY_NAME = Oracle
 9_VERSION_CATEGORY_NAME = 9
 8_VERSION_CATEGORY_NAME = 8
 
-org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin Driver
-org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.oracle.11.driverTemplate = Oracle Thin-Treiber
+org.eclipse.datatools.enablement.oracle.10.driverTemplate = Oracle Thin-Treiber
+org.eclipse.datatools.enablement.oracle.9.driverTemplate = Oracle Thin-Treiber
+org.eclipse.datatools.enablement.oracle.8.driverTemplate = Oracle Thin-Treiber
+org.eclipse.datatools.enablement.oracle.11.other.driverTemplate = Anderer Treiber
+org.eclipse.datatools.enablement.oracle.10.other.driverTemplate = Anderer Treiber
+org.eclipse.datatools.enablement.oracle.9.other.driverTemplate = Anderer Treiber
+org.eclipse.datatools.enablement.oracle.8.other.driverTemplate = Anderer Treiber
 
-jdbc.connection.name = JDBC Connection
+jdbc.connection.name = JDBC-Verbindung
 profile.oracle.title = Oracle
