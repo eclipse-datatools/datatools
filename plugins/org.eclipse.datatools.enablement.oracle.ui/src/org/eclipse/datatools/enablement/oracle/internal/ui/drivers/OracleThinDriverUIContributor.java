@@ -376,13 +376,13 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 		String catalog = USER_CATALOG;
 		String catalogSetting = this.properties
 				.getProperty(IOracleDriverDefinitionConstants.CATALOG_TYPE_PROPERTY_ID);
-		if (catalogSetting
+		if (catalogSetting != null && catalogSetting
 				.equals(IOracleDriverDefinitionConstants.CATALOG_TYPE_VALUE_USER)) {
 			catalog = USER_CATALOG;
-		} else if (catalogSetting
+		} else if (catalogSetting != null && catalogSetting
 				.equals(IOracleDriverDefinitionConstants.CATALOG_TYPE_VALUE_DBA)) {
 			catalog = DBA_CATALOG;
-		} else if (catalogSetting
+		} else if (catalogSetting != null && catalogSetting
 				.equals(IOracleDriverDefinitionConstants.CATALOG_TYPE_VALUE_ALL)) {
 			catalog = ALL_CATALOGS;
 		}
