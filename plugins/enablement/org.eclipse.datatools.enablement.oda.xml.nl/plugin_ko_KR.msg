@@ -1,5 +1,3 @@
-plugin.name=Eclipse Data Tools Platform XML ODA Runtime Driver
-oda.data.source.category.name=XML Data Source
 ###############################################################################
 # Copyright (c) 2004, 2007 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
