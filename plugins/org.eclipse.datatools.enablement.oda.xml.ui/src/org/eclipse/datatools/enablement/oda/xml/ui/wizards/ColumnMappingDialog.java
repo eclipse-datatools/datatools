@@ -152,15 +152,14 @@ public class ColumnMappingDialog extends TrayDialog
 		GridData gridData = new GridData( );
 		topComposite.setLayoutData( gridData );
 
-		GridData labelData = new GridData( );
-		labelData.widthHint = 100;
-
 		GridData comboData = new GridData( );
 		comboData.widthHint = 300;
 
+		GridData labelData = new GridData( );
 		Label label = new Label( topComposite, SWT.NONE );
 		label.setText( Messages.getString( "ColumnMappingDialog.info.columnName" ) ); //$NON-NLS-1$
 		label.setLayoutData( labelData );
+		labelData.widthHint = label.getSize().x > 100? label.getSize().x:100;
 
 		columnNameText = new Text( topComposite, SWT.BORDER );
 		columnNameText.setLayoutData( comboData );
@@ -174,10 +173,13 @@ public class ColumnMappingDialog extends TrayDialog
 			}
 
 		} );
+
+		labelData = new GridData();
 		Label label2 = new Label( topComposite, SWT.NONE );
 		label2.setText( Messages.getString( "ColumnMappingDialog.info.dataType" ) ); //$NON-NLS-1$
 		label2.setLayoutData( labelData );
-
+		labelData.widthHint = label2.getSize().x > 100? label2.getSize().x:100;
+		
 		typeCombo = new Combo( topComposite, SWT.DROP_DOWN | SWT.READ_ONLY );
 
 		int typeIndex = -1;

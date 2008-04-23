@@ -93,7 +93,7 @@ public class RowMappingDialog extends TrayDialog
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 2;
 		GridData data = new GridData( GridData.FILL_BOTH );
-		data.heightHint = 200;
+		data.heightHint = 250;
 		Group composite = new Group( panel, SWT.NONE );
 		composite.setLayout( layout );
 		composite.setLayoutData( data );

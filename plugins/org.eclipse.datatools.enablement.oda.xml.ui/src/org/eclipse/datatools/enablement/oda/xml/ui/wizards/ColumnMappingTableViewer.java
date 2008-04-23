@@ -31,14 +31,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 /**
  * Table viewer of column mapping
  * 
- * @version $Revision: 1.8 $ $Date: 2008/04/08 03:23:02 $
+ * @version $Revision: 1.9 $ $Date: 2008/04/16 06:29:41 $
  */
 public final class ColumnMappingTableViewer
 {
@@ -84,42 +83,41 @@ public final class ColumnMappingTableViewer
 			btnComposite.setLayout( btnLayout );
 
 			GridData btnData = new GridData( );
-			btnData.widthHint = 50;
-			btnData.heightHint = 20;
-			
-			btnAdd = new Button( btnComposite, SWT.WRAP );
+						
+			btnAdd = new Button( btnComposite, SWT.NONE );
 			btnAdd.setText( Messages.getString( "menu.button.add" ) ); //$NON-NLS-1$
 			btnAdd.setEnabled( true );
 			btnAdd.setLayoutData( btnData );
-		
+			btnData.widthHint = btnAdd.getSize().x > 80 ? btnAdd.getSize().x:80;
+			
 			btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 50;
-			btnData.heightHint = 20;
-			btnEdit = new Button( btnComposite, SWT.WRAP );
+			btnEdit = new Button( btnComposite, SWT.NONE );
 			btnEdit.setText( Messages.getString( "menu.button.edit" ) );     //$NON-NLS-1$
 			btnEdit.setLayoutData( btnData );
 			btnEdit.setEnabled( false );
-
+			btnData.widthHint = btnEdit.getSize().x > 80 ? btnEdit.getSize().x:80;
+			
 			btnData = new GridData( GridData.CENTER );
-			btnData.widthHint = 50;
-			btnData.heightHint = 20;
-			btnRemove = new Button( btnComposite, SWT.WRAP );
+			btnRemove = new Button( btnComposite, SWT.NONE );
 			btnRemove.setText( Messages.getString( "menu.button.remove" ) );     //$NON-NLS-1$
 			btnRemove.setLayoutData( btnData );
 			btnRemove.setEnabled( false );
+			btnData.widthHint = btnRemove.getSize().x > 80 ? btnRemove.getSize().x:80;
 
-			Label blankLabel = new Label( btnComposite, SWT.WRAP );
-			blankLabel.setLayoutData( btnData );
-
-			btnUp = new Button( btnComposite, SWT.WRAP );
+			btnData = new GridData( GridData.CENTER );
+			btnUp = new Button( btnComposite, SWT.NONE );
 			btnUp.setText( Messages.getString( "menu.button.up" ) );         //$NON-NLS-1$
 			btnUp.setLayoutData( btnData );
 			btnUp.setEnabled( false );
-
-			btnDown = new Button( btnComposite, SWT.WRAP );
+			btnData.widthHint = btnUp.getSize().x > 80 ? btnUp.getSize().x:80;
+			
+			btnData = new GridData( GridData.CENTER );
+			btnDown = new Button( btnComposite, SWT.NONE );
 			btnDown.setText( Messages.getString( "menu.button.down" ) );     //$NON-NLS-1$
 			btnDown.setLayoutData( btnData );
 			btnDown.setEnabled( false );
+			btnData.widthHint = btnDown.getSize().x > 80 ? btnDown.getSize().x:80;
+			
 			btnDown.addSelectionListener( new SelectionListener( ) {
 
 				public void widgetSelected( SelectionEvent e )
