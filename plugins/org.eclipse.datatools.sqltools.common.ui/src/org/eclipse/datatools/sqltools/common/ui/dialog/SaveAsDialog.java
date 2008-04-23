@@ -187,7 +187,7 @@ public class SaveAsDialog extends TitleAreaDialog
         }
         ;
 
-        _resourceGroup = new ResourceAndContainerGroup(composite, listener, Messages.SaveAsDialog_fileLabel, Messages.SaveAsDialog_file); //$NON-NLS-2$ //$NON-NLS-1$
+        _resourceGroup = new ResourceAndContainerGroup(composite, listener, Messages.SaveAsDialog_filename, Messages.SaveAsDialog_file); //$NON-NLS-2$ //$NON-NLS-1$
         _resourceGroup.setAllowExistingResources(true);
 
         return parentComposite;
