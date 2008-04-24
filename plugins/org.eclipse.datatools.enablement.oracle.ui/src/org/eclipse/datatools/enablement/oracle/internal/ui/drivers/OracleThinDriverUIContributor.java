@@ -277,6 +277,9 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 
 			catalogCombo = new Combo(baseComposite, SWT.SINGLE | SWT.BORDER
 					| SWT.READ_ONLY);
+			catalogCombo.add(ALL_CATALOGS);
+			catalogCombo.add(DBA_CATALOG);
+			catalogCombo.add(USER_CATALOG);
 			gd = new GridData();
 			catalogCombo.setLayoutData(gd);
 
@@ -291,10 +294,6 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 	}
 
 	private void initialize() {
-		catalogCombo.add(ALL_CATALOGS);
-		catalogCombo.add(DBA_CATALOG);
-		catalogCombo.add(USER_CATALOG);
-
 		updateURL();
 		addListeners();
 	}
