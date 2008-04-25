@@ -687,9 +687,22 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						}
 					}
 					else {
-						if (predefinedDataTypeDefinition.isLengthSupported() &&
-								(((BinaryStringDataType)predefinedDataType).getLength() > 0) ) {
-							predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						if (predefinedDataTypeDefinition.isLengthSupported()) {
+							if (predefinedDataTypeDefinition.isLargeValueSpecifierSupported()) {
+								if (((BinaryStringDataType)predefinedDataType).getLength() == predefinedDataTypeDefinition.getLargeValueSpecifierLength()) {
+									predefinedDataTypeFormattedName += "(" + predefinedDataTypeDefinition.getLargeValueSpecifierName() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+								}
+								else {
+									if (((BinaryStringDataType)predefinedDataType).getLength() > 0) {
+										predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+									}
+								}
+							}
+							else {
+								if (((BinaryStringDataType)predefinedDataType).getLength() > 0) {
+									predefinedDataTypeFormattedName += "(" + ((BinaryStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+								}
+							}
 						}
 					}
 				}
@@ -744,9 +757,22 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 						}
 					}
 					else {
-						if (predefinedDataTypeDefinition.isLengthSupported() &&
-								(((CharacterStringDataType)predefinedDataType).getLength() > 0) ) {
-							predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						if (predefinedDataTypeDefinition.isLengthSupported()) {
+							if (predefinedDataTypeDefinition.isLargeValueSpecifierSupported()) {
+								if (((CharacterStringDataType)predefinedDataType).getLength() == predefinedDataTypeDefinition.getLargeValueSpecifierLength()) {
+									predefinedDataTypeFormattedName += "(" + predefinedDataTypeDefinition.getLargeValueSpecifierName() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+								}
+								else {
+									if (((CharacterStringDataType)predefinedDataType).getLength() > 0) {
+										predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+									}
+								}
+							}
+							else {
+								if (((CharacterStringDataType)predefinedDataType).getLength() > 0) {
+									predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+								}
+							}
 						}
 					}
 				}
@@ -856,7 +882,21 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				predefinedDataTypeFormattedName = predefinedDataType.getName();
 				PredefinedDataTypeDefinition predefinedDataTypeDefinition = this.getPredefinedDataTypeDefinition(predefinedDataTypeFormattedName);
 				if (predefinedDataTypeDefinition.isLengthSupported()) {
-					predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+					if (predefinedDataTypeDefinition.isLargeValueSpecifierSupported()) {
+						if (((CharacterStringDataType)predefinedDataType).getLength() == predefinedDataTypeDefinition.getLargeValueSpecifierLength()) {
+							predefinedDataTypeFormattedName += "(" + predefinedDataTypeDefinition.getLargeValueSpecifierName() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+						else {
+							if (((CharacterStringDataType)predefinedDataType).getLength() > 0) {
+														predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+							}
+						}
+					}
+					else {
+						if (((CharacterStringDataType)predefinedDataType).getLength() > 0) {
+							predefinedDataTypeFormattedName += "(" + ((CharacterStringDataType)predefinedDataType).getLength() + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+						}
+					}
 				}
 			}
 			break;
