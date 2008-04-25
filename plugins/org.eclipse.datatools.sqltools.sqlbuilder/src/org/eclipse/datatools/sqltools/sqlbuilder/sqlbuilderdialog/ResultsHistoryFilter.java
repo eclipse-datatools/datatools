@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005, 2008 Sybase, Inc.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,20 +29,36 @@ public class ResultsHistoryFilter extends ViewerFilter
     
     /**
      * Constructor
-     * @param store the preference store used to store the filters information
+     * @param profile the connection profile name used in a result instance
      */
     public ResultsHistoryFilter(String profile)
     {
         super();
-        if (profile == null){
-        	_profileName = "";
-        }
-        else {
-        	_profileName = profile;
-        }
-        _creationDate = new Date();
+        init( profile, new Date() );
     }
 
+    /**
+     * Constructor
+     * @param profile the connection profile name for which statements are executed
+     * @param since   the date after which executed statements are included
+     */
+    public ResultsHistoryFilter(String profile, Date since)
+    {
+        super();
+        init( profile, since );
+    }
+
+    private void init( String profile, Date since )
+    {
+        if (profile == null){
+            _profileName = ""; //$NON-NLS-1$
+        }
+        else {
+            _profileName = profile;
+        }
+        _creationDate = since;
+    }
+    
     /*
      * (non-Javadoc)
      * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)

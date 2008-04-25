@@ -37,6 +37,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.util.SQLFileUtil;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
@@ -72,7 +73,7 @@ public class SQLBuilderDialog extends SQLPainterDlg
     private ISQLBuilderEditorInput _editorInput = null;
 
 	ResultsViewControl _resultsViewControl;
-	
+	ViewerFilter[] _resultViewFilters;
 	
     public SQLBuilderDialog(Shell parentShell, String statementType, String statement, String profileName, String database,
     		String parametersType, String parameter, String table, HashMap info)
@@ -275,11 +276,24 @@ public class SQLBuilderDialog extends SQLPainterDlg
 	 * @param connectionProfile
 	 */
 	private void filterResultsView(IConnectionProfile connectionProfile) {
-        _resultsViewControl.addResultHistoryFilter(
-    			new ResultsHistoryFilter(connectionProfile.getName()));
-
+        // if no filter is specified, use default filter for specified profile name
+	    ViewerFilter[] filters = _resultViewFilters;
+	    if( filters == null || filters.length == 0 )
+	    {
+	        filters = new ViewerFilter[] { 
+	                    new ResultsHistoryFilter(connectionProfile.getName()) };
+	    }
+	    
+	    for( int i=0; i < filters.length; i++ )
+	    {
+	        _resultsViewControl.addResultHistoryFilter( filters[i] );
+	    }
 	}
 
+	protected void setResultViewFilters( ViewerFilter[] filters ) {
+	    _resultViewFilters = filters;
+	}
+	
 	/**
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
 	 */

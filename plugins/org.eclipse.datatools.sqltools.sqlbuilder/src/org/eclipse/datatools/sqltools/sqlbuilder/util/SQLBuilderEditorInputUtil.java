@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 Sybase, Inc. and others.
+ * Copyright © 2000, 2008 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -25,6 +25,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.IOmitSchemaInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.ISQLStatementInfo;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLStatementInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorage;
+import org.eclipse.ui.IMemento;
 import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.XMLMemento;
 
@@ -43,25 +44,24 @@ public class SQLBuilderEditorInputUtil {
 	 * @return SQLBuilderFileEditorInput the <code>SQLBuilderFileEditorInput</code> created from the input string.
 	 */
 	public static SQLBuilderStorageEditorInput createSQLBuilderStorageEditorInput(String s) {
-		/*
-		 * Create a new XMLMemento from the string
-		 */
-		StringReader reader = new StringReader(s);
-		XMLMemento memento = null;
-		try {
-			memento = XMLMemento.createReadRoot(reader);
-		} catch (WorkbenchException e) {
-			e.printStackTrace();
-		}
+		IMemento memento = readMementoFromString( s );
 
-		/*
-		 * Create a new SQLBuilderStorageEditorInput from the XMLMemento
-		 */
-		SQLBuilderInputFactory factory = new SQLBuilderInputFactory();
+		return createSQLBuilderStorageEditorInput( memento );
+	}
+
+	/**
+	 * Create a new SQLBuilderStorageEditorInput from the specified memento.
+	 * @param memento
+	 * @return the <code>SQLBuilderFileEditorInput</code> created from the memento
+	 */
+    public static SQLBuilderStorageEditorInput createSQLBuilderStorageEditorInput(
+            IMemento memento ) {
+        SQLBuilderInputFactory factory = new SQLBuilderInputFactory();
 		IAdaptable element = factory.createElement(memento);
 		
-        return (SQLBuilderStorageEditorInput)element;
-	}
+        return (SQLBuilderStorageEditorInput) element;
+    }
+    
 	/**
 	 * Creates a SQLBuilderStorageEditorInput from a file.
 	 * It consumes .sql files created in the DTP SQLEditor and possibly edited subsequently in
@@ -145,5 +145,21 @@ public class SQLBuilderEditorInputUtil {
 		}
 		return writer.toString();
 	}
+    
+    /**
+     * Utility function to create a new IMemento from a a string.
+     * @param s    a serialized XMLMemento
+     * @return  the de-serialized IMemento
+     */
+    public static IMemento readMementoFromString( String s ) {
+        StringReader reader = new StringReader(s);
+        XMLMemento memento = null;
+        try {
+            memento = XMLMemento.createReadRoot(reader);
+        } catch (WorkbenchException e) {
+            e.printStackTrace();
+        }
+        return memento;
+    }
 
 }
