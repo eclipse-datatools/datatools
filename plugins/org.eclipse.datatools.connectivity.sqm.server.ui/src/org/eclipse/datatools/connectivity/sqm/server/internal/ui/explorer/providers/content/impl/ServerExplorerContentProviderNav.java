@@ -76,7 +76,10 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
      */
     public ServerExplorerContentProviderNav()
     {
-        ServerExplorerManager.INSTANCE.setServerExplorerService(this);
+    	if (this.getClass().equals(ServerExplorerContentProviderNav.class))
+    	{
+    		ServerExplorerManager.INSTANCE.setServerExplorerService(this);
+    	}
     }
     
     /**
@@ -192,6 +195,10 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
     public void dispose()
     {
         RefreshManager.getInstance().removeListener(null, this);
+    	if (this.getClass().equals(ServerExplorerContentProviderNav.class))
+    	{
+    		ServerExplorerManager.INSTANCE.setServerExplorerService(null);
+    	}
     }
 
     private void loadChilds (CommonViewer viewer, Object parent)
