@@ -15,6 +15,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
+import org.eclipse.datatools.connectivity.ui.wizards.NewConnectionProfileWizard;
 import org.eclipse.datatools.help.ContextProviderDelegate;
 import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.help.IContext;
@@ -90,8 +91,14 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 			if (wizard == null) {
 				return false;
 			}
-			else if (wizard.canFinish())
-				return wizard.performFinish();
+			else if (wizard.canFinish()) {
+				if (wizard instanceof NewConnectionProfileWizard) {
+					NewConnectionProfileWizard ncpw = (NewConnectionProfileWizard) wizard;
+					if (!ncpw.isFinished()) {
+						return wizard.performFinish();
+					}
+				}
+			}
 		}
 		// mStore.setValue(DONNT_SHOW_INRO, mIntroPage.isHideIntro());
 		return true;

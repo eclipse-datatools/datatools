@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005-2007 Sybase, Inc.
+ * Copyright (c) 2005-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -66,6 +66,8 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
     private String mProfileName;
     private String mProfileDesc;
 	private IFinishTask mFinishTask;
+	
+	private boolean mIsFinished = false;
 
 	public NewConnectionProfileWizard() {
 		setWindowTitle(ConnectivityUIPlugin.getDefault().getResourceString(
@@ -80,9 +82,13 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 	 * @see Wizard#performFinish
 	 */
 	public boolean performFinish() {
+		if( mIsFinished )
+			return true;    // has already completed the finish task
+		
 	    // if the finish task is delegated, use it to perform finish
 	    if( mFinishTask != null ) {
-	        return mFinishTask.performFinish( this );
+	    	mIsFinished = mFinishTask.performFinish( this );
+	    	return mIsFinished;
 	    }
 	    
 	    // no delegation is specified, perform default finish task
@@ -93,9 +99,15 @@ public abstract class NewConnectionProfileWizard extends BaseWizard implements
 					.getDefault().getResourceString(
 							"NewConnectionProfileWizard.create.failure"), e //$NON-NLS-1$
 					.getLocalizedMessage(), e);
+			mIsFinished = false;
 			return false;
 		}
+		mIsFinished = true;
 		return true;
+	}
+	
+	public boolean isFinished() {
+		return mIsFinished;
 	}
 	
 	private void doFinish() throws CoreException {
