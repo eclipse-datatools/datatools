@@ -6,6 +6,7 @@
    <extension-point id="elementID" name="%ELEMENT_ID_EXTENSION_POINT_NAME" schema="schema/elementID.exsd"/>
    <extension-point id="markerNavigationProvider" name="%MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME" schema="schema/markerNavigationProvider.exsd"/>
    <extension-point id="sorterValidatorProvider" name="%DATA_SOURCE_EXPLORER_SORTER" schema="schema/sorterValidatorProvider.exsd"/>
+   <extension-point id="filterInformation" name="%FILTER_INFORMATION_EXTENSION_POINT_NAME" schema="schema/filterInformation.exsd"/>
 
    <extension
          point="org.eclipse.ui.preferencePages">
@@ -102,6 +103,22 @@
 	        </or>
          </enablement>
       </decorator>
+      
+<!-- Decoration for the Filtering on IVirtualNode -->
+	  <decorator
+            lightweight="true"
+            location="BOTTOM_RIGHT"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.filterDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.FilterNodeDecorationService"
+            id="org.eclipse.datatools.connectivity.internal.core.ui.FilterNodeDecoration">
+         <enablement>
+	            <objectClass
+	                  name="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode">
+	            </objectClass>
+         </enablement>
+	  </decorator>
    </extension>
 
 <!-- Support for Bookmark in the Explorers -->

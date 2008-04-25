@@ -10,7 +10,6 @@
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,11 +19,11 @@ import java.util.Locale;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterImpl;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.DialogPage;
@@ -113,11 +112,15 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 	private boolean hideSelectionOption = false;
 
 	protected String defaultTitleText = "Connection Filter Properties";
-
+	
 	private Collator collator = Collator.getInstance(Locale.getDefault());
 	
 	private IConnectionFilterProvider connectionFilterProvider;
 
+	private ColumnTable columnTable;
+	
+	private boolean isMultiplePredicatesMode = false;
+	
 	public ConnectionFilterComposite(Composite parent, int style, IConnectionFilterProvider connectionFilterProvider,
 			boolean hideExpressionOption, boolean hideSelectionOption) {
 		super(parent, style);
@@ -272,6 +275,143 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 		}
 		initializeValues();
 	}
+	
+	public ConnectionFilterComposite(Composite parent, int style, IConnectionFilterProvider connectionFilterProvider,
+			boolean hideExpressionOption, boolean hideSelectionOption, boolean isMultiplePredicatesMode, ConnectionFilter connFilter, ConnectionFilterPropertyPage connectionFilterPropertyPage) {
+		super(parent, style);
+		
+		this.hideExpressionOption = hideExpressionOption;
+		this.hideSelectionOption = hideSelectionOption;
+		this.connectionFilterProvider = connectionFilterProvider;
+		this.isMultiplePredicatesMode = isMultiplePredicatesMode;
+		
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 1;
+		layout.verticalSpacing = 5;
+		this.setLayout(layout);
+		this.setLayoutData(new GridData(GridData.FILL_BOTH));
+		
+		GridData gd = null;
+
+		if (!hideExpressionOption) {
+			expressionRadioButton = new Button(this, SWT.RADIO);
+			expressionRadioButton.setText(resource
+					.queryString("_UI_RADIO_BUTTON_EXPRESSION")); //$NON-NLS-1$
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			expressionRadioButton.setLayoutData(gd);
+
+			expressionGroup = new Group(this, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 3;
+			layout.verticalSpacing = 5;
+			expressionGroup.setLayout(layout);
+			gd = new GridData(GridData.GRAB_HORIZONTAL
+					| GridData.FILL_HORIZONTAL);
+			gd.verticalAlignment = GridData.BEGINNING;
+			expressionGroup.setLayoutData(gd);
+
+			columnTable = new ColumnTable(expressionGroup, connectionFilterPropertyPage, connFilter);
+			
+			STARTS_WITH_TEXT = resource.queryString("_UI_COMBO_STARTS_WITH"); //$NON-NLS-1$
+			CONTAINS_TEXT = resource.queryString("_UI_COMBO_CONTAINS"); //$NON-NLS-1$
+			ENDS_WITH_TEXT = resource.queryString("_UI_COMBO_ENDS_WITH"); //$NON-NLS-1$
+			NOT_START_WITH_TEXT = resource
+					.queryString("_UI_COMBO_NOT_START_WITH"); //$NON-NLS-1$;
+			NOT_CONTAIN_TEXT = resource.queryString("_UI_COMBO_NOT_CONTAIN"); //$NON-NLS-1$;
+			NOT_END_WITH_TEXT = resource.queryString("_UI_COMBO_NOT_END_WITH"); //$NON-NLS-1$;
+		}
+
+		if (!hideSelectionOption) {
+			selectionRadioButton = new Button(this, SWT.RADIO);
+			selectionRadioButton.setText(resource
+					.queryString("_UI_RADIO_BUTTON_SELECTION")); //$NON-NLS-1$
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			selectionRadioButton.setLayoutData(gd);
+
+			selectionGroup = new Group(this, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 2;
+			layout.verticalSpacing = 5;
+			selectionGroup.setLayout(layout);
+			gd = new GridData(GridData.FILL_BOTH | GridData.GRAB_VERTICAL);
+			selectionGroup.setLayoutData(gd);
+
+			selectionPredicate = new Combo(selectionGroup, SWT.READ_ONLY);
+			gd = new GridData();
+			gd.verticalAlignment = GridData.BEGINNING;
+			gd.horizontalSpan = 2;
+			selectionPredicate.setLayoutData(gd);
+			INCLUDE_ITEMS_TEXT = resource
+					.queryString("_UI_COMBO_INCLUDE_ITEMS"); //$NON-NLS-1$
+			EXCLUDE_ITEMS_TEXT = resource
+					.queryString("_UI_COMBO_EXCLUDE_ITEMS"); //$NON-NLS-1$
+			selectionPredicate.add(INCLUDE_ITEMS_TEXT);
+			selectionPredicate.add(EXCLUDE_ITEMS_TEXT);
+
+			selectionTable = new Table(selectionGroup, SWT.CHECK | SWT.BORDER);
+			gd = new GridData(GridData.FILL_BOTH);
+			selectionTable.setLayoutData(gd);
+
+			Composite buttonComposite = new Composite(selectionGroup, SWT.NONE);
+			layout = new GridLayout();
+			layout.numColumns = 1;
+			layout.verticalSpacing = 5;
+			buttonComposite.setLayout(layout);
+			buttonComposite.setLayoutData(new GridData(GridData.FILL_VERTICAL
+					| GridData.VERTICAL_ALIGN_BEGINNING));
+
+			selectAllButton = new Button(buttonComposite, SWT.NONE);
+			selectAllButton.setText(resource
+					.queryString("_UI_BUTTON_SELECT_ALL")); //$NON-NLS-1$
+			selectAllButton.setLayoutData(new GridData(GridData.FILL_HORIZONTAL
+					| GridData.VERTICAL_ALIGN_BEGINNING));
+
+			deselectAllButton = new Button(buttonComposite, SWT.NONE);
+			deselectAllButton.setText(resource
+					.queryString("_UI_BUTTON_DESELECT_ALL")); //$NON-NLS-1$
+			deselectAllButton.setLayoutData(new GridData(
+					GridData.FILL_HORIZONTAL
+							| GridData.VERTICAL_ALIGN_BEGINNING));
+		}
+
+		disableFilterCheckbox = new Button(this, SWT.CHECK);
+		disableFilterCheckbox.setText(resource
+				.queryString("_UI_CHECKBOX_DISABLE_FILTER")); //$NON-NLS-1$
+		gd = new GridData();
+		gd.verticalAlignment = GridData.BEGINNING;
+		disableFilterCheckbox.setLayoutData(gd);
+
+		disableFilterCheckbox.addListener(SWT.Selection, this);
+		if (!hideExpressionOption) {
+			expressionRadioButton.addListener(SWT.Selection, this);
+			if (!hideSelectionOption)
+				selectionRadioButton.addListener(SWT.Selection, this);
+		}
+		if (!hideSelectionOption) {
+			selectionTable.addListener(SWT.Selection, this);
+			selectionPredicate.addListener(SWT.Selection, this);
+			selectAllButton.addListener(SWT.Selection, this);
+			deselectAllButton.addListener(SWT.Selection, this);
+		}
+
+		disableFilterCheckbox.setSelection(false);
+		if (!hideExpressionOption) {
+			expressionRadioButton.setSelection(true);
+			
+			if (!hideSelectionOption) {
+				selectionPredicate.select(selectionPredicate
+						.indexOf(INCLUDE_ITEMS_TEXT));
+				enableSelectionGroupControls(false);
+			}
+		} else if (!hideSelectionOption) {
+			selectionPredicate.select(selectionPredicate
+					.indexOf(INCLUDE_ITEMS_TEXT));
+		}
+		columnTable.initializeValues(true);
+		initializeValues();
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -303,10 +443,15 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 
 	private void enableExpressionGroupControls(boolean isEnabled) {
 		if (!hideExpressionOption) {
-			expressionGroup.setEnabled(isEnabled);
-			expressionLabel.setEnabled(isEnabled);
-			expressionPredicate.setEnabled(isEnabled);
-			expressionField.setEnabled(isEnabled);
+
+			if (!isMultiplePredicatesMode) {
+				expressionGroup.setEnabled(isEnabled);
+				expressionLabel.setEnabled(isEnabled);
+				expressionPredicate.setEnabled(isEnabled);
+				expressionField.setEnabled(isEnabled);
+			} else {
+				expressionGroup.setEnabled(isEnabled);
+			}
 		}
 	}
 
@@ -330,23 +475,47 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 
 	private void enableFilterSpecificationControls(boolean isEnabled) {
 		if (!hideExpressionOption) {
-			if (isEnabled) {
-				expressionRadioButton.setEnabled(true);
-				if (!hideSelectionOption)
-					selectionRadioButton.setEnabled(true);
-				if (expressionRadioButton.getSelection()) {
-					enableSelectionGroupControls(false);
-					enableExpressionGroupControls(true);
+			if (!isMultiplePredicatesMode) {
+				if (isEnabled) {
+					expressionRadioButton.setEnabled(true);
+					if (!hideSelectionOption)
+						selectionRadioButton.setEnabled(true);
+					if (expressionRadioButton.getSelection()) {
+						enableSelectionGroupControls(false);
+						enableExpressionGroupControls(true);
+					} else {
+						enableExpressionGroupControls(false);
+						enableSelectionGroupControls(true);
+					}
 				} else {
 					enableExpressionGroupControls(false);
-					enableSelectionGroupControls(true);
+					enableSelectionGroupControls(false);
+					expressionRadioButton.setEnabled(false);
+					if (!hideSelectionOption)
+						selectionRadioButton.setEnabled(false);
 				}
-			} else {
-				enableExpressionGroupControls(false);
-				enableSelectionGroupControls(false);
-				expressionRadioButton.setEnabled(false);
-				if (!hideSelectionOption)
+			}else { // Added for the new mode
+				if (isEnabled) {
+					expressionRadioButton.setEnabled(true);
+					columnTable.enableTableSpecificationControls(true);
+					selectionRadioButton.setEnabled(true);
+					
+					if (expressionRadioButton.getSelection()) {
+						enableSelectionGroupControls(false);
+						enableExpressionGroupControls(true);
+						columnTable.enableTableSpecificationControls(true);
+					} else {
+						enableExpressionGroupControls(false);
+						columnTable.enableTableSpecificationControls(false);
+						enableSelectionGroupControls(true);
+					}
+				} else {
+					enableExpressionGroupControls(false);
+					enableSelectionGroupControls(false);
+					expressionRadioButton.setEnabled(false);
+					columnTable.enableTableSpecificationControls(false);
 					selectionRadioButton.setEnabled(false);
+				}
 			}
 		} else {
 			enableSelectionGroupControls(isEnabled);
@@ -367,15 +536,20 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 				expressionRadioButton.setSelection(true);
 				if (!hideSelectionOption)
 					selectionRadioButton.setSelection(false);
-				expressionPredicate.select(expressionPredicate
-						.indexOf(findExpressionPredicate(predicate)));
-				expressionField.setText(findExpressionValue(predicate));
+				
+				if(!isMultiplePredicatesMode){
+					expressionPredicate.select(expressionPredicate
+							.indexOf(findExpressionPredicate(predicate)));
+					expressionField.setText(findExpressionValue(predicate));
+				}
+				
 				enableFilterSpecificationControls(true);
 			} else {
 				if (!hideExpressionOption) {
 					if (!hideSelectionOption)
 						selectionRadioButton.setSelection(true);
 					expressionRadioButton.setSelection(false);
+					columnTable.initializeValues(false);
 				}
 				if (!hideSelectionOption) {
 					if (isPredicateNegated(predicate)) {
@@ -504,18 +678,33 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 		boolean isValid = true;
 		if (!disableFilterCheckbox.getSelection()) {
 			if (!hideExpressionOption && expressionRadioButton.getSelection()) {
-				if (expressionField.getText().length() == 0) {
-					page.setMessage(resource
-							.queryString("_UI_MESSAGE_CRITERIA_REQUIRED")); //$NON-NLS-1$
-					page.setErrorMessage(null);
-					isValid = false;
-				} else if ((expressionField.getText().indexOf(
-						IDENTIFIER_DELIMITER) > -1)
-						|| (expressionField.getText().indexOf('"') > -1)) {
-					page.setErrorMessage(resource
-							.queryString("_UI_MESSAGE_NO_QUOTES")); //$NON-NLS-1$
-					page.setDescription(DEFAULT_MESSAGE);
-					isValid = false;
+				
+				if (!isMultiplePredicatesMode) {
+					if (expressionField.getText().length() == 0) {
+						page.setMessage(resource
+								.queryString("_UI_MESSAGE_CRITERIA_REQUIRED")); //$NON-NLS-1$
+						page.setErrorMessage(null);
+						isValid = false;
+					} else if ((expressionField.getText().indexOf(
+							IDENTIFIER_DELIMITER) > -1)
+							|| (expressionField.getText().indexOf('"') > -1)) {
+						page.setErrorMessage(resource
+								.queryString("_UI_MESSAGE_NO_QUOTES")); //$NON-NLS-1$
+						page.setDescription(DEFAULT_MESSAGE);
+						isValid = false;
+					}
+				} else {
+					if (columnTable.hasEmptyExpression()) {
+						page.setMessage(resource
+								.queryString("_UI_MESSAGE_CRITERIA_REQUIRED")); //$NON-NLS-1$
+						page.setErrorMessage(null);
+						isValid = false;
+					} else if (columnTable.hasQuoteInExpression()) {
+						page.setErrorMessage(resource
+								.queryString("_UI_MESSAGE_NO_QUOTES")); //$NON-NLS-1$
+						page.setMessage(DEFAULT_MESSAGE);
+						isValid = false;
+					}
 				}
 			} else if (!hideSelectionOption) {
 				TableItem[] items = selectionTable.getItems();
@@ -612,7 +801,102 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 		}
 		return predicate;
 	}
+	
+	public String getPredicates() {
+		
+		String predicates = "";
+		
+		if (isFilterSpecified()) {
 
+			if (!hideExpressionOption && expressionRadioButton.getSelection()) {
+				String[] operators = columnTable.getOperators();
+				String[] values = columnTable.getValues();
+				String condition = null;
+				String SQLPredicate = "";
+				
+				if(columnTable.isAnded())
+					condition = "AND";
+				else
+					condition = "OR";
+				
+				for (int i = 0; i < operators.length; i++) {
+
+					if (operators[i].equals(STARTS_WITH_TEXT)) {
+						SQLPredicate = LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + values[i] + "%" //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER;
+
+					} else if (operators[i].equals(NOT_START_WITH_TEXT)) {
+						SQLPredicate = NOT_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + values[i] + "%" //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER;
+
+					} else if (operators[i].equals(CONTAINS_TEXT)) {
+						SQLPredicate = LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + "%" + values[i] + "%" //$NON-NLS-1$ //$NON-NLS-2$
+								+ IDENTIFIER_DELIMITER;
+
+					} else if (operators[i].equals(NOT_CONTAIN_TEXT)) {
+						SQLPredicate = NOT_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + "%" + values[i] + "%" //$NON-NLS-1$ //$NON-NLS-2$
+								+ IDENTIFIER_DELIMITER;
+
+					} else if (operators[i].equals(ENDS_WITH_TEXT)) {
+						SQLPredicate = LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + "%" + values[i] //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER;
+
+					} else if (operators[i].equals(NOT_END_WITH_TEXT)) {
+						SQLPredicate = NOT_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ LIKE_PREDICATE_TEXT + " " //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER + "%" + values[i] //$NON-NLS-1$
+								+ IDENTIFIER_DELIMITER;
+					}
+					
+					predicates = predicates + " " + SQLPredicate;
+					if ((i + 1) != operators.length)
+						predicates = predicates + " " + condition;
+				}
+
+			} else if (!hideSelectionOption) {
+				String itemList = ""; //$NON-NLS-1$
+
+				// Generate Item list
+				TableItem[] items = selectionTable.getItems();
+				Vector selectedItemsCollection = new Vector();
+				int itemCount = items.length;
+				for (int index = 0; index < itemCount; index++) {
+					if (items[index].getChecked()) {
+						selectedItemsCollection.add(items[index]);
+					}
+				}
+				TableItem[] selectedItems = new TableItem[selectedItemsCollection
+						.size()];
+				selectedItemsCollection.copyInto(selectedItems);
+				int selectedItemCount = selectedItems.length;
+				if (selectedItemCount > 0) {
+					itemList = itemList + IDENTIFIER_DELIMITER
+							+ selectedItems[0].getText() + IDENTIFIER_DELIMITER;
+					for (int index = 1; index < selectedItemCount; index++) {
+						itemList = itemList + ", " + IDENTIFIER_DELIMITER //$NON-NLS-1$
+								+ selectedItems[index].getText()
+								+ IDENTIFIER_DELIMITER;
+					}
+					
+					predicates = IN_PREDICATE_TEXT + "(" + itemList + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+					if (selectionPredicate.getItem(
+							selectionPredicate.getSelectionIndex()).equals(
+							EXCLUDE_ITEMS_TEXT)) {
+						predicates = NOT_PREDICATE_TEXT + " " + predicates; //$NON-NLS-1$
+					}
+				}
+			}
+		}
+		return predicates.trim();
+	}
+	
 	public boolean isFilterSpecified() {
 		return !disableFilterCheckbox.getSelection();
 	}
@@ -697,8 +981,17 @@ public class ConnectionFilterComposite extends Composite implements Listener {
     {
         //Restore default values and settings
         disableFilterCheckbox.setSelection(true);
-        expressionField.setText("");
-        expressionPredicate.select(0);
+        
+        if(!isMultiplePredicatesMode)
+        {
+        	expressionField.setText("");
+        	expressionPredicate.select(0);
+        }
+        else
+        {
+        	columnTable.performDefaults();
+        }
+        
         if (!hideSelectionOption) {
         	selectionTable.removeAll();
         	selectionPredicate.select(0);

@@ -143,4 +143,9 @@ public class ImageDescription
     {
         return getDescriptor (ImagePath.SAMPLE_CONTENT);
     }
+    
+    public static ImageDescriptor getFilterDecorationDescriptor ()
+    {
+    	return getDescriptor (ImagePath.FILTER_DECORATION);
+    }
 }

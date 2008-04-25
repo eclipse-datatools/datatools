@@ -8,6 +8,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.connection;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -25,7 +26,25 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 
     private String predicate;
     private IFilter filter;
+	
+	private static final String NOT_PREDICATE_TEXT = "NOT"; //$NON-NLS-1$
 
+	private static final String IDENTIFIER_DELIMITER = "'"; //$NON-NLS-1$
+
+	public static final int STARTS_WITH_OPERATOR = 1;
+
+	public static final int CONTAINS_OPERATOR = 2;
+
+	public static final int ENDS_WITH_OPERATOR = 3;
+
+	public static final int NOT_START_WITH_OPERATOR = 4;
+
+	public static final int NOT_CONTAIN_OPERATOR = 5;
+
+	public static final int NOT_END_WITH_OPERATOR = 6;
+	
+	private ArrayList predicates = new ArrayList();
+	
     public ConnectionFilterImpl() {
 
     }
@@ -229,5 +248,95 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 			return !super.isFiltered(name);
 		}
 	}
-    
+
+	public ArrayList getPredicatesCollection() {
+		predicates = new ArrayList();
+		
+		if(predicate != null && !predicate.equals("")){
+			String[] tokenArray = predicate.split(" ");
+			ArrayList tempList = new ArrayList();
+			
+			for(int i = 0; i < tokenArray.length; i++){
+				if(!tokenArray[i].equals("AND") && !tokenArray[i].equals("OR"))
+					tempList.add(tokenArray[i]);
+			}
+			
+			for(int j = 0; j + 1 < tempList.size(); j = j + 2){
+				int operator = findExpressionOperator(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
+				String value = findExpressionValue(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
+				Predicate p = new Predicate(operator, value);
+				predicates.add(p);
+			}
+		}
+		return predicates;
+	}
+
+	private int findExpressionOperator(String filterPredicate) {
+		int enumExpressionPredicate = 1;
+		boolean isNotLike = false;
+		boolean startsWithPercentSign = false;
+		boolean endsWithPercentSign = false;
+		if (filterPredicate.startsWith(NOT_PREDICATE_TEXT)) {
+			isNotLike = true;
+		}
+		String expressionValue = filterPredicate.split(IDENTIFIER_DELIMITER)[1];
+		if (expressionValue.startsWith("%")) { //$NON-NLS-1$
+			startsWithPercentSign = true;
+		}
+
+		if (expressionValue.endsWith("%")) { //$NON-NLS-1$
+			endsWithPercentSign = true;
+		}
+
+		if (startsWithPercentSign && endsWithPercentSign) {
+			if (isNotLike) {
+				enumExpressionPredicate = NOT_CONTAIN_OPERATOR;
+			} else {
+				enumExpressionPredicate = CONTAINS_OPERATOR;
+			}
+		} else if (startsWithPercentSign) {
+			if (isNotLike) {
+				enumExpressionPredicate = NOT_END_WITH_OPERATOR;
+			} else {
+				enumExpressionPredicate = ENDS_WITH_OPERATOR;
+			}
+		} else if (endsWithPercentSign) {
+			if (isNotLike) {
+				enumExpressionPredicate = NOT_START_WITH_OPERATOR;
+			} else {
+				enumExpressionPredicate = STARTS_WITH_OPERATOR;
+			}
+		}
+		return enumExpressionPredicate;
+	}
+
+	private String findExpressionValue(String filterPredicate) {
+		String expressionValue = filterPredicate.split(IDENTIFIER_DELIMITER)[1];
+		if (expressionValue.startsWith("%")) { //$NON-NLS-1$
+			expressionValue = expressionValue.substring(1);
+		}
+
+		if (expressionValue.endsWith("%")) { //$NON-NLS-1$
+			expressionValue = expressionValue.substring(0, (expressionValue
+					.length() - 1));
+		}
+
+		return expressionValue;
+	}
+
+	public boolean isMeetsAllConditions() {
+		predicates = new ArrayList();
+		
+		if(predicate != null && !predicate.equals("")){
+			String[] tokenArray = predicate.split(" ");
+			
+			for(int i = 0; i < tokenArray.length; i++){
+				if(tokenArray[i].equals("AND"))
+					return true;
+				else if(tokenArray[i].equals("OR"))
+					return false;
+			}
+		}
+		return true;
+	}
 }

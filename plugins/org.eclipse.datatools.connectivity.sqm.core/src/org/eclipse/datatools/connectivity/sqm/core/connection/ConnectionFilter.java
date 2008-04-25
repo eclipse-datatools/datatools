@@ -12,6 +12,9 @@
 package org.eclipse.datatools.connectivity.sqm.core.connection;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Predicate;
 
 /**
  * Public ConnectionFilter interface, extended internally
@@ -22,6 +25,11 @@ public interface ConnectionFilter extends Serializable{
 	 * Return the filter expression.
 	 */
 	public String getPredicate();
+	
+	/**
+	 * Return all the predicates
+	 */
+	public ArrayList getPredicatesCollection();
 	
 	/**
 	 * Return if the filter expression is valid
@@ -52,6 +60,11 @@ public interface ConnectionFilter extends Serializable{
 	 * Return only the operator part of the filter expression
 	 */
 	public String getOperator();
+	
+	/**
+	 * Returns if the conditions are ORed or ANDed
+	 */
+	public boolean isMeetsAllConditions();
 	
 	/**
 	 * @param name the name of the object to check

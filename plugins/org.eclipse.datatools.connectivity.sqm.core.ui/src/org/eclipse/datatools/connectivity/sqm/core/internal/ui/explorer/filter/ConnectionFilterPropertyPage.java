@@ -12,8 +12,11 @@ package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.helpers.FilterHelper;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
+import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterImpl;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -52,6 +55,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	
 	boolean hideSelectionOption = false;
 	
+	private boolean isMultiplePredicatesMode = false;
+	
 	public ConnectionFilterPropertyPage() {
 		super();
 		setTitle(getDefaultPageTitle());
@@ -66,6 +71,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	}
 
 	protected Control createContents(Composite parent, boolean hideExpressionOption) {
+		isMultiplePredicatesMode = FilterHelper.INSTANCE.supportsMultiplePredicatesMode((IVirtualNode)this.getElement());
+		
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
@@ -88,7 +95,16 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		gd.verticalAlignment = GridData.BEGINNING;
 		spacer.setLayoutData(gd);
 
-		filterComposite = new ConnectionFilterComposite(composite, SWT.NONE, this, hideExpressionOption, hideSelectionOption);
+		if(!isMultiplePredicatesMode)
+			filterComposite = new ConnectionFilterComposite(composite, SWT.NONE, this, hideExpressionOption, hideSelectionOption);
+		else {
+			ConnectionFilter connFilter = getConnectionFilter();
+			
+			if(connFilter == null)
+				connFilter = new ConnectionFilterImpl();
+			
+			filterComposite = new ConnectionFilterComposite(composite, SWT.NONE, this, hideExpressionOption, hideSelectionOption, isMultiplePredicatesMode, connFilter, this);
+		}
 		
 		if (filterComposite.isHideExpressionOption()) {
 			DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;
@@ -104,6 +120,10 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		initializeDialogUnits(composite);
 		setValid(validatePage());
 		return composite;
+	}
+	
+	protected void setPageValidity() {
+		setValid(validatePage());
 	}
 	
 	protected boolean validatePage() {
@@ -125,6 +145,10 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 
 	public String getPredicate() {
 		return filterComposite.getPredicate();
+	}
+	
+	public String getPredicates() {
+		return filterComposite.getPredicates();
 	}
 
 	public boolean isFilterSpecified() {
@@ -150,7 +174,14 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		String filterType = getConnectionFilterType();
 		if (filterType != null) {
 			IConnectionProfile profile = getConnectionProfile();
-			String predicate = getPredicate();
+			
+			String predicate = null;
+			
+			if(!isMultiplePredicatesMode)
+				predicate = getPredicate();
+			else
+				predicate = getPredicates();
+			
 			Properties props = profile
 					.getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID);
 			if (predicate == null || predicate.length() == 0) {
