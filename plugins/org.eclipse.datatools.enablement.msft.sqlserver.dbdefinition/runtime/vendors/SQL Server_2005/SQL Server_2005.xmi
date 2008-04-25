@@ -13,7 +13,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BINARY</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" maximumLength="8000" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARBINARY</name>
   </predefinedDataTypeDefinitions>
@@ -46,7 +46,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NTEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -60,7 +60,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>UNIQUEIDENTIFIER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
