@@ -20,7 +20,7 @@
    	  <!-- Preference page for Label Decorations -->
       <page
             name="%datatools.core.ui.preferences.labeldecorators"
-            category="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.data"
+            category="org.eclipse.datatools.connectivity.ui.preferences.dataNode"
             class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.preferences.LabelDecoratorPreference"
             id="org.eclipse.datatools.connectivity.sqm.core.ui.preferences.labelDecorations">
       </page>
