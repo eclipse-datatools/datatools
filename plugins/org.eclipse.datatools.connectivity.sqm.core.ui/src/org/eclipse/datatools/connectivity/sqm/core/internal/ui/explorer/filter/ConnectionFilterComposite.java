@@ -549,7 +549,10 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 					if (!hideSelectionOption)
 						selectionRadioButton.setSelection(true);
 					expressionRadioButton.setSelection(false);
-					columnTable.initializeValues(false);
+					
+					if (isMultiplePredicatesMode){
+						columnTable.initializeValues(false);
+					}
 				}
 				if (!hideSelectionOption) {
 					if (isPredicateNegated(predicate)) {
