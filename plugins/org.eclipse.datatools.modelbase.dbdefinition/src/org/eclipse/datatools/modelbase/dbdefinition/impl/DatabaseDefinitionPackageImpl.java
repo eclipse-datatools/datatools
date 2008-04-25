@@ -1224,6 +1224,33 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierSupported() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(42);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierName() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(43);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierLength() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(44);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTableSpaceDefinition() {
 		return tableSpaceDefinitionEClass;
 	}
@@ -2647,6 +2674,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_SUPPORTED);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__TRAILING_FIELD_QUALIFIER_SUPPORTED);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH);
 
 		tableSpaceDefinitionEClass = createEClass(TABLE_SPACE_DEFINITION);
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__TYPE_SUPPORTED);
@@ -2939,6 +2969,9 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getPredefinedDataTypeDefinition_LeadingFieldQualifierSupported(), ecorePackage.getEBoolean(), "leadingFieldQualifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_TrailingFieldQualifierSupported(), ecorePackage.getEBoolean(), "trailingFieldQualifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_FieldQualifierSeparator(), ecorePackage.getEString(), "fieldQualifierSeparator", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierSupported(), ecorePackage.getEBoolean(), "largeValueSpecifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierName(), ecorePackage.getEString(), "largeValueSpecifierName", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierLength(), ecorePackage.getEInt(), "largeValueSpecifierLength", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tableSpaceDefinitionEClass, TableSpaceDefinition.class, "TableSpaceDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableSpaceDefinition_TypeSupported(), ecorePackage.getEBoolean(), "typeSupported", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

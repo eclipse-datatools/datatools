@@ -82,6 +82,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -847,6 +850,66 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @ordered
 	 */
 	protected String fieldQualifierSeparator = FIELD_QUALIFIER_SEPARATOR_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isLargeValueSpecifierSupported() <em>Large Value Specifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLargeValueSpecifierSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean LARGE_VALUE_SPECIFIER_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isLargeValueSpecifierSupported() <em>Large Value Specifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLargeValueSpecifierSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean largeValueSpecifierSupported = LARGE_VALUE_SPECIFIER_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLargeValueSpecifierName() <em>Large Value Specifier Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLargeValueSpecifierName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String LARGE_VALUE_SPECIFIER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getLargeValueSpecifierName() <em>Large Value Specifier Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLargeValueSpecifierName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String largeValueSpecifierName = LARGE_VALUE_SPECIFIER_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLargeValueSpecifierLength() <em>Large Value Specifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLargeValueSpecifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLargeValueSpecifierLength() <em>Large Value Specifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLargeValueSpecifierLength()
+	 * @generated
+	 * @ordered
+	 */
+	protected int largeValueSpecifierLength = LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1733,6 +1796,69 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isLargeValueSpecifierSupported() {
+		return largeValueSpecifierSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLargeValueSpecifierSupported(boolean newLargeValueSpecifierSupported) {
+		boolean oldLargeValueSpecifierSupported = largeValueSpecifierSupported;
+		largeValueSpecifierSupported = newLargeValueSpecifierSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED, oldLargeValueSpecifierSupported, largeValueSpecifierSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getLargeValueSpecifierName() {
+		return largeValueSpecifierName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLargeValueSpecifierName(String newLargeValueSpecifierName) {
+		String oldLargeValueSpecifierName = largeValueSpecifierName;
+		largeValueSpecifierName = newLargeValueSpecifierName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME, oldLargeValueSpecifierName, largeValueSpecifierName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLargeValueSpecifierLength() {
+		return largeValueSpecifierLength;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLargeValueSpecifierLength(int newLargeValueSpecifierLength) {
+		int oldLargeValueSpecifierLength = largeValueSpecifierLength;
+		largeValueSpecifierLength = newLargeValueSpecifierLength;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH, oldLargeValueSpecifierLength, largeValueSpecifierLength));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -1836,6 +1962,12 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return isTrailingFieldQualifierSupported() ? Boolean.TRUE : Boolean.FALSE;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				return getFieldQualifierSeparator();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED:
+				return isLargeValueSpecifierSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
+				return getLargeValueSpecifierName();
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
+				return new Integer(getLargeValueSpecifierLength());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1979,6 +2111,15 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				setFieldQualifierSeparator((String)newValue);
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED:
+				setLargeValueSpecifierSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
+				setLargeValueSpecifierName((String)newValue);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
+				setLargeValueSpecifierLength(((Integer)newValue).intValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -2116,6 +2257,15 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				setFieldQualifierSeparator(FIELD_QUALIFIER_SEPARATOR_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED:
+				setLargeValueSpecifierSupported(LARGE_VALUE_SPECIFIER_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
+				setLargeValueSpecifierName(LARGE_VALUE_SPECIFIER_NAME_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
+				setLargeValueSpecifierLength(LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2211,6 +2361,12 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return trailingFieldQualifierSupported != TRAILING_FIELD_QUALIFIER_SUPPORTED_EDEFAULT;
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR:
 				return FIELD_QUALIFIER_SEPARATOR_EDEFAULT == null ? fieldQualifierSeparator != null : !FIELD_QUALIFIER_SEPARATOR_EDEFAULT.equals(fieldQualifierSeparator);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED:
+				return largeValueSpecifierSupported != LARGE_VALUE_SPECIFIER_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME:
+				return LARGE_VALUE_SPECIFIER_NAME_EDEFAULT == null ? largeValueSpecifierName != null : !LARGE_VALUE_SPECIFIER_NAME_EDEFAULT.equals(largeValueSpecifierName);
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
+				return largeValueSpecifierLength != LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2300,6 +2456,12 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 		result.append(trailingFieldQualifierSupported);
 		result.append(", fieldQualifierSeparator: "); //$NON-NLS-1$
 		result.append(fieldQualifierSeparator);
+		result.append(", largeValueSpecifierSupported: "); //$NON-NLS-1$
+		result.append(largeValueSpecifierSupported);
+		result.append(", largeValueSpecifierName: "); //$NON-NLS-1$
+		result.append(largeValueSpecifierName);
+		result.append(", largeValueSpecifierLength: "); //$NON-NLS-1$
+		result.append(largeValueSpecifierLength);
 		result.append(')');
 		return result.toString();
 	}

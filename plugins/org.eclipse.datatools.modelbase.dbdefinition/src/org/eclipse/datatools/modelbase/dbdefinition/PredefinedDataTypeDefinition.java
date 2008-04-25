@@ -64,6 +64,9 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLeadingFieldQualifierSupported <em>Leading Field Qualifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isTrailingFieldQualifierSupported <em>Trailing Field Qualifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getFieldQualifierSeparator <em>Field Qualifier Separator</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,7 +74,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PredefinedDataTypeDefinition extends EObject{
+public interface PredefinedDataTypeDefinition extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Leading Field Qualifier Definition</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.datatools.modelbase.dbdefinition.FieldQualifierDefinition}.
@@ -1115,5 +1118,83 @@ public interface PredefinedDataTypeDefinition extends EObject{
 	 * @generated
 	 */
 	void setFieldQualifierSeparator(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Large Value Specifier Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Large Value Specifier Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Large Value Specifier Supported</em>' attribute.
+	 * @see #setLargeValueSpecifierSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LargeValueSpecifierSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isLargeValueSpecifierSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Large Value Specifier Supported</em>' attribute.
+	 * @see #isLargeValueSpecifierSupported()
+	 * @generated
+	 */
+	void setLargeValueSpecifierSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Large Value Specifier Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Large Value Specifier Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Large Value Specifier Name</em>' attribute.
+	 * @see #setLargeValueSpecifierName(String)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LargeValueSpecifierName()
+	 * @model
+	 * @generated
+	 */
+	String getLargeValueSpecifierName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Large Value Specifier Name</em>' attribute.
+	 * @see #getLargeValueSpecifierName()
+	 * @generated
+	 */
+	void setLargeValueSpecifierName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Large Value Specifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Large Value Specifier Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Large Value Specifier Length</em>' attribute.
+	 * @see #setLargeValueSpecifierLength(int)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LargeValueSpecifierLength()
+	 * @model
+	 * @generated
+	 */
+	int getLargeValueSpecifierLength();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Large Value Specifier Length</em>' attribute.
+	 * @see #getLargeValueSpecifierLength()
+	 * @generated
+	 */
+	void setLargeValueSpecifierLength(int value);
 
 } // PredefinedDataTypeDefinition

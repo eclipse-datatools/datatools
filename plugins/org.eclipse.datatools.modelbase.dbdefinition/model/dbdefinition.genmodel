@@ -176,6 +176,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/leadingFieldQualifierSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/trailingFieldQualifierSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/fieldQualifierSeparator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierLength"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//TableSpaceDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/typeSupported"/>

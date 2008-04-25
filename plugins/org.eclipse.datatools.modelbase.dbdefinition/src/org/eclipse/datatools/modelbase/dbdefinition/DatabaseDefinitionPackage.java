@@ -922,13 +922,40 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR = 41;
 
 	/**
+	 * The feature id for the '<em><b>Large Value Specifier Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED = 42;
+
+	/**
+	 * The feature id for the '<em><b>Large Value Specifier Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME = 43;
+
+	/**
+	 * The feature id for the '<em><b>Large Value Specifier Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH = 44;
+
+	/**
 	 * The number of structural features of the '<em>Predefined Data Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 42;
+	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
@@ -3469,6 +3496,39 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getPredefinedDataTypeDefinition_FieldQualifierSeparator();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Large Value Specifier Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLargeValueSpecifierSupported()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierSupported();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Large Value Specifier Name</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierName()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Large Value Specifier Length</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierLength();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition <em>Table Space Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5812,6 +5872,30 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__FIELD_QUALIFIER_SEPARATOR = eINSTANCE.getPredefinedDataTypeDefinition_FieldQualifierSeparator();
+
+		/**
+		 * The meta object literal for the '<em><b>Large Value Specifier Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_LargeValueSpecifierSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Large Value Specifier Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME = eINSTANCE.getPredefinedDataTypeDefinition_LargeValueSpecifierName();
+
+		/**
+		 * The meta object literal for the '<em><b>Large Value Specifier Length</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH = eINSTANCE.getPredefinedDataTypeDefinition_LargeValueSpecifierLength();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
