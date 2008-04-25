@@ -273,7 +273,6 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 			selectionPredicate.select(selectionPredicate
 					.indexOf(INCLUDE_ITEMS_TEXT));
 		}
-		initializeValues();
 	}
 	
 	public ConnectionFilterComposite(Composite parent, int style, IConnectionFilterProvider connectionFilterProvider,
@@ -410,7 +409,6 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 					.indexOf(INCLUDE_ITEMS_TEXT));
 		}
 		columnTable.initializeValues(true);
-		initializeValues();
 	}
 
 	/*

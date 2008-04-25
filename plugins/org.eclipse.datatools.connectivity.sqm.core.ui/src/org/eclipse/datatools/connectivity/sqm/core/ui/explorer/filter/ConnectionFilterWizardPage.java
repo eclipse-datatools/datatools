@@ -63,6 +63,7 @@ public abstract class ConnectionFilterWizardPage extends WizardPage implements I
 
 	public void createControl(Composite parent, boolean hideExpressionOption, boolean hideSelectionOption) {
 		filterComposite = new ConnectionFilterComposite(parent, SWT.NONE, this, hideExpressionOption, hideSelectionOption);
+		filterComposite.initializeValues();
 
 		if (filterComposite.isHideExpressionOption()) {
 			DEFAULT_MESSAGE = SELECTION_ONLY_MESSAGE;

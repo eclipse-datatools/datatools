@@ -95,8 +95,10 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 		gd.verticalAlignment = GridData.BEGINNING;
 		spacer.setLayoutData(gd);
 
-		if(!isMultiplePredicatesMode)
+		if(!isMultiplePredicatesMode){
 			filterComposite = new ConnectionFilterComposite(composite, SWT.NONE, this, hideExpressionOption, hideSelectionOption);
+			filterComposite.initializeValues();
+		}
 		else {
 			ConnectionFilter connFilter = getConnectionFilter();
 			
@@ -104,6 +106,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 				connFilter = new ConnectionFilterImpl();
 			
 			filterComposite = new ConnectionFilterComposite(composite, SWT.NONE, this, hideExpressionOption, hideSelectionOption, isMultiplePredicatesMode, connFilter, this);
+			filterComposite.initializeValues();
 		}
 		
 		if (filterComposite.isHideExpressionOption()) {
