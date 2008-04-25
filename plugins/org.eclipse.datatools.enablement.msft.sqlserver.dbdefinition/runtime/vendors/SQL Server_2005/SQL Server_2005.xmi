@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2005" maximumIdentifierLength="128">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2005" maximumIdentifierLength="128"
+ viewTriggerSupported="true" userDefinedTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
@@ -146,6 +147,7 @@
   <storedProcedureDefinition maximumIdentifierLength="128">
     <functionLanguageType>SQL</functionLanguageType>
   </storedProcedureDefinition>
+  <udtDefinition maximumIdentifierLength="128" distinctTypeSupported="true"/>
   <SQLSyntaxDefinition terminationCharacter="GO">
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
