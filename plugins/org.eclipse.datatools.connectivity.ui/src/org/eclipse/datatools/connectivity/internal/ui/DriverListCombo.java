@@ -619,10 +619,17 @@ public class DriverListCombo {
 		if (mTBButtonEdit != null)
 			mTBButtonEdit.setEnabled(false);
 		String text = getCombo().getText();
-		for (int i = 0; i < getCombo().getItemCount(); i++) {
-			if (getCombo().getItem(i).equals(text)) {
-				getCombo().select(i);
-				break;
+		if (text != null && text.trim().length() > 0) {
+			for (int i = 0; i < getCombo().getItemCount(); i++) {
+				if (getCombo().getItem(i).equals(text)) {
+					getCombo().select(i);
+					break;
+				}
+			}
+		}
+		else {
+			if (getCombo().getItemCount() > 0) {
+				mTBButtonEdit.setEnabled(true);
 			}
 		}
 	}

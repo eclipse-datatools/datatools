@@ -91,14 +91,8 @@ public class NewCPWizard extends BaseWizard implements INewWizard, IContextProvi
 			if (wizard == null) {
 				return false;
 			}
-			else if (wizard.canFinish()) {
-				if (wizard instanceof NewConnectionProfileWizard) {
-					NewConnectionProfileWizard ncpw = (NewConnectionProfileWizard) wizard;
-					if (!ncpw.isFinished()) {
-						return wizard.performFinish();
-					}
-				}
-			}
+			else if (wizard.canFinish())
+				return wizard.performFinish();
 		}
 		// mStore.setValue(DONNT_SHOW_INRO, mIntroPage.isHideIntro());
 		return true;
