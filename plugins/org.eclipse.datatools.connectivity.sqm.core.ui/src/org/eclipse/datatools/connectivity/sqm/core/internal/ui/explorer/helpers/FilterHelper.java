@@ -14,13 +14,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 
 public class FilterHelper
 {
@@ -58,20 +59,25 @@ public class FilterHelper
 		}
     }
 
-    public boolean supportsMultiplePredicatesMode(IVirtualNode element){
-    	
-    	ConnectionInfo connectionInfo = element.getParentConnection();
-    	String vendor = connectionInfo.getDatabaseDefinition().getProduct();
-    	String version = connectionInfo.getDatabaseDefinition().getVersion();
-    	
-    	if(dbCollection.containsKey(vendor + " " + version)){
-    		Vector objectType = (Vector)dbCollection.get(vendor + " " + version);
-    		
-    		for(int i = 0; i < objectType.size(); i++){
-    			if(element.getClass().getInterfaces()[0].getName().equals(objectType.get(i)))
-    				return true;
-    		}
-    	}
+    public boolean supportsMultiplePredicatesMode(IAdaptable element){
+    	if (element instanceof IVirtualNode) {
+			IVirtualNode virtualNode = (IVirtualNode) element;
+			ConnectionInfo connectionInfo = virtualNode.getParentConnection();
+			String vendor = connectionInfo.getDatabaseDefinition().getProduct();
+			String version = connectionInfo.getDatabaseDefinition()
+					.getVersion();
+
+			if (dbCollection.containsKey(vendor + " " + version)) {
+				Vector objectType = (Vector) dbCollection.get(vendor + " "
+						+ version);
+
+				for (int i = 0; i < objectType.size(); i++) {
+					if (virtualNode.getClass().getInterfaces()[0].getName()
+							.equals(objectType.get(i)))
+						return true;
+				}
+			}
+		}
 		return false;
     }
 }

@@ -71,7 +71,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	}
 
 	protected Control createContents(Composite parent, boolean hideExpressionOption) {
-		isMultiplePredicatesMode = FilterHelper.INSTANCE.supportsMultiplePredicatesMode((IVirtualNode)this.getElement());
+		isMultiplePredicatesMode = FilterHelper.INSTANCE.supportsMultiplePredicatesMode(this.getElement());
 		
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -163,8 +163,15 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	}
 
 	public void populateSelectionTable(Table selectionTable) {
+	    // Clear filter
+	 	String predicate = getCurrentPredicate();
+	 	setConnectionFilter(null);
+
 		filterComposite.setSelection(selection);
 		filterComposite.populateSelectionTable(selectionTable);
+		
+        // Re-apply filter
+        setConnectionFilter(predicate);
 	}
 
 	public abstract ConnectionFilter getConnectionFilter();
@@ -176,27 +183,50 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	public boolean performOk() {
 		String filterType = getConnectionFilterType();
 		if (filterType != null) {
-			IConnectionProfile profile = getConnectionProfile();
-			
+					
 			String predicate = null;
 			
 			if(!isMultiplePredicatesMode)
+			{
 				predicate = getPredicate();
+			}
 			else
+			{
 				predicate = getPredicates();
-			
+			}
+			setConnectionFilter(predicate);
+		}			
+
+		return true;
+	}
+	
+	private String getCurrentPredicate(){
+		String predicate = null;
+		String filterType = getConnectionFilterType();
+		if (filterType != null) {
+			IConnectionProfile profile = getConnectionProfile();
 			Properties props = profile
 					.getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID);
-			if (predicate == null || predicate.length() == 0) {
-				props.remove(filterType);
-			}
-			else {
-				props.setProperty(filterType, predicate);
-			}
-			profile.setProperties(
-					ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID, props);
+			
+			predicate = props.getProperty(filterType);	
 		}
-		return true;
+		return predicate;
+	}
+	
+	private void setConnectionFilter(String predicate) {
+		String filterType = getConnectionFilterType();
+		if (filterType != null) {
+		IConnectionProfile profile = getConnectionProfile();
+		Properties props = profile
+				.getProperties(ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID);
+		if (predicate == null || predicate.length() == 0) {
+			props.remove(filterType);
+		} else {
+			props.setProperty(filterType, predicate);
+		}
+		profile.setProperties(
+				ConnectionFilter.FILTER_SETTINGS_PROFILE_EXTENSION_ID, props);
+		}
 	}
 
     protected void performDefaults()
