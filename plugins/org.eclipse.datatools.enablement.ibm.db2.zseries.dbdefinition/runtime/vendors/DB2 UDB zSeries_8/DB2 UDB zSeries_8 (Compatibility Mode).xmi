@@ -167,7 +167,6 @@
   </storedProcedureDefinition>
   <columnDefinition maximumIdentifierLength="30" identitySupported="true" identityStartValueSupported="true" identityIncrementSupported="true" identityMinimumSupported="true" identityMaximumSupported="true" identityCycleSupported="true"/>
   <constraintDefinition maximumPrimaryKeyIdentifierLength="8" maximumForeignKeyIdentifierLength="8" maximumCheckConstraintIdentifierLength="18">
-    <parentUpdateDRIRuleType>RESTRICT</parentUpdateDRIRuleType>
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
     <parentDeleteDRIRuleType>RESTRICT</parentDeleteDRIRuleType>
     <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
