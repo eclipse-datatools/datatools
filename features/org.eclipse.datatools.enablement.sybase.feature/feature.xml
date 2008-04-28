@@ -33,7 +33,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.enablement.sybase.ase.models"
          download-size="0"
@@ -47,34 +47,35 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.enablement.sybase.ase"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
    <plugin
          id="org.eclipse.datatools.enablement.sybase.ase.dbdefinition"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-  
+
    <plugin
          id="org.eclipse.datatools.enablement.sybase.asa.dbdefinition"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-                  
-  <plugin
+
+   <plugin
          id="org.eclipse.datatools.enablement.sybase.asa.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.enablement.sybase.ase.ui"
          download-size="0"
@@ -84,6 +85,20 @@
 
    <plugin
          id="org.eclipse.datatools.enablement.sybase"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.sybase.models"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.enablement.sybase.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
