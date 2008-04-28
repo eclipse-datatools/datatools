@@ -547,11 +547,11 @@ _UI_SPECIFY_VALUE	   = 値の指定...
 _UI_SPECIFY_VALUE_TITLE	   = 値の指定
 
 
-!
+!========================================================================================
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!
+!========================================================================================
 _WARN_MESSAGES_ENCOUNTERED      = 警告メッセージが発生しました。
 _WARN_DATA_WAS_TRUNCATED        = データが切り捨てられました。
 _WARN_SQL_WARNINGS_FOUND        = SQL 警告が見つかりました。
@@ -566,11 +566,11 @@ _WARN_COLUMN_USED               = 列は、テーブル間のジョインですでに使用されてい
 _WARN_BAD_JOIN_TYPES               = 列 {0} の型は {1} です。
 
 
-!
+!======================================================================================
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!
+!======================================================================================
 
 _ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = 式を編集できません。
 _ERROR_DIALOG_MSG_REBUILD_EXPR       = 式を再構築してください。

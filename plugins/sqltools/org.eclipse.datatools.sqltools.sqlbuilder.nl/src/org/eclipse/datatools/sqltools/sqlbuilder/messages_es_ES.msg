@@ -547,11 +547,11 @@ _UI_SPECIFY_VALUE	   = Especificar valor...
 _UI_SPECIFY_VALUE_TITLE	   = Especificar valor
 
 
-!
+!========================================================================================
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!
+!========================================================================================
 _WARN_MESSAGES_ENCOUNTERED      = Se han encontrado mensajes de advertencia
 _WARN_DATA_WAS_TRUNCATED        = Se han truncado los datos
 _WARN_SQL_WARNINGS_FOUND        = Se han encontrado advertencias de SQL
@@ -566,11 +566,11 @@ _WARN_COLUMN_USED               = La columna ya se había utilizado en una combin
 _WARN_BAD_JOIN_TYPES               = El tipo de la columna {0} es {1}
 
 
-!
+!======================================================================================
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!
+!======================================================================================
 
 _ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = Error al editar expresión
 _ERROR_DIALOG_MSG_REBUILD_EXPR       = La expresión se debe volver a compilar

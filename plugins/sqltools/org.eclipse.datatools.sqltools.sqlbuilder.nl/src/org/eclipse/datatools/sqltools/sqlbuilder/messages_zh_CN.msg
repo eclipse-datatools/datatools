@@ -547,11 +547,11 @@ _UI_SPECIFY_VALUE	   = 指定值...
 _UI_SPECIFY_VALUE_TITLE	   = 指定值
 
 
-!
+!========================================================================================
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!
+!========================================================================================
 _WARN_MESSAGES_ENCOUNTERED      = 遇到了警告消息
 _WARN_DATA_WAS_TRUNCATED        = 数据被截断
 _WARN_SQL_WARNINGS_FOUND        = 发现了 SQL 警告
@@ -566,11 +566,11 @@ _WARN_COLUMN_USED               = 已在表之间的联接中使用了列
 _WARN_BAD_JOIN_TYPES               = 列 {0} 的类型为 {1}
 
 
-!
+!======================================================================================
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!
+!======================================================================================
 
 _ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = 编辑表达式失败
 _ERROR_DIALOG_MSG_REBUILD_EXPR       = 必须重新生成表达式

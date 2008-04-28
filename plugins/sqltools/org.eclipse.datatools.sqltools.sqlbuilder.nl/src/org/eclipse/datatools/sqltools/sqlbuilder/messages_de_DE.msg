@@ -547,11 +547,11 @@ _UI_SPECIFY_VALUE	   = Wert angeben...
 _UI_SPECIFY_VALUE_TITLE	   = Wert angeben
 
 
-!
+!========================================================================================
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!
+!========================================================================================
 _WARN_MESSAGES_ENCOUNTERED      = Warnmeldungen ausgegeben.
 _WARN_DATA_WAS_TRUNCATED        = Daten wurden abgeschnitten.
 _WARN_SQL_WARNINGS_FOUND        = SQL-Warnungen vorgefunden.
@@ -566,11 +566,11 @@ _WARN_COLUMN_USED               = Spalte wurde bereits in einem Knotenpunkt zwis
 _WARN_BAD_JOIN_TYPES               = Der Typ der Spalte {0} ist {1}
 
 
-!
+!======================================================================================
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!
+!======================================================================================
 
 _ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = Bearbeiten des Ausdrucks fehlgeschlagen
 _ERROR_DIALOG_MSG_REBUILD_EXPR       = Der Ausdruck muss neu erstellt werden.

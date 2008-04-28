@@ -547,11 +547,11 @@ _UI_SPECIFY_VALUE	   = 값 지정...
 _UI_SPECIFY_VALUE_TITLE	   = 값 지정
 
 
-!
+!========================================================================================
 !
 ! Here is the list of Warning string that have message IDs - make sure they are unique
 !
-!
+!========================================================================================
 _WARN_MESSAGES_ENCOUNTERED      = 경고 메시지가 발생했습니다.
 _WARN_DATA_WAS_TRUNCATED        = 데이터가 잘렸습니다.
 _WARN_SQL_WARNINGS_FOUND        = SQL 경고가 발견되었습니다.
@@ -566,11 +566,11 @@ _WARN_COLUMN_USED               = 열이 테이블 사이의 조인에 이미 사용되었습니다.
 _WARN_BAD_JOIN_TYPES               = 열 {0}의 형식은 is {1}입니다.
 
 
-!
+!======================================================================================
 !
 ! Here is the list of Error string that have message IDs - make sure they are unique
 !
-!
+!======================================================================================
 
 _ERROR_DIALOG_TITLE_EXPR_EDIT_FAILED = 식 편집 실패
 _ERROR_DIALOG_MSG_REBUILD_EXPR       = 식을 다시 빌드해야 합니다.
