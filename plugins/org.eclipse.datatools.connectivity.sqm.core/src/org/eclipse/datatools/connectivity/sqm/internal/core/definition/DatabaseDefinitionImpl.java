@@ -1970,7 +1970,7 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	private AbstractMetaDataExtension getMetaDataExtension() {
 		if(this.metaDataExtension == null) {
 			IExtensionRegistry pluginRegistry = Platform.getExtensionRegistry();
-			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.wst.rdb.core", "metaDataExtension"); //$NON-NLS-1$ //$NON-NLS-2$
+			IExtensionPoint extensionPoint = pluginRegistry.getExtensionPoint("org.eclipse.datatools.connectivity.sqm.core", "metaDataExtension"); //$NON-NLS-1$ //$NON-NLS-2$
 			IExtension[] extensions = extensionPoint.getExtensions();
 			for(int i=0; i<extensions.length; ++i) {
 				IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
