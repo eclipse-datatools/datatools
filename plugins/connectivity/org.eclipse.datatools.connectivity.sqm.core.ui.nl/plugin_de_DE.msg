@@ -18,6 +18,7 @@ LABEL_SERVICE_EXTENSION_POINT_NAME=labelService
 ELEMENT_ID_EXTENSION_POINT_NAME=elementID
 MARKER_NAVIGATION_PROVIDER_EXTENSION_POINT_NAME=markerNavigationProvider
 DATA_SOURCE_EXPLORER_SORTER=sorterValidatorProvider
+FILTER_INFORMATION_EXTENSION_POINT_NAME=filterInformation
 
 #
 ## Model Explorer Selection
@@ -112,6 +113,7 @@ datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Datentools – Spa
 datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Datentools – Fremd- oder Primärschlüsselindikator
 datatools.core.ui.modelexplorer.DependencyDecoration = Datentools – Dependency Decoration
 datatools.core.ui.modelexplorer.bookmarkDecoration  = Datentools – Bookmark Indicator
+datatools.core.ui.modelexplorer.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
 
 #
 ## Model Explorer Sorter Provider
