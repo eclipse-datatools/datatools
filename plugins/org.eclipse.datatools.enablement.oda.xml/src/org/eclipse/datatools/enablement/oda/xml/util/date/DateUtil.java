@@ -35,6 +35,8 @@ public final class DateUtil
 	// Defalult Locale, if we have any problem parse string to date for Locale.getDefault()
 	// we will try to parse it for Locale.US
 	private static ULocale DEFAULT_LOCALE = ULocale.US;
+	
+	private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
 
 	// Default Date/Time Style 
 	private static int DEFAULT_DATE_STYLE = DateFormat.MEDIUM;
@@ -374,7 +376,7 @@ public final class DateUtil
 			try
 			{
 				// format the String for JRE default locale
-				return toDate( source, ULocale.getDefault( ) );
+				return toDate( source, JRE_DEFAULT_LOCALE );
 			}
 			catch ( OdaException use )
 			{
