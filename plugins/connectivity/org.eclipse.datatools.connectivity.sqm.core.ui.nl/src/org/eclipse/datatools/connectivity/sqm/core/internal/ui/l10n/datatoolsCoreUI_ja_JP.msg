@@ -143,6 +143,11 @@ DATATOOLS.PROJECT.UI.BOOKMARK.MESSAGE=ブックマーク名の入力 :
 DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = 暗黙
 
 #
+## Filtering Decoration
+#
+DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtered]
+
+#
 ## Catalog Util
 #
 DATATOOLS.CORE.UI.LOADING=読み込み中
@@ -208,6 +213,12 @@ _UI_MESSAGE_SELECTION_REQUIRED = 少なくとも 1 つの項目を選択してください。
 _UI_SP_FILTER_PAGE_TITLE = ストアドプロシージャのフィルタのプロパティ
 _UI_TABLE_FILTER_PAGE_TITLE = テーブルのフィルタのプロパティ
 _UI_SCHEMA_FILTER_PAGE_TITLE = スキーマのフィルタのプロパティ
+_UI_TOOLTIP_NEW = New
+_UI_TOOLTIP_DELETE = Delete
+_UI_RADIO_BUTTON_AND = Meet all conditions
+_UI_RADIO_BUTTON_OR = Meet any condition
+_UI_COMBO_PREDICATE = Predicate
+_UI_TEXT_VALUE = Value
 
 #
 ## Actions for Schema Management
