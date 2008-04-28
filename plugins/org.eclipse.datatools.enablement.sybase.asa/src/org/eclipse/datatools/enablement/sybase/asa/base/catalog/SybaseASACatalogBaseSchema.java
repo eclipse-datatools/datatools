@@ -3,9 +3,10 @@ package org.eclipse.datatools.enablement.sybase.asa.base.catalog;
 import java.lang.ref.SoftReference;
 import java.sql.Connection;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
+import org.eclipse.datatools.enablement.sybase.VirtualNodeAdapter;
 import org.eclipse.datatools.enablement.sybase.asa.baseloaders.SchemaASABaseLoader;
 import org.eclipse.datatools.enablement.sybase.asa.catalog.ASAUtil;
 import org.eclipse.datatools.enablement.sybase.asa.containment.DBEventGroupID;
@@ -121,9 +122,13 @@ public class SybaseASACatalogBaseSchema extends SybaseASABaseSchemaImpl implemen
     
     public String getRefreshContext(Object obj)
     {
-        if (obj instanceof IVirtualNode)
+        if (obj instanceof IAdaptable)
         {
-            return ((IVirtualNode)obj).getGroupID();
+        	VirtualNodeAdapter adapter = (VirtualNodeAdapter)((IAdaptable)obj).getAdapter(VirtualNodeAdapter.class);
+			if (adapter != null)
+			{
+				return adapter.getGroupId();
+			}
         }
         else if (obj instanceof Integer)
         {

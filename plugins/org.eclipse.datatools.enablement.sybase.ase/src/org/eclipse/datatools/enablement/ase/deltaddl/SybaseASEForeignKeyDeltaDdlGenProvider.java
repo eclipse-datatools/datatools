@@ -10,18 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.datatools.enablement.ase.ddl.SybaseASEDdlBuilder;
-import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.ddl.SybaseDdlScript;
 import org.eclipse.datatools.enablement.sybase.deltaddl.SybaseDeltaDdlGeneration.FeatureChangeRecord;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
-import org.eclipse.datatools.modelbase.sql.constraints.MatchType;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * @author David Cui

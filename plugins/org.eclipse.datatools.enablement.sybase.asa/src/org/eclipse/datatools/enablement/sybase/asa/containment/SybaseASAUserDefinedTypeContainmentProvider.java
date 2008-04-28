@@ -14,6 +14,7 @@ public class SybaseASAUserDefinedTypeContainmentProvider extends
 	}
 
 	public String getGroupId(EObject obj) {
-		return GroupID.USER_DEFINED_TYPE;
+//		return DBEventGroupID.ASAUDD;
+		return super.getGroupId(obj);
 	}
 }

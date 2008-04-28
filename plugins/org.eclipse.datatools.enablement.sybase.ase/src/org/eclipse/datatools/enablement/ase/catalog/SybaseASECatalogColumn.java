@@ -27,7 +27,6 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.enablement.ase.ISybaseASEDdlConstants;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
 import org.eclipse.datatools.enablement.ase.ddl.SybaseASEDdlParser;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEColumnCheckConstraint;

@@ -117,7 +117,6 @@ public class ModelUtilExt
                                     return object;
                                 }
                             }
-
                         }
                     }
                 }
@@ -125,7 +124,20 @@ public class ModelUtilExt
                 {
                     if (refresh)
                     {
-                        DSEUtil.refreshObjectBySchema(schema, new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                    	//TODO:
+//                        DSEUtil.refreshObjectBySchema(schema, new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                    	
+                        if (schema instanceof ICatalogObject2)
+                        {
+                        	ICatalogObject2 catalogObject2 = (ICatalogObject2)schema;
+                            String context = catalogObject2.getRefreshContext(new Integer(SQLSchemaPackage.SCHEMA__ROUTINES));
+                            catalogObject2.refresh(context);
+                        }
+                        else if(schema instanceof ICatalogObject)
+                        {
+                            ((ICatalogObject) schema).refresh();
+                        }
+                    	
                     }
                     EList routines = schema.getRoutines();
                     for (Iterator iter = routines.iterator(); iter.hasNext();)
@@ -141,6 +153,11 @@ public class ModelUtilExt
             }
         }
         return object;
+    }
+    
+    private static void refreshObjectBySchema(Schema schema, Object object)
+    {
+    	
     }
     
     public static Schema getDefaultSchema(ConnectionInfo conInfo, Catalog catalog){

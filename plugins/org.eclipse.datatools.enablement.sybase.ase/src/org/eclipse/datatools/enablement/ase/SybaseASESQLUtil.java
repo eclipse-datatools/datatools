@@ -1,9 +1,5 @@
 package org.eclipse.datatools.enablement.ase;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.enablement.sybase.IGenericDdlConstants;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
@@ -11,8 +7,6 @@ import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.sqltools.core.DatabaseIdentifier;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
-import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
-import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.emf.ecore.EObject;
 
 public class SybaseASESQLUtil implements IGenericDdlConstants, ISybaseASEDdlConstants

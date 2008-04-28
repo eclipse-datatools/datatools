@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.datatools.enablement.ase.ISybaseASEDdlConstants;
-import org.eclipse.datatools.enablement.ase.SybaseASESQLUtil;
 import org.eclipse.datatools.enablement.ase.ddl.ASEDdlUtils;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.CacheInfo;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.CacheStrategyType;

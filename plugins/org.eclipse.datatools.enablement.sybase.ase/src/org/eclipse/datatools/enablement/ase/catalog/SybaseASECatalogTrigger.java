@@ -23,12 +23,10 @@ import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl.SybaseASETriggerImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatement;
 import org.eclipse.datatools.modelbase.sql.statements.SQLStatementsPackage;
 import org.eclipse.datatools.modelbase.sql.statements.impl.SQLStatementsFactoryImpl;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
-import org.eclipse.datatools.modelbase.sql.tables.impl.TriggerImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 

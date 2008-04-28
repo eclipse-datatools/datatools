@@ -73,6 +73,7 @@ public static String getString(String key, String def) {
 }
 	
 	public static String plugin_internal_error;
+	
     public static String PrimaryKey_folder_name;
     public static String UniqueConstraint_folder_name;
     public static String CheckConstraint_folder_name;

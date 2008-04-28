@@ -9,10 +9,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCSchemaLoader;
+import org.eclipse.datatools.enablement.sybase.VirtualNodeAdapter;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
-import org.eclipse.datatools.enablement.sybase.asa.catalog.SybaseASACatalogDatabase;
 import org.eclipse.datatools.enablement.sybase.asa.containment.DBEventGroupID;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -102,9 +101,13 @@ abstract public class SybaseASABaseCatalog extends CatalogImpl implements ICatal
 		{
 			return DBEventGroupID.DBEVENT;
 		}
-		else if(obj instanceof IVirtualNode)
+		else if(obj instanceof IAdaptable)
 		{
-			return ((IVirtualNode)obj).getGroupID();
+			VirtualNodeAdapter adapter = (VirtualNodeAdapter)((IAdaptable)obj).getAdapter(VirtualNodeAdapter.class);
+			if (adapter != null)
+			{
+				return adapter.getGroupId();
+			}
 		}
 		
 		return null;

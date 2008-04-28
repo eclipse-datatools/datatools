@@ -7,7 +7,7 @@ package org.eclipse.datatools.enablement.asa.internal.ui.decorator;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.AbstractDecorationService;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable;
-import org.eclipse.datatools.enablement.sybase.util.DSEUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEUtil;
 import org.eclipse.jface.viewers.IDecoration;
 
 /**

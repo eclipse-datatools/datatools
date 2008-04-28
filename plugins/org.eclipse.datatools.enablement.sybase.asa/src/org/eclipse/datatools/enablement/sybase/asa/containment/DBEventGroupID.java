@@ -11,6 +11,7 @@ public interface DBEventGroupID {
 	public static final String ASASCHEMA = "core.sybaseasa.ASASchema";  //$NON-NLS-1$
 	public static final String ASADB = "core.sybaseasa.ASADB";  //$NON-NLS-1$
 	public static final String ASADATATYPE = "core.sybaseasa.ASADataType";  //$NON-NLS-1$
-	public static final String ASAPROXYTABLE = "org.eclipse.datatools.enablement.sybase.asa.tables.ProxyTable";
+	public static final String ASAPROXYTABLE = "org.eclipse.datatools.enablement.sybase.asa.tables.ProxyTable"; //$NON-NLS-1$
 	public static final String ASAOWNER = "core.sybaseasa.owner";  //$NON-NLS-1$
+//	public static final String ASAUDD = "core.sybaseasa.ASAUserDefinedDataType";	//$NON-NLS-1$
 }

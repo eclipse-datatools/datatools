@@ -45,6 +45,11 @@
   		package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore" 
         class="SybaseASABasePredefinedDataType"
         provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAPredefinedTypeContainmentProvider"/>
+    <containment
+          class="SybaseASABaseProxyTable"
+          package="http:///org/eclipse/datatools/connectivity/sqm/sybase/asa/sybaseasabasesqlmodel.ecore"
+          provider="org.eclipse.datatools.enablement.sybase.asa.containment.SybaseASAProxyTableContainmentProvider">
+    </containment>
   </extension>
 
       
@@ -481,35 +486,5 @@
          </properties>
       </driverTemplate>
    </extension> 
-   <extension point="org.eclipse.ui.navigator.navigatorContent">
-	   <!-- Database Explorer Menu for Generate DDL -->
-	      <actionProvider
-	            id="org.eclipse.datatools.sqltools.ddlgen.ui.forwardEngineer.base"
-	            class = "org.eclipse.datatools.sqltools.ddlgen.internal.ui.actions.popup.ForwardEngineerActionProvider">
-	         <enablement>
-	          <and>
-	            <or>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASADatabase"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAForeignKey"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASAIndex"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATable"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasasqlmodel.SybaseASATempTable"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumn"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseColumnCheckConstraint"/> 
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseFunction"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePredefinedDataType"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABasePrimaryKey"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseRemoteProcedure"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseSchema"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTempTable"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseTrigger"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseUniqueConstraint"/>
-	               <adapt type="org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseViewTable"/>
-	            </or>
-	          </and>
-	         </enablement>
-	      </actionProvider>
-	   </extension>  
  
  </plugin>  

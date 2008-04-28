@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
-import org.eclipse.datatools.enablement.ase.catalog.SybaseASECatalog;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.ecore.EObject;

@@ -2,39 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASEProcedureImpl.java,v 1.9 2007/07/06 08:40:19 bshen Exp $
+ * $Id: SybaseASEProcedureImpl.java,v 1.1 2008/03/27 07:41:14 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.impl;
-
-import java.util.Collection;
-
-import java.util.Iterator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProcedure;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseasesqlmodelPackage;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.TransactionModeType;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
-
-import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
-
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseRoutineUtil;
+import org.eclipse.datatools.enablement.sybase.util.SybaseRoutineUtil;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->

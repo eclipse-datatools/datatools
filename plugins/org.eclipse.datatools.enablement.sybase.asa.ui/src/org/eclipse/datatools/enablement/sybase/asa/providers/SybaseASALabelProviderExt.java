@@ -7,31 +7,15 @@ package org.eclipse.datatools.enablement.sybase.asa.providers;
 
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
-import org.eclipse.datatools.enablement.sybase.SybaseImages;
-import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseProxyTable;
-import org.eclipse.datatools.enablement.sybase.asa.ui.ASAImages;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.JDBCParameterType;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseBaseTable;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseViewTable;
-import org.eclipse.datatools.enablement.sybase.util.DSEContentProviderUtil;
-import org.eclipse.datatools.enablement.sybase.virtual.ParametersNode;
-import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
-import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
-import org.eclipse.datatools.modelbase.sql.constraints.Index;
-import org.eclipse.datatools.modelbase.sql.constraints.PrimaryKey;
-import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
+import org.eclipse.datatools.enablement.sybase.ui.SybaseImages;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEContentProviderUtil;
 import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
-import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
-import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
-import org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction;
-import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.datatools.modelbase.sql.tables.TemporaryTable;
-import org.eclipse.datatools.modelbase.sql.tables.Trigger;
-import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -54,59 +38,60 @@ public class SybaseASALabelProviderExt extends LabelProvider implements ICommonL
             {
                 return SybaseImages.get(SybaseImages.IMG_SYSTEMVIEW );
             }
-            else
-            {
-                return SybaseImages.get(SybaseImages.IMG_VIEW);
-            }
+//            else
+//            {
+//                return SybaseImages.get(SybaseImages.IMG_VIEW);
+//            }
         }
-        else if (element instanceof UserDefinedType)
-        {
-            return SybaseImages.get(SybaseImages.IMG_UDT);
-        }
-        else if (element instanceof UserDefinedFunction)
-        {
-            return SybaseImages.get(SybaseImages.IMG_UDF);
-        }
-        else if (element instanceof SybaseASABaseProxyTable)
-        {
-            return SybaseImages.get(ASAImages.IMG_REMOTETABLE);
-        }
+//        else if (element instanceof UserDefinedType)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_UDT);
+//        }
+//        else if (element instanceof UserDefinedFunction)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_UDF);
+//        }
+//        else if (element instanceof SybaseASABaseProxyTable)
+//        {
+//            return SybaseImages.get(ASAImages.IMG_REMOTETABLE);
+//        }
         else if (element instanceof Table)
         {
-            if (element instanceof TemporaryTable)
-            {
-                return SybaseImages.get(SybaseImages.IMG_TEMPORARY_TABLE);
-            }
-            else if (element instanceof ViewTable)
-            {
-                return SybaseImages.get(SybaseImages.IMG_VIEW);
-            }
-            else if (((SybaseBaseTable) element).isSystem())
+//            if (element instanceof TemporaryTable)
+//            {
+//                return SybaseImages.get(SybaseImages.IMG_TEMPORARY_TABLE);
+//            }
+//            else if (element instanceof ViewTable)
+//            {
+//                return SybaseImages.get(SybaseImages.IMG_VIEW);
+//            }
+//            else 
+            	if (((SybaseBaseTable) element).isSystem())
             {
                 return SybaseImages.get(SybaseImages.IMG_SYSTEM_TABLE);
             }
-            return SybaseImages.get(SybaseImages.IMG_TABLE);
+//            return SybaseImages.get(SybaseImages.IMG_TABLE);
         }
-        else if (element instanceof Trigger)
-        {
-            return SybaseImages.get(SybaseImages.IMG_TRIGGER);
-        }
-        else if (element instanceof Column)
-        {
-            return SybaseImages.get(SybaseImages.IMG_COLUMN);
-        }
-        else if (element instanceof Index)
-        {
-            return SybaseImages.get(SybaseImages.IMG_INDEX);
-        }
-        else if (element instanceof PredefinedDataType)
-        {
-            return SybaseImages.get(SybaseImages.IMG_SYSTEM_DATA_TYPE);
-        }
-        else if (element instanceof ParametersNode)
-        {
-            return SybaseImages.get(SybaseImages.IMG_FOLDER);
-        }
+//        else if (element instanceof Trigger)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_TRIGGER);
+//        }
+//        else if (element instanceof Column)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_COLUMN);
+//        }
+//        else if (element instanceof Index)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_INDEX);
+//        }
+//        else if (element instanceof PredefinedDataType)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_SYSTEM_DATA_TYPE);
+//        }
+//        else if (element instanceof ParametersNode)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_FOLDER);
+//        }
         else if (element instanceof SybaseParameter)
         {
             SybaseParameter parameter = (SybaseParameter) element;
@@ -123,26 +108,26 @@ public class SybaseASALabelProviderExt extends LabelProvider implements ICommonL
                 return SybaseImages.get(SybaseImages.IMG_PARAM);
             }
         }
-        else if (element instanceof CheckConstraint)
-        {
-            return SybaseImages.get(SybaseImages.IMG_CK);
-        }
-        else if (element instanceof UniqueConstraint)
-        {
-        	return SybaseImages.get(SybaseImages.IMG_UNIQUE);
-        }
-        else if (element instanceof ForeignKey)
-        {
-            return SybaseImages.get(SybaseImages.IMG_FK);
-        }
-        else if (element instanceof PrimaryKey)
-        {
-            return SybaseImages.get(SybaseImages.IMG_PK);
-        }
-        else if (element instanceof Database)
-        {
-            return SybaseImages.get(SybaseImages.IMG_DATABASE);
-        }
+//        else if (element instanceof CheckConstraint)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_CK);
+//        }
+//        else if (element instanceof UniqueConstraint)
+//        {
+//        	return SybaseImages.get(SybaseImages.IMG_UNIQUE);
+//        }
+//        else if (element instanceof ForeignKey)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_FK);
+//        }
+//        else if (element instanceof PrimaryKey)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_PK);
+//        }
+//        else if (element instanceof Database)
+//        {
+//            return SybaseImages.get(SybaseImages.IMG_DATABASE);
+//        }
         return imageService.getLabelService(element).getIcon();
     }
 

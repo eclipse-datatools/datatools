@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.models; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.datatools.modelbase.sql;bundle-version="[0.9.0,1.5.0)";visibility:=reexport
+Eclipse-LazyStart: true
+Export-Package: 
+ org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel,
+ org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl,
+ org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.util
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.4

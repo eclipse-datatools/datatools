@@ -17,6 +17,8 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)",
  org.eclipse.datatools.connectivity.sqm.server.ui;bundle-version="[1.1.0,2.0.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)",
- org.eclipse.datatools.enablement.sybase.asa;bundle-version="[1.0.1,2.0.0)"
+ org.eclipse.datatools.enablement.sybase.asa;bundle-version="[1.0.1,2.0.0)",
+ org.eclipse.datatools.enablement.sybase.ui;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.sqltools.ddlgen.ui
 Eclipse-LazyStart: true
 Bundle-Vendor: Eclipse.org

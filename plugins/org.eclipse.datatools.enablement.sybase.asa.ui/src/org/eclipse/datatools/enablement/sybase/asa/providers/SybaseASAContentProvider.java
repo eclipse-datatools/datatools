@@ -3,6 +3,7 @@ package org.eclipse.datatools.enablement.sybase.asa.providers;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
@@ -12,11 +13,12 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provider
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TableNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TriggerNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDTNode;
+import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
+import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl.ServerExplorerContentProviderNav;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
-import org.eclipse.datatools.enablement.sybase.Messages;
 import org.eclipse.datatools.enablement.sybase.asa.JDBCASAProfileMessages;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.ParameterType;
 import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.SybaseASABaseDatabase;
@@ -34,11 +36,12 @@ import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParam
 import org.eclipse.datatools.enablement.sybase.ui.filter.EventFilterProvider;
 import org.eclipse.datatools.enablement.sybase.ui.filter.SchemaFilterProvider;
 import org.eclipse.datatools.enablement.sybase.ui.filter.SchemaObjectFilterProvider;
-import org.eclipse.datatools.enablement.sybase.util.DSEContentProviderUtil;
-import org.eclipse.datatools.enablement.sybase.util.DSEUtil;
-import org.eclipse.datatools.enablement.sybase.util.ShowSysTableUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEContentProviderUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.ShowSysTableUtil;
 import org.eclipse.datatools.enablement.sybase.virtual.CheckConstraintNode;
 import org.eclipse.datatools.enablement.sybase.virtual.ForeignKeyNode;
+import org.eclipse.datatools.enablement.sybase.Messages;
 import org.eclipse.datatools.enablement.sybase.virtual.ParametersNode;
 import org.eclipse.datatools.enablement.sybase.virtual.PrimaryKeyNode;
 import org.eclipse.datatools.enablement.sybase.virtual.SybaseUDFNode;
@@ -68,8 +71,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
+import org.eclipse.ui.navigator.IPipelinedTreeContentProvider;
+import org.eclipse.ui.navigator.PipelinedShapeModification;
+import org.eclipse.ui.navigator.PipelinedViewerUpdate;
 
-public class SybaseASAContentProvider extends ServerExplorerContentProviderNav implements ICommonContentProvider
+public class SybaseASAContentProvider extends ServerExplorerContentProviderNav implements ICommonContentProvider, IPipelinedTreeContentProvider
 {
     private static final ContainmentService         containmentService  = RDBCorePlugin.getDefault()
                                                                                 .getContainmentService();
@@ -134,7 +140,8 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                     new TableNode(TABLE, TABLE, parentElement), new SybaseViewNode(VIEW, VIEW, parentElement),
                     new ProxyTableNode(PROXY_TABLE_FOLDER, PROXY_TABLE_FOLDER, parentElement),
                     new StoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parentElement),
-                    new SybaseUDFNode(UDF, UDF, parentElement), new UDTNode(UDT, UDT, parentElement)
+                    new SybaseUDFNode(UDF, UDF, parentElement), 
+                    new UDTNode(UDT, UDT, parentElement)
                 };
             }
             else if (parentElement instanceof SybaseASABaseDatabase)
@@ -496,7 +503,7 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
                 // if(((IVirtualNode)parentElement).getParent() instanceof BaseTable){
                 BaseTable table = (BaseTable) ((IVirtualNode) parentElement).getParent();
                 return this.appendOwnerToLabel(table.getSchema().getOwner().getName(),
-                        convertArrayToSQLObjectList(super.getChildren(parentElement)),isShowOwner).toArray();
+                        convertArrayToSQLObjectList(super.load(parentElement)),isShowOwner).toArray();
                 // }
             }
         }
@@ -754,9 +761,71 @@ public class SybaseASAContentProvider extends ServerExplorerContentProviderNav i
         List sqlObjs = new ArrayList( objs.length);
         for (int i = 0; i < objs.length; i++)
         {
-            sqlObjs.add((SQLObject) objs[i]);
+            sqlObjs.add(objs[i]);
         }
         return sqlObjs;
     }
+
+	public void getPipelinedChildren(Object parent, Set theCurrentChildren) 
+	{
+		theCurrentChildren.clear();
+		Object[] children = getChildren(parent);
+		for(int i=0; i< children.length; i++)
+		{
+			theCurrentChildren.add(children[i]);
+		}		
+	}
+
+	public void getPipelinedElements(Object anInput, Set theCurrentElements) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getPipelinedParent(Object anObject, Object suggestedParent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public PipelinedShapeModification interceptAdd(
+			PipelinedShapeModification anAddModification) 
+	{
+		Object parent = anAddModification.getParent();
+		
+		List removing = new ArrayList();
+		Set children = anAddModification.getChildren();
+		for (Iterator iterator = children.iterator(); iterator.hasNext();) 
+		{
+			Object obj = (Object) iterator.next();
+
+			if(obj instanceof VirtualNode && parent instanceof SybaseASABaseSchema)
+			{
+				String groupId = ((VirtualNode)obj).getGroupID();
+				if(groupId.equals(GroupID.PROCEDURE)||groupId.equals(GroupID.VIEW)
+						||groupId.equals(GroupID.TABLE)||groupId.equals(GroupID.USER_DEFINED_TYPE)||groupId.equals(GroupID.ROLE)
+						||groupId.equals(GroupID.FUNCTION))
+				{
+					removing.add(obj);					
+				}
+			}
+		}
+		anAddModification.getChildren().removeAll(removing);
+		return anAddModification;
+	}
+
+	public boolean interceptRefresh(PipelinedViewerUpdate refreshSynchronization) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public PipelinedShapeModification interceptRemove(
+			PipelinedShapeModification removeModification) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean interceptUpdate(PipelinedViewerUpdate anUpdateSynchronization) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

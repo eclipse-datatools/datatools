@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SybaseASABaseFunctionImpl.java,v 1.11 2007/09/06 01:45:22 linsong Exp $
+ * $Id: SybaseASABaseFunctionImpl.java,v 1.4 2008/03/27 07:35:08 lsong Exp $
  */
 package org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.impl;
 
@@ -13,10 +13,10 @@ import org.eclipse.datatools.enablement.sybase.asa.models.sybaseasabasesqlmodel.
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseAuthorizedObject;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseRoutine;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybasesqlmodelPackage;
+import org.eclipse.datatools.enablement.sybase.util.SybaseRoutineUtil;
 
 import org.eclipse.datatools.modelbase.sql.accesscontrol.Privilege;
 
-import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.impl.SybaseRoutineUtil;
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;

@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCRoutineLoader;
@@ -42,6 +41,7 @@ import org.eclipse.datatools.connectivity.sqm.loader.JDBCUserDefinedTypeLoader.D
 import org.eclipse.datatools.enablement.ase.ISybaseASECatalogTable;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
 import org.eclipse.datatools.enablement.ase.containment.DBEventGroupID;
+import org.eclipse.datatools.enablement.sybase.VirtualNodeAdapter;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalogType;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDefault;
@@ -209,9 +209,13 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
     // TODO:now we donot have trigger and index folder under schema
     public String getRefreshContext(Object obj)
     {
-        if (obj instanceof IVirtualNode)
+    	if (obj instanceof IAdaptable)
         {
-            return ((IVirtualNode)obj).getGroupID();
+        	VirtualNodeAdapter adapter = (VirtualNodeAdapter)((IAdaptable)obj).getAdapter(VirtualNodeAdapter.class);
+			if (adapter != null)
+			{
+				return adapter.getGroupId();
+			}
         }
         else if (obj instanceof Integer)
         {

@@ -4,18 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
-import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCColumn;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCTableColumnLoader;
-import org.eclipse.datatools.enablement.ase.catalog.ICatalogTable;
 import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
-import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
-import org.eclipse.emf.common.util.EList;
 
 public class ASETableColumnLoader extends JDBCTableColumnLoader
 {

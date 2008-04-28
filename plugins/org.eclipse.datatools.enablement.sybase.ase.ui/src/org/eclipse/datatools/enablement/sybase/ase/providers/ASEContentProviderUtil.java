@@ -18,7 +18,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebServiceTable;
-import org.eclipse.datatools.enablement.sybase.util.DSEContentProviderUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEContentProviderUtil;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 
 /**

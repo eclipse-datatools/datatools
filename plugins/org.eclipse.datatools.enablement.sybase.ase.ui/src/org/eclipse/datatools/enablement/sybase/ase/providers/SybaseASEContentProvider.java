@@ -39,9 +39,9 @@ import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParam
 import org.eclipse.datatools.enablement.sybase.ui.filter.CatalogFilterProvider;
 import org.eclipse.datatools.enablement.sybase.ui.filter.SchemaFilterProvider;
 import org.eclipse.datatools.enablement.sybase.ui.filter.SchemaObjectFilterProvider;
-import org.eclipse.datatools.enablement.sybase.util.DSEContentProviderUtil;
-import org.eclipse.datatools.enablement.sybase.util.DSEUtil;
-import org.eclipse.datatools.enablement.sybase.util.ShowSysTableUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEContentProviderUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.DSEUtil;
+import org.eclipse.datatools.enablement.sybase.ui.util.ShowSysTableUtil;
 import org.eclipse.datatools.enablement.sybase.virtual.CheckConstraintNode;
 import org.eclipse.datatools.enablement.sybase.virtual.ForeignKeyNode;
 import org.eclipse.datatools.enablement.sybase.virtual.ParametersNode;
@@ -114,7 +114,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
 //    /**
 //     * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
 //     */
-    public Object[] load(Object parentElement)
+    public Object[] getChildren(Object parentElement)
     {
         String databaseName = null;
         boolean isShowSchema = false;
