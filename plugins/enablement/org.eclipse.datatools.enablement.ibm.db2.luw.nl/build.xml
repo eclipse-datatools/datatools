@@ -36,14 +36,14 @@
  *
 -->
 
-<project name="org.eclipse.datatools.enablement.ibm.db2.luw.ui.nl" default="Jar" basedir=".">
-	<description>NL Fragment for org.eclipse.datatools.enablement.ibm.db2.luw.ui</description>
+<project name="org.eclipse.datatools.enablement.ibm.db2.luw.nl" default="Jar" basedir=".">
+	<description>NL Fragment for org.eclipse.datatools.enablement.ibm.db2.luw</description>
 
 	<property file="META-INF/MANIFEST.MF" />
     <property name="dir.src" value="src" />
  	<property name="dir.bin" value="bin" />
 	<property name="nl.group" value="1" />
-	<property name="module.name" value="org.eclipse.datatools.enablement.ibm.db2.luw.ui.nl" />
+	<property name="module.name" value="org.eclipse.datatools.enablement.ibm.db2.luw.nl" />
 	<property name="jar.name" value="${module.name}${nl.group}_${Bundle-Version}.jar" />
 
 	<target name="Clean">
