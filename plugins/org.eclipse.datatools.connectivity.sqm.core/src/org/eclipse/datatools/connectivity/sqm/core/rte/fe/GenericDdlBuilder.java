@@ -1353,6 +1353,8 @@ public class GenericDdlBuilder {
 		String quote = dbDef.getIdentifierQuoteString();
 		if (quote == null || quote.length() == 0) 
 			quote = "\""; //$NON-NLS-1$
+		if (quote.equals("\\\"")) // workaround for BZ 224853
+			quote = "\""; //$NON-NLS-1$
 			
 		StringTokenizer tokenizer = new StringTokenizer(object.getName(), quote);
 		String result = null;
