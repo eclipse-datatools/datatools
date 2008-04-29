@@ -279,7 +279,7 @@ class CompositeInputStream extends InputStream
 		{
 			int readLen = buf.length - pos;
 			System.arraycopy( buf, pos, b, off, readLen );
-			int sReadLen = stream.read( buf, off + readLen, len - readLen );
+			int sReadLen = stream.read( b, off + readLen, len - readLen );
 			if( sReadLen != -1 )
 			{
 				readLen += sReadLen;
@@ -289,7 +289,7 @@ class CompositeInputStream extends InputStream
 		}
 		else
 		{
-			int readLen = stream.read( buf, off, len );
+			int readLen = stream.read( b, off, len );
 			if( readLen != -1 )
 				pos += readLen;
 			return readLen;
