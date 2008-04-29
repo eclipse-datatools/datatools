@@ -106,6 +106,7 @@ public class DriverDialog extends TitleAreaDialog {
 	private String mDriverName;
 	private String mJarList;
 	private boolean mInEdit = false;
+	private boolean mIsEditable = true;
 	private static String previouslyBrowsedDirectory = ""; //$NON-NLS-1$
 
 	// tree filter
@@ -122,6 +123,10 @@ public class DriverDialog extends TitleAreaDialog {
 				DriverDialog.this.mOKButton.setEnabled(flag);			
 		}
 	};
+	
+	public void setIsEditable (boolean flag) {
+		this.mIsEditable = flag;
+	}
 	
 	public void setEditMode ( boolean flag ) {
 		this.mInEdit = flag;
@@ -332,6 +337,7 @@ public class DriverDialog extends TitleAreaDialog {
 						widgetDefaultSelected(e);
 					}
 				});
+				mVendorCombo.setEnabled(mIsEditable);
 				
 				if (roots != null && roots.length == 1 && roots[0] != null) {
 					CategoryDescriptor[] children = 
@@ -343,7 +349,7 @@ public class DriverDialog extends TitleAreaDialog {
 							mVendorCombo.setData(children[i].getName(), children[i]);
 						}
 					}
-					else {
+					else if (mIsEditable) {
 						mVendorCombo.setEnabled(false);
 					}
 				}
@@ -400,6 +406,7 @@ public class DriverDialog extends TitleAreaDialog {
 				}
 			});
 			
+			mTreeViewer.getTree().setEnabled(mIsEditable);
 		}
 		
 		Label label = new Label(generalComposite, SWT.NONE);
@@ -409,6 +416,7 @@ public class DriverDialog extends TitleAreaDialog {
 		this.mDriverNameText = new Text(generalComposite, SWT.BORDER);
 		this.mDriverNameText.setLayoutData(new GridData(
 				GridData.FILL_HORIZONTAL));
+		this.mDriverNameText.setEnabled(mIsEditable);
 		this.mDriverNameText.addModifyListener(new ModifyListener() {
 
 			public void modifyText(ModifyEvent e) {
@@ -471,6 +479,7 @@ public class DriverDialog extends TitleAreaDialog {
 					}
 
 				});
+				this.list.setEnabled(mIsEditable);
 			}
 			{
 				this.mAddJar = new Button(composite_1, SWT.NONE);
@@ -485,6 +494,7 @@ public class DriverDialog extends TitleAreaDialog {
 						GridData.HORIZONTAL_ALIGN_FILL));
 				this.mAddJar.setText(DriverMgmtMessages
 						.getString("EditDriverDialog.button.addJar")); //$NON-NLS-1$
+				this.mAddJar.setEnabled(mIsEditable);
 			}
 			{
 				this.mEditJar = new Button(composite_1, SWT.NONE);
@@ -504,6 +514,7 @@ public class DriverDialog extends TitleAreaDialog {
 						GridData.HORIZONTAL_ALIGN_FILL));
 				this.mEditJar.setText(DriverMgmtMessages
 						.getString("EditDriverDialog.button.editJar")); //$NON-NLS-1$
+				this.mEditJar.setEnabled(mIsEditable);
 			}
 			{
 				this.mRemoveJar = new Button(composite_1, SWT.NONE);
@@ -542,6 +553,7 @@ public class DriverDialog extends TitleAreaDialog {
 						GridData.HORIZONTAL_ALIGN_FILL));
 				this.mRemoveJar.setText(DriverMgmtMessages
 						.getString("EditDriverDialog.button.removeJar")); //$NON-NLS-1$
+				this.mRemoveJar.setEnabled(mIsEditable);
 			}
 			{
 				this.mClearAll = new Button(composite_1, SWT.NONE);
@@ -557,6 +569,7 @@ public class DriverDialog extends TitleAreaDialog {
 						updateJarList();
 					}
 				});
+				this.mClearAll.setEnabled(mIsEditable);
 			}
 		}
 
@@ -597,6 +610,7 @@ public class DriverDialog extends TitleAreaDialog {
 	        book.showPage(page.getControl());
 	        if (this.mPropertySet != null)
 	        	page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
+	        book.setEnabled(mIsEditable);
 		}
 
 		if (mTypeCombo != null) {
@@ -654,7 +668,7 @@ public class DriverDialog extends TitleAreaDialog {
 			setMessage(DriverMgmtMessages.getString("DriverDialog.EditDriver.message")); //$NON-NLS-1$
 		}
 
-		if (this.mOKButton != null)
+		if (this.mOKButton != null || (this.mOKButton != null && !mIsEditable))
 			this.mOKButton.setEnabled(false);
 		return area;
 	}
@@ -1104,10 +1118,12 @@ public class DriverDialog extends TitleAreaDialog {
 			}
 		}
 
-		mAddJar.setEnabled(true);
-		mEditJar.setEnabled(false);
-		mRemoveJar.setEnabled(false);
-		mClearAll.setEnabled(false);
+		if (mIsEditable) {
+			mAddJar.setEnabled(true);
+			mEditJar.setEnabled(false);
+			mRemoveJar.setEnabled(false);
+			mClearAll.setEnabled(false);
+		}
 		
 		if (this.mPropertySet != null) {
 			this.mDriverNameText.setText(this.mPropertySet.getName());
@@ -1121,7 +1137,7 @@ public class DriverDialog extends TitleAreaDialog {
 			for (int i = 0; i < jarListArray.length; i++) {
 				this.list.add(jarListArray[i]);
 			}
-			if (jarList != null && jarList.trim().length() > 0) {
+			if (jarList != null && jarList.trim().length() > 0 && mIsEditable) {
 				mClearAll.setEnabled(true);
 			}
 
