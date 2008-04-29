@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: Sybase - initial API and implementation
+ * 			IBM Corporation - fix for 213266
  ******************************************************************************/
 package org.eclipse.datatools.enablement.sybase.ase.internal.ui.connection.drivers;
 
@@ -192,7 +193,7 @@ public class ASEDriverUIContributor implements IDriverUIContributor, Listener, M
             // other properties
             layout = new GridLayout(2, false);
             optionalComposite.setLayout(layout);
-            this.mDBConnProps = new DelimitedStringList(optionalComposite, SWT.NONE);
+            this.mDBConnProps = new DelimitedStringList(optionalComposite, SWT.NONE, isReadOnly);
             GridData gdata = new GridData(GridData.FILL_HORIZONTAL);
             gdata.horizontalSpan = 2;
             ((DelimitedStringList) this.mDBConnProps).setLayoutData(gdata);
