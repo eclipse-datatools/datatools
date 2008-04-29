@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.datatools.enablement.sybase.ui Nl Fragment
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sybase.ui.nl
+Bundle-Version: 1.0.0
+Fragment-Host: org.eclipse.datatools.enablement.sybase.ui;bundle-version="[1.0.0,1.5.0)"
+Bundle-Localization: plugin
