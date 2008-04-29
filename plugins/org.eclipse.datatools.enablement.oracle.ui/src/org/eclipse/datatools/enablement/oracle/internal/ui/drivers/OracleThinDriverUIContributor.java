@@ -129,6 +129,8 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 	private ScrolledComposite parentComposite;
 
 	private Properties properties;
+	
+	private boolean isReadOnly = false;
 
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
@@ -164,6 +166,12 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 		if ((parentComposite == null) || parentComposite.isDisposed()) {
 			GridData gd;
 
+			this.isReadOnly = isReadOnly;
+			int additionalStyles = SWT.NONE;
+			if (isReadOnly){
+				additionalStyles = SWT.READ_ONLY;
+			}
+			
 			parentComposite = new ScrolledComposite(parent, SWT.H_SCROLL
 					| SWT.V_SCROLL);
 			parentComposite.setExpandHorizontal(true);
@@ -181,7 +189,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			databaseLabel.setLayoutData(gd);
 
-			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			databaseText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.verticalAlignment = GridData.BEGINNING;
 			gd.horizontalAlignment = GridData.FILL;
@@ -194,7 +202,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			hostLabel.setLayoutData(gd);
 
-			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			hostText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -208,7 +216,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			portLabel.setLayoutData(gd);
 
-			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			portText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -222,7 +230,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 			gd.verticalAlignment = GridData.BEGINNING;
 			usernameLabel.setLayoutData(gd);
 
-			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER);
+			usernameText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -237,7 +245,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 			passwordLabel.setLayoutData(gd);
 
 			passwordText = new Text(baseComposite, SWT.SINGLE | SWT.BORDER
-					| SWT.PASSWORD);
+					| SWT.PASSWORD | additionalStyles);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -277,6 +285,7 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 
 			catalogCombo = new Combo(baseComposite, SWT.SINGLE | SWT.BORDER
 					| SWT.READ_ONLY);
+			catalogCombo.setEnabled(!isReadOnly);
 			catalogCombo.add(ALL_CATALOGS);
 			catalogCombo.add(DBA_CATALOG);
 			catalogCombo.add(USER_CATALOG);
@@ -403,8 +412,14 @@ public class OracleThinDriverUIContributor implements IDriverUIContributor,
 	}
 
 	public void handleEvent(Event event) {
-		updateURL();
-		setConnectionInformation();
+		if (isReadOnly){
+			if (event.widget == savePasswordButton){
+				savePasswordButton.setSelection(!savePasswordButton.getSelection());
+			}
+		} else {
+			updateURL();
+			setConnectionInformation();
+		}
 	}
 
 	private void setConnectionInformation() {
