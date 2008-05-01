@@ -197,24 +197,63 @@
                   value="true"/> 
          </options>
          <popupMenu
-               allowsPlatformContributions="true"
-               id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+         	allowsPlatformContributions="true"
+          	id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
+        	<insertionPoint
+           		name="group.new"
+                separator="true"/>
+          	<insertionPoint
+               	name="group.goto"
+               	separator="false"/>
             <insertionPoint
-                  name="slot1"
-                  separator="true"/>
+               	name="group.open"
+               	separator="true"/>
             <insertionPoint
-                  name="slotOffline"
-                  separator="true"/>
+               	name="group.openWith"
+               	separator="false"/>
             <insertionPoint
-                  name="slot2"
-                  separator="true"/>
+               	name="group.edit"
+               	separator="true"/>
             <insertionPoint
-                  name="slot3"
-                  separator="true"/>
+               	name="group.show"
+               	separator="false"/>
             <insertionPoint
-                  name="additions"
-                  separator="true"/>
-         </popupMenu>
+               	name="group.reorganize"
+               	separator="true"/>
+            <insertionPoint
+               	name="group.port"
+               	separator="false"/>
+            <insertionPoint
+               	name="group.diagram"
+               	separator="true"/>
+            <insertionPoint
+               	name="group.generate"
+               	separator="true"/>
+            <insertionPoint
+               	name="group.search"
+               	separator="true"/>
+            <insertionPoint
+            	name="group.build"
+                separator="true"/>            
+            <insertionPoint
+               	name="slot1"
+                 separator="true"/>
+            <insertionPoint
+                 name="slotOffline"
+                 separator="true"/>
+            <insertionPoint
+                 name="slot2"
+                 separator="true"/>
+            <insertionPoint
+                 name="slot3"
+                 separator="true"/>
+            <insertionPoint
+                 name="slot4"
+                 separator="true"/>
+            <insertionPoint
+                 name="additions"
+                 separator="true"/>
+     	</popupMenu>
       </viewer>
       <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
          <includes>
