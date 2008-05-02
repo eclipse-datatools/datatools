@@ -39,7 +39,7 @@ xPathChoosePage.messages.xpathChange=Vérifiez que la mise en correspondance de t
 xPathChoosePage.FileNameIcon=Icône du nom de fichier
 xPathChoosePage.XMLElementIcon=Icône d'élément XML
 xPathChoosePage.ColumnIcon=Icône de colonne
-xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
+xPathChoosePage.messages.btnAdd.tooltip=Utiliser le nœud sélectionné comme expression XPath
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=premières lignes de données source
@@ -49,7 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=Erreur lors de la lecture des d
 button.refresh=Actualiser
 menu.menuItem.removeAll=Supprimer tout
 menu.menuItem.remove=Supprimer
-menu.button.add=&Add...
+menu.button.add=&Ajouter...
 menu.button.edit=Modifi&er...
 menu.button.remove=Supp&rimer
 menu.button.up=Vers le ha&ut

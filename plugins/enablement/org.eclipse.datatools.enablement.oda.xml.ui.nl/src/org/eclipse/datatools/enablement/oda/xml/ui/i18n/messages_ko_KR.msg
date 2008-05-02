@@ -39,7 +39,7 @@ xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되�
 xPathChoosePage.FileNameIcon=파일 이름 아이콘
 xPathChoosePage.XMLElementIcon=XML 요소 아이콘
 xPathChoosePage.ColumnIcon=열 아이콘
-xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
+xPathChoosePage.messages.btnAdd.tooltip=선택한 노드를 XPath 식으로 사용
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=줄 미리보기(&P)
@@ -49,7 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=파일[{0}]에서 XML 데이터를 읽는
 button.refresh=새로 고침
 menu.menuItem.removeAll=모두 제거
 menu.menuItem.remove=제거
-menu.button.add=&Add...
+menu.button.add=추가(&A)...
 menu.button.edit=편집(&E)...
 menu.button.remove=제거(&R)
 menu.button.up=위로(&U)

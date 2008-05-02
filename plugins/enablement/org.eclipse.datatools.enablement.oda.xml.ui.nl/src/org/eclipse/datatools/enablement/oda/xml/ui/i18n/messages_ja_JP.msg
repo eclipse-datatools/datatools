@@ -39,7 +39,7 @@ xPathChoosePage.messages.xpathChange=•ÏXŒã‚Ìƒe[ƒuƒ‹ƒ}ƒbƒsƒ“ƒO‚ª—ñƒ}ƒbƒsƒ“ƒO‚ÆŒ
 xPathChoosePage.FileNameIcon=ƒtƒ@ƒCƒ‹–¼ƒAƒCƒRƒ“
 xPathChoosePage.XMLElementIcon=XML —v‘fƒAƒCƒRƒ“
 xPathChoosePage.ColumnIcon=—ñƒAƒCƒRƒ“
-xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
+xPathChoosePage.messages.btnAdd.tooltip=‘I‘ğ‚µ‚½ƒm[ƒh‚ğ XPath ®‚Æ‚µ‚Äg—p‚µ‚Ü‚·B
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=s‚ğƒvƒŒƒrƒ…[(&P)
@@ -49,7 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=ƒtƒ@ƒCƒ‹ [{0}] {1} ‚©‚ç XML ƒf
 button.refresh=XV
 menu.menuItem.removeAll=‚·‚×‚Äíœ
 menu.menuItem.remove=íœ
-menu.button.add=&Add...
+menu.button.add=’Ç‰Á(&A)...
 menu.button.edit=•ÒW(&E)...
 menu.button.remove=íœ(&R)
 menu.button.up=ã‚Ö(&U)

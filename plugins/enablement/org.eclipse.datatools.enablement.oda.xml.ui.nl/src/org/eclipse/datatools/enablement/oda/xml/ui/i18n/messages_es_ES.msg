@@ -39,7 +39,7 @@ xPathChoosePage.messages.xpathChange=Asegúrese de que la asignación de tabla mod
 xPathChoosePage.FileNameIcon=Icono de nombre de archivo
 xPathChoosePage.XMLElementIcon=Icono de elemento XML
 xPathChoosePage.ColumnIcon=Icono de columna
-xPathChoosePage.messages.btnAdd.tooltip=Use the selected node as XPath expression
+xPathChoosePage.messages.btnAdd.tooltip=Utilizar el nodo seleccionado como Expresión XPath
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=líneas de datos fuente
@@ -49,7 +49,7 @@ xmlDataSetSelectionPage.warning.errorReadXMLFile=Error al leer los datos XML del
 button.refresh=Actualizar
 menu.menuItem.removeAll=Quitar todos
 menu.menuItem.remove=Quitar
-menu.button.add=&Add...
+menu.button.add=&Añadir...
 menu.button.edit=&Editar...
 menu.button.remove=Quita&r
 menu.button.up=&Arriba
