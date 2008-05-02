@@ -23,12 +23,12 @@ webServiceSelectionPage.message.error=Geben Sie den URL des SOAP-Endpunkts an, o
 webServiceSelectionPage.group.wsdl=WSDL-Deskriptor
 webServiceSelectionPage.group.endPoint=SOAP-Endpunkt
 webServiceSelectionPage.group.customClass=Benutzerdefinierte Treiberklasse
-webServiceSelectionPage.group.classPath=Driver Class Path
+webServiceSelectionPage.group.classPath=Pfad der Treiberklasse
 webServiceSelectionPage.label.wsdl=Wenn der WSDL-Deskriptor der Web-Dienste verfügbar ist, geben Sie den URL ein, oder geben Sie den Speicherort im lokalen Dateisystem an.
 webServiceSelectionPage.label.wsdlURI=URL oder Speicherort für &WSDL:
 webServiceSelectionPage.label.endPoint=Geben Sie die URL des SOAP-&Endpunkts an. Sie können diesen Wert weglassen, wenn Sie den im WSDL definierten Endpunkt\noder eine benutzerdefinierte Verbindungsklasse verwenden, für die keine Endpunkt-URL erforderlich ist.
 webServiceSelectionPage.label.customClass=Wenn Verbindung und Abfrage für die Web-Dienste über eine benutzerdefinierte &Java-Klasse erfolgen, geben Sie hier den vollständig qualifizierten Klassennamen ein.
-webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
+webServiceSelectionPage.label.classPath=Eine durch Semikolon (;) getrennte Liste von zusätzlichen JAR-Dateien und Verzeichnissen, um nach der benutzerdefinierten Treiberklasse zu suchen
 webServiceSelectionPage.button.browse=&Durchsuchen...
 
 # OperationPage
@@ -40,8 +40,8 @@ operationPage.label.document=Dokumentation
 
 # SoapParametersPage
 soapParametersPage.message.default=Geben Sie die Parameter des gewählten WSDL-Vorgangs ein.
-soapParametersPage.button.selectAll=&Select All
-soapParametersPage.button.deselectAll=&Deselect All
+soapParametersPage.button.selectAll=&Alles markieren
+soapParametersPage.button.deselectAll=A&uswahl aufheben
 
 # SoapRequestPage
 soapRequestPage.message.default=Bearbeiten Sie die Vorlage für die SOAP-Anforderung dieses Datensatzes. Wenn für den Code der benutzerdefinierten Verbindungsklasse Ihrer Datenquelle kein Abfragetext erforderlich ist, brauchen Sie keinen Text einzugeben.

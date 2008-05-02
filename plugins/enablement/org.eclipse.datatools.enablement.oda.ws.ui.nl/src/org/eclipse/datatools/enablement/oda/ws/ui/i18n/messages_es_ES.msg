@@ -23,12 +23,12 @@ webServiceSelectionPage.message.error=Especifique la URL del punto final de SOAP
 webServiceSelectionPage.group.wsdl=Descriptor WSDL
 webServiceSelectionPage.group.endPoint=Punto final de SOAP
 webServiceSelectionPage.group.customClass=Clase de controlador personalizado
-webServiceSelectionPage.group.classPath=Driver Class Path
+webServiceSelectionPage.group.classPath=Ruta de clase del controlador
 webServiceSelectionPage.label.wsdl=Si está disponible el descriptor WSDL de los servicios web, introduzca su URL o busque su ubicación en el sistema de archivos locales
 webServiceSelectionPage.label.wsdlURI=URL o ubicación de &WSDL:
 webServiceSelectionPage.label.endPoint=Especifique la URL del punto &final de SOAP. Puede omitir este valor si se debe utilizar el punto final definido en WSDL o si no está utilizando un tipo de conexión personalizada que no requiere una URL de punto final.
 webServiceSelectionPage.label.customClass=Si se ha realizado una conexión o consulta de los servicios web a través de una clase &Java personalizada, introduzca el nombre de clase completo aquí.
-webServiceSelectionPage.label.classPath=A semicolon(;)-separated list of additional JAR files and directories to search for the custom driver class
+webServiceSelectionPage.label.classPath=Una lista separada por puntos y comas (;) de directorios y archivos JAR adicionales para buscar la clase de controlador personalizado
 webServiceSelectionPage.button.browse=&Examinar...
 
 # OperationPage
@@ -40,8 +40,8 @@ operationPage.label.document=Documentación
 
 # SoapParametersPage
 soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado
-soapParametersPage.button.selectAll=&Select All
-soapParametersPage.button.deselectAll=&Deselect All
+soapParametersPage.button.selectAll=&Seleccionar todo
+soapParametersPage.button.deselectAll=&Anular la selección de todo
 
 # SoapRequestPage
 soapRequestPage.message.default=Edite la plantilla de solicitud de SOAP de este conjunto de datos. Si el código de la clase de conexión personalizada de la fuente de datos no requiere un texto de consulta, puede dejar vacío el texto
