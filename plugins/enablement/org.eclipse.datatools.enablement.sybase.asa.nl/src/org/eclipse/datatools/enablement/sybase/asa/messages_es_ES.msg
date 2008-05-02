@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL:
 JDBCPropertyWizardPage.PingButton=Probar conexión
 JDBCPropertyWizardPage.userName.label = Nombre de usuario:
 JDBCPropertyWizardPage.password.label = Contraseña:
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = Guardar contraseña
 JDBCPropertyWizardPage.filterGroup.label = Propiedades opcionales de filtro
 JDBCPropertyWizardPage.catalog.label = Catálogo:
 JDBCPropertyWizardPage.schema.label = Esquema:
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = Nombre de usuario requerido
 events.folder.name=Eventos
 webservices.folder.name=Servicios web
 datatypes.folder.name=Tipos de datos
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=Tipos definidos por el usuario
+udf.folder.name=Funciones definidas por el usuario
 
 plugin_internal_error=Se ha producido un error interno
 

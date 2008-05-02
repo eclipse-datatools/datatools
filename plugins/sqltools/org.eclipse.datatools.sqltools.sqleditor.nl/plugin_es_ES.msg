@@ -37,5 +37,5 @@ DatabaseManagement.EditorTemplates=Plantillas
 DatabaseManagement.CodeAssist=Ayuda de código
 DatabaseManagement.SQLEditor=Editor SQL
 DatabaseManagement.ConnectionOptions=Opciones de nivel de conexión
-DatabaseManagement.SyntaxColoring=Syntax Coloring
+DatabaseManagement.SyntaxColoring=Colores de sintaxis
 

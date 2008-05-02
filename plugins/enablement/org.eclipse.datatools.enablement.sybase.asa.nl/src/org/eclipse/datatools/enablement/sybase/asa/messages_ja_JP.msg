@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL :
 JDBCPropertyWizardPage.PingButton=接続テスト
 JDBCPropertyWizardPage.userName.label = ユーザ名 :
 JDBCPropertyWizardPage.password.label = パスワード :
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = パスワードの保存
 JDBCPropertyWizardPage.filterGroup.label = オプションのフィルタのプロパティ
 JDBCPropertyWizardPage.catalog.label = カタログ :
 JDBCPropertyWizardPage.schema.label = スキーマ :
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = ユーザ名を指定してください。
 events.folder.name=イベント
 webservices.folder.name=Web サービス
 datatypes.folder.name=データ型
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=ユーザ定義のデータ型
+udf.folder.name=ユーザ定義の関数
 
 plugin_internal_error=内部エラーが発生しました。
 

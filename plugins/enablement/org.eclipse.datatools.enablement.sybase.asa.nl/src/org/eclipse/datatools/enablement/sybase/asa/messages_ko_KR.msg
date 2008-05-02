@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL:
 JDBCPropertyWizardPage.PingButton=연결 테스트
 JDBCPropertyWizardPage.userName.label = 사용자 이름:
 JDBCPropertyWizardPage.password.label = 암호:
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = 암호 저장
 JDBCPropertyWizardPage.filterGroup.label = 옵션 필터 속성
 JDBCPropertyWizardPage.catalog.label = 카탈로그:
 JDBCPropertyWizardPage.schema.label = 스키마:
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = 사용자 이름 필요
 events.folder.name=이벤트
 webservices.folder.name=웹 서비스
 datatypes.folder.name=데이터 형식
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=사용자 정의 형식
+udf.folder.name=사용자 정의 기능
 
 plugin_internal_error=내부 오류 발생
 

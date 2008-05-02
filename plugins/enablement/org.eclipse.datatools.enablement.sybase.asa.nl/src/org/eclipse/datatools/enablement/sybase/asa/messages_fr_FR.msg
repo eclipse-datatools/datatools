@@ -44,12 +44,12 @@ JDBCASAProfileTabs.errors.requiredPort = Port requis
 JDBCASAProfileTabs.errors.requiredPortValidNumber = Le port doit être un nombre valide
 JDBCASAProfileTabs.otherPropertiesTab.commonOptions=APPLICATIONNAME=SYBASE WORKSPACE,CHARSET=UTF8,CONNECTION_FAILOVER=TRUE,SQLINITSTRING=SET QUOTED_IDENTIFIER ON,JCONNECT_VERSION=6,JCONNECT_VERSION=0
 
-MultiASAWizardPage.title=Rechercher les bases de données multiples du serveur ASA (facultatif)
+MultiASAWizardPage.title=Rechercher un serveur ASA présentant plusieurs bases de données (facultatif)
 MultiASAWizardPage.description=Vérifiez si le serveur ASA présente plus d'une base de données.Le cas échéant, sélectionnez les bases de données à présenter comme des profils. Cliquez sur 'Rechercher des bases de données multiples' pour commencer.
 MultiASADialog.dialog.title=Créer des profils ASA multiples
 MultiASADialog.dialog.message=Vérifiez si le serveur ASA présente plus d'une base de données.Le cas échéant, sélectionnez les bases de données à présenter comme des profils. Cliquez sur 'Rechercher des bases de données multiples' pour commencer.
 MultiASAWizardPage.OnlyOneDBMessage=Dans la mesure où une seule base de données est présentée, aucune autre opération n'est requise.
-MultiASADialog.dialog.message.title=Rechercher les bases de données multiples du serveur ASA
+MultiASADialog.dialog.message.title=Rechercher un serveur ASA présentant plusieurs bases de données
 MultiASAWizardPage.checkButton.label=Rechercher des bases de données multiples
 MultiASAWizardPage.Label.ChooseDbs=Sélectionner les bases de données à présenter comme des profils :
 MultiASAWizardPage.Error.title.CannotConnect=Impossible de se connecter
@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL :
 JDBCPropertyWizardPage.PingButton=Connexion test
 JDBCPropertyWizardPage.userName.label = Nom d'utilisateur :
 JDBCPropertyWizardPage.password.label = Mot de passe :
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = Enregistrer mot de passe
 JDBCPropertyWizardPage.filterGroup.label = Propriétés de filtre facultatives
 JDBCPropertyWizardPage.catalog.label = Catalogue :
 JDBCPropertyWizardPage.schema.label = Schéma :
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = Nom d'utilisateur requis
 events.folder.name=Evénements
 webservices.folder.name=Services Web
 datatypes.folder.name=Types de données
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=Types définis par l'utilisateur
+udf.folder.name=Fonctions définies par l'utilisateur
 
 plugin_internal_error=Une erreur interne s'est produite
 

@@ -1,22 +1,22 @@
 GENERATE_FULL_SYNTAX = 完全な構文(&L) 
-GENERATE_FULL_SYNTAX_DES = 完全な構文の生成
-GENERATE_SETUSER= Set user 
-GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
-GENERATE_USEDATABASE= Use Database 
-GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
+GENERATE_FULL_SYNTAX_DES = 完全な構文を生成します。
+GENERATE_SETUSER= setuser 
+GENERATE_SETUSER_DES = 他のユーザを装うための setuser 文を生成します。
+GENERATE_USEDATABASE= use database 
+GENERATE_USEDATABASE_DES = 別のデータベースに切り替えるための use database 文を生成します。
 
 GENERATE_EXTRA_CODE	=	付加コード(&X)
 GENERATE_EXTRA_CODE_DES	=	付加コードの生成
-GENERATE_PRIVILEGE	=	特権(&P)
+GENERATE_PRIVILEGE	=	許可特権文(&P)
 GENERATE_PRIVILEGE_DES	=	特権の生成
-GENERATE_COMMENTS = コメント
+GENERATE_COMMENTS = コメント(&M)
 GENERATE_COMMENTS_DES = コメントの生成(&T)
 
-GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
-GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
+GENERATE_ROUTINE=ストアドプロシージャとユーザ定義の関数(&P)
+GENERATE_ROUTINE_DES=ストアドプロシージャとユーザ定義の関数を生成します。
 
-GENERATE_FUNCTION=User Defined &Functions
-GENERATE_FUNCTION_DES=Generate user defined functions
+GENERATE_FUNCTION=ユーザ定義の関数(&F)
+GENERATE_FUNCTION_DES=ユーザ定義の関数を生成します。
 GENERATE_USER_DEFINED_TYPES 	= ユーザ定義型(&T)
 GENERATE_USER_DEFINED_TYPES_DES 	= ユーザ定義型の生成
 GENERATE_DEFAULTS_DES 	= デフォルト値の生成
@@ -49,8 +49,8 @@ GENERATE_CATALOGS_DES = カタログの生成
 GENERATE_DATABASE = データベース(&D)
 GENERATE_DATABASE_DES = データベースの生成
 
-GENERATE_JOIN_INDICES=&Join Index
-GENERATE_JOIN_INDICES_DES=Generate Join Index
+GENERATE_JOIN_INDICES=インデックスのジョイン(&J)
+GENERATE_JOIN_INDICES_DES=ジョインインデックスを生成します。
 
 #GENERATE_DOMAINS = ドメイン(&M)
 #GENERATE_DOMAINS_DES = ドメインの生成

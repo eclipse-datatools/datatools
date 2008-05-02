@@ -11,7 +11,7 @@
 pluginName=Eclipse Data Tools Platform Sybase ASE Database Definition
 providerName=Eclipse.org
 
-12.xProductString = Sybase Adaptive Server Enterprise (ASE)
+12.xProductString = Sybase ASE(Adaptive Server Enterprise)
 12.xVersionString = 12.x
-15.xProductString = Sybase Adaptive Server Enterprise (ASE)
+15.xProductString = Sybase ASE(Adaptive Server Enterprise)
 15.xVersionString = 15.x

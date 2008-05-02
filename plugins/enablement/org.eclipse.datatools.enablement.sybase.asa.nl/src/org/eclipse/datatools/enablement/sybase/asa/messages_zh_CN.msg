@@ -44,7 +44,7 @@ JDBCASAProfileTabs.errors.requiredPort = 需要端口
 JDBCASAProfileTabs.errors.requiredPortValidNumber = 端口号必须为有效数字
 JDBCASAProfileTabs.otherPropertiesTab.commonOptions=APPLICATIONNAME=SYBASE WORKSPACE,CHARSET=UTF8,CONNECTION_FAILOVER=TRUE,SQLINITSTRING=SET QUOTED_IDENTIFIER ON,JCONNECT_VERSION=6,JCONNECT_VERSION=0
 
-MultiASAWizardPage.title=检查多数据库 ASA 服务器（可选）
+MultiASAWizardPage.title=检查多数据库 ASA 服务器(可选)
 MultiASAWizardPage.description=查看 ASA 服务器是否展示了多个数据库。如果 ASA 服务器展示了多个数据库，请选择要展示为配置文件的数据库。单击“检查多个数据库”以开始。
 MultiASADialog.dialog.title=创建多个 ASA 配置文件
 MultiASADialog.dialog.message=查看 ASA 服务器是否展示了多个数据库。如果 ASA 服务器展示了多个数据库，请选择要展示为配置文件的数据库。单击“检查多个数据库”以开始。
@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL:
 JDBCPropertyWizardPage.PingButton=测试连接
 JDBCPropertyWizardPage.userName.label = 用户名:
 JDBCPropertyWizardPage.password.label = 密码:
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = 保存密码
 JDBCPropertyWizardPage.filterGroup.label = 可选筛选器属性
 JDBCPropertyWizardPage.catalog.label = 目录:
 JDBCPropertyWizardPage.schema.label = 架构:
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = 需要用户名
 events.folder.name=事件
 webservices.folder.name=Web 服务
 datatypes.folder.name=数据类型
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=用户定义类型
+udf.folder.name=用户定义函数
 
 plugin_internal_error=发生了内部错误
 

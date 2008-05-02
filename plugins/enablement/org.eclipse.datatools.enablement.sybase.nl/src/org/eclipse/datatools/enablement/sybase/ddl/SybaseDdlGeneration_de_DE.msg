@@ -1,22 +1,22 @@
-GENERATE_FULL_SYNTAX = &Vollständige Syntax 
-GENERATE_FULL_SYNTAX_DES = Erstellen Sie eine vollständige Syntax
-GENERATE_SETUSER= Set user 
-GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
-GENERATE_USEDATABASE= Use Database 
-GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
+GENERATE_FULL_SYNTAX = Vo&llständige Syntax 
+GENERATE_FULL_SYNTAX_DES = Vollständige Syntax erstellen
+GENERATE_SETUSER= Benutzer festlegen (setuser) 
+GENERATE_SETUSER_DES = Erstellen Sie eine setuser-Anweisung, um die Identität eines anderen Benutzers anzunehmen.
+GENERATE_USEDATABASE= Datenbank verwenden (use database) 
+GENERATE_USEDATABASE_DES = Erstellen Sie eine use database-Anweisung, um zu einer anderen Datenbank zu wechseln.
 
 GENERATE_EXTRA_CODE	=	E&xtra Code
 GENERATE_EXTRA_CODE_DES	=	Erstellen Sie Extra?Code
-GENERATE_PRIVILEGE	=	&Privileg
+GENERATE_PRIVILEGE	=	Grant &privilege-Anweisungen (Berechtigung erteilen)
 GENERATE_PRIVILEGE_DES	=	Erstellen Sie Privilegien
-GENERATE_COMMENTS = Kommentare
+GENERATE_COMMENTS = Ko&mmentare
 GENERATE_COMMENTS_DES = Erstellen Sie &Kommentare
 
-GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
-GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
+GENERATE_ROUTINE=Gespeicherte &Prozeduren und benutzerdefinierte Funktionen
+GENERATE_ROUTINE_DES=Gespeicherte Prozeduren und benutzerdefinierte Funktionen erstellen
 
-GENERATE_FUNCTION=User Defined &Functions
-GENERATE_FUNCTION_DES=Generate user defined functions
+GENERATE_FUNCTION=Benutzerdefinierte &Funktionen
+GENERATE_FUNCTION_DES=Benutzerdefinierte Funktionen erstellen
 GENERATE_USER_DEFINED_TYPES 	= Benutzerdefinierte &Typen
 GENERATE_USER_DEFINED_TYPES_DES 	= Erstellen Sie benutzerdefinierte Typen
 GENERATE_DEFAULTS_DES 	= Erstellen Sie Standardwerte
@@ -24,7 +24,7 @@ GENERATE_DEFAULTS 		= &Standardwerte
 GENERATE_DEFAULTS_DES 	= Erstellen Sie Standardwerte
 GENERATE_RULES 		= &Regeln
 GENERATE_RULES_DES 	= Erstellen Sie Regeln
-GENERATE_USERS_GROUPS = &Benutzer & Gruppen
+GENERATE_USERS_GROUPS = &Benutzer und Gruppen
 GENERATE_USERS_GROUPS_DES = Erstellen Sie Benutzer und Gruppen
 GENERATE_PROXY_TABLES = &Proxy-Tabellen
 GENERATE_PROXY_TABLES_DES = Erstellen Sie Proxy-Tabellen
@@ -49,8 +49,8 @@ GENERATE_CATALOGS_DES = Erstellen Sie Kataloge
 GENERATE_DATABASE = &Datenbanken
 GENERATE_DATABASE_DES = Erstellen Sie Datenbanken
 
-GENERATE_JOIN_INDICES=&Join Index
-GENERATE_JOIN_INDICES_DES=Generate Join Index
+GENERATE_JOIN_INDICES=&Knotenpunkt-Index
+GENERATE_JOIN_INDICES_DES=Knotenpunkt-Index erstellen
 
 #GENERATE_DOMAINS = Do&mänen
 #GENERATE_DOMAINS_DES = Erstellen Sie Domänen

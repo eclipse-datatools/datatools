@@ -74,12 +74,12 @@ GeneralPreferencePage_description=データベース開発ツールの一般的な設定。
 GeneralPreferencePage_hover_affordance=ツールチップを表示したままの状態にする方法についてアフォーダンスをツールチップに表示する(&H)
 GeneralPreferencePage_portable_check=移植性チェックのターゲット(&P) :
 
-SyntaxColoringPage_description=Color and style settings for the syntax.
-SyntaxColoringPage_color=&Color:
-SyntaxColoringPage_bold=&Bold
-SyntaxColoringPage_italic=&Italic
-SyntaxColoringPage_strikethrough=&Strikethrough
-SyntaxColoringPage_underline=&Underline
-SyntaxColoringPage_preview=Previe&w:
-SyntaxColoringPage_syntax_items=S&yntax items:
+SyntaxColoringPage_description=構文の色とスタイルの設定
+SyntaxColoringPage_color=カラー(&C) :
+SyntaxColoringPage_bold=太字(&B)
+SyntaxColoringPage_italic=斜体(&I)
+SyntaxColoringPage_strikethrough=取り消し線(&S)
+SyntaxColoringPage_underline=下線(&U)
+SyntaxColoringPage_preview=プレビュー(&W) :
+SyntaxColoringPage_syntax_items=構文項目(&Y) :
 

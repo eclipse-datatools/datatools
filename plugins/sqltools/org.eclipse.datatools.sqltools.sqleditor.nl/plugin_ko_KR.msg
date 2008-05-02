@@ -37,4 +37,4 @@ DatabaseManagement.EditorTemplates=템플릿
 DatabaseManagement.CodeAssist=코드 지원
 DatabaseManagement.SQLEditor=SQL 편집기
 DatabaseManagement.ConnectionOptions=연결 수준 옵션
-DatabaseManagement.SyntaxColoring=Syntax Coloring
+DatabaseManagement.SyntaxColoring=구문 색상 지정

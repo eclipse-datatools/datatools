@@ -37,5 +37,5 @@ DatabaseManagement.EditorTemplates=模板
 DatabaseManagement.CodeAssist=代码助手
 DatabaseManagement.SQLEditor=SQL 编辑器
 DatabaseManagement.ConnectionOptions=连接级别选项
-DatabaseManagement.SyntaxColoring=Syntax Coloring
+DatabaseManagement.SyntaxColoring=语法色彩
 

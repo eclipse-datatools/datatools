@@ -4,7 +4,7 @@ NewConnectionProfileWizard.ASIQ.title = Neues ASIQ-Verbindungsprofil
 NewConnectionProfileWizard.error.title = Fehler bei der Erstellung eines neuen JDBC-Verbindungsprofils
 NewConnectionProfileWizard.error.msg = Ein Ausnahmefehler ist bei der Erstellung eines neuen JDBC-Profils aufgetreten.
 NewConnectionProfileWizard.confirmation.title=Bestätigung
-NewConnectionProfileWizard.confirmation.msg=Verbindungsprofil \"{0}\" für Datenbank \"{1}\" existiert schon.\nÜberschreiben?
+NewConnectionProfileWizard.confirmation.msg=Verbindungsprofil \"{0}\" für Datenbank \"{1}\" ist bereits vorhanden.\nÜberschreiben?
 								
 								
 JDBCASAPropertyWizardPage.title = Treiber- und Verbindungsdetails angeben
@@ -45,15 +45,15 @@ JDBCASAProfileTabs.errors.requiredPortValidNumber = Portnummer muss gültig sein
 JDBCASAProfileTabs.otherPropertiesTab.commonOptions=APPLICATIONNAME=SYBASE WORKSPACE,CHARSET=UTF8,CONNECTION_FAILOVER=TRUE,SQLINITSTRING=SET QUOTED_IDENTIFIER ON,JCONNECT_VERSION=6,JCONNECT_VERSION=0
 
 MultiASAWizardPage.title=Überprüfung auf Multiple Database ASA-Server (Optional)
-MultiASAWizardPage.description=Überprüfen Sie, ob der ASA-Server mehr als eine Datenbank exponiert. Falls ja, wählen Sie welche Datenbanken als Profile exponiert werden sollen. Klicken Sie 'Überprüfung auf mehrere Datenbanken', um zu beginnen.
+MultiASAWizardPage.description=Überprüfen Sie, ob der ASA-Server mehr als eine Datenbank exponiert. Falls ja, wählen Sie, welche Datenbanken als Profile exponiert werden sollen. Klicken Sie auf 'Überprüfung auf mehrere Datenbanken', um zu beginnen.
 MultiASADialog.dialog.title=Erstellen mehrerer ASA-Profile
-MultiASADialog.dialog.message=Überprüfen Sie, ob der ASA-Server mehr als eine Datenbank exponiert. Falls ja, wählen Sie welche Datenbanken als Profile exponiert werden sollen. Klicken Sie 'Überprüfung auf mehrere Datenbanken', um zu beginnen.
+MultiASADialog.dialog.message=Überprüfen Sie, ob der ASA-Server mehr als eine Datenbank exponiert. Falls ja, wählen Sie, welche Datenbanken als Profile exponiert werden sollen. Klicken Sie auf 'Überprüfung auf mehrere Datenbanken', um zu beginnen.
 MultiASAWizardPage.OnlyOneDBMessage=Da nur eine Datenbank exponiert ist, ist keine zusätzliche Arbeit erforderlich.
 MultiASADialog.dialog.message.title=Überprüfung auf Multiple Database ASA-Server (Optional)
 MultiASAWizardPage.checkButton.label=Überprüfung auf mehrere Datenbanken
 MultiASAWizardPage.Label.ChooseDbs=Wählen Sie, welche Datenbanken als Profile exponiert werden sollen:
 MultiASAWizardPage.Error.title.CannotConnect=Verbindung nicht möglich
-MultiASAWizardPage.Error.msg.CannotConnect=Es gab einen Fehler bei der Verbindung zu dem Profil. Gehen Sie zurück zu der Eigenschaftsseite, und überprüfen Sie die Profilinformationen.
+MultiASAWizardPage.Error.msg.CannotConnect=Fehler bei der Verbindung zum Profil. Gehen Sie zurück zur Eigenschaftsseite, und überprüfen Sie die Profilinformationen.
 MultiASAWizardPage.selectAllButton.label=Alles markieren
 MultiASAWizardPage.deselectAllButton.label=Auswahl aufheben
 MultiASAWizardPage.Summary.Label=Datenbank(en) auswählen
@@ -75,7 +75,7 @@ JDBCPropertyWizardPage.url.label = URL:
 JDBCPropertyWizardPage.PingButton=Testverbindung
 JDBCPropertyWizardPage.userName.label = Benutzername:
 JDBCPropertyWizardPage.password.label = Kennwort:
-JDBCPropertyWizardPage.persistpassword.label = Save Password
+JDBCPropertyWizardPage.persistpassword.label = Kennwort speichern
 JDBCPropertyWizardPage.filterGroup.label = Optionale Filtereigenschaften
 JDBCPropertyWizardPage.catalog.label = Katalog:
 JDBCPropertyWizardPage.schema.label = Schema:
@@ -158,8 +158,8 @@ JDBCProfileTabs.errors.requiredUID = Benutzername erforderlich
 events.folder.name=Ereignisse
 webservices.folder.name=Web-Services
 datatypes.folder.name=Datentypen
-udt.folder.name=User Defined Types
-udf.folder.name=User Defined Functions
+udt.folder.name=Benutzerdefinierte Typen
+udf.folder.name=Benutzerdefinierte Funktionen
 
 plugin_internal_error=Interner Fehler aufgetreten
 

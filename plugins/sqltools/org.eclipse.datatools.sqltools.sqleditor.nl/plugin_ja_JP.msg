@@ -37,5 +37,5 @@ DatabaseManagement.EditorTemplates=テンプレート
 DatabaseManagement.CodeAssist=コードアシスト
 DatabaseManagement.SQLEditor=SQL エディタ
 DatabaseManagement.ConnectionOptions=接続レベルのオプション
-DatabaseManagement.SyntaxColoring=Syntax Coloring
+DatabaseManagement.SyntaxColoring=構文の色
 

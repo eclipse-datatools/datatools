@@ -10,13 +10,13 @@ asa.category = ASA
 9.xVersionString = 9.x
 10.xVersionString = 10.x
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = ドライバクラス
+driverVendor = ベンダ
+driverVersion = バージョン
+driverDBName = データベース名
+driverConnectionURL = 接続 URL
+driverUID = ユーザ ID
+driverPWD = パスワード
 
-org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = その他のドライバ
+org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = その他のドライバ

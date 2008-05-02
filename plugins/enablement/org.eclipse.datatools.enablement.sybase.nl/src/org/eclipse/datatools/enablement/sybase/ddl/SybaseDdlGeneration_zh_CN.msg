@@ -1,22 +1,22 @@
 GENERATE_FULL_SYNTAX = 完整语法(&L) 
 GENERATE_FULL_SYNTAX_DES = 生成完整语法
-GENERATE_SETUSER= Set user 
-GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
-GENERATE_USEDATABASE= Use Database 
-GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
+GENERATE_SETUSER= 设置用户 
+GENERATE_SETUSER_DES = 生成设置用户语句以指代其他用户
+GENERATE_USEDATABASE= 使用数据库 
+GENERATE_USEDATABASE_DES = 生成使用数据库语句以切换至其他数据库
 
 GENERATE_EXTRA_CODE	=	额外代码(&X)
 GENERATE_EXTRA_CODE_DES	=	生成额外代码
-GENERATE_PRIVILEGE	=	特权(&P)
+GENERATE_PRIVILEGE	=	授权语句(&P)
 GENERATE_PRIVILEGE_DES	=	生成特权授予
-GENERATE_COMMENTS = 注释
+GENERATE_COMMENTS = 备注(&M)
 GENERATE_COMMENTS_DES = 生成注释(&T)
 
-GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
-GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
+GENERATE_ROUTINE=存储过程和用户定义函数(&P)
+GENERATE_ROUTINE_DES=生成存储过程和用户定义函数
 
-GENERATE_FUNCTION=User Defined &Functions
-GENERATE_FUNCTION_DES=Generate user defined functions
+GENERATE_FUNCTION=用户定义函数(&F)
+GENERATE_FUNCTION_DES=生成用户定义函数
 GENERATE_USER_DEFINED_TYPES 	= 用户定义类型(&T)
 GENERATE_USER_DEFINED_TYPES_DES 	= 生成用户定义类型
 GENERATE_DEFAULTS_DES 	= 生成默认值
@@ -49,8 +49,8 @@ GENERATE_CATALOGS_DES = 生成目录
 GENERATE_DATABASE = 数据库(&D)
 GENERATE_DATABASE_DES = 生成数据库
 
-GENERATE_JOIN_INDICES=&Join Index
-GENERATE_JOIN_INDICES_DES=Generate Join Index
+GENERATE_JOIN_INDICES=联接索引(&J)
+GENERATE_JOIN_INDICES_DES=生成联接索引
 
 #GENERATE_DOMAINS = 域(&M)
 #GENERATE_DOMAINS_DES = 生成域

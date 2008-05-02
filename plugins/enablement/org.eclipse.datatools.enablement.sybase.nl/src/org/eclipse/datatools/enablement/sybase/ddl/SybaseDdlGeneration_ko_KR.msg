@@ -1,22 +1,22 @@
 GENERATE_FULL_SYNTAX = 전체 구문(&L) 
 GENERATE_FULL_SYNTAX_DES = 전체 구문 생성
-GENERATE_SETUSER= Set user 
-GENERATE_SETUSER_DES = Generate setuser statement to impersonate another user
+GENERATE_SETUSER= Set User 
+GENERATE_SETUSER_DES = 다른 사용자를 구현하는 set user 문 생성
 GENERATE_USEDATABASE= Use Database 
-GENERATE_USEDATABASE_DES = Generate use database statement to switch to another database
+GENERATE_USEDATABASE_DES = 다른 데이터베이스로 전환하는 use database 문 생성
 
 GENERATE_EXTRA_CODE	=	추가 코드(&X)
 GENERATE_EXTRA_CODE_DES	=	추가 코드 생성
-GENERATE_PRIVILEGE	=	권한(&P)
+GENERATE_PRIVILEGE	=	권한 허가 문(&P)
 GENERATE_PRIVILEGE_DES	=	권한 허가 생성
-GENERATE_COMMENTS = 주석
+GENERATE_COMMENTS = 주석(&M)
 GENERATE_COMMENTS_DES = 주석 생성(&T)
 
-GENERATE_ROUTINE=Stored &Procedures and User Defined Functions
-GENERATE_ROUTINE_DES=Generate stored procedures and user defined functions
+GENERATE_ROUTINE=저장된 프로시저 및 사용자 정의 함수(&P)
+GENERATE_ROUTINE_DES=저장된 프로시저 및 사용자 정의 함수 생성
 
-GENERATE_FUNCTION=User Defined &Functions
-GENERATE_FUNCTION_DES=Generate user defined functions
+GENERATE_FUNCTION=사용자 정의 함수(&F)
+GENERATE_FUNCTION_DES=사용자 정의 함수 생성
 GENERATE_USER_DEFINED_TYPES 	= 사용자 정의 형식(&T)
 GENERATE_USER_DEFINED_TYPES_DES 	= 사용자 정의 형식 생성
 GENERATE_DEFAULTS_DES 	= 기본값 생성
@@ -49,8 +49,8 @@ GENERATE_CATALOGS_DES = 카탈로그 생성
 GENERATE_DATABASE = 데이터베이스(&D)
 GENERATE_DATABASE_DES = 데이터베이스 생성
 
-GENERATE_JOIN_INDICES=&Join Index
-GENERATE_JOIN_INDICES_DES=Generate Join Index
+GENERATE_JOIN_INDICES=조인 인덱스(&J)
+GENERATE_JOIN_INDICES_DES=조인 인덱스 생성
 
 #GENERATE_DOMAINS = 도메인(&M)
 #GENERATE_DOMAINS_DES = 도메인 생성

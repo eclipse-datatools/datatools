@@ -1,8 +1,8 @@
 wizard.asa.multi.action = Crear varios perfiles ASA
-profile.asa.content = Sybase ASA SQL Model Content Extension
+profile.asa.content = Extensión de contenido del modelo SQL de Sybase ASA
 
-asa9.driver.template = Sybase JDBC Driver for Sybase ASA 9.x
-asa10.driver.template = Sybase JDBC Driver for Sybase ASA 10.x
+asa9.driver.template = Controlador JDBC de Sybase para Sybase ASA 9.x
+asa10.driver.template = Controlador JDBC de Sybase para Sybase ASA 10.x
 asa.category = ASA
 
 9.xProductString = Sybase Adaptive Server Anywhere (ASA)
@@ -10,13 +10,13 @@ asa.category = ASA
 9.xVersionString = 9.x
 10.xVersionString = 10.x
 
-driverClass = Driver Class
-driverVendor = Vendor
-driverVersion = Version
-driverDBName = Database Name
-driverConnectionURL = Connection URL
-driverUID = User ID
-driverPWD = Password
+driverClass = Clase de controlador
+driverVendor = Proveedor
+driverVersion = Versión
+driverDBName = Nombre de base de datos
+driverConnectionURL = URL de conexión
+driverUID = Identificador de usuario
+driverPWD = Contraseña
 
-org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = Other Driver
-org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = Other Driver
+org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = Otro controlador
+org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = Otro controlador
