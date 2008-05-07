@@ -61,16 +61,12 @@ class XMLTreeViewer
 		treeGroup.setLayout( new FillLayout( ) );
 		treeGroup.setLayoutData( data );
 		treeViewer = new TreeViewer( treeGroup, SWT.MULTI
-				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
+				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL);
 
 		data = new FormData( );
 		data.left = new FormAttachment( treeGroup, 5 );
 		data.bottom = new FormAttachment( 50 );
-		data.width = 20;
-
-		data = new FormData( );
-		data.left = new FormAttachment( treeGroup, 5 );
-		data.bottom = new FormAttachment( 50 );
+		data.width = 28;
 
 		btnComposite = new Composite( parent, SWT.NONE );
 		btnComposite.setLayoutData( data );
@@ -81,13 +77,11 @@ class XMLTreeViewer
 		btnSingleAdd = new Button( btnComposite, SWT.NONE );
 		btnSingleAdd.setText( ">" ); //$NON-NLS-1$
 		btnSingleAdd.setEnabled( false );
-		btnSingleAdd.setToolTipText( "xPathChoosePage.messages.btnAdd.tooltip" ); //$NON-NLS-1$
 
 		btnMultiAdd = new Button( btnComposite, SWT.NONE );
 		btnMultiAdd.setText( ">>" ); //$NON-NLS-1$
 		btnMultiAdd.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) ); //$NON-NLS-1$
 		btnMultiAdd.setEnabled( true );
-		btnMultiAdd.setToolTipText( "xPathChoosePage.messages.btnAdd.tooltip" ); //$NON-NLS-1$
 		
 		if( !supportMultiSelection )
 		{

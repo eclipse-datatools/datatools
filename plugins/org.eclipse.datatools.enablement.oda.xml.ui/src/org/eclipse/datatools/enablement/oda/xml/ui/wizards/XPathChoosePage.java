@@ -206,6 +206,7 @@ public class XPathChoosePage extends DataSetWizardPage
 	private void createLeftGroup( Composite composite2 )
 	{
 		availableXmlTree = new XMLTreeViewer( composite2, false );
+		availableXmlTree.getSingleButton( ).setToolTipText( Messages.getString( "xPathChoosePage.messages.btnAdd.tooltip" ) ); //$NON-NLS-1$
 		availableXmlTree.getTree( ).addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
