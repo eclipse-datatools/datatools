@@ -427,18 +427,23 @@ public class ColumnMappingPage extends DataSetWizardPage
 
 	private void createRightGroup( Composite composite )
 	{
-		Composite rightComposite = new Composite( composite, SWT.NONE );
-		FormData data = new FormData( );
-		data.top = new FormAttachment( 0, 5 );
-		data.left = new FormAttachment( availableXmlTree.getBtnComposite( ), 5 );
-		data.right = new FormAttachment( 100, -5 );
-		data.bottom = new FormAttachment( 100, -5 );
-		rightComposite.setLayoutData( data );
+		tableViewerGroup = new Group( composite, SWT.NONE );
+		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) ); //$NON-NLS-1$
 
-		rightComposite.setLayout( new GridLayout( ) );
-		rightComposite.setEnabled( true );
-		createTableViewerGroup( rightComposite );
-		createPreviewButton( rightComposite );
+		GridLayout layout = new GridLayout( );
+		layout.marginWidth = 0;
+		layout.marginHeight = 0;
+		layout.verticalSpacing = 10;
+		tableViewerGroup.setLayout( layout );
+		FormData data = new FormData( );
+		data.top = new FormAttachment( 0, 2 );
+		data.left = new FormAttachment( availableXmlTree.getBtnComposite( ), 5 );
+		data.right = new FormAttachment( 100, 0 );
+		data.bottom = new FormAttachment( 100, 0 );
+		tableViewerGroup.setLayoutData( data );
+		tableViewerGroup.setEnabled( true );
+		createTableViewerGroup( tableViewerGroup );
+		createPreviewButton( tableViewerGroup );
 	}
 
 	/**
@@ -448,14 +453,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private void createTableViewerGroup( Composite composite2 )
 	{
-		tableViewerGroup = new Group( composite2, SWT.NONE
-				| SWT.H_SCROLL | SWT.V_SCROLL );
-		tableViewerGroup.setLayout( new GridLayout( ) );
-		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) ); //$NON-NLS-1$
-		tableViewerGroup.setLayoutData( new GridData( GridData.FILL_BOTH ) );
-
-		tableViewerGroup.setEnabled( true );
-		columnMappingTable = new ColumnMappingTableViewer( tableViewerGroup,
+		columnMappingTable = new ColumnMappingTableViewer( composite2,
 				true,
 				true,
 				true );
@@ -647,6 +645,10 @@ public class ColumnMappingPage extends DataSetWizardPage
 	private void createLeftGroup( Composite composite2 )
 	{
 		availableXmlTree = new XMLTreeViewer( composite2, true );
+		availableXmlTree.getSingleButton( )
+				.setToolTipText( Messages.getString( "ColumnMappingPage.AddSingleButton.tooltip" ) ); //$NON-NLS-1$
+		availableXmlTree.getMultiButton( )
+		.setToolTipText( Messages.getString( "ColumnMappingPage.AddAllButton.tooltip" ) ); //$NON-NLS-1$
 		availableXmlTree.getTree( ).addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
