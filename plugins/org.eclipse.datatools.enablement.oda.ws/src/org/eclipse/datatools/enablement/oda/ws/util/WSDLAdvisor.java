@@ -34,6 +34,7 @@ import javax.wsdl.extensions.soap.SOAPBinding;
 import javax.wsdl.extensions.soap.SOAPBody;
 import javax.wsdl.extensions.soap.SOAPHeader;
 import javax.wsdl.extensions.soap.SOAPOperation;
+import javax.wsdl.extensions.http.HTTPAddress;
 import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLReader;
 import javax.xml.namespace.QName;
@@ -141,6 +142,11 @@ public class WSDLAdvisor
 				if ( extElements.get( i ) instanceof SOAPAddress )
 				{
 					locationURI = ( (SOAPAddress) extElements.get( i ) ).getLocationURI( );
+					break;
+				}
+				if ( extElements.get( i ) instanceof HTTPAddress )
+				{
+					locationURI = ( (HTTPAddress) extElements.get( i ) ).getLocationURI( );
 					break;
 				}
 			}
@@ -1291,20 +1297,35 @@ public class WSDLAdvisor
 			for ( int i = 0; i < parts.size( ); i++ )
 			{
 				Part part = (Part) parts.get( i );
-				if ( WSUtil.isNull( part.getElementName( ) ) )
+				if ( WSUtil.isNull( part.getName( ) ) && WSUtil.isNull( part.getElementName( ) ) && WSUtil.isNull( part.getTypeName( ) ) )
 					continue;
-
-				if ( inOrOutput == "in" ) //$NON-NLS-1$
+				if ( !WSUtil.isNull( part.getElementName( ) ) )
 				{
-					result = compositeInputBodyDoc( wsdlURI,
-							part.getElementName( ).getLocalPart( ),
-							result );
+
+					if ( inOrOutput == "in" ) //$NON-NLS-1$
+					{
+						result = compositeInputBodyDoc( wsdlURI,
+								part.getElementName( ).getLocalPart( ),
+								result );
+					}
+					else
+					{
+						result = compositeOutputBodyDoc( wsdlURI,
+								part.getElementName( ).getLocalPart( ),
+								result );
+					}
 				}
 				else
 				{
-					result = compositeOutputBodyDoc( wsdlURI,
-							part.getElementName( ).getLocalPart( ),
-							result );
+					if ( inOrOutput == "in" ) //$NON-NLS-1$
+					{
+						result += compositeSimpleInputParameter( part.getName( ),
+								part.getTypeName( ).getLocalPart( ) );
+					}
+					else
+					{
+						result += compositeSimpleOutputParameter( part.getName( ) );
+					}
 				}
 			}
 		}
@@ -1312,6 +1333,28 @@ public class WSDLAdvisor
 		return result;
 	}
 
+	private String compositeSimpleInputParameter( String name, String type )
+	{
+		String nameSpace = NS_DEFAULT;
+		int tabCount = 3;
+		String result = enter( )
+				+ tab( tabCount ) + "<" + nameSpace + name //$NON-NLS-1$
+				+ buildParamType( type )
+				+ ">&?" + name //$NON-NLS-1$
+				+ "?&</" + nameSpace + name + ">";  //$NON-NLS-1$//$NON-NLS-2$
+		return result;
+	}
+	
+	private String compositeSimpleOutputParameter( String name )
+	{
+		String result = enter( ) + tab( 2 ) + "<" + name + ">"; //$NON-NLS-1$ //$NON-NLS-2$
+		
+		result += enter( ) + tab( 2 ) + "</" //$NON-NLS-1$
+				+ name + ">"; //$NON-NLS-1$	
+
+		return result;
+	}
+	
 	private String compositeInputBodyDoc( String wsdlURI, String name,
 			String result )
 	{
