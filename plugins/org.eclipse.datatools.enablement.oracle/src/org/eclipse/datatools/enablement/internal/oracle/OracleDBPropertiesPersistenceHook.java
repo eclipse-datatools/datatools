@@ -14,4 +14,8 @@ import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersi
 
 public class OracleDBPropertiesPersistenceHook extends
 		JDBCPasswordPropertyPersistenceHook {
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.oracle.profileProperties"; //$NON-NLS-1$
+	}
 }
