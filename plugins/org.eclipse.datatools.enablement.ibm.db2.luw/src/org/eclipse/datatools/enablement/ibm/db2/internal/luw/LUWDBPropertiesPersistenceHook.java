@@ -30,4 +30,8 @@ public class LUWDBPropertiesPersistenceHook extends
 		return userid != null && userid.trim().length() > 0 && passwd != null
 			&& passwd.trim().length() > 0;
 	}
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.ibm.db2.luw.profileProperties"; //$NON-NLS-1$
+	}
 }

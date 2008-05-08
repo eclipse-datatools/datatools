@@ -14,4 +14,8 @@ import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersi
 
 public class InformixDBPropertiesPersistenceHook extends
 		JDBCPasswordPropertyPersistenceHook {
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.ibm.informix.profileProperties"; //$NON-NLS-1$
+	}
 }
