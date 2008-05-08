@@ -540,7 +540,7 @@ public class CPWizardSelectionPage
 				CPWizardNode node = (CPWizardNode) element;
 				String name = node.getProvider().getName();
 				if (mFilter != null) {
-					if (name.startsWith(mFilter)) {
+					if (name.toUpperCase().startsWith(mFilter.toUpperCase())) {
 						return true;
 					}
 					else
