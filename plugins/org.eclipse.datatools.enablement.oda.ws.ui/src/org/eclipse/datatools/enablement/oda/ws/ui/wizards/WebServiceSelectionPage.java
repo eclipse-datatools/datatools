@@ -13,7 +13,11 @@ package org.eclipse.datatools.enablement.oda.ws.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -22,7 +26,7 @@ import org.eclipse.swt.widgets.Composite;
 
 public class WebServiceSelectionPage extends DataSourceWizardPage
 {
-
+	final private String HTTPHEAD = "http://"; //$NON-NLS-1$
 	private WebServiceSelectionPageHelper pageHelper;
 	private Properties wsProperties;
 
@@ -85,5 +89,43 @@ public class WebServiceSelectionPage extends DataSourceWizardPage
 	{
 		enableAllControls( getControl( ), isSessionEditable( ) );
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+    {
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
 
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                if( conn != null )
+                    conn.close( );
+                if( exception != null )
+                {
+                	Properties properties = collectCustomProperties( );
+                	String wsdlUri = ( String )properties.get( Constants.WSDL_URI );
+                	if( !wsdlUri.startsWith( HTTPHEAD ) )
+                	{
+                		properties.put( Constants.WSDL_URI, HTTPHEAD + wsdlUri.trim( ) );
+                	}
+                	profile.setBaseProperties( properties );
+                	conn = PingJob.createTestConnection( profile );
+                	if( PingJob.getTestConnectionException( conn ) == null )
+                	{
+                		pageHelper.setWsdlURIString( HTTPHEAD + wsdlUri.trim( ) );
+                		exception = null;
+                	}
+                	if( conn != null )
+                        conn.close();
+                }
+                PingJob.PingUIJob.showTestConnectionMessage( getShell( ), exception );
+            }
+        };
+    }
+	
 }
