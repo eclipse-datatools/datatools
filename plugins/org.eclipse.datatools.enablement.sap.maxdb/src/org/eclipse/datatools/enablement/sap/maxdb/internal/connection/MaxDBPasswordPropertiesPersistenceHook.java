@@ -13,4 +13,8 @@ package org.eclipse.datatools.enablement.sap.maxdb.internal.connection;
 import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersistenceHook;
 
 public class MaxDBPasswordPropertiesPersistenceHook extends JDBCPasswordPropertyPersistenceHook {
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.sap.maxdb.ui.profileProperties"; //$NON-NLS-1$
+	}
 }
