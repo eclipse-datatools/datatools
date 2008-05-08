@@ -14,4 +14,8 @@ import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersi
 
 public class SQLServerDBPropertiesPersistenceHook extends
 		JDBCPasswordPropertyPersistenceHook {
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.msft.sqlserver.profileProperties"; //$NON-NLS-1$
+	}
 }
