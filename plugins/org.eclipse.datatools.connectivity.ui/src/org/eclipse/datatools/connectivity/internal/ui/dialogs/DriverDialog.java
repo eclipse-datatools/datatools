@@ -114,6 +114,14 @@ public class DriverDialog extends TitleAreaDialog {
 	private DriverTreeFilter mTypeFilter;
 	private DriverTreeFilter mVendorFilter;
 	
+	//tabs
+	private TabItem generalTab;
+	private TabItem jarListTab;
+	private TabItem propertiesTab;
+	private Composite generalComposite;
+	private Composite jarListComposite;
+	private Composite propertiesComposite;
+	
 	// listener for property changes to re-validate 
 	private ChangeListener psetChangedListener = new ChangeListener(){
 
@@ -237,6 +245,20 @@ public class DriverDialog extends TitleAreaDialog {
 		if (this.mTreeViewer != null && !this.mTreeViewer.getTree().isDisposed())
 			this.mTreeViewer.getTree().setRedraw(true);
 	}
+	
+	private void processEnabledStateForComposite(Composite parent, boolean enabled) {
+		if (parent != null && parent.equals(jarListComposite)) {
+			parent.setEnabled(enabled);
+			mAddJar.setEnabled(enabled);
+			mEditJar.setEnabled(enabled);
+			mClearAll.setEnabled(enabled);
+			mRemoveJar.setEnabled(enabled);
+		}
+		else if (parent != null && parent.equals(propertiesComposite)) {
+			parent.setEnabled(enabled);
+			book.setEnabled(enabled);
+		}
+	}
 
 	protected Control createDialogArea(Composite parent) {
 		Composite area = (Composite) super.createDialogArea(parent);
@@ -252,26 +274,26 @@ public class DriverDialog extends TitleAreaDialog {
 		TabFolder baseComposite = new TabFolder(contents, SWT.TOP);
 		baseComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		TabItem generalTab = new TabItem(baseComposite, SWT.None);
+		generalTab = new TabItem(baseComposite, SWT.None);
 		generalTab.setText(DriverMgmtMessages.getString("DriverDialog.Name.Type.Tab")); //$NON-NLS-1$
 
-		TabItem jarListTab = new TabItem(baseComposite, SWT.None);
+		jarListTab = new TabItem(baseComposite, SWT.None);
 		jarListTab.setText(DriverMgmtMessages.getString("DriverDialog.JarList.Tab")); //$NON-NLS-1$
 		
-		TabItem propertiesTab = new TabItem(baseComposite, SWT.None);
+		propertiesTab = new TabItem(baseComposite, SWT.None);
 		propertiesTab.setText(DriverMgmtMessages.getString("DriverDialog.Properties.Tab")); //$NON-NLS-1$
-
-		Composite generalComposite = new Composite(baseComposite, SWT.NULL);
+		
+		generalComposite = new Composite(baseComposite, SWT.NULL);
 		GridLayout layout = new GridLayout();
 		generalComposite.setLayout(layout);
 		generalTab.setControl(generalComposite);
 
-		Composite jarListComposite = new Composite(baseComposite, SWT.NULL);
+		jarListComposite = new Composite(baseComposite, SWT.NULL);
 		GridLayout jl_layout = new GridLayout();
 		jarListComposite.setLayout(jl_layout);
 		jarListTab.setControl(jarListComposite);
 
-		Composite propertiesComposite = new Composite(baseComposite, SWT.NULL);
+		propertiesComposite = new Composite(baseComposite, SWT.NULL);
 		GridLayout p_layout = new GridLayout();
 		propertiesComposite.setLayout(p_layout);
 		propertiesTab.setControl(propertiesComposite);
@@ -396,12 +418,18 @@ public class DriverDialog extends TitleAreaDialog {
 			mTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 	
 				public void selectionChanged(SelectionChangedEvent event) {
+					DriverDialog.this.setErrorMessage(null);
 					StructuredSelection selection = (StructuredSelection) DriverDialog.this.mTreeViewer
 							.getSelection();
 					if (selection.getFirstElement() instanceof TemplateDescriptor) {
 						TemplateDescriptor descriptor = (TemplateDescriptor) selection
 								.getFirstElement();
 						DriverDialog.this.updateFromDescriptor(descriptor);
+						DriverDialog.this.mDriverNameText.setEnabled(true);
+					}
+					else if (selection.getFirstElement() instanceof CategoryDescriptor) {
+						DriverDialog.this.updateFromDescriptor(null);
+						DriverDialog.this.mDriverNameText.setEnabled(false);
 					}
 				}
 			});
@@ -613,6 +641,7 @@ public class DriverDialog extends TitleAreaDialog {
 	        book.setEnabled(mIsEditable);
 		}
 
+		this.mDriverNameText.setEnabled(false);
 		if (mTypeCombo != null) {
 			if (mTypeFilter != null && mTreeViewer != null) {
 				mTreeViewer.addFilter(mTypeFilter);
@@ -655,6 +684,9 @@ public class DriverDialog extends TitleAreaDialog {
 				this.mDriverName = quickName;
 				this.mDriverNameText.setText(this.mDriverName);
 			}
+			processEnabledStateForComposite(jarListComposite, false);
+			processEnabledStateForComposite(propertiesComposite, false);
+
 		}
 		else {
 			DriverInstance di = new DriverInstance(mInitialPropertySet);
@@ -754,7 +786,7 @@ public class DriverDialog extends TitleAreaDialog {
 		if (inflag == true && this.mPropertySet != null) {
 			testSet = this.mPropertySet;
 		}
-		else {
+		else if (this.descriptor != null){
 			testSet = createTestPSet();
 		}
 		if (testSet != null) {
@@ -791,6 +823,11 @@ public class DriverDialog extends TitleAreaDialog {
 
 			if (this.mOKButton != null)
 				this.mOKButton.setEnabled(flag);
+		}
+		else {
+			if (this.mOKButton != null)
+				this.mOKButton.setEnabled(false);
+			return false;
 		}
 		return true;
 	}
@@ -889,10 +926,15 @@ public class DriverDialog extends TitleAreaDialog {
 		 */
 		
 		boolean isOk = false;
-		String testName = this.mDriverName.trim();
+		String testName = "";//$NON-NLS-1$
+		if (this.mDriverName != null)
+			testName = this.mDriverName.trim();
+		else if (this.mDriverName == null) {
+			return;
+		}
 
 		// changed the if slightly to fix BZ 176781 - BTF
-		if (testName.trim().length() == 0) {
+		if (testName.trim().length() == 0 && this.mPropertySet != null) {
 			String errorMessage = DriverMgmtMessages
 				.getString("DriverValidator.msg.empty_name"); //$NON-NLS-1$
 			this.setErrorMessage(errorMessage);
@@ -1032,7 +1074,8 @@ public class DriverDialog extends TitleAreaDialog {
 	 */
 	private void updateJarList() {
 		this.mJarList = createList(this.list.getItems());
-		this.mPropertySet.getBaseProperties().setProperty(
+		if (this.mPropertySet != null)
+			this.mPropertySet.getBaseProperties().setProperty(
 				IDriverMgmtConstants.PROP_DEFN_JARLIST, this.mJarList);
 		validateName();
 		updatePropertyDescriptors();
@@ -1069,7 +1112,7 @@ public class DriverDialog extends TitleAreaDialog {
         PropertySheetPage page = new PropertySheetPage();
         page.createControl(book);
 		DriverPropertySourceProvider mpsp = null;
-		if (this.mPropertySet != null) {
+		if (this.mPropertySet != null && this.descriptor != null) {
 			mpsp = new DriverPropertySourceProvider(this.mPropertySet, this.descriptor);
 		}
 		else {
@@ -1077,13 +1120,17 @@ public class DriverDialog extends TitleAreaDialog {
 		}
 		page.setPropertySourceProvider(mpsp);
         book.showPage(page.getControl());
-		page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
+        if (this.mPropertySet != null) {
+        	page.selectionChanged(null, new StructuredSelection(this.mPropertySet));
+        }
 	}
 
 	private void updateFromDescriptor (TemplateDescriptor descriptor) {
 		
 		if (descriptor != null) {
 			this.descriptor = descriptor;
+			processEnabledStateForComposite(jarListComposite, true);
+			processEnabledStateForComposite(propertiesComposite, true);
 			this.mDriverTypeText.setText(DriverDialog.this.descriptor.getName());
 			this.mPropertySet = null;
 			this.mJarList = null;
@@ -1092,6 +1139,22 @@ public class DriverDialog extends TitleAreaDialog {
 				this.mPropertySet = createTestPSet();
 				this.mPropertySet.setName(descriptor.getName());
 			}
+			updateFromPropertySet();
+			updatePropertyDescriptors();
+			validateName();
+			boolean isOk = isValid();
+			if (this.mOKButton != null)
+				this.mOKButton.setEnabled(isOk);
+		}
+		else {
+			this.descriptor = null;
+			this.mPropertySet = null;
+			this.mJarList = null;
+			this.mDriverName = "";
+			this.mDriverTypeText.setText("");
+			this.mDriverNameText.setText("");
+			this.list.removeAll();
+			updateJarList();
 			updateFromPropertySet();
 			updatePropertyDescriptors();
 			validateName();
@@ -1140,11 +1203,14 @@ public class DriverDialog extends TitleAreaDialog {
 			if (jarList != null && jarList.trim().length() > 0 && mIsEditable) {
 				mClearAll.setEnabled(true);
 			}
-
+		}
+		else {
+			mAddJar.setEnabled(false);
 		}
 
 		isValid(true);
-		validateName();
+		if (this.mPropertySet != null)
+			validateName();
 	}
 
 	/*
