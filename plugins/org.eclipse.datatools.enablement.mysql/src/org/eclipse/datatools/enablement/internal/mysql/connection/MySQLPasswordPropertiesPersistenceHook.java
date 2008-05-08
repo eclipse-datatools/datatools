@@ -14,4 +14,8 @@ import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCPasswordPropertyPersi
 
 public class MySQLPasswordPropertiesPersistenceHook extends
 		JDBCPasswordPropertyPersistenceHook {
+
+	public String getConnectionPropertiesPageID() {
+		return "org.eclipse.datatools.enablement.mysql.profileProperties"; //$NON-NLS-1$
+	}
 }
