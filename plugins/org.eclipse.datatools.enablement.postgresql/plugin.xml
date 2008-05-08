@@ -73,7 +73,7 @@
             id="org.eclipse.datatools.enablement.postgresql.connectionProfile"
             name="%POSTGRESQL_PROFILE_NAME"
             pingFactory="org.eclipse.datatools.enablement.internal.postgresql.PostgreSQLConnectionFactory"
-            propertiesPersistenceHook="org.eclipse.datatools.enablement.internal.postgresql.PostgreSQLPropertiesPersistenceHook"/>
+            propertiesPersistenceHook="org.eclipse.datatools.enablement.internal.postgresql.PostgresPasswordPersistenceHook"/>
       <!-- JDBC connection factory -->
       <connectionFactory
             class="org.eclipse.datatools.enablement.internal.postgresql.PostgreSQLConnectionFactory"
