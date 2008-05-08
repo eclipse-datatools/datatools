@@ -43,7 +43,7 @@ public class RelationInformation
 	
 	//
 	private HashMap tableInfos;
-	private boolean useNamespace;
+	private boolean useNamespace = false, containsNamespace = false;
 
 	/**
 	 * 
@@ -91,6 +91,7 @@ public class RelationInformation
 			Map prefixMap = new HashMap( );
 			if ( useNamespace && temp.length > 3 )
 			{
+				containsNamespace = true;
 				prefixMap = new HashMap( );
 				String nameSpaceInfo = temp[3].trim( );
 				String nameSpaces = nameSpaceInfo.substring( 1,
@@ -188,6 +189,11 @@ public class RelationInformation
 		}
 	}
 
+	public boolean containsNamespace( )
+	{
+		return containsNamespace;
+	}
+	
 	private String getValueWithNameSpace( String rawInfo, Map prefixMap )
 	{
 		String[] path = rawInfo.split( FORWARD_SLASH );

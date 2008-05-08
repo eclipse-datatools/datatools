@@ -381,8 +381,11 @@ public class WSConsole
 		catch ( IOException e )
 		{
 		}
-		String xmlTempFileURI = templateFile.getAbsolutePath( );
-		setPropertyValue( Constants.XML_TEMP_FILE_URI, xmlTempFileURI );
+		if ( templateFile != null )
+		{
+			String xmlTempFileURI = templateFile.getAbsolutePath( );
+			setPropertyValue( Constants.XML_TEMP_FILE_URI, xmlTempFileURI );
+		}
 	}
 	
 	/**
@@ -411,9 +414,13 @@ public class WSConsole
 		catch ( IOException e )
 		{
 		}
-		String xmlTempFileURI = sampleXMLFile.getAbsolutePath( );
-		setPropertyValue( Constants.CONST_PROP_SAMPLE_XML, xmlTempFileURI );
-		setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML, xmlTempFileURI );
+		if ( sampleXMLFile != null )
+		{
+			String xmlTempFileURI = sampleXMLFile.getAbsolutePath( );
+			setPropertyValue( Constants.CONST_PROP_SAMPLE_XML, xmlTempFileURI );
+			setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML,
+					xmlTempFileURI );
+		}
 	}
 
 	private File generateTempXMLFile( InputStream stream ) throws OdaException

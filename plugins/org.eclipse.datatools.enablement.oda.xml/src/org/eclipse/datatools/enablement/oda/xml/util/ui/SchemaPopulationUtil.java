@@ -98,7 +98,7 @@ public class SchemaPopulationUtil
 	public static Map getPrefixMapping( String xmlFileName, String xmlEncoding )
 			throws OdaException
 	{
-		return new XMLFileSchemaTreePopulator( 1 ).getPrefixMapping( xmlFileName,
+		return new XMLFileSchemaTreePopulator( 0 ).getPrefixMapping( xmlFileName,
 				xmlEncoding );
 	}
 }
@@ -290,7 +290,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 			}
 		}
 
-		if( sp== null )
+		if( sp== null || sp.exceptionOccurred( ) )
 			return new HashMap( );
 		return this.sp.getPrefixMapping( );
 	}
