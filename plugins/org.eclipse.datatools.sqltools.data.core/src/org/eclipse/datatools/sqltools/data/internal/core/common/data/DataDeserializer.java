@@ -145,10 +145,9 @@ public class DataDeserializer {
     	DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
     	try
     	{
-    		java.util.Date date = format.parse(val);    		
-    		sqlDate = new Date(date.getTime());    		
+    		sqlDate = Date.valueOf(val);
     	}
-    	catch(ParseException ex)
+    	catch(Exception ex)
     	{
     		// ignore
     	}
@@ -166,10 +165,9 @@ public class DataDeserializer {
     	DateFormat format = DateFormat.getTimeInstance(DateFormat.MEDIUM);
     	try
     	{
-    		java.util.Date date = format.parse(val);    		
-    		sqlTime = new Time(date.getTime());    		
+    		sqlTime = Time.valueOf(val);    		
     	}
-    	catch(ParseException ex)
+    	catch(Exception ex)
     	{
     		// ignore
     	}
@@ -187,10 +185,9 @@ public class DataDeserializer {
     	DateFormat format = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
     	try
     	{
-    		java.util.Date date = format.parse(val);    		
-    		sqlTimestamp = new Timestamp(date.getTime());    		
+    		sqlTimestamp = Timestamp.valueOf(val);    		
     	}
-    	catch(ParseException ex)
+    	catch(Exception ex)
     	{
     		// ignore
     	}
