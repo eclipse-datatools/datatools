@@ -116,6 +116,12 @@ public class ViewPropertyAction extends Action {
 		this.mShell = propertyDialog.getShell();
         String title = ConnectivityUIPlugin.getDefault().getResourceString(
                         "properties.dialog"); //$NON-NLS-1$
+        if (selected instanceof IConnectionProfile) {
+        	IConnectionProfile profile = (IConnectionProfile) selected;
+        	title = ConnectivityUIPlugin.getDefault().
+				getResourceString("ConnectAction.title",  //$NON-NLS-1$
+					new String[] {profile.getName()});
+        }
 		propertyDialog.getShell().setText(title);
 		
 		// add a listener to make sure we get any resizes of the dialog

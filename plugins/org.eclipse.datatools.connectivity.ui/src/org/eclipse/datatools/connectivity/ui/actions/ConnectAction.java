@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileProvider;
 import org.eclipse.datatools.connectivity.internal.ProfileExtensionProvider;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.PreferenceDialog;
@@ -115,6 +116,9 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 					if (!profile.arePropertiesComplete()
 							&& propertyDialogAction.isApplicableForSelection()) {
 						PreferenceDialog dialog = propertyDialogAction.createDialog();
+						dialog.getShell().setText(ConnectivityUIPlugin.getDefault().
+								getResourceString("ConnectAction.title",  //$NON-NLS-1$
+										new String[] {profile.getName()}));
 						String initialPage = getInitialPropertyPageID(profile);
 						if (initialPage != null) {
 							((IWorkbenchPreferenceContainer) dialog).openPage(
