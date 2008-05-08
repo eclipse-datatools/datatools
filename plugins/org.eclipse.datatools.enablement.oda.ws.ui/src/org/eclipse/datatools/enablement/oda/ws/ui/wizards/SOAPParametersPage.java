@@ -26,7 +26,6 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -47,7 +46,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 
 /**
  * This class is NOT intended to be used in edit mode
@@ -58,7 +56,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 	private static final String COLUMN_NAME = Messages.getString( "parameterInputDialog.column.name" );//$NON-NLS-1$ 
 	private static final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
-	private static final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
 	private CheckboxTableViewer viewer;
 	private SOAPRequest soapRequest;
@@ -180,10 +177,6 @@ public class SOAPParametersPage extends DataSetWizardPage
 		column1.setText( COLUMN_DATATYPE );
 		column1.setWidth( 200 );
 
-		TableColumn column2 = new TableColumn( table, SWT.NONE );
-		column2.setText( COLUMN_DEFAULTVALUE );
-		column2.setWidth( 200 );
-
 		viewer = new CheckboxTableViewer( table );
 		viewer.setContentProvider( new IStructuredContentProvider( ) {
 
@@ -275,32 +268,9 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 		viewer.setCellEditors( editors );
 		viewer.setColumnProperties( new String[]{
-				COLUMN_NAME, COLUMN_DATATYPE, COLUMN_DEFAULTVALUE
+				COLUMN_NAME, COLUMN_DATATYPE
 		} );
 
-		viewer.setCellModifier( new ICellModifier( ) {
-
-			public boolean canModify( Object element, String property )
-			{
-				if ( viewer.getChecked( element )
-						&& property.equals( COLUMN_DEFAULTVALUE ) )
-					return true;
-
-				return false;
-			}
-
-			public Object getValue( Object element, String property )
-			{
-				return WSUIUtil.getNonNullString( ( (SOAPParameter) element ).getDefaultValue( ) );
-			}
-
-			public void modify( Object element, String property, Object value )
-			{
-				SOAPParameter soapParameter = (SOAPParameter) ( (TableItem) element ).getData( );
-				soapParameter.setDefaultValue( value.toString( ) );
-				viewer.refresh( );
-			}
-		} );
 	}
 
 	/**
