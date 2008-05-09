@@ -10,28 +10,28 @@
 # ******************************************************************************
 profile.ase.title = Sybase ASE
 profile.ase.wizard.title = Sybase ASE
-jdbc.connection.name = JDBC Connection
-profile.ase.properties = Sybase ASE Connection Properties
+jdbc.connection.name = JDBC 连接
+profile.ase.properties = Sybase ASE 连接属性
 
-database.name=Database
-profile.ase.content = Sybase ASE SQL Model Content Extension
+database.name=数据库
+profile.ase.content = Sybase ASE SQL 模型内容扩展
 
-driversExtension.name = Sybase JDBC Drivers
+driversExtension.name = Sybase JDBC 驱动程序
 drivers.ase.name = Sybase ASE
 drivers.ase.xa.name = Sybase ASE XA
-drivers.ase.description = JDBC Driver for a Sybase Adaptive Server Enterprise (ASE) database
-drivers.ase.xa.description = JDBC Driver for an XA-enabled Sybase Adaptive Server Enterprise (ASE) database
-proxytable.name = Proxy Table
-default.name = Default
-rule.name = Rule
-trigger.name = Trigger
-webservice.name = Web Service
-datatype.name = Data Type
-datatype.node.name = Data Type Folder
-default.node.name = Default Folder
-rule.node.name = Rule Folder
-proxytable.node.name = Proxy Table Folder
-webservicetable.node.name = Web Services as Tables Folder
+drivers.ase.description = Sybase Adaptive Server Enterprise (ASE) 数据库的 JDBC 驱动程序
+drivers.ase.xa.description = 启用 XA 的 Sybase Adaptive Server Enterprise (ASE) 数据库的 JDBC 驱动程序
+proxytable.name = 代理表
+default.name = 默认
+rule.name = 规则
+trigger.name = 触发器
+webservice.name = Web 服务
+datatype.name = 数据类型
+datatype.node.name = 数据类型文件夹
+default.node.name = 默认文件夹
+rule.node.name = 规则文件夹
+proxytable.node.name = 代理表文件夹
+webservicetable.node.name = 作为表的 Web 服务文件夹
 
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org

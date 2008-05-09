@@ -10,28 +10,28 @@
 # ******************************************************************************
 profile.ase.title = Sybase ASE
 profile.ase.wizard.title = Sybase ASE
-jdbc.connection.name = JDBC Connection
-profile.ase.properties = Sybase ASE Connection Properties
+jdbc.connection.name = Conexión JDBC
+profile.ase.properties = Propiedades de conexión Sybase ASE
 
-database.name=Database
-profile.ase.content = Sybase ASE SQL Model Content Extension
+database.name=Base de datos
+profile.ase.content = Extensión de contenido del modelo SQL de Sybase ASE
 
-driversExtension.name = Sybase JDBC Drivers
+driversExtension.name = Controladores JDBC de Sybase
 drivers.ase.name = Sybase ASE
 drivers.ase.xa.name = Sybase ASE XA
-drivers.ase.description = JDBC Driver for a Sybase Adaptive Server Enterprise (ASE) database
-drivers.ase.xa.description = JDBC Driver for an XA-enabled Sybase Adaptive Server Enterprise (ASE) database
-proxytable.name = Proxy Table
-default.name = Default
-rule.name = Rule
-trigger.name = Trigger
-webservice.name = Web Service
-datatype.name = Data Type
-datatype.node.name = Data Type Folder
-default.node.name = Default Folder
-rule.node.name = Rule Folder
-proxytable.node.name = Proxy Table Folder
-webservicetable.node.name = Web Services as Tables Folder
+drivers.ase.description = Controlador JDBC para una base de datos Sybase Adaptive Server Enterprise (ASE)
+drivers.ase.xa.description = Controlador JDBC para una base de datos Sybase Adaptive Server Enterprise (ASE) activada para XA
+proxytable.name = Tabla de proxy
+default.name = Predeterminado
+rule.name = Regla
+trigger.name = Activador
+webservice.name = Servicio Web
+datatype.name = Tipo de datos
+datatype.node.name = Carpeta de tipo de datos
+default.node.name = Carpeta predeterminada
+rule.node.name = Carpeta regla
+proxytable.node.name = Carpeta tabla de proxy
+webservicetable.node.name = Servicios Web como Carpeta tablas
 
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org

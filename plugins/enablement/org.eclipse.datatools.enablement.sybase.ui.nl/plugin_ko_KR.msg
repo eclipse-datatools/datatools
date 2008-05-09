@@ -10,28 +10,28 @@
 # ******************************************************************************
 profile.ase.title = Sybase ASE
 profile.ase.wizard.title = Sybase ASE
-jdbc.connection.name = JDBC Connection
-profile.ase.properties = Sybase ASE Connection Properties
+jdbc.connection.name = JDBC 연결
+profile.ase.properties = Sybase ASE 연결 속성
 
-database.name=Database
-profile.ase.content = Sybase ASE SQL Model Content Extension
+database.name=데이터베이스
+profile.ase.content = Sybase ASE SQL 모델 콘텐츠 확장명
 
-driversExtension.name = Sybase JDBC Drivers
+driversExtension.name = Sybase JDBC 드라이버
 drivers.ase.name = Sybase ASE
 drivers.ase.xa.name = Sybase ASE XA
-drivers.ase.description = JDBC Driver for a Sybase Adaptive Server Enterprise (ASE) database
-drivers.ase.xa.description = JDBC Driver for an XA-enabled Sybase Adaptive Server Enterprise (ASE) database
-proxytable.name = Proxy Table
-default.name = Default
-rule.name = Rule
-trigger.name = Trigger
-webservice.name = Web Service
-datatype.name = Data Type
-datatype.node.name = Data Type Folder
-default.node.name = Default Folder
-rule.node.name = Rule Folder
-proxytable.node.name = Proxy Table Folder
-webservicetable.node.name = Web Services as Tables Folder
+drivers.ase.description = Sybase ASE(Adaptive Server Enterprise) 데이터베이스용 JDBC 드라이버
+drivers.ase.xa.description = XA 지원 Sybase ASE( Adaptive Server Enterprise) 데이터베이스용 JDBC 드라이버
+proxytable.name = 프록시 테이블
+default.name = 기본값
+rule.name = 규칙
+trigger.name = 트리거
+webservice.name = 웹 서비스
+datatype.name = 데이터 형식
+datatype.node.name = 데이터 형식 폴더
+default.node.name = 기본값 폴더
+rule.node.name = 규칙 폴더
+proxytable.node.name = 프록시 테이블 폴더
+webservicetable.node.name = 웹 서비스 테이블 폴더
 
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org

@@ -8,30 +8,30 @@
 # * 
 # * Contributors: Sybase - initial API and implementation
 # ******************************************************************************
-profile.ase.title = Sybase ASE
-profile.ase.wizard.title = Sybase ASE
-jdbc.connection.name = JDBC Connection
-profile.ase.properties = Sybase ASE Connection Properties
+profile.ase.title = Sybase-ASE
+profile.ase.wizard.title = Sybase-ASE
+jdbc.connection.name = JDBC-Verbindung
+profile.ase.properties = Sybase-ASE-Verbindungseigenschaften
 
-database.name=Database
-profile.ase.content = Sybase ASE SQL Model Content Extension
+database.name=Datenbank
+profile.ase.content = Sybase-ASE-SQL-Modell - Inhaltserweiterung
 
-driversExtension.name = Sybase JDBC Drivers
-drivers.ase.name = Sybase ASE
-drivers.ase.xa.name = Sybase ASE XA
-drivers.ase.description = JDBC Driver for a Sybase Adaptive Server Enterprise (ASE) database
-drivers.ase.xa.description = JDBC Driver for an XA-enabled Sybase Adaptive Server Enterprise (ASE) database
-proxytable.name = Proxy Table
-default.name = Default
-rule.name = Rule
-trigger.name = Trigger
-webservice.name = Web Service
-datatype.name = Data Type
-datatype.node.name = Data Type Folder
-default.node.name = Default Folder
-rule.node.name = Rule Folder
-proxytable.node.name = Proxy Table Folder
-webservicetable.node.name = Web Services as Tables Folder
+driversExtension.name = Sybase-JDBC-Treiber
+drivers.ase.name = Sybase-ASE
+drivers.ase.xa.name = Sybase-ASE-XA
+drivers.ase.description = JDBC-Treiber für eine Sybase Adaptive Server Enterprise (ASE)-Datenbank
+drivers.ase.xa.description = JDBC-Treiber für eine XA-fähige Sybase Adaptive Server Enterprise (ASE)-Datenbank
+proxytable.name = Proxy-Tabelle
+default.name = Standard
+rule.name = Regel
+trigger.name = Auslösen
+webservice.name = Webdienst
+datatype.name = Datentyp
+datatype.node.name = Datentypordner
+default.node.name = Standardordner
+rule.node.name = Regelordner
+proxytable.node.name = Proxy-Tabellenordner
+webservicetable.node.name = Webdienste als Tabellenordner
 
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org

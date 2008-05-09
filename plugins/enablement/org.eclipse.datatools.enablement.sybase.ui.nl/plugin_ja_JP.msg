@@ -10,28 +10,28 @@
 # ******************************************************************************
 profile.ase.title = Sybase ASE
 profile.ase.wizard.title = Sybase ASE
-jdbc.connection.name = JDBC Connection
-profile.ase.properties = Sybase ASE Connection Properties
+jdbc.connection.name = JDBC 接続
+profile.ase.properties = Sybase ASE 接続プロパティ
 
-database.name=Database
+database.name=データベース
 profile.ase.content = Sybase ASE SQL Model Content Extension
 
-driversExtension.name = Sybase JDBC Drivers
+driversExtension.name = Sybase JDBC ドライバ
 drivers.ase.name = Sybase ASE
 drivers.ase.xa.name = Sybase ASE XA
-drivers.ase.description = JDBC Driver for a Sybase Adaptive Server Enterprise (ASE) database
-drivers.ase.xa.description = JDBC Driver for an XA-enabled Sybase Adaptive Server Enterprise (ASE) database
-proxytable.name = Proxy Table
-default.name = Default
-rule.name = Rule
-trigger.name = Trigger
-webservice.name = Web Service
-datatype.name = Data Type
-datatype.node.name = Data Type Folder
-default.node.name = Default Folder
-rule.node.name = Rule Folder
-proxytable.node.name = Proxy Table Folder
-webservicetable.node.name = Web Services as Tables Folder
+drivers.ase.description = Sybase Adaptive Server Enterprise (ASE) データベース用 JDBC ドライバ
+drivers.ase.xa.description = XA が有効な Sybase Adaptive Server Enterprise (ASE) データベース用 JDBC ドライバ
+proxytable.name = プロキシテーブル
+default.name = デフォルト
+rule.name = 規則
+trigger.name = トリガ
+webservice.name = Web サービス
+datatype.name = データ型
+datatype.node.name = データ型フォルダ
+default.node.name = デフォルトフォルダ
+rule.node.name = 規則フォルダ
+proxytable.node.name = プロキシテーブルフォルダ
+webservicetable.node.name = テーブルフォルダとしての Web サービス
 
 pluginName = Sybase UI Plug-in
 providerName = Eclipse.org
