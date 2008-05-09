@@ -28,6 +28,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil;
@@ -57,8 +58,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
-public class DataSetColumnsWizardPage extends
-		org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage {
+public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
 	private static final String DEFAULT_MESSAGE = "Define the columns for the data set";
 	private EPackage ePackage;
@@ -217,7 +217,7 @@ public class DataSetColumnsWizardPage extends
 		if (isValid) {
 			setMessage(DEFAULT_MESSAGE);
 		} else {
-			setMessage("An expression is required.", ERROR);
+			setMessage("At least one column must be selected", ERROR);
 		}
 
 		setPageComplete(isValid);
