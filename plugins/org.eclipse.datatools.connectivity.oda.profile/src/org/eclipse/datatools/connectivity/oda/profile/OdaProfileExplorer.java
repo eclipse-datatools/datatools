@@ -188,7 +188,7 @@ public class OdaProfileExplorer
     public Map getProfileIdentifiersByOdaProviderId( String odaDataSourceId, File storageFile ) 
         throws OdaException
     {
-        return getProfileIdentifiersByCategoryOrProviderid( null, odaDataSourceId, storageFile );
+        return getProfileIdentifiersByCategoryOrProviderId( null, odaDataSourceId, storageFile );
     }
 
     /**
@@ -210,10 +210,10 @@ public class OdaProfileExplorer
     public Map getProfileIdentifiersByCategory( String categoryId, File storageFile ) 
         throws OdaException
     {
-        return getProfileIdentifiersByCategoryOrProviderid( categoryId, null, storageFile );
+        return getProfileIdentifiersByCategoryOrProviderId( categoryId, null, storageFile );
     }
     
-    private Map getProfileIdentifiersByCategoryOrProviderid( String categoryId, String odaDataSourceId, 
+    private Map getProfileIdentifiersByCategoryOrProviderId( String categoryId, String odaDataSourceId, 
                     File storageFile ) 
         throws OdaException
     {
@@ -494,12 +494,18 @@ public class OdaProfileExplorer
         }
         
         ProfilePropertyProviderImpl profileProvider = new ProfilePropertyProviderImpl();
+        profileProvider.setRefreshProfileStore( false  );  // client can call refresh() directly if needed
         return createOdaWrapper( 
                 profileProvider.getConnectionProfile( dataSourceDesignProps, connPropContext ));       
     }
 
     private OdaConnectionProfile createOdaWrapper( IConnectionProfile wrappedProfile )
     {
+        if( wrappedProfile instanceof OdaConnectionProfile )
+        {
+            if( ((OdaConnectionProfile) wrappedProfile).hasWrappedProfile() )
+                return (OdaConnectionProfile) wrappedProfile;
+        }
         return new OdaConnectionProfile( wrappedProfile ) ;
     }
     

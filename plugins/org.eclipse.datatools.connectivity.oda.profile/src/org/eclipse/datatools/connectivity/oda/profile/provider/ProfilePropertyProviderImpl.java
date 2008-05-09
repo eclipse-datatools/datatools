@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -40,6 +40,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
     // logging variables
     private static final String sm_className = ProfilePropertyProviderImpl.class.getName();
     private static Logger sm_logger;
+    
+    private boolean m_refreshProfileStore = true;
 
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider#getDataSourceProperties(java.util.Properties, java.lang.Object)
@@ -110,8 +112,9 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             if( profileStore != null )
             {
                 // using a new profile storage File object, good opportunity
-                // to free up the cached profiles of previously used File objects
-                OdaProfileExplorer.getInstance().refresh();
+                // to free up the cached profiles of previously loaded profile store File
+                if( m_refreshProfileStore )
+                    OdaProfileExplorer.getInstance().refresh();
             }
         }
         
@@ -219,6 +222,18 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
             getLogger().warning( "getProfileStoreFile( String ): " + ex.toString() );  //$NON-NLS-1$
         }
         return null;        
+    }
+
+    /**
+     * Internal method to control whether the call to {@link #getConnectionProfile(Properties, Object)}
+     * should re-use cached profiles previously loaded from profile stores.
+     * @param   refreshProfileStore <code>true</code> to refresh and get latest profile instances in a 
+     *              profile storage file, <code>false</code> to re-use profiles previously 
+     *              loaded from profile stores; default setting is <code>true</code>.
+     */
+    public void setRefreshProfileStore( boolean refreshProfileStore )
+    {
+        m_refreshProfileStore = refreshProfileStore;
     }
 
     /**
