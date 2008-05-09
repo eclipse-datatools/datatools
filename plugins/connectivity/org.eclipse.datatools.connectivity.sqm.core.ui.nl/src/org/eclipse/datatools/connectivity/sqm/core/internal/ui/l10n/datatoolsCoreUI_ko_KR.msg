@@ -145,7 +145,7 @@ DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = 암시적
 #
 ## Filtering Decoration
 #
-DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtered]
+DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [필터링됨]
 
 #
 ## Catalog Util
@@ -213,12 +213,12 @@ _UI_MESSAGE_SELECTION_REQUIRED = 적어도 하나 이상의 항목을 선택하십시오.
 _UI_SP_FILTER_PAGE_TITLE = 저장된 프로시저 필터 속성
 _UI_TABLE_FILTER_PAGE_TITLE = 테이블 필터 속성
 _UI_SCHEMA_FILTER_PAGE_TITLE = 스키마 필터 속성
-_UI_TOOLTIP_NEW = New
-_UI_TOOLTIP_DELETE = Delete
-_UI_RADIO_BUTTON_AND = Meet all conditions
-_UI_RADIO_BUTTON_OR = Meet any condition
-_UI_COMBO_PREDICATE = Predicate
-_UI_TEXT_VALUE = Value
+_UI_TOOLTIP_NEW = 새로 만들기
+_UI_TOOLTIP_DELETE = 삭제
+_UI_RADIO_BUTTON_AND = 조건을 모두 만족
+_UI_RADIO_BUTTON_OR = 조건 중 하나라도 만족
+_UI_COMBO_PREDICATE = 조건자
+_UI_TEXT_VALUE = 값
 
 #
 ## Actions for Schema Management

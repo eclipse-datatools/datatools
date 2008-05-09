@@ -145,7 +145,7 @@ DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = Implícito
 #
 ## Filtering Decoration
 #
-DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtered]
+DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtrado]
 
 #
 ## Catalog Util
@@ -213,12 +213,12 @@ _UI_MESSAGE_SELECTION_REQUIRED = Seleccione al menos un elemento.
 _UI_SP_FILTER_PAGE_TITLE = Propiedades del filtro de Stored Procedure
 _UI_TABLE_FILTER_PAGE_TITLE = Propiedades del filtro de tabla
 _UI_SCHEMA_FILTER_PAGE_TITLE = Propiedades del filtro de esquema
-_UI_TOOLTIP_NEW = New
-_UI_TOOLTIP_DELETE = Delete
-_UI_RADIO_BUTTON_AND = Meet all conditions
-_UI_RADIO_BUTTON_OR = Meet any condition
-_UI_COMBO_PREDICATE = Predicate
-_UI_TEXT_VALUE = Value
+_UI_TOOLTIP_NEW = Nuevo
+_UI_TOOLTIP_DELETE = Eliminar
+_UI_RADIO_BUTTON_AND = Cumplir todas las condiciones
+_UI_RADIO_BUTTON_OR = Cumplir alguna condición
+_UI_COMBO_PREDICATE = Predicado
+_UI_TEXT_VALUE = Valor
 
 #
 ## Actions for Schema Management

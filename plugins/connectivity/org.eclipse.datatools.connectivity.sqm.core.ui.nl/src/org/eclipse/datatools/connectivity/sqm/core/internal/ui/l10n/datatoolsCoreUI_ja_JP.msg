@@ -145,7 +145,7 @@ DATATOOLS.PROJECT.UI.INACTIVE_RELATIONSHIP = 暗黙
 #
 ## Filtering Decoration
 #
-DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [Filtered]
+DATATOOLS.SERVER.UI.EXPLORER.FILTER_DECORATION = [フィルタ済み]
 
 #
 ## Catalog Util
@@ -213,12 +213,12 @@ _UI_MESSAGE_SELECTION_REQUIRED = 少なくとも 1 つの項目を選択してください。
 _UI_SP_FILTER_PAGE_TITLE = ストアドプロシージャのフィルタのプロパティ
 _UI_TABLE_FILTER_PAGE_TITLE = テーブルのフィルタのプロパティ
 _UI_SCHEMA_FILTER_PAGE_TITLE = スキーマのフィルタのプロパティ
-_UI_TOOLTIP_NEW = New
-_UI_TOOLTIP_DELETE = Delete
-_UI_RADIO_BUTTON_AND = Meet all conditions
-_UI_RADIO_BUTTON_OR = Meet any condition
-_UI_COMBO_PREDICATE = Predicate
-_UI_TEXT_VALUE = Value
+_UI_TOOLTIP_NEW = 新規
+_UI_TOOLTIP_DELETE = 削除
+_UI_RADIO_BUTTON_AND = すべての条件に一致
+_UI_RADIO_BUTTON_OR = いずれかの条件に一致
+_UI_COMBO_PREDICATE = 述部
+_UI_TEXT_VALUE = 値
 
 #
 ## Actions for Schema Management
