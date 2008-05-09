@@ -176,3 +176,5 @@ OtherDriverUIContributor.errormessage.requiresdatabase = 데이터베이스 이름을 입�
 OtherDriverUIContributor.errormessage.requiresurl = URL을 입력하십시오.
 OtherDriverUIContributor.errormessage.requiresusername = 사용자 이름을 입력하십시오.
 
+ConnectAction.title = Properties for {0}
+

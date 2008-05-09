@@ -176,3 +176,5 @@ OtherDriverUIContributor.errormessage.requiresdatabase = Introduzca un nombre de
 OtherDriverUIContributor.errormessage.requiresurl = Introduzca una URL.
 OtherDriverUIContributor.errormessage.requiresusername = Introduzca un nombre de usuario.
 
+ConnectAction.title = Properties for {0}
+
