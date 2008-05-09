@@ -113,7 +113,7 @@ datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = Datentools – Spa
 datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Datentools – Fremd- oder Primärschlüsselindikator
 datatools.core.ui.modelexplorer.DependencyDecoration = Datentools – Dependency Decoration
 datatools.core.ui.modelexplorer.bookmarkDecoration  = Datentools – Bookmark Indicator
-datatools.core.ui.modelexplorer.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
+datatools.core.ui.modelexplorer.filterDecoration = Datentools - Server-Explorer-Filterknoten - Indikator
 
 #
 ## Model Explorer Sorter Provider

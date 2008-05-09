@@ -113,7 +113,7 @@ datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = ƒf[ƒ^ƒc[ƒ‹ - —
 datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = ƒf[ƒ^ƒc[ƒ‹ - ŠO•”ƒL[‚Ü‚½‚Íƒvƒ‰ƒCƒ}ƒŠƒL[‚ÌƒCƒ“ƒWƒP[ƒ^
 datatools.core.ui.modelexplorer.DependencyDecoration = ƒf[ƒ^ƒc[ƒ‹ - ˆË‘¶ŠÖŒW‚Ì‘•ü
 datatools.core.ui.modelexplorer.bookmarkDecoration  = ƒf[ƒ^ƒc[ƒ‹ - ƒuƒbƒNƒ}[ƒN‚ÌƒCƒ“ƒWƒP[ƒ^
-datatools.core.ui.modelexplorer.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
+datatools.core.ui.modelexplorer.filterDecoration = ƒf[ƒ^ƒc[ƒ‹ - ƒT[ƒoƒGƒNƒXƒvƒ[ƒ‰‚ÌƒtƒBƒ‹ƒ^ƒm[ƒhƒCƒ“ƒWƒP[ƒ^
 
 #
 ## Model Explorer Sorter Provider

@@ -113,7 +113,7 @@ datatools.core.ui.modelexplorer.modelExplorerColumnDecoration = 데이터 도구- 열 
 datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = 데이터 도구 - 외래 키 또는 기본 키 표시
 datatools.core.ui.modelexplorer.DependencyDecoration = 데이터 도구 - 종속 장식
 datatools.core.ui.modelexplorer.bookmarkDecoration  = 데이터 도구 - 책갈피 표시기
-datatools.core.ui.modelexplorer.filterDecoration = Data Tools - Server Explorer Filter Node Indicator
+datatools.core.ui.modelexplorer.filterDecoration = 데이터 도구 - 서버 탐색기 필터 노드 표시기
 
 #
 ## Model Explorer Sorter Provider
