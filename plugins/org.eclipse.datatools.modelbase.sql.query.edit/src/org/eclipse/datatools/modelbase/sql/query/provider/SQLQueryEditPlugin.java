@@ -1,14 +1,13 @@
-/*
- * Licensed Materials - Property of IBM
- * com.ibm.db.models.sql.query.edit
- * (C) Copyright IBM Corporation 2005. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- *   Use, duplication or disclosure restricted 
- *   by GSA ADP Schedule Contract with IBM Corp.
- *
- * $Id: SQLQueryEditPlugin.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
- */
+/*******************************************************************************
+ * Copyright © 2000, 2007 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
 import org.eclipse.datatools.modelbase.sql.schema.provider.SqlmodelEditPlugin;
