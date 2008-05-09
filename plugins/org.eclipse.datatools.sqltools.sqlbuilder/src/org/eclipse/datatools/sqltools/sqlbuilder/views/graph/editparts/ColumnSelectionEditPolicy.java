@@ -14,15 +14,6 @@ import org.eclipse.datatools.sqltools.sqlbuilder.views.graph.editparts.ColumnEdi
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 
-/*
- * Licensed Materials - Property of IBM
- * org.eclipse.datatools.sqltools.sqlbuilder
- * (C) Copyright IBM Corporation 2000, 2005. All Rights Reserved.
- *
- * Note to U.S. Government Users Restricted Rights:
- *   Use, duplication or disclosure restricted 
- *   by GSA ADP Schedule Contract with IBM Corp.
- */
 public class ColumnSelectionEditPolicy extends SelectionEditPolicy {
 
     protected void setSelectedState(int arg0) {

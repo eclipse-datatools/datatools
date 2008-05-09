@@ -214,7 +214,7 @@ public class SelectGridViewer extends GridViewer implements IMenuListener {
      * from handleMouseDown
      * @param point
      */
-	ViewerCell getCell(Point point) {
+	public ViewerCell getCell(Point point) {
 		ViewerRow row = getViewerRow(point);
 		if (row != null) {
 			return row.getCell(point);
