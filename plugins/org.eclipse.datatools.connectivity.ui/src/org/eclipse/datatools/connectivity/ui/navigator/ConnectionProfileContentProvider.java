@@ -27,9 +27,7 @@ import org.eclipse.datatools.connectivity.internal.Category;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepositoryConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.LocalRepositoryNode;
-import org.eclipse.datatools.connectivity.internal.ui.SharedImages;
 import org.eclipse.datatools.connectivity.ui.RefreshProfileJob;
-import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.StructuredViewer;
@@ -74,11 +72,6 @@ public class ConnectionProfileContentProvider implements ICommonContentProvider 
 
 		public void profileDeleted(IConnectionProfile profile) {
 			profile.removePropertySetListener(mPropertyListener);
-			ImageRegistry imageRegistry = ConnectivityUIPlugin.getDefault().getImageRegistry(); 
-			imageRegistry.remove(profile.getName().concat(
-					SharedImages.IMAGE_RUNNING));
-			imageRegistry.remove(profile.getName().concat(
-					SharedImages.IMAGE_OFFLINE));
 			refreshViewer(
 					mShowCategories && !isRepositoryProfile(profile) ? profile
 							.getCategory() : null, true);
