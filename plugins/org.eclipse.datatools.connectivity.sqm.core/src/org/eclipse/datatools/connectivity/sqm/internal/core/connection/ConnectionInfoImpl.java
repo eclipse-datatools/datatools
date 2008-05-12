@@ -661,16 +661,26 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 		if (connection != null) {
 			DatabaseDefinition detectedDBDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().recognize(connection);
 			if(detectedDBDefinition != null) {
-				this.setDatabaseDefinition(detectedDBDefinition);
-				Properties props = profile.getBaseProperties();
+				Properties props = copyProperties(profile.getProperties(getConnectionProfile().getProviderId()));
 				props.setProperty(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID, detectedDBDefinition.getProduct());
-				props.setProperty(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, detectedDBDefinition.getVersion());
-				profile.setBaseProperties(props);
+				props.setProperty(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID, detectedDBDefinition.getVersion());				
+				profile.setProperties(getConnectionProfile().getProviderId(), props);
+				this.setDatabaseDefinition(detectedDBDefinition);
 			}
 			this.setSharedConnection(connection);
 	        new DatabaseProviderHelper().setDatabase(connection,
 	                this, this.getDatabaseName());
 		}
+	}
+	
+	private Properties copyProperties(Properties properties) {
+		Properties copy = new Properties();
+		Enumeration propertyKeys = properties.keys();
+		while (propertyKeys.hasMoreElements()) {
+			Object key = propertyKeys.nextElement();
+			copy.put(key, properties.get(key));
+		}
+		return copy;
 	}
 	
 	private void processFilterChanges(IPropertySetChangeEvent event) {
