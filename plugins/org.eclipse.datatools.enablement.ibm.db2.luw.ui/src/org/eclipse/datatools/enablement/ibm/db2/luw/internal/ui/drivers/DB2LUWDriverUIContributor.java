@@ -321,13 +321,27 @@ public class DB2LUWDriverUIContributor implements IDriverUIContributor,
 		properties.setProperty(
 				IJDBCDriverDefinitionConstants.DATABASE_NAME_PROP_ID,
 				this.databaseText.getText().trim());
-		properties.setProperty(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID,
-				this.passwordText.getText());
-		properties.setProperty(
-				IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
-						.valueOf(savePasswordButton.getSelection()));
-		properties.setProperty(IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
-				this.usernameText.getText());
+		if (!this.clientAuthenticationCheckbox.getSelection()) {
+			properties.setProperty(
+					IJDBCDriverDefinitionConstants.USERNAME_PROP_ID,
+					this.usernameText.getText());
+			properties.setProperty(
+					IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID,
+					this.passwordText.getText());
+			properties.setProperty(
+					IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID,
+					String.valueOf(savePasswordButton.getSelection()));
+
+		} else {
+			properties.setProperty(
+					IJDBCDriverDefinitionConstants.USERNAME_PROP_ID, System
+							.getProperty("user.name"));
+			properties.remove(IJDBCDriverDefinitionConstants.PASSWORD_PROP_ID);
+			properties.setProperty(
+					IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID,
+					String.valueOf(false));
+		}
+
 		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
 		this.contributorInformation.setProperties(properties);
