@@ -501,10 +501,13 @@ public class OdaProfileExplorer
 
     private OdaConnectionProfile createOdaWrapper( IConnectionProfile wrappedProfile )
     {
+        if( wrappedProfile == null )
+            return null;	// nothing to wrap
+        
         if( wrappedProfile instanceof OdaConnectionProfile )
         {
             if( ((OdaConnectionProfile) wrappedProfile).hasWrappedProfile() )
-                return (OdaConnectionProfile) wrappedProfile;
+                return (OdaConnectionProfile) wrappedProfile;	// already a wrapper
         }
         return new OdaConnectionProfile( wrappedProfile ) ;
     }
