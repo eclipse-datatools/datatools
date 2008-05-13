@@ -47,13 +47,13 @@ import org.eclipse.emf.edit.tree.provider.TreeItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
@@ -81,11 +81,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	@Override
 	public void createPageCustomControl(final Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayout(new GridLayout());
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(composite);
+		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 100).align(SWT.FILL, SWT.FILL).applyTo(composite);
 
 		viewer = new ContainerCheckedTreeViewer(composite, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
 
 		final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
 		adapterFactory.addAdapterFactory(new EcoreAdapterFactory());
@@ -104,6 +102,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		});
 		initializeControls();
 		setControl(composite);
+		GridLayoutFactory.fillDefaults().margins(4, 4).generateLayout(composite);
 	}
 
 	@Override
@@ -233,10 +232,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
-	 * DataSetDesign)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 *      DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -250,9 +248,8 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #canLeave()
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 *      #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -264,9 +261,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	 * the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 * 		runtime result set metadata instance
+	 *            runtime result set metadata instance
 	 * @param dataSetDesign
-	 * 		data set design instance to update
+	 *            data set design instance to update
 	 * @throws OdaException
 	 */
 	@SuppressWarnings("unchecked")

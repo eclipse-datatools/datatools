@@ -72,7 +72,7 @@ public class DefaultSourceViewer implements IOCLSourceViewer {
 	private final class UninitializedState implements IOCLSourceViewer {
 
 		public Composite createExpressionControl(final Composite parent) {
-			final SourceViewer sourceViewer = new SourceViewer(parent, null, SWT.NONE);
+			final SourceViewer sourceViewer = new SourceViewer(parent, null, SWT.BORDER);
 			sourceViewer.configure(new SourceViewerConfiguration());
 			sourceViewer.setEditable(true);
 			final StyledText textWidget = sourceViewer.getTextWidget();
