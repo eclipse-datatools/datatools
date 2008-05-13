@@ -35,7 +35,6 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.Driver;
 import org.eclipse.datatools.enablement.oda.ecore.ui.Activator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -94,7 +93,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
@@ -114,10 +115,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 				validateData();
 				final IStructuredSelection eventSelection = (IStructuredSelection) event.getSelection();
 				setInvariantToSelection(getEditingDesign(), eventSelection);
-				// if (!eventSelection.isEmpty()) {
-				// expressionWidget.setContext((EObject)
-				// eventSelection.getFirstElement());
-				// }
 			}
 		});
 
@@ -151,16 +148,12 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	private void initializeControl() {
 		final DataSetDesign dataSetDesign = getInitializationDesign();
 		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
-		final URI uri = URI.createURI((String) dataSourceProperties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING));
-
 		try {
-			fillContextCombo(dataSetDesign, EcoreUtil.getPackageForDataSource(uri));
-			expressionWidget.setExpression(dataSetDesign.getQueryText());
-			// if (!contextCombo.getSelection().isEmpty()) {
-			// expressionWidget.setContext((EObject) ((IStructuredSelection)
-			// contextCombo.getSelection())
-			// .getFirstElement());
-			// }
+			final EPackage ePackage = EcoreUtil.getPackageForModel(dataSourceProperties);
+			if (ePackage != null) {
+				fillContextCombo(dataSetDesign, ePackage);
+				expressionWidget.setExpression(dataSetDesign.getQueryText());
+			}
 			validateData();
 		} catch (final WrappedException e) {
 			final Throwable cause = e.getCause();
@@ -169,13 +162,16 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			} else {
 				setMessage("Got an error trying to load: " + cause.getMessage(), ERROR);
 			}
+		} catch (final OdaException e) {
+			setMessage(e.getMessage());
 		}
 	}
 
 	/*
 	 * Fills the combo box with the available context metaclasses.
 	 * 
-	 * @see org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
+	 * @see
+	 * org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
 	 */
 	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
@@ -223,7 +219,10 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 * DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -239,7 +238,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -332,9 +333,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 * the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 *            runtime result set metadata instance
+	 * 		runtime result set metadata instance
 	 * @param dataSetDesign
-	 *            data set design instance to update
+	 * 		data set design instance to update
 	 * @throws OdaException
 	 */
 	private void updateResultSetDesign(final IResultSetMetaData resultSetMetaData, final DataSetDesign dataSetDesign)

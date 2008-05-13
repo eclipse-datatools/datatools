@@ -32,7 +32,6 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -129,11 +128,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	private void initializeControls() {
 		final DataSetDesign dataSetDesign = getInitializationDesign();
 		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
-		final URI uri = URI.createURI((String) dataSourceProperties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING));
 
-		ePackage = null;
 		try {
-			ePackage = EcoreUtil.getPackageForDataSource(uri);
+			ePackage = EcoreUtil.getPackageForModel(dataSourceProperties);
 			setViewerInputBasedOnInvariant(dataSetDesign);
 		} catch (final WrappedException e) {
 			final Throwable cause = e.getCause();
@@ -142,6 +139,8 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			} else {
 				setMessage("Got an error trying to load: " + cause.getMessage(), ERROR);
 			}
+		} catch (final OdaException e) {
+			setMessage("Couldn't get EPackage for model");
 		}
 	}
 
@@ -234,7 +233,10 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 * DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -248,7 +250,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -260,9 +264,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	 * the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 *            runtime result set metadata instance
+	 * 		runtime result set metadata instance
 	 * @param dataSetDesign
-	 *            data set design instance to update
+	 * 		data set design instance to update
 	 * @throws OdaException
 	 */
 	@SuppressWarnings("unchecked")

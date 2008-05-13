@@ -16,32 +16,32 @@ package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
 import java.util.Properties;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourcePageHelper;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
-import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
+import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.ControlAdapter;
-import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage {
 
 	private Properties properties = new Properties();
-	private Text modelFileControl;
+	private Text modelPathControl;
+	protected boolean isWorkspacePath = false;
 
 	public DataSourceWizardPage(final String pageName) {
 		super(pageName);
@@ -59,7 +59,9 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#collectCustomProperties()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
+	 * #collectCustomProperties()
 	 */
 	@Override
 	public Properties collectCustomProperties() {
@@ -69,90 +71,93 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
+	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
-		// Create a ScrolledComposite as the child of the parent wizard page.
-		final ScrolledComposite scrolledComposite = new ScrolledComposite(parent, SWT.V_SCROLL | SWT.BORDER);
-		scrolledComposite.setExpandVertical(true);
-		scrolledComposite.setExpandHorizontal(true);
+		final Group locationGroup = new Group(parent, SWT.NONE);
+		locationGroup.setText("Model Location");
 
-		// Create a Composite with the ScrolledComposite as the parent.
-		final Composite content = new Composite(scrolledComposite, SWT.NONE);
-		scrolledComposite.setContent(content);
-
-		// Set up control listener to monitor the resizing of the properties
-		// pane.
-		scrolledComposite.addControlListener(new ControlAdapter() {
+		final Button filesystemRadioButton = new Button(locationGroup, SWT.RADIO);
+		filesystemRadioButton.setText("Use Model from Filesystem");
+		filesystemRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
+		filesystemRadioButton.setSelection(true);
+		filesystemRadioButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
-			public void controlResized(final ControlEvent e) {
-				final Rectangle r = scrolledComposite.getClientArea();
-				scrolledComposite.setMinSize(content.computeSize(r.width, SWT.DEFAULT));
+			public void widgetSelected(final SelectionEvent e) {
+				isWorkspacePath = false;
 			}
 		});
 
-		createModelEntryControls(content);
-	}
+		final Button workspaceRadioButton = new Button(locationGroup, SWT.RADIO);
+		workspaceRadioButton.setText("Use Model in Workspace");
+		workspaceRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
+		workspaceRadioButton.setSelection(false);
+		workspaceRadioButton.addSelectionListener(new SelectionAdapter() {
 
-	private void createModelEntryControls(final Composite content) {
-		final GridLayout layout = new GridLayout();
-		content.setLayout(layout);
-		layout.numColumns = 3;
-		layout.verticalSpacing = 9;
+			@Override
+			public void widgetSelected(final SelectionEvent e) {
+				isWorkspacePath = true;
+			}
+		});
 
-		final Label label = new Label(content, SWT.NULL);
-		label.setText("&Ecore Model:");
+		final Label label = new Label(locationGroup, SWT.NONE);
+		label.setText("&Model:");
 
-		modelFileControl = new Text(content, SWT.BORDER | SWT.SINGLE);
-		modelFileControl.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		modelFileControl.addModifyListener(new ModifyListener() {
+		modelPathControl = new Text(locationGroup, SWT.BORDER | SWT.SINGLE);
+		modelPathControl.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		modelPathControl.addModifyListener(new ModifyListener() {
 
 			public void modifyText(final ModifyEvent e) {
 				dialogChanged();
 			}
 		});
 
-		final Button button = new Button(content, SWT.PUSH);
-		button.setText("Browse...");
-		button.addSelectionListener(new SelectionAdapter() {
+		final Button browseButton = new Button(locationGroup, SWT.PUSH);
+		browseButton.setText("Browse...");
+		browseButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(final SelectionEvent e) {
 				handleBrowseForModel();
 			}
 		});
+		GridLayoutFactory.swtDefaults().numColumns(3).generateLayout(locationGroup);
+
 		setPingButtonVisible(true);
 		setPingButtonEnabled(false);
 		dialogChanged();
 	}
 
-	/**
-	 * Uses the standard container selection dialog to choose the new value for
-	 * the container field.
-	 */
-
 	private void handleBrowseForModel() {
-		// TODO: Replace this use of ResourceDialog with in-place buttons
-		// (shouldn't need to pop a dialog here)
-		final ResourceDialog dialog = new ResourceDialog(getShell(), "Select Ecore model", SWT.OPEN | SWT.SINGLE);
-		final int result = dialog.open();
-		if (result == Window.OK) {
-			final String uriText = dialog.getURIText();
-			if (uriText != null) {
-				modelFileControl.setText(uriText);
-				properties.setProperty(Constants.CONNECTION_ECORE_MODEL_URI_STRING, uriText);
+		String path = null;
+		if (!isWorkspacePath) {
+			final FileDialog filesystemDialog = new FileDialog(modelPathControl.getShell());
+			path = filesystemDialog.open();
+		} else {
+			final String msg = "Select serialized model";
+			final IFile[] result = WorkspaceResourceDialog.openFileSelection(modelPathControl.getShell(), null, msg,
+					false, null, null);
+			if (result.length > 0) {
+				path = result[0].getFullPath().toPortableString();
 			}
 		}
+		if (path == null) {
+			path = "";
+		}
+		modelPathControl.setText(path);
+		properties.setProperty(Constants.CONNECTION_DIRECTORY_PATH, path);
+		properties.setProperty(Constants.CONNECTION_DIRECTORY_ISWORKSPACE, Boolean.toString(isWorkspacePath));
 	}
 
 	private void dialogChanged() {
-		final String uriText = modelFileControl.getText();
+		final String uriText = modelPathControl.getText();
 		String message = null;
 		if (uriText.length() == 0) {
 			message = "Ecore model must be specified";
-			return;
 		}
 		try {
 			URI.createURI(uriText);
@@ -171,7 +176,9 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage#setInitialProperties(java.util.Properties)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
+	 * #setInitialProperties(java.util.Properties)
 	 */
 	@Override
 	public void setInitialProperties(final Properties dataSourceProps) {

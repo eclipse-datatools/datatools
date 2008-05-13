@@ -18,17 +18,12 @@ public class Constants {
 
 	public static final int DATA_SOURCE_MAJOR_VERSION = 1;
 	public static final int DATA_SOURCE_MINOR_VERSION = 0;
+
 	public static final String DATA_SOURCE_PRODUCT_NAME = "Ecore ODA Data Source";
 
-	public static final String CONNECTION_ECORE_MODEL_PACKAGE = "model.package";
 	public static final String CONNECTION_EOBJECT_INSTANCES = "eobject.instances";
-	public static final String CONNECTION_ECORE_MODEL_URI_STRING = "model.uri";
-
-	public static final String CONNECTION_COLUMN_DEFINITIONS = "column.definitions";
-
-	public static final Object CONNECTION_COLUMN_DEFINITION_NAMES = "column.definition.names";
-	public static final Object CONNECTION_COLUMN_DEFINITION_REFERENCES = "column.definition.references";
-	public static final Object CONNECTION_COLUMN_DEFINITION_FEATURES = "columns.definition.features";
+	public static final String CONNECTION_DIRECTORY_ISWORKSPACE = "directory.isWorkspace";
+	public static final String CONNECTION_DIRECTORY_PATH = "directory.path";
 
 	public static final String OCL_ECORE_INVARIANT = "ocl.ecore.invariant";
 

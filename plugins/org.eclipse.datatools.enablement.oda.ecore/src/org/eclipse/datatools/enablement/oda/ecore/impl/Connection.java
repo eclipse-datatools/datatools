@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -45,7 +46,9 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties
+	 * )
 	 */
 	public void open(final Properties connProperties) throws OdaException {
 		if (isOpen) {
@@ -59,33 +62,39 @@ public class Connection implements IConnection {
 		isOpen = true;
 	}
 
-	private Collection<EObject> getModel(final Properties properties) throws OdaException {
+	public static Collection<EObject> getModel(final Properties properties) throws OdaException {
 		final Object object = properties.get(Constants.CONNECTION_EOBJECT_INSTANCES);
 		if (object instanceof Collection) {
 			@SuppressWarnings("unchecked")
 			final Collection<EObject> returnValue = (Collection<EObject>) object;
 			return returnValue;
 		}
-		final String uriString = (String) properties.get(Constants.CONNECTION_ECORE_MODEL_URI_STRING);
-		if (uriString == null) {
-			final String errmsg = "Connection property " + Constants.CONNECTION_EOBJECT_INSTANCES
-					+ " has not been set, therefore " + Constants.CONNECTION_ECORE_MODEL_URI_STRING
-					+ " must be set but it was null";
-			throw new OdaException(errmsg);
+		final boolean isWorkspaceRelative = Boolean.parseBoolean(properties.getProperty(
+				Constants.CONNECTION_DIRECTORY_ISWORKSPACE, "false"));
+		final URI uri;
+		final String pathString = properties.getProperty(Constants.CONNECTION_DIRECTORY_PATH, null);
+		if (isWorkspaceRelative && pathString != null) {
+			uri = URI.createURI(ResourcesPlugin.getWorkspace().getRoot().findMember(pathString).getLocationURI()
+					.toString());
+		} else {
+			uri = URI.createFileURI(pathString);
 		}
-		final URI uri = URI.createURI(uriString);
 		try {
 			final Resource resource = new ResourceSetImpl().getResource(uri, true);
 			return resource.getContents();
 		} catch (final WrappedException e) {
 			throw new OdaException(e.getCause());
+		} catch (final RuntimeException e) {
+			throw new OdaException(e);
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java.lang.Object)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java
+	 * .lang.Object)
 	 */
 	public void setAppContext(final Object context) throws OdaException {
 		// do nothing; assumes no support for pass-through context
@@ -112,7 +121,9 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang.String)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang
+	 * .String)
 	 */
 	public IDataSetMetaData getMetaData(final String dataSetType) throws OdaException {
 		// assumes that this driver supports only one type of data set,
@@ -123,7 +134,9 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang.String)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang
+	 * .String)
 	 */
 	public IQuery newQuery(final String dataSetType) throws OdaException {
 		if (!isOpen) {
