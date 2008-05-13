@@ -1,2 +1,10 @@
 Cannot_disconnect_before_save=エディタの変更内容が保存されていない間は切断できません。
 Disconnect_error=エラー
+SyntaxColoring_Comment=Single-line comment
+SyntaxColoring_MultilineComment=Multi-line comment
+SyntaxColoring_QuotedLiteral=Single quoted string
+SyntaxColoring_DelimitedIdentifier=Double quoted string
+SyntaxColoring_Keyword=Keyword
+SyntaxColoring_Type=Type
+SyntaxColoring_Identifier=Identifier
+SyntaxColoring_Default=Others

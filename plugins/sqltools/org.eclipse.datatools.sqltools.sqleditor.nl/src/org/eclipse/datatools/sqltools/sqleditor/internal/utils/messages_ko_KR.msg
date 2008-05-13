@@ -1,2 +1,10 @@
 Cannot_disconnect_before_save=편집기 변경 내용을 저장하지 않고 연결을 끊을 수 없습니다.
 Disconnect_error=오류
+SyntaxColoring_Comment=Single-line comment
+SyntaxColoring_MultilineComment=Multi-line comment
+SyntaxColoring_QuotedLiteral=Single quoted string
+SyntaxColoring_DelimitedIdentifier=Double quoted string
+SyntaxColoring_Keyword=Keyword
+SyntaxColoring_Type=Type
+SyntaxColoring_Identifier=Identifier
+SyntaxColoring_Default=Others

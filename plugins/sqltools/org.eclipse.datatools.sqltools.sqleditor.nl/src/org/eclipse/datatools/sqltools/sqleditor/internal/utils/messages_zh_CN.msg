@@ -1,2 +1,10 @@
 Cannot_disconnect_before_save=不能在未保存编辑器更改的情况下断开连接
 Disconnect_error=错误
+SyntaxColoring_Comment=Single-line comment
+SyntaxColoring_MultilineComment=Multi-line comment
+SyntaxColoring_QuotedLiteral=Single quoted string
+SyntaxColoring_DelimitedIdentifier=Double quoted string
+SyntaxColoring_Keyword=Keyword
+SyntaxColoring_Type=Type
+SyntaxColoring_Identifier=Identifier
+SyntaxColoring_Default=Others
