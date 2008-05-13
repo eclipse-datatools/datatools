@@ -139,8 +139,7 @@ public class FESpecifyExistingConnectionsDialogPage extends
 					String version = properties
 							.getProperty(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
 					if ((vendor != null) && (version != null)
-							&& (vendor.equals(allowedVendor))
-							&& (version.equals(allowedVersion))) {
+							&& (vendor.equals(allowedVendor))) {
 						filteredProfilesCollection.add(allProfiles[index]);
 					}
 				}
