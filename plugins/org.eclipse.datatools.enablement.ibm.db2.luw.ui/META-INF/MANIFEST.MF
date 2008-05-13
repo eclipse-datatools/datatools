@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0)",
  com.ibm.icu;bundle-version="[3.4.0,4.0.0)",
  org.eclipse.datatools.enablement.ibm.ui;bundle-version="[1.0.0,2.0.0)"
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers
 Bundle-Vendor: %providerName
