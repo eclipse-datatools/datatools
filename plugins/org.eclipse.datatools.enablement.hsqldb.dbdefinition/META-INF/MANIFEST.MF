@@ -5,5 +5,6 @@ Bundle-SymbolicName: org.eclipse.datatools.enablement.hsqldb.dbdefinition; singl
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
-Eclipse-AutoStart: true
+Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.4

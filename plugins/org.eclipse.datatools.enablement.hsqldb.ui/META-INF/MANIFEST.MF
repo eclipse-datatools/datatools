@@ -18,6 +18,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.sqm.core.ui;bundle-version="[1.0.0,1.5.0)",
  org.eclipse.ui.navigator;bundle-version="[3.2.0,4.0.0)"
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.hsqldb.ui,
  org.eclipse.datatools.enablement.hsqldb.ui.connection,
  org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers

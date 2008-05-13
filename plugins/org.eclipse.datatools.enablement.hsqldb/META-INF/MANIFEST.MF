@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.datatools.connectivity;bundle-version="[1.0.0,1.5.0)
  org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,1.5.0)",
  org.eclipse.emf.ecore.xmi
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.hsqldb.catalog,
  org.eclipse.datatools.enablement.hsqldb.connection,
  org.eclipse.datatools.enablement.hsqldb.internal,
