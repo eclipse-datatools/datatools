@@ -24,6 +24,15 @@ public final class Messages extends NLS {
 	public static String Cannot_disconnect_before_save;
 	public static String Disconnect_error;
 
+    public static String SyntaxColoring_Comment;
+	public static String SyntaxColoring_MultilineComment;
+	public static String SyntaxColoring_QuotedLiteral;
+	public static String SyntaxColoring_DelimitedIdentifier;
+	public static String SyntaxColoring_Keyword;
+	public static String SyntaxColoring_Type;
+	public static String SyntaxColoring_Identifier;
+	public static String SyntaxColoring_Default;
+	
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}

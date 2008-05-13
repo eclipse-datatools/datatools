@@ -28,6 +28,7 @@ public final class Messages extends NLS {
 	public static String ProfileUtil_error_getdriver;
 	public static String ProfileUtil_error_not_connected;
 	public static String ProfileUtil_error_wrong_database_name;
+	public static String ProfileUtil_error_no_managed_connection;
 
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

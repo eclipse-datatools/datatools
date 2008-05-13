@@ -80,7 +80,7 @@ public class ContainerSelectionGroup extends Composite
     private static final String DEFAULT_MSG_SELECT_ONLY      = Messages.ContainerGroup_selectFolder; //$NON-NLS-1$
 
     // sizing constants
-    private static final int    SIZING_SELECTION_PANE_WIDTH  = 320;
+    private static final int    SIZING_SELECTION_PANE_WIDTH  = 480;
     private static final int    SIZING_SELECTION_PANE_HEIGHT = 300;
 
     /**

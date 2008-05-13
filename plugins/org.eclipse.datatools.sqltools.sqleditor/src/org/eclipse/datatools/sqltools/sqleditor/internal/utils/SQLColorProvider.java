@@ -51,14 +51,14 @@ public class SQLColorProvider {
     public static final RGB SQL_HC_DEFAULT_COLOR              = new RGB( 255, 255, 255 ); // bright white
     
     // Define names for displaying.
-    public static final String SQL_COMMENT 					= "Single-line comment";
-	public static final String SQL_MULTILINE_COMMENT 		= "Multi-line comment";
-	public static final String SQL_QUOTED_LITERAL 			= "Single quoted string";
-	public static final String SQL_DELIMITED_IDENTIFIER 	= "Double quoted string";
-	public static final String SQL_KEYWORD 					= "Keyword";
-	public static final String SQL_TYPE 					= "Type";
-	public static final String SQL_IDENTIFIER 				= "Identifier";
-	public static final String SQL_DEFAULT 					= "Others";
+    public static final String SQL_COMMENT 					= Messages.SyntaxColoring_Comment;
+	public static final String SQL_MULTILINE_COMMENT 		= Messages.SyntaxColoring_MultilineComment;
+	public static final String SQL_QUOTED_LITERAL 			= Messages.SyntaxColoring_QuotedLiteral;
+	public static final String SQL_DELIMITED_IDENTIFIER 	= Messages.SyntaxColoring_DelimitedIdentifier;
+	public static final String SQL_KEYWORD 					= Messages.SyntaxColoring_Keyword;
+	public static final String SQL_TYPE 					= Messages.SyntaxColoring_Type;
+	public static final String SQL_IDENTIFIER 				= Messages.SyntaxColoring_Identifier;
+	public static final String SQL_DEFAULT 					= Messages.SyntaxColoring_Default;
     
     protected Map fColorTable = new HashMap(10);
 

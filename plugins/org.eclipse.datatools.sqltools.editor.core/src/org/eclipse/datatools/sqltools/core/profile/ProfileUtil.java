@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2005 Sybase, Inc. and others.
+ * Copyright (c) 2004, 2008 Sybase, Inc. and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -491,27 +491,33 @@ public class ProfileUtil
             IManagedConnection mc = profile.getManagedConnection(ConnectionInfo.class.getName());
             //during the profile connected event notification, 
             //IManagedConnection is connected while IConnectionProfile is not 
-            if (!mc.isConnected())
+            if (mc == null || !mc.isConnected())
             {
                 if (connect)
                 {
                     profile.connect();
+                    mc = profile.getManagedConnection(ConnectionInfo.class.getName());
                 }
                 else
                 {
                     return null;
                 }
             }
-            IConnection ic = mc.getConnection();
-            if (ic == null)
-            {
-                return null;
+            if (mc != null) {
+	            IConnection ic = mc.getConnection();
+	            if (ic == null)
+	            {
+	                return null;
+	            }
+	            Object rawConn = ic.getRawConnection();
+	            if (rawConn instanceof ConnectionInfo)
+	            {
+	                ConnectionInfo ci = (ConnectionInfo)rawConn;
+	                return ci.getSharedDatabase();
+	            }
             }
-            Object rawConn = ic.getRawConnection();
-            if (rawConn instanceof ConnectionInfo)
-            {
-                ConnectionInfo ci = (ConnectionInfo)rawConn;
-                return ci.getSharedDatabase();
+            else {
+            	EditorCorePlugin.getDefault().log(NLS.bind(Messages.ProfileUtil_error_no_managed_connection, databaseIdentifier.getProfileName()));
             }
         } catch (NoSuchProfileException e) {
             EditorCorePlugin.getDefault().log(e);
@@ -608,6 +614,17 @@ public class ProfileUtil
      */
     public static Connection connectProfile(String profileName)
     {
+        return connectProfile( profileName, null );
+    }
+
+    /**
+     * Connects the connection profile and returns the shared connection. 
+     * @param profileName   name of profile to connect to
+     * @param dbname        name of database to use or switch to in the connection; may be null
+     * @return  shared connection; may be null if connect failed
+     */
+    public static Connection connectProfile(String profileName, String dbname)
+    {
     	IConnectionProfile profile = null;
     	Connection conn = null;
 		try {
@@ -625,7 +642,7 @@ public class ProfileUtil
         	}
         }
         try {
-        	conn = getReusableConnection(new DatabaseIdentifier(profileName));
+        	conn = getReusableConnection(new DatabaseIdentifier(profileName, dbname));
         } catch (Exception e1) {
         	EditorCorePlugin.getDefault().log(e1);
         	return null;
@@ -645,7 +662,7 @@ public class ProfileUtil
     {
     	if (!profile.isConnected())
     	{
-    		return connectProfile(profile.getName());
+    		return connectProfile(profile.getName(), dbName);
     	}
         try
         {

@@ -27,6 +27,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.0,1.5.0)",
  org.eclipse.datatools.sqltools.result;bundle-version="[0.9.0,1.5.0]"
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.core.dbitem,
  org.eclipse.datatools.sqltools.core.internal.dbitem,

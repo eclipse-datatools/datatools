@@ -11,4 +11,5 @@ Require-Bundle:
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  net.sourceforge.lpg.lpgjavaruntime;visibility:=reexport;bundle-version="[1.1.0,2.0.0)"
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.4

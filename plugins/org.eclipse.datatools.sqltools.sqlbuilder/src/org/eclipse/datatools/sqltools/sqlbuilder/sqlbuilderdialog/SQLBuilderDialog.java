@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2008 Sybase, Inc. and others.
+ * Copyright ï¿½ 2000, 2008 Sybase, Inc. and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -158,6 +158,17 @@ public class SQLBuilderDialog extends SQLPainterDlg
                 return null;
 		}
 
+		// Update statement type
+		int statementType = StatementHelper.STATEMENT_TYPE_SELECT;
+		if (_statementType != null && _statementType.equalsIgnoreCase("UPDATE")) {
+			statementType = StatementHelper.STATEMENT_TYPE_UPDATE;
+		} else if (_statementType != null && _statementType.equalsIgnoreCase("DELETE")) {
+			statementType = StatementHelper.STATEMENT_TYPE_DELETE;
+		} else if (_statementType != null && _statementType.equalsIgnoreCase("INSERT")) {
+			statementType = StatementHelper.STATEMENT_TYPE_INSERT;
+		}
+		_sqlBuilder.getDomainModel().initializeFromType(statementType);
+		
 		this.setBlockOnOpen(true);
 		if (this.open() == Dialog.OK){
 			return getSQL();
