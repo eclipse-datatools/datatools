@@ -98,7 +98,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	private void setupQueryTextComposite( Composite parent )
 	{
-		queryText = new Text( parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL );
+		queryText = new Text( parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.LEFT_TO_RIGHT );
 		GridData layoutData = new GridData( GridData.FILL_BOTH );
 		queryText.setLayoutData( layoutData );
 	}
