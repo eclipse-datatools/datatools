@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -480,16 +480,7 @@ public class ConnectionProfileMgmt {
 	 */
 	public static IConnectionProfile[] loadCPs(File file) throws CoreException {
 		try {
-			byte[] bytes = new byte[5];
-			char[] xml = {'<','?','x','m','l'};
-			FileInputStream fis = new FileInputStream(file);
-			fis.read(bytes);
-			fis.close();
-			boolean isXML = true;
-			for (int i = 0; isXML && i < 5; ++i) {
-				isXML = bytes[i] == xml[i];
-			}
-			if (isXML) {
+			if ( !isEncrypted( file ) ) {
 				// not encrpyted
 				return loadCPs(file, null);
 			}
@@ -508,6 +499,28 @@ public class ConnectionProfileMgmt {
 					ConnectivityPlugin.getDefault().getResourceString("error.loadprofilesxml"), e));//$NON-NLS-1$
 		}
 	}
+	
+	/**
+	 * Determines whether the specified connection profile file is encrypted.
+	 * @param file storage file of connection profile instances
+	 * @return     true if the specified file is encrypted; false otherwise
+	 * @throws IOException
+	 */
+    public static boolean isEncrypted( File file ) throws IOException
+    {
+        // read first 5 bytes from file to check if it can be read, i.e. not encrypted
+        byte[] bytes = new byte[5];
+        char[] xml = {'<','?','x','m','l'};
+        FileInputStream fis = new FileInputStream( file );
+        fis.read( bytes );
+        fis.close();
+        
+        boolean isXML = true;
+        for( int i = 0; isXML && i < 5; ++i ) {
+            isXML = bytes[i] == xml[i];
+        }
+        return ! isXML;
+    }
 
 	/**
 	 * Takes the properties for a given element and converts them to a 
