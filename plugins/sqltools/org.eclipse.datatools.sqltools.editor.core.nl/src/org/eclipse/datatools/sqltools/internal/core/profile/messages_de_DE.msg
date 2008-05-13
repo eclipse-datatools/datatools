@@ -6,4 +6,5 @@ ProfileUtil_error_not_connected=Das Verbindungsprofil: {0} ist noch nicht verbun
 
 ProfileUtil_error_getdriver=Keine Treiberspezifikation angegeben für {0}.
 ProfileUtil_error_wrong_database_name=Falsche Datenbank gab {0} von Verbindungsprofil zurück {1}. Erwarteter Name ist {2}
+ProfileUtil_error_no_managed_connection=Failed to get managed connection for connection profile {0}
 

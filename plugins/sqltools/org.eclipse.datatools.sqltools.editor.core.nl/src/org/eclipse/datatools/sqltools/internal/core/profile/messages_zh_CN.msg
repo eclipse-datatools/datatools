@@ -6,4 +6,5 @@ ProfileUtil_error_not_connected=尚未连接以下连接配置文件: {0}。
 
 ProfileUtil_error_getdriver=未对 {0} 指定驱动程序定义。
 ProfileUtil_error_wrong_database_name=从连接配置文件 {1} 返回了错误的数据库 {0}。期望的名称是 {2}
+ProfileUtil_error_no_managed_connection=Failed to get managed connection for connection profile {0}
 
