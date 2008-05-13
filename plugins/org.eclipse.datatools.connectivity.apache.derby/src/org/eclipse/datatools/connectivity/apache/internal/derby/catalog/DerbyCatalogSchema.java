@@ -263,6 +263,7 @@ public class DerbyCatalogSchema extends DerbySchemaImpl implements ICatalogObjec
 
 	private void handleFilterChanged(String filterKey) {
 		boolean refresh = false;
+		if (catalog == null || catalog.getDatabase() == null) return;
 		ConnectionInfo conInf = DatabaseConnectionRegistry.getInstance()
 				.getConnectionForDatabase(getCatalogDatabase());
 		if (tablesLoaded.booleanValue()
