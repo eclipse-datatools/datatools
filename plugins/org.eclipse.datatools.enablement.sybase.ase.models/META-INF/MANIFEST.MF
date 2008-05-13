@@ -13,3 +13,4 @@ Export-Package: org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlm
  org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.util
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy

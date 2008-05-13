@@ -25,3 +25,4 @@ Export-Package: org.eclipse.datatools.enablement.sybase.asa,
  org.eclipse.datatools.enablement.sybase.asa.deltaddl,
  org.eclipse.datatools.enablement.sybase.asa.internal.connection,
  org.eclipse.datatools.enablement.sybase.asa.loaders
+Bundle-ActivationPolicy: lazy

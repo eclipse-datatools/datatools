@@ -45,3 +45,4 @@ Bundle-Activator: org.eclipse.datatools.enablement.sybase.ui.SybaseUIPlugin
 Eclipse-LazyStart: true
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-ActivationPolicy: lazy
