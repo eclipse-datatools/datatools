@@ -9,6 +9,7 @@
  * Contributors: brianf - initial API and implementation
  *     IBM Corporation - migrated to new wizard framework
  *     IBM Corporation - defect fix #213266
+ *     IBM Corporation - defect fix #223677
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers;
 
@@ -27,6 +28,7 @@ import org.eclipse.datatools.connectivity.internal.ui.DelimitedStringList;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.ModifyEvent;
@@ -95,8 +97,8 @@ public class DerbyEmbeddedDriverUIContributor implements IDriverUIContributor,
 	private static final String CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_SAVE_PASSWORD_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
 
-	private static final String CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_ = Messages
-			.getString("CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
+	private static final String CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_ = TextProcessor.process(Messages
+			.getString("CUI_NEWCW_CREATE_DATABASE_SUMMARY_DATA_TEXT_")); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_UPGRADE_DATABASE_SUMMARY_DATA_TEXT_ = Messages
 			.getString("CUI_NEWCW_UPGRADE_DATABASE_SUMMARY_DATA_TEXT_"); //$NON-NLS-1$
