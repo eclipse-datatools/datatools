@@ -562,7 +562,7 @@ public class CPWizardSelectionPage
 					if (name.toUpperCase().startsWith(mFilter.toUpperCase())) {
 						return true;
 					}
-					else if (name.toUpperCase().contains(mFilter.toUpperCase())) {
+					else if (name.toUpperCase().indexOf(mFilter.toUpperCase()) > 0) {
 						return true;
 					}
 					else
