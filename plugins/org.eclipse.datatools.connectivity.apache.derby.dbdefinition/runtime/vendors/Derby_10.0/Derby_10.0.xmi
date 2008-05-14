@@ -115,7 +115,7 @@
     <checkOption>LOCAL</checkOption>
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
-  <queryDefinition hostVariableMarker="?"/>
+  <queryDefinition hostVariableMarker=":"/>
   <indexDefinition clusteringSupported="false" maximumIdentifierLength="18"/>
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
