@@ -32,6 +32,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil;
+import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -59,7 +60,6 @@ import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
-	private static final String DEFAULT_MESSAGE = "Define the columns for the data set";
 	private EPackage ePackage;
 	private CheckboxTreeViewer viewer;
 	private Properties dataSourceProperties;
@@ -67,14 +67,14 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	public DataSetColumnsWizardPage(final String pageName) {
 		super(pageName);
 		setTitle(pageName);
-		setMessage(DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
 		setPageComplete(false);
 	}
 
 	public DataSetColumnsWizardPage(final String pageName, final String title, final ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
 		setTitle(pageName);
-		setMessage(DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
 		setPageComplete(false);
 	}
 
@@ -136,10 +136,10 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			if (cause == null) {
 				setMessage(e.getMessage(), ERROR);
 			} else {
-				setMessage("Got an error trying to load: " + cause.getMessage(), ERROR);
+				setMessage(Messages.getString("DataSetColumnsWizardPage.loadError") + cause.getMessage(), ERROR); //$NON-NLS-1$
 			}
 		} catch (final OdaException e) {
-			setMessage("Couldn't get EPackage for model");
+			setMessage(Messages.getString("DataSetColumnsWizardPage.noEPackage"), ERROR); //$NON-NLS-1$
 		}
 	}
 
@@ -213,9 +213,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		final boolean isValid = viewer.getCheckedElements().length > 0;
 
 		if (isValid) {
-			setMessage(DEFAULT_MESSAGE);
+			setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
 		} else {
-			setMessage("At least one column must be selected", ERROR);
+			setMessage(Messages.getString("DataSetColumnsWizardPage.message.noColumnSelected"), ERROR); //$NON-NLS-1$
 		}
 
 		setPageComplete(isValid);
@@ -232,9 +232,10 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
-	 *      DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 * DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -248,8 +249,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #canLeave()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -261,9 +263,9 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	 * the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 *            runtime result set metadata instance
+	 * 		runtime result set metadata instance
 	 * @param dataSetDesign
-	 *            data set design instance to update
+	 * 		data set design instance to update
 	 * @throws OdaException
 	 */
 	@SuppressWarnings("unchecked")

@@ -69,24 +69,30 @@ public class Connection implements IConnection {
 			final Collection<EObject> returnValue = (Collection<EObject>) object;
 			return returnValue;
 		}
-		final boolean isWorkspaceRelative = Boolean.parseBoolean(properties.getProperty(
+		final URI uri = dataSourceUriFromProperties(properties);
+		final Resource resource;
+		try {
+			resource = new ResourceSetImpl().getResource(uri, true);
+		} catch (final WrappedException e) {
+			throw new OdaException(e.getCause());
+		} catch (final RuntimeException e) {
+			throw new OdaException(e);
+		}
+		return resource.getContents();
+	}
+
+	public static URI dataSourceUriFromProperties(final Properties dataSourceProperties) {
+		final boolean isWorkspaceRelative = Boolean.parseBoolean(dataSourceProperties.getProperty(
 				Constants.CONNECTION_DIRECTORY_ISWORKSPACE, "false"));
 		final URI uri;
-		final String pathString = properties.getProperty(Constants.CONNECTION_DIRECTORY_PATH, null);
+		final String pathString = dataSourceProperties.getProperty(Constants.CONNECTION_DIRECTORY_PATH, null);
 		if (isWorkspaceRelative && pathString != null) {
 			uri = URI.createURI(ResourcesPlugin.getWorkspace().getRoot().findMember(pathString).getLocationURI()
 					.toString());
 		} else {
 			uri = URI.createFileURI(pathString);
 		}
-		try {
-			final Resource resource = new ResourceSetImpl().getResource(uri, true);
-			return resource.getContents();
-		} catch (final WrappedException e) {
-			throw new OdaException(e.getCause());
-		} catch (final RuntimeException e) {
-			throw new OdaException(e);
-		}
+		return uri;
 	}
 
 	/*

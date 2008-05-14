@@ -38,6 +38,7 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.Driver;
 import org.eclipse.datatools.enablement.oda.ecore.ui.Activator;
+import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.DefaultSourceViewer;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.IOCLSourceViewer;
 import org.eclipse.emf.common.util.WrappedException;
@@ -69,8 +70,6 @@ import org.eclipse.swt.widgets.Label;
 
 public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage {
 
-	private static String DEFAULT_MESSAGE = "Define the query text for the data set";
-
 	private transient ComboViewer contextCombo;
 
 	private transient IOCLSourceViewer syntaxViewer;
@@ -82,22 +81,23 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	public DataSetQueryWizardPage(final String pageName) {
 		super(pageName);
 		setTitle(pageName);
-		setMessage(DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
 		setPageComplete(false);
 	}
 
 	public DataSetQueryWizardPage(final String pageName, final String title, final ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
 		setTitle(pageName);
-		setMessage(DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
 		setPageComplete(false);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
@@ -105,7 +105,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 100).align(SWT.FILL, SWT.FILL).applyTo(composite);
 
 		final Label fieldLabel = new Label(composite, SWT.NONE);
-		fieldLabel.setText("OCL Invariant &Context (optional):");
+		fieldLabel.setText(Messages.getString("DataSetQueryWizardPage.label.invariant")); //$NON-NLS-1$
 
 		contextCombo = new ComboViewer(composite, SWT.NONE);
 		contextCombo.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -118,7 +118,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		});
 
 		final Label queryLabel = new Label(composite, SWT.NONE);
-		queryLabel.setText("OCL Invariant &Expression:");
+		queryLabel.setText(Messages.getString("DataSetQueryWizardPage.label.query")); //$NON-NLS-1$
 
 		syntaxViewer = createSyntaxViewer(composite);
 		final SourceViewer viewer = syntaxViewer.getSourceViewer();
@@ -139,8 +139,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 
 	private IOCLSourceViewer createSyntaxViewer(final Composite composite) {
 		IOCLSourceViewer sourceViewer = null;
-		final IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				"org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer");
+		final IConfigurationElement[] configurationElements = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor("org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer");
 		for (int i = 0; i < configurationElements.length; i++) {
 			final IConfigurationElement element = configurationElements[i];
 			if (element.getName().equalsIgnoreCase("oclSourceViewer")) {
@@ -176,17 +176,18 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			if (cause == null) {
 				setMessage(e.getMessage(), ERROR);
 			} else {
-				setMessage("Got an error trying to load: " + cause.getMessage(), ERROR);
+				setMessage(Messages.getString("DataSetQueryWizardPage.message.loadError") + cause.getMessage(), ERROR); //$NON-NLS-1$
 			}
 		} catch (final OdaException e) {
-			setMessage(e.getMessage());
+			setMessage(e.getMessage(), ERROR);
 		}
 	}
 
 	/*
 	 * Fills the combo box with the available context metaclasses.
 	 * 
-	 * @see org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
+	 * @see
+	 * org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
 	 */
 	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
@@ -213,7 +214,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			}
 		}
 		final EClass dummy = EcoreFactory.eINSTANCE.createEClass();
-		dummy.setName("");
+		dummy.setName(""); //$NON-NLS-1$
 		classes.add(dummy);
 		contextCombo.setInput(classes);
 		initializeContextCombo(getEditingDesign(), ePackage);
@@ -234,9 +235,10 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
-	 *      DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
+	 * DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -252,8 +254,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #canLeave()
+	 * @see
+	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 * #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -265,7 +268,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		if (selectedElement == null) {
 			return;
 		}
-		org.eclipse.datatools.connectivity.oda.design.Properties privateProperties = dataSetDesign.getPrivateProperties();
+		org.eclipse.datatools.connectivity.oda.design.Properties privateProperties = dataSetDesign
+				.getPrivateProperties();
 		if (privateProperties == null) {
 			privateProperties = DesignFactory.eINSTANCE.createProperties();
 			dataSetDesign.setPrivateProperties(privateProperties);
@@ -312,7 +316,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			// not able to get current metadata, reset previous derived metadata
 			dataSetDesign.setResultSets(null);
 			dataSetDesign.setParameters(null);
-			final String message = "Got an error when updating the design: " + e.getMessage();
+			final String message = Messages.getString("DataSetQueryWizardPage.message.designUpdateError") + e.getMessage(); //$NON-NLS-1$
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, e));
 		} finally {
 			try {
@@ -345,9 +349,9 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 * the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 *            runtime result set metadata instance
+	 * 		runtime result set metadata instance
 	 * @param dataSetDesign
-	 *            data set design instance to update
+	 * 		data set design instance to update
 	 * @throws OdaException
 	 */
 	private void updateResultSetDesign(final IResultSetMetaData resultSetMetaData, final DataSetDesign dataSetDesign)
@@ -369,12 +373,13 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	 * blank text. Set page message accordingly.
 	 */
 	private void validateData() {
-		final boolean isValid = syntaxViewer.getExpression() != null && syntaxViewer.getExpression().trim().length() > 0;
+		final boolean isValid = syntaxViewer.getExpression() != null
+				&& syntaxViewer.getExpression().trim().length() > 0;
 
 		if (isValid) {
-			setMessage(DEFAULT_MESSAGE);
+			setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
 		} else {
-			setMessage("An expression is required.", ERROR);
+			setMessage(Messages.getString("DataSetQueryWizardPage.message.expressionRequired"), ERROR); //$NON-NLS-1$
 		}
 
 		setPageComplete(isValid);

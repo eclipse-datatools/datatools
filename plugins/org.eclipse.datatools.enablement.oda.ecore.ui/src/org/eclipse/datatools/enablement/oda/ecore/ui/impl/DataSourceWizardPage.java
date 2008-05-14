@@ -17,8 +17,8 @@ package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.datatools.connectivity.oda.design.ui.pages.impl.DefaultDataSourcePageHelper;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
+import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -46,14 +46,12 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	public DataSourceWizardPage(final String pageName) {
 		super(pageName);
 
-		// TODO: Probably shouldn't use messages from
-		// DefaultDataSourcePageHelper?
-		setMessage(DefaultDataSourcePageHelper.DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSourceWizardPage.message.default"));
 	}
 
 	public DataSourceWizardPage(final String pageName, final String title, final ImageDescriptor titleImage) {
 		super(pageName, title, titleImage);
-		setMessage(DefaultDataSourcePageHelper.DEFAULT_MESSAGE);
+		setMessage(Messages.getString("DataSourceWizardPage.message.default"));
 	}
 
 	/*
@@ -78,10 +76,10 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	@Override
 	public void createPageCustomControl(final Composite parent) {
 		final Group locationGroup = new Group(parent, SWT.NONE);
-		locationGroup.setText("Model Location");
+		locationGroup.setText(Messages.getString("DataSourceWizardPage.group.modelLocation")); //$NON-NLS-1$
 
 		final Button filesystemRadioButton = new Button(locationGroup, SWT.RADIO);
-		filesystemRadioButton.setText("Use Model from Filesystem");
+		filesystemRadioButton.setText(Messages.getString("DataSourceWizardPage.button.useFilesystem")); //$NON-NLS-1$
 		filesystemRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
 		filesystemRadioButton.setSelection(true);
 		filesystemRadioButton.addSelectionListener(new SelectionAdapter() {
@@ -93,7 +91,7 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 		});
 
 		final Button workspaceRadioButton = new Button(locationGroup, SWT.RADIO);
-		workspaceRadioButton.setText("Use Model in Workspace");
+		workspaceRadioButton.setText(Messages.getString("DataSourceWizardPage.button.useWorkspace")); //$NON-NLS-1$
 		workspaceRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
 		workspaceRadioButton.setSelection(false);
 		workspaceRadioButton.addSelectionListener(new SelectionAdapter() {
@@ -105,7 +103,7 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 		});
 
 		final Label label = new Label(locationGroup, SWT.NONE);
-		label.setText("&Model:");
+		label.setText(Messages.getString("DataSourceWizardPage.label.model")); //$NON-NLS-1$
 
 		modelPathControl = new Text(locationGroup, SWT.BORDER | SWT.SINGLE);
 		modelPathControl.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -117,7 +115,7 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 		});
 
 		final Button browseButton = new Button(locationGroup, SWT.PUSH);
-		browseButton.setText("Browse...");
+		browseButton.setText(Messages.getString("DataSourceWizardPage.button.browse")); //$NON-NLS-1$
 		browseButton.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -138,7 +136,7 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 			final FileDialog filesystemDialog = new FileDialog(modelPathControl.getShell());
 			path = filesystemDialog.open();
 		} else {
-			final String msg = "Select serialized model";
+			final String msg = Messages.getString("DataSourceWizardPage.dialog.workspace"); //$NON-NLS-1$
 			final IFile[] result = WorkspaceResourceDialog.openFileSelection(modelPathControl.getShell(), null, msg,
 					false, null, null);
 			if (result.length > 0) {
@@ -146,7 +144,7 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 			}
 		}
 		if (path == null) {
-			path = "";
+			path = ""; //$NON-NLS-1$
 		}
 		modelPathControl.setText(path);
 		properties.setProperty(Constants.CONNECTION_DIRECTORY_PATH, path);
@@ -157,12 +155,12 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 		final String uriText = modelPathControl.getText();
 		String message = null;
 		if (uriText.length() == 0) {
-			message = "Ecore model must be specified";
+			message = Messages.getString("DataSourceWizardPage.message.missingModel"); //$NON-NLS-1$
 		}
 		try {
 			URI.createURI(uriText);
 		} catch (final IllegalArgumentException e) {
-			message = "Invalid URI";
+			message = Messages.getString("DataSourceWizardPage.message.invalidUri"); //$NON-NLS-1$
 		}
 		updateStatus(message);
 	}
