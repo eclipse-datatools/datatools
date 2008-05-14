@@ -35,6 +35,7 @@ CPWizardSelectionPage.title = Verbindungsprofil
 CPWizardSelectionPage.desc = Wählen Sie einen Verbindungsprofiltyp.
 CPWizardSelectionPage.group = &Verbindungsprofiltypen:
 CPWizardSelectionPage.defaultName =Neu: {0}
+CPWizardSelectionPage.defaultNameExtended =New {0}({1})
 actions.connect.job=Serverjob verbinden
 actions.connect.uijob=Sicht aktualisieren
 actions.ping.job=Serverjob mit Ping überprüfen

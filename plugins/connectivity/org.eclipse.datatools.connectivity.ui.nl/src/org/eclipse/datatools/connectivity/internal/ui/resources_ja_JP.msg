@@ -35,6 +35,7 @@ CPWizardSelectionPage.title = 接続プロファイル
 CPWizardSelectionPage.desc = 接続プロファイルの種類を選択してください。
 CPWizardSelectionPage.group = 接続プロファイルの種類(&C) :
 CPWizardSelectionPage.defaultName =新規 {0}
+CPWizardSelectionPage.defaultNameExtended =New {0}({1})
 actions.connect.job=サーバー接続ジョブ
 actions.connect.uijob=ビューの更新中
 actions.ping.job=サーバー ping ジョブ

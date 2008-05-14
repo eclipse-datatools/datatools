@@ -35,6 +35,7 @@ CPWizardSelectionPage.title = 连接配置文件
 CPWizardSelectionPage.desc = 选择连接配置文件类型。
 CPWizardSelectionPage.group = 连接配置文件类型(&C):
 CPWizardSelectionPage.defaultName =新建 {0}
+CPWizardSelectionPage.defaultNameExtended =New {0}({1})
 actions.connect.job=连接服务器作业
 actions.connect.uijob=正在刷新视图
 actions.ping.job=Ping 服务器作业

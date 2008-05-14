@@ -35,6 +35,7 @@ CPWizardSelectionPage.title = 연결 프로필
 CPWizardSelectionPage.desc = 연결 프로필 형식을 선택합니다.
 CPWizardSelectionPage.group = 연결 프로필 형식(&C):
 CPWizardSelectionPage.defaultName =새 {0}
+CPWizardSelectionPage.defaultNameExtended =New {0}({1})
 actions.connect.job=서버 연결 작업
 actions.connect.uijob=보기 새로 고치기
 actions.ping.job=서버 Ping 작업

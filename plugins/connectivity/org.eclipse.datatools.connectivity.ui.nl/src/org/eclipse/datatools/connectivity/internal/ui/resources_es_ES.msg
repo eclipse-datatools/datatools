@@ -35,6 +35,7 @@ CPWizardSelectionPage.title = Perfil de conexión
 CPWizardSelectionPage.desc = Seleccionar un tipo de perfil de conexión.
 CPWizardSelectionPage.group = Tipos de perfil de &conexión:
 CPWizardSelectionPage.defaultName =Nuevo {0}
+CPWizardSelectionPage.defaultNameExtended =New {0}({1})
 actions.connect.job=Conectar trabajo servidor
 actions.connect.uijob=Renovando la vista
 actions.ping.job=Hacer ping a trabajo servidor
