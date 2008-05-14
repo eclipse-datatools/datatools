@@ -255,6 +255,9 @@ public class CPWizardSelectionPage
 							mWizFilter = new WizardFilter(filter);
 							tableViewer.addFilter(mWizFilter);
 						}
+						setProfileName(new String());
+						setSelectedNode(null);
+						validate();
 					}
 				}
 			});
@@ -272,7 +275,15 @@ public class CPWizardSelectionPage
 									.getFirstElement();
 							
 							String newName = ConnectivityUIPlugin.getDefault().getResourceString(
-									"CPWizardSelectionPage.defaultName", new String[] {node.getProvider().getName()});							 //$NON-NLS-1$
+									"CPWizardSelectionPage.defaultName", new String[] {node.getProvider().getName()});//$NON-NLS-1$
+							int i = 0;
+							while (ProfileManager.getInstance().getProfileByName(newName) != null && i < Integer.MAX_VALUE) {
+								newName = ConnectivityUIPlugin.getDefault().getResourceString(
+										"CPWizardSelectionPage.defaultNameExtended",  //$NON-NLS-1$
+										new String[] {node.getProvider().getName(), 
+										Integer.toString(i)});
+								i++;
+							}
 							setProfileName(newName);
 							setSelectedNode(node);
 							validate();
@@ -314,8 +325,16 @@ public class CPWizardSelectionPage
 						if (iss != null && !iss.isEmpty()) {
 							CPWizardNode node = (CPWizardNode) iss
 									.getFirstElement();
+							int i = 0;
 							String newName = ConnectivityUIPlugin.getDefault().getResourceString(
-								"CPWizardSelectionPage.defaultName", new String[] {node.getProvider().getName()});							 //$NON-NLS-1$
+								"CPWizardSelectionPage.defaultName", new String[] {node.getProvider().getName()}); //$NON-NLS-1$
+							while (ProfileManager.getInstance().getProfileByName(newName) != null && i < Integer.MAX_VALUE) {
+								newName = ConnectivityUIPlugin.getDefault().getResourceString(
+										"CPWizardSelectionPage.defaultNameExtended",  //$NON-NLS-1$
+										new String[] {node.getProvider().getName(), 
+										Integer.toString(i)});
+								i++;
+							}
 							setProfileName(newName);
 							setDescription(node.getProvider().getDescription());
 							setSelectedNode(node);
@@ -543,6 +562,9 @@ public class CPWizardSelectionPage
 					if (name.toUpperCase().startsWith(mFilter.toUpperCase())) {
 						return true;
 					}
+					else if (name.toUpperCase().contains(mFilter.toUpperCase())) {
+						return true;
+					}
 					else
 						return false;
 				}
@@ -554,7 +576,9 @@ public class CPWizardSelectionPage
 	public boolean isPageComplete() {
 		if (this.getErrorMessage() != null)
 			return false;
-		if (!this.getNextPage().isPageComplete())
+		if (this.getNextPage() == null)
+			return false;
+		else if (!this.getNextPage().isPageComplete())
 			return false;
 		return super.isPageComplete();
 	}

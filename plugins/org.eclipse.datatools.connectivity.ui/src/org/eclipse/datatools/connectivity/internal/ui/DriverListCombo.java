@@ -98,7 +98,7 @@ public class DriverListCombo {
 
 	// show the new driver button?
 	private boolean mShowNewDriverButton = true;
-	private boolean mShowGenericDriverButton = true;
+	private boolean mShowGenericDriverButton = false;
 	private boolean mShowMenu = false;
 	private boolean mShowEditButton = true;
 	private ToolItem mTBButtonEdit;
