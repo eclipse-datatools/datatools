@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
-import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
@@ -190,8 +189,8 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     				+ schema.getName() + IFilterNode.SEPARATOR
     				+ virtualNodeType;    		
     	}
-    	else if(getParent() instanceof ICatalogObject){
-    		Catalog catalog = (Catalog)((ICatalogObject)getParent()).getCatalogDatabase().getCatalogs().get(0);
+    	else if(getParent() instanceof Catalog){
+    		Catalog catalog = (Catalog)getParent();
     		return catalog.getName() + IFilterNode.SEPARATOR
     				+ virtualNodeType;
     	}
