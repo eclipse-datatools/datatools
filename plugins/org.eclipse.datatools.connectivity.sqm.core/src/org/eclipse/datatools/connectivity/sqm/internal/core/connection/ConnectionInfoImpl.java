@@ -438,9 +438,10 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 
 	public ConnectionFilter getFilter(String key){
 		if (this.filters == null) this.loadFilterInfo();
-
-		if (this.filters.containsKey(key)){
-			return (ConnectionFilter) this.filters.get(key);
+		if (key != null) {
+			if (this.filters.containsKey(key)){
+				return (ConnectionFilter) this.filters.get(key);
+			}
 		}
 		return null;
 	}

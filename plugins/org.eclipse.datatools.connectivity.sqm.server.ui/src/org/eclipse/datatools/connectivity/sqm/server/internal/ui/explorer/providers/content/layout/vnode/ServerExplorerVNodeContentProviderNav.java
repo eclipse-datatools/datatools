@@ -24,10 +24,12 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provid
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 
 /**
@@ -173,14 +175,14 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 */
 	protected Object[] displayTableNodeChildren (Object parent)
 	{
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getTables()));
+		EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_Tables();
+		return getSchemaChildren(parent, feature);
 	}
-
+	
 	protected Object[] displayUDFNodeChildren(Object parent)
     {
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getUDFs()));
+		EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_Routines();
+		return getSchemaChildren(parent, feature);
     }
 
     /**
@@ -188,8 +190,8 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
      */
     protected Object[] displayStoredProcedureNodeChildren(Object parent)
     {
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getProcedures()));
+    	EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_Routines();
+		return getSchemaChildren(parent, feature);
     }
 	
 	/**
@@ -199,8 +201,8 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 */
 	protected Object [] displaySequenceNodeChildren (Object parent)
 	{
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getSequences()));
+		EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_Sequences();
+		return getSchemaChildren(parent, feature);
 	}
 
 	/**
@@ -210,8 +212,61 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 */
 	protected Object [] displayUDTNodeChildren (Object parent)
 	{
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getUserDefinedTypes()));
+		EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_UserDefinedTypes();
+		return getSchemaChildren(parent, feature);
+	}
+	
+	/**
+	 * Will display all the Views available under each View Node
+	 * @param parent
+	 * @return
+	 */
+	protected Object [] displayViewsNodeChildren (Object parent)
+	{
+		EStructuralFeature feature = SQLSchemaPackage.eINSTANCE.getSchema_Tables();
+		return getSchemaChildren(parent, feature);
+	}
+	
+	/**
+	 * Return all children of feature specified type under each virtual node 
+	 * @param parent
+	 * @param feature
+	 * @return
+	 */
+	protected Object[] getSchemaChildren(Object parent, EStructuralFeature feature)
+	{
+		Object ancestor = ((IVirtualNode)parent).getParent();
+		if(ancestor instanceof Schema)
+		{
+			Schema schema = (Schema) ancestor;
+			return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), (List)schema.eGet(feature)));
+		}
+		else if(ancestor instanceof Database)
+		{
+			List schemas = ((Database)ancestor).getSchemas();
+			return getSchemasChildren(parent, schemas, feature);
+		}
+		else if(ancestor instanceof Catalog)
+		{
+			List schemas = ((Catalog)ancestor).getSchemas();
+			return getSchemasChildren(parent, schemas, feature);
+		}
+		else
+		{
+			return EMPTY_ELEMENT_ARRAY;
+		}
+	}
+	
+	private Object[] getSchemasChildren(Object parent, List schemas, EStructuralFeature feature)
+	{
+		List result = new ArrayList();
+		for (Iterator iterator = schemas.iterator(); iterator.hasNext();) 
+		{
+			Schema schema = (Schema) iterator.next();
+			List objs = (List)schema.eGet(feature);
+			result.addAll(objs);
+		}
+		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), result));
 	}
 	
 	/**
@@ -250,18 +305,6 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), table.getColumns()));
 	}
 
-	
-	/**
-	 * Will display all the Views available under each View Node
-	 * @param parent
-	 * @return
-	 */
-	protected Object [] displayViewsNodeChildren (Object parent)
-	{
-		Schema schema = (Schema) ((IVirtualNode)parent).getParent();
-		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), schema.getTables()));
-	}
-	
 	/**
 	 * Will display all the Nodes availables under each Table
 	 * @param parent
