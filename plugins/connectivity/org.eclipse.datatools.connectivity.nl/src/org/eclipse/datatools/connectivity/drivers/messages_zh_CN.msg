@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=驱动程序类型筛选器(&D):
 DriverDialog.VendorFilter=供应商筛选器(&V):
 DriverDialog.DriverNameColumn=驱动程序名称
 DriverDialog.VendorColumn=供应商
-DriverDialog.DialogMessage=指定驱动程序模板，然后修改下面字段中的详细信息，提供唯一的名称、所需的 Jar 列表 \n并设置任何可用和适用的属性值。
+DriverDialog.DialogMessage=指定驱动程序模板，然后修改下面字段中的详细信息，提供唯一名称、所需 Jar 的列表并设置任何可用和适用的属性值。
 DriverDialog.Properties.Tab=属性
 DriverDefinitionsDialog.message = 添加、编辑或删除驱动程序定义以管理可用的驱动程序定义。
 DriverDialog.DriverVendorColumn=驱动程序供应商(如果适用)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = 无法在驱动程序定义指定的文件系统中找到 J
 DriverInstance.error.invalidClassPath=驱动程序类路径无效。
 DriverValidator.msg.empty_jar_list = 驱动程序定义中没有指定驱动程序文件。
 DriverDialog.EditDriverDialogTitle=编辑驱动程序对话框
-DriverDialog.EditDriver.message=修改下面字段中的详细信息，提供唯一的名称、所需的 Jar 列表并设置任何 \n可用和适用的属性值。
+DriverDialog.EditDriver.message=修改下面字段中的详细信息，提供唯一名称、所需 Jar 的列表并设置任何可用和适用的属性值。
 DriverValidator.msg.empty_name = 驱动程序名称不能为空字符串。
 
 DriverValidator.msg.no_driver_selected=定义并从下拉列表中选择驱动程序以继续。

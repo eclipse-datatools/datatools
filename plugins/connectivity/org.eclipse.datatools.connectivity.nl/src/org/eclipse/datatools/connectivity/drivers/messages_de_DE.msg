@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=&Treibertyp-Filter:
 DriverDialog.VendorFilter=&Anbieter-Filter:
 DriverDialog.DriverNameColumn=Treibername
 DriverDialog.VendorColumn=Anbieter
-DriverDialog.DialogMessage=Geben Sie eine Treibervorlage an, ändern Sie Einzelheiten in den nachfolgenden Feldern, um einen eindeutigen Namen und eine Liste\nerforderlicher JARs anzugeben, und legen Sie verfügbare und zutreffende Eigenschaftswerte fest.
+DriverDialog.DialogMessage=Geben Sie eine Treibervorlage an, ändern Sie Einzelheiten in den nachfolgenden Feldern, um einen eindeutigen Namen und eine Liste erforderlicher JARs anzugeben, und legen Sie verfügbare und zutreffende Eigenschaftswerte fest.
 DriverDialog.Properties.Tab=Eigenschaften
 DriverDefinitionsDialog.message = Fügen Sie Treiberdefinitionen hinzu, oder bearbeiten bzw. entfernen Sie diese, um die verfügbaren Treiberdefinitionen zu verwalten.
 DriverDialog.DriverVendorColumn=Treiberanbieter (falls zutreffend)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = JAR-/ZIP-Datei konnte nicht wie von der 
 DriverInstance.error.invalidClassPath=Ungültiger Pfad für Treiberklasse.
 DriverValidator.msg.empty_jar_list = Treiberdateien in Treiberdefinition nicht spezifiziert.
 DriverDialog.EditDriverDialogTitle=Dialogfeld 'Treiber bearbeiten'
-DriverDialog.EditDriver.message=Ändern Sie Einzelheiten in den nachfolgenden Feldern, um einen eindeutigen Namen und eine Liste erforderlicher JARs anzugeben,\nund legen Sie verfügbare und zutreffende Eigenschaftswerte fest.
+DriverDialog.EditDriver.message=Ändern Sie Einzelheiten in den nachfolgenden Feldern, um einen eindeutigen Namen und eine Liste erforderlicher JARs anzugeben, und legen Sie verfügbare und zutreffende Eigenschaftswerte fest.
 DriverValidator.msg.empty_name = A driver name must not be an empty string.
 
 DriverValidator.msg.no_driver_selected=Definieren und wählen Sie einen Treiber in der Dropdown-Liste für die weiteren Aktionen aus.

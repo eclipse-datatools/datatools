@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=Filtre Type &de pilote :
 DriverDialog.VendorFilter=Filtre &Vendeur :
 DriverDialog.DriverNameColumn=Nom du pilote
 DriverDialog.VendorColumn=Vendeur
-DriverDialog.DialogMessage=Spécifiez un modèle de pilote, puis modifiez les détails dans les champs ci-dessous en indiquant un nom unique, la liste \ndes JAR requis, et en définissant toutes les valeurs de propriétés disponibles et applicables.
+DriverDialog.DialogMessage=Spécifiez un modèle de pilote, puis modifiez les détails dans les champs ci-dessous en indiquant un nom unique, la liste des JAR requis, et en définissant toutes les valeurs de la propriété disponibles et applicables.
 DriverDialog.Properties.Tab=Propriétés
 DriverDefinitionsDialog.message = Ajoutez, modifiez ou supprimez des définitions de pilote pour gérer les définitions de pilote disponibles.
 DriverDialog.DriverVendorColumn=Vendeur du pilote (le cas échéant)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = Impossible de localiser une archive JAR/
 DriverInstance.error.invalidClassPath=Chemin de la classe de pilote.
 DriverValidator.msg.empty_jar_list = Fichiers de pilote non spécifiés dans la définition de pilote.
 DriverDialog.EditDriverDialogTitle=Modifier la boîte de dialogue du pilote
-DriverDialog.EditDriver.message=Modifiez les détails dans les champs ci-dessous en indiquant un nom unique et la liste des JAR requis, et en définissant \ntoutes les valeurs de propriétés disponibles et applicables.
+DriverDialog.EditDriver.message=Modifiez les détails dans les champs ci-dessous en indiquant un nom unique et la liste des JAR requis, et en définissant toutes les valeurs de propriétés disponibles et applicables.
 DriverValidator.msg.empty_name = Un nom de pilote ne peut pas être une chaîne vide.
 
 DriverValidator.msg.no_driver_selected=Pour continuer, définissez et sélectionnez un pilote dans la liste déroulante.

@@ -177,4 +177,4 @@ OtherDriverUIContributor.errormessage.requiresdatabase = ƒf[ƒ^ƒx[ƒX–¼‚ğ“ü—Í‚µ‚
 OtherDriverUIContributor.errormessage.requiresurl = URL ‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 OtherDriverUIContributor.errormessage.requiresusername = ƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 
-ConnectAction.title = Properties for {0}
+ConnectAction.title = {0} ‚ÌƒvƒƒpƒeƒB

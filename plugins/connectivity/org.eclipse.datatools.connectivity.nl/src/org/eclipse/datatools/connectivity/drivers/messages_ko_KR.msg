@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=드라이버 유형 필터(&D):
 DriverDialog.VendorFilter=공급업체 필터(&V):
 DriverDialog.DriverNameColumn=드라이버 이름
 DriverDialog.VendorColumn=공급업체
-DriverDialog.DialogMessage=드라이버 템플릿을 지정한 다음, 아래 필드의 상세 정보를 수정하여 고유 이름과 필요한 jar 목록을 \n제공하고, 해당되는 모든 속성 값을 설정하십시오.
+DriverDialog.DialogMessage=드라이버 템플릿을 지정한 다음, 아래 필드의 상세 정보를 수정하여 고유 이름과 필요한 jar 목록을 제공하고, 해당되는 모든 속성 값을 설정하십시오.
 DriverDialog.Properties.Tab=속성
 DriverDefinitionsDialog.message = 드라이버 정의를 추가, 편집 또는 제거하여 사용 가능한 드라이버 정의를 관리합니다.
 DriverDialog.DriverVendorColumn=드라이버 공급업체(적용 가능한 경우)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = 드라이버 정의 {0}에서 지정한 대로 파일 �
 DriverInstance.error.invalidClassPath=잘못된 드라이버 클래스 경로입니다.
 DriverValidator.msg.empty_jar_list = 드라이버 정의에서 드라이버 파일을 지정하지 않았습니다.
 DriverDialog.EditDriverDialogTitle=드라이버 대화 상자 편집
-DriverDialog.EditDriver.message=아래 필드의 상세 정보를 수정하여 고유 이름과 필요한 jar 목록을 제공하고, \n해당되는 모든 속성 값을 설정하십시오.
+DriverDialog.EditDriver.message=아래 필드의 상세 정보를 수정하여 고유 이름과 필요한 jar 목록을 제공하고, 해당되는 모든 속성 값을 설정하십시오.
 DriverValidator.msg.empty_name = 드라이버 이름이 빈 문자열이면 안됩니다.
 
 DriverValidator.msg.no_driver_selected=계속하려면 드롭 다운 목록에서 드라이버를 정의 및 선택하십시오.

@@ -177,5 +177,5 @@ OtherDriverUIContributor.errormessage.requiresdatabase = 输入显示名称。
 OtherDriverUIContributor.errormessage.requiresurl = 输入 URL。
 OtherDriverUIContributor.errormessage.requiresusername = 输入用户名。
 
-ConnectAction.title = Properties for {0}
+ConnectAction.title = {0} 的属性
 

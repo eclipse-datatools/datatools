@@ -177,5 +177,5 @@ OtherDriverUIContributor.errormessage.requiresdatabase = Enter a database name.
 OtherDriverUIContributor.errormessage.requiresurl = Enter a URL.
 OtherDriverUIContributor.errormessage.requiresusername = Enter a user name.
 
-ConnectAction.title = Properties for {0}
+ConnectAction.title = Eigenschaften für {0}
 

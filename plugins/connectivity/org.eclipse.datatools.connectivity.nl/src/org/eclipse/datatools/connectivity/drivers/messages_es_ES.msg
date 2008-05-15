@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=Filtro &de tipo de controlador:
 DriverDialog.VendorFilter=Filtro de pro&veedor:
 DriverDialog.DriverNameColumn=Nombre de controlador
 DriverDialog.VendorColumn=Proveedor
-DriverDialog.DialogMessage=Especifique una plantilla de controlador y después, modifique los detalles de los campos siguientes para proporcionar un nombre único, una lista de archivos Jar\nrequeridos y establecer los valores de propiedad correspondientes y disponibles.
+DriverDialog.DialogMessage=Especifique una plantilla de controlador y, a continuación, modifique los detalles de los campos siguientes para proporcionar un nombre único, una lista de archivos Jar necesarios y establecer los valores de propiedad correspondientes y disponibles.
 DriverDialog.Properties.Tab=Propiedades
 DriverDefinitionsDialog.message = Añada, edite o quite definiciones de controlador para administrar las definiciones de controlador disponibles.
 DriverDialog.DriverVendorColumn=Proveedor del controlador (si procede)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = No se puede localizar el archivo JAR/zip
 DriverInstance.error.invalidClassPath=Ruta de clase del controlador no válida.
 DriverValidator.msg.empty_jar_list = Archivos de controlador no especificados en la versión del controlador.
 DriverDialog.EditDriverDialogTitle=Editar diálogo de controlador
-DriverDialog.EditDriver.message=Modifique los detalles de los siguientes campos para proporcionar un nombre único, una lista de archivos Jar necesarios y establecer los valores de\npropiedad correspondientes y disponibles.
+DriverDialog.EditDriver.message=Modifique los detalles de los siguientes campos para proporcionar un nombre único, una lista de archivos Jar necesarios y establecer los valores de propiedad correspondientes y disponibles.
 DriverValidator.msg.empty_name = El nombre de un controlador no debe ser una cadena vacía.
 
 DriverValidator.msg.no_driver_selected=Defina y seleccione un controlador de la lista desplegable para continuar.

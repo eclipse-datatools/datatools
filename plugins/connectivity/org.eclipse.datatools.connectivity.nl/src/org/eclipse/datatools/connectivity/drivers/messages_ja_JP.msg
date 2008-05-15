@@ -40,7 +40,7 @@ DriverDialog.DriverTypeFilter=ドライバの種類のフィルタ(&D) :
 DriverDialog.VendorFilter=ベンダのフィルタ(&V) :
 DriverDialog.DriverNameColumn=ドライバ名
 DriverDialog.VendorColumn=ベンダ
-DriverDialog.DialogMessage=ドライバのテンプレートを指定してから、下のフィールドで固有な名前を付けたり\n必要な JAR の一覧などの詳細を変更したり、該当するプロパティの値を設定してください。
+DriverDialog.DialogMessage=ドライバのテンプレートを指定してから、下のフィールドで固有な名前を付けたり必要な JAR の一覧などの詳細を変更したり、該当するプロパティの値を設定してください。
 DriverDialog.Properties.Tab=プロパティ
 DriverDefinitionsDialog.message = 使用できるドライバ定義を管理 (追加、編集、削除) します。
 DriverDialog.DriverVendorColumn=ドライバのベンダ (該当する場合)
@@ -70,7 +70,7 @@ DriverValidator.msg.jarfile_not_found = ドライバ定義 {0} で指定されている JAR ま
 DriverInstance.error.invalidClassPath=ドライバクラスのパスが無効です。
 DriverValidator.msg.empty_jar_list = ドライバ定義にドライバファイルが指定されていません。
 DriverDialog.EditDriverDialogTitle=ドライバの編集ダイアログボックス
-DriverDialog.EditDriver.message=下のフィールドで固有な名前を付けたり必要な JAR の一覧などの詳細を変更したり、\n該当するプロパティの値を設定してください。
+DriverDialog.EditDriver.message=下のフィールドで固有な名前を付けたり必要な JAR の一覧などの詳細を変更したり、該当するプロパティの値を設定してください。
 DriverValidator.msg.empty_name = ドライバ名には空の文字列を指定できません。
 
 DriverValidator.msg.no_driver_selected=ドロップダウン・リストからドライバーを定義および選択して、続行します。
