@@ -41,13 +41,10 @@
                      canInherit="true"
                      isEncryptable="false"
                      name="wsdlURI"
+                     defaultDisplayName="%datasource.property.wsdlUrl"
                      type="string">
                </property>
             </propertyGroup>
-            <propertyVisibility
-                  name="wsdlURI"
-                  visibility="hide">
-            </propertyVisibility>
          </properties>
       </dataSource>
       <dataSet
