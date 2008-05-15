@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="StorageFileEditor"
+         name="%application.name"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="*"
+            thread="main"
+            visible="true">
+         <run
+               class="org.eclipse.datatools.connectivity.console.profile.internal.EditorCmdAppl">
+         </run>
+      </application>
+   </extension>
+
+</plugin>

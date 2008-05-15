@@ -1,0 +1,5 @@
+bin
+download
+.settings
+*.jar
+*.zip
