@@ -102,6 +102,7 @@ CommonLabelProviderBase.label.localRepository=작업 영역 리포지토리(로컬)
 
 properties.connectionprofile.type = 프로필 형식
 DSE.Refresh.label = 새로 고침(&R)
+DSE.View.Tooltip = Data Source Explorer
 
 CPDeleteChange.name = {0} 연결 프로필 삭제
 CPDeleteChange.error.ProfileDoesNotExist = 삭제하려는 연결 프로필이 없습니다.

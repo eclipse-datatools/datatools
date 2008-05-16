@@ -102,6 +102,7 @@ CommonLabelProviderBase.label.localRepository=Repositorio de área de trabajo (Lo
 
 properties.connectionprofile.type = Tipo de perfil
 DSE.Refresh.label = Actua&lizar
+DSE.View.Tooltip = Data Source Explorer
 
 CPDeleteChange.name = Eliminar perfil de conexión {0}
 CPDeleteChange.error.ProfileDoesNotExist = El perfil de conexión que está intentando eliminar no existe.

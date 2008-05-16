@@ -102,6 +102,7 @@ CommonLabelProviderBase.label.localRepository=工作区存储库(本地)
 
 properties.connectionprofile.type = 配置文件类型
 DSE.Refresh.label = 刷新(&R)
+DSE.View.Tooltip = Data Source Explorer
 
 CPDeleteChange.name = 删除 {0} 连接配置文件
 CPDeleteChange.error.ProfileDoesNotExist = 您尝试删除的连接配置文件不存在。

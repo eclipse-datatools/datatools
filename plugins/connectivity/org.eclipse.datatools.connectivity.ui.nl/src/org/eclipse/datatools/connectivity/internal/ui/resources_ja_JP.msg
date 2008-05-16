@@ -102,6 +102,7 @@ CommonLabelProviderBase.label.localRepository=ワークスペースリポジトリ (ローカル
 
 properties.connectionprofile.type = プロファイルの種類
 DSE.Refresh.label = 更新(&R)
+DSE.View.Tooltip = Data Source Explorer
 
 CPDeleteChange.name = {0} 接続プロファイルの削除
 CPDeleteChange.error.ProfileDoesNotExist = 削除しようとしている接続プロファイルは存在しません。
