@@ -172,7 +172,18 @@ javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>ENUM</name>
   </predefinedDataTypeDefinitions>
-  
+  <predefinedDataTypeDefinitions xmi:id="DATE_2" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>YEAR</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" lengthUnit="BYTE" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>BINARY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="255" primitiveType="BINARY_VARYING" lengthUnit="BYTE" jdbcEnumType="-3" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>VARBINARY</name>
+  </predefinedDataTypeDefinitions>
   <storedProcedureDefinition/>
   <triggerDefinition/>
   <columnDefinition maximumIdentifierLength="64" identitySupported="true" identityIncrementSupported="true"/>
