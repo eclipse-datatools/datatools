@@ -75,7 +75,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATE</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5" defaultScale="0" maximumPrecision="63" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">>
+  <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5" defaultScale="0" maximumPrecision="63" identitySupported="true" keyConstraintSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">>
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DECIMAL</name>
@@ -103,7 +103,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>INTERVAL</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5" defaultScale="0"  maximumPrecision="63" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5" defaultScale="0"  maximumPrecision="63" identitySupported="true" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
