@@ -3,8 +3,8 @@ DerbyEmbeddedDriverUIContributor.1=QÆ...
 DerbyEmbeddedDriverUIContributor.2=ƒf[ƒ^ƒx[ƒX‚ğì¬‚·‚é (•K—v‚Èê‡)
 DerbyEmbeddedDriverUIContributor.3=ƒf[ƒ^ƒx[ƒX‚ğŒ»İ‚Ìƒo[ƒWƒ‡ƒ“‚ÉXV‚·‚é
 DerbyEmbeddedDriverUIContributor.url.label = URL :
-DerbyEmbeddedDriverUIContributor.userName.label = ƒ†[ƒU–¼ :
-DerbyEmbeddedDriverUIContributor.password.label = ƒpƒXƒ[ƒh :
+DerbyEmbeddedDriverUIContributor.userName.label = User n&ame:
+DerbyEmbeddedDriverUIContributor.password.label = Pass&word:
 DerbyEmbeddedDriverUIContributor.persistpassword.label = ƒpƒXƒ[ƒh‚Ì•Û‘¶
 DerbyEmbeddedDriverUIContributor.optionalProps.label = ƒIƒvƒVƒ‡ƒ“ƒvƒƒpƒeƒB :
 DerbyEmbeddedDriverUIContributor.summary.driverName.label = ƒhƒ‰ƒCƒo–¼
@@ -27,8 +27,8 @@ CUI_NEWCW_DATABASE_LBL_UI_ = ƒf[ƒ^ƒx[ƒX(&S) :
 CUI_NEWCW_HOST_LBL_UI_ = ƒzƒXƒg(&H) :
 CUI_NEWCW_PORT_LBL_UI_ = ƒ|[ƒg”Ô†(&M) :
 CUI_NEWCW_CONNECTIONURL_LBL_UI_= URL(&L) :
-CUI_NEWCW_USERNAME_LBL_UI_ = ƒ†[ƒU–¼ :
-CUI_NEWCW_PASSWORD_LBL_UI_ = ƒpƒXƒ[ƒh :
+CUI_NEWCW_USERNAME_LBL_UI_ = User n&ame:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Pass&word:
 CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = ƒpƒXƒ[ƒh‚Ì•Û‘¶(&V)
 CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = ƒf[ƒ^ƒx[ƒX
 CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = ƒzƒXƒg
@@ -43,4 +43,5 @@ CUI_NEWCW_VALIDATE_HOST_REQ_UI_= ƒf[ƒ^ƒx[ƒXƒT[ƒo‚ÌƒzƒXƒg–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢
 CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = ƒf[ƒ^ƒx[ƒXƒT[ƒo‚ÌÚ‘±ƒ|[ƒg”Ô†‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = ƒ†[ƒU–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = ƒpƒXƒ[ƒh‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
+
 

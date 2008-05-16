@@ -3,8 +3,8 @@ DerbyEmbeddedDriverUIContributor.1=Examinar...
 DerbyEmbeddedDriverUIContributor.2=Crear base de datos (en caso necesario)
 DerbyEmbeddedDriverUIContributor.3=Actualizar base de datos a la versión actual
 DerbyEmbeddedDriverUIContributor.url.label = URL:
-DerbyEmbeddedDriverUIContributor.userName.label = Nombre de usuario:
-DerbyEmbeddedDriverUIContributor.password.label = Contraseña:
+DerbyEmbeddedDriverUIContributor.userName.label = User n&ame:
+DerbyEmbeddedDriverUIContributor.password.label = Pass&word:
 DerbyEmbeddedDriverUIContributor.persistpassword.label = Guardar contraseña
 DerbyEmbeddedDriverUIContributor.optionalProps.label = Propiedades opcionales:
 DerbyEmbeddedDriverUIContributor.summary.driverName.label = Nombre de controlador
@@ -27,8 +27,8 @@ CUI_NEWCW_DATABASE_LBL_UI_ = Ba&se de datos:
 CUI_NEWCW_HOST_LBL_UI_ = &Anfitrión:
 CUI_NEWCW_PORT_LBL_UI_ = Nú&mero de puerto:
 CUI_NEWCW_CONNECTIONURL_LBL_UI_= UR&L:
-CUI_NEWCW_USERNAME_LBL_UI_ = Nombre de usuario:
-CUI_NEWCW_PASSWORD_LBL_UI_ = Contraseña:
+CUI_NEWCW_USERNAME_LBL_UI_ = User n&ame:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Pass&word:
 CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Guar&dar contraseña
 CUI_NEWCW_DATABASE_SUMMARY_DATA_TEXT_ = Base de datos
 CUI_NEWCW_HOST_SUMMARY_DATA_TEXT_ = Anfitrión
@@ -43,4 +43,5 @@ CUI_NEWCW_VALIDATE_HOST_REQ_UI_= Introduzca el nombre del anfitrión para el serv
 CUI_NEWCW_VALIDATE_PORT_REQ_UI_ = Introduzca el número del puerto de conexión para el servidor de base de datos.
 CUI_NEWCW_VALIDATE_USERID_REQ_UI_ = Introduzca un nombre de usuario.
 CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_ = Introduzca una contraseña.
+
 
