@@ -115,4 +115,20 @@ public class SystemIOUtil
         return message;
     }
 
+    void close()
+    {
+        System.out.flush();
+        
+        if( m_stdin != null )
+        {
+            try
+            {
+                m_stdin.close();
+                m_stdin = null;
+            }
+            catch( IOException ex )
+            { }
+        }
+    }
+
 }

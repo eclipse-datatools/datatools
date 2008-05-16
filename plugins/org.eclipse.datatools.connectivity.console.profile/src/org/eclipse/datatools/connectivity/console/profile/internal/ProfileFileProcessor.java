@@ -267,7 +267,7 @@ public class ProfileFileProcessor
      */
     private static class OdaProfileHandler
     {
-        private static final String SHORT_CUT_SYMBOL = "&"; //$NON-NLS-1$
+        private static final String MNEMONICS_SYMBOL = "&"; //$NON-NLS-1$
 
         private static boolean updateProfileProperties( IConnectionProfile profile, PropertyEditor propEditor )
         {
@@ -319,8 +319,8 @@ public class ProfileFileProcessor
         private static String getPropertyDisplayName( Property odaPropDefn )
         {
             String displayName = odaPropDefn.getDisplayName();
-            // removes any short cut symbol embedded in the display name
-            return displayName.replaceAll( SHORT_CUT_SYMBOL, SystemIOUtil.EMPTY_STRING );
+            // removes any mnemonics character embedded in the display name
+            return displayName.replaceAll( MNEMONICS_SYMBOL, SystemIOUtil.EMPTY_STRING );
         }
         
         /**

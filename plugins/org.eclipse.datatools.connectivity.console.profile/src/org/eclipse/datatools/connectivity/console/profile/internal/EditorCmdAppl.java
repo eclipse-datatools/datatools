@@ -84,6 +84,7 @@ public class EditorCmdAppl implements IApplication
     private Object normalExit()
     {
         m_ioUtil.println( Messages.bind( Messages.editorAppl_exitAppl, APPLICATION_ID ));
+        m_ioUtil.close();
         return EXIT_OK;
     }
     
@@ -92,6 +93,7 @@ public class EditorCmdAppl implements IApplication
      */
     public void stop()
     {
+        m_ioUtil.close();
     }
 
     private void processCmdArguments( IApplicationContext context )
