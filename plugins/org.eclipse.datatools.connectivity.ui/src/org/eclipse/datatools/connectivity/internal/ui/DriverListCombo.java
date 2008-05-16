@@ -567,6 +567,7 @@ public class DriverListCombo {
 		getCombo().removeAll();
 
 		IPropertySet[] psets = new IPropertySet[0];
+		IPropertySet[] comboPsets = new IPropertySet[0];
 		DriverInstance[] dilist = DriverManager.getInstance().getAllDriverInstances();
 		if (dilist != null && dilist.length > 0) {
 			psets = new IPropertySet[dilist.length];
@@ -580,7 +581,6 @@ public class DriverListCombo {
 					.getCategoryDescriptor(this.mCategoryId);
 			List templates = new ArrayList();
 			if (category == null) {
-				// TODO: log error message
 				CategoryDescriptor[] categories = CategoryDescriptor.getRootCategories();
 				for (int index = 0, count = categories.length; index < count; ++index) {
 					populateAssociatedDriverTypes(categories[index],templates);
@@ -594,6 +594,8 @@ public class DriverListCombo {
 			Object[] templatesArray = templates.toArray();
 			Arrays.sort(templatesArray, comparator);
 			Arrays.sort(psets, new PropertySetComparator());
+			
+			ArrayList listForCombo = new ArrayList();
 			for (int i = 0; i < templatesArray.length; i++)  {
 				TemplateDescriptor template = (TemplateDescriptor) templatesArray[i];
 				for (int j = 0; j < psets.length; j++) {
@@ -602,19 +604,23 @@ public class DriverListCombo {
 							IDriverMgmtConstants.PROP_DEFN_TYPE); //$NON-NLS-1$
 					if (driverType.equals(template.getId())) {
 						if (passesFilter(template, pset)) {
-							getCombo().add(pset.getName());
-							getCombo().setData(pset.getName(), pset);
+							listForCombo.add(pset);
 						}
 					}
 				}
 			}
+			comboPsets = (IPropertySet[]) listForCombo.toArray(new IPropertySet[listForCombo.size()]);
 		}
 		else {
+			comboPsets = psets;
+		}
+		
+		if (comboPsets != null && comboPsets.length > 0) {
 			PropertySetComparator comparator = 
 				new PropertySetComparator();
-			Arrays.sort(psets, comparator);
-			for (int i = 0; i < psets.length; i++) {
-				IPropertySet pset = psets[i];
+			Arrays.sort(comboPsets, comparator);
+			for (int i = 0; i < comboPsets.length; i++) {
+				IPropertySet pset = comboPsets[i];
 				getCombo().add(pset.getName());
 				getCombo().setData(pset.getName(), pset);
 			}
