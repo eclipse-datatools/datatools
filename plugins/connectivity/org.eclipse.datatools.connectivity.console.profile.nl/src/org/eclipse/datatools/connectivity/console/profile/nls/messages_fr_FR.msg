@@ -1,0 +1,61 @@
+#************************************************************************
+# Copyright (c) 2008 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
+editorAppl_argKeyValue={0} argument value: {1}
+editorAppl_exitAppl=The {0} application exited.
+editorAppl_invalidFileName=Invalid file name ({0}).
+editorAppl_invalidInputFile=The input file ({0}) does not exist or cannot be read.
+editorAppl_invalidOutputFile=The output file ({0}) is invalid or not writable.
+editorAppl_missingArgValue=Missing value for {0} argument.
+editorAppl_noProfileChanges=No changes were made to the connection profile(s).
+editorAppl_overwriteExistingFile=The output file ({0}) already exists.  Overwrite its contents?
+editorAppl_promptEditProfileName=Enter the name of a connection profile to view/change (optional)
+editorAppl_promptInputFile=Enter the name of the connection profile file to view/change
+editorAppl_promptOutputFile=Enter the name of the output file to save your changes
+editorAppl_startAppl=Start the {0} application...
+editorAppl_syntaxArguments=Optional command line arguments:
+editorAppl_syntaxCommand=Use "eclipsec" in command on Windows, or "eclipse" on other platforms.
+editorAppl_syntaxHelpInstruction=displays this help message
+editorAppl_syntaxInArgInstruction=specifies the name of the connection profile storage file to view/change
+editorAppl_syntaxNullArgInstruction=If an argument value is not specified, the editor will prompt for an input value.
+editorAppl_syntaxOutArgInstruction=specifies the name of the output file to save your changes
+editorAppl_syntaxProfileNameInstruction1=specifies the name of a connection profile to view/change; if none is specified,
+editorAppl_syntaxProfileNameInstruction2=the tool will step through all the profiles found in the input file
+editorAppl_syntaxUsage=Command syntax:
+#
+ioutil_askReviewStack=Do you want to see the stack trace?
+ioutil_askUpdateValue=Update existing value?
+ioutil_confirmUserInputChar=y
+ioutil_confirmPromptInstruction=to confirm
+ioutil_errorSystemInput=Error in reading from input console.
+ioutil_exceptionCause=Exception was caused by: {0}
+ioutil_newValuePrompt=New value
+#
+profileFile_askEncryptOutput=Do you want to encrypt the output file?
+profileFile_askUpdateProfile=Update the profile's properties?
+profileFile_errorInstruction=Please see the workspace log for possible additional exceptions.
+profileFile_errorReadingFile=Error in reading the content of the profile input file.
+profileFile_errorSavingFile=Error in saving the updated properties to the output file.
+profileFile_inputPromptDelimiter=>> 
+profileFile_noOdaPropertyDefn=Warning: Property definitions are not available.  All existing property values will be masked.
+profileFile_noProfileFound=No profiles were found in the input file.
+profileFile_profileIdentifier={0} profile name
+profileFile_propertyDriverClass=JDBC Driver Class
+profileFile_propertyJarList=JDBC Driver Jar Paths (use ''{0}'' to separate paths)
+profileFile_propertyPassword=Password
+profileFile_propertyUrl=Connection URL
+profileFile_propertyUser=User name
+profileFile_specifiedProfileNotFound=The specified profile ({0}) is not found in the input file.
+profileFile_statusDone=Done.
+profileFile_statusIteratingProfiles=Stepping through each of the {0} profiles found in the input file...
+profileFile_statusReadingFile=Reading the input file ({0})...
+profileFile_statusSavingFile=Saving updated properties in the output file ({0})...
