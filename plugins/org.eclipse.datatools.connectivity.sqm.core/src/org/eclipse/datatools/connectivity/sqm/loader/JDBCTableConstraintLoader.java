@@ -344,7 +344,6 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 							((ICatalogObject) fk).refresh();
 						}
 					}
-					containmentList.add(fk);
 					switch (rs.getShort(COLUMN_UPDATE_RULE)) {
 					case DatabaseMetaData.importedKeyCascade:
 						fk.setOnUpdate(ReferentialActionType.CASCADE_LITERAL);
@@ -397,12 +396,15 @@ public class JDBCTableConstraintLoader extends JDBCBaseLoader {
 						fk.setDeferrable(false);
 						break;
 					}
-					fk.setUniqueConstraint(findUniqueConstraint(rs
+					UniqueConstraint uk = findUniqueConstraint(rs
 							.getString(COLUMN_PKTABLE_CAT), rs
 							.getString(COLUMN_PKTABLE_SCHEM), rs
 							.getString(COLUMN_PKTABLE_NAME), rs
-							.getString(COLUMN_PK_NAME)));
+							.getString(COLUMN_PK_NAME));
+					if (uk == null) continue;
+					fk.setUniqueConstraint(uk);
 
+					containmentList.add(fk);
 					constraints.put(fkName, fk);
 					constraintColumns.put(fkName, new TreeMap());
 
