@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,6 +27,8 @@ public class LogPathHelper
 {
     private static final String LOG_SUBFOLDER_NAME = "logs"; //$NON-NLS-1$
 
+    private static IPath sm_consumerLogPath = null;
+    
     /**
      * Returns the plugin's default log parent file
      * under its workspace state location.
@@ -36,13 +38,23 @@ public class LogPathHelper
      */
     static IPath getPluginLogPath() throws IllegalStateException
     {
-        // try to use plugin's default state location's log folder as its parent
-        OdaConsumerPlugin thePlugin = OdaConsumerPlugin.getDefault();
-        if( thePlugin == null )
-            throw new IllegalStateException( "OdaConsumerPlugin.getDefault()" ); //$NON-NLS-1$
+        if( sm_consumerLogPath == null )
+        {
+            // try to use plugin's default state location's log folder as its parent
+            OdaConsumerPlugin thePlugin = OdaConsumerPlugin.getDefault();
+            if( thePlugin == null )
+                throw new IllegalStateException( "OdaConsumerPlugin.getDefault()" ); //$NON-NLS-1$
+    
+            synchronized( LogPathHelper.class )
+            {
+                if( sm_consumerLogPath == null )
+                {
+                    sm_consumerLogPath = thePlugin.getStateLocation().append( LOG_SUBFOLDER_NAME );
+                }
+            }
+        }
 
-        return thePlugin.getStateLocation()
-               		.append( LOG_SUBFOLDER_NAME ); 	
+        return sm_consumerLogPath;
     }
     
     /**
