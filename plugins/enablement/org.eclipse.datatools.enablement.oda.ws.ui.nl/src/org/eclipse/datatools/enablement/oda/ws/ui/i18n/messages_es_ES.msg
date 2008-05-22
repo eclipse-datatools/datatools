@@ -19,32 +19,32 @@
 
 # WebServiceSelectionPage
 webServiceSelectionPage.message.default=Fuente de datos de servicios web
-webServiceSelectionPage.message.error=Especifique la URL del punto final de SOAP o seleccione un descriptor WSDL
+webServiceSelectionPage.message.error=Indique la URL del punto final de SOAP o seleccione un descriptor WSDL.
 webServiceSelectionPage.group.wsdl=Descriptor WSDL
 webServiceSelectionPage.group.endPoint=Punto final de SOAP
 webServiceSelectionPage.group.customClass=Clase de controlador personalizado
 webServiceSelectionPage.group.classPath=Ruta de clase del controlador
-webServiceSelectionPage.label.wsdl=Si está disponible el descriptor WSDL de los servicios web, introduzca su URL o busque su ubicación en el sistema de archivos locales
+webServiceSelectionPage.label.wsdl=Si el descriptor WSDL del servicio Web está disponible, introduzca su URL o busque su ubicación en el sistema de archivos local.
 webServiceSelectionPage.label.wsdlURI=URL o ubicación de &WSDL:
-webServiceSelectionPage.label.endPoint=Especifique la URL del punto &final de SOAP. Puede omitir este valor si se debe utilizar el punto final definido en WSDL o si no está utilizando un tipo de conexión personalizada que no requiere una URL de punto final.
-webServiceSelectionPage.label.customClass=Si se ha realizado una conexión o consulta de los servicios web a través de una clase &Java personalizada, introduzca el nombre de clase completo aquí.
-webServiceSelectionPage.label.classPath=Una lista separada por puntos y comas (;) de directorios y archivos JAR adicionales para buscar la clase de controlador personalizado
+webServiceSelectionPage.label.endPoint=Especifique la URL del punto &final de SOAP. Puede omitir este valor si se debe utilizar el punto final definido en WSDL o si no está utilizando un tipo de conexión personalizada que no necesita una URL de punto final.
+webServiceSelectionPage.label.customClass=Si se ha realizado una conexión o consulta de los servicios Web a través de una clase &Java personalizada, introduzca el nombre de clase completo aquí.
+webServiceSelectionPage.label.classPath=Una lista separada por punto y coma (;) de directorios y archivos JAR adicionales para buscar la clase de controlador personalizado.
 webServiceSelectionPage.button.browse=&Examinar...
 
 # OperationPage
-operationPage.message.default=Seleccione una operación definida en el descriptor WSDL de la fuente de datos
-operationPage.message.operationChanged=Confirme para volver a generar la solicitud de SOAP y volver a conectar el punto final
+operationPage.message.default=Seleccione una operación definida en el descriptor WSDL de la fuente de datos.
+operationPage.message.operationChanged=Confirme para volver a generar la solicitud de SOAP y volver a conectar el punto final.
 operationPage.title.operationChanged=Operación cambiada
 operationPage.label.selectOpearation=Operación seleccionada
 operationPage.label.document=Documentación
 
 # SoapParametersPage
-soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado
+soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado.
 soapParametersPage.button.selectAll=&Seleccionar todo
 soapParametersPage.button.deselectAll=&Anular la selección de todo
 
 # SoapRequestPage
-soapRequestPage.message.default=Edite la plantilla de solicitud de SOAP de este conjunto de datos. Si el código de la clase de conexión personalizada de la fuente de datos no requiere un texto de consulta, puede dejar vacío el texto
+soapRequestPage.message.default=Edite la plantilla de solicitud SOAP de este conjunto de datos. Es posible dejar el campo de texto vacío si el código de la clase de conexión personalizada de la fuente de datos no necesita texto de consulta.
 soapRequestPage.message.regenerateTemplate=Esto volverá a generar la plantilla del texto de consulta según la operación SOAP que ha seleccionado. Esta acción eliminará cualquier modificación que haya introducido en el texto.\n\n¿Está seguro?
 soapRequestPage.title.regenerateTemplate=Volver a generar la plantilla
 soapRequestPage.button.regenerateTemplate=&Volver a generar la plantilla
@@ -57,10 +57,10 @@ parameterInputDialog.column.type=Tipo de datos
 parameterInputDialog.column.defaultValue=Valor predeterminado
 
 # SoapResponsePage
-soapResponsePage.message.default=Editar la respuesta de SOAP
-soapResponsePage.group.schema=Seleccionar esquema de respuesta de SOAP
-soapResponsePage.group.xml=Seleccionar mensaje de respuesta de SOAP de muestra
-soapResponsePage.radio.defaultSchema=Utilizar esquema de la respuesta de &operación definido en fuente de datos WSDL
+soapResponsePage.message.default=Editar la respuesta SOAP.
+soapResponsePage.group.schema=Seleccionar el esquema de respuesta SOAP.
+soapResponsePage.group.xml=Seleccione un mensaje de respuesta SOAP de muestra.
+soapResponsePage.radio.defaultSchema=Utilizar esquema de la respuesta de &operación definido en fuente de datos WSDL.
 soapResponsePage.radio.externalSchema=Utilizar archivo del e%esquema XML externo:
 soapResponsePage.radio.endPoint=Consultar servicios web en el punto &final de SOAP:
 soapResponsePage.radio.externalXML=Utilizar archivo de &datos de muestra externo
@@ -72,4 +72,4 @@ soapResponsePage.button.connect=&Conectar ahora
 # XMLColumnMappingPage
 
 # WSConsole
-wsConsole.message.error.cantRetrieveSOAPResponse=La respuesta SOAP no se puede recuperar, verifique la red o la configuración de respuesta SOAP
+wsConsole.message.error.cantRetrieveSOAPResponse=La respuesta SOAP no se puede recuperar, verifique la red o la configuración de respuesta SOAP.

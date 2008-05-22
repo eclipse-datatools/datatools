@@ -11,7 +11,7 @@
 ###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=XML 데이터 원본
-wizard.defaultMessage.selectFolder=XML 파일과 스키마 정보의 URL을 정의하십시오.
+wizard.defaultMessage.selectFolder=XML 파일과 스키마 정보의 URL을 정의합니다.
 wizard.title.newDataSet=새 데이터 집합
 wizard.title.selectXmlFile=미리 볼 XML 데이터 선택
 wizard.defaultMessage.selectFile=이 세션에서 데이터 미리 보기에 사용할 예제 XML 소스를 선택합니다.
@@ -35,7 +35,7 @@ xPathChoosePage.messages.elementSelection.item.custom=사용자 지정 XPath 식(&U)
 xPathChoosePage.messages.xPathExpression=XPath 식(&X)
 xPathChoosePage.messages.xmlStructure=XML 구조
 xPathChoosePage.messages.xmlColumnMapping=열 매핑
-xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 해당 열 매핑과 호환되는지 확인하십시오.   
+xPathChoosePage.messages.xpathChange=변경된 테이블 매핑이 열 매핑과 호환되는지 확인합니다(해당하는 경우).   
 xPathChoosePage.FileNameIcon=파일 이름 아이콘
 xPathChoosePage.XMLElementIcon=XML 요소 아이콘
 xPathChoosePage.ColumnIcon=열 아이콘
@@ -59,7 +59,7 @@ lable.selectXmlFile=XML 소스의 URL을 입력하거나 소스 데이터가 포함된 파일을 찾습
 label.selectEncoding=위에 지정된 XML 원본 및 스키마의 인코딩 선택(&E):
 lable.selectXmlSchmaFile=XML 스키마의 URL을 입력하거나 스키마가 포함된 파일을\n 찾습니다. 사용 가능한 스키마가 없는 경우 아무 것도 입력하지 않습니다(&M).
 label.preview=소스 데이터 처음
-label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용(&U)
+label.useXMLFileFromDataSource=데이터 원본에 정의된 XML 파일 사용(&U).
 RowMappingDialog.title=XPath 식을 선택하거나 편집합니다.
 RowMappingDialog.info=선택한 노드에 대해 미리 정의된 XPath 식 중 하나를 선택하거나\n 다른 식을 입력합니다.
 ColumnMappingPage.AddSingleButton.tooltip=선택한 노드를 열 매핑으로 사용

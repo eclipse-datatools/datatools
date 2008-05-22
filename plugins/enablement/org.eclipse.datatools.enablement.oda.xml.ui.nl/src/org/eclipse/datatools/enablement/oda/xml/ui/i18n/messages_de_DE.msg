@@ -11,7 +11,7 @@
 ###############################################################################
 # wizard dialog messages
 wizard.title.selectFolder=XML-Datenquelle
-wizard.defaultMessage.selectFolder=Geben Sie die URLs für die XML-Datei und die Schemainformationen an.
+wizard.defaultMessage.selectFolder=Geben Sie die URLs und die Schemainformation für die XML-Datei an.
 wizard.title.newDataSet=Neuer Datensatz
 wizard.title.selectXmlFile=XML-Daten für Vorschau auswählen
 wizard.defaultMessage.selectFile=Wählen Sie eine XML-Beispieldatenquelle aus, um die Vorschau in dieser Sitzung zu aktivieren.
@@ -39,7 +39,7 @@ xPathChoosePage.messages.xpathChange=Stellen Sie sicher, dass die geänderte Tabe
 xPathChoosePage.FileNameIcon=Dateinamensymbol
 xPathChoosePage.XMLElementIcon=XML-Element-Symbol
 xPathChoosePage.ColumnIcon=Spaltensymbol
-xPathChoosePage.messages.btnAdd.tooltip=Ausgewählten Knoten als XPath-Ausdruck verwenden
+xPathChoosePage.messages.btnAdd.tooltip=Ausgewählten Knoten als XPath-Ausdruck verwenden.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=Zeilen der Quelldaten anzeigen
@@ -59,16 +59,16 @@ lable.selectXmlFile=Geben Sie den URL der &XML-Quelldatei an, oder suchen Sie di
 label.selectEncoding=&Codierung für oben festgelegte XML-Quelldatei und -Schema auswählen:
 lable.selectXmlSchmaFile=Geben Sie den URL des X&ML-Schemas an, oder suchen\n Sie nach der Datei, die das\n Schema enthält. Lassen Sie das Feld leer, falls kein Schema vorhanden ist:
 label.preview=&Erste
-label.useXMLFileFromDataSource=Die in der Datenquelle definierte XML-Datei &verwenden
+label.useXMLFileFromDataSource=Die in der Datenquelle definierte XML-Datei &verwenden.
 RowMappingDialog.title=Wählen oder bearbeiten Sie den XPath-Ausdruck.
 RowMappingDialog.info=Wählen Sie für den gewählten Knoten einen der vordefinierten XPath-Ausdrücke,\n oder geben Sie einen anderen Ausdruck an:
-ColumnMappingPage.AddSingleButton.tooltip=Den ausgewählten Knoten als Spaltenzuordnung verwenden
-ColumnMappingPage.AddAllButton.tooltip=Alle untergeordneten Spalten des ausgewählten Knotens als Spaltenzuordnung verwenden
-ColumnMappingTable.upButton.tooltip=Spaltenzuordnung nach oben verschieben
-ColumnMappingTable.downButton.tooltip=Spaltenzuordnung nach unten verschieben
-ColumnMappingTable.removeButton.tooltip=Spaltenzuordnung entfernen
-ColumnMappingTable.editButton.tooltip=Spaltenzuordnung bearbeiten
-ColumnMappingTable.previewButton.tooltip=Vorschau der Beispiel-XML-Daten anzeigen 
+ColumnMappingPage.AddSingleButton.tooltip=Den ausgewählten Knoten als Spaltenzuordnung verwenden.
+ColumnMappingPage.AddAllButton.tooltip=Alle untergeordneten Spalten des ausgewählten Knotens als Spaltenzuordnung verwenden.
+ColumnMappingTable.upButton.tooltip=Spaltenzuordnung nach oben verschieben.
+ColumnMappingTable.downButton.tooltip=Spaltenzuordnung nach unten verschieben.
+ColumnMappingTable.removeButton.tooltip=Spaltenzuordnung entfernen.
+ColumnMappingTable.editButton.tooltip=Spaltenzuordnung bearbeiten.
+ColumnMappingTable.previewButton.tooltip=Vorschau der Beispiel-XML-Daten anzeigen. 
 ColumnMappingDialog.info.columnName=&Spaltenname:
 ColumnMappingDialog.info.xPath=&XPath-Ausdruck:
 ColumnMappingDialog.info.dataType=&Datentyp:

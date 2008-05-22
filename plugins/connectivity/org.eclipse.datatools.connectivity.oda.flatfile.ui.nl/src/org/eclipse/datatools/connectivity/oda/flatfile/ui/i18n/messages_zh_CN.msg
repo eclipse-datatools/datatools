@@ -1,11 +1,11 @@
 wizard.title.selectColumns=选择列
-wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹
-wizard.defaultMessage.selectFile=选择用于该数据集的文件和列
+wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹。
+wizard.defaultMessage.selectFile=为数据集选择文件和列。
 label.selectFolder=选择文件夹(&F): 
 label.selectFile=选择文件(&I):
 label.fileFilter=文件筛选(&R):
-label.includeTypeLine=将第二行用作数据类型指示器(&D)
-label.includeColumnNameLine = 使用第一行作为列名称指示器(&N)
+label.includeTypeLine=将第二行用作数据类型指示器(&D)。
+label.includeColumnNameLine = 将第一行用作列名称指示器(&N)。
 label.selectCharset=选择字符集(&C):
 label.selectFlatfileStyle=选择平面文件样式(&S):
 label.flatfileComma=CSV
@@ -26,13 +26,13 @@ datatypes.date=日期
 datatypes.time=时间
 datatypes.boolean=布尔
 
-tooltip.flatfilestyle=将鼠标移动到每个平面文件样式以获取更多信息
+tooltip.flatfilestyle=将鼠标移动到每个平面文件样式以获取更多信息。
 tooltip.csv=逗号 { , } 分隔的值
 tooltip.ssv=分号 { ; } 分隔的值
 tooltip.psv=竖线 { | } 分隔的值
 tooltip.tsv=制表符 { Tab } 分隔的值
-tooltip.columnnameline=请确保选择的文件第一行中存在列名称\n
-tooltip.typeline=请确保选择的文件第二行中存在数据类型行\n
+tooltip.columnnameline=请确保选择的文件第一行\n中存在列名称。
+tooltip.typeline=请确保选择的文件第二行\n中存在数据类型行。
 
 error.selectFolder=请选择有效文件夹。
 error.selectColumns=请至少为此数据集选择一列。

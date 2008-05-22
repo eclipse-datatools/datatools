@@ -27,4 +27,4 @@ datasource.property.connectionClass=连接类(&C)
 datasource.property.connectionTimeOut=连接超时(&T)
 dataset.property.xmlFileURI=XML 文件(&X)
 dataset.property.xsdFileURI=架构文件(&S)
-datasource.property.wsdlUrl=&WSDL URL
+datasource.property.wsdlUrl=WSDL URL(&W)

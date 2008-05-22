@@ -1,6 +1,6 @@
 wizard.title.selectColumns=列の選択
-wizard.defaultMessage.selectFolder=フラット・ファイルを含むフォルダーを選択してください。
-wizard.defaultMessage.selectFile=そのデータ・セットのファイルおよび列を選択してください。
+wizard.defaultMessage.selectFolder=フラットファイルが入っているフォルダを選択してください。
+wizard.defaultMessage.selectFile=データセットのファイルと列を選択してください。
 label.selectFolder=フォルダの選択(&F) : 
 label.selectFile=ファイルの選択(&I) :
 label.fileFilter=ファイルフィルタ(&R) :

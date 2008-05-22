@@ -15,8 +15,8 @@
 CUI_NEWCW_DATABASE_LBL_UI_ = &SID:
 CUI_NEWCW_HOST_LBL_UI_ = &Anfitrión:
 CUI_NEWCW_PORT_LBL_UI_ = Nú&mero de puerto:
-CUI_NEWCW_USERNAME_LBL_UI_ = Nombre de usuario:
-CUI_NEWCW_PASSWORD_LBL_UI_ = Contraseña:
+CUI_NEWCW_USERNAME_LBL_UI_ = N&ombre de usuario:
+CUI_NEWCW_PASSWORD_LBL_UI_ = Cont&raseña:
 CUI_NEWCW_SAVE_PASSWORD_LBL_UI_ = Guar&dar contraseña
 CUI_NEWCW_CONNECTIONURL_LBL_UI_= UR&L de conexión:
 ALL_CATALOGS_OPTION_UI_ = Todos

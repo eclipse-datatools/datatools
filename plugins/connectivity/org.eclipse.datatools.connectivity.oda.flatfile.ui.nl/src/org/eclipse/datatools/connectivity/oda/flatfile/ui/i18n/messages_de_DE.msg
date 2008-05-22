@@ -1,11 +1,11 @@
 wizard.title.selectColumns=Spalten auswählen
-wizard.defaultMessage.selectFolder=Wählen Sie den Ordner aus, der die Flachdateien enthält.
-wizard.defaultMessage.selectFile=Wählen Sie die Datei und die Spalten für den Datensatz aus.
+wizard.defaultMessage.selectFolder=Ordner mit den unstrukturierten Dateien auswählen.
+wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
 label.selectFolder=Ordner &auswählen: 
 label.selectFile=Date&i auswählen:
 label.fileFilter=Dateifilte&r:
-label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden
-label.includeColumnNameLine = Erste Zeile als Spalten&namenindikator verwenden
+label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden.
+label.includeColumnNameLine = Erste Zeile als Spalten&namenindikator verwenden.
 label.selectCharset=Zei&chensatz auswählen:
 label.selectFlatfileStyle=Flatfile-&Stil auswählen:
 label.flatfileComma=CSV
@@ -27,13 +27,13 @@ datatypes.date=Datum
 datatypes.time=Zeit
 datatypes.boolean=Boolesch
 
-tooltip.flatfilestyle=Für weitere Informationen bewegen Sie die Maus zu jedem Flatfile-Stil.
+tooltip.flatfilestyle=Bewegen Sie die Maus über den Stil einer unstrukturierten Datei, um weitere Informationen zu erhalten.
 tooltip.csv=Durch Komma { , } getrennte Werte
 tooltip.ssv=Durch Semikolon { ; } getrennte Werte
 tooltip.psv=Durch Pipe { | } getrennte Werte
 tooltip.tsv=Durch Tab { Tab } getrennte Werte
-tooltip.columnnameline=Vergewissern Sie sich, dass in der ersten Zeile der \nausgewählten Datei Spaltennamen vorhanden sind.
-tooltip.typeline=Vergewissern Sie sich, dass in der zweiten Zeile der \nausgewählten Datei Datentypzeilen vorhanden sind.
+tooltip.columnnameline=Stellen Sie sicher, dass die erste Zeile\nder gewählten Datei Spaltennamen enthält.
+tooltip.typeline=Stellen Sie sicher, dass die zweite Zeile\nder gewählten Datei Datentypen enthält.
 
 error.selectFolder=Bitte wählen Sie einen gültigen Ordner.
 error.selectColumns=Bitte wählen Sie für diesen Datensatz mindestens eine Spalte aus.
