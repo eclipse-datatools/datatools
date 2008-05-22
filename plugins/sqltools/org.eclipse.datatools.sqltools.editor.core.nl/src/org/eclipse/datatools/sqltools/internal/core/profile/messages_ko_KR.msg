@@ -6,5 +6,5 @@ ProfileUtil_error_not_connected=연결 프로필: {0}이(가) 아직 연결되지 않았습니다.
 
 ProfileUtil_error_getdriver={0}에 드라이버 정의가 지정되지 않았습니다.
 ProfileUtil_error_wrong_database_name=잘못된 데이터베이스가 연결 프로필 {1}에서 {0}을(를) 반환했습니다. 예상된 이름은 {2}입니다.
-ProfileUtil_error_no_managed_connection=Failed to get managed connection for connection profile {0}
+ProfileUtil_error_no_managed_connection=연결 프로필 {0}에 대한 관리 연결 실패
 

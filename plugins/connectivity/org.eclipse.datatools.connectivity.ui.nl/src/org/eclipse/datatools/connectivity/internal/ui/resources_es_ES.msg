@@ -35,7 +35,7 @@ CPWizardSelectionPage.title = Perfil de conexión
 CPWizardSelectionPage.desc = Seleccionar un tipo de perfil de conexión.
 CPWizardSelectionPage.group = Tipos de perfil de &conexión:
 CPWizardSelectionPage.defaultName =Nuevo {0}
-CPWizardSelectionPage.defaultNameExtended =New {0}({1})
+CPWizardSelectionPage.defaultNameExtended =Nuevo {0}({1})
 actions.connect.job=Conectar trabajo servidor
 actions.connect.uijob=Renovando la vista
 actions.ping.job=Hacer ping a trabajo servidor
@@ -102,7 +102,7 @@ CommonLabelProviderBase.label.localRepository=Repositorio de área de trabajo (Lo
 
 properties.connectionprofile.type = Tipo de perfil
 DSE.Refresh.label = Actua&lizar
-DSE.View.Tooltip = Data Source Explorer
+DSE.View.Tooltip = Explorador de fuentes de datos
 
 CPDeleteChange.name = Eliminar perfil de conexión {0}
 CPDeleteChange.error.ProfileDoesNotExist = El perfil de conexión que está intentando eliminar no existe.

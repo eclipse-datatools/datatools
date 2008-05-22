@@ -6,5 +6,5 @@ ProfileUtil_error_not_connected=接続プロファイル {0} はまだ接続されていません。
 
 ProfileUtil_error_getdriver={0} のドライバ定義が指定されていません。
 ProfileUtil_error_wrong_database_name=接続プロファイル {1} から間違ったデータベース {0} が返されました。予想される名前は {2} です。
-ProfileUtil_error_no_managed_connection=Failed to get managed connection for connection profile {0}
+ProfileUtil_error_no_managed_connection=接続プロファイル {0} を使って管理接続を取得できません。
 

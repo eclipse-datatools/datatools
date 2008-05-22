@@ -35,7 +35,7 @@ CPWizardSelectionPage.title = Verbindungsprofil
 CPWizardSelectionPage.desc = Wählen Sie einen Verbindungsprofiltyp.
 CPWizardSelectionPage.group = &Verbindungsprofiltypen:
 CPWizardSelectionPage.defaultName =Neu: {0}
-CPWizardSelectionPage.defaultNameExtended =New {0}({1})
+CPWizardSelectionPage.defaultNameExtended =Neu: {0}({1})
 actions.connect.job=Serverjob verbinden
 actions.connect.uijob=Sicht aktualisieren
 actions.ping.job=Serverjob mit Ping überprüfen
@@ -102,7 +102,7 @@ CommonLabelProviderBase.label.localRepository=Arbeitsplatz-Repository (lokal)
 
 properties.connectionprofile.type = Profiltyp
 DSE.Refresh.label = &Aktualisieren
-DSE.View.Tooltip = Data Source Explorer
+DSE.View.Tooltip = Datenquellen-Explorer
 
 CPDeleteChange.name = Verbindungsprofil {0} löschen
 CPDeleteChange.error.ProfileDoesNotExist = Das Verbindungsprofil, das Sie löschen möchten, ist nicht vorhanden.

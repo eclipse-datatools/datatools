@@ -6,5 +6,5 @@ ProfileUtil_error_not_connected=El perfil de conexión: {0} no está conectado tod
 
 ProfileUtil_error_getdriver=Definición de controlador no especificada para {0}.
 ProfileUtil_error_wrong_database_name=La base de datos incorrecta ha devuelto {0} desde el perfil de conexión {1}. El nombre esperado es {2}
-ProfileUtil_error_no_managed_connection=Failed to get managed connection for connection profile {0}
+ProfileUtil_error_no_managed_connection=Ha sido imposible obtener una conexión gestionada para el perfil de conexión {0}
 

@@ -35,7 +35,7 @@ CPWizardSelectionPage.title = 연결 프로필
 CPWizardSelectionPage.desc = 연결 프로필 형식을 선택합니다.
 CPWizardSelectionPage.group = 연결 프로필 형식(&C):
 CPWizardSelectionPage.defaultName =새 {0}
-CPWizardSelectionPage.defaultNameExtended =New {0}({1})
+CPWizardSelectionPage.defaultNameExtended =새 {0}({1})
 actions.connect.job=서버 연결 작업
 actions.connect.uijob=보기 새로 고치기
 actions.ping.job=서버 Ping 작업
@@ -102,7 +102,7 @@ CommonLabelProviderBase.label.localRepository=작업 영역 리포지토리(로컬)
 
 properties.connectionprofile.type = 프로필 형식
 DSE.Refresh.label = 새로 고침(&R)
-DSE.View.Tooltip = Data Source Explorer
+DSE.View.Tooltip = 데이터 원본 탐색기
 
 CPDeleteChange.name = {0} 연결 프로필 삭제
 CPDeleteChange.error.ProfileDoesNotExist = 삭제하려는 연결 프로필이 없습니다.

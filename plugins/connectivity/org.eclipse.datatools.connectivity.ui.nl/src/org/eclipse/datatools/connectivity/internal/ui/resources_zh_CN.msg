@@ -35,7 +35,7 @@ CPWizardSelectionPage.title = 连接配置文件
 CPWizardSelectionPage.desc = 选择连接配置文件类型。
 CPWizardSelectionPage.group = 连接配置文件类型(&C):
 CPWizardSelectionPage.defaultName =新建 {0}
-CPWizardSelectionPage.defaultNameExtended =New {0}({1})
+CPWizardSelectionPage.defaultNameExtended =新建 {0}({1})
 actions.connect.job=连接服务器作业
 actions.connect.uijob=正在刷新视图
 actions.ping.job=Ping 服务器作业
@@ -102,7 +102,7 @@ CommonLabelProviderBase.label.localRepository=工作区存储库(本地)
 
 properties.connectionprofile.type = 配置文件类型
 DSE.Refresh.label = 刷新(&R)
-DSE.View.Tooltip = Data Source Explorer
+DSE.View.Tooltip = 数据源资源管理器
 
 CPDeleteChange.name = 删除 {0} 连接配置文件
 CPDeleteChange.error.ProfileDoesNotExist = 您尝试删除的连接配置文件不存在。
