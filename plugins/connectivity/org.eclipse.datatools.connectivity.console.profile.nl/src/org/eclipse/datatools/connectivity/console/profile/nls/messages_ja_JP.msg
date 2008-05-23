@@ -33,7 +33,7 @@ editorAppl_syntaxProfileNameInstruction2=the tool will step through all the prof
 editorAppl_syntaxUsage=Command syntax:
 #
 ioutil_askReviewStack=Do you want to see the stack trace?
-ioutil_askUpdateValue=Update existing value?
+ioutil_askUpdateValue=Change existing value?
 ioutil_confirmUserInputChar=y
 ioutil_confirmPromptInstruction=to confirm
 ioutil_errorSystemInput=Error in reading from input console.
@@ -41,10 +41,10 @@ ioutil_exceptionCause=Exception was caused by: {0}
 ioutil_newValuePrompt=New value
 #
 profileFile_askEncryptOutput=Do you want to encrypt the output file?
-profileFile_askUpdateProfile=Update the profile's properties?
+profileFile_askUpdateProfile=View or change the profile's properties?
 profileFile_errorInstruction=Please see the workspace log for possible additional exceptions.
 profileFile_errorReadingFile=Error in reading the content of the profile input file.
-profileFile_errorSavingFile=Error in saving the updated properties to the output file.
+profileFile_errorSavingFile=Error in saving the changed properties to the output file.
 profileFile_inputPromptDelimiter=>> 
 profileFile_noOdaPropertyDefn=Warning: Property definitions are not available.  All existing property values will be masked.
 profileFile_noProfileFound=No profiles were found in the input file.
@@ -58,4 +58,4 @@ profileFile_specifiedProfileNotFound=The specified profile ({0}) is not found in
 profileFile_statusDone=Done.
 profileFile_statusIteratingProfiles=Stepping through each of the {0} profiles found in the input file...
 profileFile_statusReadingFile=Reading the input file ({0})...
-profileFile_statusSavingFile=Saving updated properties in the output file ({0})...
+profileFile_statusSavingFile=Saving changed properties in the output file ({0})...
