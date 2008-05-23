@@ -37,6 +37,7 @@ import org.eclipse.ltk.core.refactoring.participants.ParticipantManager;
 import org.eclipse.ltk.core.refactoring.participants.RefactoringParticipant;
 import org.eclipse.ltk.core.refactoring.participants.ReorgExecutionLog;
 import org.eclipse.ltk.core.refactoring.participants.SharableParticipants;
+import org.eclipse.osgi.util.TextProcessor;
 
 /**
  * Uses the Duplicate change to perform a duplicate that can be undone/redone.
@@ -148,7 +149,7 @@ public class ConnectionProfileCopyProcessor extends CopyProcessor {
 			String newName = calculateNewName(mProfiles[index], repo);
 
 			// set name in the copy args
-			reorgLog.setNewName(mProfiles[index], newName);
+			reorgLog.setNewName(mProfiles[index], TextProcessor.process(newName));
 
 			mProfilesToCopy.add(mProfiles[index]);
 		}
