@@ -699,12 +699,21 @@ public class DriverDialog extends TitleAreaDialog {
 			setTitle(DriverMgmtMessages.getString("EditDriverDialog.title")); //$NON-NLS-1$
 			setMessage(DriverMgmtMessages.getString("DriverDialog.EditDriver.message")); //$NON-NLS-1$
 		}
-
-		if (this.mOKButton != null || (this.mOKButton != null && !mIsEditable))
-			this.mOKButton.setEnabled(false);
 		return area;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#createContents(org.eclipse.swt.widgets.Composite)
+	 */
+	protected Control createContents(Composite parent) {
+		Control dialogComposite = super.createContents(parent);
+		
+		// to fix NPE reported in bug 233518, this code was moved here so OK button has been created - BTF
+		if (this.mOKButton != null || (this.mOKButton != null && !mIsEditable))
+			this.mOKButton.setEnabled(false);
+		return dialogComposite;
+	}
+
 	private Composite createComboComposite( Composite parent ) {
 		Composite comboComposite = new Composite ( parent, SWT.NONE);
 		comboComposite.setLayout(new GridLayout(2, false));
