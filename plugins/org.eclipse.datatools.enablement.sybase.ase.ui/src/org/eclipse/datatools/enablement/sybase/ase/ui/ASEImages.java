@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.eclipse.datatools.enablement.ase.JDBCASEPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -26,7 +25,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class ASEImages
 {
-    private static final String         NAME_PREFIX          = "org.eclipse.datatools.enablement.sybase.ase";
+    private static final String         NAME_PREFIX          = "org.eclipse.datatools.enablement.sybase.ase.ui";
     private static final int            NAME_PREFIX_LENGTH   = NAME_PREFIX.length();
     private static URL                  baseURL             = null;
 
@@ -37,7 +36,7 @@ public class ASEImages
     static
     {
         String pathSuffix = "icons/";
-        baseURL = JDBCASEPlugin.getDefault().getBundle().getEntry(pathSuffix);
+        baseURL = ASEUIPlugin.getDefault().getBundle().getEntry(pathSuffix);
     }
 
     public static final String          IMG_WEBSERVICETABLE  = NAME_PREFIX + "webserviceastable.gif";

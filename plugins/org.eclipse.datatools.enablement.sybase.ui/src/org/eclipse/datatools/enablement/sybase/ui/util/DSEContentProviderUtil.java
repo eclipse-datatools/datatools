@@ -91,23 +91,46 @@ public class DSEContentProviderUtil
         DatabaseDefinition df = dbRegistry.getDefinition(((Table) parent).getSchema().getDatabase());
 
         List collection = new ArrayList(5);
+//        collection.add(nodeFactory.makeColumnNode(COLUMN, COLUMN, parent));
+
+//        if (df.supportsTriggers())
+//        {
+//            collection.add(nodeFactory.makeTriggerNode(TRIGGER, TRIGGER, parent));
+//        }
+
+//        collection.add(nodeFactory.makeIndexNode(INDEX, INDEX, parent));
+        // should be deleted
+        // collection.add(nodeFactory.makeConstraintNode(CONSTRAINT, CONSTRAINT, parent));
+        // end
+//        collection.add(new PrimaryKeyNode(PRIMARY_KEY_FOLDER, PRIMARY_KEY_FOLDER, parent));
+//        collection.add(new UniqueConstraintNode(UNIQUE_CONSTRAINT_FOLDER, UNIQUE_CONSTRAINT_FOLDER, parent));
+//        collection.add(new CheckConstraintNode(CHECK_CONSTRAINT_FOLDER, CHECK_CONSTRAINT_FOLDER, parent));
+//        collection.add(new ForeignKeyNode(FOREIGN_KEY_FOLDER, FOREIGN_KEY_FOLDER, parent));
+
+
+        return getArrays(parent, collection);
+    }
+    
+    public static Object[] getProxyTableChildren(Object parent)
+    {
+        List collection = new ArrayList(5);
         collection.add(nodeFactory.makeColumnNode(COLUMN, COLUMN, parent));
 
+        DatabaseDefinitionRegistry dbRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
+        DatabaseDefinition df = dbRegistry.getDefinition(((Table) parent).getSchema().getDatabase());
+        
         if (df.supportsTriggers())
         {
             collection.add(nodeFactory.makeTriggerNode(TRIGGER, TRIGGER, parent));
         }
+        
+//        collection.add(nodeFactory.makeIndexNode(INDEX, INDEX, parent));
 
-        collection.add(nodeFactory.makeIndexNode(INDEX, INDEX, parent));
-        // should be deleted
-        // collection.add(nodeFactory.makeConstraintNode(CONSTRAINT, CONSTRAINT, parent));
-        // end
-        collection.add(new PrimaryKeyNode(PRIMARY_KEY_FOLDER, PRIMARY_KEY_FOLDER, parent));
-        collection.add(new UniqueConstraintNode(UNIQUE_CONSTRAINT_FOLDER, UNIQUE_CONSTRAINT_FOLDER, parent));
-        collection.add(new CheckConstraintNode(CHECK_CONSTRAINT_FOLDER, CHECK_CONSTRAINT_FOLDER, parent));
-        collection.add(new ForeignKeyNode(FOREIGN_KEY_FOLDER, FOREIGN_KEY_FOLDER, parent));
-
-
+//        collection.add(new PrimaryKeyNode(PRIMARY_KEY_FOLDER, PRIMARY_KEY_FOLDER, parent));
+//        collection.add(new UniqueConstraintNode(UNIQUE_CONSTRAINT_FOLDER, UNIQUE_CONSTRAINT_FOLDER, parent));
+//        collection.add(new CheckConstraintNode(CHECK_CONSTRAINT_FOLDER, CHECK_CONSTRAINT_FOLDER, parent));
+//        collection.add(new ForeignKeyNode(FOREIGN_KEY_FOLDER, FOREIGN_KEY_FOLDER, parent));
+        
         return getArrays(parent, collection);
     }
     
@@ -118,7 +141,8 @@ public class DSEContentProviderUtil
             return new Object[0];
         }
         List collection = new ArrayList(1);
-        collection.add(nodeFactory.makeColumnNode(COLUMN, COLUMN, parent));
+        //we do not add column node 
+//        collection.add(nodeFactory.makeColumnNode(COLUMN, COLUMN, parent));
         return getArrays(parent, collection);
     }
     
@@ -229,11 +253,12 @@ public class DSEContentProviderUtil
         }
         else
         {
-            if (parent instanceof IVirtualNode && !((IVirtualNode) parent).hasChildren())
-            {
-                ((IVirtualNode) parent).addChildren(collection);
-            }
-            return collection.toArray(new Object[collection.size()]);
+//            if (parent instanceof IVirtualNode && !((IVirtualNode) parent).hasChildren())
+//            {
+//                ((IVirtualNode) parent).addChildren(collection);
+//            }
+//            return collection.toArray(new Object[collection.size()]);
+        	return collection.toArray();
         }
     }
     
@@ -355,17 +380,21 @@ public class DSEContentProviderUtil
     }
   
     public static String appendOwnerToLabel(SQLObject element){
-        if((element).getLabel()==null){
-            return (element).getName();
-        }
-        if(DSEContentProviderUtil.isObjectRenamed(element)){
-            if(DSEUtil.checkIsShowOwner(element)){
-                (element).setLabel(appendOwnerToLabel((element).getName(), ModelUtil.getSchema(element).getOwner().getName()));    
+//        if((element).getLabel()==null){
+//            return (element).getName();
+//        }
+//        if(DSEContentProviderUtil.isObjectRenamed(element)){
+    	
+    		Schema schema = ModelUtil.getSchema(element);
+            if(schema != null && DSEUtil.checkIsShowOwner(element))
+            {
+            	(element).setLabel(appendOwnerToLabel((element).getName(), ModelUtil.getSchema(element).getOwner().getName()));
             }
-            else{
+            else
+            {
                 (element).setLabel((element).getName());
             }
-        }
+//        }
         return (element).getLabel();
     }
 }

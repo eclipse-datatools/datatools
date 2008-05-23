@@ -1,6 +1,7 @@
 package org.eclipse.datatools.enablement.sybase.ase.providers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,14 +12,14 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.provider
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.IndexNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.StoredProcedureNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TableNode;
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.TriggerNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.UDTNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.ViewNode;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.impl.ServerExplorerContentProviderNav;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.ILoadingService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServicesManager;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.enablement.ase.JDBCASEProfileMessages;
@@ -26,6 +27,7 @@ import org.eclipse.datatools.enablement.sybase.Messages;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalog;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDefault;
+import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProxyTable;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASERule;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema;
 import org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebServiceTable;
@@ -33,6 +35,15 @@ import org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder;
 import org.eclipse.datatools.enablement.sybase.ase.virtual.DefaultNode;
 import org.eclipse.datatools.enablement.sybase.ase.virtual.ProxyTableNode;
 import org.eclipse.datatools.enablement.sybase.ase.virtual.RuleNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASECheckConstraintNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEForeignKeyNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEIndexNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEPrimaryKeyNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEStoredProcedureNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASETableNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUDTNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUniqueConstraintNode;
+import org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEViewNode;
 import org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesAsTableFolder;
 import org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesFolder;
 import org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter;
@@ -46,7 +57,6 @@ import org.eclipse.datatools.enablement.sybase.virtual.CheckConstraintNode;
 import org.eclipse.datatools.enablement.sybase.virtual.ForeignKeyNode;
 import org.eclipse.datatools.enablement.sybase.virtual.ParametersNode;
 import org.eclipse.datatools.enablement.sybase.virtual.PrimaryKeyNode;
-import org.eclipse.datatools.enablement.sybase.virtual.SybaseViewNode;
 import org.eclipse.datatools.enablement.sybase.virtual.UniqueConstraintNode;
 import org.eclipse.datatools.modelbase.sql.accesscontrol.User;
 import org.eclipse.datatools.modelbase.sql.constraints.CheckConstraint;
@@ -57,6 +67,7 @@ import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.routines.Procedure;
+import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.routines.UserDefinedFunction;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -68,12 +79,14 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IMemento;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonContentProvider;
 
-public class SybaseASEContentProvider extends ServerExplorerContentProviderNav implements ICommonContentProvider,
-        ICatalogObjectListener
+public class SybaseASEContentProvider /*extends ServerExplorerContentProviderNav*/ implements ICommonContentProvider,
+        ICatalogObjectListener, ILoadingService
 {
 
     private static final ContainmentService         containmentService            = RDBCorePlugin.getDefault()
@@ -109,31 +122,35 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
                                                                                           .getString("rule.folder.name");
     private static final String                     PARAMETERS_FOLDER             = Messages
                                                                                           .getString("Parameters_folder_name");
+    
+    private static final String                     INDEX               		  = ResourceLoader.INSTANCE
+    																					  .queryString("DATATOOLS.SERVER.UI.EXPLORER.INDEX");           //$NON-NLS-1$
 //    private TreeViewer                              viewer;
+    private CommonViewer viewer;
        
 //    /**
 //     * @see org.eclipse.jface.viewers.ITreeContentProvider#getChildren(java.lang.Object)
 //     */
-    public Object[] getChildren(Object parentElement)
+    public Object[] load(Object parentElement)
     {
-        String databaseName = null;
+//        String databaseName = null;
         boolean isShowSchema = false;
-        boolean isShowOwner = true;        
-    	if(parentElement instanceof IVirtualNode){
-    		Object parent = ((IVirtualNode)parentElement).getParent(); 
-    		if(parent instanceof SybaseASESchema){
-    			databaseName = ((SybaseASESchema)parent).getCatalog().getName();
-    		}
-    		else if(parent instanceof SybaseASECatalog){
-    			databaseName = ((SybaseASECatalog)parent).getName();
-    		}
-    	}
-    	else{
-    	    databaseName = DSEUtil.findDatabaseNameByChild(parentElement);
-    	}
+//        boolean isShowOwner = true;        
+//    	if(parentElement instanceof IVirtualNode){
+//    		Object parent = ((IVirtualNode)parentElement).getParent(); 
+//    		if(parent instanceof SybaseASESchema){
+//    			databaseName = ((SybaseASESchema)parent).getCatalog().getName();
+//    		}
+//    		else if(parent instanceof SybaseASECatalog){
+//    			databaseName = ((SybaseASECatalog)parent).getName();
+//    		}
+//    	}
+//    	else{
+//    	    databaseName = DSEUtil.findDatabaseNameByChild(parentElement);
+//    	}
     	
    		isShowSchema = DSEUtil.checkIsShowSchema(parentElement);
-   		isShowOwner = DSEUtil.checkIsShowOwner(parentElement);
+//   		isShowOwner = DSEUtil.checkIsShowOwner(parentElement);
    		
         if (parentElement instanceof ConnectionInfo)
         {
@@ -164,20 +181,15 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             CatalogFilterProvider provider = new CatalogFilterProvider();
             ConnectionFilter filter = provider.getConnectionFilter(db);
             
-            if (catalogNode.getChildrenArray().length == 0)
-            {
-                List catalogs = db.getCatalogs();
-                catalogNode.addChildren(getFilteredObjects(filter, catalogs));
-            }
-            return catalogNode.getChildrenArray();
+            return getFilteredObjects(filter, db.getCatalogs()).toArray();
         }
         else if (parentElement instanceof SybaseASECatalog)
         {
         	SybaseASECatalog catalog = ((SybaseASECatalog) parentElement);
-        	databaseName = catalog.getName();
-//        	this.checkIsShowSchema(catalog.getName(), parentElement);
-//        	this.checkIsShowOwner(catalog.getName(), parentElement);
-        	if(isShowSchema){
+//        	databaseName = catalog.getName();
+
+        	if(isShowSchema)
+        	{
     			SchemaFilterProvider provider = new SchemaFilterProvider();
                 ConnectionFilter filter = provider.getConnectionFilter(catalog);
                 
@@ -207,14 +219,15 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
 
                 return getFilteredObjects(filter, filteredSchemas).toArray();
         	}   		
-        	else{
+        	else
+        	{
                 return new Object[]
                                   {
-                                      new TableNode(TABLE, TABLE, parentElement),
-                                      new SybaseViewNode(VIEW, VIEW, parentElement),
+                                      new SybaseASETableNode(TABLE, TABLE, parentElement),
+                                      new SybaseASEViewNode(VIEW, VIEW, parentElement),
                                       new ProxyTableNode(PROXY_TABLE_FOLDER, PROXY_TABLE_FOLDER, parentElement),
-                                      new StoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parentElement),
-                                      new UDTNode(UDT, UDT, parentElement),
+                                      new SybaseASEStoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parentElement),
+                                      new SybaseASEUDTNode(UDT, UDT, parentElement),
                                       new WebServicesAsTableFolder(WEB_SERVICES_AS_TABLES_FOLDER, WEB_SERVICES_AS_TABLES_FOLDER,
                                               parentElement), 
                                       new DefaultNode(DEFAULT_FOLDER, DEFAULT_FOLDER, parentElement),
@@ -226,11 +239,11 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         {
             return new Object[]
             {
-                new TableNode(TABLE, TABLE, parentElement),
-                new SybaseViewNode(VIEW, VIEW, parentElement),
+                new SybaseASETableNode(TABLE, TABLE, parentElement),
+                new SybaseASEViewNode(VIEW, VIEW, parentElement),
                 new ProxyTableNode(PROXY_TABLE_FOLDER, PROXY_TABLE_FOLDER, parentElement),
-                new StoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parentElement),
-                new UDTNode(UDT, UDT, parentElement),
+                new SybaseASEStoredProcedureNode(STORED_PROCEDURE, STORED_PROCEDURE, parentElement),
+                new SybaseASEUDTNode(UDT, UDT, parentElement),
                 new WebServicesAsTableFolder(WEB_SERVICES_AS_TABLES_FOLDER, WEB_SERVICES_AS_TABLES_FOLDER,
                         parentElement), 
                 new DefaultNode(DEFAULT_FOLDER, DEFAULT_FOLDER, parentElement),
@@ -241,21 +254,13 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         {
             DataTypesFolder dtf = (DataTypesFolder) parentElement;
             SybaseASEDatabase sad = (SybaseASEDatabase) dtf.getParent();
-            if (dtf.getChildrenArray().length == 0)
-            {
-                dtf.addChildren(sad.getDataTypes());
-            }
-            return dtf.getChildrenArray();
+            return sad.getDataTypes().toArray();
         }
         else if (parentElement instanceof WebServicesFolder)
         {
             WebServicesFolder wsf = (WebServicesFolder) parentElement;
             SybaseASEDatabase sad = (SybaseASEDatabase) wsf.getParent();
-            if (wsf.getChildrenArray().length == 0)
-            {
-                wsf.addChildren(sad.getWebServices());
-            }
-            return wsf.getChildrenArray();
+            return sad.getWebServices().toArray();
         }
         // Web Services As Tables
         else if (parentElement instanceof WebServicesAsTableFolder)
@@ -265,7 +270,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         	if(isShowSchema){
                 SybaseASESchema schema = (SybaseASESchema) webServicesAsTableFolder.getParent();
                 ConnectionFilter filter = provider.getConnectionFilter(schema);          
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getWebServicesAsTables(), schema.getOwner().getName(), isShowOwner)).toArray();        		
+                return getFilteredObjects(filter, schema.getWebServicesAsTables()).toArray();        		
         	}
         	else{
         		List ws = new ArrayList();
@@ -274,7 +279,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		ws.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getWebServicesAsTables(), schema.getOwner().getName(), isShowOwner)));
+            		ws.addAll(getFilteredObjects(filter, schema.getWebServicesAsTables()));
 				}
             	return ws.toArray();        		
         	}
@@ -299,7 +304,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
                     tableList = schema.getNormalTables();
                 }
                 
-                return getFilteredObjects(filter, this.appendOwnerToLabel(tableList, schema.getOwner().getName(), isShowOwner)).toArray();            	
+                return getFilteredObjects(filter, tableList).toArray();            	
             }
             else{
             	List tables = new ArrayList();
@@ -318,22 +323,22 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
                     {
                         tableList = schema.getNormalTables();
                     }
-                    tables.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(tableList, schema.getOwner().getName(), isShowOwner)));
+                    tables.addAll(getFilteredObjects(filter, tableList));
 				}
             	return tables.toArray();
             }
         }
-        else if (parentElement instanceof SybaseViewNode)
+        else if (parentElement instanceof ViewNode)
         {
-        	SybaseViewNode viewNode = (SybaseViewNode) parentElement;
+        	ViewNode viewNode = (ViewNode) parentElement;
         	SchemaObjectFilterProvider provider = new SchemaObjectFilterProvider(ConnectionFilter.VIEW_FILTER);
         	if(isShowSchema){
-                SybaseViewNode tableNode = (SybaseViewNode) parentElement;
+                ViewNode tableNode = (ViewNode) parentElement;
                 SybaseASESchema schema = (SybaseASESchema) tableNode.getParent();
 
                 ConnectionFilter filter = provider.getConnectionFilter(schema);
                 
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getViewTables(), schema.getOwner().getName(), isShowOwner)).toArray();        		
+                return getFilteredObjects(filter, schema.getViewTables()).toArray();        		
         	}
         	else{
         		List views = new ArrayList();
@@ -342,7 +347,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		views.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getViewTables(), schema.getOwner().getName(), isShowOwner)));
+            		views.addAll(getFilteredObjects(filter, schema.getViewTables()));
 				}
             	return views.toArray();
         	}
@@ -355,7 +360,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
                 SybaseASESchema schema = (SybaseASESchema)spNode.getParent();
                 ConnectionFilter filter = provider.getConnectionFilter(schema);
                 
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getProcedures(), schema.getOwner().getName(), isShowOwner)).toArray();            	
+                return getFilteredObjects(filter, schema.getProcedures()).toArray();            	
             }
             else{
             	SybaseASECatalog catalog = (SybaseASECatalog)spNode.getParent();
@@ -364,7 +369,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		sps.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getProcedures(), schema.getOwner().getName(), isShowOwner)));
+            		sps.addAll(getFilteredObjects(filter, schema.getProcedures()));
 				}
             	return sps.toArray();
             }
@@ -376,7 +381,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         	if(isShowSchema){
                 SybaseASESchema schema = (SybaseASESchema)spNode.getParent();
                 ConnectionFilter filter = provider.getConnectionFilter(schema);            
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getUserDefinedTypes(), schema.getOwner().getName(), isShowOwner)).toArray();        		
+                return getFilteredObjects(filter, schema.getUserDefinedTypes()).toArray();        		
         	}
         	else{
             	SybaseASECatalog catalog = (SybaseASECatalog)spNode.getParent();
@@ -385,7 +390,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		udts.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getUserDefinedTypes(), schema.getOwner().getName(), isShowOwner)));
+            		udts.addAll(getFilteredObjects(filter, schema.getUserDefinedTypes()));
 				}
             	return udts.toArray();        		
         	}
@@ -398,7 +403,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             if(isShowSchema){
                 SybaseASESchema schema = (SybaseASESchema) tableNode.getParent();
                 ConnectionFilter filter = provider.getConnectionFilter(schema);         
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getProxyTables(), schema.getOwner().getName(), isShowOwner)).toArray();            	
+                return getFilteredObjects(filter, schema.getProxyTables()).toArray();            	
             }
             else{
             	SybaseASECatalog catalog = (SybaseASECatalog)tableNode.getParent();
@@ -407,7 +412,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		tables.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getProxyTables(), schema.getOwner().getName(), isShowOwner)));
+            		tables.addAll(getFilteredObjects(filter, schema.getProxyTables()));
 				}
             	return tables.toArray();            	
             }
@@ -419,7 +424,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         	if(isShowSchema){
                 SybaseASESchema schema = (SybaseASESchema) defaultNode.getParent();
                 ConnectionFilter filter = provider.getConnectionFilter(schema);          
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getDefaults(), schema.getOwner().getName(), isShowOwner)).toArray();        		
+                return getFilteredObjects(filter, schema.getDefaults()).toArray();        		
         	}
         	else{
             	SybaseASECatalog catalog = (SybaseASECatalog)defaultNode.getParent();
@@ -428,7 +433,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		defaults.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getDefaults(), schema.getOwner().getName(), isShowOwner)));
+            		defaults.addAll(getFilteredObjects(filter, schema.getDefaults()));
 				}
             	return defaults.toArray();        		
         	}
@@ -441,7 +446,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         	if(isShowSchema){
         		SybaseASESchema schema = (SybaseASESchema) ruleNode.getParent();       
                 ConnectionFilter filter = provider.getConnectionFilter(schema);
-                return getFilteredObjects(filter, this.appendOwnerToLabel(schema.getRules(), schema.getOwner().getName(), isShowOwner)).toArray();        		
+                return getFilteredObjects(filter, schema.getRules()).toArray();        		
         	}
         	else{
             	SybaseASECatalog catalog = (SybaseASECatalog)ruleNode.getParent();
@@ -450,7 +455,7 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
             	for (Iterator iterator = schemas.iterator(); iterator.hasNext();) {
 					SybaseASESchema schema = (SybaseASESchema) iterator.next();
 					ConnectionFilter filter = provider.getConnectionFilter(schema);
-            		rules.addAll(getFilteredObjects(filter, this.appendOwnerToLabel(schema.getRules(), schema.getOwner().getName(), isShowOwner)));
+            		rules.addAll(getFilteredObjects(filter, schema.getRules()));
 				}
 
             	return rules.toArray();        		
@@ -466,43 +471,58 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         else if (parentElement instanceof ParametersNode)
         {
             ParametersNode parametersNode = (ParametersNode) parentElement;
-            Procedure procedure = (Procedure) parametersNode.getParent();
-            return procedure.getParameters().toArray();
+            Routine routine =  (Routine)parametersNode.getParent();
+            
+            return routine.getParameters().toArray();
         }
         else if (parentElement instanceof IndexNode)
         {
             IndexNode indexNode = (IndexNode) parentElement;
             BaseTable table = (BaseTable) indexNode.getParent();
-            if (indexNode.getChildrenArray().length == 0)
+            List result = new ArrayList();
+            List indices = table.getIndex();
+            for (int i = 0; i < indices.size(); i++)
             {
-                List indices = table.getIndex();
-                for (int i = 0; i < indices.size(); i++)
+                Index index = (Index) indices.get(i);
+                if (!index.isSystemGenerated())
                 {
-                    Index index = (Index) indices.get(i);
-                    if (!index.isSystemGenerated())
-                        indexNode.addChildren(index);
+                    result.add(index);
                 }
             }
-            return this.appendOwnerToLabel(convertArrayToSQLObjectList(indexNode.getChildrenArray()), table.getSchema().getOwner().getName(), isShowOwner).toArray();
+            return result.toArray();
         }
         else if (parentElement instanceof ViewTable)
         {
             return DSEContentProviderUtil.getViewTableChildren(parentElement);
         }
+        else if (parentElement instanceof SybaseASEProxyTable)
+        {
+        	List children = new ArrayList(Arrays.asList(DSEContentProviderUtil.getProxyTableChildren(parentElement)));
+        	children.add(new SybaseASEIndexNode(INDEX, INDEX, parentElement));
+        	children.add(new SybaseASEPrimaryKeyNode(DSEContentProviderUtil.PRIMARY_KEY_FOLDER,DSEContentProviderUtil.PRIMARY_KEY_FOLDER,parentElement));
+        	children.add(new SybaseASEUniqueConstraintNode(DSEContentProviderUtil.UNIQUE_CONSTRAINT_FOLDER, DSEContentProviderUtil.UNIQUE_CONSTRAINT_FOLDER, parentElement));
+        	children.add(new SybaseASECheckConstraintNode(DSEContentProviderUtil.CHECK_CONSTRAINT_FOLDER, DSEContentProviderUtil.CHECK_CONSTRAINT_FOLDER, parentElement));
+        	children.add(new SybaseASEForeignKeyNode(DSEContentProviderUtil.FOREIGN_KEY_FOLDER, DSEContentProviderUtil.FOREIGN_KEY_FOLDER, parentElement));
+        	return children.toArray();
+        }
+        else if (parentElement instanceof SybaseASEWebServiceTable)
+        {
+        	return ASEContentProviderUtil.getWebServiceTableChildren(parentElement);
+        }
         else if (parentElement instanceof Table)
         {
-            if (parentElement instanceof SybaseASEWebServiceTable)
-            {
-                return ASEContentProviderUtil.getWebServiceTableChildren(parentElement);
-            }
-            return DSEContentProviderUtil.getTableChildren(parentElement);
+            List children = new ArrayList(Arrays.asList(DSEContentProviderUtil.getTableChildren(parentElement)));
+        	children.add(new SybaseASEIndexNode(INDEX, INDEX, parentElement));
+        	children.add(new SybaseASEPrimaryKeyNode(DSEContentProviderUtil.PRIMARY_KEY_FOLDER,DSEContentProviderUtil.PRIMARY_KEY_FOLDER,parentElement));
+        	children.add(new SybaseASEUniqueConstraintNode(DSEContentProviderUtil.UNIQUE_CONSTRAINT_FOLDER, DSEContentProviderUtil.UNIQUE_CONSTRAINT_FOLDER, parentElement));
+        	children.add(new SybaseASECheckConstraintNode(DSEContentProviderUtil.CHECK_CONSTRAINT_FOLDER, DSEContentProviderUtil.CHECK_CONSTRAINT_FOLDER, parentElement));
+        	children.add(new SybaseASEForeignKeyNode(DSEContentProviderUtil.FOREIGN_KEY_FOLDER, DSEContentProviderUtil.FOREIGN_KEY_FOLDER, parentElement));
+        	return children.toArray();
         }
         else if (parentElement instanceof PrimaryKeyNode || parentElement instanceof UniqueConstraintNode
                 || parentElement instanceof CheckConstraintNode || parentElement instanceof ForeignKeyNode)
         {
-        	BaseTable table = (BaseTable) ((IVirtualNode) parentElement).getParent();
-            return DSEContentProviderUtil.getConstraintNodeChildren(parentElement);
-            								
+       		return DSEContentProviderUtil.getConstraintNodeChildren(parentElement);
         }
         else if (parentElement instanceof CheckConstraint)
         {
@@ -536,15 +556,13 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         {
             return null;
         }
-        else if(parentElement instanceof TriggerNode){
-//        	if(((IVirtualNode)parentElement).getParent() instanceof BaseTable){
-    		BaseTable table = (BaseTable)((IVirtualNode)parentElement).getParent();
-    		return this.appendOwnerToLabel(convertArrayToSQLObjectList(super.getChildren(parentElement)),
-    										table.getSchema().getOwner().getName(), isShowOwner).toArray();
-//        	}
-//        	return null;        	
-        }
-        return super.load(parentElement);
+//        else if(parentElement instanceof TriggerNode)
+//        {
+//    		BaseTable table = (BaseTable)((IVirtualNode)parentElement).getParent();
+//    		return table.getTriggers().toArray();
+//      	
+//        }
+        return EMPTY_ELEMENT_ARRAY;
     }
 
     private List getFilteredObjects(ConnectionFilter filter, List oldList)
@@ -636,11 +654,11 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         }
         //471852-1: forces folders under Table to load early to avoid infinite loop
         //but the REAL solution is to async refresh tree items (ServerExplorerContentProviderNav)
-        if (element instanceof IVirtualNode && ((IVirtualNode)element).getParent() instanceof Table)
-        {
-            return getChildren(element).length>0;
-        }
-        return super.hasChildren(element);
+//        if (element instanceof IVirtualNode && ((IVirtualNode)element).getParent() instanceof Table)
+//        {
+//            return getChildren(element).length>0;
+//        }
+        return true;
     }
 
     /**
@@ -700,16 +718,24 @@ public class SybaseASEContentProvider extends ServerExplorerContentProviderNav i
         }
     }
     
-    private List appendOwnerToLabel(List sqlObjects, String owner, boolean isShowOwner){
-    	return DSEContentProviderUtil.appendOwnerToLabel(sqlObjects, owner, isShowOwner);
-    }
-    
-    private List convertArrayToSQLObjectList(Object[] objs){
-    	if(objs == null) return new ArrayList();
-    	List sqlObjs = new ArrayList(objs.length);
-    	for(int i=0; i<objs.length; i++){
-    		sqlObjs.add((SQLObject)objs[i]);
-    	}
-    	return sqlObjs;
-    }    
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		if (viewer instanceof CommonViewer && this.viewer == null)
+    	{
+    		this.viewer = (CommonViewer) viewer;
+    	}	
+	}
+
+	public Object[] getChildren(Object parent) 
+	{
+		return new Loading ().getChildren(this.viewer, parent, this);
+	}    
+	
+	private static final ResourceLoader resourceLoader = ResourceLoader.INSTANCE;
+
+    private static final String DESCRIPTION = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.DESCRIPTION"); //$NON-NLS-1$
+	
+	public String getLoadingDescription() 
+	{
+		return DESCRIPTION;
+	}
 }

@@ -11,6 +11,7 @@ package org.eclipse.datatools.enablement.sybase.ui.util;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
+import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServiceImpl;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode;
@@ -21,6 +22,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.sqltools.internal.refresh.ICatalogObject2;
 import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.TreeItem;
@@ -208,6 +210,40 @@ public class DSEUtil
             return null;
         }
     }    
+    
+    public static Database findDatabaseByChild(Object child)
+    {
+    	if (child instanceof ConnectionInfo)
+        {
+            return ((ConnectionInfo) child).getSharedDatabase();
+        }
+    	else if (child instanceof SQLObject)
+        {
+            return getDatabase((SQLObject)child);
+        }
+        else
+        {
+            if (child instanceof IVirtualNode && ((IVirtualNode) child).getParent() instanceof SQLObject){
+                return findDatabaseByChild((SQLObject)((IVirtualNode) child).getParent());
+            }
+            return null;
+        }
+    }
+    
+    private static Database getDatabase(EObject obj)
+    {
+    	EObject container = obj;
+        while (container != null)
+        {
+            obj = container;
+            if (obj instanceof Database)
+            {
+                return ((Database)obj);
+            }
+            container = ContainmentServiceImpl.INSTANCE.getContainer(obj);
+        }
+        return null;
+    }
 
     public static void refreshObjectBySchema(Schema schema, Object object){
         IConnectionProfile profile = DSEUtil.findConnectionProfileByChild(schema);

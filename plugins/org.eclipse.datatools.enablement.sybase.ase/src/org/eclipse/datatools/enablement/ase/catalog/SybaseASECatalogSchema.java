@@ -129,7 +129,7 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
                 }
             }
         }
-        if (context == null || context.equals(GroupID.USER_DEFINED_TYPE) || context.equals(DBEventGroupID.ASADATATYPE))
+        if (context == null || context.equals(GroupID.USER_DEFINED_TYPE) || context.equals(DBEventGroupID.ASEDATATYPE))
         {
             synchronized (udtsLoaded)
             {
@@ -185,7 +185,7 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
             {
                 return tablesLoaded.booleanValue();
             }
-            else if (context.equals(DBEventGroupID.ASADATATYPE) || context.equals(GroupID.USER_DEFINED_TYPE))
+            else if (context.equals(DBEventGroupID.ASEDATATYPE) || context.equals(GroupID.USER_DEFINED_TYPE))
             {
                 return udtsLoaded.booleanValue();
             }
@@ -227,7 +227,7 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
                 case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__ROUTINES:
                     return GroupID.PROCEDURE;
                 case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__USER_DEFINED_TYPES:
-                    return DBEventGroupID.ASADATATYPE;
+                    return DBEventGroupID.ASEDATATYPE;
                 case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__DEFAULTS:
                     return DBEventGroupID.ASEDEFAULT;
                 case SybaseasesqlmodelPackage.SYBASE_ASE_SCHEMA__RULES:
@@ -249,7 +249,7 @@ public class SybaseASECatalogSchema extends SybaseASESchemaImpl implements
         }
         else if (obj instanceof UserDefinedType)
         {
-            return DBEventGroupID.ASADATATYPE;
+            return DBEventGroupID.ASEDATATYPE;
         }
         else if (obj instanceof SybaseASEDefault)
         {

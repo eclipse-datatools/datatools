@@ -8,13 +8,22 @@
  * 
  * Contributors: Sybase - initial API and implementation
  ******************************************************************************/
-package org.eclipse.datatools.enablement.sybase.containment;
+package org.eclipse.datatools.enablement.sybase.ase.virtual;
 
-public interface ConstraintGroupID
+import org.eclipse.datatools.enablement.sybase.virtual.PrimaryKeyNode;
+
+/**
+ * @author David Cui
+ */
+public class SybaseASEPrimaryKeyNode extends PrimaryKeyNode
 {
-    public static final String PRIMARYKEY = "core.sybase.PrimaryKey";
-    public static final String FOREIGNKEY = "core.sybase.ForeignKey";
-    public static final String UNIQUECONSTRAINT = "core.sybase.UniqueConstraint";
-    public static final String CHECKCONSTRAINT = "core.sybase.CheckConstraint";
-    public static final String PARAMETER = "core.sybase.routine.parameter"; //$NON-NLS-1$
+
+    /**
+     * 
+     */
+    public SybaseASEPrimaryKeyNode(String name, String displayName, Object parent)
+    {
+        super(name, displayName, parent);
+    }
+
 }

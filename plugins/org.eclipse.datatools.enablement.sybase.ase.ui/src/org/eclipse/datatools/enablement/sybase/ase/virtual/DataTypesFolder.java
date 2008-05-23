@@ -19,7 +19,7 @@ public class DataTypesFolder extends VirtualNode implements IDataTypesFolder{
 
     public String getGroupID()
     {
-        return DBEventGroupID.ASADATATYPE;
+        return DBEventGroupID.ASEDATATYPE;
     }
 
 }

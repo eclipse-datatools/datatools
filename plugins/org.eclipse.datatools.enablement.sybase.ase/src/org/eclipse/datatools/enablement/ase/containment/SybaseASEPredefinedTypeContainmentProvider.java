@@ -17,6 +17,6 @@ public class SybaseASEPredefinedTypeContainmentProvider extends
 	}
 
 	public String getGroupId(EObject obj) {
-		return DBEventGroupID.ASADATATYPE;
+		return DBEventGroupID.ASEDATATYPE;
 	}
 }

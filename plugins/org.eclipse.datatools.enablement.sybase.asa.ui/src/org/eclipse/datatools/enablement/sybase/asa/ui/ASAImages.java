@@ -15,7 +15,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 
-import org.eclipse.datatools.enablement.sybase.asa.JDBCASAPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -27,7 +26,7 @@ import org.eclipse.swt.graphics.Image;
 public class ASAImages
 {
 
-    private static final String         NAME_PREFIX          = "org.eclipse.datatools.enablement.sybase.asa";
+    private static final String         NAME_PREFIX          = "org.eclipse.datatools.enablement.sybase.asa.ui";
     private static final int            NAME_PREFIX_LENGTH   = NAME_PREFIX.length();
     private static URL                  baseURL             = null;
 
@@ -38,7 +37,7 @@ public class ASAImages
     static
     {
         String pathSuffix = "icons/";
-        baseURL = JDBCASAPlugin.getDefault().getBundle().getEntry(pathSuffix);
+        baseURL = ASAUIPlugin.getDefault().getBundle().getEntry(pathSuffix);
     }
 
 

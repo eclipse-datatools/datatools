@@ -69,20 +69,45 @@
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASESchema"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDatabase"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASECatalog"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDefault"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASERule"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETable"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETempTable"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProcedure"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEFunction"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEUserDefinedType"/>
+	                
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.virtual.ParametersNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesFolder"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DefaultNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.RuleNode"/>
 	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.ProxyTableNode"/>
-	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASETableNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEViewNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEStoredProcedureNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUDFNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUDTNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEIndexNode"/>
+	                <instanceof value="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.CatalogNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.virtual.ParametersNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEPrimaryKeyNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUniqueConstraintNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASECheckConstraintNode"/>
+	                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEForeignKeyNode"/>
 	            </or>
             </triggerPoints>
             <possibleChildren>
                 <or>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEPredefinedDataType"/>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEWebService"/>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.DataTypesFolder"/>
-                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.virtual.WebServicesFolder"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEDefault"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASERule"/>
+	            <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETable"/>
+     	       	<instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEProcedure"/>
+     	       	<instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEFunction"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEUserDefinedType"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASETrigger"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.ase.models.sybaseasesqlmodel.SybaseASEIndex"/>
+                <instanceof value="org.eclipse.datatools.enablement.sybase.models.sybasesqlmodel.SybaseParameter"/>
 	            </or>
             </possibleChildren>
             <override
@@ -141,7 +166,47 @@
         displayType="%datatype.node.name"
         iconLocation="/icons/folder.gif"
         type="org.eclipse.datatools.enablement.sybase.ase.providers.IDataTypesFolder"/>    
-	</extension>
+  <contributor
+  		displayType="%table.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASETableNode"/>
+  <contributor
+  		displayType="%view.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEViewNode"/>
+  <contributor
+  		displayType="%procedure.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEStoredProcedureNode"/>        
+  <contributor
+  		displayType="%udf.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUDFNode"/>
+  <contributor
+  		displayType="%udt.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEUDTNode"/>     
+  <contributor
+  		displayType="%index.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.ase.virtual.SybaseASEIndexNode"/>       
+  <contributor
+  		displayType="%ase.priamrykey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASEPrimaryKeyNode"/>        
+  <contributor
+  		displayType="%ase.uniqueconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASEUniqueConstraintNode"/>
+  <contributor
+  		displayType="%ase.checkconstraint.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASECheckConstraintNode"/>         
+  <contributor
+  		displayType="%ase.foreignkey.node.name"
+        iconLocation="/icons/folder.gif"
+        type="org.eclipse.datatools.enablement.sybase.asa.virtual.SybaseASEForeignKeyNode"/>        
+  </extension>
    
    <extension
        point="org.eclipse.ui.decorators">

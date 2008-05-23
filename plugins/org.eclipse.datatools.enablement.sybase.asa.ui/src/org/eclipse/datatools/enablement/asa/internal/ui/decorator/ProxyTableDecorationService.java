@@ -29,21 +29,8 @@ public class ProxyTableDecorationService extends AbstractDecorationService
         if (element instanceof SybaseASABaseProxyTable)
         {
             SybaseASABaseProxyTable table = (SybaseASABaseProxyTable) element;
-            if(DSEUtil.checkIsShowOwner(element)){
-                String owner = table.getSchema().getOwner().getName();
-                StringBuffer suffix = new StringBuffer()
-                                        .append(" (")
-                                        .append(owner)
-                                        .append(")")
-                                        .append(" [")
-                                        .append(table.getRemoteObjectLocation())
-                                        .append("]");
-
-                decoration.addSuffix(suffix.toString());                
-            }
-            else{
-                decoration.addSuffix(" [" + table.getRemoteObjectLocation() + "]");    
-            }
+            
+            decoration.addSuffix(" [" + table.getRemoteObjectLocation() + "]");    
         }
     }
 }

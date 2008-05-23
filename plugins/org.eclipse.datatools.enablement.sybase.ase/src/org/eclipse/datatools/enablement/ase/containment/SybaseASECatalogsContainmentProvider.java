@@ -3,7 +3,6 @@ package org.eclipse.datatools.enablement.ase.containment;
 import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.AbstractContainmentProvider;
-import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.emf.ecore.EObject;
@@ -29,6 +28,6 @@ public class SybaseASECatalogsContainmentProvider extends
     }
 
     public String getGroupId(EObject obj) {
-        return GroupID.CATALOG;
+        return DBEventGroupID.CATALOG;
     }
 }

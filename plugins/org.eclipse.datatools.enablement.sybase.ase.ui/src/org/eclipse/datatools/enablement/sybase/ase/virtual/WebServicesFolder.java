@@ -19,7 +19,7 @@ public class WebServicesFolder extends VirtualNode implements IWebServicesFolder
 
     public String getGroupID()
     {
-        return DBEventGroupID.ASAWEBSERVICE;
+        return DBEventGroupID.ASEWEBSERVICE;
     }
 
 }

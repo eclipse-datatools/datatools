@@ -8,17 +8,15 @@
  * 
  * Contributors: Sybase - initial API and implementation
  ******************************************************************************/
-package org.eclipse.datatools.enablement.sybase.virtual;
+package org.eclipse.datatools.enablement.sybase.asa.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.enablement.sybase.containment.ConstraintGroupID;
+import org.eclipse.datatools.enablement.sybase.virtual.UniqueConstraintNode;
 
 /**
- * 
- * @author lihuang
- *
+ * @author David Cui
  */
-public class ParametersNode extends VirtualNode
+public class SybaseASAUniqueConstraintNode extends UniqueConstraintNode
 {
 
     /**
@@ -26,13 +24,17 @@ public class ParametersNode extends VirtualNode
      * @param displayName
      * @param parent
      */
-    public ParametersNode(String name, String displayName, Object parent)
+    public SybaseASAUniqueConstraintNode(String name, String displayName, Object parent)
     {
         super(name, displayName, parent);
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode#getGroupID()
+     */
     public String getGroupID()
     {
-        return ConstraintGroupID.PARAMETER;
+        return ConstraintGroupID.UNIQUECONSTRAINT;
     }
+
 }

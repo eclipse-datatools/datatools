@@ -37,8 +37,8 @@ public class ASEContentProviderUtil extends DSEContentProviderUtil
         }
         
 
-        DatabaseDefinitionRegistry dbRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
-        DatabaseDefinition df = dbRegistry.getDefinition(((Table) parent).getSchema().getDatabase());
+//        DatabaseDefinitionRegistry dbRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
+//        DatabaseDefinition df = dbRegistry.getDefinition(((Table) parent).getSchema().getDatabase());
 
         List collection = new ArrayList(5);
         collection.add(nodeFactory.makeColumnNode(COLUMN, COLUMN, parent));

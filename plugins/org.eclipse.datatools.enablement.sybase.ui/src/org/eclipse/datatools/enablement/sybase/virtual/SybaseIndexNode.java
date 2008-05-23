@@ -10,15 +10,13 @@
  ******************************************************************************/
 package org.eclipse.datatools.enablement.sybase.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.IndexNode;
 import org.eclipse.datatools.enablement.sybase.containment.ConstraintGroupID;
 
 /**
- * 
- * @author lihuang
- *
+ * @author linsong
  */
-public class ParametersNode extends VirtualNode
+public class SybaseIndexNode extends IndexNode
 {
 
     /**
@@ -26,13 +24,14 @@ public class ParametersNode extends VirtualNode
      * @param displayName
      * @param parent
      */
-    public ParametersNode(String name, String displayName, Object parent)
+    public SybaseIndexNode(String name, String displayName, Object parent)
     {
         super(name, displayName, parent);
     }
 
     public String getGroupID()
     {
-        return ConstraintGroupID.PARAMETER;
+        return "sybase.index";
     }
+
 }

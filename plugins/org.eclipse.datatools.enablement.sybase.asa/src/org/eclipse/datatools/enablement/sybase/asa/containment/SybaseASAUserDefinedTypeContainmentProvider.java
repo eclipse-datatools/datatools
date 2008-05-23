@@ -9,12 +9,13 @@ import org.eclipse.emf.ecore.EObject;
 public class SybaseASAUserDefinedTypeContainmentProvider extends
 		UserDefinedTypeContainmentProvider {
 
-	public Collection getContainedElements(EObject obj) {
+	public Collection getContainedElements(EObject obj) 
+	{
 		return super.getContainedElements(obj);
 	}
 
-	public String getGroupId(EObject obj) {
-//		return DBEventGroupID.ASAUDD;
-		return super.getGroupId(obj);
+	public String getGroupId(EObject obj) 
+	{
+		return DBEventGroupID.ASAUDD;
 	}
 }

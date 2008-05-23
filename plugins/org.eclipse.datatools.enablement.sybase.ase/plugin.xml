@@ -53,6 +53,10 @@
         package="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybaseasesqlmodel.ecore"
         class="SybaseASERule"
         provider="org.eclipse.datatools.enablement.ase.containment.SybaseASERuleContainmentProvider"/>
+    <containment
+        package="http:///org/eclipse/datatools/connectivity/sqm/sybase/ase/sybaseasesqlmodel.ecore"
+        class="SybaseASEProxyTable"
+        provider="org.eclipse.datatools.enablement.ase.containment.SybaseASEProxyTableContainmentProvider"/>
   </extension>
 	
 	<extension

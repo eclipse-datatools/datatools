@@ -17,6 +17,6 @@ public class SybaseASEWebServiceContainmentProvider extends
 	}
 
 	public String getGroupId(EObject obj) {
-		return DBEventGroupID.ASAWEBSERVICE;
+		return DBEventGroupID.ASEWEBSERVICE;
 	}
 }
