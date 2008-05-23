@@ -14,15 +14,15 @@ import org.eclipse.datatools.sqltools.internal.tabledataeditor.util.ResourceLoad
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.ui.navigator.CommonActionProvider;
-import org.eclipse.ui.navigator.ICommonMenuConstants;
 
 public class DataGroupProvider extends CommonActionProvider
 {
     public static final String DATA_MENU_ID = "org.eclipse.datatools.connectivity.sqm.server.ui.data"; //$NON-NLS-1$
     private static final String DATA_MENU = ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.DATA");//$NON-NLS-1$ 
+    private static final String EDIT_GROUP = "group.edit"; //$NON-NLS-1$
 
     public void fillContextMenu(IMenuManager menu)
     {
-        menu.appendToGroup(ICommonMenuConstants.GROUP_ADDITIONS, new MenuManager(DATA_MENU, DATA_MENU_ID));
+        menu.appendToGroup(EDIT_GROUP, new MenuManager(DATA_MENU, DATA_MENU_ID));
     }
 }
