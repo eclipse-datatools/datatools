@@ -17,6 +17,7 @@
             profile="com.sybase.stf.servers.jdbc.ase2.embedded.connectionProfile"/>
       <newWizard
             class="org.eclipse.datatools.enablement.sybase.ase.internal.ui.connection.NewASEConnectionProfileWizard"
+            description="%ASE_CONNECTION_PROFILE_WIZARD_DESCRIPTION"
             icon="icons/new_db_element.gif"
             id="com.sybase.stf.servers.jdbc.ase2.embedded.NewConnectionProfileWizard"
             name="%profile.ase.wizard.title"
