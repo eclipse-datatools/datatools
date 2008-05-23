@@ -17,6 +17,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.graphics.Image;
 
 public class DriverTreeTableLabelProvider extends LabelProvider implements
@@ -30,7 +31,7 @@ public class DriverTreeTableLabelProvider extends LabelProvider implements
 		if (element instanceof TemplateDescriptor) {
 			TemplateDescriptor td = (TemplateDescriptor) element;
 
-			String name = td.getName();
+			String name = TextProcessor.process(td.getName());
 			String vendor = 
 				td.getPropertyValueFromId(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
 			String version = 
@@ -46,8 +47,8 @@ public class DriverTreeTableLabelProvider extends LabelProvider implements
 			String versionDisplay = null;
 			String vendorDisplay = null;
 			if (dbDef != null) {
-				versionDisplay = dbDef.getVersionDisplayString();
-				vendorDisplay = dbDef.getProductDisplayString();
+				versionDisplay = TextProcessor.process(dbDef.getVersionDisplayString());
+				vendorDisplay = TextProcessor.process(dbDef.getProductDisplayString());
 			}
 
 			switch (columnIndex) {
