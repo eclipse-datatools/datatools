@@ -1,12 +1,13 @@
-/*
- *+------------------------------------------------------------------------+
- *| Licensed Materials - Property of IBM                                   |
- *| (C) Copyright IBM Corp. 2005.  All Rights Reserved.                    |
- *|                                                                        |
- *| US Government Users Restricted Rights - Use, duplication or disclosure |
- *| restricted by GSA ADP Schedule Contract with IBM Corp.                 |
- *+------------------------------------------------------------------------+
- */
+/*******************************************************************************
+ * Copyright (c) 2008 Sybase, Inc.
+ * 
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Eclipse Public License v1.0 which
+ * accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors: Sybase - initial API and implementation
+ ******************************************************************************/
 package org.eclipse.datatools.enablement.ase.ddl;
 
 import java.util.Vector;
