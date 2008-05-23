@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
 import org.eclipse.datatools.enablement.internal.oracle.IOracleDriverDefinitionConstants;
 import org.eclipse.jface.dialogs.DialogPage;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
@@ -32,8 +33,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class OracleThinDriverUIContributor implements IDriverUIContributor,
 		Listener {
-	private static final String CUI_NEWCW_DATABASE_LBL_UI_ = Messages
-			.getString("CUI_NEWCW_DATABASE_LBL_UI_");
+	private static final String CUI_NEWCW_DATABASE_LBL_UI_ = TextProcessor.process(Messages
+			.getString("CUI_NEWCW_DATABASE_LBL_UI_"));
 
 	private static final String CUI_NEWCW_HOST_LBL_UI_ = Messages
 			.getString("CUI_NEWCW_HOST_LBL_UI_");
