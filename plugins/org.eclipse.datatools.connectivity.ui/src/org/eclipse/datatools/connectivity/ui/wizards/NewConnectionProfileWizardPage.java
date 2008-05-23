@@ -347,20 +347,20 @@ public class NewConnectionProfileWizardPage
 				getProfileDescription()});
 
 		if (_showAutoConnect) {
-			data
-					.add(new String[] {
-							ConnectivityUIPlugin
-									.getDefault()
-									.getResourceString(
-											"NewConnectionProfileWizardPage.summary_autoconnect"), //$NON-NLS-1$
-							"" + getAutoConnect()}); //$NON-NLS-1$
-			data
-				.add(new String[] {
-						ConnectivityUIPlugin
-								.getDefault()
-								.getResourceString(
-										"NewConnectionProfileWizardPage.summary_autoconnect_on_finish"), //$NON-NLS-1$
-						"" + getAutoConnectOnFinish()}); //$NON-NLS-1$
+			data.add(new String[] {
+					ConnectivityUIPlugin
+						.getDefault()
+							.getResourceString(
+								"NewConnectionProfileWizardPage.summary_autoconnect"), //$NON-NLS-1$
+				getAutoConnect() ? ConnectivityUIPlugin.getDefault().getResourceString("Boolean.true") //$NON-NLS-1$
+							: ConnectivityUIPlugin.getDefault().getResourceString("Boolean.false") }); //$NON-NLS-1$
+			data.add(new String[] {
+					ConnectivityUIPlugin
+						.getDefault()
+							.getResourceString(
+								"NewConnectionProfileWizardPage.summary_autoconnect_on_finish"), //$NON-NLS-1$
+					getAutoConnectOnFinish() ? ConnectivityUIPlugin.getDefault().getResourceString("Boolean.true") //$NON-NLS-1$
+							: ConnectivityUIPlugin.getDefault().getResourceString("Boolean.false") }); //$NON-NLS-1$
 		}
 
 		return data;
