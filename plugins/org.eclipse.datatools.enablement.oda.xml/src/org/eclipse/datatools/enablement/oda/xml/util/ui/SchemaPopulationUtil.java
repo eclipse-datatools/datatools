@@ -449,6 +449,45 @@ final class XSDFileSchemaTreePopulator
 			String xmlEncoding ) throws MalformedURLException,
 			URISyntaxException, OdaException
 	{
+		if( xmlEncoding == null || xmlEncoding.length( ) == 0 )
+		{
+			return loadSchema( schemafileName );
+		}
+		else
+		{
+			return loadSchemaWithEncoding( schemafileName, xmlEncoding );
+		}
+	}
+	
+	private static XSNamedMap loadSchema( String schemafileName) throws MalformedURLException,
+			URISyntaxException, OdaException
+	{
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance( );
+		factory.setNamespaceAware( true );
+		File f = new File( schemafileName );
+		XSLoader xsLoader = new XMLSchemaLoader( );
+		XSModel xsModel = null;
+		
+		if ( f.exists( ) )
+		{
+			 xsModel = xsLoader.loadURI( f.toURI().toString() );
+		}
+		else
+		{
+			URL url = new URL( schemafileName );
+			 xsModel = xsLoader.loadURI( url.toURI( ).toString( ) );
+		}
+
+		if ( xsModel == null )
+			throw new OdaException( Messages.getString( "ui.invalidXSDFile" ) ); //$NON-NLS-1$
+
+		return xsModel.getComponents( XSConstants.ELEMENT_DECLARATION );
+	}
+	
+	private static XSNamedMap loadSchemaWithEncoding( String schemafileName,
+			String xmlEncoding ) throws MalformedURLException,
+			URISyntaxException, OdaException
+	{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance( );
 		factory.setNamespaceAware( true );
 		URI uri = null;
