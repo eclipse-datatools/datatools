@@ -818,8 +818,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	 */
 	public void selectionChanged( SelectionChangedEvent event )
 	{
-		savedSelectedColumnsInfoList = new ArrayList( );
-
 		File file = (File) ( (IStructuredSelection) event.getSelection( ) ).getFirstElement( );
 
 		if ( file.equals( selectedFile ) )
