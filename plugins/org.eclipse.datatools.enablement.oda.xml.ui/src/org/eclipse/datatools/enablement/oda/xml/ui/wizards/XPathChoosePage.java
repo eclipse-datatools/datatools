@@ -265,7 +265,7 @@ public class XPathChoosePage extends DataSetWizardPage
 		data.right = new FormAttachment( 100, -5 );
 		xmlPathText = new Text( rightGroup, SWT.BORDER );
 		xmlPathText.setLayoutData( data );
-
+		xmlPathText.setOrientation( SWT.LEFT_TO_RIGHT );
 		xmlPathText.addModifyListener( new ModifyListener( ) {
 
 			public void modifyText( ModifyEvent e )

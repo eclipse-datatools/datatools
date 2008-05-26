@@ -20,6 +20,7 @@ import org.eclipse.datatools.enablement.oda.xml.util.ui.ATreeNode;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -125,8 +126,8 @@ public class RowMappingDialog extends TrayDialog
 		xmlPathField.setLayoutData( txtGridData );
 		for ( int i = 0; i < pathList.size( ); i++ )
 		{
-			xmlPathField.setText( pathList.get( i ).toString( ) );
-			xmlPathField.add( pathList.get( i ).toString( ) );
+			xmlPathField.setText( TextProcessor.process( pathList.get( i ).toString( ), "//") );
+			xmlPathField.add( TextProcessor.process( pathList.get( i ).toString( ), "//" ));
 		}
 		
 		setLabelValuesAndListeners( composite );
@@ -137,16 +138,24 @@ public class RowMappingDialog extends TrayDialog
 		{
 			absolutePathButton.setSelection( true );
 			xmlPathField.setEnabled( false );
+			if( pathList.size() > 0 )
+			{
+				xmlPathField.setText(TextProcessor.process( pathList.get( 0 ).toString( ), "//"));
+			}
 		}
 		else if ( this.selectRadioIndex == 2 )
 		{
 			anyLocationButton.setSelection( true );
 			xmlPathField.setEnabled( false );
+			if( pathList.size() > 1 )
+			{
+				xmlPathField.setText(TextProcessor.process( pathList.get( 1 ).toString( ), "//"));
+			}
 		}
 		else
 		{
 			customButton.setSelection( true );
-			xmlPathField.setText( this.selectStr );
+			xmlPathField.setText( TextProcessor.process( this.selectStr, "//" ));
 		}
     	return composite;
 	}
@@ -241,6 +250,7 @@ public class RowMappingDialog extends TrayDialog
 			selectRadioIndex = 1;
 			rootPath = pathList.get( 0 ).toString( );
 			xmlPathField.setEnabled( false );
+			xmlPathField.setText( TextProcessor.process( rootPath, "//"));
 		}
 	}
 
@@ -256,6 +266,7 @@ public class RowMappingDialog extends TrayDialog
 			selectRadioIndex = 2;
 			rootPath = pathList.get( 1 ).toString( );
 			xmlPathField.setEnabled( false );
+			xmlPathField.setText( TextProcessor.process( rootPath, "//"));
 		}
 	}
 	
@@ -268,13 +279,11 @@ public class RowMappingDialog extends TrayDialog
 		{
 			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath", //$NON-NLS-1$
 					new String[]{
-							selectedItem.getText( ),
-							(String) pathList.get( 0 )
+							selectedItem.getText( )
 					} ) );
 			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
 					new String[]{
-							selectedItem.getText( ),
-							(String) pathList.get( 1 )
+							selectedItem.getText( )
 					} ) );
 		}
 		else

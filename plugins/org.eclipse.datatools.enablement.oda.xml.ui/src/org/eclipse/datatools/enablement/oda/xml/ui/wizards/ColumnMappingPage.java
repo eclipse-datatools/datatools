@@ -49,6 +49,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
@@ -1343,7 +1344,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				c1 = colElement.getColumnName( ) == null ? EMPTY_STRING
 						: colElement.getColumnName( );
 				c2 = colElement.getXPath( ) == null ? EMPTY_STRING
-						: colElement.getXPath( );
+						: "version@/";
 				c3 = colElement.getType( ) == null ? EMPTY_STRING : colElement.getType( );
 			}
 			ti.setText( 0, c1 );
@@ -1392,7 +1393,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				}
 				case 1 :
 				{
-					value = (String) ( (ColumnMappingElement) element ).getXPath( );
+					value = TextProcessor.process((String) ( (ColumnMappingElement) element ).getXPath( ),"/");
 					break;
 				}
 				case 2 :

@@ -147,7 +147,10 @@ public class ResultSet implements IResultSet
 	public String getString( int index ) throws OdaException
 	{
 		testClosed();
-		String result = spConsumer.getResultSet()[getRowPosition( )][getColumnPosition( index )];
+		String[] resultRow = spConsumer.getResultSet()[getRowPosition()];
+		String result = null;
+		if( resultRow != null)
+			result = resultRow[getColumnPosition( index )];
 		this.wasNull = result == null ? true : false;
 		return result;
 	}

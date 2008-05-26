@@ -18,10 +18,10 @@ import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.datatools.enablement.oda.xml.util.ui.XPathPopulationUtil;
-
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -247,7 +247,7 @@ public class ColumnMappingDialog extends TrayDialog
 		textData.widthHint = 300;
 		textData.horizontalAlignment = 10;
 		xmlPathText = new Text( customComposite, SWT.BORDER );
-		xmlPathText.setText( xpath );
+		xmlPathText.setText( TextProcessor.process( xpath, "//") );
 		xmlPathText.setLayoutData( textData );
 		xmlPathText.addModifyListener( new ModifyListener( ) {
 
@@ -320,13 +320,15 @@ public class ColumnMappingDialog extends TrayDialog
 					absolutePathButton.setSelection( true );
 					anyLocationButton.setSelection( false );
 					customButton.setSelection( false );
-					xmlPathCombo.setVisible( false );
+					xmlPathCombo.setEnabled( false );
+					xmlPathCombo.setText( TextProcessor.process(xpathList.get(0).toString(), "//"));
 				}
 			}
 		} );
-
+		
 		absoluteLabel = new Label( exprBtnGroup, SWT.WRAP );
 		absoluteLabel.setLayoutData( labelData );
+		
 		absoluteLabel.addListener( SWT.MouseDown, new Listener( ) {
 
 			public void handleEvent( Event event )
@@ -335,7 +337,7 @@ public class ColumnMappingDialog extends TrayDialog
 				absolutePathButton.setSelection( true );
 				anyLocationButton.setSelection( false );
 				customButton.setSelection( false );
-				xmlPathCombo.setVisible( false );
+				xmlPathCombo.setEnabled( false );
 			}
 		} );
 
@@ -351,7 +353,8 @@ public class ColumnMappingDialog extends TrayDialog
 					anyLocationButton.setSelection( true );
 					absolutePathButton.setSelection( false );
 					customButton.setSelection( false );
-					xmlPathCombo.setVisible( false );
+					xmlPathCombo.setEnabled( false );
+					xmlPathCombo.setText( TextProcessor.process( xpathList.get(1).toString(), "//"));
 				}
 			}
 		} );
@@ -365,7 +368,7 @@ public class ColumnMappingDialog extends TrayDialog
 				anyLocationButton.setSelection( true );
 				absolutePathButton.setSelection( false );
 				customButton.setSelection( false );
-				xmlPathCombo.setVisible( false );
+				xmlPathCombo.setEnabled( false );
 			}
 		} );
 		setLabelValues( exprBtnGroup );
@@ -376,14 +379,13 @@ public class ColumnMappingDialog extends TrayDialog
 		customButton = new Button( exprBtnGroup, SWT.RADIO );
 		customButton.setLayoutData( customData );
 		customButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) ); //$NON-NLS-1$
-		customButton.setSelection( true );
 		customButton.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
 			{
 				if ( customButton.getSelection( ) )
 				{
-					xmlPathCombo.setVisible( true );
+					xmlPathCombo.setEnabled( true );
 				}
 			}
 		} );
@@ -418,6 +420,16 @@ public class ColumnMappingDialog extends TrayDialog
 				xpath = xmlPathCombo.getText( );
 			}
 		} );
+		
+		if ( xpathList != null && xpathList.size( ) > 0 )
+		{
+			absolutePathButton.setSelection( true );
+			xmlPathCombo.setEnabled( false );
+		}
+		else
+		{
+			customButton.setSelection( true );
+		}
 	}
 
 	/**
@@ -437,11 +449,11 @@ public class ColumnMappingDialog extends TrayDialog
 		{
 			absoluteLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath", //$NON-NLS-1$
 					new String[]{
-							columnName, (String) xpathList.get( 0 )
-					} ) );
+							columnName
+					} ));
 			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
 					new String[]{
-							columnName, (String) xpathList.get( 1 )
+							columnName
 					} ) );
 			setButtonsEnabled( true );
 		}
@@ -473,9 +485,9 @@ public class ColumnMappingDialog extends TrayDialog
 	{
 		if ( xpathList != null && xpathList.size( ) >= 2 )
 		{
-			xmlPathCombo.setText( xpathList.get( 0 ).toString( ) );
-			xmlPathCombo.add( xpathList.get( 0 ).toString( ) );
-			xmlPathCombo.add( xpathList.get( 1 ).toString( ) );
+			xmlPathCombo.setText( TextProcessor.process(xpathList.get( 0 ).toString( ),"//") );
+			xmlPathCombo.add( TextProcessor.process(xpathList.get( 0 ).toString( ),"//") );
+			xmlPathCombo.add( TextProcessor.process(xpathList.get( 1 ).toString( ),"//") );
 		}
 		else
 		{
