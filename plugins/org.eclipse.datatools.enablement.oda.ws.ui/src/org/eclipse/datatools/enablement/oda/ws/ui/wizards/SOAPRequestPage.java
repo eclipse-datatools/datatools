@@ -11,6 +11,8 @@
 
 package org.eclipse.datatools.enablement.oda.ws.ui.wizards;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
@@ -21,8 +23,8 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.StatusDialog;
+import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -33,6 +35,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -42,9 +48,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
@@ -60,6 +66,10 @@ public class SOAPRequestPage extends DataSetWizardPage
 	private SOAPParameter[] parameters;
 	private static String DEFAULT_MESSAGE = Messages.getString( "soapRequestPage.message.default" );//$NON-NLS-1$
 	private boolean saved = false;
+	
+	protected final String COLUMN_NAME = Messages.getString( "parameterInputDialog.column.name" );//$NON-NLS-1$ 
+	protected final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
+	protected final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
 	public SOAPRequestPage( String pageName )
 	{
@@ -301,10 +311,6 @@ public class SOAPRequestPage extends DataSetWizardPage
 		private TableViewer viewer;
 		private SOAPRequest soapRequest;
 
-		private final String COLUMN_NAME = Messages.getString( "parameterInputDialog.column.name" );//$NON-NLS-1$ 
-		private final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
-		private final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
-
 		/**
 		 * 
 		 */
@@ -453,30 +459,33 @@ public class SOAPRequestPage extends DataSetWizardPage
 			viewer.setColumnProperties( new String[]{
 					COLUMN_NAME, COLUMN_DATATYPE, COLUMN_DEFAULTVALUE
 			} );
+			
+			viewer.getTable( ).addMouseListener( new MouseAdapter( ) {
 
-			viewer.setCellModifier( new ICellModifier( ) {
-
-				public boolean canModify( Object element, String property )
+				public void mouseDoubleClick( MouseEvent e )
 				{
-					if ( property.equals( COLUMN_DEFAULTVALUE ) )
-						return true;
-
-					return false;
-				}
-
-				public Object getValue( Object element, String property )
-				{
-					return WSUIUtil.getNonNullString( ( (SOAPParameter) element ).getDefaultValue( ) );
-				}
-
-				public void modify( Object element, String property,
-						Object value )
-				{
-					SOAPParameter soapParameter = (SOAPParameter) ( (TableItem) element ).getData( );
-					soapParameter.setDefaultValue( value.toString( ) );
-					viewer.refresh( );
+					doEdit( );
 				}
 			} );
+		}
+		
+		private void doEdit( )
+		{
+			int index = viewer.getTable( ).getSelectionIndex( );
+			if ( index == -1 )
+				return;
+
+			Object data = viewer.getTable( ).getItem( index ).getData( );
+			if ( data instanceof SOAPParameter )
+			{
+				SOAPParameter soapParameter = (SOAPParameter) data;
+				ParameterEditDialog dialog = new ParameterEditDialog( soapParameter );
+				if ( dialog.open( ) == Window.OK )
+				{
+					soapParameter = dialog.getModifiedSOAPParameter( );
+					viewer.refresh( );
+				}
+			}
 		}
 
 		private void initParameters( )
@@ -524,6 +533,164 @@ public class SOAPRequestPage extends DataSetWizardPage
 			return soapRequest.getParameters( );
 		}
 
+	}
+	
+	class ParameterEditDialog extends TrayDialog
+	{
+		final private static String COLON = ":"; //$NON-NLS-1$
+		final private static String EMPTY_STRING = ""; //$NON-NLS-1$
+		private String DEFAULT_TITLE = Messages.getString( "soapRequestPage.paramEditDialog.title" ); //$NON-NLS-1$
+		private String defaultValue;
+		private Text defualtValueText;
+		
+		private  SOAPParameter soapParameter;
+		
+		protected ParameterEditDialog( SOAPParameter soapParameter )
+		{
+			super( PlatformUI.getWorkbench( ).getDisplay( ).getActiveShell( ) );
+
+			this.soapParameter = soapParameter;
+			if ( soapParameter.getDefaultValue( ) == null
+					|| soapParameter.getDefaultValue( ).trim( ).length( ) == 0 )
+			{
+				defaultValue = EMPTY_STRING;
+			}
+			else
+			{
+				defaultValue = soapParameter.getDefaultValue( );
+			}
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.jface.window.Window#create()
+		 */
+		public void create( )
+		{
+			super.create( );
+
+			Point pt = getShell( ).computeSize( -1, -1 );
+			pt.x = Math.max( pt.x, 300 );
+			pt.y = Math.max( pt.y, 200 );
+			getShell( ).setSize( pt );
+			getShell( ).setText( getTitle( ) );
+		}
+
+		protected String getTitle( )
+		{
+			return DEFAULT_TITLE;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+		 */
+		protected Control createDialogArea( Composite parent )
+		{
+			Composite composite = new Composite( parent, SWT.NONE );
+			GridLayout layout = new GridLayout( );
+			layout.marginTop = 15;
+			layout.marginRight = 10;
+			layout.marginLeft = 10;
+			layout.marginBottom = 20;
+			layout.numColumns = 2;
+			layout.verticalSpacing = 15;
+			composite.setLayout( layout );
+
+			createCustomControls( composite );
+			return composite;
+		}
+
+		/**
+		 * Create customized controls
+		 * 
+		 * @param parent
+		 */
+		protected void createCustomControls( Composite parent )
+		{
+			GridData labelGd = new GridData( );
+			labelGd.widthHint = 100;
+			labelGd.heightHint = 15;
+			Label columnName = new Label( parent, SWT.NONE );
+			columnName.setText( COLUMN_NAME + COLON );
+			columnName.setLayoutData( labelGd );
+
+			GridData textGd = new GridData( );
+			textGd.widthHint = 180;
+			textGd.heightHint = 15;
+			Text columnNameText = new Text( parent, SWT.BORDER );
+			columnNameText.setText( this.soapParameter.getName( ) );
+			columnNameText.setLayoutData( textGd );
+			columnNameText.setEnabled( false );
+
+			Label columnType = new Label( parent, SWT.NONE );
+			columnType.setText( COLUMN_DATATYPE + COLON );
+			columnType.setLayoutData( labelGd );
+
+			Text columnTypeText = new Text( parent, SWT.BORDER );
+			columnTypeText.setText( EMPTY_STRING );
+			columnTypeText.setLayoutData( textGd );
+			columnTypeText.setEnabled( false );
+
+			Label defualtValue = new Label( parent, SWT.NONE );
+			defualtValue.setText( COLUMN_DEFAULTVALUE + COLON );
+			defualtValue.setLayoutData( labelGd );
+
+			defualtValueText = new Text( parent, SWT.BORDER );
+			defualtValueText.setText( this.soapParameter.getDefaultValue( ) );
+			defualtValueText.setLayoutData( textGd );
+			defualtValueText.addModifyListener( new ModifyListener( ) {
+
+				public void modifyText( ModifyEvent e )
+				{
+					defaultValue = defualtValueText.getText( );
+				}
+
+			} );
+		}
+
+		protected SOAPParameter getModifiedSOAPParameter( )
+		{
+			this.soapParameter.setDefaultValue( defaultValue );
+			return this.soapParameter;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see org.eclipse.jface.dialogs.Dialog#cancelPressed()
+		 */
+		protected void cancelPressed( )
+		{
+			super.cancelPressed( );
+		}
+
+		/**
+		 * 
+		 * @return
+		 */
+		protected Status getOKStatus( )
+		{
+			return getMiscStatus( IStatus.OK, "" ); //$NON-NLS-1$
+		}
+
+		/**
+		 * 
+		 * @param severity
+		 * @param message
+		 * @return
+		 */
+		protected Status getMiscStatus( int severity, String message )
+		{
+			return new Status( severity,
+					PlatformUI.PLUGIN_ID,
+					IStatus.OK,
+					message,
+					null );
+		}
+		
 	}
 
 }
