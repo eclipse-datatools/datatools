@@ -475,7 +475,7 @@ final class XSDFileSchemaTreePopulator
 		else
 		{
 			URL url = new URL( schemafileName );
-			 xsModel = xsLoader.loadURI( url.toURI( ).toString( ) );
+			xsModel = xsLoader.loadURI( new URI( url.toString() ).toString( ) );
 		}
 
 		if ( xsModel == null )
