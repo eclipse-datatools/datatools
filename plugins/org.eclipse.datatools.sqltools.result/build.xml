@@ -20,6 +20,7 @@
 	<property name="basearch" value="${arch}"/>
 	<property name="basenl" value="${nl}"/>
 	<property name="eclipse.home" location="."/>
+	<property name="wtp.home" location="${eclipse.home}"/>
 	<property file="build.properties"/>
 	<!-- JavaDoc settings -->
 	<!-- No JavaDoc required for this plugin -->
@@ -56,6 +57,10 @@
 			<include name="org.eclipse.emf.ecore*.jar"/>
 			<include name="org.apache.lucene*.jar"/>
 			<include name="org.eclipse.help*.jar"/>
+        </fileset>		
+		<fileset dir="${wtp.home}/plugins">
+            <include name="org.eclipse.wst.sse.core*.jar"/>
+            <include name="org.eclipse.wst.xml.core*.jar"/>
         </fileset>		
 		<fileset dir="${eclipse.home}/plugins">
 			<!-- Include expanded plug-ins -->
