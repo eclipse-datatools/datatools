@@ -138,4 +138,11 @@ public interface IHelpConstants {
 	 */
 	public static final String CONTEXT_ID_NEW_CONNECTION_PROFILE_WIZARD = 
 		"CONTEXT_ID_NEW_CONNECTION_PROFILE_WIZARD"; //$NON-NLS-1$
+
+	/*
+	 * CONTEXT_ID_CONNECTIVITY_PREFERENCE_PAGE =
+	 * Data Management->Connectivity preference page
+	 */
+	public static final String CONTEXT_ID_CONNECTIVITY_PREFERENCE_PAGE = 
+		"CONTEXT_ID_CONNECTIVITY_PREFERENCE_PAGE"; //$NON-NLS-1$
 }

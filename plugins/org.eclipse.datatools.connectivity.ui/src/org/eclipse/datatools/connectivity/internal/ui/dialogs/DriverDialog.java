@@ -33,6 +33,10 @@ import org.eclipse.datatools.connectivity.drivers.models.TemplateDescriptor;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverPropertySourceProvider;
 import org.eclipse.datatools.connectivity.internal.ui.DriverTreeFilter;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.ContextProviderDelegate;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.help.IContext;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -122,6 +126,9 @@ public class DriverDialog extends TitleAreaDialog {
 	private Composite jarListComposite;
 	private Composite propertiesComposite;
 	
+	private ContextProviderDelegate contextProviderDelegate =
+		new ContextProviderDelegate(ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName());
+
 	// listener for property changes to re-validate 
 	private ChangeListener psetChangedListener = new ChangeListener(){
 
@@ -261,7 +268,17 @@ public class DriverDialog extends TitleAreaDialog {
 	}
 
 	protected Control createDialogArea(Composite parent) {
-		Composite area = (Composite) super.createDialogArea(parent);
+        getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+        if (!this.mInEdit)
+        	HelpUtil.setHelp( getShell(), 
+        		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_DRIVER_DIALOG, 
+        				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+        else
+        	HelpUtil.setHelp( getShell(), 
+            		HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_EDIT_DRIVER_DIALOG, 
+            				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+
+        Composite area = (Composite) super.createDialogArea(parent);
 
 		Composite contents = new Composite(area, SWT.NONE);
 		contents.setLayout(new GridLayout());
@@ -1457,4 +1474,15 @@ public class DriverDialog extends TitleAreaDialog {
 		this.mTypeFilter = filter;
 	}
 
+	public IContext getContext(Object target) {
+		return contextProviderDelegate.getContext(target);
+	}
+
+	public int getContextChangeMask() {
+		return contextProviderDelegate.getContextChangeMask();
+	}
+
+	public String getSearchExpression(Object target) {
+		return contextProviderDelegate.getSearchExpression(target);
+	}
 }

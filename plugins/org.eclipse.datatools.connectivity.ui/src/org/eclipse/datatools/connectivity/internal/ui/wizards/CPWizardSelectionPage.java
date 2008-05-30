@@ -48,6 +48,7 @@ import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardNode;
 import org.eclipse.jface.wizard.IWizardPage;
+import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -282,6 +283,7 @@ public class CPWizardSelectionPage
 										"CPWizardSelectionPage.defaultNameExtended",  //$NON-NLS-1$
 										new String[] {node.getProvider().getName(), 
 										Integer.toString(i)});
+								newName = TextProcessor.process(newName);
 								i++;
 							}
 							setProfileName(newName);
@@ -333,6 +335,7 @@ public class CPWizardSelectionPage
 										"CPWizardSelectionPage.defaultNameExtended",  //$NON-NLS-1$
 										new String[] {node.getProvider().getName(), 
 										Integer.toString(i)});
+								newName = TextProcessor.process(newName);
 								i++;
 							}
 							setProfileName(newName);

@@ -87,6 +87,12 @@ public abstract class ConnectionProfileDetailsPage
 		// Client shouldn't call setControl again.
 		setControl(container);
 
+		// setting help now rather than at the end so that 
+		// extenders can override with different context IDs in their
+		// custom UI
+		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+
 		final Composite composite = new Composite(container, SWT.NONE);
 		FillLayout flayout = new FillLayout();
 		flayout.marginHeight = 0;
@@ -160,8 +166,6 @@ public abstract class ConnectionProfileDetailsPage
 				(NewConnectionProfileWizard) this.getWizard();
 			wiz.getProfilePage().setAutoConnectOnFinish(defaultAutoConnectOnFinishFlag);
 		}
-		getShell().setData( HelpUtil.CONTEXT_PROVIDER_KEY, this);
-		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 	public abstract void createCustomControl(Composite parent);

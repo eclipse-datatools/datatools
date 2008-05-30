@@ -21,7 +21,9 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.DriverUIContributorComposite;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -72,6 +74,11 @@ public class ExtensibleProfileDetailsWizardPage extends
 		} else if (driverCombo.getErrorMessage() != null) {
 			setErrorMessage(driverCombo.getErrorMessage());
 		}
+	}
+
+	public void createControl(Composite parent) {
+		super.createControl(parent);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_WIZARD, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 	private void handleDriverComboSelectionChangeEvent(ChangeEvent e) {

@@ -20,9 +20,12 @@ import org.eclipse.datatools.connectivity.ConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.DriverUIContributorComposite;
+import org.eclipse.datatools.help.HelpUtil;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 public class ExtensibleProfileDetailsPropertyPage extends
 		ProfileDetailsPropertyPage implements IDriverUIContributorInformation {
@@ -71,6 +74,12 @@ public class ExtensibleProfileDetailsPropertyPage extends
 		}
 
 		initialize();
+	}
+
+	protected Control createContents(Composite parent) {
+		Control contents = super.createContents(parent);
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+		return contents;
 	}
 
 	private void initialize() {
