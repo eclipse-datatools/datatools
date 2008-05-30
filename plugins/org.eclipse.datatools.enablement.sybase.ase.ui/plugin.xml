@@ -253,6 +253,18 @@
             driverTemplateID="org.eclipse.datatools.connectivity.db.sybase.ase.genericDriverTemplate_15_xa"
             id="org.eclipse.datatools.connectivity.ase15x.ui.propertyEditor.password">
       </propertyEditor>
+       <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.ase.12_x.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.sybase.ase.12_x.other.ui.propertyEditor.password">
+      </propertyEditor>
+      <propertyEditor
+            customPropertyDescriptor="org.eclipse.datatools.connectivity.ui.PasswordTextPropertyDescriptor"
+            driverPropertyID="org.eclipse.datatools.connectivity.db.password"
+            driverTemplateID="org.eclipse.datatools.enablement.sybase.ase.15_0.other.driverTemplate"
+            id="org.eclipse.datatools.enablement.sybase.ase.15_0.other.ui.propertyEditor.password">
+      </propertyEditor>
  </extension>       
  
  <extension point="org.eclipse.datatools.connectivity.ui.driverUIContributor">
