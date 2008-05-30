@@ -41,7 +41,7 @@
    <includes
          id="org.eclipse.datatools.sqldevtools.parsers.feature"
          version="0.0.0"/>
-   
+
    <includes
          id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature"
          version="0.0.0"
@@ -52,6 +52,7 @@
       <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
       <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
       <import feature="org.eclipse.datatools.doc.user" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -74,14 +75,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.plan"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.sqltools.routineeditor"
          download-size="0"
@@ -109,9 +110,16 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+
    <plugin
          id="org.eclipse.datatools.help"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.datatools.sqltools.db.generic"
          download-size="0"
          install-size="0"
          version="0.0.0"
