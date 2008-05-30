@@ -122,6 +122,12 @@ public class TableDataCellModifier implements ICellModifier {
 	        try {
 	            editor.setDirty(true);
 	            Object o = row.getTable().getColumnDataAccessor(column).deserialize((String)value, row.getTable().getColumnType(column));
+	            if (o == null)
+	            {
+	            	IStatus warning = new Status(IStatus.ERROR, DataUIPlugin.PLUGIN_ID, Messages.getString("TableDataCellModifier.dataFormatError")); //$NON-NLS-1$
+		            ErrorDialog.openError(viewer.getControl().getShell(), Messages.getString("TableDataCellModifier.ErrorUpdatingData"), null, warning); //$NON-NLS-1$
+	            }
+	            
 	            row.updateValue(column, o);
 	            
 	            // change background color to indicate cell is dirty

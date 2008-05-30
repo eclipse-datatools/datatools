@@ -69,10 +69,13 @@ public class DefaultExternalTableDataWizard extends Wizard implements IExternalT
         
         IRunnableWithProgress runnable= new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-			    try {	
-			        ITableData td = ((RowDataImpl)row).getTable();
-			        if ( td.getColumnDataAccessor(col).isSnippet( row.getValue(col), td.getColumnType(col) ) )
-			            ((RowDataImpl)row).doRefresh(col, false);
+			    try {			        
+			    	if (row != null)
+			        {
+			        	ITableData td = ((RowDataImpl)row).getTable();
+			        	if ( td.getColumnDataAccessor(col).isSnippet( row.getValue(col), td.getColumnType(col) ) )
+			        		((RowDataImpl)row).doRefresh(col, false);
+			        }
 			    } catch (Exception ex) {
 			        throw new InvocationTargetException(ex);
 			    }

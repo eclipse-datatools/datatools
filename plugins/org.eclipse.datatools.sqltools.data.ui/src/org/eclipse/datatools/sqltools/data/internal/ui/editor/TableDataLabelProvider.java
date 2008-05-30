@@ -44,7 +44,10 @@ public class TableDataLabelProvider implements ITableLabelProvider
             int type = row.getTable().getColumnType(columnIndex);
             String s = acc.getLabel(o, type);
             if (s==null)
-                return Messages.getString("TableDataLabelProvider.null"); //$NON-NLS-1$
+            {            	
+            	return "";
+            	//return Messages.getString("TableDataLabelProvider.null"); //$NON-NLS-1$
+            }
             else {
                 boolean truncated = acc.isSnippet(o, type);
         	    if (s.length()>MAX_LABEL_LENGTH) {
