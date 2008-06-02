@@ -1,11 +1,8 @@
 Plugin.name = High-level Sybase Enablement Plug-in
-Plugin.providerName = Sybase, Inc.
+Plugin.providerName = Eclipse.org
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Sybase 製品のドライバ
-# ===================================================================
-
-pluginName = Sybasesqlmodel モデル
 providerName = Eclipse.org
 temptable.name = 一時テーブル
 trigger.name = トリガ
@@ -26,4 +23,3 @@ foreignkey.node.name = 外部キーフォルダ
 event.node.name = イベントフォルダ
 schema.node.name = スキーマフォルダ
 catalog.node.name = データベースフォルダ
-
