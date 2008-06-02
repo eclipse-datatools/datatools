@@ -10,6 +10,7 @@ import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -55,7 +56,7 @@ public class OpenScrapbookAction implements IWorkbenchWindowActionDelegate {
 
         for (;;)
         {
-            String name = "SQL Scrapbook " + suffix;
+            String name = NLS.bind(Messages.OpenScrapbookAction_scrapbook_title, Integer.toString(suffix));
             if (!editorNameList.contains(name))
             {
                 editorStorageEditorInput.setName(name);
