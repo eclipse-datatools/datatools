@@ -180,3 +180,6 @@ OtherDriverUIContributor.errormessage.requiresusername = 输入用户名。
 
 ConnectAction.title = {0} 的属性
 
+Boolean.true = true
+Boolean.false = false
+

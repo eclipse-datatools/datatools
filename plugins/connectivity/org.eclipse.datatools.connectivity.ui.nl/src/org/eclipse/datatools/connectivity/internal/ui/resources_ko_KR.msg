@@ -180,3 +180,6 @@ OtherDriverUIContributor.errormessage.requiresusername = 사용자 이름을 입력하십�
 
 ConnectAction.title = {0}의 속성
 
+Boolean.true = true
+Boolean.false = false
+

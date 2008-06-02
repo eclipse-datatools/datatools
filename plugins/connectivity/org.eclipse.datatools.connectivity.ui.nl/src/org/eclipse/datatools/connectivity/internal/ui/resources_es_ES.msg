@@ -180,3 +180,6 @@ OtherDriverUIContributor.errormessage.requiresusername = Introduzca un nombre de
 
 ConnectAction.title = Propiedades de {0}
 
+Boolean.true = true
+Boolean.false = false
+

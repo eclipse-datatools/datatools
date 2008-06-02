@@ -179,3 +179,6 @@ OtherDriverUIContributor.errormessage.requiresurl = URL を入力してください。
 OtherDriverUIContributor.errormessage.requiresusername = ユーザ名を入力してください。
 
 ConnectAction.title = {0} のプロパティ
+
+Boolean.true = true
+Boolean.false = false
