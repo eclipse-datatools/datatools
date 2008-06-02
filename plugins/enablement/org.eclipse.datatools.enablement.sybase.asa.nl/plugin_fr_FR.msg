@@ -20,3 +20,6 @@ driverPWD = Mot de passe
 
 org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = Autre pilote
 org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = Autre pilote
+
+Plugin.name = Sybase ASA Plug-in
+Plugin.providerName = Eclipse.org

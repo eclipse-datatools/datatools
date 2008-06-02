@@ -20,3 +20,6 @@ driverPWD = パスワード
 
 org.eclipse.datatools.enablement.sybase.asa.9_x.other.driverTemplate = その他のドライバ
 org.eclipse.datatools.enablement.sybase.asa.10_0.other.driverTemplate = その他のドライバ
+
+Plugin.name = Sybase ASA Plug-in
+Plugin.providerName = Eclipse.org
