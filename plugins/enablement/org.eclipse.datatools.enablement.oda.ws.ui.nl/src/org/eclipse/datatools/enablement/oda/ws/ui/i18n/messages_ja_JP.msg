@@ -50,6 +50,7 @@ soapRequestPage.title.regenerateTemplate=テンプレートの再生成
 soapRequestPage.button.regenerateTemplate=テンプレートの再生成(&R)
 soapRequestPage.button.insertParameter=パラメタの挿入(&I)...
 soapRequestPage.button.clear=クリア(&C)
+soapRequestPage.paramEditDialog.title=Edit parameter property
 
 # ParameterInputDialog
 parameterInputDialog.column.name=名前

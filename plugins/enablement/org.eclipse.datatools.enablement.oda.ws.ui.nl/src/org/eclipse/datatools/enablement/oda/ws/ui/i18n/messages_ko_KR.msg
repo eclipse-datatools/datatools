@@ -50,7 +50,7 @@ soapRequestPage.title.regenerateTemplate=템플릿 다시 생성
 soapRequestPage.button.regenerateTemplate=템플릿 다시 생성(&R)
 soapRequestPage.button.insertParameter=매개 변수 삽입(&I)...
 soapRequestPage.button.clear=지우기(&C)
-
+soapRequestPage.paramEditDialog.title=Edit parameter property
 
 # ParameterInputDialog
 parameterInputDialog.column.name=이름
