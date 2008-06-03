@@ -145,4 +145,24 @@ public interface IHelpConstants {
 	 */
 	public static final String CONTEXT_ID_CONNECTIVITY_PREFERENCE_PAGE = 
 		"CONTEXT_ID_CONNECTIVITY_PREFERENCE_PAGE"; //$NON-NLS-1$
+
+	/*
+	 * GENERIC_DB_PROFILE_WIZARD_PAGE = the wizard page that collects SQL Model - JDBC Connection profile
+	 * details such as the JDBC url, user id, password, etc.
+	 */
+	public static final String GENERIC_DB_PROFILE_WIZARD_PAGE = 
+		"GENERIC_DB_PROFILE_WIZARD_PAGE"; //$NON-NLS-1$
+
+	/*
+	 * GENERIC_DB_PROFILE_PROPERTY_PAGE = the property page that collects SQL Model - JDBC Connection profile
+	 * details such as the JDBC url, user id, password, etc.
+	 */
+	public static final String GENERIC_DB_PROFILE_PROPERTY_PAGE = 
+		"GENERIC_DB_PROFILE_PROPERTY_PAGE"; //$NON-NLS-1$
+
+	/*
+	 * GENERIC_DB_PROFILE_WIZARD = the actual New SQL Model - JDBC Connection Profile wizard
+	 */
+	public static final String GENERIC_DB_PROFILE_WIZARD = 
+		"GENERIC_DB_PROFILE_WIZARD"; //$NON-NLS-1$
 }

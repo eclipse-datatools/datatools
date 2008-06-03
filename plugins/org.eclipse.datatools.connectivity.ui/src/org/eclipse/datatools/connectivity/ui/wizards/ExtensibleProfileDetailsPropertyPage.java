@@ -78,7 +78,7 @@ public class ExtensibleProfileDetailsPropertyPage extends
 
 	protected Control createContents(Composite parent) {
 		Control contents = super.createContents(parent);
-		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_PROFILE_DETAILS_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.GENERIC_DB_PROFILE_PROPERTY_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 		return contents;
 	}
 

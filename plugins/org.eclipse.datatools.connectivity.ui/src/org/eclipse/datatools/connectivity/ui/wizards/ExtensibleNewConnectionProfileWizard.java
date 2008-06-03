@@ -13,6 +13,9 @@ package org.eclipse.datatools.connectivity.ui.wizards;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
+import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
+import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.swt.widgets.Composite;
 
 public class ExtensibleNewConnectionProfileWizard extends
 		NewConnectionProfileWizard {
@@ -27,6 +30,14 @@ public class ExtensibleNewConnectionProfileWizard extends
 		wizardPage = detailsWizardPage;
 		setWindowTitle(ConnectivityUIPlugin.getDefault().getResourceString(
 				"ExtensibleNewConnectionProfileWizard.title")); //$NON-NLS-1$
+	}
+
+	public void createPageControls(Composite pageContainer) {
+		super.createPageControls(pageContainer);
+		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
+		HelpUtil.setHelp(getShell(), HelpUtil.getContextId(
+				IHelpConstants.GENERIC_DB_PROFILE_WIZARD,
+				ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 	public void addCustomPages() {

@@ -78,7 +78,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.CONTEXT_ID_NEW_CONNECTION_PROFILE_WIZARD, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
+		HelpUtil.setHelp( getControl(), HelpUtil.getContextId(IHelpConstants.GENERIC_DB_PROFILE_WIZARD_PAGE, ConnectivityUIPlugin.getDefault().getBundle().getSymbolicName()));
 	}
 
 	private void handleDriverComboSelectionChangeEvent(ChangeEvent e) {
