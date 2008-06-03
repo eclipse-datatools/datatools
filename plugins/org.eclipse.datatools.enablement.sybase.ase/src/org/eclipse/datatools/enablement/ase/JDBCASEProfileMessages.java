@@ -14,21 +14,13 @@ import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import org.eclipse.osgi.util.NLS;
-
-
 /**
  * Utility class which helps managing messages
  */
-public class JDBCASEProfileMessages extends NLS{
+public class JDBCASEProfileMessages {
 	private static final String RESOURCE_BUNDLE= "org.eclipse.datatools.enablement.ase.messages";//$NON-NLS-1$
 	private static ResourceBundle bundle = ResourceBundle.getBundle(RESOURCE_BUNDLE);
 	
-    static
-    {
-        NLS.initializeMessages(RESOURCE_BUNDLE, JDBCASEProfileMessages.class);
-    }
-    
     public static String plugin_internal_error;
 /**
  * Constructor
