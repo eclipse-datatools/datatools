@@ -13,5 +13,5 @@
 ###############################################################################
 #
 plugin.name=DTP Connection Profiles Storage File Editor Plug-in
-application.name=DTP Connection Profiles Console Editor
+application.name=Editor für DTP-Verbindungsprofil-Konsole
 
