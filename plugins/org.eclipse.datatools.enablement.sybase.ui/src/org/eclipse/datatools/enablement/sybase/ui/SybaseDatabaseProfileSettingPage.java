@@ -46,9 +46,9 @@ public class SybaseDatabaseProfileSettingPage extends PreferencePage implements 
     {
         IPreferenceStore store = SybaseUIPlugin.getDefault().getPreferenceStore();
         btn_showSchema = new Button(parent, SWT.CHECK);
-        btn_showSchema.setText("Show &schema");
+        btn_showSchema.setText(JDBCProfileMessages.getString("SybaseDatabaseProfileSettingPage.showSchema"));//$NON-NLS-1$
         btn_showOwner = new Button(parent, SWT.CHECK);
-        btn_showOwner.setText("Show database object &owner");
+        btn_showOwner.setText(JDBCProfileMessages.getString("SybaseDatabaseProfileSettingPage.showOwner"));//$NON-NLS-1$
 
         initSetting_showSchema = store.getBoolean(SybaseDatabaseProfileSettingManager.PREFERENCE_SHOW_SCHEMA);
         initSetting_showOwner = store.getBoolean(SybaseDatabaseProfileSettingManager.PREFERENCE_SHOW_OWNER);
