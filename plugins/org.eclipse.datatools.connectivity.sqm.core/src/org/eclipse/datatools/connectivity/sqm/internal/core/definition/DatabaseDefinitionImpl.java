@@ -1998,50 +1998,58 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	}
 	
 	private DatabaseVendorDefinition loadDatabaseDefinition() {
-		if(this.databaseVendorDefinition == null) {	 
-			// Load specified databaseType on demand
-			try {
-				URI uri = URI.createURI(modelURL.toString());
-				Resource doc = new XMIResourceImpl(uri);
-				doc.load(null);
-				EList resourceContents = doc.getContents();
-				Iterator i = resourceContents.iterator();
-				while (i.hasNext()) {
-					Object o = i.next();
-					if (o instanceof DatabaseVendorDefinition) {
-						this.databaseVendorDefinition = (DatabaseVendorDefinition)o;
-						if (this.nameToPrimitiveDataTypeDefinitionMap == null) {
-							this.nameToPrimitiveDataTypeDefinitionMap = new HashMap();
-						}
-						if (this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap == null) {
-							this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap = new HashMap();
-						}
-						Iterator j = this.databaseVendorDefinition.getPredefinedDataTypeDefinitions().iterator();
-						while (j.hasNext()) {
-							Object p = j.next();
-							if (p instanceof PredefinedDataTypeDefinition) {
-								PredefinedDataTypeDefinition pd = (PredefinedDataTypeDefinition)p;
-								Iterator k = pd.getName().iterator();
-								while (k.hasNext()) {
-									Object q = k.next();
-									if (q instanceof String) {
-										String name = (String)q;
-										if (this.nameToPrimitiveDataTypeDefinitionMap.get(name) == null) {
-											this.nameToPrimitiveDataTypeDefinitionMap.put(name, pd);
-										}
-										if (this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap.get(name + "_" + pd.getJdbcEnumType()) == null ) { //$NON-NLS-1$
-											this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap.put(name + "_" + pd.getJdbcEnumType(), pd); //$NON-NLS-1$
-										} 
-									}
-								}
-							}
-						}
-					}
-				}
-			}	
-			catch (Exception e) {
-				System.out.println("Exception caught while loading database vendor definition document: " + e); //$NON-NLS-1$
-			}
+		if(this.databaseVendorDefinition == null) {
+		    //double check
+		    synchronized(this)
+		    {
+		        if(this.databaseVendorDefinition == null)
+		        {
+		    
+        			// Load specified databaseType on demand
+        			try {
+        				URI uri = URI.createURI(modelURL.toString());
+        				Resource doc = new XMIResourceImpl(uri);
+        				doc.load(null);
+        				EList resourceContents = doc.getContents();
+        				Iterator i = resourceContents.iterator();
+        				while (i.hasNext()) {
+        					Object o = i.next();
+        					if (o instanceof DatabaseVendorDefinition) {
+        						this.databaseVendorDefinition = (DatabaseVendorDefinition)o;
+        						if (this.nameToPrimitiveDataTypeDefinitionMap == null) {
+        							this.nameToPrimitiveDataTypeDefinitionMap = new HashMap();
+        						}
+        						if (this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap == null) {
+        							this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap = new HashMap();
+        						}
+        						Iterator j = this.databaseVendorDefinition.getPredefinedDataTypeDefinitions().iterator();
+        						while (j.hasNext()) {
+        							Object p = j.next();
+        							if (p instanceof PredefinedDataTypeDefinition) {
+        								PredefinedDataTypeDefinition pd = (PredefinedDataTypeDefinition)p;
+        								Iterator k = pd.getName().iterator();
+        								while (k.hasNext()) {
+        									Object q = k.next();
+        									if (q instanceof String) {
+        										String name = (String)q;
+        										if (this.nameToPrimitiveDataTypeDefinitionMap.get(name) == null) {
+        											this.nameToPrimitiveDataTypeDefinitionMap.put(name, pd);
+        										}
+        										if (this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap.get(name + "_" + pd.getJdbcEnumType()) == null ) { //$NON-NLS-1$
+        											this.nameAndJDBCEnumToPrimitiveDataTypeDefinitionMap.put(name + "_" + pd.getJdbcEnumType(), pd); //$NON-NLS-1$
+        										} 
+        									}
+        								}
+        							}
+        						}
+        					}
+        				}
+        			}	
+        			catch (Exception e) {
+        				System.out.println("Exception caught while loading database vendor definition document: " + e); //$NON-NLS-1$
+        			}
+        		}
+		    }
 		}
 		
 		return this.databaseVendorDefinition;
