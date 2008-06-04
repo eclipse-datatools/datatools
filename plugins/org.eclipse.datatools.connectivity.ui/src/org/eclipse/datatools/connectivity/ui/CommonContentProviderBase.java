@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ * 			IBM Corporation - defect fix for 231005
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui;
 
@@ -147,7 +148,7 @@ public abstract class CommonContentProviderBase implements
 	 */
 	public IContentExtension getContentExtension(IConnectionProfile profile) {
 		//make sure we create contentExtension only after profile's connected.
-		if(profile.getConnectionState() != IConnectionProfile.CONNECTED_STATE){
+		if(profile.getConnectionState() == IConnectionProfile.DISCONNECTED_STATE) {
 			return null;
 		}
 		IContentExtension extension = (IContentExtension) mProfileToExtensionNode
