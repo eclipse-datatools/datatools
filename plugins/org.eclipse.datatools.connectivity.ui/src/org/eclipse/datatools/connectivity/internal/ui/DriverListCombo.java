@@ -639,7 +639,9 @@ public class DriverListCombo {
 		}
 		else {
 			if (getCombo().getItemCount() > 0) { // && !isReadOnly) {
-				mTBButtonEdit.setEnabled(true);
+				if (mTBButtonEdit != null){				
+					mTBButtonEdit.setEnabled(true);
+				}
 			}
 		}
 	}
