@@ -42,7 +42,7 @@ public class ViewNode extends VirtualNode implements IViewNode, IFilterNode
     }
 
     public String getFilterName() {
-    	return getFilterName(ConnectionFilter.TABLE_FILTER);
+    	return getFilterName(ConnectionFilter.VIEW_FILTER);
 	}
 
     //@Override
