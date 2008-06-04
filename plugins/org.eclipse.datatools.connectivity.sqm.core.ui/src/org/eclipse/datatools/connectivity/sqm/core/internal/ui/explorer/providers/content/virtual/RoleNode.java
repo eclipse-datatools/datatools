@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IRoleNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.icons.ImageDescription;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
@@ -19,7 +20,7 @@ import org.eclipse.datatools.modelbase.sql.accesscontrol.SQLAccessControlPackage
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.resource.ImageDescriptor;
 
-public class RoleNode extends VirtualNode implements IVirtualCreationNode
+public class RoleNode extends VirtualNode implements IVirtualCreationNode, IRoleNode
 {
 	public RoleNode(String name, String displayName, Object parent)
 	{

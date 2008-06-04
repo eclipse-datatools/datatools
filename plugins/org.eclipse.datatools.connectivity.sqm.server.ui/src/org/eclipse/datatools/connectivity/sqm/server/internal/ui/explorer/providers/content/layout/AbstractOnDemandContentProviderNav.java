@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,11 +14,14 @@ import java.util.Collection;
 
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services.IVirtualNodeServiceFactory;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IAuthorizationIDNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IDependencyNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IGroupNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IIndexNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IRoleNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISequenceNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IStoredProcedureNode;
@@ -26,6 +29,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ITriggerNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDFNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDTNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUserNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IViewNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.services.IDataToolsUIServiceManager;
@@ -101,6 +105,9 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 	protected abstract Object [] displayStoredProcedureNodeChildren (Object parent);
 	protected abstract Object[] displayCatalogNodeChildren (Object parent);
 	protected abstract Object[] displayCatalogChildren (Object parent);
+	protected abstract Object [] displayUserNodeChildren (Object parent);
+	protected abstract Object [] displayGroupNodeChildren (Object parent);
+	protected abstract Object [] displayRoleNodeChildren (Object parent);
 
 	private Object [] getChildren (EObject parent)
 	{
@@ -204,6 +211,18 @@ public abstract class AbstractOnDemandContentProviderNav implements IServerExplo
 		else if (parent instanceof IDependencyNode)
 		{
 		    return displayDependencyNodeChildren(parent);
+		}
+		else if (parent instanceof IUserNode || parent instanceof IAuthorizationIDNode)
+		{
+			return displayUserNodeChildren(parent);
+		}
+		else if (parent instanceof IGroupNode)
+		{
+			return displayGroupNodeChildren(parent);
+		}
+		else if (parent instanceof IRoleNode)
+		{
+			return displayRoleNodeChildren(parent);
 		}
 		return EMPTY_ELEMENT_ARRAY;
 	}

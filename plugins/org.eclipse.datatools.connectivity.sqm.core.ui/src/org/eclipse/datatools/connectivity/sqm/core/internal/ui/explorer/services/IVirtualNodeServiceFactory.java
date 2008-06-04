@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.services;
 
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IAuthorizationIDNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ICatalogNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IColumnNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IConstraintNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IDependencyNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IGroupNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IIndexNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IRoleNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISchemaNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ISequenceNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IStoredProcedureNode;
@@ -22,6 +25,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.ITriggerNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDFNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUDTNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUserNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IViewNode;
 
 
@@ -43,4 +47,8 @@ public interface IVirtualNodeServiceFactory
 	public IConstraintNode makeConstraintNode (String name, String displayName, Object parent);
 	public IDependencyNode makeDependencyNode (String name, String displayName, Object parent);
 	public ICatalogNode makeCatalogNode (String name, String displayName, Object parent);
+	public IGroupNode makeGroupNode(String name, String displayName, Object parent);
+	public IAuthorizationIDNode makeAuthorizationIdNode(String name, String displayName, Object parent);
+	public IUserNode makeUserNode(String name, String displayName, Object parent);
+	public IRoleNode makeRoleNode(String name, String displayName, Object parent);
 }

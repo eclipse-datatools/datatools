@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2008 IBM Corporation and others.
+ * Copyright (c) 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,41 +10,19 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IUserNode;
+import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.IAuthorizationIDNode;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualCreationNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.jface.resource.ImageDescriptor;
 
-public class UserNode extends VirtualNode implements IVirtualCreationNode, IUserNode {
-
-	public UserNode(String name, String displayName, Object parent) {
+public class AuthorizationIDNode extends VirtualNode implements IAuthorizationIDNode
+{
+	public AuthorizationIDNode(String name, String displayName, Object parent)
+	{
 		super(name, displayName, parent);
 	}
 
-	public ImageDescriptor[] getCreateImageDescriptor() {
-		return null;
-	}
-
-	public String[] getCreateLabel() {
-		return null;
-	}
-
-	public EClass[] getCreateType() {
-		return null;
-	}
-
-	public boolean shouldDisplayAdd() {
-		return false;
-	}
-
-	public boolean shouldDisplayCreate() {
-		return false;
-	}
-
-	public String getGroupID() {
+	public String getGroupID()
+	{
 		return GroupID.USER;
 	}
-
 }

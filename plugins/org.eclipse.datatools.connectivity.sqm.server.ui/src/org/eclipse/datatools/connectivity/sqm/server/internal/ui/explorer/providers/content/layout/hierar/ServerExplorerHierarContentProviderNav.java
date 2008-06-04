@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -349,4 +349,19 @@ public class ServerExplorerHierarContentProviderNav extends AbstractOnDemandCont
     {
         return EMPTY_ELEMENT_ARRAY;    
     }
+    
+	protected Object[] displayGroupNodeChildren(Object parent)
+	{
+		return EMPTY_ELEMENT_ARRAY;	
+	}
+
+	protected Object[] displayRoleNodeChildren(Object parent)
+	{
+		return EMPTY_ELEMENT_ARRAY;	
+	}
+
+	protected Object[] displayUserNodeChildren(Object parent)
+	{
+		return EMPTY_ELEMENT_ARRAY;	
+	}
 }

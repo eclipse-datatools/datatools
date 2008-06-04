@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -54,6 +54,10 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	private static final String STORED_PROCEDURE = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE");  //$NON-NLS-1$
 	private static final String UDF = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.UDF"); //$NON-NLS-1$
 	private static final String CATALOG = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.CATALOG"); //$NON-NLS-1$
+	private static final String AUTHORIZATION_ID = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.AUTH_ID"); //$NON-NLS-1$
+	private static final String ROLE = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.ROLE"); //$NON-NLS-1$
+	private static final String USER = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.USER"); //$NON-NLS-1$
+	private static final String GROUP = resourceLoader.queryString("DATATOOLS.SERVER.UI.EXPLORER.GROUP"); //$NON-NLS-1$
 	
 	private DatabaseDefinition  getDatabaseDefinition (Object parent)
 	{
@@ -353,6 +357,7 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	 * @return
 	 */
 	protected Object[] displayDatabaseChildren(Object parent) {
+		DatabaseDefinition df = getDatabaseDefinition (parent);
 		List collection = new ArrayList(2);
 		List catalogs = ((Database) parent).getCatalogs();
 		if (catalogs.size() == 0) {
@@ -378,6 +383,28 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 			collection.add(nodeFactory
 					.makeCatalogNode(CATALOG, CATALOG, parent));
 		}
+		
+		if (df.isAuthorizationIdentifierSupported())
+		{
+			boolean isAuthorizationSupported = ! (df.isUserSupported() || df.isGroupSupported() || df.isRoleSupported());
+			if (isAuthorizationSupported)
+			{
+				collection.add(nodeFactory.makeAuthorizationIdNode(AUTHORIZATION_ID, AUTHORIZATION_ID, parent));
+			}
+			if (df.isUserSupported())
+			{
+				collection.add(nodeFactory.makeUserNode(USER, USER, parent));
+			}
+			if (df.isRoleSupported())
+			{
+				collection.add(nodeFactory.makeRoleNode(ROLE, ROLE, parent));
+			}
+			if (df.isGroupSupported())
+			{
+				collection.add(nodeFactory.makeGroupNode(GROUP, GROUP, parent));
+			}
+		}
+		
 		return getArrays(parent, collection);
 	}
 
@@ -390,6 +417,24 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), object.getDependencies()));
     }
 
+	protected Object[] displayGroupNodeChildren(Object parent)
+	{
+		Database object = (Database) ((IVirtualNode)parent).getParent();
+		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), object.getAuthorizationIds()));
+	}
+
+	protected Object[] displayRoleNodeChildren(Object parent)
+	{
+		Database object = (Database) ((IVirtualNode)parent).getParent();
+		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), object.getAuthorizationIds()));
+	}
+
+	protected Object[] displayUserNodeChildren(Object parent)
+	{
+		Database object = (Database) ((IVirtualNode)parent).getParent();
+		return getArrays (parent, getChildren(((IVirtualNode)parent).getGroupID(), object.getAuthorizationIds()));
+	}
+	
     /**
      * @see org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.content.layout.AbstractOnDemandContentProviderNav#displayStoredProcedureChildren(java.lang.Object)
      */

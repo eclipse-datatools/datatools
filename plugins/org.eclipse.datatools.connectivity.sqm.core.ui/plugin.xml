@@ -266,6 +266,21 @@
 			displayType = "%foreignKey">
 		</contributor>
 		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.User"
+			iconLocation = "/icons/user.gif"
+			displayType = "%user">
+		</contributor>
+		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.Group"
+			iconLocation = "/icons/group.gif"
+			displayType = "%group">
+		</contributor>
+		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.Role"
+			iconLocation = "/icons/role.gif"
+			displayType = "%role">
+		</contributor>
+		<contributor
 			type = "org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode"
 			iconLocation = "/icons/closedFolder.gif"
 			displayType = "%folder">
