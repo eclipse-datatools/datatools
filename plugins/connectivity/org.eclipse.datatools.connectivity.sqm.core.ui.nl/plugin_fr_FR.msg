@@ -165,6 +165,9 @@ connectedConnection = Connexion directe
 disconnectedConnection = Connexion déconnectée
 cachedConnection = Connexion en cache
 catalog = Catalogue
+user = User
+group = Group
+role = Role
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Filtre de schéma par défaut
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Filtre de table par défaut
