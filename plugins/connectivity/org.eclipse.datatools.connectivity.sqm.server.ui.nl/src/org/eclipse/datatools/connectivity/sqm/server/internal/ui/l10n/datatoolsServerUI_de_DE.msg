@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
+# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -109,6 +109,10 @@ DATATOOLS.SERVER.UI.EXPLORER.DB2_CLOUDSCAPE = localhost [DB2 Cloudscape]
 DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE=Gespeicherte Prozeduren
 DATATOOLS.SERVER.UI.EXPLORER.UDF=Benutzerdefinierte Funktionen
 DATATOOLS.SERVER.UI.EXPLORER.CATALOG=Kataloge
+DATATOOLS.SERVER.UI.EXPLORER.AUTH_ID = Authorization IDs
+DATATOOLS.SERVER.UI.EXPLORER.USER = Users
+DATATOOLS.SERVER.UI.EXPLORER.GROUP = Groups
+DATATOOLS.SERVER.UI.EXPLORER.ROLE = Roles
 
 #
 ## Update Offline Items
@@ -119,7 +123,7 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = Offline speichern
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Offline arbeiten
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Offline-Content wurde in Ihrem Workspace nicht gefunden.\nFühren Sie "Offline speichern" aus, wenn Sie verbunden sind.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Verbindung fehlgeschlagen
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Die Verbindung ist fehlgeschlagen. Der folgende Fehler wurde gemeldet:\n"{0}"\n\nMöchten Sie Offline arbeiten?
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Verbindung fehlgeschlagen
 
 #
 ## Bookmark
@@ -129,6 +133,7 @@ DATATOOLS.SERVER.UI.BOOKMARK.MESSAGE=Geben Sie den Lesezeichen-Namen ein:
 
 
 SQL_MODEL_CONTENT_EXTENSION_LABEL=SQL-Modell?– Content
+
 
 
 

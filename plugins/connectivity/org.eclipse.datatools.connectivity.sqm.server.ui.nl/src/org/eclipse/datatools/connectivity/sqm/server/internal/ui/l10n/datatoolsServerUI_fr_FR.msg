@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
+# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -109,6 +109,10 @@ DATATOOLS.SERVER.UI.EXPLORER.DB2_CLOUDSCAPE = localhost [DB2 Cloudscape]
 DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE=Procédures stockées
 DATATOOLS.SERVER.UI.EXPLORER.UDF=Fonctions définies par l'utilisateur
 DATATOOLS.SERVER.UI.EXPLORER.CATALOG=Catalogues
+DATATOOLS.SERVER.UI.EXPLORER.AUTH_ID = Authorization IDs
+DATATOOLS.SERVER.UI.EXPLORER.USER = Users
+DATATOOLS.SERVER.UI.EXPLORER.GROUP = Groups
+DATATOOLS.SERVER.UI.EXPLORER.ROLE = Roles
 
 #
 ## Update Offline Items
@@ -119,7 +123,7 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = Enregistrer hors ligne
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = Travailler hors ligne
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = Le contenu hors ligne n'a pas été trouvé dans votre espace de travail.\nExécuter "Save Offline" une fois que vous êtes connecté.
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = Echec de connexion
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = La connexion a échoué. L'erreur suivante a été détectée :\n"{0}"\n\nVoulez-vous travailler hors ligne ?
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = Echec de connexion
 
 #
 ## Bookmark
@@ -129,3 +133,11 @@ DATATOOLS.SERVER.UI.BOOKMARK.MESSAGE=Entrer un nom de signet :
 
 
 SQL_MODEL_CONTENT_EXTENSION_LABEL=Contenu de modèle SQL
+
+
+
+
+
+
+
+

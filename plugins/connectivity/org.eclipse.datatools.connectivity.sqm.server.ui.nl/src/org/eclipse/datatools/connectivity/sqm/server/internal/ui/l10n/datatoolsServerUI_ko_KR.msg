@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
+# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -109,6 +109,10 @@ DATATOOLS.SERVER.UI.EXPLORER.DB2_CLOUDSCAPE = 本地主机 [DB2 Cloudscape]
 DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE=存储过程
 DATATOOLS.SERVER.UI.EXPLORER.UDF=用户定义函数
 DATATOOLS.SERVER.UI.EXPLORER.CATALOG=目录
+DATATOOLS.SERVER.UI.EXPLORER.AUTH_ID = Authorization IDs
+DATATOOLS.SERVER.UI.EXPLORER.USER = Users
+DATATOOLS.SERVER.UI.EXPLORER.GROUP = Groups
+DATATOOLS.SERVER.UI.EXPLORER.ROLE = Roles
 
 #
 ## Update Offline Items
@@ -119,7 +123,7 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = 脱机保存
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = 脱机工作
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = 在您的工作空间中找不到脱机内容。\n连接后应运行“脱机保存”。
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = 连接失败
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 连接失败。报告了以下错误:\n“{0}”\n\n要脱机工作吗？
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 连接失败
 
 #
 ## Bookmark
@@ -129,4 +133,11 @@ DATATOOLS.SERVER.UI.BOOKMARK.MESSAGE=输入书签名称:
 
 
 SQL_MODEL_CONTENT_EXTENSION_LABEL=SQL 模型内容
+
+
+
+
+
+
+
 

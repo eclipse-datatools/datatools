@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
+# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -109,6 +109,10 @@ DATATOOLS.SERVER.UI.EXPLORER.DB2_CLOUDSCAPE = localhost [DB2 Cloudscape]
 DATATOOLS.SERVER.UI.EXPLORER.STORED_PROCEDURE=ストアドプロシージャ
 DATATOOLS.SERVER.UI.EXPLORER.UDF=ユーザ定義の関数
 DATATOOLS.SERVER.UI.EXPLORER.CATALOG=カタログ
+DATATOOLS.SERVER.UI.EXPLORER.AUTH_ID = Authorization IDs
+DATATOOLS.SERVER.UI.EXPLORER.USER = Users
+DATATOOLS.SERVER.UI.EXPLORER.GROUP = Groups
+DATATOOLS.SERVER.UI.EXPLORER.ROLE = Roles
 
 #
 ## Update Offline Items
@@ -119,7 +123,7 @@ DATATOOLS.SERVER.UI.EXPLORER.UPDATE_OFFLINE_JOB = オフラインで保存
 DATATOOLS.SERVER.UI.EXPLORER.WORKOFFLINE_JOB = オフライン作業
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.MESSAGE = オフラインのコンテンツがワークスペースにありません。\n接続時に [オフラインで保存] を実行してください。
 DATATOOLS.SERVER.UI.CONNECTION.OFFLINE.TITLE = 接続エラー
-DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 接続できませんでした。次のエラーが報告されました:\n"{0}"\n\nオフラインで作業しますか ?
+DATATOOLS.SERVER.UI.CONNECTION.ERROR.MESSAGE = 接続エラー
 
 #
 ## Bookmark
@@ -129,3 +133,11 @@ DATATOOLS.SERVER.UI.BOOKMARK.MESSAGE=ブックマーク名の入力 :
 
 
 SQL_MODEL_CONTENT_EXTENSION_LABEL=SQL モデルのコンテンツ
+
+
+
+
+
+
+
+
