@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB iSeries" version="5R3" maximumIdentifierLength="18" tablespacesSupported="false" maximumCommentLength="64" userDefinedTypeSupported="true" aliasSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="DB2 UDB iSeries" version="5R3" maximumIdentifierLength="18" tablespacesSupported="false" maximumCommentLength="64" userDefinedTypeSupported="true" aliasSupported="true"
+ sequenceSupported="true" mQTSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" primitiveType="BIGINT" jdbcEnumType="-5">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
