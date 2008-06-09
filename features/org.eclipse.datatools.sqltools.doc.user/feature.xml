@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) 2008 Sybase, Inc. All rights reserved. -->
 <feature
-      id="org.eclipse.datatools.connectivity.doc.user"
+      id="org.eclipse.datatools.sqltools.doc.user"
       label="%featureName"
       version="1.6.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.datatools.connectivity.doc.user"
+      plugin="org.eclipse.datatools.sqltools.doc.user"
       image="eclipse_update_120.jpg">
 
    <description>
@@ -26,14 +26,7 @@
    </url>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.doc.user.contexts"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.datatools.connectivity.doc.user"
+         id="org.eclipse.datatools.sqltools.doc.user"
          download-size="0"
          install-size="0"
          version="0.0.0"
