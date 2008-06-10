@@ -78,9 +78,9 @@
 	<target name="tagMapFiles" if="tagMaps">
 		<!-- Stores tag on the filesystem so map files can be compared -->
 		<echo file="${mapTag.properties}">
-		lastMapTag=R320_${buildId}
+		lastMapTag=r16_${buildId}
 		</echo>
-		<cvs dest="${buildDirectory}/maps/source" command="tag R320_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/source" command="tag r16_${buildId}" />
 	</target>
 	
 	<!-- ===================================================================== -->

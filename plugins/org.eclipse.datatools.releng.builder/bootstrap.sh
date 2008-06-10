@@ -64,7 +64,7 @@ builderDir=/home/adb/releng.dtp/org.eclipse.datatools.releng.builder/
 buildType=I
 
 # directory where to copy build
-postingDirectory=/home/adb/releng.dtp/output
+postingDirectory=/home/adb/releng/BIRTOutput/dtp.output/1.6
 
 # flag to indicate if test build
 testBuild=""
@@ -205,17 +205,19 @@ echo $tagMaps >> adb.log
 echo $compareMaps >> adb.log
 
 
+cp /home/adb/releng.dtp/dtpURLmonitor.properties /home/adb/releng.230/src/
+
 buildCommand="$antRunner -q -buildfile buildAll.xml $mail $testBuild $compareMaps \
 -DmapVersionTag=$mapVersionTag -DpostingDirectory=$postingDirectory \
 -Dbootclasspath=$bootclasspath -DbuildType=$buildType -D$buildType=true \
 -DbuildId=$buildId -Dbuildid=$buildId -DbuildLabel=$buildId -Dtimestamp=$timestamp $skipPerf $skipTest $tagMaps \
 -DJ2SE-1.5=$bootclasspath_15  -DlogExtension=.xml $javadoc $updateSite $sign  \
 -Djava15-home=$bootclasspath_15 -DbuildDirectory=/home/adb/releng.dtp/src \
--DbaseLocation=/home/adb/releng.dtp/baseLocation \
+-DbaseLocation=/home/adb/releng.dtp/baseLocation -Dwtp.home=/home/adb/releng.dtp/baseLocation \
 -DgroupConfiguration=true -DjavacVerbose=true \
 -Dbasebuilder=/home/adb/releng.dtp/org.eclipse.releng.basebuilder  \
 -Djvm15_home=$jvm15_home  -DmapTag.properties=/home/adb/releng.dtp/org.eclipse.datatools.releng.builder/mapTag.properties \
--Dbuild.date=$builddate -Dpackage.version=1.6M6-$timestamp \
+-Dbuild.date=$builddate -Dpackage.version=1.6RC4-$timestamp \
 -DmapCvsRoot=:ext:xgu@dev.eclipse.org:/cvsroot/datatools \
 -DmapVersionTag=HEAD -DjavacTarget=1.4 -DjavacSource=1.4"
 
@@ -236,4 +238,4 @@ $buildCommand >> adb.log
 
 #clean up
 #rm -rf $builderDir
-#rm -rf /home/adb/releng.dtp/src/$buildId
+rm -rf /home/adb/releng.dtp/src/$buildId

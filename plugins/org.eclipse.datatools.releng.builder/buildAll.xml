@@ -37,6 +37,7 @@
 	<target name="main" depends="init">
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
+		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
 		<antcall target="Package"/>
                 <antcall target="GenerateUpdateSite"/>
@@ -92,6 +93,16 @@
 
 	</target>
 
+	<target name="buildDtpEnablementFeature">
+		<ant antfile="build.xml" dir="${basedir}">
+			<property name="component" value="${eclipse.build.configs}/dtp.enablement" />
+		</ant>
+	</target>
+	
+	<target name="buildUpdateSite" if="updateSite">
+		<ant antfile="${eclipse.build.configs}/../helper.xml" target="buildUpdateJars" />
+	</target>
+	
 	<target name="integrateDtpFeatures">
 
 		<property name="tmpsite" value="${buildDirectory}/tmpsite" />
@@ -200,12 +211,15 @@
 		<mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
 
                 <!-- replace the feature version in site.xml -->
-		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${buildDirectory}/site.xml"/>
-                <replace file="${buildDirectory}/site.xml" value="1.6M6" token="@RELEASE.VERSION@"/>
+		        <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${buildDirectory}/site.xml" overwrite="true"/>
+                <replace file="${buildDirectory}/site.xml" value="1.6RC4" token="@RELEASE.VERSION@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.feature}" token="@org.eclipse.datatools.connectivity.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.designer.feature}" token="@org.eclipse.datatools.connectivity.oda.designer.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.oda.feature}" token="@org.eclipse.datatools.connectivity.oda.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.doc.user}" token="@org.eclipse.datatools.doc.user@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.common.doc.user}" token="@org.eclipse.datatools.common.doc.user@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.connectivity.doc.user}" token="@org.eclipse.datatools.connectivity.doc.user@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqltools.doc.user}" token="@org.eclipse.datatools.sqltools.doc.user@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.apache.derby.feature}" token="@org.eclipse.datatools.enablement.apache.derby.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.feature}" token="@org.eclipse.datatools.enablement.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.hsqldb.feature}" token="@org.eclipse.datatools.enablement.hsqldb.feature@"/>
@@ -229,6 +243,7 @@
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.feature}" token="@org.eclipse.datatools.sqldevtools.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.parsers.feature}" token="@org.eclipse.datatools.sqldevtools.parsers.feature@"/>
                 <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.results.feature}" token="@org.eclipse.datatools.sqldevtools.results.feature@"/>
+                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sqldevtools.sqlbuilder.feature}" token="@org.eclipse.datatools.sqldevtools.sqlbuilder.feature@"/>
 
 		<!-- generate dtp.sc for Ganymede update site -->
 		<copy file="${eclipse.build.configs}/../../extras/dtp.sc.template" tofile="${buildDirectory}/dtp.sc"/>
@@ -236,6 +251,9 @@
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.oda.designer.feature}" token="@org.eclipse.datatools.connectivity.oda.designer.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.oda.feature}" token="@org.eclipse.datatools.connectivity.oda.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.doc.user}" token="@org.eclipse.datatools.doc.user@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.common.doc.user}" token="@org.eclipse.datatools.common.doc.user@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqltools.doc.user}" token="@org.eclipse.datatools.sqltools.doc.user@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.connectivity.doc.user}" token="@org.eclipse.datatools.connectivity.doc.user@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.apache.derby.feature}" token="@org.eclipse.datatools.enablement.apache.derby.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.feature}" token="@org.eclipse.datatools.enablement.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.hsqldb.feature}" token="@org.eclipse.datatools.enablement.hsqldb.feature@"/>
@@ -259,6 +277,7 @@
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.feature}" token="@org.eclipse.datatools.sqldevtools.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.parsers.feature}" token="@org.eclipse.datatools.sqldevtools.parsers.feature@"/>
                 <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.results.feature}" token="@org.eclipse.datatools.sqldevtools.results.feature@"/>
+                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sqldevtools.sqlbuilder.feature}" token="@org.eclipse.datatools.sqldevtools.sqlbuilder.feature@"/>
 
                 <!-- push update site to output directory -->
                 <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>

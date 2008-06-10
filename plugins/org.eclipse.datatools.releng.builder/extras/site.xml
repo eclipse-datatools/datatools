@@ -27,6 +27,15 @@
 	<feature url="features/org.eclipse.datatools.doc.user_@org.eclipse.datatools.doc.user@.jar" id="org.eclipse.datatools.doc.user" version="@org.eclipse.datatools.doc.user@">
 		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
 	</feature>
+	<feature url="features/org.eclipse.datatools.common.doc.user_@org.eclipse.datatools.common.doc.user@.jar" id="org.eclipse.datatools.common.doc.user" version="@org.eclipse.datatools.common.doc.user@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.connectivity.doc.user_@org.eclipse.datatools.connectivity.doc.user@.jar" id="org.eclipse.datatools.connectivity.doc.user" version="@org.eclipse.datatools.connectivity.doc.user@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqltools.doc.user_@org.eclipse.datatools.sqltools.doc.user@.jar" id="org.eclipse.datatools.sqltools.doc.user" version="@org.eclipse.datatools.sqltools.doc.user@">
+		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
+	</feature>
 	<feature url="features/org.eclipse.datatools.enablement.apache.derby.feature_@org.eclipse.datatools.enablement.apache.derby.feature@.jar" id="org.eclipse.datatools.enablement.apache.derby.feature" version="@org.eclipse.datatools.enablement.apache.derby.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
@@ -94,6 +103,9 @@
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
 	<feature url="features/org.eclipse.datatools.sqldevtools.results.feature_@org.eclipse.datatools.sqldevtools.results.feature@.jar" id="org.eclipse.datatools.sqldevtools.results.feature" version="@org.eclipse.datatools.sqldevtools.results.feature@">
+		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
+	</feature>
+	<feature url="features/org.eclipse.datatools.sqldevtools.sqlbuilder.feature_@org.eclipse.datatools.sqldevtools.sqlbuilder.feature@.jar" id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature" version="@org.eclipse.datatools.sqldevtools.sqlbuilder.feature@">
 		<category name="Enabling Features for DTP@RELEASE.VERSION@"/>
 	</feature>
 </site>

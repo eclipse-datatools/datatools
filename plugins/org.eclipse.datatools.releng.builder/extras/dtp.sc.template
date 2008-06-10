@@ -21,6 +21,15 @@
                 name="org.eclipse.datatools.doc.user"
                 versionDesignator="[@org.eclipse.datatools.doc.user@]" />
             <dependency
+                name="org.eclipse.datatools.common.doc.user"
+                versionDesignator="[@org.eclipse.datatools.common.doc.user@]" />
+            <dependency
+                name="org.eclipse.datatools.connectivity.doc.user"
+                versionDesignator="[@org.eclipse.datatools.connectivity.doc.user@]" />
+            <dependency
+                name="org.eclipse.datatools.sqltools.doc.user"
+                versionDesignator="[@org.eclipse.datatools.sqltools.doc.user@]" />
+            <dependency
                 name="org.eclipse.datatools.enablement.apache.derby.feature"
                 versionDesignator="[@org.eclipse.datatools.enablement.apache.derby.feature@]" />
             <dependency
@@ -117,6 +126,9 @@
             </public>
             <public name="Database Development">
                 <attribute component="org.eclipse.datatools.doc.user" />
+                <attribute component="org.eclipse.datatools.common.doc.user" />
+                <attribute component="org.eclipse.datatools.connectivity.doc.user" />
+                <attribute component="org.eclipse.datatools.sqltools.doc.user" />
                 <attribute component="org.eclipse.datatools.enablement.feature" />
                 <attribute component="org.eclipse.datatools.intro" />
                 <attribute component="org.eclipse.datatools.sdk.feature" />

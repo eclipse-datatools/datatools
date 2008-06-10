@@ -110,6 +110,9 @@
                 <replace dir="${buildDirectory}/plugins" value="1.6.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
+                <replace dir="${buildDirectory}/features" value="1.6.0.${buildId}" token="@BUILD@">
+                        <include name="**/about.mappings" />
+                </replace>
 	</target>
 	
 	<!-- ===================================================================== -->

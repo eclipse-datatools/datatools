@@ -235,6 +235,7 @@
 		<exec executable="${eclipse.build.configs}/../../extras/verifyCompile.sh">
 			<arg value="${postingDirectory}/${buildId}/compilelogs"/>
 		</exec>
+		<echo message=" start check compile error"/>
 		<antcall target="checkCompileError"/>
 	</target>
 
@@ -798,10 +799,10 @@ Have a nice day!
 			</message>
 			<!--
 			<fileset dir="${test.dir}/unitTestReport/html">
-				<!--
+				
 				<include name="TESTS-EngineSmokeTests.html"/>
 				<include name="TESTS-DtESmokeTests.html"/>
-				-->
+				
 				<include name="org.eclipse.birt.report.tests.model.AllTests.html"/>
 				<include name="org.eclipse.birt.report.tests.engine.AllTests.html"/>
 				<include name="org.eclipse.birt.report.tests.chart.AllTests.html"/>
@@ -817,6 +818,8 @@ Have a nice day!
 		<condition property="has.compile.error" value="true">
 			<equals arg1="${compileHasError}" arg2="true" />
 		</condition>
+		<echo message="${has.compile.error}"/>
+		<echo message="monitor: ${eclipse.build.configs}/../../monitor.properties" />
 	</target>
 	
     <target name="checkCompileError" depends="checkErrorExist" if="has.compile.error" >
@@ -844,9 +847,11 @@ Please see the attachments for details.
                     	
 Have a nice day!
                     </message>
+	<attachments>
                     <fileset dir="${postingDirectory}/${buildId}/compilelogs/plugins">
                             <include name="*compilelog.html"/>
                     </fileset>
+	</attachments>
             </mail>
     </target>
 	
