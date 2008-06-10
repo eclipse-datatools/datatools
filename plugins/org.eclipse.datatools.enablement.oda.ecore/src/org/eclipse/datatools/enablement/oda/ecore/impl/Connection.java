@@ -14,12 +14,7 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.impl;
 
-import static org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil.createFor;
-import static org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil.getAllEStructuralFeatures;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -27,13 +22,11 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
@@ -46,9 +39,7 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties
-	 * )
+	 * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties )
 	 */
 	public void open(final Properties connProperties) throws OdaException {
 		if (isOpen) {
@@ -87,8 +78,7 @@ public class Connection implements IConnection {
 		final URI uri;
 		final String pathString = dataSourceProperties.getProperty(Constants.CONNECTION_DIRECTORY_PATH, null);
 		if (isWorkspaceRelative && pathString != null) {
-			uri = URI.createURI(ResourcesPlugin.getWorkspace().getRoot().findMember(pathString).getLocationURI()
-					.toString());
+			uri = URI.createURI(ResourcesPlugin.getWorkspace().getRoot().findMember(pathString).getLocationURI().toString());
 		} else {
 			uri = URI.createFileURI(pathString);
 		}
@@ -98,9 +88,7 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java
-	 * .lang.Object)
+	 * @see org.eclipse.datatools.connectivity.oda.IConnection#setAppContext(java .lang.Object)
 	 */
 	public void setAppContext(final Object context) throws OdaException {
 		// do nothing; assumes no support for pass-through context
@@ -127,9 +115,7 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang
-	 * .String)
+	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMetaData(java.lang .String)
 	 */
 	public IDataSetMetaData getMetaData(final String dataSetType) throws OdaException {
 		// assumes that this driver supports only one type of data set,
@@ -140,31 +126,13 @@ public class Connection implements IConnection {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang
-	 * .String)
+	 * @see org.eclipse.datatools.connectivity.oda.IConnection#newQuery(java.lang .String)
 	 */
 	public IQuery newQuery(final String dataSetType) throws OdaException {
 		if (!isOpen) {
 			throw new OdaException("Query cannot be created for closed connection");
 		}
-		return new Query(eObjects, classifier, getColumnDefinitions());
-	}
-
-	private ColumnDefinition[] getColumnDefinitions() {
-		final List<ColumnDefinition> columnDefinitions = new ArrayList<ColumnDefinition>();
-		if (classifier != null) {
-			for (final EStructuralFeature structuralFeature : classifier.eClass().getEAllStructuralFeatures()) {
-				final ColumnDefinition columnDefinition = createFor(structuralFeature);
-				columnDefinitions.add(columnDefinition);
-			}
-		} else {
-			for (final EStructuralFeature structuralFeature : getAllEStructuralFeatures(eObjects)) {
-				final ColumnDefinition columnDefinition = createFor(structuralFeature);
-				columnDefinitions.add(columnDefinition);
-			}
-		}
-		return columnDefinitions.toArray(new ColumnDefinition[columnDefinitions.size()]);
+		return new Query(eObjects, classifier);
 	}
 
 	/*

@@ -17,8 +17,10 @@ package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -57,21 +59,25 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
-	 * #collectCustomProperties()
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage #collectCustomProperties()
 	 */
 	@Override
 	public Properties collectCustomProperties() {
 		return properties;
 	}
 
+	@Override
+	protected DataSourceDesign collectDataSourceDesign(final DataSourceDesign dataSourceDesign) {
+		final DataSourceDesign design = super.collectDataSourceDesign(dataSourceDesign);
+		PropertiesUtil.persistCustomProperties(design, properties);
+		return design;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
-	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
+	 *      #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
@@ -137,8 +143,8 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 			path = filesystemDialog.open();
 		} else {
 			final String msg = Messages.getString("DataSourceWizardPage.dialog.workspace"); //$NON-NLS-1$
-			final IFile[] result = WorkspaceResourceDialog.openFileSelection(modelPathControl.getShell(), null, msg,
-					false, null, null);
+			final IFile[] result = WorkspaceResourceDialog.openFileSelection(modelPathControl.getShell(), null, msg, false,
+					null, null);
 			if (result.length > 0) {
 				path = result[0].getFullPath().toPortableString();
 			}
@@ -174,9 +180,8 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
-	 * #setInitialProperties(java.util.Properties)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
+	 *      #setInitialProperties(java.util.Properties)
 	 */
 	@Override
 	public void setInitialProperties(final Properties dataSourceProps) {

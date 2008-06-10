@@ -27,4 +27,5 @@ public class Constants {
 
 	public static final String OCL_ECORE_INVARIANT = "ocl.ecore.invariant";
 
+	public static final String CONNECTION_COLUMN_DEFINITIONS = "column.definitions";
 }

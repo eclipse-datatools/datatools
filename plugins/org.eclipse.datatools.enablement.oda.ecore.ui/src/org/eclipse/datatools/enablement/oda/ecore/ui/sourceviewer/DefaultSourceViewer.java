@@ -76,8 +76,6 @@ public class DefaultSourceViewer implements IOCLSourceViewer {
 			sourceViewer.configure(new SourceViewerConfiguration());
 			sourceViewer.setEditable(true);
 			final StyledText textWidget = sourceViewer.getTextWidget();
-			// textWidget.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_INFO_FOREGROUND));
-			// textWidget.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
 			state = new InitializedState(sourceViewer);
 			return textWidget;
 		}

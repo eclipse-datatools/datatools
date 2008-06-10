@@ -18,7 +18,10 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -27,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.i18n.Messages;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -43,19 +47,19 @@ import org.eclipse.ocl.ParserException;
 public class Query implements IQuery {
 
 	private int maxRows = 0;
-	private final ColumnDefinition[] columns;
 	private final EClassifier contextClassifier;
 	private boolean isPrepared;
 	private SELECT statement;
 	private boolean isClosed;
 	private IQueryResult queryResult;
 	private final Collection<EObject> eObjects;
+	private final Map<String, String> properties;
+	private ColumnDefinition[] columnDefinitions;
 
-	public Query(final Collection<EObject> eObjects, final EClassifier contextClassifier,
-			final ColumnDefinition[] columns) {
-		this.columns = columns;
+	public Query(final Collection<EObject> eObjects, final EClassifier contextClassifier) {
 		this.contextClassifier = contextClassifier;
 		this.eObjects = eObjects;
+		properties = new HashMap<String, String>();
 	}
 
 	/*
@@ -85,8 +89,7 @@ public class Query implements IQuery {
 	}
 
 	/**
-	 * Alternative implementation of Query that takes an EMF SELECT rather than
-	 * an OCL String-based query
+	 * Alternative implementation of Query that takes an EMF SELECT rather than an OCL String-based query
 	 * 
 	 * @param statement
 	 *            an EMF Query
@@ -125,7 +128,7 @@ public class Query implements IQuery {
 	public IResultSetMetaData getMetaData() throws OdaException {
 		verifyIsPrepared();
 		verifyNotClosed();
-		return new ResultSetMetaData(columns);
+		return new ResultSetMetaData(getColumnDefinitions());
 	}
 
 	/*
@@ -139,7 +142,7 @@ public class Query implements IQuery {
 
 		queryResult = statement.execute();
 
-		final IResultSet resultSet = new ResultSet(this, columns, maxRows);
+		final IResultSet resultSet = new ResultSet(this, getColumnDefinitions(), maxRows);
 		resultSet.setMaxRows(getMaxRows());
 
 		return resultSet;
@@ -152,11 +155,12 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setProperty(java.lang.String,
-	 *      java.lang.String)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setProperty(java.lang.String, java.lang.String)
 	 */
 	public void setProperty(final String name, final String value) throws OdaException {
-		// do nothing; assumes no data set query property
+		if (value != null) {
+			properties.put(name, value);
+		}
 	}
 
 	/*
@@ -190,8 +194,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setInt(java.lang.String,
-	 *      int)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setInt(java.lang.String, int)
 	 */
 	public void setInt(final String parameterName, final int value) throws OdaException {
 		// only applies to named input parameter
@@ -209,8 +212,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDouble(java.lang.String,
-	 *      double)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDouble(java.lang.String, double)
 	 */
 	public void setDouble(final String parameterName, final double value) throws OdaException {
 		// only applies to named input parameter
@@ -228,8 +230,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBigDecimal(java.lang.String,
-	 *      java.math.BigDecimal)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBigDecimal(java.lang.String, java.math.BigDecimal)
 	 */
 	public void setBigDecimal(final String parameterName, final BigDecimal value) throws OdaException {
 		// only applies to named input parameter
@@ -238,8 +239,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBigDecimal(int,
-	 *      java.math.BigDecimal)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBigDecimal(int, java.math.BigDecimal)
 	 */
 	public void setBigDecimal(final int parameterId, final BigDecimal value) throws OdaException {
 		// only applies to input parameter
@@ -248,8 +248,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setString(java.lang.String,
-	 *      java.lang.String)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setString(java.lang.String, java.lang.String)
 	 */
 	public void setString(final String parameterName, final String value) throws OdaException {
 		// only applies to named input parameter
@@ -258,8 +257,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setString(int,
-	 *      java.lang.String)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setString(int, java.lang.String)
 	 */
 	public void setString(final int parameterId, final String value) throws OdaException {
 		// only applies to input parameter
@@ -268,8 +266,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDate(java.lang.String,
-	 *      java.sql.Date)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDate(java.lang.String, java.sql.Date)
 	 */
 	public void setDate(final String parameterName, final Date value) throws OdaException {
 		// only applies to named input parameter
@@ -278,8 +275,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDate(int,
-	 *      java.sql.Date)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setDate(int, java.sql.Date)
 	 */
 	public void setDate(final int parameterId, final Date value) throws OdaException {
 		// only applies to input parameter
@@ -288,8 +284,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTime(java.lang.String,
-	 *      java.sql.Time)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTime(java.lang.String, java.sql.Time)
 	 */
 	public void setTime(final String parameterName, final Time value) throws OdaException {
 		// only applies to named input parameter
@@ -298,8 +293,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTime(int,
-	 *      java.sql.Time)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTime(int, java.sql.Time)
 	 */
 	public void setTime(final int parameterId, final Time value) throws OdaException {
 		// only applies to input parameter
@@ -308,8 +302,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTimestamp(java.lang.String,
-	 *      java.sql.Timestamp)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTimestamp(java.lang.String, java.sql.Timestamp)
 	 */
 	public void setTimestamp(final String parameterName, final Timestamp value) throws OdaException {
 		// only applies to named input parameter
@@ -318,8 +311,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTimestamp(int,
-	 *      java.sql.Timestamp)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setTimestamp(int, java.sql.Timestamp)
 	 */
 	public void setTimestamp(final int parameterId, final Timestamp value) throws OdaException {
 		// only applies to input parameter
@@ -328,8 +320,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(java.lang.String,
-	 *      boolean)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(java.lang.String, boolean)
 	 */
 	public void setBoolean(final String parameterName, final boolean value) throws OdaException {
 		// only applies to named input parameter
@@ -338,8 +329,7 @@ public class Query implements IQuery {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(int,
-	 *      boolean)
+	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setBoolean(int, boolean)
 	 */
 	public void setBoolean(final int parameterId, final boolean value) throws OdaException {
 		// only applies to input parameter
@@ -415,8 +405,8 @@ public class Query implements IQuery {
 	}
 
 	/**
-	 * If the result set is closed then throw an OdaException. This method is
-	 * invoked before any method defined in IResultSet is called.
+	 * If the result set is closed then throw an OdaException. This method is invoked before any method defined in IResultSet
+	 * is called.
 	 * 
 	 * @throws OdaException
 	 */
@@ -426,4 +416,17 @@ public class Query implements IQuery {
 		}
 	}
 
+	private ColumnDefinition[] getColumnDefinitions() {
+		if (columnDefinitions != null) {
+			return columnDefinitions;
+		}
+		final Collection<ColumnDefinition> definitions = new ArrayList<ColumnDefinition>();
+		for (final String key : properties.keySet()) {
+			if (key.startsWith(Constants.CONNECTION_COLUMN_DEFINITIONS)) {
+				definitions.add(ColumnDefinitionUtil.createFor(properties.get(key)));
+			}
+		}
+		columnDefinitions = definitions.toArray(new ColumnDefinition[definitions.size()]);
+		return columnDefinitions;
+	}
 }

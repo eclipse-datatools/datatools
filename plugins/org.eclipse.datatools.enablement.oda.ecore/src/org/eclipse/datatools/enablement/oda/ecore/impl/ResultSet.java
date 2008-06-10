@@ -18,6 +18,9 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -28,10 +31,13 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.enablement.oda.ecore.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ecore.util.StringUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public class ResultSet implements IResultSet {
+
+	private static final String AGGREGATION_SEPARATOR = "\n";
 
 	private int maxRows;
 	private int currentRowId;
@@ -42,6 +48,7 @@ public class ResultSet implements IResultSet {
 	private final Iterator<EObject> queryResultIterator;
 	private final Query query;
 
+	@SuppressWarnings("unchecked")
 	public ResultSet(final Query query, final ColumnDefinition[] columns, final int maxRows) {
 		this.query = query;
 		this.columns = columns;
@@ -67,8 +74,7 @@ public class ResultSet implements IResultSet {
 	}
 
 	/**
-	 * Returns the maximum number of rows that can be fetched from this result
-	 * set.
+	 * Returns the maximum number of rows that can be fetched from this result set.
 	 * 
 	 * @return the maximum number of rows to fetch.
 	 */
@@ -101,8 +107,8 @@ public class ResultSet implements IResultSet {
 	}
 
 	/**
-	 * If the result set is closed then throw an OdaException. This method is
-	 * invoked before any method defined in IResultSet is called.
+	 * If the result set is closed then throw an OdaException. This method is invoked before any method defined in IResultSet
+	 * is called.
 	 * 
 	 * @throws OdaException
 	 */
@@ -144,12 +150,34 @@ public class ResultSet implements IResultSet {
 	 */
 	public String getString(final int index) throws OdaException {
 		validateColumn(index);
-		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
-		if (structuralFeature == null) {
-			return null;
+		return getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(eObject,
+				columns[index - 1]));
+	}
+
+	private String getFeatureValues(final Collection<EObject> eObjects, final EStructuralFeature[] path) {
+		if (path.length == 0) {
+			return "";
 		}
-		final Object value = eObject.eGet(structuralFeature);
-		return value == null ? null : value.toString();
+		final EStructuralFeature feature = path[0];
+		final Collection<String> values = new ArrayList<String>();
+		for (final EObject eObject : eObjects) {
+			final Object value = eObject.eGet(feature);
+			if (path.length == 1) {
+				if (value != null) {
+					values.add(value.toString());
+				}
+			} else {
+				final EStructuralFeature[] nextPath = new EStructuralFeature[path.length - 1];
+				System.arraycopy(path, 1, nextPath, 0, nextPath.length);
+				@SuppressWarnings("unchecked")
+				final String featureValues = getFeatureValues(feature.isMany() ? (Collection<EObject>) value : Collections
+						.singleton((EObject) value), nextPath);
+				if (featureValues.length() > 0) {
+					values.add(featureValues);
+				}
+			}
+		}
+		return StringUtil.join(values.toArray(new String[values.size()]), AGGREGATION_SEPARATOR);
 	}
 
 	/*
@@ -164,11 +192,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public int getInt(final int index) throws OdaException {
 		validateColumn(index);
-		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
-		if (structuralFeature == null) {
-			return 0;
-		}
-		return Integer.parseInt(eObject.eGet(structuralFeature).toString());
+		return Integer.parseInt(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
+				eObject, columns[index - 1])));
 	}
 
 	/*
@@ -183,11 +208,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public double getDouble(final int index) throws OdaException {
 		validateColumn(index);
-		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
-		if (structuralFeature == null) {
-			return 0;
-		}
-		return Double.parseDouble(eObject.eGet(structuralFeature).toString());
+		return Double.parseDouble(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
+				eObject, columns[index - 1])));
 	}
 
 	/*
@@ -288,11 +310,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public boolean getBoolean(final int index) throws OdaException {
 		validateColumn(index);
-		final EStructuralFeature structuralFeature = ColumnDefinitionUtil.featureForColumn(eObject, columns[index - 1]);
-		if (structuralFeature == null) {
-			return false;
-		}
-		return Boolean.parseBoolean(eObject.eGet(structuralFeature).toString());
+		return Boolean.parseBoolean(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
+				eObject, columns[index - 1])));
 	}
 
 	/*

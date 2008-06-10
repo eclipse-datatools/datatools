@@ -17,7 +17,9 @@ package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -33,10 +35,15 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.impl.ColumnDefinitionUtil;
 import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreAdapterFactory;
@@ -44,6 +51,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.tree.TreeFactory;
 import org.eclipse.emf.edit.tree.TreeNode;
+import org.eclipse.emf.edit.tree.impl.TreeNodeImpl;
 import org.eclipse.emf.edit.tree.provider.TreeItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -56,7 +64,6 @@ import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.dialogs.ContainerCheckedTreeViewer;
 
 public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
@@ -83,7 +90,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		final Composite composite = new Composite(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 100).align(SWT.FILL, SWT.FILL).applyTo(composite);
 
-		viewer = new ContainerCheckedTreeViewer(composite, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		viewer = new ContainerCheckedGraphViewer(composite, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
 
 		final ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory();
 		adapterFactory.addAdapterFactory(new EcoreAdapterFactory());
@@ -109,19 +116,6 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	protected void refresh(final DataSetDesign dataSetDesign) {
 		super.refresh(dataSetDesign);
 		setViewerInputBasedOnInvariant(dataSetDesign);
-	}
-
-	private TreePath pathTo(final EStructuralFeature feature) {
-		for (final TreeNode eClassNode : ((TreeNode) viewer.getInput()).getChildren()) {
-			if (eClassNode.getData() == feature.getEContainingClass()) {
-				for (final TreeNode featureNode : eClassNode.getChildren()) {
-					if (featureNode.getData() == feature) {
-						return new TreePath(new Object[] { eClassNode, featureNode });
-					}
-				}
-			}
-		}
-		return new TreePath(new Object[] {});
 	}
 
 	private void initializeControls() {
@@ -162,17 +156,46 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	}
 
 	private void initializeCheckedElements(final DataSetDesign dataSetDesign) {
-		final EStructuralFeature[] initialCheckedElements = findElementsToCheck(dataSetDesign.getPrimaryResultSet());
-		if (initialCheckedElements != null) {
-			for (final EStructuralFeature checkedElement : initialCheckedElements) {
-				final TreePath path = pathTo(checkedElement);
-				viewer.reveal(path);
-				if (path.getLastSegment() != null) {
-					viewer.setChecked(path.getLastSegment(), true);
-				}
+		final TreePath[] treePaths = findTreePaths(dataSetDesign.getPrimaryResultSet());
+		for (final TreePath path : treePaths) {
+			viewer.reveal(path);
+			if (path.getLastSegment() != null) {
+				viewer.setChecked(path.getLastSegment(), true);
 			}
 			validateData();
 		}
+	}
+
+	private TreePath[] findTreePaths(final ResultSetDefinition primaryResultSet) {
+		if (primaryResultSet == null) {
+			return new TreePath[] {};
+		}
+		final List<TreePath> treePaths = new ArrayList<TreePath>();
+		final ResultSetColumns resultSetColumns = primaryResultSet.getResultSetColumns();
+		@SuppressWarnings("unchecked")
+		final List<ColumnDefinition> columnDefinitions = resultSetColumns.getResultColumnDefinitions();
+		for (final ColumnDefinition columnDefinition : columnDefinitions) {
+			final ENamedElement[] featurePath = ColumnDefinitionUtil.getFeaturePath(columnDefinition, ePackage);
+			final List<TreeNode> nodePath = new ArrayList<TreeNode>();
+			TreeNode currentNode = (TreeNode) viewer.getInput();
+			for (int i = 0; i < featurePath.length; i++) {
+				final TreeNode newParent = findNodeFor(featurePath[i], currentNode);
+				nodePath.add(newParent);
+				currentNode = newParent;
+			}
+			treePaths.add(new TreePath(nodePath.toArray()));
+		}
+		return treePaths.toArray(new TreePath[treePaths.size()]);
+	}
+
+	private TreeNode findNodeFor(final ENamedElement data, final TreeNode parent) {
+		final Collection<TreeNode> children = parent.getChildren();
+		for (final TreeNode treeNode : children) {
+			if (data.getName().equals(((ENamedElement) treeNode.getData()).getName())) {
+				return treeNode;
+			}
+		}
+		throw new IllegalArgumentException("Unable to locate [" + data + "] in [" + parent.getData() + "].");
 	}
 
 	private void showAllEstructuralFeatures() {
@@ -180,34 +203,8 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 				.getEClassifiers(), EcorePackage.Literals.ECLASS)).buildTree());
 	}
 
-	private Map<String, EStructuralFeature> mapFeaturesToColumnNames() {
-		final Map<String, EStructuralFeature> referencesByName = new HashMap<String, EStructuralFeature>();
-		final List<EStructuralFeature> features = ColumnDefinitionUtil.getAllEStructuralFeatures(ePackage);
-		for (final EStructuralFeature feature : features) {
-			referencesByName.put(ColumnDefinitionUtil.getColumnNameFor(feature), feature);
-		}
-		return referencesByName;
-	}
-
-	private EStructuralFeature[] findElementsToCheck(final ResultSetDefinition primaryResultSet) {
-		if (primaryResultSet == null) {
-			return new EStructuralFeature[] {};
-		}
-
-		final List<EStructuralFeature> checkboxesToSelect = new ArrayList<EStructuralFeature>();
-		final ResultSetColumns resultSetColumns = primaryResultSet.getResultSetColumns();
-		@SuppressWarnings("unchecked")
-		final List<ColumnDefinition> columnDefinitions = resultSetColumns.getResultColumnDefinitions();
-		final Map<String, EStructuralFeature> featuresByColumnName = mapFeaturesToColumnNames();
-		for (final ColumnDefinition columnDefinition : columnDefinitions) {
-			checkboxesToSelect.add(featuresByColumnName.get(columnDefinition.getAttributes().getName()));
-		}
-		return checkboxesToSelect.toArray(new EStructuralFeature[checkboxesToSelect.size()]);
-	}
-
 	/**
-	 * Validates the user-defined value in the page control exists and not a
-	 * blank text. Set page message accordingly.
+	 * Validates the user-defined value in the page control exists and not a blank text. Set page message accordingly.
 	 */
 	private void validateData() {
 		final boolean isValid = viewer.getCheckedElements().length > 0;
@@ -232,10 +229,8 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
-	 * DataSetDesign)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design. DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -249,9 +244,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #canLeave()
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -259,13 +252,12 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	}
 
 	/**
-	 * Updates the specified data set design's result set definition based on
-	 * the specified runtime metadata.
+	 * Updates the specified data set design's result set definition based on the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 * 		runtime result set metadata instance
+	 *            runtime result set metadata instance
 	 * @param dataSetDesign
-	 * 		data set design instance to update
+	 *            data set design instance to update
 	 * @throws OdaException
 	 */
 	@SuppressWarnings("unchecked")
@@ -276,18 +268,45 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			return;
 		}
 		final ResultSetColumns newResultSetColumns = DesignFactory.eINSTANCE.createResultSetColumns();
-		for (final Object checkedElement : checkedElements) {
-			final TreeNode node = (TreeNode) checkedElement;
-			if (node.getData() instanceof EStructuralFeature) {
-				final EStructuralFeature feature = (EStructuralFeature) node.getData();
-				newResultSetColumns.getResultColumnDefinitions().add(ColumnDefinitionUtil.createFor(feature));
+		int columnCounter = 0;
+		final Map<String, String> properties = new HashMap<String, String>();
+		for (final Iterator<Object> iterator = checkedElements.iterator(); iterator.hasNext();) {
+			final TreeNode node = (TreeNode) iterator.next();
+			if (node.getData() instanceof EAttribute || node.getData() instanceof EReference && noChildrenAreChecked(node)) {
+				final ColumnDefinition newColumn = ColumnDefinitionUtil.createFor(getPathTo(node));
+				newResultSetColumns.getResultColumnDefinitions().add(newColumn);
+				properties.put(Constants.CONNECTION_COLUMN_DEFINITIONS + "." + columnCounter++, newColumn.getAttributes()
+						.getName());
 			}
 		}
+		PropertiesUtil.persistCustomProperties(dataSetDesign, properties);
+
 		final ResultSetDefinition resultSetDefinition = DesignFactory.eINSTANCE.createResultSetDefinition();
 		resultSetDefinition.setResultSetColumns(newResultSetColumns);
 
 		dataSetDesign.setPrimaryResultSet(resultSetDefinition);
 		dataSetDesign.getResultSets().setDerivedMetaData(true);
+	}
+
+	private boolean noChildrenAreChecked(final TreeNode node) {
+		final Collection<TreeNode> children = node.getChildren();
+		for (final TreeNode child : children) {
+			if (viewer.getChecked(child)) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private ENamedElement[] getPathTo(final TreeNode treeNode) {
+		final List<ENamedElement> namedElements = new ArrayList<ENamedElement>();
+		TreeNode visiting = treeNode;
+		while (visiting.getData() instanceof ENamedElement) {
+			namedElements.add((ENamedElement) visiting.getData());
+			visiting = visiting.getParent();
+		}
+		Collections.reverse(namedElements);
+		return namedElements.toArray(new ENamedElement[namedElements.size()]);
 	}
 
 	private static final class TreeViewerBuilder {
@@ -301,7 +320,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
 		TreeNode buildTree() {
 			for (final EClass eClass : eClasses) {
-				createNodeFor(eClass);
+				getOrCreateRoot().getChildren().add(createNodeFor(eClass));
 			}
 			return getOrCreateRoot();
 		}
@@ -314,20 +333,72 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			return root;
 		}
 
-		TreeNode createNodeFor(final EClass eClass) {
-			final TreeNode classNode = TreeFactory.eINSTANCE.createTreeNode();
-			classNode.setData(eClass);
-			for (final EStructuralFeature structuralFeature : eClass.getEStructuralFeatures()) {
-				classNode.getChildren().add(createNodeFor(structuralFeature));
+		private void attach(final TreeNode parent, final EClass eClass) {
+			final EList<EAttribute> attributes = eClass.getEAttributes();
+			for (final EAttribute attribute : attributes) {
+				createNodeFor(attribute).setParent(parent);
 			}
-			classNode.setParent(getOrCreateRoot());
-			return classNode;
+			final EList<EReference> references = eClass.getEReferences();
+			for (final EReference reference : references) {
+				createNodeFor(reference).setParent(parent);
+			}
 		}
 
-		TreeNode createNodeFor(final EStructuralFeature feature) {
-			final TreeNode featureNode = TreeFactory.eINSTANCE.createTreeNode();
-			featureNode.setData(feature);
-			return featureNode;
+		TreeNode createNodeFor(final EClass eClass) {
+			final TreeNode referenceNode = new LazyNonDispatchingClassNode();
+			referenceNode.setData(eClass);
+			return referenceNode;
+		}
+
+		TreeNode createNodeFor(final EAttribute attribute) {
+			final TreeNode attributeNode = new NonDispatchingTreeNode();
+			attributeNode.setData(attribute);
+			return attributeNode;
+		}
+
+		TreeNode createNodeFor(final EReference reference) {
+			final TreeNode referenceNode = new LazyNonDispatchingTreeNode(reference.getEReferenceType());
+			referenceNode.setData(reference);
+			return referenceNode;
+		}
+
+		private static class NonDispatchingTreeNode extends TreeNodeImpl {
+
+			@Override
+			public NotificationChain basicSetParent(final TreeNode newParent, final NotificationChain msgs) {
+				super.basicSetParent(newParent, msgs);
+				return null;
+			}
+		}
+
+		private final class LazyNonDispatchingClassNode extends NonDispatchingTreeNode {
+
+			@Override
+			public EList<TreeNode> getChildren() {
+				if (children == null) {
+					super.getChildren(); // initialize the children list
+					attach(this, (EClass) getData());
+				}
+				return super.getChildren();
+			}
+		}
+
+		private final class LazyNonDispatchingTreeNode extends NonDispatchingTreeNode {
+
+			private final EClass eClass;
+
+			LazyNonDispatchingTreeNode(final EClass eClass) {
+				this.eClass = eClass;
+			}
+
+			@Override
+			public EList<TreeNode> getChildren() {
+				if (children == null) {
+					super.getChildren(); // initialize the children list
+					attach(this, eClass);
+				}
+				return super.getChildren();
+			}
 		}
 	}
 }
