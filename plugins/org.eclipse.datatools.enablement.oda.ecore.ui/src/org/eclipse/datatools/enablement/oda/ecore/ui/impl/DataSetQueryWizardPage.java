@@ -95,13 +95,12 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #createPageCustomControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 *      #createPageCustomControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
-		final Composite composite = new Composite(parent, SWT.BORDER);
+		final Composite composite = new Composite(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().hint(SWT.DEFAULT, 100).align(SWT.FILL, SWT.FILL).applyTo(composite);
 
 		final Label fieldLabel = new Label(composite, SWT.NONE);
@@ -186,8 +185,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * Fills the combo box with the available context metaclasses.
 	 * 
-	 * @see
-	 * org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
+	 * @see org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
 	 */
 	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
@@ -235,10 +233,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design.
-	 * DataSetDesign)
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
+	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design. DataSetDesign)
 	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
@@ -254,9 +250,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 * #canLeave()
+	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage #canLeave()
 	 */
 	@Override
 	protected boolean canLeave() {
@@ -284,8 +278,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * Updates the given dataSetDesign with the query and its metadata defined
-	 * in this page.
+	 * Updates the given dataSetDesign with the query and its metadata defined in this page.
 	 * 
 	 * @param dataSetDesign
 	 */
@@ -299,9 +292,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		try {
 			// instantiate your custom ODA runtime driver class
 			/*
-			 * Note: You may need to manually update your ODA runtime
-			 * extension's plug-in manifest to export its package for visibility
-			 * here.
+			 * Note: You may need to manually update your ODA runtime extension's plug-in manifest to export its package
+			 * for visibility here.
 			 */
 			final IDriver driver = new Driver();
 
@@ -328,8 +320,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * Updates the given dataSetDesign with the queryText and its derived
-	 * metadata obtained from the ODA runtime connection.
+	 * Updates the given dataSetDesign with the queryText and its derived metadata obtained from the ODA runtime
+	 * connection.
 	 */
 	private void updateDesign(final IConnection conn, final DataSetDesign dataSetDesign) throws OdaException {
 		final IQuery query = conn.newQuery(null);
@@ -345,13 +337,12 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * Updates the specified data set design's result set definition based on
-	 * the specified runtime metadata.
+	 * Updates the specified data set design's result set definition based on the specified runtime metadata.
 	 * 
 	 * @param resultSetMetaData
-	 * 		runtime result set metadata instance
+	 *            runtime result set metadata instance
 	 * @param dataSetDesign
-	 * 		data set design instance to update
+	 *            data set design instance to update
 	 * @throws OdaException
 	 */
 	private void updateResultSetDesign(final IResultSetMetaData resultSetMetaData, final DataSetDesign dataSetDesign)
@@ -369,8 +360,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * Validates the user-defined value in the page control exists and not a
-	 * blank text. Set page message accordingly.
+	 * Validates the user-defined value in the page control exists and not a blank text. Set page message accordingly.
 	 */
 	private void validateData() {
 		final boolean isValid = syntaxViewer.getExpression() != null
@@ -386,8 +376,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * A key listener that listens for the Tab key to exit the OCL expression
-	 * widget.
+	 * A key listener that listens for the Tab key to exit the OCL expression widget.
 	 */
 	private class InputKeyListener implements KeyListener {
 
