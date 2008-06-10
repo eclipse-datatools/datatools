@@ -48,7 +48,6 @@ public class ResultSet implements IResultSet {
 	private final Iterator<EObject> queryResultIterator;
 	private final Query query;
 
-	@SuppressWarnings("unchecked")
 	public ResultSet(final Query query, final ColumnDefinition[] columns, final int maxRows) {
 		this.query = query;
 		this.columns = columns;
@@ -107,8 +106,8 @@ public class ResultSet implements IResultSet {
 	}
 
 	/**
-	 * If the result set is closed then throw an OdaException. This method is invoked before any method defined in IResultSet
-	 * is called.
+	 * If the result set is closed then throw an OdaException. This method is invoked before any method defined in
+	 * IResultSet is called.
 	 * 
 	 * @throws OdaException
 	 */
@@ -162,18 +161,18 @@ public class ResultSet implements IResultSet {
 		final Collection<String> values = new ArrayList<String>();
 		for (final EObject eObject : eObjects) {
 			final Object value = eObject.eGet(feature);
-			if (path.length == 1) {
-				if (value != null) {
+			if (value != null) {
+				if (path.length == 1) {
 					values.add(value.toString());
-				}
-			} else {
-				final EStructuralFeature[] nextPath = new EStructuralFeature[path.length - 1];
-				System.arraycopy(path, 1, nextPath, 0, nextPath.length);
-				@SuppressWarnings("unchecked")
-				final String featureValues = getFeatureValues(feature.isMany() ? (Collection<EObject>) value : Collections
-						.singleton((EObject) value), nextPath);
-				if (featureValues.length() > 0) {
-					values.add(featureValues);
+				} else {
+					final EStructuralFeature[] nextPath = new EStructuralFeature[path.length - 1];
+					System.arraycopy(path, 1, nextPath, 0, nextPath.length);
+					@SuppressWarnings("unchecked")
+					final String featureValues = getFeatureValues(feature.isMany() ? (Collection<EObject>) value
+							: Collections.singleton((EObject) value), nextPath);
+					if (featureValues.length() > 0) {
+						values.add(featureValues);
+					}
 				}
 			}
 		}
@@ -192,8 +191,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public int getInt(final int index) throws OdaException {
 		validateColumn(index);
-		return Integer.parseInt(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
-				eObject, columns[index - 1])));
+		return Integer.parseInt(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil
+				.featuresForColumn(eObject, columns[index - 1])));
 	}
 
 	/*
@@ -208,8 +207,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public double getDouble(final int index) throws OdaException {
 		validateColumn(index);
-		return Double.parseDouble(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
-				eObject, columns[index - 1])));
+		return Double.parseDouble(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil
+				.featuresForColumn(eObject, columns[index - 1])));
 	}
 
 	/*
@@ -310,8 +309,8 @@ public class ResultSet implements IResultSet {
 	 */
 	public boolean getBoolean(final int index) throws OdaException {
 		validateColumn(index);
-		return Boolean.parseBoolean(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil.featuresForColumn(
-				eObject, columns[index - 1])));
+		return Boolean.parseBoolean(getFeatureValues(Collections.singleton(eObject), ColumnDefinitionUtil
+				.featuresForColumn(eObject, columns[index - 1])));
 	}
 
 	/*
