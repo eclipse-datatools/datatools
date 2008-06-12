@@ -50,7 +50,7 @@ soapRequestPage.title.regenerateTemplate=重新生成模板
 soapRequestPage.button.regenerateTemplate=重新生成模板(&R)
 soapRequestPage.button.insertParameter=插入参数(&I)...
 soapRequestPage.button.clear=清除(&C)
-soapRequestPage.paramEditDialog.title=Edit parameter property
+soapRequestPage.paramEditDialog.title=编辑参数属性
 
 # ParameterInputDialog
 parameterInputDialog.column.name=名称

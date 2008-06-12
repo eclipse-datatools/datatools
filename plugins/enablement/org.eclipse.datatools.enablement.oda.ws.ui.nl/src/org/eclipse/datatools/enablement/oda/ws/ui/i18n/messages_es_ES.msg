@@ -50,7 +50,7 @@ soapRequestPage.title.regenerateTemplate=Volver a generar la plantilla
 soapRequestPage.button.regenerateTemplate=&Volver a generar la plantilla
 soapRequestPage.button.insertParameter=&Insertar parámetro...
 soapRequestPage.button.clear=&Borrar
-soapRequestPage.paramEditDialog.title=Edit parameter property
+soapRequestPage.paramEditDialog.title=Editar propiedad del parámetro
 
 # ParameterInputDialog
 parameterInputDialog.column.name=Nombre
