@@ -165,9 +165,9 @@ connectedConnection = 活动连接
 disconnectedConnection = 已断开的连接
 cachedConnection = 已高速缓存的连接
 catalog = 目录
-user = User
-group = Group
-role = Role
+user = 用户
+group = 组
+role = 角色
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=缺省架构筛选器
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=缺省表筛选器

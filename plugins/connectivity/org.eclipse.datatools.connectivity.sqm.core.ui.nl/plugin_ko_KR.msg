@@ -165,9 +165,9 @@ connectedConnection = 실시간 연결
 disconnectedConnection = 연결 해제
 cachedConnection = 캐시된 연결
 catalog = 카탈로그
-user = User
-group = Group
-role = Role
+user = 사용자
+group = 그룹
+role = 역할
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=기본값 스키마 필터
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=기본값 테이블 필터

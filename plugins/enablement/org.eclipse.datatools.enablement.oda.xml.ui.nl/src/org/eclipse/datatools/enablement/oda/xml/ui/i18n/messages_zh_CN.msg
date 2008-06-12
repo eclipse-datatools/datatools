@@ -27,8 +27,8 @@ designer.preview.preference.columnMappingPage.group.title=列映射
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 元素选择
-xPathChoosePage.messages.elementSelection.item.absolutePath=固定绝对路径中名为“{0}”的 XML 元素\n( {1} )\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=任意位置中名为“{0}”的 XML 元素\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.absolutePath=固定绝对路径中名为“{0}”的 XML 元素\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=任意位置中名为“{0}”的 XML 元素\n
 xPathChoosePage.messages.elementSelection.disable.absolutePath=固定绝对路径中的 XML 元素\n 
 xPathChoosePage.messages.elementSelection.disable.anyLocation=任意位置中的 XML 元素\n 
 xPathChoosePage.messages.elementSelection.item.custom=自定义 XPath 表达式(&U)

@@ -165,9 +165,9 @@ connectedConnection = Live-Verbindung
 disconnectedConnection = Unterbrochene Verbindung
 cachedConnection = Gepufferte Verbindung
 catalog = Katalog
-user = User
-group = Group
-role = Role
+user = Benutzer
+group = Gruppe
+role = Rolle
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Schema-Filter
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Tabellen-Filter

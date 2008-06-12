@@ -165,9 +165,9 @@ connectedConnection = ライブ接続
 disconnectedConnection = 切断された接続
 cachedConnection = キャッシュされた接続
 catalog = カタログ
-user = User
-group = Group
-role = Role
+user = ユーザ
+group = グループ
+role = 役割
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=デフォルトのスキーマフィルタ
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=デフォルトのテーブルフィルタ

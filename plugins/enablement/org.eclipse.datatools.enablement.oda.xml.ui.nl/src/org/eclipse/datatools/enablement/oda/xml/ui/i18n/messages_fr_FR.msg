@@ -27,8 +27,8 @@ designer.preview.preference.columnMappingPage.group.title=Mise en correspondance
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Sélection de l'élément XML
-xPathChoosePage.messages.elementSelection.item.absolutePath=Les éléments XML intitulés "{0}" sur un chemin d''accès absolu fixe\n( {1} )\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=Les éléments XML intitulés "{0}" n''importe où\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.absolutePath=Eléments XML intitulés "{0}" sur un chemin d'accès absolu fixe\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=Eléments XML intitulés "{0}" n'importe où\n
 xPathChoosePage.messages.elementSelection.disable.absolutePath=Eléments XML à tout chemin d'accès absolu fixe\n 
 xPathChoosePage.messages.elementSelection.disable.anyLocation=Eléments XML n'importe où\n 
 xPathChoosePage.messages.elementSelection.item.custom=Exp&ression XPath personnalisée

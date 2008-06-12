@@ -27,8 +27,8 @@ designer.preview.preference.columnMappingPage.group.title=Asignación de columnas
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=Selección de elemento XML
-xPathChoosePage.messages.elementSelection.item.absolutePath=Elementos XML con nombre "{0}" en una ruta absoluta fija\n( {1} )\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=Elementos XML con nombre "{0}" en cualquier ubicación\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.absolutePath=Elementos XML con nombre "{0}" en una ruta absoluta fija\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=Elementos XML con nombre "{0}" en cualquier ubicación\n
 xPathChoosePage.messages.elementSelection.disable.absolutePath=Elementos XML en una ruta absoluta fija\n 
 xPathChoosePage.messages.elementSelection.disable.anyLocation=Elementos XML en cualquier ubicación\n 
 xPathChoosePage.messages.elementSelection.item.custom=Expresión XPath p&ersonalizada

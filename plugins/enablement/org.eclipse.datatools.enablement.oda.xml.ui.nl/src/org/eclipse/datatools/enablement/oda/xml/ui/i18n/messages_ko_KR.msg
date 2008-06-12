@@ -27,8 +27,8 @@ designer.preview.preference.columnMappingPage.group.title=열 매핑
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 요소 선택
-xPathChoosePage.messages.elementSelection.item.absolutePath=고정된 절대 경로에서 이름이 "{0}"인 XML 요소\n( {1} )\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=모든 위치에서 이름이 "{0}"인 XML 요소\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.absolutePath=고정된 절대 경로에서 이름이 "{0}"인 XML 요소\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=모든 위치에서 이름이 "{0}"인 XML 요소\n
 xPathChoosePage.messages.elementSelection.disable.absolutePath=고정된 절대 경로의 XML 요소\n 
 xPathChoosePage.messages.elementSelection.disable.anyLocation=모든 위치의 XML 요소\n 
 xPathChoosePage.messages.elementSelection.item.custom=사용자 지정 XPath 식(&U)

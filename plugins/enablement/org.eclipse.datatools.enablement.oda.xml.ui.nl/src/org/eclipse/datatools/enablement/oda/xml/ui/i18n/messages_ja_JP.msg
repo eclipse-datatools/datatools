@@ -27,8 +27,8 @@ designer.preview.preference.columnMappingPage.group.title=列のマッピング
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 要素の選択
-xPathChoosePage.messages.elementSelection.item.absolutePath=固定された絶対パスにある XML 要素 "{0}"\n( {1} )\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=任意の場所にあるXML 要素 "{0}"\n( {1} )\n
+xPathChoosePage.messages.elementSelection.item.absolutePath=固定された絶対パスにある XML 要素 "{0}"\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=任意の場所にある XML 要素 "{0}"\n
 xPathChoosePage.messages.elementSelection.disable.absolutePath=固定された絶対パスにある XML 要素\n 
 xPathChoosePage.messages.elementSelection.disable.anyLocation=任意の場所にある XML 要素\n 
 xPathChoosePage.messages.elementSelection.item.custom=カスタム XPath 式(&U)
