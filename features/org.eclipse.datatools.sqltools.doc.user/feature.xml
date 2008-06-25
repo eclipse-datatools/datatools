@@ -21,8 +21,8 @@
    </license>
 
    <url>
-      <update label="%featureUpdateSiteName"/>
-      <discovery label="%featureDiscoverySiteName"/>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
    </url>
 
    <plugin
