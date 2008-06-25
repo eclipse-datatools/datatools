@@ -9,20 +9,20 @@
       image="eclipse_update_120.jpg">
 
    <description>
-      %featureDesc
+      %description
    </description>
 
    <copyright>
-      %featureCopyright
+      %copyright
    </copyright>
 
-   <license url="%featureLicenseURL">
-      %featureLicenseTxt
+   <license url="%licenseURL">
+      %license
    </license>
 
    <url>
-      <update label="%featureUpdateSiteName"/>
-      <discovery label="%featureDiscoverySiteName"/>
+      <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
    </url>
 
    <plugin
