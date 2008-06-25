@@ -5,6 +5,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: IBM Corporation - initial API and implementation
+ *               Actuate Corporation - added optional properties tab
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.derby.internal.ui.connection.drivers;
 
@@ -15,8 +16,10 @@ import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
+import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributor;
 import org.eclipse.datatools.connectivity.ui.wizards.IDriverUIContributorInformation;
+import org.eclipse.datatools.connectivity.ui.wizards.OptionalPropertiesPane;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.osgi.util.TextProcessor;
 import org.eclipse.swt.SWT;
@@ -28,6 +31,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 
 public class DerbyDriverUIContributor implements IDriverUIContributor, Listener {
@@ -127,6 +132,8 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 
 	private ScrolledComposite parentComposite;
 
+    private OptionalPropertiesPane optionalPropsComposite;
+
 	private IDriverUIContributorInformation contributorInformation;
 
 	private Properties properties;
@@ -150,10 +157,18 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 			parentComposite.setExpandVertical(true);
 			parentComposite.setLayout(new GridLayout());
 
-			Composite baseComposite = new Composite(parentComposite, SWT.NULL);
+            TabFolder tabComposite = new TabFolder(parentComposite, SWT.TOP);
+
+            // add general tab
+            TabItem generalTab = new TabItem(tabComposite, SWT.None);
+            generalTab.setText(ConnectivityUIPlugin.getDefault()
+                    .getResourceString("CommonDriverUIContributor.generaltab")); //$NON-NLS-1$
+
+            Composite baseComposite = new Composite(tabComposite, SWT.NULL);
 			GridLayout layout = new GridLayout();
 			layout.numColumns = 3;
 			baseComposite.setLayout(layout);
+            generalTab.setControl(baseComposite);
 
 			databaseLabel = new Label(baseComposite, SWT.NONE);
 			databaseLabel.setText(CUI_NEWCW_DATABASE_LBL_UI_);
@@ -240,7 +255,7 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 			upgradeCheck.setLayoutData(gd);
 
 			this.savePasswordButton = new Button(baseComposite, SWT.CHECK);
-			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_); //$NON-NLS-1$
+			this.savePasswordButton.setText(CUI_NEWCW_SAVE_PASSWORD_LBL_UI_);
 			gd = new GridData();
 			gd.horizontalAlignment = GridData.FILL;
 			gd.verticalAlignment = GridData.BEGINNING;
@@ -265,9 +280,16 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 			gd.heightHint = 90;
 			urlText.setLayoutData(gd);
 
-			parentComposite.setContent(baseComposite);
-			parentComposite.setMinSize(baseComposite.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT));
+            // add optional properties tab
+            TabItem optionalPropsTab = new TabItem( tabComposite, SWT.None );
+            optionalPropsTab.setText( ConnectivityUIPlugin.getDefault()
+                    .getResourceString( "CommonDriverUIContributor.optionaltab" ) ); //$NON-NLS-1$
+            optionalPropsComposite = new OptionalPropertiesPane( tabComposite, SWT.NULL, isReadOnly );
+            optionalPropsTab.setControl( optionalPropsComposite );
+
+            parentComposite.setContent(tabComposite);
+            parentComposite.setMinSize(tabComposite.computeSize(SWT.DEFAULT,
+                    SWT.DEFAULT));
 
 			initialize();
 		}
@@ -289,21 +311,22 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 		properties.setProperty(
 				IJDBCConnectionProfileConstants.SAVE_PASSWORD_PROP_ID, String
 						.valueOf(savePasswordButton.getSelection()));
+        optionalPropsComposite.setConnectionInformation();
 		this.contributorInformation.setProperties(properties);
 	}
 
 	public void updateURL() {
-		String url = "jdbc:derby:net://" + hostText.getText().trim(); //$NON-NLS-1$ //$NON-NLS-2$
+		String url = "jdbc:derby:net://" + hostText.getText().trim(); //$NON-NLS-1$
 		if (portText.getText().trim().length() > 0) {
-			url += ":" + portText.getText().trim();
+			url += ":" + portText.getText().trim(); //$NON-NLS-1$
 		}
 		url += "/" + databaseText.getText().trim() //$NON-NLS-1$
 				+ ":retrieveMessagesFromServerOnGetMessage=true;"; //$NON-NLS-1$
 		if (createCheck.getSelection()) {
-			url += CREATE_EQUALS_TRUE_TEXT + ";";
+			url += CREATE_EQUALS_TRUE_TEXT + ";"; //$NON-NLS-1$
 		}
 		if (upgradeCheck.getSelection()) {
-			url += UPGRADE_EQUALS_TRUE_TEXT + ";";
+			url += UPGRADE_EQUALS_TRUE_TEXT + ";"; //$NON-NLS-1$
 		}
 		urlText.setText(url);
 	}
@@ -352,7 +375,7 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
-		if (databaseText.getText().trim().length() < 1) { //$NON-NLS-1$
+		if (databaseText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(MessageFormat.format(Messages
 					.getString("CUI_NEWCW_VALIDATE_DATABASE_REQ_UI_"), //$NON-NLS-1$
 					new Object[] { Messages
@@ -370,7 +393,9 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		}
+        } else if (!optionalPropsComposite.validateControl(parentPage)) {
+            isComplete = false;
+        } 
 
 		if (isComplete) {
 			parentPage.setErrorMessage(null);
@@ -386,6 +411,7 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 			IDriverUIContributorInformation contributorInformation) {
 		this.contributorInformation = contributorInformation;
 		this.properties = contributorInformation.getProperties();
+        optionalPropsComposite.setDriverUIContributorInformation( contributorInformation );
 	}
 
 	public void loadProperties() {
@@ -418,7 +444,11 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 				&& Boolean.valueOf(savePassword) == Boolean.TRUE) {
 			savePasswordButton.setSelection(true);
 		}
-		updateURL();
+        
+        // load optional connection properties
+        optionalPropsComposite.loadProperties();
+
+        updateURL();
 		addListeners();
 		setConnectionInformation();
 	}
@@ -501,7 +531,7 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 						.indexOf(':'));
 				remainingURL = remainingURL
 						.substring(remainingURL.indexOf(':') + 1);
-				this.subprotocol += ":"
+				this.subprotocol += ":" //$NON-NLS-1$
 						+ remainingURL.substring(0, remainingURL.indexOf(':'));
 				remainingURL = remainingURL
 						.substring(remainingURL.indexOf(':') + 3);
@@ -516,7 +546,7 @@ public class DerbyDriverUIContributor implements IDriverUIContributor, Listener 
 				if (remainingURL.indexOf('"') > -1) {
 					remainingURL = remainingURL.substring(remainingURL
 							.indexOf('"') + 1);
-					this.databaseName = "\""
+					this.databaseName = "\"" //$NON-NLS-1$
 							+ remainingURL.substring(0, remainingURL
 									.indexOf('"') + 1);
 					remainingURL = remainingURL.substring(remainingURL

@@ -5,6 +5,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: IBM Corporation - initial API and implementation
+ *               Actuate Corporation - extracted properties tab to a shared component
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.wizards;
 
@@ -15,12 +16,9 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.internal.ui.ConnectivityUIPlugin;
-import org.eclipse.datatools.connectivity.internal.ui.DelimitedStringList;
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -33,28 +31,28 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Text;
 
 public class OtherDriverUIContributor implements IDriverUIContributor,
-		Listener, ModifyListener {
+		Listener {
 	private ScrolledComposite scrolledComposite = null;
 
-	private Text databaseNameText;
+	protected Text databaseNameText;
 
-	private Text urlText;
+	protected Text urlText;
 
-	private Text usernameText;
+	protected Text usernameText;
 
-	private Text passwordText;
+	protected Text passwordText;
 
-	private Button savePasswordButton;
+	protected Button savePasswordButton;
 
-	private DelimitedStringList optionalConnectionProperties;
+	protected OptionalPropertiesPane optionalPropsComposite;
 
 	private IDriverUIContributorInformation contributorInformation;
 
 	private Properties properties;
 
-	private DialogPage parentPage;
+	protected DialogPage parentPage;
 	
-	private boolean isReadOnly = false;
+	protected boolean isReadOnly = false;
 
 	public Composite getContributedDriverUI(Composite parent, boolean isReadOnly) {
 		if ((scrolledComposite == null) || scrolledComposite.isDisposed() || (this.isReadOnly != isReadOnly)) {
@@ -75,11 +73,14 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 
 			TabItem generalTab = new TabItem(parentComposite, SWT.None);
 			generalTab.setText(ConnectivityUIPlugin.getDefault()
-					.getResourceString("OtherDriverUIContributor.generaltab")); //$NON-NLS-1$
+					.getResourceString("CommonDriverUIContributor.generaltab")); //$NON-NLS-1$
 
+            // add optional properties tab
 			TabItem optionalTab = new TabItem(parentComposite, SWT.None);
 			optionalTab.setText(ConnectivityUIPlugin.getDefault()
-					.getResourceString("OtherDriverUIContributor.optionaltab")); //$NON-NLS-1$
+                    .getResourceString( "CommonDriverUIContributor.optionaltab" ) ); //$NON-NLS-1$
+            optionalPropsComposite = new OptionalPropertiesPane( parentComposite, SWT.NULL, isReadOnly );
+            optionalTab.setControl( optionalPropsComposite );
 
 			Composite generalComposite = new Composite(parentComposite,
 					SWT.NULL);
@@ -87,13 +88,6 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			layout.numColumns = 2;
 			generalComposite.setLayout(layout);
 			generalTab.setControl(generalComposite);
-
-			Composite optionalComposite = new Composite(parentComposite,
-					SWT.NULL);
-			layout = new GridLayout();
-			layout.numColumns = 1;
-			optionalComposite.setLayout(layout);
-			optionalTab.setControl(optionalComposite);
 
 			Label databaseNameLabel = new Label(generalComposite, SWT.NULL);
 			databaseNameLabel.setLayoutData(new GridData());
@@ -142,21 +136,6 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			gd.grabExcessHorizontalSpace = true;
 			savePasswordButton.setLayoutData(gd);
 
-			Label optionalPropertiesLabel = new Label(optionalComposite,
-					SWT.NULL);
-			GridData gdata = new GridData(GridData.FILL_HORIZONTAL);
-			gdata.horizontalSpan = 2;
-			optionalPropertiesLabel.setLayoutData(gdata);
-			optionalPropertiesLabel.setText(ConnectivityUIPlugin.getDefault()
-					.getResourceString(
-							"OtherDriverUIContributor.optionalProps.label")); //$NON-NLS-1$
-
-			this.optionalConnectionProperties = new DelimitedStringList(
-					optionalComposite, SWT.NONE, isReadOnly);
-			gdata = new GridData(GridData.FILL_HORIZONTAL);
-			gdata.horizontalSpan = 2;
-			this.optionalConnectionProperties.setLayoutData(gdata);
-
 			scrolledComposite.setContent(parentComposite);
 			scrolledComposite.setMinSize(parentComposite.computeSize(
 					SWT.DEFAULT, SWT.DEFAULT));
@@ -178,10 +157,9 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 						.valueOf(savePasswordButton.getSelection()));
 		properties.setProperty(IJDBCDriverDefinitionConstants.URL_PROP_ID,
 				this.urlText.getText().trim());
-		properties.setProperty(
-				IJDBCConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID,
-				this.optionalConnectionProperties.getSelection());
-		this.contributorInformation.setProperties(properties);
+        optionalPropsComposite.setConnectionInformation();
+
+        this.contributorInformation.setProperties(properties);
 	}
 
 	private void removeListeners() {
@@ -190,7 +168,6 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 		usernameText.removeListener(SWT.Modify, this);
 		passwordText.removeListener(SWT.Modify, this);
 		savePasswordButton.removeListener(SWT.Selection, this);
-		optionalConnectionProperties.removeModifyListener(this);
 	}
 
 	private void addListeners() {
@@ -199,7 +176,6 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 		usernameText.addListener(SWT.Modify, this);
 		passwordText.addListener(SWT.Modify, this);
 		savePasswordButton.addListener(SWT.Selection, this);
-		optionalConnectionProperties.addModifyListener(this);
 	}
 
 	private void initialize() {
@@ -218,7 +194,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 
 	public boolean determineContributorCompletion() {
 		boolean isComplete = true;
-		if (databaseNameText.getText().trim().length() < 1) { //$NON-NLS-1$
+		if (databaseNameText.getText().trim().length() < 1) {
 			parentPage
 					.setErrorMessage(ConnectivityUIPlugin
 							.getDefault()
@@ -239,12 +215,9 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 							.getResourceString(
 									"OtherDriverUIContributor.errormessage.requiresusername")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (OtherDriverUIContributor.this.optionalConnectionProperties
-				.getWarning() != null) {
-			parentPage
-					.setErrorMessage(OtherDriverUIContributor.this.optionalConnectionProperties
-							.getWarning());
-		}
+        } else if (!optionalPropsComposite.validateControl(parentPage)) {
+            isComplete = false;
+        } 
 
 		if (isComplete) {
 			parentPage.setErrorMessage(null);
@@ -260,6 +233,7 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			IDriverUIContributorInformation contributorInformation) {
 		this.contributorInformation = contributorInformation;
 		this.properties = contributorInformation.getProperties();
+        optionalPropsComposite.setDriverUIContributorInformation( contributorInformation );
 	}
 
 	public void loadProperties() {
@@ -296,12 +270,8 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 			savePasswordButton.setSelection(true);
 		}
 
-		String connectionProperties = this.properties
-				.getProperty(IJDBCConnectionProfileConstants.CONNECTION_PROPERTIES_PROP_ID);
-		if (connectionProperties != null) {
-			this.optionalConnectionProperties
-					.setSelection(connectionProperties);
-		}
+        // load optional connection properties
+        optionalPropsComposite.loadProperties();
 
 		addListeners();
 		setConnectionInformation();
@@ -338,7 +308,4 @@ public class OtherDriverUIContributor implements IDriverUIContributor,
 		return summaryData;
 	}
 
-	public void modifyText(ModifyEvent e) {
-		handleEvent(new Event());
-	}
 }
