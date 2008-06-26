@@ -52,20 +52,20 @@ public class ASEDriverUIContributorBase implements IDriverUIContributor, Listene
     protected Text                          mHostText;
     protected Text                          mPortText;
     protected Text                          mDatabaseText;
-    private Text                            mDBUIDText;
-    private Text                            mDBPWDText;
+    protected Text                          mDBUIDText;
+    protected Text                          mDBPWDText;
 
-    private Button                          mSaveDBPWDCheckbox;
+    protected Button                        mSaveDBPWDCheckbox;
 
-    private DelimitedStringList             mDBConnProps;
+    protected DelimitedStringList           mDBConnProps;
 
     private IDriverUIContributorInformation contributorInformation;
 
     private Properties                      properties;
 
-    private DialogPage                      parentPage;
+    protected DialogPage                    parentPage;
 
-    private boolean                         isReadOnly        = false;
+    protected boolean                       isReadOnly        = false;
 
     public boolean determineContributorCompletion()
     {
