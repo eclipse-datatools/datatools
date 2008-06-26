@@ -159,14 +159,15 @@ ExtensibleNewConnectionProfileWizard.title = 새 연결 프로필
 
 DriverUIContributorComposite.group = 속성(&P)
 
-OtherDriverUIContributor.generaltab = 일반
-OtherDriverUIContributor.optionaltab = 옵션
+CommonDriverUIContributor.optionaltab = &Optional
+CommonDriverUIContributor.optionalProps.label = Additional properties:
+CommonDriverUIContributor.generaltab = G&eneral
+
 OtherDriverUIContributor.databaseName.label = 데이터베이스(&A):
 OtherDriverUIContributor.url.label = URL(&U):
 OtherDriverUIContributor.userName.label = 사용자 이름(&S):
 OtherDriverUIContributor.password.label = 암호(&P):
 OtherDriverUIContributor.savePassword.label = 암호 저장(&V)
-OtherDriverUIContributor.optionalProps.label = 추가 속성:
 OtherDriverUIContributor.summaryData.database = 데이터베이스
 OtherDriverUIContributor.summaryData.username = 사용자 이름
 OtherDriverUIContributor.summaryData.savePassword = 암호 저장

@@ -159,14 +159,15 @@ ExtensibleNewConnectionProfileWizard.title = Neues Verbindungsprofil
 
 DriverUIContributorComposite.group = &Eigenschaften
 
-OtherDriverUIContributor.generaltab = Allgemein
-OtherDriverUIContributor.optionaltab = Optional
+CommonDriverUIContributor.optionaltab = &Optional
+CommonDriverUIContributor.optionalProps.label = Additional properties:
+CommonDriverUIContributor.generaltab = G&eneral
+
 OtherDriverUIContributor.databaseName.label = &Datenbank:
 OtherDriverUIContributor.url.label = &URL:
 OtherDriverUIContributor.userName.label = &Benutzername:
 OtherDriverUIContributor.password.label = &Kennwort:
 OtherDriverUIContributor.savePassword.label = &Kennwort speichern
-OtherDriverUIContributor.optionalProps.label = Zusätzliche Eigenschaften:
 OtherDriverUIContributor.summaryData.database = Datenbank
 OtherDriverUIContributor.summaryData.username = Benutzername
 OtherDriverUIContributor.summaryData.savePassword = Kennwort speichern

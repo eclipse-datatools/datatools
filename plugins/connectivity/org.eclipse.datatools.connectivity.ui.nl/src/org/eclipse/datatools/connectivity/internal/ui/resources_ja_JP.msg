@@ -159,14 +159,15 @@ ExtensibleNewConnectionProfileWizard.title = 新しい接続プロファイル
 
 DriverUIContributorComposite.group = プロパティ(&P)
 
-OtherDriverUIContributor.generaltab = 全般
-OtherDriverUIContributor.optionaltab = オプション
+CommonDriverUIContributor.optionaltab = &Optional
+CommonDriverUIContributor.optionalProps.label = Additional properties:
+CommonDriverUIContributor.generaltab = G&eneral
+
 OtherDriverUIContributor.databaseName.label = データベース(&A) :
 OtherDriverUIContributor.url.label = URL(&U) :
 OtherDriverUIContributor.userName.label = ユーザ名前(&U) :
 OtherDriverUIContributor.password.label = パスワード(&P) :
 OtherDriverUIContributor.savePassword.label = パスワードの保存(&V)
-OtherDriverUIContributor.optionalProps.label = その他のプロパティ
 OtherDriverUIContributor.summaryData.database = データベース
 OtherDriverUIContributor.summaryData.username = ユーザ名
 OtherDriverUIContributor.summaryData.savePassword = パスワードの保存

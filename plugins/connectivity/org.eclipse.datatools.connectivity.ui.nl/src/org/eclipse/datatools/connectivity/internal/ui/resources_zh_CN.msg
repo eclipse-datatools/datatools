@@ -159,14 +159,15 @@ ExtensibleNewConnectionProfileWizard.title = 新连接配置文件
 
 DriverUIContributorComposite.group = 属性(&P)
 
-OtherDriverUIContributor.generaltab = 常规
-OtherDriverUIContributor.optionaltab = 可选
+CommonDriverUIContributor.optionaltab = &Optional
+CommonDriverUIContributor.optionalProps.label = Additional properties:
+CommonDriverUIContributor.generaltab = G&eneral
+
 OtherDriverUIContributor.databaseName.label = 数据库(&A):
 OtherDriverUIContributor.url.label = URL(&U):
 OtherDriverUIContributor.userName.label = 用户名(&S):
 OtherDriverUIContributor.password.label = 密码(&P):
 OtherDriverUIContributor.savePassword.label = 保存密码(&V)
-OtherDriverUIContributor.optionalProps.label = 其它属性:
 OtherDriverUIContributor.summaryData.database = 数据库
 OtherDriverUIContributor.summaryData.username = 用户名
 OtherDriverUIContributor.summaryData.savePassword = 保存密码
