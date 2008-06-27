@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.doc.user"
       label="Data Tools Platform Documentation"
-      version="1.6.0.qualifier"
+      version="1.6.1.qualifier"
       provider-name="Eclipse.org"
       image="eclipse32.png">
 
