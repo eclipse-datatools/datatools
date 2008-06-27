@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.datatools.sqldevtools.feature"
       label="%featureName"
-      version="1.6.0.qualifier"
+      version="1.6.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.sqltools.common.ui"
       image="eclipse_update_120.jpg">
@@ -48,9 +48,9 @@
          optional="true"/>
 
    <requires>
-      <import feature="org.eclipse.gef" version="3.2.0"/>
-      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0"/>
-      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0"/>
+      <import feature="org.eclipse.gef" version="3.2.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.doc.user" version="1.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.enablement.jdbc.feature" version="1.6.0" match="greaterOrEqual"/>
    </requires>
