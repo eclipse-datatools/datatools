@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.apache.xerces;bundle-version="[2.8.0,3.0.0)";resolution:=optional
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.datatools.enablement.oda.ws.impl,
- org.eclipse.datatools.enablement.oda.ws.soap,
- org.eclipse.datatools.enablement.oda.ws.util
+Export-Package: org.eclipse.datatools.enablement.oda.ws.api,
+ org.eclipse.datatools.enablement.oda.ws.impl;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
+ org.eclipse.datatools.enablement.oda.ws.soap;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
+ org.eclipse.datatools.enablement.oda.ws.util;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui"

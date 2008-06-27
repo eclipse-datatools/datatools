@@ -25,6 +25,8 @@ import java.util.Map;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.enablement.oda.ws.api.IWSConnection;
+import org.eclipse.datatools.enablement.oda.ws.api.IWSDriver;
 
 public class Java2SOAPManager
 {
@@ -68,6 +70,46 @@ public class Java2SOAPManager
 			IOException, URISyntaxException
 	{
 		Class clazz = loadClass( className );
+		
+		newQuery( clazz );
+	}
+
+	/**
+	 * 
+	 * @param clazz
+	 * @throws NoSuchMethodException
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 * @throws InstantiationException
+	 */
+	private void newQuery( Class clazz ) throws NoSuchMethodException,
+			IllegalAccessException, InvocationTargetException,
+			InstantiationException
+	{
+		try
+		{
+			// Calling the connect() method of interface IWSDriver to create a
+			// connection if the customer driver class has implemented the
+			// interface.
+			Object driver = null;
+			driver = clazz.newInstance( );
+			if ( driver instanceof IWSDriver )
+			{
+				aQuery = ( (IWSDriver) driver ).connect( connectionProperties,
+						getAppConext( ) );
+				return;
+			}
+		}
+		catch ( InstantiationException e )
+		{
+
+		}
+		catch ( IllegalAccessException e )
+		{
+
+		}
+		// Using java reflection to invoke the connect() mothed if the customer
+		// driver class has not implemented the interface WSDriver
 		Class[] parameterTypes = new Class[]{
 				Map.class, Map.class
 		};
@@ -118,16 +160,8 @@ public class Java2SOAPManager
 			}
 		}
 		Class clazz = loadClass( className, urlList );
-		Class[] parameterTypes = new Class[]{
-				Map.class, Map.class
-		};
-		Object[] arguments = new Object[]{
-				connectionProperties, getAppConext( )
-		};
-
-		Method connect = clazz.getMethod( METHOD_CONNECT, parameterTypes );
-
-		aQuery = connect.invoke( clazz.newInstance( ), arguments );
+		
+		newQuery( clazz );
 	}
 
 	/**
@@ -146,6 +180,13 @@ public class Java2SOAPManager
 	{
 		if ( WSUtil.isNull( aQuery ) )
 			return null;
+		
+		if( aQuery instanceof IWSConnection )
+		{
+			return ( (IWSConnection) aQuery ).executeQuery( queryText,
+					parameterValues,
+					queryProperties );
+		}
 
 		Class clazz = aQuery.getClass( );
 		Class[] parameterTypes = new Class[]{
@@ -174,6 +215,10 @@ public class Java2SOAPManager
 	public void close( ) throws IllegalArgumentException,
 			IllegalAccessException, InvocationTargetException
 	{
+		if( aQuery instanceof IWSConnection )
+		{
+			( (IWSConnection) aQuery ).close( );
+		}
 		Class clazz = aQuery.getClass( );
 		Class[] parameterTypes = new Class[]{};
 		Object[] arguments = new Object[]{};
