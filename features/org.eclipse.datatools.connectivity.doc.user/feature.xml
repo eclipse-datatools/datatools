@@ -3,7 +3,7 @@
 <feature
       id="org.eclipse.datatools.connectivity.doc.user"
       label="%featureName"
-      version="1.6.0.qualifier"
+      version="1.6.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.datatools.connectivity.doc.user"
       image="eclipse_update_120.jpg">
@@ -12,14 +12,14 @@
       %description
    </description>
 
-   <license url="%licenseURL">
-      %license
-   </license>
-   
    <copyright>
       %copyright
    </copyright>
-   
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
    <url>
       <update label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
       <discovery label="Data Tools Platform (DTP) Updates" url="http://download.eclipse.org/datatools/updates"/>
