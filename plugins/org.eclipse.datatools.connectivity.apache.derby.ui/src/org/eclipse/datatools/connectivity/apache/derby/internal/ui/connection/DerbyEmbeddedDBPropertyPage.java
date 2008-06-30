@@ -57,7 +57,7 @@ public class DerbyEmbeddedDBPropertyPage extends
 		Control contents = super.createContents(parent);
 		getShell().setData(HelpUtil.CONTEXT_PROVIDER_KEY, this);
 		HelpUtil.setHelp(getControl(), HelpUtil
-				.getContextId(IHelpConstants.CONTEXT_ID_CP_PROPERTY_PAGE,
+				.getContextId(IHelpConstants.GENERIC_DB_PROFILE_PROPERTY_PAGE,
 						ConnectivityUIPlugin.getDefault().getBundle()
 								.getSymbolicName()));
 		return contents;
