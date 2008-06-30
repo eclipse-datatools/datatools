@@ -119,7 +119,9 @@ public class ImportProfilesDialog extends TrayDialog implements IContextProvider
 			button.addSelectionListener(new SelectionAdapter() {
 
 				public void widgetSelected(SelectionEvent e) {
-					txtFile.setText(new FileDialog(getShell()).open());
+					String text = new FileDialog(getShell()).open();
+					if (text != null)
+						txtFile.setText(text);
 				}
 			});
 			button
