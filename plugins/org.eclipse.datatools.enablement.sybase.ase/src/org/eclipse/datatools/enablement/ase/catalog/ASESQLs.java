@@ -138,6 +138,7 @@ public interface ASESQLs
 //    String NONE_TEMP_DATABASE_QUERY            = "SELECT name, suser_name(suid) as owner, status, status2, def_remote_loc FROM master.dbo.sysdatabases WHERE name like ? AND (status & 32) != 32 AND (status & 256) != 256 AND name != 'tempdb' AND status3 & 256 != 256 ORDER BY 1";
 //    String TEMP_DBS_OPEN_QUERY                 = "SELECT name, suser_name(suid) as owner, status, status2, def_remote_loc FROM master.dbo.sysdatabases WHERE name like ? AND (status & 32) != 32 AND status3 & 256 = 256 UNION SELECT name, suser_name(suid) as owner, status, status2, def_remote_loc FROM master.dbo.sysdatabases WHERE name like ? AND (status & 32) != 32 AND name = 'tempdb'";
     String DATABASE_QUERY                        = "SELECT name as TABLE_CAT, def_remote_loc, status3 FROM master.dbo.sysdatabases WHERE (status & 32) != 32 ORDER BY 1";
+    String DATABASE_QUERY_PARM_4_DBNAME          = "SELECT name as TABLE_CAT, def_remote_loc, status3 FROM master.dbo.sysdatabases WHERE (status & 32) != 32 AND name = ''{0}'' ORDER BY 1";
     
     String CACHE_BINDINGS_OF_DATABASE_QUERY    = "SELECT char_value,object_type FROM master.dbo.sysattributes WHERE class=3 AND attribute=0 AND object= db_id(?)";
     String DB_RECOVERY_ORDER                   = "select int_value from master.dbo.sysattributes where class=10 and attribute=6 and object_type='D' and object=db_id(?)";

@@ -16,11 +16,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.sqm.core.connection.DatabaseConnectionRegistry;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -562,6 +567,17 @@ public class SybaseASECatalogDatabase extends SybaseASEDatabaseImpl implements I
 	        String query = null;
 
 	        query = ASESQLs.DATABASE_QUERY;
+	        if (DatabaseConnectionRegistry.getConnectionForDatabase(getDatabase()) != null) {
+	        	IConnectionProfile profile =
+	        		DatabaseConnectionRegistry.getConnectionForDatabase(getDatabase()).getConnectionProfile();
+	    		Properties props = profile.getBaseProperties();
+	        	String databaseName =
+	        		props.getProperty(IJDBCConnectionProfileConstants.DATABASE_NAME_PROP_ID);
+	        	if (databaseName != null && databaseName.trim().length() > 0) {
+	        		query = MessageFormat.format(ASESQLs.DATABASE_QUERY_PARM_4_DBNAME, new Object[]{databaseName});
+//	        		query = "SELECT name as TABLE_CAT, def_remote_loc, status3 FROM master.dbo.sysdatabases WHERE (status & 32) != 32 AND name = '" + databaseName + "' ORDER BY 1";
+	        	}
+	        }
 	        Connection conn = getCatalogObject().getConnection();
 	        ResultSet rs = null;
 	        PreparedStatement stmt = conn.prepareStatement(query);
