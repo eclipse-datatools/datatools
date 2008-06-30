@@ -106,6 +106,7 @@ public final class Messages extends NLS {
     public static String SQLResultsViewPage_limit_tables_tooltip;
     public static String SQLResultsViewPage_too_many_rows;
     public static String SQLResultsViewPage_too_many_tabs;
+    public static String SQLResultsViewPage_too_many_tables;
     public static String TextModeDisplayAction_textmode_tip;
 	public static String UndoAction_title;
 	public static String TerminateInstanceAction_terminate;
