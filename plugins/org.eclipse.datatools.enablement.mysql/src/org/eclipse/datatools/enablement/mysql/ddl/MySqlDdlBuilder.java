@@ -56,6 +56,7 @@ import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.ecore.EObject;
 
 import com.ibm.icu.util.StringTokenizer;
+import org.eclipse.datatools.modelbase.sql.datatypes.BinaryStringDataType;
 
 /**
  * This class generates the actual sql statements for MySql
@@ -625,7 +626,10 @@ public class MySqlDdlBuilder {
                     dataType.equals("DATE") || //$NON-NLS-1$
                     dataType.equals("TIMESTAMP")) { //$NON-NLS-1$
                 defaultValue = "'" + defaultValue.trim() + "'";  //$NON-NLS-1$//$NON-NLS-2$
+            } else if (column.getDataType() instanceof BinaryStringDataType ) {
+                defaultValue = "'" + defaultValue + "'";  //$NON-NLS-1$//$NON-NLS-2$
             }
+            
             if (defaultValue.equals("")){ //$NON-NLS-1$
                 defaultValue = "''"; //$NON-NLS-1$
             }
