@@ -669,7 +669,7 @@ public class ConnectionInfoImpl extends VersionProviderConnection implements Con
 				this.setDatabaseDefinition(detectedDBDefinition);
 			}
 			this.setSharedConnection(connection);
-	        new DatabaseProviderHelper().setDatabase(connection,
+	        new DatabaseProviderHelper().setDatabase(new ConnectionAdapter(this,connection),
 	                this, this.getDatabaseName());
 		}
 	}
