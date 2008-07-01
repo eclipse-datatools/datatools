@@ -65,7 +65,7 @@ public class FlatFileQuery implements IQuery
 
 	// The meta data of the query's result set.
 	// It is available only after a query is prepared.
-	private IResultSetMetaData resultSetMetaData = null;
+	private ResultSetMetaData resultSetMetaData = null;
 	
 	private ResultSetMetaDataHelper resultSetMetaDataHelper = null;
 
@@ -144,11 +144,11 @@ public class FlatFileQuery implements IQuery
 	{
 		if ( queryText != null )
 		{
-			String query = QueryTextUtil.getQuery( queryText );
-			String colInfo = QueryTextUtil.getColumnsInfo( queryText );
+			QueryTextUtil qtu = new QueryTextUtil( queryText );
+			String query = qtu.getQuery( );
+			String colInfo = qtu.getColumnsInfo( );
 			validateOpenConnection( );
 			String formattedQuery = formatQueryText( query );
-			validateQueryText( formattedQuery );
 			prepareMetaData( formattedQuery, colInfo );
 		}
 		else
@@ -1001,7 +1001,11 @@ public class FlatFileQuery implements IQuery
 	private void prepareMetaData( String query, String savedSelectedColInfo )
 			throws OdaException
 	{
+		validateNonEmptyQueryText( query );
+		
 		String[] queryFragments = parsePreparedQueryText( query );
+		
+		validateSingleTableQuery( queryFragments );
 		
 		// the name of table against which the query will be executed
 		String tableName = getPreparedTableNames( queryFragments );
@@ -1041,11 +1045,11 @@ public class FlatFileQuery implements IQuery
 		}
 		else
 		{
+			queryColumnNames = FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
+			validateColumnName( queryColumnNames, allColumnNames);
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
-			{
-				queryColumnNames = FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
-				
+			{				
 				queryColumnTypes = this.hasTypeLine
 						? getQueryColumnTypes( allColumnNames,
 								allColumnTypes,
@@ -1101,6 +1105,7 @@ public class FlatFileQuery implements IQuery
 						.equalsIgnoreCase( allColumnNames[j] ) )
 				{
 					queryColumnTypes[i] = allColumnTypes[j];
+					break;
 				}
 			}
 
@@ -1131,7 +1136,7 @@ public class FlatFileQuery implements IQuery
 	 */
 	private String formatQueryText( String queryText )
 	{
-		String result = ""; //$NON-NLS-1$
+		StringBuffer result = new StringBuffer(); //$NON-NLS-1$
 		String[] temp = queryText.trim( )
 				.split( CommonConstants.DELIMITER_SPACE );
 		for ( int i = 0; i < temp.length; i++ )
@@ -1142,9 +1147,9 @@ public class FlatFileQuery implements IQuery
 				temp[i] = temp[i].toUpperCase( );
 			if ( temp[i].equalsIgnoreCase( CommonConstants.KEYWORD_SELECT ) )
 				temp[i] = temp[i].toUpperCase( );
-			result = result + temp[i] + CommonConstants.DELIMITER_SPACE;
+			result.append( temp[i] ).append( CommonConstants.DELIMITER_SPACE );
 		}
-		return result.trim( );
+		return result.toString( ).trim( );
 	}
 
 	/**

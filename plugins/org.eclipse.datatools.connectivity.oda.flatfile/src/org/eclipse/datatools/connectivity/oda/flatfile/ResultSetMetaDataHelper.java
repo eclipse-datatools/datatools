@@ -12,6 +12,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.oda.flatfile;
 
+import java.util.HashMap;
+
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.ColumnsInfoUtil;
@@ -28,6 +30,8 @@ public class ResultSetMetaDataHelper
 	String[] columnTypes;
 	String[] originalColumnNames;
 	String[] columnLabels;
+	
+	private HashMap columnNameIndexMap = new HashMap( );
 	
 	/**
 	 * Constructor
@@ -46,6 +50,8 @@ public class ResultSetMetaDataHelper
 		this.columnTypes = colTypes;
 		this.columnLabels = colLabels;
 		this.originalColumnNames = colNames;
+		trimMetaDataStrings( );
+		initMap( );
 	}
 	
 	/**
@@ -55,10 +61,40 @@ public class ResultSetMetaDataHelper
 	ResultSetMetaDataHelper( String savedSelectedColumnsInfoString )
 	{
 		this.savedSelectedColumnsInfoString = savedSelectedColumnsInfoString;
-		this.columnNames = ColumnsInfoUtil.getColumnNames( savedSelectedColumnsInfoString );
-		this.columnTypes = ColumnsInfoUtil.getColumnTypeNames( savedSelectedColumnsInfoString );
-		this.originalColumnNames = ColumnsInfoUtil.getOriginalColumnNames( savedSelectedColumnsInfoString );
-		this.columnLabels = this.columnLabels==null? this.columnNames : this.columnLabels;
+		ColumnsInfoUtil ciu = new ColumnsInfoUtil( savedSelectedColumnsInfoString );
+		this.columnNames = ciu.getColumnNames( );
+		this.columnTypes = ciu.getColumnTypeNames( );
+		this.originalColumnNames = ciu.getOriginalColumnNames( );
+		this.columnLabels = this.columnNames;
+		trimMetaDataStrings( );
+		initMap( );
+	}
+	
+	private void initMap( )
+	{
+		for ( int i = 0; i < columnNames.length; i++ )
+		{
+			columnNameIndexMap.put( columnNames[i], new Integer( i ) );
+		}
+	}
+	
+	/**
+	 * 
+	 *
+	 */
+	private void trimMetaDataStrings( )
+	{
+		assert columnNames.length == columnTypes.length
+				&& columnTypes.length == originalColumnNames.length
+				&& originalColumnNames.length == columnLabels.length;
+
+		for ( int i = 0; i < columnNames.length; i++ )
+		{
+			columnNames[i] = columnNames[i].trim( );
+			columnTypes[i] = columnTypes[i].trim( );
+			columnLabels[i] = columnLabels[i].trim( );
+			originalColumnNames[i] = originalColumnNames[i].trim( );
+		}
 	}
 
 	/**
@@ -105,15 +141,13 @@ public class ResultSetMetaDataHelper
 	public String getOriginalColumnName( String columnName )
 	{
 		String originName = null;
-
-		for ( int i = 0; i < columnNames.length; i++ )
+		
+		Integer index = (Integer)columnNameIndexMap.get( columnName );
+		
+		if ( index != null )
 		{
-			if ( columnName.equals( columnNames[i] ) )
-			{
-				originName = originalColumnNames[i];
-			}
+			 originName = originalColumnNames[index.intValue( )];
 		}
-
 		return originName;
 	}
 	

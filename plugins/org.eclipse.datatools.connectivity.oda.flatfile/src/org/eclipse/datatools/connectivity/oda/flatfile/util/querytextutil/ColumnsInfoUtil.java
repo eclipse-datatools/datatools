@@ -23,13 +23,28 @@ public class ColumnsInfoUtil
 {
 
     private static String EMPTY_STRING = ""; //$NON-NLS-1$
+    
+    private String[] columnNames;
+    private String[] columnTypeNames;
+    private String[] originalColumnNames;
 	/**
 	 * 
 	 * 
 	 */
-	private ColumnsInfoUtil( )
+	public ColumnsInfoUtil( String columnsInfo )
 	{
-
+		assert columnsInfo != null;
+		List columnsInfoVector = getColumnsInfoList( columnsInfo );
+		columnNames = new String[columnsInfoVector.size( )];
+		columnTypeNames = new String[columnsInfoVector.size( )];
+		originalColumnNames = new String[columnsInfoVector.size( )];
+		for (int i = 0; i < columnsInfoVector.size( ); i++)
+		{
+			String[] items = (String[]) columnsInfoVector.get( i );
+			columnNames[i] = items[0];
+			originalColumnNames[i] = items[1];
+			columnTypeNames[i] = items[2];
+		}
 	}
 
 	/**
@@ -38,16 +53,8 @@ public class ColumnsInfoUtil
 	 * @param columnsInfo
 	 * @return
 	 */
-	public static String[] getColumnNames( String columnsInfo )
+	public String[] getColumnNames( )
 	{
-		assert columnsInfo != null;
-		List columnsInfoVector = getColumnsInfoList( columnsInfo );
-		String[] columnNames = new String[columnsInfoVector.size( )];
-		for ( int i = 0; i < columnNames.length; i++ )
-		{
-			columnNames[i] = ( (String[]) columnsInfoVector.get( i ) )[0];
-		}
-
 		return columnNames;
 	}
 
@@ -57,14 +64,8 @@ public class ColumnsInfoUtil
 	 * @param columnsInfo
 	 * @return
 	 */
-	public static String[] getColumnTypeNames( String columnsInfo )
+	public String[] getColumnTypeNames( )
 	{
-		List columnsInfoVector = getColumnsInfoList( columnsInfo );
-		String[] columnTypeNames = new String[columnsInfoVector.size( )];
-		for ( int i = 0; i < columnTypeNames.length; i++ )
-		{
-			columnTypeNames[i] = ( (String[]) columnsInfoVector.get( i ) )[2];
-		}
 		return columnTypeNames;
 	}
 
@@ -74,15 +75,8 @@ public class ColumnsInfoUtil
 	 * @param columnsInfo
 	 * @return
 	 */
-	public static String[] getOriginalColumnNames( String columnsInfo )
+	public String[] getOriginalColumnNames( )
 	{
-		List columnsInfoVector = getColumnsInfoList( columnsInfo );
-		String[] originalColumnNames = new String[columnsInfoVector.size( )];
-		for ( int i = 0; i < originalColumnNames.length; i++ )
-		{
-			originalColumnNames[i] = ( (String[]) columnsInfoVector.get( i ) )[1];
-		}
-
 		return originalColumnNames;
 	}
 
