@@ -14,7 +14,7 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.1 2007/06/25 16:31:05 jgraham Exp $
+ * $Id: plugin.xml,v 1.14 2007/11/09 06:12:47 lzhu Exp $
  */
 -->
 
@@ -162,11 +162,11 @@
                   odaScalarDataType="Timestamp"/>
             <dataTypeMapping
                   nativeDataType="BLOB"
-                  nativeDataTypeCode="12"
+                  nativeDataTypeCode="2004"
                   odaScalarDataType="String"/>
             <dataTypeMapping
                   nativeDataType="CLOB"
-                  nativeDataTypeCode="12"
+                  nativeDataTypeCode="2005"
                   odaScalarDataType="String"/>
             <dataTypeMapping
                   nativeDataType="ANY"

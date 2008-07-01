@@ -19,13 +19,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
-import org.eclipse.datatools.connectivity.oda.flatfile.ResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.flatfile.ResultSetMetaDataHelper;
 import org.eclipse.datatools.connectivity.oda.flatfile.FlatFileQuery.FlatFileBufferedReader;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
@@ -53,6 +53,7 @@ public class FlatFileDataReader
 	private boolean isFirstTimeToReadSourceData = true;
 	private boolean isFirstTimeToCallReadLine = true;
 	private int fetchCounter = 0;
+	private int[] selectColumIndexes; 
 
 	//Max number of rows fetched each time from data source
 	public static final int MAX_ROWS_PER_FETCH = 20000;
@@ -103,6 +104,23 @@ public class FlatFileDataReader
 				connProperties.getProperty( CommonConstants.CONN_INCLTYPELINE_PROP ) );
 
 		return copyConnProperites;
+	}
+	
+	private void initNameIndexMap( ) throws OdaException
+	{
+		assert originalColumnNames != null;
+		HashMap originalColumnNameIndexMap = new HashMap( ); 
+		for (int i = 0; i < originalColumnNames.length; i++)
+		{
+			originalColumnNameIndexMap.put( originalColumnNames[i].trim( ).toUpperCase( ), 
+					new Integer( i ) );
+		}
+		selectColumIndexes = new int[rsmd.getColumnCount( )];
+
+		for ( int i = 0; i < rsmd.getColumnCount( ); i++ )
+		{
+			selectColumIndexes[i] = findIndex(rsmdHelper.getOriginalColumnName( rsmd.getColumnName( i + 1 )), originalColumnNameIndexMap);
+		}
 	}
 	
 	/**
@@ -527,6 +545,7 @@ public class FlatFileDataReader
 					}
 					this.originalColumnNames = getColumnNameArray( columeNameLine,
 							true );
+					initNameIndexMap( );
 				}
 					
 
@@ -542,6 +561,7 @@ public class FlatFileDataReader
 				if ( !this.hasColumnNames )
 				{
 					this.originalColumnNames = createTempColumnNames( aLine );
+					initNameIndexMap( );
 				}
 				isFirstTimeToReadSourceData = false;
 			}
@@ -564,8 +584,7 @@ public class FlatFileDataReader
 				if ( !isEmptyRow( aLine ) )
 				{
 					fetchCounter++;
-					result.add( fetchQueriedDataFromRow( aLine,
-							this.originalColumnNames ) );
+					result.add( fetchQueriedDataFromRow( aLine) );
 				}
 				aLine = flatFileBufferedReader.readLine( );
 			}
@@ -688,24 +707,19 @@ public class FlatFileDataReader
 	 * 
 	 * @param aRow
 	 *            a row read from table
-	 * @param originalColumnNames
-	 *            an array that contains all column names of a table
 	 * @return an array of data values for each specified column names from a
 	 *         row. The "specified column names" are obtained from meta data
 	 * @throws OdaException
 	 */
-	private String[] fetchQueriedDataFromRow( String aRow,
-			String[] originalColumnNames ) throws OdaException
+	private String[] fetchQueriedDataFromRow( String aRow ) throws OdaException
 	{
 		String[] sArray = new String[rsmd.getColumnCount( )];
 		// Ignore all quotes which is used in the input file for the
 		// clarity of the data
 		Vector vTemp = splitDoubleQuotedString( aRow );
-		ResultSetMetaData metadata = (ResultSetMetaData) rsmd;
 		for ( int i = 0; i < sArray.length; i++ )
 		{
-			int location = findLocationOfValueInStringArray( rsmdHelper.getOriginalColumnName( metadata.getColumnName( i + 1 ) ),
-					originalColumnNames );
+			int location = selectColumIndexes[i];
 			if ( location != -1 )
 			{
 				if ( location >= vTemp.size( ) )
@@ -722,27 +736,17 @@ public class FlatFileDataReader
 	 * @param value
 	 * @param array
 	 * @return
-	 * @throws OdaException
 	 */
-	private int findLocationOfValueInStringArray( String value, String[] array )
-			throws OdaException
+	private int findIndex( String value, HashMap  originalColumnNameIndexMap)
 	{
-		int result = -1;
-		try
+		Integer index = (Integer)(originalColumnNameIndexMap.get( value.trim( ).toUpperCase( ) ));
+		if (index == null)
 		{
-			for ( int i = 0; i < array.length; i++ )
-			{
-				if ( value.trim( ).equalsIgnoreCase( array[i].trim( ) ) )
-				{
-					result = i;
-					break;
-				}
-			}
-			return result;
+			return -1;
 		}
-		catch ( Exception e )
+		else
 		{
-			throw new OdaException( Messages.getString( "query_COLUMN_NAME_ERROR" ) ); //$NON-NLS-1$
+			return index.intValue( );
 		}
 	}
 

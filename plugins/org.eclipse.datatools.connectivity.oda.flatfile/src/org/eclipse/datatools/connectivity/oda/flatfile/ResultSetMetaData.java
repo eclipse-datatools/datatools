@@ -13,6 +13,8 @@
 
 package org.eclipse.datatools.connectivity.oda.flatfile;
 
+import java.util.HashMap;
+
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
@@ -28,7 +30,8 @@ public class ResultSetMetaData implements IResultSetMetaData
 	private String[] columnNames = null;
 	private String[] columnTypeNames = null;
 	private String[] columnLabels = null;
-	private String[] originalColumnNames = null;
+	
+	private HashMap columnNameIndexMap = new HashMap(); 
 
 	/**
 	 * Constructor
@@ -43,30 +46,14 @@ public class ResultSetMetaData implements IResultSetMetaData
 		
 		this.columnNames = rsmdHelper.getColumnNames( );
 		this.columnTypeNames = rsmdHelper.getColumnTypes( );
-		this.originalColumnNames = rsmdHelper.getOriginalColumnNames( );
 		this.columnLabels = rsmdHelper.getColumnLabels( );
-
-		trimMetaDataStrings( );
-	}
-
-	/**
-	 * 
-	 *
-	 */
-	private void trimMetaDataStrings( )
-	{
-		assert columnNames.length == columnTypeNames.length
-				&& columnTypeNames.length == originalColumnNames.length
-				&& originalColumnNames.length == columnLabels.length;
-
-		for ( int i = 0; i < columnNames.length; i++ )
+		
+		for (int i = 0; i < columnNames.length; i++)
 		{
-			columnNames[i] = columnNames[i].trim( );
-			columnTypeNames[i] = columnTypeNames[i].trim( );
-			columnLabels[i] = columnLabels[i].trim( );
-			originalColumnNames[i] = originalColumnNames[i].trim( );
+			columnNameIndexMap.put( columnNames[i].toUpperCase( ), new Integer( i + 1 ) );
 		}
 	}
+
 
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnCount()
@@ -165,4 +152,19 @@ public class ResultSetMetaData implements IResultSetMetaData
 		if ( index > getColumnCount( ) || index < 1 )
 			throw new OdaException( Messages.getString( "resultSetMetaData_INVALID_COLUMN_INDEX" ) + index ); //$NON-NLS-1$
 	}
+	
+    public int findColumn( String columnName ) throws OdaException
+    {
+        String trimmedColumnName = columnName.trim();
+        Integer index = (Integer)(columnNameIndexMap.get( trimmedColumnName.toUpperCase( ) ));
+        if (index == null)
+        {
+        	throw new OdaException( Messages
+                .getString( "resultSet_COLUMN_NOT_FOUND" ) + columnName ); //$NON-NLS-1$
+        }
+        else
+        {
+        	return index.intValue( );
+        }
+    }
 }

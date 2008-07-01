@@ -1088,15 +1088,15 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			IResultSetMetaData metadata )
 	{
 		String originalName = null;
-
 		if ( columnsInfo.length( ) != 0 )
 		{
-			String[] names = ColumnsInfoUtil.getColumnNames( columnsInfo );
+			ColumnsInfoUtil ciu = new ColumnsInfoUtil( columnsInfo );
+			String[] names = ciu.getColumnNames( );
 			for ( int i = 0; i < names.length; i++ )
 			{
 				if ( name.equals( names[i] ) )
 				{
-					originalName = ColumnsInfoUtil.getOriginalColumnNames( columnsInfo )[i];
+					originalName = ciu.getOriginalColumnNames( )[i];
 					break;
 				}
 			}
@@ -1179,7 +1179,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			prop.put( CommonConstants.CONN_INCLTYPELINE_PROP, inclTypeLine );
 		}
 
-		savedSelectedColumnsInfoString = QueryTextUtil.getColumnsInfo( queryText );
+		savedSelectedColumnsInfoString = (new QueryTextUtil( queryText )).getColumnsInfo( );
 
 		conn.open( prop );
 
@@ -1301,7 +1301,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	{
 		try
 		{
-			String query = QueryTextUtil.getQuery( queryText );
+			String query = (new QueryTextUtil( queryText )).getQuery( );
 			String[] splitQuery = stripFromClause( query );
 			// If the length is equal to 2 then we have a valid query
 			if ( splitQuery.length == 2 )

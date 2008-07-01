@@ -36,7 +36,7 @@ public class ResultSet implements IResultSet
     public static final int DEFAULT_MAX_ROWS = 1000;
     private static final int CURSOR_INITIAL_VALUE = -1;
     private String[][] sourceData = null;
-    private IResultSetMetaData resultSetMetaData = null;
+    private ResultSetMetaData resultSetMetaData = null;
     private int maxRows = 0;
     private int cursor = CURSOR_INITIAL_VALUE;
     private FlatFileDataReader flatFileDataReader;
@@ -51,7 +51,7 @@ public class ResultSet implements IResultSet
      * @param ffr flat file data source reader 
      * @param rsmd
      */
-    ResultSet(FlatFileDataReader ffr, IResultSetMetaData rsmd )
+    ResultSet(FlatFileDataReader ffr, ResultSetMetaData rsmd )
     {
     	this.flatFileDataReader = ffr;
     	this.resultSetMetaData = rsmd;
@@ -312,18 +312,7 @@ public class ResultSet implements IResultSet
      */
     public int findColumn( String columnName ) throws OdaException
     {
-        String trimmedColumnName = columnName.trim();
-        int columnCount = this.getMetaData().getColumnCount();
-        for( int i = 1; i <= columnCount; i++ )
-        {
-            if( trimmedColumnName.equalsIgnoreCase(
-                    this.getMetaData().getColumnName( i ) ) )
-            {
-                return i;
-            }
-        }
-        throw new OdaException( Messages
-                .getString( "resultSet_COLUMN_NOT_FOUND" ) + columnName ); //$NON-NLS-1$
+    	return resultSetMetaData.findColumn( columnName );
     }
 
     /**

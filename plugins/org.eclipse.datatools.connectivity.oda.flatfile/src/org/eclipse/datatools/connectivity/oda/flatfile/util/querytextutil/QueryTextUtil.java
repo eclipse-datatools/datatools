@@ -25,43 +25,37 @@ public class QueryTextUtil
 	private static final char QUERY_TEXT_DELIMITER = ':';
 
 	private static final char COLUMNSINFO_BEGIN_DELIMITER = '{';
+	
+	private String query;
+	
+	private String columnsInfo;
 
 	/**
 	 * 
 	 */
-	private QueryTextUtil( )
-	{
-
-	}
-
-	/**
-	 * 
-	 * @param queryText
-	 * @return
-	 * @throws OdaException
-	 */
-	public static String getQuery( String queryText ) throws OdaException
-	{
-		return splitQueryText( queryText )[0];
-	}
-
-	/**
-	 * 
-	 * @param queryText
-	 * @return
-	 * @throws OdaException
-	 */
-	public static String getColumnsInfo( String queryText ) throws OdaException
+	public QueryTextUtil( String queryText ) throws OdaException
 	{
 		assert queryText != null;
-		return splitQueryText( queryText )[1];
+		String[] splits = splitQueryText( queryText );
+		query = splits[0];
+		columnsInfo = splits[1];
+	}
 
+
+	public String getQuery(  )
+	{
+		return query;
+	}
+
+	public String getColumnsInfo(  )
+	{
+		return columnsInfo;
 	}
 
 	/**
 	 * 
 	 */
-	private static String[] splitQueryText( String queryText )
+	private String[] splitQueryText( String queryText )
 			throws OdaException
 	{
 		int delimiterIndex = -1;
