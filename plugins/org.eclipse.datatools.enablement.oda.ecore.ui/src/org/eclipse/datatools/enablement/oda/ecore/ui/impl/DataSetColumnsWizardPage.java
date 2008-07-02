@@ -333,12 +333,14 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			return root;
 		}
 
-		private void attach(final TreeNode parent, final EClass eClass) {
-			final EList<EAttribute> attributes = eClass.getEAttributes();
+		private void attach(final TreeNode parent, final EClass eClass, final boolean showAllStructuralFeatures) {
+			final EList<EAttribute> attributes = showAllStructuralFeatures ? eClass.getEAllAttributes() : eClass
+					.getEAttributes();
 			for (final EAttribute attribute : attributes) {
 				createNodeFor(attribute).setParent(parent);
 			}
-			final EList<EReference> references = eClass.getEReferences();
+			final EList<EReference> references = showAllStructuralFeatures ? eClass.getEAllReferences() : eClass
+					.getEReferences();
 			for (final EReference reference : references) {
 				createNodeFor(reference).setParent(parent);
 			}
@@ -377,7 +379,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			public EList<TreeNode> getChildren() {
 				if (children == null) {
 					super.getChildren(); // initialize the children list
-					attach(this, (EClass) getData());
+					attach(this, (EClass) getData(), false);
 				}
 				return super.getChildren();
 			}
@@ -395,7 +397,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			public EList<TreeNode> getChildren() {
 				if (children == null) {
 					super.getChildren(); // initialize the children list
-					attach(this, eClass);
+					attach(this, eClass, true);
 				}
 				return super.getChildren();
 			}
