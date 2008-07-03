@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,8 +25,8 @@ public interface ILoadingService
 		{
 	    	if (!(parent instanceof LoadingNode))
 	    	{
-				LoadingNode placeHolder = LoadingNode.createPlaceHolder(service);
-				if (placeHolder != null && LoadingNode.canBeginLoading(service))
+				LoadingNode placeHolder = LoadingNode.createPlaceHolder(parent, service);
+				if (placeHolder != null && LoadingNode.canBeginLoading(parent, service))
 				{
 					new LoadingJob(viewer, placeHolder, parent, service).schedule();
 					return new Object[] { placeHolder };

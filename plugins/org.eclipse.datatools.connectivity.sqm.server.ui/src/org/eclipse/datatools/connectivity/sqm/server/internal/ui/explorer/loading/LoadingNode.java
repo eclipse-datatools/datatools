@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2007, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,6 @@
  * IBM Corporation - initial API and implementation
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ImagePath;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
@@ -25,8 +20,8 @@ import org.eclipse.swt.graphics.Image;
 public class LoadingNode implements ILabelProvider
 {
 	private static final String LOADING = ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.LOADING"); //$NON-NLS-1$
-	private static final Set loadingFiles = new HashSet();
-	private static final Map placeHolders = new HashMap();
+	private static final LoadingNodeDoubleKeyCollection loadingFiles = new LoadingNodeDoubleKeyCollection();
+	private static final LoadingNodeDoubleKeyCollection placeHolders = new LoadingNodeDoubleKeyCollection();
 
 	public static final LoadingNode LOADING_FAMILY = new LoadingNode (); 
 	
@@ -36,14 +31,13 @@ public class LoadingNode implements ILabelProvider
 	private String text3;
 	private int count = 0;
 	private boolean disposed = false;
-	private ILoadingService loadingService;
 
-	public static synchronized LoadingNode createPlaceHolder(ILoadingService loadingService)
+	public static synchronized LoadingNode createPlaceHolder(Object parent, ILoadingService loadingService)
 	{
 		LoadingNode node = null;
-		if (!placeHolders.containsKey(loadingService))
+		if (!placeHolders.containsKey(parent, loadingService))
 		{
-			placeHolders.put(loadingService, node = new LoadingNode(loadingService));
+			placeHolders.put(parent, loadingService, node = new LoadingNode(loadingService));
 		}
 		return node;
 	}
@@ -58,7 +52,6 @@ public class LoadingNode implements ILabelProvider
 		text1 = text + "."; //$NON-NLS-1$
 		text2 = text + ".."; //$NON-NLS-1$
 		text3 = text + "..."; //$NON-NLS-1$
-		this.loadingService = loadingService;
 	}
 
 	public String getText(Object element)
@@ -98,18 +91,21 @@ public class LoadingNode implements ILabelProvider
 		return disposed;
 	}
 
-	public void dispose()
+	public void dispose(Object parent, LoadingNode placeHolder)
 	{
 		disposed = true;
-		placeHolders.remove(loadingService);
-		loadingFiles.remove(loadingService);
+
+		ILoadingService loadingService = placeHolders.queryLoadingService(parent, placeHolder);
+		 
+		loadingFiles.remove(parent, loadingService);
+		placeHolders.remove(parent, loadingService);		
 	}
 
-	public static synchronized boolean canBeginLoading(ILoadingService loadingService)
+	public static synchronized boolean canBeginLoading(Object parent, ILoadingService loadingService)
 	{
-		if (!loadingFiles.contains(loadingService))
+		if (!loadingFiles.containsKey(parent, loadingService))
 		{
-			loadingFiles.add(loadingService);
+			loadingFiles.put(parent, loadingService, null);
 			return true;
 		}
 		return false;
@@ -135,4 +131,9 @@ public class LoadingNode implements ILabelProvider
 	public void removeListener(ILabelProviderListener listener)
 	{
 	}
+
+	public void dispose() {	
+	}
 }
+
+
