@@ -163,7 +163,6 @@ public class WebServiceSelectionPageHelper
 
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 35;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.endPoint" ) );//$NON-NLS-1$
 
@@ -189,7 +188,6 @@ public class WebServiceSelectionPageHelper
 
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 25;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.customClass" ) );//$NON-NLS-1$
 
@@ -208,7 +206,6 @@ public class WebServiceSelectionPageHelper
 
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
-		layoutData.heightHint = 20;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.classPath" ) );//$NON-NLS-1$
 
