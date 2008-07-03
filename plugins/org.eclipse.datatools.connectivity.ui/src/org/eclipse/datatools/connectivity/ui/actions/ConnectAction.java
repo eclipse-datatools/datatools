@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2005, 2008 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: shongxum - initial API and implementation
+ *               IBM Corporation - fix for 238315
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.ui.actions;
 
@@ -184,6 +185,7 @@ public class ConnectAction implements IObjectActionDelegate, ISelectionProvider 
 	}
 
 	public void setSelection(ISelection selection) {
+		this.mSelection = (IStructuredSelection)selection;
 	}
 	
 	protected String getInitialPropertyPageID(IConnectionProfile profile) {

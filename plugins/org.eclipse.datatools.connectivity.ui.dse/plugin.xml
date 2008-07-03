@@ -539,4 +539,27 @@
              name="%DSE.ShowCategory.command.label">
        </command>
     </extension>
+   
+   <!-- Double-click to reconnect or expand/collapse IConnectionProfile -->
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.ui.actions.ExpandProvider"
+            id="org.eclipse.datatools.connectivity.ui.dse.expandAction">
+	        <enablement>
+                  <instanceof
+                        value="org.eclipse.datatools.connectivity.IConnectionProfile">
+                  </instanceof>
+			</enablement>	
+      </actionProvider>
+   </extension>
+   
+   <extension
+          point="org.eclipse.ui.navigator.viewer">
+       <viewerActionBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <includes>
+             <actionExtension pattern="org.eclipse.datatools.connectivity.ui.dse.expandAction"/>
+          </includes>
+       </viewerActionBinding>
+    </extension>
 </plugin>
