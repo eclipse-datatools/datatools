@@ -267,8 +267,15 @@
 		</contributor>
 		<contributor
 			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.User"
+			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.UserSelector"
 			iconLocation = "/icons/user.gif"
 			displayType = "%user">
+		</contributor>
+		<contributor
+			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.User"
+			selector = "org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.label.AuthorizationSelector"
+			iconLocation = "/icons/user.gif"
+			displayType = "%authorization">
 		</contributor>
 		<contributor
 			type= "org.eclipse.datatools.modelbase.sql.accesscontrol.Group"
