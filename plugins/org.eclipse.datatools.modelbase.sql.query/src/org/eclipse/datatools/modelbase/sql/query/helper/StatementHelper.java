@@ -240,9 +240,10 @@ public class StatementHelper {
             // Lm, Lo, and Nl
             // are assigned upper-case letters, lower-case letters, title-case
             // letters, modifier letters, other letters, and letter numbers.
-            // All identifiers that have a nonword character (i.e not any of a-z A-Z _ 0-9 ) needs to be delimited
+            // All identifiers that have a non-word character (i.e not any of a-z A-Z _ 0-9 ) needs to be delimited
             boolean containsNonAlpha = false;
-            String nonAlphaRegex = "\\W";
+            // The following pattern is "all non-word characters (\W) except the chars $, #, and @"
+            String nonAlphaRegex = "[\\W&&[^$#@]]"; // [RATLC00401002]  //$NON-NLS-1$
             Pattern patern = Pattern.compile(nonAlphaRegex);
             Matcher matcher = patern.matcher(catalogIdentifier);
             while(!containsNonAlpha &&  matcher.find()){
