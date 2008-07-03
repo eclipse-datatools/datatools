@@ -66,6 +66,8 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -311,7 +313,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private Control createPageControl( Composite parent )
 	{
 		Composite composite = new Composite( parent, SWT.NULL );
-		final Shell shell = composite.getShell( );
 
 		FormLayout layout = new FormLayout( );
 		composite.setLayout( layout );
@@ -324,7 +325,32 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		label.setText( Messages.getString( "label.selectFile" ) ); //$NON-NLS-1$
 		label.setLayoutData( data );
 
-		data = new FormData( );
+		createTopComposite( composite, label );
+
+		createLeftComposite( composite );
+
+		Composite btnComposite = createAddBtnComposite( composite );
+
+		createRightComposite( composite, btnComposite );
+
+		setupEditors( );
+
+		loadProperties( );
+		populateFileFilter( );
+		updateFileListAndCharSet( );
+		return composite;
+	}
+	
+	/**
+	 * Create the top composite of the page
+	 * 
+	 * @param composite
+	 * @param label
+	 */
+	private void createTopComposite( Composite composite, Label label )
+	{
+		final Shell shell = composite.getShell( );
+		FormData data = new FormData( );
 		data.left = new FormAttachment( label, 5 );
 		data.right = new FormAttachment( 80, -5 );
 		fileViewer = new ComboViewer( composite, SWT.BORDER | SWT.READ_ONLY );
@@ -383,11 +409,19 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				}
 			}
 		} );
+	}
 
-		data = new FormData( );
+	/**
+	 * Create the left composite of the page
+	 * 
+	 * @param composite
+	 */
+	private void createLeftComposite( Composite composite )
+	{
+		FormData data = new FormData( );
 		data.top = new FormAttachment( fileViewer.getControl( ), 10, SWT.BOTTOM );
 		data.left = new FormAttachment( 0, 5 );
-		data.right = new FormAttachment( 47, -5 );
+		data.right = new FormAttachment( 40, -5 );
 		data.bottom = new FormAttachment( 100, -5 );
 		data.width = DEFAULT_WIDTH;
 		data.height = DEFAULT_HEIGHT;
@@ -414,25 +448,24 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				addColumns( );
 			}
 		} );
+	}
 
-		data = new FormData( );
-		data.left = new FormAttachment( availableList, 5 );
-		data.bottom = new FormAttachment( 70 );
+	/**
+	 * Create the middle button composite that displays ADD button
+	 * 
+	 * @param composite
+	 * @return
+	 */
+	private Composite createAddBtnComposite( Composite composite )
+	{
+		FormData data = new FormData( );
+		data.left = new FormAttachment( availableList, 3 );
+		data.bottom = new FormAttachment( 55, -5 );
 
-		Composite btnComposite = new Composite( composite, SWT.NONE );
+		Composite btnComposite = new Composite( composite, SWT.CENTER );
 		btnComposite.setLayoutData( data );
-		FillLayout btnLayout = new FillLayout( SWT.VERTICAL );
-		btnLayout.spacing = 10;
+		GridLayout btnLayout = new GridLayout( );
 		btnComposite.setLayout( btnLayout );
-
-		btnMoveUp = new Button( btnComposite, SWT.ARROW | SWT.UP );
-		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				moveUpItem( );
-			}
-		} );
 
 		btnAdd = new Button( btnComposite, SWT.NONE );
 		if ( btnAdd.getStyle( ) ==( btnAdd.getStyle( )|SWT.LEFT_TO_RIGHT))
@@ -456,38 +489,36 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 
-		btnRemove = new Button( btnComposite, SWT.NONE );
-		btnRemove.setImage( PlatformUI.getWorkbench( )
-				.getSharedImages( )
-				.getImage( ISharedImages.IMG_TOOL_DELETE ) );
-		btnRemove.addSelectionListener( new SelectionAdapter( ) {
+		return btnComposite;
+	}
 
-			public void widgetSelected( SelectionEvent e )
-			{
-				removeColumns( );
-			}
-		} );
-
-		btnMoveDown = new Button( btnComposite, SWT.ARROW | SWT.DOWN );
-		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
-
-			public void widgetSelected( SelectionEvent e )
-			{
-				moveDownItem( );
-			}
-		} );
-
-		data = new FormData( );
+	/**
+	 * Create the right composite of the page
+	 * 
+	 * @param composite
+	 * @param btnComposite
+	 */
+	private void createRightComposite( Composite composite,
+			Composite btnComposite )
+	{
+		FormData data = new FormData( );
 		data.top = new FormAttachment( fileViewer.getControl( ), 10, SWT.BOTTOM );
-		data.left = new FormAttachment( btnComposite, 5 );
-		data.right = new FormAttachment( 100, -5 );
+		data.left = new FormAttachment( btnComposite, 3 );
+		data.right = new FormAttachment( 100, -2 );
 		data.bottom = new FormAttachment( 100, -5 );
+		
+		Composite rightComposite = new Composite( composite, SWT.BORDER );
+		rightComposite.setLayoutData( data );
+		GridLayout layout = new GridLayout( );
+		layout.numColumns = 2;
+		rightComposite.setLayout( layout );
 
-		selectedColumnsViewer = new TableViewer( composite, SWT.MULTI
+		selectedColumnsViewer = new TableViewer( rightComposite, SWT.MULTI
 				| SWT.FULL_SELECTION | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL );
 		selectedColumnsViewer.getTable( ).setHeaderVisible( true );
 		selectedColumnsViewer.getTable( ).setLinesVisible( true );
-
+		selectedColumnsViewer.getTable( ).setLayoutData( new GridData( GridData.FILL_BOTH ) );
+		
 		TableColumn column = new TableColumn( selectedColumnsViewer.getTable( ),
 				SWT.NONE );
 		column.setText( Messages.getString( "editor.title.name" ) ); //$NON-NLS-1$
@@ -499,7 +530,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		column.setText( Messages.getString( "editor.title.type" ) ); //$NON-NLS-1$
 		column.setWidth( 100 );
 
-		selectedColumnsViewer.getTable( ).setLayoutData( data );
 		selectedColumnsViewer.getTable( )
 				.addListener( SWT.MouseDown ,new Listener( ) {
 
@@ -547,31 +577,80 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 					}
 				} );
 
-		selectedColumnsViewer.setContentProvider( new IStructuredContentProvider( ) {
+		setColumnsViewerContent( );
 
-			public Object[] getElements( Object inputElement )
+		setColumnsViewerLabels( );
+
+		selectedColumnsViewer.getTable( )
+				.addMouseListener( new MouseAdapter( ) {
+
+					public void mouseDoubleClick( MouseEvent e )
+					{
+						removeColumns( );
+					}
+				} );
+		
+		createEditBtnGroup( rightComposite );
+	}
+	
+	/**
+	 * Create the right button group that displays the UP,DOWN and REMOVE buttons
+	 * 
+	 * @param rightComposite
+	 */
+	private void createEditBtnGroup( Composite rightComposite )
+	{
+		Composite btnComposite = new Composite( rightComposite, SWT.NONE );
+		GridLayout layout = new GridLayout( );
+		layout.verticalSpacing = 5;
+		btnComposite.setLayout( layout );
+
+		btnMoveUp = new Button( btnComposite, SWT.ARROW | SWT.UP );
+		GridData btnMoveUpGd = new GridData( );
+		btnMoveUpGd.widthHint = btnMoveUpGd.heightHint = 20;
+		btnMoveUp.setLayoutData( btnMoveUpGd );
+		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
 			{
-				if ( inputElement instanceof java.util.List )
-				{
-					return ( (java.util.List) inputElement ).toArray( );
-				}
-
-				return new Object[0];
+				moveUpItem( );
 			}
-
-			public void dispose( )
-			{
-
-			}
-
-			public void inputChanged( Viewer viewer, Object oldInput,
-					Object newInput )
-			{
-
-			}
-
 		} );
 
+		btnRemove = new Button( btnComposite, SWT.PUSH );
+		GridData btnRemoveGd = new GridData( GridData.VERTICAL_ALIGN_CENTER );
+		btnRemoveGd.widthHint = btnRemoveGd.heightHint = 20;
+		btnRemove.setLayoutData( btnRemoveGd );
+		btnRemove.setImage( PlatformUI.getWorkbench( )
+				.getSharedImages( )
+				.getImage( ISharedImages.IMG_TOOL_DELETE ) );
+		btnRemove.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				removeColumns( );
+			}
+		} );
+
+		btnMoveDown = new Button( btnComposite, SWT.ARROW | SWT.DOWN );
+		GridData btnMoveDownGd = new GridData( );
+		btnMoveDownGd.widthHint = btnMoveDownGd.heightHint = 20;
+		btnMoveDown.setLayoutData( btnMoveDownGd );
+		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
+
+			public void widgetSelected( SelectionEvent e )
+			{
+				moveDownItem( );
+			}
+		} );
+	}
+
+	/**
+	 * Set the labels of the ColumnsViewer
+	 * 
+	 */
+	private void setColumnsViewerLabels( )
+	{
 		selectedColumnsViewer.setLabelProvider( new ITableLabelProvider( ) {
 
 			public Image getColumnImage( Object element, int columnIndex )
@@ -605,22 +684,38 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 
 		} );
+	}
 
-		selectedColumnsViewer.getTable( )
-				.addMouseListener( new MouseAdapter( ) {
+	/**
+	 * Set the content of the ColumnsViewer
+	 * 
+	 */
+	private void setColumnsViewerContent( )
+	{
+		selectedColumnsViewer.setContentProvider( new IStructuredContentProvider( ) {
 
-					public void mouseDoubleClick( MouseEvent e )
-					{
-						removeColumns( );
-					}
-				} );
+			public Object[] getElements( Object inputElement )
+			{
+				if ( inputElement instanceof java.util.List )
+				{
+					return ( (java.util.List) inputElement ).toArray( );
+				}
 
-		setupEditors( );
+				return new Object[0];
+			}
 
-		loadProperties( );
-		populateFileFilter( );
-		updateFileListAndCharSet( );
-		return composite;
+			public void dispose( )
+			{
+
+			}
+
+			public void inputChanged( Viewer viewer, Object oldInput,
+					Object newInput )
+			{
+
+			}
+
+		} );
 	}
 
 	/**
