@@ -196,7 +196,7 @@ public class Query implements IQuery
 		{
 			Map parameterMap = new HashMap( );
 			SOAPParameter[] parameters = this.soapRequest.getParameters( );
-			for ( int i = 0; i < parameters.length; i++ )
+			for ( int i = 0; parameters != null && i < parameters.length; i++ )
 			{
 				parameterMap.put( parameters[i].getName( ),
 						parameters[i].getDefaultValue( ) );
