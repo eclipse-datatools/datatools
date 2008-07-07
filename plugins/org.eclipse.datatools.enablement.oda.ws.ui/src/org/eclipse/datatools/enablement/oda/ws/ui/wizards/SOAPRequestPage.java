@@ -497,35 +497,26 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 		private void mergeParameters( )
 		{
-			if ( !canMerge( ) )
-				return;
-
 			SOAPParameter[] soapParameters = soapRequest.getParameters( );
 			for ( int i = 0; i < parameters.length; i++ )
 			{
 				if ( !WSUIUtil.isNull( parameters[i] ) )
-					soapParameters[i].setDefaultValue( parameters[i].getDefaultValue( ) );
+				{
+					int pos = -1;
+					for ( int j = 0; j < soapParameters.length; j++ )
+					{
+						if ( !WSUIUtil.isNull( soapParameters[j].getName( ) )
+								&& soapParameters[j].getName( )
+										.equals( parameters[i].getName( ) ) )
+						{
+							pos = j;
+							break;
+						}
+					}
+					if( pos != -1 )
+						soapParameters[pos].setDefaultValue( parameters[i].getDefaultValue( ) );
+				}
 			}
-		}
-
-		private boolean canMerge( )
-		{
-			SOAPParameter[] soapParameters = soapRequest.getParameters( );
-			if ( parameters == null || soapParameters == null )
-				return false;
-
-			if ( parameters.length != soapParameters.length )
-				return false;
-
-			for ( int i = 0; i < parameters.length; i++ )
-			{
-				if ( !WSUIUtil.isNull( parameters[i] )
-						&& !parameters[i].getName( )
-								.equals( soapParameters[i].getName( ) ) )
-					return false;
-			}
-
-			return true;
 		}
 
 		SOAPParameter[] getSOAPParameters( )
