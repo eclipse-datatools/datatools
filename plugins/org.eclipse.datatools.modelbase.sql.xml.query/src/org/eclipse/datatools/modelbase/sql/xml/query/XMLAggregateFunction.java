@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateFunction.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLAggregateFunction.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -33,50 +33,50 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface XMLAggregateFunction extends ValueExpressionFunction{
 	/**
-	 * Returns the value of the '<em><b>Returning Option</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Returning Option</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType}.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Returning Option</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Returning Option</em>' attribute.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
-	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_ReturningOption()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Returning Option</em>' attribute.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
+     * @see #setReturningOption(XMLReturningType)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_ReturningOption()
+     * @model
+     * @generated
+     */
     XMLReturningType getReturningOption();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getReturningOption <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getReturningOption <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Returning Option</em>' attribute.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
-	 * @see #getReturningOption()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Returning Option</em>' attribute.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
+     * @see #getReturningOption()
+     * @generated
+     */
     void setReturningOption(XMLReturningType value);
 
 	/**
-	 * Returns the value of the '<em><b>Sort Spec List</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction <em>Aggregate Function</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Sort Spec List</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction <em>Aggregate Function</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Sort Spec List</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sort Spec List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_SortSpecList()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction
-	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification" opposite="aggregateFunction" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Sort Spec List</em>' containment reference list.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateFunction_SortSpecList()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction
+     * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification" opposite="aggregateFunction" containment="true"
+     * @generated
+     */
     EList getSortSpecList();
 
 } // XMLAggregateFunction

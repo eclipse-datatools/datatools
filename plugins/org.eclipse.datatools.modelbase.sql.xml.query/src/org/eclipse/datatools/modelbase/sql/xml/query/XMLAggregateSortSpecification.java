@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateSortSpecification.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLAggregateSortSpecification.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -32,57 +32,57 @@ import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
  */
 public interface XMLAggregateSortSpecification extends SQLQueryObject{
 	/**
-	 * Returns the value of the '<em><b>Aggregate Function</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getSortSpecList <em>Sort Spec List</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Aggregate Function</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getSortSpecList <em>Sort Spec List</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Aggregate Function</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Aggregate Function</em>' container reference.
-	 * @see #setAggregateFunction(XMLAggregateFunction)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_AggregateFunction()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getSortSpecList
-	 * @model opposite="sortSpecList" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Aggregate Function</em>' container reference.
+     * @see #setAggregateFunction(XMLAggregateFunction)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_AggregateFunction()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateFunction#getSortSpecList
+     * @model opposite="sortSpecList" required="true"
+     * @generated
+     */
     XMLAggregateFunction getAggregateFunction();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction <em>Aggregate Function</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getAggregateFunction <em>Aggregate Function</em>}' container reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Aggregate Function</em>' container reference.
-	 * @see #getAggregateFunction()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Aggregate Function</em>' container reference.
+     * @see #getAggregateFunction()
+     * @generated
+     */
     void setAggregateFunction(XMLAggregateFunction value);
 
 	/**
-	 * Returns the value of the '<em><b>Order By Spec</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Order By Spec</b></em>' containment reference.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Order By Spec</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Order By Spec</em>' containment reference.
-	 * @see #setOrderBySpec(OrderBySpecification)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_OrderBySpec()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Order By Spec</em>' containment reference.
+     * @see #setOrderBySpec(OrderBySpecification)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLAggregateSortSpecification_OrderBySpec()
+     * @model containment="true" required="true"
+     * @generated
+     */
     OrderBySpecification getOrderBySpec();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getOrderBySpec <em>Order By Spec</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLAggregateSortSpecification#getOrderBySpec <em>Order By Spec</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Order By Spec</em>' containment reference.
-	 * @see #getOrderBySpec()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Order By Spec</em>' containment reference.
+     * @see #getOrderBySpec()
+     * @generated
+     */
     void setOrderBySpec(OrderBySpecification value);
 
 } // XMLAggregateSortSpecification

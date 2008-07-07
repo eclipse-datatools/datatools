@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelSwitch.java,v 1.2 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: SQLQueryModelSwitch.java,v 1.3 2008/01/31 02:57:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
@@ -1088,6 +1088,18 @@ public class SQLQueryModelSwitch {
                 if (result == null) result = caseSQLObject(queryNested);
                 if (result == null) result = caseENamedElement(queryNested);
                 if (result == null) result = caseEModelElement(queryNested);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case SQLQueryModelPackage.VALUE_EXPRESSION_ROW: {
+                ValueExpressionRow valueExpressionRow = (ValueExpressionRow)theEObject;
+                Object result = caseValueExpressionRow(valueExpressionRow);
+                if (result == null) result = caseQueryValueExpression(valueExpressionRow);
+                if (result == null) result = caseSQLQueryObject(valueExpressionRow);
+                if (result == null) result = caseValueExpression(valueExpressionRow);
+                if (result == null) result = caseSQLObject(valueExpressionRow);
+                if (result == null) result = caseENamedElement(valueExpressionRow);
+                if (result == null) result = caseEModelElement(valueExpressionRow);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -2337,6 +2349,21 @@ public class SQLQueryModelSwitch {
      * @generated
      */
     public Object caseQueryNested(QueryNested object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Value Expression Row</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Value Expression Row</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseValueExpressionRow(ValueExpressionRow object) {
         return null;
     }
 

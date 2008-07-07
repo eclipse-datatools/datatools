@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionItemImpl.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionItemImpl.java,v 1.3 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -41,157 +41,157 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLTableColumnDefinitionItemImpl extends SQLQueryObjectImpl implements XMLTableColumnDefinitionItem {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLTableColumnDefinitionItemImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ITEM;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ITEM;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLTableFunction getTableFunction() {
-		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION) return null;
-		return (XMLTableFunction)eContainer();
-	}
+        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION) return null;
+        return (XMLTableFunction)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTableFunction(XMLTableFunction newTableFunction, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newTableFunction, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newTableFunction, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setTableFunction(XMLTableFunction newTableFunction) {
-		if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION && newTableFunction != null)) {
-			if (EcoreUtil.isAncestor(this, newTableFunction))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newTableFunction != null)
-				msgs = ((InternalEObject)newTableFunction).eInverseAdd(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
-			msgs = basicSetTableFunction(newTableFunction, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION, newTableFunction, newTableFunction));
-	}
+        if (newTableFunction != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION && newTableFunction != null)) {
+            if (EcoreUtil.isAncestor(this, newTableFunction))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newTableFunction != null)
+                msgs = ((InternalEObject)newTableFunction).eInverseAdd(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
+            msgs = basicSetTableFunction(newTableFunction, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION, newTableFunction, newTableFunction));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetTableFunction((XMLTableFunction)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetTableFunction((XMLTableFunction)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				return basicSetTableFunction(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                return basicSetTableFunction(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_TABLE_FUNCTION__COLUMN_DEF_LIST, XMLTableFunction.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				return getTableFunction();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                return getTableFunction();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				setTableFunction((XMLTableFunction)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                setTableFunction((XMLTableFunction)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				setTableFunction((XMLTableFunction)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                setTableFunction((XMLTableFunction)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
-				return getTableFunction() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_TABLE_COLUMN_DEFINITION_ITEM__TABLE_FUNCTION:
+                return getTableFunction() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //XMLTableColumnDefinitionItemImpl

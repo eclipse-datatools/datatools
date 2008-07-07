@@ -166,6 +166,8 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/valueExprLabeledDuration"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/nest"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/updateSourceExprList"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/tableFunction"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryValueExpression/valueExprRow"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryExpressionRoot">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryExpressionRoot/insertStatement"/>
@@ -403,7 +405,10 @@
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableInDatabase/databaseTable"/>
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableInDatabase/derivedColumnList"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//TableFunction"/>
+    <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//TableFunction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableFunction/function"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//TableFunction/parameterList"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//SQLQueryObject">
       <genOperations ecoreOperation="SQLQueryModel.ecore#//SQLQueryObject/getSQL"/>
       <genOperations ecoreOperation="SQLQueryModel.ecore#//SQLQueryObject/setSQL">
@@ -456,6 +461,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="SQLQueryModel.ecore#//QueryNested">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//QueryNested/nestedQuery"/>
+    </genClasses>
+    <genClasses ecoreClass="SQLQueryModel.ecore#//ValueExpressionRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SQLQueryModel.ecore#//ValueExpressionRow/valueExprList"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

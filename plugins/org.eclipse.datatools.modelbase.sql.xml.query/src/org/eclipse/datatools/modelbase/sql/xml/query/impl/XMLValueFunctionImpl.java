@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLValueFunctionImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -61,21 +61,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class XMLValueFunctionImpl extends ValueExpressionFunctionImpl implements XMLValueFunction {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION;
+    }
 
 } //XMLValueFunctionImpl

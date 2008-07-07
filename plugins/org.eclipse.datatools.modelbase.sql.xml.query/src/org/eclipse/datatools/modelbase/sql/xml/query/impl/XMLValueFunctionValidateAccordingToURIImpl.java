@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToURIImpl.java,v 1.4 2005/12/22 22:21:18 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToURIImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -40,237 +40,237 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLValueFunctionValidateAccordingToURIImpl extends XMLValueFunctionValidateAccordingToImpl implements XMLValueFunctionValidateAccordingToURI {
 	/**
-	 * The default value of the '{@link #isNoNamespace() <em>No Namespace</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isNoNamespace() <em>No Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isNoNamespace()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isNoNamespace()
+     * @generated
+     * @ordered
+     */
     protected static final boolean NO_NAMESPACE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isNoNamespace() <em>No Namespace</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isNoNamespace() <em>No Namespace</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #isNoNamespace()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isNoNamespace()
+     * @generated
+     * @ordered
+     */
     protected boolean noNamespace = NO_NAMESPACE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetNamespaceURI() <em>Target Namespace URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTargetNamespaceURI() <em>Target Namespace URI</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getTargetNamespaceURI()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetNamespaceURI()
+     * @generated
+     * @ordered
+     */
     protected static final String TARGET_NAMESPACE_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTargetNamespaceURI() <em>Target Namespace URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTargetNamespaceURI() <em>Target Namespace URI</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getTargetNamespaceURI()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetNamespaceURI()
+     * @generated
+     * @ordered
+     */
     protected String targetNamespaceURI = TARGET_NAMESPACE_URI_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSchemaLocationURI() <em>Schema Location URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getSchemaLocationURI() <em>Schema Location URI</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSchemaLocationURI()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSchemaLocationURI()
+     * @generated
+     * @ordered
+     */
     protected static final String SCHEMA_LOCATION_URI_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSchemaLocationURI() <em>Schema Location URI</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSchemaLocationURI() <em>Schema Location URI</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSchemaLocationURI()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSchemaLocationURI()
+     * @generated
+     * @ordered
+     */
     protected String schemaLocationURI = SCHEMA_LOCATION_URI_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionValidateAccordingToURIImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public boolean isNoNamespace() {
-		return noNamespace;
-	}
+        return noNamespace;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setNoNamespace(boolean newNoNamespace) {
-		boolean oldNoNamespace = noNamespace;
-		noNamespace = newNoNamespace;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE, oldNoNamespace, noNamespace));
-	}
+        boolean oldNoNamespace = noNamespace;
+        noNamespace = newNoNamespace;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE, oldNoNamespace, noNamespace));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String getTargetNamespaceURI() {
-		return targetNamespaceURI;
-	}
+        return targetNamespaceURI;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setTargetNamespaceURI(String newTargetNamespaceURI) {
-		String oldTargetNamespaceURI = targetNamespaceURI;
-		targetNamespaceURI = newTargetNamespaceURI;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI, oldTargetNamespaceURI, targetNamespaceURI));
-	}
+        String oldTargetNamespaceURI = targetNamespaceURI;
+        targetNamespaceURI = newTargetNamespaceURI;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI, oldTargetNamespaceURI, targetNamespaceURI));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String getSchemaLocationURI() {
-		return schemaLocationURI;
-	}
+        return schemaLocationURI;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setSchemaLocationURI(String newSchemaLocationURI) {
-		String oldSchemaLocationURI = schemaLocationURI;
-		schemaLocationURI = newSchemaLocationURI;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI, oldSchemaLocationURI, schemaLocationURI));
-	}
+        String oldSchemaLocationURI = schemaLocationURI;
+        schemaLocationURI = newSchemaLocationURI;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI, oldSchemaLocationURI, schemaLocationURI));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
-				return isNoNamespace() ? Boolean.TRUE : Boolean.FALSE;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
-				return getTargetNamespaceURI();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
-				return getSchemaLocationURI();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
+                return isNoNamespace() ? Boolean.TRUE : Boolean.FALSE;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
+                return getTargetNamespaceURI();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
+                return getSchemaLocationURI();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
-				setNoNamespace(((Boolean)newValue).booleanValue());
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
-				setTargetNamespaceURI((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
-				setSchemaLocationURI((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
+                setNoNamespace(((Boolean)newValue).booleanValue());
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
+                setTargetNamespaceURI((String)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
+                setSchemaLocationURI((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
-				setNoNamespace(NO_NAMESPACE_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
-				setTargetNamespaceURI(TARGET_NAMESPACE_URI_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
-				setSchemaLocationURI(SCHEMA_LOCATION_URI_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
+                setNoNamespace(NO_NAMESPACE_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
+                setTargetNamespaceURI(TARGET_NAMESPACE_URI_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
+                setSchemaLocationURI(SCHEMA_LOCATION_URI_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
-				return noNamespace != NO_NAMESPACE_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
-				return TARGET_NAMESPACE_URI_EDEFAULT == null ? targetNamespaceURI != null : !TARGET_NAMESPACE_URI_EDEFAULT.equals(targetNamespaceURI);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
-				return SCHEMA_LOCATION_URI_EDEFAULT == null ? schemaLocationURI != null : !SCHEMA_LOCATION_URI_EDEFAULT.equals(schemaLocationURI);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__NO_NAMESPACE:
+                return noNamespace != NO_NAMESPACE_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__TARGET_NAMESPACE_URI:
+                return TARGET_NAMESPACE_URI_EDEFAULT == null ? targetNamespaceURI != null : !TARGET_NAMESPACE_URI_EDEFAULT.equals(targetNamespaceURI);
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO_URI__SCHEMA_LOCATION_URI:
+                return SCHEMA_LOCATION_URI_EDEFAULT == null ? schemaLocationURI != null : !SCHEMA_LOCATION_URI_EDEFAULT.equals(schemaLocationURI);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (noNamespace: ");
-		result.append(noNamespace);
-		result.append(", targetNamespaceURI: ");
-		result.append(targetNamespaceURI);
-		result.append(", schemaLocationURI: ");
-		result.append(schemaLocationURI);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (noNamespace: ");
+        result.append(noNamespace);
+        result.append(", targetNamespaceURI: ");
+        result.append(targetNamespaceURI);
+        result.append(", schemaLocationURI: ");
+        result.append(schemaLocationURI);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLValueFunctionValidateAccordingToURIImpl

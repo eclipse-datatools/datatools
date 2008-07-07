@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionDocumentImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLValueFunctionDocumentImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -63,222 +63,222 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLValueFunctionDocumentImpl extends XMLValueFunctionImpl implements XMLValueFunctionDocument {
 	/**
-	 * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLReturningType RETURNING_OPTION_EDEFAULT = XMLReturningType.RETURNING_CONTENT_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected XMLReturningType returningOption = RETURNING_OPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDocumentContent() <em>Document Content</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDocumentContent() <em>Document Content</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getDocumentContent()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLValueFunctionDocumentContent documentContent = null;
+     * @see #getDocumentContent()
+     * @generated
+     * @ordered
+     */
+    protected XMLValueFunctionDocumentContent documentContent;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionDocumentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_DOCUMENT;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_DOCUMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLReturningType getReturningOption() {
-		return returningOption;
-	}
+        return returningOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setReturningOption(XMLReturningType newReturningOption) {
-		XMLReturningType oldReturningOption = returningOption;
-		returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION, oldReturningOption, returningOption));
-	}
+        XMLReturningType oldReturningOption = returningOption;
+        returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION, oldReturningOption, returningOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLValueFunctionDocumentContent getDocumentContent() {
-		return documentContent;
-	}
+        return documentContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetDocumentContent(XMLValueFunctionDocumentContent newDocumentContent, NotificationChain msgs) {
-		XMLValueFunctionDocumentContent oldDocumentContent = documentContent;
-		documentContent = newDocumentContent;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, oldDocumentContent, newDocumentContent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLValueFunctionDocumentContent oldDocumentContent = documentContent;
+        documentContent = newDocumentContent;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, oldDocumentContent, newDocumentContent);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setDocumentContent(XMLValueFunctionDocumentContent newDocumentContent) {
-		if (newDocumentContent != documentContent) {
-			NotificationChain msgs = null;
-			if (documentContent != null)
-				msgs = ((InternalEObject)documentContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, XMLValueFunctionDocumentContent.class, msgs);
-			if (newDocumentContent != null)
-				msgs = ((InternalEObject)newDocumentContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, XMLValueFunctionDocumentContent.class, msgs);
-			msgs = basicSetDocumentContent(newDocumentContent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, newDocumentContent, newDocumentContent));
-	}
+        if (newDocumentContent != documentContent) {
+            NotificationChain msgs = null;
+            if (documentContent != null)
+                msgs = ((InternalEObject)documentContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, XMLValueFunctionDocumentContent.class, msgs);
+            if (newDocumentContent != null)
+                msgs = ((InternalEObject)newDocumentContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, XMLValueFunctionDocumentContent.class, msgs);
+            msgs = basicSetDocumentContent(newDocumentContent, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, newDocumentContent, newDocumentContent));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				if (documentContent != null)
-					msgs = ((InternalEObject)documentContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, null, msgs);
-				return basicSetDocumentContent((XMLValueFunctionDocumentContent)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                if (documentContent != null)
+                    msgs = ((InternalEObject)documentContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, null, msgs);
+                return basicSetDocumentContent((XMLValueFunctionDocumentContent)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				return basicSetDocumentContent(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                return basicSetDocumentContent(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
-				return getReturningOption();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				return getDocumentContent();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
+                return getReturningOption();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                return getDocumentContent();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
-				setReturningOption((XMLReturningType)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				setDocumentContent((XMLValueFunctionDocumentContent)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
+                setReturningOption((XMLReturningType)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                setDocumentContent((XMLValueFunctionDocumentContent)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
-				setReturningOption(RETURNING_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				setDocumentContent((XMLValueFunctionDocumentContent)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
+                setReturningOption(RETURNING_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                setDocumentContent((XMLValueFunctionDocumentContent)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
-				return returningOption != RETURNING_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
-				return documentContent != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__RETURNING_OPTION:
+                return returningOption != RETURNING_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT:
+                return documentContent != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (returningOption: ");
-		result.append(returningOption);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (returningOption: ");
+        result.append(returningOption);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLValueFunctionDocumentImpl

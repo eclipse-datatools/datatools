@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLWhitespaceHandlingType.java,v 1.3 2005/12/22 22:21:18 bpayton Exp $
+ * $Id: XMLWhitespaceHandlingType.java,v 1.4 2007/02/08 17:04:22 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -23,156 +23,156 @@ import org.eclipse.emf.common.util.AbstractEnumerator;
  */
 public final class XMLWhitespaceHandlingType extends AbstractEnumerator {
 	/**
-	 * The '<em><b>PRESERE WHITESPACE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>PRESERE WHITESPACE</b></em>' literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #PRESERE_WHITESPACE_LITERAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
+     * @see #PRESERE_WHITESPACE_LITERAL
+     * @model
+     * @generated
+     * @ordered
+     */
     public static final int PRESERE_WHITESPACE = 0;
 
 	/**
-	 * The '<em><b>STRIP WHITESPACE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>STRIP WHITESPACE</b></em>' literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #STRIP_WHITESPACE_LITERAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
+     * @see #STRIP_WHITESPACE_LITERAL
+     * @model
+     * @generated
+     * @ordered
+     */
     public static final int STRIP_WHITESPACE = 1;
 
 	/**
-	 * The '<em><b>NONE</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>NONE</b></em>' literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #NONE_LITERAL
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
+     * @see #NONE_LITERAL
+     * @model
+     * @generated
+     * @ordered
+     */
     public static final int NONE = 2;
 
 	/**
-	 * The '<em><b>PRESERE WHITESPACE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>PRESERE WHITESPACE</b></em>' literal object.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>PRESERE WHITESPACE</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @see #PRESERE_WHITESPACE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #PRESERE_WHITESPACE
+     * @generated
+     * @ordered
+     */
     public static final XMLWhitespaceHandlingType PRESERE_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(PRESERE_WHITESPACE, "PRESERE_WHITESPACE", "PRESERE_WHITESPACE");
 
 	/**
-	 * The '<em><b>STRIP WHITESPACE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>STRIP WHITESPACE</b></em>' literal object.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>STRIP WHITESPACE</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @see #STRIP_WHITESPACE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #STRIP_WHITESPACE
+     * @generated
+     * @ordered
+     */
     public static final XMLWhitespaceHandlingType STRIP_WHITESPACE_LITERAL = new XMLWhitespaceHandlingType(STRIP_WHITESPACE, "STRIP_WHITESPACE", "STRIP_WHITESPACE");
 
 	/**
-	 * The '<em><b>NONE</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+     * The '<em><b>NONE</b></em>' literal object.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>NONE</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @see #NONE
-	 * @generated
-	 * @ordered
-	 */
+     * @see #NONE
+     * @generated
+     * @ordered
+     */
     public static final XMLWhitespaceHandlingType NONE_LITERAL = new XMLWhitespaceHandlingType(NONE, "NONE", "NONE");
 
 	/**
-	 * An array of all the '<em><b>XML Whitespace Handling Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * An array of all the '<em><b>XML Whitespace Handling Type</b></em>' enumerators.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     private static final XMLWhitespaceHandlingType[] VALUES_ARRAY =
 		new XMLWhitespaceHandlingType[] {
-			PRESERE_WHITESPACE_LITERAL,
-			STRIP_WHITESPACE_LITERAL,
-			NONE_LITERAL,
-		};
+            PRESERE_WHITESPACE_LITERAL,
+            STRIP_WHITESPACE_LITERAL,
+            NONE_LITERAL,
+        };
 
 	/**
-	 * A public read-only list of all the '<em><b>XML Whitespace Handling Type</b></em>' enumerators.
-	 * <!-- begin-user-doc -->
+     * A public read-only list of all the '<em><b>XML Whitespace Handling Type</b></em>' enumerators.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static final List VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified literal value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static XMLWhitespaceHandlingType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
+            if (result.toString().equals(literal)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static XMLWhitespaceHandlingType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
-				return result;
-			}
-		}
-		return null;
-	}
+        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+            XMLWhitespaceHandlingType result = VALUES_ARRAY[i];
+            if (result.getName().equals(name)) {
+                return result;
+            }
+        }
+        return null;
+    }
 
 	/**
-	 * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc -->
+     * Returns the '<em><b>XML Whitespace Handling Type</b></em>' literal with the specified integer value.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public static XMLWhitespaceHandlingType get(int value) {
-		switch (value) {
-			case PRESERE_WHITESPACE: return PRESERE_WHITESPACE_LITERAL;
-			case STRIP_WHITESPACE: return STRIP_WHITESPACE_LITERAL;
-			case NONE: return NONE_LITERAL;
-		}
-		return null;	
-	}
+        switch (value) {
+            case PRESERE_WHITESPACE: return PRESERE_WHITESPACE_LITERAL;
+            case STRIP_WHITESPACE: return STRIP_WHITESPACE_LITERAL;
+            case NONE: return NONE_LITERAL;
+        }
+        return null;
+    }
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc -->
+     * Only this class can construct instances.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private XMLWhitespaceHandlingType(int value, String name, String literal) {
-		super(value, name, literal);
-	}
+        super(value, name, literal);
+    }
 
 } //XMLWhitespaceHandlingType

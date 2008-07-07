@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelAdapterFactory.java,v 1.2 2005/12/22 22:18:50 bpayton Exp $
+ * $Id: SQLQueryModelAdapterFactory.java,v 1.3 2008/01/31 02:57:17 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.util;
 
@@ -330,6 +330,9 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
             }
             public Object caseQueryNested(QueryNested object) {
                 return createQueryNestedAdapter();
+            }
+            public Object caseValueExpressionRow(ValueExpressionRow object) {
+                return createValueExpressionRowAdapter();
             }
             public Object caseEModelElement(EModelElement object) {
                 return createEModelElementAdapter();
@@ -1535,6 +1538,20 @@ public class SQLQueryModelAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createQueryNestedAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow <em>Value Expression Row</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow
+     * @generated
+     */
+    public Adapter createValueExpressionRowAdapter() {
         return null;
     }
 

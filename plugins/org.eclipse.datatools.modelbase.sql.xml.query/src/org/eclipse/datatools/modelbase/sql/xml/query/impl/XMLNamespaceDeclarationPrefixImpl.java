@@ -1,7 +1,7 @@
 /**
  * </copyright>
  *
- * $Id: XMLNamespaceDeclarationPrefixImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLNamespaceDeclarationPrefixImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -37,131 +37,131 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLNamespaceDeclarationPrefixImpl extends XMLNamespaceDeclarationItemImpl implements XMLNamespaceDeclarationPrefix {
 	/**
-	 * The default value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getPrefix()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPrefix()
+     * @generated
+     * @ordered
+     */
     protected static final String PREFIX_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getPrefix()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPrefix()
+     * @generated
+     * @ordered
+     */
     protected String prefix = PREFIX_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLNamespaceDeclarationPrefixImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_NAMESPACE_DECLARATION_PREFIX;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_NAMESPACE_DECLARATION_PREFIX;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String getPrefix() {
-		return prefix;
-	}
+        return prefix;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setPrefix(String newPrefix) {
-		String oldPrefix = prefix;
-		prefix = newPrefix;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX, oldPrefix, prefix));
-	}
+        String oldPrefix = prefix;
+        prefix = newPrefix;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX, oldPrefix, prefix));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
-				return getPrefix();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
+                return getPrefix();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
-				setPrefix((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
+                setPrefix((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
-				setPrefix(PREFIX_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
+                setPrefix(PREFIX_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
-				return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_NAMESPACE_DECLARATION_PREFIX__PREFIX:
+                return PREFIX_EDEFAULT == null ? prefix != null : !PREFIX_EDEFAULT.equals(prefix);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (prefix: ");
-		result.append(prefix);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (prefix: ");
+        result.append(prefix);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLNamespaceDeclarationPrefixImpl

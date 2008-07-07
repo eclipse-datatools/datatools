@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValueExpression.java,v 1.2 2005/12/22 22:18:49 bpayton Exp $
+ * $Id: QueryValueExpression.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -52,6 +52,8 @@ import org.eclipse.datatools.modelbase.sql.expressions.ValueExpression;
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprLabeledDuration <em>Value Expr Labeled Duration</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getNest <em>Nest</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getUpdateSourceExprList <em>Update Source Expr List</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getTableFunction <em>Table Function</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprRow <em>Value Expr Row</em>}</li>
  * </ul>
  * </p>
  *
@@ -982,5 +984,61 @@ public interface QueryValueExpression extends SQLQueryObject, ValueExpression{
      * @generated
      */
   void setUpdateSourceExprList(UpdateSourceExprList value);
+
+    /**
+     * Returns the value of the '<em><b>Table Function</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.TableFunction#getParameterList <em>Parameter List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Table Function</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Table Function</em>' container reference.
+     * @see #setTableFunction(TableFunction)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_TableFunction()
+     * @see org.eclipse.datatools.modelbase.sql.query.TableFunction#getParameterList
+     * @model opposite="parameterList" required="true"
+     * @generated
+     */
+    TableFunction getTableFunction();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getTableFunction <em>Table Function</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Table Function</em>' container reference.
+     * @see #getTableFunction()
+     * @generated
+     */
+    void setTableFunction(TableFunction value);
+
+    /**
+     * Returns the value of the '<em><b>Value Expr Row</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getValueExprList <em>Value Expr List</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Value Expr Row</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Value Expr Row</em>' container reference.
+     * @see #setValueExprRow(ValueExpressionRow)
+     * @see org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage#getQueryValueExpression_ValueExprRow()
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getValueExprList
+     * @model opposite="valueExprList" required="true"
+     * @generated
+     */
+    ValueExpressionRow getValueExprRow();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprRow <em>Value Expr Row</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value Expr Row</em>' container reference.
+     * @see #getValueExprRow()
+     * @generated
+     */
+    void setValueExprRow(ValueExpressionRow value);
 
 } // SQLValueExpression

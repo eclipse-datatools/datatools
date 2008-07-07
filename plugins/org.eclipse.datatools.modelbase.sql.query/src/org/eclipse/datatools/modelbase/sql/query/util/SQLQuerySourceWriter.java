@@ -78,6 +78,7 @@ import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupType;
 import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableFunction;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
@@ -613,6 +614,9 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
     /** String constant, value: "SOME" */
     protected final static String SOME                  = "SOME";
+
+    /** String constant, value: "TABLE" */
+    protected final static String TABLE                 = "TABLE";
 
     /** String constant, value: "THEN" */
     protected final static String THEN                  = "THEN";
@@ -2969,7 +2973,9 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                     && tableCor.getName().trim().length() > 0)
             {
                 // the alias name of the referenced table cascades the table name
-                sb.append(tableCor.getName());
+                String tableCorrName = tableCor.getName();
+                tableCorrName = StatementHelper.convertCatalogIdentifierToSQLFormat(tableCorrName, getDelimitedIdentifierQuote());
+                sb.append(tableCorrName);
             } 
             else if (tableExpr instanceof TableInDatabase)
             {
@@ -3032,6 +3038,49 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
     protected void appendSpecificSQL(TableCorrelation tableCorrelation, StringBuffer sb)
     {
         sb.append(StatementHelper.convertCatalogIdentifierToSQLFormat(tableCorrelation.getName(), getDelimitedIdentifierQuote()));
+        
+        if (tableCorrelation.getColumnNameList().size() > 0)
+        {
+            List columnNameList = tableCorrelation.getColumnNameList();
+            sb.append(SPACE);
+            sb.append(PAREN_LEFT);
+            appendSQLForSQLObjectList(columnNameList, sb);
+            sb.append(PAREN_RIGHT);
+        }
+    }
+
+    protected void appendSpecificSQL(TableFunction tableFunc, StringBuffer sb)
+    {
+        sb.append(TABLE);
+        sb.append(SPACE);
+        sb.append(PAREN_LEFT);
+        
+        if(tableFunc.getFunction() != null && tableFunc.getFunction().getSchema() != null){
+            if(tableFunc.getFunction().getSchema().getName() != null){
+                sb.append(StatementHelper.convertCatalogIdentifierToSQLFormat(tableFunc.getFunction().getSchema().getName(), getDelimitedIdentifierQuote()));
+                sb.append(DOT);
+            }
+        }
+
+        sb.append(StatementHelper.convertCatalogIdentifierToSQLFormat(tableFunc.getName(), getDelimitedIdentifierQuote()));
+        sb.append(PAREN_LEFT);
+                        
+        List paramList = tableFunc.getParameterList();
+        if (paramList != null) 
+        {
+            appendSQLForSQLObjectList(paramList, sb);
+        }
+            
+        sb.append(PAREN_RIGHT);
+        sb.append(PAREN_RIGHT);
+
+        TableCorrelation tableCorr = tableFunc.getTableCorrelation();
+        if (tableCorr != null) {
+            sb.append(SPACE);
+            sb.append(AS);
+            sb.append(SPACE);
+            appendSQL(tableCorr, sb);
+        }
     }
 
     /**
@@ -3147,21 +3196,21 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             sb.append(PAREN_LEFT);
             appendSQL(nestedQuery, sb);
             sb.append(PAREN_RIGHT);
-            if (nestedQuery.getTableCorrelation() != null) {
+            
+            TableCorrelation tableCorr = nestedQuery.getTableCorrelation();
+            if (tableCorr != null) {           
                 sb.append(SPACE);
                 sb.append(AS);
                 sb.append(SPACE);
-                sb.append(StatementHelper.convertCatalogIdentifierToSQLFormat(nestedQuery.getTableCorrelation().getName(), getDelimitedIdentifierQuote()));
+                appendSQL(tableCorr, sb);
             }
         }
-/*        else if (tableRef instanceof TableFunction)
+        else if (tableRef instanceof TableFunction)
         {
-            //TODO: uncomment only if there is a method appendSQL(TableFunction,StringBuffer), otherwise endless loop cause this appendSQL(TableReference,StringBuffer) will be invoked again
-            //TableFunction tableFunction = (TableFunction) tableRef;
-            //appendSQL(tableFunction, sb);
-            throw new UnsupportedOperationException("appendSQL(TableReference,StringBuffer) not implemented for "+tableRef.getClass().getName()+" in "+this.getClass().getName());
+            TableFunction tableFunction = (TableFunction) tableRef;
+            appendSQL(tableFunction, sb);
         }
-*/      else 
+      else 
         {
             // is there a new type to be considered?
             // invoke the general dispatcher appendSQL method to get the correct runtime type

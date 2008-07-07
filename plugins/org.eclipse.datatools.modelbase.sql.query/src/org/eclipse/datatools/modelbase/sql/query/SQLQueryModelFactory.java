@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactory.java,v 1.2 2007/02/08 17:00:23 bpayton Exp $
+ * $Id: SQLQueryModelFactory.java,v 1.3 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -600,6 +600,15 @@ public interface SQLQueryModelFactory extends EFactory {
      * @generated
      */
     QueryNested createQueryNested();
+
+    /**
+     * Returns a new object of class '<em>Value Expression Row</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Value Expression Row</em>'.
+     * @generated
+     */
+    ValueExpressionRow createValueExpressionRow();
 
     /**
      * Returns the package supported by this factory.

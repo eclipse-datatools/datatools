@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicateContentImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLPredicateContentImpl.java,v 1.5 2007/02/08 17:04:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -41,21 +41,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLPredicateContentImpl extends XMLPredicateImpl implements XMLPredicateContent {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLPredicateContentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_PREDICATE_CONTENT;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_PREDICATE_CONTENT;
+    }
 
 } //XMLPredicateContentImpl

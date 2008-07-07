@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLTableColumnDefinitionOrdinalityImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLTableColumnDefinitionOrdinalityImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -32,21 +32,21 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLTableColumnDefinitionOrdinalityImpl extends XMLTableColumnDefinitionItemImpl implements XMLTableColumnDefinitionOrdinality {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLTableColumnDefinitionOrdinalityImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ORDINALITY;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_TABLE_COLUMN_DEFINITION_ORDINALITY;
+    }
 
 } //XMLTableColumnDefinitionOrdinalityImpl

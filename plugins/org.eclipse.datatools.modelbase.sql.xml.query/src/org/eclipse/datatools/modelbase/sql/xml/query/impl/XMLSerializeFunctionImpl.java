@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLSerializeFunctionImpl.java,v 1.4 2005/12/22 22:21:18 bpayton Exp $
+ * $Id: XMLSerializeFunctionImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -69,393 +69,393 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLSerializeFunctionImpl extends ValueExpressionFunctionImpl implements XMLSerializeFunction {
 	/**
-	 * The default value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContentOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContentOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLContentType CONTENT_OPTION_EDEFAULT = XMLContentType.CONTENT_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContentOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContentOption()
+     * @generated
+     * @ordered
+     */
     protected XMLContentType contentOption = CONTENT_OPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSerializeVersion() <em>Serialize Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getSerializeVersion() <em>Serialize Version</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSerializeVersion()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSerializeVersion()
+     * @generated
+     * @ordered
+     */
     protected static final String SERIALIZE_VERSION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSerializeVersion() <em>Serialize Version</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSerializeVersion() <em>Serialize Version</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSerializeVersion()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSerializeVersion()
+     * @generated
+     * @ordered
+     */
     protected String serializeVersion = SERIALIZE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDeclarationOption() <em>Declaration Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDeclarationOption() <em>Declaration Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getDeclarationOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDeclarationOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLDeclarationType DECLARATION_OPTION_EDEFAULT = XMLDeclarationType.EXCLUDING_XMLDECLARATION_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getDeclarationOption() <em>Declaration Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDeclarationOption() <em>Declaration Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getDeclarationOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDeclarationOption()
+     * @generated
+     * @ordered
+     */
     protected XMLDeclarationType declarationOption = DECLARATION_OPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSerializeTarget() <em>Serialize Target</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSerializeTarget() <em>Serialize Target</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSerializeTarget()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLSerializeFunctionTarget serializeTarget = null;
+     * @see #getSerializeTarget()
+     * @generated
+     * @ordered
+     */
+    protected XMLSerializeFunctionTarget serializeTarget;
 
 	/**
-	 * The cached value of the '{@link #getSerializeEncoding() <em>Serialize Encoding</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSerializeEncoding() <em>Serialize Encoding</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSerializeEncoding()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLSerializeFunctionEncoding serializeEncoding = null;
+     * @see #getSerializeEncoding()
+     * @generated
+     * @ordered
+     */
+    protected XMLSerializeFunctionEncoding serializeEncoding;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLSerializeFunctionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_SERIALIZE_FUNCTION;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_SERIALIZE_FUNCTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLContentType getContentOption() {
-		return contentOption;
-	}
+        return contentOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setContentOption(XMLContentType newContentOption) {
-		XMLContentType oldContentOption = contentOption;
-		contentOption = newContentOption == null ? CONTENT_OPTION_EDEFAULT : newContentOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION, oldContentOption, contentOption));
-	}
+        XMLContentType oldContentOption = contentOption;
+        contentOption = newContentOption == null ? CONTENT_OPTION_EDEFAULT : newContentOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION, oldContentOption, contentOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String getSerializeVersion() {
-		return serializeVersion;
-	}
+        return serializeVersion;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setSerializeVersion(String newSerializeVersion) {
-		String oldSerializeVersion = serializeVersion;
-		serializeVersion = newSerializeVersion;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION, oldSerializeVersion, serializeVersion));
-	}
+        String oldSerializeVersion = serializeVersion;
+        serializeVersion = newSerializeVersion;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION, oldSerializeVersion, serializeVersion));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLDeclarationType getDeclarationOption() {
-		return declarationOption;
-	}
+        return declarationOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setDeclarationOption(XMLDeclarationType newDeclarationOption) {
-		XMLDeclarationType oldDeclarationOption = declarationOption;
-		declarationOption = newDeclarationOption == null ? DECLARATION_OPTION_EDEFAULT : newDeclarationOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION, oldDeclarationOption, declarationOption));
-	}
+        XMLDeclarationType oldDeclarationOption = declarationOption;
+        declarationOption = newDeclarationOption == null ? DECLARATION_OPTION_EDEFAULT : newDeclarationOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION, oldDeclarationOption, declarationOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLSerializeFunctionTarget getSerializeTarget() {
-		return serializeTarget;
-	}
+        return serializeTarget;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetSerializeTarget(XMLSerializeFunctionTarget newSerializeTarget, NotificationChain msgs) {
-		XMLSerializeFunctionTarget oldSerializeTarget = serializeTarget;
-		serializeTarget = newSerializeTarget;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, oldSerializeTarget, newSerializeTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLSerializeFunctionTarget oldSerializeTarget = serializeTarget;
+        serializeTarget = newSerializeTarget;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, oldSerializeTarget, newSerializeTarget);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setSerializeTarget(XMLSerializeFunctionTarget newSerializeTarget) {
-		if (newSerializeTarget != serializeTarget) {
-			NotificationChain msgs = null;
-			if (serializeTarget != null)
-				msgs = ((InternalEObject)serializeTarget).eInverseRemove(this, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION, XMLSerializeFunctionTarget.class, msgs);
-			if (newSerializeTarget != null)
-				msgs = ((InternalEObject)newSerializeTarget).eInverseAdd(this, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION, XMLSerializeFunctionTarget.class, msgs);
-			msgs = basicSetSerializeTarget(newSerializeTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, newSerializeTarget, newSerializeTarget));
-	}
+        if (newSerializeTarget != serializeTarget) {
+            NotificationChain msgs = null;
+            if (serializeTarget != null)
+                msgs = ((InternalEObject)serializeTarget).eInverseRemove(this, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION, XMLSerializeFunctionTarget.class, msgs);
+            if (newSerializeTarget != null)
+                msgs = ((InternalEObject)newSerializeTarget).eInverseAdd(this, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION_TARGET__SERIALIZE_FUNCTION, XMLSerializeFunctionTarget.class, msgs);
+            msgs = basicSetSerializeTarget(newSerializeTarget, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, newSerializeTarget, newSerializeTarget));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLSerializeFunctionEncoding getSerializeEncoding() {
-		return serializeEncoding;
-	}
+        return serializeEncoding;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetSerializeEncoding(XMLSerializeFunctionEncoding newSerializeEncoding, NotificationChain msgs) {
-		XMLSerializeFunctionEncoding oldSerializeEncoding = serializeEncoding;
-		serializeEncoding = newSerializeEncoding;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, oldSerializeEncoding, newSerializeEncoding);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLSerializeFunctionEncoding oldSerializeEncoding = serializeEncoding;
+        serializeEncoding = newSerializeEncoding;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, oldSerializeEncoding, newSerializeEncoding);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setSerializeEncoding(XMLSerializeFunctionEncoding newSerializeEncoding) {
-		if (newSerializeEncoding != serializeEncoding) {
-			NotificationChain msgs = null;
-			if (serializeEncoding != null)
-				msgs = ((InternalEObject)serializeEncoding).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, null, msgs);
-			if (newSerializeEncoding != null)
-				msgs = ((InternalEObject)newSerializeEncoding).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, null, msgs);
-			msgs = basicSetSerializeEncoding(newSerializeEncoding, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, newSerializeEncoding, newSerializeEncoding));
-	}
+        if (newSerializeEncoding != serializeEncoding) {
+            NotificationChain msgs = null;
+            if (serializeEncoding != null)
+                msgs = ((InternalEObject)serializeEncoding).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, null, msgs);
+            if (newSerializeEncoding != null)
+                msgs = ((InternalEObject)newSerializeEncoding).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, null, msgs);
+            msgs = basicSetSerializeEncoding(newSerializeEncoding, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING, newSerializeEncoding, newSerializeEncoding));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				if (serializeTarget != null)
-					msgs = ((InternalEObject)serializeTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, null, msgs);
-				return basicSetSerializeTarget((XMLSerializeFunctionTarget)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                if (serializeTarget != null)
+                    msgs = ((InternalEObject)serializeTarget).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET, null, msgs);
+                return basicSetSerializeTarget((XMLSerializeFunctionTarget)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				return basicSetSerializeTarget(null, msgs);
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
-				return basicSetSerializeEncoding(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                return basicSetSerializeTarget(null, msgs);
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
+                return basicSetSerializeEncoding(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
-				return getContentOption();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
-				return getSerializeVersion();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
-				return getDeclarationOption();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				return getSerializeTarget();
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
-				return getSerializeEncoding();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
+                return getContentOption();
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
+                return getSerializeVersion();
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
+                return getDeclarationOption();
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                return getSerializeTarget();
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
+                return getSerializeEncoding();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
-				setContentOption((XMLContentType)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
-				setSerializeVersion((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
-				setDeclarationOption((XMLDeclarationType)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				setSerializeTarget((XMLSerializeFunctionTarget)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
-				setSerializeEncoding((XMLSerializeFunctionEncoding)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
+                setContentOption((XMLContentType)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
+                setSerializeVersion((String)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
+                setDeclarationOption((XMLDeclarationType)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                setSerializeTarget((XMLSerializeFunctionTarget)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
+                setSerializeEncoding((XMLSerializeFunctionEncoding)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
-				setContentOption(CONTENT_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
-				setSerializeVersion(SERIALIZE_VERSION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
-				setDeclarationOption(DECLARATION_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				setSerializeTarget((XMLSerializeFunctionTarget)null);
-				return;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
-				setSerializeEncoding((XMLSerializeFunctionEncoding)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
+                setContentOption(CONTENT_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
+                setSerializeVersion(SERIALIZE_VERSION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
+                setDeclarationOption(DECLARATION_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                setSerializeTarget((XMLSerializeFunctionTarget)null);
+                return;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
+                setSerializeEncoding((XMLSerializeFunctionEncoding)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
-				return contentOption != CONTENT_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
-				return SERIALIZE_VERSION_EDEFAULT == null ? serializeVersion != null : !SERIALIZE_VERSION_EDEFAULT.equals(serializeVersion);
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
-				return declarationOption != DECLARATION_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
-				return serializeTarget != null;
-			case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
-				return serializeEncoding != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__CONTENT_OPTION:
+                return contentOption != CONTENT_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_VERSION:
+                return SERIALIZE_VERSION_EDEFAULT == null ? serializeVersion != null : !SERIALIZE_VERSION_EDEFAULT.equals(serializeVersion);
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__DECLARATION_OPTION:
+                return declarationOption != DECLARATION_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_TARGET:
+                return serializeTarget != null;
+            case SQLXMLQueryModelPackage.XML_SERIALIZE_FUNCTION__SERIALIZE_ENCODING:
+                return serializeEncoding != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (contentOption: ");
-		result.append(contentOption);
-		result.append(", serializeVersion: ");
-		result.append(serializeVersion);
-		result.append(", declarationOption: ");
-		result.append(declarationOption);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (contentOption: ");
+        result.append(contentOption);
+        result.append(", serializeVersion: ");
+        result.append(serializeVersion);
+        result.append(", declarationOption: ");
+        result.append(declarationOption);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLSerializeFunctionImpl

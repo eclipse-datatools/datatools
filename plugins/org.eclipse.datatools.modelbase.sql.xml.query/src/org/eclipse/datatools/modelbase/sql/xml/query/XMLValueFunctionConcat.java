@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionConcat.java,v 1.1 2005/12/16 13:16:53 bpayton Exp $
+ * $Id: XMLValueFunctionConcat.java,v 1.2 2005/12/22 22:21:19 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -31,50 +31,50 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface XMLValueFunctionConcat extends XMLValueFunction{
 	/**
-	 * Returns the value of the '<em><b>Returning Option</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Returning Option</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType}.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Returning Option</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Returning Option</em>' attribute.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
-	 * @see #setReturningOption(XMLReturningType)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcat_ReturningOption()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Returning Option</em>' attribute.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
+     * @see #setReturningOption(XMLReturningType)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcat_ReturningOption()
+     * @model
+     * @generated
+     */
     XMLReturningType getReturningOption();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcat#getReturningOption <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcat#getReturningOption <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Returning Option</em>' attribute.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
-	 * @see #getReturningOption()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Returning Option</em>' attribute.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLReturningType
+     * @see #getReturningOption()
+     * @generated
+     */
     void setReturningOption(XMLReturningType value);
 
 	/**
-	 * Returns the value of the '<em><b>Concat Content List</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem}.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem#getValueFunctionConcat <em>Value Function Concat</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Concat Content List</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem#getValueFunctionConcat <em>Value Function Concat</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Concat Content List</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Concat Content List</em>' containment reference list.
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcat_ConcatContentList()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem#getValueFunctionConcat
-	 * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem" opposite="valueFunctionConcat" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Concat Content List</em>' containment reference list.
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionConcat_ConcatContentList()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem#getValueFunctionConcat
+     * @model type="org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionConcatContentItem" opposite="valueFunctionConcat" containment="true" required="true"
+     * @generated
+     */
     EList getConcatContentList();
 
 } // XMLValueFunctionConcat

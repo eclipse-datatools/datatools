@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionForestContentItem.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLValueFunctionForestContentItem.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -27,57 +27,57 @@ import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
  */
 public interface XMLValueFunctionForestContentItem extends QueryValueExpression{
 	/**
-	 * Returns the value of the '<em><b>Value Function Forest</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getForestContentList <em>Forest Content List</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Value Function Forest</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getForestContentList <em>Forest Content List</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Value Function Forest</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Function Forest</em>' container reference.
-	 * @see #setValueFunctionForest(XMLValueFunctionForest)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueFunctionForest()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getForestContentList
-	 * @model opposite="forestContentList" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Value Function Forest</em>' container reference.
+     * @see #setValueFunctionForest(XMLValueFunctionForest)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueFunctionForest()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForest#getForestContentList
+     * @model opposite="forestContentList" required="true"
+     * @generated
+     */
     XMLValueFunctionForest getValueFunctionForest();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem#getValueFunctionForest <em>Value Function Forest</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem#getValueFunctionForest <em>Value Function Forest</em>}' container reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Function Forest</em>' container reference.
-	 * @see #getValueFunctionForest()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Value Function Forest</em>' container reference.
+     * @see #getValueFunctionForest()
+     * @generated
+     */
     void setValueFunctionForest(XMLValueFunctionForest value);
 
 	/**
-	 * Returns the value of the '<em><b>Value Expr</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Value Expr</b></em>' containment reference.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Value Expr</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value Expr</em>' containment reference.
-	 * @see #setValueExpr(QueryValueExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueExpr()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Value Expr</em>' containment reference.
+     * @see #setValueExpr(QueryValueExpression)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionForestContentItem_ValueExpr()
+     * @model containment="true" required="true"
+     * @generated
+     */
     QueryValueExpression getValueExpr();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem#getValueExpr <em>Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionForestContentItem#getValueExpr <em>Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value Expr</em>' containment reference.
-	 * @see #getValueExpr()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Value Expr</em>' containment reference.
+     * @see #getValueExpr()
+     * @generated
+     */
     void setValueExpr(QueryValueExpression value);
 
 } // XMLValueFunctionForestContentItem

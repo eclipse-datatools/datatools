@@ -163,6 +163,10 @@
         transient="true" eOpposite="#//ValueExpressionNested/nestedValueExpr"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="updateSourceExprList" eType="#//UpdateSourceExprList"
         transient="true" eOpposite="#//UpdateSourceExprList/valueExprList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tableFunction" lowerBound="1"
+        eType="#//TableFunction" transient="true" eOpposite="#//TableFunction/parameterList"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprRow" lowerBound="1"
+        eType="#//ValueExpressionRow" transient="true" eOpposite="#//ValueExpressionRow/valueExprList"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryExpressionRoot" eSuperTypes="#//SQLQueryObject ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//expressions/QueryExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="insertStatement" eType="#//QueryInsertStatement"
@@ -593,7 +597,12 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TableFunction" eSuperTypes="#//TableExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableFunction" eSuperTypes="#//TableExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//routines/Function"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterList" upperBound="-1"
+        eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/tableFunction"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SQLQueryObject" abstract="true" eSuperTypes="../../org.eclipse.datatools.modelbase.sql/model/sqlmodel.ecore#//schema/SQLObject">
     <eOperations name="getSQL" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="setSQL">
@@ -673,5 +682,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="QueryNested" eSuperTypes="#//QueryExpressionBody">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nestedQuery" lowerBound="1"
         eType="#//QueryExpressionBody" containment="true" eOpposite="#//QueryExpressionBody/queryNest"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueExpressionRow" eSuperTypes="#//QueryValueExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueExprList" upperBound="-1"
+        eType="#//QueryValueExpression" containment="true" eOpposite="#//QueryValueExpression/valueExprRow"/>
   </eClassifiers>
 </ecore:EPackage>

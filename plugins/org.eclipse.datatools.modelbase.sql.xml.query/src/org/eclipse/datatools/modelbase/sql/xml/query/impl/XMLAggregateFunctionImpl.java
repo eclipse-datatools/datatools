@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLAggregateFunctionImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLAggregateFunctionImpl.java,v 1.5 2007/02/08 17:04:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -66,190 +66,190 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLAggregateFunctionImpl extends ValueExpressionFunctionImpl implements XMLAggregateFunction {
 	/**
-	 * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLReturningType RETURNING_OPTION_EDEFAULT = XMLReturningType.RETURNING_CONTENT_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected XMLReturningType returningOption = RETURNING_OPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSortSpecList() <em>Sort Spec List</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSortSpecList() <em>Sort Spec List</em>}' containment reference list.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getSortSpecList()
-	 * @generated
-	 * @ordered
-	 */
-    protected EList sortSpecList = null;
+     * @see #getSortSpecList()
+     * @generated
+     * @ordered
+     */
+    protected EList sortSpecList;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLAggregateFunctionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_AGGREGATE_FUNCTION;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_AGGREGATE_FUNCTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLReturningType getReturningOption() {
-		return returningOption;
-	}
+        return returningOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setReturningOption(XMLReturningType newReturningOption) {
-		XMLReturningType oldReturningOption = returningOption;
-		returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION, oldReturningOption, returningOption));
-	}
+        XMLReturningType oldReturningOption = returningOption;
+        returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION, oldReturningOption, returningOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public EList getSortSpecList() {
-		if (sortSpecList == null) {
-			sortSpecList = new EObjectContainmentWithInverseEList(XMLAggregateSortSpecification.class, this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION);
-		}
-		return sortSpecList;
-	}
+        if (sortSpecList == null) {
+            sortSpecList = new EObjectContainmentWithInverseEList(XMLAggregateSortSpecification.class, this, SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST, SQLXMLQueryModelPackage.XML_AGGREGATE_SORT_SPECIFICATION__AGGREGATE_FUNCTION);
+        }
+        return sortSpecList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				return ((InternalEList)getSortSpecList()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                return ((InternalEList)getSortSpecList()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				return ((InternalEList)getSortSpecList()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                return ((InternalEList)getSortSpecList()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
-				return getReturningOption();
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				return getSortSpecList();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
+                return getReturningOption();
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                return getSortSpecList();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
-				setReturningOption((XMLReturningType)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				getSortSpecList().clear();
-				getSortSpecList().addAll((Collection)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
+                setReturningOption((XMLReturningType)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                getSortSpecList().clear();
+                getSortSpecList().addAll((Collection)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
-				setReturningOption(RETURNING_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				getSortSpecList().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
+                setReturningOption(RETURNING_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                getSortSpecList().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
-				return returningOption != RETURNING_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
-				return sortSpecList != null && !sortSpecList.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__RETURNING_OPTION:
+                return returningOption != RETURNING_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_AGGREGATE_FUNCTION__SORT_SPEC_LIST:
+                return sortSpecList != null && !sortSpecList.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (returningOption: ");
-		result.append(returningOption);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (returningOption: ");
+        result.append(returningOption);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLAggregateFunctionImpl

@@ -685,7 +685,7 @@ public static void resolveValueExpressionCaseDatatype( ValueExpressionCase aValE
   }
 
   if (contentDatatype != null) {
-    aValExpr.setDataType( contentDatatype );
+      aValExpr.setDataType(copyDataType(contentDatatype));
   }
 }
 
@@ -1301,7 +1301,7 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
             }
         }
     
-        aValExpr.setDataType(dataType);
+        aValExpr.setDataType(copyDataType(dataType));
     }
 }
 

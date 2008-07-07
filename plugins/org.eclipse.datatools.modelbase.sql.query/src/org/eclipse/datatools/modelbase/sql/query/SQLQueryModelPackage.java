@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackage.java,v 1.3 2007/05/31 00:29:56 dpchou Exp $
+ * $Id: SQLQueryModelPackage.java,v 1.4 2008/01/31 02:57:16 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query;
 
@@ -1994,13 +1994,31 @@ public interface SQLQueryModelPackage extends EPackage {
 	int QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST = SQL_QUERY_OBJECT_FEATURE_COUNT + 32;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUE_EXPRESSION__TABLE_FUNCTION = SQL_QUERY_OBJECT_FEATURE_COUNT + 33;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW = SQL_QUERY_OBJECT_FEATURE_COUNT + 34;
+
+    /**
      * The number of structural features of the '<em>Query Value Expression</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int QUERY_VALUE_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 33;
+	int QUERY_VALUE_EXPRESSION_FEATURE_COUNT = SQL_QUERY_OBJECT_FEATURE_COUNT + 35;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl <em>Query Expression Root</em>}' class.
@@ -7368,6 +7386,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST = QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION = QUERY_VALUE_EXPRESSION__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
      * The number of structural features of the '<em>Value Expression Atomic</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7747,6 +7783,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_SIMPLE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SIMPLE__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SIMPLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8135,6 +8189,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COLUMN__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COLUMN__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COLUMN__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Assignment Expr Target</b></em>' reference list.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8559,6 +8631,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_VARIABLE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_VARIABLE__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_VARIABLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Query Select</b></em>' container reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8947,6 +9037,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_SCALAR_SELECT__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SCALAR_SELECT__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_SCALAR_SELECT__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Query Expr</b></em>' reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9335,6 +9443,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_LABELED_DURATION__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_LABELED_DURATION__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_LABELED_DURATION__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Labeled Duration Type</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9732,6 +9858,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10120,6 +10264,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CAST__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CAST__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CAST__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10508,6 +10670,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_NULL_VALUE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NULL_VALUE__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NULL_VALUE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The number of structural features of the '<em>Value Expression Null Value</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10887,6 +11067,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_DEFAULT_VALUE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_DEFAULT_VALUE__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_DEFAULT_VALUE__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The number of structural features of the '<em>Value Expression Default Value</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11266,6 +11464,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_FUNCTION__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_ATOMIC__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_FUNCTION__TABLE_FUNCTION = VALUE_EXPRESSION_ATOMIC__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_FUNCTION__VALUE_EXPR_ROW = VALUE_EXPRESSION_ATOMIC__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Special Register</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11690,6 +11906,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_COMBINED__UPDATE_SOURCE_EXPR_LIST = QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COMBINED__TABLE_FUNCTION = QUERY_VALUE_EXPRESSION__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_COMBINED__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Combined Operator</b></em>' attribute.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13132,6 +13366,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SEARCH__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_CASE__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SEARCH__TABLE_FUNCTION = VALUE_EXPRESSION_CASE__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SEARCH__VALUE_EXPR_ROW = VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13529,6 +13781,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_CASE_SIMPLE__UPDATE_SOURCE_EXPR_LIST = VALUE_EXPRESSION_CASE__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SIMPLE__TABLE_FUNCTION = VALUE_EXPRESSION_CASE__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_CASE_SIMPLE__VALUE_EXPR_ROW = VALUE_EXPRESSION_CASE__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Case Else</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14227,13 +14497,31 @@ public interface SQLQueryModelPackage extends EPackage {
 	int TABLE_FUNCTION__VALUE_EXPR_COLUMNS = TABLE_EXPRESSION__VALUE_EXPR_COLUMNS;
 
 	/**
+     * The feature id for the '<em><b>Function</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_FUNCTION__FUNCTION = TABLE_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Parameter List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TABLE_FUNCTION__PARAMETER_LIST = TABLE_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Table Function</em>' class.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-	int TABLE_FUNCTION_FEATURE_COUNT = TABLE_EXPRESSION_FEATURE_COUNT + 0;
+	int TABLE_FUNCTION_FEATURE_COUNT = TABLE_EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ColumnNameImpl <em>Column Name</em>}' class.
@@ -15096,6 +15384,24 @@ public interface SQLQueryModelPackage extends EPackage {
 	int VALUE_EXPRESSION_NESTED__UPDATE_SOURCE_EXPR_LIST = QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST;
 
 	/**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NESTED__TABLE_FUNCTION = QUERY_VALUE_EXPRESSION__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_NESTED__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
      * The feature id for the '<em><b>Nested Value Expr</b></em>' containment reference.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16148,6 +16454,412 @@ public interface SQLQueryModelPackage extends EPackage {
     int QUERY_NESTED_FEATURE_COUNT = QUERY_EXPRESSION_BODY_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionRowImpl <em>Value Expression Row</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionRowImpl
+     * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionRow()
+     * @generated
+     */
+    int VALUE_EXPRESSION_ROW = 83;
+
+    /**
+     * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__EANNOTATIONS = QUERY_VALUE_EXPRESSION__EANNOTATIONS;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__NAME = QUERY_VALUE_EXPRESSION__NAME;
+
+    /**
+     * The feature id for the '<em><b>Dependencies</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__DEPENDENCIES = QUERY_VALUE_EXPRESSION__DEPENDENCIES;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__DESCRIPTION = QUERY_VALUE_EXPRESSION__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Label</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__LABEL = QUERY_VALUE_EXPRESSION__LABEL;
+
+    /**
+     * The feature id for the '<em><b>Comments</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__COMMENTS = QUERY_VALUE_EXPRESSION__COMMENTS;
+
+    /**
+     * The feature id for the '<em><b>Privileges</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__PRIVILEGES = QUERY_VALUE_EXPRESSION__PRIVILEGES;
+
+    /**
+     * The feature id for the '<em><b>Unary Operator</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__UNARY_OPERATOR = QUERY_VALUE_EXPRESSION__UNARY_OPERATOR;
+
+    /**
+     * The feature id for the '<em><b>Data Type</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__DATA_TYPE = QUERY_VALUE_EXPRESSION__DATA_TYPE;
+
+    /**
+     * The feature id for the '<em><b>Values Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUES_ROW = QUERY_VALUE_EXPRESSION__VALUES_ROW;
+
+    /**
+     * The feature id for the '<em><b>Order By Value Expr</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__ORDER_BY_VALUE_EXPR = QUERY_VALUE_EXPRESSION__ORDER_BY_VALUE_EXPR;
+
+    /**
+     * The feature id for the '<em><b>Result Column</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__RESULT_COLUMN = QUERY_VALUE_EXPRESSION__RESULT_COLUMN;
+
+    /**
+     * The feature id for the '<em><b>Basic Right</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__BASIC_RIGHT = QUERY_VALUE_EXPRESSION__BASIC_RIGHT;
+
+    /**
+     * The feature id for the '<em><b>Basic Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__BASIC_LEFT = QUERY_VALUE_EXPRESSION__BASIC_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Like Pattern</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__LIKE_PATTERN = QUERY_VALUE_EXPRESSION__LIKE_PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Like Matching</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__LIKE_MATCHING = QUERY_VALUE_EXPRESSION__LIKE_MATCHING;
+
+    /**
+     * The feature id for the '<em><b>Predicate Null</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__PREDICATE_NULL = QUERY_VALUE_EXPRESSION__PREDICATE_NULL;
+
+    /**
+     * The feature id for the '<em><b>In Value List Right</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__IN_VALUE_LIST_RIGHT = QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_RIGHT;
+
+    /**
+     * The feature id for the '<em><b>In Value List Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__IN_VALUE_LIST_LEFT = QUERY_VALUE_EXPRESSION__IN_VALUE_LIST_LEFT;
+
+    /**
+     * The feature id for the '<em><b>In Value Row Select Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__IN_VALUE_ROW_SELECT_LEFT = QUERY_VALUE_EXPRESSION__IN_VALUE_ROW_SELECT_LEFT;
+
+    /**
+     * The feature id for the '<em><b>In Value Select Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__IN_VALUE_SELECT_LEFT = QUERY_VALUE_EXPRESSION__IN_VALUE_SELECT_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Quantified Row Select Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__QUANTIFIED_ROW_SELECT_LEFT = QUERY_VALUE_EXPRESSION__QUANTIFIED_ROW_SELECT_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Quantified Value Select Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__QUANTIFIED_VALUE_SELECT_LEFT = QUERY_VALUE_EXPRESSION__QUANTIFIED_VALUE_SELECT_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Between Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__BETWEEN_LEFT = QUERY_VALUE_EXPRESSION__BETWEEN_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Between Right1</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__BETWEEN_RIGHT1 = QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT1;
+
+    /**
+     * The feature id for the '<em><b>Between Right2</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__BETWEEN_RIGHT2 = QUERY_VALUE_EXPRESSION__BETWEEN_RIGHT2;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Cast</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CAST = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CAST;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_FUNCTION = QUERY_VALUE_EXPRESSION__VALUE_EXPR_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Combined Left</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_COMBINED_LEFT = QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_LEFT;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Combined Right</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_COMBINED_RIGHT = QUERY_VALUE_EXPRESSION__VALUE_EXPR_COMBINED_RIGHT;
+
+    /**
+     * The feature id for the '<em><b>Grouping Expr</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__GROUPING_EXPR = QUERY_VALUE_EXPRESSION__GROUPING_EXPR;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Case Else</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CASE_ELSE = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_ELSE;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Case Simple</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CASE_SIMPLE = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Case Simple Content When</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_WHEN;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Case Simple Content Result</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SIMPLE_CONTENT_RESULT;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Case Search Content</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_CASE_SEARCH_CONTENT = QUERY_VALUE_EXPRESSION__VALUE_EXPR_CASE_SEARCH_CONTENT;
+
+    /**
+     * The feature id for the '<em><b>Like Escape</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__LIKE_ESCAPE = QUERY_VALUE_EXPRESSION__LIKE_ESCAPE;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Labeled Duration</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_LABELED_DURATION = QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION;
+
+    /**
+     * The feature id for the '<em><b>Nest</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__NEST = QUERY_VALUE_EXPRESSION__NEST;
+
+    /**
+     * The feature id for the '<em><b>Update Source Expr List</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__UPDATE_SOURCE_EXPR_LIST = QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST;
+
+    /**
+     * The feature id for the '<em><b>Table Function</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__TABLE_FUNCTION = QUERY_VALUE_EXPRESSION__TABLE_FUNCTION;
+
+    /**
+     * The feature id for the '<em><b>Value Expr Row</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_ROW = QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW;
+
+    /**
+     * The feature id for the '<em><b>Value Expr List</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST = QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Value Expression Row</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int VALUE_EXPRESSION_ROW_FEATURE_COUNT = QUERY_VALUE_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16155,7 +16867,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSuperGroupType()
      * @generated
      */
-	int SUPER_GROUP_TYPE = 83;
+	int SUPER_GROUP_TYPE = 84;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateQuantifiedType <em>Predicate Quantified Type</em>}' enum.
@@ -16165,7 +16877,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateQuantifiedType()
      * @generated
      */
-	int PREDICATE_QUANTIFIED_TYPE = 84;
+	int PREDICATE_QUANTIFIED_TYPE = 85;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.PredicateComparisonOperator <em>Predicate Comparison Operator</em>}' enum.
@@ -16175,7 +16887,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getPredicateComparisonOperator()
      * @generated
      */
-	int PREDICATE_COMPARISON_OPERATOR = 85;
+	int PREDICATE_COMPARISON_OPERATOR = 86;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.SearchConditionCombinedOperator <em>Search Condition Combined Operator</em>}' enum.
@@ -16185,7 +16897,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getSearchConditionCombinedOperator()
      * @generated
      */
-	int SEARCH_CONDITION_COMBINED_OPERATOR = 86;
+	int SEARCH_CONDITION_COMBINED_OPERATOR = 87;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator <em>Table Joined Operator</em>}' enum.
@@ -16195,7 +16907,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getTableJoinedOperator()
      * @generated
      */
-	int TABLE_JOINED_OPERATOR = 87;
+	int TABLE_JOINED_OPERATOR = 88;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.QueryCombinedOperator <em>Query Combined Operator</em>}' enum.
@@ -16205,7 +16917,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getQueryCombinedOperator()
      * @generated
      */
-	int QUERY_COMBINED_OPERATOR = 88;
+	int QUERY_COMBINED_OPERATOR = 89;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator <em>Value Expression Unary Operator</em>}' enum.
@@ -16215,7 +16927,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionUnaryOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_UNARY_OPERATOR = 89;
+	int VALUE_EXPRESSION_UNARY_OPERATOR = 90;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionCombinedOperator <em>Value Expression Combined Operator</em>}' enum.
@@ -16225,7 +16937,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionCombinedOperator()
      * @generated
      */
-	int VALUE_EXPRESSION_COMBINED_OPERATOR = 90;
+	int VALUE_EXPRESSION_COMBINED_OPERATOR = 91;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType <em>Value Expression Labeled Duration Type</em>}' enum.
@@ -16235,7 +16947,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionLabeledDurationType()
      * @generated
      */
-	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 91;
+	int VALUE_EXPRESSION_LABELED_DURATION_TYPE = 92;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.NullOrderingType <em>Null Ordering Type</em>}' enum.
@@ -16245,7 +16957,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getNullOrderingType()
      * @generated
      */
-	int NULL_ORDERING_TYPE = 92;
+	int NULL_ORDERING_TYPE = 93;
 
 	/**
      * The meta object id for the '{@link org.eclipse.datatools.modelbase.sql.query.OrderingSpecType <em>Ordering Spec Type</em>}' enum.
@@ -16255,7 +16967,7 @@ public interface SQLQueryModelPackage extends EPackage {
      * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getOrderingSpecType()
      * @generated
      */
-	int ORDERING_SPEC_TYPE = 93;
+	int ORDERING_SPEC_TYPE = 94;
 
 
 	/**
@@ -17107,6 +17819,28 @@ public interface SQLQueryModelPackage extends EPackage {
 	EReference getQueryValueExpression_UpdateSourceExprList();
 
 	/**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getTableFunction <em>Table Function</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Table Function</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getTableFunction()
+     * @see #getQueryValueExpression()
+     * @generated
+     */
+    EReference getQueryValueExpression_TableFunction();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprRow <em>Value Expr Row</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Value Expr Row</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.QueryValueExpression#getValueExprRow()
+     * @see #getQueryValueExpression()
+     * @generated
+     */
+    EReference getQueryValueExpression_ValueExprRow();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot <em>Query Expression Root</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19086,6 +19820,28 @@ public interface SQLQueryModelPackage extends EPackage {
 	EClass getTableFunction();
 
 	/**
+     * Returns the meta object for the reference '{@link org.eclipse.datatools.modelbase.sql.query.TableFunction#getFunction <em>Function</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Function</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableFunction#getFunction()
+     * @see #getTableFunction()
+     * @generated
+     */
+    EReference getTableFunction_Function();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.TableFunction#getParameterList <em>Parameter List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.TableFunction#getParameterList()
+     * @see #getTableFunction()
+     * @generated
+     */
+    EReference getTableFunction_ParameterList();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.SQLQueryObject <em>SQL Query Object</em>}'.
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19452,6 +20208,27 @@ public interface SQLQueryModelPackage extends EPackage {
      * @generated
      */
     EReference getQueryNested_NestedQuery();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow <em>Value Expression Row</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Value Expression Row</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow
+     * @generated
+     */
+    EClass getValueExpressionRow();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getValueExprList <em>Value Expr List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Value Expr List</em>'.
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getValueExprList()
+     * @see #getValueExpressionRow()
+     * @generated
+     */
+    EReference getValueExpressionRow_ValueExprList();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}'.
@@ -20230,6 +21007,22 @@ public interface SQLQueryModelPackage extends EPackage {
 		EReference QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST = eINSTANCE.getQueryValueExpression_UpdateSourceExprList();
 
 		/**
+         * The meta object literal for the '<em><b>Table Function</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_VALUE_EXPRESSION__TABLE_FUNCTION = eINSTANCE.getQueryValueExpression_TableFunction();
+
+        /**
+         * The meta object literal for the '<em><b>Value Expr Row</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW = eINSTANCE.getQueryValueExpression_ValueExprRow();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.QueryExpressionRootImpl <em>Query Expression Root</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -21822,6 +22615,22 @@ public interface SQLQueryModelPackage extends EPackage {
 		EClass TABLE_FUNCTION = eINSTANCE.getTableFunction();
 
 		/**
+         * The meta object literal for the '<em><b>Function</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TABLE_FUNCTION__FUNCTION = eINSTANCE.getTableFunction_Function();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TABLE_FUNCTION__PARAMETER_LIST = eINSTANCE.getTableFunction_ParameterList();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryObjectImpl <em>SQL Query Object</em>}' class.
          * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -22134,6 +22943,24 @@ public interface SQLQueryModelPackage extends EPackage {
          * @generated
          */
         EReference QUERY_NESTED__NESTED_QUERY = eINSTANCE.getQueryNested_NestedQuery();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionRowImpl <em>Value Expression Row</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.ValueExpressionRowImpl
+         * @see org.eclipse.datatools.modelbase.sql.query.impl.SQLQueryModelPackageImpl#getValueExpressionRow()
+         * @generated
+         */
+        EClass VALUE_EXPRESSION_ROW = eINSTANCE.getValueExpressionRow();
+
+        /**
+         * The meta object literal for the '<em><b>Value Expr List</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST = eINSTANCE.getValueExpressionRow_ValueExprList();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.modelbase.sql.query.SuperGroupType <em>Super Group Type</em>}' enum.

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLValueFunctionValidateImpl.java,v 1.5 2007/02/08 17:04:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -65,291 +65,291 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLValueFunctionValidateImpl extends XMLValueFunctionImpl implements XMLValueFunctionValidate {
 	/**
-	 * The default value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContentOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContentOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLContentType2 CONTENT_OPTION_EDEFAULT = XMLContentType2.CONTENT_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContentOption() <em>Content Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getContentOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContentOption()
+     * @generated
+     * @ordered
+     */
     protected XMLContentType2 contentOption = CONTENT_OPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValidateContent() <em>Validate Content</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValidateContent() <em>Validate Content</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getValidateContent()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLValueFunctionValidateContent validateContent = null;
+     * @see #getValidateContent()
+     * @generated
+     * @ordered
+     */
+    protected XMLValueFunctionValidateContent validateContent;
 
 	/**
-	 * The cached value of the '{@link #getValidateAccordingTo() <em>Validate According To</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValidateAccordingTo() <em>Validate According To</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getValidateAccordingTo()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLValueFunctionValidateAccordingTo validateAccordingTo = null;
+     * @see #getValidateAccordingTo()
+     * @generated
+     * @ordered
+     */
+    protected XMLValueFunctionValidateAccordingTo validateAccordingTo;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionValidateImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_VALIDATE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLContentType2 getContentOption() {
-		return contentOption;
-	}
+        return contentOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setContentOption(XMLContentType2 newContentOption) {
-		XMLContentType2 oldContentOption = contentOption;
-		contentOption = newContentOption == null ? CONTENT_OPTION_EDEFAULT : newContentOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION, oldContentOption, contentOption));
-	}
+        XMLContentType2 oldContentOption = contentOption;
+        contentOption = newContentOption == null ? CONTENT_OPTION_EDEFAULT : newContentOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION, oldContentOption, contentOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLValueFunctionValidateContent getValidateContent() {
-		return validateContent;
-	}
+        return validateContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetValidateContent(XMLValueFunctionValidateContent newValidateContent, NotificationChain msgs) {
-		XMLValueFunctionValidateContent oldValidateContent = validateContent;
-		validateContent = newValidateContent;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, oldValidateContent, newValidateContent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLValueFunctionValidateContent oldValidateContent = validateContent;
+        validateContent = newValidateContent;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, oldValidateContent, newValidateContent);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setValidateContent(XMLValueFunctionValidateContent newValidateContent) {
-		if (newValidateContent != validateContent) {
-			NotificationChain msgs = null;
-			if (validateContent != null)
-				msgs = ((InternalEObject)validateContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateContent.class, msgs);
-			if (newValidateContent != null)
-				msgs = ((InternalEObject)newValidateContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateContent.class, msgs);
-			msgs = basicSetValidateContent(newValidateContent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, newValidateContent, newValidateContent));
-	}
+        if (newValidateContent != validateContent) {
+            NotificationChain msgs = null;
+            if (validateContent != null)
+                msgs = ((InternalEObject)validateContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateContent.class, msgs);
+            if (newValidateContent != null)
+                msgs = ((InternalEObject)newValidateContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_CONTENT__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateContent.class, msgs);
+            msgs = basicSetValidateContent(newValidateContent, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, newValidateContent, newValidateContent));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLValueFunctionValidateAccordingTo getValidateAccordingTo() {
-		return validateAccordingTo;
-	}
+        return validateAccordingTo;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetValidateAccordingTo(XMLValueFunctionValidateAccordingTo newValidateAccordingTo, NotificationChain msgs) {
-		XMLValueFunctionValidateAccordingTo oldValidateAccordingTo = validateAccordingTo;
-		validateAccordingTo = newValidateAccordingTo;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, oldValidateAccordingTo, newValidateAccordingTo);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLValueFunctionValidateAccordingTo oldValidateAccordingTo = validateAccordingTo;
+        validateAccordingTo = newValidateAccordingTo;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, oldValidateAccordingTo, newValidateAccordingTo);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setValidateAccordingTo(XMLValueFunctionValidateAccordingTo newValidateAccordingTo) {
-		if (newValidateAccordingTo != validateAccordingTo) {
-			NotificationChain msgs = null;
-			if (validateAccordingTo != null)
-				msgs = ((InternalEObject)validateAccordingTo).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateAccordingTo.class, msgs);
-			if (newValidateAccordingTo != null)
-				msgs = ((InternalEObject)newValidateAccordingTo).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateAccordingTo.class, msgs);
-			msgs = basicSetValidateAccordingTo(newValidateAccordingTo, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, newValidateAccordingTo, newValidateAccordingTo));
-	}
+        if (newValidateAccordingTo != validateAccordingTo) {
+            NotificationChain msgs = null;
+            if (validateAccordingTo != null)
+                msgs = ((InternalEObject)validateAccordingTo).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateAccordingTo.class, msgs);
+            if (newValidateAccordingTo != null)
+                msgs = ((InternalEObject)newValidateAccordingTo).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE_ACCORDING_TO__VALUE_FUNCTION_VALIDATE, XMLValueFunctionValidateAccordingTo.class, msgs);
+            msgs = basicSetValidateAccordingTo(newValidateAccordingTo, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, newValidateAccordingTo, newValidateAccordingTo));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				if (validateContent != null)
-					msgs = ((InternalEObject)validateContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, null, msgs);
-				return basicSetValidateContent((XMLValueFunctionValidateContent)otherEnd, msgs);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				if (validateAccordingTo != null)
-					msgs = ((InternalEObject)validateAccordingTo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, null, msgs);
-				return basicSetValidateAccordingTo((XMLValueFunctionValidateAccordingTo)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                if (validateContent != null)
+                    msgs = ((InternalEObject)validateContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT, null, msgs);
+                return basicSetValidateContent((XMLValueFunctionValidateContent)otherEnd, msgs);
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                if (validateAccordingTo != null)
+                    msgs = ((InternalEObject)validateAccordingTo).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO, null, msgs);
+                return basicSetValidateAccordingTo((XMLValueFunctionValidateAccordingTo)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				return basicSetValidateContent(null, msgs);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				return basicSetValidateAccordingTo(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                return basicSetValidateContent(null, msgs);
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                return basicSetValidateAccordingTo(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
-				return getContentOption();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				return getValidateContent();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				return getValidateAccordingTo();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
+                return getContentOption();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                return getValidateContent();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                return getValidateAccordingTo();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
-				setContentOption((XMLContentType2)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				setValidateContent((XMLValueFunctionValidateContent)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
+                setContentOption((XMLContentType2)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                setValidateContent((XMLValueFunctionValidateContent)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
-				setContentOption(CONTENT_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				setValidateContent((XMLValueFunctionValidateContent)null);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
+                setContentOption(CONTENT_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                setValidateContent((XMLValueFunctionValidateContent)null);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                setValidateAccordingTo((XMLValueFunctionValidateAccordingTo)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
-				return contentOption != CONTENT_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
-				return validateContent != null;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
-				return validateAccordingTo != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__CONTENT_OPTION:
+                return contentOption != CONTENT_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_CONTENT:
+                return validateContent != null;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_VALIDATE__VALIDATE_ACCORDING_TO:
+                return validateAccordingTo != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (contentOption: ");
-		result.append(contentOption);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (contentOption: ");
+        result.append(contentOption);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLValueFunctionValidateImpl

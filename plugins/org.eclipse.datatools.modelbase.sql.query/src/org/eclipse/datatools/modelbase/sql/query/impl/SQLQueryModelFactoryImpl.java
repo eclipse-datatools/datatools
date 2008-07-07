@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelFactoryImpl.java,v 1.2 2007/02/08 17:00:26 bpayton Exp $
+ * $Id: SQLQueryModelFactoryImpl.java,v 1.3 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -125,6 +125,7 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
             case SQLQueryModelPackage.ORDER_BY_RESULT_COLUMN: return createOrderByResultColumn();
             case SQLQueryModelPackage.WITH_TABLE_REFERENCE: return createWithTableReference();
             case SQLQueryModelPackage.QUERY_NESTED: return createQueryNested();
+            case SQLQueryModelPackage.VALUE_EXPRESSION_ROW: return createValueExpressionRow();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -836,6 +837,16 @@ public class SQLQueryModelFactoryImpl extends EFactoryImpl implements SQLQueryMo
     public QueryNested createQueryNested() {
         QueryNestedImpl queryNested = new QueryNestedImpl();
         return queryNested;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ValueExpressionRow createValueExpressionRow() {
+        ValueExpressionRowImpl valueExpressionRow = new ValueExpressionRowImpl();
+        return valueExpressionRow;
     }
 
     /**

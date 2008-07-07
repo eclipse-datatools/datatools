@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLPredicateExists.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLPredicateExists.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -30,59 +30,59 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  */
 public interface XMLPredicateExists extends XMLPredicate{
 	/**
-	 * Returns the value of the '<em><b>Xquery Expr</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getPredicateExists <em>Predicate Exists</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Xquery Expr</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getPredicateExists <em>Predicate Exists</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Xquery Expr</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Xquery Expr</em>' containment reference.
-	 * @see #setXqueryExpr(XMLQueryExpression)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryExpr()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getPredicateExists
-	 * @model opposite="predicateExists" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Xquery Expr</em>' containment reference.
+     * @see #setXqueryExpr(XMLQueryExpression)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryExpr()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryExpression#getPredicateExists
+     * @model opposite="predicateExists" containment="true" required="true"
+     * @generated
+     */
     XMLQueryExpression getXqueryExpr();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryExpr <em>Xquery Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryExpr <em>Xquery Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Xquery Expr</em>' containment reference.
-	 * @see #getXqueryExpr()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Xquery Expr</em>' containment reference.
+     * @see #getXqueryExpr()
+     * @generated
+     */
     void setXqueryExpr(XMLQueryExpression value);
 
 	/**
-	 * Returns the value of the '<em><b>Xquery Arg List</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getPredicateExists <em>Predicate Exists</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Xquery Arg List</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getPredicateExists <em>Predicate Exists</em>}'.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Xquery Arg List</em>' containment reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Xquery Arg List</em>' containment reference.
-	 * @see #setXqueryArgList(XMLQueryArgumentList)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryArgList()
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getPredicateExists
-	 * @model opposite="predicateExists" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Xquery Arg List</em>' containment reference.
+     * @see #setXqueryArgList(XMLQueryArgumentList)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLPredicateExists_XqueryArgList()
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.XMLQueryArgumentList#getPredicateExists
+     * @model opposite="predicateExists" containment="true"
+     * @generated
+     */
     XMLQueryArgumentList getXqueryArgList();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryArgList <em>Xquery Arg List</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLPredicateExists#getXqueryArgList <em>Xquery Arg List</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Xquery Arg List</em>' containment reference.
-	 * @see #getXqueryArgList()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Xquery Arg List</em>' containment reference.
+     * @see #getXqueryArgList()
+     * @generated
+     */
     void setXqueryArgList(XMLQueryArgumentList value);
 
 } // XMLPredicateExists

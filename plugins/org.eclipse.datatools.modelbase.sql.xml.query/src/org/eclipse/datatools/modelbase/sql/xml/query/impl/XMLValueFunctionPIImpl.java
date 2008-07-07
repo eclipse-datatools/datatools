@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionPIImpl.java,v 1.4 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLValueFunctionPIImpl.java,v 1.5 2007/02/08 17:04:21 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -64,275 +64,275 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class XMLValueFunctionPIImpl extends XMLValueFunctionImpl implements XMLValueFunctionPI {
 	/**
-	 * The default value of the '{@link #getTargetName() <em>Target Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTargetName() <em>Target Name</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getTargetName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetName()
+     * @generated
+     * @ordered
+     */
     protected static final String TARGET_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTargetName() <em>Target Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTargetName() <em>Target Name</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getTargetName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetName()
+     * @generated
+     * @ordered
+     */
     protected String targetName = TARGET_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected static final XMLReturningType RETURNING_OPTION_EDEFAULT = XMLReturningType.RETURNING_CONTENT_LITERAL;
 
 	/**
-	 * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getReturningOption() <em>Returning Option</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getReturningOption()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getReturningOption()
+     * @generated
+     * @ordered
+     */
     protected XMLReturningType returningOption = RETURNING_OPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getPIContent() <em>PI Content</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPIContent() <em>PI Content</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getPIContent()
-	 * @generated
-	 * @ordered
-	 */
-    protected XMLValueFunctionPIContent piContent = null;
+     * @see #getPIContent()
+     * @generated
+     * @ordered
+     */
+    protected XMLValueFunctionPIContent piContent;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionPIImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_PI;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_PI;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String getTargetName() {
-		return targetName;
-	}
+        return targetName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setTargetName(String newTargetName) {
-		String oldTargetName = targetName;
-		targetName = newTargetName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME, oldTargetName, targetName));
-	}
+        String oldTargetName = targetName;
+        targetName = newTargetName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME, oldTargetName, targetName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLReturningType getReturningOption() {
-		return returningOption;
-	}
+        return returningOption;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setReturningOption(XMLReturningType newReturningOption) {
-		XMLReturningType oldReturningOption = returningOption;
-		returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION, oldReturningOption, returningOption));
-	}
+        XMLReturningType oldReturningOption = returningOption;
+        returningOption = newReturningOption == null ? RETURNING_OPTION_EDEFAULT : newReturningOption;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION, oldReturningOption, returningOption));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLValueFunctionPIContent getPIContent() {
-		return piContent;
-	}
+        return piContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetPIContent(XMLValueFunctionPIContent newPIContent, NotificationChain msgs) {
-		XMLValueFunctionPIContent oldPIContent = piContent;
-		piContent = newPIContent;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, oldPIContent, newPIContent);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        XMLValueFunctionPIContent oldPIContent = piContent;
+        piContent = newPIContent;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, oldPIContent, newPIContent);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setPIContent(XMLValueFunctionPIContent newPIContent) {
-		if (newPIContent != piContent) {
-			NotificationChain msgs = null;
-			if (piContent != null)
-				msgs = ((InternalEObject)piContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI, XMLValueFunctionPIContent.class, msgs);
-			if (newPIContent != null)
-				msgs = ((InternalEObject)newPIContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI, XMLValueFunctionPIContent.class, msgs);
-			msgs = basicSetPIContent(newPIContent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, newPIContent, newPIContent));
-	}
+        if (newPIContent != piContent) {
+            NotificationChain msgs = null;
+            if (piContent != null)
+                msgs = ((InternalEObject)piContent).eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI, XMLValueFunctionPIContent.class, msgs);
+            if (newPIContent != null)
+                msgs = ((InternalEObject)newPIContent).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI_CONTENT__VALUE_FUNCTION_PI, XMLValueFunctionPIContent.class, msgs);
+            msgs = basicSetPIContent(newPIContent, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, newPIContent, newPIContent));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				if (piContent != null)
-					msgs = ((InternalEObject)piContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, null, msgs);
-				return basicSetPIContent((XMLValueFunctionPIContent)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                if (piContent != null)
+                    msgs = ((InternalEObject)piContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT, null, msgs);
+                return basicSetPIContent((XMLValueFunctionPIContent)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				return basicSetPIContent(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                return basicSetPIContent(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
-				return getTargetName();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
-				return getReturningOption();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				return getPIContent();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
+                return getTargetName();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
+                return getReturningOption();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                return getPIContent();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
-				setTargetName((String)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
-				setReturningOption((XMLReturningType)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				setPIContent((XMLValueFunctionPIContent)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
+                setTargetName((String)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
+                setReturningOption((XMLReturningType)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                setPIContent((XMLValueFunctionPIContent)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
-				setTargetName(TARGET_NAME_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
-				setReturningOption(RETURNING_OPTION_EDEFAULT);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				setPIContent((XMLValueFunctionPIContent)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
+                setTargetName(TARGET_NAME_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
+                setReturningOption(RETURNING_OPTION_EDEFAULT);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                setPIContent((XMLValueFunctionPIContent)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
-				return TARGET_NAME_EDEFAULT == null ? targetName != null : !TARGET_NAME_EDEFAULT.equals(targetName);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
-				return returningOption != RETURNING_OPTION_EDEFAULT;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
-				return piContent != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__TARGET_NAME:
+                return TARGET_NAME_EDEFAULT == null ? targetName != null : !TARGET_NAME_EDEFAULT.equals(targetName);
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__RETURNING_OPTION:
+                return returningOption != RETURNING_OPTION_EDEFAULT;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_PI__PI_CONTENT:
+                return piContent != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (targetName: ");
-		result.append(targetName);
-		result.append(", returningOption: ");
-		result.append(returningOption);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (targetName: ");
+        result.append(targetName);
+        result.append(", returningOption: ");
+        result.append(returningOption);
+        result.append(')');
+        return result.toString();
+    }
 
 } //XMLValueFunctionPIImpl

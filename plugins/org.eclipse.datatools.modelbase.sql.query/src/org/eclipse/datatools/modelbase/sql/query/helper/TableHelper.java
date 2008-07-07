@@ -316,6 +316,40 @@ public class TableHelper {
                             tableExpr.getClass().getName());
         }
         
+        /* Find out if there is a column name list attached to the correlation name (if any)
+         * and use those names for the exposed result columns. */
+        TableCorrelation tableCorr = tableExpr.getTableCorrelation();
+        if (tableCorr != null) {
+            List<?> corrColNameList = tableCorr.getColumnNameList();
+            if (corrColNameList.size() <= resultColExprList.size()) {
+                List<ValueExpressionColumn> corrColList = new ArrayList<ValueExpressionColumn>();
+                for (int i=0; i<corrColNameList.size(); i++) {
+                    Object obj1 = corrColNameList.get(i);
+                    Object obj2 = resultColExprList.get(i);
+                    if (obj1 instanceof ColumnName && obj2 instanceof ValueExpressionColumn) {
+                        ColumnName corrColName = (ColumnName) obj1;
+                        ValueExpressionColumn exposedCol = (ValueExpressionColumn) obj2;
+                        ValueExpressionColumn exposedCorrCol = StatementHelper.createColumnExpression(corrColName.getName());
+                        
+                        /* Get the existing exposed column's data type and table reference
+                         * set them as the datatype and table of the new exposed correlation column. */
+                        DataType exposedColDataType = exposedCol.getDataType();
+                        DataType exposedCorrColDataType = ValueExpressionHelper.copyDataType(exposedColDataType);
+                        exposedCorrCol.setDataType(exposedCorrColDataType);
+                        
+                        TableInDatabase tableInDB = exposedCol.getTableInDatabase();
+                        exposedCorrCol.setTableInDatabase(tableInDB);
+
+                        /* Add the new exposed column to the list we're building. */
+                        corrColList.add(exposedCorrCol);
+                    }
+                }
+                
+                /* Substitute the new list of correlation columns as the exposed result
+                 * column list. */
+                resultColExprList = corrColList;
+            }
+        }
         
         return resultColExprList;
     }
@@ -685,6 +719,7 @@ public class TableHelper {
     if (queryExprBody instanceof QuerySelect) {
       QuerySelect select = (QuerySelect) queryExprBody;
       columnSet.addAll(findColumnReferencesInQueryResultSpecificationList(select.getSelectClause()));
+      columnSet.addAll(findColumnReferencesInTableReferenceList(select.getFromClause()));
       columnSet.addAll(findColumnReferencesInSearchCondition(select.getWhereClause()));
       columnSet.addAll(findColumnReferencesInSearchCondition(select.getHavingClause()));
       columnSet.addAll(findColumnReferencesInGroupingSpecificationList(select.getGroupByClause()));
@@ -734,7 +769,7 @@ public class TableHelper {
     return columnSet;
   }
 
-  /**
+/**
  * Returns a Set containing all <code>ValueExpressionColumn</code> s found
  * in the given <code>QueryResultSpecification</code>.
  */
@@ -753,7 +788,7 @@ public static Set findColumnReferencesInQueryResultSpecification(
 }
   
   
-  /**
+/**
  * Returns a Set containing all <code>ValueExpressionColumn</code> s found
  * in the given <code>QueryResultSpecification</code> list.
  */
@@ -848,6 +883,69 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
     }
 
     return columnSet;
+  }
+
+  /**
+   * Returns a Set containing all the <code>ValueExpressionColumn</code>s found
+   * in the given <code>TableReference</code>.
+   */
+  public static Set findColumnReferencesInTableReference(TableReference tableRef) {
+      Set columnSet = Collections.EMPTY_SET;
+      
+      if (tableRef != null) {
+          columnSet = new HashSet();
+          
+          if (tableRef instanceof TableInDatabase) {
+              // do nothing; doesn't contain query column references
+          }
+          // A table ref as a nested query definition, ie: TABLE (query expr)
+          else if (tableRef instanceof QueryExpressionBody) {
+              QueryExpressionBody queryExprBody = (QueryExpressionBody) tableRef;
+              columnSet.addAll(findColumnReferencesInQueryExpressionBody(queryExprBody));
+          }
+          else if (tableRef instanceof TableFunction) {
+              TableFunction tableFunc = (TableFunction) tableRef;
+              columnSet.addAll(findColumnReferencesInValueExpressionList(tableFunc.getParameterList()));
+          }
+          else if (tableRef instanceof TableNested) {
+              TableNested tableNested = (TableNested) tableRef;
+              columnSet.addAll(findColumnReferencesInTableReference(tableNested.getNestedTableRef()));
+          }
+          else if (tableRef instanceof TableJoined) {
+              TableJoined tableJoined = (TableJoined) tableRef;
+              columnSet.addAll(findColumnReferencesInTableReference(tableJoined.getTableRefLeft()));
+              columnSet.addAll(findColumnReferencesInTableReference(tableJoined.getTableRefRight()));
+              columnSet.addAll(findColumnReferencesInSearchCondition(tableJoined.getJoinCondition()));
+          }
+          else if (tableRef instanceof WithTableReference) {
+              WithTableReference withTableRef = (WithTableReference) tableRef;
+              columnSet.addAll(findColumnReferencesInWithTableSpecification(withTableRef.getWithTableSpecification()));
+          }
+      }
+      
+      return columnSet;
+  }
+  
+  /**
+   * Returns a Set containing all the <code>ValueExpressionColumn</code>s found
+   * in the given <code>TableReference</code> list.
+   */
+  public static Set findColumnReferencesInTableReferenceList(List tableRefList) {
+      Set columnSet = Collections.EMPTY_SET;
+      
+      if (tableRefList != null && tableRefList.size() > 0) {
+          columnSet = new HashSet();
+          Iterator tableRefListIter = tableRefList.iterator();
+          while (tableRefListIter.hasNext()) {
+              Object listObj = tableRefListIter.next();
+              if (listObj instanceof TableReference) {
+                  TableReference tableRef = (TableReference) listObj;
+                  columnSet.addAll(findColumnReferencesInTableReference(tableRef));
+              }
+          }
+      }
+      
+      return columnSet;
   }
 
   /**
@@ -1060,7 +1158,22 @@ public static Set findColumnReferencesInValuesRow(ValuesRow valuesRow)
     return columnSet;
 }
   
-  
+/**
+ * Returns a Set containing all the <code>ValueExpressionColumn</code>s found in
+ * the given <code>WithTableSpecification</code>.
+ */
+public static Set findColumnReferencesInWithTableSpecification(WithTableSpecification withTableSpec) {
+    Set columnSet = Collections.EMPTY_SET;
+    
+    if (withTableSpec != null) {
+        columnSet = new HashSet();
+        
+        columnSet.addAll(findColumnReferencesInQueryExpressionBody(withTableSpec.getWithTableQueryExpr()));
+    }
+    
+    return columnSet;
+}
+
   /**
    * Finds in the given List of <code>TableExpression</code>s the one
    * <code>TableExpression</code> with a name that matches the given
@@ -1288,13 +1401,51 @@ public static TableExpression findTableExpressionsByNameOrAlias(String tableName
 
         // Try to find the column name in the table's list of columns.
         if (tableExpr != null && columnName != null) {
-            List tableColList = tableExpr.getColumnList();
-            Iterator tableColListIter = tableColList.iterator();
-            while (tableColListIter.hasNext() && colExprFound == null) {
-                ValueExpressionColumn tableColExpr = (ValueExpressionColumn) tableColListIter.next();
-                String tableColName = tableColExpr.getName();
-                if (StatementHelper.equalSQLIdentifiers(columnName, tableColName)) {
-                    colExprFound = tableColExpr;
+            /* Determine if the table has a correlation column name list.
+             * If so, we need to use that list of names, since they hide the table's 
+             * real column names. */
+            boolean hasCorrColList = false;
+            TableCorrelation tableCorr = tableExpr.getTableCorrelation();
+            if (tableCorr != null) {
+                List corrColNameList = tableCorr.getColumnNameList();
+                if (corrColNameList != null && corrColNameList.size() > 0) {
+                    hasCorrColList = true;
+                }
+            }
+            
+            /* If there is a correlation column name list, look through it for a match
+             * and get the corresponding underlying column. */
+            if (hasCorrColList == true) {
+                List corrColNameList = tableCorr.getColumnNameList();
+                List tableColList = tableExpr.getColumnList();
+                if (corrColNameList.size() <= tableColList.size()) {
+                    int i=0;
+                    while (colExprFound == null && i<corrColNameList.size()) {
+                        Object obj1 = corrColNameList.get(i);
+                        Object obj2 = tableColList.get(i);
+                        if (obj1 instanceof ColumnName && obj2 instanceof ValueExpressionColumn) {
+                            ColumnName corrColName = (ColumnName) obj1;
+                            String corrColNameName = corrColName.getName();
+                            ValueExpressionColumn tableColExpr = (ValueExpressionColumn) obj2;
+                            
+                            if (StatementHelper.equalSQLIdentifiers(columnName, corrColNameName)) {
+                                colExprFound = tableColExpr;
+                            }
+                        }
+                        i++;
+                    }
+                }
+            }
+            /* Otherwise look through the table's regular column list. */
+            else {
+                List tableColList = tableExpr.getColumnList();
+                Iterator tableColListIter = tableColList.iterator();
+                while (tableColListIter.hasNext() && colExprFound == null) {
+                    ValueExpressionColumn tableColExpr = (ValueExpressionColumn) tableColListIter.next();
+                    String tableColName = tableColExpr.getName();
+                    if (StatementHelper.equalSQLIdentifiers(columnName, tableColName)) {
+                        colExprFound = tableColExpr;
+                    }
                 }
             }
         }

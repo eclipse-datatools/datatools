@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionDocumentContentImpl.java,v 1.2 2005/12/22 22:21:17 bpayton Exp $
+ * $Id: XMLValueFunctionDocumentContentImpl.java,v 1.3 2007/02/08 17:04:20 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query.impl;
 
@@ -71,222 +71,222 @@ import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
  */
 public class XMLValueFunctionDocumentContentImpl extends QueryValueExpressionImpl implements XMLValueFunctionDocumentContent {
 	/**
-	 * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValueExpr() <em>Value Expr</em>}' containment reference.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @see #getValueExpr()
-	 * @generated
-	 * @ordered
-	 */
-    protected QueryValueExpression valueExpr = null;
+     * @see #getValueExpr()
+     * @generated
+     * @ordered
+     */
+    protected QueryValueExpression valueExpr;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected XMLValueFunctionDocumentContentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     protected EClass eStaticClass() {
-		return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_DOCUMENT_CONTENT;
-	}
+        return SQLXMLQueryModelPackage.Literals.XML_VALUE_FUNCTION_DOCUMENT_CONTENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public XMLValueFunctionDocument getValueFunctionDocument() {
-		if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT) return null;
-		return (XMLValueFunctionDocument)eContainer();
-	}
+        if (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT) return null;
+        return (XMLValueFunctionDocument)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetValueFunctionDocument(XMLValueFunctionDocument newValueFunctionDocument, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newValueFunctionDocument, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newValueFunctionDocument, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setValueFunctionDocument(XMLValueFunctionDocument newValueFunctionDocument) {
-		if (newValueFunctionDocument != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT && newValueFunctionDocument != null)) {
-			if (EcoreUtil.isAncestor(this, newValueFunctionDocument))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newValueFunctionDocument != null)
-				msgs = ((InternalEObject)newValueFunctionDocument).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, XMLValueFunctionDocument.class, msgs);
-			msgs = basicSetValueFunctionDocument(newValueFunctionDocument, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, newValueFunctionDocument, newValueFunctionDocument));
-	}
+        if (newValueFunctionDocument != eInternalContainer() || (eContainerFeatureID != SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT && newValueFunctionDocument != null)) {
+            if (EcoreUtil.isAncestor(this, newValueFunctionDocument))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newValueFunctionDocument != null)
+                msgs = ((InternalEObject)newValueFunctionDocument).eInverseAdd(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, XMLValueFunctionDocument.class, msgs);
+            msgs = basicSetValueFunctionDocument(newValueFunctionDocument, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT, newValueFunctionDocument, newValueFunctionDocument));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public QueryValueExpression getValueExpr() {
-		return valueExpr;
-	}
+        return valueExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public NotificationChain basicSetValueExpr(QueryValueExpression newValueExpr, NotificationChain msgs) {
-		QueryValueExpression oldValueExpr = valueExpr;
-		valueExpr = newValueExpr;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        QueryValueExpression oldValueExpr = valueExpr;
+        valueExpr = newValueExpr;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, oldValueExpr, newValueExpr);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
     public void setValueExpr(QueryValueExpression newValueExpr) {
-		if (newValueExpr != valueExpr) {
-			NotificationChain msgs = null;
-			if (valueExpr != null)
-				msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, null, msgs);
-			if (newValueExpr != null)
-				msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, null, msgs);
-			msgs = basicSetValueExpr(newValueExpr, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
-	}
+        if (newValueExpr != valueExpr) {
+            NotificationChain msgs = null;
+            if (valueExpr != null)
+                msgs = ((InternalEObject)valueExpr).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, null, msgs);
+            if (newValueExpr != null)
+                msgs = ((InternalEObject)newValueExpr).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, null, msgs);
+            msgs = basicSetValueExpr(newValueExpr, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR, newValueExpr, newValueExpr));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetValueFunctionDocument((XMLValueFunctionDocument)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetValueFunctionDocument((XMLValueFunctionDocument)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				return basicSetValueFunctionDocument(null, msgs);
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
-				return basicSetValueExpr(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                return basicSetValueFunctionDocument(null, msgs);
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
+                return basicSetValueExpr(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, XMLValueFunctionDocument.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                return eInternalContainer().eInverseRemove(this, SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT__DOCUMENT_CONTENT, XMLValueFunctionDocument.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				return getValueFunctionDocument();
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
-				return getValueExpr();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                return getValueFunctionDocument();
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
+                return getValueExpr();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				setValueFunctionDocument((XMLValueFunctionDocument)newValue);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
-				setValueExpr((QueryValueExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                setValueFunctionDocument((XMLValueFunctionDocument)newValue);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
+                setValueExpr((QueryValueExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				setValueFunctionDocument((XMLValueFunctionDocument)null);
-				return;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
-				setValueExpr((QueryValueExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                setValueFunctionDocument((XMLValueFunctionDocument)null);
+                return;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
+                setValueExpr((QueryValueExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
-				return getValueFunctionDocument() != null;
-			case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
-				return valueExpr != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_FUNCTION_DOCUMENT:
+                return getValueFunctionDocument() != null;
+            case SQLXMLQueryModelPackage.XML_VALUE_FUNCTION_DOCUMENT_CONTENT__VALUE_EXPR:
+                return valueExpr != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //XMLValueFunctionDocumentContentImpl

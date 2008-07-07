@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SQLQueryModelPackageImpl.java,v 1.2 2007/02/08 17:00:25 bpayton Exp $
+ * $Id: SQLQueryModelPackageImpl.java,v 1.3 2008/01/31 02:57:15 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.impl;
 
@@ -111,6 +111,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
@@ -737,6 +738,13 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass valueExpressionRowEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -877,7 +885,6 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         SQLStatementsPackage.eINSTANCE.eClass();
         SQLTablesPackage.eINSTANCE.eClass();
         SQLAccessControlPackage.eINSTANCE.eClass();
-        EcorePackage.eINSTANCE.eClass();
 
         // Create package meta-data objects
         theSQLQueryModelPackage.createPackageContents();
@@ -1594,6 +1601,24 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
     }
 
 	/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryValueExpression_TableFunction() {
+        return (EReference)queryValueExpressionEClass.getEStructuralFeatures().get(33);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getQueryValueExpression_ValueExprRow() {
+        return (EReference)queryValueExpressionEClass.getEStructuralFeatures().get(34);
+    }
+
+    /**
      * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
@@ -3260,6 +3285,24 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
 	/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTableFunction_Function() {
+        return (EReference)tableFunctionEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTableFunction_ParameterList() {
+        return (EReference)tableFunctionEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3575,6 +3618,24 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
     /**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getValueExpressionRow() {
+        return valueExpressionRowEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getValueExpressionRow_ValueExprList() {
+        return (EReference)valueExpressionRowEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -3787,6 +3848,8 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__VALUE_EXPR_LABELED_DURATION);
         createEReference(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__NEST);
         createEReference(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__UPDATE_SOURCE_EXPR_LIST);
+        createEReference(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__TABLE_FUNCTION);
+        createEReference(queryValueExpressionEClass, QUERY_VALUE_EXPRESSION__VALUE_EXPR_ROW);
 
         queryExpressionRootEClass = createEClass(QUERY_EXPRESSION_ROOT);
         createEReference(queryExpressionRootEClass, QUERY_EXPRESSION_ROOT__INSERT_STATEMENT);
@@ -4028,6 +4091,8 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         createEReference(tableInDatabaseEClass, TABLE_IN_DATABASE__DERIVED_COLUMN_LIST);
 
         tableFunctionEClass = createEClass(TABLE_FUNCTION);
+        createEReference(tableFunctionEClass, TABLE_FUNCTION__FUNCTION);
+        createEReference(tableFunctionEClass, TABLE_FUNCTION__PARAMETER_LIST);
 
         sqlQueryObjectEClass = createEClass(SQL_QUERY_OBJECT);
 
@@ -4080,6 +4145,9 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
         queryNestedEClass = createEClass(QUERY_NESTED);
         createEReference(queryNestedEClass, QUERY_NESTED__NESTED_QUERY);
+
+        valueExpressionRowEClass = createEClass(VALUE_EXPRESSION_ROW);
+        createEReference(valueExpressionRowEClass, VALUE_EXPRESSION_ROW__VALUE_EXPR_LIST);
 
         // Create enums
         superGroupTypeEEnum = createEEnum(SUPER_GROUP_TYPE);
@@ -4215,6 +4283,7 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         orderByResultColumnEClass.getESuperTypes().add(this.getOrderBySpecification());
         withTableReferenceEClass.getESuperTypes().add(this.getTableExpression());
         queryNestedEClass.getESuperTypes().add(this.getQueryExpressionBody());
+        valueExpressionRowEClass.getESuperTypes().add(this.getQueryValueExpression());
 
         // Initialize classes and features; add operations and parameters
         initEClass(queryStatementEClass, QueryStatement.class, "QueryStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4304,6 +4373,8 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getQueryValueExpression_ValueExprLabeledDuration(), this.getValueExpressionLabeledDuration(), this.getValueExpressionLabeledDuration_ValueExpr(), "valueExprLabeledDuration", null, 0, 1, QueryValueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryValueExpression_Nest(), this.getValueExpressionNested(), this.getValueExpressionNested_NestedValueExpr(), "nest", null, 0, 1, QueryValueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getQueryValueExpression_UpdateSourceExprList(), this.getUpdateSourceExprList(), this.getUpdateSourceExprList_ValueExprList(), "updateSourceExprList", null, 0, 1, QueryValueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryValueExpression_TableFunction(), this.getTableFunction(), this.getTableFunction_ParameterList(), "tableFunction", null, 1, 1, QueryValueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getQueryValueExpression_ValueExprRow(), this.getValueExpressionRow(), this.getValueExpressionRow_ValueExprList(), "valueExprRow", null, 1, 1, QueryValueExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(queryExpressionRootEClass, QueryExpressionRoot.class, "QueryExpressionRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getQueryExpressionRoot_InsertStatement(), this.getQueryInsertStatement(), this.getQueryInsertStatement_SourceQuery(), "insertStatement", null, 0, 1, QueryExpressionRoot.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4545,6 +4616,8 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
         initEReference(getTableInDatabase_DerivedColumnList(), this.getValueExpressionColumn(), this.getValueExpressionColumn_TableInDatabase(), "derivedColumnList", null, 0, -1, TableInDatabase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(tableFunctionEClass, TableFunction.class, "TableFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getTableFunction_Function(), theSQLRoutinesPackage.getFunction(), null, "function", null, 1, 1, TableFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getTableFunction_ParameterList(), this.getQueryValueExpression(), this.getQueryValueExpression_TableFunction(), "parameterList", null, 0, -1, TableFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(sqlQueryObjectEClass, SQLQueryObject.class, "SQLQueryObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -4602,6 +4675,9 @@ public class SQLQueryModelPackageImpl extends EPackageImpl implements SQLQueryMo
 
         initEClass(queryNestedEClass, QueryNested.class, "QueryNested", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getQueryNested_NestedQuery(), this.getQueryExpressionBody(), this.getQueryExpressionBody_QueryNest(), "nestedQuery", null, 1, 1, QueryNested.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(valueExpressionRowEClass, ValueExpressionRow.class, "ValueExpressionRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getValueExpressionRow_ValueExprList(), this.getQueryValueExpression(), this.getQueryValueExpression_ValueExprRow(), "valueExprList", null, 0, -1, ValueExpressionRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(superGroupTypeEEnum, SuperGroupType.class, "SuperGroupType");

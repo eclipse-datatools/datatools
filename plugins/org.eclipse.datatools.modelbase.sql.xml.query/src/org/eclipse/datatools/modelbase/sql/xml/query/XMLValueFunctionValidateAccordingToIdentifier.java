@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: XMLValueFunctionValidateAccordingToIdentifier.java,v 1.1 2005/12/16 13:16:52 bpayton Exp $
+ * $Id: XMLValueFunctionValidateAccordingToIdentifier.java,v 1.2 2005/12/22 22:21:18 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.xml.query;
 
@@ -26,55 +26,55 @@ package org.eclipse.datatools.modelbase.sql.xml.query;
  */
 public interface XMLValueFunctionValidateAccordingToIdentifier extends XMLValueFunctionValidateAccordingTo{
 	/**
-	 * Returns the value of the '<em><b>Schema Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Schema Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Schema Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Schema Name</em>' attribute.
-	 * @see #setSchemaName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_SchemaName()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Schema Name</em>' attribute.
+     * @see #setSchemaName(String)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_SchemaName()
+     * @model
+     * @generated
+     */
     String getSchemaName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingToIdentifier#getSchemaName <em>Schema Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingToIdentifier#getSchemaName <em>Schema Name</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Schema Name</em>' attribute.
-	 * @see #getSchemaName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Schema Name</em>' attribute.
+     * @see #getSchemaName()
+     * @generated
+     */
     void setSchemaName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Registered XML Schema Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Registered XML Schema Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Registered XML Schema Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-	 * @return the value of the '<em>Registered XML Schema Name</em>' attribute.
-	 * @see #setRegisteredXMLSchemaName(String)
-	 * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_RegisteredXMLSchemaName()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Registered XML Schema Name</em>' attribute.
+     * @see #setRegisteredXMLSchemaName(String)
+     * @see org.eclipse.datatools.modelbase.sql.xml.query.SQLXMLQueryModelPackage#getXMLValueFunctionValidateAccordingToIdentifier_RegisteredXMLSchemaName()
+     * @model
+     * @generated
+     */
     String getRegisteredXMLSchemaName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingToIdentifier#getRegisteredXMLSchemaName <em>Registered XML Schema Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.datatools.modelbase.sql.xml.query.XMLValueFunctionValidateAccordingToIdentifier#getRegisteredXMLSchemaName <em>Registered XML Schema Name</em>}' attribute.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Registered XML Schema Name</em>' attribute.
-	 * @see #getRegisteredXMLSchemaName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Registered XML Schema Name</em>' attribute.
+     * @see #getRegisteredXMLSchemaName()
+     * @generated
+     */
     void setRegisteredXMLSchemaName(String value);
 
 } // XMLValueFunctionValidateAccordingToIdentifier
