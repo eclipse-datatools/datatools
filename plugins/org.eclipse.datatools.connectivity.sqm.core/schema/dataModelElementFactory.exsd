@@ -1,16 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core">
+<schema targetNamespace="org.eclipse.datatools.connectivity.sqm.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity.sqm.core" id="dataModelElementFactory" name="dataModelElementFactory"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         Provides a factory for creating data model elements.  The data model element factory, which must implement the &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory&lt;/code&gt; interface, can be used to return an &lt;code&gt;org.eclipse.emf.ecore.EObject&lt;/code&gt; instance of a given &lt;code&gt;org.eclipse.emf.ecore.EClass&lt;/code&gt;
       </documentation>
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="factory" minOccurs="1" maxOccurs="unbounded"/>
@@ -44,21 +49,21 @@
          <attribute name="product" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Vendor name for the db definition.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="version" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  Version name for the db definition.
                </documentation>
             </annotation>
          </attribute>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The fully qualified name of a class that implements org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory.
                </documentation>
             </annotation>
          </attribute>
@@ -66,47 +71,35 @@
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.7
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         [Enter API information here.]
+         A factory instance for a given database definition can be obtained using &lt;code&gt;org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition#getDataModelElementFactory()&lt;/code&gt;
       </documentation>
    </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
+
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="copyright"/>
-      </appInfo>
+      </appinfo>
       <documentation>
-         
+         Copyright 2005 IBM Corporation and others.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made 
+available under the terms of the Eclipse Public License v1.0 which 
+accompanies this distribution, and is available at 
+&lt;a href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
       </documentation>
    </annotation>
 
