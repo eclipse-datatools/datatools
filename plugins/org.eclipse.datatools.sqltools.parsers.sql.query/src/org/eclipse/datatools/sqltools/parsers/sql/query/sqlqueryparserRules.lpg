@@ -51,8 +51,11 @@ $Rules
 --        |   <error>
 
 
+<alias_name> ->
+			<identifier>
 
--- here ordering didn' help us but: we want to an single <expression> in parenthesis to be parsed as PredicateQuantifiedValueSelect rather than as an one-element PredicateQuantifiedRowSelect
+
+-- here ordering didn't help us but: we want a single <expression> in parenthesis to be parsed as PredicateQuantifiedValueSelect rather than as an one-element PredicateQuantifiedRowSelect
 -- so we introduced the <expression_commalist_multiple_elements>
 <all_or_any_cond> ::=
 			<expression> <relop> ANY <subquery>
@@ -73,6 +76,12 @@ $Rules
 --              /. $BeginAction   $EndAction ./
 --        |   <expression> <relop> ALL <column_ref>
 --              /. $BeginAction   $EndAction ./
+
+
+--//TODO: fix up name of this rule and usage
+<as_alias> ::=
+			<opt_as> <alias_name>
+				/. $BeginAction setSym1(getString(2)); $EndAction ./
 
 
 <boolean_expression> ::=
@@ -110,24 +119,6 @@ $Rules
 		|	NOT _LPAREN <boolean_expression> _RPAREN
 				/. $BeginAction setSym1(m_factory.createNestedConditionNegated(($RT_boolean_expression)getSym(3))); $EndAction ./
 
---//TODO modify to reflect ISO 2003. Section 6.12 Page 200
-<cast_expression> ::=
-			CAST _LPAREN <cast_operand> AS <cast_target> _RPAREN
-				/. $BeginAction setSym1(m_factory.createCastExpression(($RT_expression)getSym(3), ($RT_datatype)getSym(5))); $EndAction ./
---ToDo:  		|   CAST _LPAREN <expression> AS <func_ref> _RPAREN
---ToDo:					/. $BeginAction setSym1(m_factory.createCastExpression(getSym(3), getSym(5)); $EndAction ./
---ToDo:  		|   CAST _LPAREN <expression> AS <function> _RPAREN
---ToDo:					/. $BeginAction setSym1(m_factory.createCastExpression(getSym(3), getSym(5), gv); $EndAction ./
-
-<cast_operand> ::=
-            <expression>
-        |   <implicitly_typed_value_specification>    
-
-<cast_target> ::=
-            <datatype>
-        |   <domain_name>
-                /. $BeginAction setSym1(m_factory.createUserDefinedTypeFromDomainName(getString(1))); $EndAction ./
-
 <case_expression> ::=
 			CASE <case_search_when_list> <opt_case_else> END
 				/. $BeginAction setSym1(m_factory.createCaseSearchExpression(getList(2), ($RT_opt_case_else)getSym(3))); $EndAction ./
@@ -158,9 +149,42 @@ $Rules
 		|	<case_simple_when_list> <case_simple_when>
 				/. $BeginAction setSym1(m_factory.createCaseSimpleList(getList(1),($RT_case_simple_when)getSym(2))); $EndAction ./
 
+--//TODO modify to reflect ISO 2003. Section 6.12 Page 200
+<cast_expression> ::=
+			CAST _LPAREN <cast_operand> AS <cast_target> _RPAREN
+				/. $BeginAction setSym1(m_factory.createCastExpression(($RT_expression)getSym(3), ($RT_datatype)getSym(5))); $EndAction ./
+--ToDo:  		|   CAST _LPAREN <expression> AS <func_ref> _RPAREN
+--ToDo:					/. $BeginAction setSym1(m_factory.createCastExpression(getSym(3), getSym(5)); $EndAction ./
+--ToDo:  		|   CAST _LPAREN <expression> AS <function> _RPAREN
+--ToDo:					/. $BeginAction setSym1(m_factory.createCastExpression(getSym(3), getSym(5), gv); $EndAction ./
+
+
+<cast_operand> ::=
+            <expression>
+        |   <implicitly_typed_value_specification>    
+
+
+<cast_target> ::=
+            <datatype>
+        |   <domain_name>
+                /. $BeginAction setSym1(m_factory.createUserDefinedTypeFromDomainName(getString(1))); $EndAction ./
+
 
 <column> ->
 			<identifier>
+			
+		
+<column_name> ::=
+    		<identifier>
+    			/. $BeginAction setSym1(m_factory.createColumnName(getString(1))); $EndAction ./
+
+		
+<column_name_list> ::=
+			<column_name>
+				/. $BeginAction setSym1(m_factory.createColumnNameList(null,($RT_column_name)getSym(1))); $EndAction ./
+		|	<column_name_list> _COMMA <column_name>
+				/. $BeginAction setSym1(m_factory.createColumnNameList(getList(1),($RT_column_name)getSym(3))); $EndAction ./
+
 
 <column_ref> ::=
     		<column>
@@ -389,12 +413,39 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createDistinctUserDefinedType(getString(1))); $EndAction ./
 
 
+<default_option> ::=     
+             <constant>
+--      |    <datetime value function>
+        |   USER
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_USER)); $EndAction ./
+        |   CURRENT_USER
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_USER)); $EndAction ./
+        |   CURRENT_ROLE
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_ROLE)); $EndAction ./
+        |   SESSION_USER
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_SESSION_USER)); $EndAction ./
+        |   SYSTEM_USER
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_SYSTEM_USER)); $EndAction ./
+        |   CURRENT_PATH
+                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_PATH)); $EndAction ./
+--      |   <implicitly typed value specification>
+                
+
 <delete_stmt> ::=
 			DELETE FROM	<target_table> <opt_as_target_table>
 			<opt_where_clause>
 				/. $BeginStatement setSym1(m_factory.createDeleteStatement(($RT_target_table)getSym(3), ($RT_opt_as_target_table)getSym(4), ($RT_opt_where_clause)getSym(5))); $EndAction ./
 
+
+<derived_column_list> ::=
+			<column_ref>
+				/. $BeginAction setSym1(m_factory.createColumnList(null,($RT_column_ref) getSym(1)));  $EndAction ./
+		|	<target_column_list> _COMMA <column_ref>
+				/. $BeginAction setSym1(m_factory.createColumnList(getList(1),($RT_column_ref) getSym(3)));  $EndAction ./
+
+
 <domain_name> -> <schema_qualified_name>
+
 
 <duration> ::=
 			DAYS
@@ -435,8 +486,6 @@ $Rules
 
 
 <expression_commalist> ::=
-
-
 			<expression>
 				/. $BeginAction setSym1(m_factory.createExpressionList(null, ($RT_expression) getSym(1))); $EndAction ./ -- TODO? %prec _EXP
 		|	<expression_commalist> _COMMA <expression>
@@ -446,6 +495,7 @@ $Rules
 <expression_commalist_multiple_elements> ::=
     	|	<expression_commalist> _COMMA <expression>
     			/. $BeginAction setSym1(m_factory.createExpressionList(getList(1), ($RT_expression) getSym(3))); $EndAction ./
+
 
 -- priorize nested expression over subquery, as we have an ambiguity between a
 -- nested <query_combined> that is a <subquery> in an <expression_factor> and
@@ -458,11 +508,13 @@ $Rules
 		|	<subquery>
 				/. $BeginAction setSym1(m_factory.createScalarSelectExpression(($RT_subquery) getSym(1))); $EndAction ./
 
+
 -- priorize special register over column reference, as we have an ambiguity
 -- between the special register CURRENT_DATE and column CURRENT_DATE
 <expression_factor> ::=?
             <special_register>
         |   <column_ref>
+
 
 <expression_factor> ::=
 			<constant>
@@ -543,6 +595,77 @@ $Rules
         |   <opt_schema_dot> <identifier> _LPAREN <opt_all_distinct> <opt_expression_commalist> _RPAREN
         		/. $BeginAction setSym1(m_factory.createFunctionExpression(getString(2), getString(4), getList(5), getString(1))); $EndAction ./
 
+
+<grouping> ->
+			<grouping_exp>
+		|	<super_groups>
+
+
+<grouping_exp> ::=
+			<expression>
+				/. $BeginAction setSym1( m_factory.createGroupingExpression(($RT_expression) getSym(1)) ); $EndAction ./
+
+
+<grouping_sets> ::=
+    		GROUPING SETS _LPAREN <grouping_sets_element_list> _RPAREN
+				/. $BeginAction setSym1( m_factory.createGroupingSets(getList(4)) ); $EndAction ./
+
+
+<grouping_sets_element_list> ::=
+    		<grouping_sets_element>
+				/. $BeginAction setSym1(m_factory.createGroupingSetsElementList(null,($RT_grouping_sets_element) getSym(1)));  $EndAction ./
+		|	<grouping_sets_element_list> _COMMA <grouping_sets_element>
+				/. $BeginAction setSym1(m_factory.createGroupingSetsElementList(getList(1),($RT_grouping_sets_element) getSym(3)));  $EndAction ./
+
+
+-- here the order of rules is important$ in case of <grouping_sets_element_exp_list> has only one element, we don't want it to be <grouping_sets_element_exp> as an <expression> enclosed in parens
+-- don't have it ordered like: <grouping_sets_element> ::= <grouping_sets_element_exp> | _LPAREN <grouping_sets_element_exp_list> _RPAREN
+-- test it with: SELECT * FROM table0 GROUP BY GROUPING SETS (Province, (County), (City,ZIP))
+<grouping_sets_element> ::=?
+			_LPAREN <grouping_sets_element_exp_list> _RPAREN
+				/. $BeginAction setSym1( m_factory.createGroupingSetsElementSublist(getList(2)) );  $EndAction ./
+		|	<grouping_sets_element_exp>
+
+
+<grouping_sets_element_exp> ::=
+    		<grouping>
+				/. $BeginAction setSym1( m_factory.createGroupingSetsElementExpression(($RT_grouping) getSym(1)) ); $EndAction ./
+
+
+<grouping_sets_element_exp_list> ::=
+    		<grouping_sets_element_exp>
+				/. $BeginAction setSym1(m_factory.createGroupingSetsElementExprList(null,($RT_grouping_sets_element_expr) getSym(1)));  $EndAction ./
+		|	<grouping_sets_element_exp_list> _COMMA <grouping_sets_element_exp>
+				/. $BeginAction setSym1(m_factory.createGroupingSetsElementExprList(getList(1),($RT_grouping_sets_element_expr) getSym(3)));  $EndAction ./
+
+
+<grouping_spec> ->
+    		<grouping>
+    	|	<grouping_sets>
+
+
+
+<grouping_spec_list> ::=
+			<grouping_spec>
+				/. $BeginAction setSym1(m_factory.createGroupingSpecificationList(null,($RT_grouping_spec) getSym(1)));  $EndAction ./
+		|	<grouping_spec_list> _COMMA <grouping_spec>
+				/. $BeginAction setSym1(m_factory.createGroupingSpecificationList(getList(1),($RT_grouping_spec) getSym(3)));  $EndAction ./
+
+
+--	$RT_grouping_spec 					/.GroupingSpecification./
+--	$RT_grouping 						/.Grouping./
+--	$RT_grouping_exp 					/.GroupingExpression./
+--	$RT_super_groups 					/.SuperGroup./
+--	$RT_super_groups_element 			/.SuperGroupElement./
+
+
+<identifier> ::=
+			REGULAR_IDENTIFIER
+				/. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+		|	DELIMITED_IDENTIFIER
+				/. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+
+
 <implicitly_typed_value_specification> ::=
            <null_specification>
 -- this will be removed from the final ISO 2003 spec
@@ -622,6 +745,11 @@ $Rules
 					setSym1(m_factory.createPredicateBetween(($RT_expression)getSym(1), notBetween, ($RT_expression)getSym(3), ($RT_expression)getSym(5))); $EndAction ./
 
 
+<left_bracket_or_trigraph> ::=
+            LEFT_BRACKET
+        |   LEFT_BRACKET_TRIGRAPH
+
+
 <liketest> ::=
 			<expression> NOT LIKE <expression> <opt_escape>
 				/. $BeginAction boolean notLike = true;
@@ -644,6 +772,7 @@ $Rules
             NULL
             /. $BeginAction setSym1(m_factory.createNullExpression()); $EndAction ./
 
+
 <opt_all_distinct> ::=
 			$empty
 				/. $BeginAction setSym1((String)null); $EndAction ./
@@ -656,6 +785,12 @@ $Rules
 <opt_as> ->
 			AS
 		|	$empty
+
+
+<opt_as_alias> ::=
+			<as_alias>
+		|	$empty
+				/. $BeginAction setSym1(null); $EndAction ./
 
 
 <opt_as_target_table> ::=
@@ -674,12 +809,19 @@ $Rules
 				/. $BeginAction setInt1($parser_factory.ORDERING_SPEC_TYPE_NONE); $EndAction ./
 
 
-
 <opt_case_else> ::=
 			ELSE <expression>
 				/. $BeginAction setSym1(m_factory.createCaseElse(($RT_expression)getSym(2))); $EndAction ./
 		|	$empty
 				/. $BeginAction setSym1(null); $EndAction ./
+
+
+<opt_column_name_list> ::=
+			_LPAREN <column_name_list> _RPAREN
+				/. $BeginAction setSym1(getList(2)); $EndAction ./
+		|	$empty
+				/. $BeginAction setSym1(null); $EndAction ./
+
 
 -- TODO: wrap the default clause in it's own SQLQueryObect as oposed to just returning the QueryValueExpression           
 <opt_default_clause> ::=
@@ -688,24 +830,6 @@ $Rules
         |   $empty
                 /. $BeginAction setSym1(null); $EndAction ./
     
-<default_option> ::=     
-             <constant>
---      |    <datetime value function>
-        |   USER
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_USER)); $EndAction ./
-        |   CURRENT_USER
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_USER)); $EndAction ./
-        |   CURRENT_ROLE
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_ROLE)); $EndAction ./
-        |   SESSION_USER
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_SESSION_USER)); $EndAction ./
-        |   SYSTEM_USER
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_SYSTEM_USER)); $EndAction ./
-        |   CURRENT_PATH
-                /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_CURRENT_PATH)); $EndAction ./
---      |   <implicitly typed value specification>
-                
-                
                 
 <opt_escape> ::=
             ESCAPE _STRING
@@ -730,118 +854,6 @@ $Rules
 		|	$empty
 				/. $BeginAction setSym1((List)null); $EndAction ./
 
-<opt_null_order> ::=
-            NULLS FIRST
-            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NULLS_FIRST); $EndAction ./
-        |   NULLS LAST
-            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NULLS_LAST); $EndAction ./
-        |   $empty
-            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NONE); $EndAction ./
-
-
-
-<grouping_spec_list> ::=
-			<grouping_spec>
-				/. $BeginAction setSym1(m_factory.createGroupingSpecificationList(null,($RT_grouping_spec) getSym(1)));  $EndAction ./
-		|	<grouping_spec_list> _COMMA <grouping_spec>
-				/. $BeginAction setSym1(m_factory.createGroupingSpecificationList(getList(1),($RT_grouping_spec) getSym(3)));  $EndAction ./
-
-
-<grouping_spec> ->
-    		<grouping>
-    	|	<grouping_sets>
-
-
-<grouping> ->
-			<grouping_exp>
-		|	<super_groups>
-
-
-<grouping_exp> ::=
-			<expression>
-				/. $BeginAction setSym1( m_factory.createGroupingExpression(($RT_expression) getSym(1)) ); $EndAction ./
-
-
-<super_groups> ::=
-    		CUBE _LPAREN <super_groups_element_list> _RPAREN
-				/. $BeginAction setSym1( m_factory.createSuperGroups(getList(3), $parser_factory.SUPERGROUP_TYPE_CUBE) ); $EndAction ./
-    	|	ROLLUP _LPAREN <super_groups_element_list> _RPAREN
-				/. $BeginAction setSym1( m_factory.createSuperGroups(getList(3), $parser_factory.SUPERGROUP_TYPE_ROLLUP) ); $EndAction ./
-    	|	_LPAREN _RPAREN
-				/. $BeginAction setSym1( m_factory.createSuperGroups(null, $parser_factory.SUPERGROUP_TYPE_GRANDTOTAL) ); $EndAction ./
-
-
-<super_groups_element_list> ::=
-    		<super_groups_element>
-				/. $BeginAction setSym1(m_factory.createSuperGroupsElementList(null,($RT_super_groups_element) getSym(1)));  $EndAction ./
-		|	<super_groups_element_list> _COMMA <super_groups_element>
-				/. $BeginAction setSym1(m_factory.createSuperGroupsElementList(getList(1),($RT_super_groups_element) getSym(3)));  $EndAction ./
-
-
--- here the order of rules is important$ in case of <super_groups_element_exp_list> has only one element, we don't want it to be <super_groups_element_exp> as an <expression> enclosed in parens
--- don't have it ordered like: <super_groups_element> ::= <super_groups_element_exp> | _LPAREN <super_groups_element_exp_list> _RPAREN
--- test it with: SELECT * FROM table0 GROUP BY CUBE(Province, (County), (City,ZIP))
-<super_groups_element> ::=?
-			_LPAREN <super_groups_element_exp_list> _RPAREN
-				/. $BeginAction setSym1( m_factory.createSuperGroupsElementSublist(getList(2)) );  $EndAction ./
-		|	<super_groups_element_exp>
-
-
-<super_groups_element_exp> ::=
-    		<grouping_exp>
-				/. $BeginAction setSym1( m_factory.createSuperGroupsElementExpression(($RT_grouping_exp) getSym(1)) ); $EndAction ./
-
-
-<super_groups_element_exp_list> ::=
-    		<super_groups_element_exp>
-				/. $BeginAction setSym1(m_factory.createSuperGroupsElementExprList(null,($RT_super_groups_element_expr) getSym(1)));  $EndAction ./
-		|	<super_groups_element_exp_list> _COMMA <super_groups_element_exp>
-				/. $BeginAction setSym1(m_factory.createSuperGroupsElementExprList(getList(1),($RT_super_groups_element_expr) getSym(3)));  $EndAction ./
-
-
---	$RT_grouping_spec 					/.GroupingSpecification./
---	$RT_grouping 						/.Grouping./
---	$RT_grouping_exp 					/.GroupingExpression./
---	$RT_super_groups 					/.SuperGroup./
---	$RT_super_groups_element 			/.SuperGroupElement./
-
-
-
-<grouping_sets> ::=
-    		GROUPING SETS _LPAREN <grouping_sets_element_list> _RPAREN
-				/. $BeginAction setSym1( m_factory.createGroupingSets(getList(4)) ); $EndAction ./
-
-
-<grouping_sets_element_list> ::=
-    		<grouping_sets_element>
-				/. $BeginAction setSym1(m_factory.createGroupingSetsElementList(null,($RT_grouping_sets_element) getSym(1)));  $EndAction ./
-		|	<grouping_sets_element_list> _COMMA <grouping_sets_element>
-				/. $BeginAction setSym1(m_factory.createGroupingSetsElementList(getList(1),($RT_grouping_sets_element) getSym(3)));  $EndAction ./
-
-
--- here the order of rules is important$ in case of <grouping_sets_element_exp_list> has only one element, we don't want it to be <grouping_sets_element_exp> as an <expression> enclosed in parens
--- don't have it ordered like: <grouping_sets_element> ::= <grouping_sets_element_exp> | _LPAREN <grouping_sets_element_exp_list> _RPAREN
--- test it with: SELECT * FROM table0 GROUP BY GROUPING SETS (Province, (County), (City,ZIP))
-<grouping_sets_element> ::=?
-			_LPAREN <grouping_sets_element_exp_list> _RPAREN
-				/. $BeginAction setSym1( m_factory.createGroupingSetsElementSublist(getList(2)) );  $EndAction ./
-		|	<grouping_sets_element_exp>
-
-
-<grouping_sets_element_exp> ::=
-    		<grouping>
-				/. $BeginAction setSym1( m_factory.createGroupingSetsElementExpression(($RT_grouping) getSym(1)) ); $EndAction ./
-
-
-<grouping_sets_element_exp_list> ::=
-    		<grouping_sets_element_exp>
-				/. $BeginAction setSym1(m_factory.createGroupingSetsElementExprList(null,($RT_grouping_sets_element_expr) getSym(1)));  $EndAction ./
-		|	<grouping_sets_element_exp_list> _COMMA <grouping_sets_element_exp>
-				/. $BeginAction setSym1(m_factory.createGroupingSetsElementExprList(getList(1),($RT_grouping_sets_element_expr) getSym(3)));  $EndAction ./
-
-<left_bracket_or_trigraph> ::=
-            LEFT_BRACKET
-        |   LEFT_BRACKET_TRIGRAPH
 
 <opt_having_clause> ::=
 			HAVING <condition>
@@ -868,6 +880,15 @@ $Rules
 		|	$empty
 
 
+<opt_null_order> ::=
+            NULLS FIRST
+            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NULLS_FIRST); $EndAction ./
+        |   NULLS LAST
+            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NULLS_LAST); $EndAction ./
+        |   $empty
+            /. $BeginAction setInt1($parser_factory.NULL_ORDERING_TYPE_NONE); $EndAction ./
+
+
 <opt_order_by_clause> ::=
 			ORDER BY <ordering_spec_commalist>
 				/. $BeginAction setSym1(getList(3)); $EndAction ./
@@ -875,8 +896,9 @@ $Rules
 				/. $BeginAction setSym1((List)null); $EndAction ./
 
 
-<opt_as_alias> ::=
-			<as_alias>
+<opt_schema_dot> ::=
+    		<schema> _DOT
+    			/. $BeginAction setSym1(getString(1)); $EndAction ./
 		|	$empty
 				/. $BeginAction setSym1(null); $EndAction ./
 
@@ -885,7 +907,6 @@ $Rules
 			<table_correlation>
 		|	$empty
 				/. $BeginAction setSym1(null); $EndAction ./
-
 
 
 <opt_target_column_list> ::=
@@ -900,13 +921,6 @@ $Rules
 				/. $BeginAction setSym1_keepSpan(getSym(2)); $EndAction ./
 		|	$empty
 				/. $BeginAction setSym1(null);  $EndAction ./
-
-
-<opt_schema_dot> ::=
-    		<schema> _DOT
-    			/. $BeginAction setSym1(getString(1)); $EndAction ./
-		|	$empty
-				/. $BeginAction setSym1(null); $EndAction ./
 
 
 <ordering_spec> ::=
@@ -934,6 +948,12 @@ $Rules
 				/. $BeginAction setSym1(m_factory.createVariableExpression(null)); $EndAction ./
 
 
+<path-resolved user-defined type name> ::= <opt_schema_dot> <identifier>
+                /. $BeginAction
+                    setSym1(getString(1).concat(".").concat(getString(2))); //$NON-NLS-1$
+                   $EndAction ./
+
+
 <project> ::=
 			<expression> <opt_as_alias>
 				/. $BeginAction setSym1(m_factory.createResultColumn(($RT_expression) getSym(1), getString(2))); $EndAction ./
@@ -945,22 +965,9 @@ $Rules
                 /. $BeginAction setSym1(m_factory.createResultTableAllColumns(getString(3), getString(1))); $EndAction ./
 
 
-
 <query_combined> ::=
     		<query_exp> <query_combined_operator> <query_term>
     			/. $BeginAction setSym1(m_factory.createQueryCombined(($RT_query_exp) getSym(1),getInt(2),($RT_query_term) getSym(3)));  $EndAction ./
-
--- <query_exp> returns QueryExpressionBody (fullselect)
---   precedence to <query_combined> (un-nested), because <query_term> can be a
---   nested combined query: <query_term> -> _LPAREN <query_combined> _RPAREN
---   causes extra parser conflicts with optional nested expression, where
---   <expression> -> ... -> _LPAREN <expression> _RPAREN and
---        <expression> -> <subquery> -> <query_combined>
---   as we don't have a nested Query, we want to presereve the nesting as
---   nested expression then
-<query_exp> ::=?
-    		<query_combined>
-   		|	<query_term>
 
 <query_combined_operator> ::=
 			UNION
@@ -977,15 +984,22 @@ $Rules
 				/. $BeginAction setInt1($parser_factory.QUERY_COMBINED_EXCEPT_ALL); $EndAction ./
 
 
+-- <query_exp> returns QueryExpressionBody (fullselect)
+--   precedence to <query_combined> (un-nested), because <query_term> can be a
+--   nested combined query: <query_term> -> _LPAREN <query_combined> _RPAREN
+--   causes extra parser conflicts with optional nested expression, where
+--   <expression> -> ... -> _LPAREN <expression> _RPAREN and
+--        <expression> -> <subquery> -> <query_combined>
+--   as we don't have a nested Query, we want to presereve the nesting as
+--   nested expression then
+<query_exp> ::=?
+    		<query_combined>
+   		|	<query_term>
+
+
 <query_exp_root> ::=
 			<with_clause> <query_exp>
 				/.$BeginAction setSym1( m_factory.createQueryExpressionRoot(($RT_query_exp)getSym(2), getList(1)) ); $EndAction ./
-
-
--- returns QuerySelectStatement (select-statement)
-<query_stmt> ::=
-			<query_exp_root> <opt_order_by_clause>
-				/. $BeginStatement setSym1(m_factory.createSelectStatement(($RT_query_exp_root)getSym(1), getList(2))); $EndAction ./
 
 
 -- returns QuerySelect (subselect)
@@ -997,6 +1011,13 @@ $Rules
 			<opt_having_clause>
 				/. $BeginAction setSym1(m_factory.createQuerySelect(getString(2),getList(3),getList(5),($RT_opt_where_clause)getSym(6),getList(7),($RT_opt_having_clause)getSym(8))); $EndAction ./
 
+
+-- returns QuerySelectStatement (select-statement)
+<query_stmt> ::=
+			<query_exp_root> <opt_order_by_clause>
+				/. $BeginStatement setSym1(m_factory.createSelectStatement(($RT_query_exp_root)getSym(1), getList(2))); $EndAction ./
+
+
 <query_term> ::=
     		<query_select>
 		|	<query_values>
@@ -1007,11 +1028,6 @@ $Rules
 			--  with nested expression, where the <expression> -> <subquery> ->
 			--  <query_combined>
 
-<right_bracket_or_trigraph> ::=
-            RIGHT_BRACKET
-        |   RIGHT_BRACKET_TRIGRAPH
-
-
 --// VALUES (1),(2),(3) 		 - 3 rows of 1 column
 --// VALUES 1, 2, 3 			 - 3 rows of 1 column
 --// VALUES (1, 2, 3) 			 - 1 row of 3 columns
@@ -1019,24 +1035,6 @@ $Rules
 <query_values> ::=
     		VALUES <values_row_commalist>
     			/. $BeginAction setSym1(m_factory.createQueryValues(getList(2))); $EndAction ./
-
---// due to ambiguities that result in parser conflicts: two rules here are
---// prioritized so that in VALUES (1) the (1) is unambiguously resolved
---// to _LPAREN <expression_commalist> _RPAREN, where <expression_commalist> has
---// only a single <expression>, the conflicting interpretation would be
---// a parenthesized <expression> - which can be <expression_factor> -> _LPAREN <expression> _RPAREN
-<values_row> ::=?
-    		_LPAREN <expression_commalist> _RPAREN
-    			/. $BeginAction setSym1(m_factory.createValuesRow(getList(2))); $EndAction ./
-<values_row> ::=
-       		<expression>
-    			/. $BeginAction setSym1(m_factory.createValuesRow(($RT_expression)getSym(1))); $EndAction ./
-
-<values_row_commalist> ::=
-    		<values_row>
-    			/. $BeginAction setSym1(m_factory.createValuesRowList(null, ($RT_values_row) getSym(1))); $EndAction ./
-    	|	<values_row_commalist> _COMMA <values_row>
-    			/. $BeginAction setSym1(m_factory.createValuesRowList(getList(1), ($RT_values_row) getSym(3))); $EndAction ./
 
 
 <relop> ::=  	-- relative operator
@@ -1054,7 +1052,17 @@ $Rules
 				/. $BeginAction setInt1($parser_factory.COMPARISON_OPERATOR_GE); $EndAction ./
 
 
-<scalcomp> ::=
+<right_bracket_or_trigraph> ::=
+            RIGHT_BRACKET
+        |   RIGHT_BRACKET_TRIGRAPH
+
+
+<row_comparison> ::= 
+			<value_expr_row> <relop> <value_expr_row>
+				/. $BeginAction setSym1(m_factory.createPredicateBasic(($RT_expression)getSym(1),getInt(2),($RT_expression)getSym(3))); $EndAction ./
+				
+
+<scalar_comparison> ::=
 			<expression> <relop> <expression>
 				/. $BeginAction setSym1(m_factory.createPredicateBasic(($RT_expression)getSym(1),getInt(2),($RT_expression)getSym(3))); $EndAction ./
 --ToDo: that rule is obsolete with <expression> -> ... -> <subquery>
@@ -1080,7 +1088,8 @@ $Rules
 
 
 <simplecomp> ->
-			<scalcomp>
+			<scalar_comparison>
+		|   <row_comparison>
 		|	<intervaltest>
 		|	<nulltest>
 		|	<liketest>
@@ -1134,20 +1143,6 @@ $Rules
                 /. $BeginAction setSym1(m_factory.createSpecialRegisterExpression($parser_factory.SPECIAL_REGISTER_VALUE)); $EndAction ./
 
 
-<time precision> ::= UNSIGNED_INTEGER
-                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
-
-
-<timestamp precision> ::= UNSIGNED_INTEGER
-                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
-
-
-<path-resolved user-defined type name> ::= <opt_schema_dot> <identifier>
-                /. $BeginAction
-                    setSym1(getString(1).concat(".").concat(getString(2))); //$NON-NLS-1$
-                   $EndAction ./
-
-
 -- TODO: define <string_expression> for use in <liketest>
 -- maybe that goes away with postprocessing
 --<string_expression> ::=
@@ -1157,7 +1152,6 @@ $Rules
 --maybe:		|	<string_function>
 --maybe:		|	<column_ref>
 --maybe:		|	<parameter>
-
 
 
 --<subquery> ::=
@@ -1174,23 +1168,51 @@ $Rules
 				/. $BeginAction setSym1(getSym(2)); $EndAction ./
 
 
+<super_groups> ::=
+    		CUBE _LPAREN <super_groups_element_list> _RPAREN
+				/. $BeginAction setSym1( m_factory.createSuperGroups(getList(3), $parser_factory.SUPERGROUP_TYPE_CUBE) ); $EndAction ./
+    	|	ROLLUP _LPAREN <super_groups_element_list> _RPAREN
+				/. $BeginAction setSym1( m_factory.createSuperGroups(getList(3), $parser_factory.SUPERGROUP_TYPE_ROLLUP) ); $EndAction ./
+    	|	_LPAREN _RPAREN
+				/. $BeginAction setSym1( m_factory.createSuperGroups(null, $parser_factory.SUPERGROUP_TYPE_GRANDTOTAL) ); $EndAction ./
+
+
+<super_groups_element_exp> ::=
+    		<grouping_exp>
+				/. $BeginAction setSym1( m_factory.createSuperGroupsElementExpression(($RT_grouping_exp) getSym(1)) ); $EndAction ./
+
+
+<super_groups_element_exp_list> ::=
+    		<super_groups_element_exp>
+				/. $BeginAction setSym1(m_factory.createSuperGroupsElementExprList(null,($RT_super_groups_element_expr) getSym(1)));  $EndAction ./
+		|	<super_groups_element_exp_list> _COMMA <super_groups_element_exp>
+				/. $BeginAction setSym1(m_factory.createSuperGroupsElementExprList(getList(1),($RT_super_groups_element_expr) getSym(3)));  $EndAction ./
+
+
+-- here the order of rules is important$ in case of <super_groups_element_exp_list> has only one element, we don't want it to be <super_groups_element_exp> as an <expression> enclosed in parens
+-- don't have it ordered like: <super_groups_element> ::= <super_groups_element_exp> | _LPAREN <super_groups_element_exp_list> _RPAREN
+-- test it with: SELECT * FROM table0 GROUP BY CUBE(Province, (County), (City,ZIP))
+<super_groups_element> ::=?
+			_LPAREN <super_groups_element_exp_list> _RPAREN
+				/. $BeginAction setSym1( m_factory.createSuperGroupsElementSublist(getList(2)) );  $EndAction ./
+		|	<super_groups_element_exp>
+
+
+<super_groups_element_list> ::=
+    		<super_groups_element>
+				/. $BeginAction setSym1(m_factory.createSuperGroupsElementList(null,($RT_super_groups_element) getSym(1)));  $EndAction ./
+		|	<super_groups_element_list> _COMMA <super_groups_element>
+				/. $BeginAction setSym1(m_factory.createSuperGroupsElementList(getList(1),($RT_super_groups_element) getSym(3)));  $EndAction ./
+
+
 <table> ::=
 			<identifier>
 				/. $BeginAction setSym1(getString(1)); $EndAction ./
 
 
-<alias_name> ->
-			<identifier>
-
---//TODO: fix up name of this rule and usage
-<as_alias> ::=
-			<opt_as> <alias_name>
-				/. $BeginAction setSym1(getString(2)); $EndAction ./
-
-
 <table_correlation> ::=
-    		<as_alias>
-    			/. $BeginAction setSym1(m_factory.createTableCorrelation(getString(1))); $EndAction ./
+    		<as_alias> <opt_column_name_list>
+    			/. $BeginAction setSym1(m_factory.createTableCorrelation(getString(1), getList(2))); $EndAction ./
 
 
 <table_join> ::=
@@ -1207,9 +1229,8 @@ $Rules
 		|	<table_query>
 		|	_LPAREN <table_ref> _RPAREN
 				/. $BeginAction setSym1(m_factory.createNestedTable(($RT_table_ref)getSym(2))); $EndAction ./
---ToDo: table function, see <function>?
---ToDo:		|  TABLE _LPAREN <table_func> _RPAREN <as_alias>
---ToDo:				/. $BeginAction setSym1(getSym(2)); $EndAction ./
+		|   TABLE _LPAREN <opt_schema_dot> <identifier> _LPAREN <opt_expression_commalist> _RPAREN _RPAREN <table_correlation>
+				/. $BeginAction setSym1(m_factory.createTableFunction(getString(4), getList(6), getString(3), ($RT_table_correlation)getSym(9)) ); $EndAction ./
 
 
 <table_query> ::=
@@ -1243,6 +1264,13 @@ $Rules
 --				/. $BeginAction setSym1(m_factory.createSimpleTable(getString(3), getString(5))); $EndAction ./
 
 
+<time precision> ::= UNSIGNED_INTEGER
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+
+
+<timestamp precision> ::= UNSIGNED_INTEGER
+                /. $BeginAction setSym1(getTokenName(1)); $EndAction ./
+
 
 <update_assignment_clause> ->
 			<update_assignment_expression_commalist>
@@ -1273,6 +1301,34 @@ $Rules
 			<opt_where_clause>
 				/. $BeginStatement setSym1(m_factory.createUpdateStatement(($RT_target_table)getSym(2), ($RT_opt_as_target_table)getSym(3), getList(5), ($RT_opt_where_clause)getSym(6))); $EndAction ./
 
+
+<value_expr_row> ::= 
+			_LPAREN <expression_commalist_multiple_elements> _RPAREN
+				/. $BeginAction setSym1(m_factory.createValueExpressionRow(getList(2))); $EndAction ./
+
+
+--// due to ambiguities that result in parser conflicts: two rules here are
+--// prioritized so that in VALUES (1) the (1) is unambiguously resolved
+--// to _LPAREN <expression_commalist> _RPAREN, where <expression_commalist> has
+--// only a single <expression>, the conflicting interpretation would be
+--// a parenthesized <expression> - which can be <expression_factor> -> _LPAREN <expression> _RPAREN
+<values_row> ::=?
+    		_LPAREN <expression_commalist> _RPAREN
+    			/. $BeginAction setSym1(m_factory.createValuesRow(getList(2))); $EndAction ./
+    			
+    			
+<values_row> ::=
+       		<expression>
+    			/. $BeginAction setSym1(m_factory.createValuesRow(($RT_expression)getSym(1))); $EndAction ./
+
+
+<values_row_commalist> ::=
+    		<values_row>
+    			/. $BeginAction setSym1(m_factory.createValuesRowList(null, ($RT_values_row) getSym(1))); $EndAction ./
+    	|	<values_row_commalist> _COMMA <values_row>
+    			/. $BeginAction setSym1(m_factory.createValuesRowList(getList(1), ($RT_values_row) getSym(3))); $EndAction ./
+
+
 --// TODO rename optional
 <with_clause> ::=
     		WITH <with_table_spec_list>
@@ -1291,35 +1347,6 @@ $Rules
 <with_table_spec> ::=
 			<table> <opt_column_name_list> AS _LPAREN <query_exp> _RPAREN
 				/. $BeginAction setSym1(m_factory.createWithTableSpecification(getString(1),getList(2),($RT_query_exp) getSym(5)));  $EndAction ./
-
-
-<opt_column_name_list> ::=
-			_LPAREN <column_name_list> _RPAREN
-				/. $BeginAction setSym1(getList(2)); $EndAction ./
-		|	$empty
-				/. $BeginAction setSym1(null); $EndAction ./
-
-
-<column_name_list> ::=
-			<column_name>
-				/. $BeginAction setSym1(m_factory.createColumnNameList(null,($RT_column_name)getSym(1))); $EndAction ./
-		|	<column_name_list> _COMMA <column_name>
-				/. $BeginAction setSym1(m_factory.createColumnNameList(getList(1),($RT_column_name)getSym(3))); $EndAction ./
-
-
-<column_name> ::=
-    		<identifier>
-    			/. $BeginAction setSym1(m_factory.createColumnName(getString(1))); $EndAction ./
-
-
-<identifier> ::=
-			REGULAR_IDENTIFIER
-				/. $BeginAction setSym1(getTokenName(1)); $EndAction ./
-		|	DELIMITED_IDENTIFIER
-				/. $BeginAction setSym1(getTokenName(1)); $EndAction ./
-
-
-
 
 
 $End

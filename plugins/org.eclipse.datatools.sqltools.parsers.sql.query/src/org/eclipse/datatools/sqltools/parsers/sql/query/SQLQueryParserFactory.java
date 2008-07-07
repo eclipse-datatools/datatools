@@ -86,6 +86,7 @@ import org.eclipse.datatools.modelbase.sql.query.SuperGroupElementSublist;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroupType;
 import org.eclipse.datatools.modelbase.sql.query.TableCorrelation;
 import org.eclipse.datatools.modelbase.sql.query.TableExpression;
+import org.eclipse.datatools.modelbase.sql.query.TableFunction;
 import org.eclipse.datatools.modelbase.sql.query.TableInDatabase;
 import org.eclipse.datatools.modelbase.sql.query.TableJoined;
 import org.eclipse.datatools.modelbase.sql.query.TableJoinedOperator;
@@ -109,6 +110,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
@@ -1934,14 +1936,22 @@ public TableExpression addTableCorrelationToTableExpression(TableExpression tabl
  * @return SQLTableCorrelation or null if given correlation name is null
  */
 public TableCorrelation createTableCorrelation(String aCorrName) {
-  //if (statementTypeOnly) {return null;}
+    return createTableCorrelation(aCorrName, null);
+}
+
+public TableCorrelation createTableCorrelation(String aCorrName, List aColNameList) {
     TableCorrelation corr = null;
     if (aCorrName != null) {
         corr = sqlQueryModelFactory.createTableCorrelation();
         corr.setName(StatementHelper.convertSQLIdentifierToCatalogFormat(aCorrName,  getDelimitedIdentifierQuote()));
+        
+        if (aColNameList != null && aColNameList.size() > 0) {
+            corr.getColumnNameList().addAll(aColNameList);
+        }
     }
     return corr;
 }
+
 
 /**
  * use <code>createTableExpressionQuery(aSubquery,
@@ -1961,6 +1971,32 @@ public TableExpression createTableExpressionQuery(QueryExpressionBody aSubquery,
     TableExpression nestedQueryTableExpr = aSubquery;
     nestedQueryTableExpr.setTableCorrelation(aTableCorr);
     return nestedQueryTableExpr;
+}
+
+public TableFunction createTableFunction(String aFuncName, List aFuncParmList, String aSchemaName, TableCorrelation aTableCorr) {
+    TableFunction func = sqlQueryModelFactory.createTableFunction();
+    Function function = SQLRoutinesFactory.eINSTANCE.createFunction();
+    func.setFunction(function);
+    func.setName(StatementHelper.convertSQLIdentifierToCatalogFormat( aFuncName,  getDelimitedIdentifierQuote()));
+
+    if(aSchemaName != null){
+      Schema schema = createSchema(aSchemaName);
+      function.setSchema(schema);
+    }
+
+    if(aSchemaName != null){
+      Schema schema = createSchema(aSchemaName);
+      function.setSchema(schema);
+    }
+
+    if (aFuncParmList != null) {
+      EList funcParmList = func.getParameterList();
+      funcParmList.addAll( aFuncParmList );
+    }
+    
+    func.setTableCorrelation(aTableCorr);
+    
+    return func;
 }
 
 public ResultColumn createResultColumn( QueryValueExpression aResultColExpr, String aAsName ) {
@@ -2183,6 +2219,15 @@ public ValueExpressionVariable createVariableExpression( String aVarName ) {
     varExpr.setName(aVarName); // [bug 221028]
   }
   return varExpr;
+}
+
+public ValueExpressionRow createValueExpressionRow( List aExprList ) {
+    ValueExpressionRow valExprRow = sqlQueryModelFactory.createValueExpressionRow();
+    if (aExprList != null) {
+        valExprRow.getValueExprList().addAll(aExprList);
+    }
+    
+    return valExprRow;
 }
 
 public ValuesRow createValuesRow(List aValueExprList) {

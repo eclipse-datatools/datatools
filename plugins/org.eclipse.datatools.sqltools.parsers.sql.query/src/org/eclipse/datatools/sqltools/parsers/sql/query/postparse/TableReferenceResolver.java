@@ -1171,19 +1171,23 @@ public class TableReferenceResolver implements PostParseProcessor
         boolean hasTableColumn = false;
         
         if (tableExpr != null && colExpr != null) {
-            List tableColList = tableExpr.getColumnList();
-            String colExprName = colExpr.getName();
-            if (tableColList != null && colExprName != null) {
-                Iterator tableColListIter = tableColList.iterator();
-                while (tableColListIter.hasNext() && hasTableColumn == false) {
-                    ValueExpressionColumn tableCol = (ValueExpressionColumn) tableColListIter.next();
-                    String tableColName = tableCol.getName();
-                    if (StatementHelper.equalSQLIdentifiers(colExprName, tableColName)) {
-                        hasTableColumn = true;
-                    }
-                }
-            }
-        }
+//          List tableColList = tableExpr.getColumnList();
+          String colExprName = colExpr.getName();
+          ValueExpressionColumn resolvedCol = TableHelper.getColumnExpressionForName(tableExpr, colExprName);
+          if (resolvedCol != null) {
+              hasTableColumn = true;
+          }
+//          if (tableColList != null && colExprName != null) {
+//              Iterator tableColListIter = tableColList.iterator();
+//              while (tableColListIter.hasNext() && hasTableColumn == false) {
+//                  ValueExpressionColumn tableCol = (ValueExpressionColumn) tableColListIter.next();
+//                  String tableColName = tableCol.getName();
+//                  if (StatementHelper.equalSQLIdentifiers(colExprName, tableColName)) {
+//                      hasTableColumn = true;
+//                  }
+//              }
+//          }
+      }
         
         return hasTableColumn;
     }

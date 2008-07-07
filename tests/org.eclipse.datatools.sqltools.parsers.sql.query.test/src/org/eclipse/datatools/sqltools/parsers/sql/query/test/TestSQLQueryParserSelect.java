@@ -384,6 +384,15 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
             "", false); //$NON-NLS-1$
     }
 
+    public void testSQLDmlParser004_tableCorrelationNameList() throws Exception {
+        System.out.println("test 004_tableCorrelationNameList"); //$NON-NLS-1$
+        
+        parserVerifySuccess(
+                "select col1, col3 from t1_long t1(col1, col2, col3, col4);" + NL +  //$NON-NLS-1$
+                "select col1, col3 from t1_long as t1(col1, col2, col3, col4);" + NL +  //$NON-NLS-1$
+                "", matchInput); //$NON-NLS-1$
+    }
+    
     // TODO: test all types of TableExpression (tableFunction,tableWithSpec,TableInDB)
     public void testSqlDmlParser004_tableNested()  throws Exception {
         System.out.println("test 004_tableNested"); //$NON-NLS-1$
@@ -493,6 +502,12 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         parserVerifySuccess(
             "--RowSelect or ValueSelect?" + NL + //$NON-NLS-1$
             "select * from table0 where (col0) in (select col0,col1,col2 from table0);", false);  //$NON-NLS-1$
+    }
+
+    public void testSqlDmlParser004_rowBasicPredicate() throws Exception {
+        System.out.println("test 004_rowBasicPredicate");
+        parserVerifySuccess(
+            "select c1 from table2 where (col0,col1,col2) = (1, 'abc', col4);", matchInput); //$NON-NLS-1$
     }
 
     public void testSqlDmlParser004_caseExpression()  throws Exception {
@@ -701,6 +716,19 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
                 "       SMALLINT(COUNT(*)) AS R"        + NL + //$NON-NLS-1$  
                 "  FROM EMPLOYEE_VIEW"                  + NL + //$NON-NLS-1$ 
                 "  ORDER BY SAL;"                       + NL + //$NON-NLS-1$
+                "", matchInput); //$NON-NLS-1$
+    }
+    
+    public void testSqlDmlParser004_tableFunctions() throws Exception {
+        System.out.println("test 004_tableFunctions"); //$NON-NLS-1$
+        
+        parserVerifySuccess(
+                "select c1, c2 from table (tablefunc1()) t1 where c1 = 'foo';" + NL + //$NON-NLS-1$
+                "select c1, c2 from table (tablefunc1()) as t1 where c1 = 'foo';" + NL + //$NON-NLS-1$
+                "select t2.c1 from t1, table (schema1.tablefunc2()) as t2;" + NL + //$NON-NLS-1$
+                "select t2.c1 from table1 as t1, table (schema1.tablefunc2()) as t2;" + NL + //$NON-NLS-1$
+                "select c1, c2 from table (tablefunc1(parm1, parm2)) t1 where c1 = 'foo';" + NL + //$NON-NLS-1$
+                "select c1, c2 from table (tablefunc1(parm1, parm2)) t1(c1, c2, c3);" + NL + //$NON-NLS-1$
                 "", matchInput); //$NON-NLS-1$
     }
     
