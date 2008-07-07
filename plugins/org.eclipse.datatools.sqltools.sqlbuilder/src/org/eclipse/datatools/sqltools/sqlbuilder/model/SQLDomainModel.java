@@ -26,7 +26,10 @@ import java.util.Properties;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IStorage;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
@@ -630,7 +633,15 @@ public class SQLDomainModel {
 
         boolean retStatus = false;
         IFile fileResource = getIFile();
-        if (fileResource != null) {
+        String encoding = ResourcesPlugin.getEncoding();
+        if (fileResource != null) {             
+            try {
+                // Get the file encoding directly from the file if we can.
+                encoding = fileResource.getCharset();
+            }
+            catch (CoreException e) {
+               // ignore, leave encoding as default
+            }
             ByteArrayInputStream inpStream = null;
             try {
                 if (fileResource.exists()) {
@@ -653,8 +664,9 @@ public class SQLDomainModel {
                     }
                     // [wsdbu00057891] bgp 23Nov2005 - end
                     
-                    inpStream = new ByteArrayInputStream(sb.toString().getBytes());
+                    inpStream = new ByteArrayInputStream(sb.toString().getBytes(encoding));
                     fileResource.setContents(inpStream, true, false, null);
+                    fileResource.setCharset(encoding, new NullProgressMonitor());
                 }
                 else {
                     File sysFile = fileResource.getLocation().toFile();
@@ -668,10 +680,11 @@ public class SQLDomainModel {
                             sb.append(editorText);
                         }
                         else {
-                        	sb.append(getSQLStatement().getSQL());
+                            sb.append(getSQLStatement().getSQL());
                         }
-                        inpStream = new ByteArrayInputStream(sb.toString().getBytes());
+                        inpStream = new ByteArrayInputStream(sb.toString().getBytes(encoding));
                         fileResource.create(inpStream, false, null);
+                        fileResource.setCharset(encoding, new NullProgressMonitor());
                     }
                 }
                 retStatus = true;

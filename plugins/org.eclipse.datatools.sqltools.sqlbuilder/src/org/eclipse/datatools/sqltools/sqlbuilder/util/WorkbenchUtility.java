@@ -27,6 +27,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
@@ -271,8 +272,9 @@ public class WorkbenchUtility {
         InputStream iStream = null;
         try {
             iStream = fileResource.getContents();
+            String encoding = fileResource.getCharset();
             if (iStream != null) {
-                BufferedReader in = new BufferedReader( new InputStreamReader( iStream ));
+                BufferedReader in = new BufferedReader( new InputStreamReader( iStream, encoding ));
                 String tmpStr = "";
                 while (tmpStr != null) {
                     tmpStr = in.readLine();
@@ -399,9 +401,9 @@ public class WorkbenchUtility {
                     }
                     // [wsdbu000] bgp 10May2006 - end
                     fileResource.create( iStream, false, null );
+                    fileResource.setCharset(encoding, new NullProgressMonitor());
                 }
             }
-
         }
         catch (Exception e) {
             // TODO: handle exception
