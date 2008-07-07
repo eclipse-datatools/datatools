@@ -13,6 +13,9 @@ package org.eclipse.datatools.connectivity.oda.flatfile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PushbackInputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -437,25 +440,6 @@ public class FlatFileQuery implements IQuery
 	}
 
 	/**
-	 * Validate whether the query text is valid.
-	 * 
-	 * @param formattedQuery
-	 *            the SQL command
-	 * @throws OdaException
-	 *             if given text is invalid or if any other error occurs
-	 */
-	private void validateQueryText( String formattedQuery ) throws OdaException
-	{
-		validateNonEmptyQueryText( formattedQuery );
-
-		String[] queryFragments = parsePreparedQueryText( formattedQuery );
-
-		validateSingleTableQuery( queryFragments );
-
-		validateQueryColumnNames( queryFragments );
-	}
-
-	/**
 	 * Validate whether the given query text is empty.
 	 * 
 	 * @param formattedQuery
@@ -482,42 +466,6 @@ public class FlatFileQuery implements IQuery
 	{
 		if ( getPreparedTableNames( parsedQuerySegments ).split( CommonConstants.DELIMITER_COMMA_VALUE ).length != 1 )
 			throw new OdaException( Messages.getString( "query_DO_NOT_SUPPORT_CROSS_TABLE_QUERY" ) ); //$NON-NLS-1$
-	}
-
-	/**
-	 * Validate the column names included in given query segments.
-	 * 
-	 * @param parsedQuerySegments
-	 * @throws OdaException
-	 *             if the given query contains invalid column name(s)
-	 */
-	private void validateQueryColumnNames( String[] parsedQuerySegments )
-			throws OdaException
-	{
-		String preparedColumnNames = getPreparedColumnNames( parsedQuerySegments );
-		String tableName = getPreparedTableNames( parsedQuerySegments );
-		if ( !isWildCard( preparedColumnNames ) )
-		{
-			String[] originalColumnNames = null;
-			// if the existance of data column name are specified in the
-			// property
-			if ( this.hasColumnNames )
-			{
-				originalColumnNames = discoverActualColumnMetaData( getPreparedTableNames( parsedQuerySegments ),
-						NAME_LITERAL );
-			}
-			else
-			{
-				originalColumnNames = createTempColumnNames( ( new FlatFileDataReader( this.connProperties,
-						tableName,
-						0,
-						null,
-						null ) ).getColumnCount( ) );
-			}
-			
-			validateColumnName( FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( preparedColumnNames ) ) ),
-					originalColumnNames );
-		}
 	}
 
 	/**
@@ -610,7 +558,7 @@ public class FlatFileQuery implements IQuery
 		String selectedColumns = querySelectAndFromFragments[0];
 		if ( !isWildCard( selectedColumns ) )
 		{
-			String[] columns = FlatFileDataReader.getStringArrayFromVector( getQueryColumnNamesVector( selectedColumns ) );
+			String[] columns = FlatFileDataReader.getStringArrayFromList( getQueryColumnNamesVector( selectedColumns ) );
 
 			for ( int i = 0; i < columns.length; i++ )
 			{
@@ -863,12 +811,11 @@ public class FlatFileQuery implements IQuery
 					continue;
 			}
 			// Skip all the empty lines until reach the first line
-			String columnNameLine;
+			List columnNameLine;
 			while ( FlatFileDataReader.isEmptyRow( columnNameLine = ffdsr.readLine( ) ) )
 				continue;
 
-			String[] result = ffdsr.getColumnNameArray( columnNameLine,
-					metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) );
+			String[] result = ffdsr.getColumnNameArray( columnNameLine );
 
 			ffdsr.clearBufferedReader( );
 
@@ -1045,7 +992,7 @@ public class FlatFileQuery implements IQuery
 		}
 		else
 		{
-			queryColumnNames = FlatFileDataReader.getStringArrayFromVector( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
+			queryColumnNames = FlatFileDataReader.getStringArrayFromList( stripFormatInfoFromQueryColumnNames( getQueryColumnNamesVector( ( getPreparedColumnNames( queryFragments ) ) ) ) );
 			validateColumnName( queryColumnNames, allColumnNames);
 			if ( savedSelectedColInfo == null
 					|| savedSelectedColInfo.length( ) == 0 )
@@ -1136,7 +1083,7 @@ public class FlatFileQuery implements IQuery
 	 */
 	private String formatQueryText( String queryText )
 	{
-		StringBuffer result = new StringBuffer(); //$NON-NLS-1$
+		StringBuffer result = new StringBuffer(); 
 		String[] temp = queryText.trim( )
 				.split( CommonConstants.DELIMITER_SPACE );
 		for ( int i = 0; i < temp.length; i++ )
@@ -1155,161 +1102,255 @@ public class FlatFileQuery implements IQuery
 	/**
 	 * CVSBufferReader will buffer the input from the specified file. Read a
 	 * line of text. A line is considered to be terminated by any one of a line
-	 * feed ('\n'), or a carriage return followed immediately by a linefeed.
+	 * feed ('\n').
 	 */
 	public static class FlatFileBufferedReader
 	{
-
-		//
 		private Reader reader;
-		private char[] charBuffer;
-		private int startingPosition;
-		private int eofInPosition;
+		private char[] charBuffer; //the buffer saved chars read from file
 		private static int CHARBUFFSIZE = 8192;
-
-		/**
-		 * Constructor.
-		 * 
-		 * @param in
-		 */
-		public FlatFileBufferedReader( Reader in )
+		
+		private char separator;
+		private int endIndex; //the end of the buffer
+		private int currentIndex; //current index in the buffer during parsing a line
+		
+		public FlatFileBufferedReader( InputStream in, String encoding, char seperator ) throws IOException
 		{
-			reader = new BufferedReader( in );
-
-			startingPosition = -1;
-
-			eofInPosition = -2;
+			initReader( in, encoding );
+			this.separator = seperator;
+			endIndex = -1;
+			currentIndex = -1;
+			charBuffer = new char[CHARBUFFSIZE];
 		}
 
-		/**
-		 * Read a line from input stream. The line-seperator is '\n'
-		 */
-		public String readLine( ) throws IOException
+		private void initReader( InputStream in, String encoding ) throws IOException
 		{
-			if ( isLastCharBuff( ) && needRefillCharBuff( ) )
-				return null;
-
-			if ( needRefillCharBuff( ) )
+			if ( "UTF-8".equals( encoding ) ) //$NON-NLS-1$
 			{
-				charBuffer = newACharBuff( );
-				int close = reader.read( charBuffer );
-
-				if ( close == -1 )
-					return null;
-
-				if ( close != CHARBUFFSIZE )
-					this.eofInPosition = close;
-
-				this.startingPosition = 0;
-			}
-
-			String candidate = ""; //$NON-NLS-1$
-			int stopIn = CHARBUFFSIZE;
-
-			if ( isLastCharBuff( ) )
-			{
-				stopIn = this.eofInPosition;
-			}
-
-			for ( int i = this.startingPosition; i < stopIn; i++ )
-			{
-				if ( this.charBuffer[i] == '\n' )
+				//Currently, only BOM for "UTF-8" is supported
+				PushbackInputStream internalInputStream = new PushbackInputStream( in, 3 );
+				byte bom[] = new byte[3];
+				int len = internalInputStream.read( bom );
+				if ( len == 3 
+						&& bom[0] == (byte)0xEF
+						&& bom[1] == (byte)0xBB
+						&& bom[2] == (byte)0xBF )
 				{
-					return readALine( candidate, stopIn, i );
+					//is BOM, first 3 bytes just be skipped
 				}
-			}
-
-			if ( isLastCharBuff( ) )
+				else
+				{
+					//not BOM, back to the start point of <code>in</code
+					if ( len > 0 )
+					{
+						internalInputStream.unread( bom, 0, len );
+					}
+				}
+				reader = new BufferedReader( new InputStreamReader( internalInputStream, encoding) );
+			} 
+			else
 			{
-				return readLastLine( candidate );
+				reader = new BufferedReader( new InputStreamReader( in, encoding ) );
 			}
-
-			return readExtraContentOfALine( candidate );
 		}
-
+		
 		/**
-		 * If a line has not been finished after the current char buffer end is
-		 * reach, then read the infinish part of that line from input stream.
-		 * 
-		 * @param candidate
+		 * return a line
+		 * the csv format reference: http://www.creativyst.com/Doc/Articles/CSV/CSV01.htm
 		 * @return
+		 * @throws OdaException
 		 * @throws IOException
 		 */
-		private String readExtraContentOfALine( String candidate )
-				throws IOException
+		public List readLine( ) throws OdaException, IOException
 		{
-			candidate = candidate
-					+ String.copyValueOf( charBuffer,
-							this.startingPosition,
-							CHARBUFFSIZE - this.startingPosition );
-
-			resetCharBufferStartPosition( );
-
-			String nextLine = readLine( );
-
-			return candidate + ( nextLine == null ? "" : nextLine ); //$NON-NLS-1$
+			int newLineStartIndex = currentIndex + 1;
+			StringBuffer column = new StringBuffer( ); //current parsing column in the line
+			boolean doubleQuoted = false; //is current parsing column double quoted
+			if ( !next( ) ) 
+			{
+				//do not exist more char for read
+				return null;
+			}
+			List result = new ArrayList( );
+			do 
+			{
+				char curChar = getChar( ); 
+					
+				if ( !doubleQuoted )
+				{
+					if ( curChar == separator )
+					{
+						result.add( getColumnValue( column ) ); // this column is parsed
+						column.setLength( 0 ); //prepared for next column
+					}
+					else if ( curChar == '"' )
+					{
+						if ( column.toString( ).trim( ).length( ) > 0 )
+						{
+							//other shown chars exist before the first double quotes
+							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+						}
+						else
+						{
+							doubleQuoted = true;
+							column.setLength( 0 ); //start of this column
+							column.append( '"' );
+						}
+					}
+					else if ( curChar == '\n' )
+					{
+						//Finish this line
+						if ( currentIndex != newLineStartIndex )
+						{
+							result.add( getColumnValue( column ) );
+						}
+						else
+						{
+							//an empty line containing just a "\n"
+						}
+						return result;
+					}
+					else //other char
+					{
+						column.append( curChar );
+					}
+				}
+				else
+				{
+					moveToEndQuotation ( column );
+					moveToEndOfColumn( );
+					doubleQuoted = false;
+				}
+			} while ( next( ) );
+			
+			result.add( getColumnValue( column ) );
+			return result;
 		}
-
-		/**
-		 * Read a line from char buffer.
-		 * 
-		 * @param candidate
-		 * @param stopIn
-		 * @param i
-		 * @return
-		 */
-		private String readALine( String candidate, int stopIn, int i )
+		
+		private void moveToEndOfColumn( ) throws IOException, OdaException
 		{
-			candidate = candidate
-					+ String.copyValueOf( charBuffer, this.startingPosition, i
-							- this.startingPosition );
-			this.startingPosition = ( i == stopIn - 1 ? -1 : i + 1 );
-			return candidate;
+			if ( next( ) )
+			{
+				char curChar = getChar( );
+				if ( curChar == separator || curChar == '\n' )
+				{
+					back( );
+					return;
+				}
+				else if ( isAnEmptyChar( curChar ) )
+				{
+					moveToEndOfColumn( );
+				}
+				else
+				{
+					//Other shown chars exists after the double quote which is the flag of end of column
+					throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+				}
+			}
 		}
-
-		/**
-		 * Read the last line of the input stream.
-		 * 
-		 * @param candidate
-		 * @return
-		 */
-		private String readLastLine( String candidate )
+		
+		private void moveToEndQuotation( StringBuffer column ) throws IOException, OdaException
 		{
-			candidate = candidate
-					+ String.copyValueOf( charBuffer,
-							this.startingPosition,
-							this.eofInPosition - this.startingPosition );
-			resetCharBufferStartPosition( );
-			return candidate;
+			char curChar = getChar( );
+			if ( curChar == '"' )
+			{
+				if ( next( ) )
+				{
+					curChar = getChar( );
+					if ( curChar == '"' )
+					{
+						//transfer '""' to '"'
+						column.append( '"' );
+						if ( next( ) )
+						{
+							moveToEndQuotation( column );
+							return;
+						} 
+						else
+						{
+							//Failed to find out the end quotation after scanning the whole file
+							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+						}
+					} 
+					else
+					{
+						back( );
+					}
+				}
+				//assume this '"' is this end quotation
+				column.append( '"' );
+				return;
+			}
+			else
+			{
+				column.append( curChar );
+				if ( next( ) )
+				{
+					moveToEndQuotation( column );
+				}
+				else
+				{
+					//Failed to find out the end quotation after scanning the whole file
+					throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
+				}
+			}
 		}
-
-		/**
-		 * Reset the char buffer start position to -1.
-		 * 
-		 */
-		private void resetCharBufferStartPosition( )
+		
+		private boolean next( ) throws IOException
 		{
-			this.startingPosition = -1;
+			if ( currentIndex < endIndex )
+			{
+				++currentIndex;
+				return true;
+			}
+			else
+			{
+				int len = reader.read( charBuffer );
+				if ( len <= 0 )
+				{
+					return false; //eof
+				}
+				else
+				{
+					currentIndex = 0;
+					endIndex = len - 1;
+					return true;
+				}
+			}
 		}
-
-		/**
-		 * Return whether the current char buffer has been finished reading.
-		 * 
-		 * @return
-		 */
-		private boolean needRefillCharBuff( )
+		
+		private void back( )
 		{
-			return this.startingPosition == -1;
+			if ( currentIndex >= 0 )
+			{
+				currentIndex--;
+			}
 		}
-
-		/**
-		 * Return whether there are more char buffer can be read from stream.
-		 * 
-		 * @return
-		 */
-		private boolean isLastCharBuff( )
+		
+		private char getChar( )
 		{
-			return this.eofInPosition != -2;
+			return charBuffer[currentIndex];
+		}
+		
+		private String getColumnValue( StringBuffer column )
+		{
+			if ( column.length( ) >=  2 
+					&& column.charAt( 0 ) == '"'
+						&& column.charAt( column.length( ) - 1 ) == '"')
+			{
+				//double quoted
+				return column.substring( 1, column.length( ) - 1 );
+			}
+			else
+			{
+				//otherwise, applying trim
+				return column.toString( ).trim( );
+			}
+		}
+		
+		private boolean isAnEmptyChar( char c )
+		{
+			return String.valueOf( c ).trim( ).equals( "" ); //$NON-NLS-1$
 		}
 
 		/**
@@ -1323,14 +1364,5 @@ public class FlatFileQuery implements IQuery
 			this.reader.close( );
 		}
 
-		/**
-		 * New a char buffer with default size.
-		 * 
-		 * @return
-		 */
-		private char[] newACharBuff( )
-		{
-			return new char[CHARBUFFSIZE];
-		}
 	}
 }

@@ -17,11 +17,10 @@ package org.eclipse.datatools.connectivity.oda.flatfile.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
-import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -192,8 +191,8 @@ public class FlatFileDataReader
 	public String[][] getSourceData( ) throws OdaException
 	{
 		createBufferedReader( );
-		Vector v = fetchQueriedDataFromFileToVector( );
-		return copyDataFromVectorToTwoDimensionArray( v );
+		List v = fetchQueriedDataFromFileToList( );
+		return copyDataFromListToTwoDimensionArray( v );
 	}
 	
 	/**
@@ -202,7 +201,7 @@ public class FlatFileDataReader
 	 * @throws OdaException
 	 * @throws IOException
 	 */
-	public String readLine( ) throws OdaException, IOException
+	public List readLine( ) throws OdaException, IOException
 	{
 		if ( isFirstTimeToCallReadLine )
 		{
@@ -227,8 +226,8 @@ public class FlatFileDataReader
 				if ( charSet == null || charSet.trim( ).length( ) == 0 )
 					examCharset( dataFilePath );
 	
-				this.flatFileBufferedReader = new FlatFileBufferedReader( new InputStreamReader( new FileInputStream( dataFilePath ),
-						this.charSet ) );
+				this.flatFileBufferedReader = new FlatFileBufferedReader( new FileInputStream( dataFilePath ),
+						this.charSet, this.delimiter);
 			}
 
 		}
@@ -319,16 +318,14 @@ public class FlatFileDataReader
 			String dataFilePath = findDataFileAbsolutePath( );
 			examCharset( dataFilePath );
 			FileInputStream fis = new FileInputStream( dataFilePath );
-			InputStreamReader isr = new InputStreamReader( fis, this.charSet );
-			FlatFileBufferedReader br = new FlatFileBufferedReader( isr );
-			String columeLine;
-			while ( isEmptyRow( columeLine = br.readLine( ) ) )
+			FlatFileBufferedReader br = new FlatFileBufferedReader( fis, this.charSet, this.delimiter);
+			List columnLine;
+			while ( isEmptyRow( columnLine = br.readLine( ) ) )
 			{
 				continue;
 			}
-			count = splitDoubleQuotedString( columeLine ).size( );
+			count = columnLine.size( );
 			br.close( );
-			isr.close( );
 			fis.close( );
 		}
 		catch ( IOException e )
@@ -338,133 +335,6 @@ public class FlatFileDataReader
 		}
 
 		return count;
-	}
-
-	/**
-	 * Splites a row of data according to the delimiter, and stripped the additional double quotes
-	 * @param aRow
-	 * @return
-	 * @throws OdaException
-	 */
-	private Vector splitDoubleQuotedString( String aRow ) throws OdaException
-	{
-		Vector result = new Vector( );
-		if(aRow.endsWith( "\r" )){//$NON-NLS-1$
-			aRow = aRow.substring( 0,aRow.length( )-1 );
-		}
-		char[] chars = aRow.toCharArray( );
-
-		boolean startDoubleQuote = false;
-		boolean finishAnElement = false;
-		boolean hasConsectiveTwoDoubleQuotes = false;
-		String currentString = ""; //$NON-NLS-1$
-		//int x;
-
-		for ( int i = 0; i < chars.length; i++ )
-		{
-			if ( i < chars.length - 1 )
-			{
-				// "
-				if ( chars[i] == '"' )
-				{
-					// ""
-					if ( chars[i + 1] == '"' )
-					{
-						if ( startDoubleQuote )
-						{
-							currentString += '"';
-							i += 1;
-							continue;
-						}
-						else
-						{
-							// """
-							if ( i < chars.length - 2 && chars[i + 2] == '"' )
-							{
-								currentString += '"';
-								i += 2;
-								startDoubleQuote = !startDoubleQuote;
-								continue;
-							}
-							else
-							//""
-							{
-								hasConsectiveTwoDoubleQuotes = true;
-								i = i + 1;
-								if( i == chars.length-1 && currentString.trim( ).length( )==0 )
-									result.add( currentString );
-							}
-						}
-					}
-					// "*
-					else
-					{
-						startDoubleQuote = !startDoubleQuote;
-						if ( !startDoubleQuote )
-						{
-							finishAnElement = true;
-							continue;
-						}
-					}
-				}
-				else if ( chars[i] == this.delimiter && !startDoubleQuote )
-				{
-					if ( hasConsectiveTwoDoubleQuotes )
-					{
-						if ( currentString.trim( ).length( ) != 0 )
-							throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
-						else
-							hasConsectiveTwoDoubleQuotes = false;
-					}
-
-					result.add( currentString );
-					currentString = ""; //$NON-NLS-1$
-					finishAnElement = false;
-				}
-				else
-				{
-					if ( finishAnElement == true && chars[i] != ' ' )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
-					currentString += chars[i];
-				}
-			}
-			else
-			{
-				if ( chars[i] == '"' )
-				{
-					if ( !startDoubleQuote )
-						throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
-					else
-					{
-						result.add( currentString );
-						startDoubleQuote = !startDoubleQuote;
-						finishAnElement = true;
-					}
-				}
-				else if ( chars[i] == this.delimiter )
-				{
-					result.add( currentString );
-					result.add( "" ); //$NON-NLS-1$
-					finishAnElement = false;
-				}
-				else
-				{
-					currentString += chars[i];
-					result.add( currentString );
-					finishAnElement = false;
-				}
-
-			}
-		}
-		
-		if ( hasConsectiveTwoDoubleQuotes
-				|| ( startDoubleQuote && !finishAnElement ) )
-		{
-			if ( currentString.trim( ).length( ) != 0 )
-				throw new OdaException( Messages.getString( "invalid_flatfile_format" ) ); //$NON-NLS-1$
-		}
-
-		return result;
 	}
 
 	/**
@@ -487,39 +357,17 @@ public class FlatFileDataReader
 	}
 
 	/**
-	 * See if the bytecodes are in UTF8BOMFormat
-	 * @param bytecodes
-	 * @return
-	 */
-	private boolean isUTF8BOMFormat( byte[] bytecodes )
-	{
-		// file encoded using UTF-8 sometimes have three bytes prefix
-		// -17,-69, and -65
-		int[] UTF8Prefix = new int[]{
-				-17, -69, -65
-		};
-		if ( bytecodes.length < UTF8Prefix.length )
-			return false;
-		for ( int i = 0; i < UTF8Prefix.length; i++ )
-		{
-			if ( bytecodes[i] != UTF8Prefix[i] )
-				return false;
-		}
-		return true;
-	}
-
-	/**
 	 * See if this row is empty or not
 	 * @param row
 	 * @return
 	 * @throws OdaException
 	 */
-	public static boolean isEmptyRow( String row ) throws OdaException
+	public static boolean isEmptyRow( List line ) throws OdaException
 	{
-		if ( row == null )
+		if ( line == null )
 			throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
 
-		return row.trim( ).length( ) <= 0;
+		return line.isEmpty( ) || ( line.size( ) == 1 && line.get( 0 ).equals( "" )); //$NON-NLS-1$
 	}
 
 	/**
@@ -527,10 +375,10 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException
 	 */
-	private Vector fetchQueriedDataFromFileToVector( ) throws OdaException
+	private List fetchQueriedDataFromFileToList( ) throws OdaException
 	{
-		Vector result = new Vector( );
-		String aLine = null;
+		List result = new ArrayList( );
+		List aLine = null;
 		try
 		{
 			if ( isFirstTimeToReadSourceData )
@@ -538,13 +386,12 @@ public class FlatFileDataReader
 				// make a copy of column names if there are
 				if ( this.hasColumnNames )
 				{
-					String columeNameLine;
+					List columeNameLine;
 					while ( isEmptyRow( columeNameLine = flatFileBufferedReader.readLine( ) ) )
 					{
 						continue;
 					}
-					this.originalColumnNames = getColumnNameArray( columeNameLine,
-							true );
+					this.originalColumnNames = getColumnNameArray( columeNameLine );
 					initNameIndexMap( );
 				}
 					
@@ -604,58 +451,33 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException
 	 */
-	public String[] getColumnNameArray( String line, boolean isFirstLine )
+	public String[] getColumnNameArray( List line )
 			throws OdaException
 	{
 		if ( line == null )
 			throw new OdaException( Messages.getString( "common_CANNOT_FIND_COLUMN" ) ); //$NON-NLS-1$
-		String[] result = null;
-		if ( isFirstLine )
-		{
-			try
-			{
-				if ( CommonConstants.CONN_DEFAULT_CHARSET.equals( this.charSet ) )
-				{
-					byte[] firstLineByteCodes;
-					firstLineByteCodes = line.getBytes( this.charSet );
-					if ( isUTF8BOMFormat( firstLineByteCodes ) )
-						line = line.substring( 1 );
-				}
-				result = getStringArrayFromVector( splitDoubleQuotedString( line ) );
-			}
-			catch ( UnsupportedEncodingException e )
-			{
-				throw new OdaException( e );
-			}
-		}
-		else
-		{
-			result = getStringArrayFromVector( splitDoubleQuotedString( line ) );
-
-		}
-
-		return result;
+		return getStringArrayFromList( line );
 	}
 
 	/**
-	 * Put the contants of the vector into a string array
-	 * @param vector
+	 * Put the contants of the list into a string array
+	 * @param list
 	 * @return
 	 */
-	public static String[] getStringArrayFromVector( Vector vector )
+	public static String[] getStringArrayFromList( List list )
 	{
 		String[] array = null;
-		if ( vector != null )
+		if ( list != null )
 		{
-			array = new String[vector.size( )];
-			for ( int i = 0; i < vector.size( ); i++ )
-				array[i] = (String) vector.get( i );
+			array = new String[list.size( )];
+			for ( int i = 0; i < list.size( ); i++ )
+				array[i] = (String) list.get( i );
 		}
 		return array;
 	}
 
 	/**
-	 * Feed the row data from a Vector to a two-dimension array. The string
+	 * Feed the row data from a List to a two-dimension array. The string
 	 * value is trimmed before being copied into array.
 	 * 
 	 * @param v
@@ -663,13 +485,13 @@ public class FlatFileDataReader
 	 *         a row
 	 * @throws OdaException
 	 */
-	private String[][] copyDataFromVectorToTwoDimensionArray( Vector v )
+	private String[][] copyDataFromListToTwoDimensionArray( List v )
 			throws OdaException
 	{
 		String[][] rowSet = new String[v.size( )][this.rsmd.getColumnCount( )];
 		for ( int i = 0; i < v.size( ); i++ )
 		{
-			String[] temp = (String[]) v.elementAt( i );
+			String[] temp = (String[]) v.get( i );
 			for ( int j = 0; j < temp.length; j++ )
 			{
 				if ( temp[j] != null )
@@ -689,12 +511,11 @@ public class FlatFileDataReader
 	 * @return
 	 * @throws OdaException 
 	 */
-	private String[] createTempColumnNames( String aRow ) throws OdaException
+	private String[] createTempColumnNames( List aRow ) throws OdaException
 	{
-		Vector vTemp = splitDoubleQuotedString( aRow );
-		String[] tempColumnNames = new String[vTemp.size()];
+		String[] tempColumnNames = new String[aRow.size()];
 
-		for ( int i = 0; i < vTemp.size(); i++ )
+		for ( int i = 0; i < aRow.size(); i++ )
 		{
 			tempColumnNames[i] = "COLUMN_" + ( i + 1 ); //$NON-NLS-1$
 		}
@@ -711,20 +532,17 @@ public class FlatFileDataReader
 	 *         row. The "specified column names" are obtained from meta data
 	 * @throws OdaException
 	 */
-	private String[] fetchQueriedDataFromRow( String aRow ) throws OdaException
+	private String[] fetchQueriedDataFromRow( List aRow ) throws OdaException
 	{
 		String[] sArray = new String[rsmd.getColumnCount( )];
-		// Ignore all quotes which is used in the input file for the
-		// clarity of the data
-		Vector vTemp = splitDoubleQuotedString( aRow );
 		for ( int i = 0; i < sArray.length; i++ )
 		{
 			int location = selectColumIndexes[i];
 			if ( location != -1 )
 			{
-				if ( location >= vTemp.size( ) )
+				if ( location >= aRow.size( ) )
 					throw new OdaException( Messages.getString( "query_INVALID_FLAT_FILE" ) ); //$NON-NLS-1$
-				sArray[i] = vTemp.elementAt( location ).toString( );
+				sArray[i] = aRow.get( location ).toString( );
 			}
 		}
 		return sArray;
