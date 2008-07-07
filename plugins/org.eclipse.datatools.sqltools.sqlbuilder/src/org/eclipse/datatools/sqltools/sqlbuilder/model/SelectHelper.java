@@ -27,12 +27,14 @@ import org.eclipse.datatools.modelbase.sql.query.QueryCombined;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
 import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryUpdateStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryValueExpression;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
+import org.eclipse.datatools.modelbase.sql.query.ResultTableAllColumns;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryObject;
 import org.eclipse.datatools.modelbase.sql.query.SuperGroup;
@@ -584,6 +586,32 @@ public class SelectHelper {
 
             if (qSelect != null) {
                 List qColList = qSelect.getSelectClause();
+                /* If there is a "table all columns" (tablename.*) object in the list, check
+                 * if this new column is in the table referenced.  If so, remove
+                 * the "all columns" object from the query select list. */
+                QueryValueExpression resColValExpr = resCol.getValueExpr();
+                if (resColValExpr instanceof ValueExpressionColumn) {
+                    ValueExpressionColumn resColValExprCol = (ValueExpressionColumn) resColValExpr;
+                    /* Get the table associated with the new result column. */
+                    TableExpression resultColTableExpr = resColValExprCol.getTableExpr();
+                    
+                    /* Scan the current query select (result column) list for 
+                     * "table all column" objects. */
+                    Iterator qColListIter = qColList.iterator();
+                    while (qColListIter.hasNext()) {
+                        QueryResultSpecification qResultSpec = (QueryResultSpecification) qColListIter.next();
+                        /* If we find an "all columns" object, see if it has the same
+                         * table expression as the new result column. If so, remove it. */
+                        if (qResultSpec instanceof ResultTableAllColumns) {
+                            ResultTableAllColumns qResultAllCols = (ResultTableAllColumns) qResultSpec;
+                            TableExpression qResultAllColsTableExpr = qResultAllCols.getTableExpr();
+                            if (qResultAllColsTableExpr == resultColTableExpr) {
+                                qColListIter.remove();
+                            }
+                        }
+                    }
+                        
+                }
                 qColList.add(resCol);
             }
         }

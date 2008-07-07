@@ -15,15 +15,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-
 import org.eclipse.datatools.modelbase.sql.query.OrderByValueExpression;
+import org.eclipse.datatools.modelbase.sql.query.QueryResultSpecification;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.ResultColumn;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SelectHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.views.GridContentProvider;
+import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 
 public class SelectGridContentProvider extends GridContentProvider {
 
@@ -52,14 +52,17 @@ public class SelectGridContentProvider extends GridContentProvider {
             }
 
             if (qSelect != null) {
-                List colList = qSelect.getSelectClause();
-                if (colList != null) {
+                List resultColList = qSelect.getSelectClause();
+                if (resultColList != null) {
                     tableElements = new Vector();
-                    Iterator iterator = colList.iterator();
-                    while (iterator.hasNext()) {
-                        ResultColumn resultCol = (ResultColumn) iterator.next();
-                        SelectTableElement tblElement = new SelectTableElement(domainModel, property, resultCol);
-                        tableElements.add(tblElement);
+                    Iterator resultColListIter = resultColList.iterator();
+                    while (resultColListIter.hasNext()) {
+                        QueryResultSpecification resultSpec = (QueryResultSpecification) resultColListIter.next();
+                        if (resultSpec instanceof ResultColumn) {
+                            ResultColumn resultCol = (ResultColumn) resultSpec;
+                            SelectTableElement tblElement = new SelectTableElement(domainModel, property, resultCol);
+                            tableElements.add(tblElement);
+                        }
                     }
                 }
 
