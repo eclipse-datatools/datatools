@@ -320,9 +320,9 @@ public class TableHelper {
          * and use those names for the exposed result columns. */
         TableCorrelation tableCorr = tableExpr.getTableCorrelation();
         if (tableCorr != null) {
-            List<?> corrColNameList = tableCorr.getColumnNameList();
+            List corrColNameList = tableCorr.getColumnNameList();
             if (corrColNameList.size() <= resultColExprList.size()) {
-                List<ValueExpressionColumn> corrColList = new ArrayList<ValueExpressionColumn>();
+                List corrColList = new ArrayList();
                 for (int i=0; i<corrColNameList.size(); i++) {
                     Object obj1 = corrColNameList.get(i);
                     Object obj2 = resultColExprList.get(i);
