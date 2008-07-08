@@ -33,7 +33,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SaxParser extends DefaultHandler implements Runnable
 {
-    private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
+	private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
 	private static final String EMPTY_STRING = "";	//$NON-NLS-1$
 
     private XMLDataInputStream inputStream;
@@ -351,8 +351,10 @@ public class SaxParser extends DefaultHandler implements Runnable
 	{
 		//Manipulate the data. The currentCacheValue is trimed to delimite
 		//the heading and tailing junk spaces.
+		String value = (String) cachedValues.get( pathHolder.getPath( ) );
+		value = value == null ? "" : value;
 		spConsumer.manipulateData( pathHolder.getPath( ),
-				(String) cachedValues.get( pathHolder.getPath( ) ) );
+				value );
 		cachedValues.remove( pathHolder.getPath( ) );
 		spConsumer.detectNewRow( pathHolder.getPath( ), false );
 		//	this.currentElementRecoder.clear();
@@ -382,14 +384,12 @@ public class SaxParser extends DefaultHandler implements Runnable
 	public void characters( char ch[], int start, int length )
 	{
 		currentCacheValue = new String( ch, start, length );
-		if ( !currentCacheValue.trim( ).equals( EMPTY_STRING ) )
+		if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
 		{
-			if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
-				currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
-						+ currentCacheValue;
-			
-			cachedValues.put( pathHolder.getPath( ), currentCacheValue );
+			currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
+					+ currentCacheValue;
 		}
+		cachedValues.put( pathHolder.getPath( ), currentCacheValue );
 	}
 
 	/**
