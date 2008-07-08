@@ -77,7 +77,7 @@ public class DriverClassEditDialog extends SelectionDialog {
     
     private Button browseOption;
     
-    private Button browseButton;
+//    private Button browseButton;
 
     private boolean fAddCancelButton = true;
 
@@ -171,47 +171,20 @@ public class DriverClassEditDialog extends SelectionDialog {
 			}
 		});
         
-        browseButton = new Button (parent, SWT.PUSH);
+/*        browseButton = new Button (parent, SWT.PUSH);
         browseButton.setText(Messages.DriverClassEditDialog_populate_classes_button);
         browseButton.setLayoutData(new GridData());
         browseButton.addSelectionListener(new SelectionListener(){
 
 			public void widgetDefaultSelected(SelectionEvent e) {
-				ArrayList list = getClassList();
-				if (list != null) {
-					fContentProvider = new ListContentProvider(list);
-					fTableViewer.setContentProvider(fContentProvider);
-		        	fTableViewer.setInput(list);
-		        	fTableViewer.getTable().setFocus();
-		            List initialSelection = getInitialElementSelections();
-		            if (initialSelection == null || initialSelection.size() == 0) {
-		            	if (classNameText != null && classNameText.getText().trim().length() > 0) {
-		            		initialSelection = new ArrayList();
-		            		initialSelection.add(classNameText.getText().trim());
-		            	}
-		            }
-		            if (initialSelection != null && initialSelection.size() > 0) {
-		    			fTableViewer
-		                        .setSelection(new StructuredSelection(initialSelection));
-		    			fTableViewer.reveal(initialSelection);
-		    		}
-				}
-				else {
-					String title = 
-						ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.title");//$NON-NLS-1$
-					String message = 
-						ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.msg");//$NON-NLS-1$
-					MessageDialog.openInformation(getShell(),
-							title, 
-							message);
-				}
+				DriverClassEditDialog.this.populateClassList();
 			}
 
 			public void widgetSelected(SelectionEvent e) {
 				widgetDefaultSelected(e);
 			}
 		});
-
+*/
         fTableViewer = new TableViewer(parent, getTableStyle());
         fTableViewer.setContentProvider(fContentProvider);
         fTableViewer.setLabelProvider(fLabelProvider);
@@ -245,13 +218,14 @@ public class DriverClassEditDialog extends SelectionDialog {
     private void handleOptionSelection() {
     	if (typeOption.getSelection()) {
     		classNameText.setEnabled(true);
-    		browseButton.setEnabled(false);
+//    		browseButton.setEnabled(false);
     		fTableViewer.getTable().setEnabled(false);
     	}
     	else {
     		classNameText.setEnabled(false);
-    		browseButton.setEnabled(true);
+//    		browseButton.setEnabled(true);
     		fTableViewer.getTable().setEnabled(true);
+    		populateClassList();
     	}
     }
 
@@ -378,6 +352,37 @@ public class DriverClassEditDialog extends SelectionDialog {
 		}
 		public Image getImage(Object obj) {
 			return null;
+		}
+	}
+	
+	private void populateClassList() {
+		ArrayList list = getClassList();
+		if (list != null) {
+			fContentProvider = new ListContentProvider(list);
+			fTableViewer.setContentProvider(fContentProvider);
+        	fTableViewer.setInput(list);
+        	fTableViewer.getTable().setFocus();
+            List initialSelection = getInitialElementSelections();
+            if (initialSelection == null || initialSelection.size() == 0) {
+            	if (classNameText != null && classNameText.getText().trim().length() > 0) {
+            		initialSelection = new ArrayList();
+            		initialSelection.add(classNameText.getText().trim());
+            	}
+            }
+            if (initialSelection != null && initialSelection.size() > 0) {
+    			fTableViewer
+                        .setSelection(new StructuredSelection(initialSelection));
+    			fTableViewer.reveal(initialSelection);
+    		}
+		}
+		else {
+			String title = 
+				ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.title");//$NON-NLS-1$
+			String message = 
+				ConnectivityUIPlugin.getDefault().getResourceString("DriverClassBrowsePropertyDescriptor.noclasses.msg");//$NON-NLS-1$
+			MessageDialog.openInformation(getShell(),
+					title, 
+					message);
 		}
 	}
 }
