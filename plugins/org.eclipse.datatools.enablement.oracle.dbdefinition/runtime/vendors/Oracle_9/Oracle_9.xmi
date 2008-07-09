@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Oracle" version="9" maximumIdentifierLength="8" snapshotViewSupported="true" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" synonymSupported="true" packageSupported="true" userDefinedTypeSupported="true" mQTSupported="true" mQTIndexSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="Oracle" version="9" maximumIdentifierLength="8" snapshotViewSupported="true" viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" synonymSupported="true" packageSupported="true" userDefinedTypeSupported="true" mQTSupported="true" mQTIndexSupported="true" roleSupported="true" roleAuthorizationSupported="true" userSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" keyConstraintSupported="true" maximumLength="2000" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>RAW</name>
@@ -169,6 +169,67 @@
   <tableDefinition maximumIdentifierLength="30"/>
   <schemaDefinition maximumIdentifierLength="30"/>
   <udtDefinition maximumIdentifierLength="30" structuredTypeSupported="true"/>
+  <privilegedElementDefinitions name="PersistentTable">
+  	<privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="DEBUG"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="FLASHBACK"/>
+    <privilegeDefinitions name="INDEX"/>
+    <privilegeDefinitions name="INSERT" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="ON COMMIT REFRESH"/>
+    <privilegeDefinitions name="QUERY REWRITE"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="ViewTable">
+    <privilegeDefinitions name="DEBUG"/>
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="FLASHBACK"/>
+    <privilegeDefinitions name="INSERT" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="REFERENCES" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UNDER"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="MaterializedView">
+    <privilegeDefinitions name="DELETE"/>
+    <privilegeDefinitions name="FLASHBACK"/>
+    <privilegeDefinitions name="INSERT" actionElementDefinitions="COLUMN_1"/>
+    <privilegeDefinitions name="SELECT"/>
+    <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Sequence">
+    <privilegeDefinitions name="ALTER"/>
+    <privilegeDefinitions name="SELECT"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Routine">
+  	<privilegeDefinitions name="DEBUG"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Package">
+  	<privilegeDefinitions name="DEBUG"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Library">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Directory">
+  	<privilegeDefinitions name="READ"/>
+  	<privilegeDefinitions name="WRITE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="Operator">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="IndexType">
+  	<privilegeDefinitions name="EXECUTE"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions name="UserDefinedType">
+  	<privilegeDefinitions name="DEBUG"/>
+  	<privilegeDefinitions name="EXECUTE"/>
+    <privilegeDefinitions name="UNDER"/>
+  </privilegedElementDefinitions>
+  <privilegedElementDefinitions xmi:id="COLUMN_1" name="Column"/>
   <SQLSyntaxDefinition>
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
