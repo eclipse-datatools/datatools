@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright (c) 2005 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich - initial API and implementation
+ * 				IBM Corporation - fix for 240236
  ******************************************************************************/
 package org.eclipse.datatools.connectivity;
 
@@ -79,13 +80,9 @@ public abstract class VersionProviderConnection implements IConnection,
 	protected void updateVersionCache() {
 		Properties props = mProfile.getProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID);
 		boolean saveProps = updateTechnologyVersion(props);
-		IConnectionFactoryProvider icfp = mProfile.getProvider()
-				.getConnectionFactory(
-						ConnectionProfileConstants.PING_FACTORY_ID);
-		if (icfp != null
-				&& icfp.getConnectionFactoryClass().equals(mFactoryClass)) {
-			saveProps = updateServerVersion(props) || saveProps;
-		}
+
+		saveProps = updateServerVersion(props) || saveProps;
+
 		if (saveProps) {
 			mProfile.internalSetProperties(ConnectionProfileConstants.VERSION_INFO_PROFILE_EXTENSION_ID, props);
 			InternalProfileManager.getInstance().saveChanges();
