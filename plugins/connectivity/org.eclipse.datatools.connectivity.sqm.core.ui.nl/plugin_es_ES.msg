@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2001, 2004 IBM Corporation and others.
+# Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -168,6 +168,7 @@ catalog = Catálogo
 user = Usuario
 group = Grupo
 role = Función
+authorization = Authorization ID
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Filtro de esquema predeterminado
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Filtro de tabla predeterminado
