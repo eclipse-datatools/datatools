@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2008 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -680,7 +680,7 @@ public class DriverManager {
 			}
 		}
 		
-		boolean createDefault = template.getCreateDefaultFlag();
+		boolean createDefault = (template != null) ? template.getCreateDefaultFlag() : false;
 		debug("Create Default from the template is " + createDefault); //$NON-NLS-1$
 		if (driverValsProvider != null) {
 			String valsCreateDefault = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_CREATE_DEFAULT);
@@ -738,7 +738,7 @@ public class DriverManager {
 			PropertySetImpl propset = new PropertySetImpl(id, template
 					.getName());
 			propset.setID(id);
-			propset.setName(name); //$NON-NLS-1$
+			propset.setName(name);
 
 			// create the base properties
 			Properties props = new Properties();
@@ -846,10 +846,10 @@ public class DriverManager {
 					pluginId = toReplace.substring(1, toReplace.length() - 1);
 				}
 				String restOfPath = null;
-				if (jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index) > 0) { //$NON-NLS-1$
+				if (jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index) > 0) {
 					restOfPath = jarList
 							.substring(
-									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index)); //$NON-NLS-1$ //$NON-NLS-2$
+									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index)); //$NON-NLS-1$
 				}
 				else {
 					restOfPath = jarList.substring(
@@ -900,7 +900,7 @@ public class DriverManager {
 									"DriverMgmtPlugin.BundleMissing", strs)); //$NON-NLS-1$
 				}
 
-				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index); //$NON-NLS-1$
+				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index);
 				if (index > 0)
 					index++;
 			}
