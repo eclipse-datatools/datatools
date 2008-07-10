@@ -396,7 +396,7 @@ public class ExistingConnectionProfilesDialogPage extends DialogPage implements
 		return result;
 	}
 
-	private void newConnection() {
+	protected void newConnection() {
 		AddProfileViewAction newConnectionProfileAction = new AddProfileViewAction(
 				(String) null);
 		newConnectionProfileAction.selectionChanged(null, null);
