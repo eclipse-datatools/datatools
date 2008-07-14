@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: rcernich, shongxum - initial API and implementation
+ *               Actuate Corporation
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -165,22 +166,24 @@ public class ConnectionProfileManager {
 			IConfigurationElement elem = (IConfigurationElement) eit.next();
 			String elemName = elem.getName();
 			if (EXT_ELEM_CONNECTION_FACTORY.equals(elemName)) {
-				ConnectionProfileProvider p = (ConnectionProfileProvider) mProviders
-						.get(elem
-								.getAttribute(ConnectionFactoryProvider.ATTR_PROFILE));
-				Assert.isTrue(p != null, ConnectivityPlugin.getDefault()
-						.getResourceString("assert.invalid.profile", //$NON-NLS-1$
-								new Object[] { elem.toString()}));
-				p.addConnectionFactory(elem);
+			    String profileId = elem.getAttribute(ConnectionFactoryProvider.ATTR_PROFILE);
+				ConnectionProfileProvider p = (ConnectionProfileProvider) mProviders.get( profileId );
+				if( p == null )
+				    ConnectivityPlugin.getDefault().log( 
+				            ConnectivityPlugin.getDefault().getResourceString("assert.invalid.profile", //$NON-NLS-1$
+								new Object[] { elemName + "." + ConnectionFactoryProvider.ATTR_PROFILE + ": " + profileId })); //$NON-NLS-1$ //$NON-NLS-2$
+				else
+				    p.addConnectionFactory(elem);
 			}
 			else if (EXT_ELEM_PROFILE_EXTENSION.equals(elemName)) {
-				ConnectionProfileProvider p = (ConnectionProfileProvider) mProviders
-						.get(elem
-								.getAttribute(ProfileExtensionProvider.ATTR_PROFILE));
-				Assert.isTrue(p != null, ConnectivityPlugin.getDefault()
-						.getResourceString("assert.invalid.profile", //$NON-NLS-1$
-								new Object[] { elem.toString()}));
-				p.addProfileExtension(elem);
+                String profileId = elem.getAttribute(ProfileExtensionProvider.ATTR_PROFILE);
+				ConnectionProfileProvider p = (ConnectionProfileProvider) mProviders.get( profileId );
+                if( p == null )
+                    ConnectivityPlugin.getDefault().log( 
+                            ConnectivityPlugin.getDefault().getResourceString("assert.invalid.profile", //$NON-NLS-1$
+								new Object[] { elemName + "." + ProfileExtensionProvider.ATTR_PROFILE + ": " + profileId })); //$NON-NLS-1$ //$NON-NLS-2$
+                else
+                    p.addProfileExtension(elem);
 			}
 			else if (EXT_ELEM_CONNECTION_FACTORY_ADAPTER.equals(elemName)) {
 				processConnectionFactoryAdapter(elem);
