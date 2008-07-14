@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.drivers.DriverManager;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
+import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.drivers.IPropertySet;
 import org.eclipse.datatools.connectivity.drivers.PropertySetImpl;
 import org.eclipse.datatools.connectivity.drivers.models.CategoryDescriptor;
@@ -869,6 +870,7 @@ public class DriverDialog extends TitleAreaDialog {
 			DriverManager.getInstance().createDefaultInstance(this.descriptor.getId());
 		testPropertySet.setID(propId);
 		
+
 		Properties props = testPropertySet.getBaseProperties();
 		if (props
 				.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST) != null) {
@@ -891,29 +893,62 @@ public class DriverDialog extends TitleAreaDialog {
 		if (templateprops != null && templateprops.length > 0) {
 			for (int i = 0; i < templateprops.length; i++) {
 				IConfigurationElement prop = templateprops[i];
-				String id = prop.getAttribute("id"); //$NON-NLS-1$
 
-				String value = null;
-				if (this.mPropertySet != null && this.mPropertySet.getBaseProperties() != null) {
-					value = this.mPropertySet.getBaseProperties().getProperty(
-							id);
-				}
-				if (value == null) {
-					value = prop.getAttribute("value"); //$NON-NLS-1$
-					OverrideTemplateDescriptor[] otds = 
-						OverrideTemplateDescriptor.getByDriverTemplate(this.descriptor.getId());
+				String propid = prop.getAttribute("id"); //$NON-NLS-1$
+				String propvalue = prop.getAttribute("value"); //$NON-NLS-1$
+
+				IDriverValuesProvider driverValsProvider = null;
+				IDriverValuesProvider overrideDriverValsProvider = null;
+
+				OverrideTemplateDescriptor[] otds = null;
+
+				if (descriptor != null) {
+					
+					otds = OverrideTemplateDescriptor.getByDriverTemplate(descriptor.getId());
 					if (otds != null && otds.length > 0) {
-						boolean removetemp =
-							otds[0].getPropertyRemoveFlagFromID(id);
-						if (removetemp) continue;
-						String valuetemp =
-							otds[0].getPropertyValueFromId(id);
-						if (valuetemp != null && valuetemp.length() > 0)
-							value = valuetemp;
+						overrideDriverValsProvider =
+							otds[0].getValuesProviderClass();
+					}
+					driverValsProvider =
+						(IDriverValuesProvider) descriptor.getValuesProviderClass();
+				}
+
+				boolean removeIt = false;
+				if (driverValsProvider != null) {
+					String valsPropValue = driverValsProvider.createDefaultValue(propid);
+					if (valsPropValue != null) {
+						propvalue = valsPropValue;
 					}
 				}
-				if (value == null) value = ""; //$NON-NLS-1$
-				props.setProperty(id, value);
+				if (overrideDriverValsProvider != null) {
+					String overrideValsPropValue = overrideDriverValsProvider.createDefaultValue(propid);
+					if (overrideValsPropValue != null) {
+						propvalue = overrideValsPropValue;
+					}
+				}
+				if (otds != null && otds.length > 0) {
+					String temp =
+						otds[0].getPropertyValueFromId(propid);
+					if (temp != null && temp.length() > 0) {
+						propvalue = temp;
+					}
+					if (otds[0].getPropertyRemoveFlagFromID(propid)) {
+						removeIt = true;
+					}
+				}
+				if (this.mPropertySet != null && this.mPropertySet.getBaseProperties() != null) {
+					propvalue = this.mPropertySet.getBaseProperties().getProperty(
+							propid);
+				}
+				if (propvalue == null) {
+					if (!removeIt) 
+						props.setProperty(propid, propvalue == null ? new String()
+							: propvalue);
+					else
+						props.remove(propid);
+				}
+				if (propvalue == null) propvalue = ""; //$NON-NLS-1$
+				props.setProperty(propid, propvalue);
 			}
 		}
 		props.setProperty(IDriverMgmtConstants.PROP_DEFN_TYPE, this.descriptor

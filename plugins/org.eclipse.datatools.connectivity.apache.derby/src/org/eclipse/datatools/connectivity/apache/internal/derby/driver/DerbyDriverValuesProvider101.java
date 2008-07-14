@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.apache.internal.derby.driver;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,6 +20,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.drivers.DefaultDriverValuesProvider;
 import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCConnectionProfileConstants;
+import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 import org.osgi.framework.Bundle;
 
@@ -86,6 +89,13 @@ public class DerbyDriverValuesProvider101 extends DefaultDriverValuesProvider {
 					ConnectivityPlugin.getDefault().log(e1);
 				} 
 			}
+		}
+		if (key.equals(IJDBCDriverDefinitionConstants.URL_PROP_ID)) {
+			String defaultURLPrefix = "jdbc:derby:";
+			String defaultURLSuffix = ";create=true";
+			String path = System.getProperty("user.home") + File.separator + "MyDB";
+			String finalURL = defaultURLPrefix + path + defaultURLSuffix;
+			return finalURL;
 		}
 		return super.createDefaultValue(key);
 	}
