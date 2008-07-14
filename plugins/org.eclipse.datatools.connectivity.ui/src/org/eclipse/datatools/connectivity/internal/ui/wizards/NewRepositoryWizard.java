@@ -24,7 +24,7 @@ public class NewRepositoryWizard extends NewCPWizard {
 				IConnectionProfileRepositoryConstants.REPOSITORY_CATEGORY_ID),
 				null);
 		setDefaultPageImageDescriptor(SharedImages.DESC_WIZBAN);
-		setWindowTitle("New Repository Wizard Window"); //$NON-NLS-1$
+		setWindowTitle(ConnectivityUIPlugin.getDefault().getResourceString("NewRepositoryWizard.title")); //$NON-NLS-1$
 	}
 
 	public void createPageControls(Composite pageContainer) {
