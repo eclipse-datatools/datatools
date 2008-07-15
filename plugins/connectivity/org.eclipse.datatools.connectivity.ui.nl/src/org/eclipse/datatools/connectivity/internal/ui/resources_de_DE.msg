@@ -184,3 +184,5 @@ ConnectAction.title = Eigenschaften für {0}
 Boolean.true = Wahr
 Boolean.false = Falsch
 
+NewRepositoryWizard.title = New Repository Wizard Window
+

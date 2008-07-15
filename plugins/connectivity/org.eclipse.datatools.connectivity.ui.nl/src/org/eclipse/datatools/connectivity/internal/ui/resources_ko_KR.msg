@@ -184,3 +184,5 @@ ConnectAction.title = {0}의 속성
 Boolean.true = 참
 Boolean.false = 거짓
 
+NewRepositoryWizard.title = New Repository Wizard Window
+

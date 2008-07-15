@@ -184,3 +184,5 @@ ConnectAction.title = {0} µƒ Ù–‘
 Boolean.true = ’Ê
 Boolean.false = ºŸ
 
+NewRepositoryWizard.title = New Repository Wizard Window
+

@@ -183,3 +183,5 @@ ConnectAction.title = {0} のプロパティ
 
 Boolean.true = true
 Boolean.false = false
+
+NewRepositoryWizard.title = New Repository Wizard Window
