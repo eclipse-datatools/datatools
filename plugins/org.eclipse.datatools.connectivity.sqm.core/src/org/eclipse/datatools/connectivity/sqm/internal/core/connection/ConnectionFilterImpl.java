@@ -254,12 +254,22 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 		
 		if(predicate != null && !predicate.equals("")){
 			String[] tokenArray = predicate.split(IDENTIFIER_DELIMITER);
-			tokenArray[1] = "'" + tokenArray[1] + "'";
+			
+			for(int i = 0; i < tokenArray.length; i++)
+				tokenArray[i] = tokenArray[i].trim();
+			
 			ArrayList tempList = new ArrayList();
 			
-			for(int i = 0; i < tokenArray.length; i++){
-				if(!tokenArray[i].equals("AND") && !tokenArray[i].equals("OR"))
-					tempList.add(tokenArray[i]);
+			for(int i = 0; i + 1 < tokenArray.length; i = i + 2){
+				tokenArray[i + 1] = "'" + tokenArray[i + 1] + "'";
+				
+				if(tokenArray[i].startsWith("AND"))
+					tokenArray[i] = tokenArray[i].substring(4, tokenArray[i].length());
+				else if(tokenArray[i].startsWith("OR"))
+					tokenArray[i] = tokenArray[i].substring(3, tokenArray[i].length());
+				
+				tempList.add(tokenArray[i]);
+				tempList.add(tokenArray[i + 1]);
 			}
 			
 			for(int j = 0; j + 1 < tempList.size(); j = j + 2){
