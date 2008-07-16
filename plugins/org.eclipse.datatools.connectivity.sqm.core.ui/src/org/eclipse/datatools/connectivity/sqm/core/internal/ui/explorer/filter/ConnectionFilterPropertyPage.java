@@ -49,7 +49,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	private static final String EXPRESSION_ONLY_MESSAGE = resource
 		.queryString("_UI_DESCRIPTION_EXPRESSION_ONLY"); //$NON-NLS-1$
 	
-	protected String defaultTitleText = "Connection Filter Properties";
+	protected String defaultTitleText = resource
+		.queryString("_UI_TITLE_FILTER_DIALOG"); //$NON-NLS-1$
 
 	private ConnectionFilterComposite filterComposite;
 	
