@@ -427,10 +427,10 @@ public class SQLDomainModel {
             if (templateSQLTable == null || templateSQLTable.size() < 6) {
                 initTemplateSQLTable();                
             }
-            retval = false;
-            unmatchedSource = true;
             strSQL = strSQL.replaceAll("\r", "");
             if (!templateSQLTable.containsValue(strSQL)) {
+                retval = false;
+                unmatchedSource = true;
                 SQLBuilderPlugin.getPlugin().getLogger().writeLog(e);
             }
         }
