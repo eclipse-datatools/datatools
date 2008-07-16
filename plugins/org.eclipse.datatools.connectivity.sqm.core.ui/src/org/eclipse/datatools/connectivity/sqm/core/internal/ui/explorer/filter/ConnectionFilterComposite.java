@@ -856,7 +856,11 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 								+ IDENTIFIER_DELIMITER;
 					}
 					
-					predicates = predicates + " " + SQLPredicate;
+					if(operators.length == 1)
+						predicates = SQLPredicate;
+					else
+						predicates =  predicates + " {" + i + "} " + SQLPredicate;
+					
 					if ((i + 1) != operators.length)
 						predicates = predicates + " " + condition;
 				}
