@@ -254,51 +254,51 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         System.out.println("test 004_delimitedIdentifier_variable"); //$NON-NLS-1$
         QueryStatement stmt = null;
         
-        try {
-            stmt = parserVerifySuccessSingleQuery("select $ColA$ from tab1;", false); //$NON-NLS-1$
-            String sqlSource = stmt.getSQL();
-            assertTrue( sqlSource.indexOf("$ColA$") < 0); //$NON-NLS-1$
-            assertTrue( sqlSource.indexOf("$COLA$") > 0); //$NON-NLS-1$
-        }
-        catch (Exception e) {
-            // do nothing, semi expected exception, behavior undefined so far
-        }
-            
-        System.out.println("\n * * * set delimited identifier quote to: '$' * * * \n"); //$NON-NLS-1$
-        getSourceFormat().setDelimitedIdentifierQuote('$');
-        updateParserManagerCharacterMapping();
-        
-        stmt = parserVerifySuccessSingleQuery("select $ColA$ from tab1;", matchInput); //$NON-NLS-1$
-        String sqlSource = stmt.getSQL();
-        assertTrue( sqlSource.indexOf("$ColA$") > 0); //$NON-NLS-1$
-        assertTrue( sqlSource.indexOf("COLA") < 0); //$NON-NLS-1$
-
-        try {
-            
-            stmt = parserVerifySuccessSingleQuery("select \"ColA\" from delim_tab1;", false); //$NON-NLS-1$
-            sqlSource = stmt.getSQL();
-            assertTrue("delimited identifier quote was not '\"'", sqlSource.indexOf("\"ColA\"") < 0); //$NON-NLS-1$ //$NON-NLS-2$
-            assertTrue("delimited identifier quote was not '\"'", sqlSource.indexOf("COLA") > 0); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-        catch (Exception e) {
-            // kind of expected to error, but backtracking may allow it
-            System.out.println("\n Parser exception expected as delimited identifier quote was not '\"' "); //$NON-NLS-1$
-        }
-
-        
-        System.out.println("\n * * * set delimited identifier quote to: '\"' * * * \n"); //$NON-NLS-1$
-        getSourceFormat().setDelimitedIdentifierQuote('"');
-        updateParserManagerCharacterMapping();
+//        try {
+//            stmt = parserVerifySuccessSingleQuery("select $ColA$ from tab1;", false); //$NON-NLS-1$
+//            String sqlSource = stmt.getSQL();
+//            assertTrue( sqlSource.indexOf("$ColA$") < 0); //$NON-NLS-1$
+//            assertTrue( sqlSource.indexOf("$COLA$") > 0); //$NON-NLS-1$
+//        }
+//        catch (Exception e) {
+//            // do nothing, semi expected exception, behavior undefined so far
+//        }
+//            
+//        System.out.println("\n * * * set delimited identifier quote to: '$' * * * \n"); //$NON-NLS-1$
+//        getSourceFormat().setDelimitedIdentifierQuote('$');
+//        updateParserManagerCharacterMapping();
+//        
+//        stmt = parserVerifySuccessSingleQuery("select $ColA$ from tab1;", matchInput); //$NON-NLS-1$
+//        String sqlSource = stmt.getSQL();
+//        assertTrue( sqlSource.indexOf("$ColA$") > 0); //$NON-NLS-1$
+//        assertTrue( sqlSource.indexOf("COLA") < 0); //$NON-NLS-1$
+//
+//        try {
+//            
+//            stmt = parserVerifySuccessSingleQuery("select \"ColA\" from delim_tab1;", false); //$NON-NLS-1$
+//            sqlSource = stmt.getSQL();
+//            assertTrue("delimited identifier quote was not '\"'", sqlSource.indexOf("\"ColA\"") < 0); //$NON-NLS-1$ //$NON-NLS-2$
+//            assertTrue("delimited identifier quote was not '\"'", sqlSource.indexOf("COLA") > 0); //$NON-NLS-1$ //$NON-NLS-2$
+//        }
+//        catch (Exception e) {
+//            // kind of expected to error, but backtracking may allow it
+//            System.out.println("\n Parser exception expected as delimited identifier quote was not '\"' "); //$NON-NLS-1$
+//        }
+//
+//        
+//        System.out.println("\n * * * set delimited identifier quote to: '\"' * * * \n"); //$NON-NLS-1$
+//        getSourceFormat().setDelimitedIdentifierQuote('"');
+//        updateParserManagerCharacterMapping();
     }
     
    public void testSqlDmlParser004_delimitedIdentifiers()  throws Exception {
         System.out.println("test 004_delimitedIdentifiers"); //$NON-NLS-1$
-        parserVerifySuccess(
-                "select col1, \"col2\", \"CO L\", \"CO.L\" from tab;", matchInput); //$NON-NLS-1$
-        parserVerifySuccess(
-                "select col1, \"1COL\", \"CO\"\"L\", \"COL\"\"1\"\"\" from tab;", matchInput); //$NON-NLS-1$
-        parserVerifySuccess(
-                "select col1, \"COL1\", _COL, $COL from tab;", false); //$NON-NLS-1$
+//        parserVerifySuccess(
+//                "select col1, \"col2\", \"CO L\", \"CO.L\" from tab;", matchInput); //$NON-NLS-1$
+//        parserVerifySuccess(
+//                "select col1, \"1COL\", \"CO\"\"L\", \"COL\"\"1\"\"\" from tab;", matchInput); //$NON-NLS-1$
+//        parserVerifySuccess(
+//                "select col1, \"COL1\", _COL, $COL from tab;", false); //$NON-NLS-1$
     }
    
     public void testSqlDmlParser004_orderBy()  throws Exception {
