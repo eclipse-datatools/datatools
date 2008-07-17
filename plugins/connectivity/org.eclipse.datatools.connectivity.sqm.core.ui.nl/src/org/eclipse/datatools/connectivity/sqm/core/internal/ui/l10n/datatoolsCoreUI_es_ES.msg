@@ -189,6 +189,7 @@ _UI_DEFAULT_MSG_SELECT_ONLY = Seleccione la carpeta:
 #
 ## Filter Dialog
 #
+_UI_TITLE_FILTER_DIALOG = Connection Filter Properties
 _UI_TITLE_FILTER = Especificar un filtro
 _UI_DESCRIPTION_FILTER = Especifique un filtro seleccionando un predicado y escribiendo un valor o bien indicando si desea incluir o excluir una selección de elementos.
 _UI_DESCRIPTION_SELECTION_ONLY = Especifique un filtro indicando si desea incluir o excluir una selección de elementos.
