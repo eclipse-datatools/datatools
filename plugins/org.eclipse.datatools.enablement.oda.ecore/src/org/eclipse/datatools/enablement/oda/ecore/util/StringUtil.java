@@ -14,9 +14,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.util;
 
-
 public class StringUtil {
-	public static String join(String[] strings, String joint) {
+
+	public static String join(final String[] strings, final String joint) {
 		if (strings == null) {
 			return null;
 		}
@@ -29,5 +29,15 @@ public class StringUtil {
 			builder.append(strings[i]);
 		}
 		return builder.toString();
+	}
+
+	public static int countChars(final char c, final CharSequence s) {
+		int count = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (c == s.charAt(i)) {
+				count++;
+			}
+		}
+		return count;
 	}
 }
