@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.core.internal.ui.util;
 
 import java.util.Iterator;
@@ -12,6 +22,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IElementIDProvider;
+import org.eclipse.datatools.connectivity.sqm.internal.core.resources.IDataResource;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -54,31 +65,31 @@ public class ElementIDUtil
     {
     	
     	//TODO:  Fix this code if we want bookmark support
-//        if (current instanceof EObject)
-//        {
-//            EObject currentEObject = (EObject) current;
-//            Resource resource = currentEObject.eResource();
-//            if (resource instanceof ReferencedXMIResourceImpl)
-//            {
-//                return ((ReferencedXMIResourceImpl)resource).getID(currentEObject);
-//            }
-//            else 
-//            {
-//                for (Iterator iterator = providerList.iterator(); iterator.hasNext ();)
-//                {
-//                    IElementIDProvider provider = (IElementIDProvider) iterator.next();
-//                    String id = provider.getElementID(currentEObject);
-//                    if (id != null)
-//                    {
-//                        return id;
-//                    }
-//                }
-//            }
-//        }
-//        else if (current instanceof IResource)
-//        {
-//            return ((IResource)current).getName();
-//        }
+        if (current instanceof EObject)
+        {
+            EObject currentEObject = (EObject) current;
+            Resource resource = currentEObject.eResource();
+            if (resource instanceof IDataResource)
+            {
+                return ((IDataResource)resource).getID(currentEObject);
+            }
+            else 
+            {
+                for (Iterator iterator = providerList.iterator(); iterator.hasNext ();)
+                {
+                    IElementIDProvider provider = (IElementIDProvider) iterator.next();
+                    String id = provider.getElementID(currentEObject);
+                    if (id != null)
+                    {
+                        return id;
+                    }
+                }
+            }
+        }
+        else if (current instanceof IResource)
+        {
+            return ((IResource)current).getName();
+        }
         return null;
     }
 }
