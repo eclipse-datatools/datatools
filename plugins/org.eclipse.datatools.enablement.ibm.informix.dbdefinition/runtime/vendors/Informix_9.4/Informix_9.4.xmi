@@ -173,7 +173,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
   <queryDefinition hostVariableMarker=":"/>
-  <indexDefinition maximumIdentifierLength="128"/>
+  <indexDefinition maximumIdentifierLength="128" clusteringSupported="true"/>
   <viewDefinition maximumIdentifierLength="128"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
