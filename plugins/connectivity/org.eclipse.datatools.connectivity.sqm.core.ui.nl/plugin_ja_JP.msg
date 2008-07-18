@@ -168,7 +168,7 @@ catalog = カタログ
 user = ユーザ
 group = グループ
 role = 役割
-authorization = Authorization ID
+authorization = 認証 ID
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=デフォルトのスキーマフィルタ
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=デフォルトのテーブルフィルタ

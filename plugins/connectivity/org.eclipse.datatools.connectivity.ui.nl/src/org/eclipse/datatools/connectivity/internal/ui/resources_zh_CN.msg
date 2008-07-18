@@ -159,9 +159,9 @@ ExtensibleNewConnectionProfileWizard.title = 新连接配置文件
 
 DriverUIContributorComposite.group = 属性(&P)
 
-CommonDriverUIContributor.optionaltab = &Optional
-CommonDriverUIContributor.optionalProps.label = Additional properties:
-CommonDriverUIContributor.generaltab = G&eneral
+CommonDriverUIContributor.optionaltab = 可选(&O)
+CommonDriverUIContributor.optionalProps.label = 其它属性:
+CommonDriverUIContributor.generaltab = 常规(&E)
 
 OtherDriverUIContributor.databaseName.label = 数据库(&A):
 OtherDriverUIContributor.url.label = URL(&U):

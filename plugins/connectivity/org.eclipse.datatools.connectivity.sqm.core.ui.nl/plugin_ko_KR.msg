@@ -168,7 +168,7 @@ catalog = 카탈로그
 user = 사용자
 group = 그룹
 role = 역할
-authorization = Authorization ID
+authorization = 인증 ID
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=기본값 스키마 필터
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=기본값 테이블 필터

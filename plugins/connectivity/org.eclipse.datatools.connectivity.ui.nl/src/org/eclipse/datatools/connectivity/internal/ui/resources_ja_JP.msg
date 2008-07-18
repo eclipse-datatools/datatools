@@ -159,9 +159,9 @@ ExtensibleNewConnectionProfileWizard.title = 新しい接続プロファイル
 
 DriverUIContributorComposite.group = プロパティ(&P)
 
-CommonDriverUIContributor.optionaltab = &Optional
-CommonDriverUIContributor.optionalProps.label = Additional properties:
-CommonDriverUIContributor.generaltab = G&eneral
+CommonDriverUIContributor.optionaltab = オプション(&O)
+CommonDriverUIContributor.optionalProps.label = その他のプロパティ
+CommonDriverUIContributor.generaltab = 全般(&E)
 
 OtherDriverUIContributor.databaseName.label = データベース(&A) :
 OtherDriverUIContributor.url.label = URL(&U) :

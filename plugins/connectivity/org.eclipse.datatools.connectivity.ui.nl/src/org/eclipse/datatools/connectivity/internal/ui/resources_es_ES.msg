@@ -159,9 +159,9 @@ ExtensibleNewConnectionProfileWizard.title = Nuevo perfil de conexión
 
 DriverUIContributorComposite.group = &Propiedades
 
-CommonDriverUIContributor.optionaltab = &Optional
-CommonDriverUIContributor.optionalProps.label = Additional properties:
-CommonDriverUIContributor.generaltab = G&eneral
+CommonDriverUIContributor.optionaltab = &Opcional
+CommonDriverUIContributor.optionalProps.label = Propiedades adicionales:
+CommonDriverUIContributor.generaltab = &General
 
 OtherDriverUIContributor.databaseName.label = B&ase de datos:
 OtherDriverUIContributor.url.label = &URL:

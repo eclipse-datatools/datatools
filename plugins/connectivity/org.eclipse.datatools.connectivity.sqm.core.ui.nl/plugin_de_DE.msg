@@ -168,7 +168,7 @@ catalog = Katalog
 user = Benutzer
 group = Gruppe
 role = Rolle
-authorization = Authorization ID
+authorization = Autorisierungs-ID
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Schema-Filter
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=Standardeinstellungen Tabellen-Filter

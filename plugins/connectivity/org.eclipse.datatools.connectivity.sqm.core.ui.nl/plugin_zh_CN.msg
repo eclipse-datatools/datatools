@@ -168,7 +168,7 @@ catalog = 目录
 user = 用户
 group = 组
 role = 角色
-authorization = Authorization ID
+authorization = 授权 ID
 
 DEFAULT_SCHEMA_FILTER_PROPERTY_PAGE_NAME=缺省架构筛选器
 DEFAULT_TABLE_FILTER_PROPERTY_PAGE_NAME=缺省表筛选器
