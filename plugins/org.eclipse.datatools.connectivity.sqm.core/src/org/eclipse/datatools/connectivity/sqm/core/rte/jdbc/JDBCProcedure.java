@@ -20,10 +20,10 @@ import org.eclipse.datatools.connectivity.sqm.core.util.CatalogLoaderOverrideMan
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCBaseLoader;
 import org.eclipse.datatools.connectivity.sqm.loader.JDBCProcedureColumnLoader;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.ProcedureImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -78,8 +78,9 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
 			getDefinition(this.getCatalogDatabase());
 	
-		JDBCBaseLoader loader =
-			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, SQLTablesFactory.eINSTANCE.createColumn().eClass().getInstanceClassName());
+		JDBCBaseLoader loader = 
+			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
+					SQLRoutinesFactory.eINSTANCE.createParameter().eClass().getInstanceClassName());
 		
 		if (loader != null) {
 			JDBCProcedureColumnLoader procedureColumnLoader = (JDBCProcedureColumnLoader) loader;
@@ -97,6 +98,8 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 	}
 
 	private void loadParameters() {
+		parametersLoaded = Boolean.TRUE;
+
 		boolean deliver = eDeliver();
 		try {
 			List parametersContainer = super.getParameters();
@@ -109,7 +112,6 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 			getParameterLoader().loadParameters(parametersContainer, existingParameters);
 			getParameterLoader().clearColumns(existingParameters);
 			
-			parametersLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -120,6 +122,8 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 	}
 	
 	private void loadRoutineResultTables() {
+		resultTablesLoaded = Boolean.TRUE;
+
 		boolean deliver = eDeliver();
 		try {
 			List resultTablesContainer = super.getResultSet();
@@ -130,7 +134,6 @@ public class JDBCProcedure extends ProcedureImpl implements ICatalogObject {
 
 			resultTablesContainer.addAll(getParameterLoader().loadRoutineResultTables());
 			
-			resultTablesLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -24,10 +24,10 @@ import org.eclipse.datatools.connectivity.sqm.loader.JDBCUDFColumnLoader;
 import org.eclipse.datatools.modelbase.sql.routines.Parameter;
 import org.eclipse.datatools.modelbase.sql.routines.ParameterMode;
 import org.eclipse.datatools.modelbase.sql.routines.RoutineResultTable;
+import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesFactory;
 import org.eclipse.datatools.modelbase.sql.routines.SQLRoutinesPackage;
 import org.eclipse.datatools.modelbase.sql.routines.impl.UserDefinedFunctionImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
-import org.eclipse.datatools.modelbase.sql.tables.SQLTablesFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -96,9 +96,9 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().
 			getDefinition(this.getCatalogDatabase());
 	
-		JDBCBaseLoader loader =
+		JDBCBaseLoader loader = 
 			CatalogLoaderOverrideManager.INSTANCE.getLoaderForDatabase(databaseDefinition, 
-					SQLTablesFactory.eINSTANCE.createColumn().eClass().getInstanceClassName());
+					SQLRoutinesFactory.eINSTANCE.createParameter().eClass().getInstanceClassName());
 		
 		if (loader != null) {
 			JDBCUDFColumnLoader udfColumnLoader = (JDBCUDFColumnLoader) loader;
@@ -116,6 +116,8 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 	}
 
 	private void loadParameters() {
+		parametersLoaded = Boolean.TRUE;
+
 		boolean deliver = eDeliver();
 		try {
 			List parametersContainer = super.getParameters();
@@ -129,16 +131,20 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 			getParameterLoader().loadParameters(parametersContainer, existingParameters);
 			getParameterLoader().clearColumns(existingParameters);
 			
+			ArrayList removeList = new ArrayList();
 			for (Iterator it = parametersContainer.iterator(); it.hasNext(); ) {
 				Parameter p = (Parameter)it.next();
 				if (p.getMode() == ParameterMode.OUT_LITERAL) {
 					setReturnScalar(p);
-					it.remove();
+					removeList.add(p);
 					break;
 				}
 			}
+			for (Iterator it = removeList.iterator(); it.hasNext(); ) {
+				Parameter removedObject = (Parameter)it.next();
+				parametersContainer.remove(removedObject);
+			}
 			
-			parametersLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -149,6 +155,8 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 	}
 	
 	private void loadResultTable() {
+		resultTableLoaded = Boolean.TRUE;
+
 		boolean deliver = eDeliver();
 		try {
 			eSetDeliver(false);
@@ -158,7 +166,6 @@ public class JDBCUserDefinedFunction extends UserDefinedFunctionImpl implements
 				setReturnTable((RoutineResultTable)returnTableList.get(0));
 			}
 			
-			resultTableLoaded = Boolean.TRUE;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
