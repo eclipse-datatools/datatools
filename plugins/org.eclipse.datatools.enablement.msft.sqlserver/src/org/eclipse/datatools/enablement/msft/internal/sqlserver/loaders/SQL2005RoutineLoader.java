@@ -182,11 +182,23 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 			Database database) {
 		if (aliasInfo == null || aliasInfo.trim().length() == 0) 
 			return;
-		int index = aliasInfo.indexOf("begin"); //$NON-NLS-1$
+
+		int index = -1;
+		int begin = aliasInfo.toLowerCase().indexOf("begin"); //$NON-NLS-1$
+		// so we would get the info after returns 
+		int returns = aliasInfo.toLowerCase().indexOf("returns");//$NON-NLS-1$
 
 		// if it doesn't have any source, then don't bother
-		if (index == -1) return;
+		if (begin == -1 && returns == -1)
+			return;
 		
+		if (begin == -1) // begin doesn't exist
+			index = returns;
+		else if (returns > -1 && begin > -1) // begins and returns exist
+			index = Math.min(returns, begin);
+		else // begin exists and returns doesn't exist
+			index = begin;
+ 		
 		// otherwise process the source
 		String body = aliasInfo.substring(index);
 		final DatabaseDefinition definition = RDBCorePlugin.getDefault()
