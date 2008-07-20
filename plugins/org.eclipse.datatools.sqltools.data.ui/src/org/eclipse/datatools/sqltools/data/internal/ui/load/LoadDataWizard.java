@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.load.LoadData;
 import org.eclipse.datatools.sqltools.data.internal.ui.OutputItemAdapter;
-import org.eclipse.datatools.sqltools.data.internal.ui.extract.Messages;
+import org.eclipse.datatools.sqltools.data.internal.ui.load.Messages;
 import org.eclipse.datatools.sqltools.data.internal.ui.load.IExternalLoad;
 import org.eclipse.datatools.sqltools.result.OperationCommand;
 import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
@@ -48,7 +48,7 @@ public class LoadDataWizard extends Wizard
     
     protected LoadDataWizardPage page;
     
-    /** extension-point id for external extract support */
+    /** extension-point id for external load support */
     private String EXTERNAL_LOAD_EXT_POINT = 
     	"org.eclipse.datatools.sqltools.data.ui.externalTableDataLoad"; //$NON-NLS-1$
     private String EXTERNAL_LOAD_EXT_POINT_VENDOR = "vendor"; //$NON-NLS-1$
@@ -86,7 +86,7 @@ public class LoadDataWizard extends Wizard
         	externalLoad.setFilePath(filePath);
         	externalLoad.setReplace(replace);
         	externalLoad.setTable(table);
-        	Job job = new Job(Messages.getString("LoadDataWizard.DataExtraction")) { //$NON-NLS-1$
+        	Job job = new Job(Messages.getString("LoadDataWizard.DataLoading")) { //$NON-NLS-1$
         		protected IStatus run(IProgressMonitor monitor) {
         			int ret = externalLoad.doLoad(new OutputItemAdapter(item));
         			ResultsViewAPI.getInstance().updateStatus(item, ret);
@@ -184,7 +184,7 @@ public class LoadDataWizard extends Wizard
 		        			float ver = Float.parseFloat(extensionVersion);
 		        			if (thisMajorVersion + (thisMinorVersion * .1) >= ver)
 		        			{
-		        				// use the external extractor
+		        				// use the external loader
 		        				externalExecutable = 
 		        					configElements[config].createExecutableExtension(EXTERNAL_LOAD_EXT_POINT_CLASS);		        				
 		        			}
