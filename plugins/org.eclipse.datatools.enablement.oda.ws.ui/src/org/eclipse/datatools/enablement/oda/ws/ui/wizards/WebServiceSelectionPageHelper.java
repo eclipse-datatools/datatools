@@ -97,7 +97,6 @@ public class WebServiceSelectionPageHelper
 		Label label = new Label( group, SWT.WRAP );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		layoutData.horizontalSpan = 3;
-		layoutData.heightHint = 20;
 		label.setLayoutData( layoutData );
 		label.setText( Messages.getString( "webServiceSelectionPage.label.wsdl" ) );//$NON-NLS-1$
 
@@ -119,7 +118,6 @@ public class WebServiceSelectionPageHelper
 
 		Button button = new Button( group, SWT.NONE );
 		layoutData = new GridData( );
-		//layoutData.widthHint = 70;
 		button.setLayoutData( layoutData );
 		button.setText( Messages.getString( "webServiceSelectionPage.button.browse" ) ); //$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {

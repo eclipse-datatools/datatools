@@ -432,8 +432,8 @@ public class ColumnMappingPage extends DataSetWizardPage
 		tableViewerGroup.setText( Messages.getString( "xPathChoosePage.messages.xmlColumnMapping" ) ); //$NON-NLS-1$
 
 		GridLayout layout = new GridLayout( );
-		layout.marginWidth = 0;
-		layout.marginHeight = 0;
+		layout.marginWidth = 10;
+		layout.marginHeight = 10;
 		layout.verticalSpacing = 10;
 		tableViewerGroup.setLayout( layout );
 		FormData data = new FormData( );

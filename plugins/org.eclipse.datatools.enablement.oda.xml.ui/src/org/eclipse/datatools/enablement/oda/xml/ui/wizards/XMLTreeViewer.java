@@ -58,7 +58,10 @@ class XMLTreeViewer
 		data.bottom = new FormAttachment( 100, -5 );
 		
 		Group treeGroup = new Group( parent, SWT.NONE );
-		treeGroup.setLayout( new FillLayout( ) );
+		FillLayout layout = new FillLayout();
+		layout.marginWidth = 10;
+		layout.marginHeight = 10;
+		treeGroup.setLayout( layout );
 		treeGroup.setLayoutData( data );
 		treeViewer = new TreeViewer( treeGroup, SWT.MULTI
 				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL);
