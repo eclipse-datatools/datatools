@@ -66,7 +66,7 @@ public class HSQLDBDriverUIContributor implements IDriverUIContributor,
 			.getString("HSQLDBProfileDetailsWizardPage.1"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_USERNAME_LBL_UI_ = Messages
-			.getString("HSQLDBProfileDetailsWizardPage.summary.userName.label"); //$NON-NLS-1$
+			.getString("HSQLDBProfileDetailsWizardPage.userName.label"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_PASSWORD_LBL_UI_ = Messages
 			.getString("HSQLDBProfileDetailsWizardPage.password.label"); //$NON-NLS-1$
@@ -75,7 +75,7 @@ public class HSQLDBDriverUIContributor implements IDriverUIContributor,
 			.getString("HSQLDBProfileDetailsWizardPage.persistpassword.label"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_CONNECTIONURL_LBL_UI_ = Messages
-			.getString("HSQLDBProfileDetailsWizardPage.summary.url.label"); //$NON-NLS-1$
+			.getString("HSQLDBProfileDetailsWizardPage.url.label"); //$NON-NLS-1$
 
 	private static final String CUI_NEWCW_OPTIONAL_PROPERTIES_LBL_UI_ = Messages
 			.getString("HSQLDBProfileDetailsWizardPage.optionalProps.label"); //$NON-NLS-1$	
