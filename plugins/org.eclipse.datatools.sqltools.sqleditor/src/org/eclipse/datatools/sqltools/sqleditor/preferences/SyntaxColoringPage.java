@@ -147,7 +147,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 		GridData gridData = new GridData();
 		gridData.heightHint = 110;
 		gridData.widthHint = 150;
-		_syntaxList = new List(comp, SWT.BORDER);
+		_syntaxList = new List(comp, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		_syntaxList.setLayoutData(gridData);
 		_syntaxList.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
