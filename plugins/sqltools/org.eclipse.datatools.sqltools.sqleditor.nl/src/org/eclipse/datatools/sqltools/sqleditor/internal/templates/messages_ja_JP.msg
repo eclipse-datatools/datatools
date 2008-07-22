@@ -1,6 +1,6 @@
 # template proposal
-TemplateProposal.displayString= {0} - {1}
-TemplateProposal.errorDialog.title=ƒeƒ“ƒvƒŒ[ƒg‚Ì•]‰¿ƒGƒ‰[
+TemplateProposal_displayString= {0} - {1}
+TemplateProposal_errorDialog_title=ƒeƒ“ƒvƒŒ[ƒg‚Ì•]‰¿ƒGƒ‰[
 
 SQLTemplateProposal_proposalInfo=ƒe[ƒuƒ‹/ƒvƒƒV[ƒWƒƒ–¼‚Ì•Ï”‚ğ“ü—Í‚·‚é‚ÆA‚±‚ÌƒCƒ“ƒeƒŠƒWƒFƒ“ƒgƒeƒ“ƒvƒŒ[ƒg‚ªŸ‚ÌêŠ‚É“WŠJ‚³‚ê‚Ü‚· :<br>
 
@@ -11,3 +11,4 @@ ContributionTemplateStore_ignore_validation_failed= ƒeƒ“ƒvƒŒ[ƒg {0} ‚ÍŒŸØ‚ÅƒGƒ
 SQLTemplateReaderWriter_duplicate_id= d•¡‚·‚éƒeƒ“ƒvƒŒ[ƒg ID
 SQLTemplateReaderWriter_error_missing_attribute= •K—v‚È‘®«‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 SQLTemplateReaderWriter_error_illegal_boolean_attribute= ˜_—’l‚Ì‘®«‚ª–³Œø‚Å‚·B‘®«‚Í "true" ‚Æ "false" ‚Ì‚¢‚¸‚ê‚©‚Å‚È‚¯‚ê‚Î‚È‚è‚Ü‚¹‚ñB
+

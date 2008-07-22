@@ -1,7 +1,7 @@
 AbstractDBPreferenceFieldPage_nodb=Datenbankname nach ID nicht gefunden: {0}
 
 SaveAsDialog_filetype_label=&Dateityp:
-SaveAsDialog_overwrite=Die Datei "{0}" ist bereits vorhanden. Ersetzen?
+SaveAsDialog_overwriteQuestion=Die Datei "{0}" ist bereits vorhanden. Ersetzen?
 SaveAsDialog_question=Frage
 SaveAsDialog_filename=&Dateiname:
 SaveAsDialog_export_error=Fehler beim Exportieren
@@ -16,10 +16,7 @@ SaveAsDialog_error_msg=Fehler beim Speichern der Skripte als eine Datei
 SaveAsDialog_text = Speichern unter
 SaveAsDialog_file = Datei
 SaveAsDialog_closedProjectMessage = Das ausgewählte Projekt wird geschlossen.
-# =============================================================================
+# ==============================================================================
 # Dialogs: Copied from IDEWorkbenchMessages
-# =============================================================================
+# ==============================================================================
 Question = Frage
-Always = &Immer
-Never = &Nie
-Prompt = &Auffordern

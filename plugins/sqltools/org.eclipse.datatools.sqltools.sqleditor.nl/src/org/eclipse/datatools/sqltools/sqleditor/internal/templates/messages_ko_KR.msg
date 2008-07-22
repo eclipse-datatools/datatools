@@ -1,6 +1,6 @@
 # template proposal
-TemplateProposal.displayString= {0} - {1}
-TemplateProposal.errorDialog.title=템플릿 평가 오류
+TemplateProposal_displayString= {0} - {1}
+TemplateProposal_errorDialog_title=템플릿 평가 오류
 
 SQLTemplateProposal_proposalInfo=테이블/프로시저 이름 변수를 채우면, 이 지능형 템플릿은 다음으로 확장됩니다:<br>
 

@@ -1,7 +1,7 @@
 AbstractDBPreferenceFieldPage_nodb=No se puede encontrar nombre de base de datos por id: {0}
 
 SaveAsDialog_filetype_label=&Tipo de archivo:
-SaveAsDialog_overwrite=El archivo ''{0}'' ya existe. ¿Desea reemplazar el archivo existente?
+SaveAsDialog_overwriteQuestion=El archivo ''{0}'' ya existe. ¿Desea reemplazar el archivo existente?
 SaveAsDialog_question=Pregunta
 SaveAsDialog_filename=&Nombre de archivo:
 SaveAsDialog_export_error=Error de exportación
@@ -16,10 +16,7 @@ SaveAsDialog_error_msg=Se produce un error al intentar guardar los scripts como 
 SaveAsDialog_text = Guardar como
 SaveAsDialog_file = archivo
 SaveAsDialog_closedProjectMessage = El proyecto seleccionado está cerrado.
-# =============================================================================
+# ==============================================================================
 # Dialogs: Copied from IDEWorkbenchMessages
-# =============================================================================
+# ==============================================================================
 Question = Pregunta
-Always = &Siempre
-Never = &Nunca
-Prompt = &Solicitar

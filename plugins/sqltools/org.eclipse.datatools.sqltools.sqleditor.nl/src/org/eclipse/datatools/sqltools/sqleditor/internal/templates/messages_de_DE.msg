@@ -1,6 +1,6 @@
 # template proposal
-TemplateProposal.displayString= {0} - {1}
-TemplateProposal.errorDialog.title=Fehler beim Auswerten der Vorlage
+TemplateProposal_displayString= {0} - {1}
+TemplateProposal_errorDialog_title=Fehler beim Auswerten der Vorlage
 
 SQLTemplateProposal_proposalInfo=Nachdem Sie die Tabellen-/Prozedurnamenvariable eingegeben haben, wird diese intelligente Vorlage erweitert in:<br>
 
