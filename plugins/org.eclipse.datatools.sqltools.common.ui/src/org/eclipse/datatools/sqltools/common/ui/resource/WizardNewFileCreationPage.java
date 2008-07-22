@@ -21,6 +21,7 @@ import org.eclipse.core.filesystem.URIUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceStatus;
+import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -644,6 +645,14 @@ public class WizardNewFileCreationPage extends WizardPage implements Listener
             }
             valid = false;
         }
+
+		String resourceName = _resourceGroup.getResource();
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IStatus result = workspace.validateName(resourceName, IResource.FILE);
+		if (!result.isOK()) {
+			setErrorMessage(result.getMessage());
+			return false;
+		}
 
         IStatus linkedResourceStatus = null;
         if (valid)

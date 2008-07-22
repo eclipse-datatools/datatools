@@ -42,6 +42,10 @@ public class NewSQLScrapbookFileCreationWizard extends Wizard implements
             fSelection = StructuredSelection.EMPTY;
         }
         fPage = new NewSQLScrapbookFileWizardPage(fSelection);
+        fPage.setTitle(SqlscrapbookPlugin
+                .getResourceString("NewSQLScrapbookFileWizardPage.title"));
+        fPage.setDescription(SqlscrapbookPlugin
+                .getResourceString("NewSQLScrapbookFileWizardPage.description")); 
         addPage(fPage);
     }
 
