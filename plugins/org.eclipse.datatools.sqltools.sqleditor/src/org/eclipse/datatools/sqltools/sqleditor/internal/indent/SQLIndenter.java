@@ -108,23 +108,27 @@ public class SQLIndenter
     public StringBuffer computeIndentation(int offset, boolean assumeOpening)
     {
 
-        StringBuffer indent = getReferenceIndentation(offset);
-
-        if (indent == null)
-        {
-            return null;
-        }
         _indent = 1;
+        
         // add additional indent
-        indent.append(createIndent(_indent));
+        StringBuffer indent = createIndent(_indent);
+        
         if (_indent < 0)
         {
             unindent(indent);
         }
+        
+        if (indent == null)
+        {
+            return null;
+        }
+        
+        //adding offset, after adding indent to keep consistency on whitespace of the last line.
+        indent.append(getReferenceIndentation(offset));
 
         return indent;
     }
-
+    
     /**
      * Returns the indentation of the line at <code>offset</code> as a <code>StringBuffer</code>. If the offset is
      * not valid, the empty string is returned.

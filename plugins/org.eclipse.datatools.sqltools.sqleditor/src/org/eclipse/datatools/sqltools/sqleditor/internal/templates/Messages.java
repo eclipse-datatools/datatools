@@ -38,20 +38,8 @@ public class Messages extends NLS
         }
     }
 
-    public static String getFormattedString(String key, Object arg)
-    {
-        return MessageFormat.format(getString(key), new Object[]
-        {
-            arg
-        });
-    }
-
-    public static String getFormattedString(String key, Object[] args)
-    {
-        return MessageFormat.format(getString(key), args);
-    }
-    
-    
+    public static String TemplateProposal_displayString;
+    public static String TemplateProposal_errorDialog_title;
     public static String ContributionTemplateStore_ignore_no_id;
     public static String ContributionTemplateStore_ignore_deleted;
     public static String ContributionTemplateStore_ignore_validation_failed;

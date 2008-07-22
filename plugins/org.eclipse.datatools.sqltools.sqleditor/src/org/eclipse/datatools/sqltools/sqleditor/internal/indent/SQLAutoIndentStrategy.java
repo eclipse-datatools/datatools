@@ -46,21 +46,38 @@ public class SQLAutoIndentStrategy extends DefaultIndentLineAutoEditStrategy
 
     private void smartIndentAfterNewLine(IDocument d, DocumentCommand c)
     {
-        SQLHeuristicScanner scanner = new SQLHeuristicScanner(d);
-        SQLIndenter indenter = new SQLIndenter(d, scanner);
-
-        StringBuffer indent = indenter.computeIndentation(c.offset);
-        if (indent == null)
-        {
-            indent = new StringBuffer(); //$NON-NLS-1$
-        }
-
         int docLength = d.getLength();
         if (c.offset == -1 || docLength == 0)
         {
             return;
         }
+        
+        SQLHeuristicScanner scanner = new SQLHeuristicScanner(d);
+        SQLIndenter indenter = new SQLIndenter(d, scanner);
+        
+        //get previous token
+        int previousToken = scanner.previousToken(c.offset - 1, SQLHeuristicScanner.UNBOUND);
+        
+        StringBuffer indent = null;
+        
+        StringBuffer beginIndentaion = new StringBuffer();
+        
+        if(isSupportedAutoCompletionToken(previousToken))
+        {
+            indent = indenter.computeIndentation(c.offset);
+            
+            beginIndentaion.append(indenter.getReferenceIndentation(c.offset));
+        }
+        else
+        {
+            indent = indenter.getReferenceIndentation(c.offset);
+        }
 
+        if (indent == null)
+        {
+            indent = new StringBuffer(); //$NON-NLS-1$
+        }
+       
         try
         {
             int p = (c.offset == docLength ? c.offset - 1 : c.offset);
@@ -81,26 +98,16 @@ public class SQLAutoIndentStrategy extends DefaultIndentLineAutoEditStrategy
                 start = d.getLineInformationOfOffset(region.getOffset()).getOffset();
             }
 
-            //get previous token
-            int previousToken = scanner.previousToken(c.offset - 1, SQLHeuristicScanner.UNBOUND);
-
-            if (isSupportedAutoCompletionToken(previousToken)  && getTokenCount(start, c.offset, scanner, previousToken) > 0 && !isClosed(d, c.offset, previousToken))
+            c.caretOffset = c.offset + buf.length();
+            c.shiftsCaret = false;
+            
+            if(isSupportedAutoCompletionToken(previousToken) && !isClosed(d, c.offset, previousToken) && getTokenCount(start, c.offset, scanner, previousToken) > 0)
             {
-                c.caretOffset = c.offset + buf.length();
-                c.shiftsCaret = false;
-
                 buf.append(getLineDelimiter(d));
-                StringBuffer reference = null;
-                int nonWS = findEndOfWhiteSpace(d, start, lineEnd);
-
-                reference = indenter.getReferenceIndentation(c.offset);
-                if (reference != null)
-                {
-                    buf.append(reference);
-                }
+                buf.append(beginIndentaion);
                 buf.append(getAutoCompletionTrail(previousToken));
-                c.text = buf.toString();
             }
+            c.text = buf.toString();
 
         }
         catch (BadLocationException e)

@@ -240,12 +240,16 @@ public class SQLScrapbookEditor extends SQLEditor {
     {
         if (getEditorInput() instanceof SQLEditorStorageEditorInput)
         {
-            doSaveAs();
+            super.doSaveAs();
         }
-        else
-        {
-            super.doSave(monitor);
-        }
+        
+        super.doSave(monitor);
+    }
+    
+    public void doSaveAs()
+    {
+        super.doSaveAs();
+        super.doSave(null);
     }
     
     public void createPartControl(Composite parent)

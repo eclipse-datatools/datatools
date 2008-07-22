@@ -544,7 +544,7 @@ public class SQLTemplateProposal implements ICompletionProposal, ICompletionProp
             {
                 _template.getName(), _template.getDescription()
             };
-            _displayString = Messages.getFormattedString("TemplateProposal.displayString", arguments); //$NON-NLS-1$
+            _displayString = Messages.format(Messages.TemplateProposal_displayString, arguments);//$NON-NLS-1$
         }
         return _displayString;
     }
@@ -567,7 +567,7 @@ public class SQLTemplateProposal implements ICompletionProposal, ICompletionProp
 
     private void openErrorDialog(Shell shell, Exception e)
     {
-        MessageDialog.openError(shell, Messages.getString("TemplateProposal.errorDialog.title"), e.getMessage()); //$NON-NLS-1$
+        MessageDialog.openError(shell, Messages.TemplateProposal_errorDialog_title, e.getMessage()); //$NON-NLS-1$
     }
 
     /**

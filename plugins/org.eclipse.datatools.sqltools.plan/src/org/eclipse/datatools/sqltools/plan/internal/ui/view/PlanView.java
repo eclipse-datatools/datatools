@@ -177,16 +177,9 @@ public class PlanView extends ViewPart
         };
         _vLayoutAction = new VerticalLayoutAction(_graphicsControl.getSash());
         _hLayoutAction = new HorizontalLayoutAction(_graphicsControl.getSash());
-        if (PlanViewPlugin.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.VERTICAL_LAYOUT_PLAN_VIEW))
-        {
-            _vLayoutAction.setChecked(true);
-            _hLayoutAction.setChecked(false);
-        }
-        else
-        {
-            _hLayoutAction.setChecked(true);
-            _vLayoutAction.setChecked(false);
-        }
+
+        configPlanLayout();
+        
         getViewSite().getActionBars().updateActionBars();
     }
 
@@ -239,6 +232,25 @@ public class PlanView extends ViewPart
     }
 
     /**
+     * Get the plan layout according to preference store, and configure the layout immediately.
+     */
+    private void configPlanLayout()
+    {
+        if (PlanViewPlugin.getDefault().getPreferenceStore().getBoolean(PreferenceConstants.VERTICAL_LAYOUT_PLAN_VIEW))
+        {
+            _vLayoutAction.setChecked(true);
+            _hLayoutAction.setChecked(false);
+            _vLayoutAction.run();
+        }
+        else
+        {
+            _hLayoutAction.setChecked(true);
+            _vLayoutAction.setChecked(false);
+            _hLayoutAction.run();
+        }
+    }
+    
+    /**
      * Shows the given execution plan
      * 
      * @param instance an execution plan instance
@@ -255,6 +267,9 @@ public class PlanView extends ViewPart
         {
             public void run()
             {
+                // when getting the plan, refresh plan layout according to preference store.
+                configPlanLayout();
+                
                 Control control = _textPlan;
                 String label = "";
                 if (instance == null)

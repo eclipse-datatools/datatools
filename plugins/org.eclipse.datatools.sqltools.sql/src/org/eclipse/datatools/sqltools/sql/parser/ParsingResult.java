@@ -26,6 +26,7 @@ import org.eclipse.datatools.sqltools.sql.parser.ast.IASTStart;
 import org.eclipse.datatools.sqltools.sql.parser.ast.Node;
 import org.eclipse.datatools.sqltools.sql.parser.ast.SimpleNode;
 import org.eclipse.datatools.sqltools.sql.reference.internal.Table;
+import org.eclipse.datatools.sqltools.sql.util.ConsistentOrderHashMap;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 import org.eclipse.jface.text.IDocument;
 
@@ -175,7 +176,7 @@ public abstract class ParsingResult
      */
     public HashMap getParameters(IDocument document, int offset)
     {
-        HashMap map = new HashMap();
+        HashMap map = new ConsistentOrderHashMap();
         SimpleNode context = (SimpleNode) findContainingDeployable(document, offset, _rootNode);
         //only SP can have parameters
         if (context != null && context instanceof IASTDeployable)
@@ -351,7 +352,7 @@ public abstract class ParsingResult
      */
     protected HashMap findParameters(IDocument document, int offset, IASTDeployable node)
     {
-        HashMap map = new HashMap();
+        HashMap<String, Node> map = new ConsistentOrderHashMap<String, Node>();
         if (node.jjtGetNumChildren() > 0)
         {
             for (int i = 0; i < node.jjtGetNumChildren(); i++)

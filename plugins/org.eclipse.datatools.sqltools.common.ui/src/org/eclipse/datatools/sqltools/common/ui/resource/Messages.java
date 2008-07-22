@@ -17,14 +17,6 @@ public final class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = Messages.class.getPackage().getName() + ".messages";//$NON-NLS-1$
 
-	public static String EditorManager_operationFailed;
-
-	public static String Save_Resource;
-
-	public static String common_error;
-	
-	public static String Save;
-
 	public static String ContainerSelectionGroup_createProjectAction_label;
 
 	public static String showAdvanced;

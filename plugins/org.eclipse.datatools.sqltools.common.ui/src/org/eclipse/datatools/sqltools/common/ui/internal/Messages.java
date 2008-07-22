@@ -27,12 +27,10 @@ public final class Messages extends NLS {
     public static String SaveAsDialog_message;
     public static String SaveAsDialog_title;
     public static String SaveAsDialog_filetype_label;
-    public static String SaveAsDialog_overwrite;
     public static String SaveAsDialog_question;
     public static String SaveAsDialog_filename;
     public static String SaveAsDialog_export_error;
 	public static String SaveAsDialog_text;
-	public static String SaveAsDialog_fileLabel;
 	public static String SaveAsDialog_file;
 	public static String SaveAsDialog_overwriteQuestion;
 	public static String SaveAsDialog_closedProjectMessage;
