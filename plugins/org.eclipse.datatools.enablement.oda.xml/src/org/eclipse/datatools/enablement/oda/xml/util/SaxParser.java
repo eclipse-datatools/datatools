@@ -12,6 +12,7 @@
 package org.eclipse.datatools.enablement.oda.xml.util;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.ErrorHandler;
@@ -36,7 +38,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 	private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
 	private static final String EMPTY_STRING = "";	//$NON-NLS-1$
 
-    private XMLDataInputStream inputStream;
+    private InputStream inputStream;
+    private String encoding;
 	
 	//The XPathHolder instance that hold the information of element currently
 	//being proceed
@@ -80,10 +83,12 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 * 
 	 * @param fileName
 	 * @param consumer
+	 * @throws OdaException 
 	 */
-	public SaxParser( XMLDataInputStream stream, ISaxParserConsumer consumer, boolean useNamespace )
+	public SaxParser(IXMLSource xmlSource, ISaxParserConsumer consumer, boolean useNamespace ) throws OdaException
 	{
-		inputStream = stream;
+		this.inputStream = xmlSource.openInputStream( );
+		this.encoding = xmlSource.getEncoding( );
 		spConsumer = consumer;
 		start = true;
 		alive = true;
@@ -123,10 +128,6 @@ public class SaxParser extends DefaultHandler implements Runnable
 			
 			setErrorHandler( xmlReader );
 			
-			
-			
-			this.inputStream.init( );
-			
 			parse( xmlReader );
 		}
 		catch ( Exception e )
@@ -135,6 +136,13 @@ public class SaxParser extends DefaultHandler implements Runnable
 		}
 		finally
 		{
+			try
+			{
+				inputStream.close( );
+			}
+			catch ( IOException e )
+			{
+			}
 			this.alive = false;
 			spConsumer.wakeup( );
 		}
@@ -165,7 +173,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 					InputSource.class
 				} );
 		InputSource source = new InputSource(inputStream);
-		source.setEncoding( inputStream.getEncoding( ) );
+		source.setEncoding( encoding );
 		parse.invoke( xmlReader, new Object[]{
 			source
 		} );

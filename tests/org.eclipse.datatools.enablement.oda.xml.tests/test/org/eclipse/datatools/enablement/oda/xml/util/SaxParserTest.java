@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.IQuery;
+import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.BaseTest;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
@@ -35,7 +36,8 @@ import sun.awt.AppContext;
  */
 public class SaxParserTest extends BaseTest
 {
-
+	private IResultSet rs;
+	private IXMLSource xmlSource;
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
 	private String testString = "book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
@@ -70,6 +72,14 @@ public class SaxParserTest extends BaseTest
 
 	protected void tearDown( ) throws Exception
 	{
+		if ( rs != null )
+		{
+			rs.close( );
+		}
+		if ( xmlSource != null )
+		{
+			xmlSource.release( );
+		}
 		super.tearDown( );
 	}
 
@@ -87,8 +97,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"simple",
 				0);
@@ -125,8 +135,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"aut  hor", 
 				0);
@@ -163,8 +173,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"title",
 				0);
@@ -200,8 +210,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"stat" ,
 				0);
@@ -252,7 +262,7 @@ public class SaxParserTest extends BaseTest
 		IQuery query = conn.newQuery( null );
 		query.prepare( "stat#-TNAME-#" + this.testString);
 
-		ResultSet rs = (ResultSet) query.executeQuery( );
+		rs = (ResultSet) query.executeQuery( );
 
 		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
 			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
@@ -272,6 +282,7 @@ public class SaxParserTest extends BaseTest
 				new File( TestConstants.SAX_PARSER_TEST4_GOLDEN_XML ) ) );
 
 		AppContext.getAppContext( ).remove( Constants.APPCONTEXT_INPUTSTREAM );
+		conn.close( );
 	}
 
 	public void test5( ) throws OdaException, IOException
@@ -287,8 +298,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"none" ,
 				0);
@@ -324,8 +335,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.SMALL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"one" ,
 				0);
@@ -361,8 +372,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.RECURSIVE_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"recursive" ,
 				0);
@@ -404,8 +415,8 @@ public class SaxParserTest extends BaseTest
 		String text = "test#:#[//row]#:#{X;String;/axis_x},{Y;String;/axis_y},{Value;String;/value}";
 
 		ri = new RelationInformation( text );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.CRITICAL_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.CRITICAL_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"test" ,
 				0);
@@ -442,8 +453,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 		BufferedOutputStream bos = new BufferedOutputStream( fos );
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.UTF8BOM );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.UTF8BOM );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"utf" ,
 				0);
@@ -480,16 +491,16 @@ public class SaxParserTest extends BaseTest
 
 		ri = new RelationInformation( testString );
 		FileInputStream iStream = new FileInputStream(new File( TestConstants.RECURSIVE_XML_FILE ));
-		XMLCreatorContent content = new XMLCreatorContent( iStream );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromInputStream( iStream );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"recursive" ,
 				0);
-		rs = new ResultSet( content,
+		rs = new ResultSet( xmlSource,
 				ri,
 				"recursive" ,
 				0);
-		rs = new ResultSet( content,
+		rs = new ResultSet( xmlSource,
 				ri,
 				"recursive" ,
 				0);
@@ -529,8 +540,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.RECURSIVE_DUPLICATENAME ); 
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"duplicate", 
 				0);
@@ -571,8 +582,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.RECURSIVE_DUPLICATENAME );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"complexNest", 
 				0);
@@ -613,8 +624,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.TEST_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"filter1", 
 				0);
@@ -655,8 +666,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.TEST_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"filter2", 
 				0);
@@ -692,8 +703,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.TEST_RELATIVE_LOCATION );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.TEST_RELATIVE_LOCATION );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"relativeLocation",
 				0 );
@@ -734,8 +745,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.TEST_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"filter3", 
 				0);
@@ -776,8 +787,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.MIXED_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.MIXED_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"filter4", 
 				0);
@@ -819,8 +830,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.NESTED_TABLE_ROOT_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.NESTED_TABLE_ROOT_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"nestedTableRootFilter", 
 				0);
@@ -862,8 +873,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.EMPTY_ELEMENT );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.EMPTY_ELEMENT );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"emptyElement",
 				0 );
@@ -905,8 +916,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.TABLE_FILTER );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.TABLE_FILTER );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"tableFilter",
 				0 );
@@ -942,8 +953,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.BOOKSTORE_XML_FILE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.BOOKSTORE_XML_FILE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"attributeFilter",
 				0 );
@@ -979,8 +990,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.RECURSIVE_DUPLICATENAME );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"Asterisk",
 				0 );
@@ -1016,8 +1027,8 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString , true);
-		XMLCreatorContent content = new XMLCreatorContent( TestConstants.XML_FILE_WITH_NAMESPACE );
-		ResultSet rs = new ResultSet( content,
+		xmlSource = new XMLSourceFromPath( TestConstants.XML_FILE_WITH_NAMESPACE );
+		rs = new ResultSet( xmlSource,
 				ri,
 				"soap",
 				0 );

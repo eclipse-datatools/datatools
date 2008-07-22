@@ -21,9 +21,9 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.SaxParserConsumer;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
 import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
 
 /**
@@ -57,7 +57,7 @@ public class ResultSet implements IResultSet
 	 * @param tableName
 	 * @throws OdaException
 	 */
-	public ResultSet( XMLCreatorContent content, RelationInformation ri, String tableName, int maxRows )
+	public ResultSet( IXMLSource xmlSource, RelationInformation ri, String tableName, int maxRows )
 			throws OdaException
 	{
 		this.rsMetaData = new ResultSetMetaData( ri, tableName );
@@ -66,7 +66,7 @@ public class ResultSet implements IResultSet
 		
 		isClosed = false;
 		
-		spConsumer = new SaxParserConsumer( ri, content, tableName );
+		spConsumer = new SaxParserConsumer( ri, xmlSource, tableName );
 	}
 
 	/*
@@ -97,7 +97,7 @@ public class ResultSet implements IResultSet
 	 */
 	public void close( ) throws OdaException
 	{
-		this.spConsumer.close();
+		this.spConsumer.close( );
 		this.rsMetaData = null;
 		
 		this.isClosed = true;

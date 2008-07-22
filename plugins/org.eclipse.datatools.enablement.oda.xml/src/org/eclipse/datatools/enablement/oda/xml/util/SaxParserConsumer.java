@@ -73,7 +73,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	private List cachedRootRows;
 	private Map cachedTempRows;
 	private List cachedOrderedTempRowRoots;
-
+	
 	/**
 	 * 
 	 * @param rs
@@ -83,7 +83,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	 * @throws OdaException
 	 */
 	public SaxParserConsumer( RelationInformation rinfo,
-			XMLCreatorContent content, String tName ) throws OdaException
+			IXMLSource xmlSource, String tName ) throws OdaException
 	{
 		// must start from 0
 		cachedResultSetRowNo = 0;
@@ -112,15 +112,12 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		}
 
 		mappingPathElementTree = relationInfo.getTableMappingPathElementTree( tableName );
-		
-		XMLDataInputStream xdis = XMLDataInputStreamCreator.getCreator( content )
-				.createXMLDataInputStream( );
 
 		if ( namesOfNestedColumns.length > 0 )
 		{
 			spNestedQueryHelper = new SaxParserNestedQueryHelper( this,
 					rinfo,
-					xdis,
+					xmlSource,
 					tName );
 			try
 			{
@@ -152,7 +149,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 				throw new OdaException( e.getLocalizedMessage( ) );
 			}
 		}
-		sp = new SaxParser( xdis, this, rinfo.containsNamespace( ) );
+		sp = new SaxParser( xmlSource,
+				this, rinfo.containsNamespace( ) );
 		spThread = new Thread( sp );
 		spThread.start( );
 	}
@@ -508,7 +506,9 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	{
 		// TODO add comments.
 		if ( this.sp != null )
+		{
 			this.sp.stopParsing( );
+		}
 	}
 
 	/**

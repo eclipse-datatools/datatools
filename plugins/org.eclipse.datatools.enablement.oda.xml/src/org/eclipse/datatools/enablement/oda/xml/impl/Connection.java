@@ -10,12 +10,7 @@
  *******************************************************************************/
 
 package org.eclipse.datatools.enablement.oda.xml.impl;
-
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 
@@ -25,8 +20,9 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
+import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromInputStream;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 
 /**
  * This class is used to build an XML data source connection. 
@@ -35,8 +31,7 @@ public class Connection implements IConnection
 {
     private static final String TRUE_LITERAL = "true";	//$NON-NLS-1$
 
-	//The file which server as data source.
-	private XMLCreatorContent xmlContent;
+    private IXMLSource xmlSource;
 
 	//The boolean indicate whether the connection is open.
 	private boolean isOpen;
@@ -51,55 +46,36 @@ public class Connection implements IConnection
 			throws org.eclipse.datatools.connectivity.oda.OdaException
 	{
 		if( isOpen == true )
+		{
 			return;
-		String file = (String) connProperties.get( Constants.CONST_PROP_FILELIST );
+		}
+		String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+		String file = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
 		if ( appContext != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
 				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
-			xmlContent = new XMLCreatorContent( (InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) );
+		{
+			boolean closeOriginalInputStream = false;
+			Object closeInputStream = appContext.get( Constants.APPCONTEXT_CLOSEINPUTSTREAM );
+			if( TRUE_LITERAL.equalsIgnoreCase( closeInputStream == null ? null : closeInputStream.toString( ) ) )
+			{
+					closeOriginalInputStream = true;
+			}
+			xmlSource = new XMLSourceFromInputStream( 
+					(InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ), 
+					encoding,
+					closeOriginalInputStream );
+		}
 		else if ( file != null )
 		{
-			xmlContent = new XMLCreatorContent( file );
-			File xmlFile = new File( file );
-			if ( !xmlFile.exists( ) )
-			{
-				try
-				{
-					new URL( file );
-				}
-				catch ( MalformedURLException e )
-				{
-					throw new OdaException( e );
-				}
-			}
+			xmlSource = new XMLSourceFromPath( file, encoding );
 		}
 		else
+		{
 			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
-		String encoding = (String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-		xmlContent.setEncoding(encoding);
-		
-//		XMLDataInputStream dataInputStream = dataInputStreamCreator.createXMLDataInputStream( );
-		/*try
-		{
-			testXmlConnection( dataInputStream );
 		}
-		catch ( Exception e )
-		{
-			throw new OdaException( e );
-		}*/
 		isOpen = true;
 	}
-
-	
-	/*private void testXmlConnection( XMLDataInputStream dataInputStream ) throws ParserConfigurationException, SAXException, IOException
-	{
-		dataInputStream.init( );
-		SAXParserFactory sf = SAXParserFactory.newInstance();		
-		SAXParser parser = sf.newSAXParser( );
-		InputSource source = new InputSource(dataInputStream);
-		source.setEncoding( dataInputStream.getEncoding( ) );
-		parser.parse( source, new DefaultHandler() );
-	}*/
 
 	/*
 	 * (non-Javadoc)
@@ -110,33 +86,11 @@ public class Connection implements IConnection
 			throws org.eclipse.datatools.connectivity.oda.OdaException
 	{
 		isOpen = false;
-		XMLDataInputStreamCreator.close( xmlContent.getKey( ) );
-		try
+		if ( xmlSource != null )
 		{
-			if(appContext != null && appContext.get(Constants.APPCONTEXT_INPUTSTREAM)!= null)
-			{
-				Object closeInputStream = appContext.get(Constants.APPCONTEXT_CLOSEINPUTSTREAM);
-				if( closeInputStream != null )
-				{
-					if( closeInputStream.toString().equalsIgnoreCase( TRUE_LITERAL ) )
-						closeInputStreamFromAppContext( );
-				}
-			}
-		}
-		catch ( IOException e )
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			xmlSource.release( );
 		}
 		this.appContext = null;
-	}
-
-	/**
-	 * @throws IOException
-	 */
-	private void closeInputStreamFromAppContext( ) throws IOException
-	{
-		((InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM )).close( );
 	}
 
 	/*
@@ -203,7 +157,7 @@ public class Connection implements IConnection
 	public IQuery newQuery( String dataSetType ) throws OdaException
 	{
 		
-		return new Query( this.xmlContent );
+		return new Query( this.xmlSource );
 	}
 
 	/*

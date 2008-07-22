@@ -35,6 +35,7 @@ public class ConnectionTest extends BaseTest
 
 	protected void tearDown( ) throws Exception
 	{
+		conn.close( );
 		super.tearDown( );
 	}
 

@@ -29,6 +29,7 @@ import com.ibm.icu.util.TimeZone;
  */
 public class ResultSetTest extends BaseTest
 {
+	Connection conn;
 	TimeZone defaultZone = null;
 	IResultSet rs;
 	String queryText;
@@ -55,7 +56,6 @@ public class ResultSetTest extends BaseTest
 		defaultZone = TimeZone.getDefault( );
 		TimeZone.setDefault( TimeZone.getTimeZone( "GMT" ) );
 		dates = new Date[]{Date.valueOf("2005-2-2"), Date.valueOf("2004-4-4"),Date.valueOf("2003-3-3"),Date.valueOf("2002-2-2")}; 
-		Connection conn = new Connection();
 		Properties prop = new Properties();
 		queryText =	"book#-TNAME-#book#:#[//book]#:#{book.category;String;/@category}," +
 				"{book.title;String;title}," +
@@ -68,6 +68,7 @@ public class ResultSetTest extends BaseTest
 				"{book.timestamp;Timestamp;timestamp},"+
 				"{book.time;Time;time}";
 		prop.put(Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE);
+		conn = new Connection( );
 		conn.open(prop);
 		IQuery query = conn.newQuery( null );
 		query.prepare( queryText );
@@ -77,6 +78,8 @@ public class ResultSetTest extends BaseTest
 	protected void tearDown( ) throws Exception
 	{
 		TimeZone.setDefault( this.defaultZone );
+		rs.close( );
+		conn.close( );
 		super.tearDown( );
 	}
 

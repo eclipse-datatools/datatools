@@ -10,11 +10,14 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.util;
 
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.eclipse.datatools.connectivity.oda.OdaException;
 
 /**
  * This is a helper class used by SaxParserConsumer to generate nested xml columns related
@@ -45,14 +48,15 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 	 * @param rinfo
 	 * @param fileName
 	 * @param tName
+	 * @throws OdaException 
 	 */
-	protected SaxParserNestedQueryHelper( SaxParserConsumer consumer, RelationInformation rinfo, XMLDataInputStream xdis, String tName)
+	protected SaxParserNestedQueryHelper( SaxParserConsumer consumer, RelationInformation rinfo, IXMLSource xmlSource, String tName) throws OdaException
 	{
 		this.tableName = tName;
 		this.relationInfo = rinfo;
 		this.consumer = consumer;
 		mappingPathElementTree = relationInfo.getTableMappingPathElementTree( tableName );
-		this.sp = new SaxParser( xdis , this, rinfo.containsNamespace( ) );
+		this.sp = new SaxParser( xmlSource, this, rinfo.containsNamespace( ) );
 		this.spThread = new Thread( sp );
 		this.spThread.start();
 	}

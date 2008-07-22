@@ -34,8 +34,9 @@ import org.apache.xerces.xs.XSNamedMap;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer;
+import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.SaxParser;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLDataInputStreamCreator;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 import org.w3c.dom.ls.LSInput;
 
 
@@ -222,8 +223,8 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		try
 		{
 			
-			XMLDataInputStreamCreator is = XMLDataInputStreamCreator.getCreator( xmlFileName, xmlEncoding );
-			sp = new SaxParser( is.createXMLDataInputStream( ), this, false );
+			IXMLSource xmlSource = new XMLSourceFromPath( xmlFileName, xmlEncoding );
+			sp = new SaxParser( xmlSource, this, false );
 
 			spThread = new Thread( sp );
 			spThread.start( );
@@ -271,8 +272,8 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 */
 	public Map getPrefixMapping( String xmlFileName, String xmlEncoding ) throws OdaException
 	{
-		XMLDataInputStreamCreator is = XMLDataInputStreamCreator.getCreator( xmlFileName, xmlEncoding );
-		sp = new SaxParser( is.createXMLDataInputStream( ), this, false );
+		IXMLSource xmlSource = new XMLSourceFromPath( xmlFileName, xmlEncoding );
+		sp = new SaxParser( xmlSource, this, false );
 
 		spThread = new Thread( sp );
 		spThread.start( );
@@ -289,7 +290,7 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 			{
 			}
 		}
-
+		sp.stopParsing( );
 		if( sp== null || sp.exceptionOccurred( ) )
 			return new HashMap( );
 		return this.sp.getPrefixMapping( );

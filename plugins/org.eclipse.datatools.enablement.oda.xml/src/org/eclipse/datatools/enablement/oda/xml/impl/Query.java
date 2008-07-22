@@ -22,8 +22,8 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLCreatorContent;
 
 /**
  * This class implements IQuery interface.
@@ -44,18 +44,18 @@ public class Query implements IQuery
 	//	indicate whether the result set has been closed.
 	private boolean isClosed;
 	
-	private XMLCreatorContent xmlContent;
+	private IXMLSource xmlSource;
 	/**
 	 * 
 	 * @param file
 	 * @param ri
 	 */
-	public Query( XMLCreatorContent xmlContent )
+	public Query( IXMLSource xmlSource )
 	{
 		tableName = null;
 		maxRows = 0;
 		isClosed = false;
-		this.xmlContent = xmlContent;
+		this.xmlSource = xmlSource;
 	}
 	
 	/*
@@ -136,7 +136,7 @@ public class Query implements IQuery
 		if ( this.tableName == null || this.tableName.trim( ).length( ) == 0 )
 			throw new OdaException( Messages.getString( "Query.QueryHasNotBeenPrepared" ) ); //$NON-NLS-1$
 
-		ResultSet result = new ResultSet( this.xmlContent,
+		ResultSet result = new ResultSet( this.xmlSource,
 				relationInformation,
 				tableName,
 				this.getMaxRows( ));
