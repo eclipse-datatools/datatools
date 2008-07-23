@@ -314,6 +314,11 @@
           <xsd:documentation>Private properties specific to the underlying data source connection.  Their definitions are private to the ODA designer, i.e. must not be visible nor editable by the host designer.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="hostResourceIdentifiers" type="design:ResourceIdentifiers">
+        <xsd:annotation>
+          <xsd:documentation>The resource identifiers of the ODA host application that initiates the ODA design session request.  An ODA host application may optionally specify its resource identifiers for reference by an ODA designer.   Its support and usage by a custom ODA designer is optional and implementation-dependent.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
       <xsd:annotation>
@@ -760,6 +765,26 @@
   <xsd:element name="PropertyAttributes" type="design:PropertyAttributes">
     <xsd:annotation>
       <xsd:documentation>The attributes of a property.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ResourceIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Resource identifiers of an ODA host application or custom ODA designer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="applResourceBaseURIString" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base URI of general purpose resources of an ODA consumer application in string form.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="designResourceBaseURIString" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The base URI of design resources of an ODA consumer application in string form.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ResourceIdentifiers" type="design:ResourceIdentifiers">
+    <xsd:annotation>
+      <xsd:documentation>Resource identifiers of an ODA host application or custom ODA designer.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="ResultSetColumns">

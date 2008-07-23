@@ -7,8 +7,8 @@
     templateDirectory="/org.eclipse.datatools.connectivity.oda.design/src/templates"
     runtimeJar="true" dynamicTemplates="true" modelName="OdaDesignSession" editPluginClass="org.eclipse.datatools.connectivity.oda.design.provider.OdaDesignSessionEditPlugin"
     editorPluginClass="org.eclipse.datatools.connectivity.oda.design.presentation.OdaDesignSessionEditorPlugin"
-    generateSchema="true" nonNLSMarkers="true" codeFormatting="true">
-  <foreignModel>file:/E:/lchan/doc/JaRP/DataEngine/Schema/odaDesignSession.xsd</foreignModel>
+    generateSchema="true" nonNLSMarkers="true" codeFormatting="true" importerID="org.eclipse.xsd.ecore.importer">
+  <foreignModel>file:/E:/lchan/doc/DSRepository/ODA/func/odaDesignSession307.xsd</foreignModel>
   <genPackages prefix="Design" basePackage="org.eclipse.datatools.connectivity.oda"
       resource="XML" ecorePackage="org.eclipse.datatools.connectivity.oda.design.ecore#/">
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//AxisType">
@@ -74,8 +74,6 @@
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ElementNullabilityObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignmentObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyleObject"/>
-    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//NativeDataTypeCode"/>
-    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//NativeDataTypeCodeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaComplexDataTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterModeObject"/>
@@ -133,6 +131,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/publicProperties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/privateProperties"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/linkedProfileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/linkedProfileStoreFilePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSourceDesign/hostResourceIdentifiers"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DesignerState">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DesignerState/version"/>
@@ -228,6 +229,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//PropertyAttributes/displayName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//PropertyAttributes/elementAttributes"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//PropertyAttributes/derivedMetaData"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResourceIdentifiers">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ResourceIdentifiers/applResourceBaseURIString"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ResourceIdentifiers/designResourceBaseURIString"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetColumns">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetColumns/resultColumnDefinitions"/>

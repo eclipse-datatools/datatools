@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesign.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DataSourceDesign.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getPrivateProperties <em>Private Properties</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileName <em>Linked Profile Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,7 +53,7 @@ public interface DataSourceDesign extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -258,6 +259,34 @@ public interface DataSourceDesign extends EObject
      * @generated
      */
     void setLinkedProfileStoreFilePath( String value );
+
+    /**
+     * Returns the value of the '<em><b>Host Resource Identifiers</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * The resource identifiers of the ODA host application that initiates the ODA design session request.  An ODA host application may optionally specify its resource identifiers for reference by an ODA designer.   Its support and usage by a custom ODA designer is optional and implementation-dependent.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Host Resource Identifiers</em>' containment reference.
+     * @see #setHostResourceIdentifiers(ResourceIdentifiers)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSourceDesign_HostResourceIdentifiers()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='hostResourceIdentifiers' namespace='##targetNamespace'"
+     * @generated
+     * @since DTP 1.6.1
+     */
+    ResourceIdentifiers getHostResourceIdentifiers();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Host Resource Identifiers</em>' containment reference.
+     * @see #getHostResourceIdentifiers()
+     * @generated
+     * @since DTP 1.6.1
+     */
+    void setHostResourceIdentifiers( ResourceIdentifiers value );
 
     /**
      * Returns the profile storage file

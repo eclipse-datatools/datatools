@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSourceDesignImpl.java,v 1.11 2007/03/29 02:47:11 lchan Exp $
+ * $Id: DataSourceDesignImpl.java,v 1.12 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,6 +22,8 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -47,6 +49,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getPrivateProperties <em>Private Properties</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileName <em>Linked Profile Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getLinkedProfileStoreFilePath <em>Linked Profile Store File Path</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSourceDesignImpl#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,7 +63,7 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -203,6 +206,16 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * @deprecated  since 3.0.4
      */
     protected String m_linkedProfileStoreFilePath = LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getHostResourceIdentifiers() <em>Host Resource Identifiers</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getHostResourceIdentifiers()
+     * @generated
+     * @ordered
+     */
+    protected ResourceIdentifiers m_hostResourceIdentifiers = null;
 
     /**
      * property name for storing linked profile instance's name
@@ -684,6 +697,80 @@ public class DataSourceDesignImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    public ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        return m_hostResourceIdentifiers;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetHostResourceIdentifiers(
+            ResourceIdentifiers newHostResourceIdentifiers,
+            NotificationChain msgs )
+    {
+        ResourceIdentifiers oldHostResourceIdentifiers = m_hostResourceIdentifiers;
+        m_hostResourceIdentifiers = newHostResourceIdentifiers;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS,
+                    oldHostResourceIdentifiers, newHostResourceIdentifiers );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setHostResourceIdentifiers(
+            ResourceIdentifiers newHostResourceIdentifiers )
+    {
+        if( newHostResourceIdentifiers != m_hostResourceIdentifiers )
+        {
+            NotificationChain msgs = null;
+            if( m_hostResourceIdentifiers != null )
+                msgs = ((InternalEObject) m_hostResourceIdentifiers)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS,
+                                null, msgs );
+            if( newHostResourceIdentifiers != null )
+                msgs = ((InternalEObject) newHostResourceIdentifiers)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS,
+                                null, msgs );
+            msgs = basicSetHostResourceIdentifiers( newHostResourceIdentifiers,
+                    msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS,
+                    newHostResourceIdentifiers, newHostResourceIdentifiers ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
@@ -693,6 +780,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return basicSetPublicProperties( null, msgs );
         case DesignPackage.DATA_SOURCE_DESIGN__PRIVATE_PROPERTIES:
             return basicSetPrivateProperties( null, msgs );
+        case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
+            return basicSetHostResourceIdentifiers( null, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -722,6 +811,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return getLinkedProfileName();
         case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
             return getLinkedProfileStoreFilePath();
+        case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
+            return getHostResourceIdentifiers();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -759,6 +850,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
         case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
             setLinkedProfileStoreFilePath( (String) newValue );
             return;
+        case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
+            setHostResourceIdentifiers( (ResourceIdentifiers) newValue );
+            return;
         }
         super.eSet( featureID, newValue );
     }
@@ -795,6 +889,9 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return;
         case DesignPackage.DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH:
             setLinkedProfileStoreFilePath( LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT );
+            return;
+        case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
+            setHostResourceIdentifiers( (ResourceIdentifiers) null );
             return;
         }
         super.eUnset( featureID );
@@ -834,6 +931,8 @@ public class DataSourceDesignImpl extends EObjectImpl implements
             return LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT == null ? m_linkedProfileStoreFilePath != null
                     : !LINKED_PROFILE_STORE_FILE_PATH_EDEFAULT
                             .equals( m_linkedProfileStoreFilePath );
+        case DesignPackage.DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS:
+            return m_hostResourceIdentifiers != null;
         }
         return super.eIsSet( featureID );
     }

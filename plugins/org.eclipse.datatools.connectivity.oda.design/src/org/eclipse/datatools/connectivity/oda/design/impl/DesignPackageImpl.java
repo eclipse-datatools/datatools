@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.6 2007/03/16 11:47:22 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -53,6 +53,7 @@ import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
@@ -85,7 +86,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * <!-- begin-user-doc -->
@@ -295,6 +296,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass resourceIdentifiersEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass resultSetColumnsEClass = null;
 
     /**
@@ -429,20 +437,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EDataType inputPromptControlStyleObjectEDataType = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EDataType nativeDataTypeCodeEDataType = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EDataType nativeDataTypeCodeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1047,6 +1041,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EAttribute) dataSourceDesignEClass.getEStructuralFeatures()
                 .get( 7 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDataSourceDesign_HostResourceIdentifiers()
+    {
+        return (EReference) dataSourceDesignEClass.getEStructuralFeatures()
+                .get( 8 );
     }
 
     /**
@@ -1849,6 +1854,38 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getResourceIdentifiers()
+    {
+        return resourceIdentifiersEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getResourceIdentifiers_ApplResourceBaseURIString()
+    {
+        return (EAttribute) resourceIdentifiersEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getResourceIdentifiers_DesignResourceBaseURIString()
+    {
+        return (EAttribute) resourceIdentifiersEClass.getEStructuralFeatures()
+                .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getResultSetColumns()
     {
         return resultSetColumnsEClass;
@@ -2190,26 +2227,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EDataType getNativeDataTypeCode()
-    {
-        return nativeDataTypeCodeEDataType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EDataType getNativeDataTypeCodeObject()
-    {
-        return nativeDataTypeCodeObjectEDataType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EDataType getOdaComplexDataTypeObject()
     {
         return odaComplexDataTypeObjectEDataType;
@@ -2376,6 +2393,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DATA_SOURCE_DESIGN__LINKED_PROFILE_NAME );
         createEAttribute( dataSourceDesignEClass,
                 DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH );
+        createEReference( dataSourceDesignEClass,
+                DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS );
 
         designerStateEClass = createEClass( DESIGNER_STATE );
         createEAttribute( designerStateEClass, DESIGNER_STATE__VERSION );
@@ -2512,6 +2531,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( propertyAttributesEClass,
                 PROPERTY_ATTRIBUTES__DERIVED_META_DATA );
 
+        resourceIdentifiersEClass = createEClass( RESOURCE_IDENTIFIERS );
+        createEAttribute( resourceIdentifiersEClass,
+                RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING );
+        createEAttribute( resourceIdentifiersEClass,
+                RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING );
+
         resultSetColumnsEClass = createEClass( RESULT_SET_COLUMNS );
         createEReference( resultSetColumnsEClass,
                 RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS );
@@ -2565,8 +2590,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         elementNullabilityObjectEDataType = createEDataType( ELEMENT_NULLABILITY_OBJECT );
         horizontalAlignmentObjectEDataType = createEDataType( HORIZONTAL_ALIGNMENT_OBJECT );
         inputPromptControlStyleObjectEDataType = createEDataType( INPUT_PROMPT_CONTROL_STYLE_OBJECT );
-        nativeDataTypeCodeEDataType = createEDataType( NATIVE_DATA_TYPE_CODE );
-        nativeDataTypeCodeObjectEDataType = createEDataType( NATIVE_DATA_TYPE_CODE_OBJECT );
         odaComplexDataTypeObjectEDataType = createEDataType( ODA_COMPLEX_DATA_TYPE_OBJECT );
         odaScalarDataTypeObjectEDataType = createEDataType( ODA_SCALAR_DATA_TYPE_OBJECT );
         parameterModeObjectEDataType = createEDataType( PARAMETER_MODE_OBJECT );
@@ -2809,6 +2832,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getDataSourceDesign_LinkedProfileStoreFilePath(),
                 theXMLTypePackage.getString(),
                 "linkedProfileStoreFilePath", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getDataSourceDesign_HostResourceIdentifiers(),
+                this.getResourceIdentifiers(),
+                null,
+                "hostResourceIdentifiers", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 designerStateEClass,
@@ -3161,6 +3189,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "derivedMetaData", "true", 0, 1, PropertyAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
+                resourceIdentifiersEClass,
+                ResourceIdentifiers.class,
+                "ResourceIdentifiers", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getResourceIdentifiers_ApplResourceBaseURIString(),
+                theXMLTypePackage.getString(),
+                "applResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getResourceIdentifiers_DesignResourceBaseURIString(),
+                theXMLTypePackage.getString(),
+                "designResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
                 resultSetColumnsEClass,
                 ResultSetColumns.class,
                 "ResultSetColumns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -3347,14 +3388,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 inputPromptControlStyleObjectEDataType,
                 AbstractEnumerator.class,
                 "InputPromptControlStyleObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEDataType(
-                nativeDataTypeCodeEDataType,
-                int.class,
-                "NativeDataTypeCode", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEDataType(
-                nativeDataTypeCodeObjectEDataType,
-                Integer.class,
-                "NativeDataTypeCodeObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 odaComplexDataTypeObjectEDataType,
                 AbstractEnumerator.class,
@@ -3640,6 +3673,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "linkedProfileStoreFilePath", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( getDataSourceDesign_HostResourceIdentifiers(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "hostResourceIdentifiers", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( designerStateEClass, source, new String[]
         { "name", "DesignerState", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -3905,14 +3944,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "value", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( nativeDataTypeCodeEDataType, source, new String[]
-        { "name", "NativeDataTypeCode", //$NON-NLS-1$ //$NON-NLS-2$
-                "baseType", "http://www.eclipse.org/emf/2003/XMLType#int" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( nativeDataTypeCodeObjectEDataType, source, new String[]
-        { "name", "NativeDataTypeCode:Object", //$NON-NLS-1$ //$NON-NLS-2$
-                "baseType", "NativeDataTypeCode" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
         addAnnotation( odaComplexDataTypeEEnum, source, new String[]
         { "name", "OdaComplexDataType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -4076,6 +4107,22 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                         "name", "derivedMetaData", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( resourceIdentifiersEClass, source, new String[]
+        { "name", "ResourceIdentifiers", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getResourceIdentifiers_ApplResourceBaseURIString(),
+                source, new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "applResourceBaseURIString", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getResourceIdentifiers_DesignResourceBaseURIString(),
+                source, new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "designResourceBaseURIString", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( resultSetColumnsEClass, source, new String[]

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.3 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DesignPackage.java,v 1.4 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The package name.
@@ -566,13 +566,22 @@ public interface DesignPackage extends EPackage
     int DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = 7;
 
     /**
+     * The feature id for the '<em><b>Host Resource Identifiers</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = 8;
+
+    /**
      * The number of structural features of the '<em>Data Source Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 8;
+    int DATA_SOURCE_DESIGN_FEATURE_COUNT = 9;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
@@ -1450,6 +1459,43 @@ public interface DesignPackage extends EPackage
     int PROPERTY_ATTRIBUTES_FEATURE_COUNT = 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl <em>Resource Identifiers</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResourceIdentifiers()
+     * @generated
+     */
+    int RESOURCE_IDENTIFIERS = 29;
+
+    /**
+     * The feature id for the '<em><b>Appl Resource Base URI String</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING = 0;
+
+    /**
+     * The feature id for the '<em><b>Design Resource Base URI String</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING = 1;
+
+    /**
+     * The number of structural features of the '<em>Resource Identifiers</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESOURCE_IDENTIFIERS_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetColumnsImpl <em>Result Set Columns</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1457,7 +1503,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetColumns()
      * @generated
      */
-    int RESULT_SET_COLUMNS = 29;
+    int RESULT_SET_COLUMNS = 30;
 
     /**
      * The feature id for the '<em><b>Result Column Definitions</b></em>' containment reference list.
@@ -1485,7 +1531,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetDefinition()
      * @generated
      */
-    int RESULT_SET_DEFINITION = 30;
+    int RESULT_SET_DEFINITION = 31;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1522,7 +1568,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSets()
      * @generated
      */
-    int RESULT_SETS = 31;
+    int RESULT_SETS = 32;
 
     /**
      * The feature id for the '<em><b>Result Set Definitions</b></em>' containment reference list.
@@ -1559,7 +1605,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueChoices()
      * @generated
      */
-    int SCALAR_VALUE_CHOICES = 32;
+    int SCALAR_VALUE_CHOICES = 33;
 
     /**
      * The feature id for the '<em><b>Scalar Values</b></em>' containment reference list.
@@ -1587,7 +1633,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueDefinition()
      * @generated
      */
-    int SCALAR_VALUE_DEFINITION = 33;
+    int SCALAR_VALUE_DEFINITION = 34;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1624,7 +1670,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getValueFormatHints()
      * @generated
      */
-    int VALUE_FORMAT_HINTS = 34;
+    int VALUE_FORMAT_HINTS = 35;
 
     /**
      * The feature id for the '<em><b>Display Size</b></em>' attribute.
@@ -1688,7 +1734,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisType()
      * @generated
      */
-    int AXIS_TYPE = 35;
+    int AXIS_TYPE = 36;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability</em>}' enum.
@@ -1698,7 +1744,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullability()
      * @generated
      */
-    int ELEMENT_NULLABILITY = 36;
+    int ELEMENT_NULLABILITY = 37;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -1708,7 +1754,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignment()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT = 37;
+    int HORIZONTAL_ALIGNMENT = 38;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style</em>}' enum.
@@ -1718,7 +1764,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyle()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE = 38;
+    int INPUT_PROMPT_CONTROL_STYLE = 39;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
@@ -1728,7 +1774,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE = 39;
+    int ODA_COMPLEX_DATA_TYPE = 40;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
@@ -1738,7 +1784,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE = 40;
+    int ODA_SCALAR_DATA_TYPE = 41;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
@@ -1748,7 +1794,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
      * @generated
      */
-    int PARAMETER_MODE = 41;
+    int PARAMETER_MODE = 42;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
@@ -1758,7 +1804,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
      * @generated
      */
-    int SESSION_STATUS = 42;
+    int SESSION_STATUS = 43;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
@@ -1768,7 +1814,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
      * @generated
      */
-    int TEXT_FORMAT_TYPE = 43;
+    int TEXT_FORMAT_TYPE = 44;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
@@ -1778,7 +1824,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
      * @generated
      */
-    int TEXT_WRAP_TYPE = 44;
+    int TEXT_WRAP_TYPE = 45;
 
     /**
      * The meta object id for the '<em>Axis Type Object</em>' data type.
@@ -1788,7 +1834,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
-    int AXIS_TYPE_OBJECT = 45;
+    int AXIS_TYPE_OBJECT = 46;
 
     /**
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
@@ -1798,7 +1844,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
-    int ELEMENT_NULLABILITY_OBJECT = 46;
+    int ELEMENT_NULLABILITY_OBJECT = 47;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
@@ -1808,7 +1854,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT_OBJECT = 47;
+    int HORIZONTAL_ALIGNMENT_OBJECT = 48;
 
     /**
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
@@ -1818,26 +1864,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 48;
-
-    /**
-     * The meta object id for the '<em>Native Data Type Code</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCode()
-     * @generated
-     */
-    int NATIVE_DATA_TYPE_CODE = 49;
-
-    /**
-     * The meta object id for the '<em>Native Data Type Code Object</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see java.lang.Integer
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCodeObject()
-     * @generated
-     */
-    int NATIVE_DATA_TYPE_CODE_OBJECT = 50;
+    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 49;
 
     /**
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
@@ -1847,7 +1874,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE_OBJECT = 51;
+    int ODA_COMPLEX_DATA_TYPE_OBJECT = 50;
 
     /**
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
@@ -1857,7 +1884,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE_OBJECT = 52;
+    int ODA_SCALAR_DATA_TYPE_OBJECT = 51;
 
     /**
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
@@ -1867,7 +1894,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
-    int PARAMETER_MODE_OBJECT = 53;
+    int PARAMETER_MODE_OBJECT = 52;
 
     /**
      * The meta object id for the '<em>Session Status Object</em>' data type.
@@ -1877,7 +1904,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
-    int SESSION_STATUS_OBJECT = 54;
+    int SESSION_STATUS_OBJECT = 53;
 
     /**
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
@@ -1887,7 +1914,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
-    int TEXT_FORMAT_TYPE_OBJECT = 55;
+    int TEXT_FORMAT_TYPE_OBJECT = 54;
 
     /**
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
@@ -1897,7 +1924,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
-    int TEXT_WRAP_TYPE_OBJECT = 56;
+    int TEXT_WRAP_TYPE_OBJECT = 55;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes <em>Axis Attributes</em>}'.
@@ -2384,6 +2411,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getDataSourceDesign_LinkedProfileStoreFilePath();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getHostResourceIdentifiers <em>Host Resource Identifiers</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Host Resource Identifiers</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSourceDesign#getHostResourceIdentifiers()
+     * @see #getDataSourceDesign()
+     * @generated
+     */
+    EReference getDataSourceDesign_HostResourceIdentifiers();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DesignerState <em>Designer State</em>}'.
@@ -3191,6 +3229,38 @@ public interface DesignPackage extends EPackage
     EAttribute getPropertyAttributes_DerivedMetaData();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers <em>Resource Identifiers</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Resource Identifiers</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers
+     * @generated
+     */
+    EClass getResourceIdentifiers();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getApplResourceBaseURIString <em>Appl Resource Base URI String</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Appl Resource Base URI String</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getApplResourceBaseURIString()
+     * @see #getResourceIdentifiers()
+     * @generated
+     */
+    EAttribute getResourceIdentifiers_ApplResourceBaseURIString();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getDesignResourceBaseURIString <em>Design Resource Base URI String</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Design Resource Base URI String</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers#getDesignResourceBaseURIString()
+     * @see #getResourceIdentifiers()
+     * @generated
+     */
+    EAttribute getResourceIdentifiers_DesignResourceBaseURIString();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetColumns <em>Result Set Columns</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3540,29 +3610,6 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EDataType getInputPromptControlStyleObject();
-
-    /**
-     * Returns the meta object for data type '<em>Native Data Type Code</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>Native Data Type Code</em>'.
-     * @model instanceClass="int"
-     *        extendedMetaData="name='NativeDataTypeCode' baseType='http://www.eclipse.org/emf/2003/XMLType#int'" 
-     * @generated
-     */
-    EDataType getNativeDataTypeCode();
-
-    /**
-     * Returns the meta object for data type '{@link java.lang.Integer <em>Native Data Type Code Object</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>Native Data Type Code Object</em>'.
-     * @see java.lang.Integer
-     * @model instanceClass="java.lang.Integer"
-     *        extendedMetaData="name='NativeDataTypeCode:Object' baseType='NativeDataTypeCode'" 
-     * @generated
-     */
-    EDataType getNativeDataTypeCodeObject();
 
     /**
      * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Oda Complex Data Type Object</em>}'.
@@ -4070,6 +4117,15 @@ public interface DesignPackage extends EPackage
          */
         EAttribute DATA_SOURCE_DESIGN__LINKED_PROFILE_STORE_FILE_PATH = eINSTANCE
                 .getDataSourceDesign_LinkedProfileStoreFilePath();
+
+        /**
+         * The meta object literal for the '<em><b>Host Resource Identifiers</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SOURCE_DESIGN__HOST_RESOURCE_IDENTIFIERS = eINSTANCE
+                .getDataSourceDesign_HostResourceIdentifiers();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DesignerStateImpl <em>Designer State</em>}' class.
@@ -4763,6 +4819,34 @@ public interface DesignPackage extends EPackage
                 .getPropertyAttributes_DerivedMetaData();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl <em>Resource Identifiers</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ResourceIdentifiersImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResourceIdentifiers()
+         * @generated
+         */
+        EClass RESOURCE_IDENTIFIERS = eINSTANCE.getResourceIdentifiers();
+
+        /**
+         * The meta object literal for the '<em><b>Appl Resource Base URI String</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESOURCE_IDENTIFIERS__APPL_RESOURCE_BASE_URI_STRING = eINSTANCE
+                .getResourceIdentifiers_ApplResourceBaseURIString();
+
+        /**
+         * The meta object literal for the '<em><b>Design Resource Base URI String</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RESOURCE_IDENTIFIERS__DESIGN_RESOURCE_BASE_URI_STRING = eINSTANCE
+                .getResourceIdentifiers_DesignResourceBaseURIString();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetColumnsImpl <em>Result Set Columns</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -5082,26 +5166,6 @@ public interface DesignPackage extends EPackage
          */
         EDataType INPUT_PROMPT_CONTROL_STYLE_OBJECT = eINSTANCE
                 .getInputPromptControlStyleObject();
-
-        /**
-         * The meta object literal for the '<em>Native Data Type Code</em>' data type.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCode()
-         * @generated
-         */
-        EDataType NATIVE_DATA_TYPE_CODE = eINSTANCE.getNativeDataTypeCode();
-
-        /**
-         * The meta object literal for the '<em>Native Data Type Code Object</em>' data type.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see java.lang.Integer
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNativeDataTypeCodeObject()
-         * @generated
-         */
-        EDataType NATIVE_DATA_TYPE_CODE_OBJECT = eINSTANCE
-                .getNativeDataTypeCodeObject();
 
         /**
          * The meta object literal for the '<em>Oda Complex Data Type Object</em>' data type.

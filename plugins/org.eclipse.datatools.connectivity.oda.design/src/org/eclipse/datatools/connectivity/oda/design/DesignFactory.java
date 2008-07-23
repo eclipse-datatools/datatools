@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.5 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DesignFactory.java,v 1.6 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,7 +32,7 @@ public interface DesignFactory extends EFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The singleton instance of the factory.
@@ -303,6 +303,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     PropertyAttributes createPropertyAttributes();
+
+    /**
+     * Returns a new object of class '<em>Resource Identifiers</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Resource Identifiers</em>'.
+     * @generated
+     */
+    ResourceIdentifiers createResourceIdentifiers();
 
     /**
      * Returns a new object of class '<em>Result Set Columns</em>'.

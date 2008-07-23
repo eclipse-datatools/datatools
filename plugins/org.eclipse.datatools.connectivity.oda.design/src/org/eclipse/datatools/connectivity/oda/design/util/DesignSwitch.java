@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.2 2006/02/08 08:06:17 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -42,7 +42,7 @@ public class DesignSwitch
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package
@@ -338,6 +338,14 @@ public class DesignSwitch
         {
             PropertyAttributes propertyAttributes = (PropertyAttributes) theEObject;
             Object result = casePropertyAttributes( propertyAttributes );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.RESOURCE_IDENTIFIERS:
+        {
+            ResourceIdentifiers resourceIdentifiers = (ResourceIdentifiers) theEObject;
+            Object result = caseResourceIdentifiers( resourceIdentifiers );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -855,6 +863,22 @@ public class DesignSwitch
      * @generated
      */
     public Object casePropertyAttributes( PropertyAttributes object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpretting the object as an instance of '<em>Resource Identifiers</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpretting the object as an instance of '<em>Resource Identifiers</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public Object caseResourceIdentifiers( ResourceIdentifiers object )
     {
         return null;
     }

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -39,7 +39,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package.
@@ -238,6 +238,11 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         public Object casePropertyAttributes( PropertyAttributes object )
         {
             return createPropertyAttributesAdapter();
+        }
+
+        public Object caseResourceIdentifiers( ResourceIdentifiers object )
+        {
+            return createResourceIdentifiersAdapter();
         }
 
         public Object caseResultSetColumns( ResultSetColumns object )
@@ -720,6 +725,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createPropertyAttributesAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers <em>Resource Identifiers</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers
+     * @generated
+     */
+    public Adapter createResourceIdentifiersAdapter()
     {
         return null;
     }

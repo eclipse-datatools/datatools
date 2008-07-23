@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,9 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.6 2006/03/17 14:52:32 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
+
+import org.eclipse.datatools.connectivity.oda.design.*;
 
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
@@ -85,7 +87,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Creates the default factory implementation.
@@ -189,6 +191,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createProperty();
         case DesignPackage.PROPERTY_ATTRIBUTES:
             return createPropertyAttributes();
+        case DesignPackage.RESOURCE_IDENTIFIERS:
+            return createResourceIdentifiers();
         case DesignPackage.RESULT_SET_COLUMNS:
             return createResultSetColumns();
         case DesignPackage.RESULT_SET_DEFINITION:
@@ -247,11 +251,6 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
                     initialValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
             return createInputPromptControlStyleObjectFromString( eDataType,
-                    initialValue );
-        case DesignPackage.NATIVE_DATA_TYPE_CODE:
-            return createNativeDataTypeCodeFromString( eDataType, initialValue );
-        case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
-            return createNativeDataTypeCodeObjectFromString( eDataType,
                     initialValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
             return createOdaComplexDataTypeObjectFromString( eDataType,
@@ -314,11 +313,6 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
                     instanceValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE_OBJECT:
             return convertInputPromptControlStyleObjectToString( eDataType,
-                    instanceValue );
-        case DesignPackage.NATIVE_DATA_TYPE_CODE:
-            return convertNativeDataTypeCodeToString( eDataType, instanceValue );
-        case DesignPackage.NATIVE_DATA_TYPE_CODE_OBJECT:
-            return convertNativeDataTypeCodeObjectToString( eDataType,
                     instanceValue );
         case DesignPackage.ODA_COMPLEX_DATA_TYPE_OBJECT:
             return convertOdaComplexDataTypeObjectToString( eDataType,
@@ -658,6 +652,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         PropertyAttributesImpl propertyAttributes = new PropertyAttributesImpl();
         return propertyAttributes;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ResourceIdentifiers createResourceIdentifiers()
+    {
+        ResourceIdentifiersImpl resourceIdentifiers = new ResourceIdentifiersImpl();
+        return resourceIdentifiers;
     }
 
     /**
@@ -1082,54 +1087,6 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         return convertInputPromptControlStyleToString(
                 DesignPackage.Literals.INPUT_PROMPT_CONTROL_STYLE,
                 instanceValue );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Integer createNativeDataTypeCodeFromString( EDataType eDataType,
-            String initialValue )
-    {
-        return (Integer) XMLTypeFactory.eINSTANCE.createFromString(
-                XMLTypePackage.Literals.INT, initialValue );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertNativeDataTypeCodeToString( EDataType eDataType,
-            Object instanceValue )
-    {
-        return XMLTypeFactory.eINSTANCE.convertToString(
-                XMLTypePackage.Literals.INT, instanceValue );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Integer createNativeDataTypeCodeObjectFromString(
-            EDataType eDataType, String initialValue )
-    {
-        return (Integer) createNativeDataTypeCodeFromString(
-                DesignPackage.Literals.NATIVE_DATA_TYPE_CODE, initialValue );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertNativeDataTypeCodeObjectToString( EDataType eDataType,
-            Object instanceValue )
-    {
-        return convertNativeDataTypeCodeToString(
-                DesignPackage.Literals.NATIVE_DATA_TYPE_CODE, instanceValue );
     }
 
     /**
