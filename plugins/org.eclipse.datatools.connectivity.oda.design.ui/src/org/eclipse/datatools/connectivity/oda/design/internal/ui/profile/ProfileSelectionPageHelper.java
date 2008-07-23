@@ -288,8 +288,18 @@ class ProfileSelectionPageHelper
                        // clear any previously selected profile settings
                        clearSelectedProfile();
                        setSelectedDataSourceName( EMPTY_STRING );
-                       boolean isError = ( hasConnectionProfilePath() );
-                       setDefaultMessageAsError( isError );
+                       setDefaultMessageAsError( hasConnectionProfilePath() );
+
+                       // check if profile tree has only one profile item, automatically select it
+                       if( hasConnectionProfilePath() )    
+                       {
+                           TreeItem singleProfileItem = findSingleProfileInTree();
+                           if( singleProfileItem != null )
+                           {
+                               m_odaDataSourceTree.setSelection( singleProfileItem );
+                               handleTreeSelection();
+                           }
+                       }
                     }
                 } );
             }
@@ -400,29 +410,29 @@ class ProfileSelectionPageHelper
             {
                 handleTreeSelection( );
             }
-
-            private void handleTreeSelection( )
-            {
-                TreeItem item = getSelectedProfileItem();
-
-                if( item == null )
-                {
-                    clearSelectedProfile();
-                    setSelectedDataSourceName( EMPTY_STRING );
-                    setExternalLinkOption( null );
-                    setDefaultMessageAsError( true );
-                }
-                else
-                {
-                    m_profileID = item.getData().toString();
-                    m_odaDataSourceID = item.getParentItem().getData().toString();
-                    setSelectedDataSourceName( item.getText() );
-                    setExternalLinkOption( m_odaDataSourceID );
-                }
-            }
         } );
 
         populateTree( );
+    }
+
+    private void handleTreeSelection( )
+    {
+        TreeItem item = getSelectedProfileItem();
+
+        if( item == null )
+        {
+            clearSelectedProfile();
+            setSelectedDataSourceName( EMPTY_STRING );
+            setExternalLinkOption( null );
+            setDefaultMessageAsError( true );
+        }
+        else
+        {
+            m_profileID = item.getData().toString();
+            m_odaDataSourceID = item.getParentItem().getData().toString();
+            setSelectedDataSourceName( item.getText() );
+            setExternalLinkOption( m_odaDataSourceID );
+        }
     }
 
     private void setSelectedDataSourceName( String name )
@@ -616,6 +626,26 @@ class ProfileSelectionPageHelper
             item.getData().toString().equals( odaDataSourceId ) )
             return true;
         return false;
+    }
+    
+    private TreeItem findSingleProfileInTree()
+    {
+        if( m_odaDataSourceTree == null || m_odaDataSourceTree.getItemCount() != 1 ) // has none or more than one categories
+            return null;
+        TreeItem topLevelItem = m_odaDataSourceTree.getItems()[0];
+        if( topLevelItem.getItemCount() != 1 )  // has more than one child
+            return null;    // can't possibly have only single profile item
+
+        // has one child
+        TreeItem secondLevelItem = topLevelItem.getItems()[0];
+        if( secondLevelItem.getItemCount() > 1 )
+            return null;
+
+        if( secondLevelItem.getItemCount() == 0 )  // is a leaf node
+            return secondLevelItem;    // this is the single profile item
+
+        // has one third-level child
+        return secondLevelItem.getItems()[0];
     }
 
     private SortedSet getOdaCategoryInfoSet()
