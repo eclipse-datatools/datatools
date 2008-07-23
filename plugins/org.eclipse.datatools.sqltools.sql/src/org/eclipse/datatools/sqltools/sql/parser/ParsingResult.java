@@ -352,7 +352,7 @@ public abstract class ParsingResult
      */
     protected HashMap findParameters(IDocument document, int offset, IASTDeployable node)
     {
-        HashMap<String, Node> map = new ConsistentOrderHashMap<String, Node>();
+        HashMap map = new ConsistentOrderHashMap();
         if (node.jjtGetNumChildren() > 0)
         {
             for (int i = 0; i < node.jjtGetNumChildren(); i++)

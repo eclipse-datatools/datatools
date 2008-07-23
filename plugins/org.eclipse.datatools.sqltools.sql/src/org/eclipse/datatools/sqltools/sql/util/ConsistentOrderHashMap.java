@@ -13,6 +13,7 @@ package org.eclipse.datatools.sqltools.sql.util;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -20,19 +21,17 @@ import java.util.List;
  * 
  * @author juewu
  *
- * @param <K>
- * @param <V>
  */
-public class ConsistentOrderHashMap<K, V> extends HashMap<K, V> 
+public class ConsistentOrderHashMap extends HashMap
 {
 	private static final long serialVersionUID = -6136589405178747079L;
 
 	/**
 	 * Keep the order of keys.
 	 */
-	private List<K> _orderedKeyList = new ArrayList<K>();
+	private List _orderedKeyList = new ArrayList();
 
-	public V put(K key, V value) 
+	public Object put(Object key, Object value) 
 	{
 		_orderedKeyList.add(key);
 
@@ -42,13 +41,14 @@ public class ConsistentOrderHashMap<K, V> extends HashMap<K, V>
 	/**
 	 * Get values according to the specific order of keys.
 	 */
-	public Collection<V> values() 
+	public Collection values() 
 	{
-		List<V> valueList = new ArrayList<V>(_orderedKeyList.size());
+		List valueList = new ArrayList(_orderedKeyList.size());
 
-		for(K tempKey : _orderedKeyList) 
+		for(Iterator iterator = _orderedKeyList.iterator(); iterator.hasNext();) 
 		{
-			valueList.add(get(tempKey));
+		    Object key = iterator.next();
+		    valueList.add(get(key));
 		}
 
 		return valueList;
