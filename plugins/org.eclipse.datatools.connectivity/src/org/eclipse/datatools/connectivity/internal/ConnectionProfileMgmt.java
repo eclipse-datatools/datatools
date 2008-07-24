@@ -624,15 +624,27 @@ public class ConnectionProfileMgmt {
 					Properties props = keysElementsToProperties((Element) extNode);
 					String driverName = props.getProperty(DRIVERNAMEATTR);
 					String driverTypeID = props.getProperty(DRIVERTYPEIDATTR);
+					String driverID = "";
 					
-					if (DriverManager.getInstance().getDriverInstanceByName(driverName) != null) {
+					// Bug 240433 - brianf
+					// Issue with importing 2 profiles with same driver ID but from different exports
+					boolean existingDriverHasName = false;
+					DriverInstance testDI = DriverManager.getInstance().getDriverInstanceByName(driverName);
+					if (testDI != null) {
 						// we found the driver, so we're ok to continue
+						if (testDI.getTemplate().getId().equalsIgnoreCase(driverTypeID)) {
+							// the driver with the same name happens to have the same template ID, so we should be ok
+							existingDriverHasName = true;
+						}
 					}
-					else {
+					if (testDI == null || (testDI != null && !existingDriverHasName)) {
 						DriverInstance di = DriverManager.getInstance().createNewDriverInstance(driverTypeID, driverName, new String());
 						if (di != null) {
-							String driverID = di.getId();
-							cp.getBaseProperties().setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, driverID);
+							driverID = di.getId();
+							
+							Properties baseProps = cp.getBaseProperties();
+							baseProps.setProperty(ConnectionProfileConstants.PROP_DRIVER_DEFINITION_ID, driverID);
+							cp.setBaseProperties(baseProps);
 							
 							// This section is to fix BZ 213258 -- brianf
 							String jarList = 
@@ -799,7 +811,9 @@ public class ConnectionProfileMgmt {
 					
 					Properties props = keysToProperties(elem);
 					try {
-						props = ((ConnectionProfileProvider) cp.getProvider())
+						if (((ConnectionProfileProvider) cp.getProvider())
+								.getPropertiesPersistenceHook() != null)
+							props = ((ConnectionProfileProvider) cp.getProvider())
 								.getPropertiesPersistenceHook()
 								.populateTransientProperties(props);
 					}

@@ -54,6 +54,7 @@ import org.eclipse.datatools.connectivity.IPropertySetListener;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.connectivity.drivers.DriverValidator;
 import org.eclipse.datatools.connectivity.internal.repository.IConnectionProfileRepository;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleException;
@@ -1317,16 +1318,42 @@ public class InternalProfileManager {
 
 		String defName = inName;
 
-		DriverInstance driverInstance = DriverManager.getInstance().getDriverInstanceByID(driverTemplateID);
-		if (driverInstance != null) {
-			// jarList is not required, so it can be null, which isn't going to match any jarList coming back from a DriverInstance
-			if ((jarList == null) || (driverInstance.getJarList().equals(jarList))) {
-				return driverInstance;
+		/* 
+		 * Let's first see if we can find a valid instance of this driver template 
+		 * with the same name and jar list. That would narrow things down.
+		 */
+		DriverInstance[] dilist = DriverManager.getInstance().getDriverInstancesByTemplate(driverTemplateID);
+		if (dilist != null && dilist.length > 0 ) {
+			for (int i = 0; i < dilist.length; i++) {
+				DriverInstance driverInstance = dilist[i];
+				if (driverInstance != null) {
+					// jarList is not required, so it can be null, which isn't going to match any jarList coming back from a DriverInstance
+					if ((jarList == null) || (driverInstance.getJarList().equals(jarList))) {
+						DriverValidator validator = new DriverValidator(driverInstance);
+						if (validator.isValid()) {
+							if (driverInstance.getName().equals(inName)) {
+								return driverInstance;
+							}
+						}
+					}
+						
+				}
 			}
-			 
-			defName = determineUniqueDriverName(defName);
-				
+			/*
+			 * If we found drivers of that driver type, but didn't match on the
+			 * jar list, name, or valid property set, then let's do a final check
+			 * to see if we find one with the same name (obviously something's not 
+			 * right with it) and create a new version with a unique name if we
+			 * find one.
+			 */
+			if (DriverManager.getInstance().getDriverInstanceByName(defName) != null)
+				defName = determineUniqueDriverName(defName);
 		}
+		
+		/*
+		 * Now we'll create it (with the original name if we didn't even get close,
+		 * or with the unique name if we did. 
+		 */
 		return DriverManager.getInstance()
 			.createNewDriverInstance(
 				driverTemplateID, 								

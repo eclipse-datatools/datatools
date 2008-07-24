@@ -135,6 +135,7 @@ public class DriverDialog extends TitleAreaDialog {
 
 		public void stateChanged(ChangeEvent arg0) {
 			boolean flag = isValid(true);
+			validateName();
 			if (DriverDialog.this.mOKButton != null && !DriverDialog.this.mOKButton.isDisposed())
 				DriverDialog.this.mOKButton.setEnabled(flag);			
 		}
@@ -848,11 +849,11 @@ public class DriverDialog extends TitleAreaDialog {
 						throw e;
 				}
 
-			if (this.mOKButton != null)
+			if (this.mOKButton != null && !this.mOKButton.isDisposed())
 				this.mOKButton.setEnabled(flag);
 		}
 		else {
-			if (this.mOKButton != null)
+			if (this.mOKButton != null && !this.mOKButton.isDisposed())
 				this.mOKButton.setEnabled(false);
 			return false;
 		}
@@ -1015,7 +1016,12 @@ public class DriverDialog extends TitleAreaDialog {
 				// creating new driver, name matches existing driver
 				String errorMessage = DriverMgmtMessages
 					.getString("NewDriverDialog.driverExistsWithName"); //$NON-NLS-1$
-				this.setErrorMessage(errorMessage);
+				try {
+					this.setErrorMessage(errorMessage);
+				} catch (SWTException swt_e) {
+					// just in case the message widget is disposed, since we can't grab
+					// it directly
+				}
 				return;
 			}
 			else {
@@ -1056,7 +1062,7 @@ public class DriverDialog extends TitleAreaDialog {
 			isOk = isValid(true);
 		}
 
-		if (this.mOKButton != null)
+		if (this.mOKButton != null && !this.mOKButton.isDisposed())
 			this.mOKButton.setEnabled(isOk);
 	}
 
@@ -1376,9 +1382,13 @@ public class DriverDialog extends TitleAreaDialog {
 		
 		String propIdPrefix = DriverMgmtMessages
 			.getString("EditDriverDialog.text.id_prefix"); //$NON-NLS-1$
-		String propId = propIdPrefix + this.mDriverName;
+		String propId = propIdPrefix + this.descriptor.getId() + "." + this.mDriverName; //$NON-NLS-1$
+//		String propId = propIdPrefix + this.mDriverName;
 		if (this.mPropertySet == null) {
 			this.mPropertySet = new PropertySetImpl(propId, this.mDriverName);
+		}
+		else {
+			this.mPropertySet.setID(propId);
 		}
 		this.mPropertySet.setName(this.mDriverName);
 		Properties props = new Properties();

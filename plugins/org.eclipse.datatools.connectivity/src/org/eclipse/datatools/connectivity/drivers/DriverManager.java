@@ -348,7 +348,7 @@ public class DriverManager {
 			pset.setName(name);
 		String prefix = DriverMgmtMessages
 				.getString("NewDriverDialog.text.id_prefix"); //$NON-NLS-1$
-		String id = prefix + name;
+		String id = prefix + templateID + "." + name; //$NON-NLS-1$
 		pset.setID(id);
 		Properties props = pset.getBaseProperties();
 		if (jarList != null)
