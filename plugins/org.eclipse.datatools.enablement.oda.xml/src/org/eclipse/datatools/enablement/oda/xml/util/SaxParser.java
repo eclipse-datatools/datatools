@@ -88,7 +88,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 	public SaxParser(IXMLSource xmlSource, ISaxParserConsumer consumer, boolean useNamespace ) throws OdaException
 	{
 		this.inputStream = xmlSource.openInputStream( );
-		this.encoding = xmlSource.getEncoding( );
+		//bypass using empty string to represent default encoding
+		this.encoding = xmlSource.getEncoding( ).equals( "" ) ? null : xmlSource.getEncoding( );
 		spConsumer = consumer;
 		start = true;
 		alive = true;
