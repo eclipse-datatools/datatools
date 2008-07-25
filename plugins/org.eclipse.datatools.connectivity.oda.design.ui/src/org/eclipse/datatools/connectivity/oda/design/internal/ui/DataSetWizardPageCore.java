@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.IPreferencePageContainer;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
@@ -116,6 +117,19 @@ public abstract class DataSetWizardPageCore extends WizardPage
         // is being used in a preference dialog
         if( getEditorContainer() != null )
             getEditorContainer().updateMessage();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.jface.wizard.WizardPage#setErrorMessage(java.lang.String)
+     */
+    public void setErrorMessage( String newMessage )
+    {
+        super.setErrorMessage( newMessage );
+        
+        // if this is being used in a preference dialog,
+        // set the message with an error type 
+        if( getEditorContainer() != null )
+            setMessage( newMessage, IMessageProvider.ERROR );
     }
 
     /**
