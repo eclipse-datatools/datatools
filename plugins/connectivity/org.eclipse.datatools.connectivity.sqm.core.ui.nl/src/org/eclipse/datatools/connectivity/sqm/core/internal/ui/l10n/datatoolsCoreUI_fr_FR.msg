@@ -189,7 +189,7 @@ _UI_DEFAULT_MSG_SELECT_ONLY = Sélectionner le dossier :
 #
 ## Filter Dialog
 #
-_UI_TITLE_FILTER_DIALOG = Connection Filter Properties
+_UI_TITLE_FILTER_DIALOG = Propriétés du filtre de la connexion
 _UI_TITLE_FILTER = Spécifier un filtre
 _UI_DESCRIPTION_FILTER = Spécifier un filtre en sélectionnant un prédicat et en entrant une valeur ou en indiquant si une sélection d'éléments doit être incluse ou exclue.
 _UI_DESCRIPTION_SELECTION_ONLY = Spécifier un filtre en indiquant si une sélection d'éléments doit être incluse ou exclue.

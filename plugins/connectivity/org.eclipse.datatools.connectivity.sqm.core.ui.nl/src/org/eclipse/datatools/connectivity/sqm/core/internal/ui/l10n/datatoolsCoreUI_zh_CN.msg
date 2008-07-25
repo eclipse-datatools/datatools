@@ -189,7 +189,7 @@ _UI_DEFAULT_MSG_SELECT_ONLY = 选择文件夹:
 #
 ## Filter Dialog
 #
-_UI_TITLE_FILTER_DIALOG = Connection Filter Properties
+_UI_TITLE_FILTER_DIALOG = 连接筛选器属性
 _UI_TITLE_FILTER = 指定筛选器
 _UI_DESCRIPTION_FILTER = 通过选择谓词并输入值或通过指示是包含还是排除选择的项目来指定筛选器。
 _UI_DESCRIPTION_SELECTION_ONLY = 通过指示是包含还是排除选择的项目来指定筛选器。

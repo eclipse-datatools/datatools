@@ -184,5 +184,5 @@ ConnectAction.title = {0} 的属性
 Boolean.true = 真
 Boolean.false = 假
 
-NewRepositoryWizard.title = New Repository Wizard Window
+NewRepositoryWizard.title = 新建存储库向导窗口
 

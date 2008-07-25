@@ -189,7 +189,7 @@ _UI_DEFAULT_MSG_SELECT_ONLY = フォルダの選択 :
 #
 ## Filter Dialog
 #
-_UI_TITLE_FILTER_DIALOG = Connection Filter Properties
+_UI_TITLE_FILTER_DIALOG = 接続フィルタのプロパティ
 _UI_TITLE_FILTER = フィルタの指定
 _UI_DESCRIPTION_FILTER = 述部を選択してから値を入力するか、選択項目を含めるか除外するかを指定することで、フィルタを指定します。
 _UI_DESCRIPTION_SELECTION_ONLY = 選択項目を含めるか除外するかを指定することで、フィルタを指定します。

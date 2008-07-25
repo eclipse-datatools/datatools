@@ -184,5 +184,5 @@ ConnectAction.title = Propriétés de {0}
 Boolean.true = vrai
 Boolean.false = faux
 
-NewRepositoryWizard.title = New Repository Wizard Window
+NewRepositoryWizard.title = Fenêtre du nouvel Assistant du référentiel
 
