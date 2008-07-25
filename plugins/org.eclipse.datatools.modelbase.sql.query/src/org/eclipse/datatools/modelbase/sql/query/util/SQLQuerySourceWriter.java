@@ -104,6 +104,7 @@ import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDuration;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionLabeledDurationType;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNested;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionNullValue;
+import org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionScalarSelect;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionSimple;
 import org.eclipse.datatools.modelbase.sql.query.ValueExpressionUnaryOperator;
@@ -4166,6 +4167,16 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
 
         sb.append(NULL);
 
+    }
+
+    /**
+     * @see org.eclipse.datatools.modelbase.sql.query.ValueExpressionRow#getSQL()
+     */
+    protected void appendSpecificSQL(ValueExpressionRow valExprRow, StringBuffer sb) 
+    {
+        sb.append(PAREN_LEFT);
+        appendSQLForSQLObjectList(valExprRow.getValueExprList(), sb);  
+        sb.append(PAREN_RIGHT);
     }
 
     /**
