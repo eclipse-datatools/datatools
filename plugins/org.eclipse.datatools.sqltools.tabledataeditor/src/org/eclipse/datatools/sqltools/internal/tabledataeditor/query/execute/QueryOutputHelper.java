@@ -335,11 +335,7 @@ public class QueryOutputHelper
                         {
                            showMessage(ResourceLoader.INSTANCE.queryString("_UI_MSG_MAX_RECORD_EXCEEDED")); //$NON-NLS-1$
                         }
-                        else
-                        {
-                            showMessage(numDisplayed + " " + ResourceLoader.INSTANCE.queryString("_UI_MSG_RECORD_RETURNED")); //$NON-NLS-1$//$NON-NLS-2$
-                        }
-
+                        
                         SQLWarning rsWarningMsgs = resultSet.getWarnings();
 
                         if (rsWarningMsgs != null)
