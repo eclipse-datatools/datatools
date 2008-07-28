@@ -1160,7 +1160,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 					xmlFileName,
 					xmlEncoding,
 					numberOfElement );
-			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true );
+			availableXmlTree.populateTree( treeNode, selectedTreeItemText, true, true );
 
 
 			TreeItem[] selectedMultiItems = availableXmlTree.getTree( ).getSelection( );

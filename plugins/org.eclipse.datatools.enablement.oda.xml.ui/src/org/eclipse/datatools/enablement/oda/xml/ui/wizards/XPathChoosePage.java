@@ -325,7 +325,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			}
 			else
 			{
-				availableXmlTree.populateTree( treeNode, this.rootPath, false );
+				availableXmlTree.populateTree( treeNode, this.rootPath, false, false );
 			}
 		}
 		catch ( Exception e )
