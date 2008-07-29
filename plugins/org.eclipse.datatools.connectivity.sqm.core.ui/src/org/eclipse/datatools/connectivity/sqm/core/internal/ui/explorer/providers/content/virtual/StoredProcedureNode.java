@@ -37,6 +37,6 @@ public class StoredProcedureNode extends VirtualNode implements IStoredProcedure
     }
 
     public String getFilterName() {
-    	return getFilterName(ConnectionFilter.STORED_PROCEDURE_FILTER);
+    	return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.STORED_PROCEDURE_FILTER;
 	}
 }

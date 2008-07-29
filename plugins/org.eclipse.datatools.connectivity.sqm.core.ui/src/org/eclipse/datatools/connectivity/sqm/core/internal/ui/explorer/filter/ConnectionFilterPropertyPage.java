@@ -14,7 +14,6 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.helpers.FilterHelper;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.util.resources.ResourceLoader;
-import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilterImpl;
 import org.eclipse.jface.viewers.ISelection;
@@ -57,6 +56,8 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	boolean hideSelectionOption = false;
 	
 	private boolean isMultiplePredicatesMode = false;
+	
+	private ConnectionFilter connFilter;
 	
 	public ConnectionFilterPropertyPage() {
 		super();
@@ -101,7 +102,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			filterComposite.initializeValues();
 		}
 		else {
-			ConnectionFilter connFilter = getConnectionFilter();
+			connFilter = getConnectionFilter();
 			
 			if(connFilter == null)
 				connFilter = new ConnectionFilterImpl();
@@ -182,6 +183,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 	protected abstract String getConnectionFilterType();
 	
 	public boolean performOk() {
+		
 		String filterType = getConnectionFilterType();
 		if (filterType != null) {
 					
@@ -197,7 +199,7 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
 			}
 			setConnectionFilter(predicate);
 		}			
-
+		
 		return true;
 	}
 	
@@ -239,6 +241,24 @@ public abstract class ConnectionFilterPropertyPage extends PropertyPage
         setErrorMessage(null);
         setValid(true);
     }    
+    
+    protected void performApply(){
+		String filterType = getConnectionFilterType();
+		if (filterType != null) {
+					
+			String predicate = null;
+			
+			if(!isMultiplePredicatesMode)
+			{
+				predicate = getPredicate();
+			}
+			else
+			{
+				predicate = getPredicates();
+			}
+			connFilter.setPredicate(predicate);
+		}
+    }
     
     public void setDefaultPageTitle ( String title ) {
     	defaultTitleText = title;

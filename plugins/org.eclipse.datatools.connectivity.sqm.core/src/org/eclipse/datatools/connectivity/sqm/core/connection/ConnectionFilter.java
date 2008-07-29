@@ -103,5 +103,7 @@ public interface ConnectionFilter extends Serializable{
 	public static final String DISCOVERED_SERVER_FILTER = "DatatoolsDiscoveredServerFilterPredicate"; //$NON-NLS-1$
 	public static final String XSR_OBJECTS_FILTER = "DatatoolsXMLSchemasFilterPredicate"; //$NON-NLS-1$
 	public static final String XML_SCHEMA_DOC_FILTER = "DatatoolsXMLSchemaDocsFilterPredicate"; //$NON-NLS-1$
-
+	public static final String REMOTE_STORED_PROCEDURE_FILTER = "DatatoolsRemoteStoredProcedureFilterPredicate"; //$NON-NLS-1$
+	public static final String TABLESPACE_FILTER = "DatatoolsTablespaceFilterPredicate"; //$NON-NLS-1$
+	public static final String DATABASE_FILTER = "DatatoolsDatabaseFilterPredicate"; //$NON-NLS-1$
 }

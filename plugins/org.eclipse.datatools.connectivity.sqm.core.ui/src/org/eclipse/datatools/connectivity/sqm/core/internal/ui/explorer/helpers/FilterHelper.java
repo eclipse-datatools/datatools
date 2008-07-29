@@ -20,8 +20,10 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
+import org.eclipse.ui.internal.dialogs.AdaptableForwarder;
 
 public class FilterHelper
 {
@@ -52,16 +54,33 @@ public class FilterHelper
 					Boolean temp = new Boolean(configElements[j].getAttribute("supportsMultiplePredicates")); //$NON-NLS-1$
 					boolean supportsMultiplePredicates = temp.booleanValue();
 					
-					if(supportsMultiplePredicates)
-						dbCollection.put(vendor + " " + version, objectType);
+					if(supportsMultiplePredicates){
+						
+						if(dbCollection.containsKey(vendor + " " + version)){
+							Object obj = dbCollection.get(vendor + " " + version);
+							Vector type = (Vector)obj;
+							
+							for(int m = 0; m < objectType.size(); m++)
+								type.add(objectType.get(m));
+							
+							dbCollection.put(vendor + " " + version, type);
+						}
+						else
+							dbCollection.put(vendor + " " + version, objectType);
+					}
 				}
 			}
 		}
     }
 
     public boolean supportsMultiplePredicatesMode(IAdaptable element){
-    	if (element instanceof IVirtualNode) {
-			IVirtualNode virtualNode = (IVirtualNode) element;
+    	
+		IVirtualNode virtualNodeAdapter = (IVirtualNode) element
+				.getAdapter(IVirtualNode.class);
+		
+    	if (virtualNodeAdapter != null) {
+    		
+			IVirtualNode virtualNode = (IVirtualNode) virtualNodeAdapter;
 			ConnectionInfo connectionInfo = virtualNode.getParentConnection();
 			String vendor = connectionInfo.getDatabaseDefinition().getProduct();
 			String version = connectionInfo.getDatabaseDefinition()
@@ -77,6 +96,7 @@ public class FilterHelper
 						return true;
 				}
 			}
+
 		}
 		return false;
     }
