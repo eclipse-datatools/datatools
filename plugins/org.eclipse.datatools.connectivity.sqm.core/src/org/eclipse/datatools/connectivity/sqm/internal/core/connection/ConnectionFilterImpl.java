@@ -272,9 +272,21 @@ public class ConnectionFilterImpl implements ConnectionFilter {
 				tempList.add(tokenArray[i + 1]);
 			}
 			
+			int operator = -1;
+			String value = "";
+			String tempValue = "";
+			
 			for(int j = 0; j + 1 < tempList.size(); j = j + 2){
-				int operator = findExpressionOperator(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
-				String value = findExpressionValue(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
+				
+				if(tempList.size() == 2)
+					operator = findExpressionOperator(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
+				else {
+					tempValue = tempList.get(j).toString() + " " + tempList.get(j+1).toString();
+					tempValue = tempValue.substring(4, tempValue.length());
+					operator = findExpressionOperator(tempValue);
+				}
+				
+				value = findExpressionValue(tempList.get(j).toString() + " " + tempList.get(j+1).toString());
 				Predicate p = new Predicate(operator, value);
 				predicates.add(p);
 			}
