@@ -19,7 +19,6 @@ import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Connectio
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.Predicate;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
-import org.eclipse.jface.viewers.ICellEditorListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
@@ -127,6 +126,7 @@ public class ColumnTable {
 		
 		page = filterWizardPage;
 		connFilter = connectionFilter;
+		isAnded = connFilter.isMeetsAllConditions();
 		
 		GridLayout compositeLayout = new GridLayout(3, false);
 		composite.setLayout(compositeLayout);
