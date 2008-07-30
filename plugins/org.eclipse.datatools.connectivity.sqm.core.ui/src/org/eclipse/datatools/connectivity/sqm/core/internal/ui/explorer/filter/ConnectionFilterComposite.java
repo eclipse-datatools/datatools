@@ -408,7 +408,6 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 			selectionPredicate.select(selectionPredicate
 					.indexOf(INCLUDE_ITEMS_TEXT));
 		}
-		columnTable.initializeValues(true);
 	}
 
 	/*
@@ -495,7 +494,6 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 			}else { // Added for the new mode
 				if (isEnabled) {
 					expressionRadioButton.setEnabled(true);
-					columnTable.enableTableSpecificationControls(true);
 					selectionRadioButton.setEnabled(true);
 					
 					if (expressionRadioButton.getSelection()) {
@@ -530,7 +528,9 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 		if (connFilter != null) {
 			disableFilterCheckbox.setSelection(false);
 			String predicate = connFilter.getPredicate();
+			
 			if (!hideExpressionOption && isPredicateAnExpression(predicate)) {
+				
 				expressionRadioButton.setSelection(true);
 				if (!hideSelectionOption)
 					selectionRadioButton.setSelection(false);
@@ -540,7 +540,9 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 							.indexOf(findExpressionPredicate(predicate)));
 					expressionField.setText(findExpressionValue(predicate));
 				}
-				
+				else
+					columnTable.initializeValues(true);
+
 				enableFilterSpecificationControls(true);
 			} else {
 				if (!hideExpressionOption) {
@@ -565,6 +567,9 @@ public class ConnectionFilterComposite extends Composite implements Listener {
 		} else {
 			disableFilterCheckbox.setSelection(true);
 			enableFilterSpecificationControls(false);
+			
+			if(isMultiplePredicatesMode)
+				columnTable.initializeValues(false);
 		}
 	}
 

@@ -305,8 +305,12 @@ public class ColumnTable {
 		m_columnTableViewer.setCellEditors((CellEditor[]) editors
 				.toArray(new CellEditor[editors.size()]));
 		m_columnTableViewer.setLabelProvider(new ColumnLabelProvider(this));
-		m_columnTableViewer.setContentProvider(new ColumnContentProvider(
-				connFilter));
+		
+		if(page.hideSelectionOption){
+			m_columnTableViewer.setContentProvider(new ColumnContentProvider(
+					connFilter));
+		}
+		
 		m_columnTableViewer.setCellModifier(new ColumnCellModifier(this));
 	}
 
@@ -364,29 +368,34 @@ public class ColumnTable {
 		}
 	}
 
+	private void clearTable(){
+		m_columnTable.removeAll();
+		predicate = new Predicate(1, "");
+		m_columnTableViewer.add(predicate);
+	}
 	protected void initializeValues(boolean isExpressionRadioButtonSelected) {
 
-		predicates = connFilter.getPredicatesCollection();
-
-		if (predicates.size() > 0)
-			predicate = (Predicate) predicates.get(0);
-
-		if (connFilter.getPredicatesCollection().size() == 0
-				|| predicate.getOperator() == SELECTION_OPERATOR
-				|| !isExpressionRadioButtonSelected) {
-			m_columnTable.removeAll();
-			predicate = new Predicate(1, "");
-			m_columnTableViewer.add(predicate);
-		} else {
-
-			for (int i = 0; i < predicates.size(); i++) {
-				predicate = (Predicate) predicates.get(i);
-				m_columnTableViewer.add(predicate);
+		if(!isExpressionRadioButtonSelected){
+			clearTable();
+		}
+		else{
+			predicates = connFilter.getPredicatesCollection();
+	
+			if (predicates.size() > 0)
+				predicate = (Predicate) predicates.get(0);
+	
+			if (connFilter.getPredicatesCollection().size() == 0
+					|| predicate.getOperator() == SELECTION_OPERATOR) {
+				clearTable();
+			} else {
+	
+				for (int i = 0; i < predicates.size(); i++) {
+					predicate = (Predicate) predicates.get(i);
+					m_columnTableViewer.add(predicate);
+				}
 			}
 		}
 		updateDeleteButtonState();
-		
-
 	}
 
 	private void updateDeleteButtonState() {
