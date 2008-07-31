@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.connectivity.ui.wizards.ConnectionProfileDetailsPage;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -47,7 +48,8 @@ public abstract class DataSourceWizardPageCore extends
      * per design instance.
      * <br>This method is called when the wizard performs finish.
      * @param design    a data source design instance for further updates
-     * @return  the updated data source design instance
+     * @return  the updated data source design instance, or
+     *      null if an error exists and unable to update the design
      */
     protected abstract DataSourceDesign collectDataSourceDesign( 
                                     DataSourceDesign design );
@@ -136,6 +138,17 @@ public abstract class DataSourceWizardPageCore extends
     protected String getOdaDesignerId()
     {
         return getOdaWizard().getOdaDesignerId();
+    }
+    
+    /**
+     * Returns the resource identifiers of the ODA consumer application, if available.
+     * @return  a ResourceIdentifiers instance; may be null if none is specified
+     * @since 3.0.7
+     */
+    protected ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        NewDataSourceWizardBase wizard = getOdaWizard();       
+        return ( wizard != null ) ? wizard.getHostResourceIdentifiers() : null;
     }
     
     /**

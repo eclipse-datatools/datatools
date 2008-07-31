@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@
 package org.eclipse.datatools.connectivity.oda.design.ui.designsession;
 
 import java.io.File;
+import java.net.URI;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -234,6 +235,54 @@ public class DesignSessionUtil extends DesignSessionUtilBase
         }
 
         return designProps;
+    }
+    
+    /**
+     * A convenience method to create a new DesignSessionRequest instance 
+     * that contains a new data source design with the specified design attributes.
+     * @param odaDataSourceId   the ODA data source extension id
+     * @param newDataSourceName an unique name to identify the data source design instance
+     * @param newDataSourceDisplayName  display name of the data source design; may be null
+     * @param applResourceBaseURI   the base URI of general purpose resources of an ODA consumer application; may be null
+     * @param designResourceBaseURI the base URI of design resources of an ODA consumer application; may be null
+     * @return  a new DesignSessionRequest instance with the specified data source design attributes
+     * @throws OdaException if specified argument(s) are invalid
+     * @since 3.0.7
+     */
+    public static DesignSessionRequest createNewDataSourceRequest( 
+            String odaDataSourceId,
+            String newDataSourceName,
+            String newDataSourceDisplayName,
+            URI applResourceBaseURI,
+            URI designResourceBaseURI )
+        throws OdaException
+    {
+        return DesignSessionUtilBase.createNewDataSourceRequest( odaDataSourceId, 
+                newDataSourceName, newDataSourceDisplayName, applResourceBaseURI, designResourceBaseURI );
+    }
+
+    // TODO - Expose as API method for client to create a request for use
+    //        with DataSourceDesignSession#startNewDesignFromProfile
+//    public static DesignSessionRequest createNewDataSourceProfileRequest( 
+//            URI applResourceBaseURI,
+//            URI designResourceBaseURI )
+//    {
+//        return DesignSessionUtilBase.createNewDataSourceProfileRequest( 
+//                applResourceBaseURI, designResourceBaseURI );
+//    }
+    
+    /**
+     * A convenience method to assign the specified resource base URI(s) to the specified data source design.
+     * @param dataSourceDesign  a data source design instance
+     * @param applResourceBaseURI   the base URI of general purpose resources of an ODA consumer application; may be null
+     * @param designResourceBaseURI the base URI of design resources of an ODA consumer application; may be null
+     * @throws NullPointerException if dataSourceDesign argument is null
+     * @since 3.0.7
+     */
+    public static void setDataSourceResourceIdentifiers(
+            DataSourceDesign dataSourceDesign, URI applResourceBaseURI, URI designResourceBaseURI )
+    {    
+        DesignSessionUtilBase.setDataSourceResourceIdentifiers( dataSourceDesign, applResourceBaseURI, designResourceBaseURI );
     }
     
     /**

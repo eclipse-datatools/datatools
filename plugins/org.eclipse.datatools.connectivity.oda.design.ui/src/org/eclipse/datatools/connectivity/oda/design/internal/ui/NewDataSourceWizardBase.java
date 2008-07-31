@@ -28,7 +28,9 @@ import org.eclipse.datatools.connectivity.internal.ui.wizards.ProfileWizardProvi
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
@@ -65,8 +67,9 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     private UIExtensionManifest m_manifest;
 
     private boolean m_isInDesignSession = false;
+    private DesignSessionRequest m_sessionRequest;
     private boolean m_hasPerformedFinish = false;
-    private DataSourceDesign m_dataSourceDesign;
+    private DataSourceDesign m_responseDataSourceDesign;
     private DesignerState m_responseDesignerState;
     private LinkedProfile m_linkedProfile;
 
@@ -431,9 +434,10 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     /**
      * For internal use only.
      */
-    public void initOdaDesignSession( ProfileReferenceBase newProfileRef )
+    public void initOdaDesignSession( ProfileReferenceBase newProfileRef, DesignSessionRequest sessionRequest )
     {
         m_hasPerformedFinish = false;
+        m_sessionRequest = sessionRequest;  // may be null
         setInOdaDesignSession( true );
         
         // reset any previously linked profile
@@ -442,6 +446,20 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         if( newProfileRef != null && newProfileRef.maintainExternalLink() )
             setLinkedProfile( newProfileRef.getName(), 
                               newProfileRef.getStorageFile() );        
+    }
+    
+    /**
+     * Returns the resource identifiers of the ODA consumer application, if available.
+     * @return  a ResourceIdentifiers instance; may be null if none is specified
+     */
+    ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        if( m_sessionRequest == null )
+            return null;
+        
+        DataSourceDesign dataSourceDesign = m_sessionRequest.getDataSourceDesign();
+        return ( dataSourceDesign != null ) ? 
+                dataSourceDesign.getHostResourceIdentifiers() : null;
     }
     
     /**
@@ -514,10 +532,10 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
         if( ! isInOdaDesignSession() )
             throw new OdaException( Messages.common_notInDesignSession );
 
-        m_dataSourceDesign = saveNewDataSourceDesign();        
+        m_responseDataSourceDesign = saveNewDataSourceDesign();        
         m_hasPerformedFinish = true;
 
-        return m_dataSourceDesign;
+        return m_responseDataSourceDesign;
     }
     
     /**
@@ -529,7 +547,7 @@ public class NewDataSourceWizardBase extends NewConnectionProfileWizard
     public DataSourceDesign getDataSourceDesign()
     {
         if( m_hasPerformedFinish )      // performFinish is done
-            return m_dataSourceDesign;  // ok to return created design
+            return m_responseDataSourceDesign;  // ok to return created design
         return null;
     }
     

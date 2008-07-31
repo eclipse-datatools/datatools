@@ -17,6 +17,7 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.preference.IPreferencePageContainer;
@@ -51,7 +52,8 @@ public abstract class DataSetWizardPageCore extends WizardPage
      * dynamically define a public property's design attributes  
      * per design instance.
      * @param design    a data set design instance for further updates
-     * @return  the updated data set design instance
+     * @return  the updated data set design instance, or
+     *      null if an error exists and unable to update the design
      */
     protected abstract DataSetDesign collectDataSetDesign( 
             DataSetDesign design );
@@ -348,6 +350,17 @@ public abstract class DataSetWizardPageCore extends WizardPage
         if( wizard == null )
             return true;    // default
         return wizard.isSessionEditable();       
+    }
+    
+    /**
+     * Returns the resource identifiers of the ODA consumer application, if available.
+     * @return  a ResourceIdentifiers instance; may be null if none is specified
+     * @since 3.0.7
+     */
+    protected ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        DataSetWizardBase wizard = getOdaWizard();
+        return ( wizard != null ) ? wizard.getHostResourceIdentifiers() : null;
     }
     
     /**

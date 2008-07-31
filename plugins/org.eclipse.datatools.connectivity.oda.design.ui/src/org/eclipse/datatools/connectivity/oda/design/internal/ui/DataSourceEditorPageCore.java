@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
@@ -68,7 +69,8 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
      * <br>This method is called when performing finish on a
      * data source editing session.
      * @param design    a data source design instance being updated
-     * @return  the updated data source design instance
+     * @return  the updated data source design instance, or
+     *      null if an error exists and unable to update the design
      */
     protected DataSourceDesign collectDataSourceDesign( 
                                     DataSourceDesign design )
@@ -383,6 +385,20 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     {
         return ( isEditableSessionRequested() &&
                  ! getEditingDataSource().hasLinkToProfile() );
+    }
+    
+    /**
+     * Returns the resource identifiers of the ODA consumer application, if available.
+     * @return  a ResourceIdentifiers instance; may be null if none is specified
+     * @since 3.0.7
+     */
+    protected ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        if( ! isInOdaDesignSession() )
+            return null;
+        DataSourceDesign dataSourceDesign = m_designSession.getRequest().getDataSourceDesign();
+        return ( dataSourceDesign != null ) ? 
+                dataSourceDesign.getHostResourceIdentifiers() : null;
     }
     
     /* (non-Javadoc)

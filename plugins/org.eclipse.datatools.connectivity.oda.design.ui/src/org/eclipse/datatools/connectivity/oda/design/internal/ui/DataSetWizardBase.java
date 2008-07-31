@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,10 +16,12 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetPageInfo;
@@ -298,6 +300,19 @@ public class DataSetWizardBase extends Wizard
             return true;    // default
 
         return m_designSession.getRequest().isEditable();       
+    }
+    
+    /**
+     * Returns the resource identifiers of the ODA consumer application, if available.
+     * @return  a ResourceIdentifiers instance; may be null if none is specified
+     */
+    ResourceIdentifiers getHostResourceIdentifiers()
+    {
+        if( m_designSession == null )
+            return null;
+        
+        DataSourceDesign dataSourceDesign = m_designSession.getRequestDataSourceDesign();
+        return ( dataSourceDesign != null ) ? dataSourceDesign.getHostResourceIdentifiers() : null;
     }
     
     /**

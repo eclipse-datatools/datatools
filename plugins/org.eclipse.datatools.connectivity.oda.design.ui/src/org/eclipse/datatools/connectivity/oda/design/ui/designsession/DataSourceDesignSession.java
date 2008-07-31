@@ -86,7 +86,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
         DataSourceDesignSession newSession = 
             new DataSourceDesignSession( odaDataSourceId );
         
-        newSession.initNewDesign( newDataSourceName, profileRef );
+        newSession.initNewDesign( newDataSourceName, profileRef, request );
         return newSession;
     }
     
@@ -103,9 +103,15 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     public static DataSourceDesignSession startNewDesignFromProfile()
     {
         // no specific ODA data source type is specified yet
-        return new DataSourceDesignSession();
+        return startNewDesignFromProfile( null );
     }
-    
+ 
+    // TODO - Expose as API method for client to specify a request
+    private static DataSourceDesignSession startNewDesignFromProfile( DesignSessionRequest sessionRequest )
+    {
+        return new DataSourceDesignSession( sessionRequest );
+    }
+
     /**
      * Restarts the design session to create a new 
      * data source design instance with the given name
@@ -130,7 +136,7 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
         if( ! isInCreateMode() )
             throw new OdaException( Messages.designSession_invalidNewDesignApiCall );
         
-        super.restartNewDesign( odaDataSourceId, newDataSourceName, profileRef );
+        super.restartNewDesign( odaDataSourceId, newDataSourceName, profileRef, request );
     }
 
     /**
@@ -229,6 +235,11 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     private DataSourceDesignSession()
     {
         super();
+    }
+
+    private DataSourceDesignSession( DesignSessionRequest sessionRequest )
+    {
+        super( sessionRequest );
     }
 
     /**

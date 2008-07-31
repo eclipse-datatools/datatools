@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,6 +14,8 @@
 
 package org.eclipse.datatools.connectivity.oda.design.internal.designsession;
 
+import java.net.URI;
+
 import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -26,6 +28,7 @@ import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -217,6 +220,104 @@ public class DesignSessionUtilBase
         {
             throw new OdaException( ex );
         }
+    }
+
+    /**
+     * A convenience method to create a new DesignSessionRequest instance 
+     * that contains a new data source design with the specified design attributes.
+     * @param odaDataSourceId   the ODA data source extension id
+     * @param newDataSourceName an unique name to identify the data source design instance
+     * @param newDataSourceDisplayName  display name of the data source design; may be null
+     * @param applResourceBaseURI   the base URI of general purpose resources of an ODA consumer application; may be null
+     * @param designResourceBaseURI the base URI of design resources of an ODA consumer application; may be null
+     * @return  a new DesignSessionRequest instance with the specified data source design attributes
+     * @throws OdaException if specified argument(s) are invalid
+     * @since 3.0.7
+     */
+    protected static DesignSessionRequest createNewDataSourceRequest( 
+            String odaDataSourceId,
+            String newDataSourceName,
+            String newDataSourceDisplayName,
+            URI applResourceBaseURI,
+            URI designResourceBaseURI )
+        throws OdaException
+    {
+        // validate input argument(s)
+        if( odaDataSourceId == null || odaDataSourceId.length() == 0 || 
+            newDataSourceName == null || newDataSourceName.length() == 0  )
+            throw new OdaException( Messages.designSession_invalidArgument );
+        
+        // create a new data source design with the specified design attributes
+        DataSourceDesign newDesign = DesignFactory.eINSTANCE.createDataSourceDesign();
+        
+        newDesign.setOdaExtensionId( odaDataSourceId );
+            // no need to explicitly set OdaExtensionDataSourceId
+        newDesign.setName( newDataSourceName );
+        newDesign.setDisplayName( newDataSourceDisplayName ); 
+        setDataSourceResourceIdentifiers( newDesign, applResourceBaseURI, designResourceBaseURI );
+        
+        // create a new request with the data source design
+        DesignSessionRequest newRequest = DesignFactory.eINSTANCE.createDesignSessionRequest();
+        newRequest.setNewDataAccessDesign( newDesign );
+        
+        validateRequestSessionImpl( newRequest );
+    
+        return newRequest;
+    }
+
+    /**
+     * A convenience method to create a new DesignSessionRequest instance 
+     * that contains a new data source design with the specified resource attributes.
+     * The returned instance can be used to request a design session for
+     * connection profile selection.
+     * @param applResourceBaseURI   the base URI of general purpose resources of an ODA consumer application; may be null
+     * @param designResourceBaseURI the base URI of design resources of an ODA consumer application; may be null
+     * @return  a new DesignSessionRequest instance with the specified resource attributes
+     * @since 3.0.7
+     */
+    protected static DesignSessionRequest createNewDataSourceProfileRequest( 
+            URI applResourceBaseURI,
+            URI designResourceBaseURI )
+    {
+        // create a new data source design with the specified design attributes;
+        // an oda data source id will be specified later by a profile selection
+        DataSourceDesign newDesign = DesignFactory.eINSTANCE.createDataSourceDesign();       
+        setDataSourceResourceIdentifiers( newDesign, applResourceBaseURI, designResourceBaseURI );
+        
+        // create a new request with the data source design
+        DesignSessionRequest newRequest = DesignFactory.eINSTANCE.createDesignSessionRequest();
+        newRequest.setNewDataAccessDesign( newDesign );    
+        return newRequest;
+    }
+    
+    /**
+     * A convenience method to assign the specified resource base URI(s) to the specified data source design.
+     * @param dataSourceDesign  a data source design instance
+     * @param applResourceBaseURI   the base URI of general purpose resources of an ODA consumer application; may be null
+     * @param designResourceBaseURI the base URI of design resources of an ODA consumer application; may be null
+     * @throws NullPointerException if dataSourceDesign argument is null
+     * @since 3.0.7
+     */
+    protected static void setDataSourceResourceIdentifiers(
+            DataSourceDesign dataSourceDesign, 
+            URI applResourceBaseURI, 
+            URI designResourceBaseURI )
+    {
+        if( dataSourceDesign == null )
+            throw new NullPointerException( "dataSourceDesign: " + dataSourceDesign ); //$NON-NLS-1$
+
+        ResourceIdentifiers resourceIDs = dataSourceDesign.getHostResourceIdentifiers();
+        if( resourceIDs == null )
+        {
+            if( applResourceBaseURI == null && designResourceBaseURI == null )
+                return;     // nothing new to set; done
+
+            resourceIDs = DesignFactory.eINSTANCE.createResourceIdentifiers();
+            dataSourceDesign.setHostResourceIdentifiers( resourceIDs );
+        }
+        
+        resourceIDs.setApplResourceBaseURI( applResourceBaseURI );
+        resourceIDs.setDesignResourceBaseURI( designResourceBaseURI );        
     }
 
     /**
