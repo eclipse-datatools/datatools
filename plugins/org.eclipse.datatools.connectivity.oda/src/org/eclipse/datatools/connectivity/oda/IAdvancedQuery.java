@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,7 +44,8 @@ public interface IAdvancedQuery extends IQuery
 	 * Executes the query's prepared query that may return multiple result sets.
 	 * <b>Note:</b> This should only be called after prepare().
 	 * @return	true if the next result is an IResultSet object; 
-	 * 			false if there are no result sets.
+	 * 			false if there are no result sets and/or the query is not in a state
+	 *             to retrieve any output data, including output parameter values.
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public boolean execute() throws OdaException;
