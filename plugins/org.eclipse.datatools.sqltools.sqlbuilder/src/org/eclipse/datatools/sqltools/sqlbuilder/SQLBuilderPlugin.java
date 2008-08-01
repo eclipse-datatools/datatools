@@ -14,6 +14,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelFactory;
 import org.eclipse.datatools.modelbase.sql.query.SQLQueryModelPackage;
@@ -36,6 +39,7 @@ public class SQLBuilderPlugin extends AbstractUIPlugin {
     protected static SQLBuilderPlugin plugin = null;
     protected static SQLQueryModelItemProviderAdapterFactory adapterFactory = new SQLQueryModelItemProviderAdapterFactory();
     public final static String SQL_PARTITIONING= "__sql_partitioning";   //$NON-NLS-1$
+    public static final IPath IMAGES_PATH= new Path("images"); //$NON-NLS-1$
     
     private SQLLogUtil logger = null;
 
@@ -122,7 +126,7 @@ public class SQLBuilderPlugin extends AbstractUIPlugin {
 
     public URL getInstallURL() {
         Bundle bundle = getBundle();
-        return bundle.getEntry("/");
+        return bundle.getEntry("/"); //$NON-NLS-1$
     }
 
     /**
@@ -130,13 +134,11 @@ public class SQLBuilderPlugin extends AbstractUIPlugin {
      * @param the key (name) of the image to get
      */
     public ImageDescriptor getImageDescriptor( String key ) {
-        try {
-            return ImageDescriptor.createFromURL(new URL(getInstallURL(), "images" + java.io.File.separator + key + ".gif"));
-        }
-        catch (MalformedURLException me) {
-            //  me.printStackTrace();
-        }
-        return null;
+        IPath path = IMAGES_PATH.append(key + ".gif"); //$NON-NLS-1$   
+        URL imageURL = FileLocator.find(getBundle(), path, null);     
+            
+        return ImageDescriptor.createFromURL(imageURL);
+
     }
 
 
