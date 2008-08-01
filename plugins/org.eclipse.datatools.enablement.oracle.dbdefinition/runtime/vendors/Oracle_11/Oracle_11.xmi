@@ -70,7 +70,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMBER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" maximumPrecision="38" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
+  <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" keyConstraintSupported="true" identitySupported="true" maximumPrecision="126" defaultPrecision="126" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
   </predefinedDataTypeDefinitions>
