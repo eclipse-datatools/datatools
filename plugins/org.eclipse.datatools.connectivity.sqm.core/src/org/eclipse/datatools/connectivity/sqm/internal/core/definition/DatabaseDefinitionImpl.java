@@ -87,6 +87,7 @@ import org.eclipse.datatools.modelbase.sql.tables.Trigger;
 import org.eclipse.datatools.modelbase.sql.tables.ViewTable;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
@@ -720,7 +721,18 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 				if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
 					String temp = predefinedDataTypeDefinition.getDisplayName();
 					if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
-						predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+						if ( predefinedDataTypeDefinition.isLengthSemanticSupported() ) {
+							String lengthSemantic = this.getLenghtSemantic((CharacterStringDataType)predefinedDataType);
+							if ( (lengthSemantic != null) && (lengthSemantic.length() > 0) ) {
+								predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength()) + " " + lengthSemantic}); //$NON-NLS-1$
+							}
+							else {
+								predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+							}
+						}
+						else {
+							predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+						}
 					}
 				}
 				else {
@@ -753,7 +765,18 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 					if (predefinedDataTypeDefinition.isDisplayNameSupported()) {
 						String temp = predefinedDataTypeDefinition.getDisplayName();
 						if ( (temp != null) && (temp.length() > 0) && predefinedDataTypeDefinition.isLengthSupported()) {
-							predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+							if ( predefinedDataTypeDefinition.isLengthSemanticSupported() ) {
+								String lengthSemantic = this.getLenghtSemantic((CharacterStringDataType)predefinedDataType);
+								if ( (lengthSemantic != null) && (lengthSemantic.length() > 0) ) {
+									predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength()) + " " + lengthSemantic}); //$NON-NLS-1$
+								}
+								else {
+									predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+								}
+							}
+							else {
+								predefinedDataTypeFormattedName = MessageFormat.format(temp, new Object[] {Integer.toString(((CharacterStringDataType)predefinedDataType).getLength())});
+							} 
 						}
 					}
 					else {
@@ -2054,7 +2077,23 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		
 		return this.databaseVendorDefinition;
 	}
-
+	
+	public String getLenghtSemantic(CharacterStringDataType characterStringDataType) {
+		EAnnotation eAnnotation = characterStringDataType.getEAnnotation(LENGTH_SEMANTIC);
+		if (eAnnotation != null) {
+			String detail = (String) eAnnotation.getDetails().get(LENGTH_SEMANTIC_TYPE);
+			if (detail != null) return detail;
+		}
+		return null;
+	}
+	
+	public void setLenghtSemantic(CharacterStringDataType characterStringDataType, String value) {
+		EAnnotation eAnnotation = characterStringDataType.addEAnnotation(LENGTH_SEMANTIC);
+		if (eAnnotation != null) {
+			characterStringDataType.addEAnnotationDetail(eAnnotation, LENGTH_SEMANTIC_TYPE, value);
+		}
+	}
+	
 	private String product;
 	private String version;
 	private String description;
@@ -2072,4 +2111,6 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 	private DeltaDDLGenerator deltaDdlGenerator = null;
 	private ICatalogProvider catalogProvider = null;
 	private AbstractMetaDataExtension metaDataExtension = null;
+	private static String LENGTH_SEMANTIC = "LENGTH_SEMANTIC";
+	private static String LENGTH_SEMANTIC_TYPE = "LENGTH_SEMANTIC_TYPE";
 }
