@@ -949,13 +949,31 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	int PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH = 44;
 
 	/**
+	 * The feature id for the '<em><b>Length Semantic Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED = 45;
+
+	/**
+	 * The feature id for the '<em><b>Length Semantic</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC = 46;
+
+	/**
 	 * The number of structural features of the '<em>Predefined Data Type Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 45;
+	int PREDEFINED_DATA_TYPE_DEFINITION_FEATURE_COUNT = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.
@@ -3529,6 +3547,28 @@ public interface DatabaseDefinitionPackage extends EPackage {
 	EAttribute getPredefinedDataTypeDefinition_LargeValueSpecifierLength();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSemanticSupported <em>Length Semantic Supported</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Length Semantic Supported</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSemanticSupported()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LengthSemanticSupported();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthSemantic <em>Length Semantic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Length Semantic</em>'.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthSemantic()
+	 * @see #getPredefinedDataTypeDefinition()
+	 * @generated
+	 */
+	EAttribute getPredefinedDataTypeDefinition_LengthSemantic();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.datatools.modelbase.dbdefinition.TableSpaceDefinition <em>Table Space Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5896,6 +5936,22 @@ public interface DatabaseDefinitionPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH = eINSTANCE.getPredefinedDataTypeDefinition_LargeValueSpecifierLength();
+
+		/**
+		 * The meta object literal for the '<em><b>Length Semantic Supported</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED = eINSTANCE.getPredefinedDataTypeDefinition_LengthSemanticSupported();
+
+		/**
+		 * The meta object literal for the '<em><b>Length Semantic</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC = eINSTANCE.getPredefinedDataTypeDefinition_LengthSemantic();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.datatools.modelbase.dbdefinition.impl.TableSpaceDefinitionImpl <em>Table Space Definition</em>}' class.

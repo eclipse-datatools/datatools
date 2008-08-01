@@ -179,6 +179,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierSupported"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/largeValueSpecifierLength"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemanticSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//PredefinedDataTypeDefinition/lengthSemantic"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//TableSpaceDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//TableSpaceDefinition/typeSupported"/>

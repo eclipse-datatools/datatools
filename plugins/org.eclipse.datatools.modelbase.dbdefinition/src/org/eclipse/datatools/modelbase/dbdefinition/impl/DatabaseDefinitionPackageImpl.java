@@ -1251,6 +1251,24 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPredefinedDataTypeDefinition_LengthSemanticSupported() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(45);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPredefinedDataTypeDefinition_LengthSemantic() {
+		return (EAttribute)predefinedDataTypeDefinitionEClass.getEStructuralFeatures().get(46);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTableSpaceDefinition() {
 		return tableSpaceDefinitionEClass;
 	}
@@ -2677,6 +2695,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_SUPPORTED);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_NAME);
 		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED);
+		createEAttribute(predefinedDataTypeDefinitionEClass, PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC);
 
 		tableSpaceDefinitionEClass = createEClass(TABLE_SPACE_DEFINITION);
 		createEAttribute(tableSpaceDefinitionEClass, TABLE_SPACE_DEFINITION__TYPE_SUPPORTED);
@@ -2972,6 +2992,8 @@ public class DatabaseDefinitionPackageImpl extends EPackageImpl implements Datab
 		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierSupported(), ecorePackage.getEBoolean(), "largeValueSpecifierSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierName(), ecorePackage.getEString(), "largeValueSpecifierName", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getPredefinedDataTypeDefinition_LargeValueSpecifierLength(), ecorePackage.getEInt(), "largeValueSpecifierLength", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LengthSemanticSupported(), ecorePackage.getEBoolean(), "lengthSemanticSupported", null, 0, 1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getPredefinedDataTypeDefinition_LengthSemantic(), ecorePackage.getEString(), "lengthSemantic", null, 0, -1, PredefinedDataTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(tableSpaceDefinitionEClass, TableSpaceDefinition.class, "TableSpaceDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableSpaceDefinition_TypeSupported(), ecorePackage.getEBoolean(), "typeSupported", null, 0, 1, TableSpaceDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

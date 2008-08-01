@@ -85,6 +85,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#isLengthSemanticSupported <em>Length Semantic Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.impl.PredefinedDataTypeDefinitionImpl#getLengthSemantic <em>Length Semantic</em>}</li>
  * </ul>
  * </p>
  *
@@ -910,6 +912,36 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * @ordered
 	 */
 	protected int largeValueSpecifierLength = LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isLengthSemanticSupported() <em>Length Semantic Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLengthSemanticSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean LENGTH_SEMANTIC_SUPPORTED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isLengthSemanticSupported() <em>Length Semantic Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isLengthSemanticSupported()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean lengthSemanticSupported = LENGTH_SEMANTIC_SUPPORTED_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getLengthSemantic() <em>Length Semantic</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLengthSemantic()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList lengthSemantic = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1859,6 +1891,39 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isLengthSemanticSupported() {
+		return lengthSemanticSupported;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLengthSemanticSupported(boolean newLengthSemanticSupported) {
+		boolean oldLengthSemanticSupported = lengthSemanticSupported;
+		lengthSemanticSupported = newLengthSemanticSupported;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED, oldLengthSemanticSupported, lengthSemanticSupported));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList getLengthSemantic() {
+		if (lengthSemantic == null) {
+			lengthSemantic = new EDataTypeUniqueEList(String.class, this, DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC);
+		}
+		return lengthSemantic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LEADING_FIELD_QUALIFIER_DEFINITION:
@@ -1968,6 +2033,10 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return getLargeValueSpecifierName();
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
 				return new Integer(getLargeValueSpecifierLength());
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
+				return isLengthSemanticSupported() ? Boolean.TRUE : Boolean.FALSE;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
+				return getLengthSemantic();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2120,6 +2189,13 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
 				setLargeValueSpecifierLength(((Integer)newValue).intValue());
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
+				setLengthSemanticSupported(((Boolean)newValue).booleanValue());
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
+				getLengthSemantic().clear();
+				getLengthSemantic().addAll((Collection)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -2266,6 +2342,12 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
 				setLargeValueSpecifierLength(LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT);
 				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
+				setLengthSemanticSupported(LENGTH_SEMANTIC_SUPPORTED_EDEFAULT);
+				return;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
+				getLengthSemantic().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2367,6 +2449,10 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 				return LARGE_VALUE_SPECIFIER_NAME_EDEFAULT == null ? largeValueSpecifierName != null : !LARGE_VALUE_SPECIFIER_NAME_EDEFAULT.equals(largeValueSpecifierName);
 			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LARGE_VALUE_SPECIFIER_LENGTH:
 				return largeValueSpecifierLength != LARGE_VALUE_SPECIFIER_LENGTH_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC_SUPPORTED:
+				return lengthSemanticSupported != LENGTH_SEMANTIC_SUPPORTED_EDEFAULT;
+			case DatabaseDefinitionPackage.PREDEFINED_DATA_TYPE_DEFINITION__LENGTH_SEMANTIC:
+				return lengthSemantic != null && !lengthSemantic.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -2462,6 +2548,10 @@ public class PredefinedDataTypeDefinitionImpl extends EObjectImpl implements Pre
 		result.append(largeValueSpecifierName);
 		result.append(", largeValueSpecifierLength: "); //$NON-NLS-1$
 		result.append(largeValueSpecifierLength);
+		result.append(", lengthSemanticSupported: "); //$NON-NLS-1$
+		result.append(lengthSemanticSupported);
+		result.append(", lengthSemantic: "); //$NON-NLS-1$
+		result.append(lengthSemantic);
 		result.append(')');
 		return result.toString();
 	}

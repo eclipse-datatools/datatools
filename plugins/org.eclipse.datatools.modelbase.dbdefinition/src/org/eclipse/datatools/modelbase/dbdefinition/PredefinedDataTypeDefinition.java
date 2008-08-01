@@ -67,6 +67,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLargeValueSpecifierSupported <em>Large Value Specifier Supported</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierName <em>Large Value Specifier Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLargeValueSpecifierLength <em>Large Value Specifier Length</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSemanticSupported <em>Length Semantic Supported</em>}</li>
+ *   <li>{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#getLengthSemantic <em>Length Semantic</em>}</li>
  * </ul>
  * </p>
  *
@@ -1196,5 +1198,47 @@ public interface PredefinedDataTypeDefinition extends EObject {
 	 * @generated
 	 */
 	void setLargeValueSpecifierLength(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Length Semantic Supported</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Length Semantic Supported</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Length Semantic Supported</em>' attribute.
+	 * @see #setLengthSemanticSupported(boolean)
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LengthSemanticSupported()
+	 * @model
+	 * @generated
+	 */
+	boolean isLengthSemanticSupported();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition#isLengthSemanticSupported <em>Length Semantic Supported</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Length Semantic Supported</em>' attribute.
+	 * @see #isLengthSemanticSupported()
+	 * @generated
+	 */
+	void setLengthSemanticSupported(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Length Semantic</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Length Semantic</em>' attribute list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Length Semantic</em>' attribute list.
+	 * @see org.eclipse.datatools.modelbase.dbdefinition.DatabaseDefinitionPackage#getPredefinedDataTypeDefinition_LengthSemantic()
+	 * @model type="java.lang.String"
+	 * @generated
+	 */
+	EList getLengthSemantic();
 
 } // PredefinedDataTypeDefinition
