@@ -16,10 +16,12 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" bitDataSupported="true" maximumLength="2000" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="CHAR({0})" lengthSemanticSupported="true" keyConstraintSupported="true" bitDataSupported="true" maximumLength="2000" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>UID</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
+    <lengthSemantic>BYTE</lengthSemantic>
+    <lengthSemantic>CHAR</lengthSemantic>
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
@@ -35,10 +37,12 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NCLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" bitDataSupported="true" maximumLength="4000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" displayNameSupported="true" displayName="VARCHAR2({0})" lengthSemanticSupported="true" keyConstraintSupported="true" bitDataSupported="true" maximumLength="4000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>UID</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
+    <lengthSemantic>BYTE</lengthSemantic>
+    <lengthSemantic>CHAR</lengthSemantic>
     <name>VARCHAR2</name>
     <name>CHARACTER VARYING</name>
     <name>CHAR VARYING</name>
