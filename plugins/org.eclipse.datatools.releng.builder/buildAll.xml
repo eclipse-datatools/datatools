@@ -152,6 +152,7 @@
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.enablement.apache.derby.feature.source_${org.eclipse.datatools.enablement.apache.derby.feature.source}/src" includes="**"/>
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.connectivity.oda.feature.source_${org.eclipse.datatools.connectivity.oda.feature.source}/src" includes="**"/>
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.connectivity.feature.source_${org.eclipse.datatools.connectivity.feature.source}/src" includes="**"/>
+            <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.connectivity.oda.designer.feature.source_${org.eclipse.datatools.connectivity.oda.designer.feature.source}/src" includes="**"/>
 		</copy>
 
 		<delete includeemptydirs="true">
