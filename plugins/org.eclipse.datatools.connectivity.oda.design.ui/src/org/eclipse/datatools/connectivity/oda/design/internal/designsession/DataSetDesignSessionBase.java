@@ -20,9 +20,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
+import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
 import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.OdaProfileUIExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.DataSetUIElement;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
@@ -102,7 +104,72 @@ public class DataSetDesignSessionBase
         disposePages(); // cannot reuse wizard
         initWizard();              
     }
+
+    /**
+     * Restarts the design session to edit the data set design specified 
+     * in the new design session request.
+     * <br>Specifying false in the resetEditorPages argument requests the design session 
+     * to try preserve any user edits made on the session's custom wizard page(s), if feasible.
+     * @param newRequest a new design session request to restart the design session
+     * @param resetEditorPages  true requests the design session to reset its custom editor pages,
+     *          false to try preserve the existing editor pages if feasible
+     * @return  true indicates that the restarted design session has reset its editor pages,
+     *          false otherwise
+     * @throws OdaException
+     * @since 3.0.7
+     */
+    protected boolean restartEditDesign( DesignSessionRequest newRequest, boolean resetEditorPages )
+        throws OdaException
+    {
+        if( m_odaDesign != null && 
+            ! resetEditorPages ) // try to preserve existing pages
+        {
+            if( canReuseEditorPages( newRequest ) )
+            {
+                // ok to reuse existing session's wizard and custom page(s);
+                // simply reset current design session w/ new request
+                m_odaDesign.setRequest( newRequest ); 
+                m_odaDesign.setResponse( null );
+                initWizard();
+                return false;     // done; restarted session did not need to use new custom editor pages
+            }
+        }
         
+        // cannot re-use the same custom data set wizard;
+        // re-initialize with a new session instance
+        OdaDesignSession odaDesign =
+            DesignFactory.eINSTANCE.createOdaDesignSession();
+        odaDesign.setRequest( newRequest );
+        initOdaDesign( odaDesign );
+        
+        // get a new wizard and initialize with this session's odaDesign
+        disposePages(); // dispose existing wizard and custom pages
+        initWizard();
+        return true; // restarted session has reset new custom editor pages
+    }
+    
+    /**
+     * Check if the new request is for the same type of oda data set and 
+     * same data source design attributes.  If not the same, the custom editor pages
+     * must be reset.
+     */
+    private boolean canReuseEditorPages( DesignSessionRequest newRequest )
+    {
+        DataSetDesign newRequestDataSetDesign = newRequest.getDataSetDesign();
+        if( newRequestDataSetDesign == null )
+            return false;
+        if( ! m_odaDataSourceId.equalsIgnoreCase( 
+                newRequestDataSetDesign.getOdaExtensionDataSourceId() ) )
+            return false;   // reset pages for different oda data source type
+        if( ! m_odaDesign.getRequestDataSetDesign().getOdaExtensionDataSetId().equalsIgnoreCase( 
+                newRequestDataSetDesign.getOdaExtensionDataSetId() ))
+            return false;   // reset pages for different oda data set type
+            
+        // can reuse pages if same data source design attributes
+        return EcoreUtil.equals( m_odaDesign.getRequestDataSourceDesign(), 
+                                newRequest.getDataSourceDesign() );   
+    }
+    
     /**
      * Initialize the data set wizard.
      * @throws OdaException
@@ -169,16 +236,21 @@ public class DataSetDesignSessionBase
         if( origSession.getResponse() == null )
             throw new OdaException( Messages.designSession_flushFailed );
 
-        // copy the flushed session to a new one; and reset its request with the latest response info
-        OdaDesignSession newSession = (OdaDesignSession) EcoreUtil.copy( origSession );
-        DesignSessionResponse latestResponse = newSession.getResponse();
-        newSession.getRequest().setNewDataAccessDesign( latestResponse.getDataSetDesign() );
-        newSession.getRequest().setDesignerState( latestResponse.getDesignerState() );
-        newSession.setResponse( null );
-        m_odaDesign = newSession;
-
-        initWizard();
-
+        // if the flushed session status was ok, copy the flushed session to a new one, and 
+        // reset its request with the latest response info;
+        // otherwise if session status was not ok, keep the original session request
+        if( origSession.getResponse().getSessionStatus() == SessionStatus.OK_LITERAL )
+        {
+            OdaDesignSession newSession = (OdaDesignSession) EcoreUtil.copy( origSession );
+            DesignSessionResponse latestResponse = newSession.getResponse();
+            newSession.getRequest().setNewDataAccessDesign( latestResponse.getDataSetDesign() );
+            newSession.getRequest().setDesignerState( latestResponse.getDesignerState() );
+            newSession.setResponse( null );
+            m_odaDesign = newSession;
+    
+            initWizard();
+        }
+        
         return origSession;
     }
     

@@ -37,6 +37,8 @@ import org.eclipse.jface.wizard.Wizard;
  * The internal ODA data set wizard base class implementation that 
  * looks up and adds customized wizard page to create an 
  * extended ODA data set design instance.
+ * All its public methods are for internal use only, and might not be
+ * backward compatible in future releases.
  */
 public class DataSetWizardBase extends Wizard
 {
@@ -55,7 +57,7 @@ public class DataSetWizardBase extends Wizard
         super();
     }
 
-    /**
+    /*
      * Initializes this wizard with specified oda design
      * and data set ui extension element info.
      * @param odaDesign
@@ -68,6 +70,7 @@ public class DataSetWizardBase extends Wizard
     {
         m_designSession = odaDesign;
         m_dataSetUIElement = dataSetUIElement;
+        m_editDataSetDesign = null;
         
         if( getPageCount() == 0 )
             addCustomPages();

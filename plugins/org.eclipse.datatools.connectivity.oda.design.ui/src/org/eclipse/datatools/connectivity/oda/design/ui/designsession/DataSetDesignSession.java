@@ -64,21 +64,10 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         
         return newSession;
     }
-    
-    /**
-     * Restarts the design session to create a new 
-     * data set design instance with the given name
-     * for the given ODA data set type.
-     * <br>Restarting a design session on the same 
-     * ODA data set type would preserve any
-     * user edits made on the session's custom wizard page.
-     * @param newDataSetName   a unique name that identifies a data set 
-     *          design instance
-     * @param odaDataSetId      an ODA data set element id;
-     *              may be null if the associated data source extension 
-     *              supports only one type of data set 
-     * @param dataSourceDesign  the associated data source design instance
-     * @throws OdaException
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSetDesignSessionBase#restartNewDesign(java.lang.String, java.lang.String, org.eclipse.datatools.connectivity.oda.design.DataSourceDesign)
      */
     public void restartNewDesign( String newDataSetName,
                                 String odaDataSetId, 
@@ -117,6 +106,17 @@ public class DataSetDesignSession extends DataSetDesignSessionBase
         return newSession;
     }
 
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSetDesignSessionBase#restartEditDesign(org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest, boolean)
+     */
+    public boolean restartEditDesign( DesignSessionRequest newRequest, boolean resetEditorPages )
+        throws OdaException
+    {
+        DesignSessionUtil.validateRequestSession( newRequest );
+        return super.restartEditDesign( newRequest, resetEditorPages );
+    }
+    
     /*
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSetDesignSessionBase#flushEditDesign()
