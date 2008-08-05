@@ -18,6 +18,7 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentService;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IElementIDProvider;
+import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -142,7 +143,7 @@ public class TransientEObjectUtil implements IElementIDProvider
     {
         try
         {
-            return getEObjectId(eObject);
+            return eObject instanceof ICatalogObject ? getEObjectId(eObject) : null;
         }
         catch (Exception e)
         {
