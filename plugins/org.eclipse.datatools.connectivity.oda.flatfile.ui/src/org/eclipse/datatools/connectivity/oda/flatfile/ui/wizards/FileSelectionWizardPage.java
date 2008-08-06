@@ -62,7 +62,6 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -459,15 +458,21 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private Composite createAddBtnComposite( Composite composite )
 	{
 		FormData data = new FormData( );
+		data.top = new FormAttachment( 50, 5 );
 		data.left = new FormAttachment( availableList, 3 );
-		data.bottom = new FormAttachment( 55, -5 );
 
-		Composite btnComposite = new Composite( composite, SWT.CENTER );
+		Composite btnComposite = new Composite( composite, SWT.NONE );
 		btnComposite.setLayoutData( data );
-		GridLayout btnLayout = new GridLayout( );
-		btnComposite.setLayout( btnLayout );
+		GridLayout layout = new GridLayout( );
+		layout.numColumns = 1;
+		btnComposite.setLayout( layout );
 
 		btnAdd = new Button( btnComposite, SWT.NONE );
+		GridData gridData = new GridData( GridData.VERTICAL_ALIGN_CENTER
+				| GridData.FILL_HORIZONTAL );
+		gridData.heightHint = 25;
+		btnAdd.setLayoutData( gridData );
+
 		if ( btnAdd.getStyle( ) ==( btnAdd.getStyle( )|SWT.LEFT_TO_RIGHT))
 		{
 			btnAdd.setImage( PlatformUI.getWorkbench( )
@@ -607,7 +612,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnMoveUp = new Button( btnComposite, SWT.ARROW | SWT.UP );
 		GridData btnMoveUpGd = new GridData( );
-		btnMoveUpGd.widthHint = btnMoveUpGd.heightHint = 20;
+		btnMoveUpGd.widthHint = btnMoveUpGd.heightHint = 25;
 		btnMoveUp.setLayoutData( btnMoveUpGd );
 		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
 
@@ -619,7 +624,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnRemove = new Button( btnComposite, SWT.PUSH );
 		GridData btnRemoveGd = new GridData( GridData.VERTICAL_ALIGN_CENTER );
-		btnRemoveGd.widthHint = btnRemoveGd.heightHint = 20;
+		btnRemoveGd.widthHint = btnRemoveGd.heightHint = 25;
 		btnRemove.setLayoutData( btnRemoveGd );
 		btnRemove.setImage( PlatformUI.getWorkbench( )
 				.getSharedImages( )
@@ -634,7 +639,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 
 		btnMoveDown = new Button( btnComposite, SWT.ARROW | SWT.DOWN );
 		GridData btnMoveDownGd = new GridData( );
-		btnMoveDownGd.widthHint = btnMoveDownGd.heightHint = 20;
+		btnMoveDownGd.widthHint = btnMoveDownGd.heightHint = 25;
 		btnMoveDown.setLayoutData( btnMoveDownGd );
 		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
 
