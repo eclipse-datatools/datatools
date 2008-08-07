@@ -67,8 +67,8 @@ $Export
 ------------------------
 
   DOUBLE_QUOTE
---   PERCENT
---   AMPERSAND
+  PERCENT
+  AMPERSAND
   QUOTE
   LEFT_PAREN
   RIGHT_PAREN
@@ -78,6 +78,7 @@ $Export
   MINUS_SIGN
   PERIOD
   SOLIDUS
+  REVERSE_SOLIDUS
   COLON
   SEMICOLON
   LESS_THAN_OPERATOR
@@ -204,7 +205,7 @@ Token	::=	Identifier
 
 	|	BracketOrTrigraph
 
-	|	WhiteSpace
+--	|	WhiteSpace
 
 	|	StatementTerminator
 
@@ -366,7 +367,7 @@ MLComment   ::= '/' '*' Inside Stars '/'  opt_Comment_Whitespace
         ./
 
 -- Whitespace that precedes or follows a multi-line comment
-opt_Comment_Whitespace ::= WS
+opt_Comment_Whitespace ::= WhiteSpace
         
         |   $empty
 
@@ -466,6 +467,12 @@ SSOperator	::=	'+'
 		  $EndAction
 		./
 
+		|	'\'
+		/.$BeginAction
+                        makeToken(TK_REVERSE_SOLIDUS);
+		  $EndAction
+		./
+
 		|	'('
 		/.$BeginAction
                         makeToken(TK_LEFT_PAREN);
@@ -514,11 +521,17 @@ SSOperator	::=	'+'
 --		  $EndAction
 --		./
 
---		|	'%'
---		/.$BeginAction
---                        makeToken(TK_PERCENT);
---		  $EndAction
---		./
+		|	'%'
+		/.$BeginAction
+                        makeToken(TK_PERCENT);
+		  $EndAction
+		./
+
+		|	'&'
+		/.$BeginAction
+                        makeToken(TK_AMPERSAND);
+		  $EndAction
+		./
 
 		|	'<'
 		/.$BeginAction
@@ -685,7 +698,7 @@ NotSQ		::=	Letter
 		|	Eol
 		|	EscapeSequence
         |   CtlCharNotWS            -- TODO: figure out if that is correct, for SQL2003 and/or DB2, put in for Hsin-Liang: SELECT '' FROM tab1;
-        |   "'" "'"                 --  double single quotes to represent a single quote
+--        |   "'" "'"                 --  double single quotes to represent a single quote
         |   HT 
         |   FF
         

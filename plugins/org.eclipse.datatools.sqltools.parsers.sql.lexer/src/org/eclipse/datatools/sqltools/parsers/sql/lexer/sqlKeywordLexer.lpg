@@ -6,7 +6,7 @@
 %Options slr
 %Options fp=SQLKeywordLexer,prefix=Char_
 %options noserialize
-%options package=com.ibm.db.parsers.sql.lexer
+%options package=org.eclipse.datatools.sqltools.parsers.sql.lexer
 %options export_terminals=("SQLParsersym.java", "TK_")
 %options template=sqlkeywordlexerTemplate.lpg
 
