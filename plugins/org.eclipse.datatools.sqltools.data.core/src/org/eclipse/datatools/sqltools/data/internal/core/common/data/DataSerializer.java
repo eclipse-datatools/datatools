@@ -51,11 +51,11 @@ public class DataSerializer {
             else 
             	return intf.format(val);
         else if (type==Types.REAL)
-            return nf.format(val);
+            return val.toString();
         else if (type==Types.FLOAT)
-            return nf.format(val);
+            return val.toString();
         else if (type==Types.DOUBLE)
-            return nf.format(val);
+            return val.toString();        	
         else if (type==Types.DECIMAL)
             if (val instanceof BigDecimal)
             	return BigDecimalFormat.getInstance().format((BigDecimal)val);
