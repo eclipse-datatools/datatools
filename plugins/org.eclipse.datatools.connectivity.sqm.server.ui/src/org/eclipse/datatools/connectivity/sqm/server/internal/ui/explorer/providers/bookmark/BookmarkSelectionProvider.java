@@ -24,6 +24,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.views.markers.MarkerItem;
 
 /**
  * @author ljulien
@@ -48,12 +49,12 @@ public class BookmarkSelectionProvider
                     {
 	                    IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 	                    Object obj = structuredSelection.getFirstElement();
-	                    if (obj == null || !(obj instanceof IMarker))
+	                    if (obj == null || !(obj instanceof MarkerItem))
 	                    {
 	                        return;
 	                    }
 	
-	                    IMarker marker = (IMarker) obj;
+	                    IMarker marker = ((MarkerItem) obj).getMarker();
 	                    try
 	                    {
 	                        if (marker.getType().equals(DataToolsUIConstants.TRANSIENT_BOOKMARK))

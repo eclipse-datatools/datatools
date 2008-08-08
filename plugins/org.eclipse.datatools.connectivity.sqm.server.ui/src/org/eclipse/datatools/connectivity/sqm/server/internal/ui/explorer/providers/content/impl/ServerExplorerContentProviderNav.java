@@ -322,48 +322,52 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
                 String groupID = group.getGroupId();
                 String elementName = group.getElementName();
                 
-                parent2 = getVirtualNode (viewer, parent1, groupID);
-                if (parent2 == null)
-                {
-                    loadChilds (viewer, parent1);
-                    parent2 = getVirtualNode (viewer, parent1, groupID);
-                    if (parent2 == null && parent1 instanceof IVirtualNode)
-                    {
-                        Object [] children =  ((IVirtualNode) parent1).getChildrenArray();
-                        for (int i = 0, n = children.length; i < n; i++)
-                        {
-                            Object parent4 = getVirtualNode (viewer, children[i], groupID);
-                            if (parent4 != null)
-                            {
-                                parent2 = parent4;
-                                break;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    loadChilds (viewer, parent2);
-                    Object parent3 = getVirtualNode (viewer, parent2, groupID);
-                    if (parent3 != null)
-                    {
-                        parent2 = parent3;
-                    }
-                }
-                parent1 = parent2;
-                if (elementName != null)
-                {
-                    parent2 = getEObjectNode (viewer, parent1, elementName);
-                    if (parent2 == null)
-                    {
-                        loadChilds (viewer, parent1);
-                        parent2 = getEObjectNode (viewer, parent1, elementName);
-                    }
-                }
-                parent1 = parent2;
+                // If elementName is null then the model
+                // probably has a default catalog and we can skip it.
+                if (elementName != null){  
+	                parent2 = getVirtualNode (viewer, parent1, groupID);
+	                if (parent2 == null)
+	                {
+	                    loadChilds (viewer, parent1);
+	                    parent2 = getVirtualNode (viewer, parent1, groupID);
+	                    if (parent2 == null && parent1 instanceof IVirtualNode)
+	                    {
+	                        Object [] children =  ((IVirtualNode) parent1).getChildrenArray();
+	                        for (int i = 0, n = children.length; i < n; i++)
+	                        {
+	                            Object parent4 = getVirtualNode (viewer, children[i], groupID);
+	                            if (parent4 != null)
+	                            {
+	                                parent2 = parent4;
+	                                break;
+	                            }
+	                        }
+	                    }
+	                }
+	                else
+	                {
+	                    loadChilds (viewer, parent2);
+	                    Object parent3 = getVirtualNode (viewer, parent2, groupID);
+	                    if (parent3 != null)
+	                    {
+	                        parent2 = parent3;
+	                    }
+	                }
+	                parent1 = parent2;
+	                if (elementName != null)
+	                {
+	                    parent2 = getEObjectNode (viewer, parent1, elementName);
+	                    if (parent2 == null)
+	                    {
+	                        loadChilds (viewer, parent1);
+	                        parent2 = getEObjectNode (viewer, parent1, elementName);
+	                    }
+	                }
+	                
+	                parent1 = parent2;
+	            }          
+	            	viewer.setSelection(new StructuredSelection(parent1));
             }
-            
-            viewer.setSelection(new StructuredSelection(parent1));
         }
         catch (Exception e)
         {
