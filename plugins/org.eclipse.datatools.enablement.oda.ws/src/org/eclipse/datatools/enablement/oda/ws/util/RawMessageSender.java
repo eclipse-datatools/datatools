@@ -192,7 +192,7 @@ public class RawMessageSender
 			do
 			{
 				readLen = connectionStream.read( buffer, pos, buffer.length - pos );
-				if( readLen != -1 )
+				if( readLen >= 0 )
 				{
 					pos += readLen;
 				}
@@ -279,7 +279,7 @@ class CompositeInputStream extends InputStream
 		{
 			int readLen = buf.length - pos;
 			System.arraycopy( buf, pos, b, off, readLen );
-			int sReadLen = stream.read( b, off + readLen, len - readLen );
+			int sReadLen = readFromStream( stream, b, off + readLen, len - readLen );
 			if( sReadLen != -1 )
 			{
 				readLen += sReadLen;
@@ -289,12 +289,41 @@ class CompositeInputStream extends InputStream
 		}
 		else
 		{
-			int readLen = stream.read( b, off, len );
+			int readLen = readFromStream( stream, b, off, len );
 			if( readLen != -1 )
 				pos += readLen;
 			return readLen;
 		}
 	}
+    
+    /**
+     * 
+     * @param is
+     * @param b
+     * @param off
+     * @param len
+     * @return
+     * @throws IOException
+     */
+    private int readFromStream( InputStream is, byte b[], int off, int len ) throws IOException
+    {
+    	int readLen = 0;
+    	int oneTimeReadLen = -1;
+    	
+		do
+		{
+			oneTimeReadLen = stream.read( b, off + readLen, len - readLen );
+			if( oneTimeReadLen >= 0 )
+			{
+				readLen += oneTimeReadLen;
+			}
+		}
+		while( oneTimeReadLen >= 0 && readLen < len );
+		
+		if( readLen == 0 )
+			return -1;
+		return readLen;
+    }
 
     /*
      * (non-Javadoc)
