@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2008 Sybase, Inc.
+ * Copyright (c) 2004-2008 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -8,6 +8,7 @@
  * 
  * Contributors: shongxum - initial API and implementation
  *     IBM Corporation -  fix for defect #223855
+ *     IBM Corporation -  fix for defect #241713
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -132,8 +133,16 @@ public class InternalProfileManager {
 	 */
 	public IConnectionProfile[] getProfiles(boolean searchRepositories) {
 		ArrayList cps = new ArrayList();
-		if (mProfiles == null) {
-			loadProfiles();
+		
+		if (mProfiles == null) 
+		{
+			if (loadProfiles()) 
+			{
+				for (int profileIndex = 0, totalProfiles = mProfiles.length; profileIndex < totalProfiles; profileIndex++) 
+				{
+					fireProfileAdded(mProfiles[profileIndex]);
+				}
+			}
 		}
 		
 		cps.addAll(Arrays.asList(mProfiles));
@@ -894,10 +903,10 @@ public class InternalProfileManager {
 		mProfileListeners.remove(listener);
 	}
 
-	private synchronized void loadProfiles() {
+	private synchronized boolean loadProfiles() {
 		if (mProfiles != null )
 		{
-			return;
+			return false;
 		}
 		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
 				.append(ConnectionProfileMgmt.FILENAME).toFile();
@@ -971,17 +980,12 @@ public class InternalProfileManager {
 			}
 		}
 
-		List defaultProfiles = new ArrayList(nameToProfileMap.values());
 		for (int i = 0; i < scps.length; ++i) {
 			if (scps[i].getName() != null) {
 				// Don't need to worry if it already exists.
 				// We don't want to use the default if the user has a
 				// profile with this name.
-				Object replacedProfile = nameToProfileMap.put(
-						scps[i].getName(), scps[i]);
-				if (replacedProfile != null) {
-					defaultProfiles.remove(replacedProfile);
-				}
+				nameToProfileMap.put(scps[i].getName(), scps[i]);
 			}
 		}
 
@@ -1000,12 +1004,9 @@ public class InternalProfileManager {
 		mProfiles = (IConnectionProfile[]) nameToProfileMap.values().toArray(
 				new IConnectionProfile[nameToProfileMap.size()]);
 
-		for (Iterator it = defaultProfiles.iterator(); it.hasNext();) {
-			fireProfileAdded((IConnectionProfile) it.next());
-		}
-
 		autoConnectProfiles();
 		addProfileListener(mProfileChangeListener);
+		return true;
 	}
 	
 	private void backupProfilesData ( File ioFile ) {
