@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ *               IBM Corporation - fix for 243829
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers;
 
@@ -703,11 +704,11 @@ public class DriverManager {
 			String prefix = DriverMgmtMessages
 					.getString("NewDriverDialog.text.id_prefix"); //$NON-NLS-1$
 			String suffix = DriverMgmtMessages
-					.getString("DriverMgmtPlugin.default_instance_suffix"); //$NON-NLS-1$
-
-			String id = prefix + template.getId();
-			
+					.getString("DriverMgmtPlugin.default_instance_suffix"); //$NON-NLS-1$			
+					
 			String name = template.getDefaultDefinitionName() + " " + suffix;//$NON-NLS-1$
+			String id = prefix + template.getId()+ "." + name;
+			
 			debug("Default driver name from the template is " + name); //$NON-NLS-1$
 			if (driverValsProvider != null) {
 				String driverValsName = driverValsProvider.createDefaultValue(IDriverValuesProvider.VALUE_NAME);

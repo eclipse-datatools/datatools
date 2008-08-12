@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Sybase, Inc.
+ * Copyright (c) 2008 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ *               IBM Corporation - fix for 243829
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal.ui.dialogs;
 
@@ -1025,23 +1026,8 @@ public class DriverDialog extends TitleAreaDialog {
 				return;
 			}
 			else {
-				if (propId != null) {
-					Object obj2 = DriverManager.getInstance().getDriverInstanceByID(propId);
-					if (obj2 != null) {
-						DriverInstance di = (DriverInstance) obj;
-						DriverInstance idDI = (DriverInstance) obj2;
-						if (idDI.equals(di)) {
-							isOk = true;
-						}
-						else {
-							// editing driver, new name matches existing driver
-							String errorMessage = DriverMgmtMessages
-								.getString("NewDriverDialog.driverExistsWithName"); //$NON-NLS-1$
-							this.setErrorMessage(errorMessage);
-							return;
-						}
-					}
-				}
+				// We're in edit mode and user cannot change the name so do nothing
+				isOk = true;
 			}
 		}
 		else if (obj == null) {
