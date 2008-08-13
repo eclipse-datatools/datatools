@@ -62,7 +62,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     {
     }
 
-
+    public boolean isComplete()
+    {
+        return false;
+    }
 
         //Implements JavaCC methods
     void jjtreeOpenNodeScope(Node n)
@@ -1080,13 +1083,13 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
         } catch (ParseException e) {
                         //TODO can we create an UnknownStatement?
                     exceptions.add(e);
-                    error_skiptobefore(new int[]{SEMICOLON, END}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START);
         } catch (Throwable t) {
                 //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                         ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                         e.currentToken = getToken(0);
                         exceptions.add(e);
-                    error_skiptobefore(new int[]{END, SEMICOLON}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START);
         }
       }
       jj_consume_token(0);
@@ -1250,13 +1253,13 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       }
     } catch (ParseException e) {
           exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START);
     } catch (Throwable t) {
         //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                 ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                 e.currentToken = getToken(0);
                 exceptions.add(e);
-            error_skiptobefore(new int[]{END, GO, SEMICOLON}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START);
     }
 
   }
@@ -1388,11 +1391,11 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       jj_consume_token(-1);
       throw new ParseException();
     }
-                error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START);
   }
 
   final public void any_stmt_token() throws ParseException {
-                error_skiptobefore(new int[]{END, SEMICOLON, GO}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START);
   }
 
   final public void use() throws ParseException {
@@ -7133,11 +7136,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     finally { jj_save(176, xla); }
   }
 
-  final private boolean jj_3R_517() {
-    if (jj_3R_420()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_502() {
     if (jj_3R_510()) return true;
     Token xsp;
@@ -12266,6 +12264,11 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     if (jj_3R_518()) return true;
     if (jj_3R_519()) return true;
     if (jj_3R_518()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_517() {
+    if (jj_3R_420()) return true;
     return false;
   }
 
