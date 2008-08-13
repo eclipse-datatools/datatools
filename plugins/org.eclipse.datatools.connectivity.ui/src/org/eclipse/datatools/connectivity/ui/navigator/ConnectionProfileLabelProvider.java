@@ -162,6 +162,9 @@ public class ConnectionProfileLabelProvider extends LabelProvider implements
 				}
 			}
 			text = sb.toString();
+			
+			// for bug 234423, replace all newline \n characters with spaces
+			text = text.replace('\n', ' ');
 		}
 		else {
 			text = super.getText(element);
