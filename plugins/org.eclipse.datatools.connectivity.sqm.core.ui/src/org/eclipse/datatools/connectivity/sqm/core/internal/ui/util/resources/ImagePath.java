@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,8 @@ public class ImagePath
 	public static final String DATABASE = "database.gif"; //$NON-NLS-1$
 	public static final String TABLE = "table.gif"; //$NON-NLS-1$
 	public static final String ROLE = "role.gif"; //$NON-NLS-1$
+	public static final String USER = "user.gif"; //$NON-NLS-1$
+	public static final String GROUP = "group.gif"; //$NON-NLS-1$
 	public static final String COLUMN = "columns.gif"; //$NON-NLS-1$
 	public static final String NULL_COLUMN = "nullColumn.gif"; //$NON-NLS-1$
 	public static final String NOT_NULL_COLUMN = "notNullColumn.gif"; //$NON-NLS-1$
