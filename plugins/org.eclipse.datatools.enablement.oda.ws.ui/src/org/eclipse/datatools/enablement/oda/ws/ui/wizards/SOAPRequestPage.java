@@ -498,7 +498,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 		private void mergeParameters( )
 		{
 			SOAPParameter[] soapParameters = soapRequest.getParameters( );
-			for ( int i = 0; i < parameters.length; i++ )
+			
+			for ( int i = 0; parameters != null && i < parameters.length; i++ )
 			{
 				if ( !WSUIUtil.isNull( parameters[i] ) )
 				{
