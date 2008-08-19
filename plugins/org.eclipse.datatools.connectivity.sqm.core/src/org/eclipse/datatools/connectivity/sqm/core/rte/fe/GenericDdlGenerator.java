@@ -160,7 +160,7 @@ public class GenericDdlGenerator implements DDLGenerator {
                 if(statement != null) script.addCreateSchemaStatement(statement);
             }
             else if(o instanceof UserDefinedType) {
-            	if (!this.generateSchemas(options)) continue;
+            	if (!this.generateUserDefinedTypes(options)) continue;
                 String statement = builder.createUserDefinedType((UserDefinedType) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addCreateUserDefinedTypeStatement(statement);
             }
@@ -232,7 +232,7 @@ public class GenericDdlGenerator implements DDLGenerator {
                 if(statement != null) script.addDropSchemaStatement(statement);
             }
             else if(o instanceof UserDefinedType) {
-            	if (!this.generateSchemas(options)) continue;
+            	if (!this.generateUserDefinedTypes(options)) continue;
                 String statement = builder.dropUserDefinedType((UserDefinedType) o, quoteIdentifiers, qualifyNames);
                 if(statement != null) script.addDropUserDefinedTypeStatement(statement);
             }
