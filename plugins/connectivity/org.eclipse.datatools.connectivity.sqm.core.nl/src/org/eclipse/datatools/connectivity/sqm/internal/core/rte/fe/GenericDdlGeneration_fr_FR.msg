@@ -33,3 +33,5 @@ GENERATION_OPTIONS_DES = Options pour la génération
 ADDITIONAL_ELEMENTS = Eléments supplémentaires
 ADDITIONAL_ELEMENTS_DES = Générer des éléments supplémentaires
 GENERATE_GENERATE_ASSERTION_DES = Générer des assertions
+GENERATE_USER_DEFINED_TYPE = Generate user defined types
+GENERATE_USER_DEFINED_TYPE_DES = Generate user defined types
