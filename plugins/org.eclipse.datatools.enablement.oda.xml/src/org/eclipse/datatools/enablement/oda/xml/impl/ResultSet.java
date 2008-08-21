@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
 
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
@@ -21,10 +22,12 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.SaxParserConsumer;
 import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
+
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.util.ULocale;
 
 /**
  * This class implement IResultSet class 
@@ -50,6 +53,14 @@ public class ResultSet implements IResultSet
 	//The ISaxParserConsumer class used to help populating the data.
 	private SaxParserConsumer spConsumer;
 	
+	private String tableName;
+	
+	private RelationInformation relationInfo;
+	
+	private Connection connection;
+	
+	private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
+	
 	/**
 	 * 
 	 * @param fileName
@@ -57,16 +68,18 @@ public class ResultSet implements IResultSet
 	 * @param tableName
 	 * @throws OdaException
 	 */
-	public ResultSet( IXMLSource xmlSource, RelationInformation ri, String tableName, int maxRows )
+	public ResultSet( Connection connection, RelationInformation ri, String tableName, int maxRows )
 			throws OdaException
 	{
 		this.rsMetaData = new ResultSetMetaData( ri, tableName );
 
 		this.maxRows = maxRows;
 		
-		isClosed = false;
+		this.relationInfo = ri;
+		this.tableName = tableName;
+		this.connection = connection;
 		
-		spConsumer = new SaxParserConsumer( ri, xmlSource, tableName );
+		isClosed = false;
 	}
 
 	/*
@@ -97,7 +110,10 @@ public class ResultSet implements IResultSet
 	 */
 	public void close( ) throws OdaException
 	{
-		this.spConsumer.close( );
+		if ( this.spConsumer != null )
+		{
+			this.spConsumer.close( );
+		}
 		this.rsMetaData = null;
 		
 		this.isClosed = true;
@@ -120,6 +136,12 @@ public class ResultSet implements IResultSet
 	public boolean next( ) throws OdaException
 	{
 		testClosed();
+		
+		if ( spConsumer == null )
+		{
+			spConsumer = new SaxParserConsumer( relationInfo, connection.getXMLSource( ), tableName );
+		}
+		
 		//If the row number exceeds the defined maxRows then return false;
 		if ( spConsumer.getCurrentRowNo() >= maxRows && maxRows != 0 )
 		{
@@ -137,7 +159,7 @@ public class ResultSet implements IResultSet
 	public int getRow( ) throws OdaException
 	{
 		testClosed();
-		return spConsumer.getCurrentRowNo();
+		return spConsumer == null ? 0 : spConsumer.getCurrentRowNo();
 	}
 
 	/*
@@ -232,9 +254,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return number.intValue( );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return 0;
     }
 
@@ -274,9 +307,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return number.doubleValue( );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return 0;
     }
 
@@ -316,9 +360,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return new BigDecimal( number.toString( ) );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return null;
     }
 
@@ -568,7 +623,17 @@ public class ResultSet implements IResultSet
 				}
 				catch ( NumberFormatException e )
 				{
-					return Boolean.FALSE;
+					try
+					{
+						Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+						if ( number != null )
+						{
+							return number.intValue( ) == 0 ? Boolean.FALSE : Boolean.TRUE;
+						}
+					}
+					catch ( ParseException e1 )
+					{
+					}
 				}
 			}
 		}

@@ -44,18 +44,18 @@ public class Query implements IQuery
 	//	indicate whether the result set has been closed.
 	private boolean isClosed;
 	
-	private IXMLSource xmlSource;
+	private Connection connection;
 	/**
 	 * 
 	 * @param file
 	 * @param ri
 	 */
-	public Query( IXMLSource xmlSource )
+	public Query( Connection connection )
 	{
 		tableName = null;
 		maxRows = 0;
 		isClosed = false;
-		this.xmlSource = xmlSource;
+		this.connection = connection;
 	}
 	
 	/*
@@ -136,7 +136,7 @@ public class Query implements IQuery
 		if ( this.tableName == null || this.tableName.trim( ).length( ) == 0 )
 			throw new OdaException( Messages.getString( "Query.QueryHasNotBeenPrepared" ) ); //$NON-NLS-1$
 
-		ResultSet result = new ResultSet( this.xmlSource,
+		ResultSet result = new ResultSet( connection,
 				relationInformation,
 				tableName,
 				this.getMaxRows( ));

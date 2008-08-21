@@ -37,6 +37,8 @@ public class Connection implements IConnection
 	private boolean isOpen;
 	
 	private Map appContext;
+	
+	Properties connProperties;
 
 	/*
 	 *  (non-Javadoc)
@@ -49,31 +51,7 @@ public class Connection implements IConnection
 		{
 			return;
 		}
-		String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-		String file = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
-		if ( appContext != null
-				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
-				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
-		{
-			boolean closeOriginalInputStream = false;
-			Object closeInputStream = appContext.get( Constants.APPCONTEXT_CLOSEINPUTSTREAM );
-			if( TRUE_LITERAL.equalsIgnoreCase( closeInputStream == null ? null : closeInputStream.toString( ) ) )
-			{
-					closeOriginalInputStream = true;
-			}
-			xmlSource = new XMLSourceFromInputStream( 
-					(InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ), 
-					encoding,
-					closeOriginalInputStream );
-		}
-		else if ( file != null )
-		{
-			xmlSource = new XMLSourceFromPath( file, encoding );
-		}
-		else
-		{
-			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
-		}
+		this.connProperties = connProperties;
 		isOpen = true;
 	}
 
@@ -157,7 +135,7 @@ public class Connection implements IConnection
 	public IQuery newQuery( String dataSetType ) throws OdaException
 	{
 		
-		return new Query( this.xmlSource );
+		return new Query( this );
 	}
 
 	/*
@@ -190,5 +168,38 @@ public class Connection implements IConnection
 	{
 		throw new UnsupportedOperationException( );
 
+	}
+	
+	public IXMLSource getXMLSource( ) throws OdaException
+	{
+		if ( xmlSource == null )
+		{
+			String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+			String file = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
+			if ( appContext != null
+					&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
+					&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
+			{
+				boolean closeOriginalInputStream = false;
+				Object closeInputStream = appContext.get( Constants.APPCONTEXT_CLOSEINPUTSTREAM );
+				if( TRUE_LITERAL.equalsIgnoreCase( closeInputStream == null ? null : closeInputStream.toString( ) ) )
+				{
+					closeOriginalInputStream = true;
+				}
+				xmlSource = new XMLSourceFromInputStream( 
+						(InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ), 
+						encoding,
+						closeOriginalInputStream );
+			}
+			else if ( file != null )
+			{
+				xmlSource = new XMLSourceFromPath( file, encoding );
+			}
+			else
+			{
+				throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
+			}
+		}
+		return xmlSource;
 	}
 }
