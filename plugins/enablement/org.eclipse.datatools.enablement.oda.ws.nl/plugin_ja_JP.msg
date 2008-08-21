@@ -28,3 +28,4 @@ datasource.property.connectionTimeOut=接続のタイムアウト(&T)
 dataset.property.xmlFileURI=XML ファイル(&X)
 dataset.property.xsdFileURI=スキーマファイル(&S)
 datasource.property.wsdlUrl=WSDL URL (&W)
+datasource.property.driverClassPath=Driver Class&Path

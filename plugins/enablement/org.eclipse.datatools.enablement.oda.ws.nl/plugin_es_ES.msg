@@ -28,3 +28,4 @@ datasource.property.connectionTimeOut=&Tiempo límite de conexión
 dataset.property.xmlFileURI=Archivo &XML
 dataset.property.xsdFileURI=Archivo del e&squema
 datasource.property.wsdlUrl=URL de &WSDL
+datasource.property.driverClassPath=Driver Class&Path

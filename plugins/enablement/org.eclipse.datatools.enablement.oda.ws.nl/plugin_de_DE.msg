@@ -28,3 +28,4 @@ datasource.property.connectionTimeOut=&Zeitüberschreitung für Verbindung
 dataset.property.xmlFileURI=&XML-Datei
 dataset.property.xsdFileURI=&Schema-Datei
 datasource.property.wsdlUrl=URL für &WSDL
+datasource.property.driverClassPath=Driver Class&Path
