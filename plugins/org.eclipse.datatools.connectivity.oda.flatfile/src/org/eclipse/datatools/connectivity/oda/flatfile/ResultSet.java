@@ -17,6 +17,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.ParseException;
+
 import org.eclipse.datatools.connectivity.oda.IBlob;
 import org.eclipse.datatools.connectivity.oda.IClob;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
@@ -25,6 +27,9 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.DateUtil;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.FlatFileDataReader;
+
+import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.util.ULocale;
 
 /**
  * Flat file data provider's implementation of the ODA IResultSet interface.
@@ -44,6 +49,8 @@ public class ResultSet implements IResultSet
     private boolean wasNull = false;
     //a counter that counts the total number of rows read from the flatfile
     private int fetchAccumulator = 0;
+    
+    private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
     
     
     /**
@@ -333,7 +340,7 @@ public class ResultSet implements IResultSet
      */
     private int stringToInt( String stringValue )
     {
-        if( stringValue != null )
+    	if( stringValue != null )
         {
             try
             {
@@ -341,9 +348,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return number.intValue( );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return 0;
     }
 
@@ -354,7 +372,7 @@ public class ResultSet implements IResultSet
      */
     private double stringToDouble( String stringValue )
     {
-        if( stringValue != null )
+    	if( stringValue != null )
         {
             try
             {
@@ -362,9 +380,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return number.doubleValue( );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return 0;
     }
 
@@ -375,7 +404,7 @@ public class ResultSet implements IResultSet
      */
     private BigDecimal stringToBigDecimal( String stringValue )
     {
-        if( stringValue != null )
+    	if( stringValue != null )
         {
             try
             {
@@ -383,9 +412,20 @@ public class ResultSet implements IResultSet
             }
             catch( NumberFormatException e )
             {
-                this.wasNull = true;
+				try
+				{
+					Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+					if ( number != null )
+					{
+						return new BigDecimal( number.toString( ) );
+					}
+				}
+				catch ( ParseException e1 )
+				{
+				}
             }
         }
+    	this.wasNull = true;
         return null;
     }
 
@@ -498,7 +538,17 @@ public class ResultSet implements IResultSet
 				}
 				catch ( NumberFormatException e )
 				{
-					return Boolean.FALSE;
+					try
+					{
+						Number number = NumberFormat.getInstance( JRE_DEFAULT_LOCALE ).parse( stringValue );
+						if ( number != null )
+						{
+							return number.intValue( ) == 0 ? Boolean.FALSE : Boolean.TRUE;
+						}
+					}
+					catch ( ParseException e1 )
+					{
+					}
 				}
 			}
 		}
