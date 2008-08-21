@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.enablement.oda.ws.ui.Activator;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
@@ -102,6 +103,7 @@ public class OperationPage extends DataSetWizardPage
 		{
 			parent.getShell( ).setLocation( x / 2, y / 2 );
 		}
+		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_OPERATION );
 	}
 
 	private void initialImages( )

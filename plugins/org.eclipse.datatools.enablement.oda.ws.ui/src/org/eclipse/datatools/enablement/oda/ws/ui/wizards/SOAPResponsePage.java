@@ -16,7 +16,9 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -72,6 +74,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	{
 		setControl( createPageControl( parent ) );
 		initializeControl( );
+		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_SOAP_RESPONSE );
 	}
 
 	private Control createPageControl( Composite parent )

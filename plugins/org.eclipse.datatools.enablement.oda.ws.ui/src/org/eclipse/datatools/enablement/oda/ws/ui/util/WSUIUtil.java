@@ -29,6 +29,8 @@ import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.datatools.enablement.oda.ws.impl.Driver;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPParameter;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * 
@@ -253,6 +255,18 @@ public class WSUIUtil
 			// ignore
 			e.printStackTrace( );
 		}
+	}
+	
+	/**
+	 * 
+	 * @param control
+	 * @param contextId
+	 */
+	public static void setSystemHelp( Control control, String contextId )
+	{
+		PlatformUI.getWorkbench( )
+				.getHelpSystem( )
+				.setHelp( control, contextId );
 	}
 
 }
