@@ -65,6 +65,8 @@ public class ATreeNode
 					DataTypes.getTypeString( DataTypes.INT ) );
 			xmlTypeToDataType.put( "decimal",    //$NON-NLS-1$    
 					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
+			xmlTypeToDataType.put( "long",    //$NON-NLS-1$    
+					DataTypes.getTypeString( DataTypes.BIGDECIMAL ) );
 			xmlTypeToDataType.put( "double",   //$NON-NLS-1$
 					DataTypes.getTypeString( DataTypes.DOUBLE ) );
 			xmlTypeToDataType.put( "float",   //$NON-NLS-1$
