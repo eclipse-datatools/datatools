@@ -16,6 +16,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XMLDataPreviewDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -114,13 +115,17 @@ public class XMLColumnMappingPage
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage#getQueryText(org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
+	 * @see
+	 * org.eclipse.datatools.enablement.oda.xml.ui.wizards.ColumnMappingPage
+	 * #getQueryText
+	 * (org.eclipse.datatools.connectivity.oda.design.DataSetDesign)
 	 */
 	protected String getQueryText( DataSetDesign dataSetDesign )
 	{
-		return WSUIUtil.getNonNullString( dataSetDesign.getPrivateProperties( )
+		String queryTx = dataSetDesign.getPrivateProperties( )
 				.findProperty( Constants.XML_QUERYTEXT )
-				.getValue( ) );
+				.getValue( );
+		return queryTx == null ? WSUtil.EMPTY_STRING : queryTx;
 	}
 
 	/*

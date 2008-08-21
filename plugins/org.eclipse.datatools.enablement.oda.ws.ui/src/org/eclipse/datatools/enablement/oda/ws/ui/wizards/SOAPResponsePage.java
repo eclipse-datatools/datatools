@@ -17,7 +17,7 @@ import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPag
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
-import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
@@ -120,7 +120,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				xsdFileURI.setText( WSUIUtil.EMPTY_STRING );
+				xsdFileURI.setText( WSUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -204,7 +204,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				xmlFileURI.setText( WSUIUtil.EMPTY_STRING );
+				xmlFileURI.setText( WSUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -311,7 +311,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 	{
 		String xsd = WSConsole.getInstance( )
 				.getPropertyValue( Constants.XSD_FILE_URI );
-		if ( !WSUIUtil.isNull( xsd ) )
+		if ( !WSUtil.isNull( xsd ) )
 		{
 			dftXSDRadio.setSelection( false );
 			extXSDRadio.setSelection( true );
@@ -320,15 +320,17 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 		String xml = WSConsole.getInstance( )
 				.getPropertyValue( Constants.XML_FILE_URI );
-		if ( !WSUIUtil.isNull( xml ) )
+		if ( !WSUtil.isNull( xml ) )
 		{
 			dftXMLRadio.setSelection( false );
 			extXMLRadio.setSelection( true );
 			xmlFileURI.setText( xml );
 		}
 
-		soapEndPoint.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getPropertyValue( Constants.SOAP_ENDPOINT ) ) );
+		String value = WSConsole.getInstance( )
+				.getPropertyValue( Constants.SOAP_ENDPOINT );
+		if ( value != null )
+			soapEndPoint.setText( value );
 		saved = false;
 	}
 

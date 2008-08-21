@@ -164,9 +164,9 @@ public class Query implements IQuery
 			if ( WSUtil.isNull( soapEndPoint ) )
 				soapEndPoint = WSDLAdvisor.getLocationURI( wsdlURI,
 						operationTrace );
-			rawMessageSender.setSpec( WSUtil.getNonNullString( soapEndPoint ) );
-			rawMessageSender.setSoapAction( WSUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( wsdlURI,
-					operationTrace ) ) );
+			rawMessageSender.setSpec( soapEndPoint );
+			rawMessageSender.setSoapAction( WSDLAdvisor.getSOAPActionURI( wsdlURI,
+					operationTrace ) );
 			
 			SOAPResponse soapResponse = null;
 			

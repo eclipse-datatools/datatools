@@ -21,6 +21,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.jface.dialogs.TrayDialog;
@@ -169,7 +170,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			public void widgetSelected( SelectionEvent e )
 			{
-				queryText.setText( WSUIUtil.EMPTY_STRING );
+				queryText.setText( WSUtil.EMPTY_STRING );
 			}
 
 		} );
@@ -177,8 +178,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	private void regenerateTemplate( )
 	{
-		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getTemplate( ) ) );
+		queryText.setText( WSConsole.getInstance( ).getTemplate( ) );
 	}
 
 	/**
@@ -200,7 +200,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		String wsQueryText = WSConsole.getInstance( )
 				.getPropertyValue( Constants.WS_QUERYTEXT );
-		queryText.setText( WSUIUtil.getNonNullString( wsQueryText ) );
+		if ( wsQueryText != null )
+			queryText.setText( wsQueryText );
 		parameters = WSConsole.getInstance( ).getParameters( );
 		saved = false;
 	}
@@ -249,8 +250,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	void refresh( )
 	{
-		queryText.setText( WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.manipulateTemplate( ) ) );
+		String value = WSConsole.getInstance( ).manipulateTemplate( );
+		if ( value != null )
+			queryText.setText( value );
 		parameters = WSConsole.getInstance( ).getParameters( );
 		saved = false;
 	}
@@ -410,21 +412,21 @@ public class SOAPRequestPage extends DataSetWizardPage
 				public String getColumnText( Object element, int columnIndex )
 				{
 					SOAPParameter param = ( (SOAPParameter) element );
-					String value = WSUIUtil.EMPTY_STRING;
+					String value = WSUtil.EMPTY_STRING;
 					switch ( columnIndex )
 					{
 						case 0 :
 							value = param.getName( );
 							break;
 						case 1 :
-							value = WSUIUtil.EMPTY_STRING;
+							value = WSUtil.EMPTY_STRING;
 							break;
 						case 2 :
 							value = param.getDefaultValue( );
 							break;
 					}
 
-					return WSUIUtil.getNonNullString( value );
+					return value;
 				}
 
 				public void addListener( ILabelProviderListener listener )
@@ -500,12 +502,12 @@ public class SOAPRequestPage extends DataSetWizardPage
 			SOAPParameter[] soapParameters = soapRequest.getParameters( );
 			for ( int i = 0; parameters != null && i < parameters.length; i++ )
 			{
-				if ( !WSUIUtil.isNull( parameters[i] ) )
+				if ( !WSUtil.isNull( parameters[i] ) )
 				{
 					int pos = -1;
 					for ( int j = 0; j < soapParameters.length; j++ )
 					{
-						if ( !WSUIUtil.isNull( soapParameters[j].getName( ) )
+						if ( !WSUtil.isNull( soapParameters[j].getName( ) )
 								&& soapParameters[j].getName( )
 										.equals( parameters[i].getName( ) ) )
 						{

@@ -38,18 +38,6 @@ public class WSUtil
 	}
 
 	/**
-	 * Gets an empty string if the given string is null, the string itself will
-	 * be returned as is if otherwise
-	 * 
-	 * @param value
-	 * @return
-	 */
-	public static String getNonNullString( String value )
-	{
-		return value == null ? EMPTY_STRING : value;
-	}
-
-	/**
 	 * Parses the string argument as a signed decimal <code>long</code>.
 	 * 
 	 * @param string

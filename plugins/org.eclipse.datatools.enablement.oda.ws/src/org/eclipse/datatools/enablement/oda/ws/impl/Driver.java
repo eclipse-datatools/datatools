@@ -21,13 +21,13 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.util.manifest.DataTypeMapping;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ExtensionManifest;
 import org.eclipse.datatools.connectivity.oda.util.manifest.ManifestExplorer;
+import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 
 /**
  * Implementation class of IDriver for an ODA runtime driver.
  */
 public class Driver implements IDriver
 {
-    static String ODA_DATA_SOURCE_ID = "org.eclipse.datatools.enablement.oda.ws";  //$NON-NLS-1$
     
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IDriver#getConnection(java.lang.String)
@@ -71,7 +71,7 @@ public class Driver implements IDriver
         throws OdaException
     {
         return ManifestExplorer.getInstance()
-                .getExtensionManifest( ODA_DATA_SOURCE_ID );
+                .getExtensionManifest( Constants.DATA_SOURCE_ID );
     }
     
     /**

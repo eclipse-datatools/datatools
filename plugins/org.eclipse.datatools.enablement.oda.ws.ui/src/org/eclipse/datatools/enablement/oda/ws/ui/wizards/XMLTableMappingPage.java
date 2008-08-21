@@ -16,6 +16,7 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.datatools.enablement.oda.xml.ui.wizards.XPathChoosePage;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.swt.widgets.Composite;
@@ -70,9 +71,10 @@ public class XMLTableMappingPage extends XPathChoosePage
 	 */
 	protected String getQueryText( DataSetDesign dataSetDesign )
 	{
-		return WSUIUtil.getNonNullString( dataSetDesign.getPrivateProperties( )
+		String queryText = dataSetDesign.getPrivateProperties( )
 				.findProperty( Constants.XML_QUERYTEXT )
-				.getValue( ) );
+				.getValue( );
+		return queryText == null ? WSUtil.EMPTY_STRING : queryText;
 	}
 
 	/*

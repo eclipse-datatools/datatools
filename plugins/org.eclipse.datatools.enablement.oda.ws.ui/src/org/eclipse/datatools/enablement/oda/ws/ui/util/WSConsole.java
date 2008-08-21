@@ -32,6 +32,7 @@ import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.soap.SOAPResponse;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
+import org.eclipse.datatools.enablement.oda.ws.util.PropertyValueUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
@@ -149,27 +150,35 @@ public class WSConsole
 		}
 		if ( dataSetDesign.getPublicProperties( ) != null )
 		{
-			String xmlFileURI = dataSetDesign.getPublicProperties( )
+			String value = dataSetDesign.getPublicProperties( )
 					.getProperty( Constants.XML_FILE_URI );
-			setPropertyValue( Constants.XML_FILE_URI, xmlFileURI == null
-					? WSUIUtil.EMPTY_STRING : xmlFileURI );
+			String xmlFileURI = PropertyValueUtil.getQualifiedValueForDataSet( value,
+					Constants.XML_FILE_URI,
+					dataSetDesign.getOdaExtensionDataSetId( ) );
+			setPropertyValue( Constants.XML_FILE_URI, xmlFileURI );
 
-			String xsdFileURI = dataSetDesign.getPublicProperties( )
+			value = dataSetDesign.getPublicProperties( )
 					.getProperty( Constants.XSD_FILE_URI );
-			setPropertyValue( Constants.XSD_FILE_URI, xmlFileURI == null
-					? WSUIUtil.EMPTY_STRING : xsdFileURI );
+			String xsdFileURI = PropertyValueUtil.getQualifiedValueForDataSet( value,
+					Constants.XSD_FILE_URI,
+					dataSetDesign.getOdaExtensionDataSetId( ) );
+			setPropertyValue( Constants.XSD_FILE_URI, xsdFileURI );
 		}
 		if ( dataSetDesign.getPrivateProperties( ) != null )
 		{
-			String operationTrace = dataSetDesign.getPrivateProperties( )
+			String value = dataSetDesign.getPrivateProperties( )
 					.getProperty( Constants.OPERATION_TRACE );
-			setPropertyValue( Constants.OPERATION_TRACE, operationTrace == null
-					? WSUIUtil.EMPTY_STRING : operationTrace );
+			String operationTrace = PropertyValueUtil.getQualifiedValueForDataSet( value,
+					Constants.OPERATION_TRACE,
+					dataSetDesign.getOdaExtensionDataSetId( ) );
+			setPropertyValue( Constants.OPERATION_TRACE, operationTrace );
 
-			String xmlQueryText = dataSetDesign.getPrivateProperties( )
+			value = dataSetDesign.getPrivateProperties( )
 					.getProperty( Constants.XML_QUERYTEXT );
-			setPropertyValue( Constants.XML_QUERYTEXT, xmlQueryText == null
-					? WSUIUtil.EMPTY_STRING : xmlQueryText );
+			String xmlQueryText = PropertyValueUtil.getQualifiedValueForDataSet( value,
+					Constants.XML_QUERYTEXT,
+					dataSetDesign.getOdaExtensionDataSetId( ) );
+			setPropertyValue( Constants.XML_QUERYTEXT, xmlQueryText );
 		}
 		if ( dataSetDesign.getDataSourceDesign( ) != null )
 		{
@@ -184,26 +193,32 @@ public class WSConsole
 				props = new java.util.Properties( );
 			}
 
-			String soapEndPoint = props.getProperty( Constants.SOAP_ENDPOINT,
-					WSUIUtil.EMPTY_STRING );
+			String value = props.getProperty( Constants.SOAP_ENDPOINT );
+			String soapEndPoint = PropertyValueUtil.getQualifiedValueForDataSource( value,
+					Constants.SOAP_ENDPOINT );
 			setPropertyValue( Constants.SOAP_ENDPOINT, soapEndPoint );
 
-			String customConnectionClass = props.getProperty( Constants.CUSTOM_CONNECTION_CLASS,
-					WSUIUtil.EMPTY_STRING );
+			value = props.getProperty( Constants.CUSTOM_CONNECTION_CLASS );
+			String customConnectionClass = PropertyValueUtil.getQualifiedValueForDataSource( value,
+					Constants.CUSTOM_CONNECTION_CLASS );
 			setPropertyValue( Constants.CUSTOM_CONNECTION_CLASS,
-					customConnectionClass );
+						customConnectionClass );
 
-			String customDriverPath = props.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH,
-					WSUIUtil.EMPTY_STRING );
+			value = props.getProperty( Constants.CUSTOM_DRIVER_CLASS_PATH );
+			String customDriverPath = PropertyValueUtil.getQualifiedValueForDataSource( value,
+					Constants.CUSTOM_DRIVER_CLASS_PATH );
 			setPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH,
-					customDriverPath );
+						customDriverPath );
 
-			String connectionTimeOut = props.getProperty( Constants.CONNECTION_TIMEOUT,
-					"0" ); //$NON-NLS-1$
-			setPropertyValue( Constants.CONNECTION_TIMEOUT, connectionTimeOut );
+			value = props.getProperty( Constants.CONNECTION_TIMEOUT );
+			String connectionTimeOut = PropertyValueUtil.getQualifiedValueForDataSource( value,
+					Constants.CUSTOM_DRIVER_CLASS_PATH );
+			setPropertyValue( Constants.CONNECTION_TIMEOUT,
+						connectionTimeOut );
 			
-			String wsdlURI = props.getProperty( Constants.WSDL_URI,
-					WSUIUtil.EMPTY_STRING );
+			value = props.getProperty( Constants.WSDL_URI );
+			String wsdlURI = PropertyValueUtil.getQualifiedValueForDataSource( value,
+					Constants.WSDL_URI );
 			setPropertyValue( Constants.WSDL_URI, wsdlURI );
 		}
 	}
@@ -233,12 +248,12 @@ public class WSConsole
 			String xmlFile = dataSetDesign.getPublicProperties( )
 					.getProperty( Constants.XML_FILE_URI );
 			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlFile == null
-					? WSUIUtil.EMPTY_STRING : xmlFile );
+					? WSUtil.EMPTY_STRING : xmlFile );
 
 			String schema = dataSetDesign.getPublicProperties( )
 					.getProperty( Constants.XSD_FILE_URI );
 			setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
-					schema == null ? WSUIUtil.EMPTY_STRING : schema );
+					schema == null ? WSUtil.EMPTY_STRING : schema );
 		}
 
 		setXMLPropertyValue( Constants.CONST_PROP_MAX_ROW, "-1" ); //$NON-NLS-1$
@@ -314,8 +329,9 @@ public class WSConsole
 	 */
 	public void updateXSDFileURI( )
 	{
-		String xsdFileURI = WSUIUtil.getNonNullString( getPropertyValue( Constants.XSD_FILE_URI ) );
-		if ( !xsdFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST ) ) )
+		String xsdFileURI = getPropertyValue( Constants.XSD_FILE_URI );
+		if ( xsdFileURI != null
+				&& !xsdFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST ) ) )
 			setXMLPropertyValue( Constants.CONST_PROP_SCHEMA_FILELIST,
 					xsdFileURI );
 	}
@@ -334,7 +350,7 @@ public class WSConsole
 
 		// check if there is explicit xmlURI
 		String xmlFileURI = getPropertyValue( Constants.XML_FILE_URI );
-		if ( !WSUIUtil.isNull( xmlFileURI ) )
+		if ( !WSUtil.isNull( xmlFileURI ) )
 		{
 			if ( !xmlFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
 				setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlFileURI );
@@ -344,13 +360,13 @@ public class WSConsole
 
 		// check if there is implicit xmlURI
 		String xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
-		if ( WSUIUtil.isNull( xmlTempFileURI ) )
+		if ( WSUtil.isNull( xmlTempFileURI ) )
 		{
 			// there is no xml temp file, create one
 			createXMLTempFileURI( );
 			xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
 		}
-		if ( !WSUIUtil.isNull( xmlTempFileURI )
+		if ( !WSUtil.isNull( xmlTempFileURI )
 				&& !xmlTempFileURI.equals( getXMLPropertyValue( Constants.CONST_PROP_FILELIST ) ) )
 			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, xmlTempFileURI );
 	}
@@ -370,7 +386,7 @@ public class WSConsole
 		}
 		
 		InputStream stream = getInputStream( true );
-		if ( WSUIUtil.isNull( stream ) )
+		if ( WSUtil.isNull( stream ) )
 			return;
 
 		templateFile = generateTempXMLFile( stream );
@@ -404,7 +420,7 @@ public class WSConsole
 		setXMLPropertyValue( Constants.CONST_PROP_SAMPLE_XML, "" ); //$NON-NLS-1$
 
 		InputStream stream = getInputStream( false );
-		if ( WSUIUtil.isNull( stream ) )
+		if ( WSUtil.isNull( stream ) )
 			return;
 		sampleXMLFile = generateTempXMLFile( stream );
 		try
@@ -452,7 +468,7 @@ public class WSConsole
 
 	private InputStream getInputStream( boolean fromWSDL ) throws OdaException
 	{
-		if ( !WSUIUtil.isNull( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) ) )
+		if ( !WSUtil.isNull( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) ) )
 		{
 			return byCustom( );
 		}
@@ -472,7 +488,7 @@ public class WSConsole
 
 		j2s.setConnectionProperties( retrieveConnProperties( ) );
 		j2s.setQueryText( getPropertyValue( Constants.WS_QUERYTEXT ) );
-		if ( !WSUIUtil.isNull( parameters ) )
+		if ( !WSUtil.isNull( parameters ) )
 		{
 			Map parameterMap = new HashMap( );
 			for ( int i = 0; i < parameters.length; i++ )
@@ -504,14 +520,18 @@ public class WSConsole
 	private Properties retrieveConnProperties( )
 	{
 		Properties p = new Properties( );
-		p.put( Constants.SOAP_ENDPOINT,
-				WSUIUtil.getNonNullString( getPropertyValue( Constants.SOAP_ENDPOINT ) ) );
-		p.put( Constants.CUSTOM_CONNECTION_CLASS,
-				WSUIUtil.getNonNullString( getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS ) ) );
-		p.put( Constants.CUSTOM_DRIVER_CLASS_PATH,
-				WSUIUtil.getNonNullString( getPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH ) ) );
-		p.put( Constants.CONNECTION_TIMEOUT,
-				WSUIUtil.getNonNullString( getPropertyValue( Constants.CONNECTION_TIMEOUT ) ) );
+		String value = getPropertyValue( Constants.SOAP_ENDPOINT );
+		if ( value != null )
+			p.put( Constants.SOAP_ENDPOINT, value );
+		value = getPropertyValue( Constants.CUSTOM_CONNECTION_CLASS );
+		if ( value != null )
+			p.put( Constants.CUSTOM_CONNECTION_CLASS, value );
+		value = getPropertyValue( Constants.CUSTOM_DRIVER_CLASS_PATH );
+		if ( value != null )
+			p.put( Constants.CUSTOM_DRIVER_CLASS_PATH, value );
+		value = getPropertyValue( Constants.CONNECTION_TIMEOUT );
+		if ( value != null )
+			p.put( Constants.CONNECTION_TIMEOUT, value );
 
 		return p;
 	}
@@ -521,11 +541,11 @@ public class WSConsole
 		String spec = getPropertyValue( Constants.SOAP_ENDPOINT );
 		// if soapEndPoint is not explicitly specified by the user, try locate
 		// it from the wsdl file
-		if ( WSUIUtil.isNull( spec ) )
+		if ( WSUtil.isNull( spec ) )
 			spec = WSDLAdvisor.getLocationURI( getPropertyValue( Constants.WSDL_URI ),
 					getPropertyValue( Constants.OPERATION_TRACE ) );
 		String query = getPropertyValue( Constants.WS_QUERYTEXT );
-		if ( WSUIUtil.isNull( spec ) || WSUIUtil.isNull( query ) )
+		if ( WSUtil.isNull( spec ) || WSUtil.isNull( query ) )
 			return null;
 
 		SOAPRequest soapRequest = new SOAPRequest( query );
@@ -547,14 +567,18 @@ public class WSConsole
 			String soapEndPoint = getPropertyValue( Constants.SOAP_ENDPOINT );
 			String wsdlURI = getPropertyValue( Constants.WSDL_URI );
 			String operationTrace = getPropertyValue( Constants.OPERATION_TRACE );
-			int connectionTimeout = Integer.parseInt( getPropertyValue( Constants.CONNECTION_TIMEOUT ) );
+			String connTimeOut = getPropertyValue( Constants.CONNECTION_TIMEOUT );
+			
+			int connectionTimeout = 0;
+			if ( connTimeOut != null )
+				connectionTimeout = Integer.parseInt( getPropertyValue( Constants.CONNECTION_TIMEOUT ) );
 
 			if ( WSUtil.isNull( soapEndPoint ) )
 				soapEndPoint = WSDLAdvisor.getLocationURI( wsdlURI,
 						operationTrace );
-			rawMessageSender.setSpec( WSUtil.getNonNullString( soapEndPoint ) );
-			rawMessageSender.setSoapAction( WSUtil.getNonNullString( WSDLAdvisor.getSOAPActionURI( wsdlURI,
-					operationTrace ) ) );
+			rawMessageSender.setSpec( soapEndPoint );
+			rawMessageSender.setSoapAction( WSDLAdvisor.getSOAPActionURI( wsdlURI,
+					operationTrace ) );
 			soapResponse = rawMessageSender.getSOAPResponse( connectionTimeout );
 		}
 		return soapResponse;
@@ -563,7 +587,7 @@ public class WSConsole
 	private void populateSOAPParameterValues( SOAPRequest soapRequest,
 			SOAPParameter[] soapParameters )
 	{
-		if ( WSUIUtil.isNull( soapRequest ) || WSUIUtil.isNull( soapParameters ) )
+		if ( WSUtil.isNull( soapRequest ) || WSUtil.isNull( soapParameters ) )
 			return;
 
 		for ( int i = 0; i < soapParameters.length; i++ )
@@ -580,7 +604,7 @@ public class WSConsole
 	public void initSOAPParameters( DataSetParameters dataSetParams )
 	{
 		EList parameterDefinitions = dataSetParams.getParameterDefinitions( );
-		if ( WSUIUtil.isNull( parameterDefinitions )
+		if ( WSUtil.isNull( parameterDefinitions )
 				|| parameterDefinitions.size( ) == 0 )
 			return;
 
@@ -607,7 +631,7 @@ public class WSConsole
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			// apply name & defaultValue
-			if ( !WSUIUtil.isNull( parameters[i] ) )
+			if ( !WSUtil.isNull( parameters[i] ) )
 			{
 				ParameterDefinition paramDef = (ParameterDefinition) parameterDefinitions.get( i );
 				paramDef.getAttributes( ).setName( parameters[i].getName( ) );
@@ -640,15 +664,15 @@ public class WSConsole
 		SOAPRequest soapRequest = new SOAPRequest( getPropertyValue( Constants.WS_QUERYTEXT ) );
 		String[] template = soapRequest.getTemplate( );
 
-		if ( WSUIUtil.isNull( template ) || WSUIUtil.isNull( parameters ) )
+		if ( WSUtil.isNull( template ) || WSUtil.isNull( parameters ) )
 			return getTemplate( );
 
-		String wsQueryText = WSUIUtil.EMPTY_STRING;
+		String wsQueryText = WSUtil.EMPTY_STRING;
 		// retrieve whole queryText with defaultValue if applicable
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			wsQueryText += template[i];
-			if ( WSUIUtil.isNull( parameters[i].getDefaultValue( ) ) )
+			if ( WSUtil.isNull( parameters[i].getDefaultValue( ) ) )
 				wsQueryText += buildParameter( parameters[i].getName( ) );
 			else
 				wsQueryText += parameters[i].getDefaultValue( );

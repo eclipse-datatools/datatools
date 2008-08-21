@@ -29,6 +29,7 @@ import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSDLAdvisor;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -57,10 +58,10 @@ public class OperationPage extends DataSetWizardPage
 	private transient Label operationName;
 	private transient Label operationDescription;
 
-	private String operationTrace = WSUIUtil.EMPTY_STRING;
-	private String initOperationTrace = WSUIUtil.EMPTY_STRING;
-	private String wsdlURI = WSUIUtil.EMPTY_STRING;
-	private String wsQuery = WSUIUtil.EMPTY_STRING;
+	private String operationTrace = WSUtil.EMPTY_STRING;
+	private String initOperationTrace = WSUtil.EMPTY_STRING;
+	private String wsdlURI = WSUtil.EMPTY_STRING;
+	private String wsQuery = WSUtil.EMPTY_STRING;
 
 	private Image wsdlImage;
 	private Image serviceImage;
@@ -164,14 +165,15 @@ public class OperationPage extends DataSetWizardPage
 				{
 					Operation operation = (Operation) item.getData( );
 					operationTrace = toOperationTrace( item );
-					operationName.setText( WSUIUtil.getNonNullString( operation.getName( ) ) );
+					if ( operation.getName( ) != null )
+						operationName.setText( operation.getName( ) );
 					operationDescription.setText( WSDLAdvisor.retrieveDocument( operation ) );
 					setPageComplete( true );
 				}
 				else
 				{
-					operationName.setText( WSUIUtil.EMPTY_STRING );
-					operationDescription.setText( WSUIUtil.EMPTY_STRING );
+					operationName.setText( WSUtil.EMPTY_STRING );
+					operationDescription.setText( WSUtil.EMPTY_STRING );
 					setPageComplete( false );
 				}
 			}
@@ -259,7 +261,7 @@ public class OperationPage extends DataSetWizardPage
 	// TODO refine me
 	private void populateTree( )
 	{
-		if ( WSUIUtil.isNull( wsdlURI ) )
+		if ( WSUtil.isNull( wsdlURI ) )
 			return;
 
 		operationTree.removeAll( );
@@ -294,13 +296,20 @@ public class OperationPage extends DataSetWizardPage
 						.getOperations( );
 				for ( int i = 0; i < operations.size( ); i++ )
 				{
+					Operation operation = (Operation) operations.get( i );
 					TreeItem treeItem = populateTreeItem( prtTI,
 							operations.get( i ),
-							( (Operation) operations.get( i ) ).getName( ),
+							operation.getName( ),
 							operationImage );
-					if ( !WSUIUtil.isNull( operationTrace )
+					if ( !WSUtil.isNull( operationTrace )
 							&& operationTrace.equals( toOperationTrace( treeItem ) ) )
+
+					{
 						highlight( treeItem );
+						if ( operation.getName( ) != null )
+							operationName.setText( operation.getName( ) );
+						operationDescription.setText( WSDLAdvisor.retrieveDocument( operation ) );
+					}
 				}
 			}
 		}
@@ -320,10 +329,10 @@ public class OperationPage extends DataSetWizardPage
 
 	private void highlight( TreeItem treeItem )
 	{
-		if ( WSUIUtil.isNull( operationTrace ) )
+		if ( WSUtil.isNull( operationTrace ) )
 			return;
 
-		FontData fontData = new FontData( WSUIUtil.EMPTY_STRING, 8, SWT.BOLD );
+		FontData fontData = new FontData( WSUtil.EMPTY_STRING, 8, SWT.BOLD );
 		treeItem.setFont( new Font( null, fontData ) );
 
 		operationTree.setSelection( new TreeItem[]{
@@ -390,7 +399,7 @@ public class OperationPage extends DataSetWizardPage
 
 	private void testDirty( )
 	{
-		if ( !WSUIUtil.isNull( initOperationTrace )
+		if ( !WSUtil.isNull( initOperationTrace )
 				&& !initOperationTrace.equals( operationTrace ) )
 			if ( MessageDialog.openConfirm( null,
 					Messages.getString( "operationPage.title.operationChanged" ), Messages.getString( "operationPage.message.operationChanged" ) ) )//$NON-NLS-1$ //$NON-NLS-2$
@@ -409,9 +418,8 @@ public class OperationPage extends DataSetWizardPage
 
 	private void regenerateTemplate( )
 	{
-		wsQuery = WSUIUtil.getNonNullString( WSConsole.getInstance( )
-				.getTemplate( ) );
-		if ( !WSUIUtil.isNull( wsQuery ) )
+		wsQuery = WSConsole.getInstance( ).getTemplate( );
+		if ( !WSUtil.isNull( wsQuery ) )
 			WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
 					wsQuery );
 	}

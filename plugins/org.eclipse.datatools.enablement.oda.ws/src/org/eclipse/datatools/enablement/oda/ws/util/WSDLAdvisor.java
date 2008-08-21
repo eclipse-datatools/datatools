@@ -119,12 +119,13 @@ public class WSDLAdvisor
 	 */
 	public static String getLocationURI( String wsdlURI, String operationTrace )
 	{
+		String locationURI = EMPTY_STRING;
 		if ( !checkOperationTrace( operationTrace ) )
-			return null;
+			return locationURI;
 
 		Definition definition = getDefinition( wsdlURI );
 		if ( WSUtil.isNull( definition ) )
-			return null;
+			return locationURI;
 
 		String[] opSplit = operationTrace.split( RE_DELIMITER_OPEARTION );
 		Service service = definition.getService( new QName( definition.getTargetNamespace( ),
@@ -134,7 +135,6 @@ public class WSDLAdvisor
 
 		Port port = service.getPort( opSplit[1] );// port
 		List extElements = port.getExtensibilityElements( );
-		String locationURI = EMPTY_STRING;
 		if ( !WSUtil.isNull( extElements ) )
 		{
 			for ( int i = 0; i < extElements.size( ); i++ )
@@ -176,13 +176,13 @@ public class WSDLAdvisor
 	 */
 	public static String getSOAPActionURI( String wsdlURI, String operationTrace )
 	{
+		String soapActionURI = EMPTY_STRING;
 		BindingOperation bindingOperation = getBindingOperation( wsdlURI,
 				operationTrace );
 		if ( WSUtil.isNull( bindingOperation ) )
-			return null;
+			return soapActionURI;
 
 		List extElements = bindingOperation.getExtensibilityElements( );
-		String soapActionURI = EMPTY_STRING;
 		if ( !WSUtil.isNull( extElements ) )
 		{
 			for ( int i = 0; i < extElements.size( ); i++ )
@@ -1196,8 +1196,8 @@ public class WSDLAdvisor
 
 				QName typeName = part.getTypeName( );
 				paramNameList.add( part.getName( ) );
-				paramTypeList.add( WSUtil.getNonNullString( WSUtil.isNull( typeName )
-						? EMPTY_STRING : typeName.getLocalPart( ) ) );
+				paramTypeList.add( typeName == null ? EMPTY_STRING
+						: typeName.getLocalPart( ) );
 			}
 
 			if ( inOrOutput == "in" ) //$NON-NLS-1$

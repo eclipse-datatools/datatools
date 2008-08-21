@@ -93,12 +93,13 @@ public class WebServicePropertyPage extends DataSourceEditorPage
                     conn.close( );
                 if( exception != null )
                 {
-                	Properties properties = collectProperties();
-                	String wsdlUri = ( String )properties.get( Constants.WSDL_URI );
-                	if( !wsdlUri.startsWith( HTTPHEAD ) )
-                	{
-                		properties.put( Constants.WSDL_URI, HTTPHEAD + wsdlUri.trim( ) );
-                	}
+                	Properties properties = collectProperties( );
+					String wsdlUri = (String) properties.get( Constants.WSDL_URI );
+					if ( wsdlUri != null && !wsdlUri.startsWith( HTTPHEAD ) )
+					{
+						properties.put( Constants.WSDL_URI, HTTPHEAD
+								+ wsdlUri.trim( ) );
+					}
                 	profile.setBaseProperties( properties );
                 	conn = PingJob.createTestConnection( profile );
                 	if( PingJob.getTestConnectionException( conn ) == null )

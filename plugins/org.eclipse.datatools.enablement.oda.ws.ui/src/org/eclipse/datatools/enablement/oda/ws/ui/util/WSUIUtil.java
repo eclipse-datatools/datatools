@@ -34,7 +34,7 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
  * 
  */
 
-public class WSUIUtil extends WSUtil
+public class WSUIUtil
 {
 
 	/**
@@ -75,8 +75,8 @@ public class WSUIUtil extends WSUtil
 	private static Properties getDataSetInitialPrivateProperties( )
 	{
 		Properties props = new Properties( );
-		props.setProperty( Constants.OPERATION_TRACE, EMPTY_STRING );
-		props.setProperty( Constants.XML_QUERYTEXT, EMPTY_STRING );
+		props.setProperty( Constants.OPERATION_TRACE, WSUtil.EMPTY_STRING );
+		props.setProperty( Constants.XML_QUERYTEXT, WSUtil.EMPTY_STRING );
 
 		return props;
 	}
@@ -130,11 +130,11 @@ public class WSUIUtil extends WSUtil
 		// set soapParameters
 		SOAPParameter[] soapParameters = WSConsole.getInstance( )
 				.getParameters( );
-		if ( !WSUIUtil.isNull( soapParameters ) )
+		if ( !WSUtil.isNull( soapParameters ) )
 		{
 			for ( int i = 0; i < soapParameters.length; i++ )
 			{
-				if ( !isNull( soapParameters[i] ) )
+				if ( !WSUtil.isNull( soapParameters[i] ) )
 					query.setString( soapParameters[i].getId( ),
 							soapParameters[i].getDefaultValue( ) );
 			}
@@ -226,7 +226,7 @@ public class WSUIUtil extends WSUtil
 		// no exception in conversion; go ahead and assign to specified
 		// dataSetDesign
 		dataSetDesign.setParameters( paramDesign );
-		if ( isNull( paramDesign ) )
+		if ( WSUtil.isNull( paramDesign ) )
 			return;
 		
 		paramDesign.setDerivedMetaData( true );

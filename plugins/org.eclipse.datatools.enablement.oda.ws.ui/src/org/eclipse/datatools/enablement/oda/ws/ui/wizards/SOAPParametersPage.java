@@ -22,7 +22,7 @@ import org.eclipse.datatools.enablement.oda.ws.soap.SOAPRequest;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.WSConsole;
-import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
+import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
@@ -208,21 +208,21 @@ public class SOAPParametersPage extends DataSetWizardPage
 			public String getColumnText( Object element, int columnIndex )
 			{
 				SOAPParameter param = ( (SOAPParameter) element );
-				String value = WSUIUtil.EMPTY_STRING;
+				String value = WSUtil.EMPTY_STRING;
 				switch ( columnIndex )
 				{
 					case 0 :
 						value = param.getName( );
 						break;
 					case 1 :
-						value = WSUIUtil.EMPTY_STRING;
+						value = WSUtil.EMPTY_STRING;
 						break;
 					case 2 :
 						value = param.getDefaultValue( );
 						break;
 				}
 
-				return WSUIUtil.getNonNullString( value );
+				return value;
 			}
 
 			public void addListener( ILabelProviderListener listener )
@@ -249,7 +249,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 				if ( !event.getChecked( )
 						&& event.getElement( ) instanceof SOAPParameter )
 				{
-					( (SOAPParameter) event.getElement( ) ).setDefaultValue( WSUIUtil.EMPTY_STRING );
+					( (SOAPParameter) event.getElement( ) ).setDefaultValue( WSUtil.EMPTY_STRING );
 					viewer.refresh( );
 					saveToModel( );
 				}
@@ -297,7 +297,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 	private void initViewer( )
 	{
-		if ( WSUIUtil.isNull( wsQueryText ) )
+		if ( WSUtil.isNull( wsQueryText ) )
 			return;
 
 		soapRequest = new SOAPRequest( wsQueryText );
@@ -306,7 +306,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 			soapParameters = WSConsole.getInstance( ).getParameters( );
 		else
 			soapParameters = soapRequest.getParameters( );
-		if ( !WSUIUtil.isNull( soapParameters ) )
+		if ( !WSUtil.isNull( soapParameters ) )
 		{
 			viewer.setInput( soapParameters );
 			for ( int i = 0; i < soapParameters.length; i++ )
@@ -369,7 +369,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 	private SOAPParameter[] getSOAPParameters( )
 	{
 		SOAPParameter[] targets = soapRequest.getParameters( );
-		if ( WSUIUtil.isNull( targets ) )
+		if ( WSUtil.isNull( targets ) )
 			return targets;
 
 		Object[] candidates = (Object[]) viewer.getCheckedElements( );
@@ -385,7 +385,7 @@ public class SOAPParametersPage extends DataSetWizardPage
 
 	private List getManipulatedIndexList( Object[] soapParameters )
 	{
-		if ( WSUIUtil.isNull( soapParameters ) || soapParameters.length == 0 )
+		if ( WSUtil.isNull( soapParameters ) || soapParameters.length == 0 )
 			return Collections.EMPTY_LIST;
 
 		List manipulated = new ArrayList( );
