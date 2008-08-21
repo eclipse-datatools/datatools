@@ -50,10 +50,9 @@ public class ConnectionTest extends BaseTest
 		prop.remove(Constants.CONST_PROP_FILELIST);
 		try {
 			conn.open( prop );
-			fail("Should not arrive here.");
 		}catch (OdaException e)
 		{
-			assertTrue(true);
+			assertTrue(false);
 		}
 	}
 

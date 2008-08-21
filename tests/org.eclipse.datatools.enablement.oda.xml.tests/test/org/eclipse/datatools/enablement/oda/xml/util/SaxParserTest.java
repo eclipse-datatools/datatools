@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -37,7 +38,6 @@ import sun.awt.AppContext;
 public class SaxParserTest extends BaseTest
 {
 	private IResultSet rs;
-	private IXMLSource xmlSource;
 	static String lineSeparator = (String) java.security.AccessController.doPrivileged( new sun.security.action.GetPropertyAction( "line.separator" ) );
 
 	private String testString = "book#:#[//book]#:#{book.category;String;//book/@category},{book.title;String;//book/title},{book.author_1;String;//book/author[1]/@name},{book.author_2;String;//book/author[2]/@name}"
@@ -72,14 +72,6 @@ public class SaxParserTest extends BaseTest
 
 	protected void tearDown( ) throws Exception
 	{
-		if ( rs != null )
-		{
-			rs.close( );
-		}
-		if ( xmlSource != null )
-		{
-			xmlSource.release( );
-		}
 		super.tearDown( );
 	}
 
@@ -97,8 +89,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"simple",
 				0);
@@ -116,6 +111,9 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
+		
+		rs.close( );
+		conn.close( );
 		
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST0_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST0_GOLDEN_XML ) ) );
@@ -135,8 +133,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"aut  hor", 
 				0);
@@ -154,6 +155,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
+		rs.close( );
+		conn.close( );
 
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST1_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST1_GOLDEN_XML ) ) );
@@ -173,8 +176,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"title",
 				0);
@@ -192,7 +198,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST2_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST2_GOLDEN_XML ) ) );
 	}
@@ -210,8 +217,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"stat" ,
 				0);
@@ -229,7 +239,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST3_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST3_GOLDEN_XML ) ) );
 	}
@@ -282,6 +293,7 @@ public class SaxParserTest extends BaseTest
 				new File( TestConstants.SAX_PARSER_TEST4_GOLDEN_XML ) ) );
 
 		AppContext.getAppContext( ).remove( Constants.APPCONTEXT_INPUTSTREAM );
+		rs.close( );
 		conn.close( );
 	}
 
@@ -298,8 +310,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"none" ,
 				0);
@@ -317,7 +332,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST5_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST5_GOLDEN_XML ) ) );
 	}
@@ -335,8 +351,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.SMALL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"one" ,
 				0);
@@ -354,7 +373,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST6_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST6_GOLDEN_XML ) ) );
 	}
@@ -372,8 +392,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"recursive" ,
 				0);
@@ -391,7 +414,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST7_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST7_GOLDEN_XML ) ) );
 	}
@@ -415,8 +439,11 @@ public class SaxParserTest extends BaseTest
 		String text = "test#:#[//row]#:#{X;String;/axis_x},{Y;String;/axis_y},{Value;String;/value}";
 
 		ri = new RelationInformation( text );
-		xmlSource = new XMLSourceFromPath( TestConstants.CRITICAL_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.CRITICAL_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"test" ,
 				0);
@@ -434,7 +461,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST8_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST8_GOLDEN_XML ) ) );
 	}
@@ -453,8 +481,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 		BufferedOutputStream bos = new BufferedOutputStream( fos );
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.UTF8BOM );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.UTF8BOM );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"utf" ,
 				0);
@@ -472,7 +503,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		bos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST9_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST9_GOLDEN_XML ) ) );
 	}
@@ -491,16 +523,20 @@ public class SaxParserTest extends BaseTest
 
 		ri = new RelationInformation( testString );
 		FileInputStream iStream = new FileInputStream(new File( TestConstants.RECURSIVE_XML_FILE ));
-		xmlSource = new XMLSourceFromInputStream( iStream );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Map appContext = new HashMap( );
+		appContext.put( Constants.APPCONTEXT_INPUTSTREAM, iStream );
+		conn.setAppContext( appContext );
+		conn.open( null );
+		rs = new ResultSet( conn,
 				ri,
 				"recursive" ,
 				0);
-		rs = new ResultSet( xmlSource,
+		rs = new ResultSet( conn,
 				ri,
 				"recursive" ,
 				0);
-		rs = new ResultSet( xmlSource,
+		rs = new ResultSet( conn,
 				ri,
 				"recursive" ,
 				0);
@@ -517,7 +553,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST10_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST10_GOLDEN_XML ) ) );
 	}
@@ -540,8 +577,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"duplicate", 
 				0);
@@ -559,7 +599,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST11_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST11_GOLDEN_XML ) ) );
 	}
@@ -582,8 +623,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME);
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"complexNest", 
 				0);
@@ -601,7 +645,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST12_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST12_GOLDEN_XML ) ) );
 	}
@@ -624,8 +669,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"filter1", 
 				0);
@@ -643,7 +691,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST13_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST13_GOLDEN_XML ) ) );
 	}
@@ -666,8 +715,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"filter2", 
 				0);
@@ -685,7 +737,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST14_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST14_GOLDEN_XML ) ) );
 	}
@@ -703,8 +756,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.TEST_RELATIVE_LOCATION );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_RELATIVE_LOCATION );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"relativeLocation",
 				0 );
@@ -722,7 +778,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST15_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST15_GOLDEN_XML ) ) );
 	}
@@ -745,8 +802,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.TEST_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"filter3", 
 				0);
@@ -764,7 +824,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST16_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST16_GOLDEN_XML ) ) );
 	}
@@ -787,8 +848,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.MIXED_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.MIXED_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"filter4", 
 				0);
@@ -806,7 +870,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST17_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST17_GOLDEN_XML ) ) );
 	}
@@ -830,8 +895,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.NESTED_TABLE_ROOT_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.NESTED_TABLE_ROOT_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"nestedTableRootFilter", 
 				0);
@@ -849,7 +917,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST18_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST18_GOLDEN_XML ) ) );
 	}
@@ -873,8 +942,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.EMPTY_ELEMENT );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.EMPTY_ELEMENT );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"emptyElement",
 				0 );
@@ -892,7 +964,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST19_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST19_GOLDEN_XML ) ) );
 	}
@@ -916,8 +989,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.TABLE_FILTER );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TABLE_FILTER );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"tableFilter",
 				0 );
@@ -935,7 +1011,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST20_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST20_GOLDEN_XML ) ) );
 	}
@@ -953,8 +1030,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.BOOKSTORE_XML_FILE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.BOOKSTORE_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"attributeFilter",
 				0 );
@@ -972,7 +1052,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST21_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST21_GOLDEN_XML ) ) );
 	}
@@ -990,8 +1071,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString );
-		xmlSource = new XMLSourceFromPath( TestConstants.RECURSIVE_DUPLICATENAME );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"Asterisk",
 				0 );
@@ -1009,7 +1093,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST22_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST22_GOLDEN_XML ) ) );
 	}
@@ -1027,8 +1112,11 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 
 		ri = new RelationInformation( testString , true);
-		xmlSource = new XMLSourceFromPath( TestConstants.XML_FILE_WITH_NAMESPACE );
-		rs = new ResultSet( xmlSource,
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.XML_FILE_WITH_NAMESPACE );
+		conn.open( p );
+		rs = new ResultSet( conn,
 				ri,
 				"soap",
 				0 );
@@ -1046,7 +1134,8 @@ public class SaxParserTest extends BaseTest
 		assertFalse( rs.next( ) );
 
 		fos.close( );
-
+		rs.close( );
+		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST23_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST23_GOLDEN_XML ) ) );
 	}

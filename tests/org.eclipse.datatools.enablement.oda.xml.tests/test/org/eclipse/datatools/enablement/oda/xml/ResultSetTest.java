@@ -86,8 +86,15 @@ public class ResultSetTest extends BaseTest
 	/*
 	 * Test method for 'org.eclipse.datatools.enablement.oda.xml.ResultSet.getMetaData()'
 	 */
-	public void testGetMetaData( ) throws OdaException
+	public void testGetMetaDataWithoutXMLFile( ) throws OdaException
 	{
+		rs.close( );
+		conn.close( );
+		conn = new Connection( );
+		conn.open( null ); //no xml file is specified
+		IQuery query = conn.newQuery( null );
+		query.prepare( queryText );
+		rs = query.executeQuery( );
 		IResultSetMetaData meta = rs.getMetaData();
 		assertEquals( meta.getColumnCount(), 10);
 		for( int i = 1; i <= meta.getColumnCount(); i ++)
@@ -97,7 +104,21 @@ public class ResultSetTest extends BaseTest
 			assertEquals( meta.getColumnType( i ), DataTypes.getType( columnTypes[i-1]));
 		}
 	}
-
+	
+	public void testGetMetaData( ) throws OdaException
+	{
+		IQuery query = conn.newQuery( null );
+		query.prepare( queryText );
+		rs = query.executeQuery( );
+		IResultSetMetaData meta = rs.getMetaData();
+		assertEquals( meta.getColumnCount(), 10);
+		for( int i = 1; i <= meta.getColumnCount(); i ++)
+		{
+			assertEquals( meta.getColumnName( i ), columnNames[i-1]);
+			assertEquals( meta.getColumnLabel( i ), columnNames[i-1]);
+			assertEquals( meta.getColumnType( i ), DataTypes.getType( columnTypes[i-1]));
+		}
+	}
 	/*
 	 * Test method for 'org.eclipse.datatools.enablement.oda.xml.ResultSet.close()'
 	 */
