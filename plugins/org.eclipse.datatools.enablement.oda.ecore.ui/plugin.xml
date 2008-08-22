@@ -15,13 +15,6 @@
       </newWizard>
    </extension>
    <extension
-         point="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
-      <profileImage
-            icon="icons/profile.gif"
-            profileID="%oda.data.source.id">
-      </profileImage>
-   </extension>
-   <extension
          point="org.eclipse.ui.propertyPages">
       <page
             class="org.eclipse.datatools.enablement.oda.ecore.ui.impl.DataSourcePropertyPage"
