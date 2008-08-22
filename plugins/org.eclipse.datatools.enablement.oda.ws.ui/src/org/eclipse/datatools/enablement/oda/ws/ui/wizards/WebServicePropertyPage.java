@@ -18,8 +18,6 @@ import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
-import org.eclipse.datatools.enablement.oda.ws.ui.util.IHelpConstants;
-import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -66,7 +64,6 @@ public class WebServicePropertyPage extends DataSourceEditorPage
 
 		pageHelper.createCustomControl( parent );
 		pageHelper.initCustomControl( profileProps );
-		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_PROPERTY );
 	}
 
 	/*

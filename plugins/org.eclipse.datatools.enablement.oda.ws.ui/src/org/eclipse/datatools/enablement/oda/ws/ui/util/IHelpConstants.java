@@ -32,10 +32,7 @@ public interface IHelpConstants
 	public static final String CONEXT_ID_WS_SOAP_RESPONSE = PREFIX
 			+ "Wizard_WS_SOAP_RESPONSE_ID";//$NON-NLS-1$
 
-	public static final String CONEXT_ID_WS_PROPERTY = PREFIX
-			+ "Wizard_WS_PROPERTY_ID";//$NON-NLS-1$
-
-	public static final String CONEXT_ID_WS_SELECTION = PREFIX
-			+ "Wizard_WS_SELECTION_ID";//$NON-NLS-1$
+	public static final String CONEXT_ID_WS_DATASOURCE = PREFIX
+			+ "Wizard_WS_DATASOURCE_ID";//$NON-NLS-1$
 
 }

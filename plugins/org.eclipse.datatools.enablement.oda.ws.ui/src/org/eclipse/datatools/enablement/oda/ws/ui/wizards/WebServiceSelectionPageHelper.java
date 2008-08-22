@@ -16,6 +16,8 @@ import java.util.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
 import org.eclipse.datatools.enablement.oda.ws.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ws.ui.util.Constants;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.IHelpConstants;
+import org.eclipse.datatools.enablement.oda.ws.ui.util.WSUIUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.PropertyValueUtil;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
@@ -30,6 +32,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
@@ -85,6 +88,7 @@ public class WebServiceSelectionPageHelper
 		setupEndPointGroup( composite );
 		setupCustomClassGroup( composite );
 		setupClassPathGroup( composite );
+		WSUIUtil.setSystemHelp( getControl( ), IHelpConstants.CONEXT_ID_WS_DATASOURCE );
 	}
 
 	private void setupWSDLGroup( Composite parent )
@@ -357,4 +361,12 @@ public class WebServiceSelectionPageHelper
 		if ( text != null )
 			customClass.setText( TextProcessorWrapper.process( text ) );
 	}
+	
+    private Control getControl()
+    {
+        if ( wizardPage != null )
+            return wizardPage.getControl();
+        assert( propertyPage != null );
+        return propertyPage.getControl();
+    }
 }
