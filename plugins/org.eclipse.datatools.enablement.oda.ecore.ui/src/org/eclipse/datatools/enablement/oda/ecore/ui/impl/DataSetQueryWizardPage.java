@@ -41,6 +41,7 @@ import org.eclipse.datatools.enablement.oda.ecore.ui.Activator;
 import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.DefaultSourceViewer;
 import org.eclipse.datatools.enablement.oda.ecore.ui.sourceviewer.IOCLSourceViewer;
+import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -92,12 +93,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		setPageComplete(false);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #createPageCustomControl(org.eclipse.swt.widgets.Composite)
-	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
 		final Composite composite = new Composite(parent, SWT.NONE);
@@ -138,8 +133,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 
 	private IOCLSourceViewer createSyntaxViewer(final Composite composite) {
 		IOCLSourceViewer sourceViewer = null;
-		final IConfigurationElement[] configurationElements = Platform.getExtensionRegistry()
-				.getConfigurationElementsFor("org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer");
+		final IConfigurationElement[] configurationElements = Platform.getExtensionRegistry().getConfigurationElementsFor(
+				"org.eclipse.datatools.enablement.oda.ecore.ui.OCLSyntaxViewer");
 		for (int i = 0; i < configurationElements.length; i++) {
 			final IConfigurationElement element = configurationElements[i];
 			if (element.getName().equalsIgnoreCase("oclSourceViewer")) {
@@ -157,9 +152,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		return sourceViewer;
 	}
 
-	/**
-	 * Initializes the page control with the last edited data set design.
-	 */
 	private void initializeControl() {
 		final DataSetDesign dataSetDesign = getInitializationDesign();
 		dataSourceProperties = DesignUtil.convertDataSourceProperties(dataSetDesign.getDataSourceDesign());
@@ -178,15 +170,10 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 				setMessage(Messages.getString("DataSetQueryWizardPage.message.loadError") + cause.getMessage(), ERROR); //$NON-NLS-1$
 			}
 		} catch (final OdaException e) {
-			setMessage(e.getMessage(), ERROR);
+			setMessage(Messages.getString("DataSetQueryWizardPage.message.noEPackage"), ERROR); //$NON-NLS-1$
 		}
 	}
 
-	/*
-	 * Fills the combo box with the available context metaclasses.
-	 * 
-	 * @see org.eclipse.emf.query.examples.ocl.wizards.QueryWithContextWizardPage
-	 */
 	private void fillContextCombo(final DataSetDesign dataSetDesign, final EPackage ePackage) {
 		contextCombo.setContentProvider(new ArrayContentProvider());
 		contextCombo.setLabelProvider(new LabelProvider() {
@@ -204,7 +191,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			}
 		});
 
-		// show only EClasses (cannot query for EDataType values)
 		final List<EClassifier> classes = new LinkedList<EClassifier>(ePackage.getEClassifiers());
 		for (final Iterator<EClassifier> iter = classes.iterator(); iter.hasNext();) {
 			if (!(iter.next() instanceof EClass)) {
@@ -230,12 +216,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage
-	 *      #collectDataSetDesign(org.eclipse.datatools.connectivity.oda.design. DataSetDesign)
-	 */
 	@Override
 	protected DataSetDesign collectDataSetDesign(final DataSetDesign design) {
 		// if this page in DataSetEditor hasn't been activated
@@ -247,11 +227,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		return design;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage #canLeave()
-	 */
 	@Override
 	protected boolean canLeave() {
 		return isPageComplete();
@@ -262,19 +237,13 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		if (selectedElement == null) {
 			return;
 		}
-		org.eclipse.datatools.connectivity.oda.design.Properties privateProperties = dataSetDesign
-				.getPrivateProperties();
-		if (privateProperties == null) {
-			privateProperties = DesignFactory.eINSTANCE.createProperties();
-			dataSetDesign.setPrivateProperties(privateProperties);
-		}
-		String property;
+		final String invariant;
 		if (selectedElement instanceof EClassifier) {
-			property = ((EClassifier) selectedElement).getName();
+			invariant = ((EClassifier) selectedElement).getName();
 		} else {
-			property = selectedElement.toString();
+			invariant = selectedElement.toString();
 		}
-		privateProperties.setProperty(Constants.OCL_ECORE_INVARIANT, property);
+		PropertiesUtil.persistProperty(dataSetDesign, Constants.OCL_ECORE_INVARIANT, invariant);
 	}
 
 	/**
@@ -292,8 +261,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		try {
 			// instantiate your custom ODA runtime driver class
 			/*
-			 * Note: You may need to manually update your ODA runtime extension's plug-in manifest to export its package
-			 * for visibility here.
+			 * Note: You may need to manually update your ODA runtime extension's plug-in manifest to export its package for
+			 * visibility here.
 			 */
 			final IDriver driver = new Driver();
 
@@ -320,8 +289,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 	}
 
 	/**
-	 * Updates the given dataSetDesign with the queryText and its derived metadata obtained from the ODA runtime
-	 * connection.
+	 * Updates the given dataSetDesign with the queryText and its derived metadata obtained from the ODA runtime connection.
 	 */
 	private void updateDesign(final IConnection conn, final DataSetDesign dataSetDesign) throws OdaException {
 		final IQuery query = conn.newQuery(null);
@@ -333,7 +301,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 			dataSetDesign.setResultSets(null);
 			throw e;
 		}
-
 	}
 
 	/**
@@ -359,13 +326,8 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		dataSetDesign.getResultSets().setDerivedMetaData(true);
 	}
 
-	/**
-	 * Validates the user-defined value in the page control exists and not a blank text. Set page message accordingly.
-	 */
 	private void validateData() {
-		final boolean isValid = syntaxViewer.getExpression() != null
-				&& syntaxViewer.getExpression().trim().length() > 0;
-
+		final boolean isValid = syntaxViewer.getExpression() != null && syntaxViewer.getExpression().trim().length() > 0;
 		if (isValid) {
 			setMessage(Messages.getString("DataSetQueryWizardPage.message.default"));
 		} else {
@@ -375,9 +337,6 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		setPageComplete(isValid);
 	}
 
-	/**
-	 * A key listener that listens for the Tab key to exit the OCL expression widget.
-	 */
 	private class InputKeyListener implements KeyListener {
 
 		private final SourceViewer viewer;
@@ -394,8 +353,7 @@ public class DataSetQueryWizardPage extends org.eclipse.datatools.connectivity.o
 		}
 
 		public void keyReleased(final KeyEvent e) {
-			// Nada
+			// no-op
 		}
 	}
-
 }

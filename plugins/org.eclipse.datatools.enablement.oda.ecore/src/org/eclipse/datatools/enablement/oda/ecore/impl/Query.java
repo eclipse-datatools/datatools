@@ -446,9 +446,11 @@ public class Query implements IQuery {
 			return columnDefinitions;
 		}
 		final Collection<ColumnDefinition> definitions = new ArrayList<ColumnDefinition>();
-		for (final String key : properties.keySet()) {
-			if (key.startsWith(Constants.CONNECTION_COLUMN_DEFINITIONS)) {
-				definitions.add(ColumnDefinitionUtil.createFor(properties.get(key)));
+		final String columnsList = properties.get(Constants.CONNECTION_COLUMN_DEFINITIONS);
+		if (columnsList != null) {
+			final String[] columnNames = columnsList.split(",");
+			for (final String columnName : columnNames) {
+				definitions.add(ColumnDefinitionUtil.createFor(columnName));
 			}
 		}
 		columnDefinitions = definitions.toArray(new ColumnDefinition[definitions.size()]);

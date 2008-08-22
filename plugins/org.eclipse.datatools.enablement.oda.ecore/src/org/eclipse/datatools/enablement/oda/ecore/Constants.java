@@ -21,11 +21,10 @@ public class Constants {
 
 	public static final String DATA_SOURCE_PRODUCT_NAME = "Ecore ODA Data Source";
 
-	public static final String CONNECTION_EOBJECT_INSTANCES = "eobject.instances";
-	public static final String CONNECTION_DIRECTORY_ISWORKSPACE = "directory.isWorkspace";
-	public static final String CONNECTION_DIRECTORY_PATH = "directory.path";
+	public static final String CONNECTION_EOBJECT_INSTANCES = "EOBJECT_INSTANCES";
+	public static final String CONNECTION_MODEL_URI = "MODEL_URI";
 
-	public static final String OCL_ECORE_INVARIANT = "ocl.ecore.invariant";
+	public static final String OCL_ECORE_INVARIANT = "OCL_ECORE_INVARIANT";
 
-	public static final String CONNECTION_COLUMN_DEFINITIONS = "column.definitions";
+	public static final String CONNECTION_COLUMN_DEFINITIONS = "COLUMN_DEFINITIONS";
 }

@@ -18,10 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -103,7 +101,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
 			public void checkStateChanged(final CheckStateChangedEvent event) {
 				validateData();
-				updateResultSetDesign(getEditingDesign());
+				savePage(getEditingDesign());
 			}
 
 		});
@@ -130,10 +128,10 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 			if (cause == null) {
 				setMessage(e.getMessage(), ERROR);
 			} else {
-				setMessage(Messages.getString("DataSetColumnsWizardPage.loadError") + cause.getMessage(), ERROR); //$NON-NLS-1$
+				setMessage(Messages.getString("DataSetColumnsWizardPage.message.loadError") + cause.getMessage(), ERROR); //$NON-NLS-1$
 			}
 		} catch (final OdaException e) {
-			setMessage(Messages.getString("DataSetColumnsWizardPage.noEPackage"), ERROR); //$NON-NLS-1$
+			setMessage(Messages.getString("DataSetColumnsWizardPage.message.noEPackage"), ERROR); //$NON-NLS-1$
 		}
 	}
 
@@ -237,7 +235,7 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		if (dataSourceProperties == null) {
 			return design; // controls have not been initialized
 		}
-		updateResultSetDesign(design);
+		savePage(design);
 		return design;
 	}
 
@@ -251,36 +249,25 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 		return isPageComplete();
 	}
 
-	/**
-	 * Updates the specified data set design's result set definition based on the specified runtime metadata.
-	 * 
-	 * @param resultSetMetaData
-	 *            runtime result set metadata instance
-	 * @param dataSetDesign
-	 *            data set design instance to update
-	 * @throws OdaException
-	 */
 	@SuppressWarnings("unchecked")
-	private void updateResultSetDesign(final DataSetDesign dataSetDesign) {
+	private void savePage(final DataSetDesign dataSetDesign) {
 		final List<Object> checkedElements = Arrays.asList(viewer.getCheckedElements());
 		if (checkedElements.size() < 1) {
 			dataSetDesign.setResultSets(null);
 			return;
 		}
 		final ResultSetColumns newResultSetColumns = DesignFactory.eINSTANCE.createResultSetColumns();
-		int columnCounter = 0;
-		final Map<String, String> properties = new HashMap<String, String>();
+		final StringBuilder columns = new StringBuilder();
 		for (final Iterator<Object> iterator = checkedElements.iterator(); iterator.hasNext();) {
 			final TreeNode node = (TreeNode) iterator.next();
 			if (node.getData() instanceof EAttribute || node.getData() instanceof EReference && noChildrenAreChecked(node)) {
 				final ColumnDefinition newColumn = ColumnDefinitionUtil.createFor(getPathTo(node));
 				newResultSetColumns.getResultColumnDefinitions().add(newColumn);
-				properties.put(Constants.CONNECTION_COLUMN_DEFINITIONS + "." + columnCounter++, newColumn.getAttributes()
-						.getName());
+				columns.append(newColumn.getAttributes().getName());
+				columns.append(',');
 			}
 		}
-		PropertiesUtil.persistCustomProperties(dataSetDesign, properties);
-
+		PropertiesUtil.persistProperty(dataSetDesign, Constants.CONNECTION_COLUMN_DEFINITIONS, columns.toString());
 		final ResultSetDefinition resultSetDefinition = DesignFactory.eINSTANCE.createResultSetDefinition();
 		resultSetDefinition.setResultSetColumns(newResultSetColumns);
 

@@ -17,7 +17,6 @@ package org.eclipse.datatools.enablement.oda.ecore.impl;
 import java.util.Collection;
 import java.util.Properties;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -73,16 +72,7 @@ public class Connection implements IConnection {
 	}
 
 	public static URI dataSourceUriFromProperties(final Properties dataSourceProperties) {
-		final boolean isWorkspaceRelative = Boolean.parseBoolean(dataSourceProperties.getProperty(
-				Constants.CONNECTION_DIRECTORY_ISWORKSPACE, "false"));
-		final URI uri;
-		final String pathString = dataSourceProperties.getProperty(Constants.CONNECTION_DIRECTORY_PATH, null);
-		if (isWorkspaceRelative && pathString != null) {
-			uri = URI.createURI(ResourcesPlugin.getWorkspace().getRoot().findMember(pathString).getLocationURI().toString());
-		} else {
-			uri = URI.createFileURI(pathString);
-		}
-		return uri;
+		return URI.createURI(dataSourceProperties.getProperty(Constants.CONNECTION_MODEL_URI, null));
 	}
 
 	/*

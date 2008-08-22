@@ -14,41 +14,33 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ecore.ui.util;
 
-import java.util.Map;
+import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
-import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
-import org.eclipse.datatools.connectivity.oda.design.Properties;
+import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
+import org.eclipse.datatools.enablement.oda.ecore.Constants;
 
 public class PropertiesUtil {
 
-	public static void persistCustomProperties(final DataSetDesign dataSetDesign, final Map<String, String> properties) {
+	public static void persistProperty(final DataSetDesign dataSetDesign, final String name, final String value) {
 		if (dataSetDesign.getPrivateProperties() == null) {
-			dataSetDesign.setPrivateProperties(DesignFactory.eINSTANCE.createProperties());
+			try {
+				dataSetDesign.setPrivateProperties(DesignSessionUtil.createDataSetNonPublicProperties(dataSetDesign
+						.getOdaExtensionDataSourceId(), dataSetDesign.getOdaExtensionDataSetId(), getDefaultProperties()));
+			} catch (final OdaException e) {
+			}
 		}
-		persistCustomProperties(dataSetDesign.getPrivateProperties(), properties);
-	}
-
-	public static void persistCustomProperties(final DataSourceDesign dataSourceDesign, final Map<String, String> properties) {
-		if (dataSourceDesign.getPrivateProperties() == null) {
-			dataSourceDesign.setPrivateProperties(DesignFactory.eINSTANCE.createProperties());
-		}
-		persistCustomProperties(dataSourceDesign.getPrivateProperties(), properties);
-	}
-
-	public static void persistCustomProperties(final DataSourceDesign dataSourceDesign, final java.util.Properties properties) {
-		if (dataSourceDesign.getPrivateProperties() == null) {
-			dataSourceDesign.setPrivateProperties(DesignFactory.eINSTANCE.createProperties());
-		}
-		for (final Object key : properties.keySet()) {
-			dataSourceDesign.getPrivateProperties().setProperty((String) key, properties.getProperty((String) key));
+		if (dataSetDesign.getPrivateProperties() != null) {
+			if (dataSetDesign.getPrivateProperties().findProperty(name) != null)
+				dataSetDesign.getPrivateProperties().findProperty(name).setNameValue(name, value);
 		}
 	}
 
-	private static void persistCustomProperties(final Properties properties, final Map<String, String> customProperties) {
-		for (final String key : customProperties.keySet()) {
-			properties.setProperty(key, customProperties.get(key));
-		}
+	private static Properties getDefaultProperties() {
+		final Properties pageProperties = new Properties();
+		pageProperties.setProperty(Constants.OCL_ECORE_INVARIANT, "");
+		pageProperties.setProperty(Constants.CONNECTION_COLUMN_DEFINITIONS, "");
+		return pageProperties;
 	}
 }

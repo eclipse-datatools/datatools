@@ -16,38 +16,17 @@ package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
 import java.util.Properties;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.enablement.oda.ecore.Constants;
 import org.eclipse.datatools.enablement.oda.ecore.ui.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.ecore.ui.util.PropertiesUtil;
-import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 
 public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage {
 
-	private Properties properties = new Properties();
-	private Text modelPathControl;
-	protected boolean isWorkspacePath = false;
+	private Properties publicProperties;
+	private DataSourceSelectionPageHelper helper;
 
 	public DataSourceWizardPage(final String pageName) {
 		super(pageName);
-
 		setMessage(Messages.getString("DataSourceWizardPage.message.default"));
 	}
 
@@ -56,136 +35,42 @@ public class DataSourceWizardPage extends org.eclipse.datatools.connectivity.oda
 		setMessage(Messages.getString("DataSourceWizardPage.message.default"));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage #collectCustomProperties()
-	 */
-	@Override
-	public Properties collectCustomProperties() {
-		return properties;
-	}
-
-	@Override
-	protected DataSourceDesign collectDataSourceDesign(final DataSourceDesign dataSourceDesign) {
-		final DataSourceDesign design = super.collectDataSourceDesign(dataSourceDesign);
-		PropertiesUtil.persistCustomProperties(design, properties);
-		return design;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
-	 *      #createPageCustomControl(org.eclipse.swt.widgets.Composite)
-	 */
 	@Override
 	public void createPageCustomControl(final Composite parent) {
-		final Group locationGroup = new Group(parent, SWT.NONE);
-		locationGroup.setText(Messages.getString("DataSourceWizardPage.group.modelLocation")); //$NON-NLS-1$
-
-		final Button filesystemRadioButton = new Button(locationGroup, SWT.RADIO);
-		filesystemRadioButton.setText(Messages.getString("DataSourceWizardPage.button.useFilesystem")); //$NON-NLS-1$
-		filesystemRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
-		filesystemRadioButton.setSelection(true);
-		filesystemRadioButton.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				isWorkspacePath = false;
-			}
-		});
-
-		final Button workspaceRadioButton = new Button(locationGroup, SWT.RADIO);
-		workspaceRadioButton.setText(Messages.getString("DataSourceWizardPage.button.useWorkspace")); //$NON-NLS-1$
-		workspaceRadioButton.setLayoutData(GridDataFactory.fillDefaults().span(3, 1).create());
-		workspaceRadioButton.setSelection(false);
-		workspaceRadioButton.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				isWorkspacePath = true;
-			}
-		});
-
-		final Label label = new Label(locationGroup, SWT.NONE);
-		label.setText(Messages.getString("DataSourceWizardPage.label.model")); //$NON-NLS-1$
-
-		modelPathControl = new Text(locationGroup, SWT.BORDER | SWT.SINGLE);
-		modelPathControl.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		modelPathControl.addModifyListener(new ModifyListener() {
-
-			public void modifyText(final ModifyEvent e) {
-				dialogChanged();
-			}
-		});
-
-		final Button browseButton = new Button(locationGroup, SWT.PUSH);
-		browseButton.setText(Messages.getString("DataSourceWizardPage.button.browse")); //$NON-NLS-1$
-		browseButton.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(final SelectionEvent e) {
-				handleBrowseForModel();
-			}
-		});
-		GridLayoutFactory.swtDefaults().numColumns(3).generateLayout(locationGroup);
-
+		if (helper == null) {
+			helper = new DataSourceSelectionPageHelper(this);
+		}
+		helper.createCustomControl(parent);
 		setPingButtonVisible(true);
-		setPingButtonEnabled(false);
-		dialogChanged();
+		helper.initCustomControl(publicProperties);
+		helper.dialogChanged();
 	}
 
-	private void handleBrowseForModel() {
-		String path = null;
-		if (!isWorkspacePath) {
-			final FileDialog filesystemDialog = new FileDialog(modelPathControl.getShell());
-			path = filesystemDialog.open();
-		} else {
-			final String msg = Messages.getString("DataSourceWizardPage.dialog.workspace"); //$NON-NLS-1$
-			final IFile[] result = WorkspaceResourceDialog.openFileSelection(modelPathControl.getShell(), null, msg, false,
-					null, null);
-			if (result.length > 0) {
-				path = result[0].getFullPath().toPortableString();
-			}
-		}
-		if (path == null) {
-			path = ""; //$NON-NLS-1$
-		}
-		modelPathControl.setText(path);
-		properties.setProperty(Constants.CONNECTION_DIRECTORY_PATH, path);
-		properties.setProperty(Constants.CONNECTION_DIRECTORY_ISWORKSPACE, Boolean.toString(isWorkspacePath));
-	}
-
-	private void dialogChanged() {
-		final String uriText = modelPathControl.getText();
-		String message = null;
-		if (uriText.length() == 0) {
-			message = Messages.getString("DataSourceWizardPage.message.missingModel"); //$NON-NLS-1$
-		}
-		try {
-			URI.createURI(uriText);
-		} catch (final IllegalArgumentException e) {
-			message = Messages.getString("DataSourceWizardPage.message.invalidUri"); //$NON-NLS-1$
-		}
-		updateStatus(message);
-	}
-
-	private void updateStatus(final String message) {
-		setErrorMessage(message);
-		setPageComplete(message == null);
-		setPingButtonEnabled(message == null);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage
-	 *      #setInitialProperties(java.util.Properties)
-	 */
 	@Override
 	public void setInitialProperties(final Properties dataSourceProps) {
-		properties = new Properties();
+		publicProperties = dataSourceProps;
+		if (helper == null) {
+			return;
+		}
+		helper.initCustomControl(publicProperties);
 	}
 
+	@Override
+	public Properties collectCustomProperties() {
+		if (helper != null) {
+			return helper.collectCustomProperties(publicProperties);
+		}
+		return publicProperties != null ? publicProperties : new Properties();
+	}
+
+	@Override
+	public void setPageComplete(final boolean complete) {
+		super.setPageComplete(complete);
+		setPingButtonEnabled(complete);
+	}
+
+	@Override
+	public void refresh() {
+		enableAllControls(getControl(), isSessionEditable());
+	}
 }
