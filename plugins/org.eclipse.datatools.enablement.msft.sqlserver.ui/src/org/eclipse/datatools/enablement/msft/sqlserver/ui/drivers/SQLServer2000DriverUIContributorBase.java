@@ -146,10 +146,11 @@ public class SQLServer2000DriverUIContributorBase implements IDriverUIContributo
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_USERID_REQ_UI_")); //$NON-NLS-1$
 			isComplete = false;
-		} else if (passwordText.getText().trim().length() < 1) {
-			parentPage.setErrorMessage(Messages
-					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
-			isComplete = false;
+//		Turning off password requirement per bug 242732 - brianf
+//		} else if (passwordText.getText().trim().length() < 1) {
+//			parentPage.setErrorMessage(Messages
+//					.getString("CUI_NEWCW_VALIDATE_PASSWORD_REQ_UI_")); //$NON-NLS-1$
+//			isComplete = false;
 		} else if (urlText.getText().trim().length() < 1) {
 			parentPage.setErrorMessage(Messages
 					.getString("CUI_NEWCW_VALIDATE_URL_REQ_UI_")); //$NON-NLS-1$
