@@ -281,7 +281,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            name="Database Connection Profile"
+            name="%database.connection.profile.title"
             class="org.eclipse.datatools.enablement.sybase.ui.SybaseDatabaseProfileSettingPage"
             id="org.eclipse.datatools.enablement.sybase.ui.SybaseDatabaseProfileSettingPage"
             category="org.eclipse.datatools.connectivity.internal.ui.preferences.DataToolsMainPage">
