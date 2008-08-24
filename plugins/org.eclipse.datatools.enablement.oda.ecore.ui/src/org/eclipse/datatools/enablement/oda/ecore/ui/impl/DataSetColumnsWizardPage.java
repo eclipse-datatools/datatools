@@ -15,10 +15,8 @@
 package org.eclipse.datatools.enablement.oda.ecore.ui.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -202,18 +200,26 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 	}
 
 	/**
-	 * Validates the user-defined value in the page control exists and not a blank text. Set page message accordingly.
+	 * Validates the selected value is valid; sets page message accordingly.
 	 */
 	private void validateData() {
-		final boolean isValid = viewer.getCheckedElements().length > 0;
-
-		if (isValid) {
+		final boolean aValidColumnIsSelected = aValidColumnIsSelected();
+		if (aValidColumnIsSelected) {
 			setMessage(Messages.getString("DataSetColumnsWizardPage.message.default"));
 		} else {
 			setMessage(Messages.getString("DataSetColumnsWizardPage.message.noColumnSelected"), ERROR); //$NON-NLS-1$
 		}
+		setPageComplete(aValidColumnIsSelected);
+	}
 
-		setPageComplete(isValid);
+	private boolean aValidColumnIsSelected() {
+		for (final Object checkedElement : viewer.getCheckedElements()) {
+			final TreeNode node = (TreeNode) checkedElement;
+			if (node.getData() instanceof EAttribute || node.getData() instanceof EReference) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -251,15 +257,14 @@ public class DataSetColumnsWizardPage extends DataSetWizardPage {
 
 	@SuppressWarnings("unchecked")
 	private void savePage(final DataSetDesign dataSetDesign) {
-		final List<Object> checkedElements = Arrays.asList(viewer.getCheckedElements());
-		if (checkedElements.size() < 1) {
+		if (!aValidColumnIsSelected()) {
 			dataSetDesign.setResultSets(null);
 			return;
 		}
 		final ResultSetColumns newResultSetColumns = DesignFactory.eINSTANCE.createResultSetColumns();
 		final StringBuilder columns = new StringBuilder();
-		for (final Iterator<Object> iterator = checkedElements.iterator(); iterator.hasNext();) {
-			final TreeNode node = (TreeNode) iterator.next();
+		for (final Object checkedElement : viewer.getCheckedElements()) {
+			final TreeNode node = (TreeNode) checkedElement;
 			if (node.getData() instanceof EAttribute || node.getData() instanceof EReference && noChildrenAreChecked(node)) {
 				final ColumnDefinition newColumn = ColumnDefinitionUtil.createFor(getPathTo(node));
 				newResultSetColumns.getResultColumnDefinitions().add(newColumn);
