@@ -41,7 +41,10 @@ public class ResultSetReader {
 	    if (type == Types.BIGINT) {
 	    	return new BigIntegerFormat().parse(rs.getString(column+1));
 	    }
-
+	    
+	    if (type == Types.LONGVARCHAR) {
+	    	return rs.getString(column+1);
+	    }
 	
 	    Object o = rs.getObject(column+1);
 	    if (o==null)

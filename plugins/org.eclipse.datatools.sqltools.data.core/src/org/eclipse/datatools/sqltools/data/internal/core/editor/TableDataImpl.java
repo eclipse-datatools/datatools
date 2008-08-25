@@ -269,9 +269,18 @@ public class TableDataImpl implements ITableData {
     
     public int save(Output output) throws SQLException
     {        
-        boolean autocomit = con.getAutoCommit();
-        con.setAutoCommit(false);
-        con.commit();
+    	boolean setAutoCommitAllowed = true;
+    	boolean autocomit = con.getAutoCommit();
+    	try
+        {
+        	con.setAutoCommit(false);
+        	con.commit();
+        }
+        catch(SQLException ex)
+        {
+        	// some databases do not allow setAutoCommit()
+        	setAutoCommitAllowed = false;
+        }
         
         int res;
         TableDataSaveStatus status = new TableDataSaveStatus();
@@ -281,13 +290,19 @@ public class TableDataImpl implements ITableData {
 	            RowDataImpl row = (RowDataImpl)it.next();
 	            row.save(status, output);
 	        }
-	        con.commit();
-	        con.setAutoCommit(autocomit);
+	        if (setAutoCommitAllowed)
+	        {
+	        	con.commit();
+	        	con.setAutoCommit(autocomit);
+	        }
 	        res = (status.duplicateRow) ? Output.STATUS_WARNING : Output.STATUS_SUCCEEDED;
         } catch (Exception ex) {
             output.write( ex.toString() );
-            con.rollback();
-            con.setAutoCommit(autocomit);
+            if (setAutoCommitAllowed)
+            {
+            	con.rollback();
+            	con.setAutoCommit(autocomit);
+            }
             res = Output.STATUS_FAILED;
             status.reset();
         }

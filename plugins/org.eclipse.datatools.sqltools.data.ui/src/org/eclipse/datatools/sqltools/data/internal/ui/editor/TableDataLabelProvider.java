@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 public class TableDataLabelProvider implements ITableLabelProvider
 {
-    protected static final int MAX_LABEL_LENGTH = 1000;
+    protected static final int MAX_LABEL_LENGTH = Integer.MAX_VALUE;
    
     public TableDataLabelProvider()
     {

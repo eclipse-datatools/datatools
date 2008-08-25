@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 public class TableDataCellModifier implements ICellModifier {
 
-    protected static final int MAX_LENGTH = 1000;
+    protected static final int MAX_LENGTH = Integer.MAX_VALUE;
     
     protected TableDataEditor editor;
     protected TableViewer viewer;
