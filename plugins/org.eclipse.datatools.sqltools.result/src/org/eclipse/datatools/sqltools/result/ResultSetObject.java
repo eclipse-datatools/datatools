@@ -82,7 +82,7 @@ public class ResultSetObject implements IResultSetObject
     private int               _totalRowCount;
     private File              _backupFile;
     private static ILogger    _log             = ResultsViewPlugin.getLogger(null);
-    private ResultSetMetaData _meta;
+    private transient ResultSetMetaData _meta;
 
     /**
      * Constructs a ResultSetObject instance from a JDBC ResultSet object
