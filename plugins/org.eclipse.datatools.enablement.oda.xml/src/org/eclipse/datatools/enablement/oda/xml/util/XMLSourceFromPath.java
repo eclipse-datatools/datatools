@@ -12,6 +12,8 @@ package org.eclipse.datatools.enablement.oda.xml.util;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -22,50 +24,46 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 
 public class XMLSourceFromPath implements IXMLSource
 {
-	private URL url;
+	private String path;
 	private String encoding;
 	
 	public XMLSourceFromPath( String path ) throws OdaException
 	{	
 		assert path != null;
-		
-		//try treat <code>path</code> as a local file first
-		File f = new File( path );
-		try
-		{
-			url = f.exists( ) ? f.toURL( ) : null;
-		}
-		catch ( MalformedURLException e )
-		{
-			throw new OdaException( e );
-		}
-		
-		//not a local file path, then treat <code>path</code> as a url
-		if ( url == null )
-		{
-			try
-			{
-				url = new URL( path );
-			}
-			catch ( MalformedURLException e )
-			{
-				throw new OdaException( e );
-			}
-		}
+		this.path = path;
 	}
 	
 	public XMLSourceFromPath( String path, String encoding ) throws OdaException
 	{
 		this( path );
 		this.encoding = encoding;
-		
 	}
 
 	public InputStream openInputStream( ) throws OdaException
 	{
+		//try treat <code>path</code> as a local file first
 		try
 		{
+			File f = new File( path );
+			if( f.exists( ) )
+			{
+				return new BufferedInputStream( new FileInputStream( f ) );
+			}
+		}
+		catch ( FileNotFoundException e )
+		{
+			throw new OdaException( e );
+		}
+		
+		//not a local file path, then treat <code>path</code> as a url
+		try
+		{
+			URL url = new URL( path );
 			return new BufferedInputStream( url.openStream( ) );
+		}
+		catch ( MalformedURLException e )
+		{
+			throw new OdaException( e );
 		}
 		catch ( IOException e )
 		{
