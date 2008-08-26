@@ -101,6 +101,11 @@
             categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
             name="%DatabaseManagement.command.attach"
             id="org.eclipse.datatools.sqltools.sqleditor.attachProfileAction"/>
+         <command
+               defaultHandler="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+               id="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+               name="%open_sql_scrapbook">
+         </command>
    </extension>
    
    <!-- Register a factory for recreating SQLEditorFileEditorInput objects when
@@ -164,7 +169,54 @@
          		</or>
       		</enablement>
    		</commonWizard>   
-	</extension> 
+	</extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="menu:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator?before=additions">
+          <separator
+                name="slot4"
+                visible="true">
+          </separator>
+       </menuContribution>
+       <menuContribution
+             locationURI="toolbar:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+          <separator
+                name="separator4"
+                visible="true">
+          </separator>
+          <command
+                commandId="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+                icon="images/scrapbook.gif"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbookinview"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </command>
+       </menuContribution>
+       <menuContribution
+             locationURI="menu:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator?before=slot4">
+          <command
+                commandId="org.eclipse.datatools.sqltools.sqlscrapbook.commands.openscrapbook"
+                icon="images/scrapbook.gif"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.view.menu.openscrapbook"
+                label="%open_sql_scrapbook"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.popupMenus">
+       <objectContribution
+             id="org.eclipse.datatools.connectivity.ui.dse.objectContribution2"
+             objectClass="org.eclipse.datatools.connectivity.IConnectionProfile">
+          <action
+                class="org.eclipse.datatools.sqltools.sqlscrapbook.actions.OpenScrapbookAction"
+                id="org.eclipse.datatools.sqltools.sqlscrapbook.action1"
+                label="%open_sql_scrapbook"
+                menubarPath="slot4"
+                tooltip="%open_sql_scrapbook_tooltip">
+          </action>
+       </objectContribution>
+    </extension> 
     
    
 </plugin>
