@@ -49,6 +49,8 @@ public class ResultSet implements IResultSet
     private boolean wasNull = false;
     //a counter that counts the total number of rows read from the flatfile
     private int fetchAccumulator = 0;
+   
+    private boolean overFlow = false;
     
     private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
     
@@ -96,6 +98,10 @@ public class ResultSet implements IResultSet
      */
     public boolean next( ) throws OdaException
 	{	
+    	if ( overFlow ) 
+    	{
+    		return false;
+    	}
     	//first time to call next
     	if ( cursor == CURSOR_INITIAL_VALUE )
 		{
@@ -106,7 +112,7 @@ public class ResultSet implements IResultSet
 		{
 			this.flatFileDataReader.clearBufferedReader( );
 			cursor = CURSOR_INITIAL_VALUE;
-			fetchAccumulator = 0;
+			overFlow = true;
 			return false;
 		}
 
@@ -119,7 +125,7 @@ public class ResultSet implements IResultSet
 			if ( sourceData.length == 0 )
 			{
 				this.flatFileDataReader.clearBufferedReader( );
-				fetchAccumulator = 0;
+				overFlow = true;
 				return false;
 			}
 		}
