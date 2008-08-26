@@ -242,6 +242,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		if (connection == null)
 			return;
 
+		this.pkLoaded = true;
 		boolean deliver = this.eDeliver();
 		this.eSetDeliver(false);
 
@@ -253,7 +254,6 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
                     MysqlPlugin.ID, 0,
                     "Could not get the DatabaseMetaData from connection", e)); //$NON-NLS-1$
 		}
-		this.pkLoaded = true;
 		this.eSetDeliver(deliver);
 	}
 
@@ -264,6 +264,7 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
 		if (connection == null)
 			return;
 
+		this.constraintLoaded = true;
 		boolean deliver = this.eDeliver();
 		this.eSetDeliver(false);
 
@@ -282,7 +283,6 @@ public class MySqlCatalogTable extends PersistentTableImpl implements
                     MysqlPlugin.ID, 0,
                     "Could not get the DatabaseMetaData from connection", e)); //$NON-NLS-1$
 		}
-		this.constraintLoaded = true;
 		this.eSetDeliver(deliver);
 	}
 
