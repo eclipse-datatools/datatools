@@ -107,6 +107,7 @@ public abstract class ResultSetTestBase extends TestCase
 					rs.getString( 1 ) );
 		}
 		assertEquals( counter, statement.getMaxRows( ) );
+		assertFalse( rs.next( ) );
 	}
 
 	/**
