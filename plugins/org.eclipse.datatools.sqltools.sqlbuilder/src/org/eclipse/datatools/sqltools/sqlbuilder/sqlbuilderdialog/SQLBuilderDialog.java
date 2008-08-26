@@ -159,15 +159,17 @@ public class SQLBuilderDialog extends SQLPainterDlg
 		}
 
 		// Update statement type
-		int statementType = StatementHelper.STATEMENT_TYPE_SELECT;
-		if (_statementType != null && _statementType.equalsIgnoreCase("UPDATE")) {
-			statementType = StatementHelper.STATEMENT_TYPE_UPDATE;
-		} else if (_statementType != null && _statementType.equalsIgnoreCase("DELETE")) {
-			statementType = StatementHelper.STATEMENT_TYPE_DELETE;
-		} else if (_statementType != null && _statementType.equalsIgnoreCase("INSERT")) {
-			statementType = StatementHelper.STATEMENT_TYPE_INSERT;
+		if (_statementType != null) {
+			int statementType = StatementHelper.STATEMENT_TYPE_SELECT;
+			if (_statementType != null && _statementType.equalsIgnoreCase("UPDATE")) {
+				statementType = StatementHelper.STATEMENT_TYPE_UPDATE;
+			} else if (_statementType != null && _statementType.equalsIgnoreCase("DELETE")) {
+				statementType = StatementHelper.STATEMENT_TYPE_DELETE;
+			} else if (_statementType != null && _statementType.equalsIgnoreCase("INSERT")) {
+				statementType = StatementHelper.STATEMENT_TYPE_INSERT;
+			}
+			_sqlBuilder.getDomainModel().initializeFromType(statementType);
 		}
-		_sqlBuilder.getDomainModel().initializeFromType(statementType);
 		
 		this.setBlockOnOpen(true);
 		if (this.open() == Dialog.OK){
