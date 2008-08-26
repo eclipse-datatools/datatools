@@ -13,6 +13,8 @@
 package org.eclipse.datatools.sqltools.core.services;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -157,24 +159,36 @@ public class SQLService
 		int numberOfLines = doc.getNumberOfLines();
 		try {
 			for (int i = 0; i < numberOfLines; i++) {
+				boolean grouped = false;
 				IRegion r = doc.getLineInformation(i);
 				String line = doc.get(r.getOffset(), r.getLength());
 				for (int j = 0; j < terminators.length; j++) {
 					if (line.trim().equalsIgnoreCase(terminators[j])) {
 						String string = doc.get(index, r.getOffset() - index);
 						if (string.trim().length() > 0) {
-							groups.add(string);
+							groups.add(string.trim());
 						}
 						index = r.getOffset() + doc.getLineLength(i);
 						break;
 					}
-					else if (line.indexOf(";")>=0)
-					{
-						String string = doc.get(index, r.getOffset() + line.indexOf(";") - index);
-						if (string.trim().length() > 0) {
-							groups.add(string);
+					else {
+						int offset = r.getOffset();
+						while (line.indexOf(";") >= 0) {
+							if (line.indexOf(";") >= 0 && !isQuoted(doc, offset + line.indexOf(";") + 1)) {
+								String string = doc.get(index, offset + line.indexOf(";") - index);
+								if (string.trim().length() > 0) {
+									groups.add(string.trim());
+								}
+								index = offset + line.indexOf(";") + 1;
+								grouped = true;
+								break;
+							}
+							offset += line.indexOf(";") + 1;
+							line = line.substring(line.indexOf(";") + 1);
 						}
-						index = r.getOffset() + line.indexOf(";") + 1;
+					}
+					if (grouped) {
+						grouped = false;
 						break;
 					}
 				}
@@ -190,6 +204,33 @@ public class SQLService
 			return new String[]{sql};
 		}
 		return (String[]) groups.toArray(new String[groups.size()]);
+	}
+	
+	/**
+	 * Check whether the ";" character is quoted 
+	 * @param doc document
+	 * @param offset offset of ";" character
+	 * @return
+	 */
+	private boolean isQuoted(IDocument doc, int offset) {
+        Pattern pSingle = Pattern.compile("'[^']*('')*[^']*;+[^']*('')*[^']*'");
+        Pattern pDouble = Pattern.compile("\"[^\"]*(\"\")*[^\"]*;+[^\"]*(\"\")*[^\"]*\"");
+
+		Matcher mSingle = pSingle.matcher(doc.get());
+		while (mSingle.find()) {
+			if (mSingle.start()<=offset && mSingle.end()>=offset) {
+				return true;
+			}
+		}
+		
+		Matcher mDouble = pDouble.matcher(doc.get());
+		while (mDouble.find()) {
+			if (mDouble.start()<=offset && mDouble.end()>=offset) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 	
 	public ParserProposalAdvisor getParserProposalAdvisor()
