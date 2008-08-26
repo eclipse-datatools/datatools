@@ -41,18 +41,21 @@ import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.texteditor.AbstractTextEditor;
 
 /**
  * The preference page for configurating color and style of syntax.
@@ -66,6 +69,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 	private Button _italicFont = null;
 	private Button _strikethroughFont = null;
 	private Button _underlineFont = null;
+	private Button _systemDefault = null;
 	private ColorSelector _colorSelector;
 	private SQLSourceViewer _sourceViewer;
 
@@ -82,14 +86,14 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 	}
 
 	private void initialPage() {
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_COMMENT, new SyntaxItem(false, false, false, false, new RGB(64, 128, 128)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_MULTILINE_COMMENT, new SyntaxItem(false, false, false, false, new RGB(64, 128, 128)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_QUOTED_LITERAL, new SyntaxItem(false, false, false, false, new RGB(0, 0, 255)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_DELIMITED_IDENTIFIER, new SyntaxItem(false, false, false, false, new RGB(0, 128, 0)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_KEYWORD, new SyntaxItem(true, false, false, false, new RGB(127, 0, 85)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_TYPE, new SyntaxItem(true, false, false, false, new RGB(64, 0, 200)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_IDENTIFIER, new SyntaxItem(false, false, false, false, new RGB(0, 0, 128)));
-		_defaultSyntaxItems.put(SQLColorProvider.SQL_DEFAULT, new SyntaxItem(false, false, false, false, new RGB(0, 0, 0)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_COMMENT, new SyntaxItem(false, false, false, false, false, new RGB(64, 128, 128)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_MULTILINE_COMMENT, new SyntaxItem(false, false, false, false, false, new RGB(64, 128, 128)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_QUOTED_LITERAL, new SyntaxItem(false, false, false, false, false, new RGB(0, 0, 255)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_DELIMITED_IDENTIFIER, new SyntaxItem(false, false, false, false, false, new RGB(0, 128, 0)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_KEYWORD, new SyntaxItem(true, false, false, false, false, new RGB(127, 0, 85)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_TYPE, new SyntaxItem(true, false, false, false, false, new RGB(64, 0, 200)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_IDENTIFIER, new SyntaxItem(false, false, false, false, false, new RGB(0, 0, 128)));
+		_defaultSyntaxItems.put(SQLColorProvider.SQL_DEFAULT, new SyntaxItem(false, false, false, false, true, getForeGroundColor()));
 	}
 
 	/*
@@ -155,6 +159,13 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 
 			public void widgetSelected(SelectionEvent e) {
 				if (_syntaxList.getSelection()[0] != null) {
+					if (_syntaxList.getSelection()[0].equals(SQLColorProvider.SQL_DEFAULT)) {
+						_systemDefault.setVisible(true);
+					} else {
+						_systemDefault.setVisible(false);
+						_systemDefault.setSelection(false);
+						_colorSelector.setEnabled(true);
+					}
 					refreshStyleComposite(((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])));
 				}
 			}
@@ -170,7 +181,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 		comp.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
 
 		Composite compColorControl = new Composite(comp, SWT.NULL);
-		GridLayout colorLayout = new GridLayout(2, false);
+		GridLayout colorLayout = new GridLayout(3, false);
 		colorLayout.marginHeight = 0;
 		colorLayout.marginWidth = 0;
 		compColorControl.setLayout(colorLayout);
@@ -184,6 +195,11 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 				updatePreviewer();
 			}
 		});
+
+		_systemDefault = new Button(compColorControl, SWT.CHECK);
+		_systemDefault.setText(PreferenceMessages.SyntaxColoringPage_default_foreground_color);
+		_systemDefault.addSelectionListener(new stylesListener());
+		_systemDefault.setVisible(false);
 
 		_boldFont = new Button(comp, SWT.CHECK);
 		_boldFont.setText(PreferenceMessages.SyntaxColoringPage_bold);
@@ -226,6 +242,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 			extension3.setDocumentPartitioner(SQLPartitionScanner.SQL_PARTITIONING, partitioner);
 		}
 		_sourceViewer.setDocument(document);
+		_sourceViewer.getTextWidget().setBackground(new Color(Display.getCurrent(), getBackGroundColor()));
 	}
 
 	/*
@@ -243,7 +260,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 
 			if (getPreferenceStore().getString(syntaxItemName) == null || getPreferenceStore().getString(syntaxItemName).equals("")) {
 				// use default values
-				_syntaxList.setData(syntaxItemName, _defaultSyntaxItems.get(syntaxItemName));
+				_syntaxList.setData(syntaxItemName, new SyntaxItem(_defaultSyntaxItems.get(syntaxItemName).toString()));
 			} else {
 				// use values saved before
 				_syntaxList.setData(syntaxItemName, new SyntaxItem(getPreferenceStore().getString(syntaxItemName)));
@@ -262,7 +279,7 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 	 */
 	private void getInitialValue() {
 		if (_syntaxList.getSelection()[0] != null) {
-			_syntaxList.setData(_syntaxList.getSelection()[0], _defaultSyntaxItems.get(_syntaxList.getSelection()[0]));
+			_syntaxList.setData(_syntaxList.getSelection()[0], new SyntaxItem(_defaultSyntaxItems.get(_syntaxList.getSelection()[0]).toString()));
 			refreshStyleComposite((SyntaxItem) _defaultSyntaxItems.get(_syntaxList.getSelection()[0]));
 		}
 	}
@@ -323,6 +340,8 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 		_italicFont.setSelection(syntax.isItalic());
 		_strikethroughFont.setSelection(syntax.isStrikethrough());
 		_underlineFont.setSelection(syntax.isUnderline());
+		_systemDefault.setSelection(syntax.isSystemDefault());
+		_systemDefault.notifyListeners(SWT.Selection, new Event());
 	}
 
 	/**
@@ -337,6 +356,46 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 	}
 
 	/**
+	 * Get foreground color
+	 * @return foreground color
+	 */
+	private RGB getForeGroundColor()
+	{
+		String rgb[] = new String[]{"0","0","0"};
+		try {
+			if (!org.eclipse.ui.internal.editors.text.EditorsPlugin.getDefault().getPreferenceStore().getString(AbstractTextEditor.PREFERENCE_COLOR_FOREGROUND_SYSTEM_DEFAULT).equalsIgnoreCase("true")) {
+				String foreGroundColor = org.eclipse.ui.internal.editors.text.EditorsPlugin.getDefault().getPreferenceStore().getString(AbstractTextEditor.PREFERENCE_COLOR_FOREGROUND);
+				if (foreGroundColor != null && !foreGroundColor.equals("")) {
+					rgb = foreGroundColor.split(",");
+				}
+			}
+		} catch (Throwable ex) {
+			// do nothing, keep using default value
+		}
+		return new RGB(Integer.parseInt(rgb[0]),Integer.parseInt(rgb[1]),Integer.parseInt(rgb[2]));
+	}
+	
+	/**
+	 * Get background color
+	 * @return background color
+	 */
+	private RGB getBackGroundColor()
+	{
+		String rgb[] = new String[] { "255", "255", "255" };
+		try {
+			if (!org.eclipse.ui.internal.editors.text.EditorsPlugin.getDefault().getPreferenceStore().getString(AbstractTextEditor.PREFERENCE_COLOR_BACKGROUND_SYSTEM_DEFAULT).equalsIgnoreCase("true")) {
+				String backGroundColor = org.eclipse.ui.internal.editors.text.EditorsPlugin.getDefault().getPreferenceStore().getString(AbstractTextEditor.PREFERENCE_COLOR_BACKGROUND);
+				if (backGroundColor != null && !backGroundColor.equals("")) {
+					rgb = backGroundColor.split(",");
+				}
+			}
+		} catch (Throwable ex) {
+			// do nothing, keep using default value
+		}
+		return new RGB(Integer.parseInt(rgb[0]), Integer.parseInt(rgb[1]), Integer.parseInt(rgb[2]));
+	}
+
+	/**
 	 * Handle selection event of all check boxes
 	 */
 	class stylesListener implements SelectionListener {
@@ -348,6 +407,13 @@ public class SyntaxColoringPage extends PreferencePage implements IWorkbenchPref
 			((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setItalicKey(_italicFont.getSelection());
 			((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setStrikethroughKey(_strikethroughFont.getSelection());
 			((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setUnderlineKey(_underlineFont.getSelection());
+			((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setSystemDefault(_systemDefault.getSelection());
+			if (_systemDefault.isVisible() && _systemDefault.getSelection()) {
+				((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setColor(((SyntaxItem)_defaultSyntaxItems.get(SQLColorProvider.SQL_DEFAULT)).getColor());
+			} else {
+				((SyntaxItem) _syntaxList.getData(_syntaxList.getSelection()[0])).setColor(_colorSelector.getColorValue());
+			}
+			_colorSelector.setEnabled(!_systemDefault.getSelection());
 			updatePreviewer();
 		}
 	}

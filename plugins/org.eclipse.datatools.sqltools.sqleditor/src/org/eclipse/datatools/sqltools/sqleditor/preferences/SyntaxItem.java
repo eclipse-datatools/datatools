@@ -21,12 +21,13 @@ import org.eclipse.swt.graphics.RGB;
  * @author renj
  */
 public class SyntaxItem {
-	private Pattern pattern = Pattern.compile("(\\d)\\,(\\d)\\,(\\d)\\,(\\d)\\,(\\d{1,3})\\,(\\d{1,3})\\,(\\d{1,3})");
+	private Pattern pattern = Pattern.compile("(\\d)\\,(\\d)\\,(\\d)\\,(\\d)\\,(\\d)\\,(\\d{1,3})\\,(\\d{1,3})\\,(\\d{1,3})");
 
 	private Boolean _boldKey = Boolean.FALSE;
 	private Boolean _italicKey = Boolean.FALSE;
 	private Boolean _strikethroughKey = Boolean.FALSE;
 	private Boolean _underlineKey = Boolean.FALSE;
+	private Boolean _systemDefault = Boolean.FALSE;
 	private RGB _color = new RGB(0, 0, 0);
 
 	public SyntaxItem(String preferenceCodes) {
@@ -37,16 +38,18 @@ public class SyntaxItem {
 				_italicKey = Boolean.valueOf(m.group(2).equals("1") ? true : false);
 				_strikethroughKey = Boolean.valueOf(m.group(3).equals("1") ? true : false);
 				_underlineKey = Boolean.valueOf(m.group(4).equals("1") ? true : false);
-				_color = new RGB(Integer.parseInt(m.group(5)), Integer.parseInt(m.group(6)), Integer.parseInt(m.group(7)));
+				_systemDefault = Boolean.valueOf(m.group(5).equals("1") ? true : false);
+				_color = new RGB(Integer.parseInt(m.group(6)), Integer.parseInt(m.group(7)), Integer.parseInt(m.group(8)));
 			}
 		}
 	}
 
-	public SyntaxItem(boolean bk, boolean ik, boolean sk, boolean uk, RGB rgb) {
+	public SyntaxItem(boolean bk, boolean ik, boolean sk, boolean uk, boolean sys, RGB rgb) {
 		_boldKey = Boolean.valueOf(bk);
 		_italicKey = Boolean.valueOf(ik);
 		_strikethroughKey = Boolean.valueOf(sk);
 		_underlineKey = Boolean.valueOf(uk);
+		_systemDefault = Boolean.valueOf(sys);
 		_color = rgb;
 	}
 
@@ -64,6 +67,10 @@ public class SyntaxItem {
 
 	public void setUnderlineKey(boolean uk) {
 		_underlineKey = Boolean.valueOf(uk);
+	}
+
+	public void setSystemDefault(boolean sys) {
+		_systemDefault = Boolean.valueOf(sys);
 	}
 
 	public void setColor(RGB rgb) {
@@ -86,13 +93,17 @@ public class SyntaxItem {
 		return _underlineKey.booleanValue();
 	}
 
+	public boolean isSystemDefault() {
+		return _systemDefault.booleanValue();
+	}
+
 	public RGB getColor() {
 		return _color;
 	}
 
 	public String toString() {
 		String preferenceCodes = (_boldKey.booleanValue() ? "1" : "0") + "," + (_italicKey.booleanValue() ? "1" : "0") + "," + (_strikethroughKey.booleanValue() ? "1" : "0") + ","
-				+ (_underlineKey.booleanValue() ? "1" : "0") + "," + _color.red + "," + _color.green + "," + _color.blue;
+				+ (_underlineKey.booleanValue() ? "1" : "0") + "," + (_systemDefault.booleanValue() ? "1" : "0") + "," + _color.red + "," + _color.green + "," + _color.blue;
 		return preferenceCodes;
 	}
 }

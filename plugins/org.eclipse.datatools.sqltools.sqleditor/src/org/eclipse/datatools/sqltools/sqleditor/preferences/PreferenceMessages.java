@@ -83,6 +83,7 @@ public final class PreferenceMessages extends NLS
 	public static String SyntaxColoringPage_underline;
 	public static String SyntaxColoringPage_preview;
 	public static String SyntaxColoringPage_syntax_items;
+	public static String SyntaxColoringPage_default_foreground_color;
 	
     static 
     {
