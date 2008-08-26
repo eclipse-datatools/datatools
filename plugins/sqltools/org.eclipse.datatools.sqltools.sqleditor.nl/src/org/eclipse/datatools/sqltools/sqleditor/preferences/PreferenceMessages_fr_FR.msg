@@ -82,3 +82,4 @@ SyntaxColoringPage_strikethrough=&Barré
 SyntaxColoringPage_underline=&Texte souligné
 SyntaxColoringPage_preview=Pré&visualisation :
 SyntaxColoringPage_syntax_items=Eléments de s&yntaxe :
+SyntaxColoringPage_default_foreground_color=Default &foreground color

@@ -82,3 +82,4 @@ SyntaxColoringPage_strikethrough=&Tachado
 SyntaxColoringPage_underline=S&ubrayado
 SyntaxColoringPage_preview=&Vista previa:
 SyntaxColoringPage_syntax_items=Elementos de sinta&xis
+SyntaxColoringPage_default_foreground_color=Default &foreground color

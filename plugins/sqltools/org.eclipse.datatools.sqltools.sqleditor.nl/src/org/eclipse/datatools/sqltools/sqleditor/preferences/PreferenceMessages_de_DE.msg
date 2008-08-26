@@ -82,3 +82,4 @@ SyntaxColoringPage_strikethrough=&Durchgestrichen
 SyntaxColoringPage_underline=&Unterstrichen
 SyntaxColoringPage_preview=Vor&schau:
 SyntaxColoringPage_syntax_items=S&yntaxelemente:
+SyntaxColoringPage_default_foreground_color=Default &foreground color

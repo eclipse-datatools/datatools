@@ -82,3 +82,4 @@ SyntaxColoringPage_strikethrough=취소선(&S)
 SyntaxColoringPage_underline=밑줄(&U)
 SyntaxColoringPage_preview=미리 보기(&W):
 SyntaxColoringPage_syntax_items=구문 항목(&Y):
+SyntaxColoringPage_default_foreground_color=Default &foreground color
