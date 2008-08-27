@@ -8,19 +8,14 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.datatools.connectivity.internal.Category;
-import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.editor.SQLScrapbookEditor;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.util.SQLFileUtil;
-import org.eclipse.datatools.sqltools.sqleditor.SQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreePath;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPart;
@@ -43,8 +38,6 @@ public class OpenScrapbookAction extends Action implements IHandler,
 
 	private transient ListenerList listenerList = null;
 
-	private ISelection _selection = null;
-
 	/**
 	 * The constructor.
 	 */
@@ -58,16 +51,8 @@ public class OpenScrapbookAction extends Action implements IHandler,
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
-		ISQLEditorConnectionInfo editorConnectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
-
-		if (_selection instanceof TreeSelection) {
-			TreeSelection selection = (TreeSelection) _selection;
-						
-			if(selection.size() > 0 && isDatabaseProfile(selection.getPaths()[0])){
-				editorConnectionInfo = SQLFileUtil.getDefaultConnectionInfo();
-			}
-		}
-
+		ISQLEditorConnectionInfo editorConnectionInfo = SQLFileUtil.getDefaultConnectionInfo();
+		
 		String scrap = "";
 		SQLEditorStorageEditorInput editorStorageEditorInput = new SQLEditorStorageEditorInput(
 				"", scrap);
@@ -111,9 +96,6 @@ public class OpenScrapbookAction extends Action implements IHandler,
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		window = SqlscrapbookPlugin.getActiveWorkbenchWindow();
-
-		_selection = selection;
-
 	}
 
 	/**
@@ -151,8 +133,6 @@ public class OpenScrapbookAction extends Action implements IHandler,
 
 		init(part.getSite().getWorkbenchWindow());
 
-		_selection = part.getSite().getSelectionProvider().getSelection();
-		
 		run(null);
 
 		return null;
@@ -168,13 +148,4 @@ public class OpenScrapbookAction extends Action implements IHandler,
 		}
 	}
 
-	private boolean isDatabaseProfile(TreePath path) {
-		if (path.getFirstSegment() instanceof Category) {
-			Category root = (Category) path.getFirstSegment();
-			
-			return root.getId().equals(ProfileUtil.DATABASE_CATEGORY_ID);
-		}
-
-		return false;
-	}
 }

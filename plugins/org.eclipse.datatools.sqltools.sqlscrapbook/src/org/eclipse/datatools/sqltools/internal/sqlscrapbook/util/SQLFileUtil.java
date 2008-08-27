@@ -19,6 +19,7 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
+import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.preferences.PreferenceConstants;
@@ -122,7 +123,7 @@ public class SQLFileUtil {
                 
                 
                 //select profile
-                if (obj instanceof IConnectionProfile)
+                if (obj instanceof IConnectionProfile && ProfileUtil.isSupportedProfile((IConnectionProfile)obj))
                 {
                 	return new SQLEditorConnectionInfo(null, ((IConnectionProfile)obj).getName(), "");
                 }
@@ -145,6 +146,7 @@ public class SQLFileUtil {
                 		}
                 	}
                 }
+                return null;
             }
         }
         return null;
