@@ -34,5 +34,10 @@ public interface IHelpConstants
 
 	public static final String CONEXT_ID_WS_DATASOURCE = PREFIX
 			+ "Wizard_WS_DATASOURCE_ID";//$NON-NLS-1$
-
+	
+	public static final String CONEXT_ID_WS_SOAP_REQUEST_PARMETER = PREFIX
+			+ "Dialog_SOAP_Request_Parameters_ID";//$NON-NLS-1$
+	
+	public static final String CONEXT_ID_WS_SOAP_REQUEST_PARMETER_PROPERTIES = PREFIX
+			+ "Dialog_SOAP_Request_Parameter_Properties_ID";//$NON-NLS-1$
 }

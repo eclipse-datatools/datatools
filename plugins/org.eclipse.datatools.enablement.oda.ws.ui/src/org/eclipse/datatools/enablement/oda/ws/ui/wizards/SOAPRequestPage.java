@@ -355,7 +355,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 			createCustomControls( composite );
 			initParameters( );
-
+			WSUIUtil.setSystemHelp( composite, IHelpConstants.CONEXT_ID_WS_SOAP_REQUEST_PARMETER );
 			return composite;
 		}
 
@@ -595,6 +595,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 			composite.setLayout( layout );
 
 			createCustomControls( composite );
+			
+			WSUIUtil.setSystemHelp( composite, IHelpConstants.CONEXT_ID_WS_SOAP_REQUEST_PARMETER_PROPERTIES );
 			return composite;
 		}
 
