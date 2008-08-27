@@ -58,13 +58,14 @@ public class OpenScrapbookAction extends Action implements IHandler,
 	 * @see IWorkbenchWindowActionDelegate#run
 	 */
 	public void run(IAction action) {
-		ISQLEditorConnectionInfo editorConnectionInfo;
+		ISQLEditorConnectionInfo editorConnectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
 
-		if (_selection != null && _selection instanceof TreeSelection && !isDatabaseProfile(((TreeSelection) _selection).getPaths()[0])) {
-			editorConnectionInfo = SQLEditorConnectionInfo.DEFAULT_SQLEDITOR_CONNECTION_INFO;
-		}
-		else {
-			editorConnectionInfo = SQLFileUtil.getDefaultConnectionInfo();
+		if (_selection instanceof TreeSelection) {
+			TreeSelection selection = (TreeSelection) _selection;
+						
+			if(selection.size() > 0 && isDatabaseProfile(selection.getPaths()[0])){
+				editorConnectionInfo = SQLFileUtil.getDefaultConnectionInfo();
+			}
 		}
 
 		String scrap = "";
@@ -150,6 +151,8 @@ public class OpenScrapbookAction extends Action implements IHandler,
 
 		init(part.getSite().getWorkbenchWindow());
 
+		_selection = part.getSite().getSelectionProvider().getSelection();
+		
 		run(null);
 
 		return null;
