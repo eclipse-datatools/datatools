@@ -34,6 +34,8 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
+import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
+import org.eclipse.datatools.modelbase.sql.tables.DerivedTable;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute.QueryOutputHelper;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.util.ResourceLoader;
 import org.eclipse.datatools.sqltools.internal.tabledataeditor.IExternalRunQuery;
@@ -83,7 +85,8 @@ public class SampleContentAction extends AbstractAction
         DatabaseDefinition dbDefinition = 
             plugin.getDatabaseDefinitionRegistry().getDefinition(db);
 
-       if (dbDefinition.supportsSchema()) {
+       if (dbDefinition.supportsSchema() && (table instanceof DerivedTable ||
+    		   table instanceof BaseTable)) {
             return this.wrapName(table.getSchema().getName())
                     + "." + this.wrapName(table.getName()); //$NON-NLS-1$
         } else {
