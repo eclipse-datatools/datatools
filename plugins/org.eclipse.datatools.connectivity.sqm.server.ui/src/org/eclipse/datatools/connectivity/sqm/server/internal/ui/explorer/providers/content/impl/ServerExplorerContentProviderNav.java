@@ -366,8 +366,9 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 	                
 	                parent1 = parent2;
 	            }          
-	            	viewer.setSelection(new StructuredSelection(parent1));
+	            	
             }
+            viewer.setSelection(new StructuredSelection(parent1));
         }
         catch (Exception e)
         {
