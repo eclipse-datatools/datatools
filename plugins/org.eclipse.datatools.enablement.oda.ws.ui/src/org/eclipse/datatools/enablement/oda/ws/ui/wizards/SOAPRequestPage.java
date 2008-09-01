@@ -295,7 +295,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 	{
 		WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
 				queryText.getText( ) );
-		WSConsole.getInstance( ).updateParameters( parameters );
+		WSConsole.getInstance( ).setParameters( parameters );
 		saved = true;
 	}
 

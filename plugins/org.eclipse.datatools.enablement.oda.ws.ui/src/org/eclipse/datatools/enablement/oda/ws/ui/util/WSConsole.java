@@ -315,41 +315,6 @@ public class WSConsole
 
 	/**
 	 * 
-	 * @param soapParameters
-	 */
-	public void updateParameters( SOAPParameter[] soapParameters )
-	{
-		if( parameters == null || soapParameters == null || parameters.length == soapParameters.length )
-		{
-			parameters = soapParameters;
-			return;
-		}
-		for ( int i = 0; soapParameters != null && i < soapParameters.length; i++ )
-		{
-			if ( !WSUtil.isNull( soapParameters[i] ) )
-			{
-				int pos = -1;
-				for ( int j = 0; j < parameters.length; j++ )
-				{
-					if ( !WSUtil.isNull( parameters[j].getName( ) )
-							&& parameters[j].getName( )
-									.equals( soapParameters[i].getName( ) ) )
-					{
-						pos = j;
-						break;
-					}
-				}
-				if( pos != -1 )
-				{
-					parameters[pos].setDefaultValue( soapParameters[i].getDefaultValue( ) );
-					parameters[pos].setUsed( soapParameters[i].isUsed( ) );
-				}
-			}
-		}
-	}
-	
-	/**
-	 * 
 	 * @return
 	 */
 	public String getTemplate( )
