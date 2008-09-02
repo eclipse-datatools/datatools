@@ -378,9 +378,9 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 				}
 				if (pdtd.isPrecisionSupported()) {
 					EStructuralFeature feature = pdt.eClass()
-							.getEStructuralFeature("precision"); //$NON-NLS-1$
+							.getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
 					pdt.eSet(feature,
-							new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+						new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
 				}
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()
