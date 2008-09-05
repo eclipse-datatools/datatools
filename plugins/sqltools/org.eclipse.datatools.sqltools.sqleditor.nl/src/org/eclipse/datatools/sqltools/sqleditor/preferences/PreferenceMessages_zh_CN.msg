@@ -82,4 +82,4 @@ SyntaxColoringPage_strikethrough=删除线(&S)
 SyntaxColoringPage_underline=下划线(&U)
 SyntaxColoringPage_preview=预览(&W):
 SyntaxColoringPage_syntax_items=语法项目(&Y):
-SyntaxColoringPage_default_foreground_color=Default &foreground color
+SyntaxColoringPage_default_foreground_color=默认前景色(&F)

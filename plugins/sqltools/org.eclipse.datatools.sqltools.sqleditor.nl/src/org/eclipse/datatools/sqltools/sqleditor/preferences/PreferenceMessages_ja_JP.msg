@@ -82,4 +82,4 @@ SyntaxColoringPage_strikethrough=取り消し線(&S)
 SyntaxColoringPage_underline=下線(&U)
 SyntaxColoringPage_preview=プレビュー(&W) :
 SyntaxColoringPage_syntax_items=構文項目(&Y) :
-SyntaxColoringPage_default_foreground_color=Default &foreground color
+SyntaxColoringPage_default_foreground_color=デフォルトの前景色(&F)
