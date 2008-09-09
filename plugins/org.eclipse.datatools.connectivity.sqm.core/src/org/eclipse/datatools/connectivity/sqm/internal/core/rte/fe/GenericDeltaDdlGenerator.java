@@ -415,7 +415,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		while(it.hasNext()) {
 			Object c = it.next();
 			if(changeMap.containsKey(c)) {
-				int flag = ((Integer) changeMap.get(e)).intValue();
+				int flag = ((Integer) changeMap.get(c)).intValue();
 				if((flag & (CREATE | DROP | MODIFIED | RENAME)) != 0) return true;
 			}
 		}
@@ -670,6 +670,8 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 		Iterator it = changeRecords.iterator();
 		while(it.hasNext()) {
 			ChangeRecord r = (ChangeRecord) it.next();
+			boolean deliver = r.element.eDeliver();
+			r.element.eSetDeliver(false);	
 			if(r.isSet) {
 				if(r.feature.isMany()) {
 					Collection c = (Collection) r.element.eGet(r.feature);
@@ -683,6 +685,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 			else {
 				r.element.eUnset(r.feature);
 			}
+			r.element.eSetDeliver(deliver);
 		}
 	}
 	
