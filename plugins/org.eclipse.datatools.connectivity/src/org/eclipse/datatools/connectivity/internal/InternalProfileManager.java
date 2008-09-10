@@ -136,13 +136,7 @@ public class InternalProfileManager {
 		
 		if (mProfiles == null) 
 		{
-			if (loadProfiles()) 
-			{
-				for (int profileIndex = 0, totalProfiles = mProfiles.length; profileIndex < totalProfiles; profileIndex++) 
-				{
-					fireProfileAdded(mProfiles[profileIndex]);
-				}
-			}
+			loadProfiles();
 		}
 		
 		cps.addAll(Arrays.asList(mProfiles));
@@ -903,10 +897,10 @@ public class InternalProfileManager {
 		mProfileListeners.remove(listener);
 	}
 
-	private synchronized boolean loadProfiles() {
+	private synchronized void loadProfiles() {
 		if (mProfiles != null )
 		{
-			return false;
+			return;
 		}
 		File serverFile = ConnectivityPlugin.getDefault().getStateLocation()
 				.append(ConnectionProfileMgmt.FILENAME).toFile();
@@ -1006,7 +1000,6 @@ public class InternalProfileManager {
 
 		autoConnectProfiles();
 		addProfileListener(mProfileChangeListener);
-		return true;
 	}
 	
 	private void backupProfilesData ( File ioFile ) {
