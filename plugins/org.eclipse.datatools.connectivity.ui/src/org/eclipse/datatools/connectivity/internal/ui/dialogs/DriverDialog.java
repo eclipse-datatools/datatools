@@ -1111,13 +1111,16 @@ public class DriverDialog extends TitleAreaDialog {
 					.getLocation().toOSString());
 		else {
 			File path = new File(dirName);
-			if (path.exists())
+			if (path.exists()) {
 				dialog.setFilterPath(new Path(dirName).toOSString());
+			} else {
+				dialog.setFilterPath(new Path(System.getProperty("user.home")).toOSString());
+			}
 		}
 
 		String selectedDirectory = dialog.open();
 		if (selectedDirectory != null) {
-			previouslyBrowsedDirectory = selectedDirectory;
+			previouslyBrowsedDirectory = new Path(selectedDirectory).removeLastSegments(1).toOSString();
 			this.list.add(selectedDirectory);
 		}
 	}
@@ -1304,7 +1307,7 @@ public class DriverDialog extends TitleAreaDialog {
 
 		String selectedDirectory = dialog.open();
 		if (selectedDirectory != null) {
-			previouslyBrowsedDirectory = selectedDirectory;
+			previouslyBrowsedDirectory = new Path(selectedDirectory).removeLastSegments(1).toOSString();
 			this.list.remove(editLocation);
 			this.list.add(selectedDirectory);
 
