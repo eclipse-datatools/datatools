@@ -28,10 +28,10 @@
     <license url="%featureLicenseURL">%featureLicenseTxt</license>
 
     <url>
-        <update url="%updateSiteURL"
-            label="%featureUpdateSiteName"/>
-        <discovery url="%discoverySiteURL"
-            label="%featureDiscoverySiteName"/>
+        <update url="http://download.eclipse.org/datatools/updates"
+            label="Data Tools Platform (DTP) Updates"/>
+        <discovery url="http://download.eclipse.org/datatools/updates"
+            label="Data Tools Platform (DTP) Updates"/>
     </url>
 
     <plugin id="org.eclipse.datatools.connectivity.doc.user.contexts"
