@@ -30,6 +30,7 @@ import org.eclipse.datatools.modelbase.dbdefinition.PredefinedDataTypeDefinition
 import org.eclipse.datatools.modelbase.sql.datatypes.PredefinedDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.ReferenceDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.StructuredUserDefinedType;
+import org.eclipse.datatools.modelbase.sql.datatypes.TimeDataType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -377,10 +378,16 @@ public class JDBCTableColumnLoader extends JDBCBaseLoader {
 							new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
 				}
 				if (pdtd.isPrecisionSupported()) {
-					EStructuralFeature feature = pdt.eClass()
-							.getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
-					pdt.eSet(feature,
-						new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));
+					EStructuralFeature feature = null;
+				    if (pdt instanceof TimeDataType) {
+				        feature = pdt.eClass().getEStructuralFeature("fractionalSecondsPrecision"); //$NON-NLS-1$
+				    }
+				    else {
+				        feature = pdt.eClass().getEStructuralFeature("precision"); //$NON-NLS-1$
+				     }
+				     if (feature != null) {
+				          pdt.eSet(feature, new Integer(rs.getInt(COLUMN_COLUMN_SIZE)));                                        
+				     }
 				}
 				if (pdtd.isScaleSupported()) {
 					EStructuralFeature feature = pdt.eClass()

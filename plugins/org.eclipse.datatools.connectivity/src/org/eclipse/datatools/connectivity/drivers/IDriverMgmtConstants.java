@@ -26,8 +26,10 @@ public interface IDriverMgmtConstants {
 	public static final String PROP_PREFIX = "org.eclipse.datatools.connectivity.drivers.";//$NON-NLS-1$
 
 	// standard jar list delimiter
-//	public static final String PATH_DELIMITER = ","; //$NON-NLS-1$
+	public static final String PATH_DELIMITER_COMMA = ","; //$NON-NLS-1$
+	public static final String PATH_DELIMITER_SEMICOLON = ";"; //$NON-NLS-1$
 	public static final String PATH_DELIMITER = "" + File.pathSeparatorChar; //$NON-NLS-1$
+	public static final char PATH_DELIMITER_CHAR = File.pathSeparatorChar;
 
 	// jar list, class, and template type
 	public static final String PROP_DEFN_JARLIST = "jarList"; //$NON-NLS-1$

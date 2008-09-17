@@ -835,7 +835,25 @@ public class DriverManager {
 		String jarList = template.getJarList();
 
 		if (jarList.indexOf("[") > -1) { //$NON-NLS-1$
-			int index = jarList.indexOf("["); //$NON-NLS-1$
+			int index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, 0);
+			if (index > 0) {
+				// don't do anything, the list is fine and already using the platform-specific delimiter
+			}
+			else {
+				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_COMMA, 0);
+				if (index > 0) {
+					// found commas, replace with the platform-specific delimiter
+					jarList = jarList.replace(',', IDriverMgmtConstants.PATH_DELIMITER_CHAR);
+				}
+				else {
+					index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_SEMICOLON, 0);
+					if (index > 0) {
+						// found semi-colons, replace with the platform-specific delimiter
+						jarList = jarList.replace(';', IDriverMgmtConstants.PATH_DELIMITER_CHAR);
+					}
+				}
+			}
+			index = jarList.indexOf("["); //$NON-NLS-1$
 			while (index > -1) {
 				String toReplace = jarList.substring(index, jarList.indexOf(
 						"]", index) + 1); //$NON-NLS-1$
@@ -851,6 +869,16 @@ public class DriverManager {
 					restOfPath = jarList
 							.substring(
 									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index)); //$NON-NLS-1$
+				}
+				else if (jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_COMMA, index) > 0) {
+					restOfPath = jarList
+							.substring(
+									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_COMMA, index)); //$NON-NLS-1$
+				}
+				else if (jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_SEMICOLON, index) > 0) {
+					restOfPath = jarList
+							.substring(
+									jarList.indexOf("]", index) + 1, jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_SEMICOLON, index)); //$NON-NLS-1$
 				}
 				else {
 					restOfPath = jarList.substring(
@@ -902,9 +930,32 @@ public class DriverManager {
 				}
 
 				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, index);
-				if (index > 0)
+				if (index > 0) {
 					index++;
+				}
 			}
+		} else {
+			// no [plugin] references, but let's see if we can clean up the delimiters to be platform-specific
+			int index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER, 0);
+			if (index > 0) {
+				// don't do anything, the list is fine and already using the platform-specific delimiter
+				return jarList;
+			}
+			else {
+				index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_COMMA, 0);
+				if (index > 0) {
+					// found commas, replace with the platform-specific delimiter
+					jarList = jarList.replace(',', IDriverMgmtConstants.PATH_DELIMITER_CHAR);
+				}
+				else {
+					index = jarList.indexOf(IDriverMgmtConstants.PATH_DELIMITER_SEMICOLON, 0);
+					if (index > 0) {
+						// found semi-colons, replace with the platform-specific delimiter
+						jarList = jarList.replace(';', IDriverMgmtConstants.PATH_DELIMITER_CHAR);
+					}
+				}
+			}
+			
 		}
 
 		return jarList;
