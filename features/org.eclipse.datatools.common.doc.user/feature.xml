@@ -14,29 +14,35 @@
  ***************************************************************************
  -->
 <feature
-    id="org.eclipse.datatools.common.doc.user"
-    label="%featureName"
-    version="1.6.1.qualifier"
-    provider-name="%providerName"
-    plugin="org.eclipse.datatools.common.doc.user"
-    image="eclipse_update_120.jpg">
+      id="org.eclipse.datatools.common.doc.user"
+      label="%featureName"
+      version="1.6.1.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.datatools.common.doc.user"
+      image="eclipse_update_120.jpg">
 
-    <description>%featureDesc</description>
+   <description>
+      %featureDesc
+   </description>
 
-    <copyright>%featureCopyright</copyright>
+   <copyright>
+      %featureCopyright
+   </copyright>
 
-    <license url="%featureLicenseURL">%featureLicenseTxt</license>
+   <license url="%featureLicenseURL">
+      %featureLicenseTxt
+   </license>
 
-    <url>
-        <update url="http://download.eclipse.org/datatools/updates"
-            label="Data Tools Platform (DTP) Updates"/>
-        <discovery url="http://download.eclipse.org/datatools/updates"
-            label="Data Tools Platform (DTP) Updates"/>
-    </url>
+   <url>
+      <update label="%featureUpdateSiteName" url="http://download.eclipse.org/datatools/updates"/>
+      <discovery label="%featureDiscoverySiteName" url="http://download.eclipse.org/datatools/updates"/>
+   </url>
 
-    <plugin id="org.eclipse.datatools.common.doc.user"
-        version="0.0.0"
-        download-size="0"
-        install-size="0"
-        unpack="false"/>
+   <plugin
+         id="org.eclipse.datatools.common.doc.user"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>

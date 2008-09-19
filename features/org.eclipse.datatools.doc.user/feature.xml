@@ -29,9 +29,9 @@
 
     <url>
         <update url="http://download.eclipse.org/datatools/updates"
-            label="Data Tools Platform (DTP) Updates"/>
+            label="%featureUpdateSiteName"/>
         <discovery url="http://download.eclipse.org/datatools/updates"
-            label="Data Tools Platform (DTP) Updates"/>
+            label="%featureDiscoverySiteName"/>
     </url>
 
     <plugin id="org.eclipse.datatools.doc.user"
