@@ -200,6 +200,33 @@
          	allowsPlatformContributions="true"
           	id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator.menu">
         	<insertionPoint
+           		name="slot.Open"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Create"
+                separator="true"/>
+        	<insertionPoint
+           		name="slot.Data"
+                separator="true"/>
+        	<insertionPoint
+           		name="slot.Control"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Maintain"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Share"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Change"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Additions"
+                separator="true"/>
+            <insertionPoint
+           		name="slot.Properties"
+                separator="true"/>                    
+        	<insertionPoint
            		name="group.new"
                 separator="true"/>
           	<insertionPoint
