@@ -167,7 +167,7 @@ SQLQueryParser.<with_table_spec_list>			= WITH テーブルの指定のリスト
 
 
 
-SQLQueryDB2Parser.<olap_aggregation_function>	= OLAP 総計関数
+SQLQueryDB2Parser.<olap_aggregation_function>	= OLAP 集計関数
 SQLQueryDB2Parser.<olap_current_row>			= 現在の行
 SQLQueryDB2Parser.<olap_function>				= OLAP 関数
 SQLQueryDB2Parser.<olap_group_end>				= FOLLOWING 式
@@ -183,8 +183,8 @@ SQLQueryDB2Parser.<olap_ranking_function>				= OLAP ランク付け関数
 SQLQueryDB2Parser.<olap_rows_or_range>					= ROWS または RANGE
 SQLQueryDB2Parser.<olap_window_order_clause>			= OLAP ウィンドウの ORDER 句
 SQLQueryDB2Parser.<opt_olap_asc_desc>					= OLAP ASC/DESC の指定
-SQLQueryDB2Parser.<opt_olap_window_aggregation_group>	= オプションの OLAP ウィンドウの総計グループ
-SQLQueryDB2Parser.<opt_olap_window_order_agregration_group>	= オプションの OLAP ウィンドウの ORDER 句の総計グループ 
+SQLQueryDB2Parser.<opt_olap_window_aggregation_group>	= オプションの OLAP ウィンドウの集計グループ
+SQLQueryDB2Parser.<opt_olap_window_order_agregration_group>	= オプションの OLAP ウィンドウの ORDER 句の集計グループ 
 SQLQueryDB2Parser.<opt_olap_window_order_clause>			= オプションの OLAP ウィンドウの ORDER 句
 SQLQueryDB2Parser.<opt_olap_window_parition_clause>			= オプションの OLAP ウィンドウの PARTITION 句
 
