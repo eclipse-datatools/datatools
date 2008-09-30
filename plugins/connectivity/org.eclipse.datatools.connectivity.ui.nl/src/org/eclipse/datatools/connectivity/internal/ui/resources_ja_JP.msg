@@ -165,7 +165,7 @@ CommonDriverUIContributor.generaltab = 全般(&E)
 
 OtherDriverUIContributor.databaseName.label = データベース(&A) :
 OtherDriverUIContributor.url.label = URL(&U) :
-OtherDriverUIContributor.userName.label = ユーザ名前(&U) :
+OtherDriverUIContributor.userName.label = ユーザ名(&U) :
 OtherDriverUIContributor.password.label = パスワード(&P) :
 OtherDriverUIContributor.savePassword.label = パスワードの保存(&V)
 OtherDriverUIContributor.summaryData.database = データベース
