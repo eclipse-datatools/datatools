@@ -228,7 +228,7 @@ _UI_WIZARD_CONSTANT_OPTIONS_TITLE=定数オプション
 _UI_WIZARD_CONSTANT_OPTIONS_HEADING=定数オプション
 _UI_WIZARD_CONSTANT_OPTIONS_EXPL=構築する定数式の型を選択します。
 _UI_GROUP_CONSTANT_TYPE=定数の型
-_UI_RADIO_NUMERIC=数値定数 : 整数、浮動小数点、または小数(&U)
+_UI_RADIO_NUMERIC=数値定数 : 整数、浮動小数点、または10進数(&U)
 _UI_RADIO_STRING=文字列定数 : 文字列・グラフィック列、またはホスト変数名(&S)
 
 !expressionbuilder/constant/StringConstantBuilderPage.java
