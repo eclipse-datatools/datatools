@@ -19,7 +19,7 @@ editor.title.type=型
 
 
 datatypes.dateTime=日時
-datatypes.decimal=小数値
+datatypes.decimal=10進数値
 datatypes.float=浮動小数値
 datatypes.integer=整数値
 datatypes.string=文字列
