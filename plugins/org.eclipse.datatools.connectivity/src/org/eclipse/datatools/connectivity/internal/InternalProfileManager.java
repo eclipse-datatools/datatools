@@ -852,7 +852,11 @@ public class InternalProfileManager {
 				internalProfile.connect(null);
 			}
 		}
-		cps[index] = profile;
+
+		// Changed to fix bug 247599
+		//cps[index] = profile;
+		removeProfile(cps[index]);
+		addProfile(profile);
 
 		mIsDirty = true;
 
@@ -1274,7 +1278,8 @@ public class InternalProfileManager {
 	{
 	    try
         {
-            Bundle bundle = Platform.getBundle(element.getDeclaringExtension().getNamespace());
+			String pluginID = element.getContributor().getName();
+            Bundle bundle = Platform.getBundle(pluginID);
             if (bundle.getState() == Bundle.RESOLVED)
             {
                 bundle.start();
@@ -1291,7 +1296,8 @@ public class InternalProfileManager {
 	
 	private String substituteLocationDirectory (String logicalPath, IConfigurationElement element)
 	{
-	    String stateLocation = Platform.getStateLocation(Platform.getBundle(element.getDeclaringExtension().getNamespace())).toOSString();
+		String pluginID = element.getContributor().getName();
+	    String stateLocation = Platform.getStateLocation(Platform.getBundle(pluginID)).toOSString();
 		int index = logicalPath.indexOf(PLUGIN_STATE_LOCATION);
 		if (index != -1)
 		{
