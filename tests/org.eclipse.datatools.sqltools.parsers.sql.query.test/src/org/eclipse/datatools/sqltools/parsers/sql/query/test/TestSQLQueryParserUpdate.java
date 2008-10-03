@@ -32,15 +32,9 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     {
         super(name);
     }
-
-
         
-        
-        
-        
-        
-    public void testSqlDmlParser002() throws Exception {
-        System.out.println("test 002"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateBasic() throws Exception {
+        System.out.println("test 002 update basic"); //$NON-NLS-1$
         parserVerifySuccess(
     	        "update cl_sched" +  //$NON-NLS-1$
     	        " set col1 = '3565'" +  //$NON-NLS-1$
@@ -57,8 +51,8 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
     
 
-    public void testSqlDmlParser002_colRefs()  throws Exception {
-        System.out.println("test 002_columnRefs"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateColRefs()  throws Exception {
+        System.out.println("test 002_updateColRefs"); //$NON-NLS-1$
         parserVerifySuccess(
     
             "update cl_sched as an" +  //$NON-NLS-1$
@@ -77,8 +71,8 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
     
 
-    public void testSqlDmlParser002_condition()  throws Exception {
-        System.out.println("test 002_condition"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateCondition()  throws Exception {
+        System.out.println("test 002_updateCondition"); //$NON-NLS-1$
         String u = "update cl_sched set col0 = 00120"; //$NON-NLS-1$
         parserVerifySuccess(
             u+ " where (col0 = '000190');" + NL + //$NON-NLS-1$
@@ -98,8 +92,8 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
     
 
-    public void testSqlDmlParser002_model()  throws Exception {
-        System.out.println("test 002_model"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateModel()  throws Exception {
+        System.out.println("test 002_updateModel"); //$NON-NLS-1$
     
         List update = parserVerifySuccess(
             	        "update cl_sched" +  //$NON-NLS-1$
@@ -115,8 +109,8 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
     
 
-    public void testSqlDmlParser002_sourceQuery()  throws Exception {
-        System.out.println("test 002_sourceQuery"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateSourceQuery()  throws Exception {
+        System.out.println("test 002_updateSourceQuery"); //$NON-NLS-1$
         parserVerifySuccess(
     		"update table2 set col0 = (select col0 from table1);" + NL + //$NON-NLS-1$
     		"update table2 set (col1,col2,col3) = (select col1,col2,col3 from table1);" + NL + //$NON-NLS-1$
@@ -125,8 +119,8 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
     
 
-    public void testSqlDmlParser002_valueComparison()  throws Exception {
-        System.out.println("test 002_valueComparison"); //$NON-NLS-1$
+    public void testSqlDmlParser002_updateValueComparison()  throws Exception {
+        System.out.println("test 002_updateValueComparison"); //$NON-NLS-1$
         String u = "update cl_sched set col0 = 00120"; //$NON-NLS-1$
         parserVerifySuccess(
             u+ " where col0 >  0 and col0 < 100;" + NL + //$NON-NLS-1$
@@ -136,7 +130,13 @@ public final class TestSQLQueryParserUpdate extends AbstractTestSQLQueryParser
     }
 
     
-    
+    public void testSqlDmlParser002_updateWhereExists()  throws Exception {
+        System.out.println("test 002_updateWhereExists"); //$NON-NLS-1$
+        parserVerifySuccess(
+            "update employee set salary = salary * 0.1 where exists (select * from department where mgrno = empno);" + NL + //$NON-NLS-1$
+            "update employee as e set e.salary = e.salary * 0.1 where exists (select * from department d where d.mgrno = e.empno);" + NL, matchInput //$NON-NLS-1$
+            );
+    }  
     
     
 }
