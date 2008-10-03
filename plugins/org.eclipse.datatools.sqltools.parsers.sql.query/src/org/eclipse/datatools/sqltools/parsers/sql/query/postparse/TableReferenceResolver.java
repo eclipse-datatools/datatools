@@ -777,9 +777,9 @@ public class TableReferenceResolver implements PostParseProcessor
 
         columnSet.addAll(findUnresolvedColumnReferencesInScope(select));
         
-        // resolve the local columns
-        EList fromClause = select.getFromClause();
-        resolveColumnTableReferences(columnSet, fromClause);
+        // Get a list of tables that are visible (in scope) for this query select.
+        List visibleTableList = StatementHelper.getTableExpressionsVisibleInQuerySelect(select);
+        resolveColumnTableReferences(columnSet, visibleTableList);
         
         
         // resolve resultColumns in ResultSpec ...is included up here already!
