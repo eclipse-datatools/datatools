@@ -2064,21 +2064,23 @@ public class StatementHelper {
     }
 
     /**
-     * Returns the <code>TableExpression</code> s in the given
+     * Returns the <code>TableExpression</code>s in the given
      * <code>QuerySelect</code>'s <code>fromClause</code> plus all the
-     * <code>TableExpression</code> s that are visible in the scope of the
-     * given <code>QuerySelect</code>, if the <code>QuerySelect</code>
-     * given is a nested query or subquery, all the <code>TableExpression</code>
-     * s of the super query are appende to the returned list of
+     * <code>TableExpression</code>s that are visible in the scope of the
+     * given <code>QuerySelect</code>.  If the <code>QuerySelect</code>
+     * given is a nested query or sub-query, all the <code>TableExpression</code>s 
+     * of the super query are appended to the returned list of
      * <code>TableExpression</code>s.
      * 
-     * @param querySelect
+     * @param querySelect the <code>QuerySelect</code> for which the visible table expressions
+     * are needed
      * @return List of visible <code>TableExpression</code>s
      */
     public static List getTableExpressionsVisibleInQuerySelect(QuerySelect querySelect) {
         List tableExprList = new ArrayList();
 
         if (querySelect != null) {
+            /* First get the tables contained in the query select. */
             List fromClause = querySelect.getFromClause();
             tableExprList.addAll(TableHelper.getTableExpressionsInTableReferenceList(fromClause));
 
@@ -2108,8 +2110,22 @@ public class StatementHelper {
                     if (eContainer instanceof QuerySelect) {
                         QuerySelect superSelect = (QuerySelect) eContainer;
                         List superTables = getTableExpressionsVisibleInQuerySelect(superSelect);
-
+                        // While adding the update and delete cases below, noticed that superTables list
+                        // is not getting added to the tableExprList here.  Not sure why not.
+                        // When I added the code to do this, it affected the generated SQL
+                        // for some test cases, causing columns to be qualified with table names when
+                        // they weren't previously.  So am leaving it out for now.
                         break;
+                    }
+                    else if (eContainer instanceof QueryUpdateStatement) {
+                        QueryUpdateStatement updateStmt = (QueryUpdateStatement) eContainer;
+                        List superTables = getTablesForStatement(updateStmt);
+                        tableExprList.addAll(superTables);
+                    }
+                    else if (eContainer instanceof QueryDeleteStatement) {
+                        QueryDeleteStatement deleteStmt = (QueryDeleteStatement) eContainer;
+                        List superTables = getTablesForStatement(deleteStmt);
+                        tableExprList.addAll(superTables);
                     }
                     eContainer = eContainer.eContainer();
                 }
@@ -2412,7 +2428,7 @@ public class StatementHelper {
     }
 
     /**
-     * Determins wether or not the given <code>QuerySelect</code> is part of
+     * Determins whether or not the given <code>QuerySelect</code> is part of
      * the <code>fromClause</code> of another <code>QuerySelect</code>.
      * 
      * @param querySelect
