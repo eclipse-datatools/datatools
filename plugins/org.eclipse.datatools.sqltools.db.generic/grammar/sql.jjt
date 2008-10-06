@@ -72,6 +72,12 @@ public class GenericSQLParser extends SQLParser implements SQLParserConstants
 	private static final int[] TERMINATORS = new int[]{GO, SEMICOLON};
 	private static final String[] TERMINATORS_STRING = new String[]{"GO", ";"};
 
+	private static int[] STMT_START_TERMINATORS = new int[STMT_START.length + TERMINATORS.length]; 
+	static {
+		System.arraycopy(STMT_START, 0, STMT_START_TERMINATORS, 0, STMT_START.length);
+		System.arraycopy(TERMINATORS, 0, STMT_START_TERMINATORS, STMT_START.length, TERMINATORS.length);
+	} 
+
     /*
     * Singleton
     */
@@ -988,13 +994,13 @@ Token UK_VARCHAR_S1() : {Token t;}
 	        }catch (ParseException e) {
 	           	//TODO can we create an UnknownStatement?
 	            exceptions.add(e);
-	            error_skiptobefore(new int[]{END}, STMT_START);
+	            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
 	        } catch (Throwable t) { 
 	        //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
 	        	ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
 	        	e.currentToken = getToken(0);
 		        exceptions.add(e);
-	            error_skiptobefore(new int[]{END}, STMT_START);
+	            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
 	        }    
 	            
 	         )* <EOF>
@@ -1037,13 +1043,22 @@ void statement() : {setScope("SQL Statement", SCOPE_DEFAULT);/*the default scope
          
         }catch(ParseException e){
           exceptions.add(e);
-            error_skiptobefore(new int[]{END}, STMT_START);
+          error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+          //to generate an ASTSQLDelimiter node so that the statement can be separated
+          if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+          {
+             delimiter();
+          }
         } catch (Throwable t) { 
         //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
         	ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
         	e.currentToken = getToken(0);
 	        exceptions.add(e);
-            error_skiptobefore(new int[]{END}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+            if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+            {
+                delimiter();
+            }
         }    
         {
         }
@@ -1061,14 +1076,14 @@ void unknown_sql_stmt() : {}
 		<WAITFOR> | <WHILE> | <WRITETEXT>| <ID>
 	 )
 	 {
-	 	error_skiptobefore(new int[]{END}, STMT_START);
+	 	error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
 	 } 
 }
 
 void any_stmt_token():{}
 {
 	{
-	 	error_skiptobefore(new int[]{END}, STMT_START);
+	 	error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
 	} 
 }
 

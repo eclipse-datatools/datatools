@@ -50,8 +50,16 @@ public class GenericSQLParserTest extends ParserTest
     
     public void testTerminators()
     {
-        String sql = "select * from testtable1;\r\n"
-            + "insert into testtable1 values(a, 2)";
+    	String sql = "CREATE TABLE DD_ADDRESS (" +
+                "ID INTEGER NOT NULL, " +
+                "EGN TIMESTAMP, " +
+                "STRING VARCHAR(255) UNICODE," + 
+                "FAMILY VARCHAR(255) UNICODE, " +
+                "NAME VARCHAR(255) UNICODE, " +
+                "CITY VARCHAR(255) UNICODE, " +
+                "NUMBER <UNKNOWN> NOT NULL " +
+                "); " +
+                "ALTER TABLE DD_ADDRESS ADD CONSTRAINT DD_ADDRESS_PK PRIMARY KEY (ID)";
         SQLParser p = getParser();
         IDocument doc = new Document(sql);
         ParserParameters parserParameters = new ParserParameters(true, SQLParserConstants.TYPE_SQL_ROOT);

@@ -51,6 +51,12 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
         private static final int[] TERMINATORS = new int[]{GO, SEMICOLON};
         private static final String[] TERMINATORS_STRING = new String[]{"GO", ";"};
 
+        private static int[] STMT_START_TERMINATORS = new int[STMT_START.length + TERMINATORS.length];
+        static {
+                System.arraycopy(STMT_START, 0, STMT_START_TERMINATORS, 0, STMT_START.length);
+                System.arraycopy(TERMINATORS, 0, STMT_START_TERMINATORS, STMT_START.length, TERMINATORS.length);
+        }
+
     /*
     * Singleton
     */
@@ -1083,13 +1089,13 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
         } catch (ParseException e) {
                         //TODO can we create an UnknownStatement?
                     exceptions.add(e);
-                    error_skiptobefore(new int[]{END}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
         } catch (Throwable t) {
                 //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                         ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                         e.currentToken = getToken(0);
                         exceptions.add(e);
-                    error_skiptobefore(new int[]{END}, STMT_START);
+                    error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
         }
       }
       jj_consume_token(0);
@@ -1253,13 +1259,22 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       }
     } catch (ParseException e) {
           exceptions.add(e);
-            error_skiptobefore(new int[]{END}, STMT_START);
+          error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+          //to generate an ASTSQLDelimiter node so that the statement can be separated
+          if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+          {
+             delimiter();
+          }
     } catch (Throwable t) {
         //TODO: handle this throwable separately in SQLEditor:setOutlineContent.
                 ParseException e = new ParseException(ParserUtil.getErrorMessage(getToken(0)));
                 e.currentToken = getToken(0);
                 exceptions.add(e);
-            error_skiptobefore(new int[]{END}, STMT_START);
+            error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
+            if (getToken(1).kind == GO || getToken(1).kind == SEMICOLON )
+            {
+                delimiter();
+            }
     }
 
   }
@@ -1391,11 +1406,11 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       jj_consume_token(-1);
       throw new ParseException();
     }
-                error_skiptobefore(new int[]{END}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
   }
 
   final public void any_stmt_token() throws ParseException {
-                error_skiptobefore(new int[]{END}, STMT_START);
+                error_skiptobefore(new int[]{END}, STMT_START_TERMINATORS);
   }
 
   final public void use() throws ParseException {
@@ -7136,36 +7151,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     finally { jj_save(176, xla); }
   }
 
-  final private boolean jj_3R_502() {
-    if (jj_3R_510()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_511()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_489() {
-    if (jj_3R_502()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_475() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_489()) jj_scanpos = xsp;
-    return false;
-  }
-
-  final private boolean jj_3R_508() {
-    if (jj_3R_96()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_517()) jj_scanpos = xsp;
-    return false;
-  }
-
   final private boolean jj_3R_509() {
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_508()) return true;
@@ -8697,6 +8682,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_505() {
+    if (jj_scan_token(VAR_NAME)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_371() {
+    if (jj_scan_token(NULL)) return true;
+    return false;
+  }
+
   final private boolean jj_3_14() {
     Token xsp;
     xsp = jj_scanpos;
@@ -8707,8 +8702,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_505() {
-    if (jj_scan_token(VAR_NAME)) return true;
+  final private boolean jj_3R_345() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(213)) {
+    jj_scanpos = xsp;
+    if (jj_3R_364()) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(215)) return true;
+    }
+    }
     return false;
   }
 
@@ -8719,6 +8722,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3_11() {
     if (jj_scan_token(BEGIN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3_163() {
+    if (jj_3R_74()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_364() {
+    if (jj_3R_380()) return true;
     return false;
   }
 
@@ -8737,11 +8750,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_371() {
-    if (jj_scan_token(NULL)) return true;
-    return false;
-  }
-
   final private boolean jj_3_7() {
     if (jj_scan_token(UPDATE)) return true;
     return false;
@@ -8749,19 +8757,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3_6() {
     if (jj_scan_token(INSERT)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_345() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(213)) {
-    jj_scanpos = xsp;
-    if (jj_3R_364()) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(215)) return true;
-    }
-    }
     return false;
   }
 
@@ -8797,16 +8792,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3R_56() {
     if (jj_3R_186()) return true;
-    return false;
-  }
-
-  final private boolean jj_3_163() {
-    if (jj_3R_74()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_364() {
-    if (jj_3R_380()) return true;
     return false;
   }
 
@@ -8932,16 +8917,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3_2() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(81)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(222)) return true;
-    }
-    return false;
-  }
-
   final private boolean jj_3R_359() {
     if (jj_3R_345()) return true;
     return false;
@@ -8966,6 +8941,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     jj_scanpos = xsp;
     if (jj_scan_token(209)) return true;
     }
+    }
+    return false;
+  }
+
+  final private boolean jj_3_2() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(81)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(222)) return true;
     }
     return false;
   }
@@ -9009,10 +8994,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_221() {
-    return false;
-  }
-
   final private boolean jj_3R_59() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9023,7 +9004,27 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_221() {
+    return false;
+  }
+
   final private boolean jj_3R_220() {
+    return false;
+  }
+
+  final private boolean jj_3R_346() {
+    if (jj_3R_160()) return true;
+    if (jj_scan_token(DOT)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_306() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(223)) {
+    jj_scanpos = xsp;
+    if (jj_3R_346()) return true;
+    }
     return false;
   }
 
@@ -9039,48 +9040,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
   }
 
   final private boolean jj_3R_219() {
-    return false;
-  }
-
-  final private boolean jj_3R_346() {
-    if (jj_3R_160()) return true;
-    if (jj_scan_token(DOT)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_90() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("varbinary");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_220()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_218() {
-    return false;
-  }
-
-  final private boolean jj_3R_306() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(223)) {
-    jj_scanpos = xsp;
-    if (jj_3R_346()) return true;
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_89() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("univarchar");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_219()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9102,6 +9061,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_90() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("varbinary");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_220()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_303() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9112,32 +9082,28 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_218() {
+    return false;
+  }
+
   final private boolean jj_3R_344() {
     if (jj_3R_345()) return true;
     return false;
   }
 
-  final private boolean jj_3R_88() {
+  final private boolean jj_3R_89() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("unichar");
+    jj_semLA = check("univarchar");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_218()) return true;
+    if (!jj_semLA || jj_3R_219()) return true;
     if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_217() {
     return false;
   }
 
   final private boolean jj_3R_246() {
     if (jj_3R_306()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_215() {
     return false;
   }
 
@@ -9156,34 +9122,27 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_87() {
+  final private boolean jj_3R_88() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("tinyint");
+    jj_semLA = check("unichar");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_217()) return true;
+    if (!jj_semLA || jj_3R_218()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
 
-  final private boolean jj_3R_216() {
+  final private boolean jj_3R_217() {
+    return false;
+  }
+
+  final private boolean jj_3R_215() {
     return false;
   }
 
   final private boolean jj_3R_274() {
     if (jj_3R_130()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_85() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("timestamp");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_215()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9203,7 +9162,46 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_87() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("tinyint");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_217()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_216() {
+    return false;
+  }
+
+  final private boolean jj_3R_85() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("timestamp");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_215()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_526() {
+    return false;
+  }
+
+  final private boolean jj_3R_164() {
+    if (jj_3R_160()) return true;
+    return false;
+  }
+
+  final private boolean jj_3_160() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_164()) jj_scanpos = xsp;
+    if (jj_scan_token(DOT)) return true;
     return false;
   }
 
@@ -9218,40 +9216,8 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_520() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("then");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_526()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_164() {
-    if (jj_3R_160()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_214() {
-    return false;
-  }
-
-  final private boolean jj_3_160() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_164()) jj_scanpos = xsp;
-    if (jj_scan_token(DOT)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_163() {
     if (jj_3R_160()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_213() {
     return false;
   }
 
@@ -9273,6 +9239,21 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_520() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("then");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_526()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_214() {
+    return false;
+  }
+
   final private boolean jj_3R_349() {
     if (jj_3R_132()) return true;
     return false;
@@ -9280,6 +9261,35 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3R_434() {
     if (jj_3R_96()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_308() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_349()) jj_scanpos = xsp;
+    if (jj_3R_160()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_213() {
+    return false;
+  }
+
+  final private boolean jj_3R_418() {
+    if (jj_3R_434()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_503()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  final private boolean jj_3_157() {
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_161()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
     return false;
   }
 
@@ -9298,11 +9308,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_308() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_349()) jj_scanpos = xsp;
-    if (jj_3R_160()) return true;
+  final private boolean jj_3R_412() {
+    if (jj_scan_token(COALESCE)) return true;
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_418()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_503() {
+    if (jj_scan_token(COMMA)) return true;
+    if (jj_3R_434()) return true;
     return false;
   }
 
@@ -9317,13 +9333,8 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_418() {
-    if (jj_3R_434()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_503()) { jj_scanpos = xsp; break; }
-    }
+  final private boolean jj_3R_521() {
+    if (jj_3R_96()) return true;
     return false;
   }
 
@@ -9331,18 +9342,9 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3_157() {
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_161()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_412() {
-    if (jj_scan_token(COALESCE)) return true;
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_418()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
+  final private boolean jj_3R_513() {
+    if (jj_scan_token(ELSE)) return true;
+    if (jj_3R_521()) return true;
     return false;
   }
 
@@ -9357,9 +9359,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_503() {
-    if (jj_scan_token(COMMA)) return true;
-    if (jj_3R_434()) return true;
+  final private boolean jj_3R_504() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_513()) jj_scanpos = xsp;
     return false;
   }
 
@@ -9367,8 +9370,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_521() {
-    if (jj_3R_96()) return true;
+  final private boolean jj_3R_458() {
+    if (jj_scan_token(WHEN)) return true;
+    if (jj_3R_144()) return true;
+    if (jj_3R_520()) return true;
+    if (jj_3R_521()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_514() {
+    if (jj_3R_458()) return true;
     return false;
   }
 
@@ -9383,20 +9394,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_513() {
-    if (jj_scan_token(ELSE)) return true;
-    if (jj_3R_521()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_253() {
     return false;
   }
 
-  final private boolean jj_3R_504() {
+  final private boolean jj_3R_436() {
+    if (jj_3R_458()) return true;
     Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_513()) jj_scanpos = xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_514()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -9411,20 +9419,20 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_458() {
+  final private boolean jj_3R_241() {
+    return false;
+  }
+
+  final private boolean jj_3R_457() {
     if (jj_scan_token(WHEN)) return true;
-    if (jj_3R_144()) return true;
+    if (jj_3R_96()) return true;
     if (jj_3R_520()) return true;
     if (jj_3R_521()) return true;
     return false;
   }
 
-  final private boolean jj_3R_241() {
-    return false;
-  }
-
-  final private boolean jj_3R_514() {
-    if (jj_3R_458()) return true;
+  final private boolean jj_3R_512() {
+    if (jj_3R_457()) return true;
     return false;
   }
 
@@ -9439,25 +9447,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_436() {
-    if (jj_3R_458()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_514()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
   final private boolean jj_3R_211() {
     return false;
   }
 
-  final private boolean jj_3R_457() {
-    if (jj_scan_token(WHEN)) return true;
-    if (jj_3R_96()) return true;
-    if (jj_3R_520()) return true;
-    if (jj_3R_521()) return true;
+  final private boolean jj_3R_435() {
+    if (jj_3R_457()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_512()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -9476,18 +9476,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_512() {
-    if (jj_3R_457()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_435() {
-    if (jj_3R_457()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_512()) { jj_scanpos = xsp; break; }
-    }
+  final private boolean jj_3R_419() {
+    if (jj_3R_436()) return true;
+    if (jj_3R_504()) return true;
+    if (jj_scan_token(END)) return true;
     return false;
   }
 
@@ -9506,10 +9498,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_419() {
-    if (jj_3R_436()) return true;
+  final private boolean jj_3R_162() {
+    if (jj_3R_96()) return true;
+    if (jj_3R_435()) return true;
     if (jj_3R_504()) return true;
     if (jj_scan_token(END)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_413() {
+    if (jj_3R_419()) return true;
     return false;
   }
 
@@ -9525,34 +9523,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
   }
 
   final private boolean jj_3R_202() {
-    return false;
-  }
-
-  final private boolean jj_3R_162() {
-    if (jj_3R_96()) return true;
-    if (jj_3R_435()) return true;
-    if (jj_3R_504()) return true;
-    if (jj_scan_token(END)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_136() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("outer");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_251()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_201() {
-    return false;
-  }
-
-  final private boolean jj_3R_413() {
-    if (jj_3R_419()) return true;
     return false;
   }
 
@@ -9584,18 +9554,14 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_72() {
+  final private boolean jj_3R_136() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S2, "nchar varying");
+    jj_semLA = check("outer");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_202()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S2)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_200() {
+    if (!jj_semLA || jj_3R_251()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9605,14 +9571,18 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_71() {
+  final private boolean jj_3R_201() {
+    return false;
+  }
+
+  final private boolean jj_3R_72() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S1, "national character varying");
+    jj_semLA = check( UK_NVARCHAR_S2, "nchar varying");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_201()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S1)) return true;
+    if (!jj_semLA || jj_3R_202()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S2)) return true;
     return false;
   }
 
@@ -9631,7 +9601,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_199() {
+  final private boolean jj_3R_200() {
     return false;
   }
 
@@ -9650,17 +9620,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_70() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NVARCHAR_S, "national char varying");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_200()) return true;
-    if (jj_scan_token(UK_NVARCHAR_S)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_341() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9676,7 +9635,43 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_71() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NVARCHAR_S1, "national character varying");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_201()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S1)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_199() {
+    return false;
+  }
+
+  final private boolean jj_3R_363() {
+    if (jj_3R_379()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_70() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NVARCHAR_S, "national char varying");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_200()) return true;
+    if (jj_scan_token(UK_NVARCHAR_S)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_210() {
+    return false;
+  }
+
+  final private boolean jj_3_152() {
+    if (jj_3R_157()) return true;
     return false;
   }
 
@@ -9691,39 +9686,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_363() {
-    if (jj_3R_379()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_234() {
-    return false;
-  }
-
-  final private boolean jj_3R_80() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("numeric");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_210()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3_152() {
-    if (jj_3R_157()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_110() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NO_SCROLL, "no scroll");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_234()) return true;
-    if (jj_scan_token(UK_NO_SCROLL)) return true;
     return false;
   }
 
@@ -9737,13 +9700,20 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_330() {
-    return false;
-  }
-
   final private boolean jj_3_153() {
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_scan_token(SELECT)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_80() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("numeric");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_210()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9799,10 +9769,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_236() {
-    return false;
-  }
-
   final private boolean jj_3R_269() {
     Token xsp;
     xsp = jj_scanpos;
@@ -9815,6 +9781,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_96()) return true;
     if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_110() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NO_SCROLL, "no scroll");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_234()) return true;
+    if (jj_scan_token(UK_NO_SCROLL)) return true;
     return false;
   }
 
@@ -9835,6 +9812,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3R_298() {
     if (jj_3R_159()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_330() {
     return false;
   }
 
@@ -9861,23 +9842,8 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_277() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("new");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_330()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3_150() {
     if (jj_scan_token(258)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_198() {
     return false;
   }
 
@@ -9906,18 +9872,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_112() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("next");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_236()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_197() {
+  final private boolean jj_3R_236() {
     return false;
   }
 
@@ -9944,18 +9899,29 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_68() {
+  final private boolean jj_3R_277() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check( UK_NCHAR_S1, "national character");
+    jj_semLA = check("new");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_198()) return true;
-    if (jj_scan_token(UK_NCHAR_S1)) return true;
+    if (!jj_semLA || jj_3R_330()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
-  final private boolean jj_3R_196() {
+  final private boolean jj_3R_198() {
+    return false;
+  }
+
+  final private boolean jj_3R_112() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("next");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_236()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -9969,14 +9935,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_67() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_NCHAR_S, "national char");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_197()) return true;
-    if (jj_scan_token(UK_NCHAR_S)) return true;
+  final private boolean jj_3R_197() {
     return false;
   }
 
@@ -9992,23 +9951,34 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_68() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NCHAR_S1, "national character");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_198()) return true;
+    if (jj_scan_token(UK_NCHAR_S1)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_322() {
     if (jj_3R_96()) return true;
     return false;
   }
 
-  final private boolean jj_3R_66() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("nchar");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_196()) return true;
-    if (jj_scan_token(ID)) return true;
+  final private boolean jj_3R_196() {
     return false;
   }
 
-  final private boolean jj_3R_209() {
+  final private boolean jj_3R_67() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_NCHAR_S, "national char");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_197()) return true;
+    if (jj_scan_token(UK_NCHAR_S)) return true;
     return false;
   }
 
@@ -10028,10 +9998,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_252() {
-    return false;
-  }
-
   final private boolean jj_3R_151() {
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_268()) return true;
@@ -10045,9 +10011,41 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_66() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("nchar");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_196()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_209() {
+    return false;
+  }
+
   final private boolean jj_3R_499() {
     if (jj_scan_token(ESCAPE)) return true;
     if (jj_3R_96()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_486() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_499()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_252() {
+    return false;
+  }
+
+  final private boolean jj_3R_471() {
+    if (jj_3R_96()) return true;
+    if (jj_3R_486()) return true;
     return false;
   }
 
@@ -10062,20 +10060,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_486() {
+  final private boolean jj_3R_456() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_499()) jj_scanpos = xsp;
+    if (jj_scan_token(112)) jj_scanpos = xsp;
+    if (jj_scan_token(LIKE)) return true;
+    if (jj_3R_471()) return true;
     return false;
   }
 
   final private boolean jj_3R_239() {
-    return false;
-  }
-
-  final private boolean jj_3R_471() {
-    if (jj_3R_96()) return true;
-    if (jj_3R_486()) return true;
     return false;
   }
 
@@ -10090,16 +10084,25 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3_144() {
+    if (jj_3R_155()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_319() {
+    if (jj_scan_token(EXISTS)) return true;
+    if (jj_3R_340()) return true;
+    return false;
+  }
+
   final private boolean jj_3R_195() {
     return false;
   }
 
-  final private boolean jj_3R_456() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(112)) jj_scanpos = xsp;
-    if (jj_scan_token(LIKE)) return true;
-    if (jj_3R_471()) return true;
+  final private boolean jj_3R_451() {
+    if (jj_3R_146()) return true;
+    if (jj_3R_98()) return true;
+    if (jj_3R_340()) return true;
     return false;
   }
 
@@ -10118,13 +10121,9 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3_144() {
-    if (jj_3R_155()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_319() {
-    if (jj_scan_token(EXISTS)) return true;
+  final private boolean jj_3R_450() {
+    if (jj_3R_146()) return true;
+    if (jj_scan_token(ANY)) return true;
     if (jj_3R_340()) return true;
     return false;
   }
@@ -10144,10 +10143,13 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_451() {
-    if (jj_3R_146()) return true;
-    if (jj_3R_98()) return true;
-    if (jj_3R_340()) return true;
+  final private boolean jj_3R_155() {
+    if (jj_3R_96()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_498()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -10162,46 +10164,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_450() {
-    if (jj_3R_146()) return true;
-    if (jj_scan_token(ANY)) return true;
-    if (jj_3R_340()) return true;
-    return false;
-  }
-
   final private boolean jj_3R_250() {
-    return false;
-  }
-
-  final private boolean jj_3R_108() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("insensitive");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_232()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_155() {
-    if (jj_3R_96()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_498()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  final private boolean jj_3R_135() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( "inner");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_250()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10226,7 +10189,25 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_208() {
+  final private boolean jj_3R_108() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("insensitive");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_232()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_135() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( "inner");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_250()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10261,18 +10242,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_238() {
-    return false;
-  }
-
-  final private boolean jj_3R_78() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("float");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_208()) return true;
-    if (jj_scan_token(ID)) return true;
+  final private boolean jj_3R_208() {
     return false;
   }
 
@@ -10333,6 +10303,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_238() {
+    return false;
+  }
+
   final private boolean jj_3_134() {
     if (jj_3R_146()) return true;
     if (jj_3R_98()) return true;
@@ -10342,17 +10316,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
   final private boolean jj_3_133() {
     if (jj_3R_146()) return true;
     if (jj_scan_token(ANY)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_114() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("first");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_238()) return true;
-    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10370,7 +10333,14 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_203() {
+  final private boolean jj_3R_78() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("float");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_208()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10394,17 +10364,28 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_193() {
-    return false;
-  }
-
   final private boolean jj_3R_426() {
     if (jj_3R_452()) return true;
     return false;
   }
 
+  final private boolean jj_3R_114() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("first");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_238()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_425() {
     if (jj_3R_451()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_203() {
     return false;
   }
 
@@ -10428,23 +10409,8 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_73() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check( UK_DOUBLE_PRECISION, "double precision");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_203()) return true;
-    if (jj_scan_token(UK_DOUBLE_PRECISION)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_152() {
     if (jj_3R_146()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_192() {
     return false;
   }
 
@@ -10466,6 +10432,10 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3R_321()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_193() {
     return false;
   }
 
@@ -10511,24 +10481,9 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_63() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("dec");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_193()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_431() {
     if (jj_3R_146()) return true;
     if (jj_3R_151()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_206() {
     return false;
   }
 
@@ -10540,8 +10495,23 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_73() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check( UK_DOUBLE_PRECISION, "double precision");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_203()) return true;
+    if (jj_scan_token(UK_DOUBLE_PRECISION)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_468() {
     if (jj_3R_146()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_192() {
     return false;
   }
 
@@ -10558,21 +10528,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     if (jj_3R_469()) return true;
     }
     if (jj_3R_96()) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_62() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("decimal");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_192()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_207() {
     return false;
   }
 
@@ -10593,8 +10548,38 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_63() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("dec");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_193()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_206() {
+    return false;
+  }
+
   final private boolean jj_3_142() {
     if (jj_3R_151()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_62() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("decimal");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_192()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_207() {
     return false;
   }
 
@@ -10610,21 +10595,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
   }
 
   final private boolean jj_3R_191() {
-    return false;
-  }
-
-  final private boolean jj_3R_77() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("date");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_207()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_190() {
     return false;
   }
 
@@ -10655,19 +10625,19 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_61() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("character");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_191()) return true;
-    if (jj_scan_token(ID)) return true;
+  final private boolean jj_3_140() {
+    if (jj_scan_token(EXISTS)) return true;
     return false;
   }
 
-  final private boolean jj_3_140() {
-    if (jj_scan_token(EXISTS)) return true;
+  final private boolean jj_3R_77() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("date");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_207()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10676,18 +10646,7 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_60() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("char");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_190()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_205() {
+  final private boolean jj_3R_190() {
     return false;
   }
 
@@ -10698,6 +10657,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       xsp = jj_scanpos;
       if (jj_3R_467()) { jj_scanpos = xsp; break; }
     }
+    return false;
+  }
+
+  final private boolean jj_3R_61() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("character");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_191()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10745,10 +10715,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_204() {
-    return false;
-  }
-
   final private boolean jj_3R_423() {
     if (jj_scan_token(BY)) return true;
     if (jj_3R_449()) return true;
@@ -10761,10 +10727,29 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_60() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("char");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_190()) return true;
+    if (jj_scan_token(ID)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_416() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3R_423()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_205() {
+    return false;
+  }
+
+  final private boolean jj_3R_204() {
     return false;
   }
 
@@ -10779,7 +10764,23 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
+  final private boolean jj_3R_448() {
+    if (jj_scan_token(SUM)) return true;
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_96()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
   final private boolean jj_3R_225() {
+    return false;
+  }
+
+  final private boolean jj_3R_447() {
+    if (jj_scan_token(MIN)) return true;
+    if (jj_scan_token(OPENPAREN)) return true;
+    if (jj_3R_96()) return true;
+    if (jj_scan_token(CLOSEPAREN)) return true;
     return false;
   }
 
@@ -10794,42 +10795,15 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_240() {
-    return false;
-  }
-
-  final private boolean jj_3R_448() {
-    if (jj_scan_token(SUM)) return true;
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_96()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_98() {
-    Token xsp;
-    xsp = jj_scanpos;
-    lookingAhead = true;
-    jj_semLA = check("all");
-    lookingAhead = false;
-    if (!jj_semLA || jj_3R_225()) return true;
-    if (jj_scan_token(ID)) return true;
-    return false;
-  }
-
-  final private boolean jj_3R_447() {
-    if (jj_scan_token(MIN)) return true;
-    if (jj_scan_token(OPENPAREN)) return true;
-    if (jj_3R_96()) return true;
-    if (jj_scan_token(CLOSEPAREN)) return true;
-    return false;
-  }
-
   final private boolean jj_3R_444() {
     if (jj_scan_token(COUNT)) return true;
     if (jj_scan_token(OPENPAREN)) return true;
     if (jj_3R_96()) return true;
     if (jj_scan_token(CLOSEPAREN)) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_240() {
     return false;
   }
 
@@ -10860,13 +10834,13 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_116() {
+  final private boolean jj_3R_98() {
     Token xsp;
     xsp = jj_scanpos;
     lookingAhead = true;
-    jj_semLA = check("absolute");
+    jj_semLA = check("all");
     lookingAhead = false;
-    if (!jj_semLA || jj_3R_240()) return true;
+    if (!jj_semLA || jj_3R_225()) return true;
     if (jj_scan_token(ID)) return true;
     return false;
   }
@@ -10886,6 +10860,17 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
       xsp = jj_scanpos;
       if (jj_3R_422()) { jj_scanpos = xsp; break; }
     }
+    return false;
+  }
+
+  final private boolean jj_3R_116() {
+    Token xsp;
+    xsp = jj_scanpos;
+    lookingAhead = true;
+    jj_semLA = check("absolute");
+    lookingAhead = false;
+    if (!jj_semLA || jj_3R_240()) return true;
+    if (jj_scan_token(ID)) return true;
     return false;
   }
 
@@ -10962,16 +10947,6 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     return false;
   }
 
-  final private boolean jj_3R_131() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(205)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(206)) return true;
-    }
-    return false;
-  }
-
   final private boolean jj_3R_368() {
     if (jj_scan_token(ORDER)) return true;
     if (jj_scan_token(BY)) return true;
@@ -11002,6 +10977,16 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3R_465()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_131() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(205)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(206)) return true;
+    }
     return false;
   }
 
@@ -12269,6 +12254,36 @@ public class GenericSQLParser extends SQLParser implements/*@bgen(jjtree)*/ Gene
 
   final private boolean jj_3R_517() {
     if (jj_3R_420()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_502() {
+    if (jj_3R_510()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_511()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  final private boolean jj_3R_489() {
+    if (jj_3R_502()) return true;
+    return false;
+  }
+
+  final private boolean jj_3R_475() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_489()) jj_scanpos = xsp;
+    return false;
+  }
+
+  final private boolean jj_3R_508() {
+    if (jj_3R_96()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_517()) jj_scanpos = xsp;
     return false;
   }
 
