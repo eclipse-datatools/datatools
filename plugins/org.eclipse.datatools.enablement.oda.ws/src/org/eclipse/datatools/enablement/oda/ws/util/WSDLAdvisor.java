@@ -1182,9 +1182,19 @@ public class WSDLAdvisor
 
 		Operation operation = bindingOperation.getOperation( );
 		List partOrder = operation.getParameterOrdering( );
-		List parts = operation.getInput( )
+		List parts = null;
+		if( inOrOutput.equals( "in" ) )
+		{
+			parts = operation.getInput( )
 				.getMessage( )
 				.getOrderedParts( partOrder );
+		}
+		else
+		{
+			parts = operation.getOutput( )
+			.getMessage( )
+			.getOrderedParts( partOrder );
+		}
 
 		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
 		{
@@ -1200,7 +1210,7 @@ public class WSDLAdvisor
 						: typeName.getLocalPart( ) );
 			}
 
-			if ( inOrOutput == "in" ) //$NON-NLS-1$
+			if ( inOrOutput.equals( "in" ) ) //$NON-NLS-1$
 			{
 				result += enter( )
 						+ tab( 2 )
