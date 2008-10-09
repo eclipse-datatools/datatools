@@ -42,6 +42,9 @@ public class Constants
 	// private properties
 	public static final String WS_QUERYTEXT = "wsQueryText";//$NON-NLS-1$
 	public static final String XML_TEMP_FILE_URI = "xmlTempFileURI";//$NON-NLS-1$
+	public static final String RESPONSE_SCHEMA = "ResponseSchema";//$NON-NLS-1$
+	public static final String FROM_WS_SERVER = "FromWSServer";//$NON-NLS-1$
+	public static final String FROM_WSDL = "FromWSDL";//$NON-NLS-1$
 	public static final String OPERATION_TRACE = "operationTrace";//$NON-NLS-1$
 	public static final String XML_QUERYTEXT = "xmlQueryText";//$NON-NLS-1$
 

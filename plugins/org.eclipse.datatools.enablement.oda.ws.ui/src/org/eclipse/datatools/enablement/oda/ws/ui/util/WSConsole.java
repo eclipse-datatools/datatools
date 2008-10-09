@@ -315,6 +315,41 @@ public class WSConsole
 
 	/**
 	 * 
+	 * @param soapParameters
+	 */
+	public void updateParameters( SOAPParameter[] soapParameters )
+	{
+		if( parameters == null || soapParameters == null || parameters.length == soapParameters.length )
+		{
+			parameters = soapParameters;
+			return;
+		}
+		for ( int i = 0; soapParameters != null && i < soapParameters.length; i++ )
+		{
+			if ( !WSUtil.isNull( soapParameters[i] ) )
+			{
+				int pos = -1;
+				for ( int j = 0; j < parameters.length; j++ )
+				{
+					if ( !WSUtil.isNull( parameters[j].getName( ) )
+							&& parameters[j].getName( )
+									.equals( soapParameters[i].getName( ) ) )
+					{
+						pos = j;
+						break;
+					}
+				}
+				if( pos != -1 )
+				{
+					parameters[pos].setDefaultValue( soapParameters[i].getDefaultValue( ) );
+					parameters[pos].setUsed( soapParameters[i].isUsed( ) );
+				}
+			}
+		}
+	}
+	
+	/**
+	 * 
 	 * @return
 	 */
 	public String getTemplate( )
@@ -384,8 +419,15 @@ public class WSConsole
 		{
 			new File( fileLocation ).deleteOnExit( );
 		}
-		
-		InputStream stream = getInputStream( true );
+		InputStream stream = null;
+		if( WSUtil.isNull( getPropertyValue( Constants.RESPONSE_SCHEMA ) ) || getPropertyValue( Constants.RESPONSE_SCHEMA ).equals( Constants.FROM_WSDL ) )
+		{
+			stream = getInputStream( true  );
+		}
+		else
+		{
+			stream = getInputStream( false  );
+		}
 		if ( WSUtil.isNull( stream ) )
 			return;
 
@@ -590,12 +632,30 @@ public class WSConsole
 		if ( WSUtil.isNull( soapRequest ) || WSUtil.isNull( soapParameters ) )
 			return;
 
-		for ( int i = 0; i < soapParameters.length; i++ )
+		SOAPParameter[] parameters = soapRequest.getParameters( );
+		for ( int i = 0; parameters != null && i < parameters.length; i++ )
 		{
-			soapRequest.setParameterValue( soapParameters[i].getId( ),
-					soapParameters[i].getDefaultValue( ) );
+			if ( !WSUtil.isNull( soapParameters[i] ) )
+			{
+				int pos = -1;
+				for ( int j = 0; j < soapParameters.length; j++ )
+				{
+					if ( !WSUtil.isNull( soapParameters[j].getName( ) )
+							&& soapParameters[j].getName( )
+									.equals( parameters[i].getName( ) ) )
+					{
+						pos = j;
+						break;
+					}
+				}
+				if( pos != -1 )
+				{
+					parameters[i].setDefaultValue( soapParameters[pos].getDefaultValue( ) );
+				}
+			}
 		}
 	}
+	
 
 	/**
 	 * 

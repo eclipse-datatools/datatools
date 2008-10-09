@@ -43,6 +43,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 {
 
 	private transient Button dftXSDRadio;
+	private transient Button resXSDRadio;
 	private transient Button extXSDRadio;
 	private transient Button dftXMLRadio;
 	private transient Button extXMLRadio;
@@ -103,6 +104,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 		group.setLayoutData( layoutData );
 
 		setupDFTXSDRadio( group );
+		setupRESXSDRadio( group );
 		setupEXTXSDRadio( group );
 	}
 
@@ -114,6 +116,9 @@ public class SOAPResponsePage extends DataSetWizardPage
 		dftXSDRadio.setLayoutData( layoutData );
 		dftXSDRadio.setText( Messages.getString( "soapResponsePage.radio.defaultSchema" ) );//$NON-NLS-1$
 		dftXSDRadio.setSelection( true );
+		
+		WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
+		
 		dftXSDRadio.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -123,6 +128,32 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
+				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
+				xsdFileURI.setText( WSUtil.EMPTY_STRING );
+			}
+
+		} );
+	}
+	
+	private void setupRESXSDRadio( Composite parent )
+	{
+		resXSDRadio = new Button( parent, SWT.RADIO );
+		GridData layoutData = new GridData( );
+		layoutData.horizontalSpan = 3;
+		resXSDRadio.setLayoutData( layoutData );
+		resXSDRadio.setText( Messages.getString( "soapResponsePage.radio.reponseSchema" ) );//$NON-NLS-1$
+		resXSDRadio.addSelectionListener( new SelectionAdapter( ) {
+
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WS_SERVER );
 				xsdFileURI.setText( WSUtil.EMPTY_STRING );
 			}
 
@@ -154,6 +185,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );

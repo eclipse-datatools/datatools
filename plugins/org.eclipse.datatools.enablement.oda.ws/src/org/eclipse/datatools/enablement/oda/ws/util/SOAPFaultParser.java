@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.ws.util;
 
-import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
