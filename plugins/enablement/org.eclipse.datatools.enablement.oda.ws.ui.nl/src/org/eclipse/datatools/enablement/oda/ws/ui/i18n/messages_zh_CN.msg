@@ -62,6 +62,7 @@ soapResponsePage.message.default=编辑 SOAP 响应。
 soapResponsePage.group.schema=选择 SOAP 响应架构。
 soapResponsePage.group.xml=选择示例 SOAP 响应消息。
 soapResponsePage.radio.defaultSchema=使用在数据源 WSDL 中定义的操作响应架构(&O)。
+soapResponsePage.radio.reponseSchema=Use schema from &response .
 soapResponsePage.radio.externalSchema=使用外部 XML 架构文件(&S):
 soapResponsePage.radio.endPoint=在 SOAP 终结点查询 Web Services(&E):
 soapResponsePage.radio.externalXML=使用外部示例数据文件(&D)

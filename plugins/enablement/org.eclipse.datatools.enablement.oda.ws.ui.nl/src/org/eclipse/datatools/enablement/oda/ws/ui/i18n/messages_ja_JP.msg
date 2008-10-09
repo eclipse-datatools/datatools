@@ -62,6 +62,7 @@ soapResponsePage.message.default=SOAP 応答の編集
 soapResponsePage.group.schema=SOAP 応答スキーマの選択
 soapResponsePage.group.xml=サンプル SOAP 応答メッセージの選択
 soapResponsePage.radio.defaultSchema=データソース WSDL で定義した処理応答スキーマを使用する(&O)
+soapResponsePage.radio.reponseSchema=Use schema from &response .
 soapResponsePage.radio.externalSchema=外部 XML スキーマファイルを使用する(&S) :
 soapResponsePage.radio.endPoint=SOAP エンドポイントで Web サービスをクエリする(&E) :
 soapResponsePage.radio.externalXML=外部サンプルデータファイルを使用する(&D)

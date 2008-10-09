@@ -62,6 +62,7 @@ soapResponsePage.message.default=Modifiez la réponse SOAP.
 soapResponsePage.group.schema=Sélectionnez le schéma de réponse SOAP.
 soapResponsePage.group.xml=Sélectionnez l'exemple de message de réponse SOAP.
 soapResponsePage.radio.defaultSchema=Utilisez le schéma de réponse d'&opération défini dans la source de données WSDL.
+soapResponsePage.radio.reponseSchema=Use schema from &response .
 soapResponsePage.radio.externalSchema=Utiliser le fichier de &schéma XML externe :
 soapResponsePage.radio.endPoint=Services Web de la requête au point de &fin SOAP :
 soapResponsePage.radio.externalXML=Utiliser l'exemple de fichier de &données externe
