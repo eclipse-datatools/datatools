@@ -194,7 +194,6 @@ userSupported="true" groupSupported="true" packageSupported="true">
     <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
   </privilegedElementDefinitions>
   <privilegedElementDefinitions name="ViewTable">
-  	<privilegeDefinitions name="ALTER"/>
     <privilegeDefinitions name="CONTROL"/>
     <privilegeDefinitions name="DELETE"/>
     <privilegeDefinitions name="INSERT"/>

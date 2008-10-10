@@ -209,7 +209,6 @@
     <privilegeDefinitions name="UPDATE" actionElementDefinitions="COLUMN_1"/>
   </privilegedElementDefinitions>
   <privilegedElementDefinitions name="ViewTable">
-  	<privilegeDefinitions name="ALTER"/>
     <privilegeDefinitions name="DELETE"/>
     <privilegeDefinitions name="INSERT"/>
     <privilegeDefinitions name="SELECT"/>
