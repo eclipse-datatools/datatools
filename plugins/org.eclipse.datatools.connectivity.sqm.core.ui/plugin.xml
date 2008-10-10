@@ -84,6 +84,20 @@
 	            </objectClass>
          </enablement>
       </decorator>
+<!-- Trigger Decoration -->
+      <decorator
+            lightweight="true"
+            adaptable="false"
+            label="%datatools.core.ui.modelexplorer.indextriggerDecoration"
+            state="true"
+            class="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.decorators.impl.IndexTriggerDecorationService"
+            id="org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.IndexTriggerDecoration">
+         <enablement>
+	            <objectClass
+	            	  name="org.eclipse.datatools.modelbase.sql.tables.Trigger">
+	            </objectClass>
+         </enablement>
+      </decorator>
 <!-- Decorator for the Bookmark -->
 	  <decorator
             lightweight="true"
