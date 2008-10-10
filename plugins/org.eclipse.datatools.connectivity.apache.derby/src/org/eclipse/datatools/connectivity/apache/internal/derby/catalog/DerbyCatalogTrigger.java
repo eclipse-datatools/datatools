@@ -53,7 +53,11 @@ public class DerbyCatalogTrigger extends TriggerImpl implements ICatalogObject {
 	}
 
 	public Database getCatalogDatabase() {
-		return this.getSchema().getDatabase();
+		
+		if(this.getSchema().getDatabase() != null)
+			return this.getSchema().getDatabase();
+		else
+			return this.getSchema().getCatalog().getDatabase();
 	}
 	public boolean eIsSet(EStructuralFeature eFeature) {
 		int id = eDerivedStructuralFeatureID(eFeature);
