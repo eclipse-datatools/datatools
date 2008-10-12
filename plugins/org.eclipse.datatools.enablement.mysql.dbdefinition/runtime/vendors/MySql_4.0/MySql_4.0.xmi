@@ -187,10 +187,10 @@ javaClassName="java.math.BigDecimal">
     <parentDeleteDRIRuleType>NO_ACTION</parentDeleteDRIRuleType>
   </constraintDefinition>
   <indexDefinition/>
-  <tableDefinition/>
   <udtDefinition/>
   <tableDefinition maximumIdentifierLength="64"/>
   <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
+  <viewDefinition maximumIdentifierLength="64"/>
   <SQLSyntaxDefinition>
     <keywords>ADD</keywords>
     <keywords>ALL</keywords>
