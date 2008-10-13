@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            category="org.eclipse.datatools.connectivity"
+            category="org.eclipse.datatools"
             class="org.eclipse.datatools.connectivity.ui.dse.views.DataSourceExplorerView"
             icon="icons/full/cview16/enterprise_explorer.gif"
             id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator"
