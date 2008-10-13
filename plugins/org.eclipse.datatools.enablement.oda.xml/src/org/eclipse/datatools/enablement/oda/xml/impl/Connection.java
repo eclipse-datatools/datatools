@@ -191,14 +191,8 @@ public class Connection implements IConnection
 						encoding,
 						closeOriginalInputStream );
 			}
-			else if ( file != null )
-			{
-				xmlSource = new XMLSourceFromPath( file, encoding );
-			}
-			else
-			{
-				throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) ); //$NON-NLS-1$
-			}
+			xmlSource = new XMLSourceFromPath( file, encoding );
+	
 		}
 		return xmlSource;
 	}

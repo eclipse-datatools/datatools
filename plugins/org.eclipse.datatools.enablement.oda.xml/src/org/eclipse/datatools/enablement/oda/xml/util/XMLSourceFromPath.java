@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 
 
 public class XMLSourceFromPath implements IXMLSource
@@ -29,7 +30,10 @@ public class XMLSourceFromPath implements IXMLSource
 	
 	public XMLSourceFromPath( String path ) throws OdaException
 	{	
-		assert path != null;
+		if ( path == null || path.equals( "" ))
+		{
+			throw new OdaException( Messages.getString( "Connection.PropertiesMissing" ) );
+		}
 		this.path = path;
 	}
 	
