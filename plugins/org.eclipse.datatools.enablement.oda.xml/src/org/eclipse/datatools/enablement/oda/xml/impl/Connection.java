@@ -191,8 +191,10 @@ public class Connection implements IConnection
 						encoding,
 						closeOriginalInputStream );
 			}
-			xmlSource = new XMLSourceFromPath( file, encoding );
-	
+			else
+			{
+				xmlSource = new XMLSourceFromPath( file, encoding );
+			}	
 		}
 		return xmlSource;
 	}
