@@ -14,15 +14,22 @@
 
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.TextProcessorWrapper;
+import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
 import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -36,6 +43,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
@@ -340,5 +348,55 @@ public class XMLSelectionPageHelper
         assert( m_propertyPage != null );
         return m_propertyPage.getControl();
     }
+    
+    private Shell getShell( )
+    {
+        if ( m_wizardPage != null )
+            return m_wizardPage.getShell( );
+        assert( m_propertyPage != null );
+        return m_propertyPage.getShell( );
+    }
 
+	Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+	{
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                
+                InputStream is = null;
+                
+                if ( exception == null ) //succeed in creating connection
+                {
+                	//further to check whether provided XML source is valid
+					try
+					{
+						is = (new XMLSourceFromPath( getFolderLocation( ) )).openInputStream( );
+					}
+					catch ( OdaException e )
+					{
+						exception = e;
+					}
+                }
+                PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
+                if( conn != null )
+                {
+                    conn.close();
+                }
+				if ( is != null )
+				{
+					try
+					{
+						is.close( );
+					}
+					catch ( IOException e )
+					{
+					}
+				}
+            }
+        };
+	}
 }

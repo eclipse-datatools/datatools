@@ -16,6 +16,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.swt.widgets.Composite;
 
@@ -25,7 +26,8 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class XMLPropertyPage extends DataSourceEditorPage
 {
-    private XMLSelectionPageHelper m_pageHelper;
+
+	private XMLSelectionPageHelper m_pageHelper;
 
     public XMLPropertyPage()
     {
@@ -65,4 +67,14 @@ public class XMLPropertyPage extends DataSourceEditorPage
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
     }
+    
+    /* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceEditorPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( IConnectionProfile profile )
+	{
+		return m_pageHelper.createTestConnectionRunnable( profile );
+	}
+
+    
 }

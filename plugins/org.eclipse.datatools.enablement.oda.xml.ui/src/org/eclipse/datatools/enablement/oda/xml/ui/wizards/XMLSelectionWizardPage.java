@@ -91,44 +91,6 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
 	 */
 	protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
 	{
-        return new Runnable() 
-        {
-            public void run() 
-            {
-                IConnection conn = PingJob.createTestConnection( profile );
-
-                Throwable exception = PingJob.getTestConnectionException( conn );
-                
-                InputStream is = null;
-                
-                if ( exception == null ) //succeed in creating connection
-                {
-                	//further to check whether provided XML source is valid
-					try
-					{
-						is = (new XMLSourceFromPath( m_pageHelper.getFolderLocation( ) )).openInputStream( );
-					}
-					catch ( OdaException e )
-					{
-						exception = e;
-					}
-                }
-                PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
-                if( conn != null )
-                {
-                    conn.close();
-                }
-				if ( is != null )
-				{
-					try
-					{
-						is.close( );
-					}
-					catch ( IOException e )
-					{
-					}
-				}
-            }
-        };
+        return m_pageHelper.createTestConnectionRunnable( profile );
 	}
 }
