@@ -10,9 +10,16 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.IConnection;
+import org.eclipse.datatools.connectivity.IConnectionProfile;
+import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
+import org.eclipse.datatools.connectivity.ui.PingJob;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -78,4 +85,50 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
     }
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
+	 */
+	protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
+	{
+        return new Runnable() 
+        {
+            public void run() 
+            {
+                IConnection conn = PingJob.createTestConnection( profile );
+
+                Throwable exception = PingJob.getTestConnectionException( conn );
+                
+                InputStream is = null;
+                
+                if ( exception == null ) //succeed in creating connection
+                {
+                	//further to check whether provided XML source is valid
+					try
+					{
+						is = (new XMLSourceFromPath( m_pageHelper.getFolderLocation( ) )).openInputStream( );
+					}
+					catch ( OdaException e )
+					{
+						exception = e;
+					}
+                }
+                PingJob.PingUIJob.showTestConnectionMessage( getShell(), exception );
+                if( conn != null )
+                {
+                    conn.close();
+                }
+				if ( is != null )
+				{
+					try
+					{
+						is.close( );
+					}
+					catch ( IOException e )
+					{
+					}
+				}
+            }
+        };
+	}
 }
