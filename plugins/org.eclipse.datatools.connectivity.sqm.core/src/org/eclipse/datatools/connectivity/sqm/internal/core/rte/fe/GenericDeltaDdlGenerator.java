@@ -11,15 +11,12 @@
 package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.Vector;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -48,21 +45,14 @@ import org.eclipse.datatools.modelbase.sql.tables.PersistentTable;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.change.ChangeDescription;
 import org.eclipse.emf.ecore.change.FeatureChange;
-import org.eclipse.emf.ecore.util.DelegatingFeatureMap;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.FeatureMap;
-import org.eclipse.emf.ecore.util.FeatureMapUtil;
 
 public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 	protected static final int CREATE       = 1;
@@ -454,7 +444,12 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 				while(vi.hasNext()) {
 					FeatureChange changeSetting = (FeatureChange) vi.next();
 					EStructuralFeature f= changeSetting.getFeature();
-					if(!changeSetting.isSet() && !changed.eIsSet(f)) continue;
+					//The isSet value returned from the changeSetting is not accurate
+					//when the feature is an attribute and the feature's value type is Boolean.
+					//For example, the nullable attribute of a Column. 
+					if(!(f instanceof EAttribute && changeSetting.getValue() != null && changeSetting.getValue() instanceof Boolean)) {
+						if(!changeSetting.isSet() && !changed.eIsSet(f)) continue;
+					}
 					Object currentValue = changed.eGet(f);
 					Object previousValue = changeSetting.getValue();
 					if(previousValue == null) previousValue = ""; //$NON-NLS-1$
