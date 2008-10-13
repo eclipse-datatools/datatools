@@ -114,6 +114,7 @@ datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Êı¾İ¹¤¾ß - Í
 datatools.core.ui.modelexplorer.DependencyDecoration = Êı¾İ¹¤¾ß - ÒÀÀµÏîĞŞÊÎ
 datatools.core.ui.modelexplorer.bookmarkDecoration  = Êı¾İ¹¤¾ß - ÊéÇ©Ö¸Ê¾Æ÷
 datatools.core.ui.modelexplorer.filterDecoration = Êı¾İ¹¤¾ß - ·şÎñÆ÷×ÊÔ´¹ÜÀíÆ÷É¸Ñ¡Æ÷½ÚµãÖ¸Ê¾Æ÷
+datatools.core.ui.modelexplorer.indextriggerDecoration = Data Tools - Index and Trigger Decoration
 
 #
 ## Model Explorer Sorter Provider
