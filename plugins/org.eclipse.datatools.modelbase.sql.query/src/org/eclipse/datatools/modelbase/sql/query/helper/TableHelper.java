@@ -919,7 +919,24 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
           }
           else if (tableRef instanceof WithTableReference) {
               WithTableReference withTableRef = (WithTableReference) tableRef;
-              columnSet.addAll(findColumnReferencesInWithTableSpecification(withTableRef.getWithTableSpecification()));
+              String withTableRefName = withTableRef.getName();
+              /* Find out if this WITH reference is recursive.  If so, we don't want to dig any further. */
+              boolean isRecursive = false;
+              EObject parent = tableRef.eContainer();
+              while (parent != null && isRecursive == false) {
+                  if (parent instanceof WithTableSpecification) {
+                      WithTableSpecification parentWithTableSpec = (WithTableSpecification) parent;
+                      String parentName = parentWithTableSpec.getName();
+                      if (StatementHelper.equalSQLIdentifiers(withTableRefName, parentName) == true) {
+                          isRecursive = true;
+                      }
+                  }
+                  parent = parent.eContainer();
+              }
+              
+              if (isRecursive == false) {
+                  columnSet.addAll(findColumnReferencesInWithTableSpecification(withTableRef.getWithTableSpecification()));
+              }
           }
       }
       
