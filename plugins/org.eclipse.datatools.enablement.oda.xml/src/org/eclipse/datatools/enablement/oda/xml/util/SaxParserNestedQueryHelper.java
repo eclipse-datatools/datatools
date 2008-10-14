@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.util;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -107,7 +106,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 		consumer.wakeup( );
 	}
 	
-	public String getNestedColumnValue(String tablePath, int index)
+	public String getNestedColumnValue(String tablePath, int index, HashMap filters )
 	{
 		if (mappingPathElementTree != null)
 		{
@@ -122,10 +121,39 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 				NestedColumnPathValue pathValue = (NestedColumnPathValue)itr.next( );
 				if (mappingPathElementTree.isValidNestedColumn( index, tablePath, pathValue.getPath( ) ))
 				{
-					return pathValue.getValue( );
-				}
-			}
-		}
+					boolean matchFilters = true;
+					if ( filters != null )
+					{
+						Iterator it = filters.keySet( ).iterator( );
+						while ( matchFilters && it.hasNext( ) )
+						{
+							matchFilters = false;
+							Object filterColumnName = it.next( );
+							Object value = filters.get( filterColumnName );
+							int filterColumnIndex = consumer.getColumnIndex( filterColumnName.toString( ) );
+							Set filterPathValues = (Set)(indexPathValuesMap.get( new Integer( filterColumnIndex )));
+							if ( filterPathValues != null )
+							{
+								Iterator iter = filterPathValues.iterator( );
+								while ( iter.hasNext( ) )
+								{
+									NestedColumnPathValue filterPathValue = ( NestedColumnPathValue ) iter.next( );
+									if ( filterPathValue.getPath( ).startsWith( pathValue.getPath( ) ) 
+											&& SaxParserUtil.isTwoValueMatch( filterPathValue.getValue( ), value ))
+									{
+										matchFilters = true;
+									}
+								}
+							}
+						}
+					} //end if ( filters != null )
+					if ( matchFilters )
+					{
+						return pathValue.getValue( );
+					}
+				} //end if (mappingPathElementTree.isValidNestedColumn( index, tablePath, pathValue.getPath( ) ))
+			} //end while (itr.hasNext( ))
+		} // end if 
 		return null;
 	}
 	

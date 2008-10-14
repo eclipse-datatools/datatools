@@ -147,4 +147,21 @@ public class SaxParserUtil
 		else
 			return name.startsWith( TEMPCOLUMNNAMEPREFIX ) || name.startsWith( ROOTTEMPCOLUMNNAMEPREFIX );
 	}
+	
+	/**
+	 * 
+	 * @param value1
+	 * @param value2
+	 * @return
+	 */
+    static boolean isTwoValueMatch( Object value1, Object value2 )
+	{
+		if ( value1 == null && value2 == null )
+			return true;
+		if ( value1 != null && value2 == null )
+			return false;
+		if ( value1 == null && value2 != null )
+			return false;
+		return value1.equals( value2 );
+	}
 }

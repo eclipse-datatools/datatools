@@ -311,8 +311,12 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			{
 				int j = getColumnIndex( namesOfNestedColumns[i] );
 				if ( j != INVALID_COLUMN_INDEX )
+				{
+					HashMap filters = relationInfo.getTableColumnFilter( tableName,
+							namesOfNestedColumns[i] );
 					os[j] = this.spNestedQueryHelper.getNestedColumnValue( currentRootPath,
-							j );
+							j, filters );
+				}
 			}
 		}
 		else
@@ -321,13 +325,17 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			{
 				int j = getColumnIndex( namesOfNestedColumns[i] );
 				if ( j != INVALID_COLUMN_INDEX )
+				{
+					HashMap filters = relationInfo.getTableColumnFilter( tableName,
+							namesOfNestedColumns[i] );
 					cachedResultSet[cachedResultSetRowNo][j] = this.spNestedQueryHelper.getNestedColumnValue( currentRootPath,
-							j );
+							j, filters );
+				}
 			}
 		}
 	}
 
-	private int getColumnIndex( String columnName )
+	public int getColumnIndex( String columnName )
 	{
 		Object index = nameIndexMap.get( columnName );
 		if ( index == null )
@@ -384,7 +392,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 			{
 				Object filterColumnName = it.next( );
 				Object value = filters.get( filterColumnName );
-				if ( !isTwoValueMatch( value,
+				if ( !SaxParserUtil.isTwoValueMatch( value,
 						this.cachedResultSet[cachedResultSetRowNo][this.getColumnIndex( filterColumnName.toString( ) )] ) )
 				{
 					return false;
@@ -395,23 +403,6 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	}
 
 	/**
-	 * 
-	 * @param value1
-	 * @param value2
-	 * @return
-	 */
-	private boolean isTwoValueMatch( Object value1, Object value2 )
-	{
-		if ( value1 == null && value2 == null )
-			return true;
-		if ( value1 != null && value2 == null )
-			return false;
-		if ( value1 == null && value2 != null )
-			return false;
-		return value1.equals( value2 );
-	}
-
-	/**
 	 * @param i
 	 *            Column Index
 	 * @return
@@ -419,7 +410,7 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	private boolean isCurrentColumnValueNotMatchFilterValue( String columnName )
 	{
 		int index = this.getColumnIndex( columnName );
-		return !isTwoValueMatch( relationInfo.getTableFilter( tableName )
+		return !SaxParserUtil.isTwoValueMatch( relationInfo.getTableFilter( tableName )
 				.get( columnName ),
 				cachedResultSet[cachedResultSetRowNo][index] );
 	}

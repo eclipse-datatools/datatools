@@ -54,6 +54,7 @@ public class SaxParserTest extends BaseTest
 			+ "#-# filter2#:#[//field]#:#{b-bar1;String;[@b='time']}"
 			+ "#-# filter3#:#[//entry/field[@b='time']]#:#{time;String;}"
 			+ "#-# filter4#:#[//Book[@type='fiction']]#:#{book.title;String;/Title},{book.author_paul;String;/Author[@type='firstclass']}"			
+			+ "#-# recursiveFilter#:#[//Book]#:#{defaultB;String;../../B},{specificB1;String;../../B[@location='Hongkong']}, {specificB2;String;../../B[@location='London']}, {noB;String;../../B[@location='Nothing']}"
 			+ "#-# relativeLocation#:#[//Book]#:#{title;String;//Title}"
 			+ "#-# nestedTableRootFilter#:#[//employee[@type='employeeType1']]#:#{name;STRING;properties/property/@name},{value;STRING;properties/property/@value},{type;STRING;/@type}"
 			+ "#-# emptyElement#:#[/NewDataSet/program/activity]#:#{ProgramID;Int;../ProgramID},{ProgramName;String;../ProgramName},{ActivityID;Int;/ActivityID},{ActivityName;String;/ActivityName}"
@@ -1138,5 +1139,46 @@ public class SaxParserTest extends BaseTest
 		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST23_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST23_GOLDEN_XML ) ) );
+	}
+	
+	public void test24( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST24_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_XML_FILE );
+		conn.open( p );
+		rs = new ResultSet( conn,
+				ri,
+				"recursiveFilter" ,
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+		rs.close( );
+		conn.close( );
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST24_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST24_GOLDEN_XML ) ) );
 	}
 }
