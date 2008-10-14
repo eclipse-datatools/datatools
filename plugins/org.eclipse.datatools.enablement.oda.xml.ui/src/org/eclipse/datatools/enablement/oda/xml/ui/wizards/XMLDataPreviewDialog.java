@@ -11,6 +11,8 @@
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.IHelpConstants;
+import org.eclipse.datatools.enablement.oda.xml.ui.utils.XMLRelationInfoUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.swt.layout.GridData;
@@ -58,6 +60,8 @@ public class XMLDataPreviewDialog extends TrayDialog
 	protected Control createDialogArea( Composite parent )
 	{
 		Composite control = (Composite) super.createDialogArea( parent );
+		XMLRelationInfoUtil.setSystemHelp( control,
+				IHelpConstants.CONEXT_ID_DATASET_XML_SAMPLE_DATA );
 		createTableViewer( control );
 		return control;
 

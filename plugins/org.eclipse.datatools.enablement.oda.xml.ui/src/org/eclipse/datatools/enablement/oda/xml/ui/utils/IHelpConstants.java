@@ -40,5 +40,7 @@ public interface IHelpConstants
 
 	public static final String CONEXT_ID_PREFERENCE_DATASET_XML = PREFIX
 			+ "Preference_DataSetEditor_XML_ID";//$NON-NLS-1$
-
+	
+	public static final String CONEXT_ID_DATASET_XML_SAMPLE_DATA = PREFIX
+		+ "Dialog_XMLSampleData_ID";//$NON-NLS-1$
 }
