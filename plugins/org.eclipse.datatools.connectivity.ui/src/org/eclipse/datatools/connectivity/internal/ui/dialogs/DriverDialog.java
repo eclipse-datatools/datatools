@@ -444,6 +444,10 @@ public class DriverDialog extends TitleAreaDialog {
 					if (selection.getFirstElement() instanceof TemplateDescriptor) {
 						TemplateDescriptor descriptor = (TemplateDescriptor) selection
 								.getFirstElement();
+						// added for bug 249424 - BTF
+						if (DriverDialog.this.descriptor != null && DriverDialog.this.descriptor.equals(descriptor)) {
+							return;
+						}
 						DriverDialog.this.updateFromDescriptor(descriptor);
 						DriverDialog.this.mDriverNameText.setEnabled(true);
 					}
