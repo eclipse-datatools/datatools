@@ -23,6 +23,8 @@ import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -131,6 +133,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
 				xsdFileURI.setText( WSUtil.EMPTY_STRING );
+				setPageStatus( );
 			}
 
 		} );
@@ -155,6 +158,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 				WSConsole.getInstance( ).setPropertyValue( Constants.XML_TEMP_FILE_URI, "" ); //$NON-NLS-1$
 				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WS_SERVER );
 				xsdFileURI.setText( WSUtil.EMPTY_STRING );
+				setPageStatus( );
 			}
 
 		} );
@@ -166,11 +170,30 @@ public class SOAPResponsePage extends DataSetWizardPage
 		GridData layoutData = new GridData( );
 		extXSDRadio.setLayoutData( layoutData );
 		extXSDRadio.setText( Messages.getString( "soapResponsePage.radio.externalSchema" ) );//$NON-NLS-1$
+		extXSDRadio.addSelectionListener( new SelectionAdapter( ) {
 
+			/*
+			 * (non-Javadoc)
+			 * 
+			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+			 */
+			public void widgetSelected( SelectionEvent e )
+			{
+				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
+				setPageStatus( );
+			}
+
+		} );
 		xsdFileURI = new Text( parent, SWT.BORDER );
 		layoutData = new GridData( GridData.FILL_HORIZONTAL );
 		xsdFileURI.setLayoutData( layoutData );
+		xsdFileURI.addModifyListener( new ModifyListener( ) {
 
+			public void modifyText( ModifyEvent e )
+			{
+				setPageStatus( );
+			}
+		} );
 		Button button = new Button( parent, SWT.NONE );
 		layoutData = new GridData( );
 		layoutData.widthHint = 100;
@@ -185,7 +208,6 @@ public class SOAPResponsePage extends DataSetWizardPage
 			 */
 			public void widgetSelected( SelectionEvent e )
 			{
-				WSConsole.getInstance( ).setPropertyValue( Constants.RESPONSE_SCHEMA, Constants.FROM_WSDL );
 				FileDialog dialog = new FileDialog( PlatformUI.getWorkbench( )
 
 				.getDisplay( ).getActiveShell( ), SWT.OPEN );
@@ -445,9 +467,26 @@ public class SOAPResponsePage extends DataSetWizardPage
 	 */
 	public boolean canFlipToNextPage( )
 	{
+		if( extXSDRadio.getSelection( ) && WSUtil.isNull( xsdFileURI.getText( ) ) )
+		{
+			return false;
+		}
 		return isPageComplete( );
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public void setPageStatus( )
+	{
+		if( extXSDRadio.getSelection( ) && WSUtil.isNull( xsdFileURI.getText( ) ) )
+		{
+			setPageComplete( false );
+		}
+		setPageComplete( true );
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
