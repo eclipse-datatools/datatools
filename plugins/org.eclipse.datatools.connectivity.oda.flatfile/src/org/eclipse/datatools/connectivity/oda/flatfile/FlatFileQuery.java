@@ -817,7 +817,6 @@ public class FlatFileQuery implements IQuery
 
 			String[] result = ffdsr.getColumnNameArray( columnNameLine );
 
-			ffdsr.clearBufferedReader( );
 
 			if ( metaDataType.trim( ).equalsIgnoreCase( NAME_LITERAL ) )
 				this.validateUniqueName( result );
@@ -832,7 +831,10 @@ public class FlatFileQuery implements IQuery
 			throw new OdaException( Messages.getString( "query_IO_EXCEPTION" ) //$NON-NLS-1$
 					+ ffdsr.findDataFileAbsolutePath( ) );
 		}
-
+		finally 
+		{
+			ffdsr.clearBufferedReader( );
+		}
 	}
 
 	/**
@@ -1361,6 +1363,7 @@ public class FlatFileQuery implements IQuery
 		 */
 		public void close( ) throws IOException
 		{
+			this.charBuffer = null;
 			this.reader.close( );
 		}
 
