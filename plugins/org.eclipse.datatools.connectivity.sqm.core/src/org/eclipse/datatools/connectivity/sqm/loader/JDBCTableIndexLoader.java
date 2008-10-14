@@ -163,7 +163,7 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 					}
 					else {
 						initIndex(index, rs);
-						index.getIncludedMembers().clear();
+						index.getMembers().clear();
 						if (index instanceof ICatalogObject) {
 							((ICatalogObject) index).refresh();
 						}
@@ -179,7 +179,7 @@ public class JDBCTableIndexLoader extends JDBCBaseLoader {
 					continue;
 				}
 				initIndexMember(im, column, rs);
-				index.getIncludedMembers().add(im);
+				index.getMembers().add(im);
 			}
 		}
 		finally {
