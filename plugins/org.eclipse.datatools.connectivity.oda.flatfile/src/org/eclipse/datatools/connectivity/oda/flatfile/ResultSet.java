@@ -62,6 +62,7 @@ public class ResultSet implements IResultSet
      */
     ResultSet(FlatFileDataReader ffr, ResultSetMetaData rsmd )
     {
+    	assert ffr != null;
     	this.flatFileDataReader = ffr;
     	this.resultSetMetaData = rsmd;
     	this.maxRows = this.flatFileDataReader.getMaxRowsToRead( this.maxRows );
@@ -83,6 +84,7 @@ public class ResultSet implements IResultSet
         this.cursor = 0;
         this.sourceData = null;
         this.resultSetMetaData = null;
+        this.flatFileDataReader.clearBufferedReader( );
     }
 
     /*
