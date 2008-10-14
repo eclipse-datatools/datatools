@@ -105,6 +105,7 @@ public class XMLTableMappingPage extends XPathChoosePage
 		}
 		catch ( OdaException e )
 		{
+			super.refresh( );
 			setMessage( e.getMessage( ), IMessageProvider.ERROR );
 		}
 	}

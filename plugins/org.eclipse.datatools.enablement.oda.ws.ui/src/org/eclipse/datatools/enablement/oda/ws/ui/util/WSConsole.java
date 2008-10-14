@@ -398,6 +398,7 @@ public class WSConsole
 		if ( WSUtil.isNull( xmlTempFileURI ) )
 		{
 			// there is no xml temp file, create one
+			setXMLPropertyValue( Constants.CONST_PROP_FILELIST, WSUtil.EMPTY_STRING );
 			createXMLTempFileURI( );
 			xmlTempFileURI = getPropertyValue( Constants.XML_TEMP_FILE_URI );
 		}
@@ -418,6 +419,7 @@ public class WSConsole
 		if ( fileLocation != null && !new File( fileLocation ).delete( ) )
 		{
 			new File( fileLocation ).deleteOnExit( );
+			setPropertyValue( Constants.XML_TEMP_FILE_URI, null );
 		}
 		InputStream stream = null;
 		if( WSUtil.isNull( getPropertyValue( Constants.RESPONSE_SCHEMA ) ) || getPropertyValue( Constants.RESPONSE_SCHEMA ).equals( Constants.FROM_WSDL ) )

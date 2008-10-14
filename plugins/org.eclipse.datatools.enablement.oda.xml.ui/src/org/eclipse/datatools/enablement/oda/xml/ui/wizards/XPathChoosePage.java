@@ -283,13 +283,12 @@ public class XPathChoosePage extends DataSetWizardPage
 	 */
 	private void populateXMLTree( )
 	{
-		if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
-				&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
-			return;
-		
 		try
 		{
 			this.availableXmlTree.getTree( ).removeAll( );
+			if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
+					&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
+				return;
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
 					.getPluginPreferences( );
