@@ -119,6 +119,31 @@ public class WSUIUtil
 		}
 	}
 
+	public static SOAPParameter[] getUsedParameter( SOAPParameter[] parameters )
+	{
+		int usedNum = 0;
+		for ( int i = 0; i < parameters.length; i++ )
+		{
+			if ( parameters[i].isUsed( ) )
+				usedNum++;
+		}
+		SOAPParameter[] result = new SOAPParameter[usedNum];
+		int resultPtr = 0;
+		for ( int i = 0; i < parameters.length; i++ )
+		{
+			if ( parameters[i].isUsed( ) )
+			{
+				SOAPParameter para = new SOAPParameter( resultPtr + 1, parameters[i].getName( ), parameters[i].getType( ), parameters[i].getDefaultValue( ) );
+				para.setMaxOccurs( parameters[i].getMaxOccurs( ) );
+				para.setMinOccurs( parameters[i].getMinOccurs( ) );
+				para.setUsed( parameters[i].isUsed( ) );
+				result[resultPtr] = para;
+				resultPtr++;
+			}
+		}
+		return result;
+	}
+	
 	/**
 	 * Updates the given dataSetDesign with the queryText and its derived
 	 * metadata obtained from the ODA runtime connection.
@@ -132,6 +157,7 @@ public class WSUIUtil
 		// set soapParameters
 		SOAPParameter[] soapParameters = WSConsole.getInstance( )
 				.getParameters( );
+		soapParameters = getUsedParameter( soapParameters );
 		if ( !WSUtil.isNull( soapParameters ) )
 		{
 			for ( int i = 0; i < soapParameters.length; i++ )

@@ -687,17 +687,18 @@ public class WSConsole
 	 */
 	public void merge2ParameterDefinitions( EList parameterDefinitions )
 	{
-		if ( !canMerge( parameters, parameterDefinitions ) )
+		SOAPParameter[] usedParameters = WSUIUtil.getUsedParameter( parameters );
+		if ( !canMerge( usedParameters, parameterDefinitions ) )
 			return;
 
-		for ( int i = 0; i < parameters.length; i++ )
+		for ( int i = 0; i < usedParameters.length; i++ )
 		{
 			// apply name & defaultValue
-			if ( !WSUtil.isNull( parameters[i] ) )
+			if ( !WSUtil.isNull( usedParameters[i] ) )
 			{
 				ParameterDefinition paramDef = (ParameterDefinition) parameterDefinitions.get( i );
-				paramDef.getAttributes( ).setName( parameters[i].getName( ) );
-				paramDef.setDefaultScalarValue( parameters[i].getDefaultValue( ) );
+				paramDef.getAttributes( ).setName( usedParameters[i].getName( ) );
+				paramDef.setDefaultScalarValue( usedParameters[i].getDefaultValue( ) );
 			}
 		}
 	}
