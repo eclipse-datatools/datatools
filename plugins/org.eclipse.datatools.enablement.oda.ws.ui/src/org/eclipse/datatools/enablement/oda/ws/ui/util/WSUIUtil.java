@@ -119,6 +119,11 @@ public class WSUIUtil
 		}
 	}
 
+	/**
+	 * 
+	 * @param parameters
+	 * @return
+	 */
 	public static SOAPParameter[] getUsedParameter( SOAPParameter[] parameters )
 	{
 		int usedNum = 0;
@@ -133,11 +138,14 @@ public class WSUIUtil
 		{
 			if ( parameters[i].isUsed( ) )
 			{
-				SOAPParameter para = new SOAPParameter( resultPtr + 1, parameters[i].getName( ), parameters[i].getType( ), parameters[i].getDefaultValue( ) );
-				para.setMaxOccurs( parameters[i].getMaxOccurs( ) );
-				para.setMinOccurs( parameters[i].getMinOccurs( ) );
-				para.setUsed( parameters[i].isUsed( ) );
-				result[resultPtr] = para;
+				SOAPParameter tParameter = new SOAPParameter( resultPtr + 1,
+						parameters[i].getName( ),
+						parameters[i].getType( ),
+						parameters[i].getDefaultValue( ) );
+				tParameter.setMaxOccurs( parameters[i].getMaxOccurs( ) );
+				tParameter.setMinOccurs( parameters[i].getMinOccurs( ) );
+				tParameter.setUsed( parameters[i].isUsed( ) );
+				result[resultPtr] = tParameter;
 				resultPtr++;
 			}
 		}
