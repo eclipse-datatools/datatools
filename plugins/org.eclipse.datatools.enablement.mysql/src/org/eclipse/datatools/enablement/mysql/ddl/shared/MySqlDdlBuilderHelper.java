@@ -423,7 +423,7 @@ public abstract class MySqlDdlBuilderHelper {
 		String columnString = columnName + SPACE
 				+ dataType;
 		String defaultValue = column.getDefaultValue();
-		if (defaultValue != null) {
+		if (defaultValue != null && defaultValue.trim().length() > 0) {
             if (dataType.equals("DATETIME") || //$NON-NLS-1$
                     dataType.equals("TIME") || //$NON-NLS-1$
                     dataType.equals("DATE") || //$NON-NLS-1$
@@ -433,9 +433,6 @@ public abstract class MySqlDdlBuilderHelper {
                 defaultValue = "'" + defaultValue + "'";  //$NON-NLS-1$//$NON-NLS-2$
             }
             
-            if (defaultValue.equals("")){ //$NON-NLS-1$
-                defaultValue = "''"; //$NON-NLS-1$
-            }
 			columnString = columnString + SPACE + DEFAULT + SPACE
 					+ defaultValue;
 		}
