@@ -114,7 +114,7 @@ datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = 데이터 도구 
 datatools.core.ui.modelexplorer.DependencyDecoration = 데이터 도구 - 종속 장식
 datatools.core.ui.modelexplorer.bookmarkDecoration  = 데이터 도구 - 책갈피 표시기
 datatools.core.ui.modelexplorer.filterDecoration = 데이터 도구 - 서버 탐색기 필터 노드 표시기
-datatools.core.ui.modelexplorer.indextriggerDecoration = Data Tools - Index and Trigger Decoration
+datatools.core.ui.modelexplorer.indextriggerDecoration = 데이터 도구 - 인덱스 및 트리거 장식
 
 #
 ## Model Explorer Sorter Provider

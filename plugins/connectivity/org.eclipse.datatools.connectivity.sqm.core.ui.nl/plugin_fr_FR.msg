@@ -114,7 +114,7 @@ datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Outils de do
 datatools.core.ui.modelexplorer.DependencyDecoration = Outils de données - Décoration de dépendance
 datatools.core.ui.modelexplorer.bookmarkDecoration  = Outils de données - Indicateur de signet
 datatools.core.ui.modelexplorer.filterDecoration = Outils de données - Indicateur du nœud de filtre de l'explorateur du serveur
-datatools.core.ui.modelexplorer.indextriggerDecoration = Data Tools - Index and Trigger Decoration
+datatools.core.ui.modelexplorer.indextriggerDecoration = Outils de données - Décoration du déclencheur et de l'index
 
 #
 ## Model Explorer Sorter Provider

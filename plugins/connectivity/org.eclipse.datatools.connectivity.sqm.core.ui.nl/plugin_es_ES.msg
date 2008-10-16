@@ -114,7 +114,7 @@ datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = Herramientas
 datatools.core.ui.modelexplorer.DependencyDecoration = Herramientas de datos: decoración de dependencia
 datatools.core.ui.modelexplorer.bookmarkDecoration  = Herramientas de datos: indicador de marcador
 datatools.core.ui.modelexplorer.filterDecoration = Herramientas de datos: indicador de nodo de filtro de explorador de servidor
-datatools.core.ui.modelexplorer.indextriggerDecoration = Data Tools - Index and Trigger Decoration
+datatools.core.ui.modelexplorer.indextriggerDecoration = Herramientas de datos: decoración de índice y activador
 
 #
 ## Model Explorer Sorter Provider

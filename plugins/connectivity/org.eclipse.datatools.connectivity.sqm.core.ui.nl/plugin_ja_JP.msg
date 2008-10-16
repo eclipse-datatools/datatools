@@ -114,7 +114,7 @@ datatools.core.ui.modelexplorer.modelExplorerForeignKeyDecoration = データツール
 datatools.core.ui.modelexplorer.DependencyDecoration = データツール - 依存関係の装飾
 datatools.core.ui.modelexplorer.bookmarkDecoration  = データツール - ブックマークのインジケータ
 datatools.core.ui.modelexplorer.filterDecoration = データツール - サーバエクスプローラのフィルタノードインジケータ
-datatools.core.ui.modelexplorer.indextriggerDecoration = Data Tools - Index and Trigger Decoration
+datatools.core.ui.modelexplorer.indextriggerDecoration = データツール - インデックスとトリガの装飾
 
 #
 ## Model Explorer Sorter Provider
