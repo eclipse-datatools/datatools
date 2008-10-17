@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2004, 2007 Actuate Corporation.
+# Copyright (c) 2004, 2008 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ xPathChoosePage.FileNameIcon=文件名图标
 xPathChoosePage.XMLElementIcon=XML 元素图标
 xPathChoosePage.ColumnIcon=列图标
 xPathChoosePage.messages.btnAdd.tooltip=将选定的节点用作 XPath 表达式。
+xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=行(&P)

@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2004, 2007 Actuate Corporation.
+# Copyright (c) 2004, 2008 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ xPathChoosePage.FileNameIcon=Icône du nom de fichier
 xPathChoosePage.XMLElementIcon=Icône d'élément XML
 xPathChoosePage.ColumnIcon=Icône de colonne
 xPathChoosePage.messages.btnAdd.tooltip=Utilisez le nœud sélectionné comme expression XPath.
+xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=premières lignes de données source

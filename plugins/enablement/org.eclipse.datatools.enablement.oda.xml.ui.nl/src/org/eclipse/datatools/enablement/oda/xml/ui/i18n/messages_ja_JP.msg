@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2004, 2007 Actuate Corporation.
+# Copyright (c) 2004, 2008 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ xPathChoosePage.FileNameIcon=ファイル名アイコン
 xPathChoosePage.XMLElementIcon=XML 要素アイコン
 xPathChoosePage.ColumnIcon=列アイコン
 xPathChoosePage.messages.btnAdd.tooltip=選択したノードを XPath 式として使用します。
+xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=行をプレビュー(&P)

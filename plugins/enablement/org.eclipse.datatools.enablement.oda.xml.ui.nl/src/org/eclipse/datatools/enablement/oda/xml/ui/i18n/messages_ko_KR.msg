@@ -1,5 +1,5 @@
 ###############################################################################
-# Copyright (c) 2004, 2007 Actuate Corporation.
+# Copyright (c) 2004, 2008 Actuate Corporation.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which accompanies this distribution, and is available at
@@ -40,6 +40,7 @@ xPathChoosePage.FileNameIcon=파일 이름 아이콘
 xPathChoosePage.XMLElementIcon=XML 요소 아이콘
 xPathChoosePage.ColumnIcon=열 아이콘
 xPathChoosePage.messages.btnAdd.tooltip=선택한 노드를 XPath 식으로 사용
+xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=줄 미리보기(&P)
