@@ -14,12 +14,15 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.actio
 import java.util.Iterator;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCCatalog;
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualNode;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.ui.actions.ActionFactory;
 
 
 /**
@@ -39,6 +42,8 @@ public class RevisedRefreshAction extends RevisedAbstractAction
     	super();
     	this.setText(ResourceLoader.INSTANCE.queryString("DATATOOLS.SERVER.UI.EXPLORER.REFRESH"));//$NON-NLS-1$
     	this.setToolTipText(this.getText());
+		this.setActionDefinitionId(ActionFactory.REFRESH.getId());
+		this.setAccelerator(SWT.F5);
 		this.aViewer = viewer;
     }
 
@@ -56,6 +61,14 @@ public class RevisedRefreshAction extends RevisedAbstractAction
     private void refreshVirtualNode (IVirtualNode virtualNode)
     {
 		Object object = virtualNode.getParent();
+		
+		// to get around the unused catalog, we skip it and go to the database
+		// hack for bug 248366 BTF
+		if (object != null && 
+				object instanceof JDBCCatalog && 
+					((JDBCCatalog)object).getName().trim().length() == 0)
+			object = ((JDBCCatalog)object).getCatalogDatabase();
+		
 		virtualNode.removeAllChildren();
 		if (object instanceof ICatalogObject)
 		{

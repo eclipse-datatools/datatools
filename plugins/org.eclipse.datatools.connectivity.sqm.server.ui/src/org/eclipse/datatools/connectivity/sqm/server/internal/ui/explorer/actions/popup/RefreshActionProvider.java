@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.actions.ActionContext;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 
@@ -29,6 +30,7 @@ public class RefreshActionProvider extends CommonActionProvider {
 
 	private StructuredViewer aViewer;
     private IStructuredSelection selection;
+    private RevisedRefreshAction addRefreshAction = null;
 
     /**
      * Constructor
@@ -61,9 +63,9 @@ public class RefreshActionProvider extends CommonActionProvider {
 		boolean hasSelection = false;
 		if (selection != null && selection.getFirstElement() != null)
 			hasSelection = true;
-		RevisedRefreshAction addRefreshAction;
 		if (hasSelection ) {
 			addRefreshAction = new RevisedRefreshAction(this.aViewer);
+			addRefreshAction.setActionDefinitionId("org.eclipse.ui.file.refresh"); //$NON-NLS-1$
 			manager.insertAfter("slot3",//$NON-NLS-1$
 					addRefreshAction);
 		}
@@ -75,6 +77,8 @@ public class RefreshActionProvider extends CommonActionProvider {
 	 * @see org.eclipse.ui.navigator.ICommonActionProvider#fillActionBars(org.eclipse.ui.IActionBars)
 	 */
 	public void fillActionBars(IActionBars bars) {
+		bars.setGlobalActionHandler(ActionFactory.REFRESH.getId(),
+				addRefreshAction);
         bars.updateActionBars();
         bars.getMenuManager().update();
         return;
