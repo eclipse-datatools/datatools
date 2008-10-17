@@ -36,4 +36,5 @@ public final class Constants
 	//support single file.
 	public static final String CONST_PROP_FILELIST = "FILELIST"; //$NON-NLS-1$
 	public static final String CONST_PROP_ENCODINGLIST = "ENCODINGLIST";//$NON-NLS-1$
+	public static final String CONST_PROP_SCHEMA_FILELIST="SCHEMAFILELIST";
 }

@@ -31,6 +31,7 @@ public class ConnectionTest extends BaseTest
 		prop = new Properties();
 		prop.put(Constants.CONST_PROP_RELATIONINFORMATION,"book#:#[//book]#:#{book.category;String;@category},{book.title;String;title},{book.author_1;String;author[1]@name},{book.author_2;String;author[2]@name}");
 		prop.put(Constants.CONST_PROP_FILELIST,TestConstants.SMALL_XML_FILE);
+		prop.put(Constants.CONST_PROP_SCHEMA_FILELIST,TestConstants.SMALL_XML_FILE);
 	}
 
 	protected void tearDown( ) throws Exception
@@ -47,12 +48,35 @@ public class ConnectionTest extends BaseTest
 		conn.open( prop );
 		assertTrue( conn.isOpen());
 		conn.close();
+		
+		//Schema provided but not valid
+		prop.put( Constants.CONST_PROP_SCHEMA_FILELIST, "NotValid" );
+		try {
+			conn.open( prop );
+			assertTrue( false );
+		}catch (OdaException e)
+		{
+			assertFalse( conn.isOpen());
+		}
+		
+		prop.remove( Constants.CONST_PROP_SCHEMA_FILELIST );
 		prop.remove(Constants.CONST_PROP_FILELIST);
 		try {
 			conn.open( prop );
+			assertTrue( false );
 		}catch (OdaException e)
 		{
-			assertTrue(false);
+			assertFalse( conn.isOpen());
+		}
+		
+		prop.remove( Constants.CONST_PROP_SCHEMA_FILELIST );
+		prop.put(Constants.CONST_PROP_FILELIST, "NotValid");
+		try {
+			conn.open( prop );
+			assertTrue( false );
+		}catch (OdaException e)
+		{
+			assertFalse( conn.isOpen());
 		}
 	}
 

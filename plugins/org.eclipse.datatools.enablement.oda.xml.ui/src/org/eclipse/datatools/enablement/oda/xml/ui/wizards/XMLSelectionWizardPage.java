@@ -10,16 +10,11 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.ui.wizards;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
-import org.eclipse.datatools.connectivity.IConnection;
-import org.eclipse.datatools.connectivity.IConnectionProfile;
-import org.eclipse.datatools.connectivity.oda.OdaException;
+
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceWizardPage;
-import org.eclipse.datatools.connectivity.ui.PingJob;
-import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
+
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -85,12 +80,4 @@ public class XMLSelectionWizardPage extends DataSourceWizardPage
         // enable/disable all controls on page in respect of the editable session state
         enableAllControls( getControl(), isSessionEditable() );
     }
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.oda.design.internal.ui.DataSourceWizardPageCore#createTestConnectionRunnable(org.eclipse.datatools.connectivity.IConnectionProfile)
-	 */
-	protected Runnable createTestConnectionRunnable( final IConnectionProfile profile )
-	{
-        return m_pageHelper.createTestConnectionRunnable( profile );
-	}
 }

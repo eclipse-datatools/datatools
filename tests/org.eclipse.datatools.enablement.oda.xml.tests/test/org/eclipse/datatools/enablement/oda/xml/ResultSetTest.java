@@ -90,8 +90,10 @@ public class ResultSetTest extends BaseTest
 	{
 		rs.close( );
 		conn.close( );
+		Properties prop = new Properties();
+		prop.put(Constants.CONST_PROP_SCHEMA_FILELIST,TestConstants.SMALL_XML_FILE);
 		conn = new Connection( );
-		conn.open( null ); //no xml file is specified
+		conn.open( prop ); //no xml file is specified
 		IQuery query = conn.newQuery( null );
 		query.prepare( queryText );
 		rs = query.executeQuery( );

@@ -288,7 +288,10 @@ public class XPathChoosePage extends DataSetWizardPage
 			this.availableXmlTree.getTree( ).removeAll( );
 			if ( ( xsdFileName == null || xsdFileName.trim( ).length( ) == 0 )
 					&& ( xmlFileName == null || xmlFileName.trim( ).length( ) == 0 ) )
+			{
+				this.setErrorMessage( Messages.getString( "xPathChoosePage.messages.noURLOfSourceOrSchema" ) ); //$NON-NLS-1$
 				return;
+			}
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
 					.getPluginPreferences( );

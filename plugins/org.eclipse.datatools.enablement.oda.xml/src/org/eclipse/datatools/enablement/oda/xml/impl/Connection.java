@@ -10,6 +10,7 @@
  *******************************************************************************/
 
 package org.eclipse.datatools.enablement.oda.xml.impl;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
@@ -41,8 +42,14 @@ public class Connection implements IConnection
 	Properties connProperties;
 
 	/*
-	 *  (non-Javadoc)
-	 * @see org.eclipse.datatools.connectivity.oda.IConnection#open(java.util.Properties)
+	 *if a valid XML schema URL provided
+     *	succeed in open
+     *else if an InputStream instance provided from appContext
+     *	succeed in open
+	 *else if an valid XML source URL provided
+     *	succeed in open
+	 *else 
+     "	throws exception
 	 */
 	public void open( Properties connProperties )
 			throws org.eclipse.datatools.connectivity.oda.OdaException
@@ -52,6 +59,39 @@ public class Connection implements IConnection
 			return;
 		}
 		this.connProperties = connProperties;
+		String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+		String schemaFile = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_SCHEMA_FILELIST );
+		if ( schemaFile != null && schemaFile.length( ) > 0 ) 
+		{
+			//if XML schema is provided, check whether it's valid
+			InputStream is = new XMLSourceFromPath( schemaFile, encoding ).openInputStream( );
+			try
+			{
+				is.close( );
+			}
+			catch ( IOException e )
+			{
+			}
+			//schemaFile provided is valid, this connection at least can be used to fetch meta data 
+		}
+		else
+		{
+			//if XML schema is not provided, check InputStream or XML file
+			if ( appContext == null
+					|| !( appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream ))
+			{
+				//InputStream not provided, check XML file
+				String xmlFile = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
+				InputStream is = new XMLSourceFromPath( xmlFile, encoding ).openInputStream( );
+				try
+				{
+					is.close( );
+				}
+				catch ( IOException e )
+				{
+				}
+			}
+		}
 		isOpen = true;
 	}
 
@@ -174,28 +214,32 @@ public class Connection implements IConnection
 	{
 		if ( xmlSource == null )
 		{
-			String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
-			String file = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
-			if ( appContext != null
-					&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) != null
-					&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
-			{
-				boolean closeOriginalInputStream = false;
-				Object closeInputStream = appContext.get( Constants.APPCONTEXT_CLOSEINPUTSTREAM );
-				if( TRUE_LITERAL.equalsIgnoreCase( closeInputStream == null ? null : closeInputStream.toString( ) ) )
-				{
-					closeOriginalInputStream = true;
-				}
-				xmlSource = new XMLSourceFromInputStream( 
-						(InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ), 
-						encoding,
-						closeOriginalInputStream );
-			}
-			else
-			{
-				xmlSource = new XMLSourceFromPath( file, encoding );
-			}	
+			initXMLSource( );
 		}
 		return xmlSource;
+	}
+
+	private void initXMLSource( ) throws OdaException
+	{
+		String encoding = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_ENCODINGLIST);
+		String file = connProperties == null ? null :(String) connProperties.get( Constants.CONST_PROP_FILELIST );
+		if ( appContext != null
+				&& appContext.get( Constants.APPCONTEXT_INPUTSTREAM ) instanceof InputStream )
+		{
+			boolean closeOriginalInputStream = false;
+			Object closeInputStream = appContext.get( Constants.APPCONTEXT_CLOSEINPUTSTREAM );
+			if( TRUE_LITERAL.equalsIgnoreCase( closeInputStream == null ? null : closeInputStream.toString( ) ) )
+			{
+				closeOriginalInputStream = true;
+			}
+			xmlSource = new XMLSourceFromInputStream( 
+					(InputStream) appContext.get( Constants.APPCONTEXT_INPUTSTREAM ), 
+					encoding,
+					closeOriginalInputStream );
+		}
+		else
+		{
+			xmlSource = new XMLSourceFromPath( file, encoding );
+		}
 	}
 }
