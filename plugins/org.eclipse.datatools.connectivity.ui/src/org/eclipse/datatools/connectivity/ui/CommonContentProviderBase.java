@@ -301,12 +301,7 @@ public abstract class CommonContentProviderBase implements
 		Set contentExtensions = contentService
 				.findRootContentExtensions(extension.getConnectionProfile());
 
-		/*
-		 * check for more than two contentproviders since the list will include
-		 * the root content provider for the view.
-		 */
-		return extension.isVisible()
-				|| (contentExtensions != null && contentExtensions.size() > 2);
+		return extension.isVisible();
 	}
 	
 	protected void handleProfileAdded(IConnectionProfile profile) {
