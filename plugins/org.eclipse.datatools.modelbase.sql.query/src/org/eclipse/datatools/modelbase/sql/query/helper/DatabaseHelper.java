@@ -162,7 +162,9 @@ public class DatabaseHelper {
       Schema returnSchema = null;
       
       if (schemaName != null) {
+          /* Get the list of schemas from the database. */
           List dbSchemaList = database.getSchemas();
+          
           /* If we don't have any schemas, then check whether there
            * are Catalog objects that contain the schemas. */
           if (dbSchemaList == null || dbSchemaList.isEmpty()) {
@@ -178,15 +180,30 @@ public class DatabaseHelper {
           }
           
           /* Try to match the given schema name with one of the schemas
-           * from the database. */
+           * from the database. The names are in catalog format, which means
+           * they are not delimited. Try first for a direct match on the
+           * name, respecting case. (This helps handle the case where there are 
+           * two schemas in the DB that differ only by case.) */
           Iterator dbSchemaListIter = dbSchemaList.iterator();
           while (dbSchemaListIter.hasNext() && returnSchema == null) {
               Schema dbSchema = (Schema) dbSchemaListIter.next();
               String dbSchemaName = dbSchema.getName();
-              if (StatementHelper.equalSQLIdentifiers(schemaName, dbSchemaName)) {
+              if (schemaName.equals(dbSchemaName)) {
                   returnSchema = dbSchema;
               }
-          }          
+          }    
+          
+          /* If we didn't find a match, try again without regard to case. */
+          if (returnSchema == null) {
+              dbSchemaListIter = dbSchemaList.iterator();
+              while (dbSchemaListIter.hasNext() && returnSchema == null) {
+                  Schema dbSchema = (Schema) dbSchemaListIter.next();
+                  String dbSchemaName = dbSchema.getName();
+                  if (schemaName.equalsIgnoreCase(dbSchemaName)) {
+                      returnSchema = dbSchema;
+                  }
+              }    
+          }
       }
   
       return returnSchema;
@@ -207,13 +224,31 @@ public class DatabaseHelper {
       Table returnTable = null;
       
       if (tableName != null) {
+          /* Get a list of tables from the given schema. */
           List dbTableList = schema.getTables();
+          
+          /* Try to find a match for the given table name in the list of
+           * tables.  The table names we're comparing are in catalog format, 
+           * which means they are not delimited. Try first for a direct
+           * match on the name, respecting case. */
           Iterator dbTableListIter = dbTableList.iterator();
           while (dbTableListIter.hasNext() && returnTable == null) {
               Table dbTable = (Table) dbTableListIter.next();
               String dbTableName = dbTable.getName();           
-              if (StatementHelper.equalSQLIdentifiers(tableName, dbTableName)) {
+              if (tableName.equals(dbTableName)) {
                   returnTable = dbTable;
+              }
+          }
+          
+          /* If we didn't find a match, try again without regard to case. */
+          if (returnTable == null) {
+              dbTableListIter = dbTableList.iterator();
+              while (dbTableListIter.hasNext() && returnTable == null) {
+                  Table dbTable = (Table) dbTableListIter.next();
+                  String dbTableName = dbTable.getName();           
+                  if (tableName.equalsIgnoreCase(dbTableName)) {
+                      returnTable = dbTable;
+                  }
               }
           }
       }
