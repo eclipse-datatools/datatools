@@ -61,7 +61,11 @@ public class ServerExplorerVNodeContentProviderNav extends AbstractOnDemandConte
 	
 	private DatabaseDefinition  getDatabaseDefinition (Object parent)
 	{
-	    if (parent instanceof ICatalogObject)
+		if (parent instanceof Database)
+		{
+			return registry.getDefinition((Database)parent);
+		}
+		else if (parent instanceof ICatalogObject)
 	    {
 	        return registry.getDefinition(((ICatalogObject)parent).getCatalogDatabase());
 	    }
