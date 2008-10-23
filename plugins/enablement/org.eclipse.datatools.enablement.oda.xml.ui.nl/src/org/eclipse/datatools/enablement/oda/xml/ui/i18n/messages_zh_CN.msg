@@ -40,7 +40,7 @@ xPathChoosePage.FileNameIcon=文件名图标
 xPathChoosePage.XMLElementIcon=XML 元素图标
 xPathChoosePage.ColumnIcon=列图标
 xPathChoosePage.messages.btnAdd.tooltip=将选定的节点用作 XPath 表达式。
-xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
+xPathChoosePage.messages.noURLOfSourceOrSchema=没有提供 XML 源或 XML 架构的 URL。
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=行(&P)

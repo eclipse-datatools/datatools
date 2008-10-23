@@ -40,7 +40,7 @@ xPathChoosePage.FileNameIcon=Icono de nombre de archivo
 xPathChoosePage.XMLElementIcon=Icono de elemento XML
 xPathChoosePage.ColumnIcon=Icono de columna
 xPathChoosePage.messages.btnAdd.tooltip=Utilice el nodo seleccionado como Expresión XPath.
-xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
+xPathChoosePage.messages.noURLOfSourceOrSchema=No se ha proporcionado ninguna URL de la fuente XML ni esquema XML.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=líneas de datos fuente

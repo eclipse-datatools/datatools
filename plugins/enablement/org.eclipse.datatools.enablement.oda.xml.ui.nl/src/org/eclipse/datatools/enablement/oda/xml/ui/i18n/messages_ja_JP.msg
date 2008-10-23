@@ -40,7 +40,7 @@ xPathChoosePage.FileNameIcon=ファイル名アイコン
 xPathChoosePage.XMLElementIcon=XML 要素アイコン
 xPathChoosePage.ColumnIcon=列アイコン
 xPathChoosePage.messages.btnAdd.tooltip=選択したノードを XPath 式として使用します。
-xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
+xPathChoosePage.messages.noURLOfSourceOrSchema=XML ソースまたは XML スキーマの URL が指定されていません。
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=行をプレビュー(&P)

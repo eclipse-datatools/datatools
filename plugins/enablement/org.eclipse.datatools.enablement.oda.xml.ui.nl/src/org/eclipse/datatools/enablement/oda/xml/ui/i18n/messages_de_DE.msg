@@ -40,7 +40,7 @@ xPathChoosePage.FileNameIcon=Dateinamensymbol
 xPathChoosePage.XMLElementIcon=XML-Element-Symbol
 xPathChoosePage.ColumnIcon=Spaltensymbol
 xPathChoosePage.messages.btnAdd.tooltip=Ausgewählten Knoten als XPath-Ausdruck verwenden.
-xPathChoosePage.messages.noURLOfSourceOrSchema=No URL of XML source or XML schema provided.
+xPathChoosePage.messages.noURLOfSourceOrSchema=Keine URL von XML-Quelldatei oder XML-Schema angegeben.
 
 #sample xml data file page messages
 xmlDataSetSelectionPage.messages.lineofdata=Zeilen der Quelldaten anzeigen
