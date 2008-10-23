@@ -11,5 +11,5 @@ driverPWD = Contraseña
 org.eclipse.datatools.connectivity.db.driverCategory = Base de datos
 org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = JDBC genérico
 org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = Controlador de JDBC genérico
-databases.category = Bases de datos
+databases.category = Conexiones de la base de datos
 generic.profile.name = Modelo SQL-Conexión JDBC

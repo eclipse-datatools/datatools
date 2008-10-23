@@ -11,5 +11,5 @@ driverPWD = パスワード
 org.eclipse.datatools.connectivity.db.driverCategory = データベース
 org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = 一般的な JDBC
 org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = 一般的な JDBC ドライバ
-databases.category = データベース
+databases.category = データベース接続
 generic.profile.name = SQL モデル - JDBC 接続

@@ -11,5 +11,5 @@ driverPWD = 암호
 org.eclipse.datatools.connectivity.db.driverCategory = 데이터베이스
 org.eclipse.datatools.connectivity.db.generic.genericDriverCategory = 범용 JDBC
 org.eclipse.datatools.connectivity.db.generic.genericDriverTemplate = 범용 JDBC 드라이버
-databases.category = 데이터베이스
+databases.category = 데이터베이스 연결
 generic.profile.name = SQL 모델-JDBC 연결
