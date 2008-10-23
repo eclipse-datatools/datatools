@@ -33,6 +33,12 @@ To change the order of the columns in the data set, use the up and down arrow bu
 To set the properties for a parameter, double-click the parameter.
 </description>
 </context>
+<context id="Dialog_XMLSampleData_ID" title="Sample XML Data">
+<description>Use this table to verify that the XML or Web Services data set returns the expected data.
+
+This table displays values for each mapped column from the first few rows that the data set returns. If the values that you see do not match your requirements, or you see no values, modify your choices on the wizard or editor until this table does show the values you need.
+</description>
+</context>
 <context id="Dialog_XPathExpression_ID" title="Select or edit the XPath expression">
 <description>Use this dialog box to specify the XPath expression to be used.
 
@@ -124,11 +130,12 @@ You can use the data file that the data source specifies or a different file tha
 If your XML data file is large, you can reduce the number of rows that the Report Designer reads when you preview the report. To set the number of rows, select Preview first, then enter the number of rows of data in the next field. When you choose this option, make sure that your data file contains all the data fields that you need in your report design in the set of rows that you choose.
 </description>
 </context>
-<context id="Wizard_XMLXPath_ID" title="Table Mapping">
-<description>Use this dialog box to map a table.
+<context id="Wizard_XMLXPath_ID" title="Row Mapping">
+<description>Use this dialog box to define a row element.
 
-Select an XML element in the XML structure diagram to represent the table root. To set the element as the table, choose the > button.
-After you verify the XPath expression for the table, the table path appears in Table Mapping-XPath Expression.
+Select an XML element in the XML structure diagram to represent the row root. To set the element as the row, choose the &gt; button.
+After you verify the XPath expression for the row, the row path appears in Row Mapping-XPath Expression.
+The data set creates a row for every row element in the data source. For example, consider a data source that has a &lt;Customer&gt; element that has child elements, &lt;Order&gt;. If you define the &lt;Customer&gt; element as the row, the data set creates one row for every &lt;Customer&gt; element. This row can include the information for only one order. If you define the &lt;Order&gt; element as the row, the data set creates a row for every order element.
 </description>
 </context>
 <context id="Wizard_WS_DATASOURCE_ID">
