@@ -213,7 +213,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
   	<privilegeDefinitions name="UNDER"/>
   </privilegedElementDefinitions>
   <SQLSyntaxDefinition>
-    <keywords>A</keywords>
+      <keywords>A</keywords>
 	<keywords>ABORT</keywords>
 	<keywords>ABS</keywords>
 	<keywords>ABSOLUTE</keywords>
@@ -338,6 +338,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>COS</keywords>
 	<keywords>COUNT</keywords>
 	<keywords>COUNTU</keywords>
+	<keywords>CRCOLS</keywords>
 	<keywords>CREATE</keywords>
 	<keywords>CROSS</keywords>
 	<keywords>CUBE</keywords>
@@ -393,6 +394,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>DIAGNOSTICS</keywords>
 	<keywords>DIRECT</keywords>
 	<keywords>DISABLE</keywords>
+	<keywords>DISABLED</keywords>
 	<keywords>DISCONNECT</keywords>
 	<keywords>DISK</keywords>
 	<keywords>DISMOUNT</keywords>
@@ -443,6 +445,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>EXP</keywords>
 	<keywords>EXPLAIN</keywords>
 	<keywords>EXPLICIT</keywords>
+	<keywords>EXPRESSION</keywords>
 	<keywords>EXTENT</keywords>
 	<keywords>EXTERNAL</keywords>
 	<keywords>EXTERNALLY</keywords>
@@ -453,6 +456,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>FIELDPROC</keywords>
 	<keywords>FILE</keywords>
 	<keywords>FILLFACTOR</keywords>
+	<keywords>FILTERING</keywords>
 	<keywords>FINALIZE</keywords>
 	<keywords>FINALIZE</keywords>
 	<keywords>FIRST</keywords>
@@ -468,6 +472,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>FORTRAN</keywords>
 	<keywords>FOREIGN</keywords>
 	<keywords>FOUND</keywords>
+	<keywords>FRAGMENT</keywords>
 	<keywords>FREELIST</keywords>
 	<keywords>FREELISTS</keywords>
 	<keywords>FREETEXT</keywords>
@@ -753,6 +758,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>REGISTER</keywords>
 	<keywords>RELEASE</keywords>
 	<keywords>RELOCATE</keywords>
+	<keywords>REMAINDER</keywords>
 	<keywords>REMOVE</keywords>
 	<keywords>RENAME</keywords>
 	<keywords>REPEAT</keywords>
@@ -775,6 +781,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>REUSE</keywords>
 	<keywords>REVOKE</keywords>
 	<keywords>RIGHT</keywords>
+	<keywords>ROBIN</keywords>
 	<keywords>ROLE</keywords>
 	<keywords>ROLES</keywords>
 	<keywords>ROLLBACK</keywords>
@@ -785,6 +792,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>ROWCOUNT</keywords>
 	<keywords>ROWGUIDCOL</keywords>
 	<keywords>ROWID</keywords>
+	<keywords>ROWIDS</keywords>
 	<keywords>ROWIDTOCHAR</keywords>
 	<keywords>ROWLABEL</keywords>
 	<keywords>ROWNUM</keywords>
@@ -943,6 +951,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>VARIABLES</keywords>
 	<keywords>VARYING</keywords>
 	<keywords>VCAT</keywords>
+	<keywords>VERCOLS</keywords>
 	<keywords>VERSION</keywords>
 	<keywords>VIEW</keywords>
 	<keywords>VOLUMES</keywords>
@@ -960,5 +969,5 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>YEAR</keywords>
 	<keywords>YEARS</keywords>
 	<keywords>ZONE</keywords>
-  </SQLSyntaxDefinition>
+</SQLSyntaxDefinition>
 </DBDefinition:DatabaseVendorDefinition>

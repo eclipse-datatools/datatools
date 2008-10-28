@@ -262,6 +262,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>CONTINUE</keywords>
 	<keywords>COPY</keywords>
 	<keywords>COUNT</keywords>
+	<keywords>CRCOLS</keywords>
 	<keywords>CREATE</keywords>
 	<keywords>CROSS</keywords>
 	<keywords>CURRENT</keywords>
@@ -286,6 +287,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>DESCRIBE</keywords>
 	<keywords>DESCRIPTOR</keywords>
 	<keywords>DIAGNOSTICS</keywords>
+	<keywords>DISABLED</keywords>
 	<keywords>DISCONNECT</keywords>
 	<keywords>DISTINCT</keywords>
 	<keywords>DOMAIN</keywords>
@@ -303,12 +305,14 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>EXIT</keywords>
 	<keywords>EXPLAIN</keywords>
 	<keywords>EXPLICIT</keywords>
+	<keywords>EXPRESSION</keywords>
 	<keywords>EXTENT</keywords>
 	<keywords>EXTERNAL</keywords>
 	<keywords>FALSE</keywords>
 	<keywords>FETCH</keywords>
 	<keywords>FILE</keywords>
 	<keywords>FILLFACTOR</keywords>
+	<keywords>FILTERING</keywords>
 	<keywords>FIRST</keywords>
 	<keywords>FLOAT</keywords>
 	<keywords>FLUSH</keywords>
@@ -316,6 +320,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>FOREIGN</keywords>
 	<keywords>FORTRAN</keywords>
 	<keywords>FOUND</keywords>
+	<keywords>FRAGMENT</keywords>
 	<keywords>FREE</keywords>
 	<keywords>FROM</keywords>
 	<keywords>FULL</keywords>
@@ -425,6 +430,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>REGISTER</keywords>
 	<keywords>RELATIVE</keywords>
 	<keywords>RELEASE</keywords>
+	<keywords>REMAINDER</keywords>
 	<keywords>RENAME</keywords>
 	<keywords>REPEATABLE</keywords>
 	<keywords>REPLICATION</keywords>
@@ -436,11 +442,13 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>REUSE</keywords>
 	<keywords>REVOKE</keywords>
 	<keywords>RIGHT</keywords>
+	<keywords>ROBIN</keywords>
 	<keywords>ROLE</keywords>
 	<keywords>ROLLBACK</keywords>
 	<keywords>ROUTINE</keywords>
 	<keywords>ROW</keywords>
 	<keywords>ROWID</keywords>
+	<keywords>ROWIDS</keywords>
 	<keywords>ROWS</keywords>
 	<keywords>SAVE</keywords>
 	<keywords>SCHEDULE</keywords>
@@ -504,6 +512,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
 	<keywords>VARCHAR</keywords>
 	<keywords>VARIABLE</keywords>
 	<keywords>VARYING</keywords>
+	<keywords>VERCOLS</keywords>
 	<keywords>VIEW</keywords>
 	<keywords>WHEN</keywords>
 	<keywords>WHENEVER</keywords>
