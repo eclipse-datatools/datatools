@@ -12,7 +12,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
@@ -37,7 +37,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DBCLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="32" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>GRAPHIC</name>
   </predefinedDataTypeDefinitions>

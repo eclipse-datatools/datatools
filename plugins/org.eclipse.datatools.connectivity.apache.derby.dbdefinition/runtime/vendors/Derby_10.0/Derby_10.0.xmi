@@ -9,7 +9,7 @@
     <name>BLOB</name>
     <name>BINARY LARGE OBJECT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" keyConstraintSupported="true" defaultLength="32" maximumLength="254" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" keyConstraintSupported="true" defaultLength="1" maximumLength="254" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>CHAR</name>
