@@ -12,7 +12,7 @@
     <name>BLOB</name>
     <name>BINARY LARGE OBJECT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="32" maximumLength="16383" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" maximumLength="16383" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>GRAPHIC</name>
@@ -30,7 +30,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONG VARGRAPHIC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="32766" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="32766" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>

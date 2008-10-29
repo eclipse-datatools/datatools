@@ -10,7 +10,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" lengthUnit="DOUBLE_BYTE" defaultLength="32" keyConstraintSupported="true" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" lengthUnit="DOUBLE_BYTE" defaultLength="1" keyConstraintSupported="true" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>GRAPHIC</name>
   </predefinedDataTypeDefinitions>
@@ -22,7 +22,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>LONG VARGRAPHIC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="254" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>SESSION_USER</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>

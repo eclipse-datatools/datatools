@@ -10,7 +10,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BLOB</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="32" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" maximumLength="127" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>GRAPHIC</name>
@@ -31,7 +31,7 @@
     <name>LONG VARGRAPHIC</name>
 	<name>LONGVARG</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="32" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" maximumLength="255" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
