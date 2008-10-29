@@ -149,18 +149,18 @@ public class SQLQueryParserPlugin extends Plugin implements IRegistryChangeListe
 	            }
 	        }
 	        
-	        if (!extensionFound)
-	        {
-	            String msg = "configuration: " + //$NON-NLS-1$
-	                            EXTENSION_CONFIGURATION_TAG +
-	                            " in extension-point: " + //$NON-NLS-1$
-	                            PLUGIN_ID + "." + EXTENSION_POINT_ID + //$NON-NLS-1$
-	                            " could not be found."; //$NON-NLS-1$
-                getLog().log( new Status(
-	                            IStatus.ERROR, 
-	                            getDefault().getBundle().getSymbolicName(),
-	                            0, msg, null));
-	        }
+//	        if (!extensionFound)
+//	        {
+//	            String msg = "configuration: " + //$NON-NLS-1$
+//	                            EXTENSION_CONFIGURATION_TAG +
+//	                            " in extension-point: " + //$NON-NLS-1$
+//	                            PLUGIN_ID + "." + EXTENSION_POINT_ID + //$NON-NLS-1$
+//	                            " could not be found."; //$NON-NLS-1$
+//                getLog().log( new Status(
+//	                            IStatus.ERROR, 
+//	                            getDefault().getBundle().getSymbolicName(),
+//	                            0, msg, null));
+//	        }
         }
         else
         {
