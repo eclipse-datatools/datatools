@@ -40,11 +40,13 @@ import org.eclipse.datatools.sqltools.sqlbuilder.model.VendorHelper;
 import org.eclipse.datatools.sqltools.sqlbuilder.provider.rdbschema.AvailableTablesTreeProvider;
 import org.eclipse.datatools.sqltools.sqlbuilder.util.ViewUtility;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -106,6 +108,13 @@ public class AddTableDialog extends Dialog {
                 (vendorHelper.isCloudscape() || vendorHelper.isSybase()))) {
             aliasTextField.setEnabled(false);
         }
+        
+        // Disable the OK button until the user selects a table.
+        Button okButton = getButton(IDialogConstants.OK_ID);
+        if (okButton != null) {
+            okButton.setEnabled(false);
+        }
+        
         return super.open();
     }
 
@@ -309,11 +318,11 @@ public class AddTableDialog extends Dialog {
         QueryStatement stmt = domainModel.getSQLStatement();
         if (stmt instanceof QuerySelectStatement || stmt instanceof QuerySelect) {
             availableTablesTree = new Tree(panel, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-            availableTablesTree.addSelectionListener(new TableSelectionListener());
         }
         else {
             availableTablesTree = new Tree(panel, SWT.SINGLE | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
         }
+        availableTablesTree.addSelectionListener(new TableSelectionListener());
 
         GridData treeGridData = new GridData(GridData.FILL_BOTH);
         treeGridData.widthHint = 50;
@@ -402,11 +411,33 @@ public class AddTableDialog extends Dialog {
 
         public void widgetSelected(SelectionEvent e) {
             TreeItem[] items = availableTablesTreeViewer.getTree().getSelection();
-            if (items.length > 1) {
-                aliasTextField.setEnabled(false);
+            
+            // If the user has selected one or more tables then enable the OK button.
+            // Otherwise disable it.
+            boolean tableSelected = false;
+            for (int i = 0; i < items.length; i++) {
+                TreeItem treeItem = items[i];
+                Object treeItemData = treeItem.getData();
+                if (treeItemData instanceof Table || treeItemData instanceof WithTableSpecification) {
+                    tableSelected = true;
+                }
             }
-            else {
-                aliasTextField.setEnabled(true);
+
+            Button okButton = getButton(IDialogConstants.OK_ID);
+            if (okButton != null) {
+                okButton.setEnabled(tableSelected);
+            }
+
+            // INSERT statement doesn't allow correlation ID (alias).
+            if ((object instanceof QueryInsertStatement) == false) {
+                // Disable and clear the alias field when more than one table is selected.
+                if (items.length > 1) {
+                    aliasTextField.setEnabled(false);
+                    aliasTextField.setText("");
+                }
+                else {
+                    aliasTextField.setEnabled(true);
+                }
             }
         }
     }

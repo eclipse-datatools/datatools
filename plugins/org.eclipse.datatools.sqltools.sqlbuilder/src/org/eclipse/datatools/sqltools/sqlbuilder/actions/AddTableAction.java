@@ -149,7 +149,10 @@ public class AddTableAction extends Action {
             return;
         List tableList = dialog.getTablesList();
         //table = dialog.getTableValue();
-        table = (SQLObject) tableList.get(0);
+        if (tableList != null && tableList.size() > 0) {
+        	table = (SQLObject) tableList.get(0);
+        }
+        
         tableAlias = dialog.getTableAlias();
 
         if (table != null) {

@@ -144,7 +144,7 @@ public class SelectHelper {
             tableExprList = ((QuerySelect)stmt).getFromClause();
         }
     	
-    	if (tableExprList != null && !(tableExprList.isEmpty())){
+    	if (tableExprList != null && position <= tableExprList.size()){
     		tableExprList.add(position, tableExpr);
     	}
     	
