@@ -171,7 +171,7 @@ public class SQLEditorConnectionInfo implements ISQLEditorConnectionInfo {
 	 */
 	public static ISQLEditorConnectionInfo decode(String code)
 	{
-		if (code == null || !code.matches(".*:.*:.*:.*"))
+		if (code == null || !code.matches("(?s).*:.*:.*:.*"))
 		{
 			SQLEditorPlugin.getDefault().log(NLS.bind(SQLEditorResources.SQLEditorConnectionInfo_decode_error, (new String[]{code})));
 			return DEFAULT_SQLEDITOR_CONNECTION_INFO;
