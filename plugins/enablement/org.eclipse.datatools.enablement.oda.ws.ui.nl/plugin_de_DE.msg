@@ -31,5 +31,5 @@ oda.ws.operation=WSDL-Vorgang
 oda.ws.soapparameters=SOAP-Parameter
 oda.ws.soaprequest=SOAP-Anforderung
 oda.ws.soapresponse=SOAP-Antwort
-oda.ws.tablemapping=Tabellenzuordnung
+oda.ws.tablemapping=Zeilenzuordnung
 oda.ws.columnmapping=Spaltenzuordnung

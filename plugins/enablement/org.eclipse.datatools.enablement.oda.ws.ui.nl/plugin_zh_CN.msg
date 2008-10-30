@@ -31,5 +31,5 @@ oda.ws.operation=WSDL 操作
 oda.ws.soapparameters=SOAP 参数
 oda.ws.soaprequest=SOAP 请求
 oda.ws.soapresponse=SOAP 响应
-oda.ws.tablemapping=表映射
+oda.ws.tablemapping=行映射
 oda.ws.columnmapping=列映射

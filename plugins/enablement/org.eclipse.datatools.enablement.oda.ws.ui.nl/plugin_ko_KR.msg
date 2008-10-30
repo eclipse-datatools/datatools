@@ -31,5 +31,5 @@ oda.ws.operation=WSDL 작업
 oda.ws.soapparameters=SOAP 매개 변수
 oda.ws.soaprequest=SOAP 요청
 oda.ws.soapresponse=SOAP 응답
-oda.ws.tablemapping=테이블 매핑
+oda.ws.tablemapping=행 매핑
 oda.ws.columnmapping=열 매핑

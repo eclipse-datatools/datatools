@@ -31,5 +31,5 @@ oda.ws.operation=WSDL 操作
 oda.ws.soapparameters=SOAP パラメタ
 oda.ws.soaprequest=SOAP リクエスト
 oda.ws.soapresponse=SOAP 応答
-oda.ws.tablemapping=テーブルのマッピング
+oda.ws.tablemapping=行マッピング
 oda.ws.columnmapping=列のマッピング

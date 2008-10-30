@@ -31,5 +31,5 @@ oda.ws.operation=Opération WSDL
 oda.ws.soapparameters=Paramètres SOAP
 oda.ws.soaprequest=Requête SOAP
 oda.ws.soapresponse=Réponse SOAP
-oda.ws.tablemapping=Mise en correspondance de table
+oda.ws.tablemapping=Mise en correspondance de ligne
 oda.ws.columnmapping=Mise en correspondance de colonne
