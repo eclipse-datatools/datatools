@@ -163,7 +163,7 @@ viewTriggerSupported="true" maximumCommentLength="64" sequenceSupported="true" u
     <functionLanguageType>C</functionLanguageType>
   </storedProcedureDefinition>
   <triggerDefinition maximumIdentifierLength="128" whenClauseSupported="true" granularitySupported="true" referencesClauseSupported="true" perColumnUpdateTriggerSupported="true" rowTriggerReferenceSupported="true" tableTriggerReferenceSupported="true"/>
-  <columnDefinition maximumIdentifierLength="128" identitySupported="true" computedSupported="true"/>
+  <columnDefinition maximumIdentifierLength="128" identitySupported="true" computedSupported="false"/>
   <constraintDefinition  maximumPrimaryKeyIdentifierLength="128" maximumForeignKeyIdentifierLength="128" maximumCheckConstraintIdentifierLength="128" clusteredPrimaryKeySupported="true" clusteredUniqueConstraintSupported="true" uniqueKeyNullable="true">
     <parentUpdateDRIRuleType>NO_ACTION</parentUpdateDRIRuleType>
     <parentDeleteDRIRuleType>CASCADE</parentDeleteDRIRuleType>
