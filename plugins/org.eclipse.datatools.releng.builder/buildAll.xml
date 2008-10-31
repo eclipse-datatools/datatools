@@ -132,8 +132,10 @@
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.sqldevtools.ddlgen.feature.source_${org.eclipse.datatools.sqldevtools.ddlgen.feature.source}/src" includes="**"/>
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.sqldevtools.ddl.feature.source_${org.eclipse.datatools.sqldevtools.ddl.feature.source}/src" includes="**"/>
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.sqldevtools.data.feature.source_${org.eclipse.datatools.sqldevtools.data.feature.source}/src" includes="**"/>
-		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.modelbase.feature.source_${org.eclipse.datatools.modelbase.feature.source}/src" includes="**"/>
-		<!--
+		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source_${org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source}/src" includes="**"/>
+			<fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.modelbase.feature.source_${org.eclipse.datatools.modelbase.feature.source}/src" includes="**"/>
+		
+			<!--
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.intro.source_${org.eclipse.datatools.intro.source}/src" includes="**"/>
 		-->
 		    <fileset dir="${buildDirectory}/tmpsite/new/eclipse/plugins/org.eclipse.datatools.enablement.sybase.feature.source_${org.eclipse.datatools.enablement.sybase.feature.source}/src" includes="**"/>
