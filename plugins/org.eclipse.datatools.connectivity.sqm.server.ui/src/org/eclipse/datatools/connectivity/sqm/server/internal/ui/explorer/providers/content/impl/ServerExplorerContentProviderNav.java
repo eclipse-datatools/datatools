@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -41,6 +41,7 @@ import org.eclipse.datatools.connectivity.sqm.server.internal.ui.layout.IServerE
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerContentService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerLayoutService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNavigationService;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNodeResolutionService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.TransientEObjectUtil.IGroup;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.util.resources.ResourceLoader;
@@ -59,7 +60,7 @@ import org.eclipse.ui.navigator.CommonViewer;
 /**
  * @author ljulien
  */
-public class ServerExplorerContentProviderNav implements IServerExplorerContentService,
+public class ServerExplorerContentProviderNav implements IServerExplorerContentService, IServerExplorerNodeResolutionService,
         IServerExplorerLayoutService, IServerExplorerNavigationService, ICatalogObjectListener, ILoadingService
 {
     private static final ContainmentService containmentService = RDBCorePlugin.getDefault().getContainmentService();
@@ -310,10 +311,35 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 
         try
         {
+        	Object node = getNode(pathToNavigate,viewer);
+        	if (node != null) viewer.setSelection(new StructuredSelection(node));
+        }
+        catch (Exception e)
+        {
+        	e.printStackTrace();
+        }
+    }
+    
+    public EObject getEObjectNode(String pathToNavigate)
+    {
+        final CommonViewer viewer = getViewer();
+
+        Object node = getNode(pathToNavigate,viewer);
+        if (node instanceof EObject) return (EObject)node;
+        return null;
+    }
+    
+    private Object getNode(String pathToNavigate,CommonViewer iViewer)
+    {
+        final CommonViewer viewer = iViewer;
+        Object parent1 = null;
+
+        try
+        {
             List path = TransientEObjectUtil.getPathFromID (pathToNavigate);
             Iterator pathIterator = path.iterator();
             
-            Object parent1 = ProfileManager.getInstance().getProfileByName((String)pathIterator.next());
+            parent1 = ProfileManager.getInstance().getProfileByName((String)pathIterator.next());
             Object parent2 = null;
             while (pathIterator.hasNext())
             {
@@ -363,17 +389,15 @@ public class ServerExplorerContentProviderNav implements IServerExplorerContentS
 	                        parent2 = getEObjectNode (viewer, parent1, elementName);
 	                    }
 	                }
-	                
 	                parent1 = parent2;
 	            }          
-	            	
             }
-            viewer.setSelection(new StructuredSelection(parent1));
         }
         catch (Exception e)
         {
         	e.printStackTrace();
         }
+        return parent1;
     }
     
     /**

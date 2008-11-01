@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.provi
 
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerContentService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNavigationService;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNodeResolutionService;
 
 
 /**
@@ -37,5 +38,10 @@ public class ServerExplorerManager
 	public IServerExplorerNavigationService getServerExplorerNavigationService ()
 	{
 	    return (IServerExplorerNavigationService)serverExplorerService;
+	}
+	
+	public IServerExplorerNodeResolutionService getServerExplorerNodeResolutionService ()
+	{
+	    return (IServerExplorerNodeResolutionService)serverExplorerService;
 	}
 }

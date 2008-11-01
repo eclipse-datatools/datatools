@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,8 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.services.IElement
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.ConnectionUtil;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.ServerExplorerManager;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerNodeResolutionService;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
@@ -136,7 +138,10 @@ public class TransientEObjectUtil implements IElementIDProvider
     
     public static EObject getEObjectFromId (String id)
     {
-        return null;
+    	EObject obj = null;
+    	IServerExplorerNodeResolutionService service = ServerExplorerManager.INSTANCE.getServerExplorerNodeResolutionService();
+    	obj = service.getEObjectNode(id);
+        return obj;
     }
 
     public String getElementID(EObject eObject)
