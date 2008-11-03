@@ -138,7 +138,7 @@ public class ColumnHelper implements IColumnHelperService
         if ((table = column.getTable()) != null && (schema = table.getSchema()) != null && (((catalog = schema.getCatalog()) != null && (database = catalog.getDatabase()) != null) || (database = schema.getDatabase()) != null))
         {
 	        DatabaseDefinition definition = dbRegistry.getDefinition(database);
-	        if(datatype != null) 
+	        if(datatype != null && datatype.getName() != null) 
 	        {
 				if (datatype instanceof PredefinedDataType) 
 				{
