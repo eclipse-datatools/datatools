@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.eclipse.datatools.modelbase.sql.schema.Database;
@@ -31,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
 
 public class DBHelper {
 	protected static final String LINE_SEPARATOR = System.getProperty("line.separator");
+	private static HashSet WRONG_DB_IDS = new HashSet();
 
     /**
 	 * Given a trigger, returns the table name. Default implementation simply
@@ -248,7 +250,11 @@ public class DBHelper {
 			}
 			conn.setCatalog(databaseIdentifier.getDBname());
 		} catch (SQLException e) {
-			EditorCorePlugin.getDefault().log(e);
+			if (!WRONG_DB_IDS.contains(databaseIdentifier))
+			{
+				EditorCorePlugin.getDefault().log(e);
+				WRONG_DB_IDS.add(databaseIdentifier);
+			}
 		}
 		return oldName;
 	}
