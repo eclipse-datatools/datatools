@@ -1054,7 +1054,7 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
         {
             for (int i = 0; i < paramSize; ++i)
             {
-                QueryValueExpression valExpr = (QueryValueExpression) paramList.get(0);
+                QueryValueExpression valExpr = (QueryValueExpression) paramList.get(i);
                 DataType paramDataType = null;
                 if (valExpr != null)
                 {
@@ -1089,7 +1089,7 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
             param1DataType = copyDataType(param1DataType);
         }
     
-        // for first parameter
+        // for second parameter
         DataType param2DataType = null;
         PrimitiveType param2PrimType = null;
         if (paramDataTypeList.size() > 1)
