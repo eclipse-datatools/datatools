@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -59,7 +59,7 @@ public class EditTableDataAction extends AbstractAction
             if (((IStructuredSelection) event.getSelection()).getFirstElement() instanceof Table)
                 table = (Table) ((IStructuredSelection) event.getSelection()).getFirstElement();
 
-        boolean b = isEnabled();
+        boolean b = true;
         b &= table != null && table.getColumns().size() > 0;
         b &= DataUIPlugin.isGroupIDOK(table);
         setEnabled(b);
