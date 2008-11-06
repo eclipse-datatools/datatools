@@ -60,6 +60,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	private transient Button enterXMLSourceButton;
 	private transient Text numberText;
 	private transient Button browseFolderButton;
+	private boolean selected = false;
+	private boolean useDataSourceXMLDataSelected = true;
 	
 	private String fileLocation;
 	
@@ -138,18 +140,17 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		String xmlFile = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_XML_FILE );
 		if ( xmlFile == null || xmlFile.trim( ).length( ) == 0 )
 		{
-			useXMLDataSourceButton.setSelection( true );
-			enterXMLSourceButton.setSelection( false );
+			this.useDataSourceXMLDataSelected = true;
 			this.folderLocation.setText( EMPTY_STRING );
 			enableFolderLocation( false );
 		}
 		else
 		{
-			useXMLDataSourceButton.setSelection( false );
-			enterXMLSourceButton.setSelection( true );
+			this.useDataSourceXMLDataSelected = false;
 			this.folderLocation.setText( xmlFile );
 			enableFolderLocation( true );
 		}
+		useXMLDataSourceButton.setSelection( this.useDataSourceXMLDataSelected );
 		
 		String rowNumber = XMLInformationHolder.getPropertyValue( Constants.CONST_PROP_MAX_ROW );
 		try
@@ -161,6 +162,8 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				maxRow = UNUSED_ROW_CACHE;
 			else
 			{
+				selected = true;
+				numberText.setEnabled( selected );
 				numberText.setText( rowNumber );
 			}
 			setPageStatus( );
@@ -212,6 +215,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		previewLabel.setData( data );
 
 		numberText = new Text( numOfLinesGroup, SWT.BORDER );
+		numberText.setEnabled( true );
 		data = new GridData( );
 		Point minSize = numberText.computeSize( SWT.DEFAULT, SWT.DEFAULT, true );
 		data.widthHint = Math.max( 60, minSize.x );
@@ -250,10 +254,13 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 		
 		useXMLDataSourceButton.setLayoutData( data );
 		
-		SelectionAdapter sa = new SelectionAdapter( ) {
+		useXMLDataSourceButton.addSelectionListener( new SelectionAdapter( ) {
+
 			public void widgetSelected( SelectionEvent e )
-			{	
-				if ( useXMLDataSourceButton.getSelection( ) )
+			{
+				useDataSourceXMLDataSelected = !useDataSourceXMLDataSelected;
+				
+				if ( useDataSourceXMLDataSelected )
 				{
 					enableFolderLocation( false );
 					fileLocation = EMPTY_STRING;
@@ -270,15 +277,13 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 			public void widgetDefaultSelected( SelectionEvent e )
 			{
 			}
-		};
-		useXMLDataSourceButton.addSelectionListener( sa );
+		} );
 		
 		GridData sourceData = new GridData( GridData.FILL_HORIZONTAL
 				| GridData.VERTICAL_ALIGN_FILL );
 		sourceData.horizontalSpan = 3;
 		sourceData.verticalIndent = 8;		
 		enterXMLSourceButton = new Button( composite, SWT.RADIO );
-		//enterXMLSourceButton.addSelectionListener( sa );
 		enterXMLSourceButton.setLayoutData( sourceData );
 		enterXMLSourceButton.setText( Messages.getString( "lable.selectXmlFile" ) );       //$NON-NLS-1$
 	}
@@ -289,6 +294,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void enableFolderLocation( boolean enable )
 	{
+		enterXMLSourceButton.setSelection( enable );
 		folderLocation.setEnabled( enable );
 		browseFolderButton.setEnabled( enable );
 	}
@@ -451,7 +457,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 				}
 			}
 		}
-		else if( !this.useXMLDataSourceButton.getSelection( ) )
+		else if( !useDataSourceXMLDataSelected )
 		{
 			setDetailsMessage( Messages.getString( "error.emptyPath" ),                //$NON-NLS-1$
 					IMessageProvider.ERROR );
@@ -466,7 +472,7 @@ public class XmlDataSetSelectionPage extends DataSetWizardPage
 	 */
 	private void setXMLFileLocaiton( )
 	{
-		if( this.useXMLDataSourceButton.getSelection( ) )
+		if( this.useDataSourceXMLDataSelected )
 		{
 			this.fileLocation = EMPTY_STRING;
 		}
