@@ -792,7 +792,10 @@ public interface SQLParsersym {
       TK_PARAMETER_MARKER = 781,
       TK_LINE_COMMENT = 782,
       TK_MULTILINE_COMMENT = 783,
-      TK_EOF = 784;
+      TK_LEFT_BRACE = 784,
+      TK_RIGHT_BRACE = 785,
+      TK_BACK_QUOTE = 786,
+      TK_EOF = 787;
 
       public final static String orderedTerminalSymbols[] = {
                  "",
@@ -1579,6 +1582,9 @@ public interface SQLParsersym {
                  "PARAMETER_MARKER",
                  "LINE_COMMENT",
                  "MULTILINE_COMMENT",
+                 "LEFT_BRACE",
+                 "RIGHT_BRACE",
+                 "BACK_QUOTE",
                  "EOF"
              };
 
