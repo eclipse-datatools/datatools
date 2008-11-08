@@ -1593,6 +1593,13 @@ public final class TestSQLQueryParserSelect extends AbstractTestSQLQueryParser {
         }
     }
 
+    public void testSqlDmlParser000_invalidCharacters() throws Exception {
+        System.out.println("test 000_invalidCharacters");
+        // Note the select expression in the next statement is Data Warehouse host variable syntax
+        parserVerifyError("select ${aaa/bbb} from temp");
+        parserVerifyError("select aaa`bbb from temp");
+    }
+    
     public void testSqlDmlParser000_delimitedIdentifier_newLine()  throws Exception {
         System.out.println("test 000_delimitedIdentifier_newLine"); //$NON-NLS-1$
         parserVerifySuccess("select * from test.\"mytablename\nisverylong\";", true); //$NON-NLS-1$
