@@ -58,7 +58,7 @@
     <name>CHARACTER VARYING</name>
     <name>CHAR VARYING</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_2" primitiveType="CHARACTER_VARYING" jdbcEnumType="-1" javaClassName="java.lang.String">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT SQLID</defaultValueTypes>
