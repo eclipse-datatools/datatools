@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.13 2007/08/24 09:02:07 lchan Exp $
+ * $Id: DesignUtil.java,v 1.14 2007/11/17 05:30:20 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -142,7 +143,7 @@ public class DesignUtil
             
                     // add specialized design validator(s) to registry
                     // for use by Diagnostician
-                    eValidatorRegistry.put( DesignPackage.Literals.DATA_SET_QUERY.eContainer(),
+                    eValidatorRegistry.put( (EPackage) DesignPackage.Literals.DATA_SET_QUERY.eContainer(),
                                             new DesignValidator() );
                     sm_diagnostician = new Diagnostician( eValidatorRegistry );
                 }
