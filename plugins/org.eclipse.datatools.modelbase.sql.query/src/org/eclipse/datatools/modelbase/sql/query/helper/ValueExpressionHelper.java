@@ -1118,13 +1118,29 @@ public static void resolveValueExpressionFunctionDatatype(ValueExpressionFunctio
                 // Handle the special cases.
                 if (funcName.equals("AVG") || funcName.equals("SUM"))
                 {
-                    if (param1DataType instanceof IntegerDataType)
-                        ((IntegerDataType) param1DataType).setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
-                    else if (param1DataType instanceof ApproximateNumericDataType)
-                        ((ApproximateNumericDataType) param1DataType).setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
-                    else if (param1DataType instanceof FixedPrecisionDataType)
-                        ((FixedPrecisionDataType) param1DataType).setPrecision(31);
-                    dataType = param1DataType;
+                    if (param1DataType instanceof IntegerDataType) 
+                    {
+                        IntegerDataType intDataType = SQLDataTypesFactory.eINSTANCE.createIntegerDataType();
+                        intDataType.setPrimitiveType(PrimitiveType.BIGINT_LITERAL);
+                        dataType = intDataType;
+                    }
+                    else if (param1DataType instanceof ApproximateNumericDataType) 
+                    {
+                        ApproximateNumericDataType doubleDataType = SQLDataTypesFactory.eINSTANCE.createApproximateNumericDataType();
+                        doubleDataType.setPrimitiveType(PrimitiveType.DOUBLE_PRECISION_LITERAL);
+                        dataType = doubleDataType;
+                    }
+                    else if (param1DataType instanceof FixedPrecisionDataType) {
+                        FixedPrecisionDataType decimalDataType = SQLDataTypesFactory.eINSTANCE.createFixedPrecisionDataType();
+                        decimalDataType.setPrimitiveType(PrimitiveType.DECIMAL_LITERAL);
+                        decimalDataType.setPrecision(31);
+                        int scale = ((FixedPrecisionDataType) param1DataType).getScale();
+                        decimalDataType.setScale(scale);
+                        dataType = decimalDataType;
+                    }
+                    else {
+                        dataType = copyDataType(param1DataType);
+                    }
                 }
                 else if(funcName.equals("CHAR"))
                 {
