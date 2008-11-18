@@ -293,6 +293,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
+		if( this.queryText == null )
+			return;
 		WSConsole.getInstance( ).setPropertyValue( Constants.WS_QUERYTEXT,
 				queryText.getText( ) );
 		WSConsole.getInstance( ).updateParameters( parameters );
