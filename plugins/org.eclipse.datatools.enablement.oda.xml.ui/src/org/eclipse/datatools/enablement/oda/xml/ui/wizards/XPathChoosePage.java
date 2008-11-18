@@ -292,6 +292,10 @@ public class XPathChoosePage extends DataSetWizardPage
 				this.setErrorMessage( Messages.getString( "xPathChoosePage.messages.noURLOfSourceOrSchema" ) ); //$NON-NLS-1$
 				return;
 			}
+			else
+			{
+				this.setErrorMessage( null );
+			}
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
 					.getPluginPreferences( );
