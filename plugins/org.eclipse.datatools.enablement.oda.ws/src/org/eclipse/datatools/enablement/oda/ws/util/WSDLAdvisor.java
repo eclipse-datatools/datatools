@@ -1695,6 +1695,8 @@ public class WSDLAdvisor
 		String namespace = EMPTY_STRING;
 		Definition definition = getDefinition( wsdlURI );
 		Types types = definition.getTypes( );
+		if( types == null )
+			return namespace;
 		List extElements = types.getExtensibilityElements( );
 		for ( int i = 0; i < extElements.size( ); i++ )
 		{
