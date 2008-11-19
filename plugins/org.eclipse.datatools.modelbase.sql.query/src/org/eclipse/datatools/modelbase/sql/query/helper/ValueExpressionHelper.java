@@ -965,9 +965,9 @@ public static void resolveValueExpressionDatatype( QueryValueExpression valExpr)
     resolveValueExpressionVariableDatatype( (ValueExpressionVariable) valExpr);
   }
   else {
-      StatementHelper.logError(ValueExpressionHelper.class.getName()+
-                      "#resolveValueExpressionDatatype(QueryValueExpression) " +
-                      "not implemented for "+valExpr.getClass().getName());
+//      StatementHelper.logError(ValueExpressionHelper.class.getName()+
+//                      "#resolveValueExpressionDatatype(QueryValueExpression) " +
+//                      "not implemented for "+valExpr.getClass().getName());
   }
 }
 

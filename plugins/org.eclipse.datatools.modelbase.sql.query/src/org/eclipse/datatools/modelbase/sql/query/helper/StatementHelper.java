@@ -3828,8 +3828,8 @@ public class StatementHelper {
            }
            else {
               // TODO: Move this message to a properties file for translation
-               StatementHelper.logError(StatementHelper.class.getName() + "could not compare the location of host variables or parameter markers as no "
-                       + SQLQuerySourceInfo.class.getName() + " was associated with them. For host variables or parameter markers: " + h1 + " and " + h2);
+//               StatementHelper.logError(StatementHelper.class.getName() + "could not compare the location of host variables or parameter markers as no "
+//                       + SQLQuerySourceInfo.class.getName() + " was associated with them. For host variables or parameter markers: " + h1 + " and " + h2);
            }
            return result;
        }

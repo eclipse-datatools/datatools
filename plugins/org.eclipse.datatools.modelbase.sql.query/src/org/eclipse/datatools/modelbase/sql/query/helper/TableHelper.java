@@ -305,15 +305,15 @@ public class TableHelper {
         }
         else if (tableExpr instanceof TableFunction) 
         {
-            StatementHelper.logError(TableHelper.class.getName()+
-                            ": implement exposeEffectiveResultColumns(TableExpression) for type"+
-                            TableFunction.class.getName());
+//            StatementHelper.logError(TableHelper.class.getName()+
+//                            ": implement exposeEffectiveResultColumns(TableExpression) for type"+
+//                            TableFunction.class.getName());
         }
         else
         {
-            StatementHelper.logError(TableHelper.class.getName()+
-                            ": implement exposeEffectiveResultColumns(TableExpression) for type"+
-                            tableExpr.getClass().getName());
+//            StatementHelper.logError(TableHelper.class.getName()+
+//                            ": implement exposeEffectiveResultColumns(TableExpression) for type"+
+//                            tableExpr.getClass().getName());
         }
         
         /* Find out if there is a column name list attached to the correlation name (if any)
@@ -843,9 +843,9 @@ public static Set findColumnReferencesInQueryResultSpecificationList(
 
        if (updateStmt.getWhereCurrentOfClause() != null) 
        {
-           StatementHelper.logError(TableHelper.class.getName()
-                           +" implement findColumnReferencesInQueryUpdateStatement(QueryUpdateStatement)" 
-                           +" for "+CursorReference.class.getName());
+//           StatementHelper.logError(TableHelper.class.getName()
+//                           +" implement findColumnReferencesInQueryUpdateStatement(QueryUpdateStatement)" 
+//                           +" for "+CursorReference.class.getName());
        }
 
        return columnSet;
@@ -1572,21 +1572,21 @@ public static TableExpression findTableExpressionsByNameOrAlias(String tableName
                 }
             }
             else if (tableExpr instanceof WithTableReference) {
-                WithTableReference withTable = (WithTableReference) tableExpr;
-                StatementHelper.logError(
-                                TableHelper.class.getName()+
-                                "#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
-                                withTable.getClass().getName());
+//                WithTableReference withTable = (WithTableReference) tableExpr;
+//                StatementHelper.logError(
+//                                TableHelper.class.getName()+
+//                                "#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
+//                                withTable.getClass().getName());
             }
             else if (tableExpr instanceof TableFunction) {
-                TableFunction tableFunc = (TableFunction) tableExpr;
-                throw new UnsupportedOperationException(TableHelper.class.getName()+"#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
-                                tableFunc.getClass().getName());
+//                TableFunction tableFunc = (TableFunction) tableExpr;
+//                throw new UnsupportedOperationException(TableHelper.class.getName()+"#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
+//                                tableFunc.getClass().getName());
             } 
             else
             {
-                throw new UnsupportedOperationException(TableHelper.class.getName()+"#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
-                                tableExpr.getClass().getName());
+//                throw new UnsupportedOperationException(TableHelper.class.getName()+"#getColumnExpressionForName(TableExpression,String) not implemented for TableExpression of type "+
+//                                tableExpr.getClass().getName());
             }
         }
 
@@ -1707,8 +1707,8 @@ static public Column getColumnForName(WithTableReference withTableRef,
             // or columnName matches one of the implicit result columns of 
             //   the AS query
 
-            StatementHelper.logError(TableHelper.class.getName()+
-            "#getColumnForName(WithTableReference,String) is not implemented.");
+//            StatementHelper.logError(TableHelper.class.getName()+
+//            "#getColumnForName(WithTableReference,String) is not implemented.");
             //TODO: implement if it makes sense, we needed the datatype but that
             //      could be different from the original column!
         }
@@ -1775,9 +1775,9 @@ static public Column getColumnForName(WithTableReference withTableRef,
         }
         else
         {
-            StatementHelper.logError(TableHelper.class.getName()+
-                            ": implement getEffectiveResultColumns(TableReference)" +
-                            " for "+tableRef.getClass().getName());
+//            StatementHelper.logError(TableHelper.class.getName()+
+//                            ": implement getEffectiveResultColumns(TableReference)" +
+//                            " for "+tableRef.getClass().getName());
         }
         
         

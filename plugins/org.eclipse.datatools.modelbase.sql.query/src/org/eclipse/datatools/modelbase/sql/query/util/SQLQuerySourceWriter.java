@@ -717,13 +717,13 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
         String previousSql = sql;
         sql = sql.replaceAll("\n(\\s*\\n)+", NEW_LINE_STRING);
         if (previousSql.length() > sql.length()) {
-            StatementHelper.logError(this.getClass().getName()+NEW_LINE_STRING
-                            + "...find out why we generate an empty line here!"
-                            + NEW_LINE_STRING
-                            + previousSql.replaceAll("\n", "/n")
-                            + " was substituted with " +NEW_LINE_STRING 
-                            + sql.replaceAll("\n", "/n")
-                            + "\n .../n = new line character\n");
+//            StatementHelper.logError(this.getClass().getName()+NEW_LINE_STRING
+//                            + "...find out why we generate an empty line here!"
+//                            + NEW_LINE_STRING
+//                            + previousSql.replaceAll("\n", "/n")
+//                            + " was substituted with " +NEW_LINE_STRING 
+//                            + sql.replaceAll("\n", "/n")
+//                            + "\n .../n = new line character\n");
         }
         
         if (sql.startsWith( NEW_LINE_STRING ))
@@ -892,12 +892,12 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
                 appendExternalSQL(queryObject, sb);
 
             if (!isSqlGenerated) {
-                String interfaceName = getInterfaceName(queryObject.getClass());
-                    
-                StatementHelper.logError(NEW_LINE + this.getClass().getName()
-	                            + ": getSQL(" + interfaceName
-	                            + ") not implemented for given argument type: "
-	                            + queryObject.getClass().getName());
+//                String interfaceName = getInterfaceName(queryObject.getClass());
+//                    
+//                StatementHelper.logError(NEW_LINE + this.getClass().getName()
+//	                            + ": getSQL(" + interfaceName
+//	                            + ") not implemented for given argument type: "
+//	                            + queryObject.getClass().getName());
 	            //nsme.printStackTrace();
             }
         }
