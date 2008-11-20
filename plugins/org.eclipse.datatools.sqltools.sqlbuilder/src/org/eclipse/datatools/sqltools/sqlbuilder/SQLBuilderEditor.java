@@ -19,6 +19,7 @@ import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectio
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.ISQLBuilderEditorInput;
 import org.eclipse.datatools.sqltools.sqlbuilder.input.SQLBuilderFileEditorInput;
+import org.eclipse.datatools.sqltools.sqlbuilder.views.source.SQLSourceViewer;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -183,6 +184,15 @@ public class SQLBuilderEditor extends EditorPart implements
 
 	
 	public void setFocus() {
+	    /* 
+         * Make sure the source viewer gets the focus.  Bad things happen if nothing in
+         * the editor has the focus.
+         */
+        SQLSourceViewer sourceViewer = _sqlBuilder.getSourceViewer();
+        if (sourceViewer != null) {
+            sourceViewer.getControl().setFocus();
+        }
+        
 		/*
 		 * Try to make sure that we have a database connection so that the SQL
 		 * model will be populated when we need it. We delay connecting so that
