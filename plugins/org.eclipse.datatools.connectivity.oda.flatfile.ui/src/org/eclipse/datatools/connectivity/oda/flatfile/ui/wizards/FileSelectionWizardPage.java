@@ -1634,7 +1634,13 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		selectedColumnsViewer.getTable( )
 				.setSelection( selectedColumnsViewer.getTable( ).getItemCount( ) - 1 );
 
-		if ( availableList.getSelectionCount( ) == 0 )
+		int nextSelectionIndex = availableList.getSelectionIndex( ) + 1;
+		if( nextSelectionIndex < availableList.getItemCount( ) )
+		{
+			availableList.setSelection( nextSelectionIndex );
+			btnAdd.setEnabled( true );
+		}
+		else if ( availableList.getSelectionCount( ) == 0 )
 		{
 			btnAdd.setEnabled( false );
 		}
