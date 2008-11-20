@@ -13,11 +13,9 @@ package org.eclipse.datatools.enablement.ibm.db2.internal.iseries;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
-import java.util.Properties;
 
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
-import org.eclipse.datatools.connectivity.drivers.jdbc.IJDBCDriverDefinitionConstants;
 import org.eclipse.datatools.connectivity.drivers.jdbc.JDBCConnection;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
@@ -50,12 +48,11 @@ public class JDBCISeriesJDBCConnection extends JDBCConnection {
 			DatabaseMetaData dbmd = ((Connection) this.getRawConnection())
 					.getMetaData();
 			try {
-				Properties props = getConnectionProfile().getBaseProperties();
-				String vendor = (String)props.get(IJDBCDriverDefinitionConstants.DATABASE_VENDOR_PROP_ID);
-				String version = (String)props.get(IJDBCDriverDefinitionConstants.DATABASE_VERSION_PROP_ID);
-				DatabaseDefinitionRegistry dbDefRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();
-				DatabaseDefinition dbDef = dbDefRegistry.getDefinition(vendor, version);
-				serverName = dbDef.getProductDisplayString() + " " + dbDef.getVersionDisplayString();
+				DatabaseDefinitionRegistry dbDefRegistry = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry();			
+				DatabaseDefinition dbDef = dbDefRegistry.recognize((Connection) this.getRawConnection());
+				if (dbDef != null) {
+					serverName = dbDef.getProductDisplayString() + " " + dbDef.getVersionDisplayString();
+				}
 			} catch (Exception e) {
 			}
 			try {
