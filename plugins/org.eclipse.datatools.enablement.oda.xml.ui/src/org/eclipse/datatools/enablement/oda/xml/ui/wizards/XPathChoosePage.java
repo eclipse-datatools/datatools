@@ -294,7 +294,7 @@ public class XPathChoosePage extends DataSetWizardPage
 			}
 			else
 			{
-				this.setErrorMessage( null );
+				this.setErrorMessage( "" );
 			}
 			int numberOfElement = 0;
 			Preferences preferences = UiPlugin.getDefault( )
