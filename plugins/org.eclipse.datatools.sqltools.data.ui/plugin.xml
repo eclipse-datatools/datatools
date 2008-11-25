@@ -26,7 +26,10 @@
             id="org.eclipse.datatools.sqltools.data.internal.edit"            
             dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
-            	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>  	            	
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>  	
+           		</and> 	            	
             </enablement>
       </actionProvider>
       <actionProvider
@@ -34,7 +37,10 @@
             id="org.eclipse.datatools.sqltools.data.internal.load"
             dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
-            	<adapt type="org.eclipse.datatools.modelbase.sql.tables.BaseTable"/>
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.BaseTable"/>
+            	</and>
   	       	</enablement>
       </actionProvider>
       <actionProvider
@@ -42,7 +48,10 @@
             id="org.eclipse.datatools.sqltools.data.internal.extract"
             dependsOn="org.eclipse.datatools.sqltools.tabledataeditor.actions.popup.DataGroupProvider">
             <enablement>
-            	<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+            	<and>
+            		<adapt type="org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject"/>
+            		<adapt type="org.eclipse.datatools.modelbase.sql.tables.Table"/>
+            	</and>
   	        </enablement>
       </actionProvider>
    </extension>
