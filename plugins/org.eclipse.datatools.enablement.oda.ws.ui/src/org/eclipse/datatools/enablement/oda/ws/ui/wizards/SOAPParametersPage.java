@@ -35,6 +35,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -172,14 +173,27 @@ public class SOAPParametersPage extends DataSetWizardPage
 		table.setHeaderVisible( true );
 		table.setLinesVisible( true );
 
-		TableColumn column0 = new TableColumn( table, SWT.NONE );
-		column0.setText( COLUMN_NAME );
-		column0.setWidth( 200 );
+		TableColumn nameColumn = new TableColumn( table, SWT.NONE );
+		nameColumn.setText( COLUMN_NAME );
+		nameColumn.setWidth( 200 );
+		nameColumn.addSelectionListener( new SelectionAdapter( ) {
 
-		TableColumn column1 = new TableColumn( table, SWT.NONE );
-		column1.setText( COLUMN_DATATYPE );
-		column1.setWidth( 200 );
+			public void widgetSelected( SelectionEvent e )
+			{
+				sortParametersTable( );
+			}
 
+		} );
+
+		TableColumn dataTypeColumn = new TableColumn( table, SWT.NONE );
+		dataTypeColumn.setText( COLUMN_DATATYPE );
+		dataTypeColumn.setWidth( 200 );
+
+		createCheckBoxTableViewer( table );
+	}
+
+	private void createCheckBoxTableViewer( final Table table )
+	{
 		viewer = new CheckboxTableViewer( table );
 		viewer.setContentProvider( new IStructuredContentProvider( ) {
 
@@ -259,6 +273,24 @@ public class SOAPParametersPage extends DataSetWizardPage
 			}
 
 		} );
+	}
+	
+	/**
+	 * Lexicographically sort the parameters in the table
+	 * 
+	 */
+	private void sortParametersTable( )
+	{
+		if ( viewer.getTable( ).getSortDirection( ) == SWT.UP )
+		{
+			viewer.setSorter( new ParametersViewerSorter( true ) );
+			viewer.getTable( ).setSortDirection( SWT.DOWN );
+		}
+		else
+		{
+			viewer.setSorter( new ParametersViewerSorter( false ) );
+			viewer.getTable( ).setSortDirection( SWT.UP );
+		}
 	}
 
 	private void setupEditors( )
@@ -412,6 +444,41 @@ public class SOAPParametersPage extends DataSetWizardPage
 	{
 		wsQueryText = WSConsole.getInstance( ).getTemplate( );
 		initViewer( );
+	}
+	
+	private class ParametersViewerSorter extends ViewerSorter
+	{
+		private boolean descent;
+		
+		public ParametersViewerSorter( boolean descent )
+		{
+			this.descent = descent;
+		}
+		
+		public int compare( Viewer viewer, Object o1, Object o2 )
+		{
+			assert !( o1 instanceof SOAPParameter ) || !( o2 instanceof SOAPParameter );
+
+			int result = ( (SOAPParameter) o1 ).getName( )
+					.compareTo( ( (SOAPParameter) o2 ).getName( ) );
+			if ( result == 0 )
+				return 0;
+			
+			if ( result > 0 )
+			{
+				if ( descent )
+					return -1;
+				else
+					return 1;
+			}
+			else
+			{
+				if ( descent )
+					return 1;
+				else
+					return -1;
+			}
+		}
 	}
 
 }
