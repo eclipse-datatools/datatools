@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.datatools.connectivity.sqm.core.databaseDefinition">
+      <definition
+            description="%product.display.description"
+            file="runtime/vendors/SQLITE_3.5.9/SQLITE_3.5.9.xmi"
+            product="SQLITE"
+            productDisplayString="%product.display.string"
+            version="3.5.9"
+            versionDisplayString="%product.display.version.string"/>
+   </extension>
+</plugin>

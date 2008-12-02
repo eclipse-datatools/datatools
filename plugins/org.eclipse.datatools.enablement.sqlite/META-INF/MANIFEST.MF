@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DTP Enablement SQLite Database Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.enablement.sqlite;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.eclipse.datatools.enablement.sqlite.Activator
+Bundle-Vendor: Eclipse.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.datatools.modelbase.dbdefinition,
+ org.eclipse.datatools.modelbase.sql,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.datatools.connectivity,
+ org.eclipse.datatools.connectivity.db.generic,
+ org.eclipse.datatools.connectivity.sqm.core;bundle-version="1.0.2"
+Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Export-Package: org.eclipse.datatools.enablement.sqlite,
+ org.eclipse.datatools.enablement.sqlite.connection
+Bundle-Localization: plugin
