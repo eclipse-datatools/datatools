@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Connection Profile URI Based Repository Plug-in
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.repository.uri;singleton:=true
+Bundle-Version: 1.0.0.20081014
+Bundle-Activator: org.eclipse.datatools.connectivity.repository.uri.URIRepositoryPlugin
+Bundle-Vendor: Eclipse.org
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.help;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.help.base;bundle-version="[3.2.0,4.0.0)"
+Eclipse-LazyStart: true
