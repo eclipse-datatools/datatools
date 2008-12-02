@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-ManifestVersion: 2
+Bundle-Name: %PLUGIN_NAME
+Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Eclipse.org
+Require-Bundle: org.eclipse.datatools.connectivity;bundle-version="[1.1.0,2.0.0)",
+ org.eclipse.datatools.connectivity.db.generic;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.datatools.connectivity.sqm.core;bundle-version="[1.0.1,2.0.0)",
+ org.eclipse.datatools.modelbase.sql;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)"
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.datatools.enablement.ingres.containment,
+ org.eclipse.datatools.enablement.ingres.models.ingressqlmodel,
+ org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl,
+ org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.util
