@@ -105,7 +105,7 @@ public class ColumnImpl extends TypedElementImpl implements Column {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean NULLABLE_EDEFAULT = false;
+	protected static final boolean NULLABLE_EDEFAULT = true;
 
 /**
 	 * The cached value of the '{@link #isNullable() <em>Nullable</em>}' attribute.
