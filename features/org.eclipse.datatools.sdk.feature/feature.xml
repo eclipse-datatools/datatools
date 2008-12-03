@@ -46,6 +46,35 @@
    <includes
          id="org.eclipse.datatools.sqldevtools.feature.source"
          version="0.0.0"/>      
+
+   <includes
+         id="org.eclipse.datatools.connectivity.oda.designer.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.connectivity.oda.feature.source"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.datatools.sqldevtools.data.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.ddl.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.ddlgen.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.parsers.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.sqldevtools.results.feature.source"
+         version="0.0.0"/>
+   
+   <includes id="org.eclipse.datatools.sqldevtools.sqlbuilder.feature.source" version="0.0.0"/>
             
    <requires>
       <import feature="org.eclipse.pde" version="3.3.0" match="greaterOrEqual"/>
