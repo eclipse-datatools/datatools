@@ -36,9 +36,17 @@
          optional="true"/>
 
    <includes
-         id="org.eclipse.datatools.sdk.feature.source"
+         id="org.eclipse.datatools.modelbase.feature.source"
          version="0.0.0"/>
-
+         
+   <includes
+         id="org.eclipse.datatools.connectivity.feature.source"
+         version="0.0.0"/>
+         
+   <includes
+         id="org.eclipse.datatools.sqldevtools.feature.source"
+         version="0.0.0"/>      
+            
    <requires>
       <import feature="org.eclipse.pde" version="3.3.0" match="greaterOrEqual"/>
    </requires>
