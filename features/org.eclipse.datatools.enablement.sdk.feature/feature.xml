@@ -80,7 +80,7 @@
          version="0.0.0"/>
          
    <includes
-         id="org.eclipse.datatools.enablement.sqlice.feature.source"
+         id="org.eclipse.datatools.enablement.sqlite.feature.source"
          version="0.0.0"/>
    
    <includes
