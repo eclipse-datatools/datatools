@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.datatools.enablement.ingres"
+      id="org.eclipse.datatools.enablement.ingres.feature"
       label="%FEATURE_NAME"
       version="1.6.0"
       provider-name="%PROVIDER_NAME"
