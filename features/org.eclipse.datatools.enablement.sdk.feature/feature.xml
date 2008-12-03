@@ -27,4 +27,64 @@
          id="org.eclipse.datatools.enablement.feature.source"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.datatools.enablement.apache.derby.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.hsqldb.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.ibm.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.jdbc.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.jdt.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.msft.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.mysql.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.oda.designer.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.oda.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.oracle.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.postgresql.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.sap.feature.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.enablement.sybase.feature.source"
+         version="0.0.0"/>
+         
+   <includes
+         id="org.eclipse.datatools.enablement.sqlice.feature.source"
+         version="0.0.0"/>
+   
+   <includes
+         id="org.eclipse.datatools.enablement.ingres.feature.source"
+         version="0.0.0"/>
+         
 </feature>
