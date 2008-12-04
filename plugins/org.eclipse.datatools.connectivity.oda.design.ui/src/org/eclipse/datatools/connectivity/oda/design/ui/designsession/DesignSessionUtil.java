@@ -330,8 +330,8 @@ public class DesignSessionUtil extends DesignSessionUtilBase
                     dataSourceDesign.getLinkedProfileStoreFile() );
         if( profile == null )   // not found
             throw new OdaException( 
-                    Messages.bind( Messages.designSession_invalidProfileName,
-                                linkedProfileName ));
+                    Messages.bind( Messages.designSession_invalidProfileNameOrFilePath,
+                                linkedProfileName, dataSourceDesign.getLinkedProfileStoreFilePath() ));
         return profile;
     }
 

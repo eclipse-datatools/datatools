@@ -64,6 +64,7 @@ public class Messages extends NLS
     public static String designSession_invalidEditApiCall;
     public static String designSession_invalidNewDesignApiCall;
     public static String designSession_invalidProfileName;
+    public static String designSession_invalidProfileNameOrFilePath;
     public static String designSession_missingDataSetUIElement;
     public static String manifest_missingAttributeValue;
     public static String manifest_missingDataSetElementId;

@@ -46,18 +46,23 @@ public class AdaptableDataSourceProfile extends OdaConnectionProfile implements
     private String m_instanceID;
         
     /**
-     * 
+     * Internal constructor.
      * @param design
-     * @throws OdaException if a connection profile is referenced,
-     *                      but not found
      */
     public AdaptableDataSourceProfile( DataSourceDesign design )
-        throws OdaException
     {
         super();
         m_dataSourceDesign = design;
-        IConnectionProfile linkedProfile = 
-            DesignSessionUtil.getLinkedProfile( design );
+        
+        IConnectionProfile linkedProfile = null;
+        try
+        {
+            linkedProfile = DesignSessionUtil.getLinkedProfile( design );
+        }
+        catch( OdaException ex )
+        {
+            // ignore; proceed without having a wrapped profile
+        }
         if( linkedProfile != null )
             setWrappedProfile( linkedProfile ); // cache the profile referenced in the design
     }

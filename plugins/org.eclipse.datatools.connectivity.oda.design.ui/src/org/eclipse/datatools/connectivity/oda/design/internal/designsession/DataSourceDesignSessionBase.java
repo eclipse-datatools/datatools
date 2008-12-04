@@ -363,6 +363,32 @@ public class DataSourceDesignSessionBase
     {
         m_useProfileSelectionPage = use;
     }
+    
+    /**
+     * Specifies that the design session should provide a connection profile
+     * selection UI page, and verifies whether it has valid content for the design session.
+     * @return  true if this design session's profile selection page has valid content; 
+     *          false otherwise
+     */
+    protected boolean setAndVerifyUseProfileSelectionPage()
+    {
+        setUseProfileSelectionPage( true );
+        
+        if( ! isInEditMode() )
+            return true;    // no need to check for the profile state of the profile editor page
+        
+        ProfileSelectionEditorPage profilePage = null;
+        try
+        {
+            profilePage = getProfileSelectionEditorPage();
+        }
+        catch( OdaException ex )
+        {
+            ex.printStackTrace();
+            return false;
+        }
+        return ( profilePage != null ) ? profilePage.hasValidContent() : false;
+    }
 
     /**
      * Passes the provided name validator to the wizard page that takes
@@ -812,6 +838,7 @@ public class DataSourceDesignSessionBase
         private String m_instanceName;
         private File m_storageFile; 
         private boolean m_maintainLink;
+        private String m_initStorageFilePath;
         
         private OdaConnectionProfile m_profileInstance;
         
@@ -858,6 +885,7 @@ public class DataSourceDesignSessionBase
                 boolean maintainExternalLink )
         {
             m_instanceName = profileInstanceName;
+            m_initStorageFilePath = storageFilePath;
             m_storageFile = DesignUtil.convertPathToFile( storageFilePath );
             m_maintainLink = maintainExternalLink;
         }
@@ -900,7 +928,9 @@ public class DataSourceDesignSessionBase
         
         public String getStorageFilePath()
         {
-            return DesignUtil.convertFileToPath( getStorageFile() );
+        	// derive from actual File, if exists
+            String actualFilePath = DesignUtil.convertFileToPath( getStorageFile() );
+            return ( actualFilePath != null ) ? actualFilePath : m_initStorageFilePath;
         }
         
         public boolean maintainExternalLink()

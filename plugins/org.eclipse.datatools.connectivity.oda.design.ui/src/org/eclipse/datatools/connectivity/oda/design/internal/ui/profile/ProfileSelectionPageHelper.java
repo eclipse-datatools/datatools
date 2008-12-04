@@ -68,6 +68,7 @@ class ProfileSelectionPageHelper
     private static final String EMPTY_STRING = ""; //$NON-NLS-1$
     private static final String CONTEXT_ID_CONNECTIONPROFILE = 
         "org.eclipse.datatools.oda.cshelp.Wizard_ConnectionProfile_ID";//$NON-NLS-1$
+    private static final String DISABLE_AUTO_SELECT_ITEM = "DisableAutoSelect"; //$NON-NLS-1$
 
     private static final int TREE_ITEM_STYLE = SWT.NONE;
     private static final int BUTTON_MIN_WIDTH = 80;
@@ -125,14 +126,15 @@ class ProfileSelectionPageHelper
         // limits profile tree to include the selected oda data source type
         m_treeFilter = selectedProfile.getOdaDataSourceId();
 
+        boolean hasInvalidProfileRef = false;
         ProfileReferenceBase profileRef = selectedProfile.getProfileRef();
         if( profileRef != null )
         {       
             String profileStorePath = profileRef.getStorageFilePath();
             if( profileStorePath != null )
             {
-                // triggers tree population
-                setConnProfilePathControlText( profileStorePath );
+                // triggers tree population; disable auto item selection
+                setConnProfilePathControlText( profileStorePath, true );
                 
                 TreeItem profileItem = 
                     findProfileInTree( selectedProfile.getOdaDataSourceId(),
@@ -151,6 +153,8 @@ class ProfileSelectionPageHelper
                     setExternalLinkOption( m_odaDataSourceID );
                     setPageComplete( true );
                 }
+                else // did not find matching linked profile in profile tree
+                    hasInvalidProfileRef = true;
             }
             
             m_linkRefCheckBox.setSelection( profileRef.maintainExternalLink() ); 
@@ -161,10 +165,21 @@ class ProfileSelectionPageHelper
         m_dataSourceDesignName = selectedProfile.getDataSourceDesignName();
         m_dataSourceDesignNameControl.setText( m_dataSourceDesignName );
         
-        // when editing an existing data source design, hide controls to
-        // disallow user from changing the design name
+        // when editing an existing data source design
         if( inEditMode() )
+        {
+            // hide controls to disallow user from changing the design name
             setDataSourceNameEditorVisible( false );
+            
+            // editing a design with invalid profile reference, set error message;
+            // this is done last so the message won't be overwritten by controls' event handler
+            if( profileRef != null && hasInvalidProfileRef )
+            {
+                String errorMessage = Messages.bind( Messages.designSession_invalidProfileName,
+                        profileRef.getName() );
+                setMessage( errorMessage, IMessageProvider.ERROR );
+            }
+        }
     }
     
     /**
@@ -290,8 +305,10 @@ class ProfileSelectionPageHelper
                        setSelectedDataSourceName( EMPTY_STRING );
                        setDefaultMessageAsError( hasConnectionProfilePath() );
 
-                       // check if profile tree has only one profile item, automatically select it
-                       if( hasConnectionProfilePath() )    
+                       // check if profile tree has only one profile item, 
+                       // automatically select it if feature is not disabled
+                       if( hasConnectionProfilePath() &&
+                           m_connectionProfilePath.getData( DISABLE_AUTO_SELECT_ITEM ) != Boolean.TRUE )    
                        {
                            TreeItem singleProfileItem = findSingleProfileInTree();
                            if( singleProfileItem != null )
@@ -320,7 +337,7 @@ class ProfileSelectionPageHelper
 				FileDialog dialog = new FileDialog( getShell() );
 				String text = dialog.open();
 				if( text != null )
-				    setConnProfilePathControlText( text );
+				    setConnProfilePathControlText( text, false );
 			}
         } );
         
@@ -357,7 +374,7 @@ class ProfileSelectionPageHelper
                     // copy the newly created profile store file path
                     ProfileStoreCreationDialog dlg = createAction.getProfileStoreCreationDialog();
                     if( dlg != null && dlg.getFile() != null )
-                        setConnProfilePathControlText( dlg.getFile().getPath() );                            
+                        setConnProfilePathControlText( dlg.getFile().getPath(), false );                            
                 }
             }
             
@@ -955,12 +972,21 @@ class ProfileSelectionPageHelper
     /**
      * Process the given text in bi-directional locale for rendering in the
      * connection profile store file path UI text control.  
-     * @param text
+     * Also specify whether to disable the default behavior of auto selection
+     * of single item found in specified profile file.
+     * @param text  connection profile file path
+     * @param disableAutoSelect true to disable default behavior
      */
-    private void setConnProfilePathControlText( String text )
+    private void setConnProfilePathControlText( String text, boolean disableAutoSelect )
     {
         String localizedText = TextProcessorWrapper.process( text );
+
+        // disable default behavior, set flag for path control's event handler
+        if( disableAutoSelect ) 
+            m_connectionProfilePath.setData( DISABLE_AUTO_SELECT_ITEM, Boolean.TRUE );
         m_connectionProfilePath.setText( localizedText );
+        // reset to default behavior
+        m_connectionProfilePath.setData( DISABLE_AUTO_SELECT_ITEM, null );  
     }
     
     /**

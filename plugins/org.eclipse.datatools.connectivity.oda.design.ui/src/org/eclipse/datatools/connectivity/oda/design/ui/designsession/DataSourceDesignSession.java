@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2008 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -292,6 +292,15 @@ public class DataSourceDesignSession extends DataSourceDesignSessionBase
     public void setUseProfileSelectionPage( boolean use )
     {
         super.setUseProfileSelectionPage( use );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase#setAndVerifyUseProfileSelectionPage()
+     * @since 3.0.8
+     */
+    public boolean setAndVerifyUseProfileSelectionPage()
+    {
+        return super.setAndVerifyUseProfileSelectionPage();
     }
 
     /**

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignUtil.java,v 1.14 2007/11/17 05:30:20 lchan Exp $
+ * $Id: DesignUtil.java,v 1.15 2008/11/15 00:57:29 lchan Exp $
  */
 
 package org.eclipse.datatools.connectivity.oda.design.util;
@@ -360,11 +360,11 @@ public class DesignUtil
         }
         catch( MalformedURLException e )
         {
-            getLogger().warning( e.toString() );
+            getLogger().warning( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         catch( IOException e )
         {
-            getLogger().warning( e.toString() );
+            getLogger().warning( e.toString() + " (" + filePath + ")" ); //$NON-NLS-1$ //$NON-NLS-2$
         }
         return null;
     }

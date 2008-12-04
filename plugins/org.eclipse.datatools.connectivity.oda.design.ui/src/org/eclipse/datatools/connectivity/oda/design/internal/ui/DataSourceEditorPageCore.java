@@ -17,7 +17,6 @@ package org.eclipse.datatools.connectivity.oda.design.internal.ui;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.IConnection;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.oda.OdaException;
@@ -31,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Desi
 import org.eclipse.datatools.connectivity.oda.design.internal.ui.profile.ProfileSelectionEditorPage;
 import org.eclipse.datatools.connectivity.oda.design.ui.designsession.DesignSessionUtil;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 import org.eclipse.datatools.connectivity.ui.PingJob;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfileDetailsPropertyPage;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -209,6 +209,12 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         return m_dataSourceProps;
     }
 
+    protected AdaptableDataSourceProfile getProfileElement()
+    {
+        return ( getElement() instanceof AdaptableDataSourceProfile ) ?
+                (AdaptableDataSourceProfile) getElement() : null;
+    }
+    
     /**
      * Provides a new data source design that can be edited
      * and applied in a design session's response.
@@ -218,9 +224,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
      */
     protected DataSourceDesign getEditingDataSource()
     {
-        IAdaptable element = getElement();
-        if( element == null || 
-            ! ( element instanceof AdaptableDataSourceProfile ) )
+        if( getProfileElement() == null )
         {
             return DesignFactory.eINSTANCE.createDataSourceDesign();
         }
@@ -228,7 +232,7 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
         // should have thrown exception within init if it failed
 
         DataSourceDesign dataSourceDesign =
-            ((AdaptableDataSourceProfile) element).getDataSourceDesign();
+            getProfileElement().getDataSourceDesign();
         assert( dataSourceDesign != null );
         return dataSourceDesign;
     }
@@ -244,13 +248,18 @@ public abstract class DataSourceEditorPageCore extends ProfileDetailsPropertyPag
     public void initEditSession( OdaDesignSession requestSession ) throws OdaException
     {
         // check if already initialized with same design session
-        if( getElement() != null )
+        if( getProfileElement() != null &&
+            m_designSession == requestSession )
         {
-            if( getElement() instanceof AdaptableDataSourceProfile &&
-                m_designSession == requestSession  )
-                return;     // already initialized
+            return;     // already initialized
         }
             
+        // reset cached profiles for edit session with linked profile in design,
+        // so the page element will have the current profile instance
+        if( requestSession.getRequestDataSourceDesign() != null &&
+            requestSession.getRequestDataSourceDesign().hasLinkToProfile() )
+            OdaProfileExplorer.getInstance().refresh();          
+
         // associate a copy of the request's data source design 
         // as the element being edited in this page
         setElement( DesignerUtil.getAdaptableDataSourceDesign( 

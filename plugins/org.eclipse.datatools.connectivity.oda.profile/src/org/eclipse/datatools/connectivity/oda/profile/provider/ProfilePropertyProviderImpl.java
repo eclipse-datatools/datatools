@@ -184,7 +184,8 @@ public class ProfilePropertyProviderImpl implements IPropertyProvider
         
         // specified file path does not exist
         getLogger().warning( "getProfileStoreFile( Properties ): " +   //$NON-NLS-1$
-                        "Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value in connection properties. " +   //$NON-NLS-1$
+                        "Ignoring the PROFILE_STORE_FILE_PATH_PROP_KEY value (" + profileStoreFilePath +  //$NON-NLS-1$
+                        ") in connection properties. " +   //$NON-NLS-1$
                         "The specified path does not exist in file system." ); //$NON-NLS-1$
         return null;
     }

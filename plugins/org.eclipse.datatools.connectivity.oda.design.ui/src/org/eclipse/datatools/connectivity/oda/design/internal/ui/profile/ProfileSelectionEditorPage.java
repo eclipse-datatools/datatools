@@ -23,6 +23,7 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DataSourceDesignSessionBase.ProfileReferenceBase;
+import org.eclipse.datatools.connectivity.oda.design.internal.ui.AdaptableDataSourceProfile;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSourceEditorPage;
 import org.eclipse.swt.widgets.Composite;
@@ -66,6 +67,36 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
 
         if( ! isEditableSessionRequested() )
             getControl().setEnabled( false );
+    }
+    
+    /**
+     * Check whether the page has an invalid state in its content.
+     * This is separate from the {@link #isValid()} state of the page.
+     * One may proceed with saving this state, which will lead to automatic removal of the invalid content. 
+     * @return  true if this page has a valid content; false otherwise
+     */
+    public boolean hasValidContent()
+    {
+        return isLinkedProfileFound();
+    }
+    
+    /* Check whether the profile currently referenced by 
+     * the edited data source design is not found.
+     */
+    private boolean isLinkedProfileFound()
+    {      
+        AdaptableDataSourceProfile adaptableProfile = getProfileElement();
+        if( adaptableProfile == null )
+            return true;     // nothing to check
+        
+        // Check if the profile referenced by the editing data source design, if any, is not found
+        if( getEditingDataSource().hasLinkToProfile() &&
+            ! adaptableProfile.hasLinkedProfile() )
+        {
+            return false;
+        }
+        
+        return true;
     }
     
     /**
