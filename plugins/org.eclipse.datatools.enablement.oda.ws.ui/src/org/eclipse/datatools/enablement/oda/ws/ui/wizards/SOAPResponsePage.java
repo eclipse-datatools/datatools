@@ -505,12 +505,15 @@ public class SOAPResponsePage extends DataSetWizardPage
 
 	private void saveToModel( )
 	{
-		WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
-				xsdFileURI.getText( ) );
-		WSConsole.getInstance( ).setPropertyValue( Constants.SOAP_ENDPOINT,
-				soapEndPoint.getText( ) );
-		WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
-				xmlFileURI.getText( ) );
+		if ( xsdFileURI != null )
+			WSConsole.getInstance( ).setPropertyValue( Constants.XSD_FILE_URI,
+					xsdFileURI.getText( ) );
+		if ( soapEndPoint != null )
+			WSConsole.getInstance( ).setPropertyValue( Constants.SOAP_ENDPOINT,
+					soapEndPoint.getText( ) );
+		if ( xmlFileURI != null )
+			WSConsole.getInstance( ).setPropertyValue( Constants.XML_FILE_URI,
+					xmlFileURI.getText( ) );
 	}
 
 	/*
