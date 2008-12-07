@@ -26,96 +26,48 @@ public class ResultSetMetaData implements IResultSetMetaData {
 		this.columns = columns;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnCount()
-	 */
 	public int getColumnCount() throws OdaException {
 		return columns.length;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnName(int)
-	 */
 	public String getColumnName(final int index) throws OdaException {
 		validateColumnIndex(index);
 		return columns[index - 1].getAttributes().getName();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnLabel(int)
-	 */
 	public String getColumnLabel(final int index) throws OdaException {
 		validateColumnIndex(index);
 		return columns[index - 1].getAttributes().getUiHints().getDisplayName();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnType(int)
-	 */
 	public int getColumnType(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return DataTypes.getType(getColumnTypeName(index));
+		return columns[index - 1].getAttributes().getNativeDataTypeCode();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnTypeName(int)
-	 */
 	public String getColumnTypeName(final int index) throws OdaException {
 		validateColumnIndex(index);
-		// FIXME: Convert from Ecore types?
-		return "STRING";
-		// columns.clone()[index-1].getFeature().
-		// return DataTypes.getTypeString(type);
+		return DataTypes.getNativeType(columns[index - 1].getAttributes().getNativeDataTypeCode());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getColumnDisplayLength(int)
-	 */
 	public int getColumnDisplayLength(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return 8;
+		return columns[index - 1].getUsageHints().getFormattingHints().getDisplaySize();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getPrecision(int)
-	 */
 	public int getPrecision(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return -1;
+		return columns[index - 1].getAttributes().getPrecision();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#getScale(int)
-	 */
 	public int getScale(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return -1;
+		return columns[index - 1].getAttributes().getScale();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.IResultSetMetaData#isNullable(int)
-	 */
 	public int isNullable(final int index) throws OdaException {
 		validateColumnIndex(index);
-		return IResultSetMetaData.columnNullableUnknown;
+		return columns[index - 1].getAttributes().getNullability().getValue();
 	}
 
 	/**
@@ -131,5 +83,4 @@ public class ResultSetMetaData implements IResultSetMetaData {
 			throw new OdaException("Invalid column index");
 		}
 	}
-
 }

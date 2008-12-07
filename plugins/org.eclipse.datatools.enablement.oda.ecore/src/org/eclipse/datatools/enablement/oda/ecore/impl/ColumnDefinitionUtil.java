@@ -32,10 +32,14 @@ public class ColumnDefinitionUtil {
 
 	private static String COLUMN_NAME_DELIMITER = "::";
 
+	/**
+	 * FIXME: the native data type code should be determined from the EAttributeType or the EReference
+	 */
 	public static ColumnDefinition createFor(final String columnName) {
 		final ColumnDefinition definition = DesignFactory.eINSTANCE.createColumnDefinition();
 		final DataElementAttributes attributes = DesignFactory.eINSTANCE.createDataElementAttributes();
 		attributes.setName(columnName);
+		attributes.setNativeDataTypeCode(DataTypes.DEFAULT_TYPE_CODE);
 		attributes.setUiDisplayName(columnName);
 		definition.setAttributes(attributes);
 		return definition;

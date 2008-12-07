@@ -48,7 +48,6 @@ public class ResultSet implements IResultSet {
 	private final Iterator<EObject> queryResultIterator;
 	private final Query query;
 
-	@SuppressWarnings("unchecked")
 	public ResultSet(final Query query, final ColumnDefinition[] columns, final int maxRows) {
 		this.query = query;
 		this.columns = columns;
