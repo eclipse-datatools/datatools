@@ -290,20 +290,6 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		 */
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage#canLeave()
-	 */
-	protected boolean canLeave( )
-	{
-		if ( !isPageComplete( ) )
-		{
-			setMessage( Messages.getString( "error.selectColumns" ), ERROR ); //$NON-NLS-1$
-		}
-		return isPageComplete( );
-	}
-	
 	/**
 	 * 
 	 * @param parent
