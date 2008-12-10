@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -44,6 +44,10 @@ public class ResultSetReader {
 	    
 	    if (type == Types.LONGVARCHAR) {
 	    	return rs.getString(column+1);
+	    }
+	    
+	    if (type == Types.DECIMAL) {
+	    	return rs.getBigDecimal(column+1).toPlainString();
 	    }
 	
 	    Object o = rs.getObject(column+1);
