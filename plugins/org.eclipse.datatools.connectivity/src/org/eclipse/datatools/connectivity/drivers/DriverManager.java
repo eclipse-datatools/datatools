@@ -887,7 +887,29 @@ public class DriverManager {
 
 				if (Platform.getBundle(pluginId) != null) {
 					String entry = File.separator + restOfPath + File.separator;
-					URL url = Platform.getBundle(pluginId).getEntry(entry);
+					URL url = null;
+					if (restOfPath == null || restOfPath.trim().length() == 0) {
+						try {
+							String path2 = FileLocator.resolve(Platform.getBundle(pluginId).getEntry("/")).getPath();//$NON-NLS-1$
+							if (path2.endsWith("!/"))//$NON-NLS-1$
+								path2 = path2.substring(0, path2.length() - 2);
+							url = new URL(path2);
+						} catch (IOException e) {
+							String[] strs = new String[] { pluginId
+									+ restOfPath};
+							System.err.println(DriverMgmtMessages.format(
+									"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
+							ConnectivityPlugin
+									.getDefault()
+									.log(
+											DriverMgmtMessages
+													.format(
+															"DriverMgmtPlugin.FileMissing", strs)); //$NON-NLS-1$
+						}
+					}
+					else {
+						url = Platform.getBundle(pluginId).getEntry(entry);
+					}
 					if (url != null) {
 						try {
 							url = FileLocator.toFileURL(url);
