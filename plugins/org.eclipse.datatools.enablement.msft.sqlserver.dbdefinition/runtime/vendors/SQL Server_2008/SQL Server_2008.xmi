@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
-<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2000" maximumIdentifierLength="128"
- viewTriggerSupported="true">
+<DBDefinition:DatabaseVendorDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DBDefinition="http:///org/eclipse/datatools/modelbase/dbdefinition/dbdefinition.ecore" vendor="SQL Server" version="2008" maximumIdentifierLength="128"
+ viewTriggerSupported="true" userDefinedTypeSupported="true">
   <predefinedDataTypeDefinitions xmi:id="BIGINT_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="BIGINT" jdbcEnumType="-5" javaClassName="long">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIGINT</name>
@@ -13,7 +13,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BINARY</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" defaultLength="50" maximumLength="8000" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+ <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" defaultLength="50" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARBINARY</name>
   </predefinedDataTypeDefinitions>
@@ -21,6 +21,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>IMAGE</name>
   </predefinedDataTypeDefinitions>
+  
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="8000" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
@@ -46,7 +47,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NTEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="8000" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -60,7 +61,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>UNIQUEIDENTIFIER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="4000" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="4000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -71,6 +72,22 @@
   <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DATE" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATETIME</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="DATE_3" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATE</name>
+  </predefinedDataTypeDefinitions>
+   <predefinedDataTypeDefinitions xmi:id="DATE_4" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATETIME2</name>
+  </predefinedDataTypeDefinitions>
+   <predefinedDataTypeDefinitions xmi:id="DATE_5" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DATETIMEOFFSET</name>
+  </predefinedDataTypeDefinitions>
+   <predefinedDataTypeDefinitions xmi:id="DATE_6" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="12" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>TIME</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="DECIMAL_1" scaleSupported="true" precisionSupported="true" maximumPrecision="38" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="DECIMAL" jdbcEnumType="3" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
@@ -120,11 +137,29 @@
   <predefinedDataTypeDefinitions xmi:id="TIMESTAMP_1" keyConstraintSupported="true" primitiveType="TIMESTAMP" jdbcEnumType="93" javaClassName="java.sql.Timestamp">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TIMESTAMP</name>
+    <name>ROWVERSION</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="CHARACTER_2" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="-150" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SQL_VARIANT</name>
   </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="XML_TYPE_1" primitiveType="XML_TYPE" jdbcEnumType="509" orderingSupported="false" groupingSupported="false">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>XML</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="GEOMETRY_1" jdbcEnumType="-4" orderingSupported="false" groupingSupported="false" primitiveType="BINARY" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>GEOMETRY</name>
+  </predefinedDataTypeDefinitions>
+  <predefinedDataTypeDefinitions xmi:id="GEOGRAPHY_1" jdbcEnumType="-4" orderingSupported="false" groupingSupported="false" primitiveType="BINARY" javaClassName="byte[]">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>GEOGRAPHY</name>
+  </predefinedDataTypeDefinitions>
+    <predefinedDataTypeDefinitions xmi:id="HIERARCHYID_2" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="-4" javaClassName="java.lang.String">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>HIERARCHYID</name>
+  </predefinedDataTypeDefinitions>
+  
   <triggerDefinition maximumIdentifierLength="128" typeSupported="true" insteadOfTriggerSupported="true"/>
   <columnDefinition maximumIdentifierLength="128" identitySupported="true" computedSupported="true" identityStartValueSupported="true" identityIncrementSupported="true"/>
   <constraintDefinition maximumPrimaryKeyIdentifierLength="128" maximumForeignKeyIdentifierLength="128" maximumCheckConstraintIdentifierLength="128" uniqueKeyNullable="true">
@@ -141,6 +176,7 @@
   <storedProcedureDefinition maximumIdentifierLength="128">
     <functionLanguageType>SQL</functionLanguageType>
   </storedProcedureDefinition>
+  <udtDefinition maximumIdentifierLength="128" distinctTypeSupported="true"/>
   <SQLSyntaxDefinition terminationCharacter="GO">
     <keywords>A</keywords>
 	<keywords>ABORT</keywords>
@@ -192,6 +228,7 @@
 	<keywords>BIND</keywords>
 	<keywords>BINDING</keywords>
 	<keywords>BIT</keywords>
+	<keywords>BIT_LENGTH</keywords>
 	<keywords>BLOB</keywords>
 	<keywords>BLOCK</keywords>
 	<keywords>BODY</keywords>
@@ -219,7 +256,9 @@
 	<keywords>CEILING</keywords>
 	<keywords>CHANGE</keywords>
 	<keywords>CHAR</keywords>
+	<keywords>CHAR_LENGTH</keywords>
 	<keywords>CHARACTER</keywords>
+	<keywords>CHARACTER_LENGTH</keywords>
 	<keywords>CHARTOROWID</keywords>
 	<keywords>CHECK</keywords>
 	<keywords>CLASS</keywords>
@@ -404,6 +443,7 @@
 	<keywords>FROM</keywords>
 	<keywords>FREE</keywords>
 	<keywords>FULL</keywords>
+	<keywords>FULLTEXTTABLE</keywords>
 	<keywords>FUNCTION</keywords>
 	<keywords>GENERAL</keywords>
 	<keywords>GET</keywords>
@@ -431,6 +471,7 @@
 	<keywords>HOURS</keywords>
 	<keywords>IDENTIFIED</keywords>
 	<keywords>IDENTITY</keywords>
+	<keywords>IDENTITY_INSERT</keywords>
 	<keywords>IGNORE</keywords>
 	<keywords>IDENTITYCOL</keywords>
 	<keywords>IF</keywords>
@@ -525,6 +566,7 @@
 	<keywords>MAXVALUE</keywords>
 	<keywords>MENUITEM</keywords>
 	<keywords>MESSAGE</keywords>
+	<keywords>MERGE</keywords>
 	<keywords>MICROSECOND</keywords>
 	<keywords>MICROSECONDS</keywords>
 	<keywords>MIN</keywords>
@@ -582,6 +624,7 @@
 	<keywords>NUMPARTS</keywords>
 	<keywords>NVL</keywords>
 	<keywords>OBID</keywords>
+	<keywords>OCTET_LENGTH</keywords>
 	<keywords>ODBCINFO</keywords>
 	<keywords>OF</keywords>
 	<keywords>OFF</keywords>
@@ -597,6 +640,7 @@
 	<keywords>OPENDATASOURCE</keywords>
 	<keywords>OPENQUERY</keywords>
 	<keywords>OPENROWSET</keywords>
+	<keywords>OPENXML</keywords>
 	<keywords>OPTIMAL</keywords>
 	<keywords>OPTIMIZE</keywords>
 	<keywords>OPTION</keywords>
@@ -619,6 +663,7 @@
 	<keywords>PART</keywords>
 	<keywords>PARTIAL</keywords>
 	<keywords>PATH</keywords>
+	<keywords>PIVOT</keywords>
 	<keywords>POSTFIX</keywords>
 	<keywords>PASCAL</keywords>
 	<keywords>PCTFREE</keywords>
@@ -702,6 +747,7 @@
 	<keywords>RETURN</keywords>
 	<keywords>RETURNS</keywords>
 	<keywords>REUSE</keywords>
+	<keywords>REVERT</keywords>
 	<keywords>REVOKE</keywords>
 	<keywords>RIGHT</keywords>
 	<keywords>ROLE</keywords>
@@ -739,6 +785,7 @@
 	<keywords>SECONDS</keywords>
 	<keywords>SECQTY</keywords>
 	<keywords>SECTION</keywords>
+	<keywords>SECURITYAUDIT</keywords>
 	<keywords>SEGMENT</keywords>
 	<keywords>SELECT</keywords>
 	<keywords>SEQUENCE</keywords>
@@ -808,6 +855,7 @@
 	<keywords>TABLE</keywords>
 	<keywords>TABLEDATA</keywords>
 	<keywords>TABLES</keywords>
+	<keywords>TABLESAMPLE</keywords>
 	<keywords>TABLESPACE</keywords>
 	<keywords>TAN</keywords>
 	<keywords>TAPE</keywords>
@@ -850,6 +898,7 @@
 	<keywords>UNNEST</keywords>
 	<keywords>UNLIMITED</keywords>
 	<keywords>UNLOADTABLE</keywords>
+	<keywords>UNPIVOT</keywords>
 	<keywords>UNSIGNED</keywords>
 	<keywords>UNTIL</keywords>
 	<keywords>UP</keywords>

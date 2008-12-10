@@ -18,5 +18,12 @@
             versionDisplayString="%2005VersionString"
             file="runtime/vendors/SQL Server_2005/SQL Server_2005.xmi">
       </definition>
+      <definition
+            version="2008"
+            product="SQL Server"
+            productDisplayString="%2008ProductString"
+            versionDisplayString="%2008VersionString"
+            file="runtime/vendors/SQL Server_2008/SQL Server_2008.xmi">
+      </definition>
    </extension>
 </plugin>

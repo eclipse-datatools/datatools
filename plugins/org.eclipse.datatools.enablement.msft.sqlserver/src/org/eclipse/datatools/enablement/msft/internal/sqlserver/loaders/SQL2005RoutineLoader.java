@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2008 NexB Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Anton Safonov and Ahti Kitsik - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders;
 
 import java.sql.ResultSet;
@@ -9,6 +19,7 @@ import java.util.List;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DataModelElementFactory;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCProcedure;
 import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCUserDefinedFunction;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.loader.IConnectionFilterProvider;
@@ -20,7 +31,7 @@ import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.emf.ecore.EClass;
 
 public class SQL2005RoutineLoader extends JDBCRoutineLoader {
-	
+
 	public static final String COLUMN_ROUTINE_NAME = "ROUTINE_NAME";
 	public static final String COLUMN_ROUTINE_CATALOG = "SPECIFIC_CATALOG";
 	public static final String COLUMN_ROUTINE_SCHEMA = "SPECIFIC_SCHEMA";
@@ -31,29 +42,45 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 	private IRoutineFactory mProcedureFactory;
 
 	public static class SQL2005ProcedureFactory extends ProcedureFactory {
-		
+
 		private Database database = null;
-		
-		public void setDatabase (Database db) {
+		private final ICatalogObject catalogObject;
+
+		public SQL2005ProcedureFactory(ICatalogObject catalogObject) {
+			this.catalogObject = catalogObject;
+		}
+
+		public void setDatabase(Database db) {
 			database = db;
 		}
-		
-		public void initialize(Routine routine, ResultSet rs)
-			throws SQLException {
+
+		public void initialize(Routine routine, ResultSet rs) throws SQLException {
 			String name = rs.getString(COLUMN_ROUTINE_NAME);
-			
+
 			// strip out the version indicator
 			if (name.indexOf(";") > -1)
-				name = name.substring(0, name.indexOf(";") -1 );
+				name = name.substring(0, name.indexOf(";") - 1);
 			routine.setName(name);
-			
+
 			String source = rs.getString(COLUMN_ROUTINE_DEFINITION);
 			loadSource(routine, source, database);
 		}
+
+		protected Routine newRoutine() {
+			return new JDBCProcedure();
+		}
+
 	}
-	
+
 	public static class SQL2005UserDefinedFunctionFactory extends SQL2005ProcedureFactory {
 
+		private final ICatalogObject catalogObject;
+
+		public SQL2005UserDefinedFunctionFactory(ICatalogObject catalogObject) {
+			super(catalogObject);
+			this.catalogObject = catalogObject;
+		}
+		
 		public EClass getRoutineEClass() {
 			return SQLRoutinesPackage.eINSTANCE.getUserDefinedFunction();
 		}
@@ -62,41 +89,43 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 			return new JDBCUserDefinedFunction();
 		}
 	}
-	
+
 	public SQL2005RoutineLoader() {
 		super(null);
 	}
-	
+
 	public SQL2005RoutineLoader(ICatalogObject catalogObject) {
 		super(catalogObject);
 	}
 
-	public SQL2005RoutineLoader(ICatalogObject catalogObject,
-			IConnectionFilterProvider connectionFilterProvider) {
+	public SQL2005RoutineLoader(ICatalogObject catalogObject, IConnectionFilterProvider connectionFilterProvider) {
 		super(catalogObject, connectionFilterProvider);
-		mUserDefinedFunctionFactory = new SQL2005UserDefinedFunctionFactory();
-		mProcedureFactory = new SQL2005ProcedureFactory();
+		mUserDefinedFunctionFactory = new SQL2005UserDefinedFunctionFactory(catalogObject);
+		mProcedureFactory = new SQL2005ProcedureFactory(catalogObject);
+		this.setProcedureFactory(mProcedureFactory);
+		this.setUserDefinedFunctionFactory(mUserDefinedFunctionFactory);
+
 	}
 
-	public SQL2005RoutineLoader(ICatalogObject catalogObject,
-			IConnectionFilterProvider connectionFilterProvider,
-			IRoutineFactory udfFactory, IRoutineFactory spFactory) {
+	public SQL2005RoutineLoader(ICatalogObject catalogObject, IConnectionFilterProvider connectionFilterProvider, IRoutineFactory udfFactory,
+			IRoutineFactory spFactory) {
 		super(catalogObject, connectionFilterProvider, udfFactory, spFactory);
+		mUserDefinedFunctionFactory = new SQL2005UserDefinedFunctionFactory(catalogObject);
+		mProcedureFactory = new SQL2005ProcedureFactory(catalogObject);
+		this.setProcedureFactory(mProcedureFactory);
+		this.setUserDefinedFunctionFactory(mUserDefinedFunctionFactory);
 	}
 
 	protected ResultSet createResultSet() throws SQLException {
 		String schemaName = getSchema().getName();
 		String catalogName = getSchema().getCatalog().getName();
-		String query = "select INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG as \'" + COLUMN_ROUTINE_CATALOG + "\', " +
-			"INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA as \'" + COLUMN_ROUTINE_SCHEMA + "\', " +
-			"INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME as \'" + COLUMN_ROUTINE_NAME + "\', " +
-			"INFORMATION_SCHEMA.ROUTINES.ROUTINE_DEFINITION as \'" + COLUMN_ROUTINE_DEFINITION + "\', " +
-			"INFORMATION_SCHEMA.ROUTINES.ROUTINE_TYPE as \'" + COLUMN_ROUTINE_TYPE + "\' " +
-			"from INFORMATION_SCHEMA.ROUTINES where " +
-			"INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG = \'" + catalogName + "\' and " +
-			"INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA = \'" + schemaName + "\'";
-		if (getJDBCFilterPattern() != null
-				&& getJDBCFilterPattern().length() > 0) {
+		String query = "select INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG as \'" + COLUMN_ROUTINE_CATALOG + "\', "
+				+ "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA as \'" + COLUMN_ROUTINE_SCHEMA + "\', " + "INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME as \'"
+				+ COLUMN_ROUTINE_NAME + "\', " + "INFORMATION_SCHEMA.ROUTINES.ROUTINE_DEFINITION as \'" + COLUMN_ROUTINE_DEFINITION + "\', "
+				+ "INFORMATION_SCHEMA.ROUTINES.ROUTINE_TYPE as \'" + COLUMN_ROUTINE_TYPE + "\' " + "from INFORMATION_SCHEMA.ROUTINES where "
+				+ "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG = \'" + catalogName + "\' and " + "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA = \'"
+				+ schemaName + "\'";
+		if (getJDBCFilterPattern() != null && getJDBCFilterPattern().length() > 0) {
 			String filter = " AND ALIAS LIKE " + getJDBCFilterPattern();//$NON-NLS-1$
 			query = query + filter;
 		}
@@ -123,20 +152,18 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 		ICatalogObject object = getCatalogObject();
 		Database database = object.getCatalogDatabase();
 		if (mProcedureFactory == null) {
-			mProcedureFactory = new SQL2005ProcedureFactory();
+			mProcedureFactory = new SQL2005ProcedureFactory(object);
 			((SQL2005ProcedureFactory) mProcedureFactory).setDatabase(database);
 		}
-		if (mUserDefinedFunctionFactory == null) { 
-			mUserDefinedFunctionFactory = new SQL2005UserDefinedFunctionFactory();
+		if (mUserDefinedFunctionFactory == null) {
+			mUserDefinedFunctionFactory = new SQL2005UserDefinedFunctionFactory(object);
 			((SQL2005UserDefinedFunctionFactory) mUserDefinedFunctionFactory).setDatabase(database);
 		}
-		IRoutineFactory routineFactory = isProcedure(rs) ? mProcedureFactory
-				: mUserDefinedFunctionFactory;
+		IRoutineFactory routineFactory = isProcedure(rs) ? mProcedureFactory : mUserDefinedFunctionFactory;
 		return routineFactory.createRoutine(rs);
 	}
 
-	public void loadRoutines(List containmentList, Collection existingRoutines)
-		throws SQLException {
+	public void loadRoutines(List containmentList, Collection existingRoutines) throws SQLException {
 		ResultSet rs = null;
 		try {
 			initActiveFilter();
@@ -147,20 +174,17 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 				if (routineName == null || isFiltered(routineName)) {
 					continue;
 				}
-				Routine routine = (Routine) getAndRemoveSQLObject(
-						existingRoutines, routineName);
+				Routine routine = (Routine) getAndRemoveSQLObject(existingRoutines, routineName);
 				if (routine == null) {
 					routine = processRow(rs);
 					if (routine != null) {
 						containmentList.add(routine);
 					}
-				}
-				else {
+				} else {
 					if (isProcedure(rs)) {
 						((SQL2005ProcedureFactory) mProcedureFactory).setDatabase(database);
 						mProcedureFactory.initialize(routine, rs);
-					}
-					else {
+					} else {
 						((SQL2005UserDefinedFunctionFactory) mUserDefinedFunctionFactory).setDatabase(database);
 						mUserDefinedFunctionFactory.initialize(routine, rs);
 					}

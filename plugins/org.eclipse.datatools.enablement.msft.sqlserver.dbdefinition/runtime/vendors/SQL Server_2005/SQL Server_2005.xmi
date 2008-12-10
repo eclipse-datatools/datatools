@@ -9,19 +9,19 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BIT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" maximumLength="8000" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" defaultLength="50" maximumLength="8000" primitiveType="BINARY" jdbcEnumType="-2" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>BINARY</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_VARYING_1" lengthSupported="true" lengthUnit="BYTE" multipleColumnsSupported="true" defaultLength="50" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="BINARY_VARYING" jdbcEnumType="-3" javaClassName="byte[]">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>VARBINARY</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_2" multipleColumnsSupported="true" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="2004" javaClassName="java.sql.Blob">
+  <predefinedDataTypeDefinitions xmi:id="BINARY_LARGE_OBJECT_2" multipleColumnsSupported="true" primitiveType="BINARY_LARGE_OBJECT" jdbcEnumType="-4" javaClassName="java.sql.Blob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>IMAGE</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="8000" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -30,7 +30,7 @@
     <name>CHAR</name>
     <name>CHARACTER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="4000" primitiveType="NATIONAL_CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -38,15 +38,15 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NCHAR</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="CHARACTER_LARGE_OBJECT" jdbcEnumType="-1" javaClassName="java.sql.Clob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="2005" javaClassName="java.sql.Clob">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_LARGE_OBJECT_1" multipleColumnsSupported="true" primitiveType="NATIONAL_CHARACTER_LARGE_OBJECT" jdbcEnumType="-10" javaClassName="java.sql.Clob">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NTEXT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="8000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -60,7 +60,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>UNIQUEIDENTIFIER</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true" maximumLength="4000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="NATIONAL_CHARACTER_VARYING_1" lengthSupported="true" defaultLength="1" keyConstraintSupported="true" multipleColumnsSupported="true"  maximumLength="4000" largeValueSpecifierSupported="true" largeValueSpecifierName="MAX" largeValueSpecifierLength="-1" primitiveType="NATIONAL_CHARACTER_VARYING" jdbcEnumType="12" javaClassName="java.lang.String">
     <defaultValueTypes>USER</defaultValueTypes>
     <defaultValueTypes>CURRENT_USER</defaultValueTypes>
     <defaultValueTypes>SYSTEM_USER</defaultValueTypes>
@@ -77,17 +77,16 @@
     <name>DECIMAL</name>
     <name>DEC</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
-    <defaultValueTypes>NULL</defaultValueTypes>
-    <name>DOUBLE PRECISION</name>
-  </predefinedDataTypeDefinitions>
+<!--  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">-->
+<!--    <defaultValueTypes>NULL</defaultValueTypes>-->
+<!--    <name>DOUBLE PRECISION</name>-->
+<!--  </predefinedDataTypeDefinitions>-->
   <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" maximumPrecision="53" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="INTEGER_1" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="INTEGER" jdbcEnumType="4" javaClassName="int">
     <defaultValueTypes>NULL</defaultValueTypes>
-    <name>INTEGER</name>
     <name>INT</name>
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" maximumPrecision="38" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
@@ -114,7 +113,7 @@
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SMALLINT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="SMALLINT" jdbcEnumType="5" javaClassName="short">
+  <predefinedDataTypeDefinitions xmi:id="SMALLINT_2" keyConstraintSupported="true" identitySupported="true" multipleColumnsSupported="true" primitiveType="SMALLINT" jdbcEnumType="-6" javaClassName="short">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>TINYINT</name>
   </predefinedDataTypeDefinitions>
@@ -123,7 +122,7 @@
     <name>TIMESTAMP</name>
     <name>ROWVERSION</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="CHARACTER_2" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="1" javaClassName="java.lang.String">
+  <predefinedDataTypeDefinitions xmi:id="CHARACTER_2" keyConstraintSupported="true" primitiveType="CHARACTER" jdbcEnumType="-150" javaClassName="java.lang.String">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>SQL_VARIANT</name>
   </predefinedDataTypeDefinitions>
