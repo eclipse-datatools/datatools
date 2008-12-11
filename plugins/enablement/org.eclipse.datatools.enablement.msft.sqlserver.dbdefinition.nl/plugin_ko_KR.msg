@@ -17,3 +17,5 @@ providerName = Eclipse.org
 2000VersionString = 2000
 2005ProductString = SQL Server
 2005VersionString = 2005
+2008ProductString = SQL Server
+2008VersionString = 2008
