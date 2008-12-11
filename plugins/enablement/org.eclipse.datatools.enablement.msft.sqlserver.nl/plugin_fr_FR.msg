@@ -20,11 +20,14 @@ driverUID = ID utilisateur
 driverPWD = Mot de passe
 
 SQLSERVER_CATEGORY_NAME = Serveur SQL
+2008_VERSION_CATEGORY_NAME = 2008
 2005_VERSION_CATEGORY_NAME = 2005
 2000_VERSION_CATEGORY_NAME = 2000
 
+org.eclipse.datatools.enablement.msft.sqlserver.2008.driverTemplate = Microsoft SQL Server 2008 JDBC Driver
 org.eclipse.datatools.enablement.msft.sqlserver.2005.driverTemplate = Pilote JDBC du serveur SQL Microsoft 2005
 org.eclipse.datatools.enablement.msft.sqlserver.2000.driverTemplate = Pilote du serveur SQL Microsoft 2000 pour JDBC
+org.eclipse.datatools.enablement.msft.sqlserver.2008.other.driverTemplate = Autre pilote
 org.eclipse.datatools.enablement.msft.sqlserver.2005.other.driverTemplate = Autre pilote
 org.eclipse.datatools.enablement.msft.sqlserver.2000.other.driverTemplate = Autre pilote
 

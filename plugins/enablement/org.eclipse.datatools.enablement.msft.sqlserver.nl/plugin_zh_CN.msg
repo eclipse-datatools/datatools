@@ -20,11 +20,14 @@ driverUID = 用户 ID
 driverPWD = 密码
 
 SQLSERVER_CATEGORY_NAME = SQL Server
+2008_VERSION_CATEGORY_NAME = 2008
 2005_VERSION_CATEGORY_NAME = 2005
 2000_VERSION_CATEGORY_NAME = 2000
 
+org.eclipse.datatools.enablement.msft.sqlserver.2008.driverTemplate = Microsoft SQL Server 2008 JDBC Driver
 org.eclipse.datatools.enablement.msft.sqlserver.2005.driverTemplate = Microsoft SQL Server 2005 JDBC Driver
 org.eclipse.datatools.enablement.msft.sqlserver.2000.driverTemplate = Microsoft SQL Server 2000 Driver for JDBC
+org.eclipse.datatools.enablement.msft.sqlserver.2008.other.driverTemplate = 其他驱动程序
 org.eclipse.datatools.enablement.msft.sqlserver.2005.other.driverTemplate = 其他驱动程序
 org.eclipse.datatools.enablement.msft.sqlserver.2000.other.driverTemplate = 其他驱动程序
 
