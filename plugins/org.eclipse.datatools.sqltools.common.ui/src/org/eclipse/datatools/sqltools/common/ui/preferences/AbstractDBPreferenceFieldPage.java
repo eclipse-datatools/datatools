@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.datatools.sqltools.common.ui.preferences;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -133,9 +135,21 @@ public abstract class AbstractDBPreferenceFieldPage extends FieldEditorPreferenc
         _folder = null;
 
         Map sections = PreferencesRegistry.INSTANCE.getPageSections(getPreferencePageId());
-        for (Iterator iter = sections.keySet().iterator(); iter.hasNext();)
+        Object[] sectionsKeys = sections.keySet().toArray();
+        Arrays.sort(sectionsKeys, new Comparator()
         {
-            String id = (String)iter.next();
+            public int compare(Object o1, Object o2)
+            {
+                // Replace the '&' in the label because of the short cut key.Otherwise, for instance, the "AS&E" will be before "ASA".
+                int result = o1.toString().replace("&", "").compareTo(o2.toString().replace("&", ""));
+                return result == 0 ? 0 : ( result > 0 ? 1 : -1);
+            }
+
+        });
+        
+        for (int i = 0; i < sectionsKeys.length; i++)
+        {
+            String id = (String)sectionsKeys[i];
             //TODO: this is just a temporary solution. actually name should be retrieved from dbdefinition by id. 
             String name = id;
             if (name == null)
