@@ -590,7 +590,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
     /** The content outline page providing the outline view for the editor content. */
     private SQLOutlinePage                     _fOutlinePage                     = null;
     /** The object updating outline view and syntax validation. */
-    private SQLUpdater                         _fSQLUpdater                      = null;
+    protected SQLUpdater                       _fSQLUpdater                      = null;
     /** The projection (code folding) support object. */
     private ProjectionSupport                  fProjectionSupport;
     /** The document setup participant object, which is used partition the edit text. */
