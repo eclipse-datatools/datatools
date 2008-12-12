@@ -11,6 +11,7 @@ DatabaseManagement.command.debug=デバッグ
 DatabaseManagement.command.savetodb=データベースに保存
 DatabaseManagement.command.refresh=データベースから更新
 DatabaseManagement.command.saveAsTemplate=テンプレートとして保存
+DatabaseManagement.command.gotomatchingtoken=Goto Matching Token
 
 sqlEditorName=SQL エディタ
 
