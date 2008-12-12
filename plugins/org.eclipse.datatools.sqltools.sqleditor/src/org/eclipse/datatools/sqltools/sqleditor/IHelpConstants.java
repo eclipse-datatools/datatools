@@ -135,4 +135,9 @@ public interface IHelpConstants
      * Used for New Template dialog.
      */
     public static final String EDIT_TEMPLATE_DIALOG                  = "edit_template_dialog";
+    
+    /**
+     * Used for goto matching token action.
+     */
+    public static final String GOTO_MATCHING_TOKEN_ACTION          = "goto_matching_token_action";
 }

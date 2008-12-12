@@ -16,6 +16,7 @@ import org.eclipse.datatools.sqltools.editor.IExtendedSaveSupport;
 import org.eclipse.datatools.sqltools.editor.contentassist.ISQLDBProposalsService;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.launching.IExtendedLaunchSupport;
+import org.eclipse.jface.text.source.ICharacterPairMatcher;
 
 /**
  * A SQL Editor related service specific to a database definition. This interface allows clients to customize the
@@ -72,6 +73,17 @@ public class SQLEditorService
      * @return a <code>ISQLDBProposalsService</code> object to perform the DB proposals loading behavior.
      */
     public ISQLDBProposalsService getSQLDBProposalsService(ISQLEditorConnectionInfo connInfo)
+    {
+        return null;
+    }
+
+    /**
+     * Return a <code>org.eclipse.jface.text.source.ICharacterPairMatcher</code> which is used to matching pairs in
+     * SQL Editor.
+     * 
+     * @return a <code>org.eclipse.jface.text.source.ICharacterPairMatcher</code> to matching pairs.
+     */
+    public ICharacterPairMatcher getSQLPairMatcher()
     {
         return null;
     }

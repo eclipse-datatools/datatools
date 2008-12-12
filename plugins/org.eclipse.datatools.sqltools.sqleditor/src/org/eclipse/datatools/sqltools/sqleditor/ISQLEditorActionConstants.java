@@ -198,5 +198,9 @@ public interface ISQLEditorActionConstants extends ITextEditorActionConstants {
      */
     public static final String CREATE_DATABASE_ACTION_ID = SQLEditorPlugin.PLUGIN_ID
             + ".CreateDBAction";
-
+    
+    /**
+     * Context menu id for goto matching token action.
+     */
+    public static final String GOTO_MATCHING_TOKEN_ACTION_ID = SQLEditorPlugin.PLUGIN_ID + ".GotoMatchingTokenAction";
 }

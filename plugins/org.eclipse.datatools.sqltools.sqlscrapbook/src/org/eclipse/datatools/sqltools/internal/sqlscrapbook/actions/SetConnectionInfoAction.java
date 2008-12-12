@@ -52,6 +52,8 @@ public class SetConnectionInfoAction extends TextEditorAction
         if (dlg.open() != IDialogConstants.CANCEL_ID)
         {
         	_sqlEditor.setConnectionInfo(dlg.getConnectionInfo());
+        	
+        	_sqlEditor.refreshMatcher();
         }
     }
 

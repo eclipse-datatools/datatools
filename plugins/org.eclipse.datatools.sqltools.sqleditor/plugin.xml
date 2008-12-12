@@ -135,6 +135,10 @@
             name="%DatabaseManagement.command.dmldialog.select"
             id="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"/>
       <command
+            categoryId="org.eclipse.datatools.sqltools.sqleditor.category"
+            name="%DatabaseManagement.command.gotomatchingtoken"
+            id="org.eclipse.datatools.sqltools.sqleditor.GotoMatchingTokenAction"/>
+      <command
             categoryId="org.eclipse.ui.category.edit"
             name="%DatabaseManagement.ToggleComment"
             id="org.eclipse.datatools.sqltools.sqleditor.toggleCommentAction"/>
@@ -166,6 +170,11 @@
       <key
             commandId="org.eclipse.datatools.sqltools.sqleditor.DMLDialogSelectionAction"
             sequence="M3+Q"
+            contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.eclipse.datatools.sqltools.sqleditor.GotoMatchingTokenAction"
+            sequence="M1+M2+P"
             contextId="org.eclipse.datatools.sqltools.SQLEditorScope"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
     </extension>

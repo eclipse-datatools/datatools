@@ -19,6 +19,8 @@ import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.datatools.sqltools.core.SQLDevToolsConfiguration;
+import org.eclipse.datatools.sqltools.core.SQLToolsFacade;
 import org.eclipse.datatools.sqltools.editor.core.connection.ISQLEditorConnectionInfo;
 import org.eclipse.datatools.sqltools.internal.externalfile.ExternalSQLFileEditorInput;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
@@ -30,9 +32,12 @@ import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorActionConstants;
 import org.eclipse.datatools.sqltools.sqleditor.ISQLEditorInput;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditor;
 import org.eclipse.datatools.sqltools.sqleditor.SQLEditorStorageEditorInput;
+import org.eclipse.datatools.sqltools.sqleditor.internal.matching.GenericSQLMatchingPairs;
+import org.eclipse.datatools.sqltools.sqleditor.internal.matching.GenericSQLPairMatcher;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.IOverviewRuler;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.window.Window;
@@ -102,6 +107,8 @@ public class SQLScrapbookEditor extends SQLEditor {
             String content = getDocument().get();
             doSetConnectionInfo(connBar.getConnectionInfo());
             getDocument().set(content);
+            
+            SQLScrapbookEditor.this.refreshMatcher();
         }
         
         public void refreshConnectionStatus()
@@ -272,4 +279,21 @@ public class SQLScrapbookEditor extends SQLEditor {
         }
     }
 
+    public void refreshMatcher()
+    {
+        // When the connection profile is changed, the corresponding matcher will be set.
+        SQLDevToolsConfiguration sqlDevToolsConfig = SQLToolsFacade.getConfiguration(getDBType(),
+                getDatabaseIdentifier());
+
+        // It needs support by sql editor service of each specific database.
+        ICharacterPairMatcher matcher = sqlDevToolsConfig.getSQLEditorService().getSQLPairMatcher();
+        
+        // If it's not supported, use default generic sql matcher.
+        if(matcher == null)
+        {
+            matcher = new GenericSQLPairMatcher(GenericSQLMatchingPairs.getInstance());
+        }
+        
+        SQLScrapbookEditor.this.setPairMatcher(matcher);
+    }
 }
