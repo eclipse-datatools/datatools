@@ -56,4 +56,8 @@ public interface IHelpConstants
      */
     public static final String LOAD_PLAN_ACTION          = "load_plan_action";
 
+    /**
+     * Used for plan type drop down action
+     */
+    public static final String PLAN_TYPE_DROP_DOWN_ACTION = "plan_type_drop_down_action";
 }

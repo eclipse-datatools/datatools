@@ -44,6 +44,8 @@ public final class Messages extends NLS
     public static String SavePlanAction_overwrite_q;
     public static String SavePlanAction_question;
     public static String SavePlanAction_builder_error;
+    public static String PlanTypeDropDownAction_text;
+    public static String PlanTypeDropDownAction_tooltip;
 
     static
     {

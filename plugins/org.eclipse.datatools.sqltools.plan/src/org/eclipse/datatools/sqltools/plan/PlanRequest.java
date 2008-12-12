@@ -64,6 +64,10 @@ public class PlanRequest
     //The database definition id, use "product_name"_"version" to uniquely identify a database product 
     private String          _databaseDefinitionId;
     
+    private String          _profileName;
+    
+    private String          _dbName;
+    
     /**
      * The plan type, each vendor can define their own plan types. The framework will use GRAPHIC_PLAN or TEXT_PLAN to
      * bitwise and this plan type to determine whether it's a graphic plan or text plan.
@@ -225,4 +229,26 @@ public class PlanRequest
     {
         _varDecs = decs;
     }
+
+    public String getProfileName()
+    {
+        return _profileName;
+    }
+
+    public void setProfileName(String name)
+    {
+        _profileName = name;
+    }
+
+    public String getDbName()
+    {
+        return _dbName;
+    }
+
+    public void setDbName(String name)
+    {
+        _dbName = name;
+    }
+    
+    
 }

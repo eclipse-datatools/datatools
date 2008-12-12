@@ -23,6 +23,7 @@ import org.eclipse.datatools.sqltools.plan.internal.PlanViewPlugin;
 import org.eclipse.datatools.sqltools.plan.internal.PreferenceConstants;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.LoadPlanAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.PlanDropDownAction;
+import org.eclipse.datatools.sqltools.plan.internal.ui.actions.PlanTypeDropDownAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.RemoveAllPlansAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.RemovePlanAction;
 import org.eclipse.datatools.sqltools.plan.internal.ui.actions.SavePlanAction;
@@ -64,7 +65,8 @@ public class PlanView extends ViewPart
     public static final String     GROUP_REMOVE      = "group.remove";                        //$NON-NLS-1$
     public static final String     GROUP_IO          = "group.io";                            //$NON-NLS-1$
     public static final String     GROUP_HISTORY     = "group.history";                       //$NON-NLS-1$
-
+    public static final String     GROUP_MODE        = "group.mode";                          //$NON-NLS-1$
+    
     private Text                   _textPlan;
     private PageBook               _fPagebook;
     private Label                  _fNoPlanShownLabel;
@@ -76,6 +78,7 @@ public class PlanView extends ViewPart
     private RemoveAllPlansAction   _removeAllPlansAction;
     private SavePlanAction         _savePlanAction;
     private LoadPlanAction         _loadPlanAction;
+    private PlanTypeDropDownAction _planModeDropDownAction;
     private Action                 _preferenceAction;
     private static final String    _LINE_BREAK       = System.getProperty("line.separator");
     private VerticalLayoutAction   _vLayoutAction;
@@ -153,6 +156,7 @@ public class PlanView extends ViewPart
         menu.add(new Separator(GROUP_IO));
         menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
         menu.add(new Separator(GROUP_HISTORY));
+        menu.add(new Separator(GROUP_MODE));
     }
 
     private void initializeToolBar()
@@ -164,6 +168,7 @@ public class PlanView extends ViewPart
         tbm.appendToGroup(GROUP_IO, _savePlanAction);
         tbm.appendToGroup(GROUP_IO, _loadPlanAction);
         tbm.appendToGroup(GROUP_HISTORY, _plansDropDownAction);
+        tbm.appendToGroup(GROUP_MODE, _planModeDropDownAction);
         _preferenceAction = new Action(Messages.getString("PlanView.preference")) //$NON-NLS-1$
         {
             public void run()
@@ -190,6 +195,7 @@ public class PlanView extends ViewPart
         _plansDropDownAction = new PlanDropDownAction(this);
         _savePlanAction = new SavePlanAction();
         _loadPlanAction = new LoadPlanAction();
+        _planModeDropDownAction = new PlanTypeDropDownAction(this);
         updateActions();
     }
 
@@ -199,6 +205,7 @@ public class PlanView extends ViewPart
         _removeAllPlansAction.update();
         _plansDropDownAction.update();
         _savePlanAction.update();
+        _planModeDropDownAction.update();
     }
 
     /*

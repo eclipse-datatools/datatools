@@ -54,6 +54,8 @@ public abstract class PlanSupportRunnable extends Job
         this._request = request;
         this._profileName = profileName;
         this._dbName = dbName;
+        request.setProfileName(profileName);
+        request.setDbName(dbName);
     }
 
     /**

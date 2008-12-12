@@ -100,6 +100,10 @@ public class Images
     // Import plan (disable)
     public static final String          IMG_IMPORT_PLAN_DISABLE   = NAME_PREFIX + "import_plan_disable.gif";
     public static final ImageDescriptor DESC_IMPORT_PLAN_DISABLE  = createManaged(IMG_IMPORT_PLAN_DISABLE);
+    
+    // Plan type switch
+    public static final String          IMG_PLAN_TYPE             = NAME_PREFIX + "plan_type_switch.gif";
+    public static final ImageDescriptor DESC_PLAN_TYPE            = createManaged(IMG_PLAN_TYPE);
     /**
      * Returns the image managed under the given key in this registry.
      * 
