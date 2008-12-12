@@ -727,5 +727,20 @@
             </property>
          </properties>
       </driverTemplate>
-   </extension> 
+   </extension>
+    <extension
+          id="com.sybase.stf.dmp.ase.dbConfiguration"
+          name="ASE Support"
+          point="org.eclipse.datatools.sqltools.editor.core.dbConfigurations">
+       <dbConfiguration
+             configurationClass="org.eclipse.datatools.enablement.ase.ASEConfig"
+             product="Sybase_ASE"
+             version="15.x">
+       </dbConfiguration>
+       <dbConfiguration
+             configurationClass="org.eclipse.datatools.enablement.ase.ASEConfig"
+             product="Sybase_ASE"
+             version="12.x">
+       </dbConfiguration>
+    </extension> 
  </plugin>  

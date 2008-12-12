@@ -10,10 +10,7 @@
  ******************************************************************************/
 package org.eclipse.datatools.enablement.sybase.virtual;
 
-import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.filter.IFilterNode;
 import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.providers.content.virtual.ViewNode;
-import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
-import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 /**
  * View node including infomation whether or not show system views
@@ -39,14 +36,4 @@ public class SybaseViewNode extends ViewNode
         return _isSystem;
     }
 
-    public String getFilterName()
-    {
-        Schema schema = (Schema) getParent();
-        if (schema.getCatalog() == null)
-        {
-            return schema.getName() + IFilterNode.SEPARATOR + ConnectionFilter.VIEW_FILTER;
-        }
-        return schema.getCatalog().getName() + IFilterNode.SEPARATOR + schema.getName() + IFilterNode.SEPARATOR
-        	+ ConnectionFilter.VIEW_FILTER;
-    }
 }
