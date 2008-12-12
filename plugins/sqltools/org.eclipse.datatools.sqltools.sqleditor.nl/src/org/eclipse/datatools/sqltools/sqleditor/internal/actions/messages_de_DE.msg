@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=Ausgewählte SQL-Anweisungen ausführen
 DMLDialogSelectionSQLAction_label=In S&QL-Abfrageerstellung bearbeiten...
 DMLDialogSelectionSQLAction_tooltip=Ausgewählte SQL-Anweisungen in SQL-Abfrageerstellung bearbeiten
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=A&usführen..
 RunAction_tooltip=Ausf
 

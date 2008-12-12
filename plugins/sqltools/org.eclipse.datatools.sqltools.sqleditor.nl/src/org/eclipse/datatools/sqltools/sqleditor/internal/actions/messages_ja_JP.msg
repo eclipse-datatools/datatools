@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=選択した SQL 文を実行する
 DMLDialogSelectionSQLAction_label=SQL クエリビルダで編集(&Q)...
 DMLDialogSelectionSQLAction_tooltip=選択した SQL 文を SQL クエリビルダで編集する
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=実行(&R)...
 RunAction_tooltip=実行
 

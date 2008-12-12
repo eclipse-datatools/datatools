@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=执行选定的 SQL 语句
 DMLDialogSelectionSQLAction_label=在 SQL 查询生成器中编辑(&Q)...
 DMLDialogSelectionSQLAction_tooltip=在 SQL 查询生成器中编辑选定的 SQL 语句
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=运行(&R)...
 RunAction_tooltip=运行
 

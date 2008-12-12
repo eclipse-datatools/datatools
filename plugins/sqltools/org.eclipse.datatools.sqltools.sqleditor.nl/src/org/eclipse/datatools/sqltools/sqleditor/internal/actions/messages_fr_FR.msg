@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=Exécuter les instructions SQL sélectionnées
 DMLDialogSelectionSQLAction_label=Modifier dans le générateur de requête S&QL...
 DMLDialogSelectionSQLAction_tooltip=Modifier les instructions SQL sélectionnées dans le générateur de requête SQL
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=&Exécuter...
 RunAction_tooltip=Exécuter
 

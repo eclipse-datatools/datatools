@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=선택한 SQL 문 실행
 DMLDialogSelectionSQLAction_label=SQL 쿼리 빌더에서 편집(&Q)...
 DMLDialogSelectionSQLAction_tooltip=SQL 쿼리 빌더에서 선택한 SQL 문 편집
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=실행(&R)...
 RunAction_tooltip=실행
 

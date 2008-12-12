@@ -35,6 +35,9 @@ ExecuteSelectionSQLAction_tooltip=Ejecutar sentencias SQL seleccionadas
 DMLDialogSelectionSQLAction_label=Editar en el compilador de consultas S&QL...
 DMLDialogSelectionSQLAction_tooltip=Editar sentencias SQL seleccionadas en el compilador de consultas SQL
 
+GotoMatchingTokenAction_label=Goto &Matching Token
+GotoMatchingTokenAction_tooltip=Matching Current Token
+
 RunAction_label=&Ejecutar...
 RunAction_tooltip=Ejecutar
 
