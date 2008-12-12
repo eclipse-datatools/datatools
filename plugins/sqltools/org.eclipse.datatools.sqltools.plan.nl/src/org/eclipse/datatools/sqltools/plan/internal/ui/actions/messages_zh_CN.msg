@@ -20,3 +20,5 @@ LoadPlanAction_errorinfo=未能从文件加载计划。
 SavePlanAction_overwrite_q=文件“{0}”已存在。要替换现有文件吗?
 SavePlanAction_question=问题
 SavePlanAction_builder_error=无法创建 XML 文档生成器
+PlanTypeDropDownAction_text=Plan Types
+PlanTypeDropDownAction_tooltip=Switch Plan Type

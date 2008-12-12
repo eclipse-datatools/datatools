@@ -20,3 +20,5 @@ LoadPlanAction_errorinfo=Plan wurde nicht aus Datei geladen.
 SavePlanAction_overwrite_q=Die Datei "{0}" ist bereits vorhanden. Ersetzen?
 SavePlanAction_question=Frage
 SavePlanAction_builder_error=XML Document Builder kann nicht erstellt werden.
+PlanTypeDropDownAction_text=Plan Types
+PlanTypeDropDownAction_tooltip=Switch Plan Type
