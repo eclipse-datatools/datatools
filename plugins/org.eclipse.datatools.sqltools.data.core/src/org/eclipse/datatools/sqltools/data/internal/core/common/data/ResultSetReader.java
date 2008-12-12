@@ -46,9 +46,10 @@ public class ResultSetReader {
 	    	return rs.getString(column+1);
 	    }
 	    
-	    if (type == Types.DECIMAL) {
-	    	return rs.getBigDecimal(column+1).toPlainString();
-	    }
+	    //see 256090. for backward compatibility, toPlainString cannot be used (since JDK 1.5).
+//	    if (type == Types.DECIMAL) {
+//	    	return rs.getBigDecimal(column+1).toPlainString();
+//	    }
 	
 	    Object o = rs.getObject(column+1);
 	    if (o==null)
