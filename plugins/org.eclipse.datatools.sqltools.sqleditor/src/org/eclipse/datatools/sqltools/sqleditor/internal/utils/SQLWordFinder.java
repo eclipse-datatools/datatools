@@ -93,7 +93,8 @@ public class SQLWordFinder
     public static boolean isWhiteSpace(char c)
     {
         return Character.isWhitespace(c) || c == '(' || c == ')' || c == ',' || c == ';' || c == '\n' || c == '\r'
-                || c == '=' || c == '>' || c == '<' || c == '+' || c == '-' || c == '*' || c == '/';
+                || c == '=' || c == '>' || c == '<' || c == '+' || c == '-' || c == '*' || c == '/' 
+                || c == '%' || c == '^' || c == '|' || c == '&'; 
     }
 
 }
