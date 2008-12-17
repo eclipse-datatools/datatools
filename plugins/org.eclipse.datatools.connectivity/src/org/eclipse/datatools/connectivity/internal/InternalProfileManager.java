@@ -9,6 +9,7 @@
  * Contributors: shongxum - initial API and implementation
  *     IBM Corporation -  fix for defect #223855
  *     IBM Corporation -  fix for defect #241713
+ *     Actuate Corporation - fix for bug #247587
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -1386,25 +1387,28 @@ public class InternalProfileManager {
 	private void getProfileInstance(String profileName, String profileID, Properties connProperties, List propList) {
 
 		String profName = profileName;
-		IConnectionProfile connProfile = ProfileManager.getInstance().getProfileByName(profileName);
-		if (connProfile != null) {
+        int uniqueNameIndex = 0;
+		IConnectionProfile connProfile = null;
+	    while ( ( connProfile = ProfileManager.getInstance().getProfileByName(profName) ) != null) {
 			Properties props = connProfile.getBaseProperties();
 			if (connProfile.getProviderId().equals(profileID)) {
 				boolean match = true;
-				for (int i = 0; i < propList.size(); i++) {
+				for (int i = 0; i < propList.size() && match; i++) {
 					String propName = (String)propList.get(i);
 					if (!connProperties.get(propName).equals(props.get(propName))) {
 						match = false;
 					}
 				}
-				    if (match) {
-				    	return;
-				    }
-			} else {
-				profName = determineUniqueProfileName(profName);
-				
+				if (match) {
+				    return;
+				}
 			}
+			
+			// the existing profile with same name contains different property values, cannot re-use; 
+			// try with the next generated profile name
+			profName = generateProfileName( profileName, ++uniqueNameIndex );
 		}
+
 		try {
 			ProfileManager
 				.getInstance()
@@ -1419,21 +1423,15 @@ public class InternalProfileManager {
 		}
 	}
 
-	/**
-	 * Determine unique connection profile name for the new connection
-	 * @param inName
-	 * @return String profile name
-	 */
-	private String determineUniqueProfileName(String inName) {
-		int index = 1;
-		String testName = inName + String.valueOf(index);
-		while (ProfileManager.getInstance().getProfileByName(testName) != null) {
-			index++;
-			testName = inName + String.valueOf(index);
-		}
-		return testName;
+    /**
+     * Formats unique connection profile name for the new connection
+     * @param inName
+     * @return String profile name
+     */
+	private String generateProfileName( String inName, int index )
+	{
+	    return inName + String.valueOf(index);
 	}
-
 	
 	/**
 	 * Make sure that all required items have values - if not, don't attempt driver or connection creation
