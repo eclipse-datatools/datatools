@@ -4,7 +4,7 @@
       label="%featureName"
       version="1.7.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.datatools.connectivity.ui.templates"
+      plugin="org.eclipse.datatools.sdk"
       image="eclipse_update_120.jpg">
 
    <description>
@@ -88,10 +88,10 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.connectivity.ui.templates"
+         id="org.eclipse.datatools.sdk"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
+         
 </feature>
