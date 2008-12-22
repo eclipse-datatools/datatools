@@ -42,10 +42,6 @@ public class MappingPathElementTree
 	private static final String FORWARD_SLASH = "/";                //$NON-NLS-1$
 	private static final String DOUBLE_SLASH = "//";                //$NON-NLS-1$
 
-	// the TreeNode corresponding with the first path element in the mapping
-	// path of the table
-	private TreeNode firstTreeNodeForTablePath;
-
 	// the TreeNode corresponding with the last path element in the mapping path
 	// of the table
 	private TreeNode lastTreeNodeForTablePath;
@@ -531,9 +527,7 @@ public class MappingPathElementTree
 		
 		// Attention: splits of "/A/B" be [][A][B]
 		// So, the first empty string should be ignored
-		firstTreeNodeForTablePath = root.addChild( splits[1] );
-
-		TreeNode currentNode = firstTreeNodeForTablePath;
+		TreeNode currentNode = root.addChild( splits[1] );
 		
 		for ( int i = 2; i < splits.length; i++ )
 		{

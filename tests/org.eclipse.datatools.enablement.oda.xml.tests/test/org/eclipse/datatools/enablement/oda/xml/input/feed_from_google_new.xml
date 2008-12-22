@@ -1,0 +1,758 @@
+<?xml version='1.0' encoding='UTF-8'?>
+  <feed xmlns='http://www.w3.org/2005/Atom' xmlns:openSearch='http://a9.com/-/spec/opensearchrss/1.0/' xmlns:gm='http://base.google.com/ns-metadata/1.0' xmlns:g='http://base.google.com/ns/1.0' xmlns:batch='http://schemas.google.com/gdata/batch'>
+    <id>http://www.google.com/base/feeds/snippets</id>
+    <updated>2008-12-19T07:16:44.518Z</updated>
+    <title type='text'>Items matching query: digital camera</title>
+    <link rel='alternate' type='text/html' href='http://base.google.com'/>
+    <link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets'/>
+    <link rel='http://schemas.google.com/g/2005#batch' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/batch'/>
+    <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets?start-index=1&amp;max-results=25&amp;bq=digital+camera'/>
+    <link rel='next' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets?start-index=26&amp;max-results=25&amp;bq=digital+camera'/>
+    <author>
+      <name>Google Inc.</name>
+      <email>base@google.com</email>
+    </author>
+    <generator version='1.0' uri='http://base.google.com'>GoogleBase</generator>
+    <openSearch:totalResults>5102828</openSearch:totalResults>
+    <openSearch:startIndex>1</openSearch:startIndex>
+    <openSearch:itemsPerPage>25</openSearch:itemsPerPage>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/18035148895355243134</id>
+      <published>2008-12-10T05:00:01.000Z</published>
+      <updated>2008-12-18T04:30:02.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Mead 8X42 BINOCULARS + 2.0MP Digital CAMERA..NEW</title>
+      <content type='html'>Find Mead 8X42 BINOCULARS + 2.0MP Digital CAMERA..NEW on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $125.00.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FMead-8X42-BINOCULARS-2-0MP-Digital-CAMERA-NEW_W0QQitemZ120312553822QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/18035148895355243134'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081217</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/120312553822_3.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>120312553822</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>125.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-30T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>125.00</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/16744955279914281156</id>
+      <published>2008-11-28T05:00:01.000Z</published>
+      <updated>2008-12-18T04:30:02.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Binocular</title>
+      <content type='html'>Find Digital Camera Binocular on eBay in the category Cameras &amp; Photo&gt;Outdoor Sports&gt;Binoculars&gt;Digital Camera Binoculars&gt;Hunting Binoculars for $40.00.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Binocular_W0QQitemZ270308883117QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/16744955279914281156'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081217</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>Used</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/270308883117_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>270308883117</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>40.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-26T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>40.00</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/16511639347082694423</id>
+      <published>2008-12-16T04:30:16.000Z</published>
+      <updated>2008-12-18T04:30:02.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Binoculars</title>
+      <content type='html'>Find Digital Camera Binoculars on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $65.00.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Binoculars_W0QQitemZ260332563353QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/16511639347082694423'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081217</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/260332563353_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>260332563353</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>65.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-21T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>65.00</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/15821695541883718052</id>
+      <published>2008-11-30T05:00:04.000Z</published>
+      <updated>2008-12-12T05:00:00.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Binoculars 10x25 Digital Camera Video Photo Webcam 300k</title>
+      <content type='html'>Find Binoculars 10x25 Digital Camera Video Photo Webcam 300k on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $48.50.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FBinoculars-10x25-Digital-Camera-Video-Photo-Webcam-300k_W0QQitemZ270309790555QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/15821695541883718052'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081210</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/270309790555_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>270309790555</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>48.5 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-28T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>48.50</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/14759675262813639320</id>
+      <published>2008-10-25T04:00:02.000Z</published>
+      <updated>2008-11-24T05:00:01.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Binoculars</title>
+      <content type='html'>Find Digital Camera Binoculars on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $27.00.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Binoculars_W0QQitemZ110283087072QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/14759675262813639320'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081123</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/110283087072_4.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>110283087072</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>27.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-22T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>27.00</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/14575219090639143439</id>
+      <published>2008-12-02T05:00:03.000Z</published>
+      <updated>2008-12-02T05:00:03.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Barska 5.0 Megapixel Digital Camera 8x32mm Binoculars</title>
+      <content type='html'>Find Barska 5.0 Megapixel Digital Camera 8x32mm Binoculars on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $279.97.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FBarska-5-0-Megapixel-Digital-Camera-8x32mm-Binoculars_W0QQitemZ250127811753QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/14575219090639143439'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081201</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:megapixel type='int'>5</g:megapixel>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/250127811753_11.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>250127811753</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>279.97 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-30T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>279.97</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/14023065599980243811</id>
+      <published>2008-12-03T05:00:03.000Z</published>
+      <updated>2008-12-03T05:00:03.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>NEW Bushnell Digital Camera Binoculars in RETAIL BOX</title>
+      <content type='html'>Find NEW Bushnell Digital Camera Binoculars in RETAIL BOX on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $84.95.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FNEW-Bushnell-Digital-Camera-Binoculars-in-RETAIL-BOX_W0QQitemZ260325275834QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/14023065599980243811'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081202</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/260325275834_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>260325275834</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>84.95 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-31T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>84.95</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/13795764713580646256</id>
+      <published>2008-11-24T05:00:01.000Z</published>
+      <updated>2008-12-02T05:00:03.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>MAGPIX B350 8x21 BINOCULAR - DIGITAL CAMERA BINOCULARS</title>
+      <content type='html'>Find MAGPIX B350 8x21 BINOCULAR - DIGITAL CAMERA BINOCULARS on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $37.75.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FMAGPIX-B350-8x21-BINOCULAR-DIGITAL-CAMERA-BINOCULARS_W0QQitemZ270306062945QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/13795764713580646256'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081201</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/270306062945_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>270306062945</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>37.75 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-20T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>37.75</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/13054755471825069429</id>
+      <published>2008-12-15T05:00:00.000Z</published>
+      <updated>2008-12-15T05:00:00.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Premium Digital Camera Binoculars</title>
+      <content type='html'>Find Premium Digital Camera Binoculars on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $30.00.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FPremium-Digital-Camera-Binoculars_W0QQitemZ270317433088QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/13054755471825069429'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081214</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/270317433088_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>270317433088</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>30.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-20T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>30.00</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/9963819449454760128</id>
+      <published>2008-11-28T05:00:01.000Z</published>
+      <updated>2008-12-02T05:00:03.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Binoculars w/ Digital Camera Built In. ViewCatcher, NIB</title>
+      <content type='html'>Find Binoculars w/ Digital Camera Built In. ViewCatcher, NIB on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $31.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FBinoculars-w-Digital-Camera-Built-In-ViewCatcher-NIB_W0QQitemZ280223026664QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/9963819449454760128'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081201</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/280223026664_8.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>280223026664</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>31.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-26T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>31.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/8117465301320629097</id>
+      <published>2008-12-15T05:00:00.000Z</published>
+      <updated>2008-12-18T04:30:02.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>NEW Bushnell Image View 5 MP Digital Camera Binoculars</title>
+      <content type='html'>Find NEW Bushnell Image View 5 MP Digital Camera Binoculars on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $174.89.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FNEW-Bushnell-Image-View-5-MP-Digital-Camera-Binoculars_W0QQitemZ260331953658QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/8117465301320629097'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081217</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/260331953658_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>260331953658</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>174.89 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-22T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>174.89</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/6831054806721380904</id>
+      <published>2008-12-18T04:30:02.000Z</published>
+      <updated>2008-12-18T04:30:02.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>VIEWCATCHER 8X22 BINOCULAR DIGITAL CAMERA 8MB RAM</title>
+      <content type='html'>Find VIEWCATCHER 8X22 BINOCULAR DIGITAL CAMERA 8MB RAM on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $34.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FVIEWCATCHER-8X22-BINOCULAR-DIGITAL-CAMERA-8MB-RAM_W0QQitemZ120342265904QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/6831054806721380904'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081217</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/120342265904_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>120342265904</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>34.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-29T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>34.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/5215329225176381527</id>
+      <published>2008-12-09T05:00:02.000Z</published>
+      <updated>2008-12-16T23:32:25.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>VIVITAR DIGITAL CAMERA 10X25 BINOCULAR COMBO +ACCESSORY</title>
+      <content type='html'>Find VIVITAR DIGITAL CAMERA 10X25 BINOCULAR COMBO +ACCESSORY on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $28.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FVIVITAR-DIGITAL-CAMERA-10X25-BINOCULAR-COMBO-ACCESSORY_W0QQitemZ230312162966QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/5215329225176381527'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081215</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/230312162966_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>230312162966</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>28.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-02T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Vivitar</g:brand>
+      <g:bin_price type='text'>28.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/3460444340006847498</id>
+      <published>2008-12-07T05:00:03.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>DIGITAL CAMERA BINOCULARS VIVITAR MAGNA CAM 1025 X 1</title>
+      <content type='html'>Find DIGITAL CAMERA BINOCULARS VIVITAR MAGNA CAM 1025 X 1 on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $49.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDIGITAL-CAMERA-BINOCULARS-VIVITAR-MAGNA-CAM-1025-X-1_W0QQitemZ270313550574QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/3460444340006847498'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>Used</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/270313550574_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>270313550574</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>49.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-04T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Vivitar</g:brand>
+      <g:bin_price type='text'>49.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/973461948995379519</id>
+      <published>2008-11-29T05:00:04.000Z</published>
+      <updated>2008-11-29T05:00:04.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Meade CaptureView (8x22) Binocular, DIGITAL CAMERA NEW</title>
+      <content type='html'>Find Meade CaptureView (8x22) Binocular, DIGITAL CAMERA NEW on eBay in the category Cameras &amp; Photo&gt;Binoculars &amp; Telescopes&gt;Binoculars&gt;Digital Camera Binoculars for $10.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FMeade-CaptureView-(8x22)-Binocular%2C-DIGITAL-CAMERA--NEW_W0QQitemZ150312554464QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/973461948995379519'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081128</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Digital Camera Binoculars</g:ebay_label>
+      <g:product_type type='text'>Digital Camera Binoculars</g:product_type>
+      <g:image_link type='url'>http://i14.ebayimg.com/06/i/001/1a/fb/bfed_1.JPG?set_id=800005007</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>150312554464</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>10.0 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-29T05:00:04Z</g:expiration_date>
+      <g:brand type='text'>Meade</g:brand>
+      <g:bin_price type='text'>10</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/16235919030303934829</id>
+      <published>2008-11-23T05:00:00.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Battery for Sony DSC-T2 DSC-T300 NP-BD1</title>
+      <content type='html'>Find Digital Camera Battery for Sony DSC-T2 DSC-T300 NP-BD1 on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $17.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Battery-for-Sony-DSC-T2-DSC-T300-NP-BD1_W0QQitemZ350129101411QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/16235919030303934829'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/350129101411_2.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>350129101411</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>17.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-21T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>17.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/14484562383682416245</id>
+      <published>2008-12-14T00:56:39.000Z</published>
+      <updated>2008-12-17T04:30:01.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>New replacement for Canon LP-E5 Digital Camera Battery</title>
+      <content type='html'>Find New replacement for Canon LP-E5 Digital Camera Battery on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $8.55.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FNew-replacement-for-Canon-LP-E5-Digital-Camera-Battery_W0QQitemZ140287865222QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/14484562383682416245'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081216</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/140287865222_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>140287865222</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>8.55 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-07T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>8.55</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/13885293431880441741</id>
+      <published>2008-11-12T05:00:03.000Z</published>
+      <updated>2008-12-11T05:00:00.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital CAMERA Battery for Sony DSC-W35 DSC-W35 DSC-W55</title>
+      <content type='html'>Find Digital CAMERA Battery for Sony DSC-W35 DSC-W35 DSC-W55 on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $22.79.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-CAMERA-Battery-for-Sony-DSC-W35-DSC-W35-DSC-W55_W0QQitemZ250322654916QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/13885293431880441741'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081210</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/250322654916_2.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>250322654916</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>22.79 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-08T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>22.79</g:bin_price>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/13467010552208249036</id>
+      <published>2008-11-23T05:00:00.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Battery for Sony DSC-T2 DSC-T200 NPFD1</title>
+      <content type='html'>Find Digital Camera Battery for Sony DSC-T2 DSC-T200 NPFD1 on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $17.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Battery-for-Sony-DSC-T2-DSC-T200-NPFD1_W0QQitemZ350129101460QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/13467010552208249036'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/350129101460_2.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>350129101460</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>17.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-21T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>17.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/13194859670454332101</id>
+      <published>2008-10-28T04:00:03.000Z</published>
+      <updated>2008-11-27T05:00:03.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>NP-100 digital camera Battery for Fuji MX-700 JVC QX3HD</title>
+      <content type='html'>Find NP-100 digital camera Battery for Fuji MX-700 JVC QX3HD on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $14.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FNP-100-digital-camera-Battery-for-Fuji-MX-700-JVC-QX3HD_W0QQitemZ280271629563QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/13194859670454332101'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081126</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/280271629563_3.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>280271629563</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>14.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-25T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>14.99</g:bin_price>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/10053571242428016411</id>
+      <published>2008-11-27T05:00:03.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Battery for Sony DSC-T2 DSC-T200 NPFD1</title>
+      <content type='html'>Find Digital Camera Battery for Sony DSC-T2 DSC-T200 NPFD1 on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $17.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Battery-for-Sony-DSC-T2-DSC-T200-NPFD1_W0QQitemZ350130880580QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/10053571242428016411'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/350130880580_2.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>350130880580</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>17.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-24T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>17.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/4985380142909809054</id>
+      <published>2008-11-24T05:00:01.000Z</published>
+      <updated>2008-11-24T05:00:01.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>SIDO digital camera battery FREE SHIPPING</title>
+      <content type='html'>Find SIDO digital camera battery FREE SHIPPING on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $4.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FSIDO-digital-camera-battery-FREE-SHIPPING_W0QQitemZ370117950648QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/4985380142909809054'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081123</g:plusbox_extra_query>
+      <g:condition type='text'>Used</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/370117950648_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>370117950648</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>4.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-22T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>4.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/3368241922141082794</id>
+      <published>2008-12-14T00:56:39.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>FOR CANON NB-4L NB4L BRAND NEW DIGITAL CAMERA BATTERY</title>
+      <content type='html'>Find FOR CANON NB-4L NB4L BRAND NEW DIGITAL CAMERA BATTERY on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $7.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FFOR-CANON-NB-4L-NB4L-BRAND-NEW-DIGITAL-CAMERA-BATTERY_W0QQitemZ220328291583QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/3368241922141082794'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/220328291583_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>220328291583</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>7.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-10T08:00:00Z</g:expiration_date>
+      <g:bin_price type='text'>7.99</g:bin_price>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/2171672653545959580</id>
+      <published>2008-11-23T05:00:00.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Battery For Canon IXUS 85 IS ,IXY 25 IS</title>
+      <content type='html'>Find Digital Camera Battery For Canon IXUS 85 IS ,IXY 25 IS on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $10.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Battery-For-Canon-IXUS-85-IS-IXY-25-IS_W0QQitemZ350129101365QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/2171672653545959580'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/350129101365_2.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>350129101365</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>10.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2008-12-21T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>10.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+    <entry>
+      <id>http://www.google.com/base/feeds/snippets/6156217346744012</id>
+      <published>2008-12-14T00:56:39.000Z</published>
+      <updated>2008-12-14T00:56:39.000Z</updated>
+      <category scheme='http://base.google.com/categories/itemtypes' term='Products'/>
+      <title type='text'>Digital Camera Battery fr Sony DSC-T5 DSC-T9 NP-FT1 NEW</title>
+      <content type='html'>Find Digital Camera Battery fr Sony DSC-T5 DSC-T9 NP-FT1 NEW on eBay in the category Cameras &amp; Photo&gt;Camera Accessories&gt;Digital Camera Accessories&gt;Batteries&gt;Camera-Specific for $12.99.</content>
+      <link rel='alternate' type='text/html' href='http://rover.ebay.com/rover/1/711-43310-8196-0/2?mpre=http%3A%2F%2Fcgi.ebay.com%2FDigital-Camera-Battery-fr-Sony-DSC-T5-DSC-T9-NP-FT1-NEW_W0QQitemZ350139068697QQcmdZViewItem'/>
+      <link rel='self' type='application/atom+xml' href='http://www.google.com/base/feeds/snippets/6156217346744012'/>
+      <author>
+        <name>eBay</name>
+      </author>
+      <g:plusbox_extra_query type='text'>keyword={keyword:}</g:plusbox_extra_query>
+      <g:plusbox_extra_query type='text'>ebayid=081212</g:plusbox_extra_query>
+      <g:condition type='text'>New</g:condition>
+      <g:item_site_text type='text'>US</g:item_site_text>
+      <g:ebay_label type='text'>Camera-Specific</g:ebay_label>
+      <g:product_type type='text'>Camera-Specific</g:product_type>
+      <g:image_link type='url'>http://thumbs.ebaystatic.com/pict/350139068697_1.jpg</g:image_link>
+      <g:item_language type='text'>EN</g:item_language>
+      <g:id type='text'>350139068697</g:id>
+      <g:author type='text'>eBay</g:author>
+      <g:price type='floatUnit'>12.99 usd</g:price>
+      <g:target_country type='text'>US</g:target_country>
+      <g:expiration_date type='dateTime'>2009-01-10T08:00:00Z</g:expiration_date>
+      <g:brand type='text'>Digital Camera Battery</g:brand>
+      <g:bin_price type='text'>12.99</g:bin_price>
+      <g:customer_id type='int'>11729</g:customer_id>
+      <g:item_type type='text'>Products</g:item_type>
+    </entry>
+  </feed>

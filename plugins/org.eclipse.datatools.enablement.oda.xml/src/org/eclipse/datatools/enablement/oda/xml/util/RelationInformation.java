@@ -142,6 +142,10 @@ public class RelationInformation
 				if( columnInfos.length == 3 )
 				{
 					columnXpath = columnInfos[2];
+					if ( useNamespace )
+					{
+						columnXpath = getValueWithNameSpace( columnXpath, prefixMap );
+					}
 				}
 				HashMap map = null;
 				//if it is a filter expression

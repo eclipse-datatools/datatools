@@ -62,7 +62,8 @@ public class SaxParserTest extends BaseTest
 			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
 			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}"
 			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}"
-			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}#:#&lt;\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">";
+			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}#:#&lt;\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">"
+			+ "#-# nameSpace#:#[/feed/entry/g:id]#:#{title;STRING;../title},{g:price;STRING;../g:price},{g:id;STRING;}#:#&lt;\"openSearch\",\"http:%%a9.com%-%spec%opensearchrss%1.0%\";\"g\",\"http:%%base.google.com%ns%1.0\";\"batch\",\"http:%%schemas.google.com%gdata%batch\";\"gm\",\"http:%%base.google.com%ns-metadata%1.0\";\"\",\"http:%%www.w3.org%2005%Atom";
 	
 	private RelationInformation ri;
 
@@ -1180,5 +1181,46 @@ public class SaxParserTest extends BaseTest
 		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST24_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST24_GOLDEN_XML ) ) );
+	}
+	
+	public void test25( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST25_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		ri = new RelationInformation( testString );
+		Connection conn = new Connection( );
+		Properties p = new Properties( );
+		p.put( Constants.CONST_PROP_FILELIST, TestConstants.XML_FILE_WITH_NAMESPACE2 );
+		conn.open( p );
+		rs = new ResultSet( conn,
+				ri,
+				"nameSpace" ,
+				0);
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+		rs.close( );
+		conn.close( );
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST25_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST25_GOLDEN_XML ) ) );
 	}
 }
