@@ -20,5 +20,5 @@ LoadPlanAction_errorinfo=파일에서 계획을 로드하지 못했습니다.
 SavePlanAction_overwrite_q=파일 ''{0}''이(가) 이미 있습니다. 기존 파일을 바꾸시겠습니까?
 SavePlanAction_question=질문
 SavePlanAction_builder_error=XML 문서 작성기를 생성할 수 없습니다.
-PlanTypeDropDownAction_text=Plan Types
-PlanTypeDropDownAction_tooltip=Switch Plan Type
+PlanTypeDropDownAction_text=계획 형식
+PlanTypeDropDownAction_tooltip=계획 형식 전환

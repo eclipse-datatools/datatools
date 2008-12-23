@@ -20,5 +20,5 @@ LoadPlanAction_errorinfo=プランをファイルから読み込めません。
 SavePlanAction_overwrite_q=指定したファイル ''{0}'' はすでに存在します。既存のファイルを上書きしますか ?
 SavePlanAction_question=質問
 SavePlanAction_builder_error=XML ドキュメントビルダを作成できません。
-PlanTypeDropDownAction_text=Plan Types
-PlanTypeDropDownAction_tooltip=Switch Plan Type
+PlanTypeDropDownAction_text=プランの種類
+PlanTypeDropDownAction_tooltip=プランの種類の切り替え

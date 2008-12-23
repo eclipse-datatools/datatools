@@ -20,5 +20,5 @@ LoadPlanAction_errorinfo=Impossible de charger le plan à partir du fichier.
 SavePlanAction_overwrite_q=Le fichier "{0}" existe déjà. Voulez-vous le remplacer ?
 SavePlanAction_question=Question
 SavePlanAction_builder_error=Impossible de créer le générateur de documents XML
-PlanTypeDropDownAction_text=Plan Types
-PlanTypeDropDownAction_tooltip=Switch Plan Type
+PlanTypeDropDownAction_text=Types de plan
+PlanTypeDropDownAction_tooltip=Changer de type de plan

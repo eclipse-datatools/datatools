@@ -20,5 +20,5 @@ LoadPlanAction_errorinfo=Error al cargar el plan desde el archivo.
 SavePlanAction_overwrite_q=El archivo ''{0}'' ya existe. ¿Desea reemplazar el archivo existente?
 SavePlanAction_question=Pregunta
 SavePlanAction_builder_error=No es posible crear el compilador de documentos XML
-PlanTypeDropDownAction_text=Plan Types
-PlanTypeDropDownAction_tooltip=Switch Plan Type
+PlanTypeDropDownAction_text=Tipos de plan
+PlanTypeDropDownAction_tooltip=Cambiar tipo de plan
