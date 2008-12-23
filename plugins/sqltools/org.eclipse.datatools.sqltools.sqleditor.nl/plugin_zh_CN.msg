@@ -11,7 +11,7 @@ DatabaseManagement.command.debug=调试
 DatabaseManagement.command.savetodb=保存至数据库
 DatabaseManagement.command.refresh=从数据库刷新
 DatabaseManagement.command.saveAsTemplate=另存为模板
-DatabaseManagement.command.gotomatchingtoken=Goto Matching Token
+DatabaseManagement.command.gotomatchingtoken=转到匹配标记
 
 sqlEditorName=SQL 编辑器
 

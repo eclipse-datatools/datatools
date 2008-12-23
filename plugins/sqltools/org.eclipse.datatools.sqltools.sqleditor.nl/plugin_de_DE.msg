@@ -11,7 +11,7 @@ DatabaseManagement.command.debug=Debug
 DatabaseManagement.command.savetodb=In Datenbank speichern
 DatabaseManagement.command.refresh=Von Datenbank aktualisieren
 DatabaseManagement.command.saveAsTemplate=Als Vorlage speichern
-DatabaseManagement.command.gotomatchingtoken=Goto Matching Token
+DatabaseManagement.command.gotomatchingtoken=Zu übereinstimmendem Token
 
 sqlEditorName=SQL-Editor
 

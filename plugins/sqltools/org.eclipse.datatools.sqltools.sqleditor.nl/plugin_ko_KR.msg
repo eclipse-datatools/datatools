@@ -11,7 +11,7 @@ DatabaseManagement.command.debug=디버그
 DatabaseManagement.command.savetodb=데이터베이스에 저장
 DatabaseManagement.command.refresh=데이터베이스에서 새로 고침
 DatabaseManagement.command.saveAsTemplate=템플릿으로 저장
-DatabaseManagement.command.gotomatchingtoken=Goto Matching Token
+DatabaseManagement.command.gotomatchingtoken=일치하는 토큰으로 이동
 
 sqlEditorName=SQL 편집기
 
