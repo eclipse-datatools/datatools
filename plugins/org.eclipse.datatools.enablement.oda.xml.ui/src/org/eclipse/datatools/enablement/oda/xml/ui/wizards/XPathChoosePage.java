@@ -207,30 +207,33 @@ public class XPathChoosePage extends DataSetWizardPage
 	{
 		availableXmlTree = new XMLTreeViewer( composite2, false );
 		availableXmlTree.getSingleButton( ).setToolTipText( Messages.getString( "xPathChoosePage.messages.btnAdd.tooltip" ) ); //$NON-NLS-1$
-		availableXmlTree.getTree( ).addSelectionListener( new SelectionAdapter( ) {
+		availableXmlTree.getTree( )
+				.addSelectionListener( new SelectionAdapter( ) {
 
-			public void widgetSelected( SelectionEvent e )
-			{
-				TreeItem items[] = availableXmlTree.getTree( ).getSelection( );
-				for ( int i = 0; i < items.length; i++ )
-				{
-					selectedItem = items[0];
-					if ( items[i].getGrayed( ) )
+					public void widgetSelected( SelectionEvent e )
 					{
-						availableXmlTree.getTree( ).setRedraw( false );
-						availableXmlTree.getTree( ).deselectAll( );
-						availableXmlTree.getTree( ).setRedraw( true );
-						availableXmlTree.getTree( ).redraw( );
-					}
-				}
+						TreeItem items[] = availableXmlTree.getTree( )
+								.getSelection( );
+						selectedItem = null;
+						for ( int i = 0; i < items.length; i++ )
+						{
+							selectedItem = items[0];
+							if ( items[i].getGrayed( ) )
+							{
+								availableXmlTree.getTree( ).setRedraw( false );
+								availableXmlTree.getTree( ).deselectAll( );
+								availableXmlTree.getTree( ).setRedraw( true );
+								availableXmlTree.getTree( ).redraw( );
+							}
+						}
 						if ( selectedItem != null )
 							availableXmlTree.getSingleButton( )
 									.setEnabled( true );
 						else
 							availableXmlTree.getSingleButton( )
 									.setEnabled( false );
-			}
-		} );
+					}
+				} );
 	}
 	
 	/**

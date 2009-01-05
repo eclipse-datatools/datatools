@@ -339,7 +339,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 						updateColumnMappingElement( columnElement );
 					}
 				}
-				selectedMultiItems = null;
+				availableXmlTree.getTree( ).setSelection( new TreeItem[0] );
 				availableXmlTree.getSingleButton( ).setEnabled( false );
 			}
 		} );

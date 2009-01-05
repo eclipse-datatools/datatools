@@ -58,8 +58,16 @@ class XMLTreeViewer
 		layout.marginHeight = 10;
 		treeGroup.setLayout( layout );
 		treeGroup.setLayoutData( data );
-		treeViewer = new TreeViewer( treeGroup, SWT.MULTI
-				| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL);
+		if ( supportMultiSelection )
+		{
+			treeViewer = new TreeViewer( treeGroup, SWT.MULTI
+					| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL );
+		}
+		else
+		{
+			treeViewer = new TreeViewer( treeGroup, SWT.SINGLE
+					| SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL | SWT.VIRTUAL );
+		}
 
 		data = new FormData( );
 		data.left = new FormAttachment( treeGroup, 5 );
