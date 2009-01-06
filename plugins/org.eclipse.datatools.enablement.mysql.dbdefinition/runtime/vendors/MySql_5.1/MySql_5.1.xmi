@@ -203,7 +203,9 @@ javaClassName="java.math.BigDecimal">
   <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
   <viewDefinition maximumIdentifierLength="64"/>
   <SQLSyntaxDefinition>
+    <keywords>ACCESSIBLE</keywords>
     <keywords>ADD</keywords>
+    <keywords>ALGORITHM</keywords>
     <keywords>ALL</keywords>
     <keywords>ALTER</keywords>
     <keywords>ANALYZE</keywords>
@@ -225,8 +227,10 @@ javaClassName="java.math.BigDecimal">
     <keywords>CHAR</keywords>
     <keywords>CHARACTER</keywords>
     <keywords>CHECK</keywords>
+    <keywords>CHECKSUM</keywords>
     <keywords>COLLATE</keywords>
     <keywords>COLUMN</keywords>
+    <keywords>COMMENT</keywords>
     <keywords>CONDITION</keywords>
     <keywords>CONNECTION</keywords>
     <keywords>CONSTRAINT</keywords>
@@ -249,6 +253,7 @@ javaClassName="java.math.BigDecimal">
     <keywords>DECIMAL</keywords>
     <keywords>DECLARE</keywords>
     <keywords>DEFAULT</keywords>
+    <keywords>DEFINER</keywords>
     <keywords>DELAYED</keywords>
     <keywords>DELETE</keywords>
     <keywords>DESC</keywords>
@@ -271,6 +276,8 @@ javaClassName="java.math.BigDecimal">
     <keywords>FALSE</keywords>
     <keywords>FETCH</keywords>
     <keywords>FLOAT</keywords>
+    <keywords>FLOAT4</keywords>
+    <keywords>FLOAT8</keywords>
     <keywords>FOR</keywords>
     <keywords>FORCE</keywords>
     <keywords>FOREIGN</keywords>
@@ -294,20 +301,29 @@ javaClassName="java.math.BigDecimal">
     <keywords>INSENSITIVE</keywords>
     <keywords>INSERT</keywords>
     <keywords>INT</keywords>
+    <keywords>INT1</keywords>
+    <keywords>INT2</keywords>
+    <keywords>INT3</keywords>
+    <keywords>INT4</keywords>
+    <keywords>INT8</keywords>
     <keywords>INTEGER</keywords>
     <keywords>INTERVAL</keywords>
     <keywords>INTO</keywords>
+    <keywords>INVOKER</keywords>
     <keywords>IS</keywords>
     <keywords>ITERATE</keywords>
     <keywords>JOIN</keywords>
+    <keywords>KEY_BLOCK_SIZE</keywords>
     <keywords>KEY</keywords>
     <keywords>KEYS</keywords>
     <keywords>KILL</keywords>
+    <keywords>LABEL</keywords>
     <keywords>LEADING</keywords>
     <keywords>LEAVE</keywords>
     <keywords>LEFT</keywords>
     <keywords>LIKE</keywords>
     <keywords>LIMIT</keywords>
+    <keywords>LINEAR</keywords>
     <keywords>LINES</keywords>
     <keywords>LOAD</keywords>
     <keywords>LOCALTIME</keywords>
@@ -318,18 +334,22 @@ javaClassName="java.math.BigDecimal">
     <keywords>LONGTEXT</keywords>
     <keywords>LOOP</keywords>
     <keywords>LOW_PRIORITY</keywords>
+    <keywords>MASTER_SSL_VERIFY_SERVER_CERT</keywords>
     <keywords>MATCH</keywords>
+    <keywords>MAX_ROWS</keywords>
     <keywords>MEDIUMBLOB</keywords>
     <keywords>MEDIUMINT</keywords>
     <keywords>MEDIUMTEXT</keywords>
+    <keywords>MERGE</keywords>
     <keywords>MIDDLEINT</keywords>
+    <keywords>MIN_ROWS</keywords>
     <keywords>MINUTE_MICROSECOND</keywords>
     <keywords>MINUTE_SECOND</keywords>
     <keywords>MOD</keywords>
     <keywords>MODIFIES</keywords>
     <keywords>NATURAL</keywords>
-    <keywords>NOT</keywords>
     <keywords>NO_WRITE_TO_BINLOG</keywords>
+    <keywords>NOT</keywords>
     <keywords>NULL</keywords>
     <keywords>NUMERIC</keywords>
     <keywords>ON</keywords>
@@ -345,6 +365,10 @@ javaClassName="java.math.BigDecimal">
     <keywords>PRIMARY</keywords>
     <keywords>PROCEDURE</keywords>
     <keywords>PURGE</keywords>
+    <keywords>RANGE</keywords>
+    <keywords>READ</keywords>
+    <keywords>READ_ONLY</keywords>
+    <keywords>READ_WRITE</keywords>
     <keywords>READ</keywords>
     <keywords>READS</keywords>
     <keywords>REAL</keywords>
@@ -360,6 +384,7 @@ javaClassName="java.math.BigDecimal">
     <keywords>REVOKE</keywords>
     <keywords>RIGHT</keywords>
     <keywords>RLIKE</keywords>
+    <keywords>ROW_FORMAT</keywords>
     <keywords>SCHEMA</keywords>
     <keywords>SCHEMAS</keywords>
     <keywords>SECOND_MICROSECOND</keywords>
@@ -373,16 +398,19 @@ javaClassName="java.math.BigDecimal">
     <keywords>SPATIAL</keywords>
     <keywords>SPECIFIC</keywords>
     <keywords>SQL</keywords>
+    <keywords>SQL_BIG_RESULT</keywords>
+    <keywords>SQL_CALC_FOUND_ROWS</keywords>
+    <keywords>SQL_SECURITY</keywords>
+    <keywords>SQL_SMALL_RESULT</keywords>
+    <keywords>SQL</keywords>
     <keywords>SQLEXCEPTION</keywords>
     <keywords>SQLSTATE</keywords>
     <keywords>SQLWARNING</keywords>
-    <keywords>SQL_BIG_RESULT</keywords>
-    <keywords>SQL_CALC_FOUND_ROWS</keywords>
-    <keywords>SQL_SMALL_RESULT</keywords>
     <keywords>SSL</keywords>
     <keywords>STARTING</keywords>
     <keywords>STRAIGHT_JOIN</keywords>
     <keywords>TABLE</keywords>
+    <keywords>TEMPTABLE</keywords>
     <keywords>TERMINATED</keywords>
     <keywords>THEN</keywords>
     <keywords>TINYBLOB</keywords>
@@ -392,12 +420,14 @@ javaClassName="java.math.BigDecimal">
     <keywords>TRAILING</keywords>
     <keywords>TRIGGER</keywords>
     <keywords>TRUE</keywords>
+    <keywords>UNDEFINED</keywords>
     <keywords>UNDO</keywords>
     <keywords>UNION</keywords>
     <keywords>UNIQUE</keywords>
     <keywords>UNLOCK</keywords>
     <keywords>UNSIGNED</keywords>
     <keywords>UPDATE</keywords>
+    <keywords>UPGRADE</keywords>
     <keywords>USAGE</keywords>
     <keywords>USE</keywords>
     <keywords>USING</keywords>
