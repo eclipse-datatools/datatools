@@ -84,7 +84,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATALINK</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" scaleSupported="true" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" identitySupported="true" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" scaleSupported="true" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
     <name>NUM</name>

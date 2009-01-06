@@ -92,7 +92,7 @@
     <name>INTEGER</name>
     <name>INT</name>
   </predefinedDataTypeDefinitions>
-  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" scaleSupported="true" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
+  <predefinedDataTypeDefinitions xmi:id="NUMERIC_1" identitySupported="true" scaleSupported="true" precisionSupported="true" defaultPrecision="5" maximumPrecision="31" defaultScale="0" keyConstraintSupported="true" primitiveType="NUMERIC" jdbcEnumType="2" javaClassName="java.math.BigDecimal">
     <defaultValueTypes>SYSTEM_DEFAULT</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>NUMERIC</name>
