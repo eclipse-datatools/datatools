@@ -165,27 +165,31 @@ public class ProfileSelectionEditorPage extends DataSourceEditorPage
      */
     protected DataSourceDesign collectDataSourceDesign( DataSourceDesign design )
     {
-        ProfileReferenceBase profileRef = collectEditedProfileRef();
+        if( m_pageHelper == null )
+            return design;  // page control is not created yet, no changes to design
         
-        // no delegation is specified, perform default update task
-        if( m_updateDesignTask == null ) 
+        ProfileReferenceBase profileRef = collectEditedProfileRef();       
+        if( profileRef != null )
         {
-            super.collectDataSourceDesign( design );
-        }
-        else    // the update task is delegated, use it to perform collectDataSourceDesign
-        {
-            try
+            // no delegation is specified, perform default update task
+            if( m_updateDesignTask == null ) 
             {
-                if( profileRef != null )
-                    design = m_updateDesignTask.collectDataSourceDesign( design, this, 
-                                    profileRef.getProfileInstance() );
+                design = super.collectDataSourceDesign( design );
             }
-            catch( OdaException ex )
+            else    // the update task is delegated, use it to perform collectDataSourceDesign
             {
-                // log warning about exception
-                DesignerLogger logger = DesignerLogger.getInstance();
-                logger.warning( sm_className, "collectDataSourceDesign( DataSourceDesign )",  //$NON-NLS-1$
-                        "Caught exception thrown by delegated collectDataSourceDesign task.", ex ); //$NON-NLS-1$
+                try
+                {
+                    design = m_updateDesignTask.collectDataSourceDesign( design, this, 
+                                        profileRef.getProfileInstance() );
+                }
+                catch( OdaException ex )
+                {
+                    // log warning about exception
+                    DesignerLogger logger = DesignerLogger.getInstance();
+                    logger.warning( sm_className, "collectDataSourceDesign( DataSourceDesign )",  //$NON-NLS-1$
+                            "Caught exception thrown by delegated collectDataSourceDesign task.", ex ); //$NON-NLS-1$
+                }
             }
         }
         
