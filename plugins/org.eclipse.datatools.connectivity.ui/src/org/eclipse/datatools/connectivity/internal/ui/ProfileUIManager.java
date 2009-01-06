@@ -15,27 +15,20 @@
 
 package org.eclipse.datatools.connectivity.internal.ui;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ui.wizards.ProfilePropertyPage;
 import org.eclipse.jface.preference.IPreferenceNode;
 import org.eclipse.jface.preference.IPreferencePage;
 import org.eclipse.jface.preference.PreferenceDialog;
-import org.eclipse.jface.preference.PreferenceManager;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.PreferencesUtil;
-import org.eclipse.ui.internal.dialogs.PropertyPageContributorManager;
-import org.eclipse.ui.internal.dialogs.PropertyPageManager;
 
 /**
  *  An internal utility class of the Connection Profile UI Manager.
- *  This currently uses internal Platform UI packages to get at property page details.
- *  It is pending switch to use Platform UI patch (Bugzilla 208830) in 3.4,
- *  when DTP no longer needs to provide backward compatibility to Platform version 3.3.  
- *  See TODO tags below.
+ *  This has now switched from using internal Platform UI packages 
+ *  to Platform UI API methods that were added in 3.4 (Bugzilla 208830). 
+ *  Backward compatibility to Eclipse Platform version 3.3 is no longer supported from DTP 1.7 on.
  *  @since DTP 1.6
  */
 public class ProfileUIManager
@@ -47,8 +40,7 @@ public class ProfileUIManager
      */
     public static boolean hasContributors( Object element ) 
     {
-        // TODO replace with call to method in org.eclipse.ui.dialogs.PreferencesUtil
-        return hasPropertiesContributors( element );
+        return PreferencesUtil.hasPropertiesContributors( element );
     }
 
     /**
@@ -64,8 +56,7 @@ public class ProfileUIManager
         if ( element == null || !(element instanceof IAdaptable) )
             return null;
 
-        // TODO replace with call to method in org.eclipse.ui.dialogs.PreferencesUtil
-        IPreferenceNode[] nodes = propertiesContributorsFor( element ); 
+        IPreferenceNode[] nodes = PreferencesUtil.propertiesContributorsFor( element ); 
         
         String[] displayedIds = new String[nodes.length]; 
         for ( int i = 0; i < nodes.length; i++ ) 
@@ -85,8 +76,7 @@ public class ProfileUIManager
      */
     public static ProfilePropertyPage createPropertyPage( IConnectionProfile profile )
     {
-        // TODO replace with call to method in org.eclipse.ui.dialogs.PreferencesUtil
-        IPreferenceNode[] nodes = propertiesContributorsFor( profile );
+        IPreferenceNode[] nodes = PreferencesUtil.propertiesContributorsFor( profile );
         
         for( int i=0; i < nodes.length; i++ )
         {
@@ -109,52 +99,6 @@ public class ProfileUIManager
         }
 
         return null;
-    }
-
-    /*
-     * TODO Below utility methods are a copy of new utility API methods added to 
-     * org.eclipse.ui.dialogs.PreferencesUtil in 3.4 M6 (Bugzilla 208830 patch 89658).
-     * Need to remove these methods when DTP no longer needs to provide 
-     * backward compatibility to Eclipse platform version 3.3.
-     */
-
-    /**
-     * Indicates whether the specified element has at least one property page
-     * contributor.
-     * 
-     * @param element
-     *            an adapter element of a property page
-     * @return true for having at least one contributor; false otherwise
-     * @since 3.4
-     */
-    public static boolean hasPropertiesContributors(Object element) {
-        if (element == null || !(element instanceof IAdaptable))
-            return false;
-        Collection contributors = PropertyPageContributorManager.getManager()
-                .getApplicableContributors(element);
-        return contributors != null && contributors.size() > 0;
-    }
-
-    /**
-     * Return all of the properties page contributors for an element.
-     * @param element
-     * @return {@link IPreferenceNode}[]
-     * @since 3.4
-     */
-    public static IPreferenceNode[] propertiesContributorsFor(Object element) {
-        PropertyPageManager pageManager = new PropertyPageManager();
-            if (element == null) {
-            return null;
-        }
-        // load pages for the selection
-        // fill the manager with contributions from the matching contributors
-        PropertyPageContributorManager.getManager().contribute(pageManager,
-                element);
-        // testing if there are pages in the manager
-        List pages =  pageManager.getElements(PreferenceManager.PRE_ORDER);
-        IPreferenceNode[] nodes = new IPreferenceNode[pages.size()];
-        pages.toArray(nodes);
-        return nodes;
     }
     
 }
