@@ -856,8 +856,10 @@ public class InternalProfileManager {
 
 		// Changed to fix bug 247599
 		//cps[index] = profile;
-		removeProfile(cps[index]);
-		addProfile(profile);
+		if(cps[index] != profile) {
+			removeProfile(cps[index]);
+			addProfile(profile);			
+		}
 
 		mIsDirty = true;
 
