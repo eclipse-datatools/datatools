@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
 import org.eclipse.datatools.connectivity.internal.ui.IHelpConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.DriverUIContributorComposite;
 import org.eclipse.datatools.help.HelpUtil;
+import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 
@@ -72,7 +73,7 @@ public class ExtensibleProfileDetailsWizardPage extends
 		if (driverCombo.getCombo().getItemCount() > 0) {
 			driverCombo.getCombo().select(0);
 		} else if (driverCombo.getErrorMessage() != null) {
-			setErrorMessage(driverCombo.getErrorMessage());
+			setMessage(driverCombo.getErrorMessage(), DialogPage.INFORMATION);//ErrorMessage(driverCombo.getErrorMessage());
 		}
 	}
 
@@ -84,6 +85,9 @@ public class ExtensibleProfileDetailsWizardPage extends
 	private void handleDriverComboSelectionChangeEvent(ChangeEvent e) {
 		if (driverCombo.getErrorMessage() != null) {
 			setErrorMessage(driverCombo.getErrorMessage());
+		}
+		else {
+			setMessage(null);
 		}
 		if (driverCombo.getSelectedDriverInstance() != null) {
 			this.properties = copyProperties(driverCombo
