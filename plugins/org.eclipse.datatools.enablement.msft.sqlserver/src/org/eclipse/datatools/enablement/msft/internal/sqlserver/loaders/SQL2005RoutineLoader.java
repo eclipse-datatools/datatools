@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.msft.internal.sqlserver.loaders;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,9 +38,21 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 	public static final String COLUMN_ROUTINE_TYPE = "ROUTINE_TYPE";
 	public static final String COLUMN_ROUTINE_DEFINITION = "ROUTINE_DEFINITION";
 
+	private static final String ROUTINE_QUERY = "select SPECIFIC_CATALOG as \'" + COLUMN_ROUTINE_CATALOG + "\', "
+	+ "SPECIFIC_SCHEMA as \'" + COLUMN_ROUTINE_SCHEMA + "\', " + "ROUTINE_NAME as \'"
+	+ COLUMN_ROUTINE_NAME + "\', " + "ROUTINE_DEFINITION as \'" + COLUMN_ROUTINE_DEFINITION + "\', "
+	+ "ROUTINE_TYPE as \'" + COLUMN_ROUTINE_TYPE + "\' " 
+	+ "from catalogName.INFORMATION_SCHEMA.ROUTINES "
+	+ "where SPECIFIC_SCHEMA = ?";
+		
 	private IRoutineFactory mUserDefinedFunctionFactory;
 	private IRoutineFactory mProcedureFactory;
 
+	private static final String getRoutineQuery(String catalogName)
+	{
+		return ROUTINE_QUERY.replaceAll("catalogName", catalogName);
+	}
+	
 	public static class SQL2005ProcedureFactory extends ProcedureFactory {
 
 		private Database database = null;
@@ -117,23 +129,21 @@ public class SQL2005RoutineLoader extends JDBCRoutineLoader {
 	}
 
 	protected ResultSet createResultSet() throws SQLException {
-		String schemaName = getSchema().getName();
 		String catalogName = getSchema().getCatalog().getName();
-		String query = "select INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG as \'" + COLUMN_ROUTINE_CATALOG + "\', "
-				+ "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA as \'" + COLUMN_ROUTINE_SCHEMA + "\', " + "INFORMATION_SCHEMA.ROUTINES.ROUTINE_NAME as \'"
-				+ COLUMN_ROUTINE_NAME + "\', " + "INFORMATION_SCHEMA.ROUTINES.ROUTINE_DEFINITION as \'" + COLUMN_ROUTINE_DEFINITION + "\', "
-				+ "INFORMATION_SCHEMA.ROUTINES.ROUTINE_TYPE as \'" + COLUMN_ROUTINE_TYPE + "\' " + "from INFORMATION_SCHEMA.ROUTINES where "
-				+ "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_CATALOG = \'" + catalogName + "\' and " + "INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA = \'"
-				+ schemaName + "\'";
+		String schemaName = getSchema().getName();
+		
+		String query = getRoutineQuery(catalogName);
+
 		if (getJDBCFilterPattern() != null && getJDBCFilterPattern().length() > 0) {
 			String filter = " AND ALIAS LIKE " + getJDBCFilterPattern();//$NON-NLS-1$
 			query = query + filter;
 		}
 		query = query + " ORDER BY " + COLUMN_ROUTINE_NAME;
 
-		Statement s = getCatalogObject().getConnection().createStatement();
-		ResultSet r = s.executeQuery(query);
-		return r;
+		PreparedStatement prepareStatement = getCatalogObject().getConnection().prepareStatement(query);			
+		prepareStatement.setString(1, schemaName);
+		
+		return prepareStatement.executeQuery();
 	}
 
 	protected boolean isProcedure(ResultSet rs) throws SQLException {

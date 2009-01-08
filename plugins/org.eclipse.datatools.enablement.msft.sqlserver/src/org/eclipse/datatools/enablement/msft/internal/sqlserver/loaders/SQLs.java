@@ -20,15 +20,15 @@ public class SQLs {
 	
 	public static final String SELECT_OBJ_BY_NAME_2000 = "execute sp_helptext ?";
 
-	public static final String QUERY_UDTS = "select sys.types.name as TYPE_NAME,sys.types.system_type_id as BASE_TYPE, 2001 as DATA_TYPE, '' as REMARKS, BASETYPE.name as BASE_NAME, BASETYPE.system_type_id, BASETYPE.precision, BASETYPE.scale FROM sys.types JOIN sys.types AS BASETYPE ON sys.types.system_type_id = BASETYPE.user_type_id and sys.types.user_type_id <> sys.types.system_type_id join sys.schemas on sys.types.schema_id=sys.schemas.schema_id where sys.schemas.name = ?";
-
 	public static final String QUERY_TRIGGERS = "SELECT t.*, m.*, o.* FROM sys.triggers t INNER JOIN sys.sql_modules m ON t.object_id = m.object_id	inner join sys.objects o on o.object_id = t.parent_id WHERE t.type = 'TR' AND t.parent_class = 1 and o.name= ?";
 	
 	public static final String TRIGGER_SCHEMA = "select b.name from sys.all_objects a inner join sys.schemas b on a.schema_id=b.schema_id where object_id = ?";
 	
 	public static final String TRIGGER_EVENTS = "select b.type from sys.all_objects a inner join sys.trigger_events b on a.object_id=b.object_id where a.object_id = ?";
-	
-	
+		
 	public static final String QUERY_TRIGGERS_2000 = "execute sp_helptrigger ?";
+	
+	
+	
 	
 }

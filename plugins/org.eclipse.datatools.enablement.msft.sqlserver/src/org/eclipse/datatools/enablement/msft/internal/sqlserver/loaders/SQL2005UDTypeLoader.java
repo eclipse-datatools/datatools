@@ -28,6 +28,7 @@ import org.eclipse.datatools.modelbase.sql.datatypes.impl.NumericalDataTypeImpl;
 
 public class SQL2005UDTypeLoader extends JDBCUserDefinedTypeLoader {
 
+	
 	private static final class DistinctTypeFactoryExtension extends DistinctTypeFactory {
 		public DistinctTypeFactoryExtension(DatabaseDefinition databaseDefinition) {
 			super(databaseDefinition);
@@ -52,16 +53,27 @@ public class SQL2005UDTypeLoader extends JDBCUserDefinedTypeLoader {
 		}
 	}
 
+	private static final String USER_DEFINED_TYPE_QUERY = "select userType.name as " + COLUMN_TYPE_NAME + ", baseType.user_type_id as " + COLUMN_BASE_TYPE + ", 2001 as " + COLUMN_DATA_TYPE + ", '' as " + COLUMN_REMARKS + ", baseType.name as BASE_NAME, baseType.system_type_id, baseType.precision, baseType.scale from catalogName.sys.types userType inner join catalogName.sys.schemas schemas on schemas.schema_id = userType.schema_id inner join catalogName.sys.types baseType on userType.system_type_id = baseType.user_type_id where userType.is_user_defined = 1 and schemas.name = ?";
+	
+	private static final String getUDTypeQuery(String catalogName)
+	{
+		return USER_DEFINED_TYPE_QUERY.replaceAll("catalogName", catalogName);
+	}
+
 	public SQL2005UDTypeLoader(ICatalogObject catalogObject) {
 		super(catalogObject, new SchemaObjectFilterProvider(ConnectionFilter.USER_DEFINED_TYPE_FILTER), new DistinctTypeFactoryExtension(RDBCorePlugin
 				.getDefault().getDatabaseDefinitionRegistry().getDefinition(catalogObject.getCatalogDatabase())), new StructTypeFactory(), null);
 	}
 
 	protected ResultSet createResultSet() throws SQLException {
-		getCatalogObject().getConnection().getMetaData().getUDTs(getSchema().getCatalog().getName(), getSchema().getName(), getJDBCFilterPattern(), null);
-		PreparedStatement prepareStatement = getCatalogObject().getConnection().prepareStatement(SQLs.QUERY_UDTS);
-		prepareStatement.setString(1, getSchema().getName());
+		String schemaName = getSchema().getName();		
+		String catalogName = getSchema().getCatalog().getName();
+		
+		getCatalogObject().getConnection().getMetaData().getUDTs(catalogName, schemaName, getJDBCFilterPattern(), null);
+		
+		PreparedStatement prepareStatement = getCatalogObject().getConnection().prepareStatement(getUDTypeQuery(catalogName));			
+		prepareStatement.setString(1, schemaName);
+		
 		return prepareStatement.executeQuery();
 	}
-
 }
