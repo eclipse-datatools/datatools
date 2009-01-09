@@ -187,7 +187,7 @@
   </constraintDefinition>
   <triggerDefinition maximumIdentifierLength="128"/>
   <indexDefinition maximumIdentifierLength="128"/>
-  <viewDefinition maximumIdentifierLength="128" indexSupported="true"/>
+  <viewDefinition maximumIdentifierLength="128" indexSupported="true" checkOptionLevelsSupported="true"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="10"/>
   <queryDefinition hostVariableMarker=":"/>

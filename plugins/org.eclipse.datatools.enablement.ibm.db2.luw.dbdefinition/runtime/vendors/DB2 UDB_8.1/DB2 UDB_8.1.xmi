@@ -164,7 +164,7 @@ userSupported="true" groupSupported="true" packageSupported="true">
   <indexDefinition clusteringSupported="true" maximumIdentifierLength="18"/>
   <queryDefinition hostVariableMarker=":"/>
   <nicknameDefinition maximumIdentifierLength="128" constraintSupported="true" indexSupported="true"/>
-  <viewDefinition maximumIdentifierLength="128"/>
+  <viewDefinition maximumIdentifierLength="128" checkOptionLevelsSupported="true"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="30"/>
     <privilegedElementDefinitions name="Database">
