@@ -907,6 +907,8 @@
 	
 	<queryDefinition identifierQuoteString="&quot;" hostVariableMarker="@"
 		hostVariableMarkerSupported="true"/>
+		
+	<viewDefinition checkOptionSupported="false"/>
 	
 	<SQLSyntaxDefinition>
 		<keywords>ABORT</keywords>
