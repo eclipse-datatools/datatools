@@ -201,7 +201,7 @@ javaClassName="java.math.BigDecimal">
   <tableDefinition maximumIdentifierLength="64"/>
   <udtDefinition/>
   <queryDefinition identifierQuoteString="`" hostVariableMarker="@" hostVariableMarkerSupported="true"/>
-  <viewDefinition maximumIdentifierLength="64"/>
+  <viewDefinition maximumIdentifierLength="64" checkOptionLevelsSupported="true"/>
   <SQLSyntaxDefinition>
     <keywords>ADD</keywords>
     <keywords>ALGORITHM</keywords>
