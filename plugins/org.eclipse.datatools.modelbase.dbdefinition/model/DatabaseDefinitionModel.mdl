@@ -1417,6 +1417,13 @@
 				type       	"int")
 			    (object ClassAttribute "indexSupported"
 				quid       	"472A21830330"
+				type       	"boolean")
+			    (object ClassAttribute "checkOptionSupported"
+				quid       	"4910E2E90231"
+				type       	"boolean"
+				initv      	"true")
+			    (object ClassAttribute "checkOptionLevelsSupported"
+				quid       	"4910EC8C021A"
 				type       	"boolean")))
 		    (object Class "FieldQualifierDefinition"
 			quid       	"4383D6E300C7"
@@ -1479,8 +1486,8 @@
 		zoom       	71
 		max_height 	28350
 		max_width  	21600
-		origin_x   	8294
-		origin_y   	5678
+		origin_x   	898
+		origin_y   	4772
 		items      	(list diagram_item_list
 		    (object ClassView "Class" "Logical View::DatabaseModel::ParameterStyle" @1
 			ShowCompartmentStereotypes 	TRUE
@@ -1666,7 +1673,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@4
-			    location   	(286, 7071)
+			    location   	(286, 7074)
 			    fill_color 	13434879
 			    nlines     	1
 			    max_width  	712
@@ -1722,7 +1729,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@5
-			    location   	(1117, 6958)
+			    location   	(1117, 6961)
 			    fill_color 	13434879
 			    nlines     	1
 			    max_width  	886
@@ -2850,10 +2857,10 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@32
-			    location   	(1236, 3835)
+			    location   	(1139, 3782)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	732
+			    max_width  	926
 			    justify    	0
 			    label      	"ViewDefinition")
 			icon_style 	"Icon"
@@ -2862,7 +2869,7 @@
 			quidu      	"437A2328010D"
 			compartment 	(object Compartment
 			    Parent_View 	@32
-			    location   	(1236, 3959)
+			    location   	(1139, 3906)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -2875,10 +2882,10 @@
 			    icon_style 	"Icon"
 			    fill_color 	13434879
 			    anchor     	2
-			    nlines     	3
-			    max_width  	620)
-			width      	750
-			height     	312
+			    nlines     	5
+			    max_width  	787)
+			width      	944
+			height     	418
 			annotation 	8
 			autoResize 	TRUE)
 		    (object ClassView "Class" "Logical View::DatabaseModel::PredefinedDataTypeDefinition" @33
@@ -2922,7 +2929,7 @@
 			    fill_color 	16777215
 			    anchor     	2
 			    nlines     	44
-			    max_width  	942)
+			    max_width  	950)
 			width      	1126
 			height     	2662
 			annotation 	8
@@ -3104,7 +3111,7 @@
 				supplier   	@33
 				line_style 	3
 				origin_attachment 	(6800, 4773)
-				terminal_attachment 	(6800, 4287)
+				terminal_attachment 	(6800, 4286)
 				label      	(object SegLabel @43
 				    Parent_View 	@41
 				    location   	(6765, 4387)
@@ -5531,7 +5538,7 @@
 				    height     	54
 				    orientation 	1))))
 		    (object AssociationViewNew "$UNNAMED$34" @159
-			location   	(2807, 3931)
+			location   	(2856, 3931)
 			font       	(object Font
 			    size       	12
 			    face       	"Arial"
@@ -5547,7 +5554,7 @@
 			roleview_list 	(list RoleViews
 			    (object RoleView "viewDefinition" @160
 				Parent_View 	@159
-				location   	(-1481, 219)
+				location   	(-1432, 219)
 				font       	(object Font
 				    size       	12
 				    face       	"Arial"
@@ -5559,7 +5566,7 @@
 				    default_color 	TRUE)
 				label      	(object SegLabel @161
 				    Parent_View 	@160
-				    location   	(2274, 3876)
+				    location   	(2353, 3876)
 				    font       	(object Font
 					size       	12
 					face       	"Arial"
@@ -5584,11 +5591,11 @@
 				client     	@159
 				supplier   	@32
 				line_style 	3
-				origin_attachment 	(2807, 3931)
-				terminal_attachment 	(1977, 3931)
+				origin_attachment 	(2856, 3931)
+				terminal_attachment 	(2074, 3931)
 				label      	(object SegLabel @162
 				    Parent_View 	@160
-				    location   	(2061, 3985)
+				    location   	(2153, 3985)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -5609,7 +5616,7 @@
 				    orientation 	0))
 			    (object RoleView "$UNNAMED$35" @163
 				Parent_View 	@159
-				location   	(-1481, 219)
+				location   	(-1432, 219)
 				font       	(object Font
 				    size       	12
 				    face       	"Arial"
@@ -5625,11 +5632,11 @@
 				client     	@159
 				supplier   	@79
 				line_style 	3
-				origin_attachment 	(2807, 3931)
+				origin_attachment 	(2856, 3931)
 				terminal_attachment 	(3638, 3931)
 				label      	(object SegLabel @164
 				    Parent_View 	@163
-				    location   	(3554, 3985)
+				    location   	(3559, 3985)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"

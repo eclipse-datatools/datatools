@@ -315,6 +315,8 @@
     <genClasses ecoreClass="dbdefinition.ecore#//ViewDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/maximumIdentifierLength"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/indexSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/checkOptionSupported"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dbdefinition.ecore#//ViewDefinition/checkOptionLevelsSupported"/>
     </genClasses>
     <genClasses ecoreClass="dbdefinition.ecore#//FieldQualifierDefinition">
       <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference dbdefinition.ecore#//FieldQualifierDefinition/validTrailingFieldQualifierDefinitions"/>
