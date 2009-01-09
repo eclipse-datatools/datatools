@@ -29,4 +29,5 @@
     <checkOption>LOCAL</checkOption>
     <checkOption>CASCADE</checkOption>
   </constraintDefinition>
+  <viewDefinition checkOptionSupported="false"/>
 </DBDefinition:DatabaseVendorDefinition>
