@@ -117,7 +117,7 @@
   </constraintDefinition>
   <queryDefinition hostVariableMarker=":"/>
   <indexDefinition clusteringSupported="false" maximumIdentifierLength="128"/>
-  <viewDefinition maximumIdentifierLength="128"/>
+  <viewDefinition maximumIdentifierLength="128" checkOptionSupported="false"/>
   <tableDefinition maximumIdentifierLength="128"/>
   <schemaDefinition maximumIdentifierLength="128"/>
   <SQLSyntaxDefinition>

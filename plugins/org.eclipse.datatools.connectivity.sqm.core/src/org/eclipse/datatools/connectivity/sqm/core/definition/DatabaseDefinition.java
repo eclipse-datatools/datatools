@@ -160,4 +160,8 @@ public interface DatabaseDefinition {
 	
 	public String getLenghtSemantic(CharacterStringDataType characterStringDataType);
 	public void setLenghtSemantic(CharacterStringDataType characterStringDataType, String value);
+	
+	public boolean supportsViewCheckOption();
+	public boolean supportsViewCheckOptionLevels();
+	public List getViewCheckOptionLevels();
 }

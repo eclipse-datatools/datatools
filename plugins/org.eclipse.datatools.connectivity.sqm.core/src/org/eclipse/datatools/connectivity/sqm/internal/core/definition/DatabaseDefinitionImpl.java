@@ -81,6 +81,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.SQLSchemaPackage;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 import org.eclipse.datatools.modelbase.sql.tables.BaseTable;
+import org.eclipse.datatools.modelbase.sql.tables.CheckType;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.datatools.modelbase.sql.tables.SQLTablesPackage;
 import org.eclipse.datatools.modelbase.sql.tables.Trigger;
@@ -2092,6 +2093,44 @@ public class DatabaseDefinitionImpl implements DatabaseDefinition {
 		if (eAnnotation != null) {
 			characterStringDataType.addEAnnotationDetail(eAnnotation, LENGTH_SEMANTIC_TYPE, value);
 		}
+	}
+	
+	public boolean supportsViewCheckOption() {
+		this.loadDatabaseDefinition();
+		ViewDefinition viewDefinition = this.databaseVendorDefinition.getViewDefinition();
+		if (viewDefinition != null) {
+			return viewDefinition.isCheckOptionSupported();
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean supportsViewCheckOptionLevels() {
+		this.loadDatabaseDefinition();
+		ViewDefinition viewDefinition = this.databaseVendorDefinition.getViewDefinition();
+		if (viewDefinition != null) {
+			return viewDefinition.isCheckOptionLevelsSupported();
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public List getViewCheckOptionLevels() {
+		List checkOptionLevels = new ArrayList();
+		if (this.supportsViewCheckOption()) {
+			if (this.supportsViewCheckOptionLevels()) {
+				checkOptionLevels.add(CheckType.NONE_LITERAL);
+				checkOptionLevels.add(CheckType.CASCADED_LITERAL);
+				checkOptionLevels.add(CheckType.LOCAL_LITERAL);
+			}
+			else {
+				checkOptionLevels.add(CheckType.NONE_LITERAL);
+			}
+		}
+		
+		return checkOptionLevels;
 	}
 	
 	private String product;
