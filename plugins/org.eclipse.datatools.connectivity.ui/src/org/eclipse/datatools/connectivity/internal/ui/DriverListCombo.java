@@ -690,7 +690,7 @@ public class DriverListCombo {
 								DriverValidator validator = new DriverValidator(
 										template, ps);
 								DriverListCombo.this.mErrorMessage = null;
-								if (!validator.isValid()) {
+								if (!validator.isValid(false)) {
 									DriverListCombo.this.mErrorMessage = validator
 											.getMessage();
 								}
@@ -735,7 +735,7 @@ public class DriverListCombo {
 								DriverValidator validator = new DriverValidator(
 										template, ps);
 								DriverListCombo.this.mErrorMessage = null;
-								if (!validator.isValid()) {
+								if (!validator.isValid(false)) {
 									DriverListCombo.this.mErrorMessage = validator
 											.getMessage();
 								}
@@ -820,7 +820,7 @@ public class DriverListCombo {
 									DriverValidator validator = new DriverValidator(
 											template, temp);
 									DriverListCombo.this.mErrorMessage = null;
-									if (!validator.isValid()) {
+									if (!validator.isValid(false)) {
 										DriverListCombo.this.mErrorMessage = validator
 												.getMessage();
 									}
@@ -910,7 +910,7 @@ public class DriverListCombo {
 									DriverValidator validator = new DriverValidator(
 											template, temp);
 									DriverListCombo.this.mErrorMessage = null;
-									if (!validator.isValid()) {
+									if (!validator.isValid(false)) {
 										DriverListCombo.this.mErrorMessage = validator
 										.getMessage();
 									}
@@ -1020,7 +1020,7 @@ public class DriverListCombo {
 									DriverValidator validator = new DriverValidator(
 											template, temp);
 									DriverListCombo.this.mErrorMessage = null;
-									if (!validator.isValid()) {
+									if (!validator.isValid(false)) {
 										DriverListCombo.this.mErrorMessage = validator
 												.getMessage();
 									}
