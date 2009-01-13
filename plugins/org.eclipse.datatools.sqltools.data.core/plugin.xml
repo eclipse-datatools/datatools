@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-   <extension-point id="columnDataAccessors" name="Column Data Accessors" schema="schema/columnDataAccessors.exsd"/>
-
+	<extension-point id="columnDataAccessors" name="Column Data Accessors" schema="schema/columnDataAccessors.exsd"/>
+	<extension-point id="tableEditorResultFilter" name="External Filter for Table Editor" schema="schema/tableEditorResultFilter.exsd"/>
+ 	
 </plugin>

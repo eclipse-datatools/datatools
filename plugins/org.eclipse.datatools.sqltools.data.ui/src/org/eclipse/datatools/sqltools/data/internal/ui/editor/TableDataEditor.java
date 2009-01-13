@@ -360,8 +360,8 @@ public class TableDataEditor extends EditorPart
     {
         TextCellEditor textEditor = new TableDataCellEditor(this, tableViewer.getTable());
         
-        CellEditor[] editors = new CellEditor[sqlTable.getColumns().size()];
-        String[] properties = new String[sqlTable.getColumns().size()];
+        CellEditor[] editors = new CellEditor[tableData.getColumnCount()];
+        String[] properties = new String[tableData.getColumnCount()];
 
         for (int i=0; i<tableData.getColumnCount(); ++i) {
             TableColumn col = new TableColumn(tableViewer.getTable(), SWT.NONE);

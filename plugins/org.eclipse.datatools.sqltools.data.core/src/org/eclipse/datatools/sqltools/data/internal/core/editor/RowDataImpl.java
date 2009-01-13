@@ -94,9 +94,7 @@ public class RowDataImpl extends AbstractRowData
             		cols.add(table.getQuotedColumnName(i));            		
     			}
     		}                            
-        }
-        if (cols.size()==table.getColumnCount())
-            return new Vector();
+        }        
         return cols;
     }
     

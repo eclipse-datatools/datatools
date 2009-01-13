@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.List;
+import java.util.ArrayList;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
@@ -39,6 +41,7 @@ import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.IColumnDataAccessor;
 import org.eclipse.datatools.sqltools.data.internal.core.common.Output;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.TableEditorFilterRegistryReader;
 
 
 /**
@@ -80,6 +83,9 @@ public class TableDataImpl implements ITableData {
     /** The table is readonly because it is not a base table (view). */
     protected boolean readonly;
     
+    /** The actual columns in the result */
+    protected List resultColumns;
+    
     
 
     public TableDataImpl(Table sqlTable) throws SQLException, IOException, Exception
@@ -94,26 +100,99 @@ public class TableDataImpl implements ITableData {
         } else {
             readonly = true;
         }
+        resultColumns = new ArrayList();
         
-        Statement stmt = con.createStatement();
-        boolean setLimit = RDBCorePlugin.getDefault().getPluginPreferences().getBoolean(RDBCorePluginConstants.LIMIT_ROWS_RETRIEVED);
-        if (setLimit) {
-            int integer = RDBCorePlugin.getDefault().getPluginPreferences().getInt(RDBCorePluginConstants.MAX_ROW_RETRIEVED);
-            stmt.setMaxRows(integer);
-        } else {
-            stmt.setMaxRows(0);
+        // If external filter exists then construct differently
+        TableEditorFilterRegistryReader filterRegistryReader = TableEditorFilterRegistryReader.getInstance();
+        if (filterRegistryReader.isExtenionFound() && !filterRegistryReader.isFilterCanceled()
+        		&& filterRegistryReader.isMatchingVendor(sqlTable))
+        {
+        	constructFilteredTableData();
         }
-        
-        colDataAccessor = new IColumnDataAccessor[sqlTable.getColumns().size()];
-        for (int i=0; i<sqlTable.getColumns().size(); ++i) {
-            Column sqlCol = (Column) sqlTable.getColumns().get(i);
-            colDataAccessor[i] = DataCorePlugin.getDefault().newColumnDataAccessor(sqlCol);
+        else
+        { // do it the original way        
+	        Statement stmt = con.createStatement();
+	        boolean setLimit = RDBCorePlugin.getDefault().getPluginPreferences().getBoolean(RDBCorePluginConstants.LIMIT_ROWS_RETRIEVED);
+	        if (setLimit) {
+	            int integer = RDBCorePlugin.getDefault().getPluginPreferences().getInt(RDBCorePluginConstants.MAX_ROW_RETRIEVED);
+	            stmt.setMaxRows(integer);
+	        } else {
+	            stmt.setMaxRows(0);
+	        }
+	        
+	        colDataAccessor = new IColumnDataAccessor[sqlTable.getColumns().size()];
+	        for (int i=0; i<sqlTable.getColumns().size(); ++i) {
+	            Column sqlCol = (Column) sqlTable.getColumns().get(i);
+	            resultColumns.add(sqlCol);
+	            colDataAccessor[i] = DataCorePlugin.getDefault().newColumnDataAccessor(sqlCol);
+	        }
+	        
+	        String selectStmt = computeSelectStatement();
+	        ResultSet rs = stmt.executeQuery(selectStmt);
+	        
+	        ResultSetMetaData rsmd = rs.getMetaData();
+	        int cc = rsmd.getColumnCount();
+	        colTtypes = new int[cc];
+	        colNames = new String[cc];  
+	        colTypeNames = new String[cc];
+	        for (int i=0; i<cc; ++i) {
+	            colTtypes[i] = rsmd.getColumnType(i+1);
+	            colNames[i] = rsmd.getColumnName(i+1); 
+	            colTypeNames[i] = rsmd.getColumnTypeName(i+1);
+	        }	        
+	        
+	        while (rs.next()) {
+	            Object[] a = new Object[cc];
+	            for (int col=0; col<cc; ++col)
+	                a[col] = colDataAccessor[col].read(rs, col, colTtypes[col], true);
+	            RowDataImpl row = new RowDataImpl(this, RowDataImpl.STATE_ORIGINAL, a);
+	            rows.add(row);
+	        }
+	        rs.close();
+	        stmt.close();
         }
+    }
+    
+    /**
+     * Constructs TableDataImpl when user opt to filter the table results being returned     
+     */
+    protected void constructFilteredTableData() throws SQLException, IOException, Exception
+    {
+    	String selectStmt = null;
+        ResultSet rs = null;
+        Statement stmt = null;
         
-        String selectStmt = computeSelectStatement();
-        ResultSet rs = stmt.executeQuery(selectStmt);
-        
-        ResultSetMetaData rsmd = rs.getMetaData();
+        TableEditorFilterRegistryReader filterRegistryReader = TableEditorFilterRegistryReader.getInstance();
+        ITableEditorResultFilter filterClass = filterRegistryReader.getTableEditorResultFilter();
+    	if (filterClass.isReturningResultSet())
+    	{
+    		rs = filterClass.getResultSet();
+    	}
+    	else
+    	{
+    		selectStmt = filterClass.getSQLQueryString();
+    		stmt = con.createStatement();
+    		rs = stmt.executeQuery(selectStmt);
+    	}
+    	ResultSetMetaData rsmd = rs.getMetaData();
+        colDataAccessor = new IColumnDataAccessor[rsmd.getColumnCount()];
+        List filterdColumnNames = new ArrayList(rsmd.getColumnCount());
+        for (int x=0;x<rsmd.getColumnCount();x++)
+        {
+        	filterdColumnNames.add(rsmd.getColumnName(x+1));
+        }
+        int index = 0;
+        for (int i=0;i<sqlTable.getColumns().size();++i) 
+        {
+        	// check name against column name that is actually in the 
+        	// filtered result before creating
+            Column sqlCol = (Column) sqlTable.getColumns().get(i);            
+            if (sqlCol != null && filterdColumnNames.contains(sqlCol.getName()))
+            {
+            	resultColumns.add(sqlCol);
+            	colDataAccessor[index++] = DataCorePlugin.getDefault().newColumnDataAccessor(sqlCol);
+            }            
+        }
         int cc = rsmd.getColumnCount();
         colTtypes = new int[cc];
         colNames = new String[cc];  
@@ -122,7 +201,7 @@ public class TableDataImpl implements ITableData {
             colTtypes[i] = rsmd.getColumnType(i+1);
             colNames[i] = rsmd.getColumnName(i+1); 
             colTypeNames[i] = rsmd.getColumnTypeName(i+1);
-        }
+        }        
         
         while (rs.next()) {
             Object[] a = new Object[cc];
@@ -132,7 +211,11 @@ public class TableDataImpl implements ITableData {
             rows.add(row);
         }
         rs.close();
-        stmt.close();
+        if (stmt != null)
+        {
+        	stmt.close();
+        }
+
     }
     
     protected String computeSelectStatement()
@@ -185,11 +268,13 @@ public class TableDataImpl implements ITableData {
     }
     
     public int getColumnCount() {
-        return sqlTable.getColumns().size();
+        //return sqlTable.getColumns().size();
+    	return resultColumns.size();
     }
     
     public String getColumnHeader(int col) {
-        Column sqlCol = (Column) sqlTable.getColumns().get(col);
+        //Column sqlCol = (Column) sqlTable.getColumns().get(col);
+        Column sqlCol = (Column) resultColumns.get(col);
         return sqlCol.getName() + " [" + getFormattedTypeName(sqlCol) + "]";  //$NON-NLS-1$//$NON-NLS-2$
     }
     
@@ -216,7 +301,8 @@ public class TableDataImpl implements ITableData {
     
     public String getColumnName(int col)
     {
-        Column sqlCol = (Column) sqlTable.getColumns().get(col);
+        //Column sqlCol = (Column) sqlTable.getColumns().get(col);
+        Column sqlCol = (Column) resultColumns.get(col);
         return sqlCol.getName();
     }
     

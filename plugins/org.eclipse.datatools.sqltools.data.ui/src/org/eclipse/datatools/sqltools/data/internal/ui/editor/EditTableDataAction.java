@@ -20,6 +20,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.TableEditorFilterRegistryReader;
+import org.eclipse.datatools.sqltools.data.internal.core.editor.ITableEditorResultFilter;
 
 public class EditTableDataAction extends AbstractAction
 {
@@ -36,19 +38,36 @@ public class EditTableDataAction extends AbstractAction
     {    	
     	if (table == null)
             return;
-
-        IWorkbenchPage workbenchPage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-
-        try
-        {
-            workbenchPage.openEditor(new TableDataEditorInput(table),
-                    "org.eclipse.datatools.sqltools.data.internal.ui.editor.tableDataEditor"); //$NON-NLS-1$
-        }
-        catch (PartInitException e)
-        {
-            DataUIPlugin.getDefault().writeLog(IStatus.ERROR, 0, e.getMessage(), e);
-        }
-
+    	
+    	// check for extensions here
+    	boolean keepGoing = true;
+    	TableEditorFilterRegistryReader filterReader = TableEditorFilterRegistryReader.getInstance();
+    	if (filterReader.isExtenionFound() && filterReader.isMatchingVendor(table))
+    	{    		
+    		ITableEditorResultFilter filterExecutable = filterReader.createTableEditorResultFilterExecutable();
+    		if (filterExecutable.isUseExternalFilterDialog())
+    		{
+    			// use external filter dialog to get filter
+    			filterExecutable.setTable(table);
+    			keepGoing = filterExecutable.open();
+    			filterReader.setFilterCanceled(!keepGoing);
+    		}
+    	}
+    	if (keepGoing)
+    	{
+    		// launch editor when either there is no extension or user did not cancel
+	        IWorkbenchPage workbenchPage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+	
+	        try
+	        {
+	            workbenchPage.openEditor(new TableDataEditorInput(table),
+	                    "org.eclipse.datatools.sqltools.data.internal.ui.editor.tableDataEditor"); //$NON-NLS-1$
+	        }
+	        catch (PartInitException e)
+	        {
+	            DataUIPlugin.getDefault().writeLog(IStatus.ERROR, 0, e.getMessage(), e);
+	        }
+    	}
     }
 
     public void selectionChanged(SelectionChangedEvent event)
