@@ -179,7 +179,7 @@ public class CPPropetyPage extends PropertyPage
 	private void validate() {
 		String errorMessage = null;
 
-		if (txtProfileName.getText().length() == 0) {
+		if (txtProfileName.getText().trim().length() == 0) {
 			errorMessage = ConnectivityUIPlugin.getDefault().getResourceString(
 					"NewConnectionProfileWizardPage.Status.NoName"); //$NON-NLS-1$
 		}
