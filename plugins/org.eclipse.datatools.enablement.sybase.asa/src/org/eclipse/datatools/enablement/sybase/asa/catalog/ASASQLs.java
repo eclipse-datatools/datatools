@@ -100,4 +100,17 @@ public interface ASASQLs {
     // Schema
     static final String QUERY_SCHEMAS = "SELECT TRIM(user_name) TABLE_SCHEM from SYS.SYSUSERPERMS ORDER BY user_name";
 
+	// for ASA connection option set
+    static final String SET_TEMPORARY_OPTION = "set temporary OPTION ";
+    
+    static final String QUOTED_IDENTIFIER = "quoted_identifier";
+    
+    // for IQ connection option set
+    static final String QUERY_NAME = "query_name";
+    static final String QUERY_PLAN = "query_plan";
+    static final String QUERY_DETAIL = "query_detail";
+    static final String QUERY_PLAN_AFTER_RUN = "query_plan_after_run";
+    static final String QUERY_PLAN_AS_HTML = "query_plan_as_html";
+    static final String ASE_BINARY_DISPLAY = "ase_binary_display";
+    static final String ISOLATION_LEVEL = "ISOLATION_LEVEL";
 }
