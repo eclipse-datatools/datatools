@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,15 +17,14 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Iterator;
-import java.util.Vector;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
-import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
 import org.eclipse.datatools.modelbase.sql.constraints.ReferenceConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.TableConstraint;
 import org.eclipse.datatools.modelbase.sql.constraints.UniqueConstraint;
@@ -40,8 +39,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Table;
 import org.eclipse.datatools.sqltools.data.internal.core.DataCorePlugin;
 import org.eclipse.datatools.sqltools.data.internal.core.common.IColumnDataAccessor;
 import org.eclipse.datatools.sqltools.data.internal.core.common.Output;
+import org.eclipse.datatools.sqltools.result.ResultsViewAPI;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.datatools.sqltools.data.internal.core.editor.TableEditorFilterRegistryReader;
 
 
 /**
@@ -112,12 +111,10 @@ public class TableDataImpl implements ITableData {
         else
         { // do it the original way        
 	        Statement stmt = con.createStatement();
-	        boolean setLimit = RDBCorePlugin.getDefault().getPluginPreferences().getBoolean(RDBCorePluginConstants.LIMIT_ROWS_RETRIEVED);
-	        if (setLimit) {
-	            int integer = RDBCorePlugin.getDefault().getPluginPreferences().getInt(RDBCorePluginConstants.MAX_ROW_RETRIEVED);
-	            stmt.setMaxRows(integer);
-	        } else {
-	            stmt.setMaxRows(0);
+	        int maxRowsPrefence = ResultsViewAPI.getInstance().getMaxRowPreference();
+	        if (maxRowsPrefence >= 0)
+	        {
+	        	stmt.setMaxRows(maxRowsPrefence);
 	        }
 	        
 	        colDataAccessor = new IColumnDataAccessor[sqlTable.getColumns().size()];
