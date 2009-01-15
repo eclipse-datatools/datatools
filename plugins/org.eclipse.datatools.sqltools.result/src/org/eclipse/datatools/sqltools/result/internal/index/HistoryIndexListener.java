@@ -13,8 +13,8 @@ package org.eclipse.datatools.sqltools.result.internal.index;
 import java.util.List;
 
 import org.eclipse.datatools.sqltools.result.OperationCommand;
+import org.eclipse.datatools.sqltools.result.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
-import org.eclipse.datatools.sqltools.result.internal.core.IResultManagerListener;
 import org.eclipse.datatools.sqltools.result.model.IResultInstance;
 import org.eclipse.datatools.sqltools.result.model.ResultItem;
 
