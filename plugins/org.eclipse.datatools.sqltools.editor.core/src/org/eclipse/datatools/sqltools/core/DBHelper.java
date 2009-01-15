@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.emf.common.util.EList;
@@ -276,5 +277,13 @@ public class DBHelper {
             return sb.toString();
         }
         return null;
+    }
+    
+    public String getDefaultSchemaName(IConnectionProfile profile)
+    {
+        DatabaseIdentifier dbid = new DatabaseIdentifier(profile.getName());
+        String defaultSchemaName = ProfileUtil.getProfileUserName(dbid, false);
+        
+        return defaultSchemaName;
     }
 }

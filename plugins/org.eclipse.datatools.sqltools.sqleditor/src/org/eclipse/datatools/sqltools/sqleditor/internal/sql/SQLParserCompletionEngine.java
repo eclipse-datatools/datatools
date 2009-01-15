@@ -215,7 +215,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 	 */
 	private ICompletionProposal[] getProposals(ParsingResult result,
 			ParserProposalAdvisor advisor) {
-		String user = SQLDBUtils.getDefaultSchemaName(_editor.getConnectionInfo());
+		String defaultSchemaName = _config.getDBHelper().getDefaultSchemaName(_editor.getConnectionInfo().getConnectionProfile());
 		
 		String[] parserProposals = advisor.getParserProposals(result);
 
@@ -296,7 +296,7 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 				if (_editor.getConnectionInfo().getSharedConnection() != null) {
 					SQLDBProposalsRequest request = new SQLDBProposalsRequest(
 							_fWord, result.getScope(),
-							user,
+							defaultSchemaName,
 							result);
 					List proposalList = fProposalFactory
 							.getDBObjectProposals(request);
@@ -351,11 +351,11 @@ public class SQLParserCompletionEngine implements ISQLCompletionEngine {
 		if (containsDT) {
 			Database database = _editor.getConnectionInfo().getDatabase();
 			
-			if (database != null && user != null) {
+			if (database != null && defaultSchemaName != null) {
 			    EList schemas = ModelUtil.getSchemas(database, _editor.getConnectionInfo().getDatabaseName());
 				for (Iterator iter = schemas.iterator(); iter.hasNext();) {
 					Schema schema = (Schema) iter.next();
-					if (schema.getName().equals(user)) {
+					if (schema.getName().equals(defaultSchemaName)) {
 						EList udts = schema.getUserDefinedTypes();
 						for (Iterator iterator = udts.iterator(); iterator
 								.hasNext();) {
