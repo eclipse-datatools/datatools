@@ -7,6 +7,7 @@ package org.eclipse.datatools.sqltools.internal.externalfile;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.sqltools.internal.sqlscrapbook.SqlscrapbookPlugin;
@@ -22,14 +23,6 @@ public class ExternalFileStorage extends SQLEditorStorage
     {
         super(path.toFile().getName(), path.toOSString());
         this._path = path;
-        try
-        {
-            setContents(new FileInputStream(_path.toFile()));
-        }
-        catch (FileNotFoundException e)
-        {
-            SqlscrapbookPlugin.getDefault().log(e);
-        }
     }
 
     public IPath getFullPath()
@@ -37,5 +30,16 @@ public class ExternalFileStorage extends SQLEditorStorage
         return _path;
     }
 
-
+    public InputStream getContents() {
+      FileInputStream fileInputStream = null;
+      try
+      {
+    	  fileInputStream = new FileInputStream(_path.toFile());
+      }
+      catch (FileNotFoundException e)
+      {
+          SqlscrapbookPlugin.log(e);
+      }
+      return fileInputStream;
+    }
 }
