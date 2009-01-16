@@ -13,6 +13,9 @@ package org.eclipse.datatools.enablement.jdt.classpath.internal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
@@ -20,6 +23,7 @@ import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.ui.wizards.IClasspathContainerPage;
 import org.eclipse.jdt.ui.wizards.IClasspathContainerPageExtension;
 import org.eclipse.jface.dialogs.Dialog;
@@ -42,6 +46,9 @@ public class DriverClasspathContainerPage extends WizardPage implements
 	private DriverListCombo combo;
 	private Set fUsedPaths;
 	private String initialSelectName = null;
+	private boolean fIsExported;
+	private IClasspathEntry fEditResult= null;
+	private IJavaProject fProject = null;
 
 	/**
 	 * Constructor
@@ -82,11 +89,8 @@ public class DriverClasspathContainerPage extends WizardPage implements
 	 * @see org.eclipse.jdt.ui.wizards.IClasspathContainerPage#getSelection()
 	 */
 	public IClasspathEntry getSelection() {
-		if (combo.getSelectedDriverInstance() != null) {
-			DriverInstance di = combo.getSelectedDriverInstance();
-			IClasspathContainer container = new DriverClasspathContainer(di.getName());
-			IClasspathEntry entry = JavaCore.newContainerEntry(container.getPath());
-			return entry;
+		if (fEditResult != null) {
+			return JavaCore.newContainerEntry(fEditResult.getPath(), fIsExported);
 		}
 		return null;
 	}
@@ -95,7 +99,10 @@ public class DriverClasspathContainerPage extends WizardPage implements
 	 * @see org.eclipse.jdt.ui.wizards.IClasspathContainerPage#setSelection(org.eclipse.jdt.core.IClasspathEntry)
 	 */
 	public void setSelection(IClasspathEntry containerEntry) {
+		fIsExported= containerEntry != null && containerEntry.isExported();
+
 		if (containerEntry != null) {
+			fUsedPaths.remove(containerEntry.getPath());
 			IPath path = containerEntry.getPath();
 			if (isDriverContainer(path)) {
 				initialSelectName = path.segment(1);
@@ -117,6 +124,7 @@ public class DriverClasspathContainerPage extends WizardPage implements
 	public void initialize(
 			IJavaProject project,
 			IClasspathEntry[] currentEntries) {
+			fProject = project;
 			for (int i= 0; i < currentEntries.length; i++) {
 				IClasspathEntry curr= currentEntries[i];
 				if (curr.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
@@ -138,9 +146,43 @@ public class DriverClasspathContainerPage extends WizardPage implements
 		combo.createContents(composite);
 		combo.getCombo().setLayoutData(new GridData(SWT.FILL, 0, true, false));
 		combo.setSelection(this.initialSelectName);
+		combo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				update(DriverClasspathContainerPage.this.combo.getSelectedDriverInstance());
+			}
+		});
 		
 		Dialog.applyDialogFont(composite);
 		setControl(composite);
 	}
 
+	private void update(DriverInstance di) {
+		if (di != null) {
+			IClasspathContainer container = new DriverClasspathContainer(di.getName());
+			IClasspathContainer oldContainer;
+			try {
+				oldContainer = JavaCore.getClasspathContainer(container.getPath(), fProject);
+			} catch (JavaModelException e) {
+				// ignore
+				oldContainer = null;
+			}
+			IClasspathEntry entry = null;
+			if (oldContainer != null) {
+				try {
+					JavaCore.setClasspathContainer(null, new IJavaProject[]{fProject}, new IClasspathContainer[] {oldContainer}, null);
+				} catch (JavaModelException e) {
+					e.printStackTrace();
+				}
+				entry = JavaCore.newContainerEntry(container.getPath());
+			}
+			else {
+				entry = JavaCore.newContainerEntry(container.getPath());
+			}
+			fEditResult = entry;
+		}
+		else {
+			fEditResult = null;
+		}
+	}
+	
 }
