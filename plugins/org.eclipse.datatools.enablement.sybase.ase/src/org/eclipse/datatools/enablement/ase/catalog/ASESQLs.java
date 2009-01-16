@@ -153,6 +153,7 @@ public interface ASESQLs
 
     String QROUP_USERS_QUERY                   = "select u1.name from sysusers u1, sysusers u2 where u2.name = ? and u1.gid = u2.gid and u1.name <> u2.name";
     String ROLES_QUERY                         = "SELECT name FROM master.dbo.syssrvroles where name like ? order by 1";
+	String ROLES_QUERY_NONDBO                  = "select S.name from {0}.dbo.sysroles R, {0}.dbo.sysusers S where R.lrid=S.uid";
 
     //value 6 represents sds class server.
     String SDSSERVER_QUERY                     = "SELECT srvname FROM master.dbo.sysservers WHERE srvclass = 6";

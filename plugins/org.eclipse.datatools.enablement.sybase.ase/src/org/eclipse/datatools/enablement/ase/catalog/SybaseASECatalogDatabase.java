@@ -18,8 +18,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
@@ -338,27 +341,70 @@ public class SybaseASECatalogDatabase extends SybaseASEDatabaseImpl implements I
         ResultSet rs = null;
         Connection conn = this.getConnection();
         String oldCatalog = null;
+        
+		boolean accessSysSvr = true;
+        
+        Set roleSet = new HashSet();
+        
         try
         {
-        	oldCatalog = conn.getCatalog();
+            oldCatalog = conn.getCatalog();
             stmt = conn.prepareStatement(ASESQLs.ROLES_QUERY);
             stmt.setString(1, "%");
-            rs = stmt.executeQuery();
-            while (rs.next())
+            
+            try
             {
-                String roleName = rs.getString(1);
-                SybaseASERole role = (SybaseASERole)ASEUtil.getSQLObject(existingRoles, roleName);
-                if(role != null)
+                rs = stmt.executeQuery();
+            }
+            catch (SQLException e)
+            {
+                accessSysSvr = false;
+            }
+            
+            if(accessSysSvr)
+            {
+                while (rs.next())
                 {
-                	roleList.add(role);
-                	((ICatalogObject)role).refresh();
+                    roleSet.add(rs.getString(1));
                 }
-                else 
+            }
+            else
+            {
+                EList catalogs = this.getCatalogs();
+                String[] dbName = new String[catalogs.size()];
+                for(int i = 0; i < catalogs.size(); i++)
                 {
-                	role = new SybaseASECatalogRole(this);
-                	role.setName(roleName);
-                    role.setSqlContainer(this);
-                	roleList.add(role);
+                    if(catalogs.get(i) instanceof Catalog)
+                    {
+                        dbName[i] = ((Catalog)catalogs.get(i)).getName();
+                    }
+                }
+                
+                for(int i = 0; i < dbName.length; i++)
+                {
+                    stmt = conn.prepareStatement(new MessageFormat(ASESQLs.ROLES_QUERY_NONDBO).format(new Object[]{dbName[i]}));
+                    
+                    try
+                    {
+                        rs = stmt.executeQuery();
+                    }
+                    catch (SQLException sqle)
+                    {
+                        //10351 is error code for "Server user id %d is not a valid user in database".
+                        if(sqle.getErrorCode() == 10351)
+                        {
+                            JDBCASEPlugin.getDefault().log(sqle.getMessage());
+                        }
+                        else
+                        {
+                            throw sqle;
+                        }
+                    }
+                    
+                    while(rs.next())
+                    {
+                        roleSet.add(rs.getString(1));
+                    }
                 }
             }
         }
@@ -368,7 +414,30 @@ public class SybaseASECatalogDatabase extends SybaseASEDatabaseImpl implements I
         }
         finally
         {
-        	SybaseASECatalogUtils.cleanupJDBCResouce(rs, stmt, oldCatalog, conn);
+            SybaseASECatalogUtils.cleanupJDBCResouce(rs, stmt, oldCatalog, conn);
+        }
+        
+        String[] rolesArray = new String[roleSet.size()];
+        roleSet.toArray(rolesArray);
+        
+        Arrays.sort(rolesArray);
+        
+        for(int i = 0; i < rolesArray.length; i++)
+        {
+            String roleName = rolesArray[i];
+            SybaseASERole role = (SybaseASERole)ASEUtil.getSQLObject(existingRoles, roleName);
+            if(role != null)
+            {
+                roleList.add(role);
+                ((ICatalogObject)role).refresh();
+            }
+            else 
+            {
+                role = new SybaseASECatalogRole(this);
+                role.setName(roleName);
+                role.setSqlContainer(this);
+                roleList.add(role);
+            }
         }
         rolesLoaded = Boolean.TRUE;
         this.eSetDeliver(deliver);
