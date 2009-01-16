@@ -127,6 +127,8 @@ public class WSUIUtil
 	public static SOAPParameter[] getUsedParameter( SOAPParameter[] parameters )
 	{
 		int usedNum = 0;
+		if( parameters == null || parameters.length == 0 )
+			return null;
 		for ( int i = 0; i < parameters.length; i++ )
 		{
 			if ( parameters[i].isUsed( ) )
