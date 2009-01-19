@@ -22,7 +22,6 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 
 /**

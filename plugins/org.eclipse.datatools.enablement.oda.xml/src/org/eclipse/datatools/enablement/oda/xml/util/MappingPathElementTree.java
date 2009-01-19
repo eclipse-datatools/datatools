@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.Set;
 
 
+
 /**
  * A tree constructed by table mapping path and its column mapping paths.
  * One path element is corresponding with a <code>TreeNode</code>.
@@ -37,10 +38,11 @@ import java.util.Set;
  */
 public class MappingPathElementTree
 {
-	static final String DOUBLE_SLASH_REPLACEMENT = "<>";    //$NON-NLS-1$
-	private static final String EMPTY_STRING = "";                  //$NON-NLS-1$
-	private static final String FORWARD_SLASH = "/";                //$NON-NLS-1$
-	private static final String DOUBLE_SLASH = "//";                //$NON-NLS-1$
+	public static final String DOUBLE_SLASH_REPLACEMENT = "<>";    //$NON-NLS-1$
+	public static final String FORWARD_SLASH = "/";                //$NON-NLS-1$
+	public static final String DOUBLE_SLASH = "//";                //$NON-NLS-1$
+    public static final String ASTERISK = "*";     //$NON-NLS-1$
+    public static final String ATTR_MARKER = "@";  //$NON-NLS-1$
 
 	// the TreeNode corresponding with the last path element in the mapping path
 	// of the table
@@ -75,7 +77,7 @@ public class MappingPathElementTree
 				continue;
 			}
 			
-			if ( relativePath.equals( EMPTY_STRING ) ) // column path is the same with table path  
+			if ( relativePath.equals( "" ) ) // column path is the same with table path  
 			{
 				lastTreeNodeForTablePath.addColumnIndex( i );
 			}
@@ -97,7 +99,7 @@ public class MappingPathElementTree
 				
 				// remove all the prefix ../..
 				String path = relativePath.replaceFirst( "\\Q..\\E(\\Q/..\\E)*", //$NON-NLS-1$
-						EMPTY_STRING );
+						"" );
 				indexNestedColumnMap.put( new Integer( i ),
 						new NestedColumn( doubleDotCount, path ) );
 
@@ -123,14 +125,13 @@ public class MappingPathElementTree
 	}
 
 	/**
-	 * whether this absolutePath matches the table mapping path
+	 * whether this xml path matches the table mapping path
 	 * 
-	 * @param absolutePath:
-	 *            the path generated during xml file parsing
+	 * @param path
 	 */
-	public boolean matchesTablePath( String absolutePath )
+	public boolean matchesTablePath( XMLPath path )
 	{
-		Set nodes = getPossibleEndNodes( absolutePath );
+		Set nodes = getPossibleEndNodes( path );
 		Iterator itr = nodes.iterator( );
 		while ( itr.hasNext( ) )
 		{
@@ -145,53 +146,43 @@ public class MappingPathElementTree
 
 	/**
 	 * 
-	 * @param absolutePath:
-	 *            the path generated during xml file parsing
-	 * @return the possible tree nodes which are corresponding with the last
-	 *         path element of absolutePath
+	 * @param path
+	 * @return the possible tree nodes which are corresponding with <code>path</code>
 	 */
-	private Set getPossibleEndNodes( String absolutePath )
+	private Set getPossibleEndNodes( XMLPath path )
 	{
-		String[] splits = absolutePath.split( FORWARD_SLASH );
+		IXMLPathNode[] absolutePath = path.getPath( );
+		
 		Set result = new HashSet( );
-		if ( splits.length == 0 )
+		Iterator children = root.getMatchedChildren( absolutePath[0] ).iterator( );
+		while ( children.hasNext( ) )
 		{
-			result.add( root );
-		}
-		else
-		{
-			// Attention: splits of "/A/B" be [][A][B]
-			// So, the first empty string should be ignored
-			Iterator children = root.getMatchedChildren( splits[1] ).iterator( );
-			while ( children.hasNext( ) )
-			{
-				TreeNode child = (TreeNode) children.next( );
-				result.addAll( getPossibleEndNodes( splits, 1, child ) );
-			}
+			TreeNode child = (TreeNode) children.next( );
+			result.addAll( getPossibleEndNodes( absolutePath, 0, child ) );
 		}
 		return result;
 	}
 
 
 	/**
-	 * traverse down from fromNode according to pathElements  
-	 * @param pathElements: a sequence of path elements generated during xml file parsing
+	 * traverse down from fromNode according to <code>absolutePath</code>  
+	 * @param absolutePath: a sequence of xml path nodes encountered during xml file parsing
 	 *        fromIndex: the index of beginning path element 
 	 *        fromNode:  the beginning node 
-	 * @return all the destination nodes which is corresponding with last element of pathElements
+	 * @return all the destination nodes which is corresponding with <code>absolutePath</code>
 	 */
-	private Set getPossibleEndNodes( String[] pathElements, int fromIndex, TreeNode fromNode )
+	private Set getPossibleEndNodes( IXMLPathNode[] absolutePath, int fromIndex, TreeNode fromNode )
 	{
-		assert pathElements != null && fromIndex > -1 && fromNode != null;
-		if ( fromIndex >= pathElements.length)
+		assert absolutePath != null && fromIndex > -1 && fromNode != null;
+		if ( fromIndex >= absolutePath.length)
 		{
 			return Collections.EMPTY_SET;
 		}
 
-		if ( fromNode.matches( pathElements[fromIndex] ) )
+		if ( fromNode.matches( absolutePath[fromIndex] ) )
 		{
 			//reaches the last path element
-			if ( fromIndex == pathElements.length - 1 )
+			if ( fromIndex == absolutePath.length - 1 )
 			{
 				Set result = new HashSet( );
 				result.add( fromNode );
@@ -199,7 +190,7 @@ public class MappingPathElementTree
 				if ( fromNode instanceof AnyNumberElementPlaceholderNode )
 				{
 					// AnyElementPlaceholderNode may represent nothing
-					Set children = fromNode.getMatchedChildren( pathElements[fromIndex] );
+					Set children = fromNode.getMatchedChildren( absolutePath[fromIndex] );
 					result.addAll( children );
 				}
 
@@ -218,22 +209,22 @@ public class MappingPathElementTree
 				{
 					Set result = new HashSet( );
 
-					// fromNode may represent 0 or 1, 2, .... (pathElements.length - fromIndex - 1) elements
-					for ( int i = 0; i <= pathElements.length - fromIndex - 1; i++ )
+					// fromNode may represent 0 or 1, 2, .... (absolutePath.length - fromIndex - 1) elements
+					for ( int i = 0; i <= absolutePath.length - fromIndex - 1; i++ )
 					{
-						String firstElement = pathElements[fromIndex + i];
+						IXMLPathNode firstElement = absolutePath[fromIndex + i];
 						Set children = fromNode.getMatchedChildren( firstElement );
 						Iterator itr = children.iterator( );
 						while (itr.hasNext( ))
 						{
 							TreeNode child = (TreeNode) itr.next( );
-							result.addAll( getPossibleEndNodes( pathElements, fromIndex + i,
+							result.addAll( getPossibleEndNodes( absolutePath, fromIndex + i,
 									child ) );
 						}
 					}
 
-					// fromNode represents pathElements.length - fromIndex elements
-					if ( fromNode.matches( pathElements[pathElements.length - 1] ) )
+					// fromNode represents absolutePath.length - fromIndex elements
+					if ( fromNode.matches( absolutePath[absolutePath.length - 1] ) )
 					{
 						result.add( fromNode );
 					}
@@ -249,12 +240,12 @@ public class MappingPathElementTree
 				{
 					// begin to compare next level
 					Set result = new HashSet( );
-					Set children = fromNode.getMatchedChildren( pathElements[fromIndex + 1] );
+					Set children = fromNode.getMatchedChildren( absolutePath[fromIndex + 1] );
 					Iterator itr = children.iterator( );
 					while ( itr.hasNext( ) )
 					{
 						TreeNode child = (TreeNode) itr.next( );
-						result.addAll( getPossibleEndNodes( pathElements, fromIndex + 1,
+						result.addAll( getPossibleEndNodes( absolutePath, fromIndex + 1,
 								child ) );
 					}
 					return result;
@@ -269,15 +260,14 @@ public class MappingPathElementTree
 	}
 	
 	/**
-	 * return all the possible matched column indexes for columnAbsolutePath.
+	 * return all the possible matched column indexes for a XML path.
 	 * ignore the absolute table path
-	 * @param columnAbsolutePath:
-	 *            the path generated during xml file parsing
+	 * @param path:
 	 * @return
 	 */
-	public int[] getMatchedColumnIndexs( String columnAbsolutePath )
+	public int[] getMatchedColumnIndexs( XMLPath path )
 	{
-		Set nodes = getPossibleEndNodes( columnAbsolutePath );
+		Set nodes = getPossibleEndNodes( path );
 		return getAllColumnIndexes(nodes);
 	}
 	
@@ -309,35 +299,28 @@ public class MappingPathElementTree
 
 	/**
 	 * return all the indexes of matched columns which path is
-	 * columnAbsolutePath and is reachable down from tableAbsolutPath
+	 * <code>column</code> and is reachable down from <code>row</code>
 	 * 
-	 * @param columnAbsolutePath:
-	 *            the path generated during xml file parsing
-	 * @param tableAbsolutPath:
-	 *            the path generated during xml file parsing and matches table mapping path
+	 * @param column:
+	 * @param row:
 	 * @return
 	 */
-	public int[] getMatchedButNotNestedColumnIndexs( String columnAbsolutePath,
-			String tableAbsolutePath )
+	public int[] getMatchedButNotNestedColumnIndexs( XMLPath column,
+			XMLPath row )
 	{
-		//return new int[]{2};
-		assert columnAbsolutePath != null && tableAbsolutePath != null;
-
-		// columnAbsolutePath should be accessible down form tableAbsolutePath
-		if ( !columnAbsolutePath.startsWith( tableAbsolutePath ) )
+		assert column != null && row != null;
+		
+		IXMLPathNode[] columnPath = column.getPath( );
+		IXMLPathNode[] rowPath = row.getPath( );
+		
+		// columnPath should be accessible down form rowPath
+		if ( !column.getPathString( ).startsWith( row.getPathString( ) ) )
 		{
 			return new int[0];
 		}
-
-		String pureRelativePath = EMPTY_STRING;
-		if ( !columnAbsolutePath.equals( tableAbsolutePath ) )
-		{
-			pureRelativePath = columnAbsolutePath.substring( tableAbsolutePath.length( ) );
-		}
-
-		String[] splits = pureRelativePath.split( FORWARD_SLASH );
+		
 		Set columnEndNodes = new HashSet( );
-		if ( splits.length == 1 ) // columnAbsolutePath.equals(tableAbsolutePath )
+		if ( columnPath.length == rowPath.length ) // columnPath.equals(rowPath )
 		{
 			columnEndNodes.add( lastTreeNodeForTablePath );
 			TreeNode node = lastTreeNodeForTablePath.getAnyNumberElementChild( );
@@ -348,13 +331,11 @@ public class MappingPathElementTree
 		}
 		else
 		{
-			// Attention: splits of "/A/B" be [][A][B]
-			// So, the first empty string should be ignored
-			Iterator children = lastTreeNodeForTablePath.getMatchedChildren( splits[1] ).iterator( );
+			Iterator children = lastTreeNodeForTablePath.getMatchedChildren( columnPath[rowPath.length] ).iterator( );
 			while ( children.hasNext( ) )
 			{
 				TreeNode child = (TreeNode) children.next( );
-				columnEndNodes.addAll( getPossibleEndNodes( splits, 1, child ) );
+				columnEndNodes.addAll( getPossibleEndNodes( columnPath, rowPath.length, child ) );
 			}
 		}
 		return getAllColumnIndexes(columnEndNodes);
@@ -388,70 +369,72 @@ public class MappingPathElementTree
 	}
 
 	/**
-	 * whether columnPath is table's nested column, which index is
+	 * whether column is row's nested column, which index is
 	 * <code>index</code>
 	 * 
 	 * @param index
-	 * @param tablePath: generated during xml file parsing and matches table mapping path
-	 * @param columnPath: generated during xml file parsing
+	 * @param row:
+	 * @param column: 
 	 * @return
 	 */
-	public boolean isValidNestedColumn( int index, String tablePath,
-			String columnPath )
+	public boolean isValidNestedColumn( int index, XMLPath row,
+			XMLPath column )
 	{
 		NestedColumn nc = (NestedColumn) ( indexNestedColumnMap.get( new Integer( index ) ) );
 		if ( nc == null )
 		{
 			return false;
 		}
-		String[] tableSplits = tablePath.split( FORWARD_SLASH );
-		String[] columnSplits = columnPath.split( FORWARD_SLASH );
+		IXMLPathNode[] rowPath = row.getPath( );
+		IXMLPathNode[] columnPath = column.getPath( );
 
-		if ( tableSplits.length == 0 )
+		if ( rowPath.length == 0 )
 		{
 			// tablePath is just "/"
 			return false;
 		}
 
 		int doubleDotCount = nc.getDoubleDotCount( );
-		// Attention: splits of "/A/B" be [][A][B]
-		if ( tableSplits.length - 1 < doubleDotCount )
+		if ( rowPath.length < doubleDotCount )
 		{
 			return false;
 		}
-		if ( columnSplits.length < tableSplits.length - doubleDotCount )
+		if ( columnPath.length < rowPath.length - doubleDotCount )
 		{
 			return false;
 		}
 
-		StringBuffer ancestorPath = new StringBuffer( EMPTY_STRING );
-		for ( int i = 1; i < tableSplits.length - doubleDotCount; i++ )
+		for ( int i=0; i<rowPath.length-doubleDotCount; i++)
 		{
-			if ( !tableSplits[i].equals( columnSplits[i] ) )
+			if ( ! rowPath[i].equals( columnPath[i] ))
 			{
 				return false;
 			}
-			ancestorPath.append( FORWARD_SLASH ).append( tableSplits[i] );
 		}
 		
 		//just up, no down
-		if (columnPath.equals( ancestorPath.toString( ) ))
+		if (columnPath.length == rowPath.length-doubleDotCount )
 		{
-			return nc.getPurePath( ).equals( EMPTY_STRING );
+			return nc.getPurePath( ).equals( "" );
 		}
 		
-		String relativePath = columnPath.substring( ancestorPath.length( ) );
+		
 		
 		String pureMappingPath = nc.getPurePath( );
-		if (pureMappingPath.equals( EMPTY_STRING ))
+		if (pureMappingPath.equals( "" ))
 		{
 			//mapping just up, no down
 			return false;
 		}
 		
+		IXMLPathNode[] nodes = new IXMLPathNode[columnPath.length - ( rowPath.length - doubleDotCount )];
+		System.arraycopy( columnPath, rowPath.length - doubleDotCount, nodes, 0, nodes.length );
+		
+		XMLPath path = new XMLPath( nodes);
+		
 		//compare the down part of mapping path with the down part of real path
 		MappingPathElementTree tree = new MappingPathElementTree( pureMappingPath, new String[0]);
-		return tree.matchesTablePath( relativePath );
+		return tree.matchesTablePath( path );
 	}
 
 	/**
@@ -553,7 +536,7 @@ public class MappingPathElementTree
 		TreeNode currentNode = fromNode;
 
 		int j = (splits.length > 0  // splits of "/" is String[0]
-				&& splits[0].equals( EMPTY_STRING )) ? 1 : 0; //splits of "/A/B" be [][A][B], splits of "A/B" be [A][B]
+				&& splits[0].equals( "" )) ? 1 : 0; //splits of "/A/B" be [][A][B], splits of "A/B" be [A][B]
 		for ( ; j < splits.length; j++ )
 		{
 			currentNode = ( (ChildrenAllowedTreeNode) currentNode ).addChild( splits[j] );
@@ -609,6 +592,8 @@ public class MappingPathElementTree
  */
 abstract class TreeNode
 {
+	
+	
 	// the name of path element in the mapping path
 	private String pathElemntName;
 
@@ -617,6 +602,7 @@ abstract class TreeNode
 
 	private ChildrenAllowedTreeNode parent;
 
+	
 	public TreeNode( String pathElementName )
 	{
 		assert pathElementName != null;
@@ -652,10 +638,10 @@ abstract class TreeNode
 	/**
 	 * Whether the content of this node match the specified pathElement
 	 * 
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
+	 * @param node: one of nodes encountered during XML file parsing
 	 * @return
 	 */
-	abstract boolean matches( String pathElement );
+	abstract boolean matches( IXMLPathNode node );
 
 
 	/**
@@ -677,10 +663,10 @@ abstract class TreeNode
 	}
 	
 	/**
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
-	 * @return all the children which matches pathElement
+	 * @param xn: one of xml nodes encountered during xml file parsing
+	 * @return all the children which matches <code>xn</code>
 	 */
-	protected Set getMatchedChildren(String pathElement)
+	protected Set getMatchedChildren(IXMLPathNode xn)
 	{
 		return Collections.EMPTY_SET;
 	}
@@ -688,10 +674,6 @@ abstract class TreeNode
 
 abstract class ChildrenAllowedTreeNode extends TreeNode
 {
-    protected static final String EMPTY_STRING = "";  //$NON-NLS-1$
-    protected static final String ASTERISK = "*";     //$NON-NLS-1$
-    protected static final String ATTR_MARKER = "@";  //$NON-NLS-1$
-    
     private AnyNumberElementPlaceholderNode anyNumberElementChild = null;
 	
 	private OneElementPlaceholderNode oneElementChild = null;
@@ -728,7 +710,7 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 			hasChild = true;
 			return anyNumberElementChild;
 		}
-		else if (pathElement.equals( ASTERISK ))
+		else if (pathElement.equals( MappingPathElementTree.ASTERISK ))
 		{
 			if (oneElementChild == null)
 			{
@@ -738,14 +720,15 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 			hasChild = true;
 			return oneElementChild;
 		}
-		else if ( pathElement.startsWith( ATTR_MARKER ) )
+		else if ( pathElement.startsWith( MappingPathElementTree.ATTR_MARKER ) )
 		{
-			TreeNode existNode = (TreeNode)attrChildren.get( pathElement );
+			String attrName = pathElement.substring( 1 ); //remove the "@" flag
+			TreeNode existNode = (TreeNode)attrChildren.get( attrName );
 			if (existNode == null)
 			{
-				existNode = new AttrNode( pathElement );
+				existNode = new AttrNode( attrName );
 				existNode.setParent( this );
-				attrChildren.put( pathElement, existNode );
+				attrChildren.put( attrName, existNode );
 			}
 			hasChild = true;
 			return existNode;
@@ -753,7 +736,7 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 		else
 		{
 			TreeNode existNode = null;
-			String pureElement = pathElement.replaceAll( "\\Q[\\E\\d+\\Q]\\E$", EMPTY_STRING );//$NON-NLS-1$
+			String pureElement = pathElement.replaceAll( "\\Q[\\E\\d+\\Q]\\E$", "" );
 			Set elementNodes = (Set)elementChildren.get( pureElement );
 			if (elementNodes == null)
 			{
@@ -767,6 +750,7 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 				if (node.getPathElemntName( ).equals( pathElement ))
 				{
 					existNode = node; 
+					break;
 				}
 			}
 			if (existNode == null)
@@ -791,24 +775,24 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 	}
 
 	/**
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
+	 * @param xpn: one of nodes encountered  during xml file parsing
 	 * @return all the children which matches pathElement
 	 */
-	public Set getMatchedChildren(String pathElement)
+	public Set getMatchedChildren( IXMLPathNode xpn )
 	{
-		assert pathElement != null;
+		assert xpn != null;
 		Set result = new HashSet();
-		if (anyNumberElementChild != null && anyNumberElementChild.matches( pathElement ))
+		if (anyNumberElementChild != null && anyNumberElementChild.matches( xpn ))
 		{
 			result.add( anyNumberElementChild );
 		}
-		if (oneElementChild != null && oneElementChild.matches( pathElement ))
+		if (oneElementChild != null && oneElementChild.matches( xpn ))
 		{
 			result.add( oneElementChild );
 		}
-		if (pathElement.startsWith( ATTR_MARKER ))
+		if ( xpn instanceof XMLAttr )
 		{
-			TreeNode node = (TreeNode)attrChildren.get( pathElement );
+			TreeNode node = (TreeNode)attrChildren.get( xpn.getName( ) );
 			if (node != null)
 			{
 				result.add( node );
@@ -816,15 +800,14 @@ abstract class ChildrenAllowedTreeNode extends TreeNode
 		}
 		else
 		{
-			String pureElement = pathElement.replaceAll( "\\Q[\\E\\d+\\Q]\\E$", EMPTY_STRING );	//$NON-NLS-1$
-			Set elementNodes = (Set)elementChildren.get( pureElement );
+			Set elementNodes = (Set)elementChildren.get( xpn.getName( ) );
 			if (elementNodes != null)
 			{
 				Iterator itr = elementNodes.iterator( );
 				while (itr.hasNext( ))
 				{
 					TreeNode elementNode = (TreeNode)itr.next( );
-					if (elementNode.matches( pathElement ))
+					if (elementNode.matches( xpn ))
 					{
 						result.add( elementNode );
 					}
@@ -846,15 +829,13 @@ class AttrNode extends TreeNode
 		super( attrName );
 	}
 
-	/**
-	 * Whether the content of this node match the specified pathElement
-	 * 
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
-	 * @return
-	 */
-	boolean matches( String pathElement )
+	boolean matches( IXMLPathNode xpn )
 	{
-		return this.getPathElemntName( ).equals( pathElement );
+		if ( xpn instanceof XMLAttr )
+		{
+			return this.getPathElemntName( ).equals( xpn.getName( ) );
+		}
+		return false;
 	}
 }
 
@@ -864,31 +845,34 @@ class AttrNode extends TreeNode
  */
 class ElementNode extends ChildrenAllowedTreeNode
 {
-
+	private boolean isWithIndexPrediction; 
+	
 	ElementNode( String elementName )
 	{
 		super( elementName );
+		isWithIndexPrediction = this.getPathElemntName( ).matches( ".*\\Q[\\E\\d+\\Q]\\E$" );
 	}
 
-	/**
-	 * Whether the content of this node match the specified pathElement
-	 * 
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
-	 * @return
-	 */
-	boolean matches( String pathElement )
+
+	boolean matches( IXMLPathNode xpn )
 	{
-		assert pathElement != null;
-		// has index prediction
-		if ( this.getPathElemntName( ).matches( ".*\\Q[\\E\\d+\\Q]\\E$" ) )//$NON-NLS-1$
+		assert xpn != null;
+		if ( xpn instanceof XMLElement )
 		{
-			return getPathElemntName( ).equals( pathElement );
+			XMLElement xe = (XMLElement)xpn;
+		
+			
+			if ( isWithIndexPrediction )
+			{
+				// has index prediction
+				return getPathElemntName( ).equals( xe.getName( ) + "[" + xe.getIndex( ) + "]" );
+			}
+			else
+			{
+				return this.getPathElemntName( ).equals( xe.getName( ) );
+			}
 		}
-		else
-		{
-			return this.getPathElemntName( )
-					.equals( pathElement.replaceAll( "\\Q[\\E\\d+\\Q]\\E$", EMPTY_STRING ) );//$NON-NLS-1$
-		}
+		return false;
 	}
 }
 
@@ -901,19 +885,14 @@ class AnyNumberElementPlaceholderNode extends ChildrenAllowedTreeNode
 	// node name makes no sense for AnyElementPlaceholderNode
 	AnyNumberElementPlaceholderNode( )
 	{
-		super( EMPTY_STRING );
+		super( "" );
 	}
 
-	/**
-	 * Whether the content of this node match the specified pathElement
-	 * 
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
-	 * @return
-	 */
-	boolean matches( String pathElement )
+
+	boolean matches( IXMLPathNode xpn )
 	{
 		// matches any xml element, but not attribute
-		return !pathElement.startsWith( ATTR_MARKER );
+		return !(xpn instanceof XMLAttr);
 	}
 
 	protected TreeNode addChild( String pathElement )
@@ -940,19 +919,14 @@ class OneElementPlaceholderNode extends ChildrenAllowedTreeNode
 {
 	OneElementPlaceholderNode( )
 	{
-		super(EMPTY_STRING);
+		super("");
 	}
 
-	/**
-	 * Whether the content of this node match the specified pathElement
-	 * 
-	 * @param pathElement: one of pathElement in the absolute path generated during xml file parsing
-	 * @return
-	 */
-	boolean matches( String pathElement )
+
+	boolean matches( IXMLPathNode xpn )
 	{
 		// matches any xml element, but not attribute
-		return !pathElement.startsWith( ATTR_MARKER );
+		return !(xpn instanceof XMLAttr);
 	}
 }
 

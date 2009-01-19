@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.xml.sax.Attributes;
@@ -35,28 +37,15 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class SaxParser extends DefaultHandler implements Runnable
 {
+	private static Logger logger = Logger.getLogger( SaxParser.class.getName( ) );
 	private static final String SAX_PARSER ="org.apache.xerces.parsers.SAXParser";  //$NON-NLS-1$
-	private static final String EMPTY_STRING = "";	//$NON-NLS-1$
 
     private InputStream inputStream;
     private String encoding;
 	
-	//The XPathHolder instance that hold the information of element currently
-	//being proceed
-	private XPathHolder pathHolder;
-	
 	//The ISaxParserConsumer instance that servers as middle-man between
 	//ResultSet and SaxParser.
 	private ISaxParserConsumer spConsumer;
-	
-	//This HashMap records the occurance of element being proceed.
-	private HashMap currentElementRecoder;
-	
-	//The boolean indicates that whether the parsing has started.
-	private boolean start;
-	
-	//The boolean indicates that whether the parsing thread is alive or not.
-	private boolean alive;
 	
     /*	We will override method	org.xml.sax.helpers.DefaultHandler.characters(char[], int start, int length) to
 	rechieve value of an xml element.
@@ -69,16 +58,18 @@ public class SaxParser extends DefaultHandler implements Runnable
 	times so that the whole value could be achieved.
 
 	Based on the above consideration, we decide to cache the chars fetched from the 
-	characters method and proceed them when endDocument method is called */
-	private String currentCacheValue;
+	characters method and proceed them when endElement method is called */
+	private Map cachedValues;
 
-	private boolean stopCurrentThread;
+	private boolean stopFlag;
 	private boolean useNamespace;
 	
-	private Map cachedValues;
 	private Map prefixMap;
 
 	private List exceptions;
+	
+	private XMLPathHolder pathHolder;
+	private XMLPath currentElementPath;
 	/**
 	 * 
 	 * @param fileName
@@ -91,12 +82,8 @@ public class SaxParser extends DefaultHandler implements Runnable
 		//bypass using empty string to represent no specific encoding provided
 		this.encoding = "".equals( xmlSource.getEncoding( ) ) ? null : xmlSource.getEncoding( );
 		spConsumer = consumer;
-		start = true;
-		alive = true;
 		this.useNamespace = useNamespace;
-		currentCacheValue = EMPTY_STRING;
-		currentElementRecoder = new HashMap();
-		stopCurrentThread = false;
+		stopFlag = false;
 		cachedValues = new HashMap( );
 		exceptions = new ArrayList( );
 		prefixMap = new HashMap( );
@@ -133,7 +120,11 @@ public class SaxParser extends DefaultHandler implements Runnable
 		}
 		catch ( Exception e )
 		{
-			exceptions.add( e );
+			if ( !(e.getCause( ) instanceof ThreadStopException) )
+			{
+				logger.log( Level.WARNING, "Exceptions occur during xml parsing", e );
+				exceptions.add( e );
+			}
 		}
 		finally
 		{
@@ -144,8 +135,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 			catch ( IOException e )
 			{
 			}
-			this.alive = false;
-			spConsumer.wakeup( );
+			spConsumer.finish( );
 		}
 	}
 	
@@ -283,7 +273,7 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void startDocument( )
 	{
-		pathHolder = new XPathHolder( );
+		pathHolder = new XMLPathHolder( );
 
 	}
 
@@ -293,9 +283,6 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void endDocument( )
 	{
-		this.alive = false;
-		this.cleanUp( );
-		this.spConsumer.wakeup();
 	}
 
 	/*
@@ -306,9 +293,9 @@ public class SaxParser extends DefaultHandler implements Runnable
 			Attributes atts )
 	{
 		//If the current thread should be stopped and current parsing should not continue any more, then
-		//throw a ThreadStopException so that it can be catched later in run method to stop the current thread
+		//throw a ThreadStopException so that it can be caught later in run method to stop the current thread
 		//execution.
-		if( this.stopCurrentThread )
+		if( this.stopFlag )
 			throw new ThreadStopException();
 		
 		String elementName = qName;
@@ -318,38 +305,18 @@ public class SaxParser extends DefaultHandler implements Runnable
 					UtilConstants.BACK_SLASH )
 					+ UtilConstants.NAMESPACE_COLON + name;
 		}
-		String parentPath = pathHolder.getPath();
-		//Record the occurance of elements
-		if(this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)==null)
-		{
-			this.currentElementRecoder.put(parentPath+UtilConstants.XPATH_SLASH+elementName,new Integer(1));
-		}else
-		{
-			this.currentElementRecoder.put(parentPath+UtilConstants.XPATH_SLASH+elementName, new Integer(((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+1 )); 
-		}
-		pathHolder.push( elementName+"["+((Integer)this.currentElementRecoder.get(parentPath+UtilConstants.XPATH_SLASH+elementName)).intValue()+"]" );//$NON-NLS-1$ //$NON-NLS-2$
-		spConsumer.detectNewRow( pathHolder.getPath( ), true );
+		pathHolder.startElement( elementName );
+		currentElementPath = pathHolder.getCurrentElementPath( );
+		
+		spConsumer.startElement( currentElementPath );
 		
 		for ( int i = 0; i < atts.getLength( ); i++ )
 		{
-			spConsumer.manipulateData( getAttributePath( atts, i ),
+			spConsumer.manipulateData( pathHolder.getCurrentAttrPath( atts.getQName( i ) ),
 					atts.getValue( i ) );
 		}
 	}
 
-	/**
-	 * Build the xpath of an attribute.
-	 * 
-	 * @param atts
-	 * @param i
-	 * @return
-	 */
-	private String getAttributePath( Attributes atts, int i )
-	{
-		return pathHolder.getPath( )
-				+ "/@"  //$NON-NLS-1$
-				+ atts.getQName( i );
-	}
 
 	/*
 	 *  (non-Javadoc)
@@ -357,31 +324,17 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void endElement( String uri, String localName, String qName )
 			throws SAXException
-	{
-		//Manipulate the data. The currentCacheValue is trimed to delimite
-		//the heading and tailing junk spaces.
-		String value = (String) cachedValues.get( pathHolder.getPath( ) );
+	{	
+		String value = (String) cachedValues.get( currentElementPath.getPathString( ) );
 		value = value == null ? "" : value;
-		spConsumer.manipulateData( pathHolder.getPath( ),
-				value );
-		cachedValues.remove( pathHolder.getPath( ) );
-		spConsumer.detectNewRow( pathHolder.getPath( ), false );
-		//	this.currentElementRecoder.clear();
 		
-		String path = pathHolder.getPath();
-	
-		Object[] keys = this.currentElementRecoder.keySet().toArray();
-		if (!path.equals( EMPTY_STRING ))
-		{
-			for(int i= 0; i < keys.length; i++)
-			{
-				if (keys[i].toString().startsWith(path)&&(!keys[i].toString().equals(path)))
-				{
-					this.currentElementRecoder.remove(keys[i]);
-				}
-			}
-		}
-		pathHolder.pop( );
+		spConsumer.manipulateData( currentElementPath,
+				value );
+		
+		spConsumer.endElement( currentElementPath );
+		cachedValues.remove(  currentElementPath.getPathString( ));
+		pathHolder.endElement( );
+		currentElementPath = pathHolder.getCurrentElementPath( );
 	}
 
 
@@ -392,45 +345,11 @@ public class SaxParser extends DefaultHandler implements Runnable
 	 */
 	public void characters( char ch[], int start, int length )
 	{
-		currentCacheValue = new String( ch, start, length );
-		if ( cachedValues.containsKey( pathHolder.getPath( ) ) )
-		{
-			currentCacheValue = (String) cachedValues.get( pathHolder.getPath( ) )
-					+ currentCacheValue;
-		}
-		cachedValues.put( pathHolder.getPath( ), currentCacheValue );
-	}
-
-	/**
-	 * Set the status of current thread, might either be "started" or "suspended"
-	 * @param start
-	 */
-	public void setStart( boolean start )
-	{
-		this.start = start;
-		if ( start )
-		{
-			synchronized ( this )
-			{
-				notify( );
-			
-			}
-		}else
-		{
-			synchronized ( this )
-			{
-				try
-				{
-					spConsumer.wakeup();
-					wait( );
-				}
-				catch ( InterruptedException e )
-				{
-					e.printStackTrace();
-				}
-			
-			}
-		}
+		String pathString = currentElementPath.getPathString( );
+		String currentValue = new String( ch, start, length );
+		Object cachedValue = cachedValues.get( pathString );
+		String value = (cachedValue == null ? "" : cachedValue) + currentValue;
+		cachedValues.put( pathString, value );
 	}
 	
 	
@@ -452,51 +371,12 @@ public class SaxParser extends DefaultHandler implements Runnable
 		return this.prefixMap;
 	}
 	
-	/**
-	 * Set the member data stopCurrentThread to "true" value so that the current thread can be stopped afterwise.
-	 *
-	 */
+
 	public void stopParsing()
 	{
-		this.cleanUp( );
-		this.stopCurrentThread = true;
+		this.stopFlag = true;
 	}
 
-	/**
-	 * Return whether the thread that host the SaxParser is suspended.
-	 * @return
-	 */
-	public boolean isSuspended( )
-	{
-		return !start;
-	}
-
-	/**
-	 * Return whether the thread that host the SaxParser is alive or destoried.
-	 * 
-	 * @return
-	 */
-	public boolean isAlive( )
-	{
-		return this.alive;
-	}
-	
-	/**
-	 * Prepare for the stop execution of parsing.
-	 *
-	 */
-	private void cleanUp( )
-	{
-		try
-		{
-			if ( this.inputStream != null )
-				this.inputStream.close( );
-		}
-		catch ( IOException e )
-		{
-			//Simply ignore this.
-		}
-	}
 	
 	/**
 	 * This class wrapps a RuntimeException. It is used to stop the execution of
@@ -513,56 +393,82 @@ public class SaxParser extends DefaultHandler implements Runnable
 	}
 }
 
-/**
- * The instance of this class is used to populate the Xpath expression of 
- * current XML path.
- * 
- */
-class XPathHolder
+class XMLPathHolder
 {
-	private static final String FORWARD_SLASH = "/"; //$NON-NLS-1$
-    private List holder;
-	private StringBuffer pathBuffer;
-
-	public XPathHolder( )
+	//List<XMLElementBlock>
+	private List elementBlocks = new ArrayList( );
+	
+	public XMLPathHolder(  )
 	{
-		holder = new ArrayList( );
-		pathBuffer = new StringBuffer();
+		//add dummy root
+		elementBlocks.add( new XMLElementBlock( new XMLElement( "/", 1)) );
 	}
-
-	/**
-	 * Get the path string according to the current status of XPathHolder instance.
-	 * @return
-	 */
-	public String getPath( )
+	
+	public void startElement( String elementName )
 	{
-		return pathBuffer.toString( );
+		XMLElementBlock parent = (XMLElementBlock)elementBlocks.get( elementBlocks.size( )-1 );
+		XMLElement child = parent.addSubElement( elementName );
+		elementBlocks.add( new XMLElementBlock( child ) );
 	}
-
-	/**
-	 * Pop a value from stack.
-	 *
-	 */
-	public void pop( )
+	
+	public void endElement( )
 	{
-		if (holder.size( ) > 1) 
+		elementBlocks.remove( elementBlocks.size( )-1 );
+	}
+	
+	public XMLPath getCurrentElementPath( )
+	{
+		//the dummy root is ignored
+		IXMLPathNode[] nodes = new IXMLPathNode[ elementBlocks.size( ) - 1];
+		for ( int i=1; i<elementBlocks.size( ); i++)
 		{
-			String lastPath = (String)holder.get( holder.size( ) - 1 );
-			holder.remove( holder.size( ) - 1 );
-			//remove "/lastPath"
-			this.pathBuffer.delete( pathBuffer.length( ) - 1 - lastPath.length( ), pathBuffer.length( ));
+			nodes[i-1] = ((XMLElementBlock)elementBlocks.get( i )).getElement( );
 		}
+		return new XMLPath( nodes );
 	}
-
-	/**
-	 * Push a value to stack.
-	 * 
-	 * @param path
-	 */
-	public void push( String path )
+	
+	public XMLPath getCurrentAttrPath( String attrName )
 	{
-		assert path != null;
-		holder.add( path );
-		this.pathBuffer.append( FORWARD_SLASH ).append( path );
+		IXMLPathNode[] nodes = new IXMLPathNode[ elementBlocks.size( )];
+		
+		//the dummy root is ignored
+		for ( int i=1; i<elementBlocks.size( ); i++)
+		{
+			nodes[i-1] = ((XMLElementBlock)elementBlocks.get( i )).getElement( );
+		}
+		nodes[nodes.length-1] = new XMLAttr( attrName );
+		return new XMLPath( nodes );
+	}
+	
+	private static class XMLElementBlock
+	{
+		private XMLElement element;
+		
+		//Map<String, int>
+		private Map childCounts = new HashMap( );
+		
+		public XMLElementBlock( XMLElement element )
+		{
+			assert element != null;
+			this.element = element;
+		}
+		
+		public XMLElement addSubElement(  String elementName )
+		{
+			assert elementName != null;
+			int index = 0;
+			if ( childCounts.get( elementName ) != null )
+			{
+				index = ((Integer)childCounts.get( elementName )).intValue( );
+			}
+			index++;
+			childCounts.put( elementName, new Integer(index) );
+			return new XMLElement( elementName, index );
+		}
+		
+		public XMLElement getElement( )
+		{
+			return element;
+		}
 	}
 }

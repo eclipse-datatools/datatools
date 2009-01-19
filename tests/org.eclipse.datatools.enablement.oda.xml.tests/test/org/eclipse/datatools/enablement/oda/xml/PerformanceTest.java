@@ -21,9 +21,6 @@ public class PerformanceTest extends BaseTest
 	
 	public void testPerformance() throws OdaException
 	{
-		Connection conn = new Connection();
-		Properties prop = new Properties();
-		//int columnCount = 48;
 		String queryText =	"table0#-TNAME-#"
 				+ "table0#:#[/Report/Details]#:#"
 				+ "{pagebreak.visibility;STRING;/pagebreak.visibility},"
@@ -74,26 +71,35 @@ public class PerformanceTest extends BaseTest
 				+ "{header.1.6.10;STRING;/header.1.6.10}," 
 				+ "{header.1.6.11;STRING;/header.1.6.11}," 
 				+ "{header.1.7.1;STRING;/header.1.7.1};";
-		prop.put(Constants.CONST_PROP_FILELIST, TestConstants.HUGE_XML_FOR_PERFORMANCE);
-		conn.open(prop);
-		IQuery query = conn.newQuery( null );
 		System.out.println("Begin performance test");
-		query.prepare( queryText );
-		long begin = System.currentTimeMillis( );
-		IResultSet rs = query.executeQuery( );
-		rs.next( );
-//		while (rs.next( ))
-//		{
-//			for (int i = 1; i <= columnCount; i++ )
-//			{
-//				rs.getString( i );
-//			}
-//		}
-		long end = System.currentTimeMillis( );
-		System.out.println("Consumed Time: " + (end - begin) + "(ms)");
-		rs.close( );
-		query.close( );
-		conn.close( );		
+		double totalTime = 0; 
+		int repeats = 20;
+		for ( int i = 1; i <= repeats; i++ )
+		{
+			Connection conn = new Connection();
+			Properties prop = new Properties();
+			prop.put(Constants.CONST_PROP_FILELIST, TestConstants.HUGE_XML_FOR_PERFORMANCE);
+			conn.open(prop);
+			IQuery query = conn.newQuery( null );
+			query.prepare( queryText );
+			long begin = System.currentTimeMillis( );
+			IResultSet rs = query.executeQuery( );
+			int count = 0;
+			while (rs.next( ))
+			{
+				count++;
+			}
+			long end = System.currentTimeMillis( );
+			totalTime += (end - begin);
+			assert count == 6608;
+
+			
+			rs.close( );
+			query.close( );
+			conn.close( );		
+		}
+		System.out.println("Row Count:" + 6608);
+		System.out.println("Consumed Time: " + totalTime/repeats + "(ms)");
 		System.out.println("End performance test");
 	}
 	

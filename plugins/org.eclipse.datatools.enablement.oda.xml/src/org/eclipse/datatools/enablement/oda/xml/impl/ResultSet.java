@@ -61,6 +61,8 @@ public class ResultSet implements IResultSet
 	
 	private static ULocale JRE_DEFAULT_LOCALE = ULocale.getDefault( );
 	
+	private int rowID;
+	
 	/**
 	 * 
 	 * @param fileName
@@ -142,12 +144,17 @@ public class ResultSet implements IResultSet
 			spConsumer = new SaxParserConsumer( relationInfo, connection.getXMLSource( ), tableName );
 		}
 		
+		boolean hasNext = spConsumer.next( );
+		if ( hasNext )
+		{
+			rowID++;
+		}
 		//If the row number exceeds the defined maxRows then return false;
-		if ( spConsumer.getCurrentRowNo() >= maxRows && maxRows != 0 )
+		if ( rowID > maxRows && maxRows != 0 )
 		{
 			return false;
 		}
-		return spConsumer.next();
+		return hasNext;
 	}
 
 	
@@ -159,7 +166,7 @@ public class ResultSet implements IResultSet
 	public int getRow( ) throws OdaException
 	{
 		testClosed();
-		return spConsumer == null ? 0 : spConsumer.getCurrentRowNo();
+		return rowID;
 	}
 
 	/*
@@ -169,32 +176,15 @@ public class ResultSet implements IResultSet
 	public String getString( int index ) throws OdaException
 	{
 		testClosed();
-		String[] resultRow = spConsumer.getResultSet()[getRowPosition()];
+		String[] resultRow = spConsumer.getRowValue( );
 		String result = null;
 		if( resultRow != null)
-			result = resultRow[getColumnPosition( index )];
+			result = resultRow[ index - 1];
 		this.wasNull = result == null ? true : false;
 		return result;
 	}
 
-	/**
-	 * Transform 1-based column index to 0-based column position in the array.
-	 * @param index
-	 * @return
-	 */
-	private int getColumnPosition( int index )
-	{
-		return index - 1;
-	}
 
-	/**
-	 * Transform the 1-based row number to 0-based row position in the array 
-	 * @return
-	 */
-	private int getRowPosition( )
-	{
-		return spConsumer.getRowPosition();
-	}
 	
 	/**
 	 * Return the index of a column

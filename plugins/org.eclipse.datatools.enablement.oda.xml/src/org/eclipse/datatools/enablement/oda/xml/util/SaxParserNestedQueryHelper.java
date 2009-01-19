@@ -24,6 +24,13 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 {	
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#finish()
+	 */
+	public void finish( )
+	{
+	}
+
 	//The table name
 	private String tableName;
 	
@@ -58,23 +65,19 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 		this.sp = new SaxParser( xmlSource, this, rinfo.containsNamespace( ) );
 		this.spThread = new Thread( sp );
 		this.spThread.start();
+		try
+		{
+			//wait until spThread dies
+			this.spThread.join( );
+		}
+		catch ( InterruptedException e )
+		{
+			throw new OdaException( e );
+		}
 	}
 	
-	/**
-	 * Return whether the SaxParserNestedQueryHelper instance is ready for provide nested
-	 * xml columns information.
-	 * @return
-	 */
-	public boolean isPrepared()
-	{
-		return !spThread.isAlive();
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#manipulateData(java.lang.String, java.lang.String)
-	 */
-	public void manipulateData( String path, String value )
+
+	public void manipulateData( XMLPath path, String value )
 	{
 		if (mappingPathElementTree != null)
 		{
@@ -88,25 +91,9 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 			}
 		}
 	}
-
-	/**
-	 * The method would not be used in this implementation of ISaxParserConsumer.
-	 */
-	public void detectNewRow( String path, boolean start )
-	{
-	}
 	
-
 	
-	/**
-	 * The method would wakeup the host SaxParserConsumer.
-	 */
-	public void wakeup( )
-	{
-		consumer.wakeup( );
-	}
-	
-	public String getNestedColumnValue(String tablePath, int index, HashMap filters )
+	public String getNestedColumnValue(XMLPath tablePath, int index, HashMap filters )
 	{
 		if (mappingPathElementTree != null)
 		{
@@ -119,7 +106,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 			while (itr.hasNext( ))
 			{
 				NestedColumnPathValue pathValue = (NestedColumnPathValue)itr.next( );
-				if (mappingPathElementTree.isValidNestedColumn( index, tablePath, pathValue.getPath( ) ))
+				if (mappingPathElementTree.isValidNestedColumn( index, tablePath, pathValue.getPath( )))
 				{
 					boolean matchFilters = true;
 					if ( filters != null )
@@ -138,7 +125,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 								while ( iter.hasNext( ) )
 								{
 									NestedColumnPathValue filterPathValue = ( NestedColumnPathValue ) iter.next( );
-									if ( filterPathValue.getPath( ).startsWith( pathValue.getPath( ) ) 
+									if ( filterPathValue.getPath( ).getPathString( ).startsWith( pathValue.getPath( ).getPathString( ) ) 
 											&& SaxParserUtil.isTwoValueMatch( filterPathValue.getValue( ), value ))
 									{
 										matchFilters = true;
@@ -157,7 +144,7 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 		return null;
 	}
 	
-	private void addPathValue(int index, String path, String value)
+	private void addPathValue(int index, XMLPath path, String value)
 	{
 		NestedColumnPathValue pathValue = new NestedColumnPathValue(path, value);
 		Set pathValues = (Set)indexPathValuesMap.get( new Integer(index) );
@@ -172,16 +159,16 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 	
 	private static class NestedColumnPathValue implements Comparable
 	{
-		String path;
+		XMLPath path;
 		String value;
 		
-		public NestedColumnPathValue( String path, String value )
+		public NestedColumnPathValue( XMLPath path, String value )
 		{
 			this.path = path;
 			this.value = value;
 		}
 
-		protected String getPath( )
+		protected XMLPath getPath( )
 		{
 			return path;
 		}
@@ -194,8 +181,21 @@ public class SaxParserNestedQueryHelper implements ISaxParserConsumer
 		public int compareTo( Object o )
 		{
 			NestedColumnPathValue other = (NestedColumnPathValue)o;
-			return this.getPath( ).compareTo( other.getPath( ) );
+			return path.getPathString( ).compareTo( other.path.getPathString( ) );
 		}
+	}
+
+	public void endElement( XMLPath path )
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void startElement( XMLPath path )
+	{
+		// TODO Auto-generated method stub
+		
 	}
 }
 

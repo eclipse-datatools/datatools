@@ -20,21 +20,12 @@ public interface ISaxParserConsumer
 	 * @param path
 	 * @param value
 	 */
-	public void manipulateData(String path, String value);
+	public void manipulateData(XMLPath path, String value);
 	
-	/**
-	 * Indicate whether a new row should started according to the given xPath expression.
-	 * A new row would only started when the given xPath matches the root path of certain
-	 * table.
-	 * @param path
-	 * @param start
-	 */
-	public void detectNewRow( String path, boolean start );
+
+	public void startElement( XMLPath path );
 	
-	/**
-	 * This method is used by sax parser to notify the ISaxParserConsumer so that it can
-	 * be active rather than blocked.
-	 * 
-	 */
-	public void wakeup();
+	public void endElement( XMLPath path );
+	
+	public void finish( );
 }

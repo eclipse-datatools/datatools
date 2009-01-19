@@ -23,12 +23,14 @@ public final class Constants
 	public static final int DATA_SOURCE_MAJOR_VERSION = 1;
 	public static final int DATA_SOURCE_MINOR_VERSION = 0;
 	public static final String DATA_SOURCE_PRODUCT_NAME = Messages.getString("Constants.DriverName"); //$NON-NLS-1$
-	public static final int CACHED_RESULT_SET_LENGTH = 10000;
+	
+	//Cache size affects the time used to prepare cache each time and the thread switch times 
+	public static final int CACHED_RESULT_SET_LENGTH = 100;
 	public static final String APPCONTEXT_INPUTSTREAM = "org.eclipse.datatools.enablement.oda.xml.inputStream"; //$NON-NLS-1$
 	public static final String APPCONTEXT_CLOSEINPUTSTREAM = "org.eclipse.datatools.enablement.oda.xml.closeInputStream"; //$NON-NLS-1$
 	public static final String APPCONTEXT_MEMORY_CACHE_SIZE = "org.eclipse.datatools.enablement.oda.xml.memoryCacheSize"; //$NON-NLS-1$
 
-	//The connection proporty that is used to give the relation information string
+	//The connection property that is used to give the relation information string
 	//to the driver.
 	public static final String CONST_PROP_RELATIONINFORMATION = "RELATIONINFORMATION";//$NON-NLS-1$
 	

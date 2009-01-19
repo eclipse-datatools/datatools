@@ -36,6 +36,7 @@ import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer;
 import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.SaxParser;
+import org.eclipse.datatools.enablement.oda.xml.util.XMLPath;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
 import org.w3c.dom.ls.LSInput;
 
@@ -48,6 +49,53 @@ public class SchemaPopulationUtil
 {
 	private static final String XSD_EXTENSION = ".XSD"; //$NON-NLS-1$
     
+	/**
+	 * 
+	 * @return
+	 * @throws OdaException 
+	 */
+	public static Map getPrefixMapping( String xmlFileName, String xmlEncoding ) throws OdaException
+	{
+		IXMLSource xmlSource = new XMLSourceFromPath( xmlFileName, xmlEncoding );
+		SaxParser sp = new SaxParser( xmlSource, 
+				new ISaxParserConsumer( )
+		{
+			public void endElement( XMLPath path )
+			{
+			}
+
+			public void finish( )
+			{
+			}
+
+			public void manipulateData( XMLPath path, String value )
+			{
+
+			}
+
+			public void startElement( XMLPath path )
+			{
+
+			}
+			
+		}, false );
+
+		Thread spThread = new Thread( sp );
+		spThread.start( );
+		try
+		{
+			spThread.join( );
+		}
+		catch ( InterruptedException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if( sp== null || sp.exceptionOccurred( ) )
+			return new HashMap( );
+		return sp.getPrefixMapping( );
+	}
+	
     /**
 	 * Get the schema tree's root node
 	 * @param xsdFileName
@@ -89,19 +137,6 @@ public class SchemaPopulationUtil
 		return getSchemaTree( xsdFileName, xmlFileName, null, numberOfElementsAccessiable );
 	}
 	
-	/**
-	 * 
-	 * @param xmlFileName
-	 * @param xmlEncoding
-	 * @return
-	 * @throws OdaException
-	 */
-	public static Map getPrefixMapping( String xmlFileName, String xmlEncoding )
-			throws OdaException
-	{
-		return new XMLFileSchemaTreePopulator( 0 ).getPrefixMapping( xmlFileName,
-				xmlEncoding );
-	}
 }
 
 /**
@@ -141,12 +176,12 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#manipulateData(java.lang.String,
 	 *      java.lang.String)
 	 */
-	public void manipulateData( String path, String value )
+	public void manipulateData( XMLPath path, String value )
 	{
-		if ( isAttribute( path ) )
+		if ( isAttribute( path.getPathString( ) ) )
 		try
 		{
-			this.insertNode( path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( ) ); //$NON-NLS-1$
+			this.insertNode( path.getPathString( ).replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( ) ); //$NON-NLS-1$
 		}
 		catch ( OdaException e )
 		{
@@ -155,17 +190,10 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#detectNewRow(java.lang.String,
-	 *      boolean)
-	 */
-	public void detectNewRow( String path, boolean start )
+
+	public void startElement( XMLPath path )
 	{
-		if( isAttribute( path ) )
-			return;
-		String treamedPath = path.replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( );	//$NON-NLS-1$
+		String treamedPath = path.getPathString( ).replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( );	//$NON-NLS-1$
 		try
 		{
 			this.insertNode( treamedPath );
@@ -175,17 +203,34 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 			// TODO Auto-generated catch block
 			e.printStackTrace( );
 		}
-		// If not attribute
-		if ( start )
+		rowCount++;
+
+		// Only parser the first 10000 elements
+		if ( rowCount >= numberOfElementsAccessiable )
 		{
-			rowCount++;
+			assert sp != null;
+			sp.stopParsing( );
+		}
+
+	}
+	
+	public void endElement( XMLPath path )
+	{
+		String treamedPath = path.getPathString( ).replaceAll( "\\Q[\\E\\d+\\Q]\\E", EMPTY_STRING ).trim( );	//$NON-NLS-1$
+		try
+		{
+			this.insertNode( treamedPath );
+		}
+		catch ( OdaException e )
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace( );
 		}
 
 		// Only parser the first 10000 elements
 		if ( rowCount >= numberOfElementsAccessiable )
 		{
 			assert sp != null;
-			sp.setStart( false );
 			sp.stopParsing( );
 		}
 
@@ -202,15 +247,6 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 		return path.matches( ".*\\Q@\\E.*" ); //$NON-NLS-1$
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#wakeup()
-	 */
-	public synchronized void wakeup( )
-	{
-		notify( );
-	}
 
 	/**
 	 * Return the root node of a schema tree.
@@ -228,19 +264,14 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 
 			spThread = new Thread( sp );
 			spThread.start( );
-			while ( sp.isAlive( ) && !sp.isSuspended( ) )
+			try
 			{
-				try
-				{
-					synchronized ( this )
-					{
-						wait( );
-					}
-				}
-				catch ( InterruptedException e )
-				{
-					e.printStackTrace( );
-				}
+				spThread.join( );
+			}
+			catch ( InterruptedException e )
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		catch ( OdaException e1 )
@@ -263,37 +294,6 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 	public ATreeNode getSchemaTree( String xmlFileName )
 	{
 		return getSchemaTree( xmlFileName, null );
-	}
-	
-	/**
-	 * 
-	 * @return
-	 * @throws OdaException 
-	 */
-	public Map getPrefixMapping( String xmlFileName, String xmlEncoding ) throws OdaException
-	{
-		IXMLSource xmlSource = new XMLSourceFromPath( xmlFileName, xmlEncoding );
-		sp = new SaxParser( xmlSource, this, false );
-
-		spThread = new Thread( sp );
-		spThread.start( );
-		while ( sp.isAlive( ) && !sp.isSuspended( ) )
-		{
-			try
-			{
-				synchronized ( this )
-				{
-					wait( );
-				}
-			}
-			catch ( InterruptedException e )
-			{
-			}
-		}
-		sp.stopParsing( );
-		if( sp== null || sp.exceptionOccurred( ) )
-			return new HashMap( );
-		return this.sp.getPrefixMapping( );
 	}
 
 	/**
@@ -363,6 +363,10 @@ final class XMLFileSchemaTreePopulator implements ISaxParserConsumer
 				parentNode = matchedNode;
 			}
 		}
+	}
+
+	public void finish( )
+	{
 	}
 }
 

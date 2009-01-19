@@ -14,8 +14,8 @@ package org.eclipse.datatools.enablement.oda.xml.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,12 +38,6 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	// The thread which hosts the sp.
 	private Thread spThread;
 
-	// The row number in cachedResultSet.
-	private int cachedResultSetRowNo;
-
-	// The overall rowNumber that is available currently
-	private int currentAvailableMaxLineNo;
-
 	// The names of nested xml columns
 	private String[] namesOfNestedColumns;
 
@@ -58,21 +52,24 @@ public class SaxParserConsumer implements ISaxParserConsumer
 
 	private RelationInformation relationInfo;
 
-	// The counter which records the times of cachedResultSet being
-	// re-initialized.
-	private int cachedTimes;
-
-	// The array which cache the result set.
-	private String[][] cachedResultSet;
-
-	// The overall rowNumber that has been parsed
-	private int currentRowNo;
-
 	private SaxParserNestedQueryHelper spNestedQueryHelper;
 
-	private List cachedRootRows;
-	private Map cachedTempRows;
-	private List cachedOrderedTempRowRoots;
+
+	//List<Row>: The detected but not filled yet rows, managed and accessed only by XML parsing thread
+	private List processingRows = new ArrayList( );
+	
+	//List<Row>: filled rows, managed and accessed only be XML parsing thread
+	private List filledRows = new ArrayList( Constants.CACHED_RESULT_SET_LENGTH );
+	
+	//valid filled rows which are prepared by XML parsing thread and consumed by main thread
+	private PreparedRowsValues prv = new PreparedRowsValues( );
+	
+	private boolean isContainRowFilter = false;
+	
+	public String[] getRowValue( )
+	{
+		return prv.getCurrentRowValues( );
+	}
 	
 	/**
 	 * 
@@ -85,22 +82,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	public SaxParserConsumer( RelationInformation rinfo,
 			IXMLSource xmlSource, String tName ) throws OdaException
 	{
-		// must start from 0
-		cachedResultSetRowNo = 0;
-
-		// must start from -1
-		currentAvailableMaxLineNo = -1;
 		tableName = tName;
 		relationInfo = rinfo;
-
-		// must start from 0
-		currentRowNo = 0;
-
-		cachedTempRows = new HashMap( );
-		cachedRootRows = new ArrayList( );
-		cachedOrderedTempRowRoots = new ArrayList( );
-
-		cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][relationInfo.getTableRealColumnNames( tableName ).length];
 
 		this.namesOfNestedColumns = relationInfo.getTableNestedXMLColumnNames( tableName );
 
@@ -115,39 +98,19 @@ public class SaxParserConsumer implements ISaxParserConsumer
 
 		if ( namesOfNestedColumns.length > 0 )
 		{
+			//prepare SaxParserNestedQueryHelper first
 			spNestedQueryHelper = new SaxParserNestedQueryHelper( this,
 					rinfo,
 					xmlSource,
 					tName );
-			try
-			{
-				// First wait() will be ended when
-				// SaxParserComplexNestedQueryHelper
-				// calls wakeup().However, the thread (ref as thread A) hosts
-				// SaxParserComplexNestedQueryHelper is
-				// actually still running until all finish up jobs are done. The
-				// thread (ref as thread B) which host
-				// this class should only be started when A is completely
-				// finish. So we
-				// add a loop which check the status of
-				// SaxParserComplexNestedQueryHelper and
-				// only all the program to proceed when A is actually finished.
-				synchronized ( this )
-				{
-					wait( );
-				}
-				while ( !spNestedQueryHelper.isPrepared( ) )
-				{
-					synchronized ( this )
-					{
-						wait( 5 );
-					}
-				}
-			}
-			catch ( InterruptedException e )
-			{
-				throw new OdaException( e.getLocalizedMessage( ) );
-			}
+		}
+		
+		if (relationInfo.getTableFilter( tableName ) != null
+				&& !relationInfo.getTableFilter( tableName ).isEmpty( ))
+		{
+			isContainRowFilter = true;
+			//switch from ArrayList to LinkedList because of the possibility of remove operations
+			filledRows = new LinkedList( );
 		}
 		sp = new SaxParser( xmlSource,
 				this, rinfo.containsNamespace( ) );
@@ -155,185 +118,215 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		spThread.start( );
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#manipulateData(java.lang.String,
-	 *      java.lang.String)
-	 */
-	public void manipulateData( String path, String value )
-	{
-		if ( this.cachedRootRows.size( ) > 0 )
-		{
-			for ( int n = 0; n < this.cachedRootRows.size( ); n++ )
-			{
-				String currentRoot = this.cachedRootRows.get( n ).toString( );
-				String[] os = n == 0
-						? this.cachedResultSet[this.cachedResultSetRowNo]
-						: (String[]) this.cachedTempRows.get( currentRoot );
 
-				populateValueToResultArray( path, value, currentRoot, os );
-			}
+	public void manipulateData( XMLPath path, String value )
+	{
+		for ( int i=0; i<processingRows.size( ); i++)
+		{
+			Row row = (Row)processingRows.get( i );
+			fillNotNestColumn( row, path, value );
 		}
 	}
 
-	/**
-	 * @param path
-	 * @param value
-	 * @param currentRoot
-	 * @param os
-	 */
-	private void populateValueToResultArray( String path, String value,
-			String tablePath, String[] os )
+
+	private void fillNotNestColumn( Row row, XMLPath column, String value )
 	{
-		if ( !path.startsWith( tablePath ) )
-		{
-			return;
-		}
-		
 		if ( mappingPathElementTree != null )
 		{
-			int[] indexes = mappingPathElementTree.getMatchedButNotNestedColumnIndexs( path, tablePath );
-			// If the given path is same to the path of certain column
+			int[] indexes = mappingPathElementTree.getMatchedButNotNestedColumnIndexs( column, row.path );
 			for ( int i = 0; i < indexes.length; i++ )
 			{
 				int index = indexes[i];
 				if ( namesOfColumns[index].startsWith( SaxParserUtil.TEMPCOLUMNNAMEPREFIX ) )
 				{
-					os[index] = value;
+					row.values[index] = value;
 				}
 				else if ( namesOfColumns[index].startsWith( SaxParserUtil.ROOTTEMPCOLUMNNAMEPREFIX ) )
 				{
-					if ( os[index] == null )
-						os[index] = value;
+					if ( row.values[index] == null )
+						row.values[index] = value;
 				}
-				else if ( os[index] == null
-						&& isCurrentColumnValid( namesOfColumns[index] ) )
-					os[index] = value;
+				else if ( row.values[index] == null
+						&& isColumnValid( namesOfColumns[index], row ) )
+					row.values[index] = value;
 			}
 		}
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#detectNewRow(java.lang.String,
-	 *      boolean)
+	
+	/**
+	 * @param columnName
+	 * @return
 	 */
-	public void detectNewRow( String path, boolean start )
+	private boolean isColumnValid( String columnName, Row row )
 	{
-		boolean isTablePath = false;
-		if (start)
-		{
-			if ( mappingPathElementTree != null )
-			{
-				isTablePath = mappingPathElementTree.matchesTablePath( path );
-			}
-		}
+		HashMap filters = relationInfo.getTableColumnFilter( tableName,
+				columnName );
+		if ( filters == null )
+			return true;
 		else
 		{
-			//just judge whether this path is cached, consumes less time than calling mappingPathElementTree.matchesTablePath(path)
-			isTablePath = (new HashSet(cachedRootRows)).contains( path );
-		}
-		// if the new row started.
-		if ( isTablePath )
-		{
-			if ( start )
+			Iterator it = filters.keySet( ).iterator( );
+			while ( it.hasNext( ) )
 			{
-				if ( this.cachedRootRows.size( ) > 0 )
+				Object filterColumnName = it.next( );
+				Object value = filters.get( filterColumnName );
+				if ( !SaxParserUtil.isTwoValueMatch( value,
+						row.values[this.getColumnIndex( filterColumnName.toString( ) )] ) )
 				{
-					this.cachedOrderedTempRowRoots.add( path );
-					this.cachedTempRows.put( path,
-							new String[this.namesOfColumns.length] );
+					return false;
 				}
-				this.cachedRootRows.add( path );
-				return;
+			}
+			return true;
+		}
+	}
+	
+	private void fillNestColumns( Row row )
+	{
+		for ( int i = 0; i < namesOfNestedColumns.length; i++ )
+		{
+			int j = getColumnIndex( namesOfNestedColumns[i] );
+			if ( j != INVALID_COLUMN_INDEX )
+			{
+				HashMap filters = relationInfo.getTableColumnFilter( tableName,
+						namesOfNestedColumns[i] );
+				row.values[j] = this.spNestedQueryHelper.getNestedColumnValue( row.path,
+						j, filters );
+			}
+		}
+	}
+	
+
+	public void startElement( XMLPath path )
+	{
+		if ( mappingPathElementTree != null )
+		{
+			if ( mappingPathElementTree.matchesTablePath( path ) )
+			{
+				Row newRow = new Row( path );
+				processingRows.add( newRow );
+				filledRows.add( newRow );
+			}
+		}
+		
+	}
+	
+
+	public void endElement( XMLPath path )
+	{
+		if ( processingRows.size( ) > 0
+				&& ( (Row) processingRows.get( processingRows.size( ) - 1 ) ).path.equals( path ) )
+		{
+			// a row ends
+			Row row = (Row) processingRows.get( processingRows.size( ) - 1 );
+			fillNestColumns( row );
+			row.isFilled = true;
+			if ( isRowValid( row ) )
+			{
+				suspendIfNecessary( );
 			}
 			else
 			{
-				populateNestedXMLDataMappingColumns( path );
-				this.cachedRootRows.remove( path );
-				if ( this.cachedRootRows.size( ) > 0 )
-					//there are other cached valid table paths which are ancestors of this path 
-					//postponed,upper row's column values should be evaluated and saved into cachedResultSet earlier
-					return;
-				if ( isCurrentRowValid( ) )
-				{
-					cachedResultSetRowNo++;
-					currentAvailableMaxLineNo++;
-					if ( cachedResultSetRowNo > Constants.CACHED_RESULT_SET_LENGTH - 1 )
-					{
-						sp.setStart( false );
-						cachedResultSetRowNo = 0;
-					}
-				} 
-				else
-				{
-					Arrays.fill( cachedResultSet[cachedResultSetRowNo], null );
-				}
-				//evaluate column values for cached table paths which are descendants of this path
-				if ( this.cachedOrderedTempRowRoots.size( ) > 0 )
-				{
-					int i = 0;
-					for ( i = 0; i < this.cachedOrderedTempRowRoots.size( ); i++ )
-					{
-						String[] result = (String[]) this.cachedTempRows.get( this.cachedOrderedTempRowRoots.get( i ) );
-						this.cachedTempRows.remove( this.cachedOrderedTempRowRoots.get( i ) );
-						this.cachedResultSet[this.cachedResultSetRowNo] = result;
-						if ( !isCurrentRowValid( ) )
-							continue;
-						this.cachedResultSetRowNo++;
-						this.currentAvailableMaxLineNo++;
-						if ( cachedResultSetRowNo > Constants.CACHED_RESULT_SET_LENGTH - 1 )
-						{
-							sp.setStart( false );
-							cachedResultSetRowNo = 0;
-						}
-					}
-				}
+				filledRows.remove( row );
+			}
+			processingRows.remove( processingRows.size( ) - 1 );
+		}
 
+	}
+	
+	private void suspendIfNecessary( )
+	{
+		Iterator itr = filledRows.iterator( );
+		int count = 0;
+		while ( itr.hasNext( ) )
+		{
+			Row row = (Row)itr.next( );
+			if ( !row.isFilled )
+			{
+				//some rows still not filled yet
+				return;
+			}
+			count++;
+		}
+		//All cached rows are filled and cache count reaches or already exceeds max limit
+		if ( count >= Constants.CACHED_RESULT_SET_LENGTH )
+		{
+			suspendParsingThread( );
+		}
+	}
+	
+	
+	private void moveFilledToPrepared( )
+	{
+		String[][] result = new String[filledRows.size( )][];
+		Iterator itr = filledRows.iterator( );
+		int index = 0;
+		while ( itr.hasNext( ) )
+		{
+			Row row = (Row)itr.next( );
+			result[index++] = row.values;
+		}
+		filledRows.clear( );
+		prv.refresh( result );
+	}
+	
+	
+	private void suspendParsingThread( )
+	{
+		moveFilledToPrepared( );
+		//active main thread
+		synchronized (this) 
+		{
+			this.notifyAll();
+		}
+		synchronized ( sp )
+		{
+			try
+			{
+				//wait until notified by main thread
+				sp.wait( );
+			}
+			catch ( InterruptedException e )
+			{
+				//just ignore
 			}
 		}
 	}
-
+	
 	/**
-	 * Populate all the columns that come from Nested XML data in certain row.
+	 * Apply the filter to row.
 	 * 
 	 */
-	private void populateNestedXMLDataMappingColumns( String currentRootPath )
+	private boolean isRowValid( Row row )
 	{
-		if ( this.cachedRootRows.size( ) > 1 )
+		if ( !isContainRowFilter )
 		{
-			String currentRoot = this.cachedRootRows.get( this.cachedRootRows.size( ) - 1 )
-					.toString( );
-			String[] os = (String[]) this.cachedTempRows.get( currentRoot );
-			for ( int i = 0; i < namesOfNestedColumns.length; i++ )
-			{
-				int j = getColumnIndex( namesOfNestedColumns[i] );
-				if ( j != INVALID_COLUMN_INDEX )
-				{
-					HashMap filters = relationInfo.getTableColumnFilter( tableName,
-							namesOfNestedColumns[i] );
-					os[j] = this.spNestedQueryHelper.getNestedColumnValue( currentRootPath,
-							j, filters );
-				}
-			}
+			return true;
 		}
-		else
+		
+		Iterator itr = relationInfo.getTableFilter( tableName ).keySet( ).iterator( );
+		while (itr.hasNext( ))
 		{
-			for ( int i = 0; i < namesOfNestedColumns.length; i++ )
+			String columnName = (String)itr.next( );
+			if ( isCurrentColumnValueNotMatchFilterValue( columnName, row ) )
+
 			{
-				int j = getColumnIndex( namesOfNestedColumns[i] );
-				if ( j != INVALID_COLUMN_INDEX )
-				{
-					HashMap filters = relationInfo.getTableColumnFilter( tableName,
-							namesOfNestedColumns[i] );
-					cachedResultSet[cachedResultSetRowNo][j] = this.spNestedQueryHelper.getNestedColumnValue( currentRootPath,
-							j, filters );
-				}
+				return false;
 			}
+			
 		}
+		return true;
 	}
+	
+
+	private boolean isCurrentColumnValueNotMatchFilterValue( String columnName, Row row )
+	{
+		int index = this.getColumnIndex( columnName );
+		return !SaxParserUtil.isTwoValueMatch( relationInfo.getTableFilter( tableName )
+				.get( columnName ),
+				row.values[index]);
+	}
+
+
 
 	public int getColumnIndex( String columnName )
 	{
@@ -348,82 +341,8 @@ public class SaxParserConsumer implements ISaxParserConsumer
 		}
 	}
 
-	/**
-	 * Apply the filter to current row. Return whether should current row be
-	 * filtered out.
-	 * 
-	 */
-	private boolean isCurrentRowValid( )
-	{
-		if (relationInfo.getTableFilter( tableName ) == null
-				|| relationInfo.getTableFilter( tableName ).isEmpty( ))
-		{
-			return true;
-		}
-		
-		Iterator itr = relationInfo.getTableFilter( tableName ).keySet( ).iterator( );
-		while (itr.hasNext( ))
-		{
-			String columnName = (String)itr.next( );
-			if ( isCurrentColumnValueNotMatchFilterValue( columnName ) )
 
-			{
-				return false;
-			}
-			
-		}
-		return true;
-	}
 
-	/**
-	 * @param columnName
-	 * @return
-	 */
-	private boolean isCurrentColumnValid( String columnName )
-	{
-		HashMap filters = relationInfo.getTableColumnFilter( tableName,
-				columnName );
-		if ( filters == null )
-			return true;
-		else
-		{
-			Iterator it = filters.keySet( ).iterator( );
-			while ( it.hasNext( ) )
-			{
-				Object filterColumnName = it.next( );
-				Object value = filters.get( filterColumnName );
-				if ( !SaxParserUtil.isTwoValueMatch( value,
-						this.cachedResultSet[cachedResultSetRowNo][this.getColumnIndex( filterColumnName.toString( ) )] ) )
-				{
-					return false;
-				}
-			}
-			return true;
-		}
-	}
-
-	/**
-	 * @param i
-	 *            Column Index
-	 * @return
-	 */
-	private boolean isCurrentColumnValueNotMatchFilterValue( String columnName )
-	{
-		int index = this.getColumnIndex( columnName );
-		return !SaxParserUtil.isTwoValueMatch( relationInfo.getTableFilter( tableName )
-				.get( columnName ),
-				cachedResultSet[cachedResultSetRowNo][index] );
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#wakeup()
-	 */
-	public synchronized void wakeup( )
-	{
-		notify( );
-	}
 
 	/**
 	 * Make the cursor forward. If the end of data reached then return false.
@@ -433,59 +352,49 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	 */
 	public boolean next( ) throws OdaException
 	{
-		// If the sax parser is still alive and has not been suspended yet, then
-		// block the current thread. The current thread will be re-active by sax
-		// parser.
-		while ( sp.isAlive( ) && !sp.isSuspended( ) )
-		{
-			try
+		//cached rows values are not prepared yet
+		while ( prv.size() < Constants.CACHED_RESULT_SET_LENGTH && spThread.isAlive())
+		{	
+			if ( prv.size() == 0 )
 			{
-				synchronized ( this )
+				//active XML parsing thread if it's still suspended
+				synchronized ( sp )
 				{
-					wait( );
+					sp.notifyAll( );
 				}
 			}
-			catch ( InterruptedException e )
+			try 
 			{
-				throw new OdaException( e.getLocalizedMessage( ) );
+				synchronized (this) 
+				{
+					this.wait(1);
+				}
+			} 
+			catch (InterruptedException e) 
+			{
 			}
 		}
-
-		// If the cursor will move to the row that is not currently available,
-		// then resume the sp thread so that it can proceed to fetch more data
-		// to
-		// result set.
-		if ( currentRowNo > currentAvailableMaxLineNo )
+		boolean hasNext = prv.next( );
+		if ( !hasNext && prv.size( ) >= Constants.CACHED_RESULT_SET_LENGTH && spThread.isAlive( ))
 		{
-			if ( sp.isAlive( ) )
-			{
-				this.resumeThread( );
-				return next( );
-			}
-			else
-				return false;
+			//clear cache
+			prv.refresh( null );
+			return next( );
 		}
-
-		currentRowNo++;
-
-		return true;
+		return hasNext;
 	}
 
-	/**
-	 * Resume the thread, if SaxParser is suspended then restart it.
-	 * 
-	 * @throws OdaException
-	 * 
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.enablement.oda.xml.util.ISaxParserConsumer#finish()
 	 */
-	private void resumeThread( ) throws OdaException
+	public void finish( )
 	{
-		if ( sp.isSuspended( ) )
+		moveFilledToPrepared( );
+		//active main thread
+		synchronized (this) 
 		{
-			cachedTimes++;
-			// Recache the result set.
-			cachedResultSetRowNo = 0;
-			cachedResultSet = new String[Constants.CACHED_RESULT_SET_LENGTH][relationInfo.getTableRealColumnNames( tableName ).length];
-			sp.setStart( true );
+			this.notifyAll();
 		}
 	}
 
@@ -495,42 +404,66 @@ public class SaxParserConsumer implements ISaxParserConsumer
 	 */
 	public void close( )
 	{
-		// TODO add comments.
-		if ( this.sp != null )
+		//end thread parsing thread
+		while ( spThread.isAlive() )
 		{
-			this.sp.stopParsing( );
+			//active XML parsing thread if it's still suspended
+			synchronized ( sp )
+			{
+				sp.notifyAll( );
+			}
+			sp.stopParsing( );
 		}
 	}
 
 	/**
-	 * Return the array that cached the result set data.
-	 * 
-	 * @return
+	 * Prepared by XML parsing thread and consumed by main thread
 	 */
-	public String[][] getResultSet( )
+	private static class PreparedRowsValues
 	{
-		return this.cachedResultSet;
+		private String[][] values = new String[0][];
+		private int index = -1;
+		
+		public synchronized void refresh( String[][] values )
+		{
+			index = -1;
+			this.values = values == null ? new String[0][] : values;
+		}
+		
+		public synchronized boolean next( )
+		{
+			index++;
+			return index < values.length;
+		}
+		
+		public synchronized String[] getCurrentRowValues( )
+		{
+			if ( index >= 0 && index < values.length )
+			{
+				return values[index];
+			}
+			return null;
+		}
+		
+		public synchronized int size( )
+		{
+			return values.length; 
+		}
+	}
+	
+	private class Row
+	{
+		public XMLPath path;
+		public String[] values;
+		public boolean isFilled;
+		public Row( XMLPath path )
+		{
+			this.path = path;
+			values = new String[relationInfo.getTableRealColumnNames( tableName ).length];
+			Arrays.fill( values, null );
+			isFilled = false;
+		}
 	}
 
-	/**
-	 * Return Current row position. The row position is the position of a row in
-	 * the result set arrary rather than overall row number.
-	 * 
-	 * @return
-	 */
-	public int getRowPosition( )
-	{
-		return currentRowNo
-				- this.cachedTimes * Constants.CACHED_RESULT_SET_LENGTH - 1;
-	}
-
-	/**
-	 * Return overall row number.
-	 * 
-	 * @return
-	 */
-	public int getCurrentRowNo( )
-	{
-		return this.currentRowNo;
-	}
 }
+
