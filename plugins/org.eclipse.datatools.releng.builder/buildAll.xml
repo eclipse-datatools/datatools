@@ -37,10 +37,11 @@
 	<target name="main" depends="init">
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
+		<antcall target="buildDtpIncubation"/>
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
 		<antcall target="Package"/>
-                <antcall target="GenerateUpdateSite"/>
+        <antcall target="GenerateUpdateSite"/>
 		<!--
                 <parallel failonany="false">
                     <antcall target="GenerateCVSChangeLog"/>
@@ -83,7 +84,13 @@
                         <property name="component" value="${eclipse.build.configs}/dtp.enablement.all" />
                 </ant>
 	</target>
-
+	
+	<target name="buildDtpIncubation">
+                <ant antfile="build.xml" dir="${basedir}">
+                        <property name="component" value="${eclipse.build.configs}/dtp.incubation.all" />
+                </ant>
+	</target>
+	
 	<target name="buildDtpSdkAllFeature">
 
 		<!-- build dtp sdk feature -->
@@ -199,7 +206,8 @@
 				<include name="*.html"/>
 			</zipfileset>
 		</zip>
-
+		<!-- package incubation package -->
+		
 		<!-- copy to output directory -->
 		<mkdir dir="${postingDirectory}/${buildId}" />
 		<copy file="${buildDirectory}/${buildId}/dtp-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
