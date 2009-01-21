@@ -32,6 +32,12 @@ ExecuteSQLAction_tooltip=すべての SQL 文を実行する
 ExecuteSelectionSQLAction_label=選択した文の実行(&X)
 ExecuteSelectionSQLAction_tooltip=選択した SQL 文を実行する
 
+ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
+ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+
+ExecuteCurrentSQLAction_label=Exec&ute Current Text
+ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+
 DMLDialogSelectionSQLAction_label=SQL クエリビルダで編集(&Q)...
 DMLDialogSelectionSQLAction_tooltip=選択した SQL 文を SQL クエリビルダで編集する
 

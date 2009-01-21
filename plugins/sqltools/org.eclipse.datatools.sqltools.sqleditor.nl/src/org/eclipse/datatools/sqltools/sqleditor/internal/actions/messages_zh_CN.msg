@@ -32,6 +32,12 @@ ExecuteSQLAction_tooltip=执行所有 SQL 语句
 ExecuteSelectionSQLAction_label=执行选定的文本(&X)
 ExecuteSelectionSQLAction_tooltip=执行选定的 SQL 语句
 
+ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
+ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+
+ExecuteCurrentSQLAction_label=Exec&ute Current Text
+ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+
 DMLDialogSelectionSQLAction_label=在 SQL 查询生成器中编辑(&Q)...
 DMLDialogSelectionSQLAction_tooltip=在 SQL 查询生成器中编辑选定的 SQL 语句
 

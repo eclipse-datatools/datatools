@@ -32,6 +32,12 @@ ExecuteSQLAction_tooltip=Alle SQL-Anweisungen ausführen
 ExecuteSelectionSQLAction_label=Aus&gewählten Text ausführen
 ExecuteSelectionSQLAction_tooltip=Ausgewählte SQL-Anweisungen ausführen
 
+ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
+ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+
+ExecuteCurrentSQLAction_label=Exec&ute Current Text
+ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+
 DMLDialogSelectionSQLAction_label=In S&QL-Abfrageerstellung bearbeiten...
 DMLDialogSelectionSQLAction_tooltip=Ausgewählte SQL-Anweisungen in SQL-Abfrageerstellung bearbeiten
 

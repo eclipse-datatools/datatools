@@ -32,6 +32,12 @@ ExecuteSQLAction_tooltip=Ejecutar todas las sentencias SQL
 ExecuteSelectionSQLAction_label=E&jecutar texto seleccionado
 ExecuteSelectionSQLAction_tooltip=Ejecutar sentencias SQL seleccionadas
 
+ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
+ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+
+ExecuteCurrentSQLAction_label=Exec&ute Current Text
+ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+
 DMLDialogSelectionSQLAction_label=Editar en el compilador de consultas S&QL...
 DMLDialogSelectionSQLAction_tooltip=Editar sentencias SQL seleccionadas en el compilador de consultas SQL
 

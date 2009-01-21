@@ -32,6 +32,12 @@ ExecuteSQLAction_tooltip=Exécuter toutes les instructions SQL
 ExecuteSelectionSQLAction_label=E&xécuter le texte sélectionné
 ExecuteSelectionSQLAction_tooltip=Exécuter les instructions SQL sélectionnées
 
+ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
+ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+
+ExecuteCurrentSQLAction_label=Exec&ute Current Text
+ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+
 DMLDialogSelectionSQLAction_label=Modifier dans le générateur de requête S&QL...
 DMLDialogSelectionSQLAction_tooltip=Modifier les instructions SQL sélectionnées dans le générateur de requête SQL
 
