@@ -46,6 +46,10 @@ public final class Messages extends NLS {
 	public static String ExecuteSQLAction_tooltip;
 	public static String ExecuteSelectionSQLAction_label;
 	public static String ExecuteSelectionSQLAction_tooltip;
+	public static String ExecuteCurrentSQLAction_label;
+	public static String ExecuteCurrentSQLAction_tooltip;
+	public static String ExecuteSQLAsOneStatement_label;
+	public static String ExecuteSQLAsOneStatement_tooltip;
 	public static String GotoMatchingTokenAction_label;
 	public static String GotoMatchingTokenAction_tooltip;
 	public static String DMLDialogSelectionSQLAction_label;

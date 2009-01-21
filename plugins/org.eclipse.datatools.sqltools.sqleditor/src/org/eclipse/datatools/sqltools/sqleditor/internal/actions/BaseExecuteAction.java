@@ -59,7 +59,7 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
             SQLService sqlService = f.getSQLService();
             if (sqlService != null)
             {
-                groups = sqlService.splitSQL(sql);
+                groups = sqlService.splitSQL(sql, isSplitByDefault());
             }
 
             //don't pass in connection, let GroupSQLResultRunnable create and close the connection
@@ -129,5 +129,10 @@ public abstract class BaseExecuteAction extends Action implements IUpdate
     protected SQLEditor getEditor()
     {
         return null;
+    }
+    
+    protected boolean isSplitByDefault()
+    {
+        return true;
     }
 }

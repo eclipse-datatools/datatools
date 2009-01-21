@@ -60,6 +60,11 @@ public class EditorPreferenceInitializer extends AbstractPreferenceInitializer
             SQLEditorPlugin.getDefault().getProperties().getProperty(PreferenceConstants.SYNTAX_VALIDATION_MAX_LINE_NUMBER,"1000")).intValue());
         store.setDefault(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION, true); //$NON-NLS-1$
 
+        // execute selected sql
+        store.setDefault(PreferenceConstants.EXECUTE_SELECTED_SQL, SQLEditorPlugin.getDefault().getProperties()
+                .getProperty(PreferenceConstants.EXECUTE_SELECTED_SQL, PreferenceConstants.EXECUTE_SQL_CURRENT_LINE));
+        store.setDefault(PreferenceConstants.EXECUTE_SQL_DELIMITER_TYPE, SQLEditorPlugin.getDefault().getProperties()
+                .getProperty(PreferenceConstants.EXECUTE_SQL_DELIMITER_TYPE, "GO"));
 
         //typing
 

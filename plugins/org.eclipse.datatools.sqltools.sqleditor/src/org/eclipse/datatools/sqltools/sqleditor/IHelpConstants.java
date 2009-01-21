@@ -95,6 +95,16 @@ public interface IHelpConstants
      * Used for Execute Selected Text in SQL Editor.
      */
     public static final String EXECUTE_SELECTED_TEXT_ACTION          = "execute_selected_text_action";
+    
+    /**
+     * Used for Execute Selected Text As One Statement in SQL Editor
+     */
+    public static final String EXECUTE_SQL_AS_ONE_STATEMENT_ACTION   = "execute_selected_as_one_statement_action";
+    
+    /**
+     * Used for Execute Current Text in SQL Editor
+     */
+    public static final String EXECUTE_CURRENT_SQL_ACTION            = "execute_current_sql_action";
 
     /**
      * Used for Get Execution Plan in SQL Editor.

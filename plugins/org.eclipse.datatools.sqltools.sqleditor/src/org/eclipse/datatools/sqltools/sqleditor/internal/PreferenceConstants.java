@@ -98,5 +98,14 @@ public class PreferenceConstants
 
     public static final String EXTERNAL_TOOL_CONFIGURED                = "external.tool.configured";
 
+    public static final String EXECUTE_SELECTED_SQL					   = "SQLEditor.executeSelectedSQL";
+    
+    public static final String EXECUTE_SQL_BETWEEN_DELIMITER		   = "SQLEditor.executeSelectedSQL.betweenDelimiter";
+    
+    public static final String EXECUTE_SQL_DELIMITER_TYPE              = "SQLEditor.executeSelectedSQL.betweenDelimiter.delimiterType";
+    
+    public static final String EXECUTE_SQL_CURRENT_LINE				   = "SQLEditor.executeSelectedSQL.currentLine";
+    
+    public static final String EXECUTE_SQL_BETWEEN_BLANK_LINE		   = "SQLEditor.executeSelectedSQL.betweenBlankLine";
 
 }

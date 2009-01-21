@@ -40,6 +40,13 @@ public final class PreferenceMessages extends NLS
     public static String SQLEditor_showPromptDialog;
     public static String SQLEditor_showSyntaxErorrDetail;
     public static String SQLEditor_showSyntaxErorrDetail_tooltip;
+    public static String SQLEditor_executeCurrentSQLGroup;
+    public static String SQLEditor_executeSQLBetweenDelimiter;
+    public static String SQLEditor_executeSQLBetweenDelimiter_tip;
+    public static String SQLEditor_executeCurrentLine;
+    public static String SQLEditor_executeCurrentLine_tip;
+    public static String SQLEditor_executeSQLBetweenBlankLine;
+    public static String SQLEditor_executeSQLBetweenBlankLine_tip;
     public static String SQLEditor_typing_title;
     public static String SQLEditor_typingAidsGroup_title;
     public static String SQLEditor_typingAidsTable_columnName1;

@@ -76,37 +76,47 @@ public class SQLService
     {
         return null;
     }
-
+    
     /**
-     * Splits the sql statement into groups of statements according to SQL statement delimiter such as "go" or ";".
+     * Splits the SQL statement into groups of statements using SQL parser. 
+     * If SQL parser failed to parse the SQL, splidByDefault param will decide whether to do a simply split by terminator or not. 
      * 
      * @param sql statement to be splitted
+     * @param splitByDefault decided whether to do split when parser failed to parse sql.
      * @return sql statement array
      */
-	public String[] splitSQL(String sql) {
-		SQLParser parser = getSQLParser();
-		if (parser == null)
-		{
-			return new String[]{sql};
-		}
-	    ArrayList groups = new ArrayList();
-	    try
-	    {
-	        IDocument doc = new Document(sql);
-	        ParserParameters parserParameters = new ParserParameters(true);
-	        parserParameters.setProperty(ParserParameters.PARAM_CONSUME_EXCEPTION, Boolean.FALSE);
-			ParsingResult result = parser.parse(sql, parserParameters);
-	        
+    public String[] splitSQL(String sql, boolean splitByDefault)
+    {
+        SQLParser parser = getSQLParser();
+        if (parser == null)
+        {
+            return new String[]{sql};
+        }
+        ArrayList groups = new ArrayList();
+        try
+        {
+            IDocument doc = new Document(sql);
+            ParserParameters parserParameters = new ParserParameters(true);
+            parserParameters.setProperty(ParserParameters.PARAM_CONSUME_EXCEPTION, Boolean.FALSE);
+            ParsingResult result = parser.parse(sql, parserParameters);
+            
             if (result.getExceptions() != null && !result.getExceptions().isEmpty())
             {
-                return splitSQLByTerminatorLine(sql, parser.getStatementTerminators());
+                if (splitByDefault)
+                {
+                    return splitSQLByTerminatorLine(sql, parser.getStatementTerminators());
+                }
+                else
+                {
+                    return new String[] {sql};
+                }
             }
 
-	        IASTStart root = result.getRootNode();
-	        root.setDocument(doc);
-	        String group = "";
-	        if (root.jjtGetNumChildren() > 0)
-	        {
+            IASTStart root = result.getRootNode();
+            root.setDocument(doc);
+            String group = "";
+            if (root.jjtGetNumChildren() > 0)
+            {
                 for (int i = 0; i < root.jjtGetNumChildren(); i++)
                 {
                     Node node = root.jjtGetChild(i);
@@ -129,22 +139,34 @@ public class SQLService
 
                     }
                 }
-	        }
-	        else
-	        {
-	            group = sql;
-	        }
+            }
+            else
+            {
+                group = sql;
+            }
             if (!group.trim().equals(""))
             {
                 groups.add(group);
             }
-	
-	    }
-	    catch (Exception e1)
-	    {
-	        EditorCorePlugin.getDefault().log(NLS.bind(Messages.DefaultSQLSyntax_exception_splitSQL, sql), e1);
-	    }
-	    return (String[]) groups.toArray(new String[groups.size()]);
+    
+        }
+        catch (Exception e1)
+        {
+            EditorCorePlugin.getDefault().log(NLS.bind(Messages.DefaultSQLSyntax_exception_splitSQL, sql), e1);
+        }
+        return (String[]) groups.toArray(new String[groups.size()]);
+    
+    }
+
+    /**
+     * Splits the sql statement into groups of statements according to SQL statement delimiter such as "go" or ";".
+     * 
+     * @param sql statement to be splitted
+     * @return sql statement array
+     */
+	public String[] splitSQL(String sql) 
+	{
+	    return splitSQL(sql, true);
 	}
 	
 	/**

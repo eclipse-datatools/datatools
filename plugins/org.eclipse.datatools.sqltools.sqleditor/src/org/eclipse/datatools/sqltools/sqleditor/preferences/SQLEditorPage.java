@@ -65,6 +65,10 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
     private Text             _maxLineText;
     private Button           _promptDisableButton;
     private Button           _showSyntaxErorrDetail;
+    private Button           _executeBetweenDelimiter;
+    private Combo            _terminatorsCombo;
+    private Button           _executeCurrentLine;
+    private Button           _executeBetweenBlankLine;
 
 
     //Typing tab variables
@@ -225,6 +229,39 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         
         _showSyntaxErorrDetail = SWTUtils.createCheckBox(syntaxValidationGroup, PreferenceMessages.SQLEditor_showSyntaxErorrDetail, 2, 5);
         _showSyntaxErorrDetail.setToolTipText(PreferenceMessages.SQLEditor_showSyntaxErorrDetail_tooltip);
+        
+        Group executeSelectedSQLGroup = SWTUtils.createGroup(composite,
+                PreferenceMessages.SQLEditor_executeCurrentSQLGroup, 2);
+
+        _executeBetweenDelimiter = new Button(executeSelectedSQLGroup, SWT.RADIO);
+        _executeBetweenDelimiter.setText(PreferenceMessages.SQLEditor_executeSQLBetweenDelimiter);
+        _executeBetweenDelimiter.setToolTipText(PreferenceMessages.SQLEditor_executeSQLBetweenDelimiter_tip);
+        _executeBetweenDelimiter.addSelectionListener(new SelectionAdapter()
+        {
+            public void widgetSelected(SelectionEvent e)
+            {
+                _terminatorsCombo.setEnabled(_executeBetweenDelimiter.getSelection());
+            }
+        });
+        _terminatorsCombo = SWTUtils.createCombo(executeSelectedSQLGroup, new String[]
+        {
+            "go", ";", "/"
+        }, 1);
+
+        _executeCurrentLine = new Button(executeSelectedSQLGroup, SWT.RADIO);
+        _executeCurrentLine.setText(PreferenceMessages.SQLEditor_executeCurrentLine);
+        _executeCurrentLine.setToolTipText(PreferenceMessages.SQLEditor_executeCurrentLine_tip);
+        GridData data = new GridData(GridData.FILL_BOTH);
+        data.horizontalSpan = 2;
+        _executeCurrentLine.setLayoutData(data);
+
+        _executeBetweenBlankLine = new Button(executeSelectedSQLGroup, SWT.RADIO);
+        _executeBetweenBlankLine.setText(PreferenceMessages.SQLEditor_executeSQLBetweenBlankLine);
+        _executeBetweenBlankLine.setToolTipText(PreferenceMessages.SQLEditor_executeSQLBetweenBlankLine_tip);
+        data = new GridData(GridData.FILL_BOTH);
+        data.horizontalSpan = 2;
+        _executeBetweenBlankLine.setLayoutData(data);
+        
         return composite;
     }
 
@@ -282,6 +319,12 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
             _promptDisableButton.setEnabled(_maxLineButton.getSelection());
         }
     }
+    
+    private void updateTerminatorsCombo()
+    {
+        _terminatorsCombo.setEnabled(_executeBetweenDelimiter.getSelection());
+    }
+    
     private Control createTypingPage(Composite parent)
     {
         Composite composite = new Composite(parent, SWT.NONE);
@@ -380,6 +423,16 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         _promptDisableButton.setSelection(_store.getBoolean(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION));
 
         _showSyntaxErorrDetail.setSelection(_store.getBoolean(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL));
+        
+        // execute sql
+        String executePolicy = _store.getString(PreferenceConstants.EXECUTE_SELECTED_SQL);
+        _executeBetweenDelimiter.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_BETWEEN_DELIMITER));
+        _executeCurrentLine.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_CURRENT_LINE));
+        _executeBetweenBlankLine.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_BETWEEN_BLANK_LINE));
+        String term = _store.getString(PreferenceConstants.EXECUTE_SQL_DELIMITER_TYPE);
+        setTerminatorsCombo(term);
+        updateTerminatorsCombo();
+        
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
@@ -404,6 +457,24 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         _store.setValue(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION, _promptDisableButton.getSelection());
 
         _store.setValue(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL, _showSyntaxErorrDetail.getSelection());
+        
+        if (_executeBetweenDelimiter.getSelection())
+        {
+            _store
+                    .setValue(PreferenceConstants.EXECUTE_SELECTED_SQL,
+                            PreferenceConstants.EXECUTE_SQL_BETWEEN_DELIMITER);
+        }
+        else if (_executeCurrentLine.getSelection())
+        {
+            _store.setValue(PreferenceConstants.EXECUTE_SELECTED_SQL, PreferenceConstants.EXECUTE_SQL_CURRENT_LINE);
+        }
+        else
+        {
+            _store.setValue(PreferenceConstants.EXECUTE_SELECTED_SQL,
+                    PreferenceConstants.EXECUTE_SQL_BETWEEN_BLANK_LINE);
+        }
+        _store.setValue(PreferenceConstants.EXECUTE_SQL_DELIMITER_TYPE, _terminatorsCombo.getItem(_terminatorsCombo.getSelectionIndex()));
+
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
@@ -433,12 +504,44 @@ public class SQLEditorPage extends PreferencePage implements IWorkbenchPreferenc
         _promptDisableButton.setSelection(_store.getDefaultBoolean(PreferenceConstants.SHOW_DAILOG_FOR_SYNTAX_VALIDATION));
 
         _showSyntaxErorrDetail.setSelection(_store.getDefaultBoolean(PreferenceConstants.SHOW_SYNTAX_ERROR_DETAIL));
+        
+        // execute sql
+        String executePolicy = _store.getDefaultString(PreferenceConstants.EXECUTE_SELECTED_SQL);
+
+        _executeBetweenDelimiter.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_BETWEEN_DELIMITER));
+        _executeCurrentLine.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_CURRENT_LINE));
+        _executeBetweenBlankLine.setSelection(executePolicy.equalsIgnoreCase(PreferenceConstants.EXECUTE_SQL_BETWEEN_BLANK_LINE));
+        String term = _store.getDefaultString(PreferenceConstants.EXECUTE_SQL_DELIMITER_TYPE);
+        setTerminatorsCombo(term);
+        updateTerminatorsCombo();
+        
         // typing
         for (int i = 0; i < _typingAidsName.length; i++)
         {
             _typingAidsTable.getItems()[i].setChecked(_store.getDefaultBoolean(_typingAidsPreferences[i]));
         }
         update();
+    }
+    
+    /**
+     * @param term
+     */
+    private void setTerminatorsCombo(String term)
+    {
+        String[] items = _terminatorsCombo.getItems();
+        int match = 0;
+        for (match = 0; match < items.length; match ++)
+        {
+            if (term.equalsIgnoreCase(items[match]))
+            {
+                break;
+            }
+        }
+        if (match >= items.length)
+        {
+            match = 0;
+        }
+        _terminatorsCombo.select(match);
     }
 
     /*

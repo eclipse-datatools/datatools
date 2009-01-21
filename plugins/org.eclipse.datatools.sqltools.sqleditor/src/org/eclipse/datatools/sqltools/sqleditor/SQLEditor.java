@@ -46,7 +46,9 @@ import org.eclipse.datatools.sqltools.sqleditor.internal.SQLEditorResources;
 import org.eclipse.datatools.sqltools.sqleditor.internal.SymbolInserter;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.AddTemplateAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.DMLDialogSelectionSQLAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteCurrentSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAction;
+import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSQLAsOneStatementAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.ExecuteSelectionSQLAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.GotoMatchingTokenAction;
 import org.eclipse.datatools.sqltools.sqleditor.internal.actions.SQLConnectAction;
@@ -687,6 +689,16 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID,
                 getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
 
+        setAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID, new ExecuteSQLAsOneStatementAction(this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID, true);
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID,
+                getAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID));
+        
+        setAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID, new ExecuteCurrentSQLAction(this));
+        markAsSelectionDependentAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID, true);
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID, 
+                getAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID));
+        
         setAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, new DMLDialogSelectionSQLAction(this));
         markAsSelectionDependentAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, true);
         bars.setGlobalActionHandler(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID,
@@ -1121,23 +1133,33 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
         // 2006-7-20
         SQLDevToolsConfiguration config = SQLToolsFacade.getConfigurationByVendorIdentifier(getConnectionInfo()
                 .getDatabaseVendorDefinitionId());
-        ActionService actionServie = config.getActionService();
+        ActionService actionService = config.getActionService();
         SQLEditorService editorService = config.getSQLEditorService();
         // Execute SQL
-        if (actionServie.supportsAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
+        if (actionService.supportsAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID))
         {
             addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE,
                     ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
         }
-        if (actionServie.supportsAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID))
+        if (actionService.supportsAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID))
         {
             addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE,
                     ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID);
         }
+        if (actionService.supportsAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID))
+        {
+            addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE, 
+                    ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID);
+        }
+        if (actionService.supportsAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID))
+        {
+            addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE,
+                    ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID);
+        }
 
         // Explain SQL
         IPlanOption planOption = config.getPlanService().getPlanOption();
-        if (planOption != null && (actionServie.supportsAction(ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID)))
+        if (planOption != null && (actionService.supportsAction(ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID)))
         {
             addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_EXECUTE,
                     ISQLEditorActionConstants.EXPLAIN_SQL_ACTION_ID);
@@ -1147,7 +1169,7 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
                 ISQLEditorActionConstants.SAVE_AS_TEMPLATE_ACTION_ID);
 
         // Edit SQL in DMLdialog
-        if (actionServie.supportsAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID))
+        if (actionService.supportsAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID))
         {
             addAction(menu, ISQLEditorActionConstants.GROUP_SQLEDITOR_ADDITION,
                     ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID);
@@ -1857,6 +1879,16 @@ public class SQLEditor extends TextEditor implements IPropertyChangeListener
             actionList.add(action);
         }
         action = getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID);
+        if (action != null)
+        {
+            actionList.add(action);
+        }
+        action = getAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID);
+        if (action != null)
+        {
+            actionList.add(action);
+        }
+        action = getAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID);
         if (action != null)
         {
             actionList.add(action);

@@ -261,6 +261,10 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
             .getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
         bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID, _editor
                 .getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID, _editor
+                .getAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID));
+        bars.setGlobalActionHandler(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID, _editor
+                .getAction(ISQLEditorActionConstants.EXECUTE_CURRENT_SQL_ACTION_ID));
         bars.setGlobalActionHandler(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID, _editor
                 .getAction(ISQLEditorActionConstants.DMLDIALOG_SELECTION_SQL_ACTION_ID));
 
@@ -362,6 +366,8 @@ public class SQLOutlinePage extends ContentOutlinePage implements ISelectionProv
         }
         manager.add(_editor
                 .getAction(ISQLEditorActionConstants.EXECUTE_SELECTION_SQL_ACTION_ID));
+        manager.add(_editor
+                .getAction(ISQLEditorActionConstants.EXECUTE_SQL_AS_ONE_STATEMENT_ACTION_ID));
         manager.add(_editor
                 .getAction(ISQLEditorActionConstants.EXECUTE_SQL_ACTION_ID));
         manager.add(_editor
