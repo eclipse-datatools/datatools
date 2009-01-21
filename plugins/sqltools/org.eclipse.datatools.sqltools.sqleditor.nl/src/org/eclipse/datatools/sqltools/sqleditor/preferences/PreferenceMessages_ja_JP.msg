@@ -28,6 +28,14 @@ SQLEditor_showPromptDialog=ƒRƒ“ƒeƒLƒXƒg‚ªÅ‘ås”‚ğ’´‚¦‚½ê‡‚Í\•¶‚ÌŒŸØ‚ğ–³Œø‚
 SQLEditor_showSyntaxErorrDetail=Ú×‚È’ßî•ñ‚ğ•\¦‚·‚é(&H)
 SQLEditor_showSyntaxErorrDetail_tooltip=\•¶‚Ì’ñˆÄ‚È‚Ç‚ÌÚ×‚È’ßî•ñ‚ğ•\¦‚·‚é
 
+SQLEditor_executeCurrentSQLGroup=Execute current text
+SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
+SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
+SQLEditor_executeCurrentLine=Execute current line
+SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
+SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
+SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+
 SQLEditor_typing_title=“ü—Í(&T)
 SQLEditor_typingAidsGroup_title=ƒXƒ}[ƒg‘}“üƒ‚[ƒh‚ÅŸ‚Ì“ü—Í•â•‹@”\‚ğ—LŒø‚É‚·‚é :
 SQLEditor_typingAidsTable_columnName1=–¼‘O

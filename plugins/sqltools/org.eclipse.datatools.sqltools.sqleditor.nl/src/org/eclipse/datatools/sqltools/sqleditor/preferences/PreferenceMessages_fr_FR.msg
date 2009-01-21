@@ -28,6 +28,14 @@ SQLEditor_showPromptDialog=Invite de désactivation de la validation de syntaxe l
 SQLEditor_showSyntaxErorrDetail=Affic&her les informations d'annotations détaillées
 SQLEditor_showSyntaxErorrDetail_tooltip=Afficher les informations d'annotations détaillées telles que certaines suggestions de syntaxe
 
+SQLEditor_executeCurrentSQLGroup=Execute current text
+SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
+SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
+SQLEditor_executeCurrentLine=Execute current line
+SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
+SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
+SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+
 SQLEditor_typing_title=&Saisie
 SQLEditor_typingAidsGroup_title=Activer ces aides à la saisie dans le mode d'insertion intelligent :
 SQLEditor_typingAidsTable_columnName1=Nom

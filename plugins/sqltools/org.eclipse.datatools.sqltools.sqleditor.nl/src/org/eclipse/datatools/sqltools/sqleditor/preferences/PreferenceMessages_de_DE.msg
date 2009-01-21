@@ -28,6 +28,14 @@ SQLEditor_showPromptDialog=Zur Deaktivierung der Syntaxvalidierung auffordern, w
 SQLEditor_showSyntaxErorrDetail=Detaillierte Anmerkungsinformationen an&zeigen
 SQLEditor_showSyntaxErorrDetail_tooltip=Detaillierte Anmerkungsinformation wie beispielsweise Syntaxvorschläge anzeigen
 
+SQLEditor_executeCurrentSQLGroup=Execute current text
+SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
+SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
+SQLEditor_executeCurrentLine=Execute current line
+SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
+SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
+SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+
 SQLEditor_typing_title=&Eingabe
 SQLEditor_typingAidsGroup_title=Diese Eingabehilfen im Smart Insert-Modus aktivieren:
 SQLEditor_typingAidsTable_columnName1=Name
