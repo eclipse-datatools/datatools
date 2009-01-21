@@ -129,7 +129,7 @@ public class ResultSetObject implements IResultSetObject
                 row = new ResultSetRow(columnCount);
                 for (int i = 0; i < columnCount; i++)
                 {
-                    row.setData(resultset.getObject(i + 1), i);
+                    row.setData(SQLUtil.getObjectByTypeCoercion(resultset, i + 1, _meta.getColumnType(i + 1)), i);
                 }
                 _totalRowCount++;
                 

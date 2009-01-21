@@ -14,6 +14,8 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
 
 import org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin;
@@ -157,5 +159,16 @@ public class SQLUtil
             default:
                 return "UNKNOWN";
         }
+    }
+    
+    public static Object getObjectByTypeCoercion(ResultSet resultSet, int index, int dataType) throws SQLException
+    {
+    	switch (dataType)
+    	{
+            case Types.TIMESTAMP:
+                return resultSet.getTimestamp(index);
+    		default:
+                return resultSet.getObject(index);
+    	}
     }
 }
