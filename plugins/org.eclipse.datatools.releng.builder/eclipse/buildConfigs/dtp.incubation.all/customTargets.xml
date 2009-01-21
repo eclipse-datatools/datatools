@@ -11,7 +11,7 @@
 	<target name="allElements">
 		<ant antfile="${genericTargets}" target="${target}" >
 			<property name="type" value="feature" />
-			<property name="id" value="org.eclipse.datatools.enablement.oda.ecore.feature" />
+			<property name="id" value="org.eclipse.datatools.enablement.oda.ecore.sdk.feature" />
 		</ant>
 	</target>
 
@@ -22,7 +22,7 @@
 	<!-- Add one target for each root element and each configuration -->
 	<!-- ===================================================================== -->
 	
-	<target name="assemble.org.eclipse.datatools.enablement.oda.ecore.feature">
+	<target name="assemble.org.eclipse.datatools.enablement.oda.ecore.sdk.feature">
 		<property name="archiveName" value="dtp-incubation-all-${package.version}.zip"/>
 		<antcall target="assemble" />
 	</target>
@@ -171,7 +171,7 @@
 		</antcall>
 	
         <unzip dest="${postingDirectory}/${buildLabel}/compilelogs" overwrite="true">
-        	<fileset dir="${buildDirectory}/features/org.eclipse.datatools.enablement.oda.ecore.feature">
+        	<fileset dir="${buildDirectory}/features/org.eclipse.datatools.enablement.oda.ecore.sdk.feature">
             	<include name="*.log.zip" />
             </fileset>
         </unzip>
