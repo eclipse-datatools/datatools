@@ -11,7 +11,7 @@
 	<target name="allElements">
 		<ant antfile="${genericTargets}" target="${target}" >
 			<property name="type" value="feature" />
-			<property name="id" value="org.eclipse.datatools.enablement-all.feature" />
+			<property name="id" value="org.eclipse.datatools.enablement.sdk.feature" />
 		</ant>
 	</target>
 
@@ -22,7 +22,7 @@
 	<!-- Add one target for each root element and each configuration -->
 	<!-- ===================================================================== -->
 	
-	<target name="assemble.org.eclipse.datatools.enablement-all.feature">
+	<target name="assemble.org.eclipse.datatools.enablement.sdk.feature">
 		<property name="archiveName" value="dtp-enablement-all-${package.version}.zip"/>
 		<antcall target="assemble" />
 	</target>
@@ -78,9 +78,9 @@
 	<target name="tagMapFiles" if="tagMaps">
 		<!-- Stores tag on the filesystem so map files can be compared -->
 		<echo file="${mapTag.properties}">
-		lastMapTag=r16_${buildId}
+		lastMapTag=r17_${buildId}
 		</echo>
-		<cvs dest="${buildDirectory}/maps/source" command="tag r16_${buildId}" />
+		<cvs dest="${buildDirectory}/maps/source" command="tag r17_${buildId}" />
 	</target>
 	
 	<!-- ===================================================================== -->
@@ -105,7 +105,7 @@
 	<!-- Steps to do after the fetch -->
 	<!-- ===================================================================== -->
 	<target name="postFetch">
-                <replace dir="${buildDirectory}/plugins" value="1.6.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/plugins" value="1.7.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
 	</target>
@@ -176,7 +176,7 @@
 		</antcall>
 	
                 <unzip dest="${postingDirectory}/${buildLabel}/compilelogs" overwrite="true">
-                        <fileset dir="${buildDirectory}/features/org.eclipse.datatools.enablement-all.feature">
+                        <fileset dir="${buildDirectory}/features/org.eclipse.datatools.enablement.sdk.feature">
                                 <include name="*.log.zip" />
                         </fileset>
                 </unzip>
