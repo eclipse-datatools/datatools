@@ -25,6 +25,7 @@
       <import feature="org.eclipse.datatools.connectivity.oda.feature" version="1.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.doc.user" version="1.6.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.datatools.modelbase.feature" version="1.6.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.pde" version="3.4.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
