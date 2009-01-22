@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.Name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.test;singleton:=true
+Bundle-Version: 1.0.1.200802251
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.datatools.connectivity,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui,
+ org.eclipse.jdt.junit,
+ org.eclipse.jdt.junit.runtime,
+ org.junit,
+ org.eclipse.ui.ide,
+ org.eclipse.datatools.connectivity.ui
+Bundle-Vendor: %Plugin.ProviderName

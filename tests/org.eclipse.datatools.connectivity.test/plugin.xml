@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension
+	      id="com.sybase.stf.servers.drivers.test"
+	      name="Test Drivers"
+	      point="org.eclipse.datatools.connectivity.driverExtension">
+	   <category
+	         name="Test"
+	         id="org.eclipse.datatools.connectivity.drivers.test.category"
+	         description="Test Drivers">
+	   </category>
+	   <driverTemplate
+	         id="org.eclipse.datatools.connectivity.drivers.test.driver1"
+	         name="Driver 1"
+	         parentCategory="org.eclipse.datatools.connectivity.drivers.test.category"
+	         description="Test Driver 1"
+	         jarList="[PLUGIN]\test_files\dummy1.jar">
+	         <properties>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver1.prop1"
+	         		name="Property1"
+	         		visible="false"
+	         		value="Some Value"/>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.test.driver1.prop2"
+	         		name="Property2"
+	         		value="Some sample value"
+	         		visible="true"
+	         		description="Property 2"/>	
+	         </properties>
+	   </driverTemplate>
+	   <driverTemplate
+	         id="org.eclipse.datatools.connectivity.drivers.test.driver2"
+	         name="Driver 2"
+	         parentCategory="org.eclipse.datatools.connectivity.drivers.test.category"
+	         description="Test Driver 2"
+	         createDefault="false"
+	         jarList="dummy2.jar">
+	         <properties>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver1.prop3"
+	         		name="Property3"
+	         		visible="false"
+	         		value="Some Value"/>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver1.prop4"
+	         		name="Property4"
+	         		value="Some sample value"
+	         		visible="true"
+	         		description="Property 4"/>
+           <property
+                 description="Property5"
+                 generated="false"
+                 id="org.eclipse.datatools.connectivity.test.property5"
+                 name="Property5"
+                 required="true"
+                 value="some value for property 5"
+                 visible="true">
+           </property>	
+	         </properties>
+	   </driverTemplate>
+	   <driverTemplate
+	         id="org.eclipse.datatools.connectivity.drivers.test.driver3"
+	         name="Old Driver 3"
+	         parentCategory="org.eclipse.datatools.connectivity.drivers.test.category"
+	         description="Test Driver 3"
+	         createDefault="false"
+	         jarList="[PLUGIN]\test_files\dummy1.jar">
+	         <properties>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver3.prop1"
+	         		name="OldProperty1"
+	         		visible="true"
+	         		value="Some Value 1 for Migration Test Driver 3"/>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver3.prop2"
+	         		name="OldProperty2"
+	         		value="Some Value 2 for Migration Test Driver 3"
+	         		visible="true"
+	         		description="Property 2"/>	
+	         </properties>
+             <migration
+                newDriverTemplateID="org.eclipse.datatools.connectivity.drivers.test.driver4">
+             <propertyMigration
+                   oldPropertyKey="org.eclipse.datatools.connectivity.drivers.test.driver3.prop1"
+                   newPropertyKey="org.eclipse.datatools.connectivity.drivers.test.driver4.prop3"
+                   newValue="some migrated value 1">
+             </propertyMigration>
+             <propertyMigration
+                   oldPropertyKey="org.eclipse.datatools.connectivity.drivers.test.driver3.prop2"
+                   newPropertyKey="org.eclipse.datatools.connectivity.drivers.test.driver4.prop4"
+                   newValue="some migrated value 2">
+             </propertyMigration>
+          </migration>
+	   </driverTemplate>
+	   <driverTemplate
+	         id="org.eclipse.datatools.connectivity.drivers.test.driver4"
+	         name="New Driver 4"
+	         parentCategory="org.eclipse.datatools.connectivity.drivers.test.category"
+	         description="Test Driver 4"
+	         createDefault="false"
+	         jarList="[PLUGIN]\test_files\dummy1.jar">
+	         <properties>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver4.prop3"
+	         		name="NewProperty3"
+	         		visible="true"
+	         		value="Some Value 3 for Migration Test Driver 4"/>
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver4.prop4"
+	         		name="NewProperty4"
+	         		value="Some Value 4 for Migration Test Driver 4"
+	         		visible="true"
+	         		description="Property 4"/>	
+	         	<property
+	         		id="org.eclipse.datatools.connectivity.drivers.test.driver4.prop5"
+	         		name="NewProperty5"
+	         		value="Some Value 5 for Migration Test Driver 4"
+	         		visible="true"
+	         		description="Property 5"/>	
+	         </properties>
+	   </driverTemplate>
+	</extension>
+ <extension
+       point="org.eclipse.datatools.connectivity.driverExtension">
+    <driverTemplateOverride
+          id="org.eclipse.datatools.connectivity.drivers.test.override1"
+          jarList="[PLUGIN]\test_files\dummy2.jar"
+          name="Override Driver"
+          targetId="org.eclipse.datatools.connectivity.drivers.test.driver2">
+       <propertyOverrides>
+          <propertyOverride
+                name="Property6"
+                targetId="org.eclipse.datatools.connectivity.drivers.test.driver1.prop4"
+                >
+          </propertyOverride>
+          <propertyOverride
+                remove="true"
+                targetId="org.eclipse.datatools.connectivity.test.property5">
+          </propertyOverride>
+       </propertyOverrides>
+    </driverTemplateOverride>
+    <driverTemplateOverride
+          name="Overridden Override Driver"
+          targetId="org.eclipse.datatools.connectivity.drivers.test.override1">
+       <propertyOverrides>
+          <propertyOverride
+                targetId="org.eclipse.datatools.connectivity.drivers.test.driver1.prop4"
+                value="Override Value">
+          </propertyOverride>
+       </propertyOverrides>
+    </driverTemplateOverride>
+ </extension>
+</plugin>

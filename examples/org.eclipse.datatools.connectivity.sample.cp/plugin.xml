@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="java.io.File"
+            id="org.eclipse.datatools.connectivity.sample.connectionProfileSample.contribution1">
+         <action
+               label="%Extension.PopupAction.Name"
+               class="org.eclipse.datatools.connectivity.sample.cp.ui.actions.SampleFileAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="org.eclipse.datatools.connectivity.sample.connectionProfileSample.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="org.eclipse.datatools.connectivity.sample.cp.ui.properties.FileProfilePropetyPage"
+            id="org.eclipse.datatools.connectivity.sample.ui.properties.fileProfilePropertyPage"
+            name="%Extension.PropertyPage.Name">
+         <filter
+               name="org.eclipse.datatools.profile.property.id"
+               value="org.eclipse.datatools.connectivity.sample.fileProfile">
+         </filter>
+         <enabledWhen>
+            <instanceof
+                  value="org.eclipse.datatools.connectivity.IConnectionProfile">
+            </instanceof>
+         </enabledWhen>
+      </page>
+   </extension>
+   
+   <extension
+         id="fileProfile"
+         name="%Extension.ServerExtension.Name"
+         point="org.eclipse.datatools.connectivity.connectionProfile">
+      <category
+            name="%Extension.ServerExtension.Category.Name"
+            id="org.eclipse.datatools.connectivity.sample.fileCategory">
+      </category>
+      <configurationType
+            name="%Extension.ServerExtension.ConfigurationType.Name"
+            id="org.eclipse.datatools.connectivity.sample.pathConfiguration">
+      </configurationType>
+      <connectionFactory
+            name="%Extension.ServerExtension.ConnectionFactory.Name"
+            profile="org.eclipse.datatools.connectivity.sample.fileProfile"
+            class="org.eclipse.datatools.connectivity.sample.cp.FileConnectionFactory"
+            id="java.io.File">
+      </connectionFactory>
+      <connectionProfile
+            category="org.eclipse.datatools.connectivity.sample.fileCategory"
+            configurationType="org.eclipse.datatools.connectivity.sample.pathConfiguration"
+            icon="icons/file.gif"
+            id="org.eclipse.datatools.connectivity.sample.fileProfile"
+            name="%Extension.ServerExtension.ConnectionProfile.Name">
+      </connectionProfile>
+      <newWizard
+            name="%Extension.NewWizard.Name"
+            profile="org.eclipse.datatools.connectivity.sample.fileProfile"
+            icon="icons/file.gif"
+            description="%Extension.NewWizard.Description"
+            class="org.eclipse.datatools.connectivity.sample.cp.ui.wizards.FileConnectionProfileNewWizard"
+            id="org.eclipse.datatools.connectivity.sample.connectionProfileSample.wizard1">
+      </newWizard>
+      <connectionFactory
+            class="org.eclipse.datatools.connectivity.sample.cp.FileConnectionFactory"
+            id="org.eclipse.datatools.connectivity.connectionFactory.pingFactory"
+            name="Ping Factory"
+            profile="org.eclipse.datatools.connectivity.sample.fileProfile"/>      
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.datatools.connectivity.sample.cp.DirectoryContentProviderExtension"
+            id="org.eclipse.datatools.connectivity.sample.directoryContent"
+            labelProvider="org.eclipse.datatools.connectivity.sample.cp.DirectoryLabelProviderExtension"
+            name="Directory Content Extension (Sample)">
+         <enablement>
+            <or>
+	            <and>
+                     <instanceof value="org.eclipse.datatools.connectivity.IConnectionProfile"/>
+				     <test
+						property="org.eclipse.datatools.connectivity.profile.property.id"
+	                     value="org.eclipse.datatools.connectivity.sample.fileProfile"/>
+	            </and>
+               <instanceof
+	                     value="java.io.File">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.sample.cp.DirectoryContentExtension">
+               </instanceof>
+            </or>
+         </enablement>
+      </navigatorContent>
+   </extension>
+   
+      <extension
+            point="org.eclipse.core.runtime.adapters">
+         <factory
+               adaptableType="org.eclipse.datatools.connectivity.IConnectionProfile"
+               class="org.eclipse.datatools.connectivity.sample.cp.FileProfileAdapterFactory">
+            <adapter
+                  type="org.eclipse.ui.views.properties.IPropertySourceProvider">
+            </adapter>
+         </factory>
+      </extension>
+      
+      <extension
+            point="org.eclipse.ui.navigator.viewer">
+         <viewerContentBinding viewerId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator">
+            <includes>
+               <contentExtension pattern="org.eclipse.datatools.connectivity.sample.directoryContent"/>
+            </includes>
+         </viewerContentBinding>
+      </extension>
+
+<!-- This action provider will override the Refresh action
+for File profiles to pop up a simple dialog instead of actually
+refreshing the view
+	NOTE: This is supported in Eclipse 3.3 only -->
+
+<!--
+    <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.sample.cp.ui.actions.RefreshOverrideActionProvider"
+            id="org.eclipse.datatools.connectivity.ui.dse.actions.testbed2"
+            overrides="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+         <enablement>
+            <and>
+               <instanceof
+                     value="org.eclipse.datatools.connectivity.IConnectionProfile">
+               </instanceof>
+               <test
+                     property="org.eclipse.datatools.connectivity.profile.property.id"
+                     value="org.eclipse.datatools.connectivity.sample.fileProfile">
+               </test>
+            </and>
+         </enablement>
+      </actionProvider>
+   </extension>
+-->
+
+<!-- This action provider contributes an overriding Refresh action for 
+directories appearing in connected file profiles -->   
+
+<!-- 	NOTE: This is supported in Eclipse 3.3 only -->
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.datatools.connectivity.sample.cp.ui.actions.RefreshDirectoryActionProvider"
+            id="org.eclipse.datatools.connectivity.ui.dse.actions.testbed3"
+            overrides="org.eclipse.datatools.connectivity.ui.dse.actions.RefreshActionProvider">
+         <enablement>
+               <instanceof
+                     value="java.io.File">
+               </instanceof>
+         </enablement>
+      </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.datatools.connectivity.ui.connectionProfileImage">
+      <profileImage
+            icon="icons/file2.gif"
+            profileID="org.eclipse.datatools.connectivity.sample.fileProfile">
+      </profileImage>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.datatools.connectivity.sample.cp.ui.handler.NewCPSampleHandler"
+            commandId="org.eclipse.datatools.connectivity.commands.addprofile">
+     <enabledWhen>
+	   <with variable="selection">
+	    <count value="1" />
+	    <iterate>
+        <or>
+           <and>
+              <instanceof
+                    value="org.eclipse.datatools.connectivity.IConnectionProfile">
+              </instanceof>
+              <test
+                    property="org.eclipse.datatools.connectivity.profile.property.id"
+                    value="org.eclipse.datatools.connectivity.sample.fileProfile">
+              </test>
+           </and>
+           <instanceof
+                 value="java.io.File">
+           </instanceof>
+           <instanceof
+                 value="org.eclipse.datatools.connectivity.sample.cp.DirectoryContentExtension">
+           </instanceof>
+        </or>
+	    </iterate>
+	   </with>
+     </enabledWhen>
+     <activeWhen>
+        <and>
+           <with
+                 variable="activeWorkbenchWindow">
+              <test
+                    property="org.eclipse.datatools.connectivity.workbench.window.perspective.property.perspectiveID"
+                    value="org.eclipse.ui.resourcePerspective">
+              </test>
+           </with>
+           <with
+                 variable="selection">
+              <count
+                    value="1">
+              </count>
+              <iterate
+                    operator="or">
+                 <or>
+                    <and>
+                       <instanceof
+                             value="org.eclipse.datatools.connectivity.IConnectionProfile">
+                       </instanceof>
+                       <test
+                             property="org.eclipse.datatools.connectivity.profile.property.id"
+                             value="org.eclipse.datatools.connectivity.sample.fileProfile">
+                       </test>
+                    </and>
+                    <instanceof
+                          value="java.io.File">
+                    </instanceof>
+                    <instanceof
+                          value="org.eclipse.datatools.connectivity.sample.cp.DirectoryContentExtension">
+                    </instanceof>
+                 </or>
+              </iterate>
+           </with>
+        </and>
+     </activeWhen>
+      </handler>
+   </extension>
+</plugin>

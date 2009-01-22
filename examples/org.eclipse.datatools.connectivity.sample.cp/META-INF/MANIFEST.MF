@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.Name
+Bundle-SymbolicName: org.eclipse.datatools.connectivity.sample.cp; singleton:=true
+Bundle-Version: 1.0.1.200802261
+Bundle-Vendor: %Plugin.Provider.Name
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)",
+ org.eclipse.ui.navigator;bundle-version="[3.3.0,4.0.0)",
+ org.eclipse.ui.views;bundle-version="[3.2.0,4.0.0)",
+ org.eclipse.datatools.connectivity.ui.dse;bundle-version="[0.9.1,1.5.0)"
+Eclipse-LazyStart: true
+Bundle-ClassPath: cpsample.jar
+Export-Package: org.eclipse.datatools.connectivity.sample.cp,
+ org.eclipse.datatools.connectivity.sample.cp.ui,
+ org.eclipse.datatools.connectivity.sample.cp.ui.actions,
+ org.eclipse.datatools.connectivity.sample.cp.ui.handler,
+ org.eclipse.datatools.connectivity.sample.cp.ui.properties,
+ org.eclipse.datatools.connectivity.sample.cp.ui.wizards
