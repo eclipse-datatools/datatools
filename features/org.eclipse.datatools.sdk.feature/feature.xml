@@ -38,7 +38,27 @@
    <includes
          id="org.eclipse.datatools.modelbase.feature.source"
          version="0.0.0"/>
-         
+
+   <includes
+         id="org.eclipse.datatools.intro"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.doc.user"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.common.doc.user"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.connectivity.doc.user"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.datatools.sqltools.doc.user"
+         version="0.0.0"/>
+                  
    <includes
          id="org.eclipse.datatools.connectivity.feature.source"
          version="0.0.0"/>
