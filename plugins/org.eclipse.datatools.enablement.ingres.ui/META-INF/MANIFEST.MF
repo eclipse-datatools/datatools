@@ -3,7 +3,7 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-Name: %PLUGIN_NAME
 Bundle-SymbolicName: org.eclipse.datatools.enablement.ingres.ui;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Eclipse.org
 Eclipse-LazyStart: true
 Require-Bundle: org.eclipse.datatools.connectivity.db.generic.ui;bundle-version="[1.0.1,2.0.0)",
