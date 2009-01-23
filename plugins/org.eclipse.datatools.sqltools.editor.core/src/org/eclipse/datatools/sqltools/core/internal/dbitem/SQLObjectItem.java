@@ -16,10 +16,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.EngineeringOptionID;
 import org.eclipse.datatools.connectivity.sqm.core.rte.DDLGenerator;
 import org.eclipse.datatools.connectivity.sqm.core.rte.EngineeringOption;
+import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.routines.Routine;
+import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.IControlConnection;
 import org.eclipse.datatools.sqltools.core.ProcIdentifier;
@@ -29,6 +32,7 @@ import org.eclipse.datatools.sqltools.core.dbitem.ISPUDF;
 import org.eclipse.datatools.sqltools.core.dbitem.ParameterDescriptor;
 import org.eclipse.datatools.sqltools.core.profile.ProfileUtil;
 import org.eclipse.datatools.sqltools.internal.SQLDevToolsUtil;
+import org.eclipse.datatools.sqltools.sql.util.ModelUtil;
 import org.eclipse.datatools.sqltools.sql.util.ParameterUtil;
 import org.eclipse.datatools.sqltools.sql.util.SQLUtil;
 
@@ -76,8 +80,12 @@ public class SQLObjectItem implements IDBItem, IItemWithCode, ISPUDF {
 
 	public String getCode() throws SQLException {
 		String code = "";
-		DDLGenerator ddlg = ProfileUtil.getDatabaseDefinition(
-				_proc.getProfileName()).getDDLGenerator();
+		Database database = ModelUtil.getDatabase(ModelUtil.getSchema(_routine));
+		DatabaseDefinition databaseDefinition = RDBCorePlugin.getDefault()
+				.getDatabaseDefinitionRegistry().getDefinition(
+						database.getVendor(), database.getVersion());
+		
+		DDLGenerator ddlg = databaseDefinition.getDDLGenerator();
 		if (ddlg != null) {
 			SQLObject[] sqlElements = new SQLObject[] { _routine };
 			EngineeringOption[] opts = ddlg.getOptions(sqlElements);
