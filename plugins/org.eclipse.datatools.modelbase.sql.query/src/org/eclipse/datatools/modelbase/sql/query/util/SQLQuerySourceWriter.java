@@ -1193,6 +1193,11 @@ public class SQLQuerySourceWriter implements SQLSourceWriter
             if (trimText.startsWith(COMMENT_PREFIX_MULTI_LINE) == false) {
                 sbComment.append(COMMENT_PREFIX_MULTI_LINE);
             }
+            // BZ 202602 drigby 02 Dec 2008
+            // If the comment is a multiline comment padd with 1 leading space
+            if (trimText.startsWith(COMMENT_PREFIX_MULTI_LINE)) {
+                sbComment.append(" ");
+            } 
             sbComment.append(text);
             if (trimText.endsWith(COMMENT_SUFFIX_MULTI_LINE) == false) {
                 sbComment.append(COMMENT_SUFFIX_MULTI_LINE);
