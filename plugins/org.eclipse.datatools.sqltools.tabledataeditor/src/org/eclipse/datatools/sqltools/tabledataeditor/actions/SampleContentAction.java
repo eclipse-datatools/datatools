@@ -169,6 +169,18 @@ public class SampleContentAction extends AbstractAction
                 {
                     connection = ((ICatalogObject) selectedObj).getConnection();
                 }
+                // BZ 206601 drigby 5th Dec 2008
+                // Get the identifier quote string from JDBC connection
+                // because databaseDefinition.getIdentifierQuoteString() always
+                // return \"
+                try
+                {
+                   this.quote = connection.getMetaData().getIdentifierQuoteString();
+                }
+                catch (Exception ex)
+                {
+                    // ignore
+                }
                 final Column column = (Column) selectedObj;
                 final String columnName = column.getName();
 
