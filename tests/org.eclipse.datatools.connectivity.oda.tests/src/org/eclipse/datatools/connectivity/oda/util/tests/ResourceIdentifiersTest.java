@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -52,11 +52,13 @@ public class ResourceIdentifiersTest extends TestCase
         
         URI expectedResource = new URI( getPluginTestFilePath() + "dummy" ); //$NON-NLS-1$
         assertEquals( expectedResource, ids.getApplResourceURILocator().resolve( new URI( "dummy") ) ); //$NON-NLS-1$
+        assertEquals( expectedResource, ids.resolveApplResource(  new URI( "dummy") ) ); //$NON-NLS-1$
         
         // test that a default URILocator is automatically registered
         ids.setDesignResourceBaseURI( baseURI );
         assertTrue( ids.getDesignResourceURILocator() instanceof URILocator );
         assertEquals( expectedResource, ids.getDesignResourceURILocator().resolve( new URI( "dummy") ) ); //$NON-NLS-1$
+        assertEquals( expectedResource, ids.resolveDesignResource( new URI( "dummy") ) ); //$NON-NLS-1$
     }
   
     public void testCustomURILocators() throws Exception
@@ -67,6 +69,7 @@ public class ResourceIdentifiersTest extends TestCase
         
         assertEquals( baseURI, ids.getDesignResourceBaseURI() );
         assertEquals( baseURI, ids.getDesignResourceURILocator().resolve( new URI( "dummy") ) ); //$NON-NLS-1$
+        assertEquals( baseURI, ids.resolveDesignResource( new URI( "dummy") ) ); //$NON-NLS-1$
     }
     
     private String getPluginTestFilePath()
