@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ import java.net.URI;
 import java.util.HashMap;
 
 /**
- * <b>Experimental</b>
+ * <b>Provisional</b>
  *  Represents the resource identifiers of an ODA consumer application.
  *  An ODA consumer application may optionally specify its resource identifiers in an instance,
  *  and pass it to an ODA runtime driver in an application context map.
@@ -34,8 +34,8 @@ public class ResourceIdentifiers
     public static final String ODA_APP_CONTEXT_KEY_CONSUMER_RESOURCE_IDS = 
         "org.eclipse.datatools.connectivity.oda.util_" + "consumerResourceIds"; //$NON-NLS-1$ //$NON-NLS-2$
     
-    private static final String APPL_RESOURCE_BASE_URI = "ApplResourceBaseURI"; //$NON-NLS-1$
-    private static final String DESIGN_RESOURCE_BASE_URI = "DesignResourceBaseURI"; //$NON-NLS-1$
+    private static final String APPL_RESOURCE_TYPE = "ApplResourceType"; //$NON-NLS-1$
+    private static final String DESIGN_RESOURCE_TYPE = "DesignResourceType"; //$NON-NLS-1$
     
     private HashMap m_uriLocators;
 
@@ -43,27 +43,46 @@ public class ResourceIdentifiers
     {
         m_uriLocators = new HashMap(2);
     }
+
+    /**
+     * Resolves the specified URI against the base URI of an ODA consumer application's 
+     * general purpose resources.
+     * It uses the application resource URI Locator registered by an ODA consumer application 
+     * to resolve an application resource URI.
+     * @param uri   the URI to be resolved against the application resource base URI
+     * @return      the resulting URI
+     * @since DTP 1.7
+     */
+    public URI resolveApplResource( URI uri )
+    {
+        return resolveResourceURI( APPL_RESOURCE_TYPE, uri );
+    }
     
     /**
      * Returns the base URI of general purpose resources of an ODA consumer application.
+     * The returned URI is application-dependent, and may be not well defined. 
+     * In such case, the client should use {@link #resolveApplResource(URI)} or
+     * get the URI locator in {@link #getApplResourceURILocator()} to resolve a relative URI reference.
      * @return  base URI; may be null
+     * @see #resolveApplResource(URI)
      * @see #getApplResourceURILocator()
      */
     public URI getApplResourceBaseURI()
     {
-        return getCustomResourceBaseURI( APPL_RESOURCE_BASE_URI );
+        return getResourceBaseURI( APPL_RESOURCE_TYPE );
     }
 
     /**
      * Specifies the base URI of general purpose resources of an ODA consumer application.
-     * It registers the default {@link URILocator} that can be used by a client
+     * It registers an {@link URILocator} that can be used by a client
      * to resolve a resource URI against the specified baseURI.
+     * Any previously registered application resource URILocator and its base URI is replaced.
      * @param baseURI   base URI; may be null
      * @see #registerApplResourceURILocator(URILocator)
      */
     public void setApplResourceBaseURI( URI baseURI )
     {
-        setCustomResourceBaseURI( APPL_RESOURCE_BASE_URI, baseURI );
+        setResourceBaseURI( APPL_RESOURCE_TYPE, baseURI );
     }
 
     /**
@@ -74,42 +93,60 @@ public class ResourceIdentifiers
      */
     public URILocator getApplResourceURILocator()
     {
-        return getCustomResourceURILocator( APPL_RESOURCE_BASE_URI );
+        return getResourceURILocator( APPL_RESOURCE_TYPE );
     }
 
     /**
      * Registers an URILocator defined by an ODA consumer application for its application resources.
-     * Replaces any previously registered application resources URILocator, if exists.
+     * Replaces any previously registered application resources URILocator and its base URI.
      * @param uriLocator    an application resource URI locator
      * @see #setApplResourceBaseURI(URI)
      */
     public void registerApplResourceURILocator( URILocator uriLocator )
     {
-        registerCustomResourceURILocator( APPL_RESOURCE_BASE_URI, uriLocator );
+        registerResourceURILocator( APPL_RESOURCE_TYPE, uriLocator );
+    }
+
+    /**
+     * Resolves the specified URI against the base URI of an ODA consumer application's design resources.
+     * It uses the design resource URI Locator registered by an ODA consumer application 
+     * to resolve a design resource URI.
+     * @param uri   the URI to be resolved against the design resource base URI
+     * @return      the resulting URI
+     * @since DTP 1.7
+     */
+    public URI resolveDesignResource( URI uri )
+    {
+        return resolveResourceURI( DESIGN_RESOURCE_TYPE, uri );
     }
     
     /**
      * Returns the base URI of the design resources of an ODA consumer application.
      * The definition of a design resource is dependent on individual consumer application.
-     * @return  base URI; may be null
+     * The returned URI is application-dependent, and may be not well defined. 
+     * In such case, the client should use {@link #resolveDesignResource(URI)} or
+     * get the URI locator in {@link #getDesignResourceURILocator()} to resolve a relative URI reference.
+     * @return  base URI reference; may be null
+     * @see #resolveDesignResource(URI)
      * @see #getDesignResourceURILocator()
      */
     public URI getDesignResourceBaseURI()
     {
-        return getCustomResourceBaseURI( DESIGN_RESOURCE_BASE_URI );
+        return getResourceBaseURI( DESIGN_RESOURCE_TYPE );
     }
 
     /**
      * Specifies the base URI of the design resources of an ODA consumer application.
      * The definition of a design resource is dependent on individual consumer application.
-     * This registers the default {@link URILocator} that can be used by a client
+     * It registers an {@link URILocator} that can be used by a client
      * to resolve a resource URI against the specified baseURI.
+     * Any previously registered design resource URILocator and its base URI is replaced.
      * @param baseURI  base URI; may be null
      * @see #registerDesignResourceURILocator(URILocator)
      */
     public void setDesignResourceBaseURI( URI baseURI )
     {
-        setCustomResourceBaseURI( DESIGN_RESOURCE_BASE_URI, baseURI );
+        setResourceBaseURI( DESIGN_RESOURCE_TYPE, baseURI );
     }
 
     /**
@@ -120,40 +157,48 @@ public class ResourceIdentifiers
      */
     public URILocator getDesignResourceURILocator()
     {
-        return getCustomResourceURILocator( DESIGN_RESOURCE_BASE_URI );
+        return getResourceURILocator( DESIGN_RESOURCE_TYPE );
     }
 
     /**
      * Registers a URILocator defined by an ODA consumer application for its design resources.
-     * Replaces any previously registered design resources URILocator, if exists.
+     * Replaces any previously registered design resources URILocator and its base URI.
      * @param uriLocator    a design resource URI locator
      * @see #setDesignResourceBaseURI(URI)
      */
     public void registerDesignResourceURILocator( URILocator uriLocator )
     {
-        registerCustomResourceURILocator( DESIGN_RESOURCE_BASE_URI, uriLocator );
+        registerResourceURILocator( DESIGN_RESOURCE_TYPE, uriLocator );
     }
 
-    private URI getCustomResourceBaseURI( String customResourceType )
+    private URI getResourceBaseURI( String resourceType )
     {
-        URILocator locator = getCustomResourceURILocator( customResourceType );
+        URILocator locator = getResourceURILocator( resourceType );
         return ( locator != null ) ? locator.getBaseURI() : null;
     }
     
-    private void setCustomResourceBaseURI( String customResourceType, URI baseURI )
+    private void setResourceBaseURI( String resourceType, URI baseURI )
     {
+        // create a new URILocator with the specified baseURI to
+        // replace any previously registered URILocator and its base URI
         URILocator locator = createURILocator( baseURI );
-        registerCustomResourceURILocator( customResourceType, locator );
+        registerResourceURILocator( resourceType, locator );
     }
     
-    private URILocator getCustomResourceURILocator( String customResourceType )
+    private URI resolveResourceURI( String resourceType, URI uri )
     {
-        return (URILocator) m_uriLocators.get( customResourceType );
+        URILocator locator = getResourceURILocator( resourceType );
+        return ( locator != null ) ? locator.resolve( uri ) : uri;
     }
 
-    private void registerCustomResourceURILocator( String customResourceType, URILocator uriLocator )
+    private URILocator getResourceURILocator( String resourceType )
     {
-        m_uriLocators.put( customResourceType, uriLocator );
+        return (URILocator) m_uriLocators.get( resourceType );
+    }
+
+    private void registerResourceURILocator( String resourceType, URILocator uriLocator )
+    {
+        m_uriLocators.put( resourceType, uriLocator );
     }
 
     /**
@@ -168,11 +213,12 @@ public class ResourceIdentifiers
     }
     
     /**
-     * Default locator of a resource URI relative to a specified base URI.
+     * The default locator of a resource URI relative to a specified base URI.
      * An ODA consumer application may extend to customize how it proposes to
-	 * resolve a resource URI against its resource base URI.
-     * An ODA provider may use it to resolve a resource URI, or simply get the base URI 
-     * for its own implementation.
+	 * resolve a relative URI reference against its resource base URI.
+     * An ODA data provider may use the locator to resolve a resource's relative URI;
+     * or if the application-dependent base URI is well defined, get the base URI 
+     * for its own processing.
      */
     public class URILocator
     {
