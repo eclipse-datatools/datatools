@@ -28,11 +28,4 @@
       <import feature="org.eclipse.datatools.connectivity.feature" version="1.6.0" match="greaterOrEqual"/>
    </requires>
 
-   <plugin
-         id="org.eclipse.datatools.sqltools.tablewizard"
-         download-size="57"
-         install-size="57"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>
