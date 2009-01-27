@@ -70,16 +70,18 @@ public abstract class EditComboBoxCellEditor extends CellEditor {
                 return new Point(wHint, hHint);
             }
             Point size = combo.computeSize(SWT.DEFAULT, SWT.DEFAULT, force);
-            int width = 0;
-            if (fItems != null) {
-                GC gc = new GC(combo);
-                for (int i = 0; i < fItems.length; i++) {
-                    width = Math.max(width, gc.textExtent(fItems[i].fLabel).x);
-                }
-                width += gc.textExtent("M").x;
-                gc.dispose();
-            }
-            size.x = width;
+            // BZ 225491 drigby@sybase.com 5 Nov 2008
+            //int width = 0;
+            //if (fItems != null) {
+            //    GC gc = new GC(combo);
+            //    for (int i = 0; i < fItems.length; i++) {
+            //        width = Math.max(width, gc.textExtent(fItems[i].fLabel).x);
+            //    }
+            //    width += gc.textExtent("M").x;
+            //    gc.dispose();
+            //}
+            //size.x = width;
+            size.x = editor.getBounds().width;
             return size;
         }
     }
