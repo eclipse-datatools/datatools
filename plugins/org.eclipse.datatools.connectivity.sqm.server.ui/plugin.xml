@@ -30,6 +30,8 @@
 						property="org.eclipse.datatools.connectivity.profile.property.factoryID"
 						value="org.eclipse.datatools.connectivity.sqm.core.connection.ConnectionInfo"/>
                   </and>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.providers.SQLModelContentExtension"/>
+                  <instanceof value="org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.loading.LoadingNode"/>
                 </or>
             </triggerPoints>
             <possibleChildren>
