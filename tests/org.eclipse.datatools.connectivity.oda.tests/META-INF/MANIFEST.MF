@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: DTP ODA Tests Suite
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.tests;singleton:=true
-Bundle-Version: 3.0.4.200702081
+Bundle-Version: 3.1.3.200702081
 Bundle-Localization: plugin
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.datatools.connectivity.oda;bundle-version="[3.1.3,4.0.0)",
