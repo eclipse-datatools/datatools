@@ -28,13 +28,13 @@ SQLEditor_showPromptDialog=내용이 최대 줄 수를 초과하면 구문 유효성 검사를 즉시 
 SQLEditor_showSyntaxErorrDetail=상세 주석 정보표시(&H)
 SQLEditor_showSyntaxErorrDetail_tooltip=몇 가지 구문 제안과 같은 상세 주석 정보 보기
 
-SQLEditor_executeCurrentSQLGroup=Execute current text
-SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
-SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
-SQLEditor_executeCurrentLine=Execute current line
-SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
-SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
-SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+SQLEditor_executeCurrentSQLGroup=현재 텍스트 실행
+SQLEditor_executeSQLBetweenDelimiter=구분 기호 사이의 SQL 실행
+SQLEditor_executeSQLBetweenDelimiter_tip=현재 커서 위치 앞뒤에 있는 구분 기호 사이의 SQL 실행
+SQLEditor_executeCurrentLine=현재 줄 실행
+SQLEditor_executeCurrentLine_tip=커서가 있는 줄 텍스트 실행
+SQLEditor_executeSQLBetweenBlankLine=빈 줄 사이의 SQL 실행
+SQLEditor_executeSQLBetweenBlankLine_tip=현재 커서 위치 앞뒤에 있는 빈 줄 사이의 SQL 실행
 
 SQLEditor_typing_title=입력(&T)
 SQLEditor_typingAidsGroup_title=스마트 삽입 모드의 입력 보조 기능 사용:

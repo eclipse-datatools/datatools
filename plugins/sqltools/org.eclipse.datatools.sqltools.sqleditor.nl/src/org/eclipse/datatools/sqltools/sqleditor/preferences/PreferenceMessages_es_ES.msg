@@ -28,13 +28,13 @@ SQLEditor_showPromptDialog=Solicitar la validación de sintaxis cuando el conteni
 SQLEditor_showSyntaxErorrDetail=&Mostrar información detallada de anotación
 SQLEditor_showSyntaxErorrDetail_tooltip=Mostrar información detallada de anotación, por ejemplo algunas propuestas de sintaxis
 
-SQLEditor_executeCurrentSQLGroup=Execute current text
-SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
-SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
-SQLEditor_executeCurrentLine=Execute current line
-SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
-SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
-SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+SQLEditor_executeCurrentSQLGroup=Ejecutar texto actual
+SQLEditor_executeSQLBetweenDelimiter=Ejecutar SQL entre delimitadores
+SQLEditor_executeSQLBetweenDelimiter_tip=Ejecutar SQL entre los delimitadores antes y después de la posición actual del cursor
+SQLEditor_executeCurrentLine=Ejecutar línea actual
+SQLEditor_executeCurrentLine_tip=Ejecutar texto de línea de la posición del cursor
+SQLEditor_executeSQLBetweenBlankLine=Ejecutar SQL entre líneas en blanco
+SQLEditor_executeSQLBetweenBlankLine_tip=Ejecutar SQL entre las líneas en blanco antes y después de la posición actual del cursor
 
 SQLEditor_typing_title=&Escribir
 SQLEditor_typingAidsGroup_title=Activar estas ayudas a la escritura en el modo Inserción inteligente:

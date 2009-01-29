@@ -32,11 +32,11 @@ ExecuteSQLAction_tooltip=모든 SQL 문 실행
 ExecuteSelectionSQLAction_label=선택한 텍스트 실행(&X)
 ExecuteSelectionSQLAction_tooltip=선택한 SQL 문 실행
 
-ExecuteSQLAsOneStatement_label=Exe&cute Selected Text As One Statement
-ExecuteSQLAsOneStatement_tooltip=Execute Selected Text As One Statement
+ExecuteSQLAsOneStatement_label=선택한 텍스트를 하나의 문으로 실행(&C)
+ExecuteSQLAsOneStatement_tooltip=선택한 텍스트를 하나의 문으로 실행
 
-ExecuteCurrentSQLAction_label=Exec&ute Current Text
-ExecuteCurrentSQLAction_tooltip=Execute Current SQL Statements
+ExecuteCurrentSQLAction_label=현재 텍스트 실행(&U)
+ExecuteCurrentSQLAction_tooltip=현재 SQL 문 실행
 
 DMLDialogSelectionSQLAction_label=SQL 쿼리 빌더에서 편집(&Q)...
 DMLDialogSelectionSQLAction_tooltip=SQL 쿼리 빌더에서 선택한 SQL 문 편집
