@@ -1,7 +1,19 @@
+#
+#************************************************************************
+# Copyright (c) 2004, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 logManager_duplicateName=已存在同名的记录器。
 #
 manifest_nullArgument=参数不能为空。
-manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED=在 ODA 驱动程序 plugin.xml 中，缺少 <dataSource> 元素。
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展缺少 id 属性。
 manifest_INVALID_VERSION_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 odaVersion 值（{0}）。
 manifest_NO_DRIVER_CLASS_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{0}）缺少 driverClass 属性。
@@ -16,6 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=在 ODA 驱动程序 plugin.xml 中，<dataT
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=在 ODA 驱动程序 plugin.xml 中，<dataTypeMapping>（{0}）的 <alternativeOdaDataType> 缺少 odaScalarDataType 属性。
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=在 ODA 驱动程序 plugin.xml 中，<dataTypeMapping>（{1}）包含无效的 odaScalarDataType 值（{0}）。
 manifest_INVALID_LOG_LEVEL_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 logLevel 值（{0}）。
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{0}）的 <traceLogging> 缺少 logFileNamePrefix 属性。
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=指定了无效的排序方式：{0}。

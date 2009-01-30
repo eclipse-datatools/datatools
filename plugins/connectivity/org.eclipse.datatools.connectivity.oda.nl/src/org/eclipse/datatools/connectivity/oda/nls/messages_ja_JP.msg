@@ -1,7 +1,19 @@
+#
+#************************************************************************
+# Copyright (c) 2004, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 logManager_duplicateName=同じ名前のロガーが存在します。
 #
 manifest_nullArgument=引数は null にできません。
-manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED=ODA ドライバー plugin.xml の <dataSource> 要素がありません。
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=ODA ドライバー plugin.xml のデータ・ソース拡張に、ID 属性がありません。
 manifest_INVALID_VERSION_VALUE=ODA のドライバー plugin.xml は、データ・ソース拡張 ({1}) に無効な odaVersion 値 ({0}) を持っています。
 manifest_NO_DRIVER_CLASS_DEFINED=ODA のドライバー plugin.xml に、データ・ソース拡張 ({0}) 内の driverClass 属性がありません。
@@ -16,6 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=ODA ドライバー plugin.xml に、<dataTy
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=ODA ドライバー plugin.xml に、<dataTypeMapping> ({0}) の <alternativeOdaDataType> 内の odaScalarDataType 属性がありません。
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=ODA のドライバー plugin.xml は、<dataTypeMapping> ({1}) 内に無効な odaScalarDataType 値 ({0}) を持っています。
 manifest_INVALID_LOG_LEVEL_VALUE=ODA のドライバー plugin.xml は、データ・ソース拡張 ({1}) 内に無効な logLevel 値 ({0}) を持っています。
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=ODA ドライバー plugin.xml に、データ・ソース拡張 ({0}) の <traceLogging> 内の logFileNamePrefix 属性がありません。
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=無効なソートのモードが指定されました\: {0}。

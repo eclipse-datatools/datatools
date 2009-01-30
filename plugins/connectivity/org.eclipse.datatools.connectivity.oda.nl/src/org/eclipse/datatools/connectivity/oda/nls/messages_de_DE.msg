@@ -1,7 +1,19 @@
+#
+#************************************************************************
+# Copyright (c) 2004, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 logManager_duplicateName=Protokollfunktion mit dem gleichen Namen ist bereits vorhanden.
 #
 manifest_nullArgument=Das Argument darf nicht Null sein.
-manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED=In der Datei 'plugin.xml' des ODA-Treibers fehlt ein Element <dataSource>.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=In der Datenquellenerweiterung der Datei 'plugin.xml' des ODA-Treibers fehlt ein Attribut 'id'.
 manifest_INVALID_VERSION_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für odaVersion ({0}) in der Datenquellenerweiterung ({1}).
 manifest_NO_DRIVER_CLASS_DEFINED=In der Datei ''plugin.xml'' des ODA-Treibers fehlt ein Attribut ''driverClass'' in der Datenquellenerweiterung ({0}).
@@ -16,6 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=In der Datei ''plugin.xml'' des ODA-T
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=In der Datei ''plugin.xml'' des ODA-Treibers fehlt ein Attribut ''odaScalarDataType'' im Element <alternativeOdaDataType> des Elements <dataTypeMapping> ({0}).
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für odaScalarDataType ({0}) im Element <dataTypeMapping> ({1}).
 manifest_INVALID_LOG_LEVEL_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für logLevel ({0}) in der Datenquellenerweiterung ({1}).
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=In der Datei ''plugin.xml'' des ODA-Treibers fehlt ein Attribut ''logFileNamePrefix'' im Element <traceLogging> der Datenquellenerweiterung ({0}).
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=Es wurde ein ungültiger Sortiermodus angegeben\: {0}.

@@ -1,7 +1,19 @@
+#
+#************************************************************************
+# Copyright (c) 2004, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 logManager_duplicateName=이름이 같은 로거(logger)가 이미 있습니다.
 #
 manifest_nullArgument=인수는 널(null)일 수 없습니다.
-manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED=ODA 드라이버 plugin.xml에 <dataSource> 요소가 누락되었습니다.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=ODA 드라이버 plugin.xml 데이터 소스 확장에 ID 속성이 누락되었습니다.
 manifest_INVALID_VERSION_VALUE=ODA 드라이버 plugin.xml의 데이터 소스 확장({1})에 올바르지 않은 odaVersion 값({0})이 있습니다.
 manifest_NO_DRIVER_CLASS_DEFINED=ODA 드라이버 plugin.xml의 데이터 소스 확장({0})에 driverClass 속성이 누락되었습니다.
@@ -16,6 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=ODA 드라이버 plugin.xml의 <dataTypeMa
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=ODA 드라이버 plugin.xml에서, <dataTypeMapping>({0})의 <alternativeOdaDataType>에 odaScalarDataType 속성이 누락되었습니다.
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=ODA 드라이버 plugin.xml의 <dataTypeMapping>({1})에 올바르지 않은 odaScalarDataType 값({0})이 있습니다.
 manifest_INVALID_LOG_LEVEL_VALUE=ODA 드라이버 plugin.xml의 데이터 소스 확장({1})에 올바르지 않은 logLevel 값({0})이 있습니다.
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=ODA 드라이버 plugin.xml에서, 데이터 소스 확장({0})의 <traceLogging>에 logFileNamePrefix 속성이 누락되었습니다.
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=올바르지 않은 정렬 모드 지정\: {0}.

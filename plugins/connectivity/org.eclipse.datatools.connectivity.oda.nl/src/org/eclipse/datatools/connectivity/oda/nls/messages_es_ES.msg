@@ -1,7 +1,19 @@
+#
+#************************************************************************
+# Copyright (c) 2004, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 logManager_duplicateName=Ya existe un anotador con el mismo nombre.
 #
 manifest_nullArgument=El argumento no debe ser nulo.
-manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED=En el archivo plugin.xml del controlador de ODA falta un elemento <dataSource>.
 manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED=En la extensión de origen de datos del archivo plugin.xml del controlador de ODA falta un atributo id.
 manifest_INVALID_VERSION_VALUE=El archivo plugin.xml del controlador de ODA tiene un valor de odaVersion no válido ({0}) en la extensión de origen de datos ({1}).
 manifest_NO_DRIVER_CLASS_DEFINED=En el archivo plugin.xml del controlador de ODA falta un atributo driverClass en la extensión de origen de datos ({0}).
@@ -16,6 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=En el archivo plugin.xml del controla
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=En el archivo plugin.xml del controlador de ODA falta un atributo odaScalarDataType en el <alternativeOdaDataType> del <dataTypeMapping> ({0}).
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=El archivo plugin.xml del controlador de ODA tiene un valor de odaScalarDataType ({0}) en el <dataTypeMapping> ({1}).
 manifest_INVALID_LOG_LEVEL_VALUE=El archivo plugin.xml del controlador de ODA tiene un valor de logLevel no válido ({0}) en la extensión de origen de datos ({1}).
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=En el archivo plugin.xml del controlador de ODA falta un atributo logFileNamePrefix en el <traceLogging> de la extensión de origen de datos ({0}).
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=Se ha especificado una modalidad de ordenación no válida\: {0}.
