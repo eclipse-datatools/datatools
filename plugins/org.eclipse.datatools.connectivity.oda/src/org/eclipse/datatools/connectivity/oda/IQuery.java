@@ -358,10 +358,12 @@ public interface IQuery
 	 * <b>Note:</b> This method must be called before {@link #prepare(String)}.
 	 * @param filterExpr	a filter {@link Expression} with associated variable 
 	 *             and argument values, as appropriate
-     * @throws OdaException     if data source error occurs
+     * @throws OdaException if data source error occurs
+     * @throws UnsupportedOperationException    
+     *                      if the specified filter expression includes element(s) that are not supported
 	 * @since 3.2 (DTP 1.7)
 	 */
-//	public void setFilterSpec( Expression filterExpr ) throws OdaException;
+//	public void setFilterSpec( Expression filterExpr ) throws OdaException, UnsupportedOperationException;
 
 	/**
      * <strong>EXPERIMENTAL</strong>.

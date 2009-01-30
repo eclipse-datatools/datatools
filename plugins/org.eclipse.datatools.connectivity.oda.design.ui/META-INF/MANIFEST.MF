@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.design.ui; singleton
 Bundle-Version: 3.0.8.qualifier
 Bundle-Vendor: Eclipse.org
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.datatools.connectivity.oda.design.internal.ui,
  org.eclipse.datatools.connectivity.oda.design.ui.designsession,
  org.eclipse.datatools.connectivity.oda.design.ui.manifest,

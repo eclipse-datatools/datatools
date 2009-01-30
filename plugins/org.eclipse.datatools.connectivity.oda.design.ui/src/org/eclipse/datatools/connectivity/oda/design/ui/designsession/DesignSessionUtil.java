@@ -701,6 +701,7 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
+    @SuppressWarnings("restriction")
     public static ExpressionDefinition getExtensionCustomDefinition( CustomExpression customExpr )
     {
         if( customExpr == null )
@@ -712,11 +713,12 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * <strong>EXPERIMENTAL</strong>.
      * An utility method to look up the definition of the specified custom filter expression
      * declared by the specified extension.
-     * @param extensionId   id of an extension that implements the filterExpressions extension point
+     * @param extensionId   unique id of an extension that implements the filterExpressions extension point
      * @param exprId    id of a custom filter expression 
      * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
+    @SuppressWarnings("restriction")
     public static ExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
     {
         try
