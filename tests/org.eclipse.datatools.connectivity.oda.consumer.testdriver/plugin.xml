@@ -66,13 +66,13 @@
                odaDataSourceId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.jdbc.dbprofile">
          </supportedDataSetType>
          <supportedOdaExpression
-               expressionId="AndExpression">
+               name="AndExpression">
          </supportedOdaExpression>
          <supportedOdaExpression
-               expressionId="OrExpression">
+               name="OrExpression">
          </supportedOdaExpression>
          <supportedOdaExpression
-               expressionId="NotExpression">
+               name="NotExpression">
          </supportedOdaExpression>
         </contributor>
         <customExpression
