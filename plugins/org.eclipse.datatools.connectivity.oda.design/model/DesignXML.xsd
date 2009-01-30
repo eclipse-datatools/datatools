@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.eclipse.org/datatools/connectivity/oda/design">
   <xsd:simpleType name="AxisType">
     <xsd:annotation>
       <xsd:documentation>Axis type of a result set column.</xsd:documentation>
@@ -18,6 +18,16 @@
       <xsd:enumeration value="Unknown"/>
       <xsd:enumeration value="Nullable"/>
       <xsd:enumeration value="NotNullable"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="FilterVariableType">
+    <xsd:annotation>
+      <xsd:documentation>The type of a filter expression variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="ResultSetColumn"/>
+      <xsd:enumeration value="InstanceOf"/>
+      <xsd:enumeration value="QueryExpression"/>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="HorizontalAlignment">
@@ -109,6 +119,37 @@
       <xsd:enumeration value="Word"/>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:complexType name="AndExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:CompositeFilterExpression"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="AndExpression" type="design:AndExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the And boolean operator.  The composite expression is evaluated to be true only if all its child expressions are evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="AtomicExpressionContext">
+    <xsd:annotation>
+      <xsd:documentation>The context within a basic, indivisible unit of filter expression that can be evaluated by itself.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="variable" type="design:FilterExpressionVariable"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="arguments" type="design:FilterExpressionArguments">
+        <xsd:annotation>
+          <xsd:documentation>Defines the expression's argument(s) and each of its associated value.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="AtomicExpressionContext" type="design:AtomicExpressionContext">
+    <xsd:annotation>
+      <xsd:documentation>The context within a basic, indivisible unit of filter expression that can be evaluated by itself.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="AxisAttributes">
     <xsd:annotation>
       <xsd:documentation>Multi-dimensional attributes of a data element, such as a result set column.</xsd:documentation>
@@ -146,6 +187,50 @@
   <xsd:element name="ColumnDefinition" type="design:ColumnDefinition">
     <xsd:annotation>
       <xsd:documentation>Definition of a result set column.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="CompositeFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="1" name="children" type="design:FilterExpression"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CompositeFilterExpression" type="design:CompositeFilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="CustomExpression">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="context" type="design:AtomicExpressionContext"/>
+        </xsd:sequence>
+        <xsd:attribute name="declaringExtensionId" type="xsd:string" use="required">
+          <xsd:annotation>
+            <xsd:documentation>The id of the filterExpressions extension that declares this custom expression.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="id" type="xsd:string" use="required">
+          <xsd:annotation>
+            <xsd:documentation>An id that uniquely identifies  a custom expression within an ODA filterExpressions extension.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="CustomExpression" type="design:CustomExpression">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="DataAccessDesign">
@@ -243,6 +328,11 @@
       </xsd:element>
       <xsd:element maxOccurs="1" minOccurs="0" name="resultSets" type="design:ResultSets"/>
       <xsd:element maxOccurs="1" minOccurs="0" name="parameters" type="design:DataSetParameters"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="filter" type="design:FilterExpression">
+        <xsd:annotation>
+          <xsd:documentation>Pre-defined filter specification  of the data set.  It may be any extended concrete type of FilterExpression.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
       <xsd:annotation>
@@ -449,12 +539,20 @@
       <xsd:documentation>Defines a design session response to an ODA host designer upon exit of the session.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
-  <xsd:complexType name="DocumentRoot">
-    <xsd:sequence>
-      <xsd:element maxOccurs="unbounded" minOccurs="0" name="mixed" nillable="true" type="xsd:string"/>
-    </xsd:sequence>
-  </xsd:complexType>
+  <xsd:complexType name="DocumentRoot"/>
   <xsd:element name="DocumentRoot" type="design:DocumentRoot"/>
+  <xsd:complexType name="DynamicExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="contextVariable" type="design:FilterExpressionVariable"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
   <xsd:complexType name="DynamicValuesQuery">
     <xsd:annotation>
       <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
@@ -485,6 +583,85 @@
   <xsd:element name="DynamicValuesQuery" type="design:DynamicValuesQuery">
     <xsd:annotation>
       <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType abstract="true" name="FilterExpression">
+    <xsd:annotation>
+      <xsd:documentation>Abstract base class for all filter expressions defined by an ODA designer.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="false" name="negatable" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether the expression can be negated, i.e. applied with a NotExpression.  Default is false.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="FilterExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="filterParameters" type="design:FilterParameters">
+        <xsd:annotation>
+          <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.  Each parameter may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FilterExpressionArguments" type="design:FilterExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="FilterExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="ResultSetColumn" name="type" type="design:FilterVariableType">
+      <xsd:annotation>
+        <xsd:documentation>The type of variable.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="identifier" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>A name or expression that identifies the variable used to evaluate a filter expression.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="nativeDataTypeCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Native data type code of the identified variable.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA dataSource extension.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="FilterExpressionVariable" type="design:FilterExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="FilterParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dynamicInputParameter" type="design:ParameterDefinition"/>
+    </xsd:sequence>
+    <xsd:attribute name="staticValue" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="FilterParameterDefinition" type="design:FilterParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="FilterParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parameterDefinitions" type="design:FilterParameterDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FilterParameters" type="design:FilterParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="InputElementAttributes">
@@ -529,6 +706,12 @@
     <xsd:attribute name="promptStyle" type="design:InputPromptControlStyle">
       <xsd:annotation>
         <xsd:documentation>Defaults to TextField if no static and dynamic value choices are defined; otherwise, defaults to SelectableList.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="1" name="autoSuggestThreshold" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The number of characters after which auto suggest will kick in.  It is applicable only where an user can input a value, e.g. when a SelectableListWithTextField promptStyle and a DynamicValuesQuery is used.
+</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
@@ -603,6 +786,23 @@
       <xsd:documentation>A pair of name and corresponding value.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:complexType name="NotExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in negated filter expression.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:FilterExpression">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="negatingExpression" type="design:FilterExpression"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="NotExpression" type="design:NotExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in negated filter expression.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="OdaDesignSession">
     <xsd:annotation>
       <xsd:documentation>Definition of an ODA design session on a Data Access Design.</xsd:documentation>
@@ -615,6 +815,19 @@
   <xsd:element name="OdaDesignSession" type="design:OdaDesignSession">
     <xsd:annotation>
       <xsd:documentation>Definition of an ODA design session on a Data Access Design.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="OrExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the Or boolean operator.  The composite expression is evaluated to be true if any of its child expressions is evaluated as true.  </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="design:CompositeFilterExpression"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="OrExpression" type="design:OrExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in composite filter expression whose child expressions are combined by the Or boolean operator.  The composite expression is evaluated to be true if any of its child expressions is evaluated as true.  </xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="OutputElementAttributes">
@@ -642,7 +855,7 @@
   </xsd:element>
   <xsd:complexType name="ParameterDefinition">
     <xsd:annotation>
-      <xsd:documentation>Top-level parameter definition.  Parameter could be scalar or complex type.</xsd:documentation>
+      <xsd:documentation>Top-level parameter definition; may be input and/or output mode.  Parameter may be of scalar or complex type.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="attributes" type="design:DataElementAttributes">
@@ -670,7 +883,7 @@
   </xsd:complexType>
   <xsd:element name="ParameterDefinition" type="design:ParameterDefinition">
     <xsd:annotation>
-      <xsd:documentation>Top-level parameter definition.  Parameter could be scalar or complex type.</xsd:documentation>
+      <xsd:documentation>Top-level parameter definition; may be input and/or output mode.  Parameter may be of scalar or complex type.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="ParameterFieldDefinition">

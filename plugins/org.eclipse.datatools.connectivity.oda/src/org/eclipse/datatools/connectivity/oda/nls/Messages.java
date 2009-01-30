@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -33,7 +33,6 @@ public class Messages extends NLS
     public static String logManager_duplicateName;    
 
     public static String manifest_nullArgument;
-	public static String manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED;
 	public static String manifest_NO_DATA_SOURCE_EXTN_ID_DEFINED;
 	public static String manifest_INVALID_VERSION_VALUE;
 	public static String manifest_NO_DRIVER_CLASS_DEFINED;
@@ -48,6 +47,8 @@ public class Messages extends NLS
 	public static String manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2;
 	public static String manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE;
 	public static String manifest_INVALID_LOG_LEVEL_VALUE;
+
+    public static String manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST;
 	public static String manifest_NO_LOG_FILENAME_PREFIX_DEFINED;
 
     public static String profileProperty_GROUP_PROPERTIES;

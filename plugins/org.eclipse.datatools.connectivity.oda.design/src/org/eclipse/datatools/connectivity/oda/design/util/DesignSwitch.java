@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.3 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.4 2008/07/23 04:12:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -35,14 +35,14 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage
  * @generated
  */
-public class DesignSwitch
+public class DesignSwitch<T>
 {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package
@@ -73,7 +73,7 @@ public class DesignSwitch
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    public Object doSwitch( EObject theEObject )
+    public T doSwitch( EObject theEObject )
     {
         return doSwitch( theEObject.eClass(), theEObject );
     }
@@ -85,7 +85,7 @@ public class DesignSwitch
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    protected Object doSwitch( EClass theEClass, EObject theEObject )
+    protected T doSwitch( EClass theEClass, EObject theEObject )
     {
         if( theEClass.eContainer() == modelPackage )
         {
@@ -93,9 +93,9 @@ public class DesignSwitch
         }
         else
         {
-            List eSuperTypes = theEClass.getESuperTypes();
+            List<EClass> eSuperTypes = theEClass.getESuperTypes();
             return eSuperTypes.isEmpty() ? defaultCase( theEObject )
-                    : doSwitch( (EClass) eSuperTypes.get( 0 ), theEObject );
+                    : doSwitch( eSuperTypes.get( 0 ), theEObject );
         }
     }
 
@@ -106,14 +106,34 @@ public class DesignSwitch
      * @return the first non-null result returned by a <code>caseXXX</code> call.
      * @generated
      */
-    protected Object doSwitch( int classifierID, EObject theEObject )
+    protected T doSwitch( int classifierID, EObject theEObject )
     {
         switch( classifierID )
         {
+        case DesignPackage.AND_EXPRESSION:
+        {
+            AndExpression andExpression = (AndExpression) theEObject;
+            T result = caseAndExpression( andExpression );
+            if( result == null )
+                result = caseCompositeFilterExpression( andExpression );
+            if( result == null )
+                result = caseFilterExpression( andExpression );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT:
+        {
+            AtomicExpressionContext atomicExpressionContext = (AtomicExpressionContext) theEObject;
+            T result = caseAtomicExpressionContext( atomicExpressionContext );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
         case DesignPackage.AXIS_ATTRIBUTES:
         {
             AxisAttributes axisAttributes = (AxisAttributes) theEObject;
-            Object result = caseAxisAttributes( axisAttributes );
+            T result = caseAxisAttributes( axisAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -121,7 +141,27 @@ public class DesignSwitch
         case DesignPackage.COLUMN_DEFINITION:
         {
             ColumnDefinition columnDefinition = (ColumnDefinition) theEObject;
-            Object result = caseColumnDefinition( columnDefinition );
+            T result = caseColumnDefinition( columnDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.COMPOSITE_FILTER_EXPRESSION:
+        {
+            CompositeFilterExpression compositeFilterExpression = (CompositeFilterExpression) theEObject;
+            T result = caseCompositeFilterExpression( compositeFilterExpression );
+            if( result == null )
+                result = caseFilterExpression( compositeFilterExpression );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.CUSTOM_EXPRESSION:
+        {
+            CustomExpression customExpression = (CustomExpression) theEObject;
+            T result = caseCustomExpression( customExpression );
+            if( result == null )
+                result = caseFilterExpression( customExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -129,7 +169,7 @@ public class DesignSwitch
         case DesignPackage.DATA_ACCESS_DESIGN:
         {
             DataAccessDesign dataAccessDesign = (DataAccessDesign) theEObject;
-            Object result = caseDataAccessDesign( dataAccessDesign );
+            T result = caseDataAccessDesign( dataAccessDesign );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -137,7 +177,7 @@ public class DesignSwitch
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
         {
             DataElementAttributes dataElementAttributes = (DataElementAttributes) theEObject;
-            Object result = caseDataElementAttributes( dataElementAttributes );
+            T result = caseDataElementAttributes( dataElementAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -145,7 +185,7 @@ public class DesignSwitch
         case DesignPackage.DATA_ELEMENT_UI_HINTS:
         {
             DataElementUIHints dataElementUIHints = (DataElementUIHints) theEObject;
-            Object result = caseDataElementUIHints( dataElementUIHints );
+            T result = caseDataElementUIHints( dataElementUIHints );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -153,7 +193,7 @@ public class DesignSwitch
         case DesignPackage.DATA_SET_DESIGN:
         {
             DataSetDesign dataSetDesign = (DataSetDesign) theEObject;
-            Object result = caseDataSetDesign( dataSetDesign );
+            T result = caseDataSetDesign( dataSetDesign );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -161,7 +201,7 @@ public class DesignSwitch
         case DesignPackage.DATA_SET_PARAMETERS:
         {
             DataSetParameters dataSetParameters = (DataSetParameters) theEObject;
-            Object result = caseDataSetParameters( dataSetParameters );
+            T result = caseDataSetParameters( dataSetParameters );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -169,7 +209,7 @@ public class DesignSwitch
         case DesignPackage.DATA_SET_QUERY:
         {
             DataSetQuery dataSetQuery = (DataSetQuery) theEObject;
-            Object result = caseDataSetQuery( dataSetQuery );
+            T result = caseDataSetQuery( dataSetQuery );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -177,7 +217,7 @@ public class DesignSwitch
         case DesignPackage.DATA_SOURCE_DESIGN:
         {
             DataSourceDesign dataSourceDesign = (DataSourceDesign) theEObject;
-            Object result = caseDataSourceDesign( dataSourceDesign );
+            T result = caseDataSourceDesign( dataSourceDesign );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -185,7 +225,7 @@ public class DesignSwitch
         case DesignPackage.DESIGNER_STATE:
         {
             DesignerState designerState = (DesignerState) theEObject;
-            Object result = caseDesignerState( designerState );
+            T result = caseDesignerState( designerState );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -193,7 +233,7 @@ public class DesignSwitch
         case DesignPackage.DESIGNER_STATE_CONTENT:
         {
             DesignerStateContent designerStateContent = (DesignerStateContent) theEObject;
-            Object result = caseDesignerStateContent( designerStateContent );
+            T result = caseDesignerStateContent( designerStateContent );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -201,7 +241,7 @@ public class DesignSwitch
         case DesignPackage.DESIGN_SESSION_REQUEST:
         {
             DesignSessionRequest designSessionRequest = (DesignSessionRequest) theEObject;
-            Object result = caseDesignSessionRequest( designSessionRequest );
+            T result = caseDesignSessionRequest( designSessionRequest );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -209,7 +249,7 @@ public class DesignSwitch
         case DesignPackage.DESIGN_SESSION_RESPONSE:
         {
             DesignSessionResponse designSessionResponse = (DesignSessionResponse) theEObject;
-            Object result = caseDesignSessionResponse( designSessionResponse );
+            T result = caseDesignSessionResponse( designSessionResponse );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -217,7 +257,17 @@ public class DesignSwitch
         case DesignPackage.DOCUMENT_ROOT:
         {
             DocumentRoot documentRoot = (DocumentRoot) theEObject;
-            Object result = caseDocumentRoot( documentRoot );
+            T result = caseDocumentRoot( documentRoot );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.DYNAMIC_EXPRESSION:
+        {
+            DynamicExpression dynamicExpression = (DynamicExpression) theEObject;
+            T result = caseDynamicExpression( dynamicExpression );
+            if( result == null )
+                result = caseFilterExpression( dynamicExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -225,7 +275,47 @@ public class DesignSwitch
         case DesignPackage.DYNAMIC_VALUES_QUERY:
         {
             DynamicValuesQuery dynamicValuesQuery = (DynamicValuesQuery) theEObject;
-            Object result = caseDynamicValuesQuery( dynamicValuesQuery );
+            T result = caseDynamicValuesQuery( dynamicValuesQuery );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_EXPRESSION:
+        {
+            FilterExpression filterExpression = (FilterExpression) theEObject;
+            T result = caseFilterExpression( filterExpression );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_EXPRESSION_ARGUMENTS:
+        {
+            FilterExpressionArguments filterExpressionArguments = (FilterExpressionArguments) theEObject;
+            T result = caseFilterExpressionArguments( filterExpressionArguments );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_EXPRESSION_VARIABLE:
+        {
+            FilterExpressionVariable filterExpressionVariable = (FilterExpressionVariable) theEObject;
+            T result = caseFilterExpressionVariable( filterExpressionVariable );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_PARAMETER_DEFINITION:
+        {
+            FilterParameterDefinition filterParameterDefinition = (FilterParameterDefinition) theEObject;
+            T result = caseFilterParameterDefinition( filterParameterDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.FILTER_PARAMETERS:
+        {
+            FilterParameters filterParameters = (FilterParameters) theEObject;
+            T result = caseFilterParameters( filterParameters );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -233,7 +323,7 @@ public class DesignSwitch
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
         {
             InputElementAttributes inputElementAttributes = (InputElementAttributes) theEObject;
-            Object result = caseInputElementAttributes( inputElementAttributes );
+            T result = caseInputElementAttributes( inputElementAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -241,7 +331,7 @@ public class DesignSwitch
         case DesignPackage.INPUT_ELEMENT_UI_HINTS:
         {
             InputElementUIHints inputElementUIHints = (InputElementUIHints) theEObject;
-            Object result = caseInputElementUIHints( inputElementUIHints );
+            T result = caseInputElementUIHints( inputElementUIHints );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -249,7 +339,7 @@ public class DesignSwitch
         case DesignPackage.INPUT_PARAMETER_ATTRIBUTES:
         {
             InputParameterAttributes inputParameterAttributes = (InputParameterAttributes) theEObject;
-            Object result = caseInputParameterAttributes( inputParameterAttributes );
+            T result = caseInputParameterAttributes( inputParameterAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -257,7 +347,7 @@ public class DesignSwitch
         case DesignPackage.INPUT_PARAMETER_UI_HINTS:
         {
             InputParameterUIHints inputParameterUIHints = (InputParameterUIHints) theEObject;
-            Object result = caseInputParameterUIHints( inputParameterUIHints );
+            T result = caseInputParameterUIHints( inputParameterUIHints );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -265,7 +355,7 @@ public class DesignSwitch
         case DesignPackage.LOCALE:
         {
             Locale locale = (Locale) theEObject;
-            Object result = caseLocale( locale );
+            T result = caseLocale( locale );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -273,7 +363,17 @@ public class DesignSwitch
         case DesignPackage.NAME_VALUE_PAIR:
         {
             NameValuePair nameValuePair = (NameValuePair) theEObject;
-            Object result = caseNameValuePair( nameValuePair );
+            T result = caseNameValuePair( nameValuePair );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.NOT_EXPRESSION:
+        {
+            NotExpression notExpression = (NotExpression) theEObject;
+            T result = caseNotExpression( notExpression );
+            if( result == null )
+                result = caseFilterExpression( notExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -281,7 +381,19 @@ public class DesignSwitch
         case DesignPackage.ODA_DESIGN_SESSION:
         {
             OdaDesignSession odaDesignSession = (OdaDesignSession) theEObject;
-            Object result = caseOdaDesignSession( odaDesignSession );
+            T result = caseOdaDesignSession( odaDesignSession );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.OR_EXPRESSION:
+        {
+            OrExpression orExpression = (OrExpression) theEObject;
+            T result = caseOrExpression( orExpression );
+            if( result == null )
+                result = caseCompositeFilterExpression( orExpression );
+            if( result == null )
+                result = caseFilterExpression( orExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -289,7 +401,7 @@ public class DesignSwitch
         case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES:
         {
             OutputElementAttributes outputElementAttributes = (OutputElementAttributes) theEObject;
-            Object result = caseOutputElementAttributes( outputElementAttributes );
+            T result = caseOutputElementAttributes( outputElementAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -297,7 +409,7 @@ public class DesignSwitch
         case DesignPackage.PARAMETER_DEFINITION:
         {
             ParameterDefinition parameterDefinition = (ParameterDefinition) theEObject;
-            Object result = caseParameterDefinition( parameterDefinition );
+            T result = caseParameterDefinition( parameterDefinition );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -305,7 +417,7 @@ public class DesignSwitch
         case DesignPackage.PARAMETER_FIELD_DEFINITION:
         {
             ParameterFieldDefinition parameterFieldDefinition = (ParameterFieldDefinition) theEObject;
-            Object result = caseParameterFieldDefinition( parameterFieldDefinition );
+            T result = caseParameterFieldDefinition( parameterFieldDefinition );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -313,7 +425,7 @@ public class DesignSwitch
         case DesignPackage.PARAMETER_FIELDS:
         {
             ParameterFields parameterFields = (ParameterFields) theEObject;
-            Object result = caseParameterFields( parameterFields );
+            T result = caseParameterFields( parameterFields );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -321,7 +433,7 @@ public class DesignSwitch
         case DesignPackage.PROPERTIES:
         {
             Properties properties = (Properties) theEObject;
-            Object result = caseProperties( properties );
+            T result = caseProperties( properties );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -329,7 +441,7 @@ public class DesignSwitch
         case DesignPackage.PROPERTY:
         {
             Property property = (Property) theEObject;
-            Object result = caseProperty( property );
+            T result = caseProperty( property );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -337,7 +449,7 @@ public class DesignSwitch
         case DesignPackage.PROPERTY_ATTRIBUTES:
         {
             PropertyAttributes propertyAttributes = (PropertyAttributes) theEObject;
-            Object result = casePropertyAttributes( propertyAttributes );
+            T result = casePropertyAttributes( propertyAttributes );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -345,7 +457,7 @@ public class DesignSwitch
         case DesignPackage.RESOURCE_IDENTIFIERS:
         {
             ResourceIdentifiers resourceIdentifiers = (ResourceIdentifiers) theEObject;
-            Object result = caseResourceIdentifiers( resourceIdentifiers );
+            T result = caseResourceIdentifiers( resourceIdentifiers );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -353,7 +465,7 @@ public class DesignSwitch
         case DesignPackage.RESULT_SET_COLUMNS:
         {
             ResultSetColumns resultSetColumns = (ResultSetColumns) theEObject;
-            Object result = caseResultSetColumns( resultSetColumns );
+            T result = caseResultSetColumns( resultSetColumns );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -361,7 +473,7 @@ public class DesignSwitch
         case DesignPackage.RESULT_SET_DEFINITION:
         {
             ResultSetDefinition resultSetDefinition = (ResultSetDefinition) theEObject;
-            Object result = caseResultSetDefinition( resultSetDefinition );
+            T result = caseResultSetDefinition( resultSetDefinition );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -369,7 +481,7 @@ public class DesignSwitch
         case DesignPackage.RESULT_SETS:
         {
             ResultSets resultSets = (ResultSets) theEObject;
-            Object result = caseResultSets( resultSets );
+            T result = caseResultSets( resultSets );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -377,7 +489,7 @@ public class DesignSwitch
         case DesignPackage.SCALAR_VALUE_CHOICES:
         {
             ScalarValueChoices scalarValueChoices = (ScalarValueChoices) theEObject;
-            Object result = caseScalarValueChoices( scalarValueChoices );
+            T result = caseScalarValueChoices( scalarValueChoices );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -385,7 +497,7 @@ public class DesignSwitch
         case DesignPackage.SCALAR_VALUE_DEFINITION:
         {
             ScalarValueDefinition scalarValueDefinition = (ScalarValueDefinition) theEObject;
-            Object result = caseScalarValueDefinition( scalarValueDefinition );
+            T result = caseScalarValueDefinition( scalarValueDefinition );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -393,7 +505,7 @@ public class DesignSwitch
         case DesignPackage.VALUE_FORMAT_HINTS:
         {
             ValueFormatHints valueFormatHints = (ValueFormatHints) theEObject;
-            Object result = caseValueFormatHints( valueFormatHints );
+            T result = caseValueFormatHints( valueFormatHints );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -404,593 +516,785 @@ public class DesignSwitch
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Axis Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>And Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Axis Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>And Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseAxisAttributes( AxisAttributes object )
+    public T caseAndExpression( AndExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Column Definition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Atomic Expression Context</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Column Definition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Atomic Expression Context</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseColumnDefinition( ColumnDefinition object )
+    public T caseAtomicExpressionContext( AtomicExpressionContext object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Access Design</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Axis Attributes</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Access Design</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Axis Attributes</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataAccessDesign( DataAccessDesign object )
+    public T caseAxisAttributes( AxisAttributes object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Element Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Column Definition</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Element Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Column Definition</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataElementAttributes( DataElementAttributes object )
+    public T caseColumnDefinition( ColumnDefinition object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Element UI Hints</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Composite Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Element UI Hints</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Composite Filter Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataElementUIHints( DataElementUIHints object )
+    public T caseCompositeFilterExpression( CompositeFilterExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Set Design</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Custom Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Set Design</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Custom Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetDesign( DataSetDesign object )
+    public T caseCustomExpression( CustomExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Set Parameters</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Access Design</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Set Parameters</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Access Design</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetParameters( DataSetParameters object )
+    public T caseDataAccessDesign( DataAccessDesign object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Set Query</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Element Attributes</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Set Query</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Element Attributes</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSetQuery( DataSetQuery object )
+    public T caseDataElementAttributes( DataElementAttributes object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Data Source Design</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Element UI Hints</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Data Source Design</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Element UI Hints</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDataSourceDesign( DataSourceDesign object )
+    public T caseDataElementUIHints( DataElementUIHints object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Designer State</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Set Design</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Designer State</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Set Design</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignerState( DesignerState object )
+    public T caseDataSetDesign( DataSetDesign object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Designer State Content</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Set Parameters</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Designer State Content</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Set Parameters</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignerStateContent( DesignerStateContent object )
+    public T caseDataSetParameters( DataSetParameters object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Session Request</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Set Query</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Session Request</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Set Query</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignSessionRequest( DesignSessionRequest object )
+    public T caseDataSetQuery( DataSetQuery object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Session Response</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Data Source Design</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Session Response</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Data Source Design</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDesignSessionResponse( DesignSessionResponse object )
+    public T caseDataSourceDesign( DataSourceDesign object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Document Root</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Designer State</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Document Root</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Designer State</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDocumentRoot( DocumentRoot object )
+    public T caseDesignerState( DesignerState object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Dynamic Values Query</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Designer State Content</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Dynamic Values Query</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Designer State Content</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseDynamicValuesQuery( DynamicValuesQuery object )
+    public T caseDesignerStateContent( DesignerStateContent object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Input Element Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Session Request</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Input Element Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Session Request</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputElementAttributes( InputElementAttributes object )
+    public T caseDesignSessionRequest( DesignSessionRequest object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Input Element UI Hints</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Session Response</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Input Element UI Hints</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Session Response</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputElementUIHints( InputElementUIHints object )
+    public T caseDesignSessionResponse( DesignSessionResponse object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Input Parameter Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Input Parameter Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Document Root</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputParameterAttributes( InputParameterAttributes object )
+    public T caseDocumentRoot( DocumentRoot object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Input Parameter UI Hints</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Dynamic Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Input Parameter UI Hints</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Dynamic Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseInputParameterUIHints( InputParameterUIHints object )
+    public T caseDynamicExpression( DynamicExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Locale</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Dynamic Values Query</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Locale</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Dynamic Values Query</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseLocale( Locale object )
+    public T caseDynamicValuesQuery( DynamicValuesQuery object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Name Value Pair</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Name Value Pair</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseNameValuePair( NameValuePair object )
+    public T caseFilterExpression( FilterExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Oda Design Session</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter Expression Arguments</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Oda Design Session</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter Expression Arguments</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseOdaDesignSession( OdaDesignSession object )
+    public T caseFilterExpressionArguments( FilterExpressionArguments object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Output Element Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter Expression Variable</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Output Element Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter Expression Variable</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseOutputElementAttributes( OutputElementAttributes object )
+    public T caseFilterExpressionVariable( FilterExpressionVariable object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Parameter Definition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter Parameter Definition</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Parameter Definition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter Parameter Definition</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterDefinition( ParameterDefinition object )
+    public T caseFilterParameterDefinition( FilterParameterDefinition object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Parameter Field Definition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Filter Parameters</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Parameter Field Definition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Filter Parameters</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterFieldDefinition( ParameterFieldDefinition object )
+    public T caseFilterParameters( FilterParameters object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Parameter Fields</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Input Element Attributes</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Parameter Fields</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Input Element Attributes</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseParameterFields( ParameterFields object )
+    public T caseInputElementAttributes( InputElementAttributes object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Properties</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Input Element UI Hints</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Properties</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Input Element UI Hints</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseProperties( Properties object )
+    public T caseInputElementUIHints( InputElementUIHints object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Property</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Input Parameter Attributes</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Property</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Input Parameter Attributes</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseProperty( Property object )
+    public T caseInputParameterAttributes( InputParameterAttributes object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Property Attributes</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Input Parameter UI Hints</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Property Attributes</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Input Parameter UI Hints</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object casePropertyAttributes( PropertyAttributes object )
+    public T caseInputParameterUIHints( InputParameterUIHints object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Resource Identifiers</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Locale</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Resource Identifiers</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Locale</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResourceIdentifiers( ResourceIdentifiers object )
+    public T caseLocale( Locale object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Result Set Columns</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Result Set Columns</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Name Value Pair</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSetColumns( ResultSetColumns object )
+    public T caseNameValuePair( NameValuePair object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Result Set Definition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Not Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Result Set Definition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Not Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSetDefinition( ResultSetDefinition object )
+    public T caseNotExpression( NotExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Result Sets</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Oda Design Session</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Result Sets</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Oda Design Session</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseResultSets( ResultSets object )
+    public T caseOdaDesignSession( OdaDesignSession object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Scalar Value Choices</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Or Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Scalar Value Choices</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Or Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseScalarValueChoices( ScalarValueChoices object )
+    public T caseOrExpression( OrExpression object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Scalar Value Definition</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Output Element Attributes</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Scalar Value Definition</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Output Element Attributes</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseScalarValueDefinition( ScalarValueDefinition object )
+    public T caseOutputElementAttributes( OutputElementAttributes object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>Value Format Hints</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Parameter Definition</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>Value Format Hints</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Parameter Definition</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public Object caseValueFormatHints( ValueFormatHints object )
+    public T caseParameterDefinition( ParameterDefinition object )
     {
         return null;
     }
 
     /**
-     * Returns the result of interpretting the object as an instance of '<em>EObject</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Parameter Field Definition</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Parameter Field Definition</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseParameterFieldDefinition( ParameterFieldDefinition object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Parameter Fields</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Parameter Fields</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseParameterFields( ParameterFields object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Properties</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Properties</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseProperties( Properties object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseProperty( Property object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Property Attributes</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Property Attributes</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePropertyAttributes( PropertyAttributes object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Resource Identifiers</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Resource Identifiers</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResourceIdentifiers( ResourceIdentifiers object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Set Columns</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Set Columns</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultSetColumns( ResultSetColumns object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Set Definition</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Set Definition</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultSetDefinition( ResultSetDefinition object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Result Sets</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Result Sets</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseResultSets( ResultSets object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Scalar Value Choices</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Scalar Value Choices</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseScalarValueChoices( ScalarValueChoices object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Scalar Value Definition</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Scalar Value Definition</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseScalarValueDefinition( ScalarValueDefinition object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Value Format Hints</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Value Format Hints</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseValueFormatHints( ValueFormatHints object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch, but this is the last case anyway.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpretting the object as an instance of '<em>EObject</em>'.
+     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject)
      * @generated
      */
-    public Object defaultCase( EObject object )
+    public T defaultCase( EObject object )
     {
         return null;
     }

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.4 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignPackage.java,v 1.5 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -44,7 +44,7 @@ public interface DesignPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The package name.
@@ -80,6 +80,145 @@ public interface DesignPackage extends EPackage
             .init();
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionImpl <em>Filter Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpression()
+     * @generated
+     */
+    int FILTER_EXPRESSION = 20;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION__NEGATABLE = 0;
+
+    /**
+     * The number of structural features of the '<em>Filter Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_FEATURE_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CompositeFilterExpressionImpl <em>Composite Filter Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.CompositeFilterExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCompositeFilterExpression()
+     * @generated
+     */
+    int COMPOSITE_FILTER_EXPRESSION = 4;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPOSITE_FILTER_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Children</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPOSITE_FILTER_EXPRESSION__CHILDREN = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Composite Filter Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPOSITE_FILTER_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AndExpressionImpl <em>And Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.AndExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAndExpression()
+     * @generated
+     */
+    int AND_EXPRESSION = 0;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AND_EXPRESSION__NEGATABLE = COMPOSITE_FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Children</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AND_EXPRESSION__CHILDREN = COMPOSITE_FILTER_EXPRESSION__CHILDREN;
+
+    /**
+     * The number of structural features of the '<em>And Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int AND_EXPRESSION_FEATURE_COUNT = COMPOSITE_FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl <em>Atomic Expression Context</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAtomicExpressionContext()
+     * @generated
+     */
+    int ATOMIC_EXPRESSION_CONTEXT = 1;
+
+    /**
+     * The feature id for the '<em><b>Variable</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATOMIC_EXPRESSION_CONTEXT__VARIABLE = 0;
+
+    /**
+     * The feature id for the '<em><b>Arguments</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS = 1;
+
+    /**
+     * The number of structural features of the '<em>Atomic Expression Context</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATOMIC_EXPRESSION_CONTEXT_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl <em>Axis Attributes</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -87,7 +226,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisAttributes()
      * @generated
      */
-    int AXIS_ATTRIBUTES = 0;
+    int AXIS_ATTRIBUTES = 2;
 
     /**
      * The feature id for the '<em><b>Axis Type</b></em>' attribute.
@@ -124,7 +263,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getColumnDefinition()
      * @generated
      */
-    int COLUMN_DEFINITION = 1;
+    int COLUMN_DEFINITION = 3;
 
     /**
      * The feature id for the '<em><b>Attributes</b></em>' containment reference.
@@ -163,6 +302,61 @@ public interface DesignPackage extends EPackage
     int COLUMN_DEFINITION_FEATURE_COUNT = 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl <em>Custom Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomExpression()
+     * @generated
+     */
+    int CUSTOM_EXPRESSION = 5;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Declaring Extension Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The feature id for the '<em><b>Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_EXPRESSION__ID = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
+     * The feature id for the '<em><b>Context</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_EXPRESSION__CONTEXT = FILTER_EXPRESSION_FEATURE_COUNT + 2;
+
+    /**
+     * The number of structural features of the '<em>Custom Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 3;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl <em>Data Access Design</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -170,7 +364,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataAccessDesign()
      * @generated
      */
-    int DATA_ACCESS_DESIGN = 2;
+    int DATA_ACCESS_DESIGN = 6;
 
     /**
      * The feature id for the '<em><b>Data Set Design</b></em>' containment reference.
@@ -198,7 +392,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataElementAttributes()
      * @generated
      */
-    int DATA_ELEMENT_ATTRIBUTES = 3;
+    int DATA_ELEMENT_ATTRIBUTES = 7;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -280,7 +474,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataElementUIHints()
      * @generated
      */
-    int DATA_ELEMENT_UI_HINTS = 4;
+    int DATA_ELEMENT_UI_HINTS = 8;
 
     /**
      * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -317,7 +511,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetDesign()
      * @generated
      */
-    int DATA_SET_DESIGN = 5;
+    int DATA_SET_DESIGN = 9;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -410,13 +604,22 @@ public interface DesignPackage extends EPackage
     int DATA_SET_DESIGN__PARAMETERS = 9;
 
     /**
+     * The feature id for the '<em><b>Filter</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DATA_SET_DESIGN__FILTER = 10;
+
+    /**
      * The number of structural features of the '<em>Data Set Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SET_DESIGN_FEATURE_COUNT = 10;
+    int DATA_SET_DESIGN_FEATURE_COUNT = 11;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl <em>Data Set Parameters</em>}' class.
@@ -426,7 +629,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetParameters()
      * @generated
      */
-    int DATA_SET_PARAMETERS = 6;
+    int DATA_SET_PARAMETERS = 10;
 
     /**
      * The feature id for the '<em><b>Parameter Definitions</b></em>' containment reference list.
@@ -463,7 +666,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSetQuery()
      * @generated
      */
-    int DATA_SET_QUERY = 7;
+    int DATA_SET_QUERY = 11;
 
     /**
      * The feature id for the '<em><b>Query Text</b></em>' attribute.
@@ -491,7 +694,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDataSourceDesign()
      * @generated
      */
-    int DATA_SOURCE_DESIGN = 8;
+    int DATA_SOURCE_DESIGN = 12;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -591,7 +794,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerState()
      * @generated
      */
-    int DESIGNER_STATE = 9;
+    int DESIGNER_STATE = 13;
 
     /**
      * The feature id for the '<em><b>Version</b></em>' attribute.
@@ -628,7 +831,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignerStateContent()
      * @generated
      */
-    int DESIGNER_STATE_CONTENT = 10;
+    int DESIGNER_STATE_CONTENT = 14;
 
     /**
      * The feature id for the '<em><b>State Content As String</b></em>' attribute.
@@ -665,7 +868,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignSessionRequest()
      * @generated
      */
-    int DESIGN_SESSION_REQUEST = 11;
+    int DESIGN_SESSION_REQUEST = 15;
 
     /**
      * The feature id for the '<em><b>Data Access Design</b></em>' containment reference.
@@ -720,7 +923,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDesignSessionResponse()
      * @generated
      */
-    int DESIGN_SESSION_RESPONSE = 12;
+    int DESIGN_SESSION_RESPONSE = 16;
 
     /**
      * The feature id for the '<em><b>Session Status</b></em>' attribute.
@@ -766,7 +969,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDocumentRoot()
      * @generated
      */
-    int DOCUMENT_ROOT = 13;
+    int DOCUMENT_ROOT = 17;
 
     /**
      * The feature id for the '<em><b>Mixed</b></em>' attribute list.
@@ -814,6 +1017,43 @@ public interface DesignPackage extends EPackage
     int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl <em>Dynamic Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicExpression()
+     * @generated
+     */
+    int DYNAMIC_EXPRESSION = 18;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DYNAMIC_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DYNAMIC_EXPRESSION__CONTEXT_VARIABLE = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Dynamic Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DYNAMIC_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl <em>Dynamic Values Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -821,7 +1061,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicValuesQuery()
      * @generated
      */
-    int DYNAMIC_VALUES_QUERY = 14;
+    int DYNAMIC_VALUES_QUERY = 19;
 
     /**
      * The feature id for the '<em><b>Data Set Design</b></em>' containment reference.
@@ -869,6 +1109,145 @@ public interface DesignPackage extends EPackage
     int DYNAMIC_VALUES_QUERY_FEATURE_COUNT = 4;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl <em>Filter Expression Arguments</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionArguments()
+     * @generated
+     */
+    int FILTER_EXPRESSION_ARGUMENTS = 21;
+
+    /**
+     * The feature id for the '<em><b>Filter Parameters</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS = 0;
+
+    /**
+     * The number of structural features of the '<em>Filter Expression Arguments</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_ARGUMENTS_FEATURE_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl <em>Filter Expression Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionVariable()
+     * @generated
+     */
+    int FILTER_EXPRESSION_VARIABLE = 22;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_VARIABLE__TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>Identifier</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_VARIABLE__IDENTIFIER = 1;
+
+    /**
+     * The feature id for the '<em><b>Native Data Type Code</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = 2;
+
+    /**
+     * The number of structural features of the '<em>Filter Expression Variable</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_EXPRESSION_VARIABLE_FEATURE_COUNT = 3;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl <em>Filter Parameter Definition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameterDefinition()
+     * @generated
+     */
+    int FILTER_PARAMETER_DEFINITION = 23;
+
+    /**
+     * The feature id for the '<em><b>Static Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_PARAMETER_DEFINITION__STATIC_VALUE = 0;
+
+    /**
+     * The feature id for the '<em><b>Dynamic Input Parameter</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = 1;
+
+    /**
+     * The number of structural features of the '<em>Filter Parameter Definition</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_PARAMETER_DEFINITION_FEATURE_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl <em>Filter Parameters</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameters()
+     * @generated
+     */
+    int FILTER_PARAMETERS = 24;
+
+    /**
+     * The feature id for the '<em><b>Parameter Definitions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_PARAMETERS__PARAMETER_DEFINITIONS = 0;
+
+    /**
+     * The number of structural features of the '<em>Filter Parameters</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILTER_PARAMETERS_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl <em>Input Element Attributes</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -876,7 +1255,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputElementAttributes()
      * @generated
      */
-    int INPUT_ELEMENT_ATTRIBUTES = 15;
+    int INPUT_ELEMENT_ATTRIBUTES = 25;
 
     /**
      * The feature id for the '<em><b>Default Scalar Value</b></em>' attribute.
@@ -958,7 +1337,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputElementUIHints()
      * @generated
      */
-    int INPUT_ELEMENT_UI_HINTS = 16;
+    int INPUT_ELEMENT_UI_HINTS = 26;
 
     /**
      * The feature id for the '<em><b>Prompt Style</b></em>' attribute.
@@ -970,13 +1349,22 @@ public interface DesignPackage extends EPackage
     int INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE = 0;
 
     /**
+     * The feature id for the '<em><b>Auto Suggest Threshold</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD = 1;
+
+    /**
      * The number of structural features of the '<em>Input Element UI Hints</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_UI_HINTS_FEATURE_COUNT = 1;
+    int INPUT_ELEMENT_UI_HINTS_FEATURE_COUNT = 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputParameterAttributesImpl <em>Input Parameter Attributes</em>}' class.
@@ -986,7 +1374,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputParameterAttributes()
      * @generated
      */
-    int INPUT_PARAMETER_ATTRIBUTES = 17;
+    int INPUT_PARAMETER_ATTRIBUTES = 27;
 
     /**
      * The feature id for the '<em><b>Element Attributes</b></em>' containment reference.
@@ -1023,7 +1411,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputParameterUIHints()
      * @generated
      */
-    int INPUT_PARAMETER_UI_HINTS = 18;
+    int INPUT_PARAMETER_UI_HINTS = 28;
 
     /**
      * The feature id for the '<em><b>Group Prompt Display Name</b></em>' attribute.
@@ -1051,7 +1439,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getLocale()
      * @generated
      */
-    int LOCALE = 19;
+    int LOCALE = 29;
 
     /**
      * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -1097,7 +1485,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNameValuePair()
      * @generated
      */
-    int NAME_VALUE_PAIR = 20;
+    int NAME_VALUE_PAIR = 30;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1127,6 +1515,43 @@ public interface DesignPackage extends EPackage
     int NAME_VALUE_PAIR_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.NotExpressionImpl <em>Not Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.NotExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNotExpression()
+     * @generated
+     */
+    int NOT_EXPRESSION = 31;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NOT_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Negating Expression</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NOT_EXPRESSION__NEGATING_EXPRESSION = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Not Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int NOT_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OdaDesignSessionImpl <em>Oda Design Session</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1134,7 +1559,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaDesignSession()
      * @generated
      */
-    int ODA_DESIGN_SESSION = 21;
+    int ODA_DESIGN_SESSION = 32;
 
     /**
      * The feature id for the '<em><b>Request</b></em>' containment reference.
@@ -1164,6 +1589,43 @@ public interface DesignPackage extends EPackage
     int ODA_DESIGN_SESSION_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.OrExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOrExpression()
+     * @generated
+     */
+    int OR_EXPRESSION = 33;
+
+    /**
+     * The feature id for the '<em><b>Negatable</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OR_EXPRESSION__NEGATABLE = COMPOSITE_FILTER_EXPRESSION__NEGATABLE;
+
+    /**
+     * The feature id for the '<em><b>Children</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OR_EXPRESSION__CHILDREN = COMPOSITE_FILTER_EXPRESSION__CHILDREN;
+
+    /**
+     * The number of structural features of the '<em>Or Expression</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OR_EXPRESSION_FEATURE_COUNT = COMPOSITE_FILTER_EXPRESSION_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl <em>Output Element Attributes</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1171,7 +1633,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOutputElementAttributes()
      * @generated
      */
-    int OUTPUT_ELEMENT_ATTRIBUTES = 22;
+    int OUTPUT_ELEMENT_ATTRIBUTES = 34;
 
     /**
      * The feature id for the '<em><b>Label</b></em>' attribute.
@@ -1217,7 +1679,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterDefinition()
      * @generated
      */
-    int PARAMETER_DEFINITION = 23;
+    int PARAMETER_DEFINITION = 35;
 
     /**
      * The feature id for the '<em><b>In Out Mode</b></em>' attribute.
@@ -1281,7 +1743,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterFieldDefinition()
      * @generated
      */
-    int PARAMETER_FIELD_DEFINITION = 24;
+    int PARAMETER_FIELD_DEFINITION = 36;
 
     /**
      * The feature id for the '<em><b>Attributes</b></em>' containment reference.
@@ -1327,7 +1789,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterFields()
      * @generated
      */
-    int PARAMETER_FIELDS = 25;
+    int PARAMETER_FIELDS = 37;
 
     /**
      * The feature id for the '<em><b>Field Collection</b></em>' containment reference list.
@@ -1355,7 +1817,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getProperties()
      * @generated
      */
-    int PROPERTIES = 26;
+    int PROPERTIES = 38;
 
     /**
      * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1383,7 +1845,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 27;
+    int PROPERTY = 39;
 
     /**
      * The feature id for the '<em><b>Name Value</b></em>' containment reference.
@@ -1420,7 +1882,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getPropertyAttributes()
      * @generated
      */
-    int PROPERTY_ATTRIBUTES = 28;
+    int PROPERTY_ATTRIBUTES = 40;
 
     /**
      * The feature id for the '<em><b>Display Name</b></em>' attribute.
@@ -1466,7 +1928,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResourceIdentifiers()
      * @generated
      */
-    int RESOURCE_IDENTIFIERS = 29;
+    int RESOURCE_IDENTIFIERS = 41;
 
     /**
      * The feature id for the '<em><b>Appl Resource Base URI String</b></em>' attribute.
@@ -1503,7 +1965,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetColumns()
      * @generated
      */
-    int RESULT_SET_COLUMNS = 30;
+    int RESULT_SET_COLUMNS = 42;
 
     /**
      * The feature id for the '<em><b>Result Column Definitions</b></em>' containment reference list.
@@ -1531,7 +1993,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetDefinition()
      * @generated
      */
-    int RESULT_SET_DEFINITION = 31;
+    int RESULT_SET_DEFINITION = 43;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1568,7 +2030,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSets()
      * @generated
      */
-    int RESULT_SETS = 32;
+    int RESULT_SETS = 44;
 
     /**
      * The feature id for the '<em><b>Result Set Definitions</b></em>' containment reference list.
@@ -1605,7 +2067,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueChoices()
      * @generated
      */
-    int SCALAR_VALUE_CHOICES = 33;
+    int SCALAR_VALUE_CHOICES = 45;
 
     /**
      * The feature id for the '<em><b>Scalar Values</b></em>' containment reference list.
@@ -1633,7 +2095,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueDefinition()
      * @generated
      */
-    int SCALAR_VALUE_DEFINITION = 34;
+    int SCALAR_VALUE_DEFINITION = 46;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1670,7 +2132,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getValueFormatHints()
      * @generated
      */
-    int VALUE_FORMAT_HINTS = 35;
+    int VALUE_FORMAT_HINTS = 47;
 
     /**
      * The feature id for the '<em><b>Display Size</b></em>' attribute.
@@ -1734,7 +2196,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisType()
      * @generated
      */
-    int AXIS_TYPE = 36;
+    int AXIS_TYPE = 48;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability</em>}' enum.
@@ -1744,7 +2206,17 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullability()
      * @generated
      */
-    int ELEMENT_NULLABILITY = 37;
+    int ELEMENT_NULLABILITY = 49;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableType()
+     * @generated
+     */
+    int FILTER_VARIABLE_TYPE = 50;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -1754,7 +2226,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignment()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT = 38;
+    int HORIZONTAL_ALIGNMENT = 51;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style</em>}' enum.
@@ -1764,7 +2236,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyle()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE = 39;
+    int INPUT_PROMPT_CONTROL_STYLE = 52;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
@@ -1774,7 +2246,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE = 40;
+    int ODA_COMPLEX_DATA_TYPE = 53;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
@@ -1784,7 +2256,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE = 41;
+    int ODA_SCALAR_DATA_TYPE = 54;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
@@ -1794,7 +2266,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
      * @generated
      */
-    int PARAMETER_MODE = 42;
+    int PARAMETER_MODE = 55;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
@@ -1804,7 +2276,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
      * @generated
      */
-    int SESSION_STATUS = 43;
+    int SESSION_STATUS = 56;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
@@ -1814,7 +2286,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
      * @generated
      */
-    int TEXT_FORMAT_TYPE = 44;
+    int TEXT_FORMAT_TYPE = 57;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
@@ -1824,107 +2296,159 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
      * @generated
      */
-    int TEXT_WRAP_TYPE = 45;
+    int TEXT_WRAP_TYPE = 58;
 
     /**
      * The meta object id for the '<em>Axis Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.AxisType
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
-    int AXIS_TYPE_OBJECT = 46;
+    int AXIS_TYPE_OBJECT = 59;
 
     /**
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
-    int ELEMENT_NULLABILITY_OBJECT = 47;
+    int ELEMENT_NULLABILITY_OBJECT = 60;
+
+    /**
+     * The meta object id for the '<em>Filter Variable Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableTypeObject()
+     * @generated
+     */
+    int FILTER_VARIABLE_TYPE_OBJECT = 61;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT_OBJECT = 48;
+    int HORIZONTAL_ALIGNMENT_OBJECT = 62;
 
     /**
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 49;
+    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 63;
 
     /**
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE_OBJECT = 50;
+    int ODA_COMPLEX_DATA_TYPE_OBJECT = 64;
 
     /**
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE_OBJECT = 51;
+    int ODA_SCALAR_DATA_TYPE_OBJECT = 65;
 
     /**
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
-    int PARAMETER_MODE_OBJECT = 52;
+    int PARAMETER_MODE_OBJECT = 66;
 
     /**
      * The meta object id for the '<em>Session Status Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
-    int SESSION_STATUS_OBJECT = 53;
+    int SESSION_STATUS_OBJECT = 67;
 
     /**
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
-    int TEXT_FORMAT_TYPE_OBJECT = 54;
+    int TEXT_FORMAT_TYPE_OBJECT = 68;
 
     /**
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
+     * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
-    int TEXT_WRAP_TYPE_OBJECT = 55;
+    int TEXT_WRAP_TYPE_OBJECT = 69;
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AndExpression <em>And Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>And Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AndExpression
+     * @generated
+     */
+    EClass getAndExpression();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext <em>Atomic Expression Context</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Atomic Expression Context</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext
+     * @generated
+     */
+    EClass getAtomicExpressionContext();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Variable</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable()
+     * @see #getAtomicExpressionContext()
+     * @generated
+     */
+    EReference getAtomicExpressionContext_Variable();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getArguments <em>Arguments</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Arguments</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getArguments()
+     * @see #getAtomicExpressionContext()
+     * @generated
+     */
+    EReference getAtomicExpressionContext_Arguments();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AxisAttributes <em>Axis Attributes</em>}'.
@@ -2000,6 +2524,70 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EReference getColumnDefinition_MultiDimensionAttributes();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression <em>Composite Filter Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Composite Filter Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression
+     * @generated
+     */
+    EClass getCompositeFilterExpression();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression#getChildren <em>Children</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Children</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression#getChildren()
+     * @see #getCompositeFilterExpression()
+     * @generated
+     */
+    EReference getCompositeFilterExpression_Children();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression <em>Custom Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Custom Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression
+     * @generated
+     */
+    EClass getCustomExpression();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getDeclaringExtensionId <em>Declaring Extension Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Declaring Extension Id</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getDeclaringExtensionId()
+     * @see #getCustomExpression()
+     * @generated
+     */
+    EAttribute getCustomExpression_DeclaringExtensionId();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getId <em>Id</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Id</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getId()
+     * @see #getCustomExpression()
+     * @generated
+     */
+    EAttribute getCustomExpression_Id();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getContext <em>Context</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getContext()
+     * @see #getCustomExpression()
+     * @generated
+     */
+    EReference getCustomExpression_Context();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign <em>Data Access Design</em>}'.
@@ -2260,6 +2848,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EReference getDataSetDesign_Parameters();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter <em>Filter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Filter</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter()
+     * @see #getDataSetDesign()
+     * @generated
+     */
+    EReference getDataSetDesign_Filter();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DataSetParameters <em>Data Set Parameters</em>}'.
@@ -2639,6 +3238,27 @@ public interface DesignPackage extends EPackage
     EReference getDocumentRoot_OdaDesignSession();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression <em>Dynamic Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Dynamic Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression
+     * @generated
+     */
+    EClass getDynamicExpression();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression#getContextVariable <em>Context Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Context Variable</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression#getContextVariable()
+     * @see #getDynamicExpression()
+     * @generated
+     */
+    EReference getDynamicExpression_ContextVariable();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery <em>Dynamic Values Query</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2691,6 +3311,144 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getDynamicValuesQuery_DisplayNameColumn();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression <em>Filter Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Filter Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpression
+     * @generated
+     */
+    EClass getFilterExpression();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable <em>Negatable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Negatable</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpression#isNegatable()
+     * @see #getFilterExpression()
+     * @generated
+     */
+    EAttribute getFilterExpression_Negatable();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments <em>Filter Expression Arguments</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Filter Expression Arguments</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments
+     * @generated
+     */
+    EClass getFilterExpressionArguments();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments#getFilterParameters <em>Filter Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Filter Parameters</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments#getFilterParameters()
+     * @see #getFilterExpressionArguments()
+     * @generated
+     */
+    EReference getFilterExpressionArguments_FilterParameters();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable <em>Filter Expression Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Filter Expression Variable</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable
+     * @generated
+     */
+    EClass getFilterExpressionVariable();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getType()
+     * @see #getFilterExpressionVariable()
+     * @generated
+     */
+    EAttribute getFilterExpressionVariable_Type();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getIdentifier <em>Identifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Identifier</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getIdentifier()
+     * @see #getFilterExpressionVariable()
+     * @generated
+     */
+    EAttribute getFilterExpressionVariable_Identifier();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getNativeDataTypeCode <em>Native Data Type Code</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Native Data Type Code</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getNativeDataTypeCode()
+     * @see #getFilterExpressionVariable()
+     * @generated
+     */
+    EAttribute getFilterExpressionVariable_NativeDataTypeCode();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition <em>Filter Parameter Definition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Filter Parameter Definition</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition
+     * @generated
+     */
+    EClass getFilterParameterDefinition();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValue <em>Static Value</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Static Value</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValue()
+     * @see #getFilterParameterDefinition()
+     * @generated
+     */
+    EAttribute getFilterParameterDefinition_StaticValue();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getDynamicInputParameter <em>Dynamic Input Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Dynamic Input Parameter</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getDynamicInputParameter()
+     * @see #getFilterParameterDefinition()
+     * @generated
+     */
+    EReference getFilterParameterDefinition_DynamicInputParameter();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters <em>Filter Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Filter Parameters</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters
+     * @generated
+     */
+    EClass getFilterParameters();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters#getParameterDefinitions <em>Parameter Definitions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter Definitions</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters#getParameterDefinitions()
+     * @see #getFilterParameters()
+     * @generated
+     */
+    EReference getFilterParameters_ParameterDefinitions();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes <em>Input Element Attributes</em>}'.
@@ -2799,6 +3557,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getInputElementUIHints_PromptStyle();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.InputElementUIHints#getAutoSuggestThreshold <em>Auto Suggest Threshold</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Auto Suggest Threshold</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementUIHints#getAutoSuggestThreshold()
+     * @see #getInputElementUIHints()
+     * @generated
+     */
+    EAttribute getInputElementUIHints_AutoSuggestThreshold();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes <em>Input Parameter Attributes</em>}'.
@@ -2929,6 +3698,27 @@ public interface DesignPackage extends EPackage
     EAttribute getNameValuePair_Value();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.NotExpression <em>Not Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Not Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.NotExpression
+     * @generated
+     */
+    EClass getNotExpression();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.NotExpression#getNegatingExpression <em>Negating Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Negating Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.NotExpression#getNegatingExpression()
+     * @see #getNotExpression()
+     * @generated
+     */
+    EReference getNotExpression_NegatingExpression();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession <em>Oda Design Session</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2959,6 +3749,16 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EReference getOdaDesignSession_Response();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.OrExpression <em>Or Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Or Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.OrExpression
+     * @generated
+     */
+    EClass getOrExpression();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes <em>Output Element Attributes</em>}'.
@@ -3484,6 +4284,16 @@ public interface DesignPackage extends EPackage
     EEnum getElementNullability();
 
     /**
+     * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Filter Variable Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+     * @generated
+     */
+    EEnum getFilterVariableType();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3564,121 +4374,133 @@ public interface DesignPackage extends EPackage
     EEnum getTextWrapType();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Axis Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.AxisType <em>Axis Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Axis Type Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='AxisType:Object' baseType='AxisType'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.AxisType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.AxisType"
+     *        extendedMetaData="name='AxisType:Object' baseType='AxisType'"
      * @generated
      */
     EDataType getAxisTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Element Nullability Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Element Nullability Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='ElementNullability:Object' baseType='ElementNullability'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.ElementNullability"
+     *        extendedMetaData="name='ElementNullability:Object' baseType='ElementNullability'"
      * @generated
      */
     EDataType getElementNullabilityObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Horizontal Alignment Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Filter Variable Type Object</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.FilterVariableType"
+     *        extendedMetaData="name='FilterVariableType:Object' baseType='FilterVariableType'"
+     * @generated
+     */
+    EDataType getFilterVariableTypeObject();
+
+    /**
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Horizontal Alignment Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='HorizontalAlignment:Object' baseType='HorizontalAlignment'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment"
+     *        extendedMetaData="name='HorizontalAlignment:Object' baseType='HorizontalAlignment'"
      * @generated
      */
     EDataType getHorizontalAlignmentObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Input Prompt Control Style Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Input Prompt Control Style Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='InputPromptControlStyle:Object' baseType='InputPromptControlStyle'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle"
+     *        extendedMetaData="name='InputPromptControlStyle:Object' baseType='InputPromptControlStyle'"
      * @generated
      */
     EDataType getInputPromptControlStyleObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Oda Complex Data Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Oda Complex Data Type Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='OdaComplexDataType:Object' baseType='OdaComplexDataType'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType"
+     *        extendedMetaData="name='OdaComplexDataType:Object' baseType='OdaComplexDataType'"
      * @generated
      */
     EDataType getOdaComplexDataTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Oda Scalar Data Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Oda Scalar Data Type Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='OdaScalarDataType:Object' baseType='OdaScalarDataType'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType"
+     *        extendedMetaData="name='OdaScalarDataType:Object' baseType='OdaScalarDataType'"
      * @generated
      */
     EDataType getOdaScalarDataTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Parameter Mode Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Parameter Mode Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='ParameterMode:Object' baseType='ParameterMode'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.ParameterMode"
+     *        extendedMetaData="name='ParameterMode:Object' baseType='ParameterMode'"
      * @generated
      */
     EDataType getParameterModeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Session Status Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Session Status Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='SessionStatus:Object' baseType='SessionStatus'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.SessionStatus"
+     *        extendedMetaData="name='SessionStatus:Object' baseType='SessionStatus'"
      * @generated
      */
     EDataType getSessionStatusObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Text Format Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Text Format Type Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='TextFormatType:Object' baseType='TextFormatType'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.TextFormatType"
+     *        extendedMetaData="name='TextFormatType:Object' baseType='TextFormatType'"
      * @generated
      */
     EDataType getTextFormatTypeObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.emf.common.util.AbstractEnumerator <em>Text Wrap Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for data type '<em>Text Wrap Type Object</em>'.
-     * @see org.eclipse.emf.common.util.AbstractEnumerator
-     * @model instanceClass="org.eclipse.emf.common.util.AbstractEnumerator"
-     *        extendedMetaData="name='TextWrapType:Object' baseType='TextWrapType'" 
+     * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.TextWrapType"
+     *        extendedMetaData="name='TextWrapType:Object' baseType='TextWrapType'"
      * @generated
      */
     EDataType getTextWrapTypeObject();
@@ -3706,6 +4528,45 @@ public interface DesignPackage extends EPackage
      */
     interface Literals
     {
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AndExpressionImpl <em>And Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.AndExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAndExpression()
+         * @generated
+         */
+        EClass AND_EXPRESSION = eINSTANCE.getAndExpression();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl <em>Atomic Expression Context</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.AtomicExpressionContextImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAtomicExpressionContext()
+         * @generated
+         */
+        EClass ATOMIC_EXPRESSION_CONTEXT = eINSTANCE
+                .getAtomicExpressionContext();
+
+        /**
+         * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ATOMIC_EXPRESSION_CONTEXT__VARIABLE = eINSTANCE
+                .getAtomicExpressionContext_Variable();
+
+        /**
+         * The meta object literal for the '<em><b>Arguments</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS = eINSTANCE
+                .getAtomicExpressionContext_Arguments();
+
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl <em>Axis Attributes</em>}' class.
          * <!-- begin-user-doc -->
@@ -3770,6 +4631,62 @@ public interface DesignPackage extends EPackage
          */
         EReference COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES = eINSTANCE
                 .getColumnDefinition_MultiDimensionAttributes();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CompositeFilterExpressionImpl <em>Composite Filter Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.CompositeFilterExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCompositeFilterExpression()
+         * @generated
+         */
+        EClass COMPOSITE_FILTER_EXPRESSION = eINSTANCE
+                .getCompositeFilterExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference COMPOSITE_FILTER_EXPRESSION__CHILDREN = eINSTANCE
+                .getCompositeFilterExpression_Children();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl <em>Custom Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomExpression()
+         * @generated
+         */
+        EClass CUSTOM_EXPRESSION = eINSTANCE.getCustomExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Declaring Extension Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID = eINSTANCE
+                .getCustomExpression_DeclaringExtensionId();
+
+        /**
+         * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CUSTOM_EXPRESSION__ID = eINSTANCE.getCustomExpression_Id();
+
+        /**
+         * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference CUSTOM_EXPRESSION__CONTEXT = eINSTANCE
+                .getCustomExpression_Context();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl <em>Data Access Design</em>}' class.
@@ -3988,6 +4905,15 @@ public interface DesignPackage extends EPackage
          */
         EReference DATA_SET_DESIGN__PARAMETERS = eINSTANCE
                 .getDataSetDesign_Parameters();
+
+        /**
+         * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DATA_SET_DESIGN__FILTER = eINSTANCE
+                .getDataSetDesign_Filter();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl <em>Data Set Parameters</em>}' class.
@@ -4312,6 +5238,25 @@ public interface DesignPackage extends EPackage
                 .getDocumentRoot_OdaDesignSession();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl <em>Dynamic Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicExpression()
+         * @generated
+         */
+        EClass DYNAMIC_EXPRESSION = eINSTANCE.getDynamicExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Context Variable</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DYNAMIC_EXPRESSION__CONTEXT_VARIABLE = eINSTANCE
+                .getDynamicExpression_ContextVariable();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl <em>Dynamic Values Query</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4356,6 +5301,131 @@ public interface DesignPackage extends EPackage
          */
         EAttribute DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN = eINSTANCE
                 .getDynamicValuesQuery_DisplayNameColumn();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionImpl <em>Filter Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpression()
+         * @generated
+         */
+        EClass FILTER_EXPRESSION = eINSTANCE.getFilterExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Negatable</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILTER_EXPRESSION__NEGATABLE = eINSTANCE
+                .getFilterExpression_Negatable();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl <em>Filter Expression Arguments</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionArguments()
+         * @generated
+         */
+        EClass FILTER_EXPRESSION_ARGUMENTS = eINSTANCE
+                .getFilterExpressionArguments();
+
+        /**
+         * The meta object literal for the '<em><b>Filter Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS = eINSTANCE
+                .getFilterExpressionArguments_FilterParameters();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl <em>Filter Expression Variable</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionVariable()
+         * @generated
+         */
+        EClass FILTER_EXPRESSION_VARIABLE = eINSTANCE
+                .getFilterExpressionVariable();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILTER_EXPRESSION_VARIABLE__TYPE = eINSTANCE
+                .getFilterExpressionVariable_Type();
+
+        /**
+         * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILTER_EXPRESSION_VARIABLE__IDENTIFIER = eINSTANCE
+                .getFilterExpressionVariable_Identifier();
+
+        /**
+         * The meta object literal for the '<em><b>Native Data Type Code</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = eINSTANCE
+                .getFilterExpressionVariable_NativeDataTypeCode();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl <em>Filter Parameter Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameterDefinition()
+         * @generated
+         */
+        EClass FILTER_PARAMETER_DEFINITION = eINSTANCE
+                .getFilterParameterDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Static Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute FILTER_PARAMETER_DEFINITION__STATIC_VALUE = eINSTANCE
+                .getFilterParameterDefinition_StaticValue();
+
+        /**
+         * The meta object literal for the '<em><b>Dynamic Input Parameter</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = eINSTANCE
+                .getFilterParameterDefinition_DynamicInputParameter();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl <em>Filter Parameters</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameters()
+         * @generated
+         */
+        EClass FILTER_PARAMETERS = eINSTANCE.getFilterParameters();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter Definitions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference FILTER_PARAMETERS__PARAMETER_DEFINITIONS = eINSTANCE
+                .getFilterParameters_ParameterDefinitions();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl <em>Input Element Attributes</em>}' class.
@@ -4448,6 +5518,15 @@ public interface DesignPackage extends EPackage
          */
         EAttribute INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE = eINSTANCE
                 .getInputElementUIHints_PromptStyle();
+
+        /**
+         * The meta object literal for the '<em><b>Auto Suggest Threshold</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD = eINSTANCE
+                .getInputElementUIHints_AutoSuggestThreshold();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputParameterAttributesImpl <em>Input Parameter Attributes</em>}' class.
@@ -4558,6 +5637,25 @@ public interface DesignPackage extends EPackage
         EAttribute NAME_VALUE_PAIR__VALUE = eINSTANCE.getNameValuePair_Value();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.NotExpressionImpl <em>Not Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.NotExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getNotExpression()
+         * @generated
+         */
+        EClass NOT_EXPRESSION = eINSTANCE.getNotExpression();
+
+        /**
+         * The meta object literal for the '<em><b>Negating Expression</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference NOT_EXPRESSION__NEGATING_EXPRESSION = eINSTANCE
+                .getNotExpression_NegatingExpression();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OdaDesignSessionImpl <em>Oda Design Session</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4584,6 +5682,16 @@ public interface DesignPackage extends EPackage
          */
         EReference ODA_DESIGN_SESSION__RESPONSE = eINSTANCE
                 .getOdaDesignSession_Response();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OrExpressionImpl <em>Or Expression</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.OrExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOrExpression()
+         * @generated
+         */
+        EClass OR_EXPRESSION = eINSTANCE.getOrExpression();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.OutputElementAttributesImpl <em>Output Element Attributes</em>}' class.
@@ -5044,6 +6152,16 @@ public interface DesignPackage extends EPackage
         EEnum ELEMENT_NULLABILITY = eINSTANCE.getElementNullability();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableType()
+         * @generated
+         */
+        EEnum FILTER_VARIABLE_TYPE = eINSTANCE.getFilterVariableType();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -5128,7 +6246,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Axis Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.AxisType
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
          * @generated
          */
@@ -5138,7 +6256,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Element Nullability Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.ElementNullability
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
          * @generated
          */
@@ -5146,10 +6264,21 @@ public interface DesignPackage extends EPackage
                 .getElementNullabilityObject();
 
         /**
+         * The meta object literal for the '<em>Filter Variable Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableTypeObject()
+         * @generated
+         */
+        EDataType FILTER_VARIABLE_TYPE_OBJECT = eINSTANCE
+                .getFilterVariableTypeObject();
+
+        /**
          * The meta object literal for the '<em>Horizontal Alignment Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
          * @generated
          */
@@ -5160,7 +6289,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Input Prompt Control Style Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
          * @generated
          */
@@ -5171,7 +6300,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Oda Complex Data Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
          * @generated
          */
@@ -5182,7 +6311,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Oda Scalar Data Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
          * @generated
          */
@@ -5193,7 +6322,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Parameter Mode Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.ParameterMode
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
          * @generated
          */
@@ -5203,7 +6332,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Session Status Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.SessionStatus
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
          * @generated
          */
@@ -5213,7 +6342,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Text Format Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.TextFormatType
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
          * @generated
          */
@@ -5223,7 +6352,7 @@ public interface DesignPackage extends EPackage
          * The meta object literal for the '<em>Text Wrap Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.emf.common.util.AbstractEnumerator
+         * @see org.eclipse.datatools.connectivity.oda.design.TextWrapType
          * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
          * @generated
          */

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.6 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignFactory.java,v 1.7 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -32,7 +32,7 @@ public interface DesignFactory extends EFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The singleton instance of the factory.
@@ -42,6 +42,24 @@ public interface DesignFactory extends EFactory
      */
     DesignFactory eINSTANCE = org.eclipse.datatools.connectivity.oda.design.impl.DesignFactoryImpl
             .init();
+
+    /**
+     * Returns a new object of class '<em>And Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>And Expression</em>'.
+     * @generated
+     */
+    AndExpression createAndExpression();
+
+    /**
+     * Returns a new object of class '<em>Atomic Expression Context</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Atomic Expression Context</em>'.
+     * @generated
+     */
+    AtomicExpressionContext createAtomicExpressionContext();
 
     /**
      * Returns a new object of class '<em>Axis Attributes</em>'.
@@ -60,6 +78,24 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     ColumnDefinition createColumnDefinition();
+
+    /**
+     * Returns a new object of class '<em>Composite Filter Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Composite Filter Expression</em>'.
+     * @generated
+     */
+    CompositeFilterExpression createCompositeFilterExpression();
+
+    /**
+     * Returns a new object of class '<em>Custom Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Custom Expression</em>'.
+     * @generated
+     */
+    CustomExpression createCustomExpression();
 
     /**
      * Returns a new object of class '<em>Data Access Design</em>'.
@@ -170,6 +206,15 @@ public interface DesignFactory extends EFactory
     DocumentRoot createDocumentRoot();
 
     /**
+     * Returns a new object of class '<em>Dynamic Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Dynamic Expression</em>'.
+     * @generated
+     */
+    DynamicExpression createDynamicExpression();
+
+    /**
      * Returns a new object of class '<em>Dynamic Values Query</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -177,6 +222,42 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     DynamicValuesQuery createDynamicValuesQuery();
+
+    /**
+     * Returns a new object of class '<em>Filter Expression Arguments</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filter Expression Arguments</em>'.
+     * @generated
+     */
+    FilterExpressionArguments createFilterExpressionArguments();
+
+    /**
+     * Returns a new object of class '<em>Filter Expression Variable</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filter Expression Variable</em>'.
+     * @generated
+     */
+    FilterExpressionVariable createFilterExpressionVariable();
+
+    /**
+     * Returns a new object of class '<em>Filter Parameter Definition</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filter Parameter Definition</em>'.
+     * @generated
+     */
+    FilterParameterDefinition createFilterParameterDefinition();
+
+    /**
+     * Returns a new object of class '<em>Filter Parameters</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Filter Parameters</em>'.
+     * @generated
+     */
+    FilterParameters createFilterParameters();
 
     /**
      * Returns a new object of class '<em>Input Element Attributes</em>'.
@@ -233,6 +314,15 @@ public interface DesignFactory extends EFactory
     NameValuePair createNameValuePair();
 
     /**
+     * Returns a new object of class '<em>Not Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Not Expression</em>'.
+     * @generated
+     */
+    NotExpression createNotExpression();
+
+    /**
      * Returns a new object of class '<em>Oda Design Session</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -240,6 +330,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     OdaDesignSession createOdaDesignSession();
+
+    /**
+     * Returns a new object of class '<em>Or Expression</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Or Expression</em>'.
+     * @generated
+     */
+    OrExpression createOrExpression();
 
     /**
      * Returns a new object of class '<em>Output Element Attributes</em>'.

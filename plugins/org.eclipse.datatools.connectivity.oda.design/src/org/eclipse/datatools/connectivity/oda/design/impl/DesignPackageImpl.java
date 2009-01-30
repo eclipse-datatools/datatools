@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,13 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.8 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
+import org.eclipse.datatools.connectivity.oda.design.AndExpression;
+import org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext;
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
@@ -32,8 +36,15 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
 import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
+import org.eclipse.datatools.connectivity.oda.design.DynamicExpression;
 import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.FilterParameters;
+import org.eclipse.datatools.connectivity.oda.design.FilterVariableType;
 import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
@@ -42,9 +53,11 @@ import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
 import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
+import org.eclipse.datatools.connectivity.oda.design.NotExpression;
 import org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
+import org.eclipse.datatools.connectivity.oda.design.OrExpression;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
@@ -63,7 +76,6 @@ import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-import org.eclipse.emf.common.util.AbstractEnumerator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -86,7 +98,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass andExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass atomicExpressionContextEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -101,6 +127,20 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass columnDefinitionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass compositeFilterExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass customExpressionEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -191,7 +231,49 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass dynamicExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass dynamicValuesQueryEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass filterExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass filterExpressionArgumentsEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass filterExpressionVariableEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass filterParameterDefinitionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass filterParametersEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -240,7 +322,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass notExpressionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass odaDesignSessionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass orExpressionEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -359,6 +455,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EEnum filterVariableTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum horizontalAlignmentEEnum = null;
 
     /**
@@ -423,6 +526,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EDataType elementNullabilityObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType filterVariableTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -563,6 +673,48 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getAndExpression()
+    {
+        return andExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getAtomicExpressionContext()
+    {
+        return atomicExpressionContextEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAtomicExpressionContext_Variable()
+    {
+        return (EReference) atomicExpressionContextEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getAtomicExpressionContext_Arguments()
+    {
+        return (EReference) atomicExpressionContextEClass
+                .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getAxisAttributes()
     {
         return axisAttributesEClass;
@@ -630,6 +782,70 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EReference getColumnDefinition_MultiDimensionAttributes()
     {
         return (EReference) columnDefinitionEClass.getEStructuralFeatures()
+                .get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCompositeFilterExpression()
+    {
+        return compositeFilterExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCompositeFilterExpression_Children()
+    {
+        return (EReference) compositeFilterExpressionEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getCustomExpression()
+    {
+        return customExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomExpression_DeclaringExtensionId()
+    {
+        return (EAttribute) customExpressionEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getCustomExpression_Id()
+    {
+        return (EAttribute) customExpressionEClass.getEStructuralFeatures()
+                .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getCustomExpression_Context()
+    {
+        return (EReference) customExpressionEClass.getEStructuralFeatures()
                 .get( 2 );
     }
 
@@ -891,6 +1107,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) dataSetDesignEClass.getEStructuralFeatures()
                 .get( 9 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDataSetDesign_Filter()
+    {
+        return (EReference) dataSetDesignEClass.getEStructuralFeatures().get(
+                10 );
     }
 
     /**
@@ -1270,6 +1497,27 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getDynamicExpression()
+    {
+        return dynamicExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getDynamicExpression_ContextVariable()
+    {
+        return (EReference) dynamicExpressionEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getDynamicValuesQuery()
     {
         return dynamicValuesQueryEClass;
@@ -1317,6 +1565,144 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EAttribute) dynamicValuesQueryEClass.getEStructuralFeatures()
                 .get( 3 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFilterExpression()
+    {
+        return filterExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFilterExpression_Negatable()
+    {
+        return (EAttribute) filterExpressionEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFilterExpressionArguments()
+    {
+        return filterExpressionArgumentsEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFilterExpressionArguments_FilterParameters()
+    {
+        return (EReference) filterExpressionArgumentsEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFilterExpressionVariable()
+    {
+        return filterExpressionVariableEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFilterExpressionVariable_Type()
+    {
+        return (EAttribute) filterExpressionVariableEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFilterExpressionVariable_Identifier()
+    {
+        return (EAttribute) filterExpressionVariableEClass
+                .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFilterExpressionVariable_NativeDataTypeCode()
+    {
+        return (EAttribute) filterExpressionVariableEClass
+                .getEStructuralFeatures().get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFilterParameterDefinition()
+    {
+        return filterParameterDefinitionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFilterParameterDefinition_StaticValue()
+    {
+        return (EAttribute) filterParameterDefinitionEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFilterParameterDefinition_DynamicInputParameter()
+    {
+        return (EReference) filterParameterDefinitionEClass
+                .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFilterParameters()
+    {
+        return filterParametersEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFilterParameters_ParameterDefinitions()
+    {
+        return (EReference) filterParametersEClass.getEStructuralFeatures()
+                .get( 0 );
     }
 
     /**
@@ -1425,6 +1811,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EAttribute) inputElementUIHintsEClass.getEStructuralFeatures()
                 .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getInputElementUIHints_AutoSuggestThreshold()
+    {
+        return (EAttribute) inputElementUIHintsEClass.getEStructuralFeatures()
+                .get( 1 );
     }
 
     /**
@@ -1557,6 +1954,27 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getNotExpression()
+    {
+        return notExpressionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getNotExpression_NegatingExpression()
+    {
+        return (EReference) notExpressionEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getOdaDesignSession()
     {
         return odaDesignSessionEClass;
@@ -1582,6 +2000,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) odaDesignSessionEClass.getEStructuralFeatures()
                 .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getOrExpression()
+    {
+        return orExpressionEClass;
     }
 
     /**
@@ -2107,6 +2535,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getFilterVariableType()
+    {
+        return filterVariableTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getHorizontalAlignment()
     {
         return horizontalAlignmentEEnum;
@@ -2200,6 +2638,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EDataType getElementNullabilityObject()
     {
         return elementNullabilityObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getFilterVariableTypeObject()
+    {
+        return filterVariableTypeObjectEDataType;
     }
 
     /**
@@ -2313,6 +2761,14 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         isCreated = true;
 
         // Create classes and their features
+        andExpressionEClass = createEClass( AND_EXPRESSION );
+
+        atomicExpressionContextEClass = createEClass( ATOMIC_EXPRESSION_CONTEXT );
+        createEReference( atomicExpressionContextEClass,
+                ATOMIC_EXPRESSION_CONTEXT__VARIABLE );
+        createEReference( atomicExpressionContextEClass,
+                ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS );
+
         axisAttributesEClass = createEClass( AXIS_ATTRIBUTES );
         createEAttribute( axisAttributesEClass, AXIS_ATTRIBUTES__AXIS_TYPE );
         createEAttribute( axisAttributesEClass,
@@ -2324,6 +2780,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 COLUMN_DEFINITION__USAGE_HINTS );
         createEReference( columnDefinitionEClass,
                 COLUMN_DEFINITION__MULTI_DIMENSION_ATTRIBUTES );
+
+        compositeFilterExpressionEClass = createEClass( COMPOSITE_FILTER_EXPRESSION );
+        createEReference( compositeFilterExpressionEClass,
+                COMPOSITE_FILTER_EXPRESSION__CHILDREN );
+
+        customExpressionEClass = createEClass( CUSTOM_EXPRESSION );
+        createEAttribute( customExpressionEClass,
+                CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID );
+        createEAttribute( customExpressionEClass, CUSTOM_EXPRESSION__ID );
+        createEReference( customExpressionEClass, CUSTOM_EXPRESSION__CONTEXT );
 
         dataAccessDesignEClass = createEClass( DATA_ACCESS_DESIGN );
         createEReference( dataAccessDesignEClass,
@@ -2367,6 +2833,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( dataSetDesignEClass,
                 DATA_SET_DESIGN__PRIMARY_RESULT_SET_NAME );
         createEReference( dataSetDesignEClass, DATA_SET_DESIGN__PARAMETERS );
+        createEReference( dataSetDesignEClass, DATA_SET_DESIGN__FILTER );
 
         dataSetParametersEClass = createEClass( DATA_SET_PARAMETERS );
         createEReference( dataSetParametersEClass,
@@ -2431,6 +2898,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DOCUMENT_ROOT__XSI_SCHEMA_LOCATION );
         createEReference( documentRootEClass, DOCUMENT_ROOT__ODA_DESIGN_SESSION );
 
+        dynamicExpressionEClass = createEClass( DYNAMIC_EXPRESSION );
+        createEReference( dynamicExpressionEClass,
+                DYNAMIC_EXPRESSION__CONTEXT_VARIABLE );
+
         dynamicValuesQueryEClass = createEClass( DYNAMIC_VALUES_QUERY );
         createEReference( dynamicValuesQueryEClass,
                 DYNAMIC_VALUES_QUERY__DATA_SET_DESIGN );
@@ -2440,6 +2911,31 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DYNAMIC_VALUES_QUERY__VALUE_COLUMN );
         createEAttribute( dynamicValuesQueryEClass,
                 DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN );
+
+        filterExpressionEClass = createEClass( FILTER_EXPRESSION );
+        createEAttribute( filterExpressionEClass, FILTER_EXPRESSION__NEGATABLE );
+
+        filterExpressionArgumentsEClass = createEClass( FILTER_EXPRESSION_ARGUMENTS );
+        createEReference( filterExpressionArgumentsEClass,
+                FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS );
+
+        filterExpressionVariableEClass = createEClass( FILTER_EXPRESSION_VARIABLE );
+        createEAttribute( filterExpressionVariableEClass,
+                FILTER_EXPRESSION_VARIABLE__TYPE );
+        createEAttribute( filterExpressionVariableEClass,
+                FILTER_EXPRESSION_VARIABLE__IDENTIFIER );
+        createEAttribute( filterExpressionVariableEClass,
+                FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE );
+
+        filterParameterDefinitionEClass = createEClass( FILTER_PARAMETER_DEFINITION );
+        createEAttribute( filterParameterDefinitionEClass,
+                FILTER_PARAMETER_DEFINITION__STATIC_VALUE );
+        createEReference( filterParameterDefinitionEClass,
+                FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER );
+
+        filterParametersEClass = createEClass( FILTER_PARAMETERS );
+        createEReference( filterParametersEClass,
+                FILTER_PARAMETERS__PARAMETER_DEFINITIONS );
 
         inputElementAttributesEClass = createEClass( INPUT_ELEMENT_ATTRIBUTES );
         createEAttribute( inputElementAttributesEClass,
@@ -2460,6 +2956,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         inputElementUIHintsEClass = createEClass( INPUT_ELEMENT_UI_HINTS );
         createEAttribute( inputElementUIHintsEClass,
                 INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE );
+        createEAttribute( inputElementUIHintsEClass,
+                INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD );
 
         inputParameterAttributesEClass = createEClass( INPUT_PARAMETER_ATTRIBUTES );
         createEReference( inputParameterAttributesEClass,
@@ -2480,9 +2978,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( nameValuePairEClass, NAME_VALUE_PAIR__NAME );
         createEAttribute( nameValuePairEClass, NAME_VALUE_PAIR__VALUE );
 
+        notExpressionEClass = createEClass( NOT_EXPRESSION );
+        createEReference( notExpressionEClass,
+                NOT_EXPRESSION__NEGATING_EXPRESSION );
+
         odaDesignSessionEClass = createEClass( ODA_DESIGN_SESSION );
         createEReference( odaDesignSessionEClass, ODA_DESIGN_SESSION__REQUEST );
         createEReference( odaDesignSessionEClass, ODA_DESIGN_SESSION__RESPONSE );
+
+        orExpressionEClass = createEClass( OR_EXPRESSION );
 
         outputElementAttributesEClass = createEClass( OUTPUT_ELEMENT_ATTRIBUTES );
         createEAttribute( outputElementAttributesEClass,
@@ -2576,6 +3080,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         // Create enums
         axisTypeEEnum = createEEnum( AXIS_TYPE );
         elementNullabilityEEnum = createEEnum( ELEMENT_NULLABILITY );
+        filterVariableTypeEEnum = createEEnum( FILTER_VARIABLE_TYPE );
         horizontalAlignmentEEnum = createEEnum( HORIZONTAL_ALIGNMENT );
         inputPromptControlStyleEEnum = createEEnum( INPUT_PROMPT_CONTROL_STYLE );
         odaComplexDataTypeEEnum = createEEnum( ODA_COMPLEX_DATA_TYPE );
@@ -2588,6 +3093,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         // Create data types
         axisTypeObjectEDataType = createEDataType( AXIS_TYPE_OBJECT );
         elementNullabilityObjectEDataType = createEDataType( ELEMENT_NULLABILITY_OBJECT );
+        filterVariableTypeObjectEDataType = createEDataType( FILTER_VARIABLE_TYPE_OBJECT );
         horizontalAlignmentObjectEDataType = createEDataType( HORIZONTAL_ALIGNMENT_OBJECT );
         inputPromptControlStyleObjectEDataType = createEDataType( INPUT_PROMPT_CONTROL_STYLE_OBJECT );
         odaComplexDataTypeObjectEDataType = createEDataType( ODA_COMPLEX_DATA_TYPE_OBJECT );
@@ -2627,9 +3133,44 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         XMLTypePackage theXMLTypePackage = (XMLTypePackage) EPackage.Registry.INSTANCE
                 .getEPackage( XMLTypePackage.eNS_URI );
 
+        // Create type parameters
+
+        // Set bounds for type parameters
+
         // Add supertypes to classes
+        andExpressionEClass.getESuperTypes().add(
+                this.getCompositeFilterExpression() );
+        compositeFilterExpressionEClass.getESuperTypes().add(
+                this.getFilterExpression() );
+        customExpressionEClass.getESuperTypes()
+                .add( this.getFilterExpression() );
+        dynamicExpressionEClass.getESuperTypes().add(
+                this.getFilterExpression() );
+        notExpressionEClass.getESuperTypes().add( this.getFilterExpression() );
+        orExpressionEClass.getESuperTypes().add(
+                this.getCompositeFilterExpression() );
 
         // Initialize classes and features; add operations and parameters
+        initEClass(
+                andExpressionEClass,
+                AndExpression.class,
+                "AndExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+
+        initEClass(
+                atomicExpressionContextEClass,
+                AtomicExpressionContext.class,
+                "AtomicExpressionContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getAtomicExpressionContext_Variable(),
+                this.getFilterExpressionVariable(),
+                null,
+                "variable", null, 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getAtomicExpressionContext_Arguments(),
+                this.getFilterExpressionArguments(),
+                null,
+                "arguments", null, 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
         initEClass(
                 axisAttributesEClass,
                 AxisAttributes.class,
@@ -2637,11 +3178,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getAxisAttributes_AxisType(),
                 this.getAxisType(),
-                "axisType", "Measure", 1, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "axisType", "Measure", 0, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getAxisAttributes_OnColumnLayout(),
                 theXMLTypePackage.getBoolean(),
-                "onColumnLayout", "true", 0, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "onColumnLayout", "true", 0, 1, AxisAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 columnDefinitionEClass,
@@ -2664,6 +3205,34 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "multiDimensionAttributes", null, 0, 1, ColumnDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
+                compositeFilterExpressionEClass,
+                CompositeFilterExpression.class,
+                "CompositeFilterExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getCompositeFilterExpression_Children(),
+                this.getFilterExpression(),
+                null,
+                "children", null, 1, -1, CompositeFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                customExpressionEClass,
+                CustomExpression.class,
+                "CustomExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getCustomExpression_DeclaringExtensionId(),
+                theXMLTypePackage.getString(),
+                "declaringExtensionId", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getCustomExpression_Id(),
+                theXMLTypePackage.getString(),
+                "id", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getCustomExpression_Context(),
+                this.getAtomicExpressionContext(),
+                null,
+                "context", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
                 dataAccessDesignEClass,
                 DataAccessDesign.class,
                 "DataAccessDesign", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -2680,27 +3249,27 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataElementAttributes_Name(),
                 theXMLTypePackage.getString(),
-                "name", null, 1, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "name", null, 1, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementAttributes_Position(),
                 theXMLTypePackage.getUnsignedShort(),
-                "position", null, 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "position", null, 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementAttributes_NativeDataTypeCode(),
                 theXMLTypePackage.getInt(),
-                "nativeDataTypeCode", "0", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "nativeDataTypeCode", "0", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Precision(),
                 theXMLTypePackage.getInt(),
-                "precision", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "precision", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Scale(),
                 theXMLTypePackage.getInt(),
-                "scale", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "scale", "-1", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDataElementAttributes_Nullability(),
                 this.getElementNullability(),
-                "nullability", "Unknown", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "nullability", "Unknown", 0, 1, DataElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getDataElementAttributes_UiHints(),
                 this.getDataElementUIHints(),
@@ -2714,11 +3283,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataElementUIHints_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 0, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataElementUIHints_Description(),
                 theXMLTypePackage.getString(),
-                "description", null, 0, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "description", null, 0, 1, DataElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataSetDesignEClass,
@@ -2727,11 +3296,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSetDesign_Name(),
                 theXMLTypePackage.getString(),
-                "name", null, 1, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "name", null, 1, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSetDesign_OdaExtensionDataSetId(),
                 theXMLTypePackage.getString(),
-                "odaExtensionDataSetId", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "odaExtensionDataSetId", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSetDesign_DataSourceDesign(),
                 this.getDataSourceDesign(),
@@ -2745,7 +3314,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSetDesign_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSetDesign_PublicProperties(),
                 this.getProperties(),
@@ -2764,12 +3333,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSetDesign_PrimaryResultSetName(),
                 theXMLTypePackage.getString(),
-                "primaryResultSetName", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "primaryResultSetName", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSetDesign_Parameters(),
                 this.getDataSetParameters(),
                 null,
                 "parameters", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getDataSetDesign_Filter(),
+                this.getFilterExpression(),
+                null,
+                "filter", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataSetParametersEClass,
@@ -2783,7 +3357,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSetParameters_DerivedMetaData(),
                 theXMLTypePackage.getBoolean(),
-                "derivedMetaData", "true", 0, 1, DataSetParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "derivedMetaData", "true", 0, 1, DataSetParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 dataSetQueryEClass,
@@ -2792,7 +3366,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSetQuery_QueryText(),
                 theXMLTypePackage.getString(),
-                "queryText", null, 1, 1, DataSetQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "queryText", null, 1, 1, DataSetQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataSourceDesignEClass,
@@ -2801,19 +3375,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSourceDesign_Name(),
                 theXMLTypePackage.getString(),
-                "name", null, 1, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "name", null, 1, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSourceDesign_OdaExtensionId(),
                 theXMLTypePackage.getString(),
-                "odaExtensionId", null, 1, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "odaExtensionId", null, 1, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSourceDesign_OdaExtensionDataSourceId(),
                 theXMLTypePackage.getString(),
-                "odaExtensionDataSourceId", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "odaExtensionDataSourceId", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSourceDesign_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSourceDesign_PublicProperties(),
                 this.getProperties(),
@@ -2827,11 +3401,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDataSourceDesign_LinkedProfileName(),
                 theXMLTypePackage.getString(),
-                "linkedProfileName", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "linkedProfileName", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDataSourceDesign_LinkedProfileStoreFilePath(),
                 theXMLTypePackage.getString(),
-                "linkedProfileStoreFilePath", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "linkedProfileStoreFilePath", null, 0, 1, DataSourceDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDataSourceDesign_HostResourceIdentifiers(),
                 this.getResourceIdentifiers(),
@@ -2845,7 +3419,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDesignerState_Version(),
                 theXMLTypePackage.getString(),
-                "version", null, 1, 1, DesignerState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "version", null, 1, 1, DesignerState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDesignerState_StateContent(),
                 this.getDesignerStateContent(),
@@ -2859,11 +3433,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDesignerStateContent_StateContentAsString(),
                 theXMLTypePackage.getString(),
-                "stateContentAsString", null, 0, 1, DesignerStateContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "stateContentAsString", null, 0, 1, DesignerStateContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDesignerStateContent_StateContentAsBlob(),
                 theXMLTypePackage.getBase64Binary(),
-                "stateContentAsBlob", null, 0, 1, DesignerStateContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "stateContentAsBlob", null, 0, 1, DesignerStateContent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 designSessionRequestEClass,
@@ -2877,7 +3451,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDesignSessionRequest_Editable(),
                 theXMLTypePackage.getBoolean(),
-                "editable", "true", 0, 1, DesignSessionRequest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "editable", "true", 0, 1, DesignSessionRequest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getDesignSessionRequest_SessionLocale(),
                 this.getLocale(),
@@ -2896,7 +3470,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDesignSessionResponse_SessionStatus(),
                 this.getSessionStatus(),
-                "sessionStatus", "Ok", 1, 1, DesignSessionResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "sessionStatus", "Ok", 0, 1, DesignSessionResponse.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getDesignSessionResponse_DataAccessDesign(),
                 this.getDataAccessDesign(),
@@ -2920,17 +3494,27 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getDocumentRoot_XMLNSPrefixMap(),
                 ecorePackage.getEStringToStringMapEntry(),
                 null,
-                "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "xMLNSPrefixMap", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDocumentRoot_XSISchemaLocation(),
                 ecorePackage.getEStringToStringMapEntry(),
                 null,
-                "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "xSISchemaLocation", null, 0, -1, null, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getDocumentRoot_OdaDesignSession(),
                 this.getOdaDesignSession(),
                 null,
                 "odaDesignSession", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                dynamicExpressionEClass,
+                DynamicExpression.class,
+                "DynamicExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getDynamicExpression_ContextVariable(),
+                this.getFilterExpressionVariable(),
+                null,
+                "contextVariable", null, 1, 1, DynamicExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dynamicValuesQueryEClass,
@@ -2944,15 +3528,75 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getDynamicValuesQuery_Enabled(),
                 theXMLTypePackage.getBoolean(),
-                "enabled", "true", 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "enabled", "true", 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getDynamicValuesQuery_ValueColumn(),
                 theXMLTypePackage.getString(),
-                "valueColumn", null, 1, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "valueColumn", null, 1, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getDynamicValuesQuery_DisplayNameColumn(),
                 theXMLTypePackage.getString(),
-                "displayNameColumn", null, 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayNameColumn", null, 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                filterExpressionEClass,
+                FilterExpression.class,
+                "FilterExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getFilterExpression_Negatable(),
+                theXMLTypePackage.getBoolean(),
+                "negatable", "false", 0, 1, FilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+
+        initEClass(
+                filterExpressionArgumentsEClass,
+                FilterExpressionArguments.class,
+                "FilterExpressionArguments", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getFilterExpressionArguments_FilterParameters(),
+                this.getFilterParameters(),
+                null,
+                "filterParameters", null, 1, 1, FilterExpressionArguments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                filterExpressionVariableEClass,
+                FilterExpressionVariable.class,
+                "FilterExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getFilterExpressionVariable_Type(),
+                this.getFilterVariableType(),
+                "type", "ResultSetColumn", 0, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(
+                getFilterExpressionVariable_Identifier(),
+                theXMLTypePackage.getString(),
+                "identifier", null, 1, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getFilterExpressionVariable_NativeDataTypeCode(),
+                theXMLTypePackage.getInt(),
+                "nativeDataTypeCode", null, 0, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                filterParameterDefinitionEClass,
+                FilterParameterDefinition.class,
+                "FilterParameterDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getFilterParameterDefinition_StaticValue(),
+                theXMLTypePackage.getAnySimpleType(),
+                "staticValue", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getFilterParameterDefinition_DynamicInputParameter(),
+                this.getParameterDefinition(),
+                null,
+                "dynamicInputParameter", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                filterParametersEClass,
+                FilterParameters.class,
+                "FilterParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getFilterParameters_ParameterDefinitions(),
+                this.getFilterParameterDefinition(),
+                null,
+                "parameterDefinitions", null, 1, -1, FilterParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 inputElementAttributesEClass,
@@ -2961,19 +3605,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getInputElementAttributes_DefaultScalarValue(),
                 theXMLTypePackage.getString(),
-                "defaultScalarValue", null, 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "defaultScalarValue", null, 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getInputElementAttributes_Editable(),
                 theXMLTypePackage.getBoolean(),
-                "editable", "true", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "editable", "true", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getInputElementAttributes_Optional(),
                 theXMLTypePackage.getBoolean(),
-                "optional", "false", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "optional", "false", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getInputElementAttributes_MasksValue(),
                 theXMLTypePackage.getBoolean(),
-                "masksValue", "false", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "masksValue", "false", 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getInputElementAttributes_StaticValueChoices(),
                 this.getScalarValueChoices(),
@@ -2997,7 +3641,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getInputElementUIHints_PromptStyle(),
                 this.getInputPromptControlStyle(),
-                "promptStyle", "", 0, 1, InputElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "promptStyle", null, 0, 1, InputElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getInputElementUIHints_AutoSuggestThreshold(),
+                theXMLTypePackage.getInt(),
+                "autoSuggestThreshold", "1", 0, 1, InputElementUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 inputParameterAttributesEClass,
@@ -3021,7 +3669,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getInputParameterUIHints_GroupPromptDisplayName(),
                 theXMLTypePackage.getString(),
-                "groupPromptDisplayName", null, 0, 1, InputParameterUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "groupPromptDisplayName", null, 0, 1, InputParameterUIHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 localeEClass,
@@ -3030,15 +3678,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getLocale_Language(),
                 theXMLTypePackage.getString(),
-                "language", "en", 1, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "language", "en", 0, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getLocale_Country(),
                 theXMLTypePackage.getString(),
-                "country", null, 0, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "country", null, 0, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getLocale_Variant(),
                 theXMLTypePackage.getString(),
-                "variant", null, 0, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "variant", null, 0, 1, Locale.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 nameValuePairEClass,
@@ -3047,11 +3695,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getNameValuePair_Name(),
                 theXMLTypePackage.getString(),
-                "name", null, 1, 1, NameValuePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "name", null, 1, 1, NameValuePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getNameValuePair_Value(),
                 theXMLTypePackage.getString(),
-                "value", null, 0, 1, NameValuePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "value", null, 0, 1, NameValuePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                notExpressionEClass,
+                NotExpression.class,
+                "NotExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getNotExpression_NegatingExpression(),
+                this.getFilterExpression(),
+                null,
+                "negatingExpression", null, 1, 1, NotExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 odaDesignSessionEClass,
@@ -3069,13 +3727,18 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "response", null, 0, 1, OdaDesignSession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
+                orExpressionEClass,
+                OrExpression.class,
+                "OrExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+
+        initEClass(
                 outputElementAttributesEClass,
                 OutputElementAttributes.class,
                 "OutputElementAttributes", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute(
                 getOutputElementAttributes_Label(),
                 theXMLTypePackage.getString(),
-                "label", null, 0, 1, OutputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "label", null, 0, 1, OutputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getOutputElementAttributes_FormattingHints(),
                 this.getValueFormatHints(),
@@ -3084,7 +3747,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getOutputElementAttributes_HelpText(),
                 theXMLTypePackage.getString(),
-                "helpText", null, 0, 1, OutputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "helpText", null, 0, 1, OutputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 parameterDefinitionEClass,
@@ -3093,7 +3756,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getParameterDefinition_InOutMode(),
                 this.getParameterMode(),
-                "inOutMode", "In", 1, 1, ParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "inOutMode", "In", 0, 1, ParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getParameterDefinition_Attributes(),
                 this.getDataElementAttributes(),
@@ -3177,7 +3840,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getPropertyAttributes_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 0, 1, PropertyAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, PropertyAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getPropertyAttributes_ElementAttributes(),
                 this.getInputElementAttributes(),
@@ -3186,7 +3849,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getPropertyAttributes_DerivedMetaData(),
                 theXMLTypePackage.getBoolean(),
-                "derivedMetaData", "true", 0, 1, PropertyAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "derivedMetaData", "true", 0, 1, PropertyAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 resourceIdentifiersEClass,
@@ -3195,11 +3858,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getResourceIdentifiers_ApplResourceBaseURIString(),
                 theXMLTypePackage.getString(),
-                "applResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "applResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getResourceIdentifiers_DesignResourceBaseURIString(),
                 theXMLTypePackage.getString(),
-                "designResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "designResourceBaseURIString", null, 0, 1, ResourceIdentifiers.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 resultSetColumnsEClass,
@@ -3218,7 +3881,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getResultSetDefinition_Name(),
                 theXMLTypePackage.getString(),
-                "name", null, 0, 1, ResultSetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "name", null, 0, 1, ResultSetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getResultSetDefinition_ResultSetColumns(),
                 this.getResultSetColumns(),
@@ -3237,7 +3900,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getResultSets_DerivedMetaData(),
                 theXMLTypePackage.getBoolean(),
-                "derivedMetaData", "true", 0, 1, ResultSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "derivedMetaData", "true", 0, 1, ResultSets.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         initEClass(
                 scalarValueChoicesEClass,
@@ -3256,11 +3919,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getScalarValueDefinition_Value(),
                 theXMLTypePackage.getString(),
-                "value", null, 1, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "value", null, 1, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getScalarValueDefinition_DisplayName(),
                 theXMLTypePackage.getString(),
-                "displayName", null, 0, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayName", null, 0, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 valueFormatHintsEClass,
@@ -3269,23 +3932,23 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         initEAttribute(
                 getValueFormatHints_DisplaySize(),
                 theXMLTypePackage.getInt(),
-                "displaySize", "-1", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "displaySize", "-1", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getValueFormatHints_DisplayFormat(),
                 theXMLTypePackage.getString(),
-                "displayFormat", null, 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "displayFormat", null, 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getValueFormatHints_TextFormatType(),
                 this.getTextFormatType(),
-                "textFormatType", "Plain", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "textFormatType", "Plain", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getValueFormatHints_HorizontalAlignment(),
                 this.getHorizontalAlignment(),
-                "horizontalAlignment", "Automatic", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "horizontalAlignment", "Automatic", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEAttribute(
                 getValueFormatHints_TextWrapType(),
                 this.getTextWrapType(),
-                "textWrapType", "None", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+                "textWrapType", "None", 0, 1, ValueFormatHints.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
 
         // Initialize enums and add enum literals
         initEEnum( axisTypeEEnum, AxisType.class, "AxisType" ); //$NON-NLS-1$
@@ -3301,6 +3964,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 ElementNullability.NULLABLE_LITERAL );
         addEEnumLiteral( elementNullabilityEEnum,
                 ElementNullability.NOT_NULLABLE_LITERAL );
+
+        initEEnum( filterVariableTypeEEnum, FilterVariableType.class,
+                "FilterVariableType" ); //$NON-NLS-1$
+        addEEnumLiteral( filterVariableTypeEEnum,
+                FilterVariableType.RESULT_SET_COLUMN );
+        addEEnumLiteral( filterVariableTypeEEnum,
+                FilterVariableType.INSTANCE_OF );
+        addEEnumLiteral( filterVariableTypeEEnum,
+                FilterVariableType.QUERY_EXPRESSION );
 
         initEEnum( horizontalAlignmentEEnum, HorizontalAlignment.class,
                 "HorizontalAlignment" ); //$NON-NLS-1$
@@ -3374,43 +4046,47 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addEEnumLiteral( textWrapTypeEEnum, TextWrapType.WORD_LITERAL );
 
         // Initialize data types
-        initEDataType( axisTypeObjectEDataType, AbstractEnumerator.class,
+        initEDataType( axisTypeObjectEDataType, AxisType.class,
                 "AxisTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 elementNullabilityObjectEDataType,
-                AbstractEnumerator.class,
+                ElementNullability.class,
                 "ElementNullabilityObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
+                filterVariableTypeObjectEDataType,
+                FilterVariableType.class,
+                "FilterVariableTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEDataType(
                 horizontalAlignmentObjectEDataType,
-                AbstractEnumerator.class,
+                HorizontalAlignment.class,
                 "HorizontalAlignmentObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 inputPromptControlStyleObjectEDataType,
-                AbstractEnumerator.class,
+                InputPromptControlStyle.class,
                 "InputPromptControlStyleObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 odaComplexDataTypeObjectEDataType,
-                AbstractEnumerator.class,
+                OdaComplexDataType.class,
                 "OdaComplexDataTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 odaScalarDataTypeObjectEDataType,
-                AbstractEnumerator.class,
+                OdaScalarDataType.class,
                 "OdaScalarDataTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 parameterModeObjectEDataType,
-                AbstractEnumerator.class,
+                ParameterMode.class,
                 "ParameterModeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 sessionStatusObjectEDataType,
-                AbstractEnumerator.class,
+                SessionStatus.class,
                 "SessionStatusObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 textFormatTypeObjectEDataType,
-                AbstractEnumerator.class,
+                TextFormatType.class,
                 "TextFormatTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 textWrapTypeObjectEDataType,
-                AbstractEnumerator.class,
+                TextWrapType.class,
                 "TextWrapTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
 
         // Create resource
@@ -3430,6 +4106,26 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     protected void createExtendedMetaDataAnnotations()
     {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$			
+        addAnnotation( andExpressionEClass, source, new String[]
+        { "name", "AndExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( atomicExpressionContextEClass, source, new String[]
+        { "name", "AtomicExpressionContext", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getAtomicExpressionContext_Variable(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "variable", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getAtomicExpressionContext_Arguments(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "arguments", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( axisAttributesEClass, source, new String[]
         { "name", "AxisAttributes", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -3471,6 +4167,36 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "multiDimensionAttributes", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( compositeFilterExpressionEClass, source, new String[]
+        { "name", "CompositeFilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCompositeFilterExpression_Children(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "children", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( customExpressionEClass, source, new String[]
+        { "name", "CustomExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCustomExpression_DeclaringExtensionId(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "declaringExtensionId", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getCustomExpression_Id(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "id", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getCustomExpression_Context(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "context", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( dataAccessDesignEClass, source, new String[]
         { "name", "DataAccessDesign", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -3597,6 +4323,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getDataSetDesign_Parameters(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "parameters", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getDataSetDesign_Filter(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "filter", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( dataSetParametersEClass, source, new String[]
@@ -3780,6 +4511,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "odaDesignSession", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( dynamicExpressionEClass, source, new String[]
+        { "name", "DynamicExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getDynamicExpression_ContextVariable(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "contextVariable", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( dynamicValuesQueryEClass, source, new String[]
         { "name", "DynamicValuesQuery", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -3813,6 +4554,78 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( elementNullabilityObjectEDataType, source, new String[]
         { "name", "ElementNullability:Object", //$NON-NLS-1$ //$NON-NLS-2$
                 "baseType", "ElementNullability" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( filterExpressionEClass, source, new String[]
+        { "name", "FilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "empty" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterExpression_Negatable(), source, new String[]
+        { "kind", "attribute", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "negatable" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( filterExpressionArgumentsEClass, source, new String[]
+        { "name", "FilterExpressionArguments", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterExpressionArguments_FilterParameters(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "filterParameters", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( filterExpressionVariableEClass, source, new String[]
+        { "name", "FilterExpressionVariable", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterExpressionVariable_Type(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "type", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterExpressionVariable_Identifier(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "identifier", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getFilterExpressionVariable_NativeDataTypeCode(),
+                source, new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "nativeDataTypeCode", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( filterParameterDefinitionEClass, source, new String[]
+        { "name", "FilterParameterDefinition", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterParameterDefinition_StaticValue(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "staticValue", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getFilterParameterDefinition_DynamicInputParameter(),
+                source, new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "dynamicInputParameter", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( filterParametersEClass, source, new String[]
+        { "name", "FilterParameters", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getFilterParameters_ParameterDefinitions(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "parameterDefinitions", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( filterVariableTypeEEnum, source, new String[]
+        { "name", "FilterVariableType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( filterVariableTypeObjectEDataType, source, new String[]
+        { "name", "FilterVariableType:Object", //$NON-NLS-1$ //$NON-NLS-2$
+                "baseType", "FilterVariableType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( horizontalAlignmentEEnum, source, new String[]
         { "name", "HorizontalAlignment" //$NON-NLS-1$ //$NON-NLS-2$
@@ -3875,6 +4688,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                         "name", "promptStyle", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getInputElementUIHints_AutoSuggestThreshold(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "autoSuggestThreshold", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( inputParameterAttributesEClass, source, new String[]
@@ -3944,6 +4763,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "value", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( notExpressionEClass, source, new String[]
+        { "name", "NotExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getNotExpression_NegatingExpression(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "negatingExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( odaComplexDataTypeEEnum, source, new String[]
         { "name", "OdaComplexDataType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
@@ -3971,6 +4800,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( odaScalarDataTypeObjectEDataType, source, new String[]
         { "name", "OdaScalarDataType:Object", //$NON-NLS-1$ //$NON-NLS-2$
                 "baseType", "OdaScalarDataType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( orExpressionEClass, source, new String[]
+        { "name", "OrExpression", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( outputElementAttributesEClass, source, new String[]
         { "name", "OutputElementAttributes", //$NON-NLS-1$ //$NON-NLS-2$
@@ -4054,7 +4887,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getParameterFields_FieldCollection(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "fields", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "fieldCollection", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( parameterModeEEnum, source, new String[]

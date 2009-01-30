@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.3 2008/07/23 04:12:28 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -39,7 +39,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The cached model package.
@@ -71,6 +71,7 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @return whether this factory is applicable for the type of the object.
      * @generated
      */
+    @Override
     public boolean isFactoryForType( Object object )
     {
         if( object == modelPackage )
@@ -85,197 +86,311 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
-     * The switch the delegates to the <code>createXXX</code> methods.
+     * The switch that delegates to the <code>createXXX</code> methods.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected DesignSwitch modelSwitch = new DesignSwitch()
+    protected DesignSwitch<Adapter> modelSwitch = new DesignSwitch<Adapter>()
     {
-        public Object caseAxisAttributes( AxisAttributes object )
+        @Override
+        public Adapter caseAndExpression( AndExpression object )
+        {
+            return createAndExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseAtomicExpressionContext(
+                AtomicExpressionContext object )
+        {
+            return createAtomicExpressionContextAdapter();
+        }
+
+        @Override
+        public Adapter caseAxisAttributes( AxisAttributes object )
         {
             return createAxisAttributesAdapter();
         }
 
-        public Object caseColumnDefinition( ColumnDefinition object )
+        @Override
+        public Adapter caseColumnDefinition( ColumnDefinition object )
         {
             return createColumnDefinitionAdapter();
         }
 
-        public Object caseDataAccessDesign( DataAccessDesign object )
+        @Override
+        public Adapter caseCompositeFilterExpression(
+                CompositeFilterExpression object )
+        {
+            return createCompositeFilterExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseCustomExpression( CustomExpression object )
+        {
+            return createCustomExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseDataAccessDesign( DataAccessDesign object )
         {
             return createDataAccessDesignAdapter();
         }
 
-        public Object caseDataElementAttributes( DataElementAttributes object )
+        @Override
+        public Adapter caseDataElementAttributes( DataElementAttributes object )
         {
             return createDataElementAttributesAdapter();
         }
 
-        public Object caseDataElementUIHints( DataElementUIHints object )
+        @Override
+        public Adapter caseDataElementUIHints( DataElementUIHints object )
         {
             return createDataElementUIHintsAdapter();
         }
 
-        public Object caseDataSetDesign( DataSetDesign object )
+        @Override
+        public Adapter caseDataSetDesign( DataSetDesign object )
         {
             return createDataSetDesignAdapter();
         }
 
-        public Object caseDataSetParameters( DataSetParameters object )
+        @Override
+        public Adapter caseDataSetParameters( DataSetParameters object )
         {
             return createDataSetParametersAdapter();
         }
 
-        public Object caseDataSetQuery( DataSetQuery object )
+        @Override
+        public Adapter caseDataSetQuery( DataSetQuery object )
         {
             return createDataSetQueryAdapter();
         }
 
-        public Object caseDataSourceDesign( DataSourceDesign object )
+        @Override
+        public Adapter caseDataSourceDesign( DataSourceDesign object )
         {
             return createDataSourceDesignAdapter();
         }
 
-        public Object caseDesignerState( DesignerState object )
+        @Override
+        public Adapter caseDesignerState( DesignerState object )
         {
             return createDesignerStateAdapter();
         }
 
-        public Object caseDesignerStateContent( DesignerStateContent object )
+        @Override
+        public Adapter caseDesignerStateContent( DesignerStateContent object )
         {
             return createDesignerStateContentAdapter();
         }
 
-        public Object caseDesignSessionRequest( DesignSessionRequest object )
+        @Override
+        public Adapter caseDesignSessionRequest( DesignSessionRequest object )
         {
             return createDesignSessionRequestAdapter();
         }
 
-        public Object caseDesignSessionResponse( DesignSessionResponse object )
+        @Override
+        public Adapter caseDesignSessionResponse( DesignSessionResponse object )
         {
             return createDesignSessionResponseAdapter();
         }
 
-        public Object caseDocumentRoot( DocumentRoot object )
+        @Override
+        public Adapter caseDocumentRoot( DocumentRoot object )
         {
             return createDocumentRootAdapter();
         }
 
-        public Object caseDynamicValuesQuery( DynamicValuesQuery object )
+        @Override
+        public Adapter caseDynamicExpression( DynamicExpression object )
+        {
+            return createDynamicExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseDynamicValuesQuery( DynamicValuesQuery object )
         {
             return createDynamicValuesQueryAdapter();
         }
 
-        public Object caseInputElementAttributes( InputElementAttributes object )
+        @Override
+        public Adapter caseFilterExpression( FilterExpression object )
+        {
+            return createFilterExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseFilterExpressionArguments(
+                FilterExpressionArguments object )
+        {
+            return createFilterExpressionArgumentsAdapter();
+        }
+
+        @Override
+        public Adapter caseFilterExpressionVariable(
+                FilterExpressionVariable object )
+        {
+            return createFilterExpressionVariableAdapter();
+        }
+
+        @Override
+        public Adapter caseFilterParameterDefinition(
+                FilterParameterDefinition object )
+        {
+            return createFilterParameterDefinitionAdapter();
+        }
+
+        @Override
+        public Adapter caseFilterParameters( FilterParameters object )
+        {
+            return createFilterParametersAdapter();
+        }
+
+        @Override
+        public Adapter caseInputElementAttributes( InputElementAttributes object )
         {
             return createInputElementAttributesAdapter();
         }
 
-        public Object caseInputElementUIHints( InputElementUIHints object )
+        @Override
+        public Adapter caseInputElementUIHints( InputElementUIHints object )
         {
             return createInputElementUIHintsAdapter();
         }
 
-        public Object caseInputParameterAttributes(
+        @Override
+        public Adapter caseInputParameterAttributes(
                 InputParameterAttributes object )
         {
             return createInputParameterAttributesAdapter();
         }
 
-        public Object caseInputParameterUIHints( InputParameterUIHints object )
+        @Override
+        public Adapter caseInputParameterUIHints( InputParameterUIHints object )
         {
             return createInputParameterUIHintsAdapter();
         }
 
-        public Object caseLocale( Locale object )
+        @Override
+        public Adapter caseLocale( Locale object )
         {
             return createLocaleAdapter();
         }
 
-        public Object caseNameValuePair( NameValuePair object )
+        @Override
+        public Adapter caseNameValuePair( NameValuePair object )
         {
             return createNameValuePairAdapter();
         }
 
-        public Object caseOdaDesignSession( OdaDesignSession object )
+        @Override
+        public Adapter caseNotExpression( NotExpression object )
+        {
+            return createNotExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseOdaDesignSession( OdaDesignSession object )
         {
             return createOdaDesignSessionAdapter();
         }
 
-        public Object caseOutputElementAttributes(
+        @Override
+        public Adapter caseOrExpression( OrExpression object )
+        {
+            return createOrExpressionAdapter();
+        }
+
+        @Override
+        public Adapter caseOutputElementAttributes(
                 OutputElementAttributes object )
         {
             return createOutputElementAttributesAdapter();
         }
 
-        public Object caseParameterDefinition( ParameterDefinition object )
+        @Override
+        public Adapter caseParameterDefinition( ParameterDefinition object )
         {
             return createParameterDefinitionAdapter();
         }
 
-        public Object caseParameterFieldDefinition(
+        @Override
+        public Adapter caseParameterFieldDefinition(
                 ParameterFieldDefinition object )
         {
             return createParameterFieldDefinitionAdapter();
         }
 
-        public Object caseParameterFields( ParameterFields object )
+        @Override
+        public Adapter caseParameterFields( ParameterFields object )
         {
             return createParameterFieldsAdapter();
         }
 
-        public Object caseProperties( Properties object )
+        @Override
+        public Adapter caseProperties( Properties object )
         {
             return createPropertiesAdapter();
         }
 
-        public Object caseProperty( Property object )
+        @Override
+        public Adapter caseProperty( Property object )
         {
             return createPropertyAdapter();
         }
 
-        public Object casePropertyAttributes( PropertyAttributes object )
+        @Override
+        public Adapter casePropertyAttributes( PropertyAttributes object )
         {
             return createPropertyAttributesAdapter();
         }
 
-        public Object caseResourceIdentifiers( ResourceIdentifiers object )
+        @Override
+        public Adapter caseResourceIdentifiers( ResourceIdentifiers object )
         {
             return createResourceIdentifiersAdapter();
         }
 
-        public Object caseResultSetColumns( ResultSetColumns object )
+        @Override
+        public Adapter caseResultSetColumns( ResultSetColumns object )
         {
             return createResultSetColumnsAdapter();
         }
 
-        public Object caseResultSetDefinition( ResultSetDefinition object )
+        @Override
+        public Adapter caseResultSetDefinition( ResultSetDefinition object )
         {
             return createResultSetDefinitionAdapter();
         }
 
-        public Object caseResultSets( ResultSets object )
+        @Override
+        public Adapter caseResultSets( ResultSets object )
         {
             return createResultSetsAdapter();
         }
 
-        public Object caseScalarValueChoices( ScalarValueChoices object )
+        @Override
+        public Adapter caseScalarValueChoices( ScalarValueChoices object )
         {
             return createScalarValueChoicesAdapter();
         }
 
-        public Object caseScalarValueDefinition( ScalarValueDefinition object )
+        @Override
+        public Adapter caseScalarValueDefinition( ScalarValueDefinition object )
         {
             return createScalarValueDefinitionAdapter();
         }
 
-        public Object caseValueFormatHints( ValueFormatHints object )
+        @Override
+        public Adapter caseValueFormatHints( ValueFormatHints object )
         {
             return createValueFormatHintsAdapter();
         }
 
-        public Object defaultCase( EObject object )
+        @Override
+        public Adapter defaultCase( EObject object )
         {
             return createEObjectAdapter();
         }
@@ -289,9 +404,40 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @return the adapter for the <code>target</code>.
      * @generated
      */
+    @Override
     public Adapter createAdapter( Notifier target )
     {
-        return (Adapter) modelSwitch.doSwitch( (EObject) target );
+        return modelSwitch.doSwitch( (EObject) target );
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.AndExpression <em>And Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.AndExpression
+     * @generated
+     */
+    public Adapter createAndExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext <em>Atomic Expression Context</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext
+     * @generated
+     */
+    public Adapter createAtomicExpressionContextAdapter()
+    {
+        return null;
     }
 
     /**
@@ -320,6 +466,36 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createColumnDefinitionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression <em>Composite Filter Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression
+     * @generated
+     */
+    public Adapter createCompositeFilterExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression <em>Custom Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression
+     * @generated
+     */
+    public Adapter createCustomExpressionAdapter()
     {
         return null;
     }
@@ -505,6 +681,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression <em>Dynamic Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression
+     * @generated
+     */
+    public Adapter createDynamicExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery <em>Dynamic Values Query</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -515,6 +706,81 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createDynamicValuesQueryAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression <em>Filter Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpression
+     * @generated
+     */
+    public Adapter createFilterExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments <em>Filter Expression Arguments</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments
+     * @generated
+     */
+    public Adapter createFilterExpressionArgumentsAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable <em>Filter Expression Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable
+     * @generated
+     */
+    public Adapter createFilterExpressionVariableAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition <em>Filter Parameter Definition</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition
+     * @generated
+     */
+    public Adapter createFilterParameterDefinitionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters <em>Filter Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters
+     * @generated
+     */
+    public Adapter createFilterParametersAdapter()
     {
         return null;
     }
@@ -610,6 +876,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.NotExpression <em>Not Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.NotExpression
+     * @generated
+     */
+    public Adapter createNotExpressionAdapter()
+    {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.OdaDesignSession <em>Oda Design Session</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -620,6 +901,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createOdaDesignSessionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.OrExpression <em>Or Expression</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.OrExpression
+     * @generated
+     */
+    public Adapter createOrExpressionAdapter()
     {
         return null;
     }

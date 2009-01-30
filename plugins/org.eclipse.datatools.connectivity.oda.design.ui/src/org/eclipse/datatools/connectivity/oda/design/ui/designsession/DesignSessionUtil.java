@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -42,6 +43,8 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Desi
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.filter.manifest.ExpressionDefinition;
+import org.eclipse.datatools.connectivity.oda.filter.manifest.FilterExpressionExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
 
 /**
@@ -689,6 +692,46 @@ public class DesignSessionUtil extends DesignSessionUtilBase
             InputElementAttributes inputAttributes = paramDefn.getEditableInputElementAttributes();
             inputAttributes.setOptional( true );
         }
+    }
+    
+    /**
+     * <strong>EXPERIMENTAL</strong>.
+     * An utility method to look up the definition of the specified custom filter expression.
+     * @param customExpr    a custom filter expression specified in a data set design's filter specification 
+     * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
+     * @since DTP 1.7
+     */
+    public static ExpressionDefinition getExtensionCustomDefinition( CustomExpression customExpr )
+    {
+        if( customExpr == null )
+            return null;
+        return getExtensionCustomDefinition( customExpr.getDeclaringExtensionId(), customExpr.getId() );
+    }
+    
+    /**
+     * <strong>EXPERIMENTAL</strong>.
+     * An utility method to look up the definition of the specified custom filter expression
+     * declared by the specified extension.
+     * @param extensionId   id of an extension that implements the filterExpressions extension point
+     * @param exprId    id of a custom filter expression 
+     * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
+     * @since DTP 1.7
+     */
+    public static ExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
+    {
+        try
+        {
+            return FilterExpressionExplorer.getInstance().getExtensionDefinition( extensionId, exprId );
+        }
+        catch( IllegalArgumentException ex )
+        {
+            // ignore exception
+        }
+        catch( OdaException ex )
+        {
+            // ignore exception
+        }
+        return null;
     }
     
 }

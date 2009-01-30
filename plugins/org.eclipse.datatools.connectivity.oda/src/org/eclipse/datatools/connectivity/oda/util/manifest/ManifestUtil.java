@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -37,10 +37,25 @@ public class ManifestUtil
             String elementName ) 
         throws OdaException
     {
+            return getNamedElement( extension, elementName, null );
+    }
+    
+    /**
+     * Returns the configuration element with the given name
+     * in the given extension.  
+     * Validates that the element has the named attribute with a non-empty value.
+     * @return the first matching configuration element
+     * <br>For internal use only.
+     */
+    public static IConfigurationElement getNamedElement( IExtension extension,
+            String elementName, String requiredAttributeName ) 
+        throws OdaException
+    {
         IConfigurationElement[] configElements =
-                        getNamedElements( extension, elementName );
+                        getNamedElements( extension, elementName, requiredAttributeName );
         if( configElements.length == 0 )
-            throw new OdaException( Messages.manifest_NO_DRIVER_RUNTIME_CONFIGURATION_DEFINED );
+            throw new OdaException( Messages.bind( Messages.manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST, 
+                    extension.getUniqueIdentifier(), elementName ));
 
         return configElements[0];   // returns the first matching element
     }
@@ -48,7 +63,6 @@ public class ManifestUtil
     /**
      * Returns a collection of configuration elements with the given name
      * in the given extension.  
-     * Validates that each element has an id attribute defined.
      * @return a collection of matching configuration elements
      * <br>For internal use only.
      */
@@ -57,7 +71,7 @@ public class ManifestUtil
                                             String elementName ) 
         throws OdaException
     {
-        return getNamedElements( extension, elementName, "id" );    //$NON-NLS-1$
+        return getNamedElements( extension, elementName, null );
     }
     
     /**
@@ -74,7 +88,7 @@ public class ManifestUtil
         throws OdaException
     {
         IConfigurationElement[] configElements = extension.getConfigurationElements();
-        ArrayList matchedElements = new ArrayList();
+        ArrayList<IConfigurationElement> matchedElements = new ArrayList<IConfigurationElement>();
         for( int i = 0, n = configElements.length; i < n; i++ )
         {
             IConfigurationElement configElement = configElements[i];
@@ -82,12 +96,15 @@ public class ManifestUtil
                 continue;
 
             // validate that the element has the required attribute with non-empty value
-            String attrValue = configElement.getAttribute( requiredAttributeName );
-            if( attrValue == null || attrValue.length() == 0 )
-                throw new OdaException( 
-                        Messages.bind( Messages.manifest_NO_ATTRIBUTE_ID_DEFINED, 
-                                        requiredAttributeName, elementName ));
-
+            if( requiredAttributeName != null )
+            {
+                String attrValue = configElement.getAttribute( requiredAttributeName );
+                if( attrValue == null || attrValue.length() == 0 )
+                    throw new OdaException( 
+                            Messages.bind( Messages.manifest_NO_ATTRIBUTE_ID_DEFINED, 
+                                            requiredAttributeName, elementName ));
+            }
+            
             matchedElements.add( configElement );
         }
         
@@ -106,7 +123,7 @@ public class ManifestUtil
         if( driverDefinedProps.length == 0 )
             return driverDefinedProps;
         
-        ArrayList visibleProps = new ArrayList();
+        ArrayList<Property> visibleProps = new ArrayList<Property>();
         for( int i = 0, size = driverDefinedProps.length; i < size; i++ )
         {
             Property aProp = driverDefinedProps[i];
@@ -128,7 +145,7 @@ public class ManifestUtil
         if( driverDefinedProps.length == 0 )
             return driverDefinedProps;
         
-        ArrayList hiddenProps = new ArrayList();
+        ArrayList<Property> hiddenProps = new ArrayList<Property>();
         for( int i = 0, size = driverDefinedProps.length; i < size; i++ )
         {
             Property aProp = driverDefinedProps[i];

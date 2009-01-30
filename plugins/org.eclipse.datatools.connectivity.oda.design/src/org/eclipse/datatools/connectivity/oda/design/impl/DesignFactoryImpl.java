@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,15 +11,17 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.7 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.8 2008/07/23 04:12:27 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
-import org.eclipse.datatools.connectivity.oda.design.*;
-
+import org.eclipse.datatools.connectivity.oda.design.AndExpression;
+import org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext;
 import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
+import org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
@@ -34,8 +36,14 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
 import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
+import org.eclipse.datatools.connectivity.oda.design.DynamicExpression;
 import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.FilterParameters;
+import org.eclipse.datatools.connectivity.oda.design.FilterVariableType;
 import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
@@ -44,9 +52,11 @@ import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
 import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 import org.eclipse.datatools.connectivity.oda.design.Locale;
 import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
+import org.eclipse.datatools.connectivity.oda.design.NotExpression;
 import org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
+import org.eclipse.datatools.connectivity.oda.design.OrExpression;
 import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
@@ -55,6 +65,7 @@ import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
+import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
@@ -64,15 +75,12 @@ import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
-import org.eclipse.emf.common.util.AbstractEnumerator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
-import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,7 +95,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2008 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Creates the default factory implementation.
@@ -129,14 +137,23 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public EObject create( EClass eClass )
     {
         switch( eClass.getClassifierID() )
         {
+        case DesignPackage.AND_EXPRESSION:
+            return createAndExpression();
+        case DesignPackage.ATOMIC_EXPRESSION_CONTEXT:
+            return createAtomicExpressionContext();
         case DesignPackage.AXIS_ATTRIBUTES:
             return createAxisAttributes();
         case DesignPackage.COLUMN_DEFINITION:
             return createColumnDefinition();
+        case DesignPackage.COMPOSITE_FILTER_EXPRESSION:
+            return createCompositeFilterExpression();
+        case DesignPackage.CUSTOM_EXPRESSION:
+            return createCustomExpression();
         case DesignPackage.DATA_ACCESS_DESIGN:
             return createDataAccessDesign();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
@@ -161,8 +178,18 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createDesignSessionResponse();
         case DesignPackage.DOCUMENT_ROOT:
             return createDocumentRoot();
+        case DesignPackage.DYNAMIC_EXPRESSION:
+            return createDynamicExpression();
         case DesignPackage.DYNAMIC_VALUES_QUERY:
             return createDynamicValuesQuery();
+        case DesignPackage.FILTER_EXPRESSION_ARGUMENTS:
+            return createFilterExpressionArguments();
+        case DesignPackage.FILTER_EXPRESSION_VARIABLE:
+            return createFilterExpressionVariable();
+        case DesignPackage.FILTER_PARAMETER_DEFINITION:
+            return createFilterParameterDefinition();
+        case DesignPackage.FILTER_PARAMETERS:
+            return createFilterParameters();
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
             return createInputElementAttributes();
         case DesignPackage.INPUT_ELEMENT_UI_HINTS:
@@ -175,8 +202,12 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createLocale();
         case DesignPackage.NAME_VALUE_PAIR:
             return createNameValuePair();
+        case DesignPackage.NOT_EXPRESSION:
+            return createNotExpression();
         case DesignPackage.ODA_DESIGN_SESSION:
             return createOdaDesignSession();
+        case DesignPackage.OR_EXPRESSION:
+            return createOrExpression();
         case DesignPackage.OUTPUT_ELEMENT_ATTRIBUTES:
             return createOutputElementAttributes();
         case DesignPackage.PARAMETER_DEFINITION:
@@ -216,6 +247,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object createFromString( EDataType eDataType, String initialValue )
     {
         switch( eDataType.getClassifierID() )
@@ -224,6 +256,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createAxisTypeFromString( eDataType, initialValue );
         case DesignPackage.ELEMENT_NULLABILITY:
             return createElementNullabilityFromString( eDataType, initialValue );
+        case DesignPackage.FILTER_VARIABLE_TYPE:
+            return createFilterVariableTypeFromString( eDataType, initialValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
             return createHorizontalAlignmentFromString( eDataType, initialValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
@@ -245,6 +279,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createAxisTypeObjectFromString( eDataType, initialValue );
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
             return createElementNullabilityObjectFromString( eDataType,
+                    initialValue );
+        case DesignPackage.FILTER_VARIABLE_TYPE_OBJECT:
+            return createFilterVariableTypeObjectFromString( eDataType,
                     initialValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
             return createHorizontalAlignmentObjectFromString( eDataType,
@@ -278,6 +315,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String convertToString( EDataType eDataType, Object instanceValue )
     {
         switch( eDataType.getClassifierID() )
@@ -286,6 +324,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return convertAxisTypeToString( eDataType, instanceValue );
         case DesignPackage.ELEMENT_NULLABILITY:
             return convertElementNullabilityToString( eDataType, instanceValue );
+        case DesignPackage.FILTER_VARIABLE_TYPE:
+            return convertFilterVariableTypeToString( eDataType, instanceValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
             return convertHorizontalAlignmentToString( eDataType, instanceValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
@@ -307,6 +347,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return convertAxisTypeObjectToString( eDataType, instanceValue );
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
             return convertElementNullabilityObjectToString( eDataType,
+                    instanceValue );
+        case DesignPackage.FILTER_VARIABLE_TYPE_OBJECT:
+            return convertFilterVariableTypeObjectToString( eDataType,
                     instanceValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
             return convertHorizontalAlignmentObjectToString( eDataType,
@@ -340,6 +383,28 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public AndExpression createAndExpression()
+    {
+        AndExpressionImpl andExpression = new AndExpressionImpl();
+        return andExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AtomicExpressionContext createAtomicExpressionContext()
+    {
+        AtomicExpressionContextImpl atomicExpressionContext = new AtomicExpressionContextImpl();
+        return atomicExpressionContext;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public AxisAttributes createAxisAttributes()
     {
         AxisAttributesImpl axisAttributes = new AxisAttributesImpl();
@@ -355,6 +420,28 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         ColumnDefinitionImpl columnDefinition = new ColumnDefinitionImpl();
         return columnDefinition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CompositeFilterExpression createCompositeFilterExpression()
+    {
+        CompositeFilterExpressionImpl compositeFilterExpression = new CompositeFilterExpressionImpl();
+        return compositeFilterExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public CustomExpression createCustomExpression()
+    {
+        CustomExpressionImpl customExpression = new CustomExpressionImpl();
+        return customExpression;
     }
 
     /**
@@ -494,10 +581,65 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public DynamicExpression createDynamicExpression()
+    {
+        DynamicExpressionImpl dynamicExpression = new DynamicExpressionImpl();
+        return dynamicExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public DynamicValuesQuery createDynamicValuesQuery()
     {
         DynamicValuesQueryImpl dynamicValuesQuery = new DynamicValuesQueryImpl();
         return dynamicValuesQuery;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterExpressionArguments createFilterExpressionArguments()
+    {
+        FilterExpressionArgumentsImpl filterExpressionArguments = new FilterExpressionArgumentsImpl();
+        return filterExpressionArguments;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterExpressionVariable createFilterExpressionVariable()
+    {
+        FilterExpressionVariableImpl filterExpressionVariable = new FilterExpressionVariableImpl();
+        return filterExpressionVariable;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterParameterDefinition createFilterParameterDefinition()
+    {
+        FilterParameterDefinitionImpl filterParameterDefinition = new FilterParameterDefinitionImpl();
+        return filterParameterDefinition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterParameters createFilterParameters()
+    {
+        FilterParametersImpl filterParameters = new FilterParametersImpl();
+        return filterParameters;
     }
 
     /**
@@ -571,10 +713,32 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public NotExpression createNotExpression()
+    {
+        NotExpressionImpl notExpression = new NotExpressionImpl();
+        return notExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public OdaDesignSession createOdaDesignSession()
     {
         OdaDesignSessionImpl odaDesignSession = new OdaDesignSessionImpl();
         return odaDesignSession;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public OrExpression createOrExpression()
+    {
+        OrExpressionImpl orExpression = new OrExpressionImpl();
+        return orExpression;
     }
 
     /**
@@ -778,6 +942,32 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @generated
      */
     public String convertElementNullabilityToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public FilterVariableType createFilterVariableTypeFromString(
+            EDataType eDataType, String initialValue )
+    {
+        FilterVariableType result = FilterVariableType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertFilterVariableTypeToString( EDataType eDataType,
             Object instanceValue )
     {
         return instanceValue == null ? null : instanceValue.toString();
@@ -997,11 +1187,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createAxisTypeObjectFromString(
-            EDataType eDataType, String initialValue )
+    public AxisType createAxisTypeObjectFromString( EDataType eDataType,
+            String initialValue )
     {
-        return (AbstractEnumerator) createAxisTypeFromString(
-                DesignPackage.Literals.AXIS_TYPE, initialValue );
+        return createAxisTypeFromString( DesignPackage.Literals.AXIS_TYPE,
+                initialValue );
     }
 
     /**
@@ -1021,10 +1211,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createElementNullabilityObjectFromString(
+    public ElementNullability createElementNullabilityObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createElementNullabilityFromString(
+        return createElementNullabilityFromString(
                 DesignPackage.Literals.ELEMENT_NULLABILITY, initialValue );
     }
 
@@ -1045,10 +1235,34 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createHorizontalAlignmentObjectFromString(
+    public FilterVariableType createFilterVariableTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createHorizontalAlignmentFromString(
+        return createFilterVariableTypeFromString(
+                DesignPackage.Literals.FILTER_VARIABLE_TYPE, initialValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertFilterVariableTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return convertFilterVariableTypeToString(
+                DesignPackage.Literals.FILTER_VARIABLE_TYPE, instanceValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public HorizontalAlignment createHorizontalAlignmentObjectFromString(
+            EDataType eDataType, String initialValue )
+    {
+        return createHorizontalAlignmentFromString(
                 DesignPackage.Literals.HORIZONTAL_ALIGNMENT, initialValue );
     }
 
@@ -1069,10 +1283,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createInputPromptControlStyleObjectFromString(
+    public InputPromptControlStyle createInputPromptControlStyleObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createInputPromptControlStyleFromString(
+        return createInputPromptControlStyleFromString(
                 DesignPackage.Literals.INPUT_PROMPT_CONTROL_STYLE, initialValue );
     }
 
@@ -1094,10 +1308,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createOdaComplexDataTypeObjectFromString(
+    public OdaComplexDataType createOdaComplexDataTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createOdaComplexDataTypeFromString(
+        return createOdaComplexDataTypeFromString(
                 DesignPackage.Literals.ODA_COMPLEX_DATA_TYPE, initialValue );
     }
 
@@ -1118,10 +1332,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createOdaScalarDataTypeObjectFromString(
+    public OdaScalarDataType createOdaScalarDataTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createOdaScalarDataTypeFromString(
+        return createOdaScalarDataTypeFromString(
                 DesignPackage.Literals.ODA_SCALAR_DATA_TYPE, initialValue );
     }
 
@@ -1142,10 +1356,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createParameterModeObjectFromString(
+    public ParameterMode createParameterModeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createParameterModeFromString(
+        return createParameterModeFromString(
                 DesignPackage.Literals.PARAMETER_MODE, initialValue );
     }
 
@@ -1166,10 +1380,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createSessionStatusObjectFromString(
+    public SessionStatus createSessionStatusObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createSessionStatusFromString(
+        return createSessionStatusFromString(
                 DesignPackage.Literals.SESSION_STATUS, initialValue );
     }
 
@@ -1190,10 +1404,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createTextFormatTypeObjectFromString(
+    public TextFormatType createTextFormatTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createTextFormatTypeFromString(
+        return createTextFormatTypeFromString(
                 DesignPackage.Literals.TEXT_FORMAT_TYPE, initialValue );
     }
 
@@ -1214,10 +1428,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public AbstractEnumerator createTextWrapTypeObjectFromString(
+    public TextWrapType createTextWrapTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return (AbstractEnumerator) createTextWrapTypeFromString(
+        return createTextWrapTypeFromString(
                 DesignPackage.Literals.TEXT_WRAP_TYPE, initialValue );
     }
 
@@ -1249,6 +1463,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @deprecated
      * @generated
      */
+    @Deprecated
     public static DesignPackage getPackage()
     {
         return DesignPackage.eINSTANCE;

@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementUIHintsImpl.java,v 1.2 2006/01/27 02:37:40 lchan Exp $
+ * $Id: InputElementUIHintsImpl.java,v 1.3 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementUIHintsImpl#getPromptStyle <em>Prompt Style</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementUIHintsImpl#getAutoSuggestThreshold <em>Auto Suggest Threshold</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,7 +46,7 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getPromptStyle() <em>Prompt Style</em>}' attribute.
@@ -74,7 +75,36 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_promptStyleESet = false;
+    protected boolean m_promptStyleESet;
+
+    /**
+     * The default value of the '{@link #getAutoSuggestThreshold() <em>Auto Suggest Threshold</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAutoSuggestThreshold()
+     * @generated
+     * @ordered
+     */
+    protected static final int AUTO_SUGGEST_THRESHOLD_EDEFAULT = 1;
+
+    /**
+     * The cached value of the '{@link #getAutoSuggestThreshold() <em>Auto Suggest Threshold</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAutoSuggestThreshold()
+     * @generated
+     * @ordered
+     */
+    protected int m_autoSuggestThreshold = AUTO_SUGGEST_THRESHOLD_EDEFAULT;
+
+    /**
+     * This is true if the Auto Suggest Threshold attribute has been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected boolean m_autoSuggestThresholdESet;
 
     /**
      * <!-- begin-user-doc -->
@@ -91,6 +121,7 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.INPUT_ELEMENT_UI_HINTS;
@@ -174,13 +205,80 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
+     * @since 3.2 (DTP 1.7)
      */
+    public int getAutoSuggestThreshold()
+    {
+        return m_autoSuggestThreshold;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @since 3.2 (DTP 1.7)
+     */
+    public void setAutoSuggestThreshold( int newAutoSuggestThreshold )
+    {
+        int oldAutoSuggestThreshold = m_autoSuggestThreshold;
+        m_autoSuggestThreshold = newAutoSuggestThreshold;
+        boolean oldAutoSuggestThresholdESet = m_autoSuggestThresholdESet;
+        m_autoSuggestThresholdESet = true;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD,
+                    oldAutoSuggestThreshold, m_autoSuggestThreshold,
+                    !oldAutoSuggestThresholdESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @since 3.2 (DTP 1.7)
+     */
+    public void unsetAutoSuggestThreshold()
+    {
+        int oldAutoSuggestThreshold = m_autoSuggestThreshold;
+        boolean oldAutoSuggestThresholdESet = m_autoSuggestThresholdESet;
+        m_autoSuggestThreshold = AUTO_SUGGEST_THRESHOLD_EDEFAULT;
+        m_autoSuggestThresholdESet = false;
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl(
+                    this,
+                    Notification.UNSET,
+                    DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD,
+                    oldAutoSuggestThreshold, AUTO_SUGGEST_THRESHOLD_EDEFAULT,
+                    oldAutoSuggestThresholdESet ) );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @since 3.2 (DTP 1.7)
+     */
+    public boolean isSetAutoSuggestThreshold()
+    {
+        return m_autoSuggestThresholdESet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
             return getPromptStyle();
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD:
+            return new Integer( getAutoSuggestThreshold() );
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -190,12 +288,16 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
             setPromptStyle( (InputPromptControlStyle) newValue );
+            return;
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD:
+            setAutoSuggestThreshold( ((Integer) newValue).intValue() );
             return;
         }
         super.eSet( featureID, newValue );
@@ -206,12 +308,16 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
             unsetPromptStyle();
+            return;
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD:
+            unsetAutoSuggestThreshold();
             return;
         }
         super.eUnset( featureID );
@@ -222,12 +328,15 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_UI_HINTS__PROMPT_STYLE:
             return isSetPromptStyle();
+        case DesignPackage.INPUT_ELEMENT_UI_HINTS__AUTO_SUGGEST_THRESHOLD:
+            return isSetAutoSuggestThreshold();
         }
         return super.eIsSet( featureID );
     }
@@ -237,6 +346,7 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )
@@ -246,6 +356,11 @@ public class InputElementUIHintsImpl extends EObjectImpl implements
         result.append( " (promptStyle: " ); //$NON-NLS-1$
         if( m_promptStyleESet )
             result.append( m_promptStyle );
+        else
+            result.append( "<unset>" ); //$NON-NLS-1$
+        result.append( ", autoSuggestThreshold: " ); //$NON-NLS-1$
+        if( m_autoSuggestThresholdESet )
+            result.append( m_autoSuggestThreshold );
         else
             result.append( "<unset>" ); //$NON-NLS-1$
         result.append( ')' );

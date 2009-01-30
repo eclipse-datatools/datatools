@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,7 +46,7 @@ public class ManifestExplorer
     // trace logging variables
 	private static Logger sm_logger = null;
 
-	private Map m_manifestsById;  // cached copy of manifests by odaDataSourceId
+	private Map<String, ExtensionManifest> m_manifestsById;  // cached copy of manifests by odaDataSourceId
 
 	private static final String DTP_ODA_EXT_POINT = 
 	    	"org.eclipse.datatools.connectivity.oda.dataSource";  //$NON-NLS-1$
@@ -107,7 +107,7 @@ public class ManifestExplorer
     
     /**
      * Refresh the manifest explorer, and allows it to get
-     * the latest ODA Design UI extension manifests.
+     * the latest ODA extension manifests.
      */
     public void refresh()
     {
@@ -118,14 +118,14 @@ public class ManifestExplorer
         m_manifestsById.clear();
     }
 
-    private Map getCachedManifests()
+    private Map<String, ExtensionManifest> getCachedManifests()
     {
     	if( m_manifestsById == null )
     	{
             synchronized( this )
             {
                 if( m_manifestsById == null )
-                    m_manifestsById = Collections.synchronizedMap( new HashMap() );
+                    m_manifestsById = Collections.synchronizedMap( new HashMap<String, ExtensionManifest>() );
             }
     	}
     	return m_manifestsById;
@@ -291,7 +291,7 @@ public class ManifestExplorer
      */
     private ExtensionManifest addToCachedManifests( String dataSourceId, ExtensionManifest manifest )
     {
-        Map manifestMap = getCachedManifests();
+        Map<String, ExtensionManifest> manifestMap = getCachedManifests();
         ExtensionManifest cachedManifest;
         synchronized( manifestMap )
         {
@@ -419,7 +419,7 @@ public class ManifestExplorer
 		IExtension[] extensions = getExtensions( extensionPoint );
 		int length = ( extensions == null ) ? 
 						0 : extensions.length;
-		ArrayList manifestList = new ArrayList( length );
+		ArrayList<ExtensionManifest> manifestList = new ArrayList<ExtensionManifest>( length );
 		for( int i = 0; i < length; i++ )
 		{
 			IExtension dataSourceExtn = extensions[i];	
@@ -529,67 +529,20 @@ public class ManifestExplorer
 	static IConfigurationElement getDataSourceElement( IExtension extension ) 
 		throws OdaException
     {
-        return ManifestUtil.getNamedElement( extension, "dataSource" );  //$NON-NLS-1$
+        return ManifestUtil.getNamedElement( extension, "dataSource", "id" );  //$NON-NLS-1$ //$NON-NLS-2$
     }
-    
-    /**
-     * Returns the configuration element of the given extension
-     * and element name.
-     * <br>For internal use only.
-     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
-     */
-    public static IConfigurationElement getNamedElement( IExtension extension,
-            String elementName ) 
-        throws OdaException
-    {
-        return ManifestUtil.getNamedElement( extension, elementName );
-    }
-    
-    /**
-     * Returns a collection of configuration elements with the given name
-     * in the given extension.  
-     * Validates that each element has an id attribute defined.
-     * @return a collection of matching configuration elements
-     * <br>For internal use only.
-     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
-     */
-    public static IConfigurationElement[] getNamedElements( 
-                                            IExtension extension,
-                                            String elementName ) 
-        throws OdaException
-    {
-        return ManifestUtil.getNamedElements( extension, elementName );
-    }
-    
-    /**
-     * Returns a collection of configuration elements with the given name
-     * in the given extension.  
-     * Validates that each element has the specified attribute defined.
-     * @return a collection of matching configuration elements
-     * <br>For internal use only.
-     * @deprecated  as of 3.0.3, use corresponding method in ManifestUtil
-     */
-    public static IConfigurationElement[] getNamedElements( 
-                                            IExtension extension,
-                                            String elementName, 
-                                            String requiredAttributeName ) 
-        throws OdaException
-	{
-        return ManifestUtil.getNamedElements( extension, elementName, 
-                requiredAttributeName );
-	}
 	
 	/*
 	 * Returns a collection of dataSet elements of the given data source extension.
      * May return an empty collection if no dataSet elements are defined.
 	 */
-	static Hashtable getDataSetElements( IExtension extension, 
+	static Hashtable<String, DataSetType> getDataSetElements( IExtension extension, 
             String dataSourceElementId )
 		throws OdaException
 	{
         IConfigurationElement[] configElements =
-            ManifestUtil.getNamedElements( extension, "dataSet" ); //$NON-NLS-1$
-		Hashtable dataSetElements = new Hashtable();
+            ManifestUtil.getNamedElements( extension, "dataSet", "id" ); //$NON-NLS-1$ //$NON-NLS-2$
+		Hashtable<String, DataSetType> dataSetElements = new Hashtable<String, DataSetType>();
         
         int numConfigElements = configElements.length;
 		for( int i = 0; i < numConfigElements; i++ )

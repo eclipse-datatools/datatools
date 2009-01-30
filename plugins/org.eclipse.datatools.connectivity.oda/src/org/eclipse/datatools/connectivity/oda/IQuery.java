@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,6 +18,8 @@ import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+
+//import org.eclipse.datatools.connectivity.oda.filter.Expression;
 
 /**
  * The base query interface to  
@@ -349,6 +351,39 @@ public interface IQuery
 	 * @throws OdaException		if data source error occurs
 	 */
 	public SortSpec getSortSpec() throws OdaException;
+	
+	/**
+     * <strong>EXPERIMENTAL</strong>.
+	 * Sets the filter specification to use in preparing this query.
+	 * <b>Note:</b> This method must be called before {@link #prepare(String)}.
+	 * @param filterExpr	a filter {@link Expression} with associated variable 
+	 *             and argument values, as appropriate
+     * @throws OdaException     if data source error occurs
+	 * @since 3.2 (DTP 1.7)
+	 */
+//	public void setFilterSpec( Expression filterExpr ) throws OdaException;
+
+	/**
+     * <strong>EXPERIMENTAL</strong>.
+	 * Gets the current effective filter specification of this query.
+	 * It may have been specified explicitly by {@link #setFilterSpec(Expression)}, or 
+	 * implicitly based on pre-defined filter described by the query text 
+	 * prepared in {@link #prepare(String)}. 
+	 * @return the currently effective filter specification
+     * @since 3.2 (DTP 1.7)
+	 */
+//	public Expression getFilterSpec();
+	
+	/**
+     * <strong>EXPERIMENTAL</strong>.
+     * Gets the current effective query text prepared by {@link #prepare(String)}.
+     * The effective query text may have been adjusted to include 
+     * this IQuery's specification, such as the filter and sort specifications.
+     * @return  the current effective query text,
+     *          or null if no query text is effective or available 
+     * @since 3.2 (DTP 1.7)
+     */
+//	public String getEffectiveQueryText();
 	
 }
 

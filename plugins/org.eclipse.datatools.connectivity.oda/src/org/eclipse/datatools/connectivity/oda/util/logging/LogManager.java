@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * Copyright (c) 2004, 2006 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -36,7 +36,7 @@ public class LogManager
 {
     private static final String LOG_SUBFOLDER_NAME = "logs"; //$NON-NLS-1$
     
-	private static Hashtable m_loggers = new Hashtable();
+	private static Hashtable<String, Logger> m_loggers = new Hashtable<String, Logger>();
     private static SimpleDateFormat sm_dateFormat;
 
 	private LogManager()
@@ -45,28 +45,27 @@ public class LogManager
 	}
 	
 	/**
-	 * Creates a named <code>Logger</code> with the necessary 
-	 * log configuration information.  The specified logger name 
+	 * Creates a named {@link Logger} with the specified 
+	 * log configuration.  The specified logger name 
 	 * should be specific to the application using the logging 
 	 * framework to prevent name collision in the logger namespace, 
-	 * since multiple loggers cannot be created with the same 
-	 * logger name. 
-	 * @param loggerName	the name of the logger to be created.
-	 * @param logLevel		the logger log level.
-	 * @param logDirectory	the required directory to store the logs.
+	 * since multiple loggers under this management cannot have the same 
+	 * logger name.  
+	 * @param loggerName	the name of the logger to be created
+	 * @param logLevel		the logger log level
+	 * @param logDirectory	the required directory to store the logs
 	 * @param logPrefix		the required file name prefix of the log 
 	 * 						file name; the format will be 
-	 * 						&lt;logPrefix&gt;-YYMMDD-hhmmss.log.
-	 * @param formatterClassName	a <code>LogFormatter</code> class 
+	 * 						&lt;logPrefix&gt;-YYMMDD-hhmmss.log
+	 * @param formatterClassName	a {@link LogFormatter} class 
 	 * 								name; if this is null or empty, the 
 	 * 								default <code>LogFormatter</code> will be 
 	 * 								used. The customized log formatter must inherit 
 	 * 								from <code>org.eclipse.datatools.connectivity.oda.logging.LogFormatter</code> 
-	 * 								and implements the <code>format()</code> 
-	 * 								method.
-	 * @return		the constructed named <code>Logger</code>.
-	 * @throws IllegalArgumentException		if logger with the same name 
-	 * 										already exists.
+	 * 								and implements the <code>format()</code> method
+	 * @return		the constructed named {@link Logger}
+	 * @throws IllegalArgumentException		if logger with the same name already exists.
+	 * @see #createLogger(String, int, String, String, String, boolean)
 	 */
     public static Logger createLogger( String loggerName,
     								   int logLevel,
@@ -74,7 +73,34 @@ public class LogManager
 									   String logPrefix,
 									   String formatterClassName )
     {
-    	if( m_loggers.containsKey( loggerName ) )
+        return LogManager.createLogger( loggerName, logLevel, logDirectory, logPrefix, formatterClassName, true );
+    }
+    
+    /**
+     * Creates a named {@link Logger} with the specified log configuration.
+     * @param loggerName    the name of the logger to be created
+     * @param logLevel      the logger log level
+     * @param logDirectory  the required directory to store the logs
+     * @param logPrefix     the required file name prefix of the log 
+     *                      file name
+     * @param formatterClassName    a {@link LogFormatter} class name
+     * @param isManaged indicates whether the created logger should be managed by this;
+     *          if true, the logger name must be unique and the logger instance can be obtained 
+     *          by {@link #getLogger(String)}; 
+     *          if false, this does not maintain a reference to the created logger
+     * @return      the constructed named {@link Logger}
+     * @throws IllegalArgumentException     if logger is to be managed and the same name already exists.     
+     * @see #createLogger(String, int, String, String, String)
+     * @since 3.2 (DTP 1.7)
+     */
+    public static Logger createLogger( String loggerName,
+            int logLevel,
+            String logDirectory,
+            String logPrefix,
+            String formatterClassName,
+            boolean isManaged )
+    {
+    	if( isManaged && m_loggers.containsKey( loggerName ) )
     		throw new IllegalArgumentException( Messages.logManager_duplicateName );
     	
     	validateInput( logLevel, logDirectory, logPrefix );
@@ -91,7 +117,8 @@ public class LogManager
     	
     	resetLoggerFileConfig( logger, logDirectory, logPrefix, formatterClassName );
     	
-    	m_loggers.put( loggerName, logger );
+    	if( isManaged )
+    	    m_loggers.put( loggerName, logger );
     	
     	return logger;
     }

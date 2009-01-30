@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2007, 2008 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,14 +21,23 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
+import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
+import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
+import org.eclipse.datatools.connectivity.oda.design.OrExpression;
+import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * Test cases for loading and saving OdaDesignSession utility in DesignUtil.  
@@ -151,7 +160,62 @@ public class DesignUtilLoadSaveTest extends TestCase
 
         goldenFile = new File( getSampleDbResourceFilePath() );
         assertTrue( compareFileContent( goldenFile, tempOut ) );
-}
+    }
+    
+    public void testCreateFilterDesign()
+    {
+        final String filterExprExtId = "org.eclipse.datatools.connectivity.oda.design.tests";   //$NON-NLS-1$
+        
+        File goldenFile = new File( getSampleDbTestFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
+        
+        FilterExpressionVariable exprVariable = DesignFactory.eINSTANCE.createFilterExpressionVariable();
+        exprVariable.setIdentifier( "CUSTOMERNAME" ); //$NON-NLS-1$
+        exprVariable.setNativeDataTypeCode( 4 ); // integer
+        
+        FilterExpressionArguments exprArgs = DesignFactory.eINSTANCE.createFilterExpressionArguments();
+
+        DataSetParameters dataSetParams = dataSetDesign.getParameters();
+        Iterator<ParameterDefinition> iter = dataSetParams.getParameterDefinitions().iterator();
+        while( iter.hasNext() )
+        {
+            exprArgs.addDynamicParameter( (ParameterDefinition) EcoreUtil.copy( iter.next() ) );
+        }
+        
+        exprArgs.addStaticValue( new Integer( 123 ) );
+        
+        CustomExpression customExpr1 = DesignFactory.eINSTANCE.createCustomExpression();
+        customExpr1.setDeclaringExtensionId( filterExprExtId );
+        customExpr1.setId( "1007" ); //$NON-NLS-1$
+        customExpr1.setContextVariable( exprVariable );
+        customExpr1.setContextArguments( exprArgs );
+
+        CustomExpression customExpr2 = DesignFactory.eINSTANCE.createCustomExpression();
+        customExpr2.setDeclaringExtensionId( filterExprExtId );
+        customExpr2.setId( "10005" ); //$NON-NLS-1$
+        customExpr2.setContextVariable( exprVariable );
+
+        OrExpression orExpr = DesignFactory.eINSTANCE.createOrExpression();
+        orExpr.add( customExpr1 );
+        orExpr.add( customExpr2 );
+        
+        dataSetDesign.setFilter( orExpr );
+        
+        // test the created filter expressions are valid
+        try
+        {
+            DesignUtil.validateObject( dataSetDesign );
+        }
+        catch( IllegalStateException ex )
+        {
+            fail();
+        }  
+        
+        // test saving updated design session with the filter expression
+        File tempOut = getTempOutFile();
+        saveDesignSession( design, tempOut );
+    }
     
     private void saveDesignSession( OdaDesignSession design, File tempOut )
     {

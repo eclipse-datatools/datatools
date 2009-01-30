@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignXMLProcessor.java,v 1.1 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DesignXMLProcessor.java,v 1.2 2007/11/17 05:30:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -40,7 +40,7 @@ public class DesignXMLProcessor extends XMLProcessor
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Public constructor to instantiate the helper.
@@ -60,7 +60,8 @@ public class DesignXMLProcessor extends XMLProcessor
      * <!-- end-user-doc -->
      * @generated
      */
-    protected Map getRegistrations()
+    @Override
+    protected Map<String, Resource.Factory> getRegistrations()
     {
         if( registrations == null )
         {
@@ -82,15 +83,17 @@ public class DesignXMLProcessor extends XMLProcessor
     {
         ResourceSet resourceSet = createResourceSet();
         // Register the Design package to ensure it is available during loading.
-        resourceSet.getPackageRegistry().put( DesignPackage.eNS_URI, DesignPackage.eINSTANCE );
+        resourceSet.getPackageRegistry().put( DesignPackage.eNS_URI,
+                DesignPackage.eINSTANCE );
 
         XMLResource resource = (XMLResource) resourceSet.createResource( uri );
- 
+
         // Use the OPTION_SCHEMA_LOCATION_IMPLEMENTATION option to avoid pre-registration 
         // of the generated packages 
-        resource.getDefaultSaveOptions().put( XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, 
-                Boolean.TRUE); 
+        resource.getDefaultSaveOptions()
+                .put( XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION,
+                        Boolean.TRUE );
         return resource;
     }
-    
+
 } //DesignXMLProcessor
