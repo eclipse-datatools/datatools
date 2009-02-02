@@ -15,3 +15,4 @@ Export-Package: org.eclipse.datatools.enablement.ingres.containment,
  org.eclipse.datatools.enablement.ingres.models.ingressqlmodel,
  org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.impl,
  org.eclipse.datatools.enablement.ingres.models.ingressqlmodel.util
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
