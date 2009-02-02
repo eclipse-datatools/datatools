@@ -15,5 +15,5 @@ Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.oda.xml.ui.utils;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
  org.eclipse.datatools.enablement.oda.xml.ui.wizards;x-friends:="org.eclipse.birt.report.data.oda.xml.ui,org.eclipse.datatools.enablement.oda.ws.ui"
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
