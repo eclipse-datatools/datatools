@@ -10,4 +10,4 @@ Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.ibm.db2.internal.luw
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

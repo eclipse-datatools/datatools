@@ -16,4 +16,4 @@ Export-Package: org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui,
  org.eclipse.datatools.enablement.ibm.db2.luw.internal.ui.drivers,
  org.eclipse.datatools.enablement.ibm.db2.luw.ui.drivers
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
