@@ -28,13 +28,13 @@ SQLEditor_showPromptDialog=提示内容超过最大行数时禁用语法验证
 SQLEditor_showSyntaxErorrDetail=显示详细注释信息(&H)
 SQLEditor_showSyntaxErorrDetail_tooltip=显示详细注释信息，如某些语法建议
 
-SQLEditor_executeCurrentSQLGroup=Execute current text
-SQLEditor_executeSQLBetweenDelimiter=Execute SQLs between delimiters
-SQLEditor_executeSQLBetweenDelimiter_tip=Execute SQLs between the delimiters before and after current cursor position
-SQLEditor_executeCurrentLine=Execute current line
-SQLEditor_executeCurrentLine_tip=Execute the line text where the cursor place
-SQLEditor_executeSQLBetweenBlankLine=Execute SQLs between blank lines
-SQLEditor_executeSQLBetweenBlankLine_tip=Execute SQLs between the blank lines before and after current cursor position
+SQLEditor_executeCurrentSQLGroup=执行当前文本
+SQLEditor_executeSQLBetweenDelimiter=执行分隔符之间的 SQL
+SQLEditor_executeSQLBetweenDelimiter_tip=执行当前光标位置前后的分隔符之间的 SQL
+SQLEditor_executeCurrentLine=执行当前行
+SQLEditor_executeCurrentLine_tip=执行光标位置的行文本
+SQLEditor_executeSQLBetweenBlankLine=执行空白行之间的 SQL
+SQLEditor_executeSQLBetweenBlankLine_tip=执行当前光标位置前后的空间行之间的 SQL
 
 SQLEditor_typing_title=输入(&T)
 SQLEditor_typingAidsGroup_title=在智能插入方式下启用输入帮助:
