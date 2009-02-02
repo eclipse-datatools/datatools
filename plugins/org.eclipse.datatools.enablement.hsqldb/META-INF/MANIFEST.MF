@@ -17,5 +17,5 @@ Export-Package: org.eclipse.datatools.enablement.hsqldb.catalog,
  org.eclipse.datatools.enablement.hsqldb.connection,
  org.eclipse.datatools.enablement.hsqldb.internal,
  org.eclipse.datatools.enablement.hsqldb.ui
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

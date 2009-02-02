@@ -22,4 +22,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.datatools.enablement.hsqldb.ui,
  org.eclipse.datatools.enablement.hsqldb.ui.connection,
  org.eclipse.datatools.enablement.hsqldb.ui.connection.drivers
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
