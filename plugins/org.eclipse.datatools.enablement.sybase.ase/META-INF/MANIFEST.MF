@@ -26,3 +26,4 @@ Export-Package: org.eclipse.datatools.enablement.ase,
  org.eclipse.datatools.enablement.ase.util,
  org.eclipse.datatools.enablement.sybase.ase.internal.connection
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
