@@ -18,3 +18,4 @@ Export-Package: org.eclipse.datatools.enablement.oda.ws.api,
  org.eclipse.datatools.enablement.oda.ws.impl;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
  org.eclipse.datatools.enablement.oda.ws.soap;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui",
  org.eclipse.datatools.enablement.oda.ws.util;x-friends:="org.eclipse.datatools.enablement.oda.ws.ui"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
