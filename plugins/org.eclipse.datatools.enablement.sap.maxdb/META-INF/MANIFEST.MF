@@ -16,4 +16,4 @@ Bundle-Activator: org.eclipse.datatools.enablement.sap.maxdb.MaxDBEnablementPlug
 Export-Package: org.eclipse.datatools.enablement.sap.maxdb,
  org.eclipse.datatools.enablement.sap.maxdb.internal.connection
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
