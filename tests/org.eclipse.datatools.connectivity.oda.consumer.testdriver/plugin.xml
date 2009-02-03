@@ -133,7 +133,7 @@
         </customExpression>
         <customExpression
               displayName="IsInstanceOf"
-              id="2000"
+              id="instanceOf"
               isNegatable="true"
               isOptionable="false"
               maxArguments="1"
