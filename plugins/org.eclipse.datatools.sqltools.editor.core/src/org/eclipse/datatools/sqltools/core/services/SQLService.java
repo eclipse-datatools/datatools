@@ -21,6 +21,7 @@ import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.sqltools.core.EditorCorePlugin;
 import org.eclipse.datatools.sqltools.editor.template.GenericSQLContextType;
 import org.eclipse.datatools.sqltools.internal.core.Messages;
+import org.eclipse.datatools.sqltools.sql.DefaultSQLSyntax;
 import org.eclipse.datatools.sqltools.sql.ISQLSyntax;
 import org.eclipse.datatools.sqltools.sql.identifier.IIdentifierValidator;
 import org.eclipse.datatools.sqltools.sql.parser.ParserParameters;
@@ -52,7 +53,7 @@ public class SQLService
      */
     public ISQLSyntax getSQLSyntax()
     {
-        return null;
+        return new DefaultSQLSyntax();
     }
 
     /**
