@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2008 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.ResultSet;
@@ -26,6 +27,35 @@ import java.sql.Types;
 
 public class ResultSetReader {
 
+	public static String toNormalString(BigDecimal decimalValue) {
+		String sciValue=decimalValue.toString();
+		if((sciValue!=null) && (sciValue.indexOf('E')!=-1)) //If Decimal value is in Scientific form
+		{
+				sciValue=sciValue.substring(sciValue.indexOf("E", 0)+1);
+				String convertedString=decimalValue.unscaledValue().toString();
+				sciValue=sciValue.startsWith("+")?sciValue.substring(1):sciValue;
+				int precision=Integer.parseInt(sciValue);
+				if(precision<0) {
+					for(int i=0;i<Math.abs(precision);i++) {
+						if(i==Math.abs(precision)-1)
+							convertedString="0."+convertedString;
+						else
+							convertedString="0"+convertedString;
+					}
+				}
+				else {
+					while(precision-convertedString.length()+1 > 0) {
+						convertedString+="0";
+					}	
+					convertedString+=".0";
+				}
+				return convertedString;
+		}
+		else
+		{
+			return sciValue;
+		}
+	}
     public static Object read(ResultSet rs, int column) throws SQLException, IOException {
         return read(rs, column, -1);
     }
@@ -68,6 +98,8 @@ public class ResultSetReader {
 	        return readBinaryStream( ((Blob)o).getBinaryStream(), lobLimit );
 	    else if (o instanceof Clob)
 	        return readCharacterString( ((Clob)o).getCharacterStream(), lobLimit );
+	    else if (o instanceof BigDecimal)
+	    	return toNormalString((BigDecimal)o);
 	    return o;
 
     }
