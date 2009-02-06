@@ -1,0 +1,9 @@
+<xml>
+<testElement>
+<specialChars>
+SQLCA ....ÿÿþÓ..~...................?..??.
+</specialChars>
+</testElement>
+<testElement>
+</testElement>
+</xml>

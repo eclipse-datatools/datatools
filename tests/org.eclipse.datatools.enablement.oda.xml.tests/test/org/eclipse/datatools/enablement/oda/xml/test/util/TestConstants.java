@@ -133,4 +133,7 @@ public class TestConstants
 	public static final String LARGE_XML_FILE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/large";
 
 	public static final String HUGE_XML_FOR_PERFORMANCE = home+"test/org/eclipse/datatools/enablement/oda/xml/input/hugeForPerformance.xml";
+	
+	public static final String SPECIAL_ENCODING_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/input/specialEncoding_ISO-8859-1.xml";
+	
 }

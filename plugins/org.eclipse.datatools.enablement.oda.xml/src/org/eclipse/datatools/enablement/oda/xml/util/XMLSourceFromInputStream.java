@@ -130,7 +130,8 @@ public class XMLSourceFromInputStream implements IXMLSource
 				{
 					if ( currentIndexInMem <= memSize - 1 )
 					{
-						return cacheMem[currentIndexInMem++];
+						//the returned must be unsigned: 0--255
+						return cacheMem[currentIndexInMem++] & 0xFF;
 					}
 					else if ( fromFile != null )
 					{
