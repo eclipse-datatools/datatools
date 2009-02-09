@@ -1758,6 +1758,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 	private void savePage( DataSetDesign dataSetDesign )
 	{
 		String queryText = getQueryText( );
+		if ( queryText.equals( dataSetDesign.getQueryText( ) ) )
+			return;
 		dataSetDesign.setQueryText( queryText );
 
 		// obtain query's result set metadata, and update
