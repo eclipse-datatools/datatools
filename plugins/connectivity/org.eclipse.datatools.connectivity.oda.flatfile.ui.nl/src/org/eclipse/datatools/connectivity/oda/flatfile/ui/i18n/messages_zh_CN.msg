@@ -1,7 +1,8 @@
 wizard.title.selectColumns=选择列
 wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹。
 wizard.defaultMessage.selectFile=为数据集选择文件和列。
-label.selectFolder=选择文件夹(&F): 
+
+label.selectFolder=S&elect folder: 
 label.selectFile=选择文件(&I):
 label.fileFilter=文件筛选(&R):
 label.includeTypeLine=将第二行用作数据类型指示器(&D)。
@@ -13,9 +14,12 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
+button.selectFolder.browse=B&rowse...
+
 editor.title.name=名称
 editor.title.originalName=原始名称
 editor.title.type=类型
+
 
 datatypes.dateTime=日期时间
 datatypes.decimal=小数
@@ -33,7 +37,6 @@ tooltip.psv=竖线 { | } 分隔的值
 tooltip.tsv=制表符 { Tab } 分隔的值
 tooltip.columnnameline=请确保选择的文件第一行\n中存在列名称。
 tooltip.typeline=请确保选择的文件第二行\n中存在数据类型行。
-
 error.selectFolder=请选择有效文件夹。
 error.selectColumns=请至少为此数据集选择一列。
 error.emptyPath=请输入路径。

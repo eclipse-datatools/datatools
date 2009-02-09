@@ -1,7 +1,8 @@
 wizard.title.selectColumns=Seleccionar columnas
 wizard.defaultMessage.selectFolder=Seleccione la carpeta que contiene los archivos sin formato.
 wizard.defaultMessage.selectFile=Seleccione el archivo y las columnas del conjunto de datos.
-label.selectFolder=&Seleccionar carpeta: 
+
+label.selectFolder=S&elect folder: 
 label.selectFile=Seleccionar &archivo:
 label.fileFilter=&Filtro de archivo:
 label.includeTypeLine=Utilice la segunda línea como indicador de tipo de &datos.
@@ -12,6 +13,8 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+
+button.selectFolder.browse=B&rowse...
 
 editor.title.name=Nombre
 editor.title.originalName=Nombre original

@@ -1,7 +1,8 @@
 wizard.title.selectColumns=Sélection des colonnes
 wizard.defaultMessage.selectFolder=Sélectionnez le dossier qui contient les fichiers plats.
 wizard.defaultMessage.selectFile=Sélectionnez le fichier et les colonnes pour le jeu de données.
-label.selectFolder=&Sélectionnez un dossier : 
+
+label.selectFolder=S&elect folder: 
 label.selectFile=Sélectionnez un f&ichier :
 label.fileFilter=Filt&re de fichier :
 label.includeTypeLine=Utilisez la deuxième ligne comme indicateur du type de &données.
@@ -12,6 +13,8 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+
+button.selectFolder.browse=B&rowse...
 
 editor.title.name=Nom
 editor.title.originalName=Nom d'origine

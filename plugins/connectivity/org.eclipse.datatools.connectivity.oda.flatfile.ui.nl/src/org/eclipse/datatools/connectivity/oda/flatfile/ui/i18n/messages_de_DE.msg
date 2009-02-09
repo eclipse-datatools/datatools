@@ -1,7 +1,8 @@
 wizard.title.selectColumns=Spalten auswählen
 wizard.defaultMessage.selectFolder=Ordner mit den unstrukturierten Dateien auswählen.
 wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
-label.selectFolder=Ordner &auswählen: 
+
+label.selectFolder=S&elect folder: 
 label.selectFile=Date&i auswählen:
 label.fileFilter=Dateifilte&r:
 label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden.
@@ -12,6 +13,8 @@ label.flatfileComma=CSV
 label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
+
+button.selectFolder.browse=B&rowse...
 
 editor.title.name=Name
 editor.title.originalName=Originalname
@@ -34,7 +37,6 @@ tooltip.psv=Durch Pipe { | } getrennte Werte
 tooltip.tsv=Durch Tab { Tab } getrennte Werte
 tooltip.columnnameline=Stellen Sie sicher, dass die erste Zeile\nder gewählten Datei Spaltennamen enthält.
 tooltip.typeline=Stellen Sie sicher, dass die zweite Zeile\nder gewählten Datei Datentypen enthält.
-
 error.selectFolder=Bitte wählen Sie einen gültigen Ordner.
 error.selectColumns=Bitte wählen Sie für diesen Datensatz mindestens eine Spalte aus.
 error.emptyPath=Geben Sie einen Pfad ein.
