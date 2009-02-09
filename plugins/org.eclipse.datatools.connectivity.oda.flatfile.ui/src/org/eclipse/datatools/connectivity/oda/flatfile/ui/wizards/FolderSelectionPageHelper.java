@@ -318,7 +318,7 @@ public class FolderSelectionPageHelper
 		} );
 
 		browseFolderButton = new Button( composite, SWT.NONE );
-		browseFolderButton.setText( "..." ); //$NON-NLS-1$
+		browseFolderButton.setText( Messages.getString( "button.selectFolder.browse" ) ); //$NON-NLS-1$
 		browseFolderButton.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
