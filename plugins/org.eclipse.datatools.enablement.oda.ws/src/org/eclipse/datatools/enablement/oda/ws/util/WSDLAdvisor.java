@@ -1183,7 +1183,7 @@ public class WSDLAdvisor
 		Operation operation = bindingOperation.getOperation( );
 		List partOrder = operation.getParameterOrdering( );
 		List parts = null;
-		if( inOrOutput.equals( "in" ) )
+		if( inOrOutput.equals( "in" ) ) //$NON-NLS-1$
 		{
 			parts = operation.getInput( )
 				.getMessage( )
@@ -1193,7 +1193,7 @@ public class WSDLAdvisor
 		{
 			parts = operation.getOutput( )
 			.getMessage( )
-			.getOrderedParts( partOrder );
+			.getOrderedParts( null );
 		}
 
 		if ( !WSUtil.isNull( parts ) && !parts.isEmpty( ) )
