@@ -134,6 +134,11 @@ public class ProfileManager implements IAdaptable {
 	public IConnectionProfile getProfileByFullPath(String path ) {
 		return InternalProfileManager.getInstance().getProfileByFullPath(path);
 	}
+
+	public IConnectionProfile createTransientProfile(String providerID, Properties baseProperties) throws ConnectionProfileException {
+		return InternalProfileManager.getInstance().createTransientProfile(null, null, providerID, baseProperties);
+	}
+	
 	/**
 	 * Create connection profile
 	 * 
@@ -143,10 +148,10 @@ public class ProfileManager implements IAdaptable {
 	 * @param baseProperties
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties)
 			throws ConnectionProfileException {
-		InternalProfileManager.getInstance().createProfile(name, description,
+		return InternalProfileManager.getInstance().createProfile(name, description,
 				providerID, baseProperties);
 	}
 
@@ -160,10 +165,10 @@ public class ProfileManager implements IAdaptable {
 	 * @param parentProfile
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties, String parentProfile)
 			throws ConnectionProfileException {
-		InternalProfileManager.getInstance().createProfile(name, description,
+		return InternalProfileManager.getInstance().createProfile(name, description,
 				providerID, baseProperties, parentProfile);
 	}
 
@@ -178,10 +183,10 @@ public class ProfileManager implements IAdaptable {
 	 * @param autoConnect
 	 * @throws ConnectionProfileException
 	 */
-	public void createProfile(String name, String description,
+	public IConnectionProfile createProfile(String name, String description,
 			String providerID, Properties baseProperties, String parentProfile,
 			boolean autoConnect) throws ConnectionProfileException {
-		InternalProfileManager.getInstance().createProfile(name, description,
+		return InternalProfileManager.getInstance().createProfile(name, description,
 				providerID, baseProperties, parentProfile, autoConnect);
 	}
 

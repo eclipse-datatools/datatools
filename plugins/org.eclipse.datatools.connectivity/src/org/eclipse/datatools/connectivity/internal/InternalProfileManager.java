@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2008 Sybase, Inc. and others.
+ * Copyright (c) 2004-2009 Sybase, Inc. and others.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -10,6 +10,7 @@
  *     IBM Corporation -  fix for defect #223855
  *     IBM Corporation -  fix for defect #241713
  *     Actuate Corporation - fix for bug #247587
+ *     brianf - added Transient profile functionality for bug 253606
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.internal;
 
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -76,6 +78,8 @@ public class InternalProfileManager {
 
 	private IConnectionProfile[] mProfiles = null;
 	
+	private List mTransientProfiles = null;
+
 	private Set mRepositories = new HashSet();
 
 	private boolean mIsDirty = false;
@@ -452,6 +456,62 @@ public class InternalProfileManager {
 			String providerID, Properties baseProperties)
 			throws ConnectionProfileException {
 		return createProfile(name, description, providerID, baseProperties, "", false); //$NON-NLS-1$
+	}
+
+	/**
+	 * Create transient connection profile
+	 * 
+	 * @param name
+	 * @param description
+	 * @param providerID
+	 * @param baseProperties
+	 * @throws ConnectionProfileException
+	 */
+	public IConnectionProfile createTransientProfile(String name, String description,
+			String providerID, Properties baseProperties) throws ConnectionProfileException {
+		String transientName = name;
+		if (transientName == null) {
+			transientName = "Transient." + providerID; //$NON-NLS-1$
+		}
+		transientName = findUniqueTransientProfileName(transientName, providerID);
+		ConnectionProfile profile = new ConnectionProfile(transientName, description,
+				providerID, "", false, UUID.createUUID() //$NON-NLS-1$
+						.toString());
+		baseProperties.setProperty(IConnectionProfile.TRANSIENT_PROPERTY_ID, ""); //$NON-NLS-1$
+		profile.setBaseProperties(baseProperties);
+		profile.setCreated();
+		if (mTransientProfiles == null) {
+			synchronized (this) {
+				if (mTransientProfiles == null) {
+					mTransientProfiles = Collections.synchronizedList( new ArrayList() );
+				}
+			}
+		}
+		mTransientProfiles.add(profile);
+		return profile;
+	}
+	
+	/**
+	 * Private method to avoid name collisions
+	 * @param name
+	 * @param providerID
+	 * @return
+	 */
+	private String findUniqueTransientProfileName(String name, String providerID) {
+		if (mTransientProfiles != null) {
+			synchronized(mTransientProfiles) {
+				Iterator iter = mTransientProfiles.iterator();
+				int count = 0;
+				while (iter.hasNext()) {
+					IConnectionProfile profile = (IConnectionProfile) iter.next();
+					if (profile.getProviderId().equalsIgnoreCase(providerID)) {
+						count++;
+					}
+				}
+				return name + count;
+			}
+		}
+		return name;
 	}
 
 	/**
@@ -1097,6 +1157,16 @@ public class InternalProfileManager {
 	}
 
 	/* package */void dispose() {
+		if (mTransientProfiles != null) {
+			synchronized (mTransientProfiles) {
+				if (mTransientProfiles != null) {
+					Iterator transientIter = mTransientProfiles.iterator();
+					while (transientIter.hasNext()) {
+						((ConnectionProfile)transientIter.next()).dispose();
+					}
+				}
+			}
+		}
 		if (mProfiles == null) {
 			return;
 		}

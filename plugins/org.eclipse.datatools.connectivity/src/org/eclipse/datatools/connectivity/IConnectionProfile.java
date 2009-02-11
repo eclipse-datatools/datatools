@@ -61,6 +61,11 @@ public interface IConnectionProfile {
 	 */
 	static final String INSTANCE_ID_PROPERTY_ID = "instanceID"; //$NON-NLS-1$
 	
+	/**
+	 * Transient marker for profile instance.
+	 */
+	static final String TRANSIENT_PROPERTY_ID = "isTransient"; //$NON-NLS-1$
+
 	// Connection states
 	
 	/**

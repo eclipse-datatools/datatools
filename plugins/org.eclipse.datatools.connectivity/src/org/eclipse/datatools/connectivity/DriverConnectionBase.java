@@ -31,9 +31,9 @@ import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
  */
 public abstract class DriverConnectionBase extends VersionProviderConnection {
 
-	private DriverInstance mDriver;
-	private Object mConnection;
-	private Throwable mConnectException;
+	protected DriverInstance mDriver;
+	protected Object mConnection;
+	protected Throwable mConnectException;
 
 	public DriverConnectionBase(IConnectionProfile profile, Class factoryClass) {
 		super(profile, factoryClass);

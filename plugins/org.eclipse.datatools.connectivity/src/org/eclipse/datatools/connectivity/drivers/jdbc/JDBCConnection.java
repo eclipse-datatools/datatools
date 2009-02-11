@@ -11,6 +11,10 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.jdbc;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
@@ -21,6 +25,8 @@ import java.util.StringTokenizer;
 import org.eclipse.datatools.connectivity.DriverConnectionBase;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.Version;
+import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
+import org.eclipse.datatools.connectivity.drivers.IDriverMgmtConstants;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
 
 /**
@@ -44,17 +50,123 @@ public class JDBCConnection extends DriverConnectionBase {
 	private Version mTechVersion = Version.NULL_VERSION;
 	private Version mServerVersion = Version.NULL_VERSION;
 	private String mServerName;
+	
+	private boolean mHasDriver = true;
 
 	public JDBCConnection(IConnectionProfile profile, Class factoryClass) {
 		super(profile, factoryClass);
 	}
 
+	public void open() {
+		if (mConnection != null) {
+			close();
+		}
+
+		mConnection = null;
+		mConnectException = null;
+
+		try {
+			if (getDriverDefinition() != null)
+				super.open();
+		} catch (Exception e) {
+			if (e.getMessage().equalsIgnoreCase(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotSpecified"))) //$NON-NLS-1$
+			{
+				if (profileHasDriverDetails()) {
+					mHasDriver = false;
+				}
+				else {
+					e.printStackTrace();
+				}
+			}
+			else
+				e.printStackTrace();
+		}
+		internalCreateConnection();
+	}
+	
+	public String[] getJarListAsArray(String jarList) {
+		if (jarList != null) {
+			if (jarList.length() == 0)
+				return new String[0];
+			String[] paths = parseString(jarList,
+					IDriverMgmtConstants.PATH_DELIMITER);
+			return paths;
+		}
+		return null;
+	}
+	
+	public ClassLoader createClassLoader(ClassLoader parentCL) throws Exception {
+		Properties props = getConnectionProfile().getBaseProperties();
+		String jarList = 
+			props.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
+		if ((jarList == null || jarList.trim().length() == 0)) {
+			throw new Exception(
+					DriverMgmtMessages.getString("DriverInstance.error.jarListNotDefined")); //$NON-NLS-1$
+		}
+
+		String[] jarStrings = getJarListAsArray(jarList);
+		URL[] jars = new URL[jarStrings.length];
+		for (int index = 0, count = jars.length; index < count; ++index) {
+			try {
+				jars[index] = new File(jarStrings[index]).toURL();
+			}
+			catch (MalformedURLException e) {
+				throw new Exception(DriverMgmtMessages.getString("DriverInstance.error.invalidClassPath"), e); //$NON-NLS-1$
+			}
+		}
+		if (parentCL == null) {
+			return URLClassLoader.newInstance(jars);
+		}
+		return URLClassLoader.newInstance(jars, parentCL);
+	}
+
+	private void internalCreateConnection() {
+		try {
+			ClassLoader parentCL = getParentClassLoader();
+			ClassLoader driverCL = createClassLoader(parentCL);
+			
+			mConnection = createConnection(driverCL);
+
+			if (mConnection == null) {
+				// Connect attempt failed without throwing an exception.
+				// We'll generate one for them.
+				throw new Exception(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.unknown")); //$NON-NLS-1$
+			}
+
+			initVersions();
+			updateVersionCache();
+		}
+		catch (Throwable t) {
+			mConnectException = t;
+			clearVersionCache();
+		}
+	}
+
+	private boolean profileHasDriverDetails() {
+		Properties props = getConnectionProfile().getBaseProperties();
+		String driverClass = 
+			props.getProperty(IJDBCConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
+		String jarList = 
+			props.getProperty(IDriverMgmtConstants.PROP_DEFN_JARLIST);
+		if (driverClass != null && jarList != null) {
+			return true;
+		}
+		return false;
+	}
+
 	protected Object createConnection(ClassLoader cl) throws Throwable {
 		Properties props = getConnectionProfile().getBaseProperties();
 		Properties connectionProps = new Properties();
-		
-		String driverClass = getDriverDefinition().getProperty(
+
+//		boolean hasDriver = (getDriverDefinition() != null);
+		String driverClass = null;
+		if (mHasDriver)
+			driverClass = getDriverDefinition().getProperty(
 				IJDBCConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
+		else
+			driverClass = 
+				props.getProperty(IJDBCConnectionProfileConstants.DRIVER_CLASS_PROP_ID);
+		
 		String connectURL = props
 				.getProperty(IJDBCConnectionProfileConstants.URL_PROP_ID);
 		String uid = props
@@ -84,7 +196,7 @@ public class JDBCConnection extends DriverConnectionBase {
 				addPairs = addPairs + pairs[i];
 			}
 		}
-
+		
 		Driver jdbcDriver = (Driver) cl.loadClass(driverClass).newInstance();
 		return jdbcDriver.connect(connectURL, connectionProps);
 	}
