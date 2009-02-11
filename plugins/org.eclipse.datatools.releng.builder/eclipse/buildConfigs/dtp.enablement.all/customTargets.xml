@@ -89,7 +89,7 @@
 		</echo>
 		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r17_${buildId}" />
         <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" command="tag r17_${buildId}" />
-        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablment.releng" command="tag r17_${buildId}" />
+        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" command="tag r17_${buildId}" />
         <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r17_${buildId}" />
         <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r17_${buildId}" />
         <!-- 
