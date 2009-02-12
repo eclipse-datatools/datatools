@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributesImpl.java,v 1.3 2006/02/12 06:45:56 lchan Exp $
+ * $Id: InputElementAttributesImpl.java,v 1.4 2007/04/11 02:59:52 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
 import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
+import org.eclipse.datatools.connectivity.oda.design.StaticValues;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl#getDefaultScalarValue <em>Default Scalar Value</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl#getDefaultValues <em>Default Values</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl#isEditable <em>Editable</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl#isMasksValue <em>Masks Value</em>}</li>
@@ -56,7 +58,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * The default value of the '{@link #getDefaultScalarValue() <em>Default Scalar Value</em>}' attribute.
@@ -77,6 +79,16 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @ordered
      */
     protected String m_defaultScalarValue = DEFAULT_SCALAR_VALUE_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getDefaultValues() <em>Default Values</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getDefaultValues()
+     * @generated
+     * @ordered
+     */
+    protected StaticValues m_defaultValues;
 
     /**
      * The default value of the '{@link #isEditable() <em>Editable</em>}' attribute.
@@ -105,7 +117,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_editableESet = false;
+    protected boolean m_editableESet;
 
     /**
      * The default value of the '{@link #isOptional() <em>Optional</em>}' attribute.
@@ -134,7 +146,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_optionalESet = false;
+    protected boolean m_optionalESet;
 
     /**
      * The default value of the '{@link #isMasksValue() <em>Masks Value</em>}' attribute.
@@ -163,7 +175,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected boolean m_masksValueESet = false;
+    protected boolean m_masksValueESet;
 
     /**
      * The cached value of the '{@link #getStaticValueChoices() <em>Static Value Choices</em>}' containment reference.
@@ -173,7 +185,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected ScalarValueChoices m_staticValueChoices = null;
+    protected ScalarValueChoices m_staticValueChoices;
 
     /**
      * The cached value of the '{@link #getDynamicValueChoices() <em>Dynamic Value Choices</em>}' containment reference.
@@ -183,7 +195,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected DynamicValuesQuery m_dynamicValueChoices = null;
+    protected DynamicValuesQuery m_dynamicValueChoices;
 
     /**
      * The cached value of the '{@link #getUiHints() <em>Ui Hints</em>}' containment reference.
@@ -193,7 +205,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * @generated
      * @ordered
      */
-    protected InputElementUIHints m_uiHints = null;
+    protected InputElementUIHints m_uiHints;
 
     /**
      * <!-- begin-user-doc -->
@@ -210,6 +222,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     protected EClass eStaticClass()
     {
         return DesignPackage.Literals.INPUT_ELEMENT_ATTRIBUTES;
@@ -247,9 +260,25 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getDefaultScalarValue()
+    protected String getDefaultScalarValueGen()
     {
         return m_defaultScalarValue;
+    }
+
+    /*
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultScalarValue()
+     * @generated NOT
+     */
+    public String getDefaultScalarValue()
+    {
+        // if already migrated to use a collection, return the first value if available
+        if( getDefaultScalarValueGen() == null && getDefaultValuesGen() != null
+                && ! getDefaultValuesGen().isEmpty() )
+        {
+            Object firstValue = getDefaultValuesGen().getValues().get( 0 );
+            return (firstValue != null) ? firstValue.toString() : null;
+        }
+        return getDefaultScalarValueGen();
     }
 
     /**
@@ -257,7 +286,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setDefaultScalarValue( String newDefaultScalarValue )
+    protected void setDefaultScalarValueGen( String newDefaultScalarValue )
     {
         String oldDefaultScalarValue = m_defaultScalarValue;
         m_defaultScalarValue = newDefaultScalarValue;
@@ -267,6 +296,163 @@ public class InputElementAttributesImpl extends EObjectImpl implements
                     Notification.SET,
                     DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE,
                     oldDefaultScalarValue, m_defaultScalarValue ) );
+    }
+
+    /*
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#setDefaultScalarValue(java.lang.String)
+     * @generated NOT
+     */
+    public void setDefaultScalarValue( String newDefaultScalarValue )
+    {
+        // migrate data to store in collection instead of the deprecated scalar value variable;
+        // adopts original behavior of setting a single default value,
+        // overwriting existing default value(s), if any
+        StaticValues defaultValues = getDefaultValuesGen();
+        if( defaultValues == null )
+        {
+            defaultValues = DesignFactory.eINSTANCE.createStaticValues();
+            setDefaultValuesGen( defaultValues );
+        }
+        else
+            defaultValues.clear(); // overwrites existing values
+
+        defaultValues.add( newDefaultScalarValue );
+        setDefaultScalarValueGen( null ); // overwrites existing value, if any
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected StaticValues getDefaultValuesGen()
+    {
+        return m_defaultValues;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValues()
+     * @generated NOT
+     */
+    public StaticValues getDefaultValues()
+    {
+        // the collection of default values if exists, overrides the deprecated defaultScalarValue value;
+        // if no collection exists, returns the value in deprecated scalar value variable 
+        // in a temporary collection;
+        // a temporary collection is used since a getter should not change the instance data
+        if( getDefaultValuesGen() == null && getDefaultScalarValueGen() != null )
+        {
+            StaticValues tempValuesList = DesignFactory.eINSTANCE.createStaticValues();
+            tempValuesList.add( getDefaultScalarValueGen() );
+            return tempValuesList;
+        }
+
+        return getDefaultValuesGen();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetDefaultValues(
+            StaticValues newDefaultValues, NotificationChain msgs )
+    {
+        StaticValues oldDefaultValues = m_defaultValues;
+        m_defaultValues = newDefaultValues;
+        if( eNotificationRequired() )
+        {
+            ENotificationImpl notification = new ENotificationImpl( this,
+                    Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES,
+                    oldDefaultValues, newDefaultValues );
+            if( msgs == null )
+                msgs = notification;
+            else
+                msgs.add( notification );
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void setDefaultValuesGen( StaticValues newDefaultValues )
+    {
+        if( newDefaultValues != m_defaultValues )
+        {
+            NotificationChain msgs = null;
+            if( m_defaultValues != null )
+                msgs = ((InternalEObject) m_defaultValues)
+                        .eInverseRemove(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES,
+                                null, msgs );
+            if( newDefaultValues != null )
+                msgs = ((InternalEObject) newDefaultValues)
+                        .eInverseAdd(
+                                this,
+                                EOPPOSITE_FEATURE_BASE
+                                        - DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES,
+                                null, msgs );
+            msgs = basicSetDefaultValues( newDefaultValues, msgs );
+            if( msgs != null )
+                msgs.dispatch();
+        }
+        else if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES,
+                    newDefaultValues, newDefaultValues ) );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#setDefaultValues(org.eclipse.datatools.connectivity.oda.design.StaticValuesType)
+     * @generated NOT
+     */
+    public void setDefaultValues( StaticValues newDefaultValues )
+    {
+        setDefaultValuesGen( newDefaultValues );
+        setDefaultScalarValueGen( null ); // using collection, overwrites existing value, if any
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValueCount()
+     * @generated NOT
+     */
+    public int getDefaultValueCount()
+    {
+        StaticValues defaultValues = getDefaultValuesGen();
+        if( defaultValues != null )
+            return defaultValues.count();
+
+        return (getDefaultScalarValueGen() != null) ? 1 : 0;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#addDefaultValue(java.lang.Object)
+     * @generated NOT
+     */
+    public void addDefaultValue( Object aValue )
+    {
+        StaticValues defaultValues = getDefaultValuesGen();
+        if( defaultValues == null )
+        {
+            defaultValues = DesignFactory.eINSTANCE.createStaticValues();
+            setDefaultValuesGen( defaultValues );
+
+            // migrate existing default value, if any, to the new collection
+            if( getDefaultScalarValueGen() != null )
+            {
+                defaultValues.add( getDefaultScalarValueGen() );
+                setDefaultScalarValueGen( null );
+            }
+        }
+
+        defaultValues.add( aValue );
     }
 
     /**
@@ -647,11 +833,14 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public NotificationChain eInverseRemove( InternalEObject otherEnd,
             int featureID, NotificationChain msgs )
     {
         switch( featureID )
         {
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES:
+            return basicSetDefaultValues( null, msgs );
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES:
             return basicSetStaticValueChoices( null, msgs );
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES:
@@ -667,12 +856,15 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Object eGet( int featureID, boolean resolve, boolean coreType )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
             return getDefaultScalarValue();
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES:
+            return getDefaultValues();
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
             return isEditable() ? Boolean.TRUE : Boolean.FALSE;
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
@@ -694,12 +886,16 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eSet( int featureID, Object newValue )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
             setDefaultScalarValue( (String) newValue );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES:
+            setDefaultValues( (StaticValues) newValue );
             return;
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
             setEditable( ((Boolean) newValue).booleanValue() );
@@ -728,12 +924,16 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public void eUnset( int featureID )
     {
         switch( featureID )
         {
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE:
             setDefaultScalarValue( DEFAULT_SCALAR_VALUE_EDEFAULT );
+            return;
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES:
+            setDefaultValues( (StaticValues) null );
             return;
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
             unsetEditable();
@@ -762,6 +962,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public boolean eIsSet( int featureID )
     {
         switch( featureID )
@@ -770,6 +971,8 @@ public class InputElementAttributesImpl extends EObjectImpl implements
             return DEFAULT_SCALAR_VALUE_EDEFAULT == null ? m_defaultScalarValue != null
                     : !DEFAULT_SCALAR_VALUE_EDEFAULT
                             .equals( m_defaultScalarValue );
+        case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES:
+            return m_defaultValues != null;
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__EDITABLE:
             return isSetEditable();
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES__OPTIONAL:
@@ -791,6 +994,7 @@ public class InputElementAttributesImpl extends EObjectImpl implements
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public String toString()
     {
         if( eIsProxy() )

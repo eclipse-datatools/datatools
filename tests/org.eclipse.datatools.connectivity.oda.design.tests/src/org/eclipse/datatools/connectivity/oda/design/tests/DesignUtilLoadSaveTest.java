@@ -21,6 +21,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
@@ -32,6 +33,8 @@ import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
 import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
@@ -104,6 +107,11 @@ public class DesignUtilLoadSaveTest extends TestCase
         return getGoldenTestFilePath() + "/jdbcBirtSampleSession.xml"; //$NON-NLS-1$
     }
     
+    private String getSampleDbTestMigrateDefaultValueFilePath()
+    {
+        return getGoldenTestFilePath() + "/jdbcBirtSampleSession_multDefValues.xml"; //$NON-NLS-1$
+    }
+    
     private String getSampleDbResourceFilePath()
     {
         return getGoldenTestFilePath() + "/BirtSampleResourceSession.xml"; //$NON-NLS-1$
@@ -174,28 +182,41 @@ public class DesignUtilLoadSaveTest extends TestCase
         exprVariable.setIdentifier( "CUSTOMERNAME" ); //$NON-NLS-1$
         exprVariable.setNativeDataTypeCode( 4 ); // integer
         
-        FilterExpressionArguments exprArgs = DesignFactory.eINSTANCE.createFilterExpressionArguments();
+        FilterExpressionArguments exprArgs1 = DesignFactory.eINSTANCE.createFilterExpressionArguments();
 
         DataSetParameters dataSetParams = dataSetDesign.getParameters();
         Iterator<ParameterDefinition> iter = dataSetParams.getParameterDefinitions().iterator();
         while( iter.hasNext() )
         {
-            exprArgs.addDynamicParameter( (ParameterDefinition) EcoreUtil.copy( iter.next() ) );
+            FilterParameterDefinition newDynamicParamDefn = 
+                exprArgs1.addDynamicParameter( (ParameterDefinition) EcoreUtil.copy( iter.next() ) );
+
+            newDynamicParamDefn.addStaticValue( "ineffective static value" ); //$NON-NLS-1$
+            assertFalse( newDynamicParamDefn.hasEffectiveStaticValues() );
         }
-        
-        exprArgs.addStaticValue( new Integer( 123 ) );
+        FilterParameterDefinition newStaticParamDefn = exprArgs1.addStaticParameter( new Date() );
+        assertTrue( newStaticParamDefn.hasEffectiveStaticValues() );
         
         CustomExpression customExpr1 = DesignFactory.eINSTANCE.createCustomExpression();
         customExpr1.setDeclaringExtensionId( filterExprExtId );
         customExpr1.setId( "1007" ); //$NON-NLS-1$
         customExpr1.setContextVariable( exprVariable );
-        customExpr1.setContextArguments( exprArgs );
+        customExpr1.setContextArguments( exprArgs1 );
+        
 
         CustomExpression customExpr2 = DesignFactory.eINSTANCE.createCustomExpression();
         customExpr2.setDeclaringExtensionId( filterExprExtId );
         customExpr2.setId( "10005" ); //$NON-NLS-1$
         customExpr2.setContextVariable( exprVariable );
 
+        FilterExpressionArguments exprArgs2 = DesignFactory.eINSTANCE.createFilterExpressionArguments();
+        newStaticParamDefn = exprArgs2.addStaticParameter( "static value 1" ); //$NON-NLS-1$
+        newStaticParamDefn.addStaticValue( "static value 2 " );        
+        customExpr2.setContextArguments( exprArgs2 );
+
+        assertTrue( newStaticParamDefn.hasEffectiveStaticValues() );
+        assertEquals( 2, newStaticParamDefn.getEffectiveStaticValueCount() );
+        
         OrExpression orExpr = DesignFactory.eINSTANCE.createOrExpression();
         orExpr.add( customExpr1 );
         orExpr.add( customExpr2 );
@@ -211,6 +232,37 @@ public class DesignUtilLoadSaveTest extends TestCase
         {
             fail();
         }  
+        
+        // test saving updated design session with the filter expression
+        File tempOut = getTempOutFile();
+        saveDesignSession( design, tempOut );
+    }
+    
+    public void testInputElementMigrateDefaultValues()
+    {
+        File goldenFile = new File( getSampleDbTestMigrateDefaultValueFilePath() );
+        OdaDesignSession design = loadOdaDesignSession( goldenFile );
+        DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
+        
+        DataSetParameters dataSetParams = dataSetDesign.getParameters();
+        Iterator<ParameterDefinition> iter = dataSetParams.getParameterDefinitions().iterator();
+        while( iter.hasNext() )
+        {
+            ParameterDefinition newParamDefn = (ParameterDefinition) EcoreUtil.copy( iter.next() );
+            InputElementAttributes inputElementAttrs = newParamDefn.getInputAttributes().getElementAttributes();
+            
+            
+            String existingDefaultValue = inputElementAttrs.getDefaultScalarValue();
+            assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
+            
+            String newDefaultValue = "new default value";
+            inputElementAttrs.addDefaultValue( newDefaultValue );
+            assertEquals( 2, inputElementAttrs.getDefaultValueCount() );
+            
+            inputElementAttrs.setDefaultScalarValue( newDefaultValue );
+            assertEquals( 1, inputElementAttrs.getDefaultValueCount() );
+            assertEquals( newDefaultValue, inputElementAttrs.getDefaultValues().getValues().get( 0 ));
+        }
         
         // test saving updated design session with the filter expression
         File tempOut = getTempOutFile();

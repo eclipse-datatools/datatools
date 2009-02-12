@@ -1,17 +1,17 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: InputElementAttributes.java,v 1.4 2006/02/12 06:45:56 lchan Exp $
+ * $Id: InputElementAttributes.java,v 1.5 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultScalarValue <em>Default Scalar Value</em>}</li>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValues <em>Default Values</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#isEditable <em>Editable</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#isOptional <em>Optional</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#isMasksValue <em>Masks Value</em>}</li>
@@ -49,7 +50,7 @@ public interface InputElementAttributes extends EObject
      * <!-- end-user-doc -->
      * @generated
      */
-    String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Indicates whether this input element has either
@@ -71,9 +72,10 @@ public interface InputElementAttributes extends EObject
      * @return the value of the '<em>Default Scalar Value</em>' attribute.
      * @see #setDefaultScalarValue(String)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultScalarValue()
-     * @model unique="false" dataType="org.eclipse.emf.ecore.xml.type.String"
+     * @model dataType="org.eclipse.emf.ecore.xml.type.String"
      *        extendedMetaData="kind='element' name='defaultScalarValue' namespace='##targetNamespace'"
      * @generated
+     * @deprecated  replaced by {@link #getDefaultValues()} as of 3.2 (DTP 1.7)
      */
     String getDefaultScalarValue();
 
@@ -84,8 +86,55 @@ public interface InputElementAttributes extends EObject
      * @param value the new value of the '<em>Default Scalar Value</em>' attribute.
      * @see #getDefaultScalarValue()
      * @generated
+     * @deprecated  replaced by {@link #setDefaultValues(StaticValues)} as of 3.2 (DTP 1.7)
      */
     void setDefaultScalarValue( String value );
+
+    /**
+     * Returns the value of the '<em><b>Default Values</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * An optional collection of default input values.  If defined, this element overrides the deprecated defaultScalarValue element.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Default Values</em>' containment reference.
+     * @see #setDefaultValues(StaticValues)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_DefaultValues()
+     * @model containment="true"
+     *        extendedMetaData="kind='element' name='defaultValues' namespace='##targetNamespace'"
+     * @since 3.2 (DTP 1.7)
+     * @generated
+     */
+    StaticValues getDefaultValues();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValues <em>Default Values</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Default Values</em>' containment reference.
+     * @see #getDefaultValues()
+     * @since 3.2 (DTP 1.7)
+     * @generated
+     */
+    void setDefaultValues( StaticValues value );
+
+    /**
+     * Gets the number of default values specified.
+     * @return  number of default values
+     * @since 3.2 (DTP 1.7)
+     * @generated NOT
+     */
+    int getDefaultValueCount();
+
+    /**
+     * Appends the specified value to the list of default values.
+     * It is the responsibility of the caller to ensure compatible type of value object
+     * is added to the list.
+     * @param aValue    a value to add; may be null
+     * @since 3.2 (DTP 1.7)
+     * @generated NOT
+     */
+    void addDefaultValue( Object aValue );
 
     /**
      * Returns the value of the '<em><b>Editable</b></em>' attribute.
@@ -100,7 +149,7 @@ public interface InputElementAttributes extends EObject
      * @see #unsetEditable()
      * @see #setEditable(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_Editable()
-     * @model default="true" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="true" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='editable' namespace='##targetNamespace'"
      * @generated
      */
@@ -154,7 +203,7 @@ public interface InputElementAttributes extends EObject
      * @see #unsetOptional()
      * @see #setOptional(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_Optional()
-     * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='optional' namespace='##targetNamespace'"
      * @generated
      */
@@ -208,7 +257,7 @@ public interface InputElementAttributes extends EObject
      * @see #unsetMasksValue()
      * @see #setMasksValue(boolean)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getInputElementAttributes_MasksValue()
-     * @model default="false" unique="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
      *        extendedMetaData="kind='element' name='masksValue' namespace='##targetNamespace'"
      * @generated
      */

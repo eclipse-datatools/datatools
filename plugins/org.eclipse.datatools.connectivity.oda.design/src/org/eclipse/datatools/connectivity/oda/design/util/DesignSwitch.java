@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.4 2008/07/23 04:12:28 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.5 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -498,6 +498,14 @@ public class DesignSwitch<T>
         {
             ScalarValueDefinition scalarValueDefinition = (ScalarValueDefinition) theEObject;
             T result = caseScalarValueDefinition( scalarValueDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.STATIC_VALUES:
+        {
+            StaticValues staticValues = (StaticValues) theEObject;
+            T result = caseStaticValues( staticValues );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -1263,6 +1271,22 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseScalarValueDefinition( ScalarValueDefinition object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Static Values</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Static Values</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseStaticValues( StaticValues object )
     {
         return null;
     }

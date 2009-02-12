@@ -877,7 +877,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="filterParameters" lowerBound="1"
         eType="#//FilterParameters" containment="true" resolveProxies="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A collection of parameters used for collecting a filter expression's argument values.  Each parameter may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters."/>
+        <details key="documentation" value="A collection of parameters used for collecting a filter expression's argument values.  An expression argument may define one corresponding filter parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple filter parameters, with each taking a single input value and has own set of parameter attributes.  Each filter parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters."/>
       </eAnnotations>
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
@@ -930,16 +930,17 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterParameterDefinition">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters."/>
+      <details key="documentation" value="The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined."/>
     </eAnnotations>
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
       <details key="name" value="FilterParameterDefinition"/>
       <details key="kind" value="elementOnly"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="staticValue" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnySimpleType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="staticValues" eType="#//StaticValues"
+        containment="true" resolveProxies="false">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
-        <details key="name" value="staticValue"/>
+        <details key="name" value="staticValues"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1019,6 +1020,17 @@
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="kind" value="element"/>
         <details key="name" value="defaultScalarValue"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValues" eType="#//StaticValues"
+        containment="true" resolveProxies="false">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="An optional collection of default input values.  If defined, this element overrides the deprecated defaultScalarValue element."/>
+      </eAnnotations>
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="defaultValues"/>
         <details key="namespace" value="##targetNamespace"/>
       </eAnnotations>
     </eStructuralFeatures>
@@ -1752,6 +1764,23 @@
       <details key="name" value="SessionStatus:Object"/>
       <details key="baseType" value="SessionStatus"/>
     </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StaticValues">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A collection of static values in any data type."/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="StaticValues"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" unique="false"
+        lowerBound="1" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//AnySimpleType">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+        <details key="name" value="values"/>
+        <details key="namespace" value="##targetNamespace"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TextFormatType">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

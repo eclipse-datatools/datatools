@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.8 2008/07/23 04:12:27 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.9 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -73,6 +73,7 @@ import org.eclipse.datatools.connectivity.oda.design.ResultSets;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.datatools.connectivity.oda.design.StaticValues;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
 import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
@@ -428,6 +429,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass scalarValueDefinitionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass staticValuesEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1667,9 +1675,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getFilterParameterDefinition_StaticValue()
+    public EReference getFilterParameterDefinition_StaticValues()
     {
-        return (EAttribute) filterParameterDefinitionEClass
+        return (EReference) filterParameterDefinitionEClass
                 .getEStructuralFeatures().get( 0 );
     }
 
@@ -1731,9 +1739,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getInputElementAttributes_Editable()
+    public EReference getInputElementAttributes_DefaultValues()
     {
-        return (EAttribute) inputElementAttributesEClass
+        return (EReference) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 1 );
     }
 
@@ -1742,7 +1750,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getInputElementAttributes_Optional()
+    public EAttribute getInputElementAttributes_Editable()
     {
         return (EAttribute) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 2 );
@@ -1753,7 +1761,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getInputElementAttributes_MasksValue()
+    public EAttribute getInputElementAttributes_Optional()
     {
         return (EAttribute) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 3 );
@@ -1764,9 +1772,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getInputElementAttributes_StaticValueChoices()
+    public EAttribute getInputElementAttributes_MasksValue()
     {
-        return (EReference) inputElementAttributesEClass
+        return (EAttribute) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 4 );
     }
 
@@ -1775,7 +1783,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getInputElementAttributes_DynamicValueChoices()
+    public EReference getInputElementAttributes_StaticValueChoices()
     {
         return (EReference) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 5 );
@@ -1786,10 +1794,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getInputElementAttributes_UiHints()
+    public EReference getInputElementAttributes_DynamicValueChoices()
     {
         return (EReference) inputElementAttributesEClass
                 .getEStructuralFeatures().get( 6 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getInputElementAttributes_UiHints()
+    {
+        return (EReference) inputElementAttributesEClass
+                .getEStructuralFeatures().get( 7 );
     }
 
     /**
@@ -2450,6 +2469,26 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getStaticValues()
+    {
+        return staticValuesEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getStaticValues_Values()
+    {
+        return (EAttribute) staticValuesEClass.getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getValueFormatHints()
     {
         return valueFormatHintsEClass;
@@ -2928,8 +2967,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE );
 
         filterParameterDefinitionEClass = createEClass( FILTER_PARAMETER_DEFINITION );
-        createEAttribute( filterParameterDefinitionEClass,
-                FILTER_PARAMETER_DEFINITION__STATIC_VALUE );
+        createEReference( filterParameterDefinitionEClass,
+                FILTER_PARAMETER_DEFINITION__STATIC_VALUES );
         createEReference( filterParameterDefinitionEClass,
                 FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER );
 
@@ -2940,6 +2979,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         inputElementAttributesEClass = createEClass( INPUT_ELEMENT_ATTRIBUTES );
         createEAttribute( inputElementAttributesEClass,
                 INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE );
+        createEReference( inputElementAttributesEClass,
+                INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES );
         createEAttribute( inputElementAttributesEClass,
                 INPUT_ELEMENT_ATTRIBUTES__EDITABLE );
         createEAttribute( inputElementAttributesEClass,
@@ -3064,6 +3105,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 SCALAR_VALUE_DEFINITION__VALUE );
         createEAttribute( scalarValueDefinitionEClass,
                 SCALAR_VALUE_DEFINITION__DISPLAY_NAME );
+
+        staticValuesEClass = createEClass( STATIC_VALUES );
+        createEAttribute( staticValuesEClass, STATIC_VALUES__VALUES );
 
         valueFormatHintsEClass = createEClass( VALUE_FORMAT_HINTS );
         createEAttribute( valueFormatHintsEClass,
@@ -3578,10 +3622,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 filterParameterDefinitionEClass,
                 FilterParameterDefinition.class,
                 "FilterParameterDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEAttribute(
-                getFilterParameterDefinition_StaticValue(),
-                theXMLTypePackage.getAnySimpleType(),
-                "staticValue", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getFilterParameterDefinition_StaticValues(),
+                this.getStaticValues(),
+                null,
+                "staticValues", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getFilterParameterDefinition_DynamicInputParameter(),
                 this.getParameterDefinition(),
@@ -3606,6 +3651,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getInputElementAttributes_DefaultScalarValue(),
                 theXMLTypePackage.getString(),
                 "defaultScalarValue", null, 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getInputElementAttributes_DefaultValues(),
+                this.getStaticValues(),
+                null,
+                "defaultValues", null, 0, 1, InputElementAttributes.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
                 getInputElementAttributes_Editable(),
                 theXMLTypePackage.getBoolean(),
@@ -3924,6 +3974,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getScalarValueDefinition_DisplayName(),
                 theXMLTypePackage.getString(),
                 "displayName", null, 0, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                staticValuesEClass,
+                StaticValues.class,
+                "StaticValues", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getStaticValues_Values(),
+                theXMLTypePackage.getAnySimpleType(),
+                "values", null, 1, -1, StaticValues.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 valueFormatHintsEClass,
@@ -4598,10 +4657,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "name", "FilterParameterDefinition", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( getFilterParameterDefinition_StaticValue(), source,
+        addAnnotation( getFilterParameterDefinition_StaticValues(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "staticValue", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "staticValues", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( getFilterParameterDefinition_DynamicInputParameter(),
@@ -4642,6 +4701,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                         "name", "defaultScalarValue", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getInputElementAttributes_DefaultValues(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "defaultValues", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( getInputElementAttributes_Editable(), source,
@@ -5028,6 +5093,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( sessionStatusObjectEDataType, source, new String[]
         { "name", "SessionStatus:Object", //$NON-NLS-1$ //$NON-NLS-2$
                 "baseType", "SessionStatus" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( staticValuesEClass, source, new String[]
+        { "name", "StaticValues", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getStaticValues_Values(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "values", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( textFormatTypeEEnum, source, new String[]
         { "name", "TextFormatType" //$NON-NLS-1$ //$NON-NLS-2$

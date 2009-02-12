@@ -553,6 +553,11 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:element name="DynamicExpression" type="design:DynamicExpression">
+    <xsd:annotation>
+      <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="DynamicValuesQuery">
     <xsd:annotation>
       <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
@@ -602,7 +607,7 @@
     <xsd:sequence>
       <xsd:element maxOccurs="1" minOccurs="1" name="filterParameters" type="design:FilterParameters">
         <xsd:annotation>
-          <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.  Each parameter may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+          <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.  An expression argument may define one corresponding filter parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple filter parameters, with each taking a single input value and has own set of parameter attributes.  Each filter parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
@@ -639,16 +644,16 @@
   </xsd:element>
   <xsd:complexType name="FilterParameterDefinition">
     <xsd:annotation>
-      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="staticValues" type="design:StaticValues"/>
       <xsd:element maxOccurs="1" minOccurs="0" name="dynamicInputParameter" type="design:ParameterDefinition"/>
     </xsd:sequence>
-    <xsd:attribute name="staticValue" type="xsd:string"/>
   </xsd:complexType>
   <xsd:element name="FilterParameterDefinition" type="design:FilterParameterDefinition">
     <xsd:annotation>
-      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either a static value, or an input parameter to dynamically collect user input value.  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="FilterParameters">
@@ -669,6 +674,11 @@
       <xsd:documentation>Common attributes for a data element defined with the input mode.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="defaultValues" type="design:StaticValues">
+        <xsd:annotation>
+          <xsd:documentation>An optional collection of default input values.  If defined, this element overrides the deprecated defaultScalarValue element.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
       <xsd:element maxOccurs="1" minOccurs="0" name="staticValueChoices" type="design:ScalarValueChoices"/>
       <xsd:element maxOccurs="1" minOccurs="0" name="dynamicValueChoices" type="design:DynamicValuesQuery"/>
       <xsd:element maxOccurs="1" minOccurs="0" name="uiHints" type="design:InputElementUIHints"/>
@@ -1080,6 +1090,19 @@
   <xsd:element name="ScalarValueDefinition" type="design:ScalarValueDefinition">
     <xsd:annotation>
       <xsd:documentation>Defines a scalar value with a brief description.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="StaticValues">
+    <xsd:annotation>
+      <xsd:documentation>A collection of static values in any data type.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="values" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="StaticValues" type="design:StaticValues">
+    <xsd:annotation>
+      <xsd:documentation>A collection of static values in any data type.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="ValueFormatHints">

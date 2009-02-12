@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.3 2008/07/23 04:12:28 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.4 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -381,6 +381,12 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         public Adapter caseScalarValueDefinition( ScalarValueDefinition object )
         {
             return createScalarValueDefinitionAdapter();
+        }
+
+        @Override
+        public Adapter caseStaticValues( StaticValues object )
+        {
+            return createStaticValuesAdapter();
         }
 
         @Override
@@ -1111,6 +1117,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createScalarValueDefinitionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.StaticValues <em>Static Values</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.StaticValues
+     * @generated
+     */
+    public Adapter createStaticValuesAdapter()
     {
         return null;
     }

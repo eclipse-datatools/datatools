@@ -11,70 +11,11 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.8 2008/07/23 04:12:27 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.9 2009/01/30 00:23:56 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
-import org.eclipse.datatools.connectivity.oda.design.AndExpression;
-import org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext;
-import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
-import org.eclipse.datatools.connectivity.oda.design.AxisType;
-import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
-import org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression;
-import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
-import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
-import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
-import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
-import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
-import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
-import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
-import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
-import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
-import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-import org.eclipse.datatools.connectivity.oda.design.DesignSessionRequest;
-import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
-import org.eclipse.datatools.connectivity.oda.design.DesignerState;
-import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
-import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
-import org.eclipse.datatools.connectivity.oda.design.DynamicExpression;
-import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
-import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
-import org.eclipse.datatools.connectivity.oda.design.FilterParameters;
-import org.eclipse.datatools.connectivity.oda.design.FilterVariableType;
-import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
-import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
-import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
-import org.eclipse.datatools.connectivity.oda.design.InputParameterAttributes;
-import org.eclipse.datatools.connectivity.oda.design.InputParameterUIHints;
-import org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle;
-import org.eclipse.datatools.connectivity.oda.design.Locale;
-import org.eclipse.datatools.connectivity.oda.design.NameValuePair;
-import org.eclipse.datatools.connectivity.oda.design.NotExpression;
-import org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType;
-import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
-import org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType;
-import org.eclipse.datatools.connectivity.oda.design.OrExpression;
-import org.eclipse.datatools.connectivity.oda.design.OutputElementAttributes;
-import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
-import org.eclipse.datatools.connectivity.oda.design.ParameterFieldDefinition;
-import org.eclipse.datatools.connectivity.oda.design.ParameterFields;
-import org.eclipse.datatools.connectivity.oda.design.ParameterMode;
-import org.eclipse.datatools.connectivity.oda.design.Properties;
-import org.eclipse.datatools.connectivity.oda.design.Property;
-import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
-import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
-import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
-import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
-import org.eclipse.datatools.connectivity.oda.design.ResultSets;
-import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
-import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
-import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
-import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
-import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
-import org.eclipse.datatools.connectivity.oda.design.ValueFormatHints;
+import org.eclipse.datatools.connectivity.oda.design.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -234,6 +175,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createScalarValueChoices();
         case DesignPackage.SCALAR_VALUE_DEFINITION:
             return createScalarValueDefinition();
+        case DesignPackage.STATIC_VALUES:
+            return createStaticValues();
         case DesignPackage.VALUE_FORMAT_HINTS:
             return createValueFormatHints();
         default:
@@ -882,6 +825,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         ScalarValueDefinitionImpl scalarValueDefinition = new ScalarValueDefinitionImpl();
         return scalarValueDefinition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public StaticValues createStaticValues()
+    {
+        StaticValuesImpl staticValues = new StaticValuesImpl();
+        return staticValues;
     }
 
     /**

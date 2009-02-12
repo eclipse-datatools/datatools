@@ -7,11 +7,11 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Actuate Corporation  - initial API and implementation
+ *  Actuate Corporation - initial API and implementation
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.5 2008/07/23 04:12:27 lchan Exp $
+ * $Id: DesignPackage.java,v 1.6 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -1193,13 +1193,13 @@ public interface DesignPackage extends EPackage
     int FILTER_PARAMETER_DEFINITION = 23;
 
     /**
-     * The feature id for the '<em><b>Static Value</b></em>' attribute.
+     * The feature id for the '<em><b>Static Values</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETER_DEFINITION__STATIC_VALUE = 0;
+    int FILTER_PARAMETER_DEFINITION__STATIC_VALUES = 0;
 
     /**
      * The feature id for the '<em><b>Dynamic Input Parameter</b></em>' containment reference.
@@ -1267,13 +1267,22 @@ public interface DesignPackage extends EPackage
     int INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE = 0;
 
     /**
+     * The feature id for the '<em><b>Default Values</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES = 1;
+
+    /**
      * The feature id for the '<em><b>Editable</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__EDITABLE = 1;
+    int INPUT_ELEMENT_ATTRIBUTES__EDITABLE = 2;
 
     /**
      * The feature id for the '<em><b>Optional</b></em>' attribute.
@@ -1282,7 +1291,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__OPTIONAL = 2;
+    int INPUT_ELEMENT_ATTRIBUTES__OPTIONAL = 3;
 
     /**
      * The feature id for the '<em><b>Masks Value</b></em>' attribute.
@@ -1291,7 +1300,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE = 3;
+    int INPUT_ELEMENT_ATTRIBUTES__MASKS_VALUE = 4;
 
     /**
      * The feature id for the '<em><b>Static Value Choices</b></em>' containment reference.
@@ -1300,7 +1309,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES = 4;
+    int INPUT_ELEMENT_ATTRIBUTES__STATIC_VALUE_CHOICES = 5;
 
     /**
      * The feature id for the '<em><b>Dynamic Value Choices</b></em>' containment reference.
@@ -1309,7 +1318,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES = 5;
+    int INPUT_ELEMENT_ATTRIBUTES__DYNAMIC_VALUE_CHOICES = 6;
 
     /**
      * The feature id for the '<em><b>Ui Hints</b></em>' containment reference.
@@ -1318,7 +1327,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES__UI_HINTS = 6;
+    int INPUT_ELEMENT_ATTRIBUTES__UI_HINTS = 7;
 
     /**
      * The number of structural features of the '<em>Input Element Attributes</em>' class.
@@ -1327,7 +1336,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int INPUT_ELEMENT_ATTRIBUTES_FEATURE_COUNT = 7;
+    int INPUT_ELEMENT_ATTRIBUTES_FEATURE_COUNT = 8;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementUIHintsImpl <em>Input Element UI Hints</em>}' class.
@@ -2125,6 +2134,34 @@ public interface DesignPackage extends EPackage
     int SCALAR_VALUE_DEFINITION_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl <em>Static Values</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getStaticValues()
+     * @generated
+     */
+    int STATIC_VALUES = 47;
+
+    /**
+     * The feature id for the '<em><b>Values</b></em>' attribute list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STATIC_VALUES__VALUES = 0;
+
+    /**
+     * The number of structural features of the '<em>Static Values</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STATIC_VALUES_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ValueFormatHintsImpl <em>Value Format Hints</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2132,7 +2169,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getValueFormatHints()
      * @generated
      */
-    int VALUE_FORMAT_HINTS = 47;
+    int VALUE_FORMAT_HINTS = 48;
 
     /**
      * The feature id for the '<em><b>Display Size</b></em>' attribute.
@@ -2196,7 +2233,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisType()
      * @generated
      */
-    int AXIS_TYPE = 48;
+    int AXIS_TYPE = 49;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability</em>}' enum.
@@ -2206,7 +2243,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullability()
      * @generated
      */
-    int ELEMENT_NULLABILITY = 49;
+    int ELEMENT_NULLABILITY = 50;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}' enum.
@@ -2216,7 +2253,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableType()
      * @generated
      */
-    int FILTER_VARIABLE_TYPE = 50;
+    int FILTER_VARIABLE_TYPE = 51;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -2226,7 +2263,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignment()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT = 51;
+    int HORIZONTAL_ALIGNMENT = 52;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style</em>}' enum.
@@ -2236,7 +2273,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyle()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE = 52;
+    int INPUT_PROMPT_CONTROL_STYLE = 53;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
@@ -2246,7 +2283,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE = 53;
+    int ODA_COMPLEX_DATA_TYPE = 54;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
@@ -2256,7 +2293,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE = 54;
+    int ODA_SCALAR_DATA_TYPE = 55;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
@@ -2266,7 +2303,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
      * @generated
      */
-    int PARAMETER_MODE = 55;
+    int PARAMETER_MODE = 56;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
@@ -2276,7 +2313,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
      * @generated
      */
-    int SESSION_STATUS = 56;
+    int SESSION_STATUS = 57;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
@@ -2286,7 +2323,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
      * @generated
      */
-    int TEXT_FORMAT_TYPE = 57;
+    int TEXT_FORMAT_TYPE = 58;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
@@ -2296,7 +2333,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
      * @generated
      */
-    int TEXT_WRAP_TYPE = 58;
+    int TEXT_WRAP_TYPE = 59;
 
     /**
      * The meta object id for the '<em>Axis Type Object</em>' data type.
@@ -2306,7 +2343,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
-    int AXIS_TYPE_OBJECT = 59;
+    int AXIS_TYPE_OBJECT = 60;
 
     /**
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
@@ -2316,7 +2353,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
-    int ELEMENT_NULLABILITY_OBJECT = 60;
+    int ELEMENT_NULLABILITY_OBJECT = 61;
 
     /**
      * The meta object id for the '<em>Filter Variable Type Object</em>' data type.
@@ -2326,7 +2363,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableTypeObject()
      * @generated
      */
-    int FILTER_VARIABLE_TYPE_OBJECT = 61;
+    int FILTER_VARIABLE_TYPE_OBJECT = 62;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
@@ -2336,7 +2373,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT_OBJECT = 62;
+    int HORIZONTAL_ALIGNMENT_OBJECT = 63;
 
     /**
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
@@ -2346,7 +2383,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 63;
+    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 64;
 
     /**
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
@@ -2356,7 +2393,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE_OBJECT = 64;
+    int ODA_COMPLEX_DATA_TYPE_OBJECT = 65;
 
     /**
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
@@ -2366,7 +2403,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE_OBJECT = 65;
+    int ODA_SCALAR_DATA_TYPE_OBJECT = 66;
 
     /**
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
@@ -2376,7 +2413,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
-    int PARAMETER_MODE_OBJECT = 66;
+    int PARAMETER_MODE_OBJECT = 67;
 
     /**
      * The meta object id for the '<em>Session Status Object</em>' data type.
@@ -2386,7 +2423,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
-    int SESSION_STATUS_OBJECT = 67;
+    int SESSION_STATUS_OBJECT = 68;
 
     /**
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
@@ -2396,7 +2433,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
-    int TEXT_FORMAT_TYPE_OBJECT = 68;
+    int TEXT_FORMAT_TYPE_OBJECT = 69;
 
     /**
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
@@ -2406,7 +2443,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
-    int TEXT_WRAP_TYPE_OBJECT = 69;
+    int TEXT_WRAP_TYPE_OBJECT = 70;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AndExpression <em>And Expression</em>}'.
@@ -3408,15 +3445,15 @@ public interface DesignPackage extends EPackage
     EClass getFilterParameterDefinition();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValue <em>Static Value</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValues <em>Static Values</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Static Value</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValue()
+     * @return the meta object for the containment reference '<em>Static Values</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValues()
      * @see #getFilterParameterDefinition()
      * @generated
      */
-    EAttribute getFilterParameterDefinition_StaticValue();
+    EReference getFilterParameterDefinition_StaticValues();
 
     /**
      * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getDynamicInputParameter <em>Dynamic Input Parameter</em>}'.
@@ -3470,6 +3507,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getInputElementAttributes_DefaultScalarValue();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValues <em>Default Values</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Default Values</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#getDefaultValues()
+     * @see #getInputElementAttributes()
+     * @generated
+     */
+    EReference getInputElementAttributes_DefaultValues();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes#isEditable <em>Editable</em>}'.
@@ -4197,6 +4245,27 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getScalarValueDefinition_DisplayName();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.StaticValues <em>Static Values</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Static Values</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.StaticValues
+     * @generated
+     */
+    EClass getStaticValues();
+
+    /**
+     * Returns the meta object for the attribute list '{@link org.eclipse.datatools.connectivity.oda.design.StaticValues#getValues <em>Values</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute list '<em>Values</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.StaticValues#getValues()
+     * @see #getStaticValues()
+     * @generated
+     */
+    EAttribute getStaticValues_Values();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ValueFormatHints <em>Value Format Hints</em>}'.
@@ -5391,13 +5460,13 @@ public interface DesignPackage extends EPackage
                 .getFilterParameterDefinition();
 
         /**
-         * The meta object literal for the '<em><b>Static Value</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Static Values</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FILTER_PARAMETER_DEFINITION__STATIC_VALUE = eINSTANCE
-                .getFilterParameterDefinition_StaticValue();
+        EReference FILTER_PARAMETER_DEFINITION__STATIC_VALUES = eINSTANCE
+                .getFilterParameterDefinition_StaticValues();
 
         /**
          * The meta object literal for the '<em><b>Dynamic Input Parameter</b></em>' containment reference feature.
@@ -5445,6 +5514,15 @@ public interface DesignPackage extends EPackage
          */
         EAttribute INPUT_ELEMENT_ATTRIBUTES__DEFAULT_SCALAR_VALUE = eINSTANCE
                 .getInputElementAttributes_DefaultScalarValue();
+
+        /**
+         * The meta object literal for the '<em><b>Default Values</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference INPUT_ELEMENT_ATTRIBUTES__DEFAULT_VALUES = eINSTANCE
+                .getInputElementAttributes_DefaultValues();
 
         /**
          * The meta object literal for the '<em><b>Editable</b></em>' attribute feature.
@@ -6075,6 +6153,24 @@ public interface DesignPackage extends EPackage
          */
         EAttribute SCALAR_VALUE_DEFINITION__DISPLAY_NAME = eINSTANCE
                 .getScalarValueDefinition_DisplayName();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl <em>Static Values</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getStaticValues()
+         * @generated
+         */
+        EClass STATIC_VALUES = eINSTANCE.getStaticValues();
+
+        /**
+         * The meta object literal for the '<em><b>Values</b></em>' attribute list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute STATIC_VALUES__VALUES = eINSTANCE.getStaticValues_Values();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ValueFormatHintsImpl <em>Value Format Hints</em>}' class.

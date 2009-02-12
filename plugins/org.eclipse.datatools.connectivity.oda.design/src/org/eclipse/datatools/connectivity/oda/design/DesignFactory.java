@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.7 2008/07/23 04:12:27 lchan Exp $
+ * $Id: DesignFactory.java,v 1.8 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -456,6 +456,15 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     ScalarValueDefinition createScalarValueDefinition();
+
+    /**
+     * Returns a new object of class '<em>Static Values</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Static Values</em>'.
+     * @generated
+     */
+    StaticValues createStaticValues();
 
     /**
      * Returns a new object of class '<em>Value Format Hints</em>'.
