@@ -63,6 +63,7 @@
   </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="DATE_1" keyConstraintSupported="true" primitiveType="DATE" jdbcEnumType="91" javaClassName="java.sql.Date">
     <defaultValueTypes>CURRENT_DATE</defaultValueTypes>
+    <defaultValueTypes>SYSDATE</defaultValueTypes>
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>DATE</name>
   </predefinedDataTypeDefinitions>
