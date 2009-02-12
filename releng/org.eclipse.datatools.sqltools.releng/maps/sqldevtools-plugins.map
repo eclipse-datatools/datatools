@@ -1,4 +1,3 @@
-!**************SQLDEVTOOLS RELENG PROJECT ***********
 plugin@org.eclipse.datatools.sqltools.common.ui=v200901270704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.common.ui
 plugin@org.eclipse.datatools.sqltools.data.core=v200902060605,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.core
 plugin@org.eclipse.datatools.sqltools.data.ui=v200901270704,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.data.ui
@@ -17,3 +16,4 @@ plugin@org.eclipse.datatools.sqltools.sqleditor=v200902050855,:pserver:anonymous
 plugin@org.eclipse.datatools.sqltools.sqlscrapbook=v200901151812,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.sqlscrapbook
 plugin@org.eclipse.datatools.sqltools.sql=v200902031600,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.sql
 plugin@org.eclipse.datatools.sqltools.tabledataeditor=v200901280505,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.sqltools/plugins/org.eclipse.datatools.sqltools.tabledataeditor
+
