@@ -160,4 +160,19 @@ public class StatementAdapter implements Statement {
 	public String toString() {
 		return statement.toString();
 	}
+	public boolean isClosed() throws SQLException {
+		return statement.isClosed();
+	}
+	public boolean isPoolable() throws SQLException {
+		return statement.isPoolable();
+	}
+	public void setPoolable(boolean poolable) throws SQLException {
+		statement.setPoolable(poolable);
+	}
+	public boolean isWrapperFor(Class arg0) throws SQLException {
+		return statement.isWrapperFor(arg0);
+	}
+	public Object unwrap(Class arg0) throws SQLException {
+		return statement.unwrap(arg0);
+	}
 }
