@@ -1,4 +1,3 @@
-!**************CONNECTIVITY RELENG PROJECT ***************
 plugin@org.eclipse.datatools.connectivity=v200902120538,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity
 plugin@org.eclipse.datatools.connectivity.ui=v200902030445,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui
 plugin@org.eclipse.datatools.connectivity.ui.templates=v200902030445,:pserver:anonymous@dev.eclipse.org:/cvsroot/datatools,,org.eclipse.datatools.connectivity/plugins/org.eclipse.datatools.connectivity.ui.templates
