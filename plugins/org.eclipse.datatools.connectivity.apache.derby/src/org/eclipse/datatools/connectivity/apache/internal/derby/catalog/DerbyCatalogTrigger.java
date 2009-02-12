@@ -83,6 +83,7 @@ public class DerbyCatalogTrigger extends TriggerImpl implements ICatalogObject {
 			" AND A.SCHEMAID=C.SCHEMAID"; //$NON-NLS-1$
 			
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			ResultSet r = s.executeQuery(query);
 			while(r.next()) {
 				final String colName = r.getString("REFERENCEDCOLUMNS"); //$NON-NLS-1$
@@ -91,6 +92,7 @@ public class DerbyCatalogTrigger extends TriggerImpl implements ICatalogObject {
 			}
 			this.columnLoaded = true;
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}
 		catch (Exception e) {

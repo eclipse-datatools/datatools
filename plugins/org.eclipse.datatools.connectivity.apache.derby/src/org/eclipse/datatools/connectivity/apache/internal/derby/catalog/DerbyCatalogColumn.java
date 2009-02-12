@@ -100,6 +100,7 @@ public class DerbyCatalogColumn extends ColumnImpl implements ICatalogObject{
 			final DataModelElementFactory factory = databaseDefinition.getDataModelElementFactory();
 			
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			final String query = "SELECT COLUMNDEFAULT,AUTOINCREMENTVALUE,AUTOINCREMENTSTART" + //$NON-NLS-1$
 								" FROM SYS.SYSCOLUMNS A, SYS.SYSTABLES B, SYS.SYSSCHEMAS C"+ //$NON-NLS-1$
 								" WHERE A.REFERENCEID=B.TABLEID"+ //$NON-NLS-1$
@@ -124,6 +125,7 @@ public class DerbyCatalogColumn extends ColumnImpl implements ICatalogObject{
 				
 			}
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}
 		catch (Exception e) {

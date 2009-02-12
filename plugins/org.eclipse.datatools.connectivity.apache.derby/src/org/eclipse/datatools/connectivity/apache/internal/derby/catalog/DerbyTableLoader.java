@@ -29,6 +29,8 @@ public class DerbyTableLoader extends JDBCTableLoader {
 	public static final String DERBY_TYPE_VIEW = "V"; //$NON-NLS-1$
 	public static final String DERBY_TYPE_SYSTEM = "S"; //$NON-NLS-1$
 
+	private String currentSchema;
+
 	public DerbyTableLoader() {
 		super(null);
 	}
@@ -75,8 +77,27 @@ public class DerbyTableLoader extends JDBCTableLoader {
 			query = query + filter;
 		}
 		Statement s = getCatalogObject().getConnection().createStatement();
+		currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 		ResultSet r = s.executeQuery(query);
 		return r;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCTableLoader#closeResultSet(java.sql.ResultSet)
+	 */
+	protected void closeResultSet(ResultSet rs) {
+		Statement s = null;
+		try {
+			s = rs.getStatement();
+		} catch (SQLException e) {
+		}
+		
+		super.closeResultSet(rs);
+		
+		try {
+			DerbySchemaLoader.setSchema(s, currentSchema);
+		} catch (SQLException e) {
+		}
 	}
 
 	/**

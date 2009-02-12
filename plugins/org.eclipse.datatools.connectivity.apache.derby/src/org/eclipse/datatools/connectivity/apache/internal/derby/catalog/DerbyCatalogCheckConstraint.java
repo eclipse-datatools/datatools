@@ -79,6 +79,7 @@ public class DerbyCatalogCheckConstraint extends CheckConstraintImpl implements 
 						" AND B.CONSTRAINTNAME='"+ this.getName()+"'"; //$NON-NLS-1$ //$NON-NLS-2$
 			
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			ResultSet r = s.executeQuery(query);
 			while(r.next()) {
 				final String text = r.getString("CHECKDEFINITION"); //$NON-NLS-1$
@@ -89,6 +90,7 @@ public class DerbyCatalogCheckConstraint extends CheckConstraintImpl implements 
 			}
 			this.loaded = true;
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}
 		catch (Exception e) {

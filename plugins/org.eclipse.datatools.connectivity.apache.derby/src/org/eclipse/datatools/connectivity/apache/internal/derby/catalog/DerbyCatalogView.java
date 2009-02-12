@@ -66,6 +66,7 @@ public class DerbyCatalogView extends JDBCView {
 		
 		try {
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			String query=" SELECT CHECKOPTION, VIEWDEFINITION" + //$NON-NLS-1$
 						" FROM SYS.SYSVIEWS A, SYS.SYSTABLES B, SYS.SYSSCHEMAS C" + //$NON-NLS-1$
 						" WHERE A.TABLEID=B.TABLEID"+ //$NON-NLS-1$
@@ -87,6 +88,7 @@ public class DerbyCatalogView extends JDBCView {
 			}
 			this.viewLoaded = true;
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}
 		catch (Exception e) {

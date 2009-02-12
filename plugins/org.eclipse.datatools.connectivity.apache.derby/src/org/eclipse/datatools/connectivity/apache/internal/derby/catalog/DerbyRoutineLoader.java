@@ -34,6 +34,8 @@ import com.ibm.icu.util.StringTokenizer;
 
 public class DerbyRoutineLoader extends JDBCRoutineLoader {
 
+	private String currentSchema;
+
 	public DerbyRoutineLoader(ICatalogObject catalogObject) {
 		super(catalogObject);
 		this.setProcedureFactory(new DerbyProcedureFactory(catalogObject));
@@ -66,8 +68,27 @@ public class DerbyRoutineLoader extends JDBCRoutineLoader {
 		}
 
 		Statement s = getCatalogObject().getConnection().createStatement();
+		currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 		ResultSet r = s.executeQuery(query);
 		return r;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.datatools.connectivity.sqm.loader.JDBCRoutineLoader#closeResultSet(java.sql.ResultSet)
+	 */
+	protected void closeResultSet(ResultSet rs) {
+		Statement s = null;
+		try {
+			s = rs.getStatement();
+		} catch (SQLException e) {
+		}
+		
+		super.closeResultSet(rs);
+		
+		try {
+			DerbySchemaLoader.setSchema(s, currentSchema);
+		} catch (SQLException e) {
+		}
 	}
 
 	protected boolean isProcedure(ResultSet rs) throws SQLException {

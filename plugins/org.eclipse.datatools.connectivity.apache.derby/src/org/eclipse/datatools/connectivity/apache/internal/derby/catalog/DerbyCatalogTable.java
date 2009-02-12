@@ -112,6 +112,7 @@ public class DerbyCatalogTable extends JDBCTable {
 			DataModelElementFactory factory = RDBCorePlugin.getDefault().getDatabaseDefinitionRegistry().getDefinition(this.getCatalogDatabase()).getDataModelElementFactory();
 
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			final String query = "SELECT TRIGGERNAME, SCHEMANAME,EVENT,FIRINGTIME,TYPE,TRIGGERDEFINITION" + //$NON-NLS-1$
 								",REFERENCINGOLD,REFERENCINGNEW,OLDREFERENCINGNAME,NEWREFERENCINGNAME,REFERENCEDCOLUMNS" + //$NON-NLS-1$
 								" FROM SYS.SYSTRIGGERS A, SYS.SYSTABLES B, SYS.SYSSCHEMAS C"+ //$NON-NLS-1$
@@ -190,6 +191,7 @@ public class DerbyCatalogTable extends JDBCTable {
 
 			this.triggerLoaded = true;
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 			
 		}catch (Exception e){

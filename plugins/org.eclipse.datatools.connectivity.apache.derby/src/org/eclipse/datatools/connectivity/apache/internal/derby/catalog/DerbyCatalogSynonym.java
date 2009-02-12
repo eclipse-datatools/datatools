@@ -199,6 +199,7 @@ public class DerbyCatalogSynonym extends SynonymImpl implements ICatalogObject {
 			" AND TABLETYPE='A'"; //$NON-NLS-1$ //$NON-NLS-2$
 
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			ResultSet r = s.executeQuery(query);
 			
 			while (r.next()) {
@@ -208,6 +209,7 @@ public class DerbyCatalogSynonym extends SynonymImpl implements ICatalogObject {
 				this.aliasedTableLoaded = Boolean.TRUE;
 			}
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}
 		catch (Exception e) {

@@ -48,6 +48,7 @@ public class DerbyTableConstraintLoader extends JDBCTableConstraintLoader {
 
 			
 			Statement s = connection.createStatement();
+			String currentSchema = DerbySchemaLoader.setSchema(s, "SYS");
 			ResultSet r = s.executeQuery(query); 
 			while(r.next()) {
 				String check_name = r.getString("CONSTRAINTNAME"); //$NON-NLS-1$
@@ -56,6 +57,7 @@ public class DerbyTableConstraintLoader extends JDBCTableConstraintLoader {
 				containmentList.add(check);
 			}
 			r.close();
+			DerbySchemaLoader.setSchema(s, currentSchema);
 			s.close();
 		}catch(Exception e){
 			System.out.println(e.toString());
