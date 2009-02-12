@@ -28,7 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=In der Datei ''plugin.xml'' des ODA-T
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=In der Datei ''plugin.xml'' des ODA-Treibers fehlt ein Attribut ''odaScalarDataType'' im Element <alternativeOdaDataType> des Elements <dataTypeMapping> ({0}).
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für odaScalarDataType ({0}) im Element <dataTypeMapping> ({1}).
 manifest_INVALID_LOG_LEVEL_VALUE=Die Datei ''plugin.xml'' des ODA-Treibers enthält einen ungültigen Wert für logLevel ({0}) in der Datenquellenerweiterung ({1}).
-manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=Bei der Erweiterung ({0}) fehlt ein {1}-Element.
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=In der Datei ''plugin.xml'' des ODA-Treibers fehlt ein Attribut ''logFileNamePrefix'' im Element <traceLogging> der Datenquellenerweiterung ({0}).
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=Es wurde ein ungültiger Sortiermodus angegeben\: {0}.

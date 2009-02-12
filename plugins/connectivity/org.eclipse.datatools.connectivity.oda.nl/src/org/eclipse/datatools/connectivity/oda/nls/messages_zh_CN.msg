@@ -28,7 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=在 ODA 驱动程序 plugin.xml 中，<dataT
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=在 ODA 驱动程序 plugin.xml 中，<dataTypeMapping>（{0}）的 <alternativeOdaDataType> 缺少 odaScalarDataType 属性。
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=在 ODA 驱动程序 plugin.xml 中，<dataTypeMapping>（{1}）包含无效的 odaScalarDataType 值（{0}）。
 manifest_INVALID_LOG_LEVEL_VALUE=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{1}）包含无效的 logLevel 值（{0}）。
-manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=扩展({0})缺少 {1} 元素。
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=在 ODA 驱动程序 plugin.xml 中，数据源扩展（{0}）的 <traceLogging> 缺少 logFileNamePrefix 属性。
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=指定了无效的排序方式：{0}。

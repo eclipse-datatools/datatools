@@ -28,7 +28,7 @@ manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_1=ODA ドライバー plugin.xml に、<dataTy
 manifest_NO_ODA_SCALAR_DATA_TYPE_DEFINED_2=ODA ドライバー plugin.xml に、<dataTypeMapping> ({0}) の <alternativeOdaDataType> 内の odaScalarDataType 属性がありません。
 manifest_INVALID_ODA_SCALAR_DATA_TYPE_VALUE=ODA のドライバー plugin.xml は、<dataTypeMapping> ({1}) 内に無効な odaScalarDataType 値 ({0}) を持っています。
 manifest_INVALID_LOG_LEVEL_VALUE=ODA のドライバー plugin.xml は、データ・ソース拡張 ({1}) 内に無効な logLevel 値 ({0}) を持っています。
-manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=The extension ({0}) is missing a {1} element.
+manifest_MISSING_ELEMENT_IN_EXTENSION_MANIFEST=拡張子 ({0}) 内で要素 {1} が見つかりません。
 manifest_NO_LOG_FILENAME_PREFIX_DEFINED=ODA ドライバー plugin.xml に、データ・ソース拡張 ({0}) の <traceLogging> 内の logFileNamePrefix 属性がありません。
 #
 sortSpec_INVALID_SORT_MODE_SPECIFIED=無効なソートのモードが指定されました\: {0}。
