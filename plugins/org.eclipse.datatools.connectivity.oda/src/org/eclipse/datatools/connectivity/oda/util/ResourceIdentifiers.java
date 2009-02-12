@@ -24,7 +24,7 @@ import java.util.HashMap;
  *  and pass it to an ODA runtime driver in an application context map.
  *  An application context map is normally passed through the ODA runtime interfaces' setAppContext method(s).
  *  Its support and usage by an individual ODA runtime driver is optional and implementation-dependent.
- *  @since DTP 1.6.1
+ *  @since DTP 1.7
  */
 public class ResourceIdentifiers
 {
