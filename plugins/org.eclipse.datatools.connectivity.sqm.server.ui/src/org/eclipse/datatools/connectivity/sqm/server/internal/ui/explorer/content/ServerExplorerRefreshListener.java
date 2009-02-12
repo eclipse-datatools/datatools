@@ -12,6 +12,7 @@ package org.eclipse.datatools.connectivity.sqm.server.internal.ui.explorer.conte
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObjectListener;
+import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServerExplorerContentService;
 import org.eclipse.datatools.connectivity.sqm.server.internal.ui.services.IServicesManager;
 
 
@@ -27,7 +28,9 @@ public class ServerExplorerRefreshListener implements ICatalogObjectListener
     {
         if (eventType == ICatalogObjectListener.EventTypeEnumeration.ELEMENT_REFRESH)
         {
-        	IServicesManager.INSTANCE.getServerExplorerContentService().refreshNode(dmElement);
+        	IServerExplorerContentService service = IServicesManager.INSTANCE.getServerExplorerContentService();
+        	if (service != null)
+        		service.refreshNode(dmElement);
         }
     }
 }
