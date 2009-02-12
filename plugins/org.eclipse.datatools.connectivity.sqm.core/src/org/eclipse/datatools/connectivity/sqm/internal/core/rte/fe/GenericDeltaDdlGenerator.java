@@ -11,8 +11,8 @@
 package org.eclipse.datatools.connectivity.sqm.internal.core.rte.fe;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -414,7 +414,7 @@ public class GenericDeltaDdlGenerator implements DeltaDDLGenerator {
 
 
 	private Map buildChangeMap(IProgressMonitor monitor) {
-        Map changeMap = new HashMap();
+        Map changeMap = new LinkedHashMap();
 		Iterator it = changeDescriptionUtil.getChangedDataObjectsGen().iterator();
 		while(it.hasNext()) {
 			Object changedObject = it.next();
