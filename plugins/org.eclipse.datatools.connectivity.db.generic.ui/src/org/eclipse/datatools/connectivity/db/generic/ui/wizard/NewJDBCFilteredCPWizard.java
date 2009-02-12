@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.db.generic.ui.wizard;
 
-import org.eclipse.datatools.connectivity.db.generic.IDBConnectionProfileConstants;
 import org.eclipse.datatools.connectivity.internal.ui.wizards.NewCPWizardCategoryFilter;
 import org.eclipse.datatools.connectivity.ui.wizards.NewFilteredCPWizard;
 
@@ -22,7 +21,7 @@ public class NewJDBCFilteredCPWizard extends NewFilteredCPWizard {
 
 	public NewJDBCFilteredCPWizard() {
 		super(new NewCPWizardCategoryFilter(
-				IDBConnectionProfileConstants.DATABASE_CATEGORY_ID),
+			"org.eclipse.datatools.connectivity.db.category"),
 				null);
 	}
 
