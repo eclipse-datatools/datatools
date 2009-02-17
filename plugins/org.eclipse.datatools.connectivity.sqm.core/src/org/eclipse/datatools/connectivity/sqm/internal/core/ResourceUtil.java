@@ -41,10 +41,14 @@ public class ResourceUtil {
 		Iterator it = references.iterator();
 		while(it.hasNext()) {
 			EObject reference = (EObject) it.next();
-			if(reference.eResource() == null) {
-				EObject needResource = reference;
-				while(needResource.eContainer() != null) needResource = needResource.eContainer(); 
-				resource.getContents().add(needResource);
+			if (reference == null) continue;
+			if (reference.eResource() == null) {
+				if (!reference.eIsProxy())
+                {
+				    EObject needResource = reference;
+				    while(needResource.eContainer() != null) needResource = needResource.eContainer(); 
+				    resource.getContents().add(needResource);
+                }
 			}
 			if(!visited.contains(reference)) resolveDanglingReferencesInternal(resource, reference, visited);
 		}
