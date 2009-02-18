@@ -21,4 +21,4 @@ Bundle-Activator: org.eclipse.datatools.sqltools.internal.tabledataeditor.TableD
 Export-Package: org.eclipse.datatools.sqltools.internal.tabledataeditor,
  org.eclipse.datatools.sqltools.internal.tabledataeditor.query.execute,
  org.eclipse.datatools.sqltools.tabledataeditor.actions.providers
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
