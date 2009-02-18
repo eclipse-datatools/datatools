@@ -16,5 +16,5 @@ Export-Package:
  org.eclipse.datatools.modelbase.sql.xml.query,
  org.eclipse.datatools.modelbase.sql.xml.query.impl,
  org.eclipse.datatools.modelbase.sql.xml.query.util
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 
