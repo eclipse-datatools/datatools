@@ -1,5 +1,4 @@
-################################################################################
-## Copyright (c) 2005, 2008 Sybase, Inc.
+## Copyright (c) 2005, 2009 Sybase, Inc.
 ## All rights reserved. This program and the accompanying materials
 ## are made available under the terms of the Eclipse Public License v1.0
 ## which accompanies this distribution, and is available at
@@ -8,6 +7,7 @@
 ## Contributors:
 ##    Sybase, Inc. - initial API and implementation
 ##	  IBM Corporation = bug fix #203829
+##	  Actuate Corporation - bug fix #261452
 ################################################################################ 
 plugin.internal_error=Interner Fehler - org.eclipse.datatools.connectivity
 ImportProfilesDialog.btnOverwrite.text=&Vorhandene Verbindungsprofile gleichen Namens überschreiben
