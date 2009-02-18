@@ -1,3 +1,14 @@
+# Copyright (c) 2006, 2009 Actuate Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+#
+# Contributors:
+#  Actuate Corporation - initial API and implementation
+#  
+#************************************************************************
+#
 common_notInDesignSession=Pas dans une session de conception en cours.
 common_nullArgument=L'argument ne doit pas être null.
 common_missingDataSourceDesign=Conception de source de données manquante dans l'argument OdaDesignSession.
