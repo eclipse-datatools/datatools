@@ -592,14 +592,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.datatools.enablement.sybase.ase.profile.nl"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.datatools.modelbase.dbdefinition.nl"
          download-size="0"
          install-size="0"
