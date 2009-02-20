@@ -52,24 +52,10 @@
 		<echo message="cvs root: ${mapCvsRoot}"/>
 
 		<cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.releng" dest="${buildDirectory}/maps" tag="${mapVersionTag}" />	
-        <cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng"
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng"
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng"
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng"
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        <!--
-        <cvs cvsRoot="${mapCvsRoot}"
-             package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng"
-             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-        -->
+			package="org.eclipse.datatools.releng"
+			dest="${buildDirectory}/maps"
+			tag="${mapVersionTag}"
+		/>
 
 		<!--compare the map files project-->
 		<antcall target="compareMapFiles" />
@@ -89,15 +75,7 @@
 		<echo file="${mapTag.properties}">
 		lastMapTag=r17_${buildId}
 		</echo>
-		
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.releng" command="tag r17_${buildId}" />
-        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" command="tag r17_${buildId}" />
-        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" command="tag r17_${buildId}" />
-        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r17_${buildId}" />
-        <cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r17_${buildId}" />
-        <!-- 
-		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" command="tag r17_${buildId}" />
-        -->
+		<cvs dest="${buildDirectory}/maps/source" command="tag r17_${buildId}" />
 	</target>
 	
 	<!-- ===================================================================== -->
