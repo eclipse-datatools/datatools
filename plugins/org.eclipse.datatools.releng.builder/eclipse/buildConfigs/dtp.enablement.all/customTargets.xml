@@ -105,7 +105,7 @@
 	<!-- Steps to do after the fetch -->
 	<!-- ===================================================================== -->
 	<target name="postFetch">
-                <replace dir="${buildDirectory}/plugins" value="1.6.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/plugins" value="1.6.1.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
 	</target>
