@@ -2,11 +2,11 @@ wizard.title.selectColumns=Sélection des colonnes
 wizard.defaultMessage.selectFolder=Sélectionnez le dossier qui contient les fichiers plats.
 wizard.defaultMessage.selectFile=Sélectionnez le fichier et les colonnes pour le jeu de données.
 
-label.selectFolder=S&elect folder: 
+label.selectFolder=Sél&ectionner un dossier : 
 label.selectFile=Sélectionnez un f&ichier :
 label.fileFilter=Filt&re de fichier :
 label.includeTypeLine=Utilisez la deuxième ligne comme indicateur du type de &données.
-label.includeColumnNameLine = Utilisez la première ligne en tant qu'indicateur de &nom de colonne.
+label.includeColumnNameLine = Utilisez la première ligne en t&ant qu'indicateur de nom de colonne.
 label.selectCharset=Sélectionnez un &jeu de caractères :
 label.selectFlatfileStyle=Sélectionnez un &style de fichier plat :
 label.flatfileComma=CSV
@@ -14,7 +14,7 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-button.selectFolder.browse=B&rowse...
+button.selectFolder.browse=Pa&rcourir...
 
 editor.title.name=Nom
 editor.title.originalName=Nom d'origine

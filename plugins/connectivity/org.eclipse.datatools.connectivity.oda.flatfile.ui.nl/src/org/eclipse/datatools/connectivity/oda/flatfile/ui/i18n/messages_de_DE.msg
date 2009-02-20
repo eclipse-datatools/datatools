@@ -2,11 +2,11 @@ wizard.title.selectColumns=Spalten auswählen
 wizard.defaultMessage.selectFolder=Ordner mit den unstrukturierten Dateien auswählen.
 wizard.defaultMessage.selectFile=Datei und Spalten für den Datensatz auswählen.
 
-label.selectFolder=S&elect folder: 
+label.selectFolder=Ordner aus&wählen: 
 label.selectFile=Date&i auswählen:
 label.fileFilter=Dateifilte&r:
 label.includeTypeLine=Zweite Zeile als &Datentypindikator verwenden.
-label.includeColumnNameLine = Erste Zeile als Spalten&namenindikator verwenden.
+label.includeColumnNameLine = Erste Zeile &als Spaltennamenindikator verwenden.
 label.selectCharset=Zei&chensatz auswählen:
 label.selectFlatfileStyle=Flatfile-&Stil auswählen:
 label.flatfileComma=CSV
@@ -14,7 +14,7 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-button.selectFolder.browse=B&rowse...
+button.selectFolder.browse=Du&rchsuchen...
 
 editor.title.name=Name
 editor.title.originalName=Originalname

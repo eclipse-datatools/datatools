@@ -2,11 +2,11 @@ wizard.title.selectColumns=选择列
 wizard.defaultMessage.selectFolder=选择包含平面文件的文件夹。
 wizard.defaultMessage.selectFile=为数据集选择文件和列。
 
-label.selectFolder=S&elect folder: 
+label.selectFolder=选择文件夹(&E): 
 label.selectFile=选择文件(&I):
 label.fileFilter=文件筛选(&R):
 label.includeTypeLine=将第二行用作数据类型指示器(&D)。
-label.includeColumnNameLine = 将第一行用作列名称指示器(&N)。
+label.includeColumnNameLine = 将第一行用作列名称指示器(&A)。
 label.selectCharset=选择字符集(&C):
 label.selectFlatfileStyle=选择平面文件样式(&S):
 label.flatfileComma=CSV
@@ -14,7 +14,7 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-button.selectFolder.browse=B&rowse...
+button.selectFolder.browse=浏览(&R)...
 
 editor.title.name=名称
 editor.title.originalName=原始名称

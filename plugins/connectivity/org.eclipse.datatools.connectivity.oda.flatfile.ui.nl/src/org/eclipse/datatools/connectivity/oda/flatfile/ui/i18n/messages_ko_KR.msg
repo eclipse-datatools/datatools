@@ -2,11 +2,11 @@ wizard.title.selectColumns=열 선택
 wizard.defaultMessage.selectFolder=플랫 파일이 들어 있는 폴더 선택합니다.
 wizard.defaultMessage.selectFile=데이터 집합에 대한 파일 및 열 선택을 선택합니다.
 
-label.selectFolder=S&elect folder: 
+label.selectFolder=폴더 선택(&E): 
 label.selectFile=파일 선택(&I):
 label.fileFilter=파일 필터(&R):
 label.includeTypeLine=데이터 형식 표시기로 두 번째 줄을 사용(&D)
-label.includeColumnNameLine = 열 이름 표시기로 첫 번째 줄을 사용(&N)
+label.includeColumnNameLine = 열 이름 표시기로 첫 번째 줄 사용(&A)
 label.selectCharset=Charset 선택(&C):
 label.selectFlatfileStyle=플랫 파일 스타일 선택(&S):
 label.flatfileComma=CSV
@@ -14,7 +14,7 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-button.selectFolder.browse=B&rowse...
+button.selectFolder.browse=찾아보기(&R)...
 
 editor.title.name=이름
 editor.title.originalName=원본 이름

@@ -2,11 +2,11 @@ wizard.title.selectColumns=列の選択
 wizard.defaultMessage.selectFolder=フラットファイルが入っているフォルダを選択してください。
 wizard.defaultMessage.selectFile=データセットのファイルと列を選択してください。
 
-label.selectFolder=S&elect folder: 
+label.selectFolder=フォルダの選択(&E) : 
 label.selectFile=ファイルの選択(&I) :
 label.fileFilter=ファイルフィルタ(&R) :
 label.includeTypeLine=2 行目をデータ型のインジケータとして使用する(&D)
-label.includeColumnNameLine = 1 行目を列名のインジケータとして使用する(&N)
+label.includeColumnNameLine = 1 行目を列名のインジケータとして使用する(&A)
 label.selectCharset=文字セットの選択(&C) :
 label.selectFlatfileStyle=フラットファイルのスタイルの選択(&S) :
 label.flatfileComma=CSV
@@ -14,7 +14,7 @@ label.flatfileSemicolon=SSV
 label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
-button.selectFolder.browse=B&rowse...
+button.selectFolder.browse=参照(&R)...
 
 editor.title.name=名前
 editor.title.originalName=元の名前
