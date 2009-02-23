@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright 2001, 2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,7 @@ import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.datatypes.DataType;
+import org.eclipse.datatools.modelbase.sql.datatypes.DistinctUserDefinedType;
 import org.eclipse.datatools.modelbase.sql.datatypes.UserDefinedType;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
@@ -271,6 +272,10 @@ public class DataCorePlugin extends Plugin
 	    	String vendor = db.getVendor();
 	    	String version = db.getVersion();	    	
 	    	String dataType = sqlCol.getDataType().getName();
+	    	String distinctUDTColType = "";//added for Distinct user-defined types
+	    	
+	    	if(type instanceof DistinctUserDefinedType)
+	    		distinctUDTColType="DISTINCT";
 	    	
 	    	ColumnDataAccessorExtension element = null;
 	    	int score = -1;
@@ -279,6 +284,11 @@ public class DataCorePlugin extends Plugin
 	    	while (it.hasNext()) {
 	    		ColumnDataAccessorExtension curElement = (ColumnDataAccessorExtension)it.next();
 				if ( curElement.matches(vendor, version, dataType) && 
+					  (element==null || curElement.getScore()>element.getScore()) ) {
+					element = curElement;
+					score = curElement.getScore();
+				}// DB2, Informix and Sybase have distinct user defined type which is not returned by sqlCol.getDataType();
+				else if ( curElement.matches(vendor, version, distinctUDTColType) && 
 					  (element==null || curElement.getScore()>element.getScore()) ) {
 					element = curElement;
 					score = curElement.getScore();
@@ -297,7 +307,7 @@ public class DataCorePlugin extends Plugin
     	acc.initialize(sqlCol);
 		return acc;
     }
-    
+  
 }
 
 class ColumnDataAccessorExtension
