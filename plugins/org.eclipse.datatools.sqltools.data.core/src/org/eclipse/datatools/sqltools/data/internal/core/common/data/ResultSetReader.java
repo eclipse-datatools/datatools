@@ -100,6 +100,11 @@ public class ResultSetReader {
 	        return readCharacterString( ((Clob)o).getCharacterStream(), lobLimit );
 	    else if (o instanceof BigDecimal)
 	    	return toNormalString((BigDecimal)o);
+	    else if (o instanceof String)
+	    	// The presence of a null character in the result string causes the string to truncate. 
+	    	// Replace it with an alternate character.  \uFFFD is the Unicode Replacement 
+	    	// Character, used to replace a character whose value is unknown or unrepresentable.
+	    	return ((String) o).replaceAll("\u0000", "\uFFFD");
 	    return o;
 
     }

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 Sybase, Inc.
+ * Copyright 2005, 2009 Sybase, Inc.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -120,7 +120,10 @@ public class Parameter implements Serializable
      */
     public String getParamValue()
     {
-        return _paramValue;
+    	// The presence of a null character in the parameter string causes the string to truncate. 
+    	// Replace it with an alternate character.  \uFFFD is the Unicode Replacement 
+    	// Character, used to replace a character whose value is unknown or unrepresentable.
+        return _paramValue.replaceAll("\u0000", "\uFFFD"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 
     /**
@@ -129,6 +132,6 @@ public class Parameter implements Serializable
      */
     public String getParamOutValue()
     {
-        return _paramOutValue;
+        return _paramOutValue.replaceAll("\u0000", "\uFFFD"); //$NON-NLS-1$ //$NON-NLS-2$
     }
 }
