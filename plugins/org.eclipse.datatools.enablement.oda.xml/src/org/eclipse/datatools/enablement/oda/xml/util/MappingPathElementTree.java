@@ -486,8 +486,28 @@ public class MappingPathElementTree
 		}
 		else
 		{
-			//just recurse
-			return getPossibleAncestors( node.getParent( ), upLevel - 1 );
+			if ( node instanceof AnyNumberElementPlaceholderNode )
+			{
+				Set result = new HashSet( );
+				for ( int i=0; i<upLevel; i++)
+				{
+					//node itself represents a sequence of elements, whose count is i 
+					result.addAll( getPossibleAncestors( node.getParent( ), upLevel - i ) );
+				}
+				
+				//node itself represents a sequence of elements whose count is upLevel
+				result.add(  node.getParent( ) );
+				
+				//node itself reprents a sequence of elements whose count is greater than upLevel
+				result.add( node );
+				
+				return result;
+			} 
+			else
+			{
+				//just recurse
+				return getPossibleAncestors( node.getParent( ), upLevel - 1 );
+			}
 		}
 	}
 
