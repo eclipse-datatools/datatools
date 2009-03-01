@@ -51,12 +51,13 @@
                nativeDataTypeCode="16"
                odaScalarDataType="Boolean"/>
       </dataSet>
+
    </extension>
      <extension
-           id="filterExtension"
-           point="org.eclipse.datatools.connectivity.oda.filterExpressions">
+           id="dynamicResultSetExtension"
+           point="org.eclipse.datatools.connectivity.oda.dynamicResultSet">
         <contributor
-              testerClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.filter.impl.FilterExprTester">
+              testerClass="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.ExpressionTester">
          <supportedDataSetType
                odaDataSetId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.dataSet"
                odaDataSourceId="org.eclipse.datatools.connectivity.oda.consumer.testdriver">
@@ -65,25 +66,26 @@
                odaDataSetId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.jdbc.dbprofile.sqbDataSet"
                odaDataSourceId="org.eclipse.datatools.connectivity.oda.consumer.testdriver.jdbc.dbprofile">
          </supportedDataSetType>
-         <supportedOdaExpression
+         <supportedOdaFilterExpression
                name="AndExpression">
-         </supportedOdaExpression>
-         <supportedOdaExpression
+         </supportedOdaFilterExpression>
+         <supportedOdaFilterExpression
                name="OrExpression">
-         </supportedOdaExpression>
-         <supportedOdaExpression
+         </supportedOdaFilterExpression>
+         <supportedOdaFilterExpression
                name="NotExpression">
-         </supportedOdaExpression>
+         </supportedOdaFilterExpression>
         </contributor>
-        <customExpression
+        <filterExpressionTypes>
+         <filterType
               displayName="Equal to"
               id="0"
               isNegatable="true"
               isOptionable="true"
               maxArguments="*"
               minArguments="1">
-        </customExpression>
-        <customExpression
+        </filterType>
+        <filterType
               displayName="Between"
               id="1001"
               isNegatable="true"
@@ -114,24 +116,24 @@
                	  odaScalarDataType="Timestamp">
          	  </variableOdaDataTypeRestriction>
            </variableRestriction>
-        </customExpression>
-        <customExpression
+        </filterType>
+        <filterType
               displayName="In"
               id="1003"
               isNegatable="true"
               isOptionable="true"
               maxArguments="*"
               minArguments="1">
-        </customExpression>
-        <customExpression
+        </filterType>
+        <filterType
               displayName="IsNull"
               id="1005"
               isNegatable="true"
               isOptionable="false"
               maxArguments="0"
               minArguments="0">
-        </customExpression>
-        <customExpression
+        </filterType>
+        <filterType
               displayName="IsInstanceOf"
               id="instanceOf"
               isNegatable="true"
@@ -144,7 +146,87 @@
                     class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.OrderItem">
               </variableClassRestriction>
            </variableRestriction>
-        </customExpression>
+        </filterType>
+       </filterExpressionTypes>
+       <aggregateExpressionTypes>
+        <aggregateType
+              canIgnoreDuplicate="false"
+              canIgnoreNull="true"
+              displayName="Minimum"
+              id="MIN">
+           <variableRestriction
+                 variableType="ResultSetColumn">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Date">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </aggregateType>
+        <aggregateType
+              canIgnoreDuplicate="true"
+              canIgnoreNull="true"
+              id="COUNT"
+              minInputVariables="0">
+        </aggregateType>
+        <aggregateType
+              canIgnoreDuplicate="false"
+              canIgnoreNull="true"
+              displayName="Average"
+              id="AVG">
+           <variableRestriction
+                 variableType="ResultSetColumn">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </aggregateType>
+        <aggregateType
+              canIgnoreDuplicate="false"
+              canIgnoreNull="true"
+              displayName="Weighted Average"
+              id="WtAvg"
+              maxInputVariables="2"
+              minInputVariables="2">
+           <variableRestriction
+                 variableType="ResultSetColumn">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Integer">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Double">
+              </variableOdaDataTypeRestriction>
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="Decimal">
+              </variableOdaDataTypeRestriction>
+           </variableRestriction>
+        </aggregateType>
+        <aggregateType
+              canIgnoreDuplicate="true"
+              canIgnoreNull="true"
+              displayName="Standard Deviation"
+              id="StdDev">
+           <variableRestriction
+                 variableType="InstanceOf">
+              <variableClassRestriction
+                    class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.Mortgage">
+              </variableClassRestriction>
+           </variableRestriction>
+        </aggregateType>
+       </aggregateExpressionTypes>
      </extension>
    
 </plugin>

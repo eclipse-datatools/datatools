@@ -24,7 +24,6 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
-import org.eclipse.datatools.connectivity.oda.filter.Expression;
 
 /**
  * Default implementation of IQuery 
@@ -34,8 +33,8 @@ import org.eclipse.datatools.connectivity.oda.filter.Expression;
 public class SimpleQuery implements IQuery
 {
 	private int m_maxRows;
-
-    /*
+	
+	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#prepare(java.lang.String)
 	 */
 	public void prepare( String queryText ) throws OdaException
@@ -295,24 +294,4 @@ public class SimpleQuery implements IQuery
 		// only applies to sorting
 		return null;
 	}
-
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.IQuery#setFilterSpec(org.eclipse.datatools.connectivity.oda.filter.Expression)
-     */
-    public void setFilterSpec( Expression filterExpr ) throws OdaException
-    {
-        // TODO data source dependent
-        throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
-        
-    }
-	   
-    /* (non-Javadoc)
-     * @see org.eclipse.datatools.connectivity.oda.IQuery#getFilterSpec()
-     */
-    public Expression getFilterSpec()
-    {
-        // TODO data source dependent
-        return null;
-    }
-
 }

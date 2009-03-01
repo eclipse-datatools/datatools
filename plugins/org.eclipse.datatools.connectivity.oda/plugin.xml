@@ -14,11 +14,11 @@
  *  
  *************************************************************************
  *
- * $Id: plugin.xml,v 1.13 2006/03/10 00:43:15 lchan Exp $
+ * $Id: plugin.xml,v 1.14 2009/01/30 00:24:03 lchan Exp $
  */
 -->
 
 <plugin>
      <extension-point id="dataSource" name="Open Data Access Design and Run-time Extension" schema="schema/datasource.exsd"/>
-     <extension-point id="filterExpressions" name="ODA Filter Expressions" schema="schema/filterExpressions.exsd"/>
+     <extension-point id="dynamicResultSet" name="ODA Dynamic Result Set" schema="schema/dynamicResultSet.exsd"/>
 </plugin>

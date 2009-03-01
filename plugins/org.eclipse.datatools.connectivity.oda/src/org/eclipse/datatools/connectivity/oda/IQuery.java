@@ -19,7 +19,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-//import org.eclipse.datatools.connectivity.oda.filter.Expression;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * The base query interface to  
@@ -290,6 +290,24 @@ public interface IQuery
     public void setBoolean(int parameterId, boolean value ) throws OdaException;
     
     /**
+     * Sets the value of the designated parameter with the given object.
+     * @param parameterName     name of the parameter.
+     * @param value             an {@link Object} holding the input parameter value
+     * @throws OdaException     if data source error occurs
+     * @since 3.2
+     */
+//    void setObject( String parameterName, Object value ) throws OdaException;
+    
+    /**
+     * Sets the value of the designated parameter with the given object.
+     * @param parameterId       id of the parameter (1-based).
+     * @param value             an {@link Object} holding the input parameter value
+     * @throws OdaException     if data source error occurs
+     * @since 3.2
+     */
+//    void setObject(int parameterId, Object value ) throws OdaException;
+    
+    /**
      * Sets the designated parameter to a null value.
      * @param parameterName     name of the parameter.
      * @throws OdaException     if data source error occurs
@@ -351,41 +369,52 @@ public interface IQuery
 	 * @throws OdaException		if data source error occurs
 	 */
 	public SortSpec getSortSpec() throws OdaException;
+		
+	/**
+     * <strong>EXPERIMENTAL</strong>.
+     * Specifies the query characteristics to apply when this is prepared and executed.
+     * It takes effect only if specified prior to this preparing a query text
+     * at {@link #prepare(String)}.
+     * <p>An optional method.  Driver implementation that does not support this operation
+     * should throw an UnsupportedOperationException.
+	 * @param querySpec    specification of characteristics to apply when preparing and executing this
+	 * @throws OdaException        if data source error occurs
+     * @throws UnsupportedOperationException    if this operation is not supported
+     * @since 3.2 (DTP 1.7)
+	 */
+//	void setSpecification( QuerySpecification querySpec ) 
+//	    throws OdaException, UnsupportedOperationException;
 	
 	/**
      * <strong>EXPERIMENTAL</strong>.
-	 * Sets the filter specification to use in preparing this query.
-	 * <b>Note:</b> This method must be called before {@link #prepare(String)}.
-	 * @param filterExpr	a filter {@link Expression} with associated variable 
-	 *             and argument values, as appropriate
-     * @throws OdaException if data source error occurs
-     * @throws UnsupportedOperationException    
-     *                      if the specified filter expression includes element(s) that are not supported
-	 * @since 3.2 (DTP 1.7)
-	 */
-//	public void setFilterSpec( Expression filterExpr ) throws OdaException, UnsupportedOperationException;
-
-	/**
-     * <strong>EXPERIMENTAL</strong>.
-	 * Gets the current effective filter specification of this query.
-	 * It may have been specified explicitly by {@link #setFilterSpec(Expression)}, or 
-	 * implicitly based on pre-defined filter described by the query text 
-	 * prepared in {@link #prepare(String)}. 
-	 * @return the currently effective filter specification
+     * Gets the current specification of characteristics to apply when preparing and executing this.
+	 * @return the current {@link QuerySpecification}, or null if none is available
+     * @throws OdaException     if data source error occurs
      * @since 3.2 (DTP 1.7)
 	 */
-//	public Expression getFilterSpec();
+//	QuerySpecification getSpecification();
 	
 	/**
      * <strong>EXPERIMENTAL</strong>.
      * Gets the current effective query text prepared by {@link #prepare(String)}.
-     * The effective query text may have been adjusted to include 
-     * this IQuery's specification, such as the filter and sort specifications.
+     * The effective query text may have been adjusted based on its
+     * {@link QuerySpecification}, such as result set filtering and projection specifications.
      * @return  the current effective query text,
      *          or null if no query text is effective or available 
      * @since 3.2 (DTP 1.7)
      */
-//	public String getEffectiveQueryText();
+//	String getEffectiveQueryText();
+	
+	/**
+	 * Cancels this query to abort its execution if supported by the underlying data source. 
+	 * This method can be used by one thread to cancel a query that is being executed by another thread.
+     * <p>An optional method.  Driver implementation that does not support this operation
+     * should throw an UnsupportedOperationException.
+     * @throws OdaException     if data source error occurs or this method is called at an invalid state
+     * @throws UnsupportedOperationException    if this operation is not supported
+     * @since 3.2 (DTP 1.7)
+	 */
+//	void cancel() throws OdaException, UnsupportedOperationException;
 	
 }
 

@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.datatools.connectivity.oda" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.datatools.connectivity.oda" id="dynamicResultSet" name="ODA Dynamic Result Set"/>
+      </appinfo>
+      <documentation>
+         [Experimental API] This extension point is for declaring support of dynamic operations on a result set of an ODA data set extension.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="contributor"/>
+            <element ref="filterExpressionTypes" minOccurs="0" maxOccurs="1"/>
+            <element ref="aggregateExpressionTypes" minOccurs="0" maxOccurs="1"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="contributor">
+      <annotation>
+         <documentation>
+            Defines the scope and capabilities of this extension&apos;s contributor.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="supportedDataSetType" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="supportedOdaFilterExpression" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="testerClass" type="string">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a Java concrete class that implements the tester to validate all its contributed expressions. The class must be public and implement the &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.ITester&lt;/i&gt; interface with a public 0-argument constructor.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.oda.spec.ITester"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="filterExpressionTypes">
+      <annotation>
+         <documentation>
+            A grouping of one or more filterType elements, defining the types of filter expression contributed by this extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="filterType" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="filterType">
+      <annotation>
+         <documentation>
+            Defines a type of filter expression contributed by this extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="variableRestriction" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id that uniquely identifies this type of filter expression within the extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="displayName" type="string">
+            <annotation>
+               <documentation>
+                  A translateable name that will be used to refer to this particular expression type in dialogs presented to the user. Default to the expression id if no name is specified.  The name should be unique within the extension.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A brief translateable description of this type of filter expression type.  It may be used to describe this particular expression in dialogs presented to the user.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a concrete implementation class of this custom filter expression. 
+&lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="minArguments" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The minimum number of arguments required by this expression type.  The value must be zero or higher integer value.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="maxArguments" type="string" use="default" value="*">
+            <annotation>
+               <documentation>
+                  The maximum number of arguments required by this expression type.  It must be an integer value greater or equal to the &lt;i&gt;minArgments&lt;/i&gt; value, or &quot;*&quot; for unbounded, i.e. no upper limit on the maximum.  The default value is  &quot;*&quot; for unbounded.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isNegatable" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether the expression type can be negated, i.e. applied with a NotExpression. The default value is false.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="isOptionable" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether the custom expression type can be optional and skipped in a filter specification if none of its expected argument values are provided.  The default value is false.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="aggregateExpressionTypes">
+      <annotation>
+         <documentation>
+            A grouping of one or more aggregateType elements, defining the types of aggregate expression contributed by this extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="aggregateType" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+      </complexType>
+   </element>
+
+   <element name="aggregateType">
+      <annotation>
+         <documentation>
+            Defines a type of aggregate expression contributed by this extension.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="variableRestriction" minOccurs="0" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id that uniquely identifies this aggregate type within the extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="displayName" type="string">
+            <annotation>
+               <documentation>
+                  A translateable name that will be used to refer to this particular aggregate expression type in dialogs presented to the user. Default to the expression id if no name is specified.  The name should be unique within the extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A brief translateable description of this type of aggregate.  It may be used to describe this particular aggregate type in dialogs presented to the user.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="default" value="org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate">
+            <annotation>
+               <documentation>
+                  The fully qualified name of a concrete implementation class of this custom aggregate type 
+&lt;br&gt;The class must either be the ODA framework&apos;s base class &lt;i&gt;org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate&lt;/i&gt; or extends from it.  An extended class must be public with a public 0-argument constructor.  Defaults to the base class.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="minInputVariables" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The minimum number of input source variables required by this aggregate expression type.  The value must be zero or higher integer value.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="maxInputVariables" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  The maximum number of input source variables required by this aggregate expression type.  It must be an integer value greater or equal to the &lt;i&gt;minInputVariables&lt;/i&gt; value, or &quot;*&quot; for unbounded, i.e. no upper limit on the maximum.  The default value is  &quot;1&quot;.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="canIgnoreDuplicate" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether the aggregate type is capable of ignoring duplicate values of its input source variable. The default value is false.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="canIgnoreNull" type="boolean" use="default" value="false">
+            <annotation>
+               <documentation>
+                  Indicates whether the aggregate type is capable of ignoring null values of its input source variable. The default value is false.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="variableRestriction">
+      <annotation>
+         <documentation>
+            Restriction on the type of variables that can be applied with the expression.
+The default type is applied as the restriction, if none is specified in an expression element.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <choice>
+               <element ref="variableOdaDataTypeRestriction"/>
+               <element ref="variableClassRestriction"/>
+            </choice>
+         </sequence>
+         <attribute name="variableType" use="default" value="ResultSetColumn">
+            <annotation>
+               <documentation>
+                  The type of variables that can be applied with the expression.
+Further restriction on a type of variable may be defined by its corresponding type-specific variable restriction element. No restrictions exist if none is specified.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="ResultSetColumn">
+                  </enumeration>
+                  <enumeration value="InstanceOf">
+                  </enumeration>
+                  <enumeration value="QueryExpression">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="variableOdaDataTypeRestriction">
+      <annotation>
+         <documentation>
+            The restriction on the ODA data types of a variable that can be applied with this expression.  For example, a string pattern matching expression would restrict its use with a string-typed variable.
+An expression has no data type restriction if none is specified.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="odaScalarDataType" use="required">
+            <annotation>
+               <documentation>
+                  A compatible data type of the target variable.  It is used to restrict the data type of variables that can be applied with this expression type.   For example, a pattern matching expression may only be applicable to a variable of the String data type.
+It must be an ODA scalar data type supported by the ODA data source provider, as defined in its datasource extension&apos;s dataSet.dataTypeMapping.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="String">
+                  </enumeration>
+                  <enumeration value="Integer">
+                  </enumeration>
+                  <enumeration value="Double">
+                  </enumeration>
+                  <enumeration value="Decimal">
+                  </enumeration>
+                  <enumeration value="Date">
+                  </enumeration>
+                  <enumeration value="Time">
+                  </enumeration>
+                  <enumeration value="Timestamp">
+                  </enumeration>
+                  <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="Blob">
+                  </enumeration>
+                  <enumeration value="Clob">
+                  </enumeration>
+                  <enumeration value="UserDefinedObject">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="variableClassRestriction">
+      <annotation>
+         <documentation>
+            The restriction on the type of instance variables that can be applied with this expression.  
+An expression has no restriction on the type of instance variable if none is specified.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The concrete class name of an instance variable.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="supportedDataSetType">
+      <annotation>
+         <documentation>
+            The ODA data set type to which this extension contributes filtering support.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="odaDataSourceId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A fully qualified id that uniquely identifies the ODA data source type to which this extension contributes filtering support.  
+Its value must match the &lt;i&gt;dataSource.id&lt;/i&gt; attribute value defined in the  &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension of the supported ODA runtime driver.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="odaDataSetId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  An id that uniquely identifies the ODA data set type within the supported data source type, whose id is specified in the odaDataSourceId attribute.  
+Its value must match the &lt;i&gt;dataSet.id&lt;/i&gt; attribute value defined within the &lt;i&gt;org.eclipse.datatools.connectivity.oda.dataSource&lt;/i&gt; extension of the supported ODA runtime driver.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="supportedOdaFilterExpression">
+      <annotation>
+         <documentation>
+            The type of ODA filter expression supported by the extension.  It must be one of the concrete filter expressions defined by the ODA filter framework.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="name" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="AndExpression">
+                  </enumeration>
+                  <enumeration value="OrExpression">
+                  </enumeration>
+                  <enumeration value="NotExpression">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         3.2.0 (DTP 1.7)
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         See the Java interfaces and classes in the org.eclipse.datatools.connectivity.oda.spec* packages.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         A sample implementation of this extension point can be found in the
+&lt;i&gt;org.eclipse.datatools.connectivity.oda.consumer.testdriver&lt;/i&gt; project 
+in DTP CVS under the org.eclipse.datatools.connectivity/tests/ folder.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2009 Actuate Corporation.
+All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>
