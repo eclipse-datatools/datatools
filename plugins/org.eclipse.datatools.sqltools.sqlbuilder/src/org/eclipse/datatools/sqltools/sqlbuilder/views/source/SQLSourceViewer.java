@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -628,7 +628,8 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
             if (isTextChanged() == true && isParseRequired) {
                 String currentSQL = this.getText();
                 reparseRunning = true;
-                String name = sqlDomainModel.getSQLStatement().getName();
+                QueryStatement previousStmt = sqlDomainModel.getSQLStatement();
+                String name = previousStmt.getName();
                 QueryStatement parsedStmt = null;
                 try {
                     parsedStmt = sqlDomainModel.parse(currentSQL, errorList);
@@ -656,6 +657,19 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
                     }
                 }
                 if (parsedStmt != null && errorList.size()==0) {
+                    // Determine if the statement type has changed.
+                    int previousStmtType = StatementHelper.getStatementType(previousStmt);
+                    int newStmtType = StatementHelper.getStatementType(parsedStmt);
+                    if (newStmtType != previousStmtType) {
+                        // When the statement type has changed, reset the query model
+                        // to the template statement of the new type.  This will cause
+                        // the UI to reconfigure for the new statement type.
+                        if (sqlbuilder != null) {
+                            sqlbuilder.changeStatementType(newStmtType); 
+                        }
+                    }
+                    // Indicate that the parse succeeded and replace the current
+                    // statement in the domain model with the new parsed statement. 
                     isParseSuccess = true;
                     parsedStmt.setName(name);
                     sqlDomainModel.replaceStatementContents(parsedStmt);
