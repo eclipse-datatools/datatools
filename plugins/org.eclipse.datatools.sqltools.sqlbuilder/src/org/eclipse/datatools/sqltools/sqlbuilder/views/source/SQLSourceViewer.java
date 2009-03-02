@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelectStatement;
 import org.eclipse.datatools.modelbase.sql.query.QueryStatement;
@@ -29,8 +28,8 @@ import org.eclipse.datatools.sqltools.parsers.sql.SQLParserInternalException;
 import org.eclipse.datatools.sqltools.parsers.sql.query.postparse.TableReferenceResolver;
 import org.eclipse.datatools.sqltools.sqlbuilder.IContentChangeListener;
 import org.eclipse.datatools.sqltools.sqlbuilder.Messages;
-import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilder;
+import org.eclipse.datatools.sqltools.sqlbuilder.SQLBuilderPlugin;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.SQLBuilderActionBarContributor;
 import org.eclipse.datatools.sqltools.sqlbuilder.model.SQLDomainModel;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
@@ -71,7 +70,6 @@ import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -656,24 +654,31 @@ public class SQLSourceViewer extends ContentViewer implements ISelectionChangedL
                     
                     }
                 }
+                
+                // Statement parsed OK.
                 if (parsedStmt != null && errorList.size()==0) {
-                    // Determine if the statement type has changed.
+                    
+                    // Make sure the new statement type is supported by the SQB.
                     int previousStmtType = StatementHelper.getStatementType(previousStmt);
                     int newStmtType = StatementHelper.getStatementType(parsedStmt);
-                    if (newStmtType != previousStmtType) {
-                        // When the statement type has changed, reset the query model
-                        // to the template statement of the new type.  This will cause
-                        // the UI to reconfigure for the new statement type.
-                        if (sqlbuilder != null) {
-                            sqlbuilder.changeStatementType(newStmtType); 
+                    if (sqlDomainModel.getIsStatementTypeSupported(newStmtType) == true) {
+                        // Determine if the statement type has changed.
+                        if (newStmtType != previousStmtType) {
+                            // When the statement type has changed, reset the query model
+                            // to the template statement of the new type.  This will cause
+                            // the UI to reconfigure for the new statement type.
+                            if (sqlbuilder != null) {
+                                sqlbuilder.changeStatementType(newStmtType); 
+                            }
                         }
+
+                        // Indicate that the parse succeeded and replace the current
+                        // statement in the domain model with the new parsed statement. 
+                        isParseSuccess = true;
+                        parsedStmt.setName(name);
+                        sqlDomainModel.replaceStatementContents(parsedStmt);
+                        refreshSource();
                     }
-                    // Indicate that the parse succeeded and replace the current
-                    // statement in the domain model with the new parsed statement. 
-                    isParseSuccess = true;
-                    parsedStmt.setName(name);
-                    sqlDomainModel.replaceStatementContents(parsedStmt);
-                    refreshSource();
                 }
                 // ignore the parse fail for template SQL 
                 else if (StatementHelper.isTemplateSQL(currentSQL)) {

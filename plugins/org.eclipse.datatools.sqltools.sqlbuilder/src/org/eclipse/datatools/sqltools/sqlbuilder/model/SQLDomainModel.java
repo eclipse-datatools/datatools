@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -1302,5 +1302,31 @@ public class SQLDomainModel {
 
 	public void setInitialSource(String strSQL) {
 		this.initialSource = strSQL;
+	}
+	
+	/**
+	 * Gets whether or not the given SQL statement type is supported in the SQL Query Builder.
+	 * See the list of statement type constants defined in the {@link StatementHelper} class.
+	 * 
+	 * @param stmtType the statement type to check
+	 * @return true when the statement type is supported, otherwise false
+	 */
+	public boolean getIsStatementTypeSupported(int stmtType) {
+	    boolean isSupported = false;
+	    
+	    switch (stmtType) {
+        case StatementHelper.STATEMENT_TYPE_SELECT:
+        case StatementHelper.STATEMENT_TYPE_FULLSELECT:
+        case StatementHelper.STATEMENT_TYPE_WITH:
+        case StatementHelper.STATEMENT_TYPE_INSERT:
+        case StatementHelper.STATEMENT_TYPE_UPDATE:
+        case StatementHelper.STATEMENT_TYPE_DELETE:
+            isSupported = true;
+            break;
+        default:
+            // do nothing
+        }
+	    
+	    return isSupported;
 	}
 }
