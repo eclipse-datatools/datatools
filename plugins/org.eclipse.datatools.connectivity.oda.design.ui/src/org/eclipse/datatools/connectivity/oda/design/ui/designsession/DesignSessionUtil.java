@@ -43,9 +43,9 @@ import org.eclipse.datatools.connectivity.oda.design.internal.designsession.Desi
 import org.eclipse.datatools.connectivity.oda.design.internal.designsession.DesignerLogger;
 import org.eclipse.datatools.connectivity.oda.design.ui.manifest.UIManifestExplorer;
 import org.eclipse.datatools.connectivity.oda.design.ui.nls.Messages;
-import org.eclipse.datatools.connectivity.oda.filter.manifest.ExpressionDefinition;
-import org.eclipse.datatools.connectivity.oda.filter.manifest.FilterExpressionExplorer;
 import org.eclipse.datatools.connectivity.oda.profile.OdaProfileExplorer;
+import org.eclipse.datatools.connectivity.oda.spec.manifest.FilterExpressionDefinition;
+import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 
 /**
  *  An utility class to help an ODA host designer or
@@ -698,11 +698,11 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * <strong>EXPERIMENTAL</strong>.
      * An utility method to look up the definition of the specified custom filter expression.
      * @param customExpr    a custom filter expression specified in a data set design's filter specification 
-     * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
+     * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
     @SuppressWarnings("restriction")
-    public static ExpressionDefinition getExtensionCustomDefinition( CustomExpression customExpr )
+    public static FilterExpressionDefinition getExtensionCustomDefinition( CustomExpression customExpr )
     {
         if( customExpr == null )
             return null;
@@ -715,15 +715,15 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * declared by the specified extension.
      * @param extensionId   unique id of an extension that implements the filterExpressions extension point
      * @param exprId    id of a custom filter expression 
-     * @return  an instance of {@link ExpressionDefinition}, or null if no matching definition is found
+     * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
     @SuppressWarnings("restriction")
-    public static ExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
+    public static FilterExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
     {
         try
         {
-            return FilterExpressionExplorer.getInstance().getExtensionDefinition( extensionId, exprId );
+            return ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( extensionId, exprId );
         }
         catch( IllegalArgumentException ex )
         {
