@@ -24,7 +24,7 @@ import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
-import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
@@ -52,6 +52,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplo
  *  an ODA driver's customized designer to manipulate
  *  ODA Design API objects during an ODA design session.
  */
+@SuppressWarnings("restriction")
 public class DesignSessionUtil extends DesignSessionUtilBase
 {
     // logging variable
@@ -696,13 +697,12 @@ public class DesignSessionUtil extends DesignSessionUtilBase
     
     /**
      * <strong>EXPERIMENTAL</strong>.
-     * An utility method to look up the definition of the specified custom filter expression.
+     * An utility method to look up the definition of the specified custom filter expression design.
      * @param customExpr    a custom filter expression specified in a data set design's filter specification 
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
-    @SuppressWarnings("restriction")
-    public static FilterExpressionDefinition getExtensionCustomDefinition( CustomExpression customExpr )
+    public static FilterExpressionDefinition getExtensionCustomDefinition( CustomFilterExpression customExpr )
     {
         if( customExpr == null )
             return null;
@@ -718,7 +718,6 @@ public class DesignSessionUtil extends DesignSessionUtilBase
      * @return  an instance of {@link FilterExpressionDefinition}, or null if no matching definition is found
      * @since DTP 1.7
      */
-    @SuppressWarnings("restriction")
     public static FilterExpressionDefinition getExtensionCustomDefinition( String extensionId, String exprId )
     {
         try

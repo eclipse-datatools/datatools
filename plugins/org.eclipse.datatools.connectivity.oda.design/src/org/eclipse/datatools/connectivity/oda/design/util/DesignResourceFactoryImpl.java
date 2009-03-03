@@ -1,6 +1,6 @@
 /**
  *************************************************************************
- * Copyright (c) 2005, 2007 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignResourceFactoryImpl.java,v 1.1 2005/12/29 04:17:55 lchan Exp $
+ * $Id: DesignResourceFactoryImpl.java,v 1.2 2007/04/11 02:59:53 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -34,7 +34,7 @@ public class DesignResourceFactoryImpl extends ResourceFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final String copyright = "Copyright (c) 2005, 2007 Actuate Corporation"; //$NON-NLS-1$
+    public static final String copyright = "Copyright (c) 2005, 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
      * Creates an instance of the resource factory.
@@ -53,6 +53,7 @@ public class DesignResourceFactoryImpl extends ResourceFactoryImpl
      * <!-- end-user-doc -->
      * @generated
      */
+    @Override
     public Resource createResource( URI uri )
     {
         XMLResource result = new DesignResourceImpl( uri );

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.4 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.5 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -126,9 +126,9 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         }
 
         @Override
-        public Adapter caseCustomExpression( CustomExpression object )
+        public Adapter caseCustomFilterExpression( CustomFilterExpression object )
         {
-            return createCustomExpressionAdapter();
+            return createCustomFilterExpressionAdapter();
         }
 
         @Override
@@ -204,9 +204,10 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         }
 
         @Override
-        public Adapter caseDynamicExpression( DynamicExpression object )
+        public Adapter caseDynamicFilterExpression(
+                DynamicFilterExpression object )
         {
-            return createDynamicExpressionAdapter();
+            return createDynamicFilterExpressionAdapter();
         }
 
         @Override
@@ -216,36 +217,34 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         }
 
         @Override
+        public Adapter caseExpressionArguments( ExpressionArguments object )
+        {
+            return createExpressionArgumentsAdapter();
+        }
+
+        @Override
+        public Adapter caseExpressionParameterDefinition(
+                ExpressionParameterDefinition object )
+        {
+            return createExpressionParameterDefinitionAdapter();
+        }
+
+        @Override
+        public Adapter caseExpressionParameters( ExpressionParameters object )
+        {
+            return createExpressionParametersAdapter();
+        }
+
+        @Override
+        public Adapter caseExpressionVariable( ExpressionVariable object )
+        {
+            return createExpressionVariableAdapter();
+        }
+
+        @Override
         public Adapter caseFilterExpression( FilterExpression object )
         {
             return createFilterExpressionAdapter();
-        }
-
-        @Override
-        public Adapter caseFilterExpressionArguments(
-                FilterExpressionArguments object )
-        {
-            return createFilterExpressionArgumentsAdapter();
-        }
-
-        @Override
-        public Adapter caseFilterExpressionVariable(
-                FilterExpressionVariable object )
-        {
-            return createFilterExpressionVariableAdapter();
-        }
-
-        @Override
-        public Adapter caseFilterParameterDefinition(
-                FilterParameterDefinition object )
-        {
-            return createFilterParameterDefinitionAdapter();
-        }
-
-        @Override
-        public Adapter caseFilterParameters( FilterParameters object )
-        {
-            return createFilterParametersAdapter();
         }
 
         @Override
@@ -492,16 +491,16 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression <em>Custom Expression</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression <em>Custom Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression
      * @generated
      */
-    public Adapter createCustomExpressionAdapter()
+    public Adapter createCustomFilterExpressionAdapter()
     {
         return null;
     }
@@ -687,16 +686,16 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression <em>Dynamic Expression</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression <em>Dynamic Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression
      * @generated
      */
-    public Adapter createDynamicExpressionAdapter()
+    public Adapter createDynamicFilterExpressionAdapter()
     {
         return null;
     }
@@ -717,6 +716,66 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionArguments <em>Expression Arguments</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionArguments
+     * @generated
+     */
+    public Adapter createExpressionArgumentsAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition <em>Expression Parameter Definition</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition
+     * @generated
+     */
+    public Adapter createExpressionParameterDefinitionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameters <em>Expression Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameters
+     * @generated
+     */
+    public Adapter createExpressionParametersAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariable <em>Expression Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariable
+     * @generated
+     */
+    public Adapter createExpressionVariableAdapter()
+    {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression <em>Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -727,66 +786,6 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createFilterExpressionAdapter()
-    {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments <em>Filter Expression Arguments</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments
-     * @generated
-     */
-    public Adapter createFilterExpressionArgumentsAdapter()
-    {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable <em>Filter Expression Variable</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable
-     * @generated
-     */
-    public Adapter createFilterExpressionVariableAdapter()
-    {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition <em>Filter Parameter Definition</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition
-     * @generated
-     */
-    public Adapter createFilterParameterDefinitionAdapter()
-    {
-        return null;
-    }
-
-    /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters <em>Filter Parameters</em>}'.
-     * <!-- begin-user-doc -->
-     * This default implementation returns null so that we can easily ignore cases;
-     * it's useful to ignore a case when inheritance will catch all the cases anyway.
-     * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters
-     * @generated
-     */
-    public Adapter createFilterParametersAdapter()
     {
         return null;
     }

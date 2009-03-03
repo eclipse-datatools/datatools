@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignSwitch.java,v 1.5 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DesignSwitch.java,v 1.6 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -156,12 +156,12 @@ public class DesignSwitch<T>
                 result = defaultCase( theEObject );
             return result;
         }
-        case DesignPackage.CUSTOM_EXPRESSION:
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION:
         {
-            CustomExpression customExpression = (CustomExpression) theEObject;
-            T result = caseCustomExpression( customExpression );
+            CustomFilterExpression customFilterExpression = (CustomFilterExpression) theEObject;
+            T result = caseCustomFilterExpression( customFilterExpression );
             if( result == null )
-                result = caseFilterExpression( customExpression );
+                result = caseFilterExpression( customFilterExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -262,12 +262,12 @@ public class DesignSwitch<T>
                 result = defaultCase( theEObject );
             return result;
         }
-        case DesignPackage.DYNAMIC_EXPRESSION:
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION:
         {
-            DynamicExpression dynamicExpression = (DynamicExpression) theEObject;
-            T result = caseDynamicExpression( dynamicExpression );
+            DynamicFilterExpression dynamicFilterExpression = (DynamicFilterExpression) theEObject;
+            T result = caseDynamicFilterExpression( dynamicFilterExpression );
             if( result == null )
-                result = caseFilterExpression( dynamicExpression );
+                result = caseFilterExpression( dynamicFilterExpression );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -280,42 +280,42 @@ public class DesignSwitch<T>
                 result = defaultCase( theEObject );
             return result;
         }
+        case DesignPackage.EXPRESSION_ARGUMENTS:
+        {
+            ExpressionArguments expressionArguments = (ExpressionArguments) theEObject;
+            T result = caseExpressionArguments( expressionArguments );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.EXPRESSION_PARAMETER_DEFINITION:
+        {
+            ExpressionParameterDefinition expressionParameterDefinition = (ExpressionParameterDefinition) theEObject;
+            T result = caseExpressionParameterDefinition( expressionParameterDefinition );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.EXPRESSION_PARAMETERS:
+        {
+            ExpressionParameters expressionParameters = (ExpressionParameters) theEObject;
+            T result = caseExpressionParameters( expressionParameters );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
+        case DesignPackage.EXPRESSION_VARIABLE:
+        {
+            ExpressionVariable expressionVariable = (ExpressionVariable) theEObject;
+            T result = caseExpressionVariable( expressionVariable );
+            if( result == null )
+                result = defaultCase( theEObject );
+            return result;
+        }
         case DesignPackage.FILTER_EXPRESSION:
         {
             FilterExpression filterExpression = (FilterExpression) theEObject;
             T result = caseFilterExpression( filterExpression );
-            if( result == null )
-                result = defaultCase( theEObject );
-            return result;
-        }
-        case DesignPackage.FILTER_EXPRESSION_ARGUMENTS:
-        {
-            FilterExpressionArguments filterExpressionArguments = (FilterExpressionArguments) theEObject;
-            T result = caseFilterExpressionArguments( filterExpressionArguments );
-            if( result == null )
-                result = defaultCase( theEObject );
-            return result;
-        }
-        case DesignPackage.FILTER_EXPRESSION_VARIABLE:
-        {
-            FilterExpressionVariable filterExpressionVariable = (FilterExpressionVariable) theEObject;
-            T result = caseFilterExpressionVariable( filterExpressionVariable );
-            if( result == null )
-                result = defaultCase( theEObject );
-            return result;
-        }
-        case DesignPackage.FILTER_PARAMETER_DEFINITION:
-        {
-            FilterParameterDefinition filterParameterDefinition = (FilterParameterDefinition) theEObject;
-            T result = caseFilterParameterDefinition( filterParameterDefinition );
-            if( result == null )
-                result = defaultCase( theEObject );
-            return result;
-        }
-        case DesignPackage.FILTER_PARAMETERS:
-        {
-            FilterParameters filterParameters = (FilterParameters) theEObject;
-            T result = caseFilterParameters( filterParameters );
             if( result == null )
                 result = defaultCase( theEObject );
             return result;
@@ -604,17 +604,17 @@ public class DesignSwitch<T>
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Custom Expression</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Custom Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Custom Expression</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Custom Filter Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseCustomExpression( CustomExpression object )
+    public T caseCustomFilterExpression( CustomFilterExpression object )
     {
         return null;
     }
@@ -812,17 +812,17 @@ public class DesignSwitch<T>
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Dynamic Expression</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Dynamic Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Dynamic Expression</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Dynamic Filter Expression</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseDynamicExpression( DynamicExpression object )
+    public T caseDynamicFilterExpression( DynamicFilterExpression object )
     {
         return null;
     }
@@ -844,6 +844,71 @@ public class DesignSwitch<T>
     }
 
     /**
+     * Returns the result of interpreting the object as an instance of '<em>Expression Arguments</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Expression Arguments</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExpressionArguments( ExpressionArguments object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Expression Parameter Definition</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Expression Parameter Definition</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExpressionParameterDefinition(
+            ExpressionParameterDefinition object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Expression Parameters</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Expression Parameters</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExpressionParameters( ExpressionParameters object )
+    {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Expression Variable</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseExpressionVariable( ExpressionVariable object )
+    {
+        return null;
+    }
+
+    /**
      * Returns the result of interpreting the object as an instance of '<em>Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
@@ -855,70 +920,6 @@ public class DesignSwitch<T>
      * @generated
      */
     public T caseFilterExpression( FilterExpression object )
-    {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter Expression Arguments</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter Expression Arguments</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseFilterExpressionArguments( FilterExpressionArguments object )
-    {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter Expression Variable</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter Expression Variable</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseFilterExpressionVariable( FilterExpressionVariable object )
-    {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter Parameter Definition</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter Parameter Definition</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseFilterParameterDefinition( FilterParameterDefinition object )
-    {
-        return null;
-    }
-
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Filter Parameters</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Filter Parameters</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T caseFilterParameters( FilterParameters object )
     {
         return null;
     }

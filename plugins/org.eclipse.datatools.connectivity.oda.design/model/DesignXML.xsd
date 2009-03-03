@@ -20,7 +20,7 @@
       <xsd:enumeration value="NotNullable"/>
     </xsd:restriction>
   </xsd:simpleType>
-  <xsd:simpleType name="FilterVariableType">
+  <xsd:simpleType name="ExpressionVariableType">
     <xsd:annotation>
       <xsd:documentation>The type of a filter expression variable.</xsd:documentation>
     </xsd:annotation>
@@ -134,20 +134,25 @@
   </xsd:element>
   <xsd:complexType name="AtomicExpressionContext">
     <xsd:annotation>
-      <xsd:documentation>The context within a basic, indivisible unit of filter expression that can be evaluated by itself.</xsd:documentation>
+      <xsd:documentation>The context within a basic, indivisible unit of expression that can be evaluated by itself.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element maxOccurs="1" minOccurs="0" name="variable" type="design:FilterExpressionVariable"/>
-      <xsd:element maxOccurs="1" minOccurs="0" name="arguments" type="design:FilterExpressionArguments">
+      <xsd:element maxOccurs="1" minOccurs="0" name="variable" type="design:ExpressionVariable"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="arguments" type="design:ExpressionArguments">
         <xsd:annotation>
-          <xsd:documentation>Defines the expression's argument(s) and each of its associated value.</xsd:documentation>
+          <xsd:documentation>Defines the expression's argument(s) and each of its associated value(s).</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
     </xsd:sequence>
+    <xsd:attribute default="false" name="isOptional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Indicates whether this atomic expression can be excluded at runtime.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
   </xsd:complexType>
   <xsd:element name="AtomicExpressionContext" type="design:AtomicExpressionContext">
     <xsd:annotation>
-      <xsd:documentation>The context within a basic, indivisible unit of filter expression that can be evaluated by itself.</xsd:documentation>
+      <xsd:documentation>The context within a basic, indivisible unit of expression that can be evaluated by itself.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="AxisAttributes">
@@ -206,7 +211,7 @@
       <xsd:documentation>A composite of one or multiple child filter expressions.  Its child expressions are ordered, but their relationships are not defined.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
-  <xsd:complexType name="CustomExpression">
+  <xsd:complexType name="CustomFilterExpression">
     <xsd:annotation>
       <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
     </xsd:annotation>
@@ -228,7 +233,7 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:element name="CustomExpression" type="design:CustomExpression">
+  <xsd:element name="CustomFilterExpression" type="design:CustomFilterExpression">
     <xsd:annotation>
       <xsd:documentation>The definition of a custom atomic filter expression contributed by an extension of the org.eclipse.datatools.connectivity.oda.filterExpressions extension point.</xsd:documentation>
     </xsd:annotation>
@@ -541,19 +546,19 @@
   </xsd:element>
   <xsd:complexType name="DocumentRoot"/>
   <xsd:element name="DocumentRoot" type="design:DocumentRoot"/>
-  <xsd:complexType name="DynamicExpression">
+  <xsd:complexType name="DynamicFilterExpression">
     <xsd:annotation>
       <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="design:FilterExpression">
         <xsd:sequence>
-          <xsd:element maxOccurs="1" minOccurs="1" name="contextVariable" type="design:FilterExpressionVariable"/>
+          <xsd:element maxOccurs="1" minOccurs="1" name="context" type="design:AtomicExpressionContext"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:element name="DynamicExpression" type="design:DynamicExpression">
+  <xsd:element name="DynamicFilterExpression" type="design:DynamicFilterExpression">
     <xsd:annotation>
       <xsd:documentation>A built-in filter expression designed with a pre-defined variable.  Its specific type of expression(s) to apply and corresponding argument value(s) to collect will be dynamically specified at runtime.</xsd:documentation>
     </xsd:annotation>
@@ -590,6 +595,75 @@
       <xsd:documentation>A dynamic set of selectable input values to be retrieved at runtime using the query defined in a data set design.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:complexType name="ExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="1" name="expressionParameters" type="design:ExpressionParameters">
+        <xsd:annotation>
+          <xsd:documentation>A collection of parameters used for collecting an expression's argument values.  An expression argument may define one corresponding expression parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple expression parameters, with each taking a single input value and has own set of parameter attributes.  Each expression parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionArguments" type="design:ExpressionArguments">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of an expression's argument.  An expression argument parameter design may specify either static argument value(s), or a data set input parameter.  Static values are pre-defined values of an expression argument, and are not exposed as a data set parameter.  Alternatively, a data set input parameter may be defined to dynamically collect user input value(s).  A data set input parameter definiiton here may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="staticValues" type="design:StaticValues"/>
+      <xsd:element maxOccurs="1" minOccurs="0" name="dynamicInputParameter" type="design:ParameterDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionParameterDefinition" type="design:ExpressionParameterDefinition">
+    <xsd:annotation>
+      <xsd:documentation>The definition of a parameter for the value of an expression's argument.  An expression argument parameter design may specify either static argument value(s), or a data set input parameter.  Static values are pre-defined values of an expression argument, and are not exposed as a data set parameter.  Alternatively, a data set input parameter may be defined to dynamically collect user input value(s).  A data set input parameter definiiton here may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parameterDefinitions" type="design:ExpressionParameterDefinition"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ExpressionParameters" type="design:ExpressionParameters">
+    <xsd:annotation>
+      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="ExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute default="ResultSetColumn" name="type" type="design:ExpressionVariableType">
+      <xsd:annotation>
+        <xsd:documentation>The type of variable.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="identifier" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>A name or expression that identifies the variable used to evaluate an expression.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="nativeDataTypeCode" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>Native data type code of the identified variable.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA dataSource extension.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="ExpressionVariable" type="design:ExpressionVariable">
+    <xsd:annotation>
+      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType abstract="true" name="FilterExpression">
     <xsd:annotation>
       <xsd:documentation>Abstract base class for all filter expressions defined by an ODA designer.</xsd:documentation>
@@ -600,75 +674,6 @@
       </xsd:annotation>
     </xsd:attribute>
   </xsd:complexType>
-  <xsd:complexType name="FilterExpressionArguments">
-    <xsd:annotation>
-      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element maxOccurs="1" minOccurs="1" name="filterParameters" type="design:FilterParameters">
-        <xsd:annotation>
-          <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.  An expression argument may define one corresponding filter parameter that takes multiple input values sharing the same parameter attributes.  Or it may define multiple filter parameters, with each taking a single input value and has own set of parameter attributes.  Each filter parameter may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="FilterExpressionArguments" type="design:FilterExpressionArguments">
-    <xsd:annotation>
-      <xsd:documentation>Definition of a filter expression's argument(s).</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:complexType name="FilterExpressionVariable">
-    <xsd:annotation>
-      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:attribute default="ResultSetColumn" name="type" type="design:FilterVariableType">
-      <xsd:annotation>
-        <xsd:documentation>The type of variable.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="identifier" type="xsd:string" use="required">
-      <xsd:annotation>
-        <xsd:documentation>A name or expression that identifies the variable used to evaluate a filter expression.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="nativeDataTypeCode" type="xsd:string">
-      <xsd:annotation>
-        <xsd:documentation>Native data type code of the identified variable.  If none or unknown value (0) is specified, the data element is mapped to an ODA String data type by default.  The native type code value is implementation-specific to individual ODA driver, which must support its mapping to one or more ODA data types.  The supported native-ODA data type mapping must be defined in the ODA dataSource extension.</xsd:documentation>
-      </xsd:annotation>
-    </xsd:attribute>
-  </xsd:complexType>
-  <xsd:element name="FilterExpressionVariable" type="design:FilterExpressionVariable">
-    <xsd:annotation>
-      <xsd:documentation>Definition of a filter expression's variable.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:complexType name="FilterParameterDefinition">
-    <xsd:annotation>
-      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element maxOccurs="1" minOccurs="0" name="staticValues" type="design:StaticValues"/>
-      <xsd:element maxOccurs="1" minOccurs="0" name="dynamicInputParameter" type="design:ParameterDefinition"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="FilterParameterDefinition" type="design:FilterParameterDefinition">
-    <xsd:annotation>
-      <xsd:documentation>The definition of a parameter for the value of a filter expression's argument.  A filter parameter design may define either static value(s), or an input parameter to dynamically collect user input value(s).  An input parameter definiiton may be a nested new instance, or may reference one of the existing DataSetParameters.  The dynamic input parameter, if specified, overrides any static values defined.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
-  <xsd:complexType name="FilterParameters">
-    <xsd:annotation>
-      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
-    </xsd:annotation>
-    <xsd:sequence>
-      <xsd:element maxOccurs="unbounded" minOccurs="1" name="parameterDefinitions" type="design:FilterParameterDefinition"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:element name="FilterParameters" type="design:FilterParameters">
-    <xsd:annotation>
-      <xsd:documentation>A collection of parameters used for collecting a filter expression's argument values.</xsd:documentation>
-    </xsd:annotation>
-  </xsd:element>
   <xsd:complexType name="InputElementAttributes">
     <xsd:annotation>
       <xsd:documentation>Common attributes for a data element defined with the input mode.</xsd:documentation>

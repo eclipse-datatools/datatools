@@ -26,14 +26,15 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
-import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataSetParameters;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
@@ -178,38 +179,38 @@ public class DesignUtilLoadSaveTest extends TestCase
         OdaDesignSession design = loadOdaDesignSession( goldenFile );
         DataSetDesign dataSetDesign = design.getResponseDataSetDesign();
         
-        FilterExpressionVariable exprVariable = DesignFactory.eINSTANCE.createFilterExpressionVariable();
+        ExpressionVariable exprVariable = DesignFactory.eINSTANCE.createExpressionVariable();
         exprVariable.setIdentifier( "CUSTOMERNAME" ); //$NON-NLS-1$
         exprVariable.setNativeDataTypeCode( 4 ); // integer
         
-        FilterExpressionArguments exprArgs1 = DesignFactory.eINSTANCE.createFilterExpressionArguments();
+        ExpressionArguments exprArgs1 = DesignFactory.eINSTANCE.createExpressionArguments();
 
         DataSetParameters dataSetParams = dataSetDesign.getParameters();
         Iterator<ParameterDefinition> iter = dataSetParams.getParameterDefinitions().iterator();
         while( iter.hasNext() )
         {
-            FilterParameterDefinition newDynamicParamDefn = 
+            ExpressionParameterDefinition newDynamicParamDefn = 
                 exprArgs1.addDynamicParameter( (ParameterDefinition) EcoreUtil.copy( iter.next() ) );
 
             newDynamicParamDefn.addStaticValue( "ineffective static value" ); //$NON-NLS-1$
             assertFalse( newDynamicParamDefn.hasEffectiveStaticValues() );
         }
-        FilterParameterDefinition newStaticParamDefn = exprArgs1.addStaticParameter( new Date() );
+        ExpressionParameterDefinition newStaticParamDefn = exprArgs1.addStaticParameter( new Date() );
         assertTrue( newStaticParamDefn.hasEffectiveStaticValues() );
         
-        CustomExpression customExpr1 = DesignFactory.eINSTANCE.createCustomExpression();
+        CustomFilterExpression customExpr1 = DesignFactory.eINSTANCE.createCustomFilterExpression();
         customExpr1.setDeclaringExtensionId( filterExprExtId );
         customExpr1.setId( "1007" ); //$NON-NLS-1$
         customExpr1.setContextVariable( exprVariable );
         customExpr1.setContextArguments( exprArgs1 );
+        customExpr1.setIsOptional( true );
         
-
-        CustomExpression customExpr2 = DesignFactory.eINSTANCE.createCustomExpression();
+        CustomFilterExpression customExpr2 = DesignFactory.eINSTANCE.createCustomFilterExpression();
         customExpr2.setDeclaringExtensionId( filterExprExtId );
         customExpr2.setId( "10005" ); //$NON-NLS-1$
         customExpr2.setContextVariable( exprVariable );
 
-        FilterExpressionArguments exprArgs2 = DesignFactory.eINSTANCE.createFilterExpressionArguments();
+        ExpressionArguments exprArgs2 = DesignFactory.eINSTANCE.createExpressionArguments();
         newStaticParamDefn = exprArgs2.addStaticParameter( "static value 1" ); //$NON-NLS-1$
         newStaticParamDefn.addStaticValue( "static value 2 " );        
         customExpr2.setContextArguments( exprArgs2 );
@@ -220,6 +221,11 @@ public class DesignUtilLoadSaveTest extends TestCase
         OrExpression orExpr = DesignFactory.eINSTANCE.createOrExpression();
         orExpr.add( customExpr1 );
         orExpr.add( customExpr2 );
+        
+        DynamicFilterExpression dynamicFilterExpr = DesignFactory.eINSTANCE.createDynamicFilterExpression();
+        dynamicFilterExpr.setContextVariable( exprVariable );
+        dynamicFilterExpr.setContextArguments( exprArgs1 );
+        dynamicFilterExpr.setIsOptional( false );
         
         dataSetDesign.setFilter( orExpr );
         

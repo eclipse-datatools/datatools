@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.6 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DesignPackage.java,v 1.7 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -87,7 +87,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpression()
      * @generated
      */
-    int FILTER_EXPRESSION = 20;
+    int FILTER_EXPRESSION = 24;
 
     /**
      * The feature id for the '<em><b>Negatable</b></em>' attribute.
@@ -192,13 +192,22 @@ public interface DesignPackage extends EPackage
     int ATOMIC_EXPRESSION_CONTEXT = 1;
 
     /**
+     * The feature id for the '<em><b>Is Optional</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL = 0;
+
+    /**
      * The feature id for the '<em><b>Variable</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ATOMIC_EXPRESSION_CONTEXT__VARIABLE = 0;
+    int ATOMIC_EXPRESSION_CONTEXT__VARIABLE = 1;
 
     /**
      * The feature id for the '<em><b>Arguments</b></em>' containment reference.
@@ -207,7 +216,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS = 1;
+    int ATOMIC_EXPRESSION_CONTEXT__ARGUMENTS = 2;
 
     /**
      * The number of structural features of the '<em>Atomic Expression Context</em>' class.
@@ -216,7 +225,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int ATOMIC_EXPRESSION_CONTEXT_FEATURE_COUNT = 2;
+    int ATOMIC_EXPRESSION_CONTEXT_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.AxisAttributesImpl <em>Axis Attributes</em>}' class.
@@ -302,14 +311,14 @@ public interface DesignPackage extends EPackage
     int COLUMN_DEFINITION_FEATURE_COUNT = 3;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl <em>Custom Expression</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl <em>Custom Filter Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomExpression()
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomFilterExpression()
      * @generated
      */
-    int CUSTOM_EXPRESSION = 5;
+    int CUSTOM_FILTER_EXPRESSION = 5;
 
     /**
      * The feature id for the '<em><b>Negatable</b></em>' attribute.
@@ -318,7 +327,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int CUSTOM_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+    int CUSTOM_FILTER_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
 
     /**
      * The feature id for the '<em><b>Declaring Extension Id</b></em>' attribute.
@@ -327,7 +336,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+    int CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID = FILTER_EXPRESSION_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -336,7 +345,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int CUSTOM_EXPRESSION__ID = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+    int CUSTOM_FILTER_EXPRESSION__ID = FILTER_EXPRESSION_FEATURE_COUNT + 1;
 
     /**
      * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -345,16 +354,16 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int CUSTOM_EXPRESSION__CONTEXT = FILTER_EXPRESSION_FEATURE_COUNT + 2;
+    int CUSTOM_FILTER_EXPRESSION__CONTEXT = FILTER_EXPRESSION_FEATURE_COUNT + 2;
 
     /**
-     * The number of structural features of the '<em>Custom Expression</em>' class.
+     * The number of structural features of the '<em>Custom Filter Expression</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CUSTOM_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 3;
+    int CUSTOM_FILTER_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl <em>Data Access Design</em>}' class.
@@ -1017,14 +1026,14 @@ public interface DesignPackage extends EPackage
     int DOCUMENT_ROOT_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl <em>Dynamic Expression</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl <em>Dynamic Filter Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicExpression()
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicFilterExpression()
      * @generated
      */
-    int DYNAMIC_EXPRESSION = 18;
+    int DYNAMIC_FILTER_EXPRESSION = 18;
 
     /**
      * The feature id for the '<em><b>Negatable</b></em>' attribute.
@@ -1033,25 +1042,25 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int DYNAMIC_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
+    int DYNAMIC_FILTER_EXPRESSION__NEGATABLE = FILTER_EXPRESSION__NEGATABLE;
 
     /**
-     * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
+     * The feature id for the '<em><b>Context</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DYNAMIC_EXPRESSION__CONTEXT_VARIABLE = FILTER_EXPRESSION_FEATURE_COUNT + 0;
+    int DYNAMIC_FILTER_EXPRESSION__CONTEXT = FILTER_EXPRESSION_FEATURE_COUNT + 0;
 
     /**
-     * The number of structural features of the '<em>Dynamic Expression</em>' class.
+     * The number of structural features of the '<em>Dynamic Filter Expression</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DYNAMIC_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 1;
+    int DYNAMIC_FILTER_EXPRESSION_FEATURE_COUNT = FILTER_EXPRESSION_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl <em>Dynamic Values Query</em>}' class.
@@ -1109,88 +1118,42 @@ public interface DesignPackage extends EPackage
     int DYNAMIC_VALUES_QUERY_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl <em>Filter Expression Arguments</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionArgumentsImpl <em>Expression Arguments</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionArguments()
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionArgumentsImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionArguments()
      * @generated
      */
-    int FILTER_EXPRESSION_ARGUMENTS = 21;
+    int EXPRESSION_ARGUMENTS = 20;
 
     /**
-     * The feature id for the '<em><b>Filter Parameters</b></em>' containment reference.
+     * The feature id for the '<em><b>Expression Parameters</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS = 0;
+    int EXPRESSION_ARGUMENTS__EXPRESSION_PARAMETERS = 0;
 
     /**
-     * The number of structural features of the '<em>Filter Expression Arguments</em>' class.
+     * The number of structural features of the '<em>Expression Arguments</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_EXPRESSION_ARGUMENTS_FEATURE_COUNT = 1;
+    int EXPRESSION_ARGUMENTS_FEATURE_COUNT = 1;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl <em>Filter Expression Variable</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParameterDefinitionImpl <em>Expression Parameter Definition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionVariable()
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParameterDefinitionImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionParameterDefinition()
      * @generated
      */
-    int FILTER_EXPRESSION_VARIABLE = 22;
-
-    /**
-     * The feature id for the '<em><b>Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILTER_EXPRESSION_VARIABLE__TYPE = 0;
-
-    /**
-     * The feature id for the '<em><b>Identifier</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILTER_EXPRESSION_VARIABLE__IDENTIFIER = 1;
-
-    /**
-     * The feature id for the '<em><b>Native Data Type Code</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = 2;
-
-    /**
-     * The number of structural features of the '<em>Filter Expression Variable</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int FILTER_EXPRESSION_VARIABLE_FEATURE_COUNT = 3;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl <em>Filter Parameter Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameterDefinition()
-     * @generated
-     */
-    int FILTER_PARAMETER_DEFINITION = 23;
+    int EXPRESSION_PARAMETER_DEFINITION = 21;
 
     /**
      * The feature id for the '<em><b>Static Values</b></em>' containment reference.
@@ -1199,7 +1162,7 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETER_DEFINITION__STATIC_VALUES = 0;
+    int EXPRESSION_PARAMETER_DEFINITION__STATIC_VALUES = 0;
 
     /**
      * The feature id for the '<em><b>Dynamic Input Parameter</b></em>' containment reference.
@@ -1208,26 +1171,26 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = 1;
+    int EXPRESSION_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = 1;
 
     /**
-     * The number of structural features of the '<em>Filter Parameter Definition</em>' class.
+     * The number of structural features of the '<em>Expression Parameter Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETER_DEFINITION_FEATURE_COUNT = 2;
+    int EXPRESSION_PARAMETER_DEFINITION_FEATURE_COUNT = 2;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl <em>Filter Parameters</em>}' class.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParametersImpl <em>Expression Parameters</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameters()
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParametersImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionParameters()
      * @generated
      */
-    int FILTER_PARAMETERS = 24;
+    int EXPRESSION_PARAMETERS = 22;
 
     /**
      * The feature id for the '<em><b>Parameter Definitions</b></em>' containment reference list.
@@ -1236,16 +1199,62 @@ public interface DesignPackage extends EPackage
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETERS__PARAMETER_DEFINITIONS = 0;
+    int EXPRESSION_PARAMETERS__PARAMETER_DEFINITIONS = 0;
 
     /**
-     * The number of structural features of the '<em>Filter Parameters</em>' class.
+     * The number of structural features of the '<em>Expression Parameters</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILTER_PARAMETERS_FEATURE_COUNT = 1;
+    int EXPRESSION_PARAMETERS_FEATURE_COUNT = 1;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionVariableImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariable()
+     * @generated
+     */
+    int EXPRESSION_VARIABLE = 23;
+
+    /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION_VARIABLE__TYPE = 0;
+
+    /**
+     * The feature id for the '<em><b>Identifier</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION_VARIABLE__IDENTIFIER = 1;
+
+    /**
+     * The feature id for the '<em><b>Native Data Type Code</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = 2;
+
+    /**
+     * The number of structural features of the '<em>Expression Variable</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int EXPRESSION_VARIABLE_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl <em>Input Element Attributes</em>}' class.
@@ -2246,14 +2255,14 @@ public interface DesignPackage extends EPackage
     int ELEMENT_NULLABILITY = 50;
 
     /**
-     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}' enum.
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType <em>Expression Variable Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableType()
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableType()
      * @generated
      */
-    int FILTER_VARIABLE_TYPE = 51;
+    int EXPRESSION_VARIABLE_TYPE = 51;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -2356,14 +2365,14 @@ public interface DesignPackage extends EPackage
     int ELEMENT_NULLABILITY_OBJECT = 61;
 
     /**
-     * The meta object id for the '<em>Filter Variable Type Object</em>' data type.
+     * The meta object id for the '<em>Expression Variable Type Object</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
-     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableTypeObject()
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableTypeObject()
      * @generated
      */
-    int FILTER_VARIABLE_TYPE_OBJECT = 62;
+    int EXPRESSION_VARIABLE_TYPE_OBJECT = 62;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
@@ -2464,6 +2473,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EClass getAtomicExpressionContext();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Is Optional</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional()
+     * @see #getAtomicExpressionContext()
+     * @generated
+     */
+    EAttribute getAtomicExpressionContext_IsOptional();
 
     /**
      * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}'.
@@ -2584,47 +2604,47 @@ public interface DesignPackage extends EPackage
     EReference getCompositeFilterExpression_Children();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression <em>Custom Expression</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression <em>Custom Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Custom Expression</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression
+     * @return the meta object for class '<em>Custom Filter Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression
      * @generated
      */
-    EClass getCustomExpression();
+    EClass getCustomFilterExpression();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getDeclaringExtensionId <em>Declaring Extension Id</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getDeclaringExtensionId <em>Declaring Extension Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Declaring Extension Id</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getDeclaringExtensionId()
-     * @see #getCustomExpression()
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getDeclaringExtensionId()
+     * @see #getCustomFilterExpression()
      * @generated
      */
-    EAttribute getCustomExpression_DeclaringExtensionId();
+    EAttribute getCustomFilterExpression_DeclaringExtensionId();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getId <em>Id</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getId <em>Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Id</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getId()
-     * @see #getCustomExpression()
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getId()
+     * @see #getCustomFilterExpression()
      * @generated
      */
-    EAttribute getCustomExpression_Id();
+    EAttribute getCustomFilterExpression_Id();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.CustomExpression#getContext <em>Context</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getContext <em>Context</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the containment reference '<em>Context</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.CustomExpression#getContext()
-     * @see #getCustomExpression()
+     * @see org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression#getContext()
+     * @see #getCustomFilterExpression()
      * @generated
      */
-    EReference getCustomExpression_Context();
+    EReference getCustomFilterExpression_Context();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DataAccessDesign <em>Data Access Design</em>}'.
@@ -3275,25 +3295,25 @@ public interface DesignPackage extends EPackage
     EReference getDocumentRoot_OdaDesignSession();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression <em>Dynamic Expression</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression <em>Dynamic Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Dynamic Expression</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression
+     * @return the meta object for class '<em>Dynamic Filter Expression</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression
      * @generated
      */
-    EClass getDynamicExpression();
+    EClass getDynamicFilterExpression();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DynamicExpression#getContextVariable <em>Context Variable</em>}'.
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getContext <em>Context</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Context Variable</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.DynamicExpression#getContextVariable()
-     * @see #getDynamicExpression()
+     * @return the meta object for the containment reference '<em>Context</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression#getContext()
+     * @see #getDynamicFilterExpression()
      * @generated
      */
-    EReference getDynamicExpression_ContextVariable();
+    EReference getDynamicFilterExpression_Context();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery <em>Dynamic Values Query</em>}'.
@@ -3350,6 +3370,123 @@ public interface DesignPackage extends EPackage
     EAttribute getDynamicValuesQuery_DisplayNameColumn();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionArguments <em>Expression Arguments</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Expression Arguments</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionArguments
+     * @generated
+     */
+    EClass getExpressionArguments();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionArguments#getExpressionParameters <em>Expression Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Expression Parameters</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionArguments#getExpressionParameters()
+     * @see #getExpressionArguments()
+     * @generated
+     */
+    EReference getExpressionArguments_ExpressionParameters();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition <em>Expression Parameter Definition</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Expression Parameter Definition</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition
+     * @generated
+     */
+    EClass getExpressionParameterDefinition();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition#getStaticValues <em>Static Values</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Static Values</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition#getStaticValues()
+     * @see #getExpressionParameterDefinition()
+     * @generated
+     */
+    EReference getExpressionParameterDefinition_StaticValues();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition#getDynamicInputParameter <em>Dynamic Input Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Dynamic Input Parameter</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition#getDynamicInputParameter()
+     * @see #getExpressionParameterDefinition()
+     * @generated
+     */
+    EReference getExpressionParameterDefinition_DynamicInputParameter();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameters <em>Expression Parameters</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Expression Parameters</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameters
+     * @generated
+     */
+    EClass getExpressionParameters();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionParameters#getParameterDefinitions <em>Parameter Definitions</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Parameter Definitions</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionParameters#getParameterDefinitions()
+     * @see #getExpressionParameters()
+     * @generated
+     */
+    EReference getExpressionParameters_ParameterDefinitions();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariable <em>Expression Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Expression Variable</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariable
+     * @generated
+     */
+    EClass getExpressionVariable();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getType()
+     * @see #getExpressionVariable()
+     * @generated
+     */
+    EAttribute getExpressionVariable_Type();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getIdentifier <em>Identifier</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Identifier</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getIdentifier()
+     * @see #getExpressionVariable()
+     * @generated
+     */
+    EAttribute getExpressionVariable_Identifier();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getNativeDataTypeCode <em>Native Data Type Code</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Native Data Type Code</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariable#getNativeDataTypeCode()
+     * @see #getExpressionVariable()
+     * @generated
+     */
+    EAttribute getExpressionVariable_NativeDataTypeCode();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpression <em>Filter Expression</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3369,123 +3506,6 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getFilterExpression_Negatable();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments <em>Filter Expression Arguments</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Filter Expression Arguments</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments
-     * @generated
-     */
-    EClass getFilterExpressionArguments();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments#getFilterParameters <em>Filter Parameters</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Filter Parameters</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments#getFilterParameters()
-     * @see #getFilterExpressionArguments()
-     * @generated
-     */
-    EReference getFilterExpressionArguments_FilterParameters();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable <em>Filter Expression Variable</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Filter Expression Variable</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable
-     * @generated
-     */
-    EClass getFilterExpressionVariable();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getType <em>Type</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Type</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getType()
-     * @see #getFilterExpressionVariable()
-     * @generated
-     */
-    EAttribute getFilterExpressionVariable_Type();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getIdentifier <em>Identifier</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Identifier</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getIdentifier()
-     * @see #getFilterExpressionVariable()
-     * @generated
-     */
-    EAttribute getFilterExpressionVariable_Identifier();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getNativeDataTypeCode <em>Native Data Type Code</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Native Data Type Code</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable#getNativeDataTypeCode()
-     * @see #getFilterExpressionVariable()
-     * @generated
-     */
-    EAttribute getFilterExpressionVariable_NativeDataTypeCode();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition <em>Filter Parameter Definition</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Filter Parameter Definition</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition
-     * @generated
-     */
-    EClass getFilterParameterDefinition();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValues <em>Static Values</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Static Values</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getStaticValues()
-     * @see #getFilterParameterDefinition()
-     * @generated
-     */
-    EReference getFilterParameterDefinition_StaticValues();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getDynamicInputParameter <em>Dynamic Input Parameter</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Dynamic Input Parameter</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition#getDynamicInputParameter()
-     * @see #getFilterParameterDefinition()
-     * @generated
-     */
-    EReference getFilterParameterDefinition_DynamicInputParameter();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters <em>Filter Parameters</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Filter Parameters</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters
-     * @generated
-     */
-    EClass getFilterParameters();
-
-    /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.connectivity.oda.design.FilterParameters#getParameterDefinitions <em>Parameter Definitions</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Parameter Definitions</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterParameters#getParameterDefinitions()
-     * @see #getFilterParameters()
-     * @generated
-     */
-    EReference getFilterParameters_ParameterDefinitions();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.InputElementAttributes <em>Input Element Attributes</em>}'.
@@ -4353,14 +4373,14 @@ public interface DesignPackage extends EPackage
     EEnum getElementNullability();
 
     /**
-     * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}'.
+     * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType <em>Expression Variable Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Filter Variable Type</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
+     * @return the meta object for enum '<em>Expression Variable Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
      * @generated
      */
-    EEnum getFilterVariableType();
+    EEnum getExpressionVariableType();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}'.
@@ -4467,16 +4487,16 @@ public interface DesignPackage extends EPackage
     EDataType getElementNullabilityObject();
 
     /**
-     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type Object</em>}'.
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType <em>Expression Variable Type Object</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>Filter Variable Type Object</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
-     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.FilterVariableType"
-     *        extendedMetaData="name='FilterVariableType:Object' baseType='FilterVariableType'"
+     * @return the meta object for data type '<em>Expression Variable Type Object</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType"
+     *        extendedMetaData="name='ExpressionVariableType:Object' baseType='ExpressionVariableType'"
      * @generated
      */
-    EDataType getFilterVariableTypeObject();
+    EDataType getExpressionVariableTypeObject();
 
     /**
      * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment Object</em>}'.
@@ -4619,6 +4639,15 @@ public interface DesignPackage extends EPackage
                 .getAtomicExpressionContext();
 
         /**
+         * The meta object literal for the '<em><b>Is Optional</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL = eINSTANCE
+                .getAtomicExpressionContext_IsOptional();
+
+        /**
          * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -4722,14 +4751,14 @@ public interface DesignPackage extends EPackage
                 .getCompositeFilterExpression_Children();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl <em>Custom Expression</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl <em>Custom Filter Expression</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomExpressionImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomExpression()
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.CustomFilterExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getCustomFilterExpression()
          * @generated
          */
-        EClass CUSTOM_EXPRESSION = eINSTANCE.getCustomExpression();
+        EClass CUSTOM_FILTER_EXPRESSION = eINSTANCE.getCustomFilterExpression();
 
         /**
          * The meta object literal for the '<em><b>Declaring Extension Id</b></em>' attribute feature.
@@ -4737,8 +4766,8 @@ public interface DesignPackage extends EPackage
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID = eINSTANCE
-                .getCustomExpression_DeclaringExtensionId();
+        EAttribute CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID = eINSTANCE
+                .getCustomFilterExpression_DeclaringExtensionId();
 
         /**
          * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
@@ -4746,7 +4775,8 @@ public interface DesignPackage extends EPackage
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute CUSTOM_EXPRESSION__ID = eINSTANCE.getCustomExpression_Id();
+        EAttribute CUSTOM_FILTER_EXPRESSION__ID = eINSTANCE
+                .getCustomFilterExpression_Id();
 
         /**
          * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
@@ -4754,8 +4784,8 @@ public interface DesignPackage extends EPackage
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference CUSTOM_EXPRESSION__CONTEXT = eINSTANCE
-                .getCustomExpression_Context();
+        EReference CUSTOM_FILTER_EXPRESSION__CONTEXT = eINSTANCE
+                .getCustomFilterExpression_Context();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataAccessDesignImpl <em>Data Access Design</em>}' class.
@@ -5307,23 +5337,24 @@ public interface DesignPackage extends EPackage
                 .getDocumentRoot_OdaDesignSession();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl <em>Dynamic Expression</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl <em>Dynamic Filter Expression</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicExpressionImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicExpression()
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DynamicFilterExpressionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getDynamicFilterExpression()
          * @generated
          */
-        EClass DYNAMIC_EXPRESSION = eINSTANCE.getDynamicExpression();
+        EClass DYNAMIC_FILTER_EXPRESSION = eINSTANCE
+                .getDynamicFilterExpression();
 
         /**
-         * The meta object literal for the '<em><b>Context Variable</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Context</b></em>' containment reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference DYNAMIC_EXPRESSION__CONTEXT_VARIABLE = eINSTANCE
-                .getDynamicExpression_ContextVariable();
+        EReference DYNAMIC_FILTER_EXPRESSION__CONTEXT = eINSTANCE
+                .getDynamicFilterExpression_Context();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DynamicValuesQueryImpl <em>Dynamic Values Query</em>}' class.
@@ -5372,6 +5403,110 @@ public interface DesignPackage extends EPackage
                 .getDynamicValuesQuery_DisplayNameColumn();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionArgumentsImpl <em>Expression Arguments</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionArgumentsImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionArguments()
+         * @generated
+         */
+        EClass EXPRESSION_ARGUMENTS = eINSTANCE.getExpressionArguments();
+
+        /**
+         * The meta object literal for the '<em><b>Expression Parameters</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EXPRESSION_ARGUMENTS__EXPRESSION_PARAMETERS = eINSTANCE
+                .getExpressionArguments_ExpressionParameters();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParameterDefinitionImpl <em>Expression Parameter Definition</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParameterDefinitionImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionParameterDefinition()
+         * @generated
+         */
+        EClass EXPRESSION_PARAMETER_DEFINITION = eINSTANCE
+                .getExpressionParameterDefinition();
+
+        /**
+         * The meta object literal for the '<em><b>Static Values</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EXPRESSION_PARAMETER_DEFINITION__STATIC_VALUES = eINSTANCE
+                .getExpressionParameterDefinition_StaticValues();
+
+        /**
+         * The meta object literal for the '<em><b>Dynamic Input Parameter</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EXPRESSION_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = eINSTANCE
+                .getExpressionParameterDefinition_DynamicInputParameter();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParametersImpl <em>Expression Parameters</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionParametersImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionParameters()
+         * @generated
+         */
+        EClass EXPRESSION_PARAMETERS = eINSTANCE.getExpressionParameters();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter Definitions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference EXPRESSION_PARAMETERS__PARAMETER_DEFINITIONS = eINSTANCE
+                .getExpressionParameters_ParameterDefinitions();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ExpressionVariableImpl <em>Expression Variable</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ExpressionVariableImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariable()
+         * @generated
+         */
+        EClass EXPRESSION_VARIABLE = eINSTANCE.getExpressionVariable();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EXPRESSION_VARIABLE__TYPE = eINSTANCE
+                .getExpressionVariable_Type();
+
+        /**
+         * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EXPRESSION_VARIABLE__IDENTIFIER = eINSTANCE
+                .getExpressionVariable_Identifier();
+
+        /**
+         * The meta object literal for the '<em><b>Native Data Type Code</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = eINSTANCE
+                .getExpressionVariable_NativeDataTypeCode();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionImpl <em>Filter Expression</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -5389,112 +5524,6 @@ public interface DesignPackage extends EPackage
          */
         EAttribute FILTER_EXPRESSION__NEGATABLE = eINSTANCE
                 .getFilterExpression_Negatable();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl <em>Filter Expression Arguments</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionArgumentsImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionArguments()
-         * @generated
-         */
-        EClass FILTER_EXPRESSION_ARGUMENTS = eINSTANCE
-                .getFilterExpressionArguments();
-
-        /**
-         * The meta object literal for the '<em><b>Filter Parameters</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS = eINSTANCE
-                .getFilterExpressionArguments_FilterParameters();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl <em>Filter Expression Variable</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterExpressionVariableImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterExpressionVariable()
-         * @generated
-         */
-        EClass FILTER_EXPRESSION_VARIABLE = eINSTANCE
-                .getFilterExpressionVariable();
-
-        /**
-         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute FILTER_EXPRESSION_VARIABLE__TYPE = eINSTANCE
-                .getFilterExpressionVariable_Type();
-
-        /**
-         * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute FILTER_EXPRESSION_VARIABLE__IDENTIFIER = eINSTANCE
-                .getFilterExpressionVariable_Identifier();
-
-        /**
-         * The meta object literal for the '<em><b>Native Data Type Code</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE = eINSTANCE
-                .getFilterExpressionVariable_NativeDataTypeCode();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl <em>Filter Parameter Definition</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParameterDefinitionImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameterDefinition()
-         * @generated
-         */
-        EClass FILTER_PARAMETER_DEFINITION = eINSTANCE
-                .getFilterParameterDefinition();
-
-        /**
-         * The meta object literal for the '<em><b>Static Values</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FILTER_PARAMETER_DEFINITION__STATIC_VALUES = eINSTANCE
-                .getFilterParameterDefinition_StaticValues();
-
-        /**
-         * The meta object literal for the '<em><b>Dynamic Input Parameter</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER = eINSTANCE
-                .getFilterParameterDefinition_DynamicInputParameter();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl <em>Filter Parameters</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.FilterParametersImpl
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterParameters()
-         * @generated
-         */
-        EClass FILTER_PARAMETERS = eINSTANCE.getFilterParameters();
-
-        /**
-         * The meta object literal for the '<em><b>Parameter Definitions</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference FILTER_PARAMETERS__PARAMETER_DEFINITIONS = eINSTANCE
-                .getFilterParameters_ParameterDefinitions();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.InputElementAttributesImpl <em>Input Element Attributes</em>}' class.
@@ -6248,14 +6277,14 @@ public interface DesignPackage extends EPackage
         EEnum ELEMENT_NULLABILITY = eINSTANCE.getElementNullability();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.FilterVariableType <em>Filter Variable Type</em>}' enum.
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType <em>Expression Variable Type</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableType()
+         * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableType()
          * @generated
          */
-        EEnum FILTER_VARIABLE_TYPE = eINSTANCE.getFilterVariableType();
+        EEnum EXPRESSION_VARIABLE_TYPE = eINSTANCE.getExpressionVariableType();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -6360,15 +6389,15 @@ public interface DesignPackage extends EPackage
                 .getElementNullabilityObject();
 
         /**
-         * The meta object literal for the '<em>Filter Variable Type Object</em>' data type.
+         * The meta object literal for the '<em>Expression Variable Type Object</em>' data type.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.datatools.connectivity.oda.design.FilterVariableType
-         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getFilterVariableTypeObject()
+         * @see org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableTypeObject()
          * @generated
          */
-        EDataType FILTER_VARIABLE_TYPE_OBJECT = eINSTANCE
-                .getFilterVariableTypeObject();
+        EDataType EXPRESSION_VARIABLE_TYPE_OBJECT = eINSTANCE
+                .getExpressionVariableTypeObject();
 
         /**
          * The meta object literal for the '<em>Horizontal Alignment Object</em>' data type.

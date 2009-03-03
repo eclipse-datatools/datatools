@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id$
+ * $Id: AtomicExpressionContext.java,v 1.1 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -26,12 +26,13 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * The context within a basic, indivisible unit of filter expression that can be evaluated by itself.
+ * The context within a basic, indivisible unit of expression that can be evaluated by itself.
  * <!-- end-model-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getArguments <em>Arguments</em>}</li>
  * </ul>
@@ -52,6 +53,60 @@ public interface AtomicExpressionContext extends EObject
     String copyright = "Copyright (c) 2009 Actuate Corporation"; //$NON-NLS-1$
 
     /**
+     * Returns the value of the '<em><b>Is Optional</b></em>' attribute.
+     * The default value is <code>"false"</code>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * <!-- begin-model-doc -->
+     * Indicates whether this atomic expression can be excluded at runtime.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>Is Optional</em>' attribute.
+     * @see #isSetIsOptional()
+     * @see #unsetIsOptional()
+     * @see #setIsOptional(boolean)
+     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAtomicExpressionContext_IsOptional()
+     * @model default="false" unsettable="true" dataType="org.eclipse.emf.ecore.xml.type.Boolean"
+     *        extendedMetaData="kind='element' name='isOptional' namespace='##targetNamespace'"
+     * @generated
+     */
+    boolean isIsOptional();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Is Optional</em>' attribute.
+     * @see #isSetIsOptional()
+     * @see #unsetIsOptional()
+     * @see #isIsOptional()
+     * @generated
+     */
+    void setIsOptional( boolean value );
+
+    /**
+     * Unsets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isSetIsOptional()
+     * @see #isIsOptional()
+     * @see #setIsOptional(boolean)
+     * @generated
+     */
+    void unsetIsOptional();
+
+    /**
+     * Returns whether the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#isIsOptional <em>Is Optional</em>}' attribute is set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return whether the value of the '<em>Is Optional</em>' attribute is set.
+     * @see #unsetIsOptional()
+     * @see #isIsOptional()
+     * @see #setIsOptional(boolean)
+     * @generated
+     */
+    boolean isSetIsOptional();
+
+    /**
      * Returns the value of the '<em><b>Variable</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <p>
@@ -60,13 +115,13 @@ public interface AtomicExpressionContext extends EObject
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Variable</em>' containment reference.
-     * @see #setVariable(FilterExpressionVariable)
+     * @see #setVariable(ExpressionVariable)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAtomicExpressionContext_Variable()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='variable' namespace='##targetNamespace'"
      * @generated
      */
-    FilterExpressionVariable getVariable();
+    ExpressionVariable getVariable();
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getVariable <em>Variable</em>}' containment reference.
@@ -76,23 +131,23 @@ public interface AtomicExpressionContext extends EObject
      * @see #getVariable()
      * @generated
      */
-    void setVariable( FilterExpressionVariable value );
+    void setVariable( ExpressionVariable value );
 
     /**
      * Returns the value of the '<em><b>Arguments</b></em>' containment reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * <!-- begin-model-doc -->
-     * Defines the expression's argument(s) and each of its associated value.
+     * Defines the expression's argument(s) and each of its associated value(s).
      * <!-- end-model-doc -->
      * @return the value of the '<em>Arguments</em>' containment reference.
-     * @see #setArguments(FilterExpressionArguments)
+     * @see #setArguments(ExpressionArguments)
      * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getAtomicExpressionContext_Arguments()
      * @model containment="true"
      *        extendedMetaData="kind='element' name='arguments' namespace='##targetNamespace'"
      * @generated
      */
-    FilterExpressionArguments getArguments();
+    ExpressionArguments getArguments();
 
     /**
      * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.AtomicExpressionContext#getArguments <em>Arguments</em>}' containment reference.
@@ -102,6 +157,6 @@ public interface AtomicExpressionContext extends EObject
      * @see #getArguments()
      * @generated
      */
-    void setArguments( FilterExpressionArguments value );
+    void setArguments( ExpressionArguments value );
 
 } // AtomicExpressionContext

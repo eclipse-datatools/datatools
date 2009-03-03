@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.8 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DesignFactory.java,v 1.9 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -89,13 +89,13 @@ public interface DesignFactory extends EFactory
     CompositeFilterExpression createCompositeFilterExpression();
 
     /**
-     * Returns a new object of class '<em>Custom Expression</em>'.
+     * Returns a new object of class '<em>Custom Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Custom Expression</em>'.
+     * @return a new object of class '<em>Custom Filter Expression</em>'.
      * @generated
      */
-    CustomExpression createCustomExpression();
+    CustomFilterExpression createCustomFilterExpression();
 
     /**
      * Returns a new object of class '<em>Data Access Design</em>'.
@@ -206,13 +206,13 @@ public interface DesignFactory extends EFactory
     DocumentRoot createDocumentRoot();
 
     /**
-     * Returns a new object of class '<em>Dynamic Expression</em>'.
+     * Returns a new object of class '<em>Dynamic Filter Expression</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Dynamic Expression</em>'.
+     * @return a new object of class '<em>Dynamic Filter Expression</em>'.
      * @generated
      */
-    DynamicExpression createDynamicExpression();
+    DynamicFilterExpression createDynamicFilterExpression();
 
     /**
      * Returns a new object of class '<em>Dynamic Values Query</em>'.
@@ -224,40 +224,40 @@ public interface DesignFactory extends EFactory
     DynamicValuesQuery createDynamicValuesQuery();
 
     /**
-     * Returns a new object of class '<em>Filter Expression Arguments</em>'.
+     * Returns a new object of class '<em>Expression Arguments</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter Expression Arguments</em>'.
+     * @return a new object of class '<em>Expression Arguments</em>'.
      * @generated
      */
-    FilterExpressionArguments createFilterExpressionArguments();
+    ExpressionArguments createExpressionArguments();
 
     /**
-     * Returns a new object of class '<em>Filter Expression Variable</em>'.
+     * Returns a new object of class '<em>Expression Parameter Definition</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter Expression Variable</em>'.
+     * @return a new object of class '<em>Expression Parameter Definition</em>'.
      * @generated
      */
-    FilterExpressionVariable createFilterExpressionVariable();
+    ExpressionParameterDefinition createExpressionParameterDefinition();
 
     /**
-     * Returns a new object of class '<em>Filter Parameter Definition</em>'.
+     * Returns a new object of class '<em>Expression Parameters</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter Parameter Definition</em>'.
+     * @return a new object of class '<em>Expression Parameters</em>'.
      * @generated
      */
-    FilterParameterDefinition createFilterParameterDefinition();
+    ExpressionParameters createExpressionParameters();
 
     /**
-     * Returns a new object of class '<em>Filter Parameters</em>'.
+     * Returns a new object of class '<em>Expression Variable</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Filter Parameters</em>'.
+     * @return a new object of class '<em>Expression Variable</em>'.
      * @generated
      */
-    FilterParameters createFilterParameters();
+    ExpressionVariable createExpressionVariable();
 
     /**
      * Returns a new object of class '<em>Input Element Attributes</em>'.

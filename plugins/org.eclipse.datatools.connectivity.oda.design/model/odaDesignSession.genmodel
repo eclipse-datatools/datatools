@@ -22,10 +22,10 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ElementNullability/Nullable"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ElementNullability/NotNullable"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterVariableType">
-      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterVariableType/ResultSetColumn"/>
-      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterVariableType/InstanceOf"/>
-      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterVariableType/QueryExpression"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableType">
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableType/ResultSetColumn"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableType/InstanceOf"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableType/QueryExpression"/>
     </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignment/Automatic"/>
@@ -78,7 +78,7 @@
     </genEnums>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//AxisTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ElementNullabilityObject"/>
-    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterVariableTypeObject"/>
+    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariableTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//HorizontalAlignmentObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//InputPromptControlStyleObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaComplexDataTypeObject"/>
@@ -89,6 +89,7 @@
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//TextWrapTypeObject"/>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//AndExpression"/>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/isOptional"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/variable"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//AtomicExpressionContext/arguments"/>
     </genClasses>
@@ -104,10 +105,10 @@
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CompositeFilterExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//CompositeFilterExpression/children"/>
     </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CustomExpression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomExpression/declaringExtensionId"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomExpression/id"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//CustomExpression/context"/>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression/declaringExtensionId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//CustomFilterExpression/context"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DataAccessDesign">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataAccessDesign/dataSetDesign"/>
@@ -181,8 +182,8 @@
       <genFeatures property="None" notify="false" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DocumentRoot/xSISchemaLocation"/>
       <genFeatures property="None" notify="false" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DocumentRoot/odaDesignSession"/>
     </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicExpression/contextVariable"/>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicFilterExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicFilterExpression/context"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicValuesQuery">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicValuesQuery/dataSetDesign"/>
@@ -190,23 +191,23 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicValuesQuery/valueColumn"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DynamicValuesQuery/displayNameColumn"/>
     </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionArguments">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionArguments/expressionParameters"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionParameterDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionParameterDefinition/staticValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionParameterDefinition/dynamicInputParameter"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionParameters">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionParameters/parameterDefinitions"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariable/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariable/identifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ExpressionVariable/nativeDataTypeCode"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpression/negatable"/>
-    </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionArguments">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionArguments/filterParameters"/>
-    </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionVariable">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionVariable/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionVariable/identifier"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//FilterExpressionVariable/nativeDataTypeCode"/>
-    </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterParameterDefinition">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//FilterParameterDefinition/staticValues"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//FilterParameterDefinition/dynamicInputParameter"/>
-    </genClasses>
-    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//FilterParameters">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//FilterParameters/parameterDefinitions"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//InputElementAttributes">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//InputElementAttributes/defaultScalarValue"/>

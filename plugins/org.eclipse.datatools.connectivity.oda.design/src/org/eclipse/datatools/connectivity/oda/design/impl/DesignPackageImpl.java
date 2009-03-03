@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.9 2009/01/30 00:23:57 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.10 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -21,7 +21,7 @@ import org.eclipse.datatools.connectivity.oda.design.AxisAttributes;
 import org.eclipse.datatools.connectivity.oda.design.AxisType;
 import org.eclipse.datatools.connectivity.oda.design.ColumnDefinition;
 import org.eclipse.datatools.connectivity.oda.design.CompositeFilterExpression;
-import org.eclipse.datatools.connectivity.oda.design.CustomExpression;
+import org.eclipse.datatools.connectivity.oda.design.CustomFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DataAccessDesign;
 import org.eclipse.datatools.connectivity.oda.design.DataElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.DataElementUIHints;
@@ -36,15 +36,15 @@ import org.eclipse.datatools.connectivity.oda.design.DesignSessionResponse;
 import org.eclipse.datatools.connectivity.oda.design.DesignerState;
 import org.eclipse.datatools.connectivity.oda.design.DesignerStateContent;
 import org.eclipse.datatools.connectivity.oda.design.DocumentRoot;
-import org.eclipse.datatools.connectivity.oda.design.DynamicExpression;
+import org.eclipse.datatools.connectivity.oda.design.DynamicFilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.DynamicValuesQuery;
 import org.eclipse.datatools.connectivity.oda.design.ElementNullability;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionArguments;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionParameterDefinition;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionParameters;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionVariable;
+import org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType;
 import org.eclipse.datatools.connectivity.oda.design.FilterExpression;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionArguments;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpressionVariable;
-import org.eclipse.datatools.connectivity.oda.design.FilterParameterDefinition;
-import org.eclipse.datatools.connectivity.oda.design.FilterParameters;
-import org.eclipse.datatools.connectivity.oda.design.FilterVariableType;
 import org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment;
 import org.eclipse.datatools.connectivity.oda.design.InputElementAttributes;
 import org.eclipse.datatools.connectivity.oda.design.InputElementUIHints;
@@ -141,7 +141,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass customExpressionEClass = null;
+    private EClass customFilterExpressionEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -232,7 +232,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass dynamicExpressionEClass = null;
+    private EClass dynamicFilterExpressionEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -246,35 +246,35 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass expressionArgumentsEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass expressionParameterDefinitionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass expressionParametersEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass expressionVariableEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass filterExpressionEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass filterExpressionArgumentsEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass filterExpressionVariableEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass filterParameterDefinitionEClass = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass filterParametersEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -463,7 +463,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EEnum filterVariableTypeEEnum = null;
+    private EEnum expressionVariableTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -540,7 +540,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    private EDataType filterVariableTypeObjectEDataType = null;
+    private EDataType expressionVariableTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -701,10 +701,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getAtomicExpressionContext_IsOptional()
+    {
+        return (EAttribute) atomicExpressionContextEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EReference getAtomicExpressionContext_Variable()
     {
         return (EReference) atomicExpressionContextEClass
-                .getEStructuralFeatures().get( 0 );
+                .getEStructuralFeatures().get( 1 );
     }
 
     /**
@@ -715,7 +726,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EReference getAtomicExpressionContext_Arguments()
     {
         return (EReference) atomicExpressionContextEClass
-                .getEStructuralFeatures().get( 1 );
+                .getEStructuralFeatures().get( 2 );
     }
 
     /**
@@ -819,9 +830,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getCustomExpression()
+    public EClass getCustomFilterExpression()
     {
-        return customExpressionEClass;
+        return customFilterExpressionEClass;
     }
 
     /**
@@ -829,10 +840,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCustomExpression_DeclaringExtensionId()
+    public EAttribute getCustomFilterExpression_DeclaringExtensionId()
     {
-        return (EAttribute) customExpressionEClass.getEStructuralFeatures()
-                .get( 0 );
+        return (EAttribute) customFilterExpressionEClass
+                .getEStructuralFeatures().get( 0 );
     }
 
     /**
@@ -840,10 +851,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getCustomExpression_Id()
+    public EAttribute getCustomFilterExpression_Id()
     {
-        return (EAttribute) customExpressionEClass.getEStructuralFeatures()
-                .get( 1 );
+        return (EAttribute) customFilterExpressionEClass
+                .getEStructuralFeatures().get( 1 );
     }
 
     /**
@@ -851,10 +862,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCustomExpression_Context()
+    public EReference getCustomFilterExpression_Context()
     {
-        return (EReference) customExpressionEClass.getEStructuralFeatures()
-                .get( 2 );
+        return (EReference) customFilterExpressionEClass
+                .getEStructuralFeatures().get( 2 );
     }
 
     /**
@@ -1505,9 +1516,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getDynamicExpression()
+    public EClass getDynamicFilterExpression()
     {
-        return dynamicExpressionEClass;
+        return dynamicFilterExpressionEClass;
     }
 
     /**
@@ -1515,10 +1526,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getDynamicExpression_ContextVariable()
+    public EReference getDynamicFilterExpression_Context()
     {
-        return (EReference) dynamicExpressionEClass.getEStructuralFeatures()
-                .get( 0 );
+        return (EReference) dynamicFilterExpressionEClass
+                .getEStructuralFeatures().get( 0 );
     }
 
     /**
@@ -1580,6 +1591,123 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getExpressionArguments()
+    {
+        return expressionArgumentsEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getExpressionArguments_ExpressionParameters()
+    {
+        return (EReference) expressionArgumentsEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExpressionParameterDefinition()
+    {
+        return expressionParameterDefinitionEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getExpressionParameterDefinition_StaticValues()
+    {
+        return (EReference) expressionParameterDefinitionEClass
+                .getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getExpressionParameterDefinition_DynamicInputParameter()
+    {
+        return (EReference) expressionParameterDefinitionEClass
+                .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExpressionParameters()
+    {
+        return expressionParametersEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getExpressionParameters_ParameterDefinitions()
+    {
+        return (EReference) expressionParametersEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getExpressionVariable()
+    {
+        return expressionVariableEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExpressionVariable_Type()
+    {
+        return (EAttribute) expressionVariableEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExpressionVariable_Identifier()
+    {
+        return (EAttribute) expressionVariableEClass.getEStructuralFeatures()
+                .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getExpressionVariable_NativeDataTypeCode()
+    {
+        return (EAttribute) expressionVariableEClass.getEStructuralFeatures()
+                .get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFilterExpression()
     {
         return filterExpressionEClass;
@@ -1593,123 +1721,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EAttribute getFilterExpression_Negatable()
     {
         return (EAttribute) filterExpressionEClass.getEStructuralFeatures()
-                .get( 0 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getFilterExpressionArguments()
-    {
-        return filterExpressionArgumentsEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getFilterExpressionArguments_FilterParameters()
-    {
-        return (EReference) filterExpressionArgumentsEClass
-                .getEStructuralFeatures().get( 0 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getFilterExpressionVariable()
-    {
-        return filterExpressionVariableEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getFilterExpressionVariable_Type()
-    {
-        return (EAttribute) filterExpressionVariableEClass
-                .getEStructuralFeatures().get( 0 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getFilterExpressionVariable_Identifier()
-    {
-        return (EAttribute) filterExpressionVariableEClass
-                .getEStructuralFeatures().get( 1 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getFilterExpressionVariable_NativeDataTypeCode()
-    {
-        return (EAttribute) filterExpressionVariableEClass
-                .getEStructuralFeatures().get( 2 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getFilterParameterDefinition()
-    {
-        return filterParameterDefinitionEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getFilterParameterDefinition_StaticValues()
-    {
-        return (EReference) filterParameterDefinitionEClass
-                .getEStructuralFeatures().get( 0 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getFilterParameterDefinition_DynamicInputParameter()
-    {
-        return (EReference) filterParameterDefinitionEClass
-                .getEStructuralFeatures().get( 1 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getFilterParameters()
-    {
-        return filterParametersEClass;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getFilterParameters_ParameterDefinitions()
-    {
-        return (EReference) filterParametersEClass.getEStructuralFeatures()
                 .get( 0 );
     }
 
@@ -2574,9 +2585,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EEnum getFilterVariableType()
+    public EEnum getExpressionVariableType()
     {
-        return filterVariableTypeEEnum;
+        return expressionVariableTypeEEnum;
     }
 
     /**
@@ -2684,9 +2695,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    public EDataType getFilterVariableTypeObject()
+    public EDataType getExpressionVariableTypeObject()
     {
-        return filterVariableTypeObjectEDataType;
+        return expressionVariableTypeObjectEDataType;
     }
 
     /**
@@ -2803,6 +2814,8 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         andExpressionEClass = createEClass( AND_EXPRESSION );
 
         atomicExpressionContextEClass = createEClass( ATOMIC_EXPRESSION_CONTEXT );
+        createEAttribute( atomicExpressionContextEClass,
+                ATOMIC_EXPRESSION_CONTEXT__IS_OPTIONAL );
         createEReference( atomicExpressionContextEClass,
                 ATOMIC_EXPRESSION_CONTEXT__VARIABLE );
         createEReference( atomicExpressionContextEClass,
@@ -2824,11 +2837,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEReference( compositeFilterExpressionEClass,
                 COMPOSITE_FILTER_EXPRESSION__CHILDREN );
 
-        customExpressionEClass = createEClass( CUSTOM_EXPRESSION );
-        createEAttribute( customExpressionEClass,
-                CUSTOM_EXPRESSION__DECLARING_EXTENSION_ID );
-        createEAttribute( customExpressionEClass, CUSTOM_EXPRESSION__ID );
-        createEReference( customExpressionEClass, CUSTOM_EXPRESSION__CONTEXT );
+        customFilterExpressionEClass = createEClass( CUSTOM_FILTER_EXPRESSION );
+        createEAttribute( customFilterExpressionEClass,
+                CUSTOM_FILTER_EXPRESSION__DECLARING_EXTENSION_ID );
+        createEAttribute( customFilterExpressionEClass,
+                CUSTOM_FILTER_EXPRESSION__ID );
+        createEReference( customFilterExpressionEClass,
+                CUSTOM_FILTER_EXPRESSION__CONTEXT );
 
         dataAccessDesignEClass = createEClass( DATA_ACCESS_DESIGN );
         createEReference( dataAccessDesignEClass,
@@ -2937,9 +2952,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 DOCUMENT_ROOT__XSI_SCHEMA_LOCATION );
         createEReference( documentRootEClass, DOCUMENT_ROOT__ODA_DESIGN_SESSION );
 
-        dynamicExpressionEClass = createEClass( DYNAMIC_EXPRESSION );
-        createEReference( dynamicExpressionEClass,
-                DYNAMIC_EXPRESSION__CONTEXT_VARIABLE );
+        dynamicFilterExpressionEClass = createEClass( DYNAMIC_FILTER_EXPRESSION );
+        createEReference( dynamicFilterExpressionEClass,
+                DYNAMIC_FILTER_EXPRESSION__CONTEXT );
 
         dynamicValuesQueryEClass = createEClass( DYNAMIC_VALUES_QUERY );
         createEReference( dynamicValuesQueryEClass,
@@ -2951,30 +2966,29 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( dynamicValuesQueryEClass,
                 DYNAMIC_VALUES_QUERY__DISPLAY_NAME_COLUMN );
 
+        expressionArgumentsEClass = createEClass( EXPRESSION_ARGUMENTS );
+        createEReference( expressionArgumentsEClass,
+                EXPRESSION_ARGUMENTS__EXPRESSION_PARAMETERS );
+
+        expressionParameterDefinitionEClass = createEClass( EXPRESSION_PARAMETER_DEFINITION );
+        createEReference( expressionParameterDefinitionEClass,
+                EXPRESSION_PARAMETER_DEFINITION__STATIC_VALUES );
+        createEReference( expressionParameterDefinitionEClass,
+                EXPRESSION_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER );
+
+        expressionParametersEClass = createEClass( EXPRESSION_PARAMETERS );
+        createEReference( expressionParametersEClass,
+                EXPRESSION_PARAMETERS__PARAMETER_DEFINITIONS );
+
+        expressionVariableEClass = createEClass( EXPRESSION_VARIABLE );
+        createEAttribute( expressionVariableEClass, EXPRESSION_VARIABLE__TYPE );
+        createEAttribute( expressionVariableEClass,
+                EXPRESSION_VARIABLE__IDENTIFIER );
+        createEAttribute( expressionVariableEClass,
+                EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE );
+
         filterExpressionEClass = createEClass( FILTER_EXPRESSION );
         createEAttribute( filterExpressionEClass, FILTER_EXPRESSION__NEGATABLE );
-
-        filterExpressionArgumentsEClass = createEClass( FILTER_EXPRESSION_ARGUMENTS );
-        createEReference( filterExpressionArgumentsEClass,
-                FILTER_EXPRESSION_ARGUMENTS__FILTER_PARAMETERS );
-
-        filterExpressionVariableEClass = createEClass( FILTER_EXPRESSION_VARIABLE );
-        createEAttribute( filterExpressionVariableEClass,
-                FILTER_EXPRESSION_VARIABLE__TYPE );
-        createEAttribute( filterExpressionVariableEClass,
-                FILTER_EXPRESSION_VARIABLE__IDENTIFIER );
-        createEAttribute( filterExpressionVariableEClass,
-                FILTER_EXPRESSION_VARIABLE__NATIVE_DATA_TYPE_CODE );
-
-        filterParameterDefinitionEClass = createEClass( FILTER_PARAMETER_DEFINITION );
-        createEReference( filterParameterDefinitionEClass,
-                FILTER_PARAMETER_DEFINITION__STATIC_VALUES );
-        createEReference( filterParameterDefinitionEClass,
-                FILTER_PARAMETER_DEFINITION__DYNAMIC_INPUT_PARAMETER );
-
-        filterParametersEClass = createEClass( FILTER_PARAMETERS );
-        createEReference( filterParametersEClass,
-                FILTER_PARAMETERS__PARAMETER_DEFINITIONS );
 
         inputElementAttributesEClass = createEClass( INPUT_ELEMENT_ATTRIBUTES );
         createEAttribute( inputElementAttributesEClass,
@@ -3124,7 +3138,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         // Create enums
         axisTypeEEnum = createEEnum( AXIS_TYPE );
         elementNullabilityEEnum = createEEnum( ELEMENT_NULLABILITY );
-        filterVariableTypeEEnum = createEEnum( FILTER_VARIABLE_TYPE );
+        expressionVariableTypeEEnum = createEEnum( EXPRESSION_VARIABLE_TYPE );
         horizontalAlignmentEEnum = createEEnum( HORIZONTAL_ALIGNMENT );
         inputPromptControlStyleEEnum = createEEnum( INPUT_PROMPT_CONTROL_STYLE );
         odaComplexDataTypeEEnum = createEEnum( ODA_COMPLEX_DATA_TYPE );
@@ -3137,7 +3151,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         // Create data types
         axisTypeObjectEDataType = createEDataType( AXIS_TYPE_OBJECT );
         elementNullabilityObjectEDataType = createEDataType( ELEMENT_NULLABILITY_OBJECT );
-        filterVariableTypeObjectEDataType = createEDataType( FILTER_VARIABLE_TYPE_OBJECT );
+        expressionVariableTypeObjectEDataType = createEDataType( EXPRESSION_VARIABLE_TYPE_OBJECT );
         horizontalAlignmentObjectEDataType = createEDataType( HORIZONTAL_ALIGNMENT_OBJECT );
         inputPromptControlStyleObjectEDataType = createEDataType( INPUT_PROMPT_CONTROL_STYLE_OBJECT );
         odaComplexDataTypeObjectEDataType = createEDataType( ODA_COMPLEX_DATA_TYPE_OBJECT );
@@ -3186,9 +3200,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getCompositeFilterExpression() );
         compositeFilterExpressionEClass.getESuperTypes().add(
                 this.getFilterExpression() );
-        customExpressionEClass.getESuperTypes()
-                .add( this.getFilterExpression() );
-        dynamicExpressionEClass.getESuperTypes().add(
+        customFilterExpressionEClass.getESuperTypes().add(
+                this.getFilterExpression() );
+        dynamicFilterExpressionEClass.getESuperTypes().add(
                 this.getFilterExpression() );
         notExpressionEClass.getESuperTypes().add( this.getFilterExpression() );
         orExpressionEClass.getESuperTypes().add(
@@ -3204,14 +3218,18 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 atomicExpressionContextEClass,
                 AtomicExpressionContext.class,
                 "AtomicExpressionContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getAtomicExpressionContext_IsOptional(),
+                theXMLTypePackage.getBoolean(),
+                "isOptional", "false", 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
         initEReference(
                 getAtomicExpressionContext_Variable(),
-                this.getFilterExpressionVariable(),
+                this.getExpressionVariable(),
                 null,
                 "variable", null, 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
                 getAtomicExpressionContext_Arguments(),
-                this.getFilterExpressionArguments(),
+                this.getExpressionArguments(),
                 null,
                 "arguments", null, 0, 1, AtomicExpressionContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
@@ -3259,22 +3277,22 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "children", null, 1, -1, CompositeFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
-                customExpressionEClass,
-                CustomExpression.class,
-                "CustomExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+                customFilterExpressionEClass,
+                CustomFilterExpression.class,
+                "CustomFilterExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEAttribute(
-                getCustomExpression_DeclaringExtensionId(),
+                getCustomFilterExpression_DeclaringExtensionId(),
                 theXMLTypePackage.getString(),
-                "declaringExtensionId", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "declaringExtensionId", null, 1, 1, CustomFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEAttribute(
-                getCustomExpression_Id(),
+                getCustomFilterExpression_Id(),
                 theXMLTypePackage.getString(),
-                "id", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "id", null, 1, 1, CustomFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
         initEReference(
-                getCustomExpression_Context(),
+                getCustomFilterExpression_Context(),
                 this.getAtomicExpressionContext(),
                 null,
-                "context", null, 1, 1, CustomExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "context", null, 1, 1, CustomFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataAccessDesignEClass,
@@ -3551,14 +3569,14 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "odaDesignSession", null, 0, -2, null, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
-                dynamicExpressionEClass,
-                DynamicExpression.class,
-                "DynamicExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+                dynamicFilterExpressionEClass,
+                DynamicFilterExpression.class,
+                "DynamicFilterExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEReference(
-                getDynamicExpression_ContextVariable(),
-                this.getFilterExpressionVariable(),
+                getDynamicFilterExpression_Context(),
+                this.getAtomicExpressionContext(),
                 null,
-                "contextVariable", null, 1, 1, DynamicExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+                "context", null, 1, 1, DynamicFilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dynamicValuesQueryEClass,
@@ -3583,6 +3601,58 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "displayNameColumn", null, 0, 1, DynamicValuesQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
+                expressionArgumentsEClass,
+                ExpressionArguments.class,
+                "ExpressionArguments", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getExpressionArguments_ExpressionParameters(),
+                this.getExpressionParameters(),
+                null,
+                "expressionParameters", null, 1, 1, ExpressionArguments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                expressionParameterDefinitionEClass,
+                ExpressionParameterDefinition.class,
+                "ExpressionParameterDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getExpressionParameterDefinition_StaticValues(),
+                this.getStaticValues(),
+                null,
+                "staticValues", null, 0, 1, ExpressionParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getExpressionParameterDefinition_DynamicInputParameter(),
+                this.getParameterDefinition(),
+                null,
+                "dynamicInputParameter", null, 0, 1, ExpressionParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                expressionParametersEClass,
+                ExpressionParameters.class,
+                "ExpressionParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getExpressionParameters_ParameterDefinitions(),
+                this.getExpressionParameterDefinition(),
+                null,
+                "parameterDefinitions", null, 1, -1, ExpressionParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                expressionVariableEClass,
+                ExpressionVariable.class,
+                "ExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getExpressionVariable_Type(),
+                this.getExpressionVariableType(),
+                "type", "ResultSetColumn", 0, 1, ExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+        initEAttribute(
+                getExpressionVariable_Identifier(),
+                theXMLTypePackage.getString(),
+                "identifier", null, 1, 1, ExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getExpressionVariable_NativeDataTypeCode(),
+                theXMLTypePackage.getInt(),
+                "nativeDataTypeCode", null, 0, 1, ExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
                 filterExpressionEClass,
                 FilterExpression.class,
                 "FilterExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -3590,58 +3660,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getFilterExpression_Negatable(),
                 theXMLTypePackage.getBoolean(),
                 "negatable", "false", 0, 1, FilterExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
-
-        initEClass(
-                filterExpressionArgumentsEClass,
-                FilterExpressionArguments.class,
-                "FilterExpressionArguments", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEReference(
-                getFilterExpressionArguments_FilterParameters(),
-                this.getFilterParameters(),
-                null,
-                "filterParameters", null, 1, 1, FilterExpressionArguments.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-
-        initEClass(
-                filterExpressionVariableEClass,
-                FilterExpressionVariable.class,
-                "FilterExpressionVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEAttribute(
-                getFilterExpressionVariable_Type(),
-                this.getFilterVariableType(),
-                "type", "ResultSetColumn", 0, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
-        initEAttribute(
-                getFilterExpressionVariable_Identifier(),
-                theXMLTypePackage.getString(),
-                "identifier", null, 1, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-        initEAttribute(
-                getFilterExpressionVariable_NativeDataTypeCode(),
-                theXMLTypePackage.getInt(),
-                "nativeDataTypeCode", null, 0, 1, FilterExpressionVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-
-        initEClass(
-                filterParameterDefinitionEClass,
-                FilterParameterDefinition.class,
-                "FilterParameterDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEReference(
-                getFilterParameterDefinition_StaticValues(),
-                this.getStaticValues(),
-                null,
-                "staticValues", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-        initEReference(
-                getFilterParameterDefinition_DynamicInputParameter(),
-                this.getParameterDefinition(),
-                null,
-                "dynamicInputParameter", null, 0, 1, FilterParameterDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-
-        initEClass(
-                filterParametersEClass,
-                FilterParameters.class,
-                "FilterParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
-        initEReference(
-                getFilterParameters_ParameterDefinitions(),
-                this.getFilterParameterDefinition(),
-                null,
-                "parameterDefinitions", null, 1, -1, FilterParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 inputElementAttributesEClass,
@@ -4024,14 +4042,14 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addEEnumLiteral( elementNullabilityEEnum,
                 ElementNullability.NOT_NULLABLE_LITERAL );
 
-        initEEnum( filterVariableTypeEEnum, FilterVariableType.class,
-                "FilterVariableType" ); //$NON-NLS-1$
-        addEEnumLiteral( filterVariableTypeEEnum,
-                FilterVariableType.RESULT_SET_COLUMN );
-        addEEnumLiteral( filterVariableTypeEEnum,
-                FilterVariableType.INSTANCE_OF );
-        addEEnumLiteral( filterVariableTypeEEnum,
-                FilterVariableType.QUERY_EXPRESSION );
+        initEEnum( expressionVariableTypeEEnum, ExpressionVariableType.class,
+                "ExpressionVariableType" ); //$NON-NLS-1$
+        addEEnumLiteral( expressionVariableTypeEEnum,
+                ExpressionVariableType.RESULT_SET_COLUMN );
+        addEEnumLiteral( expressionVariableTypeEEnum,
+                ExpressionVariableType.INSTANCE_OF );
+        addEEnumLiteral( expressionVariableTypeEEnum,
+                ExpressionVariableType.QUERY_EXPRESSION );
 
         initEEnum( horizontalAlignmentEEnum, HorizontalAlignment.class,
                 "HorizontalAlignment" ); //$NON-NLS-1$
@@ -4112,9 +4130,9 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 ElementNullability.class,
                 "ElementNullabilityObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
-                filterVariableTypeObjectEDataType,
-                FilterVariableType.class,
-                "FilterVariableTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+                expressionVariableTypeObjectEDataType,
+                ExpressionVariableType.class,
+                "ExpressionVariableTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 horizontalAlignmentObjectEDataType,
                 HorizontalAlignment.class,
@@ -4173,6 +4191,12 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "name", "AtomicExpressionContext", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( getAtomicExpressionContext_IsOptional(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "isOptional", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( getAtomicExpressionContext_Variable(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
@@ -4236,26 +4260,27 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "children", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
-        addAnnotation( customExpressionEClass, source, new String[]
-        { "name", "CustomExpression", //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation( customFilterExpressionEClass, source, new String[]
+        { "name", "CustomFilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( getCustomExpression_DeclaringExtensionId(), source,
-                new String[]
+        addAnnotation( getCustomFilterExpression_DeclaringExtensionId(),
+                source, new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                         "name", "declaringExtensionId", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
-        addAnnotation( getCustomExpression_Id(), source, new String[]
+        addAnnotation( getCustomFilterExpression_Id(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "id", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( getCustomExpression_Context(), source, new String[]
-        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                "name", "context", //$NON-NLS-1$ //$NON-NLS-2$
-                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
+        addAnnotation( getCustomFilterExpression_Context(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "context", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( dataAccessDesignEClass, source, new String[]
         { "name", "DataAccessDesign", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -4570,14 +4595,14 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "name", "odaDesignSession", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( dynamicExpressionEClass, source, new String[]
-        { "name", "DynamicExpression", //$NON-NLS-1$ //$NON-NLS-2$
+        addAnnotation( dynamicFilterExpressionEClass, source, new String[]
+        { "name", "DynamicFilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
         } );
-        addAnnotation( getDynamicExpression_ContextVariable(), source,
+        addAnnotation( getDynamicFilterExpression_Context(), source,
                 new String[]
                 { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "contextVariable", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "context", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
         addAnnotation( dynamicValuesQueryEClass, source, new String[]
@@ -4614,6 +4639,72 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         { "name", "ElementNullability:Object", //$NON-NLS-1$ //$NON-NLS-2$
                 "baseType", "ElementNullability" //$NON-NLS-1$ //$NON-NLS-2$
         } );
+        addAnnotation( expressionArgumentsEClass, source, new String[]
+        { "name", "ExpressionArguments", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getExpressionArguments_ExpressionParameters(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "expressionParameters", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( expressionParameterDefinitionEClass, source,
+                new String[]
+                { "name", "ExpressionParameterDefinition", //$NON-NLS-1$ //$NON-NLS-2$
+                        "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getExpressionParameterDefinition_StaticValues(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "staticValues", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation(
+                getExpressionParameterDefinition_DynamicInputParameter(),
+                source, new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "dynamicInputParameter", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( expressionParametersEClass, source, new String[]
+        { "name", "ExpressionParameters", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getExpressionParameters_ParameterDefinitions(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "parameterDefinitions", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( expressionVariableEClass, source, new String[]
+        { "name", "ExpressionVariable", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getExpressionVariable_Type(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "type", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getExpressionVariable_Identifier(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "identifier", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getExpressionVariable_NativeDataTypeCode(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "nativeDataTypeCode", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( expressionVariableTypeEEnum, source, new String[]
+        { "name", "ExpressionVariableType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( expressionVariableTypeObjectEDataType, source,
+                new String[]
+                { "name", "ExpressionVariableType:Object", //$NON-NLS-1$ //$NON-NLS-2$
+                        "baseType", "ExpressionVariableType" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
         addAnnotation( filterExpressionEClass, source, new String[]
         { "name", "FilterExpression", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "empty" //$NON-NLS-1$ //$NON-NLS-2$
@@ -4621,70 +4712,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getFilterExpression_Negatable(), source, new String[]
         { "kind", "attribute", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "negatable" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( filterExpressionArgumentsEClass, source, new String[]
-        { "name", "FilterExpressionArguments", //$NON-NLS-1$ //$NON-NLS-2$
-                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getFilterExpressionArguments_FilterParameters(), source,
-                new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "filterParameters", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( filterExpressionVariableEClass, source, new String[]
-        { "name", "FilterExpressionVariable", //$NON-NLS-1$ //$NON-NLS-2$
-                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getFilterExpressionVariable_Type(), source, new String[]
-        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                "name", "type", //$NON-NLS-1$ //$NON-NLS-2$
-                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getFilterExpressionVariable_Identifier(), source,
-                new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "identifier", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( getFilterExpressionVariable_NativeDataTypeCode(),
-                source, new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "nativeDataTypeCode", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( filterParameterDefinitionEClass, source, new String[]
-        { "name", "FilterParameterDefinition", //$NON-NLS-1$ //$NON-NLS-2$
-                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getFilterParameterDefinition_StaticValues(), source,
-                new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "staticValues", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( getFilterParameterDefinition_DynamicInputParameter(),
-                source, new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "dynamicInputParameter", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( filterParametersEClass, source, new String[]
-        { "name", "FilterParameters", //$NON-NLS-1$ //$NON-NLS-2$
-                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getFilterParameters_ParameterDefinitions(), source,
-                new String[]
-                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                        "name", "parameterDefinitions", //$NON-NLS-1$ //$NON-NLS-2$
-                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-                } );
-        addAnnotation( filterVariableTypeEEnum, source, new String[]
-        { "name", "FilterVariableType" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( filterVariableTypeObjectEDataType, source, new String[]
-        { "name", "FilterVariableType:Object", //$NON-NLS-1$ //$NON-NLS-2$
-                "baseType", "FilterVariableType" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( horizontalAlignmentEEnum, source, new String[]
         { "name", "HorizontalAlignment" //$NON-NLS-1$ //$NON-NLS-2$

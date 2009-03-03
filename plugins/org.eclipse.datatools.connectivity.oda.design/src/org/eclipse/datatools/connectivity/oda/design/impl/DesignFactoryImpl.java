@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.9 2009/01/30 00:23:56 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.10 2009/02/12 02:50:20 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -93,8 +93,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createColumnDefinition();
         case DesignPackage.COMPOSITE_FILTER_EXPRESSION:
             return createCompositeFilterExpression();
-        case DesignPackage.CUSTOM_EXPRESSION:
-            return createCustomExpression();
+        case DesignPackage.CUSTOM_FILTER_EXPRESSION:
+            return createCustomFilterExpression();
         case DesignPackage.DATA_ACCESS_DESIGN:
             return createDataAccessDesign();
         case DesignPackage.DATA_ELEMENT_ATTRIBUTES:
@@ -119,18 +119,18 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createDesignSessionResponse();
         case DesignPackage.DOCUMENT_ROOT:
             return createDocumentRoot();
-        case DesignPackage.DYNAMIC_EXPRESSION:
-            return createDynamicExpression();
+        case DesignPackage.DYNAMIC_FILTER_EXPRESSION:
+            return createDynamicFilterExpression();
         case DesignPackage.DYNAMIC_VALUES_QUERY:
             return createDynamicValuesQuery();
-        case DesignPackage.FILTER_EXPRESSION_ARGUMENTS:
-            return createFilterExpressionArguments();
-        case DesignPackage.FILTER_EXPRESSION_VARIABLE:
-            return createFilterExpressionVariable();
-        case DesignPackage.FILTER_PARAMETER_DEFINITION:
-            return createFilterParameterDefinition();
-        case DesignPackage.FILTER_PARAMETERS:
-            return createFilterParameters();
+        case DesignPackage.EXPRESSION_ARGUMENTS:
+            return createExpressionArguments();
+        case DesignPackage.EXPRESSION_PARAMETER_DEFINITION:
+            return createExpressionParameterDefinition();
+        case DesignPackage.EXPRESSION_PARAMETERS:
+            return createExpressionParameters();
+        case DesignPackage.EXPRESSION_VARIABLE:
+            return createExpressionVariable();
         case DesignPackage.INPUT_ELEMENT_ATTRIBUTES:
             return createInputElementAttributes();
         case DesignPackage.INPUT_ELEMENT_UI_HINTS:
@@ -199,8 +199,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createAxisTypeFromString( eDataType, initialValue );
         case DesignPackage.ELEMENT_NULLABILITY:
             return createElementNullabilityFromString( eDataType, initialValue );
-        case DesignPackage.FILTER_VARIABLE_TYPE:
-            return createFilterVariableTypeFromString( eDataType, initialValue );
+        case DesignPackage.EXPRESSION_VARIABLE_TYPE:
+            return createExpressionVariableTypeFromString( eDataType,
+                    initialValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
             return createHorizontalAlignmentFromString( eDataType, initialValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
@@ -223,8 +224,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
             return createElementNullabilityObjectFromString( eDataType,
                     initialValue );
-        case DesignPackage.FILTER_VARIABLE_TYPE_OBJECT:
-            return createFilterVariableTypeObjectFromString( eDataType,
+        case DesignPackage.EXPRESSION_VARIABLE_TYPE_OBJECT:
+            return createExpressionVariableTypeObjectFromString( eDataType,
                     initialValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
             return createHorizontalAlignmentObjectFromString( eDataType,
@@ -267,8 +268,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return convertAxisTypeToString( eDataType, instanceValue );
         case DesignPackage.ELEMENT_NULLABILITY:
             return convertElementNullabilityToString( eDataType, instanceValue );
-        case DesignPackage.FILTER_VARIABLE_TYPE:
-            return convertFilterVariableTypeToString( eDataType, instanceValue );
+        case DesignPackage.EXPRESSION_VARIABLE_TYPE:
+            return convertExpressionVariableTypeToString( eDataType,
+                    instanceValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT:
             return convertHorizontalAlignmentToString( eDataType, instanceValue );
         case DesignPackage.INPUT_PROMPT_CONTROL_STYLE:
@@ -291,8 +293,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
         case DesignPackage.ELEMENT_NULLABILITY_OBJECT:
             return convertElementNullabilityObjectToString( eDataType,
                     instanceValue );
-        case DesignPackage.FILTER_VARIABLE_TYPE_OBJECT:
-            return convertFilterVariableTypeObjectToString( eDataType,
+        case DesignPackage.EXPRESSION_VARIABLE_TYPE_OBJECT:
+            return convertExpressionVariableTypeObjectToString( eDataType,
                     instanceValue );
         case DesignPackage.HORIZONTAL_ALIGNMENT_OBJECT:
             return convertHorizontalAlignmentObjectToString( eDataType,
@@ -381,10 +383,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public CustomExpression createCustomExpression()
+    public CustomFilterExpression createCustomFilterExpression()
     {
-        CustomExpressionImpl customExpression = new CustomExpressionImpl();
-        return customExpression;
+        CustomFilterExpressionImpl customFilterExpression = new CustomFilterExpressionImpl();
+        return customFilterExpression;
     }
 
     /**
@@ -524,10 +526,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public DynamicExpression createDynamicExpression()
+    public DynamicFilterExpression createDynamicFilterExpression()
     {
-        DynamicExpressionImpl dynamicExpression = new DynamicExpressionImpl();
-        return dynamicExpression;
+        DynamicFilterExpressionImpl dynamicFilterExpression = new DynamicFilterExpressionImpl();
+        return dynamicFilterExpression;
     }
 
     /**
@@ -546,10 +548,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterExpressionArguments createFilterExpressionArguments()
+    public ExpressionArguments createExpressionArguments()
     {
-        FilterExpressionArgumentsImpl filterExpressionArguments = new FilterExpressionArgumentsImpl();
-        return filterExpressionArguments;
+        ExpressionArgumentsImpl expressionArguments = new ExpressionArgumentsImpl();
+        return expressionArguments;
     }
 
     /**
@@ -557,10 +559,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterExpressionVariable createFilterExpressionVariable()
+    public ExpressionParameterDefinition createExpressionParameterDefinition()
     {
-        FilterExpressionVariableImpl filterExpressionVariable = new FilterExpressionVariableImpl();
-        return filterExpressionVariable;
+        ExpressionParameterDefinitionImpl expressionParameterDefinition = new ExpressionParameterDefinitionImpl();
+        return expressionParameterDefinition;
     }
 
     /**
@@ -568,10 +570,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterParameterDefinition createFilterParameterDefinition()
+    public ExpressionParameters createExpressionParameters()
     {
-        FilterParameterDefinitionImpl filterParameterDefinition = new FilterParameterDefinitionImpl();
-        return filterParameterDefinition;
+        ExpressionParametersImpl expressionParameters = new ExpressionParametersImpl();
+        return expressionParameters;
     }
 
     /**
@@ -579,10 +581,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterParameters createFilterParameters()
+    public ExpressionVariable createExpressionVariable()
     {
-        FilterParametersImpl filterParameters = new FilterParametersImpl();
-        return filterParameters;
+        ExpressionVariableImpl expressionVariable = new ExpressionVariableImpl();
+        return expressionVariable;
     }
 
     /**
@@ -906,10 +908,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterVariableType createFilterVariableTypeFromString(
+    public ExpressionVariableType createExpressionVariableTypeFromString(
             EDataType eDataType, String initialValue )
     {
-        FilterVariableType result = FilterVariableType.get( initialValue );
+        ExpressionVariableType result = ExpressionVariableType
+                .get( initialValue );
         if( result == null )
             throw new IllegalArgumentException(
                     "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -921,7 +924,7 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertFilterVariableTypeToString( EDataType eDataType,
+    public String convertExpressionVariableTypeToString( EDataType eDataType,
             Object instanceValue )
     {
         return instanceValue == null ? null : instanceValue.toString();
@@ -1189,11 +1192,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public FilterVariableType createFilterVariableTypeObjectFromString(
+    public ExpressionVariableType createExpressionVariableTypeObjectFromString(
             EDataType eDataType, String initialValue )
     {
-        return createFilterVariableTypeFromString(
-                DesignPackage.Literals.FILTER_VARIABLE_TYPE, initialValue );
+        return createExpressionVariableTypeFromString(
+                DesignPackage.Literals.EXPRESSION_VARIABLE_TYPE, initialValue );
     }
 
     /**
@@ -1201,11 +1204,11 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertFilterVariableTypeObjectToString( EDataType eDataType,
-            Object instanceValue )
+    public String convertExpressionVariableTypeObjectToString(
+            EDataType eDataType, Object instanceValue )
     {
-        return convertFilterVariableTypeToString(
-                DesignPackage.Literals.FILTER_VARIABLE_TYPE, instanceValue );
+        return convertExpressionVariableTypeToString(
+                DesignPackage.Literals.EXPRESSION_VARIABLE_TYPE, instanceValue );
     }
 
     /**
