@@ -47,8 +47,8 @@
 		<antcall target="buildDtpIncubationAllFeature"/>
 		<ant antfile="${eclipse.build.configs}/../helper.xml" target="verifyCompile" />
 		<antcall target="integrateDtpFeatures"/>
-                <antcall target="Package"/>
-                <antcall target="GenerateUpdateSite"/>
+        <antcall target="Package"/>
+        <antcall target="GenerateUpdateSite"/>
 		
 		<!--
                 <parallel failonany="false">
@@ -129,7 +129,14 @@
 		<unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-incubation-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
                 
-                <antcall target="SignFeatures"/>
+        <antcall target="SignFeatures"/>
+		
+		<!-- TODO: 
+		    1. zip features/ plugins/ pack.properties under ${buildDirectory}/tmpsite/eclipse as dtp-all-unsign.zip 
+		    2. sign features, plugins under ${buildDirectory}/tmpsite
+			3. Download back, replace the unsigned version in ${buildDirectory}/tmpsite/eclipse
+			4. Keep the signed, packed zip under ${buildDirectory}/, name as dtp-all-signed.zip
+		 -->
 
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
 
@@ -143,7 +150,7 @@
 	</target>
 
 	<target name="p2.test">
-	<p2.generator source="${reposource}" compress="true" 
+		<p2.generator source="${reposource}" compress="true" 
                   append="true" flavor="tooling" 
                   metadataRepository="file:${tmpsite}/new/eclipse" 
                   artifactRepository="file:${tmpsite}/new/eclipse" 
@@ -153,25 +160,25 @@
 
 	</target>
 
-        <target name="SignFeatures">
-           <zip destfile="${tmpsite}/dtpfeatures170.zip" basedir="${tmpsite}/eclipse/features"/>
-           <echo message="Upload features to signing server ..."/>
-           <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
-              <fileset dir="${tmpsite}" includes="dtpfeatures170.zip"/>
-           </scp>
-           <echo message="Finish uploading features."/>
-           <echo message="Start signing features ..."/>
-           <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
-                    command="cd ${sign.dir};cp ${home.dir}/dtpfeatures170.zip ./;sign dtpfeatures170.zip nomail;"/>
-           <sleep minutes="10"/>
-           <echo message="Finish signing features."/>
-           <echo message="Download signed features from server ..."/>
-           <scp localtofile="${tmpsite}/dtpfeatures.sign.zip" trust="true"
-                file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtpfeatures170.zip"/>
-           <echo message="Finish downloading signed features."/>
-           <unzip src="${tmpsite}/dtpfeatures.sign.zip" dest="${tmpsite}/eclipse/features"/>
-
-        </target>
+    <target name="SignFeatures">
+        <zip destfile="${tmpsite}/dtpfeatures170.zip" basedir="${tmpsite}/eclipse/features"/>
+        <echo message="Upload features to signing server ..."/>
+        <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
+            <fileset dir="${tmpsite}" includes="dtpfeatures170.zip"/>
+        </scp>
+        
+    	<echo message="Finish uploading features."/>
+        <echo message="Start signing features ..."/>
+        <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
+                 command="cd ${sign.dir};cp ${home.dir}/dtpfeatures170.zip ./;sign dtpfeatures170.zip nomail;"/>
+        <sleep minutes="10"/>
+        <echo message="Finish signing features."/>
+        <echo message="Download signed features from server ..."/>
+        <scp localtofile="${tmpsite}/dtpfeatures.sign.zip" trust="true"
+             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtpfeatures170.zip"/>
+        <echo message="Finish downloading signed features."/>
+        <unzip src="${tmpsite}/dtpfeatures.sign.zip" dest="${tmpsite}/eclipse/features"/>
+    </target>
 
 	<target name="Package">
 
@@ -265,9 +272,9 @@
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-sdk-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/${buildId}/dtp-incubator-${package.version}.zip" todir="${postingDirectory}/${buildId}"/>
 		<copy file="${buildDirectory}/directory.txt" todir="${postingDirectory}/${buildId}"/>
-                <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
+        <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
 		<copy tofile="${postingDirectory}/monitor.properties" file="monitor.properties" overwrite="true" />
-                <copy file="adb.log" todir="${postingDirectory}/${buildId}"/>
+        <copy file="adb.log" todir="${postingDirectory}/${buildId}"/>
 	</target>
 
 	<target name="GenerateUpdateSite">
@@ -275,41 +282,39 @@
 		<property file="${buildDirectory}/finalFeaturesVersions.properties"/>
 		<mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
 
-                <!-- replace the feature version in site.xml -->
+        <!-- replace the feature version in site.xml -->
 		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${buildDirectory}/site.xml" overwrite="true"/>
 
-                <replace file="${buildDirectory}/site.xml" value="1.7.0" token="@RELEASE.VERSION@"/>
+        <replace file="${buildDirectory}/site.xml" value="1.7.0" token="@RELEASE.VERSION@"/>
+        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
+        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
-                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
-                <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
-
-		<!-- generate dtp.sc for Ganymede update site -->
-		<copy file="${eclipse.build.configs}/../../extras/dtp.sc.template" tofile="${buildDirectory}/dtp.sc"/>
-
-                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
-                <replace file="${buildDirectory}/dtp.sc" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
-
-                <!-- push update site to output directory -->
-                <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
-                <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
+		<!-- TODO: generate pack200 for update site -->
+		
+		<!-- TODO: generate p2 metadata for update site -->
+		
+        <!-- push update site to output directory -->
+        <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
+        <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
 
 		<delete includeemptydirs="true">
 			<fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
 				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
 			</fileset>
-                        <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
-                                <include name="readme/**"/>
-                                <include name="*.html"/>
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
+                <include name="readme/**"/>
+                <include name="*.html"/>
 			</fileset>
-                </delete>
+        </delete>
 
-                <copy todir="${postingDirectory}/${buildId}/UpdateSite">
+        <copy todir="${postingDirectory}/${buildId}/UpdateSite">
 			<fileset dir="${buildDirectory}">
 				<include name="site.xml"/>
-				<include name="dtp.sc"/>
 			</fileset>
-                </copy>
-
+        </copy>
+		
+		<!-- push p2 repo to local update site for testing -->
+		
 	</target>
 
 	<target name="GenerateCVSChangeLog">
