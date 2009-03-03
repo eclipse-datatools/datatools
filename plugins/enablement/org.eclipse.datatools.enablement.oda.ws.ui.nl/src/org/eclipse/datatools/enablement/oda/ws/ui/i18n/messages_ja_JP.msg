@@ -21,41 +21,44 @@
 webServiceSelectionPage.message.default=Web サービスのデータソース
 webServiceSelectionPage.message.error=SOAP エンドポイントの URL を指定するか、WSDL 記述子を選択してください。
 webServiceSelectionPage.group.wsdl=WSDL 記述子
-webServiceSelectionPage.group.endPoint=SOAP エンドポイント
-webServiceSelectionPage.group.customClass=カスタムドライバクラス
-webServiceSelectionPage.group.classPath=ドライバクラスのパス
+webServiceSelectionPage.group.endPoint=&SOAP End Point
+webServiceSelectionPage.group.customClass=&Custom Driver Class
+webServiceSelectionPage.group.classPath=&Driver Class Path
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
 webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
-webServiceSelectionPage.label.endPoint=SOAP のエンドポイント URL の指定(&E) (WSDL で定義したエンドポイントを使用する場合や、エンドポイントの \nURL を必要としないカスタム接続クラスを使用する場合は、この値を省略できます)
-webServiceSelectionPage.label.customClass=カスタム Java クラスを使用して Web サービスへの接続やクエリを行う場合は、ここに完全修飾クラス名を入力してください(&J)
+webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
+webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
 webServiceSelectionPage.label.classPath=追加の JAR ファイルや、カスタムドライバクラスの検索先ディレクトリをセミコロン (;) で区切ったリスト
-webServiceSelectionPage.button.browse=参照(&B)...
+webServiceSelectionPage.button.browse=B&rowse...
 
 # OperationPage
 operationPage.message.default=データソースの WSDL 記述子で定義されている処理を選択してください。
 operationPage.message.operationChanged=SOAP リクエストの生成とエンドポイントへの接続をやり直しますか ?
 operationPage.title.operationChanged=操作の変更
-operationPage.label.selectOpearation=選択済みの処理
-operationPage.label.document=文書
+operationPage.label.selectOpearation=&Selected Operation
+operationPage.label.document=&Documentation
 
 # SoapParametersPage
 soapParametersPage.message.default=指定した WSDL 操作のパラメタを入力してください。
 soapParametersPage.button.selectAll=すべて選択(&S)
 soapParametersPage.button.deselectAll=すべて選択解除(&D)
+soapParametersPage.column.paramName=N&ame
+soapParametersPage.column.dataType=Data &Type
 
 # SoapRequestPage
 soapRequestPage.message.default=このデータセットの SOAP リクエストテンプレートを編集してください。データソースのカスタム接続クラスコードにクエリテキストが必要ない場合は、テキストを入力する必要はありません。
 soapRequestPage.message.regenerateTemplate=指定した SOAP 操作に基づいたクエリテキストのテンプレートが再生成されるため、テキストへの変更はすべて上書きされます。\n\n続行しますか ?
 soapRequestPage.title.regenerateTemplate=テンプレートの再生成
 soapRequestPage.button.regenerateTemplate=テンプレートの再生成(&R)
-soapRequestPage.button.insertParameter=パラメタの挿入(&I)...
+soapRequestPage.button.insertParameter=&Edit Parameter...
 soapRequestPage.button.clear=クリア(&C)
 soapRequestPage.paramEditDialog.title=パラメタプロパティの編集
 
 # ParameterInputDialog
-parameterInputDialog.column.name=名前
-parameterInputDialog.column.type=データ型
-parameterInputDialog.column.defaultValue=デフォルト値
+parameterInputDialog.column.name=&Name
+parameterInputDialog.column.type=Data &Type
+parameterInputDialog.column.defaultValue=Default &Value
+parameterInputDialog.button.edit=&Edit...
 
 # SoapResponsePage
 soapResponsePage.message.default=SOAP 応答の編集
@@ -63,10 +66,11 @@ soapResponsePage.group.schema=SOAP 応答スキーマの選択
 soapResponsePage.group.xml=サンプル SOAP 応答メッセージの選択
 soapResponsePage.radio.defaultSchema=データソース WSDL で定義した処理応答スキーマを使用する(&O)
 soapResponsePage.radio.reponseSchema=応答のスキーマを使用する(&R)
-soapResponsePage.radio.externalSchema=外部 XML スキーマファイルを使用する(&S) :
+soapResponsePage.radio.externalSchema=Use external &XML schema file:
 soapResponsePage.radio.endPoint=SOAP エンドポイントで Web サービスをクエリする(&E) :
 soapResponsePage.radio.externalXML=外部サンプルデータファイルを使用する(&D)
-soapResponsePage.button.browse=参照(&B)...
+soapResponsePage.button.browse1=Bro&wse...
+soapResponsePage.button.browse2=Brow&se...
 soapResponsePage.button.connect=今すぐ接続(&C)
 
 # XMLTableMappingPage
