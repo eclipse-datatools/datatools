@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryCombinedItemProvider.java,v 1.1 2007/09/25 23:18:02 bpayton Exp $
+ * $Id: QueryCombinedItemProvider.java,v 1.2 2008/01/31 02:58:42 bpayton Exp $
  */
 package org.eclipse.datatools.modelbase.sql.query.provider;
 
@@ -164,13 +164,21 @@ public class QueryCombinedItemProvider
      * @generated NOT
      */
   public String getText(Object object) {
-        String label = ((QueryCombined)object).getName();
-        //label = label.replaceAll("_"," ");
-        return label == null || label.length() == 0 ?
-            //getString("_UI_QueryCombined_type") :
-        		getString("_UI_QueryCombinedOperator_UNION_literal") :
-           	//getString("_UI_QueryCombined_type") + " " + label;
-            	label.replaceAll("_"," ");	
+      QueryCombined queryCombined = (QueryCombined) object;
+      QueryCombinedOperator oper = queryCombined.getCombinedOperator();
+      String operName = oper.toString();
+      if (operName == null || operName.length() == 0) {
+          operName = getString("_UI_QueryCombinedOperator_UNION_literal");
+      }
+      operName = operName.replaceAll("_"," ");
+      return operName;
+//        String label = ((QueryCombined)object).getName();
+//        //label = label.replaceAll("_"," ");
+//        return label == null || label.length() == 0 ?
+//            //getString("_UI_QueryCombined_type") :
+//        		getString("_UI_QueryCombinedOperator_UNION_literal") :
+//           	//getString("_UI_QueryCombined_type") + " " + label;
+//            	label.replaceAll("_"," ");	
     }
 
     /**
