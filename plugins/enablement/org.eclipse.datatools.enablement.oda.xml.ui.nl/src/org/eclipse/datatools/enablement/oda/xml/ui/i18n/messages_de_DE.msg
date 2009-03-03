@@ -27,10 +27,10 @@ designer.preview.preference.columnMappingPage.group.title=Spaltenzuordnung
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML-Element-Auswahl
-xPathChoosePage.messages.elementSelection.item.absolutePath=XML-Elemente mit dem Namen '{0}' an feststehendem absoluten Pfad\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=XML-Elemente mit dem Namen '{0}' an beliebigem Speicherort\n
-xPathChoosePage.messages.elementSelection.disable.absolutePath=XML-Elemente an feststehendem absoluten Pfad\n 
-xPathChoosePage.messages.elementSelection.disable.anyLocation=XML-Elemente an beliebigem Speicherort\n 
+xPathChoosePage.messages.elementSelection.item.absolutePath=&XML elements named "{0}" at fixed absolute path\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=XML &elements named "{0}" at any location\n
+xPathChoosePage.messages.elementSelection.disable.absolutePath=&XML elements at fixed absolute path\n 
+xPathChoosePage.messages.elementSelection.disable.anyLocation=XML &elements at any location\n 
 xPathChoosePage.messages.elementSelection.item.custom=Ben&utzerdefinierter XPath-Ausdruck
 xPathChoosePage.messages.xPathExpression=&XPath-Ausdruck
 xPathChoosePage.messages.xmlStructure=XML-Struktur
