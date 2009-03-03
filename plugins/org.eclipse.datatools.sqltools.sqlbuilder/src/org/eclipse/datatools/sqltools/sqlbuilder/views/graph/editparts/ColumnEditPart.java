@@ -43,6 +43,8 @@ import org.eclipse.datatools.modelbase.sql.tables.Column;
 
 import org.eclipse.datatools.modelbase.sql.query.PredicateBasic;
 import org.eclipse.datatools.modelbase.sql.query.QueryDeleteStatement;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionBody;
+import org.eclipse.datatools.modelbase.sql.query.QueryExpressionRoot;
 import org.eclipse.datatools.modelbase.sql.query.QueryInsertStatement;
 import org.eclipse.datatools.modelbase.sql.query.QuerySearchCondition;
 import org.eclipse.datatools.modelbase.sql.query.QuerySelect;
@@ -309,6 +311,29 @@ public class ColumnEditPart extends AbstractGraphicalEditPart implements NodeEdi
         getLabel().setText(currentColumn.getName());
         //    getLabel().setFont(columnFont);
         getCheckBox().setSelected(isColumnSelected());
+        // BZ223133 drigby 6 Jan 2009
+        // Flag up the "SELECT *" by grouping  the checkbox backgrounds to black
+        // Get the current statement or query select expression
+		SQLQueryObject sqlStatement = getStatement();
+
+		// Get the query select expression that contains the select clause list.
+		QuerySelect querySelect = null;
+		if (sqlStatement instanceof QuerySelect) {
+		    querySelect = (QuerySelect) sqlStatement;
+		}
+		else if (sqlStatement instanceof QuerySelectStatement) {
+		    QuerySelectStatement selectStmt = (QuerySelectStatement) sqlStatement;
+		    querySelect = SelectHelper.getQuerySelect(selectStmt);
+		}
+		
+		// If the query select is "SELECT *", then change the column checkbox background color.
+		if (querySelect != null) {
+		    if (SelectHelper.isSelectStarQuery(querySelect)) {
+				getCheckBox().setBackgroundColor(ColorConstants.black);
+			} else {
+				getCheckBox().setBackgroundColor(ColorConstants.white);
+			}
+		}
     }
 
     protected Toggle getCheckBox() {

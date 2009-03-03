@@ -899,6 +899,21 @@ public class SelectHelper {
     }
 
     /**
+     * Gets whether or not the given QuerySelect object is a "select *" query.
+     * 
+     * @param querySelect the QuerySelect to check
+     * @return true when the QuerySelect is "select * from", otherwise false
+     */
+    public static boolean isSelectStarQuery(QuerySelect querySelect) {
+        boolean isSelectStar = false;
+        
+        List selectClauseList = querySelect.getSelectClause();
+        isSelectStar = selectClauseList.isEmpty();
+        
+        return isSelectStar;
+    }
+    
+    /**
      * Moves a column in the selectClause to another position (ie new index)
      * in the List.  The column is first removed then added to list.
      * @param selectStmt the QuerySelectStatement that the column belongs to
