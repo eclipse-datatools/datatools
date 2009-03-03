@@ -30,10 +30,8 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TreeItem;
 
@@ -51,9 +49,6 @@ public class RowMappingDialog extends TrayDialog
 	private Button absolutePathButton;
 	private Button anyLocationButton;
 	private Button customButton;
-	private Label absolutePathLabel;
-	private Label anyLocationLabel;
-	private Label customPathLabel;
 	private Combo xmlPathField;
 	private TreeItem selectedItem;
 
@@ -99,28 +94,25 @@ public class RowMappingDialog extends TrayDialog
 		composite.setLayout( layout );
 		composite.setLayoutData( data );
 		
-		GridData buttonGd = new GridData( );
+		GridData buttonGd = new GridData( GridData.FILL_HORIZONTAL );
 		buttonGd.verticalAlignment = SWT.BEGINNING;
 		buttonGd.verticalIndent = 5;
+		buttonGd.horizontalSpan = 2;
 	
-		GridData labelGd = new GridData( GridData.FILL_HORIZONTAL );
-		labelGd.verticalIndent = 5;
-
 		absolutePathButton = new Button( composite, SWT.RADIO | SWT.WRAP );
 		absolutePathButton.setLayoutData( buttonGd );
-		absolutePathLabel = new Label( composite, SWT.WRAP );
-		absolutePathLabel.setLayoutData( labelGd );
 		anyLocationButton = new Button( composite, SWT.RADIO | SWT.WRAP );
 		anyLocationButton.setLayoutData( buttonGd );
-		anyLocationLabel = new Label( composite, SWT.WRAP );
-		anyLocationLabel.setLayoutData( labelGd );
 		customButton = new Button( composite, SWT.RADIO | SWT.WRAP );
 		customButton.setLayoutData( buttonGd );
-		customPathLabel = new Label( composite, SWT.WRAP );
-		customPathLabel.setLayoutData( labelGd );
-		customPathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) );  //$NON-NLS-1$
+		customButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.item.custom" ) );  //$NON-NLS-1$
 
-		new Label( composite, SWT.NONE );
+		Label dummy = new Label( composite, SWT.NONE );
+		GridData labelGd = new GridData( );
+		labelGd.verticalIndent = 5;
+		labelGd.widthHint = 10;
+		dummy.setLayoutData( labelGd );
+		
 		GridData txtGridData = new GridData( GridData.FILL_HORIZONTAL  );
 		xmlPathField = new Combo( composite, SWT.DROP_DOWN );
 		xmlPathField.setLayoutData( txtGridData );
@@ -130,7 +122,7 @@ public class RowMappingDialog extends TrayDialog
 			xmlPathField.add( TextProcessor.process( pathList.get( i ).toString( ), "//" ));
 		}
 		
-		setLabelValuesAndListeners( composite );
+		setButtonTextAndListeners( composite );
 
 		XMLRelationInfoUtil.setSystemHelp( composite,
 				IHelpConstants.CONEXT_ID_DATASET_XML_XPATH_EXPRESSION );
@@ -160,11 +152,16 @@ public class RowMappingDialog extends TrayDialog
     	return composite;
 	}
 	
+	protected boolean isResizable( )
+	{
+		return true;
+	}
+
 	
 	/**
 	 * 
 	 */
-	private void setLabelValuesAndListeners( Composite composite )
+	private void setButtonTextAndListeners( Composite composite )
 	{
 		if ( this.selectedItem != null )
 		{
@@ -172,43 +169,12 @@ public class RowMappingDialog extends TrayDialog
 			{
 				return;
 			}
-			resetButtonsAndLabels( true );
+			resetButtonsAndTextValues( true );
 		}
 		else
 		{
-			resetButtonsAndLabels( false );
+			resetButtonsAndTextValues( false );
 		}
-		absolutePathLabel.addListener( SWT.MouseDown, new Listener( ) {
-
-			public void handleEvent( Event event )
-			{
-				absolutePathButton.setSelection( true );
-				anyLocationButton.setSelection( false );
-				customButton.setSelection( false );
-				doSelectAbsolutePathButton( );
-			}
-		} );
-		anyLocationLabel.addListener( SWT.MouseDown, new Listener(){
-
-			public void handleEvent( Event event )
-			{
-				anyLocationButton.setSelection( true );
-				absolutePathButton.setSelection( false );	
-				customButton.setSelection( false );
-				doSelectAnyLocationButton( );
-			}			
-		});
-		customPathLabel.addListener( SWT.MouseDown, new Listener( ) {
-
-			public void handleEvent( Event event )
-			{
-				customButton.setSelection( true );
-				xmlPathField.setEnabled( true );
-				absolutePathButton.setSelection( false );
-				anyLocationButton.setSelection( false );
-				selectRadioIndex = 3;
-			}
-		} );
 		absolutePathButton.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -273,28 +239,26 @@ public class RowMappingDialog extends TrayDialog
 	/**
 	 * 
 	 */
-	private void resetButtonsAndLabels( boolean visible )
+	private void resetButtonsAndTextValues( boolean visible )
 	{
 		if ( visible )
 		{
-			absolutePathLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath", //$NON-NLS-1$
+			absolutePathButton.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.absolutePath", //$NON-NLS-1$
 					new String[]{
 							selectedItem.getText( )
 					} ) );
-			anyLocationLabel.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
+			anyLocationButton.setText( Messages.getFormattedString( "xPathChoosePage.messages.elementSelection.item.anyLocation", //$NON-NLS-1$
 					new String[]{
 							selectedItem.getText( )
 					} ) );
 		}
 		else
 		{
-			absolutePathLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
-			anyLocationLabel.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
+			absolutePathButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.absolutePath" ) ); //$NON-NLS-1$
+			anyLocationButton.setText( Messages.getString( "xPathChoosePage.messages.elementSelection.disable.anyLocation" ) ); //$NON-NLS-1$
 		}
 		absolutePathButton.setEnabled( visible );
-		absolutePathLabel.setEnabled( visible );
 		anyLocationButton.setEnabled( visible );
-		anyLocationLabel.setEnabled( visible );
 	}
 	
 	/**

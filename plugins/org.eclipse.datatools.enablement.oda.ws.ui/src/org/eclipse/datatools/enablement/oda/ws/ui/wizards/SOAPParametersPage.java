@@ -57,8 +57,8 @@ import org.eclipse.swt.widgets.TableColumn;
 public class SOAPParametersPage extends DataSetWizardPage
 {
 
-	private static final String COLUMN_NAME = Messages.getString( "parameterInputDialog.column.name" );//$NON-NLS-1$ 
-	private static final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
+	private static final String COLUMN_NAME = Messages.getString( "soapParametersPage.column.paramName" );//$NON-NLS-1$ 
+	private static final String COLUMN_DATATYPE = Messages.getString( "soapParametersPage.column.dataType" );//$NON-NLS-1$ 
 
 	private CheckboxTableViewer viewer;
 	private SOAPRequest soapRequest;

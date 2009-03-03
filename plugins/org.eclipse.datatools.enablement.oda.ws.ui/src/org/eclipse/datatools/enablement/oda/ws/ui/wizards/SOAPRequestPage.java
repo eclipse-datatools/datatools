@@ -73,6 +73,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 	protected final String COLUMN_DATATYPE = Messages.getString( "parameterInputDialog.column.type" );//$NON-NLS-1$ 
 	protected final String COLUMN_DEFAULTVALUE = Messages.getString( "parameterInputDialog.column.defaultValue" );//$NON-NLS-1$ 
 
+	private Button editBtn;
+	
 	public SOAPRequestPage( String pageName )
 	{
 		super( pageName );
@@ -352,6 +354,7 @@ public class SOAPRequestPage extends DataSetWizardPage
 			GridLayout layout = new GridLayout( 1, false );
 			layout.marginHeight = 10;
 			layout.marginWidth = 10;
+			layout.numColumns = 2;
 			composite.setLayout( layout );
 			composite.setLayout( layout );
 
@@ -362,6 +365,30 @@ public class SOAPRequestPage extends DataSetWizardPage
 		}
 
 		private void createCustomControls( Composite parent )
+		{
+			createTableViewer( parent );
+			createBtnComposite( parent );
+		}
+
+		private void createBtnComposite( Composite parent )
+		{
+			editBtn = new Button( parent, SWT.NONE );
+			editBtn.setText( Messages.getString( "parameterInputDialog.button.edit" ) );
+			
+			GridData btnData = new GridData( GridData.VERTICAL_ALIGN_CENTER );
+			btnData.horizontalIndent = 5;
+			editBtn.setLayoutData( btnData );
+			editBtn.setEnabled( viewer.getTable( ).getSelectionCount( ) == 1 );
+			editBtn.addSelectionListener( new SelectionAdapter(){
+				
+				public void widgetSelected( SelectionEvent e )
+				{
+					doEdit( );
+				}
+			});
+		}
+		
+		private void createTableViewer( Composite parent )
 		{
 			final Table table = new Table( parent, SWT.BORDER
 					| SWT.FULL_SELECTION );
@@ -465,6 +492,15 @@ public class SOAPRequestPage extends DataSetWizardPage
 			viewer.setColumnProperties( new String[]{
 					COLUMN_NAME, COLUMN_DATATYPE, COLUMN_DEFAULTVALUE
 			} );
+
+			viewer.getTable( ).addSelectionListener( new SelectionAdapter( ) {
+
+				public void widgetSelected( SelectionEvent e )
+				{
+					editBtn.setEnabled( viewer.getTable( ).getSelectionCount( ) == 1 );
+				}
+
+			} );
 			
 			viewer.getTable( ).addMouseListener( new MouseAdapter( ) {
 
@@ -472,7 +508,9 @@ public class SOAPRequestPage extends DataSetWizardPage
 				{
 					doEdit( );
 				}
+				
 			} );
+
 		}
 		
 		private void doEdit( )
@@ -492,6 +530,8 @@ public class SOAPRequestPage extends DataSetWizardPage
 					viewer.refresh( );
 				}
 			}
+			viewer.getTable( ).setSelection( -1 );
+			editBtn.setEnabled( false );
 		}
 
 		private void initParameters( )

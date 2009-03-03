@@ -198,7 +198,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData = new GridData( );
 		layoutData.widthHint = 100;
 		button.setLayoutData( layoutData );
-		button.setText( Messages.getString( "soapResponsePage.button.browse" ) );//$NON-NLS-1$
+		button.setText( Messages.getString( "soapResponsePage.button.browse1" ) );//$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
@@ -315,7 +315,7 @@ public class SOAPResponsePage extends DataSetWizardPage
 		layoutData = new GridData( );
 		layoutData.widthHint = 100;
 		button.setLayoutData( layoutData );
-		button.setText( Messages.getString( "soapResponsePage.button.browse" ) );//$NON-NLS-1$
+		button.setText( Messages.getString( "soapResponsePage.button.browse2" ) );//$NON-NLS-1$
 		button.addSelectionListener( new SelectionAdapter( ) {
 
 			/*
