@@ -1,6 +1,6 @@
 # NLS_MESSAGEFORMAT_VAR          needed to handle quotes correctly
 #
-# Copyright (c) 2002, 2007. All Rights Reserved IBM Corporation and others.
+# Copyright (c) 2002, 2009. All Rights Reserved IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
@@ -55,6 +55,9 @@ _UI_ACTION_REMOVE_TABLE       = 删除表(&M)...
 
 !actions/ChangeStatementTypeAction
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= 更改语句类型(&C)...
+
+!actions/ChangeSetOperatorAction
+_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= 省略当前架构(&O)...
@@ -298,6 +301,11 @@ _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=架构名称(&S):
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE=更改 SQL 语句类型
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=更改 SQL 语句类型将导致当前语句替换为新的空语句。
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=语句类型
+
+!dialogs/ChangeSetOperatorDialog
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+
 
 !dialogs/OmitCurrentSchemaDialog
 _UI_DIALOG_OMIT_SCHEMA_TITLE=省略当前架构

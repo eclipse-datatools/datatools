@@ -1,6 +1,6 @@
 # NLS_MESSAGEFORMAT_VAR          needed to handle quotes correctly
 #
-# Copyright (c) 2002, 2007. All Rights Reserved IBM Corporation and others.
+# Copyright (c) 2002, 2009. All Rights Reserved IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
@@ -55,6 +55,9 @@ _UI_ACTION_REMOVE_TABLE       = 테이블 제거(&M)...
 
 !actions/ChangeStatementTypeAction
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= 문 형식 변경(&C)...
+
+!actions/ChangeSetOperatorAction
+_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= 현재 스키마 생략(&O)...
@@ -298,6 +301,11 @@ _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=스키마 이름(&S):
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE=SQL 문 형식 변경
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=SQL 문 형식을 변경하면 현재 문이 비어 있는 새 문으로 교체됩니다.
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=문 형식
+
+!dialogs/ChangeSetOperatorDialog
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+
 
 !dialogs/OmitCurrentSchemaDialog
 _UI_DIALOG_OMIT_SCHEMA_TITLE=현재 스키마 생략

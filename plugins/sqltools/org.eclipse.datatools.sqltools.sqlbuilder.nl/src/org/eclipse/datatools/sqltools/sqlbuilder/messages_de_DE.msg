@@ -1,6 +1,6 @@
 # NLS_MESSAGEFORMAT_VAR          needed to handle quotes correctly
 #
-# Copyright (c) 2002, 2007. All Rights Reserved IBM Corporation and others.
+# Copyright (c) 2002, 2009. All Rights Reserved IBM Corporation and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Eclipse Public License v1.0
 # which is available at
@@ -55,6 +55,9 @@ _UI_ACTION_REMOVE_TABLE       = Tabelle ent&fernen...
 
 !actions/ChangeStatementTypeAction
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= Anweisungstyp än&dern...
+
+!actions/ChangeSetOperatorAction
+_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= Aktuelles Schema a&uslassen...
@@ -298,6 +301,11 @@ _UI_PREFERENCES_OMIT_SCHEMA_SCHEMA_NAME=&Schemaname:
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE=SQL-Anweisungstyp ändern
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=Beim Ändern des SQL-Anweisungstyps wird die aktuelle Anweisung durch eine neue leere Anweisung ersetzt.
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Anweisungstyp
+
+!dialogs/ChangeSetOperatorDialog
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+
 
 !dialogs/OmitCurrentSchemaDialog
 _UI_DIALOG_OMIT_SCHEMA_TITLE=Aktuelles Schema auslassen
