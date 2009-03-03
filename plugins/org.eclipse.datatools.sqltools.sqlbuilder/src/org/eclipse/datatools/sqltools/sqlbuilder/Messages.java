@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -31,6 +31,7 @@ public final class Messages extends NLS {
 	public static String _UI_ACTION_ADD_FULLSELECT;
 	public static String _UI_ACTION_REMOVE_TABLE;
 	public static String _UI_ACTION_CHANGE_STATEMENT_TYPE;
+	public static String _UI_ACTION_CHANGE_SET_OPERATOR;
 	public static String _UI_ACTION_OMIT_CURRENT_SCHEMA;
 	public static String _UI_ACTION_ADD_VALUE_ROW;
 	public static String _UI_ACTION_ADD_VALUES;
@@ -168,6 +169,8 @@ public final class Messages extends NLS {
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_TITLE;
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE;
 	public static String _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE;
+	public static String _UI_DIALOG_CHANGE_SET_OPERATOR_TITLE;
+	public static String _UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_DESC;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_IN_SQL;
 	public static String _UI_PREFERENCES_OMIT_SCHEMA_SPECIFY_SCHEMA_GROUP_TITLE;

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -28,6 +28,7 @@ import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddSubSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddTableAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValueRowAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.AddValuesAction;
+import org.eclipse.datatools.sqltools.sqlbuilder.actions.ChangeSetOperatorAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.ConvertToFullSelectAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.ChangeStatementTypeAction;
 import org.eclipse.datatools.sqltools.sqlbuilder.actions.CreateJoinAction;
@@ -64,12 +65,13 @@ public class SQLTreeViewer extends ContentOutlinePage {
     // With table actions
     CreateWithTableAction createWithTableAction;
     ConvertToFullSelectAction convertToFullSelectAction;
-
+    
     // Full select actions
     AddValuesAction addValuesAction;
     AddValueRowAction addValueRowAction;
     AddSubSelectAction addSubSelectAction;
     AddSubFullSelectAction addSubFullSelectAction;
+    ChangeSetOperatorAction changeSetOperatorAction;
 
     // General actions
     DeleteStatementAction deleteStatementAction;
@@ -135,7 +137,7 @@ public class SQLTreeViewer extends ContentOutlinePage {
         if (!isDisposed()) {
             getTreeViewer().setInput(new ItemProvider(Collections.singleton(resetInput)));
             defaultSelect(resetInput);
-        }
+         }
     }
 
     public boolean isDisposed() {
@@ -175,6 +177,11 @@ public class SQLTreeViewer extends ContentOutlinePage {
         addValueRowAction = new AddValueRowAction(createActionDomainModel);
         addSubSelectAction = new AddSubSelectAction(createActionDomainModel);
         addSubFullSelectAction = new AddSubFullSelectAction(createActionDomainModel);
+        // Change set operator type
+        changeSetOperatorAction = new ChangeSetOperatorAction();
+        changeSetOperatorAction.setSQLBuilder(sqlBuilder);
+        changeSetOperatorAction.setShell( Display.getCurrent().getActiveShell() );
+
     }
 
     /**
@@ -207,7 +214,8 @@ public class SQLTreeViewer extends ContentOutlinePage {
                 }
             }
             else if (element instanceof QueryCombined) {
-                if (!SelectHelper.isNodeFull((QueryCombined) element)) {
+                QueryCombined queryCombined = (QueryCombined) element;
+                if (!SelectHelper.isNodeFull(queryCombined)) {
                     addSubSelectAction.setElement(element);
                     menu.add(addSubSelectAction);
 
@@ -216,10 +224,13 @@ public class SQLTreeViewer extends ContentOutlinePage {
 
                     addSubFullSelectAction.setElement(element);
                     menu.add(addSubFullSelectAction);
-                }
+                 }
                 deleteStatementAction.setElement(element);
                 menu.add(deleteStatementAction);
-
+                
+                changeSetOperatorAction.setElement(queryCombined);
+                menu.add(changeSetOperatorAction);
+         
                 //        menu.add(new Separator());
                 //executeStatementAction.setElement(element);
                 //menu.add(executeStatementAction);
@@ -265,29 +276,34 @@ public class SQLTreeViewer extends ContentOutlinePage {
                     convertToFullSelectAction.setElement(element);
                     menu.add(convertToFullSelectAction);
                 }
+                menu.add(new Separator());
+                menu.add(changeStatementTypeAction);
             }
             else if (element instanceof QueryInsertStatement) {
                 addTableAction.setElement(element);
                 menu.add(addTableAction);
+                menu.add(new Separator());
+                menu.add(changeStatementTypeAction);
                 //executeStatementAction.setElement(element);
                 //menu.add(executeStatementAction);
             }
             else if (element instanceof QueryUpdateStatement) {
                 addTableAction.setElement(element);
                 menu.add(addTableAction);
+                menu.add(new Separator());
+                menu.add(changeStatementTypeAction);
                 //executeStatementAction.setElement(element);
                 //menu.add(executeStatementAction);
             }
             else if (element instanceof QueryDeleteStatement) {
                 addTableAction.setElement(element);
                 menu.add(addTableAction);
+                menu.add(new Separator());
+                menu.add(changeStatementTypeAction);
                 //executeStatementAction.setElement(element);
                 //menu.add(executeStatementAction);
             }
         }
-
-        menu.add(new Separator());
-        menu.add(changeStatementTypeAction);
         
         enableMenus();
     }

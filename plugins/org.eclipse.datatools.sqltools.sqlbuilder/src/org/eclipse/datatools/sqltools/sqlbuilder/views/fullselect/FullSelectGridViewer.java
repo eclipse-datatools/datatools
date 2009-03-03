@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright © 2000, 2007 IBM Corporation and others.
+ * Copyright © 2000, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which is available at
@@ -141,7 +141,7 @@ public class FullSelectGridViewer extends NavigableTableViewer implements IMenuL
         list.add(new LabelValuePair(SQLBuilderConstants.P_OPERATOR_UNION, SQLBuilderConstants.P_OPERATOR_UNION));
         list.add(new LabelValuePair(SQLBuilderConstants.P_OPERATOR_UNION_ALL, SQLBuilderConstants.P_OPERATOR_UNION_ALL));
 
-        if (vendor.isDB2() && !vendor.isDB2UDBOS390()) //b3183 rak 20040721
+        if ((vendor.isDB2() && !vendor.isDB2UDBOS390()) || vendor.isCloudscape()) //b3183 rak 20040721 //drigby BZ202206 20081218
         {
             list.add(new LabelValuePair(SQLBuilderConstants.P_OPERATOR_INTERSECT, SQLBuilderConstants.P_OPERATOR_INTERSECT));
             list.add(new LabelValuePair(SQLBuilderConstants.P_OPERATOR_INTERSECT_ALL, SQLBuilderConstants.P_OPERATOR_INTERSECT_ALL));
