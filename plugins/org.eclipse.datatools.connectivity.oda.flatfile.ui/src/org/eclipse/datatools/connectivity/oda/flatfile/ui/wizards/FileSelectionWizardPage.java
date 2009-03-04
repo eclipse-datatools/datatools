@@ -458,6 +458,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 				| GridData.FILL_HORIZONTAL );
 		gridData.heightHint = 25;
 		btnAdd.setLayoutData( gridData );
+		btnAdd.setToolTipText( Messages.getString( "tooltip.button.add" ) );
 
 		if ( btnAdd.getStyle( ) ==( btnAdd.getStyle( )|SWT.LEFT_TO_RIGHT))
 		{
@@ -522,9 +523,9 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		column.setWidth( 100 );
 
 		selectedColumnsViewer.getTable( )
-				.addListener( SWT.MouseDown ,new Listener( ) {
+				.addSelectionListener( new SelectionAdapter( ) {
 
-					public void handleEvent( Event e )
+					public void widgetSelected( SelectionEvent e )
 					{
 						btnAdd.setEnabled( false );
 						availableList.deselectAll( );
@@ -600,6 +601,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		GridData btnMoveUpGd = new GridData( );
 		btnMoveUpGd.widthHint = btnMoveUpGd.heightHint = 25;
 		btnMoveUp.setLayoutData( btnMoveUpGd );
+		btnMoveUp.setToolTipText( Messages.getString( "tooltip.button.up" ) );
 		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -615,6 +617,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		btnRemove.setImage( PlatformUI.getWorkbench( )
 				.getSharedImages( )
 				.getImage( ISharedImages.IMG_TOOL_DELETE ) );
+		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) );
 		btnRemove.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -627,6 +630,7 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		GridData btnMoveDownGd = new GridData( );
 		btnMoveDownGd.widthHint = btnMoveDownGd.heightHint = 25;
 		btnMoveDown.setLayoutData( btnMoveDownGd );
+		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) );
 		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
 
 			public void widgetSelected( SelectionEvent e )
@@ -1631,6 +1635,8 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			btnAdd.setEnabled( false );
 		}
 
+		selectedColumnsViewer.getTable( ).setSelection( -1 );
+		
 		setMessage( DEFAULT_MESSAGE );
 		setPageComplete( true );
 	}
