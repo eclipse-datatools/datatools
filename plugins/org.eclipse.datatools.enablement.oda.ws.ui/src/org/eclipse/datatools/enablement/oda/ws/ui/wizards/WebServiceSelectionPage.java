@@ -109,7 +109,7 @@ public class WebServiceSelectionPage extends DataSourceWizardPage
                 {
                 	Properties properties = collectCustomProperties( );
                 	String wsdlUri = ( String )properties.get( Constants.WSDL_URI );
-                	if( !wsdlUri.startsWith( HTTPHEAD ) )
+                	if( wsdlUri != null && !wsdlUri.startsWith( HTTPHEAD ) )
                 	{
                 		properties.put( Constants.WSDL_URI, HTTPHEAD + wsdlUri.trim( ) );
                 	}
