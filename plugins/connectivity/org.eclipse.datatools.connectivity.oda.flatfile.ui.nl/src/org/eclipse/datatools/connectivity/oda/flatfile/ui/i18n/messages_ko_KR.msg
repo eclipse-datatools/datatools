@@ -15,6 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=찾아보기(&R)...
+button.moveUp=&Up
+button.moveDown=Do&wn
+button.delete=D&elete
 
 editor.title.name=이름
 editor.title.originalName=원본 이름

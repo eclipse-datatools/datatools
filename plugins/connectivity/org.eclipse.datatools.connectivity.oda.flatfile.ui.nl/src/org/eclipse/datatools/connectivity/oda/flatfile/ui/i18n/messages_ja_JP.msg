@@ -15,6 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=éQè∆(&R)...
+button.moveUp=&Up
+button.moveDown=Do&wn
+button.delete=D&elete
 
 editor.title.name=ñºëO
 editor.title.originalName=å≥ÇÃñºëO

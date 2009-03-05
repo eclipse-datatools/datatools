@@ -15,6 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=浏览(&R)...
+button.moveUp=&Up
+button.moveDown=Do&wn
+button.delete=D&elete
 
 editor.title.name=名称
 editor.title.originalName=原始名称
