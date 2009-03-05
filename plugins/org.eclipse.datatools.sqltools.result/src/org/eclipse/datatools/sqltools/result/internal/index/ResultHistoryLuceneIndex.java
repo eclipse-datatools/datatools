@@ -121,12 +121,12 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                         {
                             _instances.add(instance);
                             Document doc = new Document();
-                            doc.add(Field.Text(FIELD_OPERATION, getCombinedDisplayString(instance)));
-                            doc.add(Field.Text(FIELD_ACTION, OperationCommand.getActionString(instance
-                                    .getOperationCommand().getActionType())));
-                            doc.add(Field.Text(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName()));
-                            doc.add(Field.Text(FIELD_FREQ, Integer.toString(instance.getFrequency())));
-                            doc.add(Field.Keyword(FIELD_IDENTIFIER, Integer.toString(ID)));
+                            doc.add(new Field(FIELD_OPERATION, getCombinedDisplayString(instance), Field.Store.YES, Field.Index.TOKENIZED));
+                            doc.add(new Field(FIELD_ACTION, OperationCommand.getActionString(instance
+                                    .getOperationCommand().getActionType()), Field.Store.YES, Field.Index.TOKENIZED));
+                            doc.add(new Field(FIELD_CONSUMER, instance.getOperationCommand().getConsumerName(), Field.Store.YES, Field.Index.TOKENIZED));
+                            doc.add(new Field(FIELD_FREQ, Integer.toString(instance.getFrequency()), Field.Store.YES, Field.Index.TOKENIZED));
+                            doc.add(new Field(FIELD_IDENTIFIER, Integer.toString(ID), Field.Store.YES, Field.Index.UN_TOKENIZED));
                             _id2result.put(Integer.toString(ID), instance);
                             _result2id.put(instance, Integer.toString(ID));
                             ID++;
@@ -181,7 +181,7 @@ public class ResultHistoryLuceneIndex implements IResultHistoryIndex
                             {
                                 try
                                 {
-                                    reader.delete(new Term(FIELD_IDENTIFIER, id));
+                                    reader.deleteDocuments(new Term(FIELD_IDENTIFIER, id));
                                 }
                                 catch(IOException ioe)
                                 {
