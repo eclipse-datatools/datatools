@@ -19,6 +19,7 @@ import javax.swing.event.ChangeListener;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.internal.ui.DriverListCombo;
+import org.eclipse.datatools.enablement.jdt.classpath.DriverClasspathContainer;
 import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;

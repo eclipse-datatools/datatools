@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 Sybase, Inc.
+ * Copyright (c) 2006, 2009 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - update for 267123
  ******************************************************************************/
 package org.eclipse.datatools.enablement.jdt.classpath.internal;
 
@@ -14,6 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.datatools.connectivity.drivers.DriverInstance;
 import org.eclipse.datatools.connectivity.drivers.DriverManager;
+import org.eclipse.datatools.enablement.jdt.classpath.DriverClasspathContainer;
 import org.eclipse.jdt.core.ClasspathContainerInitializer;
 import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IJavaProject;
@@ -28,11 +30,14 @@ public class DriverClasspathContainerInitializer extends ClasspathContainerIniti
 
 	public void initialize(IPath containerPath, IJavaProject javaProject)
 		throws CoreException {
-		if (isDriverContainer(containerPath)) {
+		if (containerPath != null && isDriverContainer(containerPath)) {
 			String name= containerPath.segment(1);
 			DriverInstance di = DriverManager.getInstance().getDriverInstanceByName(name);
-			IClasspathContainer container = new DriverClasspathContainer(di.getName());
-			JavaCore.setClasspathContainer(containerPath, new IJavaProject[] { javaProject }, new IClasspathContainer[] {container},  null);
+			if (di != null) {
+				// make sure the driver instance isn't null (in case the driver hasn't been defined yet)
+				IClasspathContainer container = new DriverClasspathContainer(di.getName());
+				JavaCore.setClasspathContainer(containerPath, new IJavaProject[] { javaProject }, new IClasspathContainer[] {container},  null);
+			}
 		}
 	}
 	

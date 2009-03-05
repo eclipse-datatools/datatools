@@ -14,5 +14,6 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.ui;bundle-version="[0.9.1,1.5.0)"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.datatools.enablement.jdt.classpath.internal
+Export-Package: org.eclipse.datatools.enablement.jdt.classpath,
+ org.eclipse.datatools.enablement.jdt.classpath.internal
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
