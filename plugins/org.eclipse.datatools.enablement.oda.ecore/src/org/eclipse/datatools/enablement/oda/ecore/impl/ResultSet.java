@@ -1,7 +1,7 @@
 /*******************************************************************************
  * <copyright>
  *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007-2009 SolutionsIQ, Inc.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -322,7 +322,25 @@ public class ResultSet implements IResultSet {
 		return getBoolean(findColumn(columnName));
 	}
 
-	/*
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(int)
+     */
+    public Object getObject( int index ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(java.lang.String)
+     */
+    public Object getObject( String columnName ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException();
+    }
+
+    /*
 	 * @see org.eclipse.datatools.connectivity.oda.IResultSet#wasNull()
 	 */
 	public boolean wasNull() throws OdaException {

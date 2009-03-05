@@ -1,7 +1,7 @@
 /*******************************************************************************
  * <copyright>
  *
- * Copyright (c) 2007-2008 SolutionsIQ, Inc.
+ * Copyright (c) 2007-2009 SolutionsIQ, Inc.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import com.ibm.icu.util.ULocale;
 
 public class Connection implements IConnection {
 
@@ -151,5 +153,12 @@ public class Connection implements IConnection {
 	public void rollback() throws OdaException {
 		// do nothing; assumes no transaction support needed
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException {
+        // do nothing; assumes no locale support
+    }
 
 }
