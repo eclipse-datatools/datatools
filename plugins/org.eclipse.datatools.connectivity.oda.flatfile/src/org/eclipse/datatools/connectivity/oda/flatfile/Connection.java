@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,6 +21,8 @@ import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * Flat file data provider's implementation of the ODA IConnection interface.
@@ -191,7 +193,16 @@ public class Connection implements IConnection
 		throw new UnsupportedOperationException( );
 	}
 
-	/*
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException( );
+    }
+
+    /*
 	 * @see org.eclipse.datatools.connectivity.oda.IConnection#getMaxQueries()
 	 */
 	public int getMaxQueries( ) throws OdaException

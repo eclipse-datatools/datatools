@@ -1,6 +1,6 @@
 /*
  *******************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation. All rights reserved. This program and
+ * Copyright (c) 2004, 2009 Actuate Corporation. All rights reserved. This program and
  * the accompanying materials are made available under the terms of the Eclipse
  * Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
@@ -36,6 +36,7 @@ import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.flatfile.i18n.Messages;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.FlatFileDataReader;
 import org.eclipse.datatools.connectivity.oda.flatfile.util.querytextutil.QueryTextUtil;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * Flat file data provider's implementation of the ODA IQuery interface. It
@@ -223,7 +224,15 @@ public class FlatFileQuery implements IQuery
 				this.resultSetMetaData );
 	}
 	
-	/*
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#cancel()
+     */
+    public void cancel() throws OdaException, UnsupportedOperationException
+    {
+        throw new UnsupportedOperationException( );
+    }
+
+    /*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#setInt(java.lang.String,
 	 *      int)
 	 */
@@ -372,6 +381,23 @@ public class FlatFileQuery implements IQuery
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(int, java.lang.Object)
+     */
+    public void setObject( int parameterId, Object value ) throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String parameterName, Object value )
+            throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
      */
     public void setNull( String parameterName ) throws OdaException
@@ -427,7 +453,35 @@ public class FlatFileQuery implements IQuery
 		throw new UnsupportedOperationException( );
 	}
 
-	/**
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
+     */
+    public void setSpecification( QuerySpecification querySpec )
+            throws OdaException, UnsupportedOperationException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException( );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
+     */
+    public QuerySpecification getSpecification()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getEffectiveQueryText()
+     */
+    public String getEffectiveQueryText()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
 	 * Validate whether the query's connection is open.
 	 * 
 	 * @throws OdaException
