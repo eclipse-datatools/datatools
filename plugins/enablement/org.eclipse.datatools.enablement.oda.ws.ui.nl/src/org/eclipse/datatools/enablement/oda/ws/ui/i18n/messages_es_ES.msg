@@ -21,22 +21,22 @@
 webServiceSelectionPage.message.default=Fuente de datos de servicios web
 webServiceSelectionPage.message.error=Indique la URL del punto final de SOAP o seleccione un descriptor WSDL.
 webServiceSelectionPage.group.wsdl=Descriptor WSDL
-webServiceSelectionPage.group.endPoint=&SOAP End Point
-webServiceSelectionPage.group.customClass=&Custom Driver Class
-webServiceSelectionPage.group.classPath=&Driver Class Path
+webServiceSelectionPage.group.endPoint=Punto final de &SOAP
+webServiceSelectionPage.group.customClass=C&lase de controlador personalizado
+webServiceSelectionPage.group.classPath=Ru&ta de clase del controlador
 webServiceSelectionPage.label.wsdl=Si el descriptor WSDL del servicio Web está disponible, introduzca su URL o busque su ubicación en el sistema de archivos local.
 webServiceSelectionPage.label.wsdlURI=URL o ubicación de &WSDL:
 webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
 webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
 webServiceSelectionPage.label.classPath=Una lista separada por punto y coma (;) de directorios y archivos JAR adicionales para buscar la clase de controlador personalizado.
-webServiceSelectionPage.button.browse=B&rowse...
+webServiceSelectionPage.button.browse=&Examinar...
 
 # OperationPage
 operationPage.message.default=Seleccione una operación definida en el descriptor WSDL de la fuente de datos.
 operationPage.message.operationChanged=Confirme para volver a generar la solicitud de SOAP y volver a conectar el punto final.
 operationPage.title.operationChanged=Operación cambiada
-operationPage.label.selectOpearation=&Selected Operation
-operationPage.label.document=&Documentation
+operationPage.label.selectOpearation=&Operación seleccionada
+operationPage.label.document=&Documentación
 
 # SoapParametersPage
 soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado.

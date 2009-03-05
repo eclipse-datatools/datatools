@@ -21,22 +21,22 @@
 webServiceSelectionPage.message.default=웹 서비스 데이터 원본
 webServiceSelectionPage.message.error=SOAP 끝점 URL을 지정하거나 WSDL 설명자를 선택하십시오.
 webServiceSelectionPage.group.wsdl=WSDL 설명자
-webServiceSelectionPage.group.endPoint=&SOAP End Point
-webServiceSelectionPage.group.customClass=&Custom Driver Class
-webServiceSelectionPage.group.classPath=&Driver Class Path
+webServiceSelectionPage.group.endPoint=SOAP 끝점(&S)
+webServiceSelectionPage.group.customClass=사용자 지정 드라이버 클래스(&C)
+webServiceSelectionPage.group.classPath=드라이버 클래스 경로(&D)
 webServiceSelectionPage.label.wsdl=웹 서비스의 WSDL 설명자가 있으면 해당 URL을 입력하거나 로컬 파일 시스템에서 위치를 찾습니다.
 webServiceSelectionPage.label.wsdlURI=WSDL URL 또는 위치(&W):
 webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
 webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
 webServiceSelectionPage.label.classPath=사용자 지정 드라이버 클래스를 검색할 세미콜론(;)으로 구분된 추가 JAR 파일 및 디렉터리 목록입니다.
-webServiceSelectionPage.button.browse=B&rowse...
+webServiceSelectionPage.button.browse=찾아보기(&R)...
 
 # OperationPage
 operationPage.message.default=데이터 원본의 WSDL 설명자에 정의된 작업을 선택합니다.
 operationPage.message.operationChanged=SOAP 요청을 다시 생성하고 끝점에 다시 연결할 것인지 확인합니다.
 operationPage.title.operationChanged=작업이 변경됨
-operationPage.label.selectOpearation=&Selected Operation
-operationPage.label.document=&Documentation
+operationPage.label.selectOpearation=선택된 작업(&S)
+operationPage.label.document=설명서(&D)
 
 # SoapParametersPage
 soapParametersPage.message.default=선택한 WSDL 작업의 매개 변수를 입력합니다.

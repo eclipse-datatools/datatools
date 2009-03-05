@@ -21,21 +21,21 @@
 webServiceSelectionPage.message.default=Source de données Services Web
 webServiceSelectionPage.message.error=Spécifiez l'URL de point de fin SOAP ou sélectionnez un descripteur WSDL.
 webServiceSelectionPage.group.wsdl=Descripteur WSDL
-webServiceSelectionPage.group.endPoint=&SOAP End Point
-webServiceSelectionPage.group.customClass=&Custom Driver Class
-webServiceSelectionPage.group.classPath=&Driver Class Path
+webServiceSelectionPage.group.endPoint=Point de fin &SOAP
+webServiceSelectionPage.group.customClass=&Classe de pilote personnalisée
+webServiceSelectionPage.group.classPath=Che&min de la classe de pilote
 webServiceSelectionPage.label.wsdl=Si le descripteur WSDL des Services Web est disponible, entrez son URL ou recherchez son emplacement dans le système de fichiers local.
 webServiceSelectionPage.label.wsdlURI=URL ou emplacement du descripteur &WSDL :
 webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
 webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
 webServiceSelectionPage.label.classPath=Liste des répertoires et des fichiers JAR supplémentaires séparés par des points-virgules (;) dans laquelle effectuer une recherche de la classe de pilote personnalisée.
-webServiceSelectionPage.button.browse=B&rowse...
+webServiceSelectionPage.button.browse=Pa&rcourir...
 
 # OperationPage
 operationPage.message.default=Sélectionnez une opération définie dans le descripteur WSDL de la source de données.
 operationPage.message.operationChanged=Confirmez pour générer à nouveau la requête SOAP et reconnecter le point de fin.
 operationPage.title.operationChanged=Opération modifiée
-operationPage.label.selectOpearation=&Selected Operation
+operationPage.label.selectOpearation=Opération &sélectionnée
 operationPage.label.document=&Documentation
 
 # SoapParametersPage

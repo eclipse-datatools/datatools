@@ -21,22 +21,22 @@
 webServiceSelectionPage.message.default=Web サービスのデータソース
 webServiceSelectionPage.message.error=SOAP エンドポイントの URL を指定するか、WSDL 記述子を選択してください。
 webServiceSelectionPage.group.wsdl=WSDL 記述子
-webServiceSelectionPage.group.endPoint=&SOAP End Point
-webServiceSelectionPage.group.customClass=&Custom Driver Class
-webServiceSelectionPage.group.classPath=&Driver Class Path
+webServiceSelectionPage.group.endPoint=SOAP エンドポイント(&S)
+webServiceSelectionPage.group.customClass=カスタムドライバクラス(&C)
+webServiceSelectionPage.group.classPath=ドライバクラスのパス(&D)
 webServiceSelectionPage.label.wsdl=Web サービスの WSDL 記述子が使用可能な場合は、その URL を入力するか、ローカルファイルシステム内での場所を参照して指定してください。
 webServiceSelectionPage.label.wsdlURI=WSDL の URL または場所(&W) :
 webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
 webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
 webServiceSelectionPage.label.classPath=追加の JAR ファイルや、カスタムドライバクラスの検索先ディレクトリをセミコロン (;) で区切ったリスト
-webServiceSelectionPage.button.browse=B&rowse...
+webServiceSelectionPage.button.browse=参照(&R)...
 
 # OperationPage
 operationPage.message.default=データソースの WSDL 記述子で定義されている処理を選択してください。
 operationPage.message.operationChanged=SOAP リクエストの生成とエンドポイントへの接続をやり直しますか ?
 operationPage.title.operationChanged=操作の変更
-operationPage.label.selectOpearation=&Selected Operation
-operationPage.label.document=&Documentation
+operationPage.label.selectOpearation=選択済みの処理(&S)
+operationPage.label.document=文書(&D)
 
 # SoapParametersPage
 soapParametersPage.message.default=指定した WSDL 操作のパラメタを入力してください。
