@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 <<Your Company Name here>>
+ * Copyright (c) 2009 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -12,6 +12,7 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import com.ibm.icu.util.ULocale;
 
 /**
  * Implementation class of IConnection for an ODA runtime driver.
@@ -98,5 +99,13 @@ public class Connection implements IConnection
 	{
         // do nothing; assumes no transaction support needed
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        // do nothing; assumes no locale support
+    }
     
 }

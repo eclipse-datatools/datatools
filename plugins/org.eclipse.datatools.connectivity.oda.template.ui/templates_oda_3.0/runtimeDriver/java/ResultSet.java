@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 <<Your Company Name here>>
+ * Copyright (c) 2009 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -271,6 +271,23 @@ public class ResultSet implements IResultSet
     public boolean getBoolean( String columnName ) throws OdaException
     {
         return getBoolean( findColumn( columnName ) );
+    }
+    
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(int)
+     */
+    public Object getObject( int index ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(java.lang.String)
+     */
+    public Object getObject( String columnName ) throws OdaException
+    {
+        return getObject( findColumn( columnName ) );
     }
 
     /*

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2007 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -23,6 +23,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
+import org.eclipse.pde.ui.templates.PluginReference;
 import org.osgi.framework.Version;
 
 /**
@@ -80,9 +81,9 @@ class RuntimeTemplateSection extends OdaTemplateSection
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.template.internal.ui.OdaTemplateSection#initializeFields(org.eclipse.pde.core.plugin.IPluginModelBase)
      */
-    public void initializeFields( IPluginModelBase model )
+    public void initializeFields( IPluginModelBase aModel )
     {
-        super.initializeFields( model );
+        super.initializeFields( aModel );
         initializeOptions();
     }
     
@@ -160,19 +161,22 @@ class RuntimeTemplateSection extends OdaTemplateSection
      */
     public IPluginReference[] getDependencies( String schemaVersion )
     {
-        Version version304 = new Version( 3, 0, 4 );
-        Version version310 = new Version( 3, 1, 0 );
+        Version version307 = new Version( 3, 0, 7 );
+        Version version320 = new Version( 3, 2, 0 );
         Version version400 = new Version( 4, 0, 0 );
-        VersionRange compatible304 = new VersionRange( version304, true, version400, false );       
-        VersionRange compatible310 = new VersionRange( version310, true, version400, false );       
+        VersionRange compatible307 = new VersionRange( version307, true, version400, false );       
+        VersionRange compatible320 = new VersionRange( version320, true, version400, false );       
         
         return new IPluginReference[] 
-                    { new CompatiblePluginReference( 
+                    {   
+                      new PluginReference( 
+                        "org.eclipse.core.runtime", null, 0 ), //$NON-NLS-1$
+                      new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda",  //$NON-NLS-1$
-                        compatible310.toString() ),
+                        compatible320.toString() ),
                       new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.profile",  //$NON-NLS-1$
-                        compatible304.toString() )
+                        compatible307.toString() )
                     };
     }
 

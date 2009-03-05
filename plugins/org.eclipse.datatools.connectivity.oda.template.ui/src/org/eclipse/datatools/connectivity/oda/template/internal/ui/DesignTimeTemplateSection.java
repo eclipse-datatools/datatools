@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2006, 2008 Actuate Corporation.
+ * Copyright (c) 2006, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginReference;
 import org.eclipse.pde.ui.IFieldData;
 import org.eclipse.pde.ui.templates.NewPluginTemplateWizard;
+import org.eclipse.pde.ui.templates.PluginReference;
 import org.osgi.framework.Version;
 
 /**
@@ -83,9 +84,9 @@ class DesignTimeTemplateSection extends OdaTemplateSection
      * (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.template.internal.ui.OdaTemplateSection#initializeFields(org.eclipse.pde.core.plugin.IPluginModelBase)
      */
-    public void initializeFields( IPluginModelBase model )
+    public void initializeFields( IPluginModelBase aModel )
     {
-        super.initializeFields( model );
+        super.initializeFields( aModel );
         initializeOptions();
     }
     
@@ -209,14 +210,19 @@ class DesignTimeTemplateSection extends OdaTemplateSection
         if( odaRuntimePluginId == null )
             odaRuntimePluginId = getDefaultRuntimePluginId();
         
-        Version version306 = new Version( 3, 0, 6 );
+        Version version320 = new Version( 3, 2, 0 );
         Version version400 = new Version( 4, 0, 0 );
-        VersionRange compatible306 = new VersionRange( version306, true, version400, false );       
+        VersionRange compatible320 = new VersionRange( version320, true, version400, false );       
 
         return new IPluginReference[] 
-                    { new CompatiblePluginReference( 
+                    { 
+                      new PluginReference(
+                        "org.eclipse.ui", null, 0 ), //$NON-NLS-1$
+                      new PluginReference( 
+                        "org.eclipse.core.runtime", null, 0 ), //$NON-NLS-1$
+                      new CompatiblePluginReference( 
                         "org.eclipse.datatools.connectivity.oda.design.ui",  //$NON-NLS-1$
-                        compatible306.toString() ),
+                        compatible320.toString() ),
                       new CompatiblePluginReference( 
                         odaRuntimePluginId,
                         null ) };

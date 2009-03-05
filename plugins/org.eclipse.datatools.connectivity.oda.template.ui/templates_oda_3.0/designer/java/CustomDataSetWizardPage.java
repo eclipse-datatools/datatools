@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 <<Your Company Name here>>
+ * Copyright (c) 2009 <<Your Company Name here>>
  *  
  *************************************************************************
  */
@@ -59,8 +59,6 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
         super( pageName );
         setTitle( pageName );
         setMessage( DEFAULT_MESSAGE );
-
-        setPageComplete( false );
 	}
 
 	/**
@@ -74,7 +72,6 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
 	{
         super( pageName, title, titleImage );
         setMessage( DEFAULT_MESSAGE );
-        setPageComplete( false );
 	}
 
 	/* (non-Javadoc)
@@ -114,6 +111,7 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
             }
         } );
        
+        setPageComplete( false );
         return composite;
     }
 
@@ -163,8 +161,10 @@ public class CustomDataSetWizardPage extends DataSetWizardPage
 	 */
 	protected DataSetDesign collectDataSetDesign( DataSetDesign design )
 	{
+        if( getControl() == null )     // page control was never created
+            return design;             // no editing was done
         if( ! hasValidData() )
-            return design;
+            return null;    // to trigger a design session error status
         savePage( design );
         return design;
 	}

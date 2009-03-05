@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2005, 2008 Actuate Corporation.
+ * Copyright (c) 2005, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -25,6 +25,7 @@ import org.eclipse.datatools.connectivity.ConnectionProfileException;
 import org.eclipse.datatools.connectivity.IConnectionProfile;
 import org.eclipse.datatools.connectivity.ProfileManager;
 import org.eclipse.datatools.connectivity.internal.ConnectionProfileMgmt;
+import org.eclipse.datatools.connectivity.internal.InternalProfileManager;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.services.IPropertyProvider;
 import org.eclipse.datatools.connectivity.oda.profile.internal.OdaConnectionProfile;
@@ -510,6 +511,20 @@ public class OdaProfileExplorer
                 return (OdaConnectionProfile) wrappedProfile;	// already a wrapper
         }
         return new OdaConnectionProfile( wrappedProfile ) ;
+    }
+    
+    /**
+     * Verifies if the specified connection profile name is already used among 
+     * those profile instances that are cached and managed by the DTP Connection Profile Manager.
+     * @param profileName   unique identifier of a DTP connection profile
+     * @return  true if the name is already used; false otherwise
+     * @since 3.2 (DTP 1.7)
+     */
+    public static boolean isProfileNameUsed( String profileName )
+    {
+        IConnectionProfile existingProfile = 
+            InternalProfileManager.getInstance().getProfileByName( profileName, false );
+        return ( existingProfile != null );
     }
     
 }
