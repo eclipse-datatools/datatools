@@ -17,5 +17,5 @@ Export-Package: org.eclipse.datatools.sqltools.db.generic;x-friends:="org.eclips
  org.eclipse.datatools.sqltools.db.generic.parser;x-friends:="org.eclipse.datatools.sqltools.db.derby",
  org.eclipse.datatools.sqltools.db.generic.service;x-friends:="org.eclipse.datatools.sqltools.db.derby",
  org.eclipse.datatools.sqltools.db.generic.sql;x-friends:="org.eclipse.datatools.sqltools.db.derby"
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 

@@ -45,4 +45,4 @@ Export-Package: org.eclipse.datatools.sqltools.core,
  org.eclipse.datatools.sqltools.sql.updater,
  org.eclipse.datatools.sqltools.sql.util
 Bundle-Vendor: Eclipse.org
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

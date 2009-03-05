@@ -28,4 +28,4 @@ Export-Package: org.eclipse.datatools.sqltools.debugger.actions,
  org.eclipse.datatools.sqltools.debugger.debug,
  org.eclipse.datatools.sqltools.debugger.editorext,
  org.eclipse.datatools.sqltools.debugger.model
-Bundle-RequiredExecutionEnvironment: J2SE-1.4
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
