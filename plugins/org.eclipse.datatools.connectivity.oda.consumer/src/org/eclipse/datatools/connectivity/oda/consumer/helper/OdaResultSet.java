@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -31,6 +31,9 @@ import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
  */
 public class OdaResultSet extends OdaDriverObject implements IResultSet
 {
+    private static final String MSG_ARG_SEPARATOR = ", "; //$NON-NLS-1$
+    private static final String MSG_LINE_SEPARATOR = " )\t"; //$NON-NLS-1$
+
     protected OdaResultSet( IResultSet resultSet, OdaConnection connection,
 							boolean switchContextClassloader,
 							ClassLoader driverClassLoader )
@@ -39,7 +42,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 			   driverClassLoader );
 		
 		final String context = "OdaResultSet.OdaResultSet( " + resultSet + //$NON-NLS-1$
-						 ", " + connection + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+						 MSG_ARG_SEPARATOR + connection + MSG_LINE_SEPARATOR;
 		logMethodExitWithReturn( context, this );
 	}
 	
@@ -128,7 +131,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public void setMaxRows( int max ) throws OdaException
 	{
-	    final String context = "OdaResultSet.setMaxRows( " + max + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaResultSet.setMaxRows( " + max + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		try
@@ -233,8 +236,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public String getString( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getString( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -267,8 +269,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public String getString( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getString( " + columnName +  //$NON-NLS-1$
-					 	 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -301,8 +302,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public int getInt( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getInt( " + index +  //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getInt( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -335,8 +335,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public int getInt( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getInt( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getInt( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -369,8 +368,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public double getDouble( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDouble( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getDouble( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -403,8 +401,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public double getDouble( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDouble( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getDouble( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -437,8 +434,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public BigDecimal getBigDecimal( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getBigDecimal( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getBigDecimal( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -473,8 +469,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public BigDecimal getBigDecimal( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getBigDecimal( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getBigDecimal( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -509,8 +504,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public Date getDate( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDate( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getDate( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -546,8 +540,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public Date getDate( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDate( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getDate( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -583,8 +576,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public Time getTime( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTime( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTime( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -620,8 +612,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public Time getTime( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTime( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTime( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -657,8 +648,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public Timestamp getTimestamp( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimestamp( " + index + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTimestamp( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -694,8 +684,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public Timestamp getTimestamp( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimestamp( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTimestamp( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -734,7 +723,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public IBlob getBlob( int index ) throws OdaException
     {
-		final String context = "OdaResultSet.getBlob( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+		final String context = "OdaResultSet.getBlob( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		try
@@ -775,7 +764,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public IBlob getBlob( String columnName ) throws OdaException
     {
-        final String context = "OdaResultSet.getBlob( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getBlob( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -825,7 +814,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public IClob getClob( int index ) throws OdaException
     {
-        final String context = "OdaResultSet.getClob( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getClob( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		try
@@ -866,7 +855,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public IClob getClob( String columnName ) throws OdaException
     {
-        final String context = "OdaResultSet.getClob( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getClob( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		try
@@ -916,7 +905,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public boolean getBoolean( int index ) throws OdaException
     {
-        final String context = "OdaResultSet.getBoolean( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getBoolean( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
         final String unsupportedOpContext = "IResultSet.getBoolean( int )"; //$NON-NLS-1$
         logMethodCalled( context );
     
@@ -963,7 +952,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
      */
     public boolean getBoolean( String columnName ) throws OdaException
     {
-        final String context = "OdaResultSet.getBoolean( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getBoolean( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
         final String unsupportedOpContext = "IResultSet.getBoolean( String )"; //$NON-NLS-1$
         logMethodCalled( context );
         
@@ -1005,6 +994,100 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
         return false;
     }
 
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(int)
+     */
+    public Object getObject( int index ) throws OdaException
+    {
+        final String context = "OdaResultSet.getObject( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
+        final String unsupportedOpContext = "IResultSet.getObject( int )"; //$NON-NLS-1$
+        logMethodCalled( context );
+    
+        try
+        {
+            setContextClassloader();
+            
+            Object ret = getResultSet().getObject( index );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(java.lang.String)
+     */
+    public Object getObject( String columnName ) throws OdaException
+    {
+        final String context = "OdaResultSet.getObject( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
+        final String unsupportedOpContext = "IResultSet.getObject( String )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            Object ret = getResultSet().getObject( columnName );
+            
+            logMethodExitWithReturn( context, ret );
+            return ret;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return null;
+    }
+
     public boolean wasNull() throws OdaException
 	{
 	    final String context = "OdaResultSet.wasNull()\t"; //$NON-NLS-1$
@@ -1040,8 +1123,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 
 	public int findColumn( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.findColumn( " + columnName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.findColumn( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -1077,8 +1159,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getBigDecimalAsString( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getBigDecimalAsString( " + index +  //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getBigDecimalAsString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( index );
@@ -1090,8 +1171,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getBigDecimalAsString( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getBigDecimalAsString( " + columnName +  //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getBigDecimalAsString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		BigDecimal decimal = getBigDecimal( columnName );
@@ -1103,7 +1183,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getDateAsString( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDateAsString( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaResultSet.getDateAsString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		Date date = getDate( index );
@@ -1115,7 +1195,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getDateAsString( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getDateAsString( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaResultSet.getDateAsString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Date date = getDate( columnName );
@@ -1127,7 +1207,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getTimeAsString( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimeAsString( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaResultSet.getTimeAsString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		Time time = getTime( index );
@@ -1139,7 +1219,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getTimeAsString( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimeAsString( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaResultSet.getTimeAsString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		Time time = getTime( columnName );
@@ -1151,8 +1231,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getTimestampAsString( int index ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimestampAsString( " + index +  //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTimestampAsString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( index );
@@ -1164,8 +1243,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
 	
 	public String getTimestampAsString( String columnName ) throws OdaException
 	{
-	    final String context = "OdaResultSet.getTimestampAsString( " + columnName +  //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaResultSet.getTimestampAsString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		Timestamp timestamp = getTimestamp( columnName );
@@ -1177,7 +1255,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
     
     public String getClobAsString( int index ) throws OdaException
     {
-        final String context = "OdaResultSet.getClobAsString( " + index + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getClobAsString( " + index + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
         logMethodCalled( context );
         
         String ret = getClobAsStringImpl( getClob( index ), context );
@@ -1188,7 +1266,7 @@ public class OdaResultSet extends OdaDriverObject implements IResultSet
     
     public String getClobAsString( String columnName ) throws OdaException
     {
-        final String context = "OdaResultSet.getClobAsString( " + columnName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaResultSet.getClobAsString( " + columnName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
         logMethodCalled( context );
         
         String ret = getClobAsStringImpl( getClob( columnName ), context );

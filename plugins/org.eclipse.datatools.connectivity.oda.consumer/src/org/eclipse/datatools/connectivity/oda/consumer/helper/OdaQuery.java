@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * OdaQuery is the ODA wrapper for query statements.
@@ -35,9 +36,13 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	// isPreparedSuccessfully can only be set to true if 
 	// the underlying ODA provider prepare() call succeeds
 	private boolean				m_isPreparedSuccessfully;
+    private boolean             m_isExecuting;
 	private boolean 			m_isExecuted;
 	private String 				m_dataSetType;
 	private Object 				m_appContext;
+    
+	private static final String MSG_ARG_SEPARATOR = ", "; //$NON-NLS-1$
+	private static final String MSG_LINE_SEPARATOR = " )\t"; //$NON-NLS-1$
 		
 	protected OdaQuery( IQuery statement, OdaConnection connection,
 							String dataSetType, boolean switchContextClassloader,
@@ -47,10 +52,11 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 			   driverClassLoader );
 		
 		final String context = "OdaQuery.OdaQuery( " + statement + //$NON-NLS-1$
-						 ", " + connection + ", " + dataSetType + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						 MSG_ARG_SEPARATOR + connection + MSG_ARG_SEPARATOR + dataSetType + MSG_LINE_SEPARATOR;
 		logMethodCalled( context );
 		
 		m_isPreparedSuccessfully = false;
+		m_isExecuting = false;
 		m_isExecuted = false;
 		m_dataSetType = dataSetType;
 				
@@ -72,7 +78,17 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		return m_isPreparedSuccessfully;
 	}
 	
-	protected boolean isExecuted()
+	protected boolean isExecuting()
+    {
+        return m_isExecuting;
+    }
+
+	protected void setIsExecuting( boolean flag )
+    {
+        m_isExecuting = flag;
+    }
+
+    protected boolean isExecuted()
 	{
 		return m_isExecuted;
 	}
@@ -95,6 +111,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	protected void resetExecuteStates() 
 	{
+	    m_isExecuting = false;
 		m_isExecuted = false;
 	}
 	
@@ -152,7 +169,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void prepare( String queryText ) throws OdaException
 	{
-	    final String context = "OdaQuery.prepare( " + queryText + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaQuery.prepare( " + queryText + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		final String unsupportedOpContext = "IQuery.prepare( String queryText )"; //$NON-NLS-1$
@@ -214,7 +231,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		throws OdaException
 	{
 	    final String context = "OdaQuery.setProperty( " + propertyName + //$NON-NLS-1$
-						 ", " + propertyValue + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+						 MSG_ARG_SEPARATOR + propertyValue + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -282,7 +299,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setMaxRows( int max ) throws OdaException
 	{
-	    final String context = "OdaQuery.setMaxRows( " + max + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaQuery.setMaxRows( " + max + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
 		logMethodCalled( context );
 		
 		try
@@ -440,7 +457,9 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		if( ! isPreparedSuccessfully() )
 			throw newOdaException( Messages.helper_cannotExecuteBeforePrepare );
 		
+		m_isExecuting = true;
 		IResultSet resultSet = getQuery().executeQuery();
+        m_isExecuting = false;
 		m_isExecuted = true;
 		
 		if( resultSet == null )
@@ -460,8 +479,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setInt( String parameterName, int value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setInt( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setInt( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -494,8 +513,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setInt( int parameterId, int value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setInt( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setInt( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR;
 		logMethodCalled( context );
 		
 		try
@@ -529,8 +548,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setDouble( String parameterName, double value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setDouble( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setDouble( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -563,8 +582,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDouble( int parameterId, double value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDouble( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setDouble( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -598,8 +617,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setBigDecimal( String parameterName, BigDecimal value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setBigDecimal( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setBigDecimal( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -631,8 +650,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	
 	public void setBigDecimal( int parameterId, BigDecimal value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setBigDecimal( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setBigDecimal( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -665,8 +684,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setString( String parameterName, String value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setString( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setString( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR;
 		logMethodCalled( context );
 		
 		try
@@ -699,8 +718,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setString( int parameterId, String value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setString( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setString( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -733,8 +752,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDate( String parameterName, Date value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDate( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setDate( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ /
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -767,8 +786,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setDate( int parameterId, Date value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setDate( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setDate( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -801,8 +820,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setTime( String parameterName, Time value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setTime( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-					 	 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setTime( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+					 	 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -835,8 +854,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setTime( int parameterId, Time value ) throws OdaException
 	{
-	    final String context = "OdaQuery.setTime( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setTime( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -870,8 +889,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setTimestamp( String parameterName, Timestamp value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setTimestamp( " + parameterName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setTimestamp( " + parameterName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -905,8 +924,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	public void setTimestamp( int parameterId, Timestamp value )
 		throws OdaException
 	{
-	    final String context = "OdaQuery.setTimestamp( " + parameterId + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.setTimestamp( " + parameterId + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -943,8 +962,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
     public void setBoolean( String parameterName, boolean value )
             throws OdaException
     {
-        final String context = "OdaQuery.setBoolean( " + parameterName + ", " +  //$NON-NLS-1$ //$NON-NLS-2$
-                                value + " )\t"; //$NON-NLS-1$
+        final String context = "OdaQuery.setBoolean( " + parameterName + MSG_ARG_SEPARATOR +  //$NON-NLS-1$ 
+                                value + MSG_LINE_SEPARATOR; 
         final String unsupportedOpContext = "IQuery.setBoolean( String, boolean )"; //$NON-NLS-1$
         logMethodCalled( context );
         
@@ -990,8 +1009,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
     public void setBoolean( int parameterId, boolean value )
             throws OdaException
     {
-        final String context = "OdaQuery.setBoolean( " + parameterId + ", "  //$NON-NLS-1$ //$NON-NLS-2$
-                                + value + " )\t"; //$NON-NLS-1$
+        final String context = "OdaQuery.setBoolean( " + parameterId + MSG_ARG_SEPARATOR  //$NON-NLS-1$ 
+                                + value + MSG_LINE_SEPARATOR; 
         final String unsupportedOpContext = "IQuery.setBoolean( int, boolean )"; //$NON-NLS-1$
         logMethodCalled( context );
 
@@ -1032,11 +1051,103 @@ public class OdaQuery extends OdaDriverObject implements IQuery
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String parameterName, Object value ) throws OdaException
+    {
+        final String context = "OdaQuery.setObject( " + parameterName + MSG_ARG_SEPARATOR +  //$NON-NLS-1$ 
+                                value + MSG_LINE_SEPARATOR;
+        final String unsupportedOpContext = "IQuery.setObject( String, Object )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setObject( parameterName, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(int, java.lang.Object)
+     */
+    public void setObject( int parameterId, Object value ) throws OdaException
+    {
+        final String context = "OdaQuery.setObject( " + parameterId + MSG_ARG_SEPARATOR  //$NON-NLS-1$
+                                + value + MSG_LINE_SEPARATOR; 
+        final String unsupportedOpContext = "IQuery.setObject( int, Object )"; //$NON-NLS-1$
+        logMethodCalled( context );
+
+        try
+        {   
+            setContextClassloader();
+            throwIfSetParamBeforePrepare();
+            
+            getQuery().setObject( parameterId, value );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
      */
     public void setNull( String parameterName ) throws OdaException
     {
-        final String context = "OdaQuery.setNull( " + parameterName + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaQuery.setNull( " + parameterName + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
         final String unsupportedOpContext = "IQuery.setNull( String )"; //$NON-NLS-1$
         logMethodCalled( context );
         
@@ -1081,8 +1192,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
      */
     public void setNull( int parameterId ) throws OdaException
     {
-        final String context = "OdaQuery.setNull( " + parameterId + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
-        final String unsupportedOpContext = "IQuery.setNull( int )"; //$NON-NLS-1$
+        final String context = "OdaQuery.setNull( " + parameterId + MSG_LINE_SEPARATOR; //$NON-NLS-1$ 
+        final String unsupportedOpContext = "IQuery.setNull( int )";  //$NON-NLS-1$
         logMethodCalled( context );
 
         try
@@ -1155,8 +1266,8 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 	
 	public int findInParameter( String parameterName ) throws OdaException
 	{
-	    final String context = "OdaQuery.findInParameter( " + parameterName + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+	    final String context = "OdaQuery.findInParameter( " + parameterName + MSG_LINE_SEPARATOR; //$NON-NLS-1$
+						 
 		logMethodCalled( context );
 		
 		try
@@ -1245,7 +1356,7 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 
 	public void setSortSpec( SortSpec sortBy ) throws OdaException
 	{
-	    final String context = "OdaQuery.setSortSpec( " + sortBy + " )\t"; //$NON-NLS-1$ //$NON-NLS-2$
+	    final String context = "OdaQuery.setSortSpec( " + sortBy + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -1314,7 +1425,184 @@ public class OdaQuery extends OdaDriverObject implements IQuery
 		return null;
 	}
 	
-	public String getInterfaceName()
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
+     */
+    public QuerySpecification getSpecification()
+    {
+        final String context = "OdaQuery.getSpecification()\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.getSpecification()"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            QuerySpecification querySpec = getQuery().getSpecification();
+            
+            logMethodExitWithReturn( context, querySpec );
+            return querySpec;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            return null;    // none is available
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            return null;    // none is available
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
+     */
+    public void setSpecification( QuerySpecification querySpec )
+        throws OdaException, UnsupportedOperationException
+    {
+        final String context = "OdaQuery.setSpecification( " + querySpec + MSG_LINE_SEPARATOR; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.setSpecification( QuerySpecification )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            getQuery().setSpecification( querySpec );
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext ); 
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getEffectiveQueryText()
+     */
+    public String getEffectiveQueryText()
+    {
+        final String context = "OdaQuery.getEffectiveQueryText()\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.getEffectiveQueryText()"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            String effectiveQuery = getQuery().getEffectiveQueryText();
+            
+            logMethodExitWithReturn( context, effectiveQuery );
+            return effectiveQuery;
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            return null;    // none is available
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            return null;    // none is available
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+        
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#cancel()
+     */
+    public void cancel() throws OdaException, UnsupportedOperationException
+    {
+        final String context = "OdaQuery.cancel()\t"; //$NON-NLS-1$
+        final String unsupportedOpContext = "IQuery.cancel()"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            if( ! isExecuting() )
+                throw newOdaException( Messages.helper_cannotCancelNonExecQuery );
+           
+            getQuery().cancel();
+            
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext ); 
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    public String getInterfaceName()
 	{
 		return IQuery.class.getName();
 	}

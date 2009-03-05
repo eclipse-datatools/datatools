@@ -294,18 +294,18 @@ public interface IQuery
      * @param parameterName     name of the parameter.
      * @param value             an {@link Object} holding the input parameter value
      * @throws OdaException     if data source error occurs
-     * @since 3.2
+     * @since 3.2 (DTP 1.7)
      */
-//    void setObject( String parameterName, Object value ) throws OdaException;
+    void setObject( String parameterName, Object value ) throws OdaException;
     
     /**
      * Sets the value of the designated parameter with the given object.
      * @param parameterId       id of the parameter (1-based).
      * @param value             an {@link Object} holding the input parameter value
      * @throws OdaException     if data source error occurs
-     * @since 3.2
+     * @since 3.2 (DTP 1.7)
      */
-//    void setObject(int parameterId, Object value ) throws OdaException;
+    void setObject(int parameterId, Object value ) throws OdaException;
     
     /**
      * Sets the designated parameter to a null value.
@@ -382,28 +382,29 @@ public interface IQuery
      * @throws UnsupportedOperationException    if this operation is not supported
      * @since 3.2 (DTP 1.7)
 	 */
-//	void setSpecification( QuerySpecification querySpec ) 
-//	    throws OdaException, UnsupportedOperationException;
+	void setSpecification( QuerySpecification querySpec ) 
+	    throws OdaException, UnsupportedOperationException;
 	
 	/**
      * <strong>EXPERIMENTAL</strong>.
      * Gets the current specification of characteristics to apply when preparing and executing this.
 	 * @return the current {@link QuerySpecification}, or null if none is available
-     * @throws OdaException     if data source error occurs
      * @since 3.2 (DTP 1.7)
 	 */
-//	QuerySpecification getSpecification();
+	QuerySpecification getSpecification();
 	
 	/**
      * <strong>EXPERIMENTAL</strong>.
      * Gets the current effective query text prepared by {@link #prepare(String)}.
-     * The effective query text may have been adjusted based on its
-     * {@link QuerySpecification}, such as result set filtering and projection specifications.
+     * The effective query text may have been adjusted based on the
+     * {@link QuerySpecification} specified, such as result set filtering or projection specifications.
+     * This info may be requested by a consumer before this query is executed. 
+     * <br>An optional method.
      * @return  the current effective query text,
-     *          or null if no query text is effective or available 
+     *          or null if no query text is effective or available at the current query state
      * @since 3.2 (DTP 1.7)
      */
-//	String getEffectiveQueryText();
+	String getEffectiveQueryText();
 	
 	/**
 	 * Cancels this query to abort its execution if supported by the underlying data source. 
@@ -411,10 +412,10 @@ public interface IQuery
      * <p>An optional method.  Driver implementation that does not support this operation
      * should throw an UnsupportedOperationException.
      * @throws OdaException     if data source error occurs or this method is called at an invalid state
-     * @throws UnsupportedOperationException    if this operation is not supported
+     * @throws UnsupportedOperationException    if this operation is not supported at any state
      * @since 3.2 (DTP 1.7)
 	 */
-//	void cancel() throws OdaException, UnsupportedOperationException;
+	void cancel() throws OdaException, UnsupportedOperationException;
 	
 }
 

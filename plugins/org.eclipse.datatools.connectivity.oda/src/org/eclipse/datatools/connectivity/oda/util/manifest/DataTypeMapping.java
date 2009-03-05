@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -227,6 +227,7 @@ public class DataTypeMapping
      * to its corresponding data type code.
      * The data type name serves as the key in the cached table.
      */
+    @SuppressWarnings("unchecked")
     private static Hashtable getOdaTypeCodes()
     {
         if( sm_odaTypeCodes == null )
@@ -253,6 +254,8 @@ public class DataTypeMapping
                                 new Integer( Types.CLOB )); 
             sm_odaTypeCodes.put( toOdaTypeKey( "Boolean" ), //$NON-NLS-1$ 
                                 new Integer( Types.BOOLEAN )); 
+            sm_odaTypeCodes.put( toOdaTypeKey( "JavaObject" ), //$NON-NLS-1$ 
+                                new Integer( Types.JAVA_OBJECT )); 
         }
         
         return sm_odaTypeCodes;        

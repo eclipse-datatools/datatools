@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -275,6 +275,28 @@ public interface IResultSet
      */
     public boolean getBoolean( String columnName ) throws OdaException;
 
+    /**
+     * Gets the value of the designated column in the current row as an {@link Object}.
+     * If the column value is intended to be sortable by its consumer, the type of Object 
+     * returned must implement the {@link Comparable} interface.
+     * @param index column number (1-based)
+     * @return      an {@link Object} value in the specific column of the current row
+     * @throws OdaException     if data source error occurs
+     * @since 3.2 (DTP 1.7)
+     */
+    Object getObject( int index ) throws OdaException;
+
+    /**
+     * Gets the value of the designated column in the current row as an {@link Object}.
+     * If the column value is intended to be sortable by its consumer, the type of Object 
+     * returned must implement the {@link Comparable} interface.
+     * @param columnName    column name
+     * @return  an {@link Object} value in the specific column of the current row; may be null
+     * @throws OdaException     if data source error occurs
+     * @since 3.2 (DTP 1.7)
+     */
+    Object getObject( String columnName ) throws OdaException;
+
 	/**
 	 * Returns whether the value read from the previous get&lt;type&gt; method
 	 * was invalid or null.  This needs to be called immediately after 
@@ -286,7 +308,7 @@ public interface IResultSet
     
 	/**
 	 * Returns the column index of the specified column name.
-	 * @param columnName	name of the column
+	 * @param columnName	name or alias of the column
 	 * @return				column index (1-based)
 	 * @throws OdaException		if data source error occurs
 	 */

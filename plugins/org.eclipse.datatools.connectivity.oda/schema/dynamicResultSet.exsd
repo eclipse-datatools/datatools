@@ -320,7 +320,7 @@ It must be an ODA scalar data type supported by the ODA data source provider, as
                   </enumeration>
                   <enumeration value="Clob">
                   </enumeration>
-                  <enumeration value="UserDefinedObject">
+                  <enumeration value="JavaObject">
                   </enumeration>
                </restriction>
             </simpleType>

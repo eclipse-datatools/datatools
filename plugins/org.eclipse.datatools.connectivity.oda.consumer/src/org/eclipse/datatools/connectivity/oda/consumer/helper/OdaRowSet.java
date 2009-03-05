@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,15 +27,18 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
  */
 public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 {
-	protected OdaRowSet( IParameterRowSet rowSet, OdaConnection connection,
+    private static final String MSG_ARG_SEPARATOR = ", "; //$NON-NLS-1$
+    private static final String MSG_LINE_SEPARATOR = " )\t"; //$NON-NLS-1$
+
+    protected OdaRowSet( IParameterRowSet rowSet, OdaConnection connection,
 						 boolean switchContextClassloader,
 						 ClassLoader driverClassLoader )
 	{
 		super( rowSet, connection, switchContextClassloader,
 			   driverClassLoader );
 		
-		final String context = "OdaRowSet.OdaRowSet( " + rowSet + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 connection + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.OdaRowSet( " + rowSet + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 connection + MSG_LINE_SEPARATOR; 
 		logMethodExitWithReturn( context, this );
 	}
 	
@@ -50,8 +53,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public boolean absolute( int rowIndex ) throws OdaException
 	{
-		final String context = "OdaRowSet.absolute( " + rowIndex + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.absolute( " + rowIndex + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -248,8 +250,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( int columnIndex, int value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setInt( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setInt( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -281,7 +283,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setInt( String columnName, int value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setInt( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
+		final String context = "OdaRowSet.setInt( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
 						 value + ")\t"; //$NON-NLS-1$
 		logMethodCalled( context );
 		
@@ -314,8 +316,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( int columnIndex, double value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDouble( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setDouble( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -347,8 +349,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDouble( String columnName, double value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDouble( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setDouble( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -380,8 +382,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setBigDecimal( int columnIndex, BigDecimal value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setBigDecimal( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setBigDecimal( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR;
 		logMethodCalled( context );
 		
 		try
@@ -412,8 +414,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setBigDecimal( String columnName, BigDecimal value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setBigDecimal( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setBigDecimal( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -444,8 +446,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 	
 	public void setString( int columnIndex, String value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setString( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setString( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -477,8 +479,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setString( String columnName, String value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setString( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setString( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -510,8 +512,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( int columnIndex, Date value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDate( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setDate( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -543,8 +545,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setDate( String columnName, Date value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setDate( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setDate( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -576,8 +578,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( int columnIndex, Time value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTime( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setTime( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -609,8 +611,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTime( String columnName, Time value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTime( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setTime( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR;
 		logMethodCalled( context );
 		
 		try
@@ -642,8 +644,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( int columnIndex, Timestamp value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTimestamp( " + columnIndex + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setTimestamp( " + columnIndex + MSG_ARG_SEPARATOR + //$NON-NLS-1$ 
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -675,8 +677,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
 
 	public void setTimestamp( String columnName, Timestamp value ) throws OdaException
 	{
-		final String context = "OdaRowSet.setTimestamp( " + columnName + ", " + //$NON-NLS-1$ //$NON-NLS-2$
-						 value + " )\t"; //$NON-NLS-1$
+		final String context = "OdaRowSet.setTimestamp( " + columnName + MSG_ARG_SEPARATOR + //$NON-NLS-1$
+						 value + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		try
@@ -712,8 +714,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
     public void setBoolean( int columnIndex, boolean value )
             throws OdaException
     {
-        final String context = "OdaRowSet.setBoolean( " + columnIndex + ", "  //$NON-NLS-1$ //$NON-NLS-2$
-                                + value + " )\t"; //$NON-NLS-1$
+        final String context = "OdaRowSet.setBoolean( " + columnIndex + MSG_ARG_SEPARATOR  //$NON-NLS-1$ 
+                                + value + MSG_LINE_SEPARATOR; 
         final String unsupportedOpContext = "IParameterRowSet.setBoolean( int, boolean )"; //$NON-NLS-1$
         logMethodCalled( context );
         
@@ -758,8 +760,8 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
     public void setBoolean( String columnName, boolean value )
             throws OdaException
     {
-        final String context = "OdaRowSet.setBoolean( " + columnName + ", "  //$NON-NLS-1$ //$NON-NLS-2$
-                                + value + " )\t"; //$NON-NLS-1$
+        final String context = "OdaRowSet.setBoolean( " + columnName + MSG_ARG_SEPARATOR  //$NON-NLS-1$ 
+                                + value + MSG_LINE_SEPARATOR; 
         final String unsupportedOpContext = "IParameterRowSet.setBoolean( String, boolean )"; //$NON-NLS-1$        
         logMethodCalled( context );
         
@@ -799,11 +801,102 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(int, java.lang.Object)
+     */
+    public void setObject( int columnIndex, Object value ) throws OdaException
+    {
+        final String context = "OdaRowSet.setObject( " + columnIndex + MSG_ARG_SEPARATOR //$NON-NLS-1$ 
+                                + value + MSG_LINE_SEPARATOR; 
+        final String unsupportedOpContext = "IParameterRowSet.setObject( int, Object )"; //$NON-NLS-1$
+        logMethodCalled( context );
+
+        try
+        {
+            setContextClassloader();
+
+            getRowSet().setObject( columnIndex, value );
+
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String columnName, Object value )
+            throws OdaException
+    {
+        final String context = "OdaRowSet.setObject( " + columnName + MSG_ARG_SEPARATOR //$NON-NLS-1$ 
+                                + value + MSG_LINE_SEPARATOR; 
+        final String unsupportedOpContext = "IParameterRowSet.setObject( String, Object )"; //$NON-NLS-1$        
+        logMethodCalled( context );
+
+        try
+        {
+            setContextClassloader();
+
+            getRowSet().setObject( columnName, value );
+
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setNull(int)
      */
     public void setNull( int columnIndex ) throws OdaException
     {
-        final String context = "OdaRowSet.setNull( " + columnIndex + " )\t";  //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaRowSet.setNull( " + columnIndex + MSG_LINE_SEPARATOR;  //$NON-NLS-1$ 
         final String unsupportedOpContext = "IParameterRowSet.setNull( int )"; //$NON-NLS-1$                        
         logMethodCalled( context );
         
@@ -847,7 +940,7 @@ public class OdaRowSet extends OdaResultSet implements IParameterRowSet
      */
     public void setNull( String columnName ) throws OdaException
     {
-        final String context = "OdaRowSet.setNull( " + columnName + " )\t";  //$NON-NLS-1$ //$NON-NLS-2$
+        final String context = "OdaRowSet.setNull( " + columnName + MSG_LINE_SEPARATOR;  //$NON-NLS-1$ 
         final String unsupportedOpContext = "IParameterRowSet.setNull( String )"; //$NON-NLS-1$                
         logMethodCalled( context );
         

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,8 @@
 package org.eclipse.datatools.connectivity.oda;
 
 import java.util.Properties;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * A data source connection interface used to
@@ -117,6 +119,17 @@ public interface IConnection
 	 * @throws OdaException		if data source error occurs
 	 */
 	public void rollback() throws OdaException;
+	
+	/**
+	 * Specifies the locale setting for all locale-sensitive tasks in this connection.
+     * <br>
+     * An optional method.
+	 * This setting, if specified, overrides the driver's default locale setting.
+	 * @param ulocale  a {@link ULocale} setting
+     * @throws OdaException     if data source error occurs
+     * @since 3.2 (DTP 1.7)
+	 */
+	void setLocale( ULocale locale ) throws OdaException;
 	
 }
 

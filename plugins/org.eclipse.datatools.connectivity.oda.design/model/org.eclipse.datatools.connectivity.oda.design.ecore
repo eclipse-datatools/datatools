@@ -1337,6 +1337,7 @@
     <eLiterals name="Blob" value="7"/>
     <eLiterals name="Clob" value="8"/>
     <eLiterals name="Boolean" value="9"/>
+    <eLiterals name="JavaObject" value="10"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OdaScalarDataTypeObject" instanceClassName="org.eclipse.emf.common.util.Enumerator">
     <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">

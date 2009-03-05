@@ -36,7 +36,8 @@ public class Messages extends NLS
 	public static String helper_cannotSetSortSpecBeforePrepare;
 	public static String helper_maxConcurrentConnectionsReached;
 	public static String helper_connectionFailed;
-	public static String helper_cannotConstructConnectionFactory;
+	public static String helper_cannotCancelNonExecQuery;
+    public static String helper_cannotConstructConnectionFactory;
 	public static String helper_inadequatePermissionsForCompatibility;
 	public static String helper_connectionIsInactive;
 	public static String helper_maxConcurrentStatementsReached;

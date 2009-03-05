@@ -77,6 +77,7 @@
       <xsd:enumeration value="Blob"/>
       <xsd:enumeration value="Clob"/>
       <xsd:enumeration value="Boolean"/>
+      <xsd:enumeration value="JavaObject"/>
     </xsd:restriction>
   </xsd:simpleType>
   <xsd:simpleType name="ParameterMode">

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -351,6 +351,24 @@ public interface IAdvancedQuery extends IQuery
      * @since       3.1
      */
     public boolean getBoolean( int parameterId ) throws OdaException;
+    
+    /**
+     * Returns the value of the designated output parameter as an {@link Object}.
+     * @param parameterName     name of the parameter.
+     * @return                  an {@link Object} holding the output parameter value; may be null
+     * @throws OdaException     if data source error occurs.
+     * @since 3.2 (DTP 1.7)
+     */
+    Object getObject( String parameterName ) throws OdaException;
+    
+    /**
+     * Returns the value of the designated output parameter as an {@link Object}.
+     * @param parameterId       id of the parameter (1-based).
+     * @return                  an {@link Object} holding the output parameter value; may be null
+     * @throws OdaException     if data source error occurs.
+     * @since 3.2 (DTP 1.7)
+     */
+    Object getObject( int parameterId ) throws OdaException;
 	
 	/**
 	 * Returns the structure value from the designated output parameter.  
@@ -417,5 +435,6 @@ public interface IAdvancedQuery extends IQuery
 	 * @throws OdaException		if data source error occurs.
 	 */
 	public SortSpec getSortSpec( String resultSetName ) throws OdaException;
+	
 }
 

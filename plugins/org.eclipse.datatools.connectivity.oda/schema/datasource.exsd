@@ -11,6 +11,11 @@
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="dataSource"/>
@@ -155,7 +160,7 @@ This data type mapping facilitates all ODA consumers to map from the same set of
          <attribute name="odaScalarDataType" use="default" value="String">
             <annotation>
                <documentation>
-                  The primary ODA scalar data type which the native type maps to. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob and Boolean.
+                  The primary ODA scalar data type to which the native type is mapped. Supported ODA data types are: Date, Double, Integer, String, Time, Timestamp, Decimal, Blob, Clob, Boolean and Java Object.
                </documentation>
             </annotation>
             <simpleType>
@@ -179,6 +184,8 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Clob">
                   </enumeration>
                   <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="JavaObject">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -220,6 +227,8 @@ This data type mapping facilitates all ODA consumers to map from the same set of
                   <enumeration value="Clob">
                   </enumeration>
                   <enumeration value="Boolean">
+                  </enumeration>
+                  <enumeration value="JavaObject">
                   </enumeration>
                </restriction>
             </simpleType>
@@ -660,7 +669,6 @@ Its value for a  &lt;i&gt;replacedBy&lt;/i&gt; type must match that of the corre
       </documentation>
    </annotation>
 
-
    <annotation>
       <appinfo>
          <meta.section type="implementation"/>
@@ -678,7 +686,7 @@ These concrete classes are provided to aid in the development of a custom ODA da
          <meta.section type="copyright"/>
       </appinfo>
       <documentation>
-         Copyright (c) 2004-2008 Actuate Corporation.
+         Copyright (c) 2004-2009 Actuate Corporation.
 All rights reserved. This program and the accompanying materials are made available under the  terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
       </documentation>
    </annotation>

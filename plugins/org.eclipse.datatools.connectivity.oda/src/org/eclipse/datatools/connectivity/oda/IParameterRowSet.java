@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -219,6 +219,24 @@ public interface IParameterRowSet extends IResultSet
      * @since 3.1
      */
     public void setBoolean( String columnName, boolean value ) throws OdaException;
+    
+    /**
+     * Sets the object value at the designated column.
+     * @param columnIndex   index of the column.
+     * @param value         the Java object value.
+     * @throws OdaException     if data source error occurs.
+     * @since 3.2 (DTP 1.7)
+     */
+    public void setObject( int columnIndex, Object value ) throws OdaException;
+    
+    /**
+     * Sets the object value at the designated column.
+     * @param columnName    name of the column.
+     * @param value         the Java object value.
+     * @throws OdaException     if data source error occurs.
+     * @since 3.2 (DTP 1.7)
+     */
+    public void setObject( String columnName, Object value ) throws OdaException;
     
     /**
      * Sets a null value at the designated column.

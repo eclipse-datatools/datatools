@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -26,13 +26,17 @@ import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.consumer.nls.Messages;
 
+import com.ibm.icu.util.ULocale;
+
 /**
  * OdaConnection is the Oda wrapper for connections.
  */
 public class OdaConnection extends OdaObject 
 						   implements IConnection
 {	
-	private int 		m_errorNumber;
+    private static final String MSG_LINE_SEPARATOR = " )\t"; //$NON-NLS-1$
+
+    private int 		m_errorNumber;
 	private String 		m_errorMessage;
 
 	// We'll use a hashtable to keep track of the count for opened 
@@ -203,8 +207,7 @@ public class OdaConnection extends OdaObject
 	
 	public void open( Properties connProperties ) throws OdaException
 	{
-		final String context = "OdaConnection.open( " + connProperties + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+		final String context = "OdaConnection.open( " + connProperties + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		final String unsupportedOpContext = "IConnection.open( Properties connProperties )"; //$NON-NLS-1$
@@ -453,8 +456,7 @@ public class OdaConnection extends OdaObject
 	public IDataSetMetaData getMetaData( String dataSetType )
 		throws OdaException
 	{
-		final String context = "OdaConnection.getMetaData( " + dataSetType + //$NON-NLS-1$
-						 " )\t"; //$NON-NLS-1$
+		final String context = "OdaConnection.getMetaData( " + dataSetType + MSG_LINE_SEPARATOR; //$NON-NLS-1$
 		logMethodCalled( context );
 		
 		try
@@ -533,9 +535,9 @@ public class OdaConnection extends OdaObject
 		throws OdaException
 	{
 		final String context = "OdaConnection.newQuery( " + //$NON-NLS-1$
-						 dataSetType + " )\t"; //$NON-NLS-1$
+						 dataSetType + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
-		final String unsupportedOpContext = "IConnection.newQuery( String dataSetType )"; //$NON-NLS-1$
+		final String unsupportedOpContext = "IConnection.newQuery( String )"; //$NON-NLS-1$
 		
 		try
 		{
@@ -664,7 +666,7 @@ public class OdaConnection extends OdaObject
 	public void setLocale( String localeString ) throws Throwable
 	{	
 	    final String context = "OdaConnection.setLocale( " + //$NON-NLS-1$
-						 localeString + " )\t"; //$NON-NLS-1$
+						 localeString + MSG_LINE_SEPARATOR; 
 		logMethodCalled( context );
 		
 		if( localeString == null || localeString.length( ) != 5 )
@@ -713,6 +715,52 @@ public class OdaConnection extends OdaObject
 		
 		logMethodExit( context );
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        final String context = "OdaConnection.setLocale( " + locale + MSG_LINE_SEPARATOR;  //$NON-NLS-1$
+        final String unsupportedOpContext = "IConnection.setLocale( ULocale )"; //$NON-NLS-1$
+        logMethodCalled( context );
+        
+        try
+        {
+            setContextClassloader();
+            
+            if( locale == null )
+                locale = ULocale.getDefault( );
+
+            getConnection().setLocale( locale );
+            logMethodExit( context );
+        }
+        catch( AbstractMethodError err )
+        {
+            // this occurs because the underlying driver has not upgraded
+            // to implement this ODA 3.2 method
+            String msg = formatMethodNotImplementedMsg( unsupportedOpContext );
+            log( context, msg );
+            
+            handleUnsupportedOp( new UnsupportedOperationException( msg ), msg );
+        }
+        catch( UnsupportedOperationException uoException )
+        {
+            handleUnsupportedOp( uoException, unsupportedOpContext );
+        }
+        catch( RuntimeException rtException )
+        {
+            handleError( rtException );
+        }
+        catch( OdaException odaException )
+        {
+            handleError( odaException );
+        }
+        finally
+        {
+            resetContextClassloader();
+        }
+    }
 	
 	/**
 	 * Processes the consumer application entries from the

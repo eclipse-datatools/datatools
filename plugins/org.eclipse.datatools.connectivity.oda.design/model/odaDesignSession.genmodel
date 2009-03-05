@@ -55,6 +55,7 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Blob"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Clob"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataType/JavaObject"/>
     </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterMode">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterMode/In"/>

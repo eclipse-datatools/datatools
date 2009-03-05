@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,8 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * Default implementation of IConnection 
@@ -117,5 +119,13 @@ public class SimpleConnection implements IConnection
 	{
 	    throw new UnsupportedOperationException();
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale uLocale ) throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
 	
 }

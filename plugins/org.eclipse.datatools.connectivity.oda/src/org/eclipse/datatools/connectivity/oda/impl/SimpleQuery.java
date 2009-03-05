@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * Default implementation of IQuery 
@@ -243,6 +244,23 @@ public class SimpleQuery implements IQuery
     }
 
     /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String parameterName, Object value )
+            throws OdaException
+    {
+        // only applies to named input parameter
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(int, java.lang.Object)
+     */
+    public void setObject( int parameterId, Object value ) throws OdaException
+    {
+        // only applies to input parameter
+    }
+
+    /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
      */
     public void setNull( String parameterName ) throws OdaException
@@ -294,4 +312,38 @@ public class SimpleQuery implements IQuery
 		// only applies to sorting
 		return null;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
+     */
+    public void setSpecification( QuerySpecification querySpec )
+            throws OdaException, UnsupportedOperationException
+    {
+        throw new UnsupportedOperationException( "Please override and implement me." ); //$NON-NLS-1$
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
+     */
+    public QuerySpecification getSpecification()
+    {
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getEffectiveQueryText()
+     */
+    public String getEffectiveQueryText()
+    {
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#cancel()
+     */
+    public void cancel() throws OdaException, UnsupportedOperationException
+    {
+        throw new UnsupportedOperationException();
+    }
+
 }
