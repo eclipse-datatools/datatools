@@ -1,6 +1,6 @@
 /*
  ******************************************************************************
- * Copyright (c) 2007 Actuate Corporation.
+ * Copyright (c) 2007, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -29,6 +29,8 @@ import org.eclipse.datatools.enablement.oda.ws.util.Constants;
 import org.eclipse.datatools.enablement.oda.ws.util.Java2SOAPManager;
 import org.eclipse.datatools.enablement.oda.ws.util.RawMessageSender;
 import org.eclipse.datatools.enablement.oda.ws.util.WSUtil;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * Implementation class of IConnection for an ODA runtime driver.
@@ -194,5 +196,14 @@ public class Connection implements IConnection
 	{
 		// do nothing; assumes no transaction support needed
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException( );
+    }
 
 }

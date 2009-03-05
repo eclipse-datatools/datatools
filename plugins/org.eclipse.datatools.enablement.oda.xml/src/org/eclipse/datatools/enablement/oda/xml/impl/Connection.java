@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004, 2008 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,8 @@ import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.util.IXMLSource;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromInputStream;
 import org.eclipse.datatools.enablement.oda.xml.util.XMLSourceFromPath;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * This class is used to build an XML data source connection. 
@@ -196,7 +198,6 @@ public class Connection implements IConnection
 	public void commit( ) throws OdaException
 	{
 		throw new UnsupportedOperationException( );
-
 	}
 
 	/*
@@ -207,10 +208,18 @@ public class Connection implements IConnection
 	public void rollback( ) throws OdaException
 	{
 		throw new UnsupportedOperationException( );
-
 	}
 	
-	public IXMLSource getXMLSource( ) throws OdaException
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException( );
+    }
+
+    public IXMLSource getXMLSource( ) throws OdaException
 	{
 		if ( xmlSource == null )
 		{
