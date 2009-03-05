@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,6 +19,8 @@ import org.eclipse.datatools.connectivity.oda.IConnection;
 import org.eclipse.datatools.connectivity.oda.IDataSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
+
+import com.ibm.icu.util.ULocale;
 
 /**
  * Implementation class of IConnection for an ODA runtime driver.
@@ -105,5 +107,13 @@ public class Connection implements IConnection
 	{
         // do nothing; assumes no transaction support needed
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IConnection#setLocale(com.ibm.icu.util.ULocale)
+     */
+    public void setLocale( ULocale locale ) throws OdaException
+    {
+        // do nothing; assumes no locale support
+    }
     
 }

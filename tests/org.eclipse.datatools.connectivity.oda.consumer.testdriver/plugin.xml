@@ -86,6 +86,7 @@
               minArguments="1">
         </filterType>
         <filterType
+              class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression"
               displayName="Between"
               id="1001"
               isNegatable="true"
@@ -145,6 +146,19 @@
               <variableClassRestriction
                     class="org.eclipse.datatools.connectivity.oda.consumer.testdriver.OrderItem">
               </variableClassRestriction>
+           </variableRestriction>
+        </filterType>
+        <filterType
+              id="IdentityEq"
+              isNegatable="false"
+              isOptionable="false"
+              maxArguments="1"
+              minArguments="1">
+           <variableRestriction
+                 variableType="ResultSetColumn">
+              <variableOdaDataTypeRestriction
+                    odaScalarDataType="JavaObject">
+              </variableOdaDataTypeRestriction>
            </variableRestriction>
         </filterType>
        </filterExpressionTypes>

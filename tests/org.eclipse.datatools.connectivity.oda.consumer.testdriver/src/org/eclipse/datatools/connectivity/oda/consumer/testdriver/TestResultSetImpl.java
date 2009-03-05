@@ -188,7 +188,26 @@ class TestResultSetImpl implements IResultSet
 		return m_currentRow;
 	}
 
-	public String getString(int index) throws OdaException 
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(int)
+     */
+    public Object getObject( int index ) throws OdaException
+    {
+        checkColumnIndex( index );
+        m_wasNull = false;
+        return TestData.createObjectData();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IResultSet#getObject(java.lang.String)
+     */
+    public Object getObject( String columnName ) throws OdaException
+    {
+        int index = findColumn( columnName );
+        return getObject( index );      
+    }
+
+    public String getString(int index) throws OdaException 
 	{
 		checkColumnIndex( index );
 		m_wasNull = false;

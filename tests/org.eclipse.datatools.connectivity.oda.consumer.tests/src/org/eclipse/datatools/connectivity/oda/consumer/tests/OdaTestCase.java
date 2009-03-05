@@ -43,7 +43,7 @@ abstract class OdaTestCase extends TestCase
         return new OdaDriver( getTestDriverId() );
     }
     
-    static String getTestDriverId()
+    protected String getTestDriverId()
     {
     	return TEST_DRIVER_ID;
     }

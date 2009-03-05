@@ -29,6 +29,7 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 	public final static int QUERY_TYPE_ADVANCED = 2;
 	public final static int NATIVETYPE_TABLE_CODE = Types.OTHER;
 	
+    @SuppressWarnings("unchecked")
     public TestParamMetaDataImpl( int queryType )
     {
     	m_params = new ArrayList();
@@ -63,6 +64,8 @@ public class TestParamMetaDataImpl implements IParameterMetaData
 		    	IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullableUnknown ) );
             m_params.add( new TestParameterMetaData( "BooleanParamIn", Types.BOOLEAN, "BOOLEAN", -1, -1, 
                 IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullableUnknown ) );
+            m_params.add( new TestParameterMetaData( "ObjectParamIn", Types.JAVA_OBJECT, "JAVAOBJECT", -1, -1, 
+                    IParameterMetaData.parameterModeIn, IParameterMetaData.parameterNullable ) );
     	}
     	else if ( queryType == QUERY_TYPE_ADVANCED )
     	{

@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2004, 2007 Actuate Corporation.
+ * Copyright (c) 2004, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -49,7 +49,7 @@ public class ParamMetaDataTest extends ConnectionTest
     {
     	prepareComplexQuery();
     	
-        assertTrue( m_paramMetaData.getParameterCount() == 8 );
+        assertTrue( m_paramMetaData.getParameterCount() == 9 );
     }
     
     public final void testGetParameterName() throws OdaException
@@ -81,6 +81,7 @@ public class ParamMetaDataTest extends ConnectionTest
     	assertTrue( m_paramMetaData.getParameterType( 6 ) == Types.TIME );
     	assertTrue( m_paramMetaData.getParameterType( 7 ) == Types.TIMESTAMP );
         assertTrue( m_paramMetaData.getParameterType( 8 ) == Types.BOOLEAN );
+        assertTrue( m_paramMetaData.getParameterType( 9 ) == Types.JAVA_OBJECT );
     	
     	prepareAdvancedQuery();
     	
@@ -104,6 +105,7 @@ public class ParamMetaDataTest extends ConnectionTest
     	assertTrue( m_paramMetaData.getParameterTypeName( 6 ).equals( "TIME" ) );
     	assertTrue( m_paramMetaData.getParameterTypeName( 7 ).equals( "TIMESTAMP" ) );
         assertTrue( m_paramMetaData.getParameterTypeName( 8 ).equals( "BOOLEAN" ) );
+        assertTrue( m_paramMetaData.getParameterTypeName( 9 ).equals( "JAVAOBJECT" ) );
    	
     	prepareAdvancedQuery();
     	

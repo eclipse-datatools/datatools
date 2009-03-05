@@ -163,7 +163,24 @@ abstract class TestParamRowSetImpl extends TestResultSetImpl implements IParamet
 		throw new UnsupportedOperationException();
 	}
 
-	public void setString( int columnIndex, String value ) throws OdaException
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(int, java.lang.Object)
+     */
+    public void setObject( int columnIndex, Object value ) throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String columnName, Object value )
+            throws OdaException
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setString( int columnIndex, String value ) throws OdaException
 	{
 		throw new UnsupportedOperationException();
 	}

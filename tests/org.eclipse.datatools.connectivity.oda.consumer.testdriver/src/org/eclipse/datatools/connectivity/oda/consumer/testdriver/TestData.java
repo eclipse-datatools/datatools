@@ -111,6 +111,11 @@ public class TestData
     	return new Date( DATE_DATA );
     }
     
+    public static final Object createObjectData()
+    {
+        return new String( "testObject" ); //$NON-NLS-1$
+    }
+    
     public static final IParameterRowSet createStructData() throws OdaException
     {
     	return new TestOutputParamRowSetImpl();
@@ -243,4 +248,5 @@ public class TestData
 			}
 		}
 	}
+	
 }

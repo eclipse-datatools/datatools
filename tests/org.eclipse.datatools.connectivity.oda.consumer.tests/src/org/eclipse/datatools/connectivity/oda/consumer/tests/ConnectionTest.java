@@ -181,6 +181,20 @@ public class ConnectionTest extends OdaTestCase
 		RunQueryAndCheckRowCount( 1 );	
 	}
 	
+	public void testSetLocale() throws Exception
+	{
+	    boolean hasException = false;
+	    try
+        {
+            m_connection.setLocale( null );
+        }
+        catch( UnsupportedOperationException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );
+	}
+
 	private void RunQueryAndCheckRowCount( int count ) throws OdaException
 	{
 		IQuery query = m_connection.newQuery( null );

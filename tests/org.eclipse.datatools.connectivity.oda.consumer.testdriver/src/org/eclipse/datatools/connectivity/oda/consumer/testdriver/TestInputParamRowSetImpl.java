@@ -88,7 +88,24 @@ public class TestInputParamRowSetImpl extends TestParamRowSetImpl
 		setValue( columnName, new Integer( value ) );
 	}
 
-	public void setString( int columnIndex, String value ) throws OdaException
+	/* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(int, java.lang.Object)
+     */
+    public void setObject( int columnIndex, Object value ) throws OdaException
+    {
+        setValue( columnIndex, value );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IParameterRowSet#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String columnName, Object value )
+            throws OdaException
+    {
+        setValue( columnName, value );
+    }
+
+    public void setString( int columnIndex, String value ) throws OdaException
 	{
 		setValue( columnIndex, value );
 	}

@@ -79,7 +79,8 @@ class TestResultSetMetaDataImpl implements IResultSetMetaData
 		return getCol( index ).isNullable();
 	}
 		
-	private void init( boolean includeLOBs ) 
+	@SuppressWarnings("unchecked")
+    private void init( boolean includeLOBs ) 
 	{
 		m_columns = new ArrayList();
 		
@@ -112,6 +113,8 @@ class TestResultSetMetaDataImpl implements IResultSetMetaData
 			TestColumnMetaData( 17, "TimestampLabel", "TimestampCol", 93, "TIMESTAMP", -1, -1, columnNoNulls ) );
         m_columns.add( new
             TestColumnMetaData( 5, "BooleanLabel", "BooleanCol", Types.BOOLEAN, "BOOLEAN", -1, -1, columnNoNulls ) );
+        m_columns.add( new
+            TestColumnMetaData( 100, "ObjectLabel", "ObjectCol", Types.JAVA_OBJECT, "JAVAOBJECT", -1, -1, columnNullable ) );
 	}
 	
 	private TestColumnMetaData getCol( int index ) throws OdaException

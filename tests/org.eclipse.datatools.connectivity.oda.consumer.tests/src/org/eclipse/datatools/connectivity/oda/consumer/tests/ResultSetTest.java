@@ -115,6 +115,22 @@ public class ResultSetTest extends QueryTest
         val = m_resultSet.getBoolean( "BooleanCol" );
         assertEquals( expectedVal, val );
     }
+    
+    public final void testGetObject() throws OdaException 
+    {
+        boolean retVal = m_resultSet.next();
+        assertTrue( retVal );
+        
+        Object expectedVal = TestData.createObjectData();
+        
+        // Test get value by column pos. defined in TestResultSetMetaDataImpl
+        Object val = m_resultSet.getObject( 13 );
+        assertEquals( expectedVal, val );
+        
+        // Test get value by column name.
+        val = m_resultSet.getObject( "ObjectCol" );
+        assertEquals( expectedVal, val );
+    }
 	
 	public final void testGetBigDecimal() throws OdaException 
 	{

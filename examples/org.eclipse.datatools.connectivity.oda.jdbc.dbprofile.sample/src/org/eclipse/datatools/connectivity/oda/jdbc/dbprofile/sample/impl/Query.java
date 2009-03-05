@@ -1,6 +1,6 @@
 /*
  *************************************************************************
- * Copyright (c) 2008 Actuate Corporation.
+ * Copyright (c) 2008, 2009 Actuate Corporation.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -24,6 +24,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * Implementation class of IQuery for an ODA runtime driver.
@@ -37,6 +38,7 @@ import org.eclipse.datatools.connectivity.oda.SortSpec;
 public class Query implements IQuery
 {
 	private int m_maxRows;
+	private String m_preparedText;
 	
 	/*
 	 * @see org.eclipse.datatools.connectivity.oda.IQuery#prepare(java.lang.String)
@@ -44,6 +46,7 @@ public class Query implements IQuery
 	public void prepare( String queryText ) throws OdaException
 	{
         // TODO Auto-generated method stub
+	    m_preparedText = queryText;
 	}
 	
 	/*
@@ -60,6 +63,7 @@ public class Query implements IQuery
 	public void close() throws OdaException
 	{
         // TODO Auto-generated method stub
+	    m_preparedText = null;
 	}
 
 	/*
@@ -266,7 +270,26 @@ public class Query implements IQuery
         // TODO Auto-generated method stub       
         // only applies to input parameter
     }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String parameterName, Object value )
+            throws OdaException
+    {
+        // TODO Auto-generated method stub
+        // only applies to named input parameter
+    }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(int, java.lang.Object)
+     */
+    public void setObject( int parameterId, Object value ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        // only applies to input parameter
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IQuery#setNull(java.lang.String)
      */
@@ -312,7 +335,6 @@ public class Query implements IQuery
 	 */
 	public void setSortSpec( SortSpec sortBy ) throws OdaException
 	{
-        // TODO Auto-generated method stub
 		// only applies to sorting, assumes not supported
         throw new UnsupportedOperationException();
 	}
@@ -322,9 +344,47 @@ public class Query implements IQuery
 	 */
 	public SortSpec getSortSpec() throws OdaException
 	{
-        // TODO Auto-generated method stub
 		// only applies to sorting
 		return null;
 	}
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
+     */
+    @SuppressWarnings("restriction")
+    public void setSpecification( QuerySpecification querySpec )
+            throws OdaException, UnsupportedOperationException
+    {
+        // assumes no support
+        throw new UnsupportedOperationException();
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
+     */
+    @SuppressWarnings("restriction")
+    public QuerySpecification getSpecification()
+    {
+        // assumes no support
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getEffectiveQueryText()
+     */
+    public String getEffectiveQueryText()
+    {
+        // TODO Auto-generated method stub
+        return m_preparedText;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#cancel()
+     */
+    public void cancel() throws OdaException, UnsupportedOperationException
+    {
+        // assumes unable to cancel while executing a query
+        throw new UnsupportedOperationException();
+    }
     
 }

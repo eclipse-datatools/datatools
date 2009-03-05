@@ -91,6 +91,17 @@ public class FilterExtensionsTest extends TestCase
         assertEquals( 1, betweenDefn.getMinArguments().intValue() );
         assertEquals( 2, betweenDefn.getMaxArguments().intValue() );
         assertFalse( betweenDefn.supportsUnboundedMaxArguments() );
+
+        FilterExpressionDefinition isInstanceDefn =
+            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( contributor.getDeclaringExtensionId(), INSTANCE_EXPR_ID );
+        assertTrue( isInstanceDefn.isNegatable() );
+        assertFalse( isInstanceDefn.isOptionable() );
+    }
+    
+    public void testVariableRestrictions() throws Exception
+    {
+        FilterExpressionDefinition betweenDefn =
+            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
         
         // test the content of variableRestriction elements
         assertEquals( 1, betweenDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
@@ -105,9 +116,7 @@ public class FilterExtensionsTest extends TestCase
         assertFalse( betweenDefn.getVariableRestrictions().supportsClassType( VariableType.INSTANCE_OF, RESTRICTED_CLASS_NAME ) );
 
         FilterExpressionDefinition isInstanceDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( contributor.getDeclaringExtensionId(), INSTANCE_EXPR_ID );
-        assertTrue( isInstanceDefn.isNegatable() );
-        assertFalse( isInstanceDefn.isOptionable() );
+            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, INSTANCE_EXPR_ID );
 
         assertEquals( 1, isInstanceDefn.getVariableRestrictions().getRestrictedVariableTypes().length );
         assertTrue( isInstanceDefn.getVariableRestrictions().supportsVariableType( VariableType.INSTANCE_OF ));
@@ -119,8 +128,12 @@ public class FilterExtensionsTest extends TestCase
         assertFalse( isInstanceDefn.getVariableRestrictions().hasDataTypeRestrictions( VariableType.RESULT_SET_COLUMN ) );
         assertEquals( 0, isInstanceDefn.getVariableRestrictions().getResultColumnRestrictedOdaDataTypes().length );
         assertFalse( isInstanceDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.CHAR ) );
+
+        FilterExpressionDefinition idEqDefn =
+            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, "IdentityEq" ); //$NON-NLS-1$
+        assertTrue( idEqDefn.getVariableRestrictions().supportsOdaDataType( VariableType.RESULT_SET_COLUMN, Types.JAVA_OBJECT ) );
     }
-    
+
     public void testCreateExpression() throws Exception
     {
         FilterExpressionDefinition equalDefn =
@@ -143,6 +156,9 @@ public class FilterExtensionsTest extends TestCase
         FilterExpressionDefinition betweenDefn =
             ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
         CustomExpression betweenExpr = betweenDefn.createExpression();
+        assertEquals( "org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression",  //$NON-NLS-1$
+                    betweenExpr.getClass().getName() );
+        
         betweenExpr.setVariable( new ExpressionVariable( "(CREDITLIMIT / 100)" ) ); //$NON-NLS-1$
         ExpressionArguments betweenArgs = new ExpressionArguments();
         betweenArgs.addValue( 100.0 )
@@ -180,5 +196,5 @@ public class FilterExtensionsTest extends TestCase
             fail();
         }        
     }
-    
+
 }

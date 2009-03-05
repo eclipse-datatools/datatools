@@ -26,6 +26,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.consumer.testdriver.TestData;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 public class QueryTest extends ConnectionTest
 {
@@ -241,6 +242,44 @@ public class QueryTest extends ConnectionTest
 		assertNotNull( md );
 	}
 
+	public void testCancelQuery() throws Exception
+	{
+        m_query.prepare( "Simple Query" );
+        
+        boolean hasException = false;
+        try
+        {
+            m_query.cancel();
+        }
+        catch( OdaException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );
+        
+        m_query.executeQuery();
+        hasException = false;
+        try
+        {
+            m_query.cancel();
+        }
+        catch( OdaException ex )
+        {
+            hasException = true;
+        }
+        assertTrue( hasException );
+	}
+
+    public void testQuerySpec() throws Exception
+    {
+        QuerySpecification querySpec = new QuerySpecification();
+        m_query.setSpecification( querySpec );
+        m_query.prepare( "Simple Query" );
+        
+        String preparedText = m_query.getEffectiveQueryText();
+        assertEquals( "Simple Query" + querySpec, preparedText );
+    }
+    
 	public final void testSetParametersByPos() throws OdaException
 	{
 		// Test setting parameters by position, without preparing
@@ -406,6 +445,22 @@ public class QueryTest extends ConnectionTest
             else
                 fail();
         }
+
+        try
+        {
+            Object val = TestData.createObjectData();
+            m_query.setObject( 9, val );
+
+            if ( ! isQueryPrepared )
+                fail();
+        }
+        catch( OdaException e )
+        {
+            if ( ! isQueryPrepared )
+                CheckExceptionSetParamBeforePrepare( e );
+            else
+                fail();
+        }
 	}
 	
 	public final void testSetParametersByName() throws OdaException
@@ -554,6 +609,22 @@ public class QueryTest extends ConnectionTest
         {
             boolean val = TestData.createBooleanFalseData();
             m_query.setBoolean( "BooleanParamIn", val );
+
+            if ( ! isQueryPrepared )
+                fail();
+        }
+        catch( OdaException e )
+        {
+            if ( ! isQueryPrepared )
+                CheckExceptionSetParamBeforePrepare( e );
+            else
+                fail();
+        }
+        
+        try
+        {
+            Object val = TestData.createObjectData();
+            m_query.setObject( "ObjectParamIn", val );
 
             if ( ! isQueryPrepared )
                 fail();

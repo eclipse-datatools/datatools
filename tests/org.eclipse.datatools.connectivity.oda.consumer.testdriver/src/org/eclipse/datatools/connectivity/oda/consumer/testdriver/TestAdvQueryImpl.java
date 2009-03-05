@@ -29,6 +29,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
+import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
 
 /**
  * A tester ODA driver to test the behavior of odaconsumer, calling
@@ -48,7 +49,9 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     private boolean m_wasNull = false;
     private static final String TEST_QUERY_PROP_NAME = "TEST_QUERY_PROP_NAME";
     private int m_outputParamStartIndex = 0;
-    
+    private String m_preparedText;
+    private QuerySpecification m_querySpec;
+
     // 0-based result set index.
     private int m_curResultSetIndex = -1;
     
@@ -142,6 +145,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
 
     	resetInputParamValuesArray();
     	m_isPrepareCalled = true;
+    	m_preparedText = queryText;
     }
     
     private final void resetInputParamValuesArray() throws OdaException
@@ -238,6 +242,7 @@ public class TestAdvQueryImpl implements IAdvancedQuery
      */
     public void close() throws OdaException
     {
+        m_preparedText = null;
     	m_isOpen = false;
     }
 
@@ -574,6 +579,24 @@ public class TestAdvQueryImpl implements IAdvancedQuery
         return getBoolean( index );
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getObject(int)
+     */
+    public Object getObject( int parameterId ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getObject(java.lang.String)
+     */
+    public Object getObject( String parameterName ) throws OdaException
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     /* (non-Javadoc)
      * @see org.eclipse.datatools.connectivity.oda.IAdvancedQuery#getBigDecimal(int)
      */
@@ -1017,6 +1040,60 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     	rsInfo.setResultSet( resultSet );
     }
     
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#cancel()
+     */
+    public void cancel() throws OdaException, UnsupportedOperationException
+    {
+        m_preparedText = null;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getEffectiveQueryText()
+     */
+    public String getEffectiveQueryText()
+    {
+        if( getSpecification() != null )
+            return m_preparedText + getSpecification();
+        return m_preparedText;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#getSpecification()
+     */
+    @SuppressWarnings("restriction")
+    public QuerySpecification getSpecification()
+    {
+        return m_querySpec;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setSpecification(org.eclipse.datatools.connectivity.oda.spec.QuerySpecification)
+     */
+    @SuppressWarnings("restriction")
+    public void setSpecification( QuerySpecification querySpec )
+            throws OdaException, UnsupportedOperationException
+    {
+        m_querySpec = querySpec;
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(int, java.lang.Object)
+     */
+    public void setObject( int parameterId, Object value ) throws OdaException
+    {
+        setValue( parameterId, value );
+    }
+
+    /* (non-Javadoc)
+     * @see org.eclipse.datatools.connectivity.oda.IQuery#setObject(java.lang.String, java.lang.Object)
+     */
+    public void setObject( String parameterName, Object value )
+            throws OdaException
+    {
+        setValue( parameterName, value );
+    }
+
     class TestResultSetInfo
     {
     	private String m_name = null;
@@ -1059,6 +1136,5 @@ public class TestAdvQueryImpl implements IAdvancedQuery
     	{
     		return m_sortSpec;
     	}
-    	
     }
 }

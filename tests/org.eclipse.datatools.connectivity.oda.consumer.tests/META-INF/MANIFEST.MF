@@ -5,9 +5,9 @@ Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda.consumer.tests;singl
 Bundle-Version: 3.1.3.qualifier
 Bundle-Vendor: Eclipse.org
 Require-Bundle: org.junit;bundle-version="[3.8.1,4.0.0)",
- org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.1.3,4.0.0)",
+ org.eclipse.datatools.connectivity.oda.consumer;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.oda.flatfile;bundle-version="[3.0.2,4.0.0)";resolution:=optional,
  org.eclipse.core.runtime;bundle-version="[3.3.0,4.0.0)",
- org.eclipse.datatools.connectivity.oda.consumer.testdriver;bundle-version="[3.1.0,4.0.0)"
+ org.eclipse.datatools.connectivity.oda.consumer.testdriver;bundle-version="[3.2.0,4.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.datatools.connectivity.oda.consumer.test.impl.OdaConsumerTestPlugin

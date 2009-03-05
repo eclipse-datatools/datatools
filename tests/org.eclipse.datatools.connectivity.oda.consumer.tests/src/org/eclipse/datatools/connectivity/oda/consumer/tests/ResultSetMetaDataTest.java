@@ -165,7 +165,7 @@ public class ResultSetMetaDataTest extends QueryTest
 
 	private void checkColumnCount( IResultSetMetaData md ) throws OdaException
 	{
-		assertEquals( 12, md.getColumnCount() );
+		assertEquals( 13, md.getColumnCount() );
 	}
 	
 	private void checkColumnNames( IResultSetMetaData md ) throws OdaException
