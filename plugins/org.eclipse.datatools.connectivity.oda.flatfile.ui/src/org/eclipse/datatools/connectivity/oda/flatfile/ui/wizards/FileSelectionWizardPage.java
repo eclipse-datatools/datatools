@@ -597,9 +597,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 		layout.verticalSpacing = 5;
 		btnComposite.setLayout( layout );
 
-		btnMoveUp = new Button( btnComposite, SWT.ARROW | SWT.UP );
+		btnMoveUp = new Button( btnComposite, SWT.NONE );
+		btnMoveUp.setText( Messages.getString( "button.moveUp" ) );
 		GridData btnMoveUpGd = new GridData( );
-		btnMoveUpGd.widthHint = btnMoveUpGd.heightHint = 25;
+		btnMoveUpGd.widthHint = 52;
 		btnMoveUp.setLayoutData( btnMoveUpGd );
 		btnMoveUp.setToolTipText( Messages.getString( "tooltip.button.up" ) );
 		btnMoveUp.addSelectionListener( new SelectionAdapter( ) {
@@ -610,13 +611,11 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 
-		btnRemove = new Button( btnComposite, SWT.PUSH );
+		btnRemove = new Button( btnComposite, SWT.NONE );
+		btnRemove.setText( Messages.getString( "button.delete" ) );
 		GridData btnRemoveGd = new GridData( GridData.VERTICAL_ALIGN_CENTER );
-		btnRemoveGd.widthHint = btnRemoveGd.heightHint = 25;
+		btnRemoveGd.widthHint = 52;
 		btnRemove.setLayoutData( btnRemoveGd );
-		btnRemove.setImage( PlatformUI.getWorkbench( )
-				.getSharedImages( )
-				.getImage( ISharedImages.IMG_TOOL_DELETE ) );
 		btnRemove.setToolTipText( Messages.getString( "tooltip.button.delete" ) );
 		btnRemove.addSelectionListener( new SelectionAdapter( ) {
 
@@ -626,9 +625,10 @@ public class FileSelectionWizardPage extends DataSetWizardPage
 			}
 		} );
 
-		btnMoveDown = new Button( btnComposite, SWT.ARROW | SWT.DOWN );
+		btnMoveDown = new Button( btnComposite, SWT.NONE );
+		btnMoveDown.setText( Messages.getString( "button.moveDown" ) );
 		GridData btnMoveDownGd = new GridData( );
-		btnMoveDownGd.widthHint = btnMoveDownGd.heightHint = 25;
+		btnMoveDownGd.widthHint = 52;
 		btnMoveDown.setLayoutData( btnMoveDownGd );
 		btnMoveDown.setToolTipText( Messages.getString( "tooltip.button.down" ) );
 		btnMoveDown.addSelectionListener( new SelectionAdapter( ) {
