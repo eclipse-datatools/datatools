@@ -5,6 +5,7 @@ helper_cannotGetParamMdBeforePrepare=No se pueden obtener metadatos de parámetro
 helper_cannotSetSortSpecBeforePrepare=No se puede establecer la especificación de ordenación antes de preparar la sentencia.
 helper_maxConcurrentConnectionsReached=Se ha alcanzado el número máximo de conexiones simultáneas activas.
 helper_connectionFailed=No se puede abrir la conexión.
+helper_cannotCancelNonExecQuery=Cannot cancel this query while it is not executing.
 helper_cannotConstructConnectionFactory=No es posible cargar o crear una instancia de la clase de controlador ODA personalizado.
 helper_inadequatePermissionsForCompatibility=No se puede proporcionar compatibilidad retroactiva porque los permisos no son adecuados.
 helper_connectionIsInactive=La conexión establecida con el origen de datos no está activa.

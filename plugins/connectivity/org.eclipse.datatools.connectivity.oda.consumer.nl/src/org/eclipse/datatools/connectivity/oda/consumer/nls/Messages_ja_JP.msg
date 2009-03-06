@@ -5,6 +5,7 @@ helper_cannotGetParamMdBeforePrepare=ƒXƒe[ƒgƒƒ“ƒg‚Ì€”õ‘O‚Éƒpƒ‰ƒ[ƒ^[Eƒƒ^ƒ
 helper_cannotSetSortSpecBeforePrepare=ƒXƒe[ƒgƒƒ“ƒg‚Ì€”õ‘O‚Éƒ\[ƒgw’è‚ğİ’è‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
 helper_maxConcurrentConnectionsReached=ƒAƒNƒeƒBƒu“¯Ú‘±‚ÌÅ‘å”‚É’B‚µ‚Ü‚µ‚½B
 helper_connectionFailed=Ú‘±‚ğŠJ‚­‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñB
+helper_cannotCancelNonExecQuery=Cannot cancel this query while it is not executing.
 helper_cannotConstructConnectionFactory=ƒJƒXƒ^ƒ€ ODA ƒhƒ‰ƒCƒo‚ÌƒNƒ‰ƒX‚ğ“Ç‚İ‚ß‚È‚¢‚©ŠJn‚Å‚«‚Ü‚¹‚ñB
 helper_inadequatePermissionsForCompatibility=ƒAƒNƒZƒXŒ ‚ª•s\•ª‚È‚½‚ßA‰ºˆÊŒİŠ·«‚ğ’ñ‹Ÿ‚Å‚«‚Ü‚¹‚ñB
 helper_connectionIsInactive=Šm—§Ï‚İ‚Ìƒf[ƒ^Eƒ\[ƒX‚Ö‚ÌÚ‘±‚ª”ñƒAƒNƒeƒBƒu‚Å‚·B
