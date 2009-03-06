@@ -53,6 +53,8 @@ public class FlatFileDataReader
 	private boolean isFirstTimeToCallReadLine = true;
 	private int fetchCounter = 0;
 	private int[] selectColumIndexes; 
+	
+	private List nextDataLine;
 
 	//Max number of rows fetched each time from data source
 	public static final int MAX_ROWS_PER_FETCH = 20000;
@@ -378,7 +380,6 @@ public class FlatFileDataReader
 	private List fetchQueriedDataFromFileToList( ) throws OdaException
 	{
 		List result = new ArrayList( );
-		List aLine = null;
 		try
 		{
 			if ( isFirstTimeToReadSourceData )
@@ -404,17 +405,21 @@ public class FlatFileDataReader
 					while ( isEmptyRow( flatFileBufferedReader.readLine( ) ) )
 						continue;
 				}
-				aLine = flatFileBufferedReader.readLine( );
+				
 				if ( !this.hasColumnNames )
 				{
-					this.originalColumnNames = createTempColumnNames( aLine );
+					while ( isEmptyRow( nextDataLine = flatFileBufferedReader.readLine( ) ))
+					{
+						continue;
+					}
+					this.originalColumnNames = createTempColumnNames( nextDataLine );
 					initNameIndexMap( );
 				}
+				else
+				{
+					nextDataLine = flatFileBufferedReader.readLine( );
+				}
 				isFirstTimeToReadSourceData = false;
-			}
-			else
-			{
-				aLine = flatFileBufferedReader.readLine( );
 			}
 
 			// temporary variable which is used to store the data of a row
@@ -426,14 +431,14 @@ public class FlatFileDataReader
 			while ( ( this.maxRowsToRead <= 0 ? true
 					: this.fetchCounter < this.maxRowsToRead )
 					&& this.fetchCounter < counterLimitPerFetch 
-					&& aLine != null )
+					&& nextDataLine != null )
 			{
-				if ( !isEmptyRow( aLine ) )
+				if ( !isEmptyRow( nextDataLine ) )
 				{
 					fetchCounter++;
-					result.add( fetchQueriedDataFromRow( aLine) );
+					result.add( fetchQueriedDataFromRow( nextDataLine) );
 				}
-				aLine = flatFileBufferedReader.readLine( );
+				nextDataLine = flatFileBufferedReader.readLine( );
 			}
 
 			return result;

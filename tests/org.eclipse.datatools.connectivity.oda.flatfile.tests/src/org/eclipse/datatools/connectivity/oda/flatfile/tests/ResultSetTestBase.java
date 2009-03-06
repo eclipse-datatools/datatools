@@ -476,6 +476,25 @@ public abstract class ResultSetTestBase extends TestCase
 
 	/**
 	 * 
+	 * @throws OdaException
+	 */
+	public void testHugeRows( ) throws OdaException
+	{
+		statement.prepare( "select INT_COL from table_hugeRows"
+				+ getSuffix( ) + getExtension( ) );
+		IResultSet rs = statement.executeQuery( );
+		int counter = 0;
+		while ( rs.next( ) )
+		{
+			counter++;
+			assertEquals( counter, rs.getInt( 1 ));
+		}
+		assertEquals( counter, TestUtil.HUGE_TABLE_ROW_COUNT );
+		assertFalse( rs.next( ) );
+	}
+	
+	/**
+	 * 
 	 * @return
 	 */
 	protected abstract String getDelimiter( );

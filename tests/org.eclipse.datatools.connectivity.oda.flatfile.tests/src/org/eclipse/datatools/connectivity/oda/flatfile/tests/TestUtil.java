@@ -25,6 +25,7 @@ import java.util.Random;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.flatfile.CommonConstants;
+import org.eclipse.datatools.connectivity.oda.flatfile.util.FlatFileDataReader;
 
 /**
  * TestUtil class for generating test data
@@ -43,6 +44,8 @@ public class TestUtil
 	public static final String TSV_EXTENSION = ".tsv";
 	public static final String PSV_EXTENSION = ".psv";
 	private static String fileExtension = "";
+	
+	public static int HUGE_TABLE_ROW_COUNT = 2 * FlatFileDataReader.MAX_ROWS_PER_FETCH + 5;
 
 	/**
 	 * 
@@ -75,7 +78,9 @@ public class TestUtil
 		createTestFile_test11( path, delimiter );
 		createTestFile_test12( path, delimiter );
 		createTestFile_test13( path, delimiter );
+		createTestFile_hugeRows( path, delimiter );
 	}
+	
 	
 	/**
 	 * 
@@ -217,6 +222,7 @@ public class TestUtil
 		file.deleteOnExit( );
 	}
 
+	
 	private static void createTestFile_test2( String path, String delimiter )
 			throws OdaException
 	{
@@ -860,4 +866,42 @@ public class TestUtil
 		else
 			return null;
 	}
+
+	private static void createTestFile_hugeRows( String path, String delimiter )
+			throws OdaException
+	{
+		File file = null;
+		file = new File( path
+				+ File.separator + "table_hugeRows" + getSuffix( delimiter )
+				+ fileExtension );
+		if ( file.exists( ) )
+		{
+			file.deleteOnExit( );
+			return;
+		}
+		try
+		{
+			FileOutputStream fos = new FileOutputStream( file );
+			OutputStreamWriter osw = new OutputStreamWriter( fos, DATASET );
+
+			String endOfLine = new String( "\n" );
+			osw.flush( );
+			String header = "INT_COL\n";
+			String types = "INT\n";
+			osw.write( header );
+			osw.write( types );
+			for ( int i = 0; i < HUGE_TABLE_ROW_COUNT; i++ )
+			{
+				osw.write( i+1 + "" );
+				osw.write( endOfLine );
+			}
+			osw.close( );
+		}
+		catch ( Exception e )
+		{
+			throw new OdaException( e.getMessage( ) );
+		}
+		file.deleteOnExit( );
+	}
+	
 }
