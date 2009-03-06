@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.datatools.connectivity">
+<schema targetNamespace="org.eclipse.datatools.connectivity" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
+      <appinfo>
          <meta.schema plugin="org.eclipse.datatools.connectivity" id="driverExtension" name="Driver Definition"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          &lt;p&gt;
 The driverExtension is used by developers to define templates that describe the mechanical components necessary for opening connections to servers.  Users create specific driver definitions using these templates.
@@ -19,6 +19,11 @@ In addition, using the driverTemplateOverride functionality, adopters can take e
    </annotation>
 
    <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
       <complexType>
          <sequence>
             <element ref="category" minOccurs="0" maxOccurs="unbounded"/>
@@ -152,9 +157,9 @@ In addition, using the driverTemplateOverride functionality, adopters can take e
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="defaultDefinitionName" type="string">
@@ -259,9 +264,9 @@ Note that your property descriptor must implement a zero-argument constructor in
  
 Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor" deprecated="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="category" type="string">
@@ -338,9 +343,9 @@ Also note that there is a new interface that your Property Descriptor can extend
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="priority" type="string" use="default" value="1">
@@ -360,7 +365,14 @@ Also note that there is a new interface that your Property Descriptor can extend
          <attribute name="id" type="string">
             <annotation>
                <documentation>
-                  The id attribute, though optional, is required to allow one driverTemplateOverride instance to override another. For example, if driver A has an override B that changes or removes a property, another adopter might implement override C that uses the id of override B as the targetId, thus replacing the overridden driver template with their own. In the case of multiple overrides or overrides of overrides, the priority is taken into account. 
+                  The id attribute, though optional, is required to allow one driverTemplateOverride instance to override another. For example, if driver A has an override B that changes or removes a property, another adopter might implement override C that uses the id of override B as the targetId, thus replacing the overridden driver template with their own. In the case of multiple overrides or overrides of overrides, the priority is taken into account.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="remove" type="boolean">
+            <annotation>
+               <documentation>
+                  Removes the template from the list of available templates.
                </documentation>
             </annotation>
          </attribute>
@@ -452,9 +464,9 @@ Note that your property descriptor must implement a zero-argument constructor in
  
 Also note that there is a new interface that your Property Descriptor can extend called org.eclipse.datatools.connectivity.drivers.IDriverInstancePropertyDescriptor. This interface allows you to pass the Driver Instance to your descriptor when it is instantiated in the Edit Driver Definition dialog.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.ui.views.properties.PropertyDescriptor:" deprecated="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="category" type="string">
@@ -496,9 +508,9 @@ Also note that there is a new interface that your Property Descriptor can extend
                <documentation>
                   A migration implementation that allows the provider to perform a specialized migration.  Use this method if you require a more complex migration algorithm (i.e. anything other than simple name and property mapping).
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.datatools.connectivity.drivers.DriverMigratorBase:org.eclipse.datatools.connectivity.drivers.IDriverMigrator"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -536,18 +548,18 @@ Also note that there is a new interface that your Property Descriptor can extend
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          DTP 0.x
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          &lt;extension
          point=&quot;org.eclipse.datatools.connectivity.driverExtension&quot;&gt;
@@ -593,27 +605,27 @@ Also note that there is a new interface that your Property Descriptor can extend
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiInfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter API information here.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          [Enter information about supplied implementation of this extension point.]
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="copyright"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          &lt;p&gt;Copyright (c) 2004-2007 Sybase, Inc.&lt;/p&gt;
 &lt;p&gt;All rights reserved. This program and the accompanying materials

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2009 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - added capability of removing a template bug 264520
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.models;
 
@@ -284,6 +285,17 @@ public class TemplateDescriptor implements Comparable {
 		return name;
 	}
 	
+	public boolean getRemoveFlag() {
+		// First of all check overrides:
+		OverrideTemplateDescriptor[] overrides = OverrideTemplateDescriptor.getByDriverTemplate(getId());
+		if (overrides != null && overrides.length > 0) {
+			if (overrides[0].getRemoveFlag()) {
+				return overrides[0].getRemoveFlag();
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Returns the default definition name.
 	 */

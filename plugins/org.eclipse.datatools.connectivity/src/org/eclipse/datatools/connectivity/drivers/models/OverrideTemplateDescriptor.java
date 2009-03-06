@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2007 Sybase, Inc.
+ * Copyright (c) 2004-2009 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,13 +7,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - added capability of removing a template bug 264520
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.models;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -29,8 +29,6 @@ import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.datatools.connectivity.drivers.DriverMgmtMessages;
 import org.eclipse.datatools.connectivity.drivers.IDriverValuesProvider;
 import org.eclipse.datatools.connectivity.internal.ConnectivityPlugin;
-
-import sun.misc.Compare;
 
 /**
  * Represents a driver template override which is provided by the
@@ -264,6 +262,13 @@ public class OverrideTemplateDescriptor implements Comparable {
 	public String getName() {
 		String name = this.fElement.getAttribute(NAME_ATTRIBUTE);
 		return name;
+	}
+
+	public boolean getRemoveFlag() {
+		String name = this.fElement.getAttribute(REMOVE_ATTRIBUTE);
+		if (name != null && name.trim().equalsIgnoreCase(Boolean.toString(true)))
+			return true;
+		return false;
 	}
 
 	/**

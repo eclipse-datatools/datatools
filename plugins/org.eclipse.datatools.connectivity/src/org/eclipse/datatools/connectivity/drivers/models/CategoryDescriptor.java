@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2004-2005 Sybase, Inc.
+ * Copyright (c) 2004-2009 Sybase, Inc.
  * 
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License v1.0 which
@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: brianf - initial API and implementation
+ * 				brianf - added capability of removing a template bug 264520
  ******************************************************************************/
 package org.eclipse.datatools.connectivity.drivers.models;
 
@@ -175,7 +176,8 @@ public class CategoryDescriptor implements Comparable {
 			dt = (TemplateDescriptor) itr.next();
 			if (dt.getParentCategory() != null
 					&& dt.getParentCategory().equals(getId())) {
-				dts.add(dt);
+				if (!dt.getRemoveFlag())
+					dts.add(dt);
 			}
 		}
 		return dts;
