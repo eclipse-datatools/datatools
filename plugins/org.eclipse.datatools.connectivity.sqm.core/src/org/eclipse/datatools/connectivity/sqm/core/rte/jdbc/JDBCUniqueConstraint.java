@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2004 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     brianf - fixed issue with UniqueConstraint extending PrimaryKey instead
+ *     	of UniqueConstraint for bug 264717
  *******************************************************************************/
 
 package org.eclipse.datatools.connectivity.sqm.core.rte.jdbc;
@@ -15,11 +17,11 @@ import java.sql.Connection;
 
 import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
 import org.eclipse.datatools.connectivity.sqm.core.rte.RefreshManager;
-import org.eclipse.datatools.modelbase.sql.constraints.impl.PrimaryKeyImpl;
+import org.eclipse.datatools.modelbase.sql.constraints.impl.UniqueConstraintImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
-public class JDBCUniqueConstraint extends PrimaryKeyImpl implements ICatalogObject {
+public class JDBCUniqueConstraint extends UniqueConstraintImpl implements ICatalogObject {
 
 	private static final long serialVersionUID = -563457088179839389L;
 
