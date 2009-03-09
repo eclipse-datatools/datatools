@@ -1,17 +1,17 @@
-# NLS_MESSAGEFORMAT_VAR          needed to handle quotes correctly
+###############################################################################
+# Copyright (c) 2005 IBM Corporation and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
+# 
+# Contributors:
+#     IBM Corporation - initial API and implementation
+###############################################################################
 
-# ===================================================================
-# Licensed Materials - Property of IBM
-# com.ibm.db.models.sql.query.edit
-# (C) Copyright IBM Corporation 2005. All Rights Reserved.
-#
-# Note to U.S. Government Users Restricted Rights:
-#   Use, duplication or disclosure restricted 
-#   by GSA ADP Schedule Contract with IBM Corp.
-# ===================================================================
 
-# ===================================================================
-# $Id: plugin.properties,v 1.2 2008/01/31 02:58:42 bpayton Exp $
+# ====================================================================
+# $Id: plugin.properties,v 1.3 2008/06/06 19:28:55 ledunnel Exp $
 # @generated NOT
 # ===================================================================
 
@@ -224,7 +224,8 @@ _UI_PredicateIsNull_notNull_feature = Not Null
 _UI_TableJoined_type = Table Joined
 _UI_QueryNested_type = Query Nested
 _UI_Unknown_datatype= Value
-_UI_OrderBySpecification_OrderingSpecOption_feature = Ordering Spec Option
+
+_UI_OrderBySpecification_OrderingSpecOption_feature = Ordering Spec Option
 _UI_OrderBySpecification_NullOrderingOption_feature = Null Ordering Option
 _UI_NullOrderingType_NONE_literal = NONE
 _UI_NullOrderingType_NULLS_FIRST_literal = NULLS_FIRST
