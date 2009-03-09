@@ -86,14 +86,14 @@
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="dbdefinition_product" type="string" use="required">
+         <attribute name="dbdefinitionProduct" type="string" use="required">
             <annotation>
                <documentation>
                   The vendor or product name specified in an extension of the org.eclipse.datatools.connectivity.sqm.core.databaseDefinition extension point.  The value must reference the definition/product attribute in a databaseDefinition extension.
                </documentation>
             </annotation>
          </attribute>
-         <attribute name="dbdefinition_version" type="string" use="required">
+         <attribute name="dbdefinitionVersion" type="string" use="required">
             <annotation>
                <documentation>
                   The version name specified in an extension of the org.eclipse.datatools.connectivity.sqm.core.databaseDefinition extension point.  The value must reference the definition/version attribute in a databaseDefinition extension.
