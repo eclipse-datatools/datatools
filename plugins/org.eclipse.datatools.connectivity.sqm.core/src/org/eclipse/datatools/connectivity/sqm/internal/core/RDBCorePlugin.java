@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - added use of default DatabaseRecognizer (BZ 253523),
+ *              plus OSGi stop and restart usage support
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core;
 
@@ -16,6 +18,7 @@ import org.eclipse.datatools.connectivity.sqm.core.containment.ContainmentServic
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
 import org.eclipse.datatools.connectivity.sqm.internal.core.definition.DatabaseDefinitionRegistryImpl;
 import org.eclipse.datatools.connectivity.sqm.internal.core.util.RDBCorePluginConstants;
+import org.osgi.framework.BundleContext;
 
 
 public class RDBCorePlugin extends Plugin {
@@ -43,8 +46,19 @@ public class RDBCorePlugin extends Plugin {
 		return plugin;
 	}
 
-	public DatabaseDefinitionRegistry getDatabaseDefinitionRegistry() {
-		return DatabaseDefinitionRegistryImpl.INSTANCE;
+	/* (non-Javadoc)
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+     */
+    @Override
+    public void stop( BundleContext context ) throws Exception {
+        DatabaseDefinitionRegistryImpl.releaseInstance();
+        
+        super.stop( context );
+        plugin = null;
+    }
+
+    public DatabaseDefinitionRegistry getDatabaseDefinitionRegistry() {
+		return DatabaseDefinitionRegistryImpl.getInstance();
 	}
 	
 	public ContainmentService getContainmentService() {

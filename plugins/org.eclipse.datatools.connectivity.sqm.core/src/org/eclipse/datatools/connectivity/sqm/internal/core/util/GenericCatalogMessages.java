@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2007 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - added DEFN_MISSING_ATTRIBUTE_VALUES message
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.util;
 
@@ -19,7 +20,8 @@ public class GenericCatalogMessages extends NLS {
 	private GenericCatalogMessages() {
 	}
 
-	public static String FE_VIEW_HAS_NO_BODY;
+	public static String DEFN_MISSING_ATTRIBUTE_VALUES;
+    public static String FE_VIEW_HAS_NO_BODY;
 	public static String FE_TRIGGER_ACTION_EMPTY;
 	public static String FE_PARENT_TABLLE_OR_KEY_DO_NOT_EXIST;
 	public static String FE_REFERENCE_CONSTAINT_HAS_NO_KEY;

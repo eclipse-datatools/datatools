@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright (c) 2001, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,8 @@
  * 
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Actuate Corporation - added use of default DatabaseRecognizer (BZ 253523),
+ *              plus OSGi stop and restart usage support
  *******************************************************************************/
 package org.eclipse.datatools.connectivity.sqm.internal.core.definition;
 
@@ -28,12 +30,35 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinition;
 import org.eclipse.datatools.connectivity.sqm.core.definition.DatabaseDefinitionRegistry;
+import org.eclipse.datatools.connectivity.sqm.core.definition.IDatabaseRecognizer;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 
 
 public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionRegistry {
-	public static final DatabaseDefinitionRegistry INSTANCE = new DatabaseDefinitionRegistryImpl();
+	public static DatabaseDefinitionRegistry INSTANCE = new DatabaseDefinitionRegistryImpl();
+	
+	public static DatabaseDefinitionRegistry getInstance() {
+	    if( INSTANCE == null )
+	    {
+	        synchronized( DatabaseDefinitionRegistryImpl.class )
+	        {
+	            if( INSTANCE == null )
+	                INSTANCE = new DatabaseDefinitionRegistryImpl();
+	        }
+	    }
+	    return INSTANCE;
+	}
+	
+	public static void releaseInstance() {
+	    if( INSTANCE == null )
+	        return;    // nothing to release
+        
+	    synchronized( DatabaseDefinitionRegistryImpl.class )
+        {
+            INSTANCE = null;
+        }
+	}
 	
 	public Iterator getProducts() {
 		return this.products.keySet().iterator();
@@ -149,12 +174,17 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 		IExtension[] extensions = extensionPoint.getExtensions();
 		for(int i=0; i<extensions.length; ++i) {
 			IConfigurationElement[] configElements = extensions[i].getConfigurationElements();
+			boolean isDefaultRecognizer = false;
 			for(int j=0; j<configElements.length; ++j) {
 				if(configElements[j].getName().equals("recognizer")) { //$NON-NLS-1$
 					String className = configElements[j].getAttribute("class"); //$NON-NLS-1$
 					try {
 						IDatabaseRecognizer recognizer = (IDatabaseRecognizer) configElements[j].createExecutableExtension("class"); //$NON-NLS-1$
 						this.recognizers.add(recognizer);
+						
+						if( recognizer instanceof ConfigElementDatabaseRecognizer )
+						    isDefaultRecognizer = true;
+						break;     // expects only 1 recognizer element
 					}
 					catch(CoreException e) {
 					    IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
@@ -163,6 +193,21 @@ public final class DatabaseDefinitionRegistryImpl implements DatabaseDefinitionR
 					}					
 				}
 			}
+			
+			if( isDefaultRecognizer )
+			    continue;    // has already loaded a ConfigElementDatabaseRecognizer for the extension
+
+			// adds the default database recognizer if extension has mapped JDBC product to DatabaseDefinition
+			try {
+			    ConfigElementDatabaseRecognizer defaultRecognizer = new ConfigElementDatabaseRecognizer( extensions[i] );
+			    if( defaultRecognizer.hasJdbcMappings() )
+			        this.recognizers.add( defaultRecognizer );
+            }
+            catch( CoreException ex ) {
+                IStatus status = new Status(IStatus.ERROR, RDBCorePlugin.getDefault().getBundle().getSymbolicName(), IStatus.ERROR,
+                        "The error was detected when creating default database recognizer.", ex); //$NON-NLS-1$
+                RDBCorePlugin.getDefault().getLog().log(status);
+            }
 		}
 	}
 
