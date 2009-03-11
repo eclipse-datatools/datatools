@@ -128,15 +128,14 @@
 		<unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${buildDirectory}/tmpsite"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
 		<unzip src="${buildDirectory}/${buildId}/dtp-incubation-all-${package.version}.zip" dest="${buildDirectory}/tmpsite" overwrite="true"/>
-                
-        <antcall target="SignFeatures"/>
 		
 		<!-- TODO: 
 		    1. zip features/ plugins/ pack.properties under ${buildDirectory}/tmpsite/eclipse as dtp-all-unsign.zip 
 		    2. sign features, plugins under ${buildDirectory}/tmpsite
 			3. Download back, replace the unsigned version in ${buildDirectory}/tmpsite/eclipse
 			4. Keep the signed, packed zip under ${buildDirectory}/, name as dtp-all-signed.zip
-		 -->
+		-->
+                <antcall target="SignJars"/>
 
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
 
@@ -160,24 +159,36 @@
 
 	</target>
 
-    <target name="SignFeatures">
-        <zip destfile="${tmpsite}/dtpfeatures170.zip" basedir="${tmpsite}/eclipse/features"/>
-        <echo message="Upload features to signing server ..."/>
+    <target name="SignJars">
+        <zip destfile="${tmpsite}/dtp-all-unsign.zip">
+           <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
+           <fileset dir="${tmpsite}/eclipse" includes="plugins/**"/>
+           <fileset dir="${eclipse.build.configs}/../../extras" includes="pack.properties"/>
+        </zip>
+        <echo message="Upload unsign package to signing server ..."/>
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
-            <fileset dir="${tmpsite}" includes="dtpfeatures170.zip"/>
+            <fileset dir="${tmpsite}" includes="dtp-all-unsign.zip"/>
         </scp>
-        
-    	<echo message="Finish uploading features."/>
-        <echo message="Start signing features ..."/>
+        <echo message="Start signing jars ..."/>
         <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
-                 command="cd ${sign.dir};cp ${home.dir}/dtpfeatures170.zip ./;sign dtpfeatures170.zip nomail;"/>
-        <sleep minutes="10"/>
-        <echo message="Finish signing features."/>
+                 command="cd ${sign.dir};cp ${home.dir}/dtp-all-unsign.zip ./;sign dtp-all-unsign.zip nomail;"/>
+        <sleep minutes="25"/>
         <echo message="Download signed features from server ..."/>
-        <scp localtofile="${tmpsite}/dtpfeatures.sign.zip" trust="true"
-             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtpfeatures170.zip"/>
-        <echo message="Finish downloading signed features."/>
-        <unzip src="${tmpsite}/dtpfeatures.sign.zip" dest="${tmpsite}/eclipse/features"/>
+        <scp localtofile="${tmpsite}/dtp-all-signed.zip" trust="true"
+             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtp-all-unsign.zip"/>
+        <condition property="CompareSignPack" value="true">
+             <filesmatch file1="${tmpsite}/dtp-all-unsign.zip"
+                         file2="${tmpsite}/dtp-all-signed.zip"/>
+        </condition>
+        <antcall target="DownloadSignedPackAgain"/>
+        <unzip src="${tmpsite}/dtp-all-signed.zip" dest="${tmpsite}/eclipse"/>
+    </target>
+
+    <target name="DownloadSignedPackAgain" if="CompareSignPack">
+        <sleep minutes="10"/>
+        <echo message="download signed package again..."/>
+        <scp localtofile="${tmpsite}/dtp-all-signed.zip" trust="true"
+             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtp-all-unsign.zip"/>
     </target>
 
 	<target name="Package">
