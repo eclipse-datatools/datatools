@@ -225,6 +225,7 @@
 				<include name="**"/>
 				<exclude name="*.source_*/**"/>
 				<exclude name="org.eclipse.datatools.doc.isv_*.jar"/>
+				<exclude name="org.eclipse.datatools.connectivity.ui.templates_*.jar"/>
 				<exclude name="org.eclipse.datatools.enablement.oda.ecore*/**"/>
 			</zipfileset>
 			<zipfileset dir="${buildDirectory}/tmpsite/new/eclipse" prefix="eclipse">
