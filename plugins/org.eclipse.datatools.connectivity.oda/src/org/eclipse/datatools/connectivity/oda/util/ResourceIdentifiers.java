@@ -18,13 +18,12 @@ import java.net.URI;
 import java.util.HashMap;
 
 /**
- * <b>Provisional</b>
  *  Represents the resource identifiers of an ODA consumer application.
  *  An ODA consumer application may optionally specify its resource identifiers in an instance,
  *  and pass it to an ODA runtime driver in an application context map.
  *  An application context map is normally passed through the ODA runtime interfaces' setAppContext method(s).
  *  Its support and usage by an individual ODA runtime driver is optional and implementation-dependent.
- *  @since DTP 1.7
+ *  @since 3.2 (DTP 1.7)
  */
 public class ResourceIdentifiers
 {
