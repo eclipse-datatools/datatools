@@ -39,7 +39,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.SupportedDataSetType
  */
 public class CustomExpression extends AtomicExpression implements IExecutableExtension
 {
-    private static final String QUALIFER_SEPARATOR = "."; //$NON-NLS-1$
+    private static final String QUALIFIER_SEPARATOR = "."; //$NON-NLS-1$
     private String m_id;
     private String m_extensionId;
     private Map<String,Object> m_customData;
@@ -47,8 +47,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
 
     /*
      * Constructor for internal use only.
-     * @param extensionId   unique id of the filterExpressions extension that declares this custom expression
-     * @param id    expression id
+     * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
     public CustomExpression( String extensionId, String id )
     {
@@ -57,6 +56,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
     
     /*
      * Constructor for internal use only.
+     * Use ExpressionFactory#createCustomExpression to create a custom filter expression instance.
      */
     public CustomExpression( String extensionId, String id, ExpressionVariable variable, ExpressionArguments args )
     {
@@ -114,7 +114,7 @@ public class CustomExpression extends AtomicExpression implements IExecutableExt
      */
     public String getQualifiedId()
     {
-        return m_extensionId + QUALIFER_SEPARATOR + m_id;
+        return m_extensionId + QUALIFIER_SEPARATOR + m_id;
     }
     
     /**

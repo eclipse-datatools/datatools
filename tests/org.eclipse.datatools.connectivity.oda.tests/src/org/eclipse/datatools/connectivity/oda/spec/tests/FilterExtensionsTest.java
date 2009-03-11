@@ -30,6 +30,7 @@ import org.eclipse.datatools.connectivity.oda.spec.result.filter.CompositeExpres
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.CustomExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.NotExpression;
 import org.eclipse.datatools.connectivity.oda.spec.result.filter.OrExpression;
+import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 
 
 
@@ -136,6 +137,19 @@ public class FilterExtensionsTest extends TestCase
 
     public void testCreateExpression() throws Exception
     {
+        CustomExpression betweenExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
+        assertEquals( "org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression",  //$NON-NLS-1$
+                    betweenExpr.getClass().getName() );
+        
+        betweenExpr.setVariable( new ExpressionVariable( "(CREDITLIMIT / 100)" ) ); //$NON-NLS-1$
+        ExpressionArguments betweenArgs = new ExpressionArguments();
+        betweenArgs.addValue( 100.0 )
+            .addValue( 700.0 );
+        betweenExpr.setArguments( betweenArgs );
+
+        CustomExpression isNullExpr = ExpressionFactory.createCustomExpression( TEST_EXTENSION_ID, ISNULL_EXPR_ID,
+                new ExpressionVariable( "VIP" ), null ); //$NON-NLS-1$
+
         FilterExpressionDefinition equalDefn =
             ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, EQUAL_EXPR_ID );
         CustomExpression equalExpr = equalDefn.createExpression();
@@ -153,30 +167,13 @@ public class FilterExtensionsTest extends TestCase
 
         NotExpression notExpr = new NotExpression( equalExpr2 );
         
-        FilterExpressionDefinition betweenDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, BETWEEN_EXPR_ID );
-        CustomExpression betweenExpr = betweenDefn.createExpression();
-        assertEquals( "org.eclipse.datatools.connectivity.oda.consumer.testdriver.spec.impl.MyCustomExpression",  //$NON-NLS-1$
-                    betweenExpr.getClass().getName() );
-        
-        betweenExpr.setVariable( new ExpressionVariable( "(CREDITLIMIT / 100)" ) ); //$NON-NLS-1$
-        ExpressionArguments betweenArgs = new ExpressionArguments();
-        betweenArgs.addValue( 100.0 )
-            .addValue( 700.0 );
-        betweenExpr.setArguments( betweenArgs );
-
-        FilterExpressionDefinition isNullDefn =
-            ResultExtensionExplorer.getInstance().getExtensionFilterDefinition( TEST_EXTENSION_ID, ISNULL_EXPR_ID );
-        CustomExpression isNullExpr = isNullDefn.createExpression();
-        isNullExpr.setVariable( new ExpressionVariable( "VIP" ) ); //$NON-NLS-1$
-        
-        CompositeExpression andExpr1 = new AndExpression();
-        andExpr1.add( equalExpr )
+        CompositeExpression andExpr1 = new AndExpression()
+            .add( equalExpr )
             .add( notExpr )
             .add( betweenExpr ); 
 
-        CompositeExpression rootExpr = new OrExpression();
-        rootExpr.add( andExpr1 )
+        CompositeExpression rootExpr = new OrExpression()
+            .add( andExpr1 )
             .add( new NotExpression( isNullExpr ) );
         
         assertEquals( 2, rootExpr.childCount() );

@@ -22,6 +22,8 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplo
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultProjection;
 import org.eclipse.datatools.connectivity.oda.spec.result.ResultSetSpecification;
+import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
+import org.eclipse.datatools.connectivity.oda.spec.util.QuerySpecificationUtil;
 
 @SuppressWarnings("restriction")
 public class QuerySpecTest extends TestCase
@@ -55,25 +57,24 @@ public class QuerySpecTest extends TestCase
     
     public void testCreateResultProjection() throws Exception
     {
-        QuerySpecification querySpec = new QuerySpecification();
-        querySpec.setResultSetSpecification( new ResultSetSpecification() );
-
-        CustomAggregate orderNumAggr = ResultExtensionExplorer.getInstance().getExtensionAggregateDefinition( TEST_EXTENSION_ID, "COUNT" )
-            .createExpression( new ExpressionVariable( "ORDERNUMBER" ) );
+        CustomAggregate orderNumAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
+                                                new ExpressionVariable( "ORDERNUMBER" ) );
         orderNumAggr.setIgnoreDuplicateValues( true );
     
-        CustomAggregate creditLimitAggr = ResultExtensionExplorer.getInstance().getExtensionAggregateDefinition( TEST_EXTENSION_ID, "AVG" )
-            .createExpression( new ExpressionVariable( "CREDITLIMIT" ) );
+        CustomAggregate creditLimitAggr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, "COUNT",
+                                                new ExpressionVariable( "CREDITLIMIT" ) );
         
         ResultProjection resultProj = new ResultProjection();
         resultProj.setProjection( 2, orderNumAggr );
         resultProj.setProjection( 4, creditLimitAggr );
-        querySpec.getResultSetSpecification().setResultProjection( resultProj );
+        
+        QuerySpecification querySpec = QuerySpecificationUtil.createQuerySpecification( resultProj );
         
         ResultProjection resultProjOut = querySpec.getResultSetSpecification().getResultProjection();
         assertEquals( resultProj, resultProjOut );
         assertNull( resultProjOut.getAggregateProjection( 1 ));
         assertEquals( orderNumAggr, resultProjOut.getAggregateProjection( 2 ));
+        assertEquals( creditLimitAggr, resultProjOut.getAggregateProjection( 4 ));
     }
     
 }

@@ -45,9 +45,8 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
     private AggregateDefinition m_definition;  // expects 1-n-only-1 associated FilterExpressionDefinition
 
     /*
-     * Constructor for internal use only by {@link AggregateDefinition}.
-     * @param extensionId   unique id of the filterExpressions extension that declares this custom expression
-     * @param id    expression id
+     * Constructor for internal use only.
+     * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
     public CustomAggregate( String extensionId, String id, ExpressionVariable inputSourceVar )
     {
@@ -58,6 +57,7 @@ public class CustomAggregate extends AggregateExpression implements IExecutableE
 
     /*
      * Constructor for internal use only.
+     * Use ExpressionFactory#createCustomAggregate to create a custom aggregate instance.
      */
     public CustomAggregate( String extensionId, String id )
     {

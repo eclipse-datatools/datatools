@@ -23,6 +23,7 @@ import org.eclipse.datatools.connectivity.oda.spec.manifest.AggregateDefinition;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ExtensionContributor;
 import org.eclipse.datatools.connectivity.oda.spec.manifest.ResultExtensionExplorer;
 import org.eclipse.datatools.connectivity.oda.spec.result.CustomAggregate;
+import org.eclipse.datatools.connectivity.oda.spec.util.ExpressionFactory;
 
 @SuppressWarnings("restriction")
 public class AggregateTest extends TestCase
@@ -92,9 +93,7 @@ public class AggregateTest extends TestCase
     
     public void testCreateExpression() throws Exception
     {
-        AggregateDefinition countDefn =
-            ResultExtensionExplorer.getInstance().getExtensionAggregateDefinition( TEST_EXTENSION_ID, COUNT_AGGRG_ID );
-        CustomAggregate countExpr = countDefn.createExpression();
+        CustomAggregate countExpr = ExpressionFactory.createCustomAggregate( TEST_EXTENSION_ID, COUNT_AGGRG_ID );
         assertEquals( TEST_EXTENSION_ID, countExpr.getDeclaringExtensionId() );
         assertEquals( COUNT_AGGRG_ID, countExpr.getId() );
         assertTrue( countExpr.canIgnoreDuplicateValues() );
