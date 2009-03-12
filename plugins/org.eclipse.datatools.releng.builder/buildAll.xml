@@ -34,14 +34,14 @@
 	<!--default location for build output, parent to ${buildId}-->
 	<property name="postingDirectory" value="${buildDirectory}" />
 
-        <!--remote sign machine login infomation-->
-        <property name="username.sign" value="" />
-        <property name="password.sign" value="" />
-        <property name="hostname.sign" value="" />
-        <property name="home.dir" value="" />
-        <property name="sign.dir" value="" />
+    <!--remote sign machine login infomation-->
+    <property name="username.sign" value="" />
+    <property name="password.sign" value="" />
+    <property name="hostname.sign" value="" />
+    <property name="home.dir" value="" />
+    <property name="sign.dir" value="" />
 
-        <target name="main" depends="init">
+    <target name="main" depends="init">
 		<antcall target="buildDtpSdkAllFeature"/>
 		<antcall target="buildDtpEnablementAllFeature"/>
 		<antcall target="buildDtpIncubationAllFeature"/>
@@ -72,8 +72,8 @@
 		</condition>
 		<!--compiler args-->
 		<property name="compilerArg" value="-enableJavadoc -encoding utf-8 -warn:-discouraged,forbidden" />
-		<property name="javacSource" value="1.4" />
-		<property name="javacTarget" value="1.4" />
+		<property name="javacSource" value="1.5" />
+		<property name="javacTarget" value="1.5" />
 		<property name="javacDebugInfo" value="true" />
 		<property name="javacFailOnError" value="true" />
 		<property name="javacVerbose" value="false" />
@@ -185,7 +185,7 @@
         <tstamp prefix="timestamp">
             <format property="upload" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.upload}]Upload unsign package to signing server ..."/>
+        <echo message="[${timestamp.upload}] Upload unsign package to signing server ..."/>
     	
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
             <fileset dir="${source.dir}" includes="${source.name}"/>
@@ -194,7 +194,7 @@
         <tstamp prefix="timestamp">
             <format property="sign.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.sign.start}]Start signing jars ..."/>
+        <echo message="[${timestamp.sign.start}] Start signing jars ..."/>
     	
         <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
                  command="cd ${sign.dir};cp ${home.dir}/${source.name} ./;sign ${source.name} nomail;"/>
@@ -203,7 +203,7 @@
         <tstamp prefix="timestamp">
             <format property="download.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-    	<echo message="[${timestamp.download.start}]Download signed features from server ..."/>
+    	<echo message="[${timestamp.download.start}] Download signed jars from server starts"/>
     	
         <scp localtofile="${target.dir}/${target.name}" trust="true"
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
@@ -211,7 +211,7 @@
         <tstamp prefix="timestamp">
             <format property="download.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-    	<echo message="[${timestamp.download.end}]Download signed features from server finish"/>
+    	<echo message="[${timestamp.download.end}] Download signed jars from server ends"/>
 
         <condition property="CompareSignPack" value="true">
              <filesmatch file1="${source.dir}/${source.name}"
@@ -219,11 +219,11 @@
         </condition>
     	
         <antcall target="DownloadSignedPackAgain">
-        	<param name="" value=""/>
-        	<param name="" value=""/>
+        	<param name="source.name" value="${source.name}"/>
+        	<param name="target.dir" value="${target.dir}"/>
+        	<param name="target.name" value="${target.name}"/>
         </antcall>
-    	
-        
+    	       
     </target>
 
     <target name="DownloadSignedPackAgain" if="CompareSignPack">
@@ -231,14 +231,14 @@
         <tstamp prefix="timestamp">
             <format property="download.again.now" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-    	<echo message="[${timestamp.download.again.now}]Sign check failed. Waiting for 10 mins to download again"/>
+    	<echo message="[${timestamp.download.again.now}] Sign check failed and wait for 10 mins to download again"/>
 
         <sleep minutes="10"/>
     	
         <tstamp prefix="timestamp">
             <format property="download.again.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.download.again.start}]download signed package again..."/>
+        <echo message="[${timestamp.download.again.start}] Download signed package again"/>
     	
         <scp localtofile="${target.dir}/${target.name}" trust="true"
              file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
@@ -246,7 +246,7 @@
         <tstamp prefix="timestamp">
             <format property="download.again.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.download.end}]download signed package finish. Start packaging..."/>
+        <echo message="[${timestamp.download.again.end}] Download signed package ends. Start packaging..."/>
     	
     </target>
 
@@ -345,6 +345,12 @@
         <copy tofile="${postingDirectory}/finalFeaturesVersions.properties" file="${buildDirectory}/finalFeaturesVersions.properties" overwrite="true" />
 		<copy tofile="${postingDirectory}/monitor.properties" file="monitor.properties" overwrite="true" />
         <copy file="adb.log" todir="${postingDirectory}/${buildId}"/>
+		
+        <tstamp prefix="timestamp">
+            <format property="package.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+        <echo message="[${timestamp.package.end}] Packing finished."/>
+		
 	</target>
 
 	<target name="GenerateUpdateSite">
