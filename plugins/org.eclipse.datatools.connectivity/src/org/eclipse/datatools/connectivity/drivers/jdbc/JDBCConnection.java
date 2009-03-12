@@ -65,9 +65,12 @@ public class JDBCConnection extends DriverConnectionBase {
 		mConnection = null;
 		mConnectException = null;
 
+		boolean hasDriver = false;
 		try {
-			if (getDriverDefinition() != null)
+			if (getDriverDefinition() != null) {
+				hasDriver = true;
 				super.open();
+			}
 		} catch (Exception e) {
 			if (e.getMessage().equalsIgnoreCase(ConnectivityPlugin.getDefault().getResourceString("DriverConnectionBase.error.driverDefinitionNotSpecified"))) //$NON-NLS-1$
 			{
@@ -81,7 +84,9 @@ public class JDBCConnection extends DriverConnectionBase {
 			else
 				e.printStackTrace();
 		}
-		internalCreateConnection();
+		
+		if (!hasDriver)
+			internalCreateConnection();
 	}
 	
 	public String[] getJarListAsArray(String jarList) {
