@@ -135,7 +135,9 @@
 			3. Download back, replace the unsigned version in ${buildDirectory}/tmpsite/eclipse
 			4. Keep the signed, packed zip under ${buildDirectory}/, name as dtp-all-signed.zip
 		-->
-                <antcall target="SignJars"/>
+
+	
+        <antcall target="signDTPJars"/>
 
 		<unpackUpdateJars site="${tmpsite}/eclipse" output="${tmpsite}/new/eclipse"/>
 
@@ -158,37 +160,94 @@
                   publishArtifacts="true" p2OS="linux" mode="incremental" /> 
 
 	</target>
-
-    <target name="SignJars">
+	
+	<target name="signDTPJars" >
+		
         <zip destfile="${tmpsite}/dtp-all-unsign.zip">
            <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
            <fileset dir="${tmpsite}/eclipse" includes="plugins/**"/>
            <fileset dir="${eclipse.build.configs}/../../extras" includes="pack.properties"/>
         </zip>
-        <echo message="Upload unsign package to signing server ..."/>
+		
+		<antcall target="SignJars">
+			<param name="source.dir" value="${tmpsite}"/>
+			<param name="source.name" value="dtp-all-unsign.zip"/>
+			<param name="target.dir" value="${tmpsite}"/>
+			<param name="target.name" value="dtp-all-signed.zip"/>
+		</antcall>
+
+		<unzip src="${tmpsite}/dtp-all-signed.zip" dest="${tmpsite}/eclipse"/>
+		
+	</target>
+	
+    <target name="SignJars">
+    	
+        <tstamp prefix="timestamp">
+            <format property="upload" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+        <echo message="[${timestamp.upload}]Upload unsign package to signing server ..."/>
+    	
         <scp todir="${username.sign}:${password.sign}@${hostname.sign}:${home.dir}" trust="true">
-            <fileset dir="${tmpsite}" includes="dtp-all-unsign.zip"/>
+            <fileset dir="${source.dir}" includes="${source.name}"/>
         </scp>
-        <echo message="Start signing jars ..."/>
+    	
+        <tstamp prefix="timestamp">
+            <format property="sign.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+        <echo message="[${timestamp.sign.start}]Start signing jars ..."/>
+    	
         <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
-                 command="cd ${sign.dir};cp ${home.dir}/dtp-all-unsign.zip ./;sign dtp-all-unsign.zip nomail;"/>
-        <sleep minutes="25"/>
-        <echo message="Download signed features from server ..."/>
-        <scp localtofile="${tmpsite}/dtp-all-signed.zip" trust="true"
-             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtp-all-unsign.zip"/>
+                 command="cd ${sign.dir};cp ${home.dir}/${source.name} ./;sign ${source.name} nomail;"/>
+    	<sleep minutes="25"/>
+    	
+        <tstamp prefix="timestamp">
+            <format property="download.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+    	<echo message="[${timestamp.download.start}]Download signed features from server ..."/>
+    	
+        <scp localtofile="${target.dir}/${target.name}" trust="true"
+             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
+    	
+        <tstamp prefix="timestamp">
+            <format property="download.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+    	<echo message="[${timestamp.download.end}]Download signed features from server finish"/>
+
         <condition property="CompareSignPack" value="true">
-             <filesmatch file1="${tmpsite}/dtp-all-unsign.zip"
-                         file2="${tmpsite}/dtp-all-signed.zip"/>
+             <filesmatch file1="${source.dir}/${source.name}"
+                         file2="${target.dir}/${target.name}"/>
         </condition>
-        <antcall target="DownloadSignedPackAgain"/>
-        <unzip src="${tmpsite}/dtp-all-signed.zip" dest="${tmpsite}/eclipse"/>
+    	
+        <antcall target="DownloadSignedPackAgain">
+        	<param name="" value=""/>
+        	<param name="" value=""/>
+        </antcall>
+    	
+        
     </target>
 
     <target name="DownloadSignedPackAgain" if="CompareSignPack">
+    	
+        <tstamp prefix="timestamp">
+            <format property="download.again.now" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+    	<echo message="[${timestamp.download.again.now}]Sign check failed. Waiting for 10 mins to download again"/>
+
         <sleep minutes="10"/>
-        <echo message="download signed package again..."/>
-        <scp localtofile="${tmpsite}/dtp-all-signed.zip" trust="true"
-             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/dtp-all-unsign.zip"/>
+    	
+        <tstamp prefix="timestamp">
+            <format property="download.again.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+        <echo message="[${timestamp.download.again.start}]download signed package again..."/>
+    	
+        <scp localtofile="${target.dir}/${target.name}" trust="true"
+             file="${username.sign}:${password.sign}@${hostname.sign}:${sign.dir}/${source.name}"/>
+    	
+        <tstamp prefix="timestamp">
+            <format property="download.again.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
+        </tstamp>
+        <echo message="[${timestamp.download.end}]download signed package finish. Start packaging..."/>
+    	
     </target>
 
 	<target name="Package">
