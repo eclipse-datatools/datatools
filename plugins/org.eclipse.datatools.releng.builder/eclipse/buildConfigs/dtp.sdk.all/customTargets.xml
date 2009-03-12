@@ -49,26 +49,24 @@
 		<property name="mapCvsRoot" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/datatools" />
 		<property name="mapVersionTag" value="HEAD" />
 
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.releng" dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.releng" dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
 
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" 
-                     dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" 
-                     dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" 
-                     dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" 
-                     dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-		<!--
-                <cvs cvsRoot="${mapCvsRoot}" 
-                     package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" 
-                     dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
-		-->
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.connectivity/releng/org.eclipse.datatools.connectivity.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.enablement/releng/org.eclipse.datatools.enablement.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
+        <cvs cvsRoot="${mapCvsRoot}" 
+             package="org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" 
+             dest="${buildDirectory}/maps" tag="${mapVersionTag}" />
 
 
 		<!--compare the map files project-->
@@ -99,9 +97,8 @@
 		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.modelbase/releng/org.eclipse.datatools.modelbase.releng" command="tag r17_${buildId}" />
 		<echo message="tagging org.eclipse.datatools.sqltools.releng..."/>
 		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.sqltools/releng/org.eclipse.datatools.sqltools.releng" command="tag r17_${buildId}" />
-        <!-- 
 		<cvs dest="${buildDirectory}/maps/org.eclipse.datatools.incubator/releng/org.eclipse.datatools.incubator.releng" command="tag r17_${buildId}" />
-        -->
+
 	</target>
 	
 	<!-- ===================================================================== -->
@@ -135,7 +132,7 @@
                 <replace dir="${buildDirectory}/features" value="1.7.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
-                <replace dir="${buildDirectory}/features" value="1.6.0.${buildId}" token="@BUILD@">
+                <replace dir="${buildDirectory}/features" value="1.7.0.${buildId}" token="@BUILD@">
                         <include name="**/about.mappings" />
                 </replace>
 	</target>
