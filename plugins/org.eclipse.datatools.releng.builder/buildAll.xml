@@ -194,7 +194,7 @@
         <tstamp prefix="timestamp">
             <format property="sign.start" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.sign.start}] Start signing jars ..."/>
+        <echo message="[${timestamp.sign.start}] Upload finished and start jarsigning, wait for 25 mins."/>
     	
         <sshexec host="${hostname.sign}" username="${username.sign}" password="${password.sign}" trust="true"
                  command="cd ${sign.dir};cp ${home.dir}/${source.name} ./;sign ${source.name} nomail;"/>
@@ -349,7 +349,7 @@
         <tstamp prefix="timestamp">
             <format property="package.end" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
         </tstamp>
-        <echo message="[${timestamp.package.end}] Packing finished."/>
+        <echo message="[${timestamp.package.end}] Packaging finished."/>
 		
 	</target>
 
