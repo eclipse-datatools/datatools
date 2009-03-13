@@ -40,6 +40,8 @@ import org.eclipse.datatools.connectivity.oda.design.OdaDesignSession;
 import org.eclipse.datatools.connectivity.oda.design.OrExpression;
 import org.eclipse.datatools.connectivity.oda.design.ParameterDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
+import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
+import org.eclipse.datatools.connectivity.oda.design.SortKey;
 import org.eclipse.datatools.connectivity.oda.design.util.DesignUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -171,7 +173,7 @@ public class DesignUtilLoadSaveTest extends TestCase
         assertTrue( compareFileContent( goldenFile, tempOut ) );
     }
     
-    public void testCreateFilterDesign()
+    public void testCreateResultSetCriteriaDesign()
     {
         final String filterExprExtId = "org.eclipse.datatools.connectivity.oda.design.tests";   //$NON-NLS-1$
         
@@ -227,7 +229,16 @@ public class DesignUtilLoadSaveTest extends TestCase
         dynamicFilterExpr.setContextArguments( exprArgs1 );
         dynamicFilterExpr.setIsOptional( false );
         
-        dataSetDesign.setFilter( orExpr );
+        dataSetDesign.getPrimaryResultSet().getCriteria().setFilterSpecification( orExpr );
+        
+        // create sort spec in result set criteria
+        SortKey sortKey1 = DesignFactory.eINSTANCE.createSortKey();
+        sortKey1.setColumnPosition( 1 );
+
+        assertTrue( sortKey1.getColumnName().length() == 0 ); // default empty name if position is set
+        assertEquals( SortDirectionType.ASCENDING, sortKey1.getSortDirection() );   // default sort direction
+        
+        dataSetDesign.getPrimaryResultSet().getCriteria().addRowSortKey( sortKey1 );
         
         // test the created filter expressions are valid
         try

@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignAdapterFactory.java,v 1.5 2009/02/12 02:50:20 lchan Exp $
+ * $Id: DesignAdapterFactory.java,v 1.6 2009/03/03 07:42:08 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.util;
 
@@ -359,6 +359,12 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         }
 
         @Override
+        public Adapter caseResultSetCriteria( ResultSetCriteria object )
+        {
+            return createResultSetCriteriaAdapter();
+        }
+
+        @Override
         public Adapter caseResultSetDefinition( ResultSetDefinition object )
         {
             return createResultSetDefinitionAdapter();
@@ -380,6 +386,18 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
         public Adapter caseScalarValueDefinition( ScalarValueDefinition object )
         {
             return createScalarValueDefinitionAdapter();
+        }
+
+        @Override
+        public Adapter caseSortKey( SortKey object )
+        {
+            return createSortKeyAdapter();
+        }
+
+        @Override
+        public Adapter caseSortSpecification( SortSpecification object )
+        {
+            return createSortSpecificationAdapter();
         }
 
         @Override
@@ -1061,6 +1079,21 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria <em>Result Set Criteria</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria
+     * @generated
+     */
+    public Adapter createResultSetCriteriaAdapter()
+    {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition <em>Result Set Definition</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
@@ -1116,6 +1149,36 @@ public class DesignAdapterFactory extends AdapterFactoryImpl
      * @generated
      */
     public Adapter createScalarValueDefinitionAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.SortKey <em>Sort Key</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey
+     * @generated
+     */
+    public Adapter createSortKeyAdapter()
+    {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.datatools.connectivity.oda.design.SortSpecification <em>Sort Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortSpecification
+     * @generated
+     */
+    public Adapter createSortSpecificationAdapter()
     {
         return null;
     }

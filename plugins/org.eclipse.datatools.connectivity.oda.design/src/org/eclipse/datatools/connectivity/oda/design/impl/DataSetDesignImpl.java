@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesignImpl.java,v 1.9 2007/04/11 02:59:52 lchan Exp $
+ * $Id: DataSetDesignImpl.java,v 1.10 2009/01/30 00:23:57 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -22,7 +22,6 @@ import org.eclipse.datatools.connectivity.oda.design.DataSetQuery;
 import org.eclipse.datatools.connectivity.oda.design.DataSourceDesign;
 import org.eclipse.datatools.connectivity.oda.design.DesignFactory;
 import org.eclipse.datatools.connectivity.oda.design.DesignPackage;
-import org.eclipse.datatools.connectivity.oda.design.FilterExpression;
 import org.eclipse.datatools.connectivity.oda.design.Properties;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
@@ -52,7 +51,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl#getResultSets <em>Result Sets</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl#getPrimaryResultSetName <em>Primary Result Set Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetDesignImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -209,16 +207,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
     protected DataSetParameters m_parameters;
 
     /**
-     * The cached value of the '{@link #getFilter() <em>Filter</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getFilter()
-     * @generated
-     * @ordered
-     */
-    protected FilterExpression m_filter;
-
-    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -243,6 +231,7 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
      * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
      * @generated NOT
      */
+    @SuppressWarnings("unchecked")
     public Object getAdapter( Class adapter )
     {
         if( adapter.isAssignableFrom( this.getClass() ) )
@@ -822,74 +811,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
 
     /**
      * <!-- begin-user-doc -->
-     * <strong>EXPERIMENTAL</strong>.
-     * <!-- end-user-doc -->
-     * @generated
-     * @since 3.2 (DTP 1.7)
-     */
-    public FilterExpression getFilter()
-    {
-        return m_filter;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <strong>EXPERIMENTAL</strong>.
-     * <!-- end-user-doc -->
-     * @generated
-     * @since 3.2 (DTP 1.7)
-     */
-    public NotificationChain basicSetFilter( FilterExpression newFilter,
-            NotificationChain msgs )
-    {
-        FilterExpression oldFilter = m_filter;
-        m_filter = newFilter;
-        if( eNotificationRequired() )
-        {
-            ENotificationImpl notification = new ENotificationImpl( this,
-                    Notification.SET, DesignPackage.DATA_SET_DESIGN__FILTER,
-                    oldFilter, newFilter );
-            if( msgs == null )
-                msgs = notification;
-            else
-                msgs.add( notification );
-        }
-        return msgs;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <strong>EXPERIMENTAL</strong>.
-     * <!-- end-user-doc -->
-     * @generated
-     * @since 3.2 (DTP 1.7)
-     */
-    public void setFilter( FilterExpression newFilter )
-    {
-        if( newFilter != m_filter )
-        {
-            NotificationChain msgs = null;
-            if( m_filter != null )
-                msgs = ((InternalEObject) m_filter).eInverseRemove( this,
-                        EOPPOSITE_FEATURE_BASE
-                                - DesignPackage.DATA_SET_DESIGN__FILTER, null,
-                        msgs );
-            if( newFilter != null )
-                msgs = ((InternalEObject) newFilter).eInverseAdd( this,
-                        EOPPOSITE_FEATURE_BASE
-                                - DesignPackage.DATA_SET_DESIGN__FILTER, null,
-                        msgs );
-            msgs = basicSetFilter( newFilter, msgs );
-            if( msgs != null )
-                msgs.dispatch();
-        }
-        else if( eNotificationRequired() )
-            eNotify( new ENotificationImpl( this, Notification.SET,
-                    DesignPackage.DATA_SET_DESIGN__FILTER, newFilter, newFilter ) );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -911,8 +832,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
             return basicSetResultSets( null, msgs );
         case DesignPackage.DATA_SET_DESIGN__PARAMETERS:
             return basicSetParameters( null, msgs );
-        case DesignPackage.DATA_SET_DESIGN__FILTER:
-            return basicSetFilter( null, msgs );
         }
         return super.eInverseRemove( otherEnd, featureID, msgs );
     }
@@ -947,8 +866,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
             return getPrimaryResultSetName();
         case DesignPackage.DATA_SET_DESIGN__PARAMETERS:
             return getParameters();
-        case DesignPackage.DATA_SET_DESIGN__FILTER:
-            return getFilter();
         }
         return super.eGet( featureID, resolve, coreType );
     }
@@ -992,9 +909,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
             return;
         case DesignPackage.DATA_SET_DESIGN__PARAMETERS:
             setParameters( (DataSetParameters) newValue );
-            return;
-        case DesignPackage.DATA_SET_DESIGN__FILTER:
-            setFilter( (FilterExpression) newValue );
             return;
         }
         super.eSet( featureID, newValue );
@@ -1040,9 +954,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
         case DesignPackage.DATA_SET_DESIGN__PARAMETERS:
             setParameters( (DataSetParameters) null );
             return;
-        case DesignPackage.DATA_SET_DESIGN__FILTER:
-            setFilter( (FilterExpression) null );
-            return;
         }
         super.eUnset( featureID );
     }
@@ -1083,8 +994,6 @@ public class DataSetDesignImpl extends EObjectImpl implements DataSetDesign,
                             .equals( m_primaryResultSetName );
         case DesignPackage.DATA_SET_DESIGN__PARAMETERS:
             return m_parameters != null;
-        case DesignPackage.DATA_SET_DESIGN__FILTER:
-            return m_filter != null;
         }
         return super.eIsSet( featureID );
     }

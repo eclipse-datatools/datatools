@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackage.java,v 1.7 2009/02/12 02:50:20 lchan Exp $
+ * $Id: DesignPackage.java,v 1.8 2009/03/03 07:42:08 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -613,22 +613,13 @@ public interface DesignPackage extends EPackage
     int DATA_SET_DESIGN__PARAMETERS = 9;
 
     /**
-     * The feature id for the '<em><b>Filter</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int DATA_SET_DESIGN__FILTER = 10;
-
-    /**
      * The number of structural features of the '<em>Data Set Design</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DATA_SET_DESIGN_FEATURE_COUNT = 11;
+    int DATA_SET_DESIGN_FEATURE_COUNT = 10;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl <em>Data Set Parameters</em>}' class.
@@ -2004,6 +1995,43 @@ public interface DesignPackage extends EPackage
     int RESULT_SET_COLUMNS_FEATURE_COUNT = 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetCriteriaImpl <em>Result Set Criteria</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.ResultSetCriteriaImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetCriteria()
+     * @generated
+     */
+    int RESULT_SET_CRITERIA = 43;
+
+    /**
+     * The feature id for the '<em><b>Filter Specification</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_SET_CRITERIA__FILTER_SPECIFICATION = 0;
+
+    /**
+     * The feature id for the '<em><b>Row Ordering</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_SET_CRITERIA__ROW_ORDERING = 1;
+
+    /**
+     * The number of structural features of the '<em>Result Set Criteria</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_SET_CRITERIA_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetDefinitionImpl <em>Result Set Definition</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2011,7 +2039,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetDefinition()
      * @generated
      */
-    int RESULT_SET_DEFINITION = 43;
+    int RESULT_SET_DEFINITION = 44;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2032,13 +2060,22 @@ public interface DesignPackage extends EPackage
     int RESULT_SET_DEFINITION__RESULT_SET_COLUMNS = 1;
 
     /**
+     * The feature id for the '<em><b>Criteria</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RESULT_SET_DEFINITION__CRITERIA = 2;
+
+    /**
      * The number of structural features of the '<em>Result Set Definition</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RESULT_SET_DEFINITION_FEATURE_COUNT = 2;
+    int RESULT_SET_DEFINITION_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetsImpl <em>Result Sets</em>}' class.
@@ -2048,7 +2085,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSets()
      * @generated
      */
-    int RESULT_SETS = 44;
+    int RESULT_SETS = 45;
 
     /**
      * The feature id for the '<em><b>Result Set Definitions</b></em>' containment reference list.
@@ -2085,7 +2122,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueChoices()
      * @generated
      */
-    int SCALAR_VALUE_CHOICES = 45;
+    int SCALAR_VALUE_CHOICES = 46;
 
     /**
      * The feature id for the '<em><b>Scalar Values</b></em>' containment reference list.
@@ -2113,7 +2150,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getScalarValueDefinition()
      * @generated
      */
-    int SCALAR_VALUE_DEFINITION = 46;
+    int SCALAR_VALUE_DEFINITION = 47;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2143,6 +2180,80 @@ public interface DesignPackage extends EPackage
     int SCALAR_VALUE_DEFINITION_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl <em>Sort Key</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortKey()
+     * @generated
+     */
+    int SORT_KEY = 48;
+
+    /**
+     * The feature id for the '<em><b>Column Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY__COLUMN_NAME = 0;
+
+    /**
+     * The feature id for the '<em><b>Column Position</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY__COLUMN_POSITION = 1;
+
+    /**
+     * The feature id for the '<em><b>Sort Direction</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY__SORT_DIRECTION = 2;
+
+    /**
+     * The number of structural features of the '<em>Sort Key</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_KEY_FEATURE_COUNT = 3;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl <em>Sort Specification</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortSpecification()
+     * @generated
+     */
+    int SORT_SPECIFICATION = 49;
+
+    /**
+     * The feature id for the '<em><b>Sort Keys</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_SPECIFICATION__SORT_KEYS = 0;
+
+    /**
+     * The number of structural features of the '<em>Sort Specification</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SORT_SPECIFICATION_FEATURE_COUNT = 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl <em>Static Values</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2150,7 +2261,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getStaticValues()
      * @generated
      */
-    int STATIC_VALUES = 47;
+    int STATIC_VALUES = 50;
 
     /**
      * The feature id for the '<em><b>Values</b></em>' attribute list.
@@ -2178,7 +2289,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getValueFormatHints()
      * @generated
      */
-    int VALUE_FORMAT_HINTS = 48;
+    int VALUE_FORMAT_HINTS = 51;
 
     /**
      * The feature id for the '<em><b>Display Size</b></em>' attribute.
@@ -2242,7 +2353,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisType()
      * @generated
      */
-    int AXIS_TYPE = 49;
+    int AXIS_TYPE = 52;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ElementNullability <em>Element Nullability</em>}' enum.
@@ -2252,7 +2363,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullability()
      * @generated
      */
-    int ELEMENT_NULLABILITY = 50;
+    int ELEMENT_NULLABILITY = 53;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ExpressionVariableType <em>Expression Variable Type</em>}' enum.
@@ -2262,7 +2373,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableType()
      * @generated
      */
-    int EXPRESSION_VARIABLE_TYPE = 51;
+    int EXPRESSION_VARIABLE_TYPE = 54;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.HorizontalAlignment <em>Horizontal Alignment</em>}' enum.
@@ -2272,7 +2383,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignment()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT = 52;
+    int HORIZONTAL_ALIGNMENT = 55;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.InputPromptControlStyle <em>Input Prompt Control Style</em>}' enum.
@@ -2282,7 +2393,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyle()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE = 53;
+    int INPUT_PROMPT_CONTROL_STYLE = 56;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaComplexDataType <em>Oda Complex Data Type</em>}' enum.
@@ -2292,7 +2403,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataType()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE = 54;
+    int ODA_COMPLEX_DATA_TYPE = 57;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.OdaScalarDataType <em>Oda Scalar Data Type</em>}' enum.
@@ -2302,7 +2413,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataType()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE = 55;
+    int ODA_SCALAR_DATA_TYPE = 58;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.ParameterMode <em>Parameter Mode</em>}' enum.
@@ -2312,7 +2423,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterMode()
      * @generated
      */
-    int PARAMETER_MODE = 56;
+    int PARAMETER_MODE = 59;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SessionStatus <em>Session Status</em>}' enum.
@@ -2322,7 +2433,17 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatus()
      * @generated
      */
-    int SESSION_STATUS = 57;
+    int SESSION_STATUS = 60;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.SortDirectionType <em>Sort Direction Type</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionType()
+     * @generated
+     */
+    int SORT_DIRECTION_TYPE = 61;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
@@ -2332,7 +2453,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatType()
      * @generated
      */
-    int TEXT_FORMAT_TYPE = 58;
+    int TEXT_FORMAT_TYPE = 62;
 
     /**
      * The meta object id for the '{@link org.eclipse.datatools.connectivity.oda.design.TextWrapType <em>Text Wrap Type</em>}' enum.
@@ -2342,7 +2463,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapType()
      * @generated
      */
-    int TEXT_WRAP_TYPE = 59;
+    int TEXT_WRAP_TYPE = 63;
 
     /**
      * The meta object id for the '<em>Axis Type Object</em>' data type.
@@ -2352,7 +2473,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getAxisTypeObject()
      * @generated
      */
-    int AXIS_TYPE_OBJECT = 60;
+    int AXIS_TYPE_OBJECT = 64;
 
     /**
      * The meta object id for the '<em>Element Nullability Object</em>' data type.
@@ -2362,7 +2483,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getElementNullabilityObject()
      * @generated
      */
-    int ELEMENT_NULLABILITY_OBJECT = 61;
+    int ELEMENT_NULLABILITY_OBJECT = 65;
 
     /**
      * The meta object id for the '<em>Expression Variable Type Object</em>' data type.
@@ -2372,7 +2493,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getExpressionVariableTypeObject()
      * @generated
      */
-    int EXPRESSION_VARIABLE_TYPE_OBJECT = 62;
+    int EXPRESSION_VARIABLE_TYPE_OBJECT = 66;
 
     /**
      * The meta object id for the '<em>Horizontal Alignment Object</em>' data type.
@@ -2382,7 +2503,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getHorizontalAlignmentObject()
      * @generated
      */
-    int HORIZONTAL_ALIGNMENT_OBJECT = 63;
+    int HORIZONTAL_ALIGNMENT_OBJECT = 67;
 
     /**
      * The meta object id for the '<em>Input Prompt Control Style Object</em>' data type.
@@ -2392,7 +2513,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getInputPromptControlStyleObject()
      * @generated
      */
-    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 64;
+    int INPUT_PROMPT_CONTROL_STYLE_OBJECT = 68;
 
     /**
      * The meta object id for the '<em>Oda Complex Data Type Object</em>' data type.
@@ -2402,7 +2523,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaComplexDataTypeObject()
      * @generated
      */
-    int ODA_COMPLEX_DATA_TYPE_OBJECT = 65;
+    int ODA_COMPLEX_DATA_TYPE_OBJECT = 69;
 
     /**
      * The meta object id for the '<em>Oda Scalar Data Type Object</em>' data type.
@@ -2412,7 +2533,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getOdaScalarDataTypeObject()
      * @generated
      */
-    int ODA_SCALAR_DATA_TYPE_OBJECT = 66;
+    int ODA_SCALAR_DATA_TYPE_OBJECT = 70;
 
     /**
      * The meta object id for the '<em>Parameter Mode Object</em>' data type.
@@ -2422,7 +2543,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getParameterModeObject()
      * @generated
      */
-    int PARAMETER_MODE_OBJECT = 67;
+    int PARAMETER_MODE_OBJECT = 71;
 
     /**
      * The meta object id for the '<em>Session Status Object</em>' data type.
@@ -2432,7 +2553,17 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSessionStatusObject()
      * @generated
      */
-    int SESSION_STATUS_OBJECT = 68;
+    int SESSION_STATUS_OBJECT = 72;
+
+    /**
+     * The meta object id for the '<em>Sort Direction Type Object</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+     * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionTypeObject()
+     * @generated
+     */
+    int SORT_DIRECTION_TYPE_OBJECT = 73;
 
     /**
      * The meta object id for the '<em>Text Format Type Object</em>' data type.
@@ -2442,7 +2573,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextFormatTypeObject()
      * @generated
      */
-    int TEXT_FORMAT_TYPE_OBJECT = 69;
+    int TEXT_FORMAT_TYPE_OBJECT = 74;
 
     /**
      * The meta object id for the '<em>Text Wrap Type Object</em>' data type.
@@ -2452,7 +2583,7 @@ public interface DesignPackage extends EPackage
      * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getTextWrapTypeObject()
      * @generated
      */
-    int TEXT_WRAP_TYPE_OBJECT = 70;
+    int TEXT_WRAP_TYPE_OBJECT = 75;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.AndExpression <em>And Expression</em>}'.
@@ -2905,17 +3036,6 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EReference getDataSetDesign_Parameters();
-
-    /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter <em>Filter</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Filter</em>'.
-     * @see org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter()
-     * @see #getDataSetDesign()
-     * @generated
-     */
-    EReference getDataSetDesign_Filter();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.DataSetParameters <em>Data Set Parameters</em>}'.
@@ -4150,6 +4270,38 @@ public interface DesignPackage extends EPackage
     EReference getResultSetColumns_ResultColumnDefinitions();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria <em>Result Set Criteria</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Result Set Criteria</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria
+     * @generated
+     */
+    EClass getResultSetCriteria();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria#getFilterSpecification <em>Filter Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Filter Specification</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria#getFilterSpecification()
+     * @see #getResultSetCriteria()
+     * @generated
+     */
+    EReference getResultSetCriteria_FilterSpecification();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria#getRowOrdering <em>Row Ordering</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Row Ordering</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria#getRowOrdering()
+     * @see #getResultSetCriteria()
+     * @generated
+     */
+    EReference getResultSetCriteria_RowOrdering();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition <em>Result Set Definition</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4180,6 +4332,17 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EReference getResultSetDefinition_ResultSetColumns();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition#getCriteria <em>Criteria</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Criteria</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition#getCriteria()
+     * @see #getResultSetDefinition()
+     * @generated
+     */
+    EReference getResultSetDefinition_Criteria();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.ResultSets <em>Result Sets</em>}'.
@@ -4265,6 +4428,70 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EAttribute getScalarValueDefinition_DisplayName();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.SortKey <em>Sort Key</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Sort Key</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey
+     * @generated
+     */
+    EClass getSortKey();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName <em>Column Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Column Name</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnName()
+     * @see #getSortKey()
+     * @generated
+     */
+    EAttribute getSortKey_ColumnName();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition <em>Column Position</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Column Position</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getColumnPosition()
+     * @see #getSortKey()
+     * @generated
+     */
+    EAttribute getSortKey_ColumnPosition();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.datatools.connectivity.oda.design.SortKey#getSortDirection <em>Sort Direction</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Sort Direction</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortKey#getSortDirection()
+     * @see #getSortKey()
+     * @generated
+     */
+    EAttribute getSortKey_SortDirection();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.SortSpecification <em>Sort Specification</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Sort Specification</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortSpecification
+     * @generated
+     */
+    EClass getSortSpecification();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.datatools.connectivity.oda.design.SortSpecification#getSortKeys <em>Sort Keys</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Sort Keys</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortSpecification#getSortKeys()
+     * @see #getSortSpecification()
+     * @generated
+     */
+    EReference getSortSpecification_SortKeys();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.datatools.connectivity.oda.design.StaticValues <em>Static Values</em>}'.
@@ -4443,6 +4670,16 @@ public interface DesignPackage extends EPackage
     EEnum getSessionStatus();
 
     /**
+     * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.SortDirectionType <em>Sort Direction Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for enum '<em>Sort Direction Type</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+     * @generated
+     */
+    EEnum getSortDirectionType();
+
+    /**
      * Returns the meta object for enum '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4569,6 +4806,18 @@ public interface DesignPackage extends EPackage
      * @generated
      */
     EDataType getSessionStatusObject();
+
+    /**
+     * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.SortDirectionType <em>Sort Direction Type Object</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>Sort Direction Type Object</em>'.
+     * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+     * @model instanceClass="org.eclipse.datatools.connectivity.oda.design.SortDirectionType"
+     *        extendedMetaData="name='SortDirectionType:Object' baseType='SortDirectionType'"
+     * @generated
+     */
+    EDataType getSortDirectionTypeObject();
 
     /**
      * Returns the meta object for data type '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type Object</em>}'.
@@ -5004,15 +5253,6 @@ public interface DesignPackage extends EPackage
          */
         EReference DATA_SET_DESIGN__PARAMETERS = eINSTANCE
                 .getDataSetDesign_Parameters();
-
-        /**
-         * The meta object literal for the '<em><b>Filter</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference DATA_SET_DESIGN__FILTER = eINSTANCE
-                .getDataSetDesign_Filter();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.DataSetParametersImpl <em>Data Set Parameters</em>}' class.
@@ -6081,6 +6321,34 @@ public interface DesignPackage extends EPackage
                 .getResultSetColumns_ResultColumnDefinitions();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetCriteriaImpl <em>Result Set Criteria</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.ResultSetCriteriaImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getResultSetCriteria()
+         * @generated
+         */
+        EClass RESULT_SET_CRITERIA = eINSTANCE.getResultSetCriteria();
+
+        /**
+         * The meta object literal for the '<em><b>Filter Specification</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SET_CRITERIA__FILTER_SPECIFICATION = eINSTANCE
+                .getResultSetCriteria_FilterSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Row Ordering</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SET_CRITERIA__ROW_ORDERING = eINSTANCE
+                .getResultSetCriteria_RowOrdering();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetDefinitionImpl <em>Result Set Definition</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -6107,6 +6375,15 @@ public interface DesignPackage extends EPackage
          */
         EReference RESULT_SET_DEFINITION__RESULT_SET_COLUMNS = eINSTANCE
                 .getResultSetDefinition_ResultSetColumns();
+
+        /**
+         * The meta object literal for the '<em><b>Criteria</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RESULT_SET_DEFINITION__CRITERIA = eINSTANCE
+                .getResultSetDefinition_Criteria();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.ResultSetsImpl <em>Result Sets</em>}' class.
@@ -6182,6 +6459,61 @@ public interface DesignPackage extends EPackage
          */
         EAttribute SCALAR_VALUE_DEFINITION__DISPLAY_NAME = eINSTANCE
                 .getScalarValueDefinition_DisplayName();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl <em>Sort Key</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.SortKeyImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortKey()
+         * @generated
+         */
+        EClass SORT_KEY = eINSTANCE.getSortKey();
+
+        /**
+         * The meta object literal for the '<em><b>Column Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SORT_KEY__COLUMN_NAME = eINSTANCE.getSortKey_ColumnName();
+
+        /**
+         * The meta object literal for the '<em><b>Column Position</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SORT_KEY__COLUMN_POSITION = eINSTANCE
+                .getSortKey_ColumnPosition();
+
+        /**
+         * The meta object literal for the '<em><b>Sort Direction</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute SORT_KEY__SORT_DIRECTION = eINSTANCE
+                .getSortKey_SortDirection();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl <em>Sort Specification</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.SortSpecificationImpl
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortSpecification()
+         * @generated
+         */
+        EClass SORT_SPECIFICATION = eINSTANCE.getSortSpecification();
+
+        /**
+         * The meta object literal for the '<em><b>Sort Keys</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference SORT_SPECIFICATION__SORT_KEYS = eINSTANCE
+                .getSortSpecification_SortKeys();
 
         /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.impl.StaticValuesImpl <em>Static Values</em>}' class.
@@ -6348,6 +6680,16 @@ public interface DesignPackage extends EPackage
         EEnum SESSION_STATUS = eINSTANCE.getSessionStatus();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.SortDirectionType <em>Sort Direction Type</em>}' enum.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionType()
+         * @generated
+         */
+        EEnum SORT_DIRECTION_TYPE = eINSTANCE.getSortDirectionType();
+
+        /**
          * The meta object literal for the '{@link org.eclipse.datatools.connectivity.oda.design.TextFormatType <em>Text Format Type</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -6462,6 +6804,17 @@ public interface DesignPackage extends EPackage
          * @generated
          */
         EDataType SESSION_STATUS_OBJECT = eINSTANCE.getSessionStatusObject();
+
+        /**
+         * The meta object literal for the '<em>Sort Direction Type Object</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.datatools.connectivity.oda.design.SortDirectionType
+         * @see org.eclipse.datatools.connectivity.oda.design.impl.DesignPackageImpl#getSortDirectionTypeObject()
+         * @generated
+         */
+        EDataType SORT_DIRECTION_TYPE_OBJECT = eINSTANCE
+                .getSortDirectionTypeObject();
 
         /**
          * The meta object literal for the '<em>Text Format Type Object</em>' data type.

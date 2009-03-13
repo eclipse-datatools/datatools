@@ -101,6 +101,15 @@
       <xsd:enumeration value="Error"/>
     </xsd:restriction>
   </xsd:simpleType>
+  <xsd:simpleType name="SortDirectionType">
+    <xsd:annotation>
+      <xsd:documentation>The type of sort direction defined in a sort key.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Ascending"/>
+      <xsd:enumeration value="Descending"/>
+    </xsd:restriction>
+  </xsd:simpleType>
   <xsd:simpleType name="TextFormatType">
     <xsd:annotation>
       <xsd:documentation>The type of text content of the data column values, i.e. plain text, HTML or RTF.  It provides a hint on the type of text control to use for displaying the data value, e.g. a Text Control vs. Dynamic Text Control.</xsd:documentation>
@@ -334,11 +343,6 @@
       </xsd:element>
       <xsd:element maxOccurs="1" minOccurs="0" name="resultSets" type="design:ResultSets"/>
       <xsd:element maxOccurs="1" minOccurs="0" name="parameters" type="design:DataSetParameters"/>
-      <xsd:element maxOccurs="1" minOccurs="0" name="filter" type="design:FilterExpression">
-        <xsd:annotation>
-          <xsd:documentation>Pre-defined filter specification  of the data set.  It may be any extended concrete type of FilterExpression.</xsd:documentation>
-        </xsd:annotation>
-      </xsd:element>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string" use="required">
       <xsd:annotation>
@@ -1029,6 +1033,30 @@
       <xsd:documentation>A collection of result set columns' definitions.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
+  <xsd:complexType name="ResultSetCriteria">
+    <xsd:annotation>
+      <xsd:documentation>Specification of a result set criteria or characteristics.
+Applying the criteria may impact the data retrieved in a result set, in addition to any specification expressed in a query text.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="1" minOccurs="0" name="filterSpecification" type="design:FilterExpression">
+        <xsd:annotation>
+          <xsd:documentation>Pre-defined filter specification  of a result set. It may be any concrete type of FilterExpression.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="rowOrdering" type="design:SortSpecification">
+        <xsd:annotation>
+          <xsd:documentation>Specifies the ordering of rows in a result set.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ResultSetCriteria" type="design:ResultSetCriteria">
+    <xsd:annotation>
+      <xsd:documentation>Specification of a result set criteria or characteristics.
+Applying the criteria may impact the data retrieved in a result set, in addition to any specification expressed in a query text.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
   <xsd:complexType name="ResultSetDefinition">
     <xsd:annotation>
       <xsd:documentation>Definition of a single homogeneous result set returned by a data set query.</xsd:documentation>
@@ -1039,6 +1067,7 @@
           <xsd:documentation>Collection of data columns for this result set.</xsd:documentation>
         </xsd:annotation>
       </xsd:element>
+      <xsd:element maxOccurs="1" minOccurs="0" name="criteria" type="design:ResultSetCriteria"/>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string">
       <xsd:annotation>
@@ -1096,6 +1125,44 @@
   <xsd:element name="ScalarValueDefinition" type="design:ScalarValueDefinition">
     <xsd:annotation>
       <xsd:documentation>Defines a scalar value with a brief description.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="SortKey">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic sort key specified in a SortCriteria.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="columnName" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation>The unique name of a result set column. It must reference one of the columns associated with the same ResultSetDefinition.  If a column can only be identified by position, this name may be empty.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="columnPosition" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The 1-based index position (left-to-right order) of a result set column. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="Ascending" name="sortDirection" type="design:SortDirectionType">
+      <xsd:annotation>
+        <xsd:documentation>The sort direction of this result set column.</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:element name="SortKey" type="design:SortKey">
+    <xsd:annotation>
+      <xsd:documentation>A dynamic sort key specified in a SortCriteria.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:complexType name="SortSpecification">
+    <xsd:annotation>
+      <xsd:documentation>Specification of one or more sort keys.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="sortKeys" type="design:SortKey"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SortSpecification" type="design:SortSpecification">
+    <xsd:annotation>
+      <xsd:documentation>Specification of one or more sort keys.</xsd:documentation>
     </xsd:annotation>
   </xsd:element>
   <xsd:complexType name="StaticValues">

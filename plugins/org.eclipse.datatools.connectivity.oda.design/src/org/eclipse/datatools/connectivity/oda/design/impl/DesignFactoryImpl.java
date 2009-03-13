@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactoryImpl.java,v 1.10 2009/02/12 02:50:20 lchan Exp $
+ * $Id: DesignFactoryImpl.java,v 1.11 2009/03/03 07:42:07 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -167,6 +167,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createResourceIdentifiers();
         case DesignPackage.RESULT_SET_COLUMNS:
             return createResultSetColumns();
+        case DesignPackage.RESULT_SET_CRITERIA:
+            return createResultSetCriteria();
         case DesignPackage.RESULT_SET_DEFINITION:
             return createResultSetDefinition();
         case DesignPackage.RESULT_SETS:
@@ -175,6 +177,10 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createScalarValueChoices();
         case DesignPackage.SCALAR_VALUE_DEFINITION:
             return createScalarValueDefinition();
+        case DesignPackage.SORT_KEY:
+            return createSortKey();
+        case DesignPackage.SORT_SPECIFICATION:
+            return createSortSpecification();
         case DesignPackage.STATIC_VALUES:
             return createStaticValues();
         case DesignPackage.VALUE_FORMAT_HINTS:
@@ -215,6 +221,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createParameterModeFromString( eDataType, initialValue );
         case DesignPackage.SESSION_STATUS:
             return createSessionStatusFromString( eDataType, initialValue );
+        case DesignPackage.SORT_DIRECTION_TYPE:
+            return createSortDirectionTypeFromString( eDataType, initialValue );
         case DesignPackage.TEXT_FORMAT_TYPE:
             return createTextFormatTypeFromString( eDataType, initialValue );
         case DesignPackage.TEXT_WRAP_TYPE:
@@ -243,6 +251,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return createParameterModeObjectFromString( eDataType, initialValue );
         case DesignPackage.SESSION_STATUS_OBJECT:
             return createSessionStatusObjectFromString( eDataType, initialValue );
+        case DesignPackage.SORT_DIRECTION_TYPE_OBJECT:
+            return createSortDirectionTypeObjectFromString( eDataType,
+                    initialValue );
         case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
             return createTextFormatTypeObjectFromString( eDataType,
                     initialValue );
@@ -284,6 +295,8 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return convertParameterModeToString( eDataType, instanceValue );
         case DesignPackage.SESSION_STATUS:
             return convertSessionStatusToString( eDataType, instanceValue );
+        case DesignPackage.SORT_DIRECTION_TYPE:
+            return convertSortDirectionTypeToString( eDataType, instanceValue );
         case DesignPackage.TEXT_FORMAT_TYPE:
             return convertTextFormatTypeToString( eDataType, instanceValue );
         case DesignPackage.TEXT_WRAP_TYPE:
@@ -312,6 +325,9 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
             return convertParameterModeObjectToString( eDataType, instanceValue );
         case DesignPackage.SESSION_STATUS_OBJECT:
             return convertSessionStatusObjectToString( eDataType, instanceValue );
+        case DesignPackage.SORT_DIRECTION_TYPE_OBJECT:
+            return convertSortDirectionTypeObjectToString( eDataType,
+                    instanceValue );
         case DesignPackage.TEXT_FORMAT_TYPE_OBJECT:
             return convertTextFormatTypeObjectToString( eDataType,
                     instanceValue );
@@ -790,6 +806,17 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * <!-- end-user-doc -->
      * @generated
      */
+    public ResultSetCriteria createResultSetCriteria()
+    {
+        ResultSetCriteriaImpl resultSetCriteria = new ResultSetCriteriaImpl();
+        return resultSetCriteria;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public ResultSetDefinition createResultSetDefinition()
     {
         ResultSetDefinitionImpl resultSetDefinition = new ResultSetDefinitionImpl();
@@ -827,6 +854,28 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         ScalarValueDefinitionImpl scalarValueDefinition = new ScalarValueDefinitionImpl();
         return scalarValueDefinition;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SortKey createSortKey()
+    {
+        SortKeyImpl sortKey = new SortKeyImpl();
+        return sortKey;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SortSpecification createSortSpecification()
+    {
+        SortSpecificationImpl sortSpecification = new SortSpecificationImpl();
+        return sortSpecification;
     }
 
     /**
@@ -1082,6 +1131,32 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
      * @generated
      */
     public String convertSessionStatusToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return instanceValue == null ? null : instanceValue.toString();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SortDirectionType createSortDirectionTypeFromString(
+            EDataType eDataType, String initialValue )
+    {
+        SortDirectionType result = SortDirectionType.get( initialValue );
+        if( result == null )
+            throw new IllegalArgumentException(
+                    "The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'" ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertSortDirectionTypeToString( EDataType eDataType,
             Object instanceValue )
     {
         return instanceValue == null ? null : instanceValue.toString();
@@ -1354,6 +1429,30 @@ public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory
     {
         return convertSessionStatusToString(
                 DesignPackage.Literals.SESSION_STATUS, instanceValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SortDirectionType createSortDirectionTypeObjectFromString(
+            EDataType eDataType, String initialValue )
+    {
+        return createSortDirectionTypeFromString(
+                DesignPackage.Literals.SORT_DIRECTION_TYPE, initialValue );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String convertSortDirectionTypeObjectToString( EDataType eDataType,
+            Object instanceValue )
+    {
+        return convertSortDirectionTypeToString(
+                DesignPackage.Literals.SORT_DIRECTION_TYPE, instanceValue );
     }
 
     /**

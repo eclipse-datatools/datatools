@@ -68,6 +68,10 @@
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//SessionStatus/LoginFailed"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//SessionStatus/Error"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//SortDirectionType">
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//SortDirectionType/Ascending"/>
+      <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//SortDirectionType/Descending"/>
+    </genEnums>
     <genEnums ecoreEnum="org.eclipse.datatools.connectivity.oda.design.ecore#//TextFormatType">
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//TextFormatType/Plain"/>
       <genEnumLiterals ecoreEnumLiteral="org.eclipse.datatools.connectivity.oda.design.ecore#//TextFormatType/HTML"/>
@@ -86,6 +90,7 @@
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//OdaScalarDataTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//ParameterModeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//SessionStatusObject"/>
+    <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//SortDirectionTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//TextFormatTypeObject"/>
     <genDataTypes ecoreDataType="org.eclipse.datatools.connectivity.oda.design.ecore#//TextWrapTypeObject"/>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//AndExpression"/>
@@ -138,7 +143,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetDesign/resultSets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetDesign/primaryResultSetName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetDesign/parameters"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetDesign/filter"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetParameters">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//DataSetParameters/parameterDefinitions"/>
@@ -287,9 +291,14 @@
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetColumns">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetColumns/resultColumnDefinitions"/>
     </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetCriteria">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetCriteria/filterSpecification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetCriteria/rowOrdering"/>
+    </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetDefinition/resultSetColumns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSetDefinition/criteria"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSets">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//ResultSets/resultSetDefinitions"/>
@@ -301,6 +310,14 @@
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//ScalarValueDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ScalarValueDefinition/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//ScalarValueDefinition/displayName"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/columnPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//SortKey/sortDirection"/>
+    </genClasses>
+    <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//SortSpecification">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference org.eclipse.datatools.connectivity.oda.design.ecore#//SortSpecification/sortKeys"/>
     </genClasses>
     <genClasses ecoreClass="org.eclipse.datatools.connectivity.oda.design.ecore#//StaticValues">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute org.eclipse.datatools.connectivity.oda.design.ecore#//StaticValues/values"/>

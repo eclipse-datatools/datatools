@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DataSetDesign.java,v 1.5 2007/04/11 02:59:53 lchan Exp $
+ * $Id: DataSetDesign.java,v 1.6 2009/01/30 00:23:58 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getResultSets <em>Result Sets</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getPrimaryResultSetName <em>Primary Result Set Name</em>}</li>
  *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter <em>Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -355,35 +354,5 @@ public interface DataSetDesign extends EObject
      * @generated
      */
     void setParameters( DataSetParameters value );
-
-    /**
-     * <strong>EXPERIMENTAL</strong>.
-     * Returns the value of the '<em><b>Filter</b></em>' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * <!-- begin-model-doc -->
-     * Pre-defined filter specification  of the data set.  It may be any extended concrete type of FilterExpression.
-     * <!-- end-model-doc -->
-     * @return the value of the '<em>Filter</em>' containment reference.
-     * @see #setFilter(FilterExpression)
-     * @see org.eclipse.datatools.connectivity.oda.design.DesignPackage#getDataSetDesign_Filter()
-     * @model containment="true"
-     *        extendedMetaData="kind='element' name='filter' namespace='##targetNamespace'"
-     * @generated
-     * @since 3.2 (DTP 1.7)
-     */
-    FilterExpression getFilter();
-
-    /**
-     * <strong>EXPERIMENTAL</strong>.
-     * Sets the value of the '{@link org.eclipse.datatools.connectivity.oda.design.DataSetDesign#getFilter <em>Filter</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Filter</em>' containment reference.
-     * @see #getFilter()
-     * @generated
-     * @since 3.2 (DTP 1.7)
-     */
-    void setFilter( FilterExpression value );
 
 } // DataSetDesign

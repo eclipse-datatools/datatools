@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignFactory.java,v 1.9 2009/02/12 02:50:20 lchan Exp $
+ * $Id: DesignFactory.java,v 1.10 2009/03/03 07:42:07 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design;
 
@@ -422,6 +422,15 @@ public interface DesignFactory extends EFactory
     ResultSetColumns createResultSetColumns();
 
     /**
+     * Returns a new object of class '<em>Result Set Criteria</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Result Set Criteria</em>'.
+     * @generated
+     */
+    ResultSetCriteria createResultSetCriteria();
+
+    /**
      * Returns a new object of class '<em>Result Set Definition</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -456,6 +465,24 @@ public interface DesignFactory extends EFactory
      * @generated
      */
     ScalarValueDefinition createScalarValueDefinition();
+
+    /**
+     * Returns a new object of class '<em>Sort Key</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Sort Key</em>'.
+     * @generated
+     */
+    SortKey createSortKey();
+
+    /**
+     * Returns a new object of class '<em>Sort Specification</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Sort Specification</em>'.
+     * @generated
+     */
+    SortSpecification createSortSpecification();
 
     /**
      * Returns a new object of class '<em>Static Values</em>'.

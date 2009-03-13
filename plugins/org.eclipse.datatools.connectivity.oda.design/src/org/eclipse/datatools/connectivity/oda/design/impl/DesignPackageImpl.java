@@ -11,7 +11,7 @@
  *  
  *************************************************************************
  *
- * $Id: DesignPackageImpl.java,v 1.11 2009/03/03 07:42:07 lchan Exp $
+ * $Id: DesignPackageImpl.java,v 1.12 2009/03/05 20:14:39 lchan Exp $
  */
 package org.eclipse.datatools.connectivity.oda.design.impl;
 
@@ -68,11 +68,15 @@ import org.eclipse.datatools.connectivity.oda.design.Property;
 import org.eclipse.datatools.connectivity.oda.design.PropertyAttributes;
 import org.eclipse.datatools.connectivity.oda.design.ResourceIdentifiers;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetColumns;
+import org.eclipse.datatools.connectivity.oda.design.ResultSetCriteria;
 import org.eclipse.datatools.connectivity.oda.design.ResultSetDefinition;
 import org.eclipse.datatools.connectivity.oda.design.ResultSets;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueChoices;
 import org.eclipse.datatools.connectivity.oda.design.ScalarValueDefinition;
 import org.eclipse.datatools.connectivity.oda.design.SessionStatus;
+import org.eclipse.datatools.connectivity.oda.design.SortDirectionType;
+import org.eclipse.datatools.connectivity.oda.design.SortKey;
+import org.eclipse.datatools.connectivity.oda.design.SortSpecification;
 import org.eclipse.datatools.connectivity.oda.design.StaticValues;
 import org.eclipse.datatools.connectivity.oda.design.TextFormatType;
 import org.eclipse.datatools.connectivity.oda.design.TextWrapType;
@@ -407,6 +411,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EClass resultSetCriteriaEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EClass resultSetDefinitionEClass = null;
 
     /**
@@ -429,6 +440,20 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EClass scalarValueDefinitionEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass sortKeyEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass sortSpecificationEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -512,6 +537,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    private EEnum sortDirectionTypeEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     private EEnum textFormatTypeEEnum = null;
 
     /**
@@ -583,6 +615,13 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * @generated
      */
     private EDataType sessionStatusObjectEDataType = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EDataType sortDirectionTypeObjectEDataType = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -1126,17 +1165,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) dataSetDesignEClass.getEStructuralFeatures()
                 .get( 9 );
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getDataSetDesign_Filter()
-    {
-        return (EReference) dataSetDesignEClass.getEStructuralFeatures().get(
-                10 );
     }
 
     /**
@@ -2365,6 +2393,38 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EClass getResultSetCriteria()
+    {
+        return resultSetCriteriaEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResultSetCriteria_FilterSpecification()
+    {
+        return (EReference) resultSetCriteriaEClass.getEStructuralFeatures()
+                .get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResultSetCriteria_RowOrdering()
+    {
+        return (EReference) resultSetCriteriaEClass.getEStructuralFeatures()
+                .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getResultSetDefinition()
     {
         return resultSetDefinitionEClass;
@@ -2390,6 +2450,17 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EReference) resultSetDefinitionEClass.getEStructuralFeatures()
                 .get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getResultSetDefinition_Criteria()
+    {
+        return (EReference) resultSetDefinitionEClass.getEStructuralFeatures()
+                .get( 2 );
     }
 
     /**
@@ -2473,6 +2544,67 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     {
         return (EAttribute) scalarValueDefinitionEClass
                 .getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSortKey()
+    {
+        return sortKeyEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSortKey_ColumnName()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 0 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSortKey_ColumnPosition()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 1 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getSortKey_SortDirection()
+    {
+        return (EAttribute) sortKeyEClass.getEStructuralFeatures().get( 2 );
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSortSpecification()
+    {
+        return sortSpecificationEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getSortSpecification_SortKeys()
+    {
+        return (EReference) sortSpecificationEClass.getEStructuralFeatures()
+                .get( 0 );
     }
 
     /**
@@ -2655,6 +2787,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
      * <!-- end-user-doc -->
      * @generated
      */
+    public EEnum getSortDirectionType()
+    {
+        return sortDirectionTypeEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EEnum getTextFormatType()
     {
         return textFormatTypeEEnum;
@@ -2758,6 +2900,16 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
     public EDataType getSessionStatusObject()
     {
         return sessionStatusObjectEDataType;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EDataType getSortDirectionTypeObject()
+    {
+        return sortDirectionTypeObjectEDataType;
     }
 
     /**
@@ -2887,7 +3039,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEAttribute( dataSetDesignEClass,
                 DATA_SET_DESIGN__PRIMARY_RESULT_SET_NAME );
         createEReference( dataSetDesignEClass, DATA_SET_DESIGN__PARAMETERS );
-        createEReference( dataSetDesignEClass, DATA_SET_DESIGN__FILTER );
 
         dataSetParametersEClass = createEClass( DATA_SET_PARAMETERS );
         createEReference( dataSetParametersEClass,
@@ -3100,11 +3251,19 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         createEReference( resultSetColumnsEClass,
                 RESULT_SET_COLUMNS__RESULT_COLUMN_DEFINITIONS );
 
+        resultSetCriteriaEClass = createEClass( RESULT_SET_CRITERIA );
+        createEReference( resultSetCriteriaEClass,
+                RESULT_SET_CRITERIA__FILTER_SPECIFICATION );
+        createEReference( resultSetCriteriaEClass,
+                RESULT_SET_CRITERIA__ROW_ORDERING );
+
         resultSetDefinitionEClass = createEClass( RESULT_SET_DEFINITION );
         createEAttribute( resultSetDefinitionEClass,
                 RESULT_SET_DEFINITION__NAME );
         createEReference( resultSetDefinitionEClass,
                 RESULT_SET_DEFINITION__RESULT_SET_COLUMNS );
+        createEReference( resultSetDefinitionEClass,
+                RESULT_SET_DEFINITION__CRITERIA );
 
         resultSetsEClass = createEClass( RESULT_SETS );
         createEReference( resultSetsEClass, RESULT_SETS__RESULT_SET_DEFINITIONS );
@@ -3119,6 +3278,15 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 SCALAR_VALUE_DEFINITION__VALUE );
         createEAttribute( scalarValueDefinitionEClass,
                 SCALAR_VALUE_DEFINITION__DISPLAY_NAME );
+
+        sortKeyEClass = createEClass( SORT_KEY );
+        createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_NAME );
+        createEAttribute( sortKeyEClass, SORT_KEY__COLUMN_POSITION );
+        createEAttribute( sortKeyEClass, SORT_KEY__SORT_DIRECTION );
+
+        sortSpecificationEClass = createEClass( SORT_SPECIFICATION );
+        createEReference( sortSpecificationEClass,
+                SORT_SPECIFICATION__SORT_KEYS );
 
         staticValuesEClass = createEClass( STATIC_VALUES );
         createEAttribute( staticValuesEClass, STATIC_VALUES__VALUES );
@@ -3145,6 +3313,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         odaScalarDataTypeEEnum = createEEnum( ODA_SCALAR_DATA_TYPE );
         parameterModeEEnum = createEEnum( PARAMETER_MODE );
         sessionStatusEEnum = createEEnum( SESSION_STATUS );
+        sortDirectionTypeEEnum = createEEnum( SORT_DIRECTION_TYPE );
         textFormatTypeEEnum = createEEnum( TEXT_FORMAT_TYPE );
         textWrapTypeEEnum = createEEnum( TEXT_WRAP_TYPE );
 
@@ -3158,6 +3327,7 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         odaScalarDataTypeObjectEDataType = createEDataType( ODA_SCALAR_DATA_TYPE_OBJECT );
         parameterModeObjectEDataType = createEDataType( PARAMETER_MODE_OBJECT );
         sessionStatusObjectEDataType = createEDataType( SESSION_STATUS_OBJECT );
+        sortDirectionTypeObjectEDataType = createEDataType( SORT_DIRECTION_TYPE_OBJECT );
         textFormatTypeObjectEDataType = createEDataType( TEXT_FORMAT_TYPE_OBJECT );
         textWrapTypeObjectEDataType = createEDataType( TEXT_WRAP_TYPE_OBJECT );
     }
@@ -3401,11 +3571,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getDataSetParameters(),
                 null,
                 "parameters", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
-        initEReference(
-                getDataSetDesign_Filter(),
-                this.getFilterExpression(),
-                null,
-                "filter", null, 0, 1, DataSetDesign.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 dataSetParametersEClass,
@@ -3943,6 +4108,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 "resultColumnDefinitions", null, 1, -1, ResultSetColumns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
+                resultSetCriteriaEClass,
+                ResultSetCriteria.class,
+                "ResultSetCriteria", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getResultSetCriteria_FilterSpecification(),
+                this.getFilterExpression(),
+                null,
+                "filterSpecification", null, 0, 1, ResultSetCriteria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getResultSetCriteria_RowOrdering(),
+                this.getSortSpecification(),
+                null,
+                "rowOrdering", null, 0, 1, ResultSetCriteria.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
                 resultSetDefinitionEClass,
                 ResultSetDefinition.class,
                 "ResultSetDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
@@ -3955,6 +4135,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 this.getResultSetColumns(),
                 null,
                 "resultSetColumns", null, 1, 1, ResultSetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEReference(
+                getResultSetDefinition_Criteria(),
+                this.getResultSetCriteria(),
+                null,
+                "criteria", null, 0, 1, ResultSetDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 resultSetsEClass,
@@ -3992,6 +4177,33 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 getScalarValueDefinition_DisplayName(),
                 theXMLTypePackage.getString(),
                 "displayName", null, 0, 1, ScalarValueDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+
+        initEClass(
+                sortKeyEClass,
+                SortKey.class,
+                "SortKey", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEAttribute(
+                getSortKey_ColumnName(),
+                theXMLTypePackage.getString(),
+                "columnName", null, 1, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getSortKey_ColumnPosition(),
+                theXMLTypePackage.getUnsignedShort(),
+                "columnPosition", null, 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
+        initEAttribute(
+                getSortKey_SortDirection(),
+                this.getSortDirectionType(),
+                "sortDirection", "Ascending", 0, 1, SortKey.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$ //$NON-NLS-2$
+
+        initEClass(
+                sortSpecificationEClass,
+                SortSpecification.class,
+                "SortSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEReference(
+                getSortSpecification_SortKeys(),
+                this.getSortKey(),
+                null,
+                "sortKeys", null, 1, -1, SortSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED ); //$NON-NLS-1$
 
         initEClass(
                 staticValuesEClass,
@@ -4115,6 +4327,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addEEnumLiteral( sessionStatusEEnum, SessionStatus.LOGIN_FAILED_LITERAL );
         addEEnumLiteral( sessionStatusEEnum, SessionStatus.ERROR_LITERAL );
 
+        initEEnum( sortDirectionTypeEEnum, SortDirectionType.class,
+                "SortDirectionType" ); //$NON-NLS-1$
+        addEEnumLiteral( sortDirectionTypeEEnum, SortDirectionType.ASCENDING );
+        addEEnumLiteral( sortDirectionTypeEEnum, SortDirectionType.DESCENDING );
+
         initEEnum( textFormatTypeEEnum, TextFormatType.class, "TextFormatType" ); //$NON-NLS-1$
         addEEnumLiteral( textFormatTypeEEnum, TextFormatType.PLAIN_LITERAL );
         addEEnumLiteral( textFormatTypeEEnum, TextFormatType.HTML_LITERAL );
@@ -4159,6 +4376,10 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                 sessionStatusObjectEDataType,
                 SessionStatus.class,
                 "SessionStatusObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
+        initEDataType(
+                sortDirectionTypeObjectEDataType,
+                SortDirectionType.class,
+                "SortDirectionTypeObject", IS_SERIALIZABLE, IS_GENERATED_INSTANCE_CLASS ); //$NON-NLS-1$
         initEDataType(
                 textFormatTypeObjectEDataType,
                 TextFormatType.class,
@@ -4409,11 +4630,6 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( getDataSetDesign_Parameters(), source, new String[]
         { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
                 "name", "parameters", //$NON-NLS-1$ //$NON-NLS-2$
-                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
-        } );
-        addAnnotation( getDataSetDesign_Filter(), source, new String[]
-        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
-                "name", "filter", //$NON-NLS-1$ //$NON-NLS-2$
                 "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( dataSetParametersEClass, source, new String[]
@@ -5062,6 +5278,21 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "resultColumnDefinitions", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( resultSetCriteriaEClass, source, new String[]
+        { "name", "ResultSetCriteria", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getResultSetCriteria_FilterSpecification(), source,
+                new String[]
+                { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                        "name", "filterSpecification", //$NON-NLS-1$ //$NON-NLS-2$
+                        "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+                } );
+        addAnnotation( getResultSetCriteria_RowOrdering(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "rowOrdering", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( resultSetDefinitionEClass, source, new String[]
         { "name", "ResultSetDefinition", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -5077,6 +5308,11 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
                         "name", "resultSetColumns", //$NON-NLS-1$ //$NON-NLS-2$
                         "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
                 } );
+        addAnnotation( getResultSetDefinition_Criteria(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "criteria", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
         addAnnotation( resultSetsEClass, source, new String[]
         { "name", "ResultSets", //$NON-NLS-1$ //$NON-NLS-2$
                 "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
@@ -5122,6 +5358,41 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage
         addAnnotation( sessionStatusObjectEDataType, source, new String[]
         { "name", "SessionStatus:Object", //$NON-NLS-1$ //$NON-NLS-2$
                 "baseType", "SessionStatus" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( sortDirectionTypeEEnum, source, new String[]
+        { "name", "SortDirectionType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( sortDirectionTypeObjectEDataType, source, new String[]
+        { "name", "SortDirectionType:Object", //$NON-NLS-1$ //$NON-NLS-2$
+                "baseType", "SortDirectionType" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( sortKeyEClass, source, new String[]
+        { "name", "SortKey", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_ColumnName(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "columnName", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_ColumnPosition(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "columnPosition", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortKey_SortDirection(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "sortDirection", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( sortSpecificationEClass, source, new String[]
+        { "name", "SortSpecification", //$NON-NLS-1$ //$NON-NLS-2$
+                "kind", "elementOnly" //$NON-NLS-1$ //$NON-NLS-2$
+        } );
+        addAnnotation( getSortSpecification_SortKeys(), source, new String[]
+        { "kind", "element", //$NON-NLS-1$ //$NON-NLS-2$
+                "name", "sortKeys", //$NON-NLS-1$ //$NON-NLS-2$
+                "namespace", "##targetNamespace" //$NON-NLS-1$ //$NON-NLS-2$
         } );
         addAnnotation( staticValuesEClass, source, new String[]
         { "name", "StaticValues", //$NON-NLS-1$ //$NON-NLS-2$
