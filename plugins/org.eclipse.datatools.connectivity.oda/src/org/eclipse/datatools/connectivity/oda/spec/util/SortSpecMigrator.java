@@ -48,18 +48,18 @@ public class SortSpecMigrator
     /**
      * Converts the specified {@link SortSpecification} instance used in a QuerySpecification
      * to a pre-3.2 {@link SortSpec} instance.
-     * @param resultSortSpec    a {@link SortSpecification} instance to convert from
+     * @param rowSortSpec    a {@link SortSpecification} instance to convert from
      * @return  a new pre-3.2 {@link SortSpec} instance
      */
-    public static SortSpec convertSortSpecification( SortSpecification resultSortSpec )
+    public static SortSpec convertSortSpecification( SortSpecification rowSortSpec )
     {
-        if( resultSortSpec == null )
+        if( rowSortSpec == null )
             return null;
         
-        SortSpec oldSortSpec = new SortSpec( resultSortSpec.getSortMode() );
-        for( int i=1; i <= resultSortSpec.getSortKeyCount(); i++ )
+        SortSpec oldSortSpec = new SortSpec( rowSortSpec.getSortMode() );
+        for( int i=1; i <= rowSortSpec.getSortKeyCount(); i++ )
         {
-            oldSortSpec.addSortKey( resultSortSpec.getSortColumn( i ), resultSortSpec.getSortOrder( i ) );
+            oldSortSpec.addSortKey( rowSortSpec.getSortColumn( i ), rowSortSpec.getSortDirection( i ) );
         }
         return oldSortSpec;
     }
