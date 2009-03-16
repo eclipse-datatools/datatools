@@ -348,13 +348,13 @@
 		
 	</target>
 
-	<target name="GenerateUpdateSite">
-
-		<property file="${buildDirectory}/finalFeaturesVersions.properties"/>
-		<mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
-		<property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite/eclipse"/>
-        <!-- replace the feature version in site.xml -->
-		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
+    <target name="GenerateUpdateSite">
+        <property file="${buildDirectory}/finalFeaturesVersions.properties"/>
+        <mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
+        <property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite/eclipse"/>
+        
+    	<!-- replace the feature version in site.xml -->
+        <copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
         <replace file="${updateSiteDir}/site.xml" value="1.7.0" token="@RELEASE.VERSION@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
@@ -362,14 +362,14 @@
         <!-- push update site to output directory -->
         <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
         <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
-		<delete includeemptydirs="true">
-			<fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
-				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
-			</fileset>
+        <delete includeemptydirs="true">
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
+                <include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
+            </fileset>
             <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
                 <include name="readme/**"/>
                 <include name="*.html"/>
-			</fileset>
+            </fileset>
         </delete>
 		
 		<!-- TODO: generate pack200 for update site -->	
@@ -389,8 +389,16 @@
         <property name="p2.repo.name" value="DTP Update Site" />
         <mkdir dir="${repo}" />
         
+    	<copy todir="${repo}">
+            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
+            	<include name="features/**"/>
+            	<include name="plugins/**"/>
+            	<include name="site.xml"/>
+    		</fileset>
+    	</copy>
+    	
         <!--generator features and plugins metadata -->
-        <p2.generator source="${updateSiteDir}" compress="true" append="true" flavor="tooling"
+        <p2.generator updatesite="${repo}" compress="true" append="true" flavor="tooling"
                       metadataRepository="file:${repo}"
                       artifactRepository="file:${repo}"
                       metadataRepositoryName="${p2.repo.name}"
