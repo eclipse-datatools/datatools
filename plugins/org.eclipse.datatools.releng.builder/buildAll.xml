@@ -384,7 +384,7 @@
 	</target>
 
     <target name="genP2CompositeUpdateSite">
-        <property name="compsite.site" value="${postingDirectory}/../../../UpdateSite/dtp" />
+        <property name="compsite.site" value="${postingDirectory}/../../../../UpdateSite/dtp" />
         <property name="repo" value="${compsite.site}/${buildId}" />
         <property name="p2.repo.name" value="DTP Update Site" />
         <mkdir dir="${repo}" />
