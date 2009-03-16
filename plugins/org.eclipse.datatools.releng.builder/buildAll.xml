@@ -49,12 +49,7 @@
 		<antcall target="integrateDtpFeatures"/>
         <antcall target="Package"/>
         <antcall target="GenerateUpdateSite"/>
-		
-		<!--
-                <parallel failonany="false">
-                    <antcall target="GenerateCVSChangeLog"/>
-                </parallel>
-		-->
+
 	</target>
 
 	<target name="init">
@@ -357,22 +352,16 @@
 
 		<property file="${buildDirectory}/finalFeaturesVersions.properties"/>
 		<mkdir dir="${postingDirectory}/${buildId}/UpdateSite"/>
-
+		<property name="updateSiteDir" value="${postingDirectory}/${buildId}/UpdateSite/eclipse"/>
         <!-- replace the feature version in site.xml -->
-		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${buildDirectory}/site.xml" overwrite="true"/>
+		<copy file="${eclipse.build.configs}/../../extras/site.xml" tofile="${updateSiteDir}/site.xml" overwrite="true"/>
+        <replace file="${updateSiteDir}/site.xml" value="1.7.0" token="@RELEASE.VERSION@"/>
+        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
+        <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
-        <replace file="${buildDirectory}/site.xml" value="1.7.0" token="@RELEASE.VERSION@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.enablement.sdk.feature}" token="@org.eclipse.datatools.enablement.sdk.feature@"/>
-        <replace file="${buildDirectory}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
-
-		<!-- TODO: generate pack200 for update site -->
-		
-		<!-- TODO: generate p2 metadata for update site -->
-		
         <!-- push update site to output directory -->
         <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
         <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
-
 		<delete includeemptydirs="true">
 			<fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
 				<include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
@@ -382,14 +371,11 @@
                 <include name="*.html"/>
 			</fileset>
         </delete>
-
-        <copy todir="${postingDirectory}/${buildId}/UpdateSite">
-			<fileset dir="${buildDirectory}">
-				<include name="site.xml"/>
-			</fileset>
-        </copy>
 		
+		<!-- TODO: generate pack200 for update site -->	
+
 		<!-- push p2 repo to local update site for testing -->
+		<antcall target="genP2CompositeUpdateSite"/>
 		
 	</target>
 
@@ -397,4 +383,29 @@
 		<ant antfile="${eclipse.build.configs}/../../extras/cvschanges.xml"/>
 	</target>
 
+    <target name="genP2CompositeUpdateSite">
+        <property name="compsite.site" value="${postingDirectory}/../../../UpdateSite/dtp" />
+        <property name="repo" value="${compsite.site}/${buildId}" />
+        <property name="p2.repo.name" value="DTP Update Site" />
+        <mkdir dir="${repo}" />
+        
+        <!--generator features and plugins metadata -->
+        <p2.generator source="${updateSiteDir}" compress="true" append="true" flavor="tooling"
+                      metadataRepository="file:${repo}"
+                      artifactRepository="file:${repo}"
+                      metadataRepositoryName="${p2.repo.name}"
+                      artifactRepositoryName="${p2.repo.name}"
+                      publishArtifacts="true" p2OS="linux" mode="incremental"
+                      site="file:${updateSiteDir}/site.xml"/>
+        
+        <!--try create composite repository-->
+        <p2.composite.artifact.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
+        <p2.composite.metadata.repository.create location="file://${compsite.site}" name="${p2.repo.name}" compressed="true" failOnExists="false" />
+
+        <!--add childRepo to composite repo-->
+        <p2.composite.artifact.repository.add location="file://${compsite.site}" child="${buildId}" />
+        <p2.composite.metadata.repository.add location="file://${compsite.site}" child="${buildId}" />
+
+    </target>
+	
 </project>
