@@ -57,7 +57,7 @@ _UI_ACTION_REMOVE_TABLE       = Eli&minar tabla...
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= &Cambiar tipo de sentencia...
 
 !actions/ChangeSetOperatorAction
-_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
+_UI_ACTION_CHANGE_SET_OPERATOR		= Cambiar operador &Set...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= &Omitir esquema actual...
@@ -303,8 +303,8 @@ _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=Cambiar el tipo de sentencia SQL provocará
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Tipo de sentencia
 
 !dialogs/ChangeSetOperatorDialog
-_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
-_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Cambiar operador Set 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Operador Set
 
 
 !dialogs/OmitCurrentSchemaDialog

@@ -20,5 +20,5 @@ FE_REFERENCE_CONSTAINT_HAS_NO_KEY = La restricción de referencia {0} no tiene ni
 FE_INDEX_HAS_NO_MEMBER = El índice {0} no tiene ningún miembro
 FE_ELEMENT_HAS_NO_TYPE = El elemento {0} introducido no tiene ningún tipo
 #DEFN
-DEFN_MISSING_ATTRIBUTE_VALUES=Required attribute(s) of {0} configuration element are missing value.
+DEFN_MISSING_ATTRIBUTE_VALUES=Falta el valor en los atributos necesarios del elemento de configuración {0}.
 

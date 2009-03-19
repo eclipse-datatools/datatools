@@ -15,9 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=参照(&R)...
-button.moveUp=&Up
-button.moveDown=Do&wn
-button.delete=D&elete
+button.moveUp=上へ(&U)
+button.moveDown=下へ(&W)
+button.delete=削除(&E)
 
 editor.title.name=名前
 editor.title.originalName=元の名前
@@ -40,10 +40,10 @@ tooltip.psv=値をパイプ { | } で区切る
 tooltip.tsv=値をタブで区切る
 tooltip.columnnameline=選択したファイルの 1 行目が列名であることを\n確認してください。
 tooltip.typeline=選択したファイルの 2 行目がデータ型であることを\n確認してください。
-tooltip.button.add=Add all the selected columns from the left table to the flat file data set.
-tooltip.button.up=Move up the selected item.
-tooltip.button.down=Move down the selected item.
-tooltip.button.delete=Delete the selected item.
+tooltip.button.add=選択したすべての列を、左のテーブルからフラットファイルのデータセットに追加します。
+tooltip.button.up=選択した項目を上へ移動します。
+tooltip.button.down=選択した項目を下へ移動します。
+tooltip.button.delete=選択した項目を削除します。
 error.selectFolder=有効なフォルダーを選択してください。
 error.selectColumns=このデータ・セットに対して、1 つ以上の列を選択してください。
 error.emptyPath=パスを入力してください。

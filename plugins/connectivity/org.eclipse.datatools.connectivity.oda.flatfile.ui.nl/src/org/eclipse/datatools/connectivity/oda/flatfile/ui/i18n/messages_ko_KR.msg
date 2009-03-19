@@ -15,9 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=찾아보기(&R)...
-button.moveUp=&Up
-button.moveDown=Do&wn
-button.delete=D&elete
+button.moveUp=위로(&U)
+button.moveDown=아래로(&W)
+button.delete=삭제(&E)
 
 editor.title.name=이름
 editor.title.originalName=원본 이름
@@ -40,10 +40,10 @@ tooltip.psv=파이프-{ | }로 구분된 값
 tooltip.tsv=탭-{ Tab }으로 구분된 값
 tooltip.columnnameline=선택된 파일의 첫 번째 행에 열 이름이 있는지\n 확인하십시오.
 tooltip.typeline=선택한 파일의 두 번째 행에 데이터 형식 줄이 있는지\n 확인하십시오.
-tooltip.button.add=Add all the selected columns from the left table to the flat file data set.
-tooltip.button.up=Move up the selected item.
-tooltip.button.down=Move down the selected item.
-tooltip.button.delete=Delete the selected item.
+tooltip.button.add=왼쪽 테이블에서 선택한 열을 모두 플랫 파일 데이터 집합에 추가합니다.
+tooltip.button.up=선택한 항목 위로 이동합니다.
+tooltip.button.down=선택한 항목 아래로 이동합니다.
+tooltip.button.delete=선택한 항목을 삭제합니다.
 error.selectFolder=올바른 폴더를 선택하십시오.
 error.selectColumns=이 데이터 세트에 대해 최소 하나의 열을 선택하십시오.
 error.emptyPath=경로를 입력하십시오.

@@ -57,7 +57,7 @@ _UI_ACTION_REMOVE_TABLE       = Suppri&mer une table...
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= &Modifier le type d'instruction...
 
 !actions/ChangeSetOperatorAction
-_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
+_UI_ACTION_CHANGE_SET_OPERATOR		= Modifier l'opérateur &défini...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= Ign&orer le schéma actuel...
@@ -303,8 +303,8 @@ _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=La modification du type d'instruction SQL 
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Type d'instruction
 
 !dialogs/ChangeSetOperatorDialog
-_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
-_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Modifier l'opérateur défini 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Opérateur défini
 
 
 !dialogs/OmitCurrentSchemaDialog

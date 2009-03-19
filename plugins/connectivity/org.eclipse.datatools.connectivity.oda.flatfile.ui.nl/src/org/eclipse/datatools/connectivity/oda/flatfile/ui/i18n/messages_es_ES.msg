@@ -15,9 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=&Examinar...
-button.moveUp=&Up
-button.moveDown=Do&wn
-button.delete=D&elete
+button.moveUp=A&rriba
+button.moveDown=A&bajo
+button.delete=Elimi&nar
 
 editor.title.name=Nombre
 editor.title.originalName=Nombre original
@@ -40,10 +40,10 @@ tooltip.psv=Valores separados por barras {|}
 tooltip.tsv=Valores separados por tabulaciones {Tab}
 tooltip.columnnameline=Asegúrese de que los nombres de columna aparecen\n en la primera fila del archivo seleccionado.
 tooltip.typeline=Asegúrese de que la línea de tipo de datos aparece\n en la segunda fila del archivo seleccionado.
-tooltip.button.add=Add all the selected columns from the left table to the flat file data set.
-tooltip.button.up=Move up the selected item.
-tooltip.button.down=Move down the selected item.
-tooltip.button.delete=Delete the selected item.
+tooltip.button.add=Agregue todas las columnas seleccionadas de la tabla izquierda al conjunto de datos de archivo sin formato.
+tooltip.button.up=Mueva hacia arriba el elemento seleccionado.
+tooltip.button.down=Mueva hacia abajo el elemento seleccionado.
+tooltip.button.delete=Elimine el elemento seleccionado.
 error.selectFolder=Seleccione una carpeta válida.
 error.selectColumns=Seleccione una columna como mínimo para este conjunto de datos.
 error.emptyPath=Especifique una vía de acceso.

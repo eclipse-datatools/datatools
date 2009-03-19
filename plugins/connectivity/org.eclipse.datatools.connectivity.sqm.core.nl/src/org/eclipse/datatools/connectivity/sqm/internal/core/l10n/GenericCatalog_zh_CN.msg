@@ -20,5 +20,5 @@ FE_REFERENCE_CONSTAINT_HAS_NO_KEY = 引用约束 ({0}) 没有任何键
 FE_INDEX_HAS_NO_MEMBER = 索引 ({0}) 没有任何成员
 FE_ELEMENT_HAS_NO_TYPE = 类型化元素 ({0}) 没有任何类型
 #DEFN
-DEFN_MISSING_ATTRIBUTE_VALUES=Required attribute(s) of {0} configuration element are missing value.
+DEFN_MISSING_ATTRIBUTE_VALUES={0} 配置元素的必需属性缺少值。
 

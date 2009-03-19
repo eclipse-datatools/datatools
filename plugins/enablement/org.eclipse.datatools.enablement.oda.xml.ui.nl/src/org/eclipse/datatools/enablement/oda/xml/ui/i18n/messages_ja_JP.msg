@@ -27,10 +27,10 @@ designer.preview.preference.columnMappingPage.group.title=列のマッピング
 
 #row mapping page messages
 xPathChoosePage.messages.elementSelection.label=XML 要素の選択
-xPathChoosePage.messages.elementSelection.item.absolutePath=&XML elements named "{0}" at fixed absolute path\n
-xPathChoosePage.messages.elementSelection.item.anyLocation=XML &elements named "{0}" at any location\n
-xPathChoosePage.messages.elementSelection.disable.absolutePath=&XML elements at fixed absolute path\n 
-xPathChoosePage.messages.elementSelection.disable.anyLocation=XML &elements at any location\n 
+xPathChoosePage.messages.elementSelection.item.absolutePath=固定された絶対パスにある XML 要素 "{0}"(&X)\n
+xPathChoosePage.messages.elementSelection.item.anyLocation=任意の場所にある XML 要素 "{0}"(&E)\n
+xPathChoosePage.messages.elementSelection.disable.absolutePath=固定された絶対パスにある XML 要素(&X)\n 
+xPathChoosePage.messages.elementSelection.disable.anyLocation=任意の場所にある XML 要素(&E)\n 
 xPathChoosePage.messages.elementSelection.item.custom=カスタム XPath 式(&U)
 xPathChoosePage.messages.xPathExpression=XPath 式(&X)
 xPathChoosePage.messages.xmlStructure=XML 構造

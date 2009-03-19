@@ -15,9 +15,9 @@ label.flatfilePipe=PSV
 label.flatfileTab=TSV
 
 button.selectFolder.browse=浏览(&R)...
-button.moveUp=&Up
-button.moveDown=Do&wn
-button.delete=D&elete
+button.moveUp=上移(&U)
+button.moveDown=下移(&W)
+button.delete=删除(&E)
 
 editor.title.name=名称
 editor.title.originalName=原始名称
@@ -40,10 +40,10 @@ tooltip.psv=竖线 { | } 分隔的值
 tooltip.tsv=制表符 { Tab } 分隔的值
 tooltip.columnnameline=请确保选择的文件第一行\n中存在列名称。
 tooltip.typeline=请确保选择的文件第二行\n中存在数据类型行。
-tooltip.button.add=Add all the selected columns from the left table to the flat file data set.
-tooltip.button.up=Move up the selected item.
-tooltip.button.down=Move down the selected item.
-tooltip.button.delete=Delete the selected item.
+tooltip.button.add=将左表中所有选择的列添加到平面文件数据集。
+tooltip.button.up=上移选定项目。
+tooltip.button.down=下移选定项目。
+tooltip.button.delete=删除选定项目。
 error.selectFolder=请选择有效文件夹。
 error.selectColumns=请至少为此数据集选择一列。
 error.emptyPath=请输入路径。

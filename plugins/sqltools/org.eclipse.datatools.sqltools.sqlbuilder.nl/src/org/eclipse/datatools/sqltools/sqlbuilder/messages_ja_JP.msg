@@ -57,7 +57,7 @@ _UI_ACTION_REMOVE_TABLE       = テーブルの削除(&M)...
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= 文の種類を変更(&C)...
 
 !actions/ChangeSetOperatorAction
-_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
+_UI_ACTION_CHANGE_SET_OPERATOR		= Set 演算子の変更(&S)...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= 現在のスキーマを省略(&O)...
@@ -303,8 +303,8 @@ _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=SQL 文の種類を変更すると、現在の文が消去さ
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=文の種類
 
 !dialogs/ChangeSetOperatorDialog
-_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
-_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Set 演算子の変更 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set 演算子
 
 
 !dialogs/OmitCurrentSchemaDialog

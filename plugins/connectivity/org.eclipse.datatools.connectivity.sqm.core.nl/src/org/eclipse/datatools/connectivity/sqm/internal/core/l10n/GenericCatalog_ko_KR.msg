@@ -20,5 +20,5 @@ FE_REFERENCE_CONSTAINT_HAS_NO_KEY = 참조 제약 조건 {0}에 키가 없습니다.
 FE_INDEX_HAS_NO_MEMBER = 인덱스 {0}에 멤버가 없습니다.
 FE_ELEMENT_HAS_NO_TYPE = 입력한 요소 {0}에 형식이 없습니다.
 #DEFN
-DEFN_MISSING_ATTRIBUTE_VALUES=Required attribute(s) of {0} configuration element are missing value.
+DEFN_MISSING_ATTRIBUTE_VALUES=구성 요소 {0}의 필수 특성 값이 없습니다.
 

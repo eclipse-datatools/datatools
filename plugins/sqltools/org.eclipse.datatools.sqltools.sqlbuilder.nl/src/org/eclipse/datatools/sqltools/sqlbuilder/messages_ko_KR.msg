@@ -57,7 +57,7 @@ _UI_ACTION_REMOVE_TABLE       = 테이블 제거(&M)...
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= 문 형식 변경(&C)...
 
 !actions/ChangeSetOperatorAction
-_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
+_UI_ACTION_CHANGE_SET_OPERATOR		= 집합 연산자 변경(&S)...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= 현재 스키마 생략(&O)...
@@ -303,8 +303,8 @@ _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=SQL 문 형식을 변경하면 현재 문이 비어 있는
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=문 형식
 
 !dialogs/ChangeSetOperatorDialog
-_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
-_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=집합 연산자 변경 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=집합 연산자
 
 
 !dialogs/OmitCurrentSchemaDialog

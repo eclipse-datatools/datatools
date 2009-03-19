@@ -57,7 +57,7 @@ _UI_ACTION_REMOVE_TABLE       = Tabelle ent&fernen...
 _UI_ACTION_CHANGE_STATEMENT_TYPE		= Anweisungstyp än&dern...
 
 !actions/ChangeSetOperatorAction
-_UI_ACTION_CHANGE_SET_OPERATOR		= Change &Set Operator...
+_UI_ACTION_CHANGE_SET_OPERATOR		= &Set-Operator ändern...
 
 !actions/OmitCurrentSchemaAction
 _UI_ACTION_OMIT_CURRENT_SCHEMA		= Aktuelles Schema a&uslassen...
@@ -303,8 +303,8 @@ _UI_DIALOG_CHANGE_STATEMENT_TYPE_NOTE=Beim Ändern des SQL-Anweisungstyps wird di
 _UI_DIALOG_CHANGE_STATEMENT_TYPE_GROUP_TITLE=Anweisungstyp
 
 !dialogs/ChangeSetOperatorDialog
-_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Change Set Operator 
-_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set Operator
+_UI_DIALOG_CHANGE_SET_OPERATOR_TITLE=Set-Operator ändern 
+_UI_DIALOG_CHANGE_SET_OPERATOR_GROUP_TITLE=Set-Operator
 
 
 !dialogs/OmitCurrentSchemaDialog

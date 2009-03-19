@@ -26,8 +26,8 @@ webServiceSelectionPage.group.customClass=C&lase de controlador personalizado
 webServiceSelectionPage.group.classPath=Ru&ta de clase del controlador
 webServiceSelectionPage.label.wsdl=Si el descriptor WSDL del servicio Web está disponible, introduzca su URL o busque su ubicación en el sistema de archivos local.
 webServiceSelectionPage.label.wsdlURI=URL o ubicación de &WSDL:
-webServiceSelectionPage.label.endPoint=Specify the SOAP End Point URL. You may omit this value if the end point defined in the WSDL is to be used,\nor if you are using a custom connection class that does not require a end point URL.
-webServiceSelectionPage.label.customClass=If connection and query to the Web Services is made through a custom Java class, enter the fully qualified class name here.
+webServiceSelectionPage.label.endPoint=Especifique la URL del punto final de SOAP. Puede omitir este valor si se debe utilizar el punto final definido en WSDL o si no está utilizando un tipo de conexión personalizada que no necesita una URL de punto final.
+webServiceSelectionPage.label.customClass=Si se ha realizado una conexión o consulta de los servicios Web a través de una clase Java personalizada, introduzca el nombre de clase completo aquí.
 webServiceSelectionPage.label.classPath=Una lista separada por punto y coma (;) de directorios y archivos JAR adicionales para buscar la clase de controlador personalizado.
 webServiceSelectionPage.button.browse=&Examinar...
 
@@ -42,23 +42,23 @@ operationPage.label.document=&Documentación
 soapParametersPage.message.default=Introduzca los parámetros de la operación WSDL que ha seleccionado.
 soapParametersPage.button.selectAll=&Seleccionar todo
 soapParametersPage.button.deselectAll=&Anular la selección de todo
-soapParametersPage.column.paramName=N&ame
-soapParametersPage.column.dataType=Data &Type
+soapParametersPage.column.paramName=N&ombre
+soapParametersPage.column.dataType=&Tipo de datos
 
 # SoapRequestPage
 soapRequestPage.message.default=Edite la plantilla de solicitud SOAP de este conjunto de datos. Es posible dejar el campo de texto vacío si el código de la clase de conexión personalizada de la fuente de datos no necesita texto de consulta.
 soapRequestPage.message.regenerateTemplate=Esto volverá a generar la plantilla del texto de consulta según la operación SOAP que ha seleccionado. Esta acción eliminará cualquier modificación que haya introducido en el texto.\n\n¿Está seguro?
 soapRequestPage.title.regenerateTemplate=Volver a generar la plantilla
 soapRequestPage.button.regenerateTemplate=&Volver a generar la plantilla
-soapRequestPage.button.insertParameter=&Edit Parameter...
+soapRequestPage.button.insertParameter=&Editar parámetro...
 soapRequestPage.button.clear=&Borrar
 soapRequestPage.paramEditDialog.title=Editar propiedad del parámetro
 
 # ParameterInputDialog
-parameterInputDialog.column.name=&Name
-parameterInputDialog.column.type=Data &Type
-parameterInputDialog.column.defaultValue=Default &Value
-parameterInputDialog.button.edit=&Edit...
+parameterInputDialog.column.name=&Nombre
+parameterInputDialog.column.type=&Tipo de datos
+parameterInputDialog.column.defaultValue=Va&lor predeterminado
+parameterInputDialog.button.edit=&Editar...
 
 # SoapResponsePage
 soapResponsePage.message.default=Editar la respuesta SOAP.
@@ -66,11 +66,11 @@ soapResponsePage.group.schema=Seleccionar el esquema de respuesta SOAP.
 soapResponsePage.group.xml=Seleccione un mensaje de respuesta SOAP de muestra.
 soapResponsePage.radio.defaultSchema=Utilizar esquema de la respuesta de &operación definido en fuente de datos WSDL.
 soapResponsePage.radio.reponseSchema=Utilizar esquema de &respuesta.
-soapResponsePage.radio.externalSchema=Use external &XML schema file:
+soapResponsePage.radio.externalSchema=Utilizar archivo del esquema &XML externo:
 soapResponsePage.radio.endPoint=Consultar servicios web en el punto &final de SOAP:
 soapResponsePage.radio.externalXML=Utilizar archivo de &datos de muestra externo
-soapResponsePage.button.browse1=Bro&wse...
-soapResponsePage.button.browse2=Brow&se...
+soapResponsePage.button.browse1=E&xaminar...
+soapResponsePage.button.browse2=E&xaminar...
 soapResponsePage.button.connect=&Conectar ahora
 
 # XMLTableMappingPage

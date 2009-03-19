@@ -20,5 +20,5 @@ FE_REFERENCE_CONSTAINT_HAS_NO_KEY = 参照の制約 {0} にキーがありません。
 FE_INDEX_HAS_NO_MEMBER = インデックス {0} にメンバがありません。
 FE_ELEMENT_HAS_NO_TYPE = 入力した要素 {0} に型がありません。
 #DEFN
-DEFN_MISSING_ATTRIBUTE_VALUES=Required attribute(s) of {0} configuration element are missing value.
+DEFN_MISSING_ATTRIBUTE_VALUES={0} 設定項目に必要な属性に値が指定されていません。
 
