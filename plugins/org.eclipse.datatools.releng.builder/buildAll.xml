@@ -360,9 +360,17 @@
         <replace file="${updateSiteDir}/site.xml" value="${org.eclipse.datatools.sdk.feature}" token="@org.eclipse.datatools.sdk.feature@"/>
 
         <!-- push update site to output directory -->
-        <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite"/>
-        <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
-        <delete includeemptydirs="true">
+        <unzip src="${buildDirectory}/${buildId}/dtp-all-${package.version}.zip" 
+        	dest="${postingDirectory}/${buildId}/UpdateSite"/>
+        <unzip src="${buildDirectory}/${buildId}/dtp-enablement-all-${package.version}.zip" 
+        	dest="${postingDirectory}/${buildId}/UpdateSite" overwrite="true"/>
+        <copy todir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
+        	<fileset dir="${eclipse.build.configs}/../../extras">
+        		<include name="pack.properties"/>
+        	</fileset>
+    	</copy>
+    	
+    	<delete includeemptydirs="true">
             <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse/features">
                 <include name="org.eclipse.datatools.sdk-all.feature_*/**"/>
             </fileset>
@@ -371,9 +379,7 @@
                 <include name="*.html"/>
             </fileset>
         </delete>
-		
-		<!-- TODO: generate pack200 for update site -->	
-
+	
 		<!-- push p2 repo to local update site for testing -->
 		<antcall target="genP2CompositeUpdateSite"/>
 		
@@ -384,20 +390,33 @@
 	</target>
 
     <target name="genP2CompositeUpdateSite">
+    	
         <property name="compsite.site" value="${postingDirectory}/../../../../UpdateSite/dtp" />
         <property name="repo" value="${compsite.site}/${buildId}" />
         <property name="p2.repo.name" value="DTP Update Site" />
-        <mkdir dir="${repo}" />
-        
-    	<copy todir="${repo}">
-            <fileset dir="${postingDirectory}/${buildId}/UpdateSite/eclipse">
-            	<include name="features/**"/>
-            	<include name="plugins/**"/>
-            	<include name="site.xml"/>
-    		</fileset>
-    	</copy>
+        <mkdir dir="${repo}" />       
     	
-        <!--generator features and plugins metadata -->
+	   	<!-- generate pack200 -->	
+		<replace file="${eclipse.build.configs}/../../extras/pack200" token="@pack200@" value="${jvm15_home}/bin/pack200"/>
+		<chmod file="${eclipse.build.configs}/../../extras/pack200" perm="755"/>
+
+		<exec executable="dos2unix" dir="${eclipse.build.configs}/../../extras">
+			<arg line=" pack200" />
+		</exec>
+		
+    	<java jar="${eclipse.pdebuild.home}/plugins/org.eclipse.equinox.launcher_1.0.200.v20090128-1500.jar"
+                fork="true"
+                timeout="10800000"
+                jvm="${jvm15_home}/bin/java"
+                failonerror="true"
+                maxmemory="512m"
+                dir="${postingDirectory}/${buildId}/UpdateSite/">
+                <jvmarg value="-Dorg.eclipse.update.jarprocessor.pack200=${eclipse.build.configs}/../../extras"/>
+                <arg line="-application org.eclipse.update.core.siteOptimizer -verbose"/>
+                <arg line="-jarProcessor -outputDir ${repo} -processAll -pack eclipse"/>
+        </java>
+    	    	
+        <!-- generator features and plugins metadata -->
         <p2.generator updatesite="${repo}" compress="true" append="true" flavor="tooling"
                       metadataRepository="file:${repo}"
                       artifactRepository="file:${repo}"
