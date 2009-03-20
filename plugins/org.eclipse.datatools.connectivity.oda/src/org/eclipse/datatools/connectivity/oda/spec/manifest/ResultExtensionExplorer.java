@@ -250,7 +250,7 @@ public class ResultExtensionExplorer
     }
     
     /**
-     * Gets the collection of contributors that contributes filtering support to the specified data set type
+     * Gets the collection of contributors that contributes dynamicResultSet extension to the specified data set type
      * defined within the specified data source type.
      * @param odaDataSourceId   id of an ODA data source extension
      * @param odaDataSetId      id of an ODA data set defined within the data source extension
