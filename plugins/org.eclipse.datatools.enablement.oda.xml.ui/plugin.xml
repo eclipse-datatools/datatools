@@ -49,7 +49,9 @@
             initialPageId="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui1"
             supportsInParameters="false"
             supportsOutParameters="false">
-            <dataSetWizard class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard"/>
+            <dataSetWizard 
+                  class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard" 
+                  windowTitle="%wizard.data.set.window.title" />
             <dataSetPage
                   id="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui1"
                   wizardPageClass="org.eclipse.datatools.enablement.oda.xml.ui.wizards.XmlDataSetSelectionPage"
