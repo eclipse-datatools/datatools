@@ -70,9 +70,11 @@ ColumnMappingTable.downButton.tooltip=Mover asignación de columna hacia abajo.
 ColumnMappingTable.removeButton.tooltip=Quitar asignación de columna.
 ColumnMappingTable.editButton.tooltip=Editar asignación de columna.
 ColumnMappingTable.previewButton.tooltip=Vista previa de datos XML de muestra. 
+ColumnMappingDialog.group.message=XPath Selection
 ColumnMappingDialog.info.columnName=Nombre de &columna:
 ColumnMappingDialog.info.xPath=E&xpresión XPath:
 ColumnMappingDialog.info.dataType=Tipo de &datos:
+ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
 ColumnMappingDialog.prompt.maxRow=Los datos fuente tienen más de 500 líneas. La vista previa sólo mostrará las primeras 500 líneas en esta página.
 XMLDataPreviewDialog.title=Datos XML de muestra
 

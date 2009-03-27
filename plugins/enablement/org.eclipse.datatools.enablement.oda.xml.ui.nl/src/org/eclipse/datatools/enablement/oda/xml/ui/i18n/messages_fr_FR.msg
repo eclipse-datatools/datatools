@@ -70,9 +70,11 @@ ColumnMappingTable.downButton.tooltip=Déplacez la mise en correspondance de colo
 ColumnMappingTable.removeButton.tooltip=Supprimez la mise en correspondance de colonne.
 ColumnMappingTable.editButton.tooltip=Modifiez la mise en correspondance de colonne.
 ColumnMappingTable.previewButton.tooltip=Affichez les données XML exemples. 
+ColumnMappingDialog.group.message=XPath Selection
 ColumnMappingDialog.info.columnName=Nom de &colonne :
 ColumnMappingDialog.info.xPath=Expression &XPath :
 ColumnMappingDialog.info.dataType=Type de &données :
+ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
 ColumnMappingDialog.prompt.maxRow=La source de données dépasse 500 lignes. Cette page ne permet d'afficher que les 500 premières lignes.
 XMLDataPreviewDialog.title=Données XML exemples
 

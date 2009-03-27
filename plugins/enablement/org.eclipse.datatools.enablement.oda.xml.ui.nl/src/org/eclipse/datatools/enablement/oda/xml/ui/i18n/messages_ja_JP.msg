@@ -70,9 +70,11 @@ ColumnMappingTable.downButton.tooltip=列マッピングを下に移動します。
 ColumnMappingTable.removeButton.tooltip=列マッピングを削除します。
 ColumnMappingTable.editButton.tooltip=列マッピングを編集します。
 ColumnMappingTable.previewButton.tooltip=サンプル XML データをプレビューします。 
+ColumnMappingDialog.group.message=XPath Selection
 ColumnMappingDialog.info.columnName=列名(&C) :
 ColumnMappingDialog.info.xPath=XPath 式(&X) :
 ColumnMappingDialog.info.dataType=データ型(&D) :
+ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
 ColumnMappingDialog.prompt.maxRow=500 行以上のソースデータがあります。このページには最初の 500 行だけが表示されます。
 XMLDataPreviewDialog.title=サンプル XML データ
 

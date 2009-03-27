@@ -70,9 +70,11 @@ ColumnMappingTable.downButton.tooltip=列映射下移。
 ColumnMappingTable.removeButton.tooltip=删除列映射。
 ColumnMappingTable.editButton.tooltip=编辑列映射。
 ColumnMappingTable.previewButton.tooltip=预览示例 XML 数据。 
+ColumnMappingDialog.group.message=XPath Selection
 ColumnMappingDialog.info.columnName=列名称(&C):
 ColumnMappingDialog.info.xPath=XPath 表达式(&X):
 ColumnMappingDialog.info.dataType=数据类型(&D):
+ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
 ColumnMappingDialog.prompt.maxRow=源数据大于 500 行。仅前 500 行可在此页面中预览。
 XMLDataPreviewDialog.title=示例 XML 数据
 
