@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -113,9 +114,23 @@ public class ColumnMappingDialog extends TrayDialog
 	protected Control createDialogArea( Composite parent )
 	{
 		getShell( ).setText( title );
-		super.createDialogArea( parent );
-		Composite composite = new Composite( parent, SWT.NONE );
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+		Composite panel = (Composite)super.createDialogArea( parent );
+		
+		Composite labelComposite = new Composite( panel, SWT.NONE );
+		GridLayout labelLayout = new GridLayout( );
+		labelLayout.marginLeft = 15;
+		labelLayout.marginRight = 10;
+		labelLayout.marginBottom = 0;
+		labelLayout.marginTop = 0;
+		labelComposite.setLayout( labelLayout );
+		
+		Label label = new Label( labelComposite, SWT.NONE );
+		label.setText( Messages.getString( "ColumnMappingDialog.dialog.info" ) ); //$NON-NLS-1$
+		GridData labelGd = new GridData( GridData.FILL_HORIZONTAL );
+		label.setLayoutData( labelGd );
+		
+		Composite composite = new Composite( panel, SWT.NONE );
+		GridData gd = new GridData( );
 		composite.setLayoutData( gd );
 		
 		GridLayout layout = new GridLayout( );
@@ -143,8 +158,8 @@ public class ColumnMappingDialog extends TrayDialog
 		Composite topComposite = new Composite( parent, SWT.NONE );
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 2;
-		layout.marginWidth = 20;
-		layout.marginBottom = 10;
+		layout.marginWidth = 15;
+		layout.marginBottom = 5;
 		layout.verticalSpacing = 8;
 		topComposite.setLayout( layout );
 
@@ -152,7 +167,7 @@ public class ColumnMappingDialog extends TrayDialog
 		topComposite.setLayoutData( gridData );
 
 		GridData comboData = new GridData( );
-		comboData.widthHint = 330;
+		comboData.widthHint = 320;
 
 		GridData labelData = new GridData( );
 		Label label = new Label( topComposite, SWT.NONE );
@@ -242,8 +257,7 @@ public class ColumnMappingDialog extends TrayDialog
 		Label customLabel = new Label( customComposite, SWT.WRAP );
 		customLabel.setText( Messages.getString( "ColumnMappingDialog.info.xPath" ) ); //$NON-NLS-1$
 		customLabel.setLayoutData( labelData );
-		GridData textData = new GridData( );
-		textData.widthHint = 420;
+		GridData textData = new GridData( GridData.FILL_HORIZONTAL );
 		textData.horizontalAlignment = 10;
 		xmlPathText = new Text( customComposite, SWT.BORDER );
 		xmlPathText.setText( TextProcessor.process( xpath, "//") );
@@ -291,14 +305,21 @@ public class ColumnMappingDialog extends TrayDialog
 	 */
 	private void setupButtonComposite( Composite composite )
 	{
-		Composite exprBtnGroup = new Composite( composite, SWT.NONE );
+		Composite wrap = new Composite( composite, SWT.NONE );
+		GridLayout wrapLayout = new GridLayout( );
+		wrapLayout.marginLeft = 10;
+		wrapLayout.marginRight = 15;
+		wrap.setLayout( wrapLayout );
+		
+		Group exprBtnGroup = new Group( wrap, SWT.NONE );
+		exprBtnGroup.setText( Messages.getString( "ColumnMappingDialog.group.message" ) );
 
 		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
 		exprBtnGroup.setLayoutData( gridData );
 
 		GridLayout layout = new GridLayout( );
 		layout.numColumns = 2;
-		layout.marginLeft = 20;
+		layout.marginLeft = 5;
 		layout.verticalSpacing = 8;
 		exprBtnGroup.setLayout( layout );
 
