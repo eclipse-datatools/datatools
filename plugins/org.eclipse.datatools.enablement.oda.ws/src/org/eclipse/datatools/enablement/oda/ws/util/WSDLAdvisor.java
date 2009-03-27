@@ -28,13 +28,12 @@ import javax.wsdl.Port;
 import javax.wsdl.Service;
 import javax.wsdl.Types;
 import javax.wsdl.WSDLException;
-import javax.wsdl.extensions.UnknownExtensibilityElement;
+import javax.wsdl.extensions.http.HTTPAddress;
 import javax.wsdl.extensions.soap.SOAPAddress;
 import javax.wsdl.extensions.soap.SOAPBinding;
 import javax.wsdl.extensions.soap.SOAPBody;
 import javax.wsdl.extensions.soap.SOAPHeader;
 import javax.wsdl.extensions.soap.SOAPOperation;
-import javax.wsdl.extensions.http.HTTPAddress;
 import javax.wsdl.factory.WSDLFactory;
 import javax.wsdl.xml.WSDLReader;
 import javax.xml.namespace.QName;
@@ -43,6 +42,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import com.ibm.wsdl.extensions.schema.SchemaImpl;
 
 /**
  * A utility class that handles all wsdl-involved operations
@@ -460,9 +461,9 @@ public class WSDLAdvisor
 
 			for ( int i = 0; i < extElements.size( ); i++ )
 			{
-				if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
+				if ( extElements.get( i ) instanceof SchemaImpl )
 				{
-					Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
+					Element element = ( (SchemaImpl) extElements.get( i ) ).getElement( );
 					String[] parentNode = {
 						EMPTY_STRING
 					};
@@ -1406,9 +1407,9 @@ public class WSDLAdvisor
 		List extElements = types.getExtensibilityElements( );
 		for ( int i = 0; i < extElements.size( ); i++ )
 		{
-			if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
+			if ( extElements.get( i ) instanceof SchemaImpl )
 			{
-				Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
+				Element element = ( (SchemaImpl) extElements.get( i ) ).getElement( );
 				List teList = retrieveTargetElementList( element, localPart );
 				for ( int j = 0; j < teList.size( ); j++ )
 				{
@@ -1700,9 +1701,9 @@ public class WSDLAdvisor
 		List extElements = types.getExtensibilityElements( );
 		for ( int i = 0; i < extElements.size( ); i++ )
 		{
-			if ( extElements.get( i ) instanceof UnknownExtensibilityElement )
+			if ( extElements.get( i ) instanceof SchemaImpl )
 			{
-				Element element = ( (UnknownExtensibilityElement) extElements.get( i ) ).getElement( );
+				Element element = ( (SchemaImpl) extElements.get( i ) ).getElement( );
 				namespace = element.getAttribute( "targetNamespace" );//$NON-NLS-1$
 				return namespace;
 			}
