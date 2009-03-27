@@ -19,6 +19,7 @@ public class WSLeafNode
 {
 	private String name;
 	private String type;
+	private String prefix;
 	
 	/**
 	 * 
@@ -27,6 +28,18 @@ public class WSLeafNode
 	public String getName( )
 	{
 		return name;
+	}
+
+	
+	public String getPrefix( )
+	{
+		return prefix;
+	}
+
+	
+	public void setPrefix( String prefix )
+	{
+		this.prefix = prefix;
 	}
 
 	/**

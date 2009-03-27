@@ -1011,10 +1011,53 @@ public class WSDLAdvisor
 	{
 		String result = EMPTY_STRING;
 		WSNonLeafNode newNode = generateTargetNode( wsdlURI, name );
+		setParentName( newNode );
 		result = builderRequestParameters( newNode, nameSpace, tabCount );
 		return result;
 	}
 
+	private void setParentName( WSNonLeafNode rootNode )
+	{
+		List<WSLeafNode> leafNodeList = new ArrayList<WSLeafNode>( );
+		getAllLeafNode( rootNode, leafNodeList );
+		boolean existSameName;
+		for ( int i = 0; i < leafNodeList.size( ); i++ )
+		{
+			existSameName = false;
+			for ( int j = 0; j < leafNodeList.size( ); j++ )
+			{
+				if ( leafNodeList.get( i )
+						.getName( )
+						.equals( leafNodeList.get( j ).getName( ) ) && j != i )
+				{
+					existSameName = true;
+					break;
+				}
+			}
+			if( !existSameName )
+			{
+				leafNodeList.get( i ).setPrefix( "" );
+			}
+		}
+	}
+	
+	private void getAllLeafNode( WSNonLeafNode node, List<WSLeafNode> leafNodeList )
+	{
+		List nodeList = node.getNodeList( );
+		for ( int i = 0; i < nodeList.size( ); i++ )
+		{
+			if ( nodeList.get( i ) instanceof WSLeafNode )
+			{
+				( (WSLeafNode) nodeList.get( i ) ).setPrefix( node.getName( ) + "." );
+				leafNodeList.add( (WSLeafNode) nodeList.get( i ) );
+			}
+			else if ( nodeList.get( i ) instanceof WSNonLeafNode )
+			{
+				getAllLeafNode( (WSNonLeafNode) nodeList.get( i ), leafNodeList );
+			}
+		}
+	}
+	
 	private String builderRequestParameters( WSNonLeafNode newNode,
 			String nameSpace, int tabCount )
 	{
@@ -1030,7 +1073,7 @@ public class WSDLAdvisor
 						+ tab( tabCount )
 						+ "<" + nameSpace + leafnode.getName( ) //$NON-NLS-1$
 						+ buildParamType( leafnode.getType( ) )
-						+ ">&?" + leafnode.getName( ) //$NON-NLS-1$
+						+ ">&?" + leafnode.getPrefix( ) + leafnode.getName( ) //$NON-NLS-1$
 						+ "?&</" + nameSpace + leafnode.getName( ) + ">"; //$NON-NLS-1$ //$NON-NLS-2$
 
 			}
