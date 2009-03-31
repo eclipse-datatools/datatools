@@ -117,7 +117,7 @@
             contentProvider="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryContentProviderExtension"
             id="org.eclipse.datatools.connectivity.repositoryContent"
             labelProvider="org.eclipse.datatools.connectivity.internal.ui.CPRepositoryLabelProviderExtension"
-            name="Connection Profiles">
+            name="%CP.content">
          <triggerPoints>
             <or>
 	            <and>
