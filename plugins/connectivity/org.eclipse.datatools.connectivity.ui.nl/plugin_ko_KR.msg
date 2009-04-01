@@ -26,6 +26,7 @@ category.name.connectionProfiles=연결 프로파일
 datatools.core.ui.preferences.data.node = 데이터 관리
 
 DSE.content = 데이터 원본 탐색기 확장명
+CP.content = Connection Profiles
 
 AddProfile.command.label = 새 연결 프로필 명령
 AddProfile.command.description = 새 연결 프로필을 생성하는 명령

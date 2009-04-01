@@ -1,4 +1,13 @@
-#Thu Jun 22 00:30:53 EDT 2006
+################################################################################
+## Copyright (c) 2005 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+################################################################################ 
 Plugin.Name=Data Tools Platform - Plug-in für Konnektivitäts-UI
 Plugin.ProviderName=Eclipse.org
 Database.category=Datenbanken
@@ -16,6 +25,7 @@ category.name.connectionProfiles=Verbindungsprofile
 datatools.core.ui.preferences.data.node = Datenverwaltung
 
 DSE.content = Erweiterung für Datenquellen-Explorer
+CP.content = Connection Profiles
 
 AddProfile.command.label = Befehl 'Neues Verbindungsprofil'
 AddProfile.command.description = Befehl zur Erstellung eines neuen Verbindungsprofils

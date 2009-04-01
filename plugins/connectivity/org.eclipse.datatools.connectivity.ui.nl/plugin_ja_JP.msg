@@ -1,4 +1,13 @@
-#Thu Jun 22 00:30:53 EDT 2006
+################################################################################
+## Copyright (c) 2005 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+################################################################################ 
 Plugin.Name=Data Tools Platform Connectivity UI Plug-in
 Plugin.ProviderName=Eclipse.org
 Database.category=データベース
@@ -16,6 +25,7 @@ category.name.connectionProfiles=接続プロファイル
 datatools.core.ui.preferences.data.node = データ管理
 
 DSE.content = データソースエクスプローラの拡張
+CP.content = Connection Profiles
 
 AddProfile.command.label = 新しい接続プロファイルのコマンド
 AddProfile.command.description = このコマンドを実行すると、新しい接続プロファイルが作成されます。

@@ -1,4 +1,13 @@
-#Thu Jun 22 00:30:53 EDT 2006
+################################################################################
+## Copyright (c) 2005 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+################################################################################ 
 Plugin.Name=Plug-in UI de Conectividad de la Plataforma de herramientas de datos
 Plugin.ProviderName=Eclipse.org
 Database.category=Bases de datos
@@ -16,6 +25,7 @@ category.name.connectionProfiles=Perfiles de conexión
 datatools.core.ui.preferences.data.node = Administración de datos
 
 DSE.content = Extensión de explorador de fuentes de datos
+CP.content = Connection Profiles
 
 AddProfile.command.label = Nuevo comando de perfil de conexión
 AddProfile.command.description = Comando para crear un nuevo perfil de conexión
