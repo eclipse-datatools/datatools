@@ -94,10 +94,10 @@
     <name>DECIMAL</name>
     <name>DEC</name>
   </predefinedDataTypeDefinitions>
-<!--  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">-->
-<!--    <defaultValueTypes>NULL</defaultValueTypes>-->
-<!--    <name>DOUBLE PRECISION</name>-->
-<!--  </predefinedDataTypeDefinitions>-->
+  <predefinedDataTypeDefinitions xmi:id="DOUBLE_PRECISION_1" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="DOUBLE_PRECISION" jdbcEnumType="8" javaClassName="double">
+    <defaultValueTypes>NULL</defaultValueTypes>
+    <name>DOUBLE PRECISION</name>
+  </predefinedDataTypeDefinitions>
   <predefinedDataTypeDefinitions xmi:id="FLOAT_1" precisionSupported="true" maximumPrecision="53" keyConstraintSupported="true" multipleColumnsSupported="true" primitiveType="FLOAT" jdbcEnumType="6" javaClassName="double">
     <defaultValueTypes>NULL</defaultValueTypes>
     <name>FLOAT</name>
