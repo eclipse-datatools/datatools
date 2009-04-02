@@ -70,11 +70,11 @@ ColumnMappingTable.downButton.tooltip=Spaltenzuordnung nach unten verschieben.
 ColumnMappingTable.removeButton.tooltip=Spaltenzuordnung entfernen.
 ColumnMappingTable.editButton.tooltip=Spaltenzuordnung bearbeiten.
 ColumnMappingTable.previewButton.tooltip=Vorschau der Beispiel-XML-Daten anzeigen. 
-ColumnMappingDialog.group.message=XPath Selection
+ColumnMappingDialog.group.message=XPath-Auswahl
 ColumnMappingDialog.info.columnName=&Spaltenname:
 ColumnMappingDialog.info.xPath=&XPath-Ausdruck:
 ColumnMappingDialog.info.dataType=&Datentyp:
-ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
+ColumnMappingDialog.dialog.info=Wählen Sie einen vordefinierten XPath für die aktuelle Spalte, oder geben Sie einen anderen XPath-Ausdruck ein. 
 ColumnMappingDialog.prompt.maxRow=Die Quelldaten umfassen mehr als 500 Zeilen. Auf dieser Seite kann nur eine Vorschau der ersten 500 Zeilen angezeigt werden.
 XMLDataPreviewDialog.title=Beispiel-XML-Daten
 

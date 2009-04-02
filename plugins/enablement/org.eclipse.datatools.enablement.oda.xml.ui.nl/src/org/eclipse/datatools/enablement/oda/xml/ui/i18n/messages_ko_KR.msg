@@ -70,11 +70,11 @@ ColumnMappingTable.downButton.tooltip=열 매핑을 아래로 이동
 ColumnMappingTable.removeButton.tooltip=열 매핑 제거
 ColumnMappingTable.editButton.tooltip=열 매핑 편집
 ColumnMappingTable.previewButton.tooltip=샘플 XML 데이터 미리 보기 
-ColumnMappingDialog.group.message=XPath Selection
+ColumnMappingDialog.group.message=XPath 선택
 ColumnMappingDialog.info.columnName=열 이름(&C):
 ColumnMappingDialog.info.xPath=XPath 식(&X):
 ColumnMappingDialog.info.dataType=데이터 형식(&D):
-ColumnMappingDialog.dialog.info=Select one of the predefined XPath for the current column, or please enter another XPath expression. 
+ColumnMappingDialog.dialog.info=현재 열에 대해 미리 정의된 XPath 중 하나를 선택하거나 다른 XPath 식을 입력하십시오. 
 ColumnMappingDialog.prompt.maxRow=원본 데이터가 500줄 이상입니다. 이 페이지에는 처음 500줄만 표시됩니다.
 XMLDataPreviewDialog.title=샘플 XML 데이터
 
