@@ -156,7 +156,7 @@
 
 	</target>
 	
-	<target name="signDTPJars" >
+	<target name="signDTPJars">
 		
         <zip destfile="${tmpsite}/dtp-all-unsign.zip">
            <fileset dir="${tmpsite}/eclipse" includes="features/**"/>
@@ -175,7 +175,7 @@
 		
 	</target>
 	
-    <target name="SignJars">
+    <target name="SignJars" unless="noSign">
     	
         <tstamp prefix="timestamp">
             <format property="upload" pattern="yyyy-MM-dd HH:mm:ss" locale="en" />
