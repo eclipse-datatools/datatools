@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<description url="http://download.eclipse.org//datatools/drops/updates/site.xml">
-	To install these plugins, point your Eclipse Update Manager at this site.
-	</description>
-	<category-def name="Eclipse Data Tools Platform @RELEASE.VERSION@" label="Eclipse Data Tools Platform @RELEASE.VERSION@">
-		<description>
+   <description url="http://download.eclipse.org//datatools/drops/updates/site.xml">
+      To install these plugins, point your Eclipse Update Manager at this site.
+   </description>
+   <feature url="features/org.eclipse.datatools.sdk.feature_@org.eclipse.datatools.sdk.feature@.jar" id="org.eclipse.datatools.sdk.feature" version="@org.eclipse.datatools.sdk.feature@">
+      <category name="Eclipse Data Tools Platform SDK @RELEASE.VERSION@"/>
+   </feature>
+   <feature url="features/org.eclipse.datatools.enablement.sdk.feature_@org.eclipse.datatools.enablement.sdk.feature@.jar" id="org.eclipse.datatools.enablement.sdk.feature" version="@org.eclipse.datatools.enablement.sdk.feature@">
+      <category name="Eclipse Data Tools Platform Enablement SDK @RELEASE.VERSION@"/>
+   </feature>
+   <category-def name="Eclipse Data Tools Platform SDK @RELEASE.VERSION@" label="Eclipse Data Tools Platform SDK @RELEASE.VERSION@">
+      <description>
          The @RELEASE.VERSION@ build of the Eclipse Data Tools Platform (DTP)
       </description>
-	</category-def>
-	<!--*****************************************************************************************-->
-     <!-- DTP @RELEASE.VERSION@ -->
-    <feature url="features/org.eclipse.datatools.sdk.feature_@org.eclipse.datatools.sdk.feature@.jar" id="org.eclipse.datatools.sdk.feature" version="@org.eclipse.datatools.sdk.feature@">
-		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
-	</feature>
-	<feature url="features/org.eclipse.datatools.enablement.sdk.feature_@org.eclipse.datatools.enablement.sdk.feature@.jar" id="org.eclipse.datatools.enablement.sdk.feature" version="@org.eclipse.datatools.enablement.sdk.feature@">
-		<category name="Eclipse Data Tools Platform @RELEASE.VERSION@"/>
-	</feature>
+   </category-def>
+   <category-def name="Eclipse Data Tools Platform Enablement SDK @RELEASE.VERSION@" label="Eclipse Data Tools Platform Enablement SDK @RELEASE.VERSION@">
+      <description>
+         The @RELEASE.VERSION@ build of the Eclipse Data Tools Platform (DTP) Enablement
+      </description>
+   </category-def>
 </site>
