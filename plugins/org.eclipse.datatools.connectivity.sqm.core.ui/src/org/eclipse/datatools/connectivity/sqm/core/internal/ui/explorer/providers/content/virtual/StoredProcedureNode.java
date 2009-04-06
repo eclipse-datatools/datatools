@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright  2001, 2004 ,2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,6 +15,7 @@ import org.eclipse.datatools.connectivity.sqm.core.internal.ui.explorer.virtual.
 import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.providers.content.virtual.VirtualNode;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionFilter;
 import org.eclipse.datatools.connectivity.sqm.internal.core.containment.GroupID;
+import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
 import org.eclipse.datatools.modelbase.sql.schema.Schema;
 
 /**
@@ -37,6 +38,6 @@ public class StoredProcedureNode extends VirtualNode implements IStoredProcedure
     }
 
     public String getFilterName() {
-    	return ((Schema)getParent()).getName() + IFilterNode.SEPARATOR + ConnectionFilter.STORED_PROCEDURE_FILTER;
+    	return	getFilterName(ConnectionFilter.STORED_PROCEDURE_FILTER);
 	}
 }

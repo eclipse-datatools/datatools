@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2001, 2004 IBM Corporation and others.
+ * Copyright  2001, 2004 ,2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.sqm.core.ui.explorer.virtual.IVirtualN
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.ConnectionInfo;
 import org.eclipse.datatools.connectivity.sqm.internal.core.connection.DatabaseConnectionRegistry;
+import org.eclipse.datatools.modelbase.sql.routines.Routine;
 import org.eclipse.datatools.modelbase.sql.schema.Catalog;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.schema.SQLObject;
@@ -193,6 +194,12 @@ public abstract class VirtualNode implements IVirtualNode, IAdaptable
     		Catalog catalog = (Catalog)getParent();
     		return catalog.getName() + IFilterNode.SEPARATOR
     				+ virtualNodeType;
+    	}
+    	else if(getParent() instanceof Routine)
+    	{
+    		Routine routine=(Routine) getParent();
+    		return routine.getName() +IFilterNode.SEPARATOR +virtualNodeType;
+    		
     	}
     	return null;		
 	}
