@@ -125,8 +125,8 @@ public class JDBCTableLoader extends JDBCBaseLoader {
 	 */
 	public static final String TYPE_REF_DERIVED = "DERIVED"; //$NON-NLS-1$
 
-	private Map mTableFactories;
-	private boolean mSupportedColumnsInitialized;
+	protected Map mTableFactories;
+	protected boolean mSupportedColumnsInitialized;
 
 	/**
 	 * This constructs the loader using a ConnectionFilter.TABLE_FILTER filter.
