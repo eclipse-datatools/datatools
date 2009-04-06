@@ -1,5 +1,5 @@
  /*******************************************************************************
-  * Copyright (c) 2005 Versant Corporation and others.
+  * Copyright (c) 2005, 2009 Versant Corporation and others.
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
   * 
   * Contributors:
   *     Versant Corporation - initial API and implementation
+  *     brianf - updates to make catalog loading work with filtering
   *******************************************************************************/
  package org.eclipse.datatools.enablement.mysql.catalog;
 

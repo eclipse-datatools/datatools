@@ -1,5 +1,5 @@
  /*******************************************************************************
-  * Copyright (c) 2005 Versant Corporation and others.
+  * Copyright (c) 2005, 2009 Versant Corporation and others.
   * All rights reserved. This program and the accompanying materials
   * are made available under the terms of the Eclipse Public License v1.0
   * which accompanies this distribution, and is available at
@@ -7,17 +7,17 @@
   * 
   * Contributors:
   *     Versant Corporation - initial API and implementation
+  *     Sybase, Inc. - updates to make catalog loaders work with filtering
   *******************************************************************************/
  package org.eclipse.datatools.enablement.mysql.catalog;
 
 import java.sql.Connection;
 import java.util.Iterator;
 
-import org.eclipse.datatools.connectivity.sqm.core.rte.ICatalogObject;
+import org.eclipse.datatools.connectivity.sqm.core.rte.jdbc.JDBCForeignKey;
 import org.eclipse.datatools.connectivity.sqm.internal.core.RDBCorePlugin;
 import org.eclipse.datatools.modelbase.sql.constraints.ForeignKey;
 import org.eclipse.datatools.modelbase.sql.constraints.SQLConstraintsPackage;
-import org.eclipse.datatools.modelbase.sql.constraints.impl.ForeignKeyImpl;
 import org.eclipse.datatools.modelbase.sql.schema.Database;
 import org.eclipse.datatools.modelbase.sql.tables.Column;
 import org.eclipse.emf.common.util.EList;
@@ -27,8 +27,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 /**
  * This class is the ForeignKey implementation
  */
-public class MySqlCatalogForeignKey extends ForeignKeyImpl implements
-		ICatalogObject {
+public class MySqlCatalogForeignKey extends JDBCForeignKey {
 
 	private static final long serialVersionUID = 3833460717268643894L;
 
@@ -99,7 +98,7 @@ public class MySqlCatalogForeignKey extends ForeignKeyImpl implements
 				new String());
 	}
 
-	private boolean isIdentifyingRelationship(EList columns) {
+	public boolean isIdentifyingRelationship(EList columns) {
 		boolean isIdentifying = true;
 		Iterator it = columns.iterator();
 		while (it.hasNext()) {
