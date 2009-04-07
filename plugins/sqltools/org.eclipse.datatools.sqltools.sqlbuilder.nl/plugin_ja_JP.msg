@@ -25,7 +25,7 @@
 !
 ! Menu action labels
 !
-_UI_PLUGIN_PROVIDER            = Eclipse.org
+_UI_PLUGIN_PROVIDER            = Eclipse Data Tools Platform
 _UI_PLUGIN_NAME                = SQL ビルダ
 _NL1_PLUGIN_NAME 			   = SQL Builder Nl1 Fragment
 _UI_BUILDER_NAME               = SQL クエリビルダ

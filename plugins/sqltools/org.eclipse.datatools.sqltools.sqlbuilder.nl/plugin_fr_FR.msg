@@ -25,7 +25,7 @@
 !
 ! Menu action labels
 !
-_UI_PLUGIN_PROVIDER            = Eclipse.org
+_UI_PLUGIN_PROVIDER            = Eclipse Data Tools Platform
 _UI_PLUGIN_NAME                = Générateur SQL
 _NL1_PLUGIN_NAME 			   = Fragment NI1 du générateur SQL
 _UI_BUILDER_NAME               = Générateur de requête SQL
