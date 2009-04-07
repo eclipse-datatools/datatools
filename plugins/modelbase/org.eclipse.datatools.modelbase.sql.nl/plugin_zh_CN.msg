@@ -30,4 +30,4 @@
 # ====================================================================
 
 pluginName = Eclipse Data Tools Platform SQLModel Plug-in
-providerName = Eclipse.org
+providerName = Eclipse Data Tools Platform
