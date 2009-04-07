@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: DTP Open Data Access
 Bundle-SymbolicName: org.eclipse.datatools.connectivity.oda; singleton:=true
 Bundle-Version: 3.2.0.qualifier
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Data Tools Platform
 Export-Package: org.eclipse.datatools.connectivity.oda,
  org.eclipse.datatools.connectivity.oda.impl,
  org.eclipse.datatools.connectivity.oda.spec;x-internal:=true,
