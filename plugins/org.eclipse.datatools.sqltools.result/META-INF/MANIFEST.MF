@@ -4,7 +4,7 @@ Bundle-Name: Eclipse Data Tools Platform SQL Results View Plug-in
 Bundle-SymbolicName: org.eclipse.datatools.sqltools.result; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.datatools.sqltools.result.internal.ResultsViewPlugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
