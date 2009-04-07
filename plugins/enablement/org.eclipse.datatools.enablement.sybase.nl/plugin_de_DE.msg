@@ -3,6 +3,8 @@ Plugin.providerName = Eclipse.org
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Treiber für Sybase-Produkte
+# ====================================================================
+pluginName = Sybasesqlmodel Model
 providerName = Eclipse.org
 temptable.name = Temporäre Tabelle
 trigger.name = Auslöser

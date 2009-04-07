@@ -3,6 +3,8 @@ Plugin.providerName = Eclipse.org
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Sybase 製品のドライバ
+# ====================================================================
+pluginName = Sybasesqlmodel Model
 providerName = Eclipse.org
 temptable.name = 一時テーブル
 trigger.name = トリガ

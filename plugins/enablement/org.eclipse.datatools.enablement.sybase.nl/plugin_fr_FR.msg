@@ -3,6 +3,8 @@ Plugin.providerName = Eclipse.org
 
 sybase.drivers.category = Sybase
 sybase.drivers.category.description = Pilotes associés aux produits Sybase
+# ====================================================================
+pluginName = Sybasesqlmodel Model
 providerName = Eclipse.org
 temptable.name = Table temporaire
 trigger.name = Déclencheur
