@@ -73,7 +73,8 @@ public class TransientEObjectUtil implements IElementIDProvider
     {
         try
         {
-            return getConnectionInfo (object).getConnectionProfile();
+        	ConnectionInfo info = getConnectionInfo (object);
+            return info != null ? info.getConnectionProfile() : null;
         }
         catch (Exception e)
         {
@@ -101,8 +102,11 @@ public class TransientEObjectUtil implements IElementIDProvider
         StringBuffer buffer = new StringBuffer();
         stack.clear();
         IConnectionProfile profile = getConnectionProfile(object);
-        buildID(buffer, profile.getName());
-        buildID(buffer);
+        if (profile != null)
+        {
+        	buildID(buffer, profile.getName());
+        	buildID(buffer);
+        }
         stack.clear();
         return buffer.toString();
     }
