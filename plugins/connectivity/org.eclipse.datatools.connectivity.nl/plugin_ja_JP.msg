@@ -1,6 +1,16 @@
-#Thu Jun 22 00:30:49 EDT 2006
-Plugin.Name=Data Tools Platform Connectivity Plug-in
-Plugin.ProviderName=Eclipse.org
+## Copyright (c) 2005, 2008 Sybase, Inc.
+## All rights reserved. This program and the accompanying materials
+## are made available under the terms of the Eclipse Public License v1.0
+## which accompanies this distribution, and is available at
+## http://www.eclipse.org/legal/epl-v10.html
+##
+## Contributors:
+##    Sybase, Inc. - initial API and implementation
+##    IBM Corporation -  fix for defect #223855
+################################################################################ 
+Plugin.Name = Data Tools Platform Connectivity Plug-in
+Plugin.ProviderName = Eclipse Data Tools Platform
+
 extension-point.name.connectionProfile=接続プロファイル拡張
 extension-point.name.driverExtension=driverExtension
 extension-point.name.ProfileManagerInitializationProvider =  ProfileManagerInitializationProvider
