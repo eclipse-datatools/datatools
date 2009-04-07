@@ -13,5 +13,5 @@ Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: Eclipse Data Tools Platform
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
