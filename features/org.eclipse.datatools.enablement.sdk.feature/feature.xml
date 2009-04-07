@@ -4,6 +4,7 @@
       label="%featureName"
       version="1.7.0.qualifier"
       provider-name="%providerName"
+      plugin="org.eclipse.datatools.enablement.finfo"
       image="eclipse_update_120.jpg">
 
    <description>
@@ -78,13 +79,13 @@
    <includes
          id="org.eclipse.datatools.enablement.sybase.feature.source"
          version="0.0.0"/>
-         
+
    <includes
          id="org.eclipse.datatools.enablement.sqlite.feature.source"
          version="0.0.0"/>
-   
+
    <includes
          id="org.eclipse.datatools.enablement.ingres.feature.source"
          version="0.0.0"/>
-         
+
 </feature>
