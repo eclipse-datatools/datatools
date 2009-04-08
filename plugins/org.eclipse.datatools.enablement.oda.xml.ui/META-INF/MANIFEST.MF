@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.eclipse.datatools.enablement.oda.xml.ui;singleton:=true
 Bundle-Version: 1.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin
-Bundle-Vendor: %plugin.providerName
+Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.datatools.connectivity.oda.design.ui;bundle-version="[3.0.6,4.0.0)",
