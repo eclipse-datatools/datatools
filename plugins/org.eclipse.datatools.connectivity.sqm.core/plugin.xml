@@ -5,12 +5,10 @@
      <extension-point id="databaseDefinition" name="%databaseDefinitionExtensionPointName" schema="schema/databaseDefinition.exsd"/>
    <extension-point id="logicalContainment" name="%logicalContainmentExtensionPointName" schema="schema/logicalContainment.exsd"/>
    <extension-point id="dataModelElementFactory" name="%DataModelElementFactoryExtensionPointName" schema="schema/dataModelElementFactory.exsd"/>
-   <extension-point id="databaseReverseEngineering" name="%DatabaseReverseEngineeringExtensionPointName" schema="schema/databaseReverseEngineering.exsd"/>
    <extension-point id="ddlParser" name="%DDLParserExtensionPointName" schema="schema/ddlParser.exsd"/>
    <extension-point id="ddlGeneration" name="%DDLGenerationExtensionPointName" schema="schema/ddlGeneration.exsd"/>
    <extension-point id="catalog" name="%CatalogExtensionPointName" schema="schema/catalog.exsd"/>
    <extension-point id="databaseRecognition" name="%DatabaseRecognition" schema="schema/databaseRecognition.exsd"/>
-   <extension-point id="overrideLoader" name="overrideLoader" schema="schema/overrideLoader.exsd"/>
    <extension-point id="metaDataExtension" name="metaDataExtension" schema="schema/metaDataExtension.exsd"/>
 
    <extension
