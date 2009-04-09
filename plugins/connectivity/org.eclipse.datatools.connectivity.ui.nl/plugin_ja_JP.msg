@@ -25,7 +25,7 @@ category.name.connectionProfiles=接続プロファイル
 datatools.core.ui.preferences.data.node = データ管理
 
 DSE.content = データソースエクスプローラの拡張
-CP.content = Connection Profiles
+CP.content = 接続プロファイル
 
 AddProfile.command.label = 新しい接続プロファイルのコマンド
 AddProfile.command.description = このコマンドを実行すると、新しい接続プロファイルが作成されます。

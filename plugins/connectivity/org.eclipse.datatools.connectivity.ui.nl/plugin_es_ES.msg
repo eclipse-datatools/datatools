@@ -25,7 +25,7 @@ category.name.connectionProfiles=Perfiles de conexión
 datatools.core.ui.preferences.data.node = Administración de datos
 
 DSE.content = Extensión de explorador de fuentes de datos
-CP.content = Connection Profiles
+CP.content = Perfiles de conexión
 
 AddProfile.command.label = Nuevo comando de perfil de conexión
 AddProfile.command.description = Comando para crear un nuevo perfil de conexión

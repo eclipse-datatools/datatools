@@ -25,7 +25,7 @@ category.name.connectionProfiles=连接概要文件
 datatools.core.ui.preferences.data.node = 数据管理
 
 DSE.content = 数据源资源管理器扩展
-CP.content = Connection Profiles
+CP.content = 连接配置文件
 
 AddProfile.command.label = 新建连接配置文件命令
 AddProfile.command.description = 用于创建新连接配置文件的命令
