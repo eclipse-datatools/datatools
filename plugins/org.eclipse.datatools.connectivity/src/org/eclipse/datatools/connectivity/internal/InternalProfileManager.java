@@ -1353,11 +1353,14 @@ public class InternalProfileManager {
         {
 			String pluginID = element.getContributor().getName();
             Bundle bundle = Platform.getBundle(pluginID);
-            if (bundle.getState() == Bundle.RESOLVED)
-            {
-                bundle.start();
+            
+            // change from bug 270074
+            if(bundle != null) {
+            	if (bundle.getState() == Bundle.RESOLVED) {
+            		bundle.start();
+            	}
+            	return bundle.getState() == Bundle.ACTIVE;
             }
-            return bundle.getState() == Bundle.ACTIVE;
         }
         catch (BundleException e)
         {
@@ -1388,7 +1391,6 @@ public class InternalProfileManager {
 	 * @return DriverInstance
 	 */
 	private DriverInstance getDriverInstance(String inName, String driverTemplateID, String jarList) {
-
 		String defName = inName;
 
 		/* 
