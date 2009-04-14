@@ -505,7 +505,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 		columnMappingTable.getViewer( ).setInput( columnMappingList );
 		refreshColumnMappingViewer( );
 
-		setupEditors( );
 		addListenersAndToolTip( );
 	}
 	
@@ -712,6 +711,16 @@ public class ColumnMappingPage extends DataSetWizardPage
 	 */
 	private void addListenersAndToolTip( )
 	{
+		columnMappingTable.getViewer( )
+				.addDoubleClickListener( new IDoubleClickListener( ) {
+
+					public void doubleClick( DoubleClickEvent e )
+					{
+						doEdit( );
+						resetUpDownButton( );
+					}
+				} );
+
 		columnMappingTable.getViewer( )
 				.getTable( )
 				.addKeyListener( new KeyListener( ) {
@@ -1186,39 +1195,6 @@ public class ColumnMappingPage extends DataSetWizardPage
 			setMessage( Messages.getString( "error.columnMapping.createPage" ),           //$NON-NLS-1$
 					ERROR );
 		}
-	}
-
-	/**
-	 * set up editor for mapping table
-	 *
-	 */
-	private void setupEditors( )
-	{
-		CellEditor[] editors = new CellEditor[3];
-
-		editors[0] = new TextCellEditor( columnMappingTable.getViewer( )
-				.getTable( ), SWT.NONE );
-		editors[1] = new TextCellEditor( columnMappingTable.getViewer( )
-				.getTable( ), SWT.NONE );
-		editors[2] = new ComboBoxCellEditor( columnMappingTable.getViewer( )
-				.getTable( ), dataTypeDisplayNames, SWT.READ_ONLY );
-		columnMappingTable.getViewer( ).setCellEditors( editors );
-		columnMappingTable.getViewer( ).setColumnProperties( new String[]{
-				COLUMN_NAME, 
-				XPATH_NAME, 
-				TYPE_NAME, 
-		} );
-		
-		columnMappingTable.getViewer( )
-				.addDoubleClickListener( new IDoubleClickListener( ) {
-
-					public void doubleClick( DoubleClickEvent e )
-					{
-						doEdit( );
-						resetUpDownButton( );
-					}
-				} );
-
 	}
 
 	/**

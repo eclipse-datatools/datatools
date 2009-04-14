@@ -136,14 +136,25 @@ public class ColumnMappingDialog extends TrayDialog
 		GridLayout layout = new GridLayout( );
 		composite.setLayout( layout );
 
-		setupTopComposite( composite );
+		Composite topComposite = new Composite( composite, SWT.NONE );
+		GridLayout topLayout = new GridLayout( );
+		topLayout.numColumns = 2;
+		topLayout.marginWidth = 15;
+		topLayout.marginBottom = 5;
+		topLayout.verticalSpacing = 8;
+		topComposite.setLayout( topLayout );
+
+		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
+		topComposite.setLayoutData( gridData );
+
+		setupTopComposite( topComposite );
 		if ( isMappingMode )
 		{
 			setupButtonComposite( composite );
 		}
 		else
 		{
-			setupCustomExprArea( composite );
+			setupCustomExprArea( topComposite );
 		}
 
 		return composite;
@@ -153,19 +164,8 @@ public class ColumnMappingDialog extends TrayDialog
 	 * @param parent
 	 * @return
 	 */
-	private void setupTopComposite( Composite parent )
+	private void setupTopComposite( Composite topComposite )
 	{
-		Composite topComposite = new Composite( parent, SWT.NONE );
-		GridLayout layout = new GridLayout( );
-		layout.numColumns = 2;
-		layout.marginWidth = 15;
-		layout.marginBottom = 5;
-		layout.verticalSpacing = 8;
-		topComposite.setLayout( layout );
-
-		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
-		topComposite.setLayoutData( gridData );
-
 		GridData comboData = new GridData( );
 		comboData.widthHint = 320;
 
@@ -242,24 +242,14 @@ public class ColumnMappingDialog extends TrayDialog
 	 */
 	private void setupCustomExprArea( Composite parent )
 	{
-		Composite customComposite = new Composite( parent, SWT.NONE );
-		GridLayout layout = new GridLayout( );
-		layout.marginWidth = 20;
-		layout.marginBottom = 10;
-		layout.verticalSpacing = 8;
-		customComposite.setLayout( layout );
-
-		GridData gridData = new GridData( GridData.FILL_HORIZONTAL );
-		customComposite.setLayoutData( gridData );
 
 		GridData labelData = new GridData( );
-		labelData.horizontalAlignment = 10;
-		Label customLabel = new Label( customComposite, SWT.WRAP );
+		Label customLabel = new Label( parent, SWT.WRAP );
 		customLabel.setText( Messages.getString( "ColumnMappingDialog.info.xPath" ) ); //$NON-NLS-1$
 		customLabel.setLayoutData( labelData );
 		GridData textData = new GridData( GridData.FILL_HORIZONTAL );
-		textData.horizontalAlignment = 10;
-		xmlPathText = new Text( customComposite, SWT.BORDER );
+		textData.widthHint = 320;
+		xmlPathText = new Text( parent, SWT.BORDER );
 		xmlPathText.setText( TextProcessor.process( xpath, "//") );
 		xmlPathText.setLayoutData( textData );
 		xmlPathText.addModifyListener( new ModifyListener( ) {
