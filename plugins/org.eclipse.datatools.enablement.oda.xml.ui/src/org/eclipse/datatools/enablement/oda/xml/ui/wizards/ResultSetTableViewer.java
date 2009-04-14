@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Properties;
 
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.Connection;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.connectivity.oda.IQuery;
@@ -39,7 +40,7 @@ import org.eclipse.swt.widgets.TableItem;
  * Table viewer of result set, it contains refresh action to get the results of
  * xml file.
  * 
- * @version $Revision: 1.9 $ $Date: 2008/04/08 03:23:02 $
+ * @version $Revision: 1.10 $ $Date: 2008/04/23 08:13:05 $
  */
 public final class ResultSetTableViewer
 {

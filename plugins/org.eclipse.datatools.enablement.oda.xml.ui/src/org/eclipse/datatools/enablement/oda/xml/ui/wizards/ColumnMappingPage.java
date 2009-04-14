@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
@@ -1257,9 +1258,9 @@ public class ColumnMappingPage extends DataSetWizardPage
 		{
 			String tablePath = LEFT_SQUARE_BRACKET + selectedTreeItemText + RIGHT_SQUARE_BRACKET;  
 			String queryString = tableName +
-					RelationInformation.CONST_TABLE_COLUMN_DELIMITER +
+					Constants.CONST_TABLE_COLUMN_DELIMITER +
 					tablePath +
-					RelationInformation.CONST_TABLE_COLUMN_DELIMITER;
+					Constants.CONST_TABLE_COLUMN_DELIMITER;
 			String rowStr = EMPTY_STRING;
 			Iterator rowObj = this.columnMappingList.iterator( );
 			while ( rowObj.hasNext( ) )
@@ -1277,7 +1278,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 				return queryString;
 			else
 				return queryString
-						+ RelationInformation.CONST_TABLE_COLUMN_DELIMITER
+						+ Constants.CONST_TABLE_COLUMN_DELIMITER
 						+ this.nameSpace;
 		}
 		return null;
@@ -1528,7 +1529,7 @@ public class ColumnMappingPage extends DataSetWizardPage
 	
 	protected void updateDesign( DataSetDesign dataSetDesign )
 	{
-		DataSetDesignPopulator.populateResultSet( dataSetDesign );
+		DataSetDesignPopulator.populateMetaData( dataSetDesign );
 	}
 	
 	protected String getQueryText( DataSetDesign dataSetDesign )

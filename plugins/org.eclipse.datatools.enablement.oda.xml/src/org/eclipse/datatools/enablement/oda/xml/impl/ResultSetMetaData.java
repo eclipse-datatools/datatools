@@ -10,25 +10,18 @@
  *******************************************************************************/
 package org.eclipse.datatools.enablement.oda.xml.impl;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
+import org.eclipse.datatools.enablement.oda.xml.util.MappedTables;
 
 /**
  * This class describe the information of certain ResultSet.
  */
 public class ResultSetMetaData implements IResultSetMetaData
 {
-	//Column Names
-	private String[] columnNames;
 	
-	//To accelerate find index from column name
-	private Map nameIndexMap;
-	
-	private RelationInformation ri;
+	private MappedTables mt;
 	
 	//Table Name.
 	private String tableName;
@@ -38,16 +31,11 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 * @param ri
 	 * @param tableName
 	 */
-	public ResultSetMetaData(RelationInformation ri, String tableName)
+	public ResultSetMetaData(MappedTables mt, String tableName)
 	{
-		this.ri = ri;
+		this.mt = mt;
 		this.tableName = tableName;
-		this.columnNames = ri.getTableColumnNames(tableName);
-		nameIndexMap = new HashMap();
-		for (int i = 0; i < columnNames.length; i++)
-		{
-			nameIndexMap.put( columnNames[i], new Integer(i + 1) );
-		}
+
 	}
 	
 	/*
@@ -56,7 +44,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	public int getColumnCount( ) throws OdaException
 	{
-		return columnNames.length;
+		return mt.getColumnCount( tableName );
 	}
 
 	/*
@@ -65,7 +53,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	public String getColumnName( int index ) throws OdaException
 	{
-		return columnNames[index-1];
+		return mt.getColumnName( tableName, index );
 	}
 
 	/*
@@ -74,7 +62,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	public String getColumnLabel( int index ) throws OdaException
 	{
-		return columnNames[index-1];
+		return getColumnName( index );
 	}
 
 	/*
@@ -83,7 +71,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	public int getColumnType( int index ) throws OdaException
 	{
-		return DataTypes.getType(getColumnTypeName(index));
+		return DataTypes.getType( mt.getColumnType( tableName, index ));
 	}
 
 	/*
@@ -92,7 +80,7 @@ public class ResultSetMetaData implements IResultSetMetaData
 	 */
 	public String getColumnTypeName( int index ) throws OdaException
 	{
-		return ri.getTableColumnType(tableName, getColumnName(index));
+		return mt.getColumnType( tableName, index );
 	}
 
 	/*
@@ -129,19 +117,5 @@ public class ResultSetMetaData implements IResultSetMetaData
 	public int isNullable( int index ) throws OdaException
 	{
 		return columnNullableUnknown;
-	}
-	
-	
-	int getColumnIndex( String columnName ) throws OdaException
-	{
-		Object index = nameIndexMap.get( columnName );
-		if (index == null)
-		{
-			throw new OdaException();
-		}
-		else 
-		{
-			return ((Integer)index).intValue( );
-		}
 	}
 }

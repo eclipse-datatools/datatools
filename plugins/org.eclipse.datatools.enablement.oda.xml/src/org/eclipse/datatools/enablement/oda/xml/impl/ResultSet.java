@@ -22,6 +22,7 @@ import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
+import org.eclipse.datatools.enablement.oda.xml.util.MappedTables;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.enablement.oda.xml.util.SaxParserConsumer;
 import org.eclipse.datatools.enablement.oda.xml.util.date.DateUtil;
@@ -38,8 +39,7 @@ public class ResultSet implements IResultSet
     private static final String TRUE_LITERAL = "true";	//$NON-NLS-1$
     private static final String SINGLE_SPACE = " ";	//$NON-NLS-1$
 
-    //The ResultSetMetaData of this resultSet.
-	private ResultSetMetaData rsMetaData;
+	private MappedTables mt;
 	
 	//the max number of rows can be fetched from this result set.
 	private int maxRows;
@@ -70,14 +70,14 @@ public class ResultSet implements IResultSet
 	 * @param tableName
 	 * @throws OdaException
 	 */
-	public ResultSet( Connection connection, RelationInformation ri, String tableName, int maxRows )
+	public ResultSet( Connection connection, MappedTables mt, String tableName, int maxRows )
 			throws OdaException
 	{
-		this.rsMetaData = new ResultSetMetaData( ri, tableName );
+		this.mt = mt;
 
 		this.maxRows = maxRows;
 		
-		this.relationInfo = ri;
+		this.relationInfo = new RelationInformation( mt, true );
 		this.tableName = tableName;
 		this.connection = connection;
 		
@@ -91,7 +91,7 @@ public class ResultSet implements IResultSet
 	public IResultSetMetaData getMetaData( ) throws OdaException
 	{
 		testClosed();
-		return rsMetaData;
+		return new ResultSetMetaData( mt, tableName );
 	}
 
 	/**
@@ -116,8 +116,6 @@ public class ResultSet implements IResultSet
 		{
 			this.spConsumer.close( );
 		}
-		this.rsMetaData = null;
-		
 		this.isClosed = true;
 	}
 
@@ -195,7 +193,7 @@ public class ResultSet implements IResultSet
 	 */
 	private int getColumnIndex( String columnName ) throws OdaException
 	{
-		return rsMetaData.getColumnIndex( columnName );
+		return mt.getColumnIndex( tableName, columnName );
 	}
 
 	/*

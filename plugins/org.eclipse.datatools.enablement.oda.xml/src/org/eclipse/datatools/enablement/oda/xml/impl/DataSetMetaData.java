@@ -17,7 +17,7 @@ import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.enablement.oda.xml.Constants;
 
 /**
- * This class descript the meta data information of xml driver. 
+ * This class describes the meta data information of xml driver. 
  *
  */
 public class DataSetMetaData implements IDataSetMetaData
@@ -133,7 +133,7 @@ public class DataSetMetaData implements IDataSetMetaData
 	 */
 	public boolean supportsNamedParameters( ) throws OdaException
 	{
-		return false;
+		return true;
 	}
 
 	/*
@@ -142,7 +142,7 @@ public class DataSetMetaData implements IDataSetMetaData
 	 */
 	public boolean supportsInParameters( ) throws OdaException
 	{
-		return false;
+		return true;
 	}
 
 	/*

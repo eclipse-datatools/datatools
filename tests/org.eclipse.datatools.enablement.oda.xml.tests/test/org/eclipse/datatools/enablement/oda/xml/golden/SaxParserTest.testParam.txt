@@ -1,0 +1,3 @@
+b-bar1					b-bar2					b-bar9					a-foo					
+b1-1					b1-2					null					a1					
+b2-1					b2-2					b2-3					a2					

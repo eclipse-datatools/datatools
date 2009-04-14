@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.Preferences;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.design.DataSetDesign;
 import org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizardPage;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.ui.UiPlugin;
 import org.eclipse.datatools.enablement.oda.xml.ui.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.ui.preference.DataSetPreferencePage;
@@ -518,7 +519,7 @@ public class XPathChoosePage extends DataSetWizardPage
     
 	protected void updateDesign( DataSetDesign dataSetDesign )
 	{
-		DataSetDesignPopulator.populateResultSet( dataSetDesign );
+		DataSetDesignPopulator.populateMetaData( dataSetDesign );
 	}
 
 	protected String getQueryText( DataSetDesign dataSetDesign )

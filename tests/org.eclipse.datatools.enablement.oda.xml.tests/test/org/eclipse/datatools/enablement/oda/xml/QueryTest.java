@@ -12,6 +12,7 @@ package org.eclipse.datatools.enablement.oda.xml;
 
 import java.util.Properties;
 
+import org.eclipse.datatools.connectivity.oda.IParameterMetaData;
 import org.eclipse.datatools.connectivity.oda.IQuery;
 import org.eclipse.datatools.connectivity.oda.IResultSet;
 import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
@@ -141,5 +142,22 @@ public class QueryTest extends BaseTest
 		assertNotNull( rsMetaData );
 		assertEquals( rsMetaData.getColumnCount(), 1);
 		assertEquals( rsMetaData.getColumnName(1), "book.category");
+	}
+	
+	public void testParameter( ) throws OdaException
+	{
+		query.prepare( "t1#-TNAME-#t1#:#[//{?p1?}]#:#{c1;String;/@{?p2?}},{{?p0?};String;{?p2?}{?p1?}}" );
+		
+		IResultSetMetaData rsMetaData = query.getMetaData();
+		assertNotNull( rsMetaData );
+		assertEquals( rsMetaData.getColumnCount(), 2);
+		assertEquals( rsMetaData.getColumnName(1), "c1");
+		assertEquals( rsMetaData.getColumnName(2), "{?p0?}");
+		
+		IParameterMetaData pmd = query.getParameterMetaData( );
+		assertNotNull( pmd );
+		assertEquals( 2, pmd.getParameterCount( ) );
+		assertEquals( "p1", pmd.getParameterName( 1 ) );
+		assertEquals( "p2", pmd.getParameterName( 2 ) );
 	}
 }

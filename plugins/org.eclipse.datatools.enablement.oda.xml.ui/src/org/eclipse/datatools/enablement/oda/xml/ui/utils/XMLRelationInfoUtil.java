@@ -13,7 +13,7 @@ package org.eclipse.datatools.enablement.oda.xml.ui.utils;
 
 import java.util.Iterator;
 
-import org.eclipse.datatools.enablement.oda.xml.impl.Query;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.swt.widgets.Control;
@@ -56,9 +56,9 @@ public class XMLRelationInfoUtil
 		{
 			if ( splitStr[i].startsWith( tableName ) )
 			{
-				if ( splitStr[i].indexOf( Query.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER ) > 0 )
+				if ( splitStr[i].indexOf( Constants.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER ) > 0 )
 				{
-					String relationInfo[] = splitStr[i].split( Query.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER );
+					String relationInfo[] = splitStr[i].split( Constants.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER );
 					if ( relationInfo.length == 2 )
 						return relationInfo[1];
 				}
@@ -98,7 +98,7 @@ public class XMLRelationInfoUtil
 			buf.append( prefix ).append( n++ );
 		}
 		return buf.toString( )
-				+ Query.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER + buf.toString( );
+				+ Constants.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER + buf.toString( );
 	}
 
 	/**

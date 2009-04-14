@@ -47,7 +47,7 @@
       <dataSetUI
             id="org.eclipse.datatools.enablement.oda.xml.dataSet"
             initialPageId="org.eclipse.datatools.connectivity.oda.xml.ui.dataset.ui1"
-            supportsInParameters="false"
+            supportsInParameters="true"
             supportsOutParameters="false">
             <dataSetWizard 
                   class="org.eclipse.datatools.connectivity.oda.design.ui.wizards.DataSetWizard" 

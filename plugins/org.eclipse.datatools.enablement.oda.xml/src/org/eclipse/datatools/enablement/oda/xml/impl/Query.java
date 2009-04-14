@@ -22,19 +22,15 @@ import org.eclipse.datatools.connectivity.oda.IResultSetMetaData;
 import org.eclipse.datatools.connectivity.oda.OdaException;
 import org.eclipse.datatools.connectivity.oda.SortSpec;
 import org.eclipse.datatools.connectivity.oda.spec.QuerySpecification;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
-import org.eclipse.datatools.enablement.oda.xml.util.RelationInformation;
+import org.eclipse.datatools.enablement.oda.xml.util.MappedTables;
 
 /**
  * This class implements IQuery interface.
  */
 public class Query implements IQuery
 {
-	public static final String QUERYTEXT_TABLE_NAME_DEFN_DELIMITER = "#-TNAME-#"; //$NON-NLS-1$
-
-	//The RelationInformation 
-	private RelationInformation relationInformation;
-	
 	//The name of the XML table that will be prepared
 	private String tableName;
 
@@ -45,6 +41,8 @@ public class Query implements IQuery
 	private boolean isClosed;
 	
 	private Connection connection;
+	
+	private MappedTables mt;
 	/**
 	 * 
 	 * @param file
@@ -68,14 +66,14 @@ public class Query implements IQuery
 		if ( queryText == null )
 			throw new org.eclipse.datatools.connectivity.oda.OdaException( Messages.getString("Query.InvalidQueryText") ); //$NON-NLS-1$
 	
-		String[] temp = queryText.trim().split(QUERYTEXT_TABLE_NAME_DEFN_DELIMITER);
-		assert temp.length == 2;
+		String[] temp = queryText.trim().split(Constants.QUERYTEXT_TABLE_NAME_DEFN_DELIMITER);
 		
 		if ( temp.length != 2 )
 			throw new org.eclipse.datatools.connectivity.oda.OdaException( Messages.getString("Query.InvalidQueryText") ); //$NON-NLS-1$
 	
 		this.tableName = temp[0];
-		this.relationInformation = new RelationInformation( temp[1], true );
+		
+		this.mt = new MappedTables( temp[1] );
 	}
 
 	/*
@@ -123,7 +121,7 @@ public class Query implements IQuery
 	public IResultSetMetaData getMetaData( ) throws OdaException
 	{
 		testClosed();
-		return new ResultSetMetaData( relationInformation, tableName);
+		return new ResultSetMetaData( mt, tableName);
 	}
 
 	/*
@@ -135,9 +133,8 @@ public class Query implements IQuery
 		testClosed( );
 		if ( this.tableName == null || this.tableName.trim( ).length( ) == 0 )
 			throw new OdaException( Messages.getString( "Query.QueryHasNotBeenPrepared" ) ); //$NON-NLS-1$
-
-		ResultSet result = new ResultSet( connection,
-				relationInformation,
+		
+		ResultSet result = new ResultSet( connection, mt,
 				tableName,
 				this.getMaxRows( ));
 	
@@ -159,7 +156,7 @@ public class Query implements IQuery
 	 */
 	public void setInt( String parameterName, int value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -168,7 +165,7 @@ public class Query implements IQuery
 	 */
 	public void setInt( int parameterId, int value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
 	/*
@@ -178,7 +175,7 @@ public class Query implements IQuery
 	public void setDouble( String parameterName, double value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -187,7 +184,7 @@ public class Query implements IQuery
 	 */
 	public void setDouble( int parameterId, double value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
 	/*
@@ -197,7 +194,7 @@ public class Query implements IQuery
 	public void setBigDecimal( String parameterName, BigDecimal value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -207,7 +204,7 @@ public class Query implements IQuery
 	public void setBigDecimal( int parameterId, BigDecimal value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
 	/*
@@ -217,7 +214,10 @@ public class Query implements IQuery
 	public void setString( String parameterName, String value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		if ( mt != null )
+		{
+			mt.setParameterValue( parameterName, value );
+		}
 	}
 
 	/*
@@ -226,7 +226,13 @@ public class Query implements IQuery
 	 */
 	public void setString( int parameterId, String value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		if ( mt != null )
+		{
+			if ( parameterId >= 1 && parameterId <= mt.getParameters( ).length )
+			{
+				mt.setParameterValue( mt.getParameters( )[parameterId-1], value );
+			}
+		}
 	}
 
 	/*
@@ -235,7 +241,7 @@ public class Query implements IQuery
 	 */
 	public void setDate( String parameterName, Date value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -244,7 +250,7 @@ public class Query implements IQuery
 	 */
 	public void setDate( int parameterId, Date value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
 	/*
@@ -253,7 +259,7 @@ public class Query implements IQuery
 	 */
 	public void setTime( String parameterName, Time value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -262,7 +268,7 @@ public class Query implements IQuery
 	 */
 	public void setTime( int parameterId, Time value ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
 	/*
@@ -272,7 +278,7 @@ public class Query implements IQuery
 	public void setTimestamp( String parameterName, Timestamp value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterName, String.valueOf( value ) );
 	}
 
 	/*
@@ -282,7 +288,7 @@ public class Query implements IQuery
 	public void setTimestamp( int parameterId, Timestamp value )
 			throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		setString( parameterId, String.valueOf( value ) );
 	}
 
     /* (non-Javadoc)
@@ -291,7 +297,7 @@ public class Query implements IQuery
     public void setBoolean( String parameterName, boolean value )
             throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterName, String.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -300,7 +306,7 @@ public class Query implements IQuery
     public void setBoolean( int parameterId, boolean value )
             throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterId, String.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -308,7 +314,7 @@ public class Query implements IQuery
      */
     public void setObject( int parameterId, Object value ) throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterId, String.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -317,7 +323,7 @@ public class Query implements IQuery
     public void setObject( String parameterName, Object value )
             throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterName, String.valueOf( value ) );
     }
 
     /* (non-Javadoc)
@@ -325,7 +331,7 @@ public class Query implements IQuery
      */
     public void setNull( String parameterName ) throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterName, "" ); //$NON-NLS-1$
     }
 
     /* (non-Javadoc)
@@ -333,7 +339,7 @@ public class Query implements IQuery
      */
     public void setNull( int parameterId ) throws OdaException
     {
-        throw new UnsupportedOperationException();
+    	setString( parameterId, "" ); //$NON-NLS-1$
     }
 
     /*
@@ -342,7 +348,18 @@ public class Query implements IQuery
 	 */
 	public int findInParameter( String parameterName ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		if ( mt == null )
+		{
+			return -1;
+		}
+		for ( int i=0; i<mt.getParameters( ).length; i++ )
+		{
+			if ( mt.getParameters( )[i].equals( parameterName ))
+			{
+				return i+1;
+			}
+		}
+		return -1;
 	}
 
 	/*
@@ -351,7 +368,54 @@ public class Query implements IQuery
 	 */
 	public IParameterMetaData getParameterMetaData( ) throws OdaException
 	{
-		throw new UnsupportedOperationException ();
+		if ( mt == null )
+		{
+			return null;
+		}
+		return new IParameterMetaData( )
+		{
+
+			public int getParameterCount( ) throws OdaException
+			{
+				return mt.getParameters( ).length;
+			}
+
+			public int getParameterMode( int param ) throws OdaException
+			{
+				return IParameterMetaData.parameterModeIn;
+			}
+
+			public String getParameterName( int param ) throws OdaException
+			{
+				return mt.getParameters( )[param - 1];
+			}
+
+			public int getParameterType( int param ) throws OdaException
+			{
+				return DataTypes.STRING;
+			}
+
+			public String getParameterTypeName( int param ) throws OdaException
+			{
+				return DataTypes.getTypeString( DataTypes.STRING );
+			}
+
+			public int getPrecision( int param ) throws OdaException
+			{
+				return -1;
+			}
+
+			public int getScale( int param ) throws OdaException
+			{
+				return -1;
+			}
+
+			public int isNullable( int param ) throws OdaException
+			{
+				return IParameterMetaData.parameterNullableUnknown;
+			}
+			
+		};
 	}
 
 	/*
@@ -409,14 +473,6 @@ public class Query implements IQuery
         throw new UnsupportedOperationException();
     }
 
-    /**
-	 * Get the RelationInformation of this Query.
-	 * @return
-	 */
-	RelationInformation getRelationInformation()
-	{
-		return this.relationInformation;
-	}
 
 	/*
 	 * (non-Javadoc)

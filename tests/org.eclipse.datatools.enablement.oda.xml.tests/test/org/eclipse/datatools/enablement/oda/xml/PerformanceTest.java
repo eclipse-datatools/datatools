@@ -70,7 +70,7 @@ public class PerformanceTest extends BaseTest
 				+ "{header.1.6.9;STRING;/header.1.6.9}," 
 				+ "{header.1.6.10;STRING;/header.1.6.10}," 
 				+ "{header.1.6.11;STRING;/header.1.6.11}," 
-				+ "{header.1.7.1;STRING;/header.1.7.1};";
+				+ "{header.1.7.1;STRING;/header.1.7.1},   ";
 		System.out.println("Begin performance test");
 		double totalTime = 0; 
 		int repeats = 20;

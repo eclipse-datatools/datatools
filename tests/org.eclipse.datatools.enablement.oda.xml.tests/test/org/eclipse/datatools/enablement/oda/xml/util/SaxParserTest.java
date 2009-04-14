@@ -30,8 +30,6 @@ import org.eclipse.datatools.enablement.oda.xml.impl.ResultSet;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestConstants;
 import org.eclipse.datatools.enablement.oda.xml.test.util.TestUtil;
 
-import sun.awt.AppContext;
-
 /**
  * 
  */
@@ -62,11 +60,13 @@ public class SaxParserTest extends BaseTest
 			+ "#-# simple#:#[/library/book]#:#{book.category;String;/@category},{book.title;String;/title},{book.author_1;String;/author[1]/@name},{book.author_2;String;/author[2]/@name}"
 			+ "#-# attributeFilter#:#[/BookStore/Book[@a=\"2\"]]#:#{b;STRING;/@b}"
 			+ "#-# Asterisk#:#[/*/*/nest]#:#{b;STRING;}"
-			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}#:#&lt;\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">"
+			+ "#-# soap#:#[/SOAP-ENV:Envelope/SOAP-ENV:Body/GetWeatherByZipCodeResponse/GetWeatherByZipCodeResult]#:#{Latitude;STRING;/Latitude},{Longitude;STRING;/Longitude},{AllocationFactor;STRING;/AllocationFactor},{FipsCode;STRING;/FipsCode},{PlaceName;STRING;/PlaceName},{StateCode;STRING;/StateCode},{Status;STRING;/Status},{Day;STRING;/Details/WeatherData/Day},{WeatherImage;STRING;/Details/WeatherData/WeatherImage},{MaxTemperatureF;STRING;/Details/WeatherData/MaxTemperatureF},{MinTemperatureF;STRING;/Details/WeatherData/MinTemperatureF},{MaxTemperatureC;STRING;/Details/WeatherData/MaxTemperatureC},{MinTemperatureC;STRING;/Details/WeatherData/MinTemperatureC}"
 			+ "#-# anyAndRecursive#:#[//test]#:#{test_name;STRING;test_name},{area_name;STRING;../../../../area_name}"
-			+ "#-# nameSpace#:#[/feed/entry/g:id]#:#{title;STRING;../title},{g:price;STRING;../g:price},{g:id;STRING;}#:#&lt;\"openSearch\",\"http:%%a9.com%-%spec%opensearchrss%1.0%\";\"g\",\"http:%%base.google.com%ns%1.0\";\"batch\",\"http:%%schemas.google.com%gdata%batch\";\"gm\",\"http:%%base.google.com%ns-metadata%1.0\";\"\",\"http:%%www.w3.org%2005%Atom";
+			+ "#-# parameter#:#[//{?entry?}]#:#{b-bar1;String;/field[@{?b?}='bar1']},{b-bar2;String;/field[@{?b?}='{?bar2?}']},{b-bar9;String;/field[@b='bar9']},{a-foo;String;/field[@a='foo']}"
+			/*this line should be the last because name space information is saved with the last table mapping currently  */
+			+ "#-# nameSpace#:#[/feed/entry/g:id]#:#{title;STRING;../title},{g:price;STRING;../g:price},{g:id;STRING;}#:#<\"openSearch\",\"http:%%a9.com%-%spec%opensearchrss%1.0%\";\"g\",\"http:%%base.google.com%ns%1.0\";\"batch\",\"http:%%schemas.google.com%gdata%batch\";\"gm\",\"http:%%base.google.com%ns-metadata%1.0\";\"\",\"http:%%www.w3.org%2005%Atom\";\"SOAP-ENV\",\"http:%%schemas.xmlsoap.org%soap%envelope%\";\"xsd\",\"http:%%www.w3.org%2001%XMLSchema\";\"SOAP-ENC\",\"http:%%schemas.xmlsoap.org%soap%encoding%\";\"xsi\",\"http:%%www.w3.org%2001%XMLSchema-instance\">";
 	
-	private RelationInformation ri;
+	private MappedTables mt;
 
 	protected void setUp( ) throws Exception
 	{
@@ -91,13 +91,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"simple",
 				0);
 
@@ -135,13 +135,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"aut  hor", 
 				0);
 
@@ -178,13 +178,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"title",
 				0);
 
@@ -219,13 +219,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"stat" ,
 				0);
 
@@ -260,7 +260,7 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 
 		Connection conn = new Connection( );
 		Properties prop = new Properties( );
@@ -295,7 +295,6 @@ public class SaxParserTest extends BaseTest
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST4_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST4_GOLDEN_XML ) ) );
 
-		AppContext.getAppContext( ).remove( Constants.APPCONTEXT_INPUTSTREAM );
 		rs.close( );
 		conn.close( );
 	}
@@ -312,13 +311,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"none" ,
 				0);
 
@@ -353,13 +352,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.SMALL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"one" ,
 				0);
 
@@ -394,13 +393,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"recursive" ,
 				0);
 
@@ -441,13 +440,13 @@ public class SaxParserTest extends BaseTest
 		FileOutputStream fos = new FileOutputStream( file );
 		String text = "test#:#[//row]#:#{X;String;/axis_x},{Y;String;/axis_y},{Value;String;/value}";
 
-		ri = new RelationInformation( text );
+		mt = new MappedTables( text );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.CRITICAL_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"test" ,
 				0);
 
@@ -483,13 +482,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 		BufferedOutputStream bos = new BufferedOutputStream( fos );
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.UTF8BOM );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"utf" ,
 				0);
 
@@ -524,7 +523,7 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		FileInputStream iStream = new FileInputStream(new File( TestConstants.RECURSIVE_XML_FILE ));
 		Connection conn = new Connection( );
 		Map appContext = new HashMap( );
@@ -532,15 +531,15 @@ public class SaxParserTest extends BaseTest
 		conn.setAppContext( appContext );
 		conn.open( null );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"recursive" ,
 				0);
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"recursive" ,
 				0);
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"recursive" ,
 				0);
 		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
@@ -579,13 +578,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"duplicate", 
 				0);
 
@@ -625,13 +624,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME);
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"complexNest", 
 				0);
 
@@ -671,13 +670,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"filter1", 
 				0);
 
@@ -717,13 +716,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"filter2", 
 				0);
 
@@ -758,13 +757,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_RELATIVE_LOCATION );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"relativeLocation",
 				0 );
 
@@ -804,13 +803,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TEST_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"filter3", 
 				0);
 
@@ -850,13 +849,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.MIXED_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"filter4", 
 				0);
 
@@ -897,13 +896,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.NESTED_TABLE_ROOT_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"nestedTableRootFilter", 
 				0);
 
@@ -944,13 +943,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.EMPTY_ELEMENT );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"emptyElement",
 				0 );
 
@@ -991,13 +990,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.TABLE_FILTER );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"tableFilter",
 				0 );
 
@@ -1032,13 +1031,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.BOOKSTORE_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"attributeFilter",
 				0 );
 
@@ -1073,13 +1072,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_DUPLICATENAME );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"Asterisk",
 				0 );
 
@@ -1114,13 +1113,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString , true);
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.XML_FILE_WITH_NAMESPACE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"soap",
 				0 );
 
@@ -1155,13 +1154,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.RECURSIVE_XML_FILE );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"recursiveFilter" ,
 				0);
 
@@ -1196,13 +1195,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.XML_FILE_WITH_NAMESPACE2 );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"nameSpace" ,
 				0);
 
@@ -1237,13 +1236,13 @@ public class SaxParserTest extends BaseTest
 		file.createNewFile( );
 		FileOutputStream fos = new FileOutputStream( file );
 
-		ri = new RelationInformation( testString );
+		mt = new MappedTables( testString );
 		Connection conn = new Connection( );
 		Properties p = new Properties( );
 		p.put( Constants.CONST_PROP_FILELIST, TestConstants.ANY_RECURSIVE_XML );
 		conn.open( p );
 		rs = new ResultSet( conn,
-				ri,
+				mt,
 				"anyAndRecursive" ,
 				0);
 
@@ -1264,5 +1263,53 @@ public class SaxParserTest extends BaseTest
 		conn.close( );
 		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST26_OUTPUT_XML ),
 				new File( TestConstants.SAX_PARSER_TEST26_GOLDEN_XML ) ) );
+	}
+	
+	public void testParameters( ) throws OdaException, IOException
+	{
+		File file = new File( TestConstants.SAX_PARSER_TEST_PARAM_OUTPUT_XML );
+
+		if ( file.exists( ) )
+			file.delete( );
+		File path = new File( file.getParent( ) );
+		if ( !path.exists( ) )
+			path.mkdir( );
+		file.createNewFile( );
+		FileOutputStream fos = new FileOutputStream( file );
+
+		mt = new MappedTables( testString );
+
+		Connection conn = new Connection( );
+		Properties prop = new Properties( );
+		prop.put( Constants.CONST_PROP_FILELIST,
+				TestConstants.TEST_FILTER );
+
+		conn.open( prop );
+		IQuery query = conn.newQuery( null );
+		query.prepare( "parameter#-TNAME-#" + this.testString);
+		query.setString( "entry", "entry" );
+		query.setString( "b", "b");
+		query.setString( "bar2", "bar2" );
+		rs = (ResultSet) query.executeQuery( );
+
+		for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+			fos.write( ( rs.getMetaData( ).getColumnName( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+		fos.write( lineSeparator.getBytes( ) );
+
+		while ( rs.next( ) )
+		{
+			for ( int i = 0; i < rs.getMetaData( ).getColumnCount( ); i++ )
+				fos.write( ( rs.getString( i + 1 ) + "\t\t\t\t\t" ).getBytes( ) );
+			fos.write( lineSeparator.getBytes( ) );
+		}
+		assertFalse( rs.next( ) );
+
+		fos.close( );
+
+		assertTrue( TestUtil.compareTextFile( new File( TestConstants.SAX_PARSER_TEST_PARAM_OUTPUT_XML ),
+				new File( TestConstants.SAX_PARSER_TEST_PARAM_GOLDEN_XML ) ) );
+
+		rs.close( );
+		conn.close( );
 	}
 }

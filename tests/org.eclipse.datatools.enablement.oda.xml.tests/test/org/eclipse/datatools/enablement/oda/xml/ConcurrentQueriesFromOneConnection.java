@@ -36,7 +36,7 @@ public class ConcurrentQueriesFromOneConnection extends BaseTest
 		super.setUp( );
 		queryText =	"table0#-TNAME-#"
 			+ "table0#:#[/Report/Details]#:#"
-			+ "{pagebreak.visibility;STRING;/pagebreak.visibility};";
+			+ "{pagebreak.visibility;STRING;/pagebreak.visibility}";
 		conn = new Connection( );
 	}
 	

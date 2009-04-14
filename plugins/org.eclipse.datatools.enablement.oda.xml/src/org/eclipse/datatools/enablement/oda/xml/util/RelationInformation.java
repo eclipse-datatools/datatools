@@ -18,8 +18,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.datatools.connectivity.oda.OdaException;
+import org.eclipse.datatools.enablement.oda.xml.Constants;
 import org.eclipse.datatools.enablement.oda.xml.i18n.Messages;
 import org.eclipse.datatools.enablement.oda.xml.impl.DataTypes;
+import org.eclipse.datatools.enablement.oda.xml.util.MappedTables.Column;
+import org.eclipse.datatools.enablement.oda.xml.util.MappedTables.Table;
 
 /**
  * This class is used to dealing with the strings which are parsed as arguments to 
@@ -34,16 +37,9 @@ public class RelationInformation
     private static final String DOUBLE_QUOTE = "\"";    //$NON-NLS-1$
     private static final String SINGLE_QUOTE = "'";     //$NON-NLS-1$
     private static final String FORWARD_SLASH = "/";    //$NON-NLS-1$
-    private static final String COLON_MARK =":";
-
-	public static final String CONST_TABLE_DELIMITER = "#-#";  //$NON-NLS-1$
-	public static final String CONST_TABLE_COLUMN_DELIMITER = "#:#";   //$NON-NLS-1$
-	public static final String CONST_COLUMN_METAINFO_DELIMITER = ";";  //$NON-NLS-1$
-	public static final String CONST_COLUMN_DELIMITER = ",";   //$NON-NLS-1$
-	
-	//
+    //
 	private HashMap tableInfos;
-	private boolean useNamespace = false, containsNamespace = false;
+	private boolean containsNamespace = false;
 
 	/**
 	 * 
@@ -52,111 +48,73 @@ public class RelationInformation
 	 */
 	public RelationInformation( String relationString ) throws OdaException
 	{
-		this.tableInfos = new HashMap( );
-		this.useNamespace = false;
-		initialize( relationString.trim( ) );
-	}
-
-	/**
-	 * 
-	 * @param relationString
-	 * @param useNamespace
-	 * @throws OdaException
-	 */
-	public RelationInformation( String relationString, boolean useNamespace ) throws OdaException
-	{
-		this.tableInfos = new HashMap( );
-		this.useNamespace = useNamespace;
-		initialize( relationString.trim( ) );		
-	}
-	
-	/**
-	 * Initialize tableInfos by analyzing the input string.
-	 * @param relationString
-	 * @throws OdaException 
-	 */
-	private void initialize( String relationString ) throws OdaException
-	{	
 		if( relationString == null|| relationString.length() == 0)
 			throw new OdaException( Messages.getString("RelationInformation.InputStringCannotBeNull"));//$NON-NLS-1$
-		
-		String[] tables = relationString.split( CONST_TABLE_DELIMITER );
-		for ( int i = 0; i < tables.length; i++ )
+		initialize( new MappedTables( relationString ), false );	
+	}
+	
+	public RelationInformation( MappedTables mt, boolean useNamespace ) throws OdaException
+	{
+		initialize( mt, useNamespace );		
+	}
+
+	private void initialize( MappedTables mt, boolean useNamespace ) throws OdaException
+	{	
+		this.tableInfos = new HashMap( );
+		Map prefixMap = new HashMap( );
+		if ( useNamespace && mt.getNameSpacePart( ) != null )
 		{
-			List filterColumnInfos = new ArrayList();
-			String[] temp = tables[i].trim( )
-					.split( CONST_TABLE_COLUMN_DELIMITER );
-			assert ( temp.length >= 3 );
-			
-			Map prefixMap = new HashMap( );
-			if ( useNamespace && temp.length > 3 )
+			containsNamespace = true;
+			String[] names = mt.getNameSpacePart( ).split( Constants.CONST_COLUMN_METAINFO_DELIMITER );
+			for ( int k = 0; k < names.length; k++ )
 			{
-				containsNamespace = true;
-				prefixMap = new HashMap( );
-				String nameSpaceInfo = temp[3].trim( );
-				String nameSpaces = nameSpaceInfo.substring( 1,
-						temp[3].length( ) - 1 ).trim( );
-				String[] names = nameSpaces.split( CONST_COLUMN_METAINFO_DELIMITER );
-				for ( int k = 0; k < names.length; k++ )
+				String[] entry = names[k].split( Constants.CONST_COLUMN_DELIMITER );
+				if ( entry.length == 2
+						&& entry[0].trim( ).matches( "\\Q\"\\E.*\\Q\"\\E" )
+						&& entry[1].trim( ).matches( "\\Q\"\\E.*\\Q\"\\E" ) )
 				{
-					String[] entry = names[k].split( CONST_COLUMN_DELIMITER );
-					if ( entry.length == 2
-							&& entry[0].trim( ).matches( "\\Q\"\\E.*\\Q\"\\E" )
-							&& entry[1].trim( ).matches( "\\Q\"\\E.*\\Q\"\\E" ) )
-					{
-						prefixMap.put( entry[0].trim( ).substring( 1,
-								entry[0].trim( ).length( ) - 1 ),
-								entry[1].trim( ).substring( 1,
-										entry[1].trim( ).length( ) - 1 ) );
-					}
+					prefixMap.put( entry[0].trim( ).substring( 1,
+							entry[0].trim( ).length( ) - 1 ),
+							entry[1].trim( ).substring( 1,
+									entry[1].trim( ).length( ) - 1 ) );
 				}
 			}
 			
-			// //////////////////////////////
-			String tableName = temp[0].trim();
-			String tableRawRoot = temp[1].substring( 1, temp[1].length( ) - 1 )
-					.trim( );
+		}
+		Iterator tablesItr = mt.getTables( ).iterator( );
+		while ( tablesItr.hasNext( ) )
+		{
+			Table t = (Table)tablesItr.next( );
+			List filterColumnInfos = new ArrayList();
+
+			String tableName = t.getName( );
+			String tableRawRoot = t.getRowPath( );
 			if ( useNamespace )
 				tableRawRoot = getValueWithNameSpace( tableRawRoot, prefixMap );
 			TableInfo tableInfo = new TableInfo( tableName,
 					tableRawRoot );
 			
-			// ////////////////////////////////
-			String[] columns = temp[2].trim( ).split( CONST_COLUMN_DELIMITER );
-			
-			for ( int j = 0; j < columns.length; j++ )
+			for ( int j = 0; j < t.getColumns( ).length; j++ )
 			{
-				String trimedColumn = columns[j].trim( );
-				// remove column info delimiter "{" and "}"
+				Column c = t.getColumns( )[j];
+
 			
-				String[] columnInfos = trimedColumn.substring( 1,
-						trimedColumn.length( ) - 1 )
-						.split( CONST_COLUMN_METAINFO_DELIMITER );
-				
-				//columnInfos[0]: column name
-				//columnInfos[1]: column type
-				//columnInfos[2]: column XPath
-				String columnXpath = EMPTY_STRING;
-				for ( int m = 0; m < columnInfos.length; m++ )
-					columnInfos[m] = columnInfos[m].trim( );
-				if( columnInfos.length == 3 )
+				String columnXpath = c.getPath( );
+	
+				if ( useNamespace )
 				{
-					columnXpath = columnInfos[2];
-					if ( useNamespace )
-					{
-						columnXpath = getValueWithNameSpace( columnXpath, prefixMap );
-					}
+					columnXpath = getValueWithNameSpace( columnXpath, prefixMap );
 				}
 				HashMap map = null;
 				//if it is a filter expression
 				if ( columnXpath.matches( ".*\\Q[@\\E.*\\Q=\\E.*" ) )//$NON-NLS-1$
 				{
 					map = populateFilterInfo(filterColumnInfos, tableInfo,
-							columns, columnXpath);
+							t.getColumns( ).length, columnXpath);
 				}
 				tableInfo.addColumn( new ColumnInfo( j + 1,
-						columnInfos[0],
-						columnInfos[1],
+						c.getName( ),
+						c.getType( ),
 						columnXpath, map));
 			}
 			
@@ -184,13 +142,14 @@ public class RelationInformation
 				// TODO support multiple filters in one column.
 				tableInfo.addFilter(tempColumnName, value);
 
-				tableInfo.addColumn(new ColumnInfo( columns.length + filterColumnInfos.size( ) + 1, tempColumnName,
+				tableInfo.addColumn(new ColumnInfo( t.getColumns( ).length + filterColumnInfos.size( ) + 1, tempColumnName,
 						"String", tableFilterPart, //$NON-NLS-1$
 						null));
 			}
 			tableInfo.bulidMappingPathTree( );
-			this.tableInfos.put( temp[0].trim( ), tableInfo );
+			this.tableInfos.put( t.getName( ), tableInfo );
 		}
+
 	}
 
 	public boolean containsNamespace( )
@@ -200,25 +159,20 @@ public class RelationInformation
 	
 	private String getValueWithNameSpace( String rawInfo, Map prefixMap )
 	{
-		String[] path = rawInfo.split( FORWARD_SLASH );
-		for ( int i = 0; i < path.length; i++ )
+		if ( rawInfo.indexOf( Constants.COLON_MARK ) < 0 )
 		{
-			String[] colons = path[i].split( COLON_MARK );
-			if ( colons.length > 1 )
-			{
-				if ( prefixMap.get( colons[0] ) != null )
-					path[i] = prefixMap.get( colons[0] ).toString( )
-							+ COLON_MARK + colons[1];
-			}
+			return rawInfo; //no name space
 		}
-		StringBuffer rawInfoWithNamespace = new StringBuffer( );
-		for ( int i = 0; i < path.length -1 ; i++ )
+		Iterator itr = prefixMap.entrySet( ).iterator( );
+		while ( itr.hasNext( ) )
 		{
-			rawInfoWithNamespace.append( path[i] + FORWARD_SLASH );
+			Map.Entry entry = (Map.Entry)itr.next( );
+			String key = (String)entry.getKey( );
+			String value = (String)entry.getValue( );
+			String regex = "/\\Q" + key + "\\E" + "\\Q" + Constants.COLON_MARK + "\\E";
+			rawInfo = rawInfo.replaceAll( regex, "/" + value + Constants.COLON_MARK );
 		}
-		if ( path.length > 0 )
-			rawInfoWithNamespace.append( path[path.length - 1] );
-		return rawInfoWithNamespace.toString( );
+		return rawInfo;
 	}
 	
 	/**
@@ -232,7 +186,7 @@ public class RelationInformation
 	 * @throws OdaException
 	 */
 	private static HashMap populateFilterInfo(List filterColumnInfos,
-			TableInfo tableInfo, String[] columns, String columnXpath)
+			TableInfo tableInfo, int columnCount, String columnXpath)
 			throws OdaException 
 	{
 		HashMap map = null;
@@ -256,7 +210,7 @@ public class RelationInformation
 		map.put(tempColumnName, value);
 				
 		//
-		filterColumnInfos.add( new ColumnInfo( columns.length
+		filterColumnInfos.add( new ColumnInfo( columnCount
 				+ filterColumnInfos.size( ) + 1,
 				tempColumnName,
 				"String", //$NON-NLS-1$
