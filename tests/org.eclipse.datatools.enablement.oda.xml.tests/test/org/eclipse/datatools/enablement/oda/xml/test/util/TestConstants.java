@@ -126,6 +126,8 @@ public class TestConstants
 	public static final String SAX_PARSER_TEST25_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test25.txt";
 	public static final String SAX_PARSER_TEST26_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test26.txt";
 	public static final String SAX_PARSER_TEST26_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test26.txt";
+	public static final String SAX_PARSER_TEST27_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.test27.txt";
+	public static final String SAX_PARSER_TEST27_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.test27.txt";
 	public static final String SAX_PARSER_TEST_PARAM_OUTPUT_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/output/SaxParserTest.testParam.txt";
 	public static final String SAX_PARSER_TEST_PARAM_GOLDEN_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/golden/SaxParserTest.testParam.txt";
 	
@@ -141,5 +143,7 @@ public class TestConstants
 	public static final String SPECIAL_ENCODING_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/input/specialEncoding_ISO-8859-1.xml";
 	
 	public static final String ANY_RECURSIVE_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/input/anyRecursive.xml";
+	
+	public static final String DOUBLE_SLASH_XML = home+"test/org/eclipse/datatools/enablement/oda/xml/input/doubleslash.xml";
 	
 }
